@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html id="theme">
+  <head>
+    <title>Tile | iTwin UI</title>
+    <link rel="icon" href="../assets/favicon.ico" />
+    <link rel="stylesheet" href="../../lib/css/global.css" />
+    <link rel="stylesheet" href="../../lib/css/tiles.css" />
+    <link rel="stylesheet" href="../../lib/css/user-icons.css" />
+    <link rel="stylesheet" href="../assets/demo.css" />
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body>
+    <theme-button></theme-button>
+    <h1>Tile</h1>
+    <hr />
+    <h2 id="default">Default</h2>
+
+    <div style="width:100%;">
+      <div class="iui-tile">
+        <a href="#">
+          <div class="iui-tile-thumbnail">
+            <div class="iui-tile-quick-action">
+              <!-- Use info_2.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M10 0a1.53893 1.53893 0 0 1 1.66667 1.5A2.18226 2.18226 0 0 1 9.5 3.5 1.57463 1.57463 0 0 1 7.83333 1.83333 2.04692 2.04692 0 0 1 10 0M6.667 16c-.833 0-1.5-.5-.833-2.833l1-4C7 8.5 7 8.333 6.833 8.333c-.333-.167-1.5.333-2.167.833l-.333-.833c2-1.667 4.333-2.667 5.5-2.667.833 0 1 1 .5 2.667L9.167 12.667c-.167.833-.167 1 .167 1a3.33812 3.33812 0 0 0 1.83334 -1l.5.667A9.61468 9.61468 0 0 1 6.66667 16"
+                />
+              </svg>
+            </div>
+            <div class="iui-tile-badge" style="background-color: #f7706c;">
+              Label
+            </div>
+            <img src="../assets/image-test.jpg" />
+          </div>
+        </a>
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-name">
+            Tile name
+          </div>
+          <div class="iui-tile-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </div>
+          <div class="iui-tile-description-metadata">
+            <!-- Use tag_2.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M9,0,0,9l7,7,9-9V0Zm3.5,5A1.5,1.5,0,1,1,14,3.5,1.5,1.5,0,0,1,12.5,5Z"
+              />
+            </svg>
+            <span class="iui-tag">tags</span>, <span class="iui-tag">go</span>,
+            <span class="iui-tag">here</span>
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg
+              class="iui-tile-more-menu"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:100%;">
+      <div class="iui-tile">
+        <div class="iui-tile-thumbnail iui-tile-thumbnail-static">
+          <span class="iui-user-icons-x-large" title="Greg Bentley">
+            <span title="Online" class="iui-user-icons-status iui-online">
+              <!-- Use checkmark.svg from generic-icons package. -->
+              <svg
+                class="iui-user-icons-status-symbol"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"></path>
+              </svg>
+            </span>
+            <span class="iui-user-icons-stroke"></span>
+            <abbr
+              class="iui-user-icons-initials"
+              style="background-color:#A47854;"
+              >GB</abbr
+            >
+            <img
+              src="../assets/users/greg-bentley.jpg"
+              srcset="
+                ../assets/users/greg-bentley.jpg    1x,
+                ../assets/users/greg-bentley@2x.jpg 2x,
+                ../assets/users/greg-bentley@3x.jpg 3x
+              "
+              alt="Greg Bentley"
+            />
+          </span>
+        </div>
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-name">Greg Bentley</div>
+          <div class="iui-tile-description">CEO</div>
+
+          <div class="flex-container">
+            <div class="flex-column">
+              <!-- Use download.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" title="Uploads" aria-hidden="true">
+                <path d="m2 5h4v7h4v-7h4l-6-5zm12 6v3h-12v-3h-2v5h16v-5z" />
+              </svg>
+              N/A
+            </div>
+            <div class="flex-column">
+              <!-- Use share.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" title="Shares" aria-hidden="true">
+                <path
+                  d="m12.5 10.5a2.03515 2.03515 0 0 0 -1.5.6l-5-2.8v-.6l5-2.8a2.81493 2.81493 0 0 0 1.5.6 2.47572 2.47572 0 0 0 2.5-2.5 2.5 2.5 0 0 0 -5 0 1.70178 1.70178 0 0 0 .1.7l-4.7 2.7a2.32251 2.32251 0 0 0 -1.9-.9 2.5 2.5 0 0 0 0 5 2.32251 2.32251 0 0 0 1.9-.9l4.7 2.7a1.70178 1.70178 0 0 0 -.1.7 2.5 2.5 0 1 0 2.5-2.5"
+                />
+              </svg>
+              0
+            </div>
+            <div class="flex-column">
+              <!-- Use thumbs-up.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" title="Likes" aria-hidden="true">
+                <path
+                  d="m0 15.88157h3.52975v-9.28224h-3.52975zm15.51757-3.59094c.333 1.0163-1.13218 1.42283-1.06559 1.96485.2664 1.82935-1.86477 1.7616-1.93137 1.7616h-5.66091a5.737 5.737 0 0 1 -2.53076-.542v-8.266a2.38684 2.38684 0 0 0 1.53177-.88079 16.54123 16.54123 0 0 0 1.53178-1.96483 4.9832 4.9832 0 0 0 .999-2.50688v-1.42283c0-.271.333-.40652.333-.40652a1.88564 1.88564 0 0 1 2.19777 2.03261c-.0666 1.49058-.86579 2.84565-.86579 3.45543a1.24058 1.24058 0 0 0 1.13218 1.21957h3.663a1.09263 1.09263 0 0 1 1.13305 1.05065q.00191.05058-.00087.10116a2.20873 2.20873 0 0 1 -.19983.94855.5223.5223 0 0 1 -.1332.33877 1.02118 1.02118 0 0 0 .1332.60978c.73255 1.28732-.666 1.35507-.26643 2.50688z"
+                />
+              </svg>
+              1,252
+            </div>
+            <div class="flex-column">
+              <!-- Use project.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" title="Projects" aria-hidden="true">
+                <path
+                  d="m1 11h2v1h-2zm0-4h2v1h-2zm0-4h2v1h-2zm13 8h.5c.27615 0 .5.2985.5.6667v2.6666c0 .3682-.22385.6667-.5.6667h-.5zm0-5h.5c.27615 0 .5.2985.5.6667v2.6666c0 .3682-.22385.6667-.5.6667h-.5zm-1-5h1.3333a.66671.66671 0 0 1 .6667.6667v2.6666a.66671.66671 0 0 1 -.6667.6667h-1.3333zm-9 12h-2v2h11v-9h-1v-6h-10v2h2v3h-2v1h2v3h-2v1h2z"
+                />
+              </svg>
+              2
+            </div>
+          </div>
+          <div class="iui-tile-description-metadata">
+            &nbsp;
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg
+              class="iui-tile-more-menu"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:100%;">
+      <div class="iui-tile">
+        <a href="#">
+          <div class="iui-tile-thumbnail">
+            <div class="iui-tile-type-indicator" title="AssetWise">
+              <!-- Use assetwise_2.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M2.4709,5.1959A9.26518,9.26518,0,0,1,3.5693,4.11,9.90549,9.90549,0,0,1,4.83,3.2133a10.194,10.194,0,0,1,1.4319-.712q.2616-.10571.5229-.1946t.5239-.1626q.2632-.0738.5257-.1316.26471-.0585.5283-.1009l.1439-.32a.15067.15067,0,0,1,.0151-.0264.14755.14755,0,0,1,.0195-.0222.15616.15616,0,0,1,.0228-.0177.16383.16383,0,0,1,.026-.0134.17083.17083,0,0,1,.034-.0095A.16831.16831,0,0,1,8.66,1.5a.17533.17533,0,0,1,.0368.0054.18319.18319,0,0,1,.0367.0135l.591.29.79.3875a.14375.14375,0,0,1,.0489.0339.03719.03719,0,0,1,.0082.0367.09063.09063,0,0,1-.033.04.41517.41517,0,0,1-.0745.0439l-1.0582.5228L7.9062,3.416l-.0125.006-.0127.0056-.0119.0052-.0117.0047a.32722.32722,0,0,1-.0812.0217.09722.09722,0,0,1-.0543-.0065.04089.04089,0,0,1-.023-.033.11.11,0,0,1,.0125-.0579L7.8962,2.95q-.1775.02869-.3564.0677t-.3566.0881q-.17809.0492-.3569.1088t-.3572.13A7.20864,7.20864,0,0,0,5.38,3.8841a6.93585,6.93585,0,0,0-.9456.6869,6.31775,6.31775,0,0,0-.7965.8241,5.33115,5.33115,0,0,0-.6156.9558L1.5652,6.488A8.11438,8.11438,0,0,1,2.4709,5.1959Zm7.78,8.5387q-.1839.07759-.3715.1478t-.3779.1331q-.19.0626-.3833.1179a8.64512,8.64512,0,0,1-3.8986.2467,6.16,6.16,0,0,1-2.3975-.9529l-.0006.0016-.0431-.0307c-.0136-.0095-.0282-.0182-.0417-.0278v-.0015c-.0938-.0665-.1857-.1345-.2732-.2058A4.66591,4.66591,0,0,1,1.041,11.2258,4.83108,4.83108,0,0,1,.744,9.08L.135,9.3a.21.21,0,0,1-.0943.0165.0418.0418,0,0,1-.0394-.0334.12876.12876,0,0,1,.0169-.0756.57835.57835,0,0,1,.0731-.111l.8253-1.02.9006-1.1133c.0115-.0144.0226-.0272.0335-.0387a.43038.43038,0,0,1,.0316-.03.25958.25958,0,0,1,.03-.0226.1602.1602,0,0,1,.0289-.0146A.11069.11069,0,0,1,1.97,6.85a.09617.09617,0,0,1,.0271.0009.111.111,0,0,1,.0264.0086.14809.14809,0,0,1,.026.0163l.62.469.7316.553a.14673.14673,0,0,1,.0527.068.1013.1013,0,0,1-.0028.0731.17821.17821,0,0,1-.0562.0694.37627.37627,0,0,1-.1055.0559L2.6,8.4121a2.87649,2.87649,0,0,0,.4561,1.3147A3.142,3.142,0,0,0,4.142,10.7289c.0187.0107.0365.0221.0555.0326a4.41716,4.41716,0,0,0,1.8212.5079A6.26611,6.26611,0,0,0,8.3411,10.97q.1033-.0329.2053-.0686t.2024-.0747q.1007-.0389.2-.08t.1964-.0862l1.4694,2.9131q-.18019.0838-.3646.161Zm5.7064-2.6052a.33587.33587,0,0,1-.1435.0765l-.0244.0066-.0258.006-.0271.0052-.0286.0045-2.2016.3066-2.4552.3411a.52173.52173,0,0,1-.1638.0018.22327.22327,0,0,1-.1124-.0511.217.217,0,0,1-.0626-.1047.49754.49754,0,0,1-.0156-.159L10.74,9.6607l.04-1.6754a.37716.37716,0,0,1,.0105-.08.23815.23815,0,0,1,.0256-.0634.17194.17194,0,0,1,.0386-.0459.15588.15588,0,0,1,.05-.028.174.174,0,0,1,.0488-.0088.2219.2219,0,0,1,.0546.0045.31638.31638,0,0,1,.0595.0187.44656.44656,0,0,1,.0637.0337l.8092.513A4.80789,4.80789,0,0,0,12.486,7.216a3.74682,3.74682,0,0,0,.196-1.076c.0019-.0668.0012-.1332-.0011-.1991a3.02129,3.02129,0,0,0-.1257-.7764,2.877,2.877,0,0,0-.4112-.8357,3.01447,3.01447,0,0,0-.4321-.4851,3.28328,3.28328,0,0,0-.5028-.3734,3.73329,3.73329,0,0,0-.5522-.2743,4.27117,4.27117,0,0,0-.5859-.1857l.9438-1.1168a7.03821,7.03821,0,0,1,.8728.1954,6.23067,6.23067,0,0,1,.8585.3207,5.54366,5.54366,0,0,1,.8264.4689,5.0583,5.0583,0,0,1,.7666.6475A4.5678,4.5678,0,0,1,15.617,6.2612h0l.0045.0372a5.4056,5.4056,0,0,1-.1388,1.8073,6.87741,6.87741,0,0,1-.822,1.9467l1.1194.7089a.68989.68989,0,0,1,.16.1337.22922.22922,0,0,1,.0592.1266.1356.1356,0,0,1-.0424.1079Z"
+                />
+              </svg>
+            </div>
+            <div class="iui-tile-badge" style="background-color: #A3779F;">
+              External
+            </div>
+            <img src="../assets/image-test.jpg" />
+          </div>
+        </a>
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-name">Asset name</div>
+          <div class="flex-container">
+            <!-- Use location.svg from generic-icons package. -->
+            <svg class="icon-indent" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m8 0c-2.9 0-5.3 2.4-5.3 5.3 0 1.2.8 3.1 2.3 5.9 1.1 2 3 4.8 3 4.8s1.9-2.9 3-4.9c1.5-2.8 2.3-4.7 2.3-5.9 0-2.8-2.4-5.2-5.3-5.2m0 8c-1.5 0-2.8-1.2-2.8-2.7s1.2-2.7 2.7-2.7 2.7 1.2 2.7 2.7c.1 1.5-1.1 2.7-2.6 2.7"
+              />
+            </svg>
+            <div class="iui-tile-description">
+              1601 Cherry Street<br />Philadelphia, PA 19102
+            </div>
+          </div>
+          <div class="iui-tile-description-metadata">
+            ID: <span class="iui-tag">10001</span>
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg
+              class="iui-tile-more-menu"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+
+        <button class="iui-tile-button split">Manage</button
+        ><button class="iui-tile-button split">Projects</button>
+      </div>
+    </div>
+
+    <div style="width:100%;">
+      <div class="iui-tile">
+        <a href="#">
+          <div class="iui-tile-thumbnail">
+            <img src="../assets/image-test.jpg" />
+          </div>
+        </a>
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-name iui-tile-name-heading">
+            Tile name
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg
+              class="iui-tile-more-menu"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:100%;">
+      <div class="iui-tile">
+        <a href="#">
+          <div class="iui-tile-thumbnail">
+            <div class="iui-tile-quick-action">
+              <!-- Use star-hollow.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="m7.99969 3.1804 1.39921 2.79436.28116.5615.62161.08908 3.093.44326-2.22645 2.13894-.46033.44223.10945.62889.52944 3.04193-2.79505-1.44853-.55218-.28617-.55217.28619-2.79457 1.44841.52942-3.04183.10945-.62885-.46028-.44223-2.22625-2.13898 3.09285-.44326.62167-.08909.28114-.56158zm-.00012-2.6804-2.4718 4.93748-5.52777.79223 4 3.84319-.94456 5.4271 4.94413-2.56252 4.94456 2.56252-.94456-5.4271 4.00043-3.84319-5.5281-.79223z"
+                />
+              </svg>
+            </div>
+            <div class="iui-play-icon">
+              <!-- Use play_2.svg from generic-icons package. -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="53"
+                height="53"
+                viewBox="0 0 53 53"
+              >
+                <path
+                  id="Play_icon"
+                  data-name="Play icon"
+                  d="M26.5,0A26.5,26.5,0,1,0,53,26.5,26.5,26.5,0,0,0,26.5,0M19.875,38.425V14.575L39.75,26.5,19.875,38.425"
+                  fill="rgba(255,255,255,0.85)"
+                />
+              </svg>
+            </div>
+            <div class="iui-tile-badge" style="background-color: #008be1;">
+              10:23
+            </div>
+            <img src="../assets/image-test.jpg" />
+          </div>
+        </a>
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-name">
+            Video name
+          </div>
+          <div class="iui-tile-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </div>
+          <div class="iui-tile-description-metadata">
+            <!-- Use clock.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m8.6 9h-.2l-5-1.5a.48559.48559 0 0 1 -.3-.6.41926.41926 0 0 1 .6-.3l4.3 1.3v-2.4a.5.5 0 0 1 1 0v3a.75812.75812 0 0 1 -.2.4.34914.34914 0 0 1 -.2.1m-.6-7.5a6.5 6.5 0 1 1 -6.5 6.5 6.487 6.487 0 0 1 6.5-6.5m0-1.5a8 8 0 1 0 8 8 8.02352 8.02352 0 0 0 -8-8z"
+              />
+            </svg>
+            <div class="iui-tile-date-text">August 17, 2020</div>
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg
+              class="iui-tile-more-menu"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:100%;">
+      <div class="iui-tile">
+        <a href="#">
+          <div class="iui-tile-thumbnail">
+            <!-- Use empty.svg from generic-icons package. -->
+            <svg class="iui-tile-thumbnail-empty" aria-hidden="true" viewBox="0 0 16 16">
+              <path
+                d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm0 14.66669a6.66669 6.66669 0 1 1 6.66669-6.66669 6.66673 6.66673 0 0 1 -6.66669 6.66669zm-4.33333-7.33334h8.66669v1.33333h-8.66669z"
+              />
+            </svg>
+          </div>
+        </a>
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-name">Item name</div>
+          <div class="iui-tile-description">
+            No items are defined for this category.
+          </div>
+        </div>
+
+        <button class="iui-tile-button">Add item(s)</button>
+      </div>
+    </div>
+
+    <div style="width:100%;">
+      <div class="iui-tile folder">
+        <a href="#">
+          <div class="iui-tile-thumbnail">
+            <img src="../assets/image-test.jpg" />
+          </div>
+        </a>
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-name">Folder name</div>
+          <div class="iui-tile-description">
+            Lorem ipsum dolor sit amet
+          </div>
+          <div class="iui-tile-description-metadata">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg
+              class="iui-tile-more-menu"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>

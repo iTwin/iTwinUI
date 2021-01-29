@@ -1,0 +1,17 @@
+@import './index';
+
+.iui-user-icons-small {
+  @include iui-user-icons-small;
+}
+
+.iui-user-icons-medium {
+  @include iui-user-icons-medium;
+}
+
+.iui-user-icons-large {
+  @include iui-user-icons-large;
+}
+
+.iui-user-icons-x-large {
+  @include iui-user-icons-x-large;
+}

@@ -1,0 +1,125 @@
+@import '../style/index';
+@import './variables';
+@import '../menu/menu.scss';
+
+$iui-after-border: 5px solid;
+
+@mixin iui-select {
+  @include iui-font-family;
+  @include iui-menu;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  box-shadow: none;
+
+  .iui-select-button {
+    @include iui-input;
+    display: flex;
+    align-items: center;
+    padding-right: $iui-xl;
+    white-space: nowrap;
+    user-select: none;
+    position: relative;
+    margin-top: $iui-inputs-margin;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &.iui-placeholder {
+      @include themed {
+        color: t(iui-text-color-placeholder);
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: $iui-m;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: $iui-after-border transparent;
+      border-right: $iui-after-border transparent;
+
+      @include themed {
+        border-top: $iui-after-border
+          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+      }
+    }
+  }
+
+  input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  input ~ .iui-menu {
+    display: none;
+    z-index: 3;
+  }
+
+  input:checked ~ .iui-menu {
+    display: block;
+  }
+
+  input:checked ~ .iui-select-button::after {
+    border-top: none;
+
+    @include themed {
+      border-bottom: $iui-after-border
+        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
+  }
+
+  input:enabled:focus ~ .iui-select-button {
+    @include themed {
+      box-shadow: t(iui-focus-box-shadow);
+    }
+  }
+
+  input:disabled ~ .iui-select-button::after {
+    @include themed {
+      border-top: $iui-after-border
+        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+    }
+  }
+
+  input[disabled] ~ .iui-select-button,
+  input[readonly] ~ .iui-select-button {
+    @include themed {
+      background-color: t(iui-color-background-disabled);
+      border-color: t(iui-color-background-disabled);
+    }
+    cursor: not-allowed;
+  }
+
+  input:enabled ~ .iui-select-button:hover {
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
+    transition: border-color $iui-speed-fast ease-out;
+
+    &::after {
+      border-bottom: none;
+
+      @include themed {
+        border-top: $iui-after-border
+          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+      }
+    }
+  }
+
+  input:checked ~ .iui-select-button:hover {
+    &::after {
+      border-top: none;
+
+      @include themed {
+        border-bottom: $iui-after-border
+          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+      }
+    }
+  }
+}

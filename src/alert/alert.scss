@@ -1,0 +1,81 @@
+@import '../style/index';
+@import '../text/index';
+@import '../icons/index';
+
+@mixin iui-alerts-alert {
+  @include iui-text-block;
+  @include iui-font-family;
+  padding: $iui-baseline $iui-sm;
+  border-radius: $iui-border-radius;
+  box-sizing: border-box;
+
+  @include themed {
+    border: 1px solid t(iui-color-background-5);
+    background-color: t(iui-color-background-1);
+    color: t(iui-text-color);
+  }
+
+  > .iui-alerts-status-icon {
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    margin-right: $iui-sm;
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    @include themed {
+      fill: t(iui-icons-color);
+    }
+
+    > * {
+      @include themed {
+        fill: t(iui-icons-color);
+      }
+    }
+  }
+
+  > a {
+    margin-left: $iui-xs;
+
+    &:focus-visible {
+      outline: 0;
+    }
+  }
+
+  > .iui-alerts-close-icon {
+    float: right;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    cursor: pointer;
+
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
+
+    &:hover {
+      @include themed {
+        fill: t(iui-icons-color-actionable-hover);
+      }
+    }
+  }
+
+  > .iui-alerts-link {
+    text-decoration: underline;
+    user-select: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &.iui-sticky {
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    max-width: 100%;
+  }
+}

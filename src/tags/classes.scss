@@ -1,0 +1,13 @@
+@import './tags.scss';
+
+.iui-tag {
+  @include iui-tag;
+}
+
+.iui-tag-text {
+  @include iui-tag-text;
+}
+
+.iui-tag-close-icon {
+  @include iui-tag-close-icon;
+}

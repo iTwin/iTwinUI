@@ -1,0 +1,41 @@
+/// Imports --------------------------------------------------------------------
+
+@import '../style/index';
+
+/// Mixins ---------------------------------------------------------------------
+
+@mixin iui-tooltip {
+  @include iui-font-family;
+  display: block;
+
+  @include themed {
+    color: t(iui-color-foreground-body);
+    background-color: rgba(t(iui-color-background-5-rgb), t(iui-opacity-2));
+  }
+  text-align: center;
+  border-radius: $iui-border-radius;
+  font-size: $iui-font-size-small;
+  overflow: hidden;
+  max-width: 400px;
+  width: max-content;
+  overflow-wrap: break-word;
+  box-sizing: content-box;
+  padding: round($iui-baseline / 3) $iui-s;
+  z-index: 999;
+  box-shadow: $iui-elevation-24;
+}
+
+@mixin iui-tooltip-hidden {
+  position: absolute;
+  visibility: hidden;
+  user-select: none;
+  opacity: 0;
+  /// Following this guide for animation on exit hover: https://greywyvern.com/?post=337
+  transition: visibility 0s linear $iui-speed-fast,
+    opacity $iui-speed-fast ease-out;
+}
+
+@mixin iui-tooltip-visible {
+  visibility: visible;
+  opacity: 1;
+}

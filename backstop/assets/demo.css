@@ -1,0 +1,38 @@
+body {
+  padding: 24px;
+}
+h1 {
+  font-size: 32px;
+  margin-bottom: 11px;
+}
+h2 {
+  font-size: 22px;
+  margin-bottom: 11px;
+}
+h3 {
+  font-size: 16px;
+}
+hr {
+  border-top: 1px solid #c7ccd1;
+  margin: 11px 0;
+}
+.demo-striped-background {
+  background-color: #f8f9fb;
+  width: 100%;
+  margin: 0 -24px;
+}
+
+/* Dark theme */
+.iui-theme-dark body .demo-striped-background {
+  background-color: #4f5d65;
+}
+.iui-theme-dark body hr {
+  border-color: #2d373c;
+}
+
+/* Custom high contrast theme */
+html.custom-theme {
+  --iui-color-foreground-body-rgb: 255, 0, 0;
+  --iui-color-foreground-accessory-rgb: 0, 255, 0;
+  --iui-color-foreground-primary-rgb: 0, 0, 255;
+}

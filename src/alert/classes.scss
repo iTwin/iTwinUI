@@ -1,0 +1,17 @@
+@import './index';
+
+.iui-alerts-informational {
+  @include iui-alerts-informational;
+}
+
+.iui-alerts-positive {
+  @include iui-alerts-positive;
+}
+
+.iui-alerts-warning {
+  @include iui-alerts-warning;
+}
+
+.iui-alerts-negative {
+  @include iui-alerts-negative;
+}

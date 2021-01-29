@@ -1,0 +1,13 @@
+@import './index';
+
+.iui-tables-table {
+  @include iui-tables-table;
+}
+
+.iui-tables-condensed {
+  @include iui-tables-condensed;
+}
+
+.iui-tables-extra-condensed {
+  @include iui-tables-extra-condensed;
+}

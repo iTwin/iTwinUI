@@ -1,0 +1,44 @@
+@import '../style/index';
+@import './tabs';
+
+@mixin iui-tabs-horizontal {
+  @include iui-tabs;
+
+  > li {
+    > a {
+      line-height: $iui-line-height;
+
+      @include themed {
+        background-color: t(iui-color-background-2);
+        border: 1px solid t(iui-color-background-5);
+      }
+
+      &:hover {
+        @include themed {
+          background-color: t(iui-color-background-1);
+        }
+      }
+
+      &::after {
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+    }
+
+    &:not(:last-child) {
+      > a {
+        border-right: 0;
+      }
+    }
+
+    &.iui-tabs-active {
+      > a {
+        @include themed {
+          border-bottom: 1px solid t(iui-color-background-1);
+          background-color: t(iui-color-background-1);
+        }
+      }
+    }
+  }
+}

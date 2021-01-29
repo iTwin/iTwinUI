@@ -1,0 +1,36 @@
+@import '../style/index';
+@import './toast';
+
+@mixin iui-toast-informational {
+  @include iui-toast;
+
+  @include themed {
+    border-color: t(iui-color-foreground-primary);
+  }
+
+  .iui-toast-message {
+    &::-moz-selection {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-4)
+        );
+      }
+    }
+
+    &::selection {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-4)
+        );
+      }
+    }
+  }
+
+  .iui-toast-icon-container > .iui-toast-icon-background {
+    @include themed {
+      background-color: t(iui-color-background-primary);
+    }
+  }
+}

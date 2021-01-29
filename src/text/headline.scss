@@ -1,0 +1,6 @@
+@import './mixins';
+
+@mixin iui-text-headline {
+  @include iui-text(headline);
+  @include iui-text-block-spacing;
+}

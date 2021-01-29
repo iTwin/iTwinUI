@@ -1,0 +1,24 @@
+@import './button';
+@import './default';
+
+@mixin iui-buttons-default-large {
+  @include iui-buttons-default;
+  @include iui-buttons-large-bordered-size;
+
+  &,
+  &:active,
+  &:focus {
+    @include iui-buttons-large-bordered-size;
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:active,
+  &[disabled]:focus {
+    @include iui-buttons-large-size;
+  }
+
+  &.dropdown {
+    padding-right: $iui-sm;
+  }
+}

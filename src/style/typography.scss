@@ -1,0 +1,51 @@
+@import './baseline';
+@import './theme';
+
+/// Constants ------------------------------------------------------------------
+
+$iui-sans: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$iui-monospace: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+$iui-font-family: $iui-sans;
+
+$iui-font-size: 14px;
+$iui-font-size-small: 12px;
+$iui-font-size-leading: 16px;
+$iui-font-size-subheading: 18px;
+$iui-font-size-title: 24px;
+$iui-font-size-headline: 32px;
+
+$iui-cap-size: 10px;
+$iui-cap-size-small: 9px;
+$iui-cap-size-leading: 12px;
+$iui-cap-size-subheading: 13px;
+$iui-cap-size-title: 17px;
+$iui-cap-size-headline: 23px;
+
+$iui-font-weight-light: 300;
+$iui-font-weight-normal: 400;
+$iui-font-weight-semibold: 600;
+$iui-font-weight-bold: 700;
+
+/// Font loading helpers -------------------------------------------------------
+/// See: https://www.zachleat.com/web/comprehensive-webfonts
+
+$iui-font-loaded-class: null !default;
+
+@mixin iui-font-family {
+  @if $iui-font-loaded-class {
+    font-family: sans-serif;
+
+    &.#{ $iui-font-loaded-class } {
+      font-family: $iui-font-family;
+    }
+
+    @at-root {
+      body.#{ $iui-font-loaded-class } & {
+        font-family: $iui-font-family;
+      }
+    }
+  } @else {
+    font-family: $iui-font-family;
+  }
+}

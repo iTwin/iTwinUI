@@ -1,0 +1,50 @@
+@import '../style/index';
+@import './tabs';
+
+@mixin iui-tabs-borderless {
+  @include iui-tabs;
+  margin: $iui-baseline/2 0;
+
+  > li {
+    > a {
+      line-height: $iui-line-height;
+      padding: $iui-line-height $iui-l;
+
+      &:hover {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-6)
+          );
+        }
+      }
+
+      &::after {
+        bottom: $iui-xxs;
+        left: $iui-xxs;
+        right: $iui-xxs;
+      }
+    }
+
+    &.iui-tabs-active > a {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6)
+        );
+      }
+    }
+  }
+
+  &.iui-green > li {
+    > a:hover,
+    &.iui-tabs-active > a {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-positive-rgb),
+          t(iui-opacity-6)
+        );
+      }
+    }
+  }
+}

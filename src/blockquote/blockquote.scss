@@ -1,0 +1,24 @@
+@import '../style/index';
+
+@mixin iui-blockquote {
+  display: block;
+  position: relative;
+  padding: $iui-baseline $iui-m;
+  margin: $iui-baseline 0;
+  text-align: justify;
+  box-shadow: $iui-elevation-2;
+  border-radius: $iui-border-radius;
+
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border-left: $iui-s solid t(iui-color-foreground-primary);
+  }
+
+  > footer {
+    text-align: right;
+
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
+  }
+}

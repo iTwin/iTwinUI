@@ -1,0 +1,34 @@
+@import '../style/index';
+@import './location-marker';
+
+@mixin iui-location-marker-me {
+  @include iui-location-marker;
+  position: relative;
+  width: $iui-icons-large;
+  height: $iui-icons-large;
+  border-radius: 50%;
+  cursor: default;
+
+  @include themed {
+    background: radial-gradient(
+      circle at center,
+      rgba(t(iui-color-foreground-primary-rgb), 0),
+      rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5))
+    );
+  }
+
+  > .iui-location-marker-me-dot {
+    width: $iui-icons-large/2;
+    height: $iui-icons-large/2;
+    position: absolute;
+    top: $iui-icons-large/4;
+    left: $iui-icons-large/4;
+    border-radius: 50%;
+    box-sizing: border-box;
+
+    @include themed {
+      border: 1px solid t(iui-color-foreground-accessory);
+      background-color: t(iui-color-background-primary);
+    }
+  }
+}

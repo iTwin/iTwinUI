@@ -1,0 +1,370 @@
+@import '../style/index';
+@import '../icons/index';
+
+$iui-tile-height: $iui-baseline * 12;
+$iui-tile-width: $iui-3xl * 2.5;
+$iui-tile-image-height: $iui-baseline * 14;
+
+@mixin iui-tile {
+  @include iui-font-family;
+  min-height: $iui-tile-height;
+  max-width: $iui-tile-width;
+  margin: 0 0 $iui-line-height;
+  box-shadow: $iui-elevation-2;
+  overflow: hidden;
+
+  @include themed {
+    background-color: t(iui-color-background-1);
+    color: t(iui-text-color);
+  }
+
+  .iui-tile-thumbnail {
+    width: 100%;
+    height: $iui-tile-image-height;
+    overflow: hidden;
+    position: relative;
+
+    @include themed {
+      background-color: t(iui-color-background-1-overlay);
+      border-bottom: 1px solid t(iui-color-background-4);
+    }
+
+    img {
+      max-width: $iui-tile-width;
+      background-position: center;
+      transition: transform $iui-speed ease;
+    }
+
+    > .iui-user-icons-x-large,
+    > .iui-tile-thumbnail-empty {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    > .iui-tile-thumbnail-empty {
+      width: $iui-icons-3xl;
+      height: $iui-icons-3xl;
+
+      @include themed {
+        fill: t(iui-icons-color);
+      }
+    }
+
+    > .iui-tile-type-indicator,
+    > .iui-tile-quick-action {
+      height: $iui-icons-large;
+      width: $iui-icons-large;
+      position: absolute;
+      top: $iui-baseline - 2;
+      z-index: 1;
+      background-color: transparent;
+      border-radius: 50%;
+      transition: background-color $iui-speed-fast ease-out;
+
+      > svg,
+      img {
+        width: $iui-icons-default;
+        height: $iui-icons-default;
+
+        @include themed {
+          fill: t(iui-color-foreground-accessory);
+        }
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.25));
+      }
+
+      &:hover {
+        @include themed {
+          background-color: rgba(0, 0, 0, t(iui-opacity-5));
+        }
+        transition: background-color $iui-speed-fast ease-out;
+
+        > svg,
+        > img {
+          filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0));
+        }
+      }
+    }
+
+    > .iui-tile-type-indicator {
+      left: $iui-sm - 2;
+    }
+
+    > .iui-tile-quick-action {
+      right: $iui-sm - 2;
+    }
+
+    > .iui-tile-badge {
+      position: absolute;
+      font-size: $iui-font-size-small;
+      padding: 0 $iui-xs;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: $iui-border-radius;
+      z-index: 1;
+      bottom: $iui-baseline;
+      right: $iui-sm;
+      text-transform: uppercase;
+      user-select: none;
+
+      @include themed {
+        color: t(iui-color-foreground-accessory);
+      }
+    }
+  }
+
+  .empty-container {
+    min-width: $iui-tile-width;
+    min-height: $iui-tile-image-height;
+    overflow: hidden;
+    position: relative;
+
+    @include themed {
+      background-color: t(iui-color-background-1-overlay);
+      border-bottom: 1px solid t(iui-color-background-4);
+    }
+
+    img {
+      width: $iui-3xl;
+      height: $iui-3xl;
+      border-radius: 50%;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      position: absolute;
+    }
+
+    img.empty {
+      width: $iui-icons-xxl;
+      height: $iui-icons-xxl;
+    }
+  }
+
+  .iui-tile-content {
+    padding: $iui-baseline $iui-sm;
+
+    > svg,
+    > .iui-tile-description-metadata > svg,
+    > .iui-tile-name > .iui-tile-more-menu,
+    > .flex-container > .icon-indent,
+    > .flex-container > .flex-column > svg {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+
+      @include themed {
+        fill: t(iui-icons-color);
+      }
+      margin-right: $iui-s;
+      margin-top: $iui-xs;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .iui-tile-name {
+      font-size: $iui-font-size-leading;
+      user-select: all;
+      margin-bottom: $iui-baseline / 2;
+
+      @include themed {
+        color: t(iui-text-color);
+      }
+
+      > .iui-tile-more-menu {
+        margin-right: 0;
+        float: right;
+        visibility: hidden;
+        cursor: pointer;
+
+        @include themed {
+          fill: t(iui-icons-color-actionable);
+        }
+
+        &:hover {
+          @include themed {
+            fill: t(iui-icons-color-actionable-hover);
+          }
+        }
+      }
+    }
+
+    .iui-tile-name-heading {
+      margin-bottom: 0;
+    }
+
+    .iui-tile-description {
+      margin-bottom: $iui-baseline;
+      font-size: $iui-font-size;
+
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
+    }
+
+    .iui-tile-description-metadata {
+      font-size: $iui-font-size-small;
+
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
+
+      .iui-tile-date-text {
+        display: inline-block;
+      }
+
+      .iui-tag {
+        user-select: all;
+      }
+
+      .iui-tile-more-menu {
+        width: $iui-icons-default;
+        height: $iui-icons-default;
+        margin-right: 0;
+        float: right;
+        cursor: pointer;
+        visibility: hidden;
+
+        @include themed {
+          fill: t(iui-icons-color-actionable);
+        }
+
+        &:hover {
+          @include themed {
+            fill: t(iui-icons-color-actionable-hover);
+          }
+        }
+      }
+    }
+
+    &.minimal > .iui-tile-more-menu {
+      float: right;
+    }
+
+    > .flex-container {
+      margin-bottom: $iui-baseline;
+      display: flex;
+
+      > .iui-tile-description {
+        flex: 1;
+        margin-bottom: 0;
+      }
+
+      .flex-column {
+        flex: 1;
+        text-align: center;
+        user-select: all;
+
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
+
+        svg,
+        img {
+          display: block;
+          margin: auto;
+        }
+      }
+    }
+  }
+
+  .iui-tile-button {
+    width: $iui-tile-width;
+    padding: $iui-baseline 0;
+
+    @include themed {
+      background-color: t(iui-color-background-1);
+      color: t(iui-color-foreground-primary);
+      border-top: 1px solid t(iui-color-background-4);
+    }
+    cursor: pointer;
+    transition: background-color $iui-speed-fast ease;
+
+    &:hover {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6)
+        );
+      }
+      transition: background-color $iui-speed-fast ease;
+    }
+
+    &.split {
+      width: $iui-tile-width / 2;
+      display: inline-block;
+
+      &:not(:last-child) {
+        @include themed {
+          border-right: 1px solid t(iui-color-background-4);
+        }
+      }
+    }
+  }
+
+  .iui-play-icon > svg {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    transition: all $iui-speed ease;
+
+    &:hover {
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+
+  &.featured,
+  &:hover {
+    .iui-tile-more-menu {
+      visibility: visible !important;
+    }
+
+    .iui-tile-thumbnail {
+      img {
+        transform: scale(1.1);
+      }
+    }
+
+    .iui-tile-thumbnail-static {
+      img {
+        transform: none;
+      }
+    }
+
+    > .link {
+      text-decoration: none;
+
+      > .icon {
+        background-color: transparent !important;
+      }
+    }
+  }
+
+  &.folder {
+    > a > .iui-tile-thumbnail {
+      max-width: $iui-tile-width/3;
+      max-height: $iui-tile-height;
+      display: inline-block;
+      float: left;
+    }
+
+    > .iui-tile-content {
+      max-width: ($iui-tile-width/3) * 2 - ($iui-sm * 2);
+      float: right;
+      display: inline-block;
+      word-break: break-word;
+    }
+  }
+}

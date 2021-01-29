@@ -1,0 +1,36 @@
+@import '../style/index';
+
+@mixin iui-text-skeleton {
+  display: inline-block;
+  user-select: none;
+  color: transparent;
+  border-radius: $iui-border-radius;
+
+  @include themed {
+    background: linear-gradient(
+      270deg,
+      t(iui-color-background-3),
+      t(iui-color-background-3),
+      t(iui-color-background-2),
+      t(iui-color-background-3),
+      t(iui-color-background-3)
+    );
+    background-size: 200% 100%;
+  }
+
+  animation: skeleton-shimmer $iui-speed-slow linear infinite;
+
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position: 200% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}

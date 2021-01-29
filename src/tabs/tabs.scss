@@ -1,0 +1,99 @@
+@import '../style/index';
+
+@mixin iui-tabs {
+  @include iui-font-family;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: round($iui-baseline/2) 0 0 0;
+  user-select: none;
+
+  > li {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin: 0;
+
+    > a {
+      display: block;
+      position: relative;
+      padding: ($iui-baseline / 2) $iui-m;
+      box-sizing: border-box;
+      font-size: $iui-font-size;
+      line-height: $iui-line-height;
+      cursor: pointer;
+
+      @include themed {
+        color: t(iui-text-color);
+      }
+      transition: color $iui-speed-fast ease-out,
+        background-color $iui-speed-fast ease-out;
+
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        transition: all $iui-speed-fast;
+        height: $iui-xxs;
+        opacity: 0;
+
+        @include themed {
+          background-color: t(iui-color-foreground-primary);
+        }
+      }
+
+      &:hover {
+        text-decoration: none;
+
+        @include themed {
+          color: t(iui-color-foreground-primary);
+          fill: t(iui-color-foreground-primary);
+        }
+        transition: color $iui-speed-fast ease-out,
+          background-color $iui-speed-fast ease-out;
+      }
+    }
+
+    &.iui-tabs-active {
+      > a {
+        font-weight: $iui-font-weight-bold;
+        cursor: default;
+
+        &:hover {
+          @include themed {
+            color: t(iui-text-color);
+          }
+        }
+
+        &::after {
+          @include themed {
+            opacity: t(iui-opacity-1);
+          }
+        }
+      }
+    }
+  }
+
+  &.iui-green > li {
+    > a {
+      &:hover {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+          fill: t(iui-color-foreground-positive);
+        }
+      }
+
+      &::after {
+        @include themed {
+          background-color: t(iui-color-foreground-positive);
+        }
+      }
+    }
+
+    &.iui-tabs-active > a:hover {
+      @include themed {
+        color: t(iui-text-color);
+      }
+    }
+  }
+}

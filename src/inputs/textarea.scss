@@ -1,0 +1,13 @@
+@import '../style/index';
+@import './variables';
+
+@mixin iui-textarea {
+  @include iui-input;
+  resize: vertical;
+  min-height: 38px;
+
+  &[disabled],
+  &[readonly] {
+    resize: none;
+  }
+}

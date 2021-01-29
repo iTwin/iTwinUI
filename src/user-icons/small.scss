@@ -1,0 +1,10 @@
+@import '../icons/variables';
+@import './user-icon';
+
+@mixin iui-user-icons-small {
+  @include iui-user-icons($size: $iui-icons-large);
+
+  > .iui-user-icons-initials {
+    font-size: $iui-font-size-small;
+  }
+}

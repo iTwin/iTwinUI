@@ -1,0 +1,153 @@
+@import '../style/index';
+@import '../text/mixins';
+@import '../icons/index';
+
+@mixin iui-expandable-block {
+  @include iui-font-family;
+
+  @include themed {
+    background-color: t(iui-color-background-1);
+  }
+  box-sizing: border-box;
+
+  > .iui-header {
+    @include themed {
+      border-bottom: 1px solid t(iui-color-background-4);
+      background-color: t(iui-color-background-3);
+    }
+    padding: $iui-baseline $iui-sm;
+    transition: background-color $iui-speed-fast ease-out,
+      border-color $iui-speed-fast ease-out;
+    cursor: pointer;
+
+    > .iui-icon {
+      float: left;
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+      margin-right: $iui-sm;
+      margin-top: $iui-baseline / 4;
+      line-height: 3 * $iui-baseline;
+      text-align: center;
+      font-size: $iui-font-size-subheading;
+      transition: transform $iui-speed-fast ease-out;
+      vertical-align: middle;
+
+      @include themed {
+        fill: t(iui-icons-color-actionable);
+      }
+    }
+
+    > .iui-title,
+    > .iui-caption {
+      @include no-link;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      user-select: none;
+      transition: color $iui-speed-fast ease;
+    }
+
+    > .iui-title {
+      font-size: $iui-font-size-leading;
+      margin: 0;
+
+      @include themed {
+        color: t(iui-text-color);
+      }
+    }
+
+    > .iui-caption {
+      font-size: $iui-font-size-small;
+
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
+    }
+
+    &:focus {
+      outline: 0;
+
+      @include themed {
+        box-shadow: t(iui-focus-box-shadow);
+      }
+    }
+  }
+
+  &.iui-with-caption > .iui-header > .iui-icon {
+    margin-top: $iui-baseline;
+  }
+
+  .iui-content {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform $iui-speed-fast ease-in-out;
+    overflow: hidden;
+    padding: 0 0;
+    opacity: 0;
+    height: 0;
+
+    @include themed {
+      border-bottom: 1px solid t(iui-color-background-4);
+      border-right: 1px solid t(iui-color-background-4);
+      border-left: 1px solid t(iui-color-background-4);
+    }
+  }
+
+  &:hover {
+    > .iui-header {
+      @include themed {
+        background-color: t(iui-color-background-4);
+      }
+
+      > .iui-icon {
+        @include themed {
+          fill: t(iui-icons-color-actionable-hover);
+        }
+      }
+
+      > .iui-caption,
+      > .iui-title {
+        @include themed {
+          color: t(iui-color-foreground-body);
+        }
+        transition: color $iui-speed-fast ease;
+      }
+    }
+  }
+
+  &.iui-expanded {
+    > .iui-header {
+      @include themed {
+        background-color: t(iui-color-background-3);
+        border-left: 1px solid t(iui-color-background-4);
+        border-top: 1px solid t(iui-color-background-4);
+        border-right: 1px solid t(biui-color-background-4);
+
+        &:hover {
+          @include themed {
+            background-color: t(iui-color-background-4);
+          }
+        }
+      }
+
+      > .iui-icon {
+        transform: rotate(90deg);
+      }
+
+      > .iui-caption,
+      > .iui-title {
+        left: -1px;
+        top: -1px;
+        position: relative;
+      }
+    }
+
+    > .iui-content {
+      transform: scaleY(1);
+      opacity: 1;
+      height: auto;
+      padding: $iui-baseline $iui-sm;
+    }
+  }
+}

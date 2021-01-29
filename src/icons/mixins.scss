@@ -1,0 +1,31 @@
+@import './variables';
+
+@mixin iui-icons-default {
+  width: $iui-icons-default;
+  height: $iui-icons-default;
+}
+
+@mixin iui-icons-small {
+  width: $iui-icons-small;
+  height: $iui-icons-small;
+}
+
+@mixin iui-icons-large {
+  width: $iui-icons-large;
+  height: $iui-icons-large;
+}
+
+@mixin iui-icons-xl {
+  width: $iui-icons-xl;
+  height: $iui-icons-xl;
+}
+
+@mixin iui-icons-xxl {
+  width: $iui-icons-xxl;
+  height: $iui-icons-xxl;
+}
+
+@mixin iui-icons-3xl {
+  width: $iui-icons-3xl;
+  height: $iui-icons-3xl;
+}

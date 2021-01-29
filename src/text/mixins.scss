@@ -1,0 +1,41 @@
+@import '../style/index';
+
+@mixin iui-text-block-spacing {
+  padding: 0;
+  margin: 0 0 $iui-line-height;
+}
+
+@mixin iui-text($type: body) {
+  $sizes: (
+    headline: $iui-font-size-headline,
+    title: $iui-font-size-title,
+    subheading: $iui-font-size-subheading,
+    leading: $iui-font-size-leading,
+    body: $iui-font-size,
+    small: $iui-font-size-small,
+    caption: $iui-font-size-small,
+  );
+
+  $weights: (
+    headline: $iui-font-weight-light,
+    title: $iui-font-weight-light,
+    subheading: $iui-font-weight-normal,
+    leading: $iui-font-weight-normal,
+    body: $iui-font-weight-normal,
+    small: $iui-font-weight-normal,
+    caption: $iui-font-weight-normal,
+  );
+  $line-heights: (
+    headline: 2 * $iui-line-height,
+    title: 1.5 * $iui-line-height,
+    subheading: 1.5 * $iui-line-height,
+    leading: $iui-line-height,
+    body: $iui-line-height,
+    small: $iui-line-height,
+    caption: $iui-line-height,
+  );
+  $type: if(map-has-key($sizes, $type), $type, body);
+  font-size: map-get($sizes, $type);
+  font-weight: map-get($weights, $type);
+  line-height: map-get($line-heights, $type);
+}

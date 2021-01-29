@@ -1,0 +1,139 @@
+@import '../style/index';
+@import '../icons/index';
+
+@mixin iui-date-picker {
+  @include iui-font-family;
+  display: inline-block;
+  position: relative;
+
+  > .iui-date-picker-label {
+    cursor: pointer;
+    margin-left: $iui-m;
+  }
+
+  > .iui-date-picker-calendar {
+    z-index: 1;
+    position: absolute;
+    top: 42px;
+    left: 0;
+    display: none;
+    box-shadow: $iui-elevation-2;
+    user-select: none;
+    text-align: center;
+
+    @include themed {
+      background-color: t(iui-color-background-1);
+    }
+
+    > .iui-date-picker-calendar-header {
+      border: none;
+      padding: 0;
+      position: relative;
+      font-weight: $iui-font-weight-bold;
+
+      @include themed {
+        background-color: t(iui-color-background-1);
+      }
+
+      > .iui-date-picker-calendar-header-content {
+        display: inline-flex;
+        width: calc(100% - 32px);
+        align-items: center;
+        justify-content: space-between;
+        height: $iui-icons-default;
+        padding: $iui-m;
+
+        > svg,
+        img {
+          width: $iui-icons-default;
+          height: $iui-icons-default;
+          cursor: pointer;
+
+          @include themed {
+            fill: t(iui-icons-color-actionable);
+          }
+
+          &:hover {
+            @include themed {
+              fill: t(iui-icons-color-actionable-hover);
+            }
+          }
+        }
+      }
+
+      > .iui-date-picker-calendar-header-weekdays {
+        white-space: nowrap;
+        height: $iui-xl;
+
+        @include themed {
+          background-color: t(iui-color-background-2);
+        }
+      }
+    }
+
+    > .iui-date-picker-calendar-month {
+      margin: 0 $iui-s $iui-s;
+
+      > .iui-date-picker-calendar-week {
+        white-space: nowrap;
+        height: $iui-xl;
+
+        > .iui-date-picker-calendar-week-selector {
+          cursor: pointer;
+
+          &:hover:not(.iui-selected) {
+            border-radius: $iui-border-radius;
+            font-weight: $iui-font-weight-semibold;
+
+            @include themed {
+              color: t(iui-color-foreground-primary);
+              background-color: rgba(
+                t(iui-color-foreground-primary-rgb),
+                t(iui-opacity-6)
+              );
+            }
+          }
+
+          &.iui-today {
+            font-weight: $iui-font-weight-semibold;
+            border-radius: 50%;
+
+            @include themed {
+              background-color: rgba(
+                t(iui-color-foreground-body-rgb),
+                t(iui-opacity-6)
+              );
+            }
+          }
+
+          &.iui-selected {
+            font-weight: $iui-font-weight-semibold;
+            border-radius: $iui-border-radius;
+            cursor: default;
+
+            @include themed {
+              background-color: t(iui-color-background-primary);
+              color: t(iui-color-foreground-accessory);
+            }
+          }
+
+          &.iui-outside-month {
+            @include themed {
+              color: t(iui-text-color-muted);
+            }
+          }
+        }
+      }
+    }
+
+    > .iui-date-picker-calendar-header
+      > .iui-date-picker-calendar-header-weekdays
+      > div,
+    > .iui-date-picker-calendar-month > .iui-date-picker-calendar-week > div {
+      display: inline-block;
+      width: $iui-l;
+      line-height: $iui-l;
+      margin: $iui-xxs;
+    }
+  }
+}

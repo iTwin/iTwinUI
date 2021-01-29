@@ -1,0 +1,161 @@
+@import '../style/index';
+
+@mixin iui-wizards {
+  @include iui-font-family;
+
+  > .iui-wizards-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: $iui-baseline / 2;
+
+    > .iui-wizards-step {
+      align-items: center;
+
+      @include themed {
+        color: t(iui-color-background-positive);
+      }
+      display: flex;
+      flex-direction: column-reverse;
+      font-size: $iui-font-size-small;
+      font-weight: $iui-font-weight-normal;
+      line-height: $iui-line-height;
+      position: relative;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      > .iui-wizards-step-title {
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
+      }
+
+      > .iui-wizards-step-circle {
+        align-items: center;
+
+        @include themed {
+          border: 1px solid t(iui-color-background-5);
+          background-color: t(iui-color-background-1);
+          color: t(iui-text-color-muted);
+        }
+        border-radius: 50%;
+        display: flex;
+        height: $iui-l;
+        width: $iui-l;
+        justify-content: center;
+        overflow-wrap: break-word;
+        padding: 0;
+        position: relative;
+        text-align: center;
+        z-index: 1;
+        user-select: none;
+      }
+    }
+
+    > .iui-wizards-step-track,
+    > .iui-wizards-step > .iui-wizards-step-track {
+      height: $iui-xxs;
+      position: absolute;
+      top: $iui-l / 2;
+      z-index: 0;
+
+      &.iui-wizards-step-track-before,
+      &.iui-wizards-step-track-after,
+      &.iui-wizards-step-track-main {
+        @include themed {
+          background-color: t(iui-color-background-5);
+        }
+      }
+
+      &.iui-wizards-step-track-before,
+      &.iui-wizards-step-track-after {
+        width: 50%;
+      }
+
+      &.iui-wizards-step-track-before {
+        left: 0;
+      }
+
+      &.iui-wizards-step-track-after {
+        right: 0;
+      }
+
+      &.iui-wizards-step-track-main {
+        display: block;
+        flex-basis: fill;
+        flex-grow: 1;
+        overflow: visible;
+        position: relative;
+      }
+
+      &.iui-wizards-step-track-filled {
+        @include themed {
+          background-color: t(iui-color-foreground-positive) !important;
+        }
+      }
+    }
+
+    > .iui-wizards-step-current {
+      > .iui-wizards-step-title {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+        }
+        font-weight: $iui-font-weight-semibold;
+      }
+
+      > .iui-wizards-step-circle {
+        @include themed {
+          color: t(iui-color-foreground-accessory);
+          border: 1px solid t(iui-color-background-positive);
+          background-color: t(iui-color-background-positive);
+        }
+        font-weight: $iui-font-weight-semibold;
+      }
+
+      > .iui-wizards-step-track-before {
+        @include themed {
+          background-color: t(iui-color-foreground-positive) !important;
+        }
+      }
+    }
+
+    > .iui-wizards-step-completed {
+      &.iui-clickable {
+        > .iui-wizards-step-circle {
+          cursor: pointer;
+          transition: background-color $iui-speed-fast ease-out;
+
+          &:hover {
+            @include themed {
+              color: t(iui-color-foreground-accessory);
+              border: 1px solid t(iui-color-background-positive);
+              background-color: t(iui-color-background-positive);
+            }
+          }
+        }
+      }
+
+      > .iui-wizards-step-title {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+        }
+      }
+
+      > .iui-wizards-step-circle {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+          border: 1px solid t(iui-color-foreground-positive);
+        }
+      }
+
+      > .iui-wizards-step-track {
+        @include themed {
+          background-color: t(iui-color-foreground-positive) !important;
+        }
+      }
+    }
+  }
+}

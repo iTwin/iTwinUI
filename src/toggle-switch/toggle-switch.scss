@@ -1,0 +1,181 @@
+@import '../style/index';
+
+@mixin iui-toggle-switch {
+  @include iui-font-family;
+  display: flex;
+  align-items: center;
+  font-size: $iui-font-size;
+  width: fit-content;
+  padding: ($iui-baseline/2) 0;
+  user-select: none;
+  cursor: pointer;
+  @include themed {
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
+
+  // Hide original input taken from https://moderncss.dev/pure-css-custom-checkbox-style/
+  > input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    // Unchecked toggle switch
+    ~ .iui-toggle {
+      display: block;
+      position: relative;
+      height: $iui-baseline * 2 - $iui-xxs;
+      width: ($iui-m * 2) + ($iui-xxs * 3);
+      border-radius: $iui-baseline;
+      @include themed {
+        background-color: t(iui-color-background-1);
+        border: 1px solid
+          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      }
+      transition: background-color $iui-speed-fast ease,
+        border-color $iui-speed-fast ease;
+
+      > .iui-icon {
+        opacity: 0;
+        width: $iui-sm;
+        height: $iui-sm;
+        display: inline-block;
+        position: relative;
+        left: $iui-xs;
+        transition: opacity $iui-speed-fast ease;
+        @include themed {
+          fill: t(iui-color-foreground-accessory);
+        }
+      }
+
+      > .iui-handle {
+        position: absolute;
+        height: $iui-m;
+        width: $iui-m;
+        top: 50%;
+        transform: translateY(-50%);
+        right: $iui-m + $iui-xs;
+        border-radius: 50%;
+        @include themed {
+          background-color: t(iui-color-foreground-body);
+          opacity: t(iui-opacity-2);
+        }
+        transition: right $iui-speed-fast ease,
+          background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
+      }
+    }
+
+    &:hover:not(:disabled),
+    &:focus {
+      ~ .iui-toggle {
+        @include themed {
+          border: 1px solid
+            rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+        }
+
+        > .iui-handle {
+          @include themed {
+            opacity: t(iui-opacity-1);
+          }
+        }
+      }
+    }
+
+    // Checked toggle switch
+    &:checked {
+      ~ .iui-toggle {
+        @include themed {
+          background-color: t(iui-color-background-primary);
+          border-color: t(iui-color-background-primary);
+        }
+
+        > .iui-icon {
+          @include themed {
+            opacity: t(iui-opacity-1);
+          }
+        }
+
+        > .iui-handle {
+          @include themed {
+            background-color: t(iui-color-foreground-accessory);
+            opacity: t(iui-opacity-2);
+          }
+          right: $iui-xxs;
+        }
+      }
+
+      &:hover:not(:disabled),
+      &:focus {
+        ~ .iui-toggle {
+          @include themed {
+            border-color: t(iui-color-background-primary);
+          }
+
+          > .iui-handle {
+            @include themed {
+              opacity: t(iui-opacity-1);
+            }
+          }
+        }
+      }
+    }
+
+    // Disabled toggle switch
+    &:disabled {
+      ~ .iui-toggle {
+        cursor: not-allowed;
+        @include themed {
+          background-color: t(iui-color-background-disabled);
+          border-color: t(iui-color-background-disabled);
+        }
+
+        > .iui-handle {
+          @include themed {
+            background-color: t(iui-color-foreground-body);
+            opacity: t(iui-opacity-5);
+          }
+        }
+
+        > .iui-icon {
+          @include themed {
+            fill: t(iui-color-foreground-body);
+          }
+          opacity: 0;
+        }
+      }
+      ~ .iui-label {
+        cursor: not-allowed;
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
+      }
+      &:checked ~ .iui-toggle > .iui-icon {
+        @include themed {
+          opacity: t(iui-opacity-5);
+        }
+      }
+    }
+
+    // Focus on non-disabled toggle switch
+    &:enabled:focus ~ .iui-toggle {
+      @include themed {
+        box-shadow: t(iui-focus-box-shadow);
+      }
+    }
+  }
+
+  // Disabled cursor
+  &.iui-disabled {
+    cursor: not-allowed;
+  }
+
+  // For labels on the right
+  > .iui-label {
+    margin-right: $iui-s;
+  }
+
+  // For labels on the left
+  .iui-toggle ~ .iui-label {
+    margin-left: $iui-s;
+    margin-right: 0;
+  }
+}

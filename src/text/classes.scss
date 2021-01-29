@@ -1,0 +1,33 @@
+@import './index';
+
+.iui-text-block {
+  @include iui-text-block;
+}
+
+.iui-text-headline {
+  @include iui-text-headline;
+}
+
+.iui-text-leading {
+  @include iui-text-leading;
+}
+
+.iui-text-muted {
+  @include iui-text-muted;
+}
+
+.iui-text-small {
+  @include iui-text-small;
+}
+
+.iui-text-subheading {
+  @include iui-text-subheading;
+}
+
+.iui-text-title {
+  @include iui-text-title;
+}
+
+.iui-skeleton {
+  @include iui-text-skeleton;
+}

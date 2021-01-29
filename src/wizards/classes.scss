@@ -1,0 +1,13 @@
+@import './index';
+
+.iui-wizards {
+  @include iui-wizards;
+}
+
+.iui-wizards-long {
+  @include iui-wizards-long;
+}
+
+.iui-wizards-workflow {
+  @include iui-wizards-workflow;
+}

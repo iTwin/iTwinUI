@@ -1,0 +1,50 @@
+@import '../style/index';
+@import '../inputs/variables';
+@import './button';
+@import './disabled';
+@import 'button-baseline';
+
+@mixin iui-buttons-default {
+  @include iui-buttons-button;
+
+  &,
+  &:active,
+  &:focus {
+    @include themed {
+      background-color: t(iui-color-background-1);
+      border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
+
+    .iui-buttons-icon {
+      @include themed {
+        fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+        color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+      }
+      transition: fill $iui-speed-fast ease-out, color $iui-speed-fast ease-out;
+    }
+  }
+
+  &:hover:enabled {
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    }
+
+    .iui-buttons-icon {
+      @include themed {
+        fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+        color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+      }
+      transition: fill $iui-speed-fast ease-out, color $iui-speed-fast ease-out;
+    }
+  }
+
+  &.dropdown {
+    padding-right: $iui-s;
+
+    > .iui-buttons-icon {
+      margin: 0;
+    }
+  }
+}

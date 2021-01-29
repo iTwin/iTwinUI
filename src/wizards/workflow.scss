@@ -1,0 +1,42 @@
+@import '../style/index';
+
+@mixin iui-wizards-workflow {
+  @include iui-wizards;
+
+  > .iui-wizards-wrapper {
+    > .iui-wizards-step {
+      > .iui-wizards-step-circle {
+        padding-left: $iui-m;
+        padding-right: $iui-m;
+        border-radius: $iui-sm;
+
+        @include themed {
+          border-color: t(iui-color-foreground-positive);
+          color: t(iui-color-foreground-positive);
+        }
+        width: auto;
+      }
+
+      &.iui-wizards-step-current > .iui-wizards-step-circle {
+        border-radius: 0;
+
+        @include themed {
+          color: t(iui-color-foreground-accessory);
+          border-color: t(iui-color-background-positive);
+        }
+        font-weight: $iui-font-weight-normal;
+      }
+    }
+
+    > .iui-wizards-step-track,
+    > .iui-wizards-step > .iui-wizards-step-track {
+      &.iui-wizards-step-track-before,
+      &.iui-wizards-step-track-after,
+      &.iui-wizards-step-track-main {
+        @include themed {
+          background-color: t(iui-color-foreground-positive);
+        }
+      }
+    }
+  }
+}

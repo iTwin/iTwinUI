@@ -1,0 +1,27 @@
+@import '../style/index';
+@import '../icons/index';
+
+@mixin iui-checkbox {
+  @include iui-inputs-checkbox-radio;
+
+  .iui-checkbox-checkmark {
+    border-radius: $iui-border-radius;
+  }
+
+  &.iui-loading {
+    cursor: wait;
+
+    & input ~ .iui-checkbox-checkmark {
+      border: none;
+      background-color: transparent;
+    }
+
+    & input:disabled ~ .iui-checkbox-checkmark {
+      cursor: wait;
+    }
+
+    & input:disabled ~ .iui-label {
+      cursor: wait;
+    }
+  }
+}

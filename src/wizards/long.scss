@@ -1,0 +1,23 @@
+@import '../style/index';
+
+@mixin iui-wizards-long {
+  @include iui-wizards;
+
+  > .iui-wizards-wrapper > .iui-wizards-step > .iui-wizards-step-title {
+    display: none;
+  }
+
+  > .iui-wizards-steps {
+    display: block;
+    font-size: $iui-font-size-subheading;
+    text-align: center;
+
+    > .iui-wizards-steps-count {
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
+      user-select: none;
+      margin-right: $iui-s;
+    }
+  }
+}

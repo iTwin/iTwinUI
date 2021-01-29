@@ -1,0 +1,9 @@
+$iui-button-padding-horizontal: $iui-m;
+$iui-button-padding-small-horizontal: $iui-button-padding-horizontal / 2;
+$iui-button-padding-large-horizontal: $iui-button-padding-horizontal * 1.5;
+
+$iui-button-padding-split-horizontal: $iui-button-padding-horizontal - $iui-sm;
+
+$iui-button-padding-vertical: $iui-inputs-padding;
+$iui-button-padding-small-vertical: round($iui-button-padding-vertical / 2) - 1;
+$iui-button-padding-large-vertical: ($iui-button-padding-vertical * 2) + 1;

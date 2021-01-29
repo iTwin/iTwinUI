@@ -1,0 +1,99 @@
+@import '../style/index';
+@import './tabs';
+
+@mixin iui-tabs-pill {
+  @include iui-tabs;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  margin: $iui-baseline/2 0;
+
+  > li {
+    margin: 0;
+    text-align: center;
+    flex: 1 1 0;
+
+    > a {
+      line-height: $iui-line-height;
+      padding: ($iui-line-height / 2) 0;
+
+      @include themed {
+        background-color: t(iui-color-background-1);
+      }
+
+      > svg {
+        @include themed {
+          fill: t(iui-color-foreground-body);
+        }
+        transition: fill $iui-speed-fast ease-out;
+      }
+
+      &::after {
+        bottom: $iui-xxs;
+        left: $iui-xxs;
+        right: $iui-xxs;
+      }
+
+      &:hover {
+        @include themed {
+          color: t(iui-color-foreground-primary);
+        }
+
+        > svg {
+          @include themed {
+            fill: t(iui-color-foreground-primary);
+          }
+          transition: fill $iui-speed-fast ease-out;
+        }
+      }
+    }
+
+    &.iui-tabs-active {
+      > a {
+        font-weight: $iui-font-weight-normal;
+
+        @include themed {
+          color: t(iui-color-foreground-primary);
+        }
+
+        &:hover {
+          @include themed {
+            color: t(iui-color-foreground-primary);
+          }
+        }
+
+        svg {
+          @include themed {
+            fill: t(iui-color-foreground-primary);
+          }
+        }
+      }
+    }
+  }
+
+  &.iui-green {
+    > .iui-tabs-active > a {
+      @include themed {
+        color: t(iui-color-foreground-positive);
+      }
+
+      &:hover {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+        }
+      }
+
+      svg {
+        @include themed {
+          fill: t(iui-color-foreground-positive);
+        }
+      }
+    }
+
+    > li > a:hover > svg {
+      @include themed {
+        fill: t(iui-color-foreground-positive);
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@import './index.scss';
+
+.iui-toggle-switch {
+  @include iui-toggle-switch;
+}

@@ -1,0 +1,53 @@
+@import '../style/index';
+@import './variables';
+
+@mixin iui-input {
+  @include iui-font-family;
+  width: 100%;
+  padding: $iui-inputs-padding $iui-sm;
+  margin: $iui-inputs-margin 0;
+  font-size: $iui-font-size;
+  font-weight: $iui-font-weight-normal;
+  line-height: $iui-line-height;
+  border-radius: $iui-border-radius;
+  appearance: none;
+  box-sizing: border-box;
+  transition: border-color $iui-speed-fast ease-out;
+
+  @include themed {
+    color: t(iui-text-color);
+    background-color: t(iui-color-background-1);
+    border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+  }
+
+  &::placeholder {
+    @include themed {
+      color: t(iui-text-color-placeholder);
+    }
+  }
+
+  &[disabled],
+  &[readonly] {
+    @include themed {
+      background-color: t(iui-color-background-disabled);
+      border-color: t(iui-color-background-disabled);
+    }
+    cursor: not-allowed;
+  }
+
+  &:hover:enabled {
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
+    transition: border-color $iui-speed-fast ease-out;
+  }
+
+  &:focus {
+    outline: 0;
+
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      box-shadow: t(iui-focus-box-shadow);
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@import './index';
+
+.iui-progress-indicator-linear {
+  @include iui-progress-indicator-linear;
+
+  > .iui-track > .iui-determinate {
+    @include iui-progress-indicator-linear-determinate;
+  }
+
+  &:not(.iui-negative):not(.iui-positive) > .iui-track > .iui-indeterminate {
+    @include iui-progress-indicator-linear-indeterminate;
+  }
+}
+
+.iui-progress-indicator-radial-ie {
+  @include iui-progress-indicator-radial-ie;
+}
+
+.iui-progress-indicator-radial {
+  @include iui-progress-indicator-radial;
+
+  &.iui-determinate:not(.iui-positive) {
+    @include iui-progress-indicator-radial-determinate;
+  }
+
+  &.iui-indeterminate:not(.iui-negative):not(.iui-positive) {
+    @include iui-progress-indicator-radial-indeterminate;
+  }
+}

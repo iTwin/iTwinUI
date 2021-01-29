@@ -1,0 +1,13 @@
+@import '../style/index';
+@import './button';
+
+@mixin iui-buttons-disabled {
+  @include iui-buttons-button;
+
+  &,
+  &:active,
+  &:focus,
+  &:hover {
+    @include iui-buttons-button-disabled;
+  }
+}

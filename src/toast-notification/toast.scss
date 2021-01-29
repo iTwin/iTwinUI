@@ -1,0 +1,137 @@
+@import '../style/index';
+@import '../icons/index';
+
+@mixin iui-toast {
+  @include iui-font-family;
+  flex-direction: row;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  pointer-events: all;
+  margin: 0 $iui-m $iui-baseline $iui-m;
+  min-height: $iui-baseline * 4;
+  max-height: 100%;
+
+  @include themed {
+    background-color: t(iui-color-background-1);
+    box-shadow: 0 0 0 1px
+        rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4)),
+      $iui-elevation-24;
+  }
+  border-radius: $iui-border-radius;
+
+  @include themed {
+    border: 1px solid t(iui-color-foreground-body);
+  }
+
+  @media screen and (max-width: 400px) {
+    width: calc(100vw - 36px);
+  }
+
+  @media screen and (min-width: 401px) {
+    min-width: 400px;
+    max-width: 640px;
+  }
+
+  .iui-toast-icon-container {
+    order: 1;
+    align-self: stretch;
+    min-height: ($iui-baseline * 4) - 2;
+
+    .iui-toast-icon-background {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @include themed {
+        background-color: t(iui-color-background-5);
+      }
+      height: 100%;
+      width: $iui-l * 2;
+
+      .iui-toast-status-icon {
+        height: $iui-icons-default;
+        width: $iui-icons-default;
+
+        path {
+          @include themed {
+            fill: t(iui-color-foreground-accessory) !important;
+          }
+        }
+      }
+    }
+  }
+
+  .iui-toast-message {
+    order: 2;
+    flex-grow: 1;
+    font-size: $iui-font-size;
+    margin-top: $iui-baseline / 2;
+    margin-bottom: $iui-baseline / 2;
+    margin-right: $iui-l;
+    margin-left: $iui-m;
+    line-height: $iui-line-height;
+    font-weight: $iui-font-weight-normal;
+    font-style: normal;
+
+    @include themed {
+      color: t(iui-text-color);
+    }
+  }
+
+  .iui-toast-link {
+    order: 3;
+    font-size: $iui-font-size-small;
+    margin-top: $iui-baseline / 2;
+    margin-bottom: $iui-baseline / 2;
+    margin-right: $iui-l;
+    user-select: none;
+    cursor: pointer;
+
+    a {
+      text-decoration: underline;
+
+      @include themed {
+        color: t(iui-color-foreground-primary);
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &:focus {
+        outline: 0;
+
+        @include themed {
+          box-shadow: t(iui-focus-box-shadow);
+        }
+      }
+    }
+  }
+
+  .iui-toast-close-icon-container {
+    order: 4;
+    align-self: flex-start;
+    margin-top: $iui-baseline * 1.25;
+    margin-right: $iui-m;
+    width: $iui-icons-small;
+    height: $iui-icons-small;
+    display: flex;
+
+    .iui-toast-close-icon {
+      height: $iui-icons-small;
+      width: $iui-icons-small;
+      cursor: pointer;
+
+      @include themed {
+        fill: t(iui-icons-color-actionable);
+      }
+
+      &:hover {
+        @include themed {
+          fill: t(iui-icons-color-actionable-hover);
+        }
+      }
+    }
+  }
+}

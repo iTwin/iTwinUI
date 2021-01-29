@@ -1,0 +1,50 @@
+@import './index';
+
+.iui-buttons-high-visibility {
+  @include iui-buttons-high-visibility;
+}
+
+.iui-buttons-high-visibility-small {
+  @include iui-buttons-high-visibility-small;
+}
+
+.iui-buttons-high-visibility-large {
+  @include iui-buttons-high-visibility-large;
+}
+
+.iui-buttons-idea {
+  @include iui-buttons-high-visibility;
+  @include iui-buttons-idea;
+}
+
+.iui-buttons-default {
+  @include iui-buttons-default;
+}
+
+.iui-buttons-default-small {
+  @include iui-buttons-default-small;
+}
+
+.iui-buttons-default-large {
+  @include iui-buttons-default-large;
+}
+
+.iui-buttons-cta {
+  @include iui-buttons-cta;
+}
+
+.iui-buttons-cta-small {
+  @include iui-buttons-cta-small;
+}
+
+.iui-buttons-cta-large {
+  @include iui-buttons-cta-large;
+}
+
+.iui-buttons-group {
+  @include iui-buttons-group;
+}
+
+.iui-buttons-split {
+  @include iui-buttons-split;
+}

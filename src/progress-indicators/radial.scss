@@ -1,0 +1,216 @@
+@import '../style/index';
+@import '../icons/variables.scss';
+
+@mixin iui-progress-indicator-radial-ie() {
+  @include iui-font-family;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+
+  @include themed {
+    color: t(iui-color-foreground-primary);
+  }
+
+  &::after {
+    position: relative;
+    box-sizing: border-box;
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    border: 3px solid currentColor;
+    border-radius: 100%;
+    background-color: transparent;
+    animation: dash $iui-speed-slow linear infinite;
+
+    @include themed {
+      border-bottom-color: t(iui-color-background-5);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin iui-progress-indicator-radial() {
+  position: relative;
+  display: inline-block;
+  width: $iui-icons-xl;
+  height: $iui-icons-xl;
+
+  > svg.iui-radial {
+    height: 100%;
+    width: 100%;
+
+    > circle.iui-fill {
+      @include themed {
+        stroke: t(iui-color-foreground-primary);
+      }
+      fill: none;
+      stroke-width: 3.2;
+    }
+
+    > circle.iui-track {
+      @include themed {
+        stroke: t(iui-color-background-5);
+      }
+      fill: none;
+      stroke-width: 3.2;
+    }
+  }
+
+  .iui-inner-content {
+    position: absolute;
+    display: flex;
+    width: calc(100% - #{$iui-s});
+    height: calc(100% - #{$iui-s});
+    left: $iui-xs;
+    top: $iui-xs;
+    align-items: center;
+    justify-content: center;
+    font-size: $iui-font-size-small;
+    user-select: none;
+    overflow: hidden;
+
+    svg,
+    img {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+
+      @include themed {
+        fill: t(iui-icons-color-actionable);
+      }
+
+      &:hover {
+        @include themed {
+          fill: t(iui-icons-color-actionable-hover);
+        }
+      }
+    }
+  }
+
+  &.iui-positive {
+    @include themed {
+      color: t(iui-color-foreground-positive);
+    }
+
+    svg.iui-radial {
+      circle.iui-fill,
+      circle.iui-track {
+        @include themed {
+          stroke: t(iui-color-foreground-positive);
+        }
+      }
+    }
+
+    .iui-inner-content svg {
+      @include themed {
+        fill: t(iui-color-foreground-positive);
+      }
+    }
+
+    .iui-progress-indicator-radial-ie {
+      @include themed {
+        color: t(iui-color-foreground-positive);
+      }
+
+      &::after {
+        animation: none;
+
+        @include themed {
+          border-bottom-color: t(iui-color-foreground-positive);
+        }
+      }
+    }
+  }
+
+  &.iui-negative {
+    @include themed {
+      color: t(iui-color-foreground-negative);
+    }
+
+    svg.iui-radial circle.iui-fill {
+      @include themed {
+        stroke: t(iui-color-foreground-negative);
+      }
+    }
+
+    .iui-inner-content svg {
+      @include themed {
+        fill: t(iui-color-foreground-negative);
+      }
+    }
+
+    .iui-progress-indicator-radial-ie {
+      @include themed {
+        color: t(iui-color-foreground-negative);
+      }
+
+      &::after {
+        animation: none;
+
+        @include themed {
+          border-bottom-color: t(iui-color-foreground-negative);
+        }
+      }
+    }
+  }
+
+  &.iui-small {
+    width: $iui-icons-large;
+    height: $iui-icons-large;
+  }
+}
+
+@mixin iui-progress-indicator-radial-determinate() {
+  svg.iui-radial {
+    transform: rotate(-90deg);
+
+    circle.iui-fill {
+      // C = 2πR
+      stroke-dasharray: 88;
+      transition: stroke-dashoffset 0.5s ease-in-out;
+    }
+  }
+}
+
+@mixin iui-progress-indicator-radial-indeterminate() {
+  svg.iui-radial {
+    animation: rotate-indeterminate 2s linear infinite;
+
+    circle.iui-fill {
+      animation: dash-indeterminate 1.5s ease-in-out infinite;
+    }
+  }
+
+  @keyframes rotate-indeterminate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash-indeterminate {
+    0% {
+      stroke-dasharray: 1, 88;
+    }
+
+    50% {
+      stroke-dasharray: 88, 88;
+      stroke-dashoffset: -22;
+    }
+
+    100% {
+      stroke-dasharray: 88, 88;
+      stroke-dashoffset: -88;
+    }
+  }
+}

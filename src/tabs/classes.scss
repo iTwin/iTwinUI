@@ -1,0 +1,17 @@
+@import './index';
+
+.iui-tabs-horizontal {
+  @include iui-tabs-horizontal;
+}
+
+.iui-tabs-borderless {
+  @include iui-tabs-borderless;
+}
+
+.iui-tabs-pill {
+  @include iui-tabs-pill;
+}
+
+.iui-tabs-content-area {
+  @include iui-tabs-content-area;
+}

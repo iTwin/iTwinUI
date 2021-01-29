@@ -1,0 +1,110 @@
+@import '../style/index';
+@import '../inputs/variables';
+
+@mixin iui-buttons-group {
+  display: flex;
+
+  & > *:first-child {
+    border-radius: $iui-border-radius 0 0 $iui-border-radius;
+  }
+
+  & > *:last-child {
+    border-radius: 0 $iui-border-radius $iui-border-radius 0;
+  }
+
+  & > *:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  > .iui-buttons-default,
+  > .iui-buttons-default-large,
+  > .iui-buttons-default-small {
+    &:not(:last-child) {
+      border-right: none;
+    }
+
+    + :disabled {
+      @include themed {
+        border-left: 1px solid
+          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      }
+    }
+
+    &:enabled:hover + button {
+      border-left: 1px solid
+        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    }
+
+    &:hover:enabled,
+    &:focus-visible,
+    &.iui-buttons-active {
+      > .iui-buttons-icon {
+        @include themed {
+          fill: t(iui-color-foreground-primary);
+        }
+      }
+    }
+
+    &.iui-buttons-active {
+      @include themed {
+        color: t(iui-color-foreground-primary);
+      }
+      position: relative;
+      cursor: default;
+
+      &:hover {
+        @include themed {
+          border: 1px solid
+            rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        }
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        height: $iui-xxs;
+        opacity: 1;
+        top: $iui-xxs;
+        left: $iui-xxs;
+        width: 92%;
+
+        @include themed {
+          background-color: t(iui-color-foreground-primary);
+        }
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        > .iui-buttons-icon {
+          @include themed {
+            fill: rgba(
+              var(--iui-color-foreground-body-rgb),
+              var(--iui-opacity-4)
+            );
+          }
+        }
+
+        &::after {
+          @include themed {
+            background-color: rgba(
+              var(--iui-color-foreground-body-rgb),
+              var(--iui-opacity-4)
+            );
+          }
+        }
+
+        &:hover {
+          @include themed {
+            border-color: t(iui-color-background-disabled);
+          }
+        }
+      }
+    }
+  }
+
+  > :disabled + :disabled {
+    @include themed {
+      border-left: 1px solid t(iui-color-background-4);
+    }
+  }
+}

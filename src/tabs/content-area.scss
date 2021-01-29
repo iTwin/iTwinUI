@@ -1,0 +1,12 @@
+@import '../style/index';
+
+@mixin iui-tabs-content-area {
+  box-sizing: border-box;
+  padding: $iui-baseline $iui-m;
+  margin-top: -1px;
+
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border: 1px solid t(iui-color-background-5);
+  }
+}

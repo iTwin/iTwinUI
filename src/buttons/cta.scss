@@ -1,0 +1,31 @@
+@import '../style/index';
+@import './button';
+@import './disabled';
+
+@mixin iui-buttons-cta {
+  @include iui-buttons-button;
+
+  &,
+  &:active,
+  &:focus {
+    @include themed {
+      color: t(iui-color-foreground-accessory);
+      background-color: t(iui-color-background-positive);
+      border: 1px solid t(iui-color-background-positive);
+    }
+
+    .iui-buttons-icon {
+      @include themed {
+        fill: t(iui-color-foreground-accessory);
+        color: t(iui-color-foreground-accessory);
+      }
+    }
+  }
+
+  &:hover:enabled {
+    @include themed {
+      background-color: t(iui-color-background-positive-overlay);
+      border: 1px solid t(iui-color-background-positive-overlay);
+    }
+  }
+}

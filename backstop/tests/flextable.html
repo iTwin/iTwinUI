@@ -1,0 +1,3076 @@
+<!DOCTYPE html>
+<html id="theme">
+  <head>
+    <title>Flextable | iTwin UI</title>
+    <link rel="icon" href="../assets/favicon.ico" />
+    <link rel="stylesheet" href="../../lib/css/global.css" />
+    <link rel="stylesheet" href="../../lib/css/inputs.css" />
+    <link rel="stylesheet" href="../../lib/css/flextables.css" />
+    <link rel="stylesheet" href="../../lib/css/user-icons.css" />
+    <link rel="stylesheet" href="../../lib/css/progress-indicators.css" />
+    <link rel="stylesheet" href="../../lib/css/icons.css" />
+    <link rel="stylesheet" href="../assets/demo.css" />
+    <style>
+      .iui-tables-table {
+        /* Spacing between tables that they won't be so close to each other */
+        margin-bottom: 32px;
+      }
+    </style>
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body>
+    <theme-button></theme-button>
+    <h1>Flextable</h1>
+    <hr />
+    <h2 id="default">Default</h2>
+
+  <div id="iui-table">
+    <div class="iui-tables-table">
+      <div class="iui-tables-row">
+        <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+          <label class="iui-checkbox">
+            <input type="checkbox" id="select-all-checkboxes" />
+            <span class="iui-checkbox-checkmark">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+                <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="iui-tables-cell iui-tables-head iui-active-sort">
+          Name
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-iui-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Modified
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Modified by
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Size
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+          <!-- Use column-manager.svg from generic-icons package. -->
+          <svg
+            class="iui-icon column-manager"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="iui-tables-body">
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 1
+          </div>
+          <div class="iui-tables-cell" title="Jul 16, 2020 9:50am">
+            Last week
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small" title="Greg Bentley">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#FFC335;"
+                >GB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/greg-bentley.jpg"
+                srcset="
+                  ../assets/users/greg-bentley.jpg    1x,
+                  ../assets/users/greg-bentley@2x.jpg 2x
+                "
+                alt="Greg Bentley"
+              />
+            </span>
+            Greg Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            252 MB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 2
+          </div>
+          <div class="iui-tables-cell" title="Jul 23, 2020 10:21am">
+            Yesterday
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small" title="Greg Bentley">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#FFC335;"
+                >GB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/keith-bentley.jpg"
+                srcset="
+                  ../assets/users/keith-bentley.jpg    1x,
+                  ../assets/users/keith-bentley@2x.jpg 2x
+                "
+                alt="Keith Bentley"
+              />
+            </span>
+            Keith Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            1.2 GB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-active">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" checked />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 3
+          </div>
+          <div class="iui-tables-cell" title="Jul 19, 2020 4:20pm">
+            5 days ago
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#F7706C;"
+                >RB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/ray-bentley.jpg"
+                srcset="
+                  ../assets/users/ray-bentley.jpg    1x,
+                  ../assets/users/ray-bentley@2x.jpg 2x
+                "
+                alt="Ray Bentley"
+              />
+            </span>
+            Ray Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            36 GB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-disabled">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox iui-disabled">
+              <input type="checkbox" id="active-row" disabled />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#5ebb47" />
+              <path
+                d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z"
+                fill="#fff"
+              />
+              <path d="m11 0 3 3h-3z" fill="#448136" />
+            </svg>
+            lorem.dgn
+            <div class="iui-progress-indicator-radial iui-determinate iui-small">
+              <svg class="iui-radial" viewBox="0 0 40 40" aria-hidden="true">
+                <circle class="iui-track" cx="20" cy="20" r="15.91549"></circle>
+                <circle
+                  class="iui-fill"
+                  cx="20"
+                  cy="20"
+                  r="15.91549"
+                  style="stroke-dashoffset: 20"
+                ></circle>
+              </svg>
+            </div>
+          </div>
+          <div class="iui-tables-cell">
+            --
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#6AB9EC;"
+                >GB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/greg-bentley.jpg"
+                srcset="
+                  ../assets/users/greg-bentley.jpg    1x,
+                  ../assets/users/greg-bentley@2x.jpg 2x
+                "
+                alt="Greg Bentley"
+              />
+            </span>
+            Greg Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            Calculating&mldr;
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-new">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#66c6ff" />
+              <path
+                d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z"
+                fill="#fff"
+              />
+              <path d="m14 3h-3v-3z" fill="#478ab2" />
+            </svg>
+            ipsum.mp3
+          </div>
+          <div class="iui-tables-cell" title="Jul 24, 2020 2:12pm">
+            Just now
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#B1C854;"
+                >KB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/keith-bentley.jpg"
+                srcset="
+                  ../assets/users/keith-bentley.jpg    1x,
+                  ../assets/users/keith-bentley@2x.jpg 2x
+                "
+                alt="Keith Bentley"
+              />
+            </span>
+            Keith Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            15 KB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#dd3e39" />
+              <path
+                d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z"
+                fill="#fff"
+              />
+              <path d="m11 0 3 3h-3z" fill="#992d2b" />
+            </svg>
+            dolor.pdf
+            <!-- Use warning.svg from generic-icons package. -->
+            <svg class="iui-status" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+                fill="#f60"
+              />
+            </svg>
+          </div>
+          <div class="iui-tables-cell" title="Jul 24, 2020 2:10pm">
+            A few minutes ago
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#4585A5;"
+                >BS</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/nicholas-cumins.jpg"
+                srcset="
+                  ../assets/users/nicholas-cumins.jpg    1x,
+                  ../assets/users/nicholas-cumins@2x.jpg 2x
+                "
+                alt="Nicholas Cumins"
+              />
+            </span>
+            Nicholas Cumins
+          </div>
+          <div class="iui-tables-cell right-align">
+            963 MB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    
+    
+    </div>
+  </div>
+    <br />
+
+  <div id="iui-table-condensed">
+    <div class="iui-tables-table iui-tables-condensed">
+      <div class="iui-tables-row">
+        <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+          <label class="iui-checkbox">
+            <input type="checkbox" id="select-all-checkboxes-condensed" />
+            <span class="iui-checkbox-checkmark">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+                <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="iui-tables-cell iui-tables-head iui-active-sort">
+          Name
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Modified
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Modified by
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Size
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+          <!-- Use column-manager.svg from generic-icons package. -->
+          <svg
+            class="iui-icon column-manager"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="iui-tables-body">
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 1
+          </div>
+          <div class="iui-tables-cell" title="Jul 16, 2020 9:50am">
+            Last week
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#6AB9EC;"
+                >GB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/greg-bentley.jpg"
+                srcset="
+                  ../assets/users/greg-bentley.jpg    1x,
+                  ../assets/users/greg-bentley@2x.jpg 2x
+                "
+                alt="Greg Bentley"
+              />
+            </span>
+            Greg Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            252 MB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 2
+          </div>
+          <div class="iui-tables-cell" title="Jul 23, 2020 10:21am">
+            Yesterday
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#B1C854;"
+                >KB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/keith-bentley.jpg"
+                srcset="
+                  ../assets/users/keith-bentley.jpg    1x,
+                  ../assets/users/keith-bentley@2x.jpg 2x
+                "
+                alt="Keith Bentley"
+              />
+            </span>
+            Keith Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            1.2 GB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-active">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" checked />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 3
+          </div>
+          <div class="iui-tables-cell" title="Jul 19, 2020 4:20pm">
+            5 days ago
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#F7706C;"
+                >RB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/ray-bentley.jpg"
+                srcset="
+                  ../assets/users/ray-bentley.jpg    1x,
+                  ../assets/users/ray-bentley@2x.jpg 2x
+                "
+                alt="Ray Bentley"
+              />
+            </span>
+            Ray Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            36 GB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-disabled">
+          <div class="iui-tables-cell iui-tables-slot">
+             <label class="iui-checkbox iui-disabled">
+              <input type="checkbox" id="active-row" disabled />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#5ebb47" />
+              <path
+                d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z"
+                fill="#fff"
+              />
+              <path d="m11 0 3 3h-3z" fill="#448136" />
+            </svg>
+            lorem.dgn
+            <div class="iui-progress-indicator-radial iui-determinate iui-small">
+              <svg class="iui-radial" viewBox="0 0 40 40" aria-hidden="true">
+                <circle class="iui-track" cx="20" cy="20" r="15.91549"></circle>
+                <circle
+                  class="iui-fill"
+                  cx="20"
+                  cy="20"
+                  r="15.91549"
+                  style="stroke-dashoffset: 20"
+                ></circle>
+              </svg>
+            </div>
+          </div>
+          <div class="iui-tables-cell">
+            --
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#6AB9EC;"
+                >GB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/greg-bentley.jpg"
+                srcset="
+                  ../assets/users/greg-bentley.jpg    1x,
+                  ../assets/users/greg-bentley@2x.jpg 2x
+                "
+                alt="Greg Bentley"
+              />
+            </span>
+            Greg Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            Calculating&mldr;
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-new">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#66c6ff" />
+              <path
+                d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z"
+                fill="#fff"
+              />
+              <path d="m14 3h-3v-3z" fill="#478ab2" />
+            </svg>
+            ipsum.mp3
+          </div>
+          <div class="iui-tables-cell" title="Jul 24, 2020 2:12pm">
+            Just now
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#B1C854;"
+                >KB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/keith-bentley.jpg"
+                srcset="
+                  ../assets/users/keith-bentley.jpg    1x,
+                  ../assets/users/keith-bentley@2x.jpg 2x
+                "
+                alt="Keith Bentley"
+              />
+            </span>
+            Keith Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            15 KB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#dd3e39" />
+              <path
+                d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z"
+                fill="#fff"
+              />
+              <path d="m11 0 3 3h-3z" fill="#992d2b" />
+            </svg>
+            dolor.pdf
+            <!-- Use warning.svg from generic-icons package. -->
+            <svg class="iui-status" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+                fill="#f60"
+              />
+            </svg>
+          </div>
+          <div class="iui-tables-cell" title="Jul 24, 2020 2:10pm">
+            A few minutes ago
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#4585A5;"
+                >BS</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/nicholas-cumins.jpg"
+                srcset="
+                  ../assets/users/nicholas-cumins.jpg    1x,
+                  ../assets/users/nicholas-cumins@2x.jpg 2x
+                "
+                alt="Nicholas Cumins"
+              />
+            </span>
+            Nicholas Cumins
+          </div>
+          <div class="iui-tables-cell right-align">
+            963 MB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <br />
+
+  <div id="iui-table-extra-condensed">
+    <div class="iui-tables-table iui-tables-extra-condensed">
+      <div class="iui-tables-row">
+        <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+          <label class="iui-checkbox">
+            <input type="checkbox" id="select-all-checkboxes-extra-condensed" />
+            <span class="iui-checkbox-checkmark">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+                <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="iui-tables-cell iui-tables-head iui-active-sort">
+          Name
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Modified
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Modified by
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Size
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+          <!-- Use column-manager.svg from generic-icons package. -->
+          <svg
+            class="iui-icon column-manager"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="iui-tables-body">
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 1
+          </div>
+          <div class="iui-tables-cell" title="Jul 16, 2020 9:50am">
+            Last week
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#6AB9EC;"
+                >GB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/greg-bentley.jpg"
+                srcset="
+                  ../assets/users/greg-bentley.jpg    1x,
+                  ../assets/users/greg-bentley@2x.jpg 2x
+                "
+                alt="Greg Bentley"
+              />
+            </span>
+            Greg Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            252 MB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 2
+          </div>
+          <div class="iui-tables-cell" title="Jul 23, 2020 10:21am">
+            Yesterday
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#B1C854;"
+                >KB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/keith-bentley.jpg"
+                srcset="
+                  ../assets/users/keith-bentley.jpg    1x,
+                  ../assets/users/keith-bentley@2x.jpg 2x
+                "
+                alt="Keith Bentley"
+              />
+            </span>
+            Keith Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            1.2 GB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-active">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" checked />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 3
+          </div>
+          <div class="iui-tables-cell" title="Jul 19, 2020 4:20pm">
+            5 days ago
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#F7706C;"
+                >RB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/ray-bentley.jpg"
+                srcset="
+                  ../assets/users/ray-bentley.jpg    1x,
+                  ../assets/users/ray-bentley@2x.jpg 2x
+                "
+                alt="Ray Bentley"
+              />
+            </span>
+            Ray Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            36 GB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-disabled">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox iui-disabled">
+              <input type="checkbox" id="active-row" disabled />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#5ebb47" />
+              <path
+                d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z"
+                fill="#fff"
+              />
+              <path d="m11 0 3 3h-3z" fill="#448136" />
+            </svg>
+            lorem.dgn
+            <div class="iui-progress-indicator-radial iui-determinate iui-small">
+              <svg class="iui-radial" viewBox="0 0 40 40" aria-hidden="true">
+                <circle class="iui-track" cx="20" cy="20" r="15.91549"></circle>
+                <circle
+                  class="iui-fill"
+                  cx="20"
+                  cy="20"
+                  r="15.91549"
+                  style="stroke-dashoffset: 20"
+                ></circle>
+              </svg>
+            </div>
+          </div>
+          <div class="iui-tables-cell">
+            --
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#6AB9EC;"
+                >GB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/greg-bentley.jpg"
+                srcset="
+                  ../assets/users/greg-bentley.jpg    1x,
+                  ../assets/users/greg-bentley@2x.jpg 2x
+                "
+                alt="Greg Bentley"
+              />
+            </span>
+            Greg Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            Calculating&mldr;
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-new">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#66c6ff" />
+              <path
+                d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z"
+                fill="#fff"
+              />
+              <path d="m14 3h-3v-3z" fill="#478ab2" />
+            </svg>
+            ipsum.mp3
+          </div>
+          <div class="iui-tables-cell" title="Jul 24, 2020 2:12pm">
+            Just now
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#B1C854;"
+                >KB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/keith-bentley.jpg"
+                srcset="
+                  ../assets/users/keith-bentley.jpg    1x,
+                  ../assets/users/keith-bentley@2x.jpg 2x
+                "
+                alt="Keith Bentley"
+              />
+            </span>
+            Keith Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            15 KB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#dd3e39" />
+              <path
+                d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z"
+                fill="#fff"
+              />
+              <path d="m11 0 3 3h-3z" fill="#992d2b" />
+            </svg>
+            dolor.pdf
+            <!-- Use warning.svg from generic-icons package. -->
+            <svg class="iui-status" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+                fill="#f60"
+              />
+            </svg>
+          </div>
+          <div class="iui-tables-cell" title="Jul 24, 2020 2:10pm">
+            A few minutes ago
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#4585A5;"
+                >BS</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/nicholas-cumins.jpg"
+                srcset="
+                  ../assets/users/nicholas-cumins.jpg    1x,
+                  ../assets/users/nicholas-cumins@2x.jpg 2x
+                "
+                alt="Nicholas Cumins"
+              />
+            </span>
+            Nicholas Cumins
+          </div>
+          <div class="iui-tables-cell right-align">
+            963 MB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <br />
+
+    <hr />
+    <h2 id="regular">Zebra striping</h2>
+
+  <div id="iui-table-zebra">
+    <div class="iui-tables-table iui-zebra-striping">
+      <div class="iui-tables-row">
+        <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+          <label class="iui-checkbox">
+            <input type="checkbox" id="select-all-checkboxes-zebra" />
+            <span class="iui-checkbox-checkmark">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+                <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="iui-tables-cell iui-tables-head iui-active-sort">
+          Name
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Modified
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Modified by
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Size
+          <div class="iui-filter">
+            <!-- Use filter-outlined.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z"
+              />
+            </svg>
+          </div>
+          <div class="iui-sort">
+            <div class="iui-icon-wrapper">
+              <!-- Use sort-down.svg from generic-icons package. -->
+              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+          <!-- Use column-manager.svg from generic-icons package. -->
+          <svg
+            class="iui-icon column-manager"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="iui-tables-body">
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 1
+          </div>
+          <div class="iui-tables-cell" title="Jul 16, 2020 9:50am">
+            Last week
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#6AB9EC;"
+                >GB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/greg-bentley.jpg"
+                srcset="
+                  ../assets/users/greg-bentley.jpg    1x,
+                  ../assets/users/greg-bentley@2x.jpg 2x
+                "
+                alt="Greg Bentley"
+              />
+            </span>
+            Greg Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            252 MB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 2
+          </div>
+          <div class="iui-tables-cell" title="Jul 23, 2020 10:21am">
+            Yesterday
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#B1C854;"
+                >KB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/keith-bentley.jpg"
+                srcset="
+                  ../assets/users/keith-bentley.jpg    1x,
+                  ../assets/users/keith-bentley@2x.jpg 2x
+                "
+                alt="Keith Bentley"
+              />
+            </span>
+            Keith Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            1.2 GB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-active">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" checked />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
+                fill="#e7b93a"
+              />
+              <path
+                d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
+                fill="#f6d97a"
+              />
+            </svg>
+            Folder name 3
+          </div>
+          <div class="iui-tables-cell" title="Jul 19, 2020 4:20pm">
+            5 days ago
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#F7706C;"
+                >RB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/ray-bentley.jpg"
+                srcset="
+                  ../assets/users/ray-bentley.jpg    1x,
+                  ../assets/users/ray-bentley@2x.jpg 2x
+                "
+                alt="Ray Bentley"
+              />
+            </span>
+            Ray Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            36 GB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-disabled">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox iui-disabled">
+              <input type="checkbox" id="active-row" disabled />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#5ebb47" />
+              <path
+                d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z"
+                fill="#fff"
+              />
+              <path d="m11 0 3 3h-3z" fill="#448136" />
+            </svg>
+            lorem.dgn
+            <div class="iui-progress-indicator-radial iui-determinate iui-small">
+              <svg class="iui-radial" viewBox="0 0 40 40" aria-hidden="true">
+                <circle class="iui-track" cx="20" cy="20" r="15.91549"></circle>
+                <circle
+                  class="iui-fill"
+                  cx="20"
+                  cy="20"
+                  r="15.91549"
+                  style="stroke-dashoffset: 20"
+                ></circle>
+              </svg>
+            </div>
+          </div>
+          <div class="iui-tables-cell">
+            --
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#6AB9EC;"
+                >GB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/greg-bentley.jpg"
+                srcset="
+                  ../assets/users/greg-bentley.jpg    1x,
+                  ../assets/users/greg-bentley@2x.jpg 2x
+                "
+                alt="Greg Bentley"
+              />
+            </span>
+            Greg Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            Calculating&mldr;
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row iui-tables-row-new">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#66c6ff" />
+              <path
+                d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z"
+                fill="#fff"
+              />
+              <path d="m14 3h-3v-3z" fill="#478ab2" />
+            </svg>
+            ipsum.mp3
+          </div>
+          <div class="iui-tables-cell" title="Jul 24, 2020 2:12pm">
+            Just now
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#B1C854;"
+                >KB</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/keith-bentley.jpg"
+                srcset="
+                  ../assets/users/keith-bentley.jpg    1x,
+                  ../assets/users/keith-bentley@2x.jpg 2x
+                "
+                alt="Keith Bentley"
+              />
+            </span>
+            Keith Bentley
+          </div>
+          <div class="iui-tables-cell right-align">
+            15 KB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell iui-tables-slot">
+            <label class="iui-checkbox">
+              <input type="checkbox" id="active-row" />
+              <span class="iui-checkbox-checkmark">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+          <div class="iui-tables-cell iui-tables-filename">
+            <!-- Use folder-large.svg from generic-icons package. -->
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m11 3v-3h-9v16h12v-13z" fill="#dd3e39" />
+              <path
+                d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z"
+                fill="#fff"
+              />
+              <path d="m11 0 3 3h-3z" fill="#992d2b" />
+            </svg>
+            dolor.pdf
+            <!-- Use warning.svg from generic-icons package. -->
+            <svg class="iui-status" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+                fill="#f60"
+              />
+            </svg>
+          </div>
+          <div class="iui-tables-cell" title="Jul 24, 2020 2:10pm">
+            A few minutes ago
+          </div>
+          <div class="iui-tables-cell">
+            <span class="iui-user-icons-small">
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color:#4585A5;"
+                >BS</abbr
+              >
+              <img
+                class="iui-user-icons-photo"
+                src="../assets/users/nicholas-cumins.jpg"
+                srcset="
+                  ../assets/users/nicholas-cumins.jpg    1x,
+                  ../assets/users/nicholas-cumins@2x.jpg 2x
+                "
+                alt="Nicholas Cumins"
+              />
+            </span>
+            Nicholas Cumins
+          </div>
+          <div class="iui-tables-cell right-align">
+            963 MB
+          </div>
+          <div class="iui-tables-cell iui-tables-slot">
+            <!-- Use more_2.svg from generic-icons package. -->
+            <svg class="iui-icon iui-tables-menu" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <br />
+    <hr />
+    <h2 id="sticky-header">Sticky iui-tables-header & pagination</h2>
+
+    <div class="iui-tables-table iui-tables-fixed">
+      <div class="iui-tables-row">
+        <div class="iui-tables-cell iui-tables-head">
+          Product
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Price
+        </div>
+      </div>
+
+      <div class="iui-tables-body">
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Muffins
+          </div>
+          <div class="iui-tables-cell">
+            $5.00
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Lamb
+          </div>
+          <div class="iui-tables-cell">
+            $12.00
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Lemons
+          </div>
+          <div class="iui-tables-cell">
+            $0.86
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Ginger
+          </div>
+          <div class="iui-tables-cell">
+            $2.50
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Pepper
+          </div>
+          <div class="iui-tables-cell">
+            $1.95
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Water
+          </div>
+          <div class="iui-tables-cell">
+            $1.99
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Pork
+          </div>
+          <div class="iui-tables-cell">
+            $19.95
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Cheese
+          </div>
+          <div class="iui-tables-cell">
+            $4.75
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Dog food
+          </div>
+          <div class="iui-tables-cell">
+            $22.95
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Fish
+          </div>
+          <div class="iui-tables-cell">
+            $16.54
+          </div>
+        </div>
+      </div>
+
+      <div class="iui-tables-row iui-tables-paginator">
+        <div class="iui-content">
+          <div class="iui-full-line"></div>
+          <div class="iui-controls">
+            <a href="#" class="iui-icon">
+              <!-- Use chevron-left.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" class="iui-icon" aria-hidden="true">
+                <path d="M11.3 0l1.4 1.4L6.1 8l6.6 6.6-1.4 1.4-8-8z"></path>
+              </svg>
+            </a>
+            <a class="iui-current">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">7</a>
+            <span class="iui-ellipsis">&mldr;</span>
+            <a href="#">30</a>
+            <a href="#" class="iui-icon">
+              <!-- Use chevron-right.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" class="iui-icon" aria-hidden="true">
+                <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="iui-location">
+            <label class="iui-input-container">
+              <div class="iui-select">
+                <input type="checkbox" />
+                <div class="iui-select-button">
+                  1-10 of 300
+                </div>
+                <ul class="iui-menu" style="position: absolute; top: 100%;">
+                  <li tabindex="0">25 per page</li>
+                  <li tabindex="0">50 per page</li>
+                  <li tabindex="0">100 per page</li>
+                </ul>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="iui-tables-table iui-tables-fixed iui-tables-condensed">
+      <div class="iui-tables-row">
+        <div class="iui-tables-cell iui-tables-head">
+          Product
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Price
+        </div>
+      </div>
+
+      <div class="iui-tables-body">
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Muffins
+          </div>
+          <div class="iui-tables-cell">
+            $5.00
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Lamb
+          </div>
+          <div class="iui-tables-cell">
+            $12.00
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Lemons
+          </div>
+          <div class="iui-tables-cell">
+            $0.86
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Ginger
+          </div>
+          <div class="iui-tables-cell">
+            $2.50
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Pepper
+          </div>
+          <div class="iui-tables-cell">
+            $1.95
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Water
+          </div>
+          <div class="iui-tables-cell">
+            $1.99
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Pork
+          </div>
+          <div class="iui-tables-cell">
+            $19.95
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Cheese
+          </div>
+          <div class="iui-tables-cell">
+            $4.75
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Dog food
+          </div>
+          <div class="iui-tables-cell">
+            $22.95
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Fish
+          </div>
+          <div class="iui-tables-cell">
+            $16.54
+          </div>
+        </div>
+      </div>
+
+      <div class="iui-tables-row iui-tables-paginator">
+        <div class="iui-content">
+          <div class="iui-full-line"></div>
+          <div class="iui-controls">
+            <a href="#" class="iui-icon">
+              <!-- Use chevron-left.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" class="iui-icon" aria-hidden="true">
+                <path d="M11.3 0l1.4 1.4L6.1 8l6.6 6.6-1.4 1.4-8-8z"></path>
+              </svg>
+            </a>
+            <a class="iui-current">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">7</a>
+            <span class="iui-ellipsis">&mldr;</span>
+            <a href="#">30</a>
+            <a href="#" class="iui-icon">
+              <!-- Use chevron-right.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" class="iui-icon" aria-hidden="true">
+                <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="iui-location">
+            <label class="iui-input-container">
+              <div class="iui-select">
+                <input type="checkbox" />
+                <div class="iui-select-button">
+                  1-10 of 300
+                </div>
+                <ul class="iui-menu" style="position: absolute; top: 100%;">
+                  <li tabindex="0">25 per page</li>
+                  <li tabindex="0">50 per page</li>
+                  <li tabindex="0">100 per page</li>
+                </ul>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="iui-tables-table iui-tables-fixed iui-tables-extra-condensed">
+      <div class="iui-tables-row">
+        <div class="iui-tables-cell iui-tables-head">
+          Product
+        </div>
+        <div class="iui-tables-cell iui-tables-head">
+          Price
+        </div>
+      </div>
+
+      <div class="iui-tables-body">
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Muffins
+          </div>
+          <div class="iui-tables-cell">
+            $5.00
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Lamb
+          </div>
+          <div class="iui-tables-cell">
+            $12.00
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Lemons
+          </div>
+          <div class="iui-tables-cell">
+            $0.86
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Ginger
+          </div>
+          <div class="iui-tables-cell">
+            $2.50
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Pepper
+          </div>
+          <div class="iui-tables-cell">
+            $1.95
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Water
+          </div>
+          <div class="iui-tables-cell">
+            $1.99
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Pork
+          </div>
+          <div class="iui-tables-cell">
+            $19.95
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Cheese
+          </div>
+          <div class="iui-tables-cell">
+            $4.75
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Dog food
+          </div>
+          <div class="iui-tables-cell">
+            $22.95
+          </div>
+        </div>
+
+        <div class="iui-tables-row">
+          <div class="iui-tables-cell">
+            Fish
+          </div>
+          <div class="iui-tables-cell">
+            $16.54
+          </div>
+        </div>
+      </div>
+
+      <div class="iui-tables-row iui-tables-paginator">
+        <div class="iui-content">
+          <div class="iui-full-line"></div>
+          <div class="iui-controls">
+            <a href="#" class="iui-icon">
+              <!-- Use chevron-left.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" class="iui-icon" aria-hidden="true">
+                <path d="M11.3 0l1.4 1.4L6.1 8l6.6 6.6-1.4 1.4-8-8z"></path>
+              </svg>
+            </a>
+            <a class="iui-current">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">7</a>
+            <span class="iui-ellipsis">&mldr;</span>
+            <a href="#">30</a>
+            <a href="#" class="iui-icon">
+              <!-- Use chevron-right.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" class="iui-icon" aria-hidden="true">
+                <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="iui-location">
+            <label class="iui-input-container">
+              <div class="iui-select">
+                <input type="checkbox" />
+                <div class="iui-select-button">
+                  1-10 of 300
+                </div>
+                <ul class="iui-menu" style="position: absolute; top: 100%;">
+                  <li tabindex="0">25 per page</li>
+                  <li tabindex="0">50 per page</li>
+                  <li tabindex="0">100 per page</li>
+                </ul>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </br>
+  <hr />
+  <h2 id="regular">Loading</h2>
+  
+  <div class="iui-tables-table iui-tables">
+    <div class="iui-tables-row">
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+        <label class="iui-checkbox">
+          <input type="checkbox" id="select-all-checkboxes" />
+          <span class="iui-checkbox-checkmark">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+              <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </span>
+        </label>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Name
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-iui-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified by
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Size
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+        <!-- Use column-manager.svg from generic-icons package. -->
+        <svg class="iui-icon column-manager" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+        </svg>
+      </div>
+    </div>
+    <div class="iui-tables-body">
+      <div class="iui-tables-message-container">
+        <div class="iui-progress-indicator-radial iui-determinate">
+          <svg class="iui-radial" viewBox="0 0 40 40" aria-hidden="true">
+            <circle class="iui-track" cx="20" cy="20" r="15.91549"></circle>
+            <circle class="iui-fill" cx="20" cy="20" r="15.91549" style="stroke-dashoffset: 20"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </br>
+  
+  <div class="iui-tables-table iui-tables-condensed">
+    <div class="iui-tables-row">
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+        <label class="iui-checkbox">
+          <input type="checkbox" id="select-all-checkboxes-condensed" />
+          <span class="iui-checkbox-checkmark">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+              <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </span>
+        </label>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Name
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-iui-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified by
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Size
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+        <!-- Use column-manager.svg from generic-icons package. -->
+        <svg class="iui-icon column-manager" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+        </svg>
+      </div>
+    </div>
+    <div class="iui-tables-body">
+      <div class="iui-tables-message-container">
+        <div class="iui-progress-indicator-radial iui-determinate">
+          <svg class="iui-radial" viewBox="0 0 40 40" aria-hidden="true">
+            <circle class="iui-track" cx="20" cy="20" r="15.91549"></circle>
+            <circle class="iui-fill" cx="20" cy="20" r="15.91549" style="stroke-dashoffset: 20"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </br>
+  
+  <div class="iui-tables-table iui-tables-extra-condensed">
+    <div class="iui-tables-row">
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+        <label class="iui-checkbox">
+          <input type="checkbox" id="select-all-checkboxes-extra-condensed" />
+          <span class="iui-checkbox-checkmark">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+              <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </span>
+        </label>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Name
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-iui-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified by
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Size
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+        <!-- Use column-manager.svg from generic-icons package. -->
+        <svg class="iui-icon column-manager" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+        </svg>
+      </div>
+    </div>
+    <div class="iui-tables-body">
+      <div class="iui-tables-message-container">
+        <div class="iui-progress-indicator-radial iui-determinate">
+          <svg class="iui-radial" viewBox="0 0 40 40" aria-hidden="true">
+            <circle class="iui-track" cx="20" cy="20" r="15.91549"></circle>
+            <circle class="iui-fill" cx="20" cy="20" r="15.91549" style="stroke-dashoffset: 20"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </br>
+  <hr />
+  <h2 id="regular">Empty state</h2>
+  
+  <div class="iui-tables-table">
+    <div class="iui-tables-row">
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+        <label class="iui-checkbox">
+          <input type="checkbox" id="select-all-checkboxes" />
+          <span class="iui-checkbox-checkmark">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+              <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </span>
+        </label>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Name
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-iui-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified by
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Size
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+        <!-- Use column-manager.svg from generic-icons package. -->
+        <svg class="iui-icon column-manager" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+        </svg>
+      </div>
+    </div>
+    <div class="iui-tables-body">
+      <div class="iui-tables-message-container">
+        No data.
+      </div>
+    </div>
+  </div>
+  
+  </br>
+  
+  <div class="iui-tables-table iui-tables-table-condensed">
+    <div class="iui-tables-row">
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+        <label class="iui-checkbox">
+          <input type="checkbox" id="select-all-checkboxes-condensed" />
+          <span class="iui-checkbox-checkmark">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+              <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </span>
+        </label>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Name
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-iui-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified by
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Size
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+        <!-- Use column-manager.svg from generic-icons package. -->
+        <svg class="iui-icon column-manager" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+        </svg>
+      </div>
+    </div>
+    <div class="iui-tables-body">
+      <div class="iui-tables-message-container">
+        No data.
+      </div>
+    </div>
+  </div>
+  
+  </br>
+  
+  <div class="iui-tables-table iui-tables-extra-condensed">
+    <div class="iui-tables-row">
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head">
+        <label class="iui-checkbox">
+          <input type="checkbox" id="select-all-checkboxes-extra-condensed" />
+          <span class="iui-checkbox-checkmark">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path class="iui-check-partial" d="m1 6.5h14v3h-14z" />
+              <path class="iui-check" d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </span>
+        </label>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Name
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-iui-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Modified by
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-head">
+        Size
+        <div class="iui-filter">
+          <!-- Use filter-outlined.svg from generic-icons package. -->
+          <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M15,1v0.5L9.4,6.2L9,6.5V7v5.5L7,14V7V6.5L6.6,6.2L1,1.5V1H15 M16,0H0v2l6,5v9l4-3V7l6-5V0L16,0z" />
+          </svg>
+        </div>
+        <div class="iui-sort">
+          <div class="iui-icon-wrapper">
+            <!-- Use sort-down.svg from generic-icons package. -->
+            <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M7,0v12.7L3.2,9L2,10.2L8,16l1.2-1.2l0,0l4.8-4.6L12.8,9L9,12.7V0H7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="iui-tables-cell iui-tables-slot iui-tables-head ">
+        <!-- Use column-manager.svg from generic-icons package. -->
+        <svg class="iui-icon column-manager" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
+        </svg>
+      </div>
+    </div>
+    <div class="iui-tables-body">
+      <div class="iui-tables-message-container">
+        No data.
+      </div>
+    </div>
+  </div>
+
+
+    <script>
+      var selectAllFn = function (selectAllId, tableId) {
+        var element = document.getElementById(selectAllId);
+        element.indeterminate = true;
+        element.onclick = function () {
+          var checkboxes = document.querySelectorAll(`#${tableId} .iui-tables-row input[type="checkbox"]:not(:disabled)`);
+          for (var checkbox of checkboxes) {
+            checkbox.checked = this.checked;
+          }
+          element.indeterminate = false;
+          element.checked = this.checked;
+        }
+      }
+      selectAllFn('select-all-checkboxes', 'iui-table')
+      selectAllFn('select-all-checkboxes-condensed', 'iui-table-condensed')
+      selectAllFn('select-all-checkboxes-extra-condensed', 'iui-table-extra-condensed')
+      selectAllFn('select-all-checkboxes-zebra', 'iui-table-zebra')
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+@import '../style/index';
+
+@mixin iui-radio {
+  @include iui-inputs-checkbox-radio;
+
+  .iui-radio-dot {
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,26 @@
+
+# Test Reference Files
+backstop/results/bitmaps_test
+backstop/results/bitmaps_test/*
+backstop/results/ci_report
+backstop/results/ci_report/*
+backstop/results/html_report
+backstop/results/html_report/*
+
+
+# Built Files
+lib
+lib/*
+
+# Node
+node_modules
+node_modules/*
+yarn-error.log
+
+# Compiled Scripts
+scripts/compile*
+scripts/makeJss*
+scripts/utils*
+
+# MacOS
+**/.DS_Store

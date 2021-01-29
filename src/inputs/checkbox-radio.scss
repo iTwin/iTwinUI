@@ -1,0 +1,153 @@
+@import '../style/index';
+
+@mixin iui-inputs-checkbox-radio {
+  @include iui-font-family;
+  display: flex;
+  align-items: center;
+  font-size: $iui-font-size;
+  width: fit-content;
+  user-select: none;
+  cursor: pointer;
+
+  @include themed {
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
+
+  // Hide original input taken from https://moderncss.dev/pure-css-custom-checkbox-style/
+  > input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &.iui-disabled {
+    cursor: not-allowed;
+  }
+
+  .iui-checkbox-checkmark,
+  .iui-radio-dot {
+    box-sizing: border-box;
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    margin: $iui-inputs-margin 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include themed {
+      border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      background-color: t(iui-color-background-1);
+    }
+
+    > svg {
+      width: $iui-sm;
+      height: $iui-sm;
+
+      > path,
+      > circle {
+        opacity: 0;
+        transition: opacity $iui-speed-fast ease;
+
+        @include themed {
+          fill: t(iui-color-foreground-primary);
+        }
+      }
+    }
+  }
+
+  // For labels on the right
+  > .iui-label {
+    margin-right: $iui-s;
+  }
+
+  // For labels on the left
+  .iui-checkbox-checkmark ~ .iui-label,
+  .iui-radio-dot ~ .iui-label {
+    margin-left: $iui-s;
+    margin-right: 0;
+  }
+
+  // Adds hover to everything that is not disabled
+  &:hover > input:enabled ~ .iui-checkbox-checkmark,
+  &:hover > input:enabled ~ .iui-radio-dot {
+    @include themed {
+      border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
+    transition: all $iui-speed-fast ease-out;
+  }
+
+  // Selected checkboxes & radios border opacity increase
+  & input:checked ~ .iui-checkbox-checkmark,
+  & input:indeterminate ~ .iui-checkbox-checkmark,
+  & input:checked ~ .iui-radio-dot {
+    @include themed {
+      border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+    }
+  }
+
+  // Show check, partial, or dot depending on type
+  & input:checked ~ .iui-checkbox-checkmark > svg > path.iui-check,
+  &
+    input:indeterminate
+    ~ .iui-checkbox-checkmark
+    > svg
+    > path.iui-check-partial,
+  & input:checked ~ .iui-radio-dot > svg > circle {
+    opacity: 1;
+    transition: opacity $iui-speed-fast ease;
+  }
+
+  // Adds focus to enabled checkbox & radio
+  & input:enabled:focus ~ .iui-checkbox-checkmark,
+  & input:enabled:focus ~ .iui-radio-dot {
+    @include themed {
+      box-shadow: t(iui-focus-box-shadow);
+    }
+  }
+
+  // Styles disabled checkbox & radio
+  & input:disabled ~ .iui-checkbox-checkmark,
+  & input:disabled ~ .iui-radio-dot {
+    cursor: not-allowed;
+
+    @include themed {
+      background-color: t(iui-color-background-disabled);
+      border-color: t(iui-color-background-disabled);
+    }
+  }
+
+  // Styles disabled checks
+  & input:disabled ~ .iui-checkbox-checkmark > svg > path,
+  & input:disabled ~ .iui-radio-dot > svg > circle {
+    @include themed {
+      fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    }
+  }
+
+  // Styles disabled labels
+  & input:disabled ~ .iui-label {
+    cursor: not-allowed;
+
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
+  }
+
+  &.iui-positive {
+    @include themed {
+      color: t(iui-color-foreground-positive);
+    }
+  }
+
+  &.iui-warning {
+    @include themed {
+      color: t(iui-color-foreground-warning);
+    }
+  }
+
+  &.iui-negative {
+    @include themed {
+      color: t(iui-color-foreground-negative);
+    }
+  }
+}

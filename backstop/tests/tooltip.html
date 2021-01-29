@@ -1,0 +1,97 @@
+<html id="theme">
+  <head>
+    <title>Tooltip | iTwin UI</title>
+    <link rel="icon" href="../assets/favicon.ico" />
+    <link rel="stylesheet" href="../../lib/css/global.css" />
+    <link rel="stylesheet" href="../../lib/css/tooltips.css" />
+    <link rel="stylesheet" href="../assets/demo.css" />
+    <style>
+      .iui-tooltip-container {
+        margin-left: 90px;
+        margin-bottom: 35px;
+      }
+
+      .right {
+        top: -5px;
+        left: 100%;
+        margin-left: 5px;
+      }
+
+      .left {
+        top: -5px;
+        right: 100%;
+        margin-right: 5px;
+      }
+
+      .top {
+        bottom: 100%;
+        left: 50%;
+        margin-left: -40px;
+        margin-bottom: 5px;
+      }
+
+      .bottom {
+        top: 100%;
+        left: 50%;
+        margin-left: -40px;
+        margin-top: 5px;
+      }
+    </style>
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body>
+    <theme-button></theme-button>
+    <h1>Tooltip</h1>
+
+    <hr />
+    <br />
+
+    <div class="iui-tooltip-container">
+      Hover here (top)
+      <span class="iui-tooltip top">
+        Hello, I'm a tooltip!
+      </span>
+    </div>
+
+    <div class="iui-tooltip-container">
+      Hover here (right)
+      <span class="iui-tooltip right">
+        Hello, I'm a tooltip!
+      </span>
+    </div>
+
+    <div class="iui-tooltip-container">
+      Hover here (bottom)
+      <span class="iui-tooltip bottom">
+        Hello, I'm a tooltip!
+      </span>
+    </div>
+
+    <div class="iui-tooltip-container">
+      Hover here (left)
+      <span class="iui-tooltip left">
+        Hello, I'm a tooltip!
+      </span>
+    </div>
+
+    <div class="iui-tooltip-container">
+      Hover here (Lorem ipsum)
+      <span class="iui-tooltip top">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </span>
+    </div>
+
+    <div class="iui-tooltip-container">
+      Hover here (permanent)
+      <span class="iui-tooltip bottom iui-tooltip-visible">
+        This tooltip will not disappear.
+      </span>
+    </div>
+  </body>
+</html>
