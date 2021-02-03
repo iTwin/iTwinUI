@@ -1,6 +1,9 @@
 export { Alert } from './Alert';
 export type { AlertProps } from './Alert';
 
+export { Blockquote } from './Blockquote';
+export type { BlockquoteProps } from './Blockquote';
+
 export { Button, IconButton, IdeasButton } from './Buttons';
 export type { ButtonProps, IconButtonProps, IdeasButtonProps } from './Buttons';
 
