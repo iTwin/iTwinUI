@@ -1,0 +1,98 @@
+{
+  "name": "@bentley/itwinui-react",
+  "version": "0.1.0",
+  "author": "Bentley Systems",
+  "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "typings": "cjs/index.d.ts",
+  "description": "A react implementation of our iTwinUI UX standards",
+  "keywords": [
+    "itwinui",
+    "react"
+  ],
+  "scripts": {
+    "build": "yarn clean && yarn mkdirp lib/ && yarn copy-files && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
+    "clean": "yarn clean:coverage && yarn clean:lib",
+    "clean:coverage": "rimraf coverage",
+    "clean:lib": "rimraf lib",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "createComponent": "node scripts/createComponent.js",
+    "pretty": "prettier --config .prettierrc \"scripts/**/*\" src/{__tests__,core,style,utils}/**/*{tsx,ts,jsx,js,css,scss} --write",
+    "lint": "eslint */**/*.{js,ts,tsx} --fix",
+    "copy-files": "cpx package.json lib && cpx \"*.md\" lib",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "refreshVSToken": "vsts-npm-auth -config .npmrc"
+  },
+  "dependencies": {
+    "@bentley/icons-generic-react": "^0.1.1",
+    "@bentley/illustrations": "^1.0.1",
+    "@bentley/itwinui": "^0.1.0",
+    "@types/react-table": "^7.0.18",
+    "classnames": "^2.2.6",
+    "react-table": "^7.1.0",
+    "react-transition-group": "^4.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@storybook/addon-actions": "^6.1.15",
+    "@storybook/addon-controls": "^6.1.15",
+    "@storybook/addon-docs": "^6.1.15",
+    "@storybook/addon-storysource": "^6.1.15",
+    "@storybook/addons": "^6.1.15",
+    "@storybook/api": "^6.1.15",
+    "@storybook/components": "^6.1.15",
+    "@storybook/core-events": "^6.1.15",
+    "@storybook/preset-typescript": "^3.0.0",
+    "@storybook/react": "^6.1.15",
+    "@storybook/theming": "^6.1.15",
+    "@testing-library/react": "^11.1.0",
+    "@types/classnames": "^2.2.7",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^10.12.2",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
+    "@types/react-transition-group": "^2.9.2",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "babel-loader": "^8.2.2",
+    "cpx": "^1.5.0",
+    "eslint": "^7.15.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^3.0.0",
+    "inquirer": "^6.2.2",
+    "jest": "^26.6.3",
+    "jest-cli": "^26.6.3",
+    "prettier": "^2.2.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "rimraf": "^2.6.2",
+    "storybook-dark-mode": "^1.0.4",
+    "ts-jest": "^26.4.3",
+    "ts-loader": "^8.0.1",
+    "ts-node": "^8.0.2",
+    "typescript": "^4.0.2",
+    "webpack": "^5.15.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
+  },
+  "resolutions": {
+    "braces": "^2.3.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn pretty && yarn lint && yarn test"
+    }
+  },
+  "sideEffects": [
+    "**/*.scss",
+    "**/*.css"
+  ]
+}

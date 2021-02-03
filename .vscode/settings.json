@@ -1,0 +1,19 @@
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "prettier.disableLanguages": ["vue", "markdown"],
+  "files.exclude": {
+    "**/src/**/*.css": true
+  },
+  "search.exclude": {
+    "**/src/**/*.css": true
+  },
+  "files.watcherExclude": {
+    "**/lib/**": true,
+    "**/src/**/*.css": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+}

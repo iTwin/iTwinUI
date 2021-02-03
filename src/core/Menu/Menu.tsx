@@ -1,0 +1,78 @@
+import React from 'react';
+import cx from 'classnames';
+import '@bentley/itwinui/css/menu.css';
+import { CommonProps } from '../utils/props';
+
+export type MenuProps = {
+  /**
+   * ARIA role. For menu use 'menu', for select use 'listbox'.
+   * @default 'menu'
+   */
+  role?: string;
+  /**
+   * Menu items. Recommended to use `MenuItem` components.
+   */
+  children: React.ReactNode;
+} & CommonProps;
+
+/**
+ * Basic menu component. Can be used for select or dropdown components.
+ */
+export const Menu: React.FC<MenuProps> = (props) => {
+  const { children, role = 'menu', className, style } = props;
+
+  const [focusedIndex, setFocusedIndex] = React.useState<number>();
+  const menuRef = React.useRef<HTMLUListElement>(null);
+
+  React.useEffect(() => {
+    const items = menuRef.current?.children;
+    if (focusedIndex != null) {
+      (items?.[focusedIndex] as HTMLLIElement)?.focus();
+      return;
+    }
+
+    const index = React.Children.toArray(children).findIndex(
+      (child: React.ReactElement) => child.props.isSelected,
+    );
+    setFocusedIndex(index > -1 ? index : 0);
+  }, [children, focusedIndex]);
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    const items = menuRef.current?.children;
+    if (!items?.length) {
+      return;
+    }
+
+    const currentIndex = focusedIndex ?? 0;
+    switch (event.key) {
+      case 'ArrowDown': {
+        const newIndex = Math.min(currentIndex + 1, items.length - 1);
+        setFocusedIndex(newIndex);
+        event.preventDefault();
+        break;
+      }
+      case 'ArrowUp': {
+        const newIndex = Math.max(currentIndex - 1, 0);
+        setFocusedIndex(newIndex);
+        event.preventDefault();
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
+  return (
+    <ul
+      className={cx('iui-menu', className)}
+      style={style}
+      role={role}
+      onKeyDown={onKeyDown}
+      ref={menuRef}
+    >
+      {children}
+    </ul>
+  );
+};
+
+export default Menu;

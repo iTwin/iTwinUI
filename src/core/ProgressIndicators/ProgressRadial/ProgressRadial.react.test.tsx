@@ -1,0 +1,94 @@
+import React from 'react';
+import { render } from '@testing-library/react';
+
+import { ProgressRadial } from './ProgressRadial';
+
+it('renders determinate ProgressRadial', () => {
+  const { container } = render(<ProgressRadial value={43} />);
+
+  const spinner = container.querySelector(
+    '.iui-progress-indicator-radial.iui-determinate',
+  ) as HTMLElement;
+  expect(spinner).toBeTruthy();
+  expect(container.querySelector('.iui-track')).toBeTruthy();
+  const spinnerFill = container.querySelector('.iui-fill') as SVGCircleElement;
+  expect(spinnerFill.style.strokeDashoffset).toBe('50.16');
+});
+
+it('renders indeterminate ProgressRadial', () => {
+  const { container } = render(<ProgressRadial indeterminate={true} />);
+
+  const spinner = container.querySelector(
+    '.iui-progress-indicator-radial.iui-indeterminate',
+  ) as HTMLElement;
+  expect(spinner).toBeTruthy();
+  expect(container.querySelector('.iui-track')).toBeTruthy();
+  const spinnerFill = container.querySelector('.iui-fill') as SVGCircleElement;
+  expect(spinnerFill.style.strokeDashoffset).toBe('0');
+});
+
+it('renders positive ProgressRadial', () => {
+  const { container } = render(<ProgressRadial status={'positive'} />);
+
+  const spinner = container.querySelector(
+    '.iui-progress-indicator-radial.iui-determinate.iui-positive',
+  ) as HTMLElement;
+  expect(spinner).toBeTruthy();
+  const spinnerFill = container.querySelector('.iui-fill') as SVGCircleElement;
+  expect(spinnerFill.style.strokeDashoffset).toBe('0');
+});
+
+it('renders negative ProgressRadial', () => {
+  const { container } = render(<ProgressRadial value={40} status='negative' />);
+
+  const spinner = container.querySelector(
+    '.iui-progress-indicator-radial.iui-determinate.iui-negative',
+  ) as HTMLElement;
+  expect(spinner).toBeTruthy();
+  const spinnerFill = container.querySelector('.iui-fill') as SVGCircleElement;
+  expect(spinnerFill.style.strokeDashoffset).toBe('52.8');
+});
+
+it('renders determinate ProgressRadial with max value', () => {
+  const { container } = render(<ProgressRadial value={222} />);
+
+  const spinner = container.querySelector(
+    '.iui-progress-indicator-radial.iui-determinate',
+  ) as HTMLElement;
+  expect(spinner).toBeTruthy();
+  const spinnerFill = container.querySelector('.iui-fill') as SVGCircleElement;
+  expect(spinnerFill.style.strokeDashoffset).toBe('0');
+});
+
+it('renders determinate ProgressRadial with min value', () => {
+  const { container } = render(<ProgressRadial value={-11} />);
+
+  const spinner = container.querySelector(
+    '.iui-progress-indicator-radial.iui-determinate',
+  ) as HTMLElement;
+  expect(spinner).toBeTruthy();
+  const spinnerFill = container.querySelector('.iui-fill') as SVGCircleElement;
+  expect(spinnerFill.style.strokeDashoffset).toBe('88');
+});
+
+it('renders determinate ProgressRadial with no value', () => {
+  const { container } = render(<ProgressRadial />);
+
+  const spinner = container.querySelector(
+    '.iui-progress-indicator-radial.iui-determinate',
+  ) as HTMLElement;
+  expect(spinner).toBeTruthy();
+  const spinnerFill = container.querySelector('.iui-fill') as SVGCircleElement;
+  expect(spinnerFill.style.strokeDashoffset).toBe('88');
+});
+
+it('renders determinate small  ProgressRadial', () => {
+  const { container } = render(<ProgressRadial size={'small'} value={50} />);
+
+  const spinner = container.querySelector(
+    '.iui-progress-indicator-radial.iui-determinate.iui-small',
+  ) as HTMLElement;
+  expect(spinner).toBeTruthy();
+  const spinnerFill = container.querySelector('.iui-fill') as SVGCircleElement;
+  expect(spinnerFill.style.strokeDashoffset).toBe('44');
+});

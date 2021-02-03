@@ -1,0 +1,142 @@
+# 'Allow scripts to access the OAuth token' was selected in pipeline.  Add the following YAML to any steps requiring access:
+#       env:
+#           MY_ACCESS_TOKEN: $(System.AccessToken)
+# Variable 'dev' was defined in the Variables tab
+trigger: none
+name: $(Date:yyyy.M.d)$(Rev:.r)
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  steps:
+  - checkout: self
+    persistCredentials: True
+  - task: NodeTool@0
+    displayName: Use Node 10.15.x
+    inputs:
+      versionSpec: 10.15.x
+  - task: YarnInstaller@2
+    displayName: Use Yarn 1.x
+  - task: npmAuthenticate@0
+    displayName: 'npm Authenticate'
+    inputs:
+      workingFile: './.npmrc'
+  - task: Yarn@2
+    displayName: Yarn install
+    inputs:
+      Arguments: install
+      customRegistry: useFeed
+      customFeed: cddcc498-6606-47b5-b068-e9fa20167bf8
+  - task: Yarn@2
+    displayName: Yarn audit
+    inputs:
+      Arguments: 'audit --registry=https://registry.npmjs.org/'
+  - task: Yarn@2
+    displayName: Yarn build
+    inputs:
+      Arguments: build
+  - task: Yarn@2
+    displayName: Yarn test
+    inputs:
+      Arguments: test --coverage
+  - task: Yarn@2
+    displayName: Yarn build storybook
+    inputs:
+      Arguments: build-storybook
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: 'coverage/cobertura-coverage.xml'
+    displayName: 'Publish Code Coverage'
+  - task: PowerShell@2
+    displayName: Get package server version
+    inputs:
+      targetType: 'inline'
+      script: |
+        $packageName = node -p "require('./package.json').name"
+        $ver = npm view $packageName version
+        
+        if (!$ver) {
+          $ver = 0.0.0
+        }
+        
+        Write-Host "##vso[task.setvariable variable=serverVersion]$ver"
+        Write-Host "Server version found: $ver"
+      errorActionPreference: 'continue'
+      ignoreLASTEXITCODE: true
+  - task: PowerShell@2
+    displayName: Get package local version
+    inputs:
+      targetType: 'inline'
+      script: |
+        $locVersion= node -p "require('./package.json').version"
+        Write-Host "##vso[task.setvariable variable=localVersion]$locVersion"
+        Write-Host "Local version found: $locVersion"
+  - task: PowerShell@2
+    displayName: Check if local > server
+    inputs:
+      targetType: 'inline'
+      script: |
+        if ("$(serverVersion)") {
+          $serverVersionArray = "$(serverVersion)".split('-dev.')
+          $localVersionArray = "$(localVersion)".split('-dev.')
+          Write-Host $serverVersionArray
+          Write-Host $localVersionArray
+
+          # If major versions are equal, check dev version
+          if ([System.Version]::Parse($localVersionArray[0]) -eq [System.Version]::Parse($serverVersionArray[0])) {
+            # Server has no dev version, so no release
+            if ($serverVersionArray.length -eq 1) {
+              $newer = $false
+              Write-Host "Server has no dev version."
+              # Local has no dev version, so it is new official release
+            } elseif ($localVersionArray.length -eq 1) {
+              $newer = $true
+              Write-Host "Local has no dev version."
+              # Compare dev version numbers. This compares only simple digits, not versions.
+            } else {
+              $newer = $localVersionArray[1] -gt $serverVersionArray[1]
+              Write-Host "Comparing dev versions."
+            }
+            # Major versions are different
+          } else {
+            $newer = [System.Version]::Parse($localVersionArray[0]) -gt [System.Version]::Parse($serverVersionArray[0])
+            Write-Host "Comparing major versions."
+          }
+
+          Write-Host "##vso[task.setvariable variable=isNewer]$newer"
+          Write-Host "Is newer: $newer"
+        } else {
+          Write-Host "##vso[task.setvariable variable=isNewer]true"
+          Write-Host "No server version. Setting isNewer to true"
+        }
+  - task: Npm@1
+    displayName: npm pack
+    inputs:
+      command: custom
+      workingDir: lib
+      verbose: false
+      customCommand: pack
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    inputs:
+      PathtoPublish: lib/bentley-itwinui-react-$(localVersion).tgz
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: storyboook'
+    inputs:
+      PathtoPublish: storybook-static
+      ArtifactName: storybook
+  - task: tagBuildOrRelease@0
+    displayName: Tag build for release
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['dev'], 'false'), eq(variables['isNewer'], 'true'))
+    inputs:
+      tags: release
+  - task: tagBuildOrRelease@0
+    displayName: Tag development build
+    condition: and(succeeded(), eq(variables['dev'], 'true'), eq(variables['isNewer'], 'true'))
+    inputs:
+      tags: dev
+...

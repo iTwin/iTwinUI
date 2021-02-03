@@ -1,0 +1,5 @@
+node_modules/**
+scripts/**
+lib/**
+custom.d.ts
+storybook-static/**

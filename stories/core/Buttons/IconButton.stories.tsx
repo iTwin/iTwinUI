@@ -1,0 +1,63 @@
+import React from 'react';
+import { action } from '@storybook/addon-actions';
+import { Story, Meta } from '@storybook/react';
+import IconButton, {
+  IconButtonProps,
+} from '../../../src/core/Buttons/IconButton/IconButton';
+import { SvgAdd } from '@bentley/icons-generic-react';
+
+export default {
+  title: 'Buttons/IconButton',
+  component: IconButton,
+  parameters: {
+    docs: { description: { component: 'Button with icon' } },
+  },
+  argTypes: {
+    onClick: { table: { disable: true } },
+    styleType: {
+      control: 'select',
+    },
+  },
+} as Meta<React.PropsWithChildren<IconButtonProps>>;
+
+export const Add: Story<React.PropsWithChildren<IconButtonProps>> = (args) => {
+  return (
+    <IconButton onClick={action('clicked')} {...args}>
+      <SvgAdd />
+    </IconButton>
+  );
+};
+
+Add.args = {
+  isActive: false,
+};
+
+export const SmallActiveAdd: Story<React.PropsWithChildren<IconButtonProps>> = (
+  args,
+) => {
+  return (
+    <IconButton onClick={action('clicked')} isActive {...args}>
+      <SvgAdd />
+    </IconButton>
+  );
+};
+
+SmallActiveAdd.args = {
+  size: 'small',
+  isActive: true,
+};
+
+export const HighVisibilityAdd: Story<
+  React.PropsWithChildren<IconButtonProps>
+> = (args) => {
+  return (
+    <IconButton onClick={action('clicked')} {...args}>
+      <SvgAdd />
+    </IconButton>
+  );
+};
+
+HighVisibilityAdd.args = {
+  isActive: false,
+  styleType: 'high-visibility',
+};
