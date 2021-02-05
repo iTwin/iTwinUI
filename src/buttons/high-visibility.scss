@@ -34,6 +34,12 @@
       border-left: 1px solid
         rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
     }
+    &:hover {
+      @include themed {
+        border-left: 1px solid
+          rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
+      }
+    }
 
     .iui-buttons-icon {
       @include themed {
