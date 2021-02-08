@@ -15,3 +15,12 @@ export type { BodyProps } from './Body';
 
 export { Small } from './Small';
 export type { SmallProps } from './Small';
+
+export { Blockquote } from './Blockquote';
+export type { BlockquoteProps } from './Blockquote';
+
+export { Code } from './Code';
+export type { CodeProps } from './Code';
+
+export { Kbd, KbdKeys } from './Kbd';
+export type { KbdProps } from './Kbd';

@@ -1,9 +1,17 @@
 export type ClassNameProps = {
-  /** Custom CSS class name */
+  /**
+   * Custom CSS class name
+   */
   className?: string;
 };
 
 export type CommonProps = {
-  /** Custom CSS style properties */
+  /**
+   * Custom CSS style properties
+   */
   style?: React.CSSProperties;
+  /**
+   * HTML title attribute
+   */
+  title?: string;
 } & ClassNameProps;

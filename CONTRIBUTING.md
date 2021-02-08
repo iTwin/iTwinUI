@@ -87,7 +87,7 @@ To extend the current collections, add the directory to the prompt in `scripts/c
 and import the directory from `src/index.ts`.
 ### Development with Storybook
 
-`npm run storybook`
+`yarn storybook`
 
 Dynamically loads a development interface into the local browser with individual testing environments for all components contained in src/core. Read more [here](./stories/README.md)
 
@@ -110,19 +110,31 @@ You may want to install `yalc` and `concurrently` (`nodemon` or `chokindar-cli`)
 - Chokindar version (untested) :
   - `"watch:yalc:push": "delay 20 && cd lib && chokidar \"**/*.js\" \"**/*.css\" \"**/*.ts\" \"**/*.tsx\" \"**/*.d.ts\" -c \"yalc push\"",`
 
-### Pull Requests
+### Changelog
+
+The `CHANGELOG.md` file must be updated for any new components or changes that you add. If unsure of which release your changes will go to, you can add a placeholder version and date (on the top):
+```
+## 0.1.X
+
+`Date`
+
+### What's new
+```
+
+## Pull Requests
 
 #### Checklist
 
 1. Component created following project structure
 2. Component contains proper inline documentation
 3. Test has been created for component
-4. Create a branch `git checkout -b <branch_name>`
-5. Stage `git add -A`
-6. Commit `git commit -m"<commit_message>"`
-7. Before the changes are committed, the formatter and tests are run; the commit will not happen if the tests fail.
-8. After ensuring that the tests passed and the changes were committed, `git push`
-9. If this fails, copy the suggested command and run that.
-10. Navigate to [the DevOps page](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React/pullrequests?_a=mine)
-11. Create a Pull Request
-12. Pending code review, your changes will be accepted into the repository.
+4. Update changelog.
+5. Create a branch `git checkout -b <branch_name>`
+6. Stage `git add -A`
+7. Commit `git commit -m"<commit_message>"`
+8. Before the changes are committed, the formatter and tests are run; the commit will not happen if the tests fail.
+9. After ensuring that the tests passed and the changes were committed, `git push`
+10. If this fails, copy the suggested command and run that.
+11. Navigate to [the DevOps page](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React/pullrequests?_a=mine)
+12. Create a Pull Request
+13. Pending code review, your changes will be accepted into the repository.

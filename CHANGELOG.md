@@ -1,3 +1,10 @@
+## 0.1.X
+
+`Date`
+
+### What's new
+* **New components added: Blockquote, inline Code, and Kbd.**
+
 ## 0.1.0
 
 `2021-02-03`

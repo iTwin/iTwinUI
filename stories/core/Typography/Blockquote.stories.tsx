@@ -1,9 +1,9 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Blockquote, BlockquoteProps } from '../../src/core';
+import { Blockquote, BlockquoteProps } from '../../../src/core';
 
 export default {
-  title: 'Blockquote',
+  title: 'Typography/Blockquote',
   component: Blockquote,
   parameters: {
     docs: { description: { component: 'Basic blockquote component' } },

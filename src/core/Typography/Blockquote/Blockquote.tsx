@@ -3,7 +3,9 @@ import cx from 'classnames';
 import React from 'react';
 
 export type BlockquoteProps = {
-  /** Optional footer for any attribution/source. */
+  /**
+   * Optional footer for any attribution/source.
+   */
   footer?: React.ReactNode;
 } & React.BlockquoteHTMLAttributes<HTMLQuoteElement>;
 
@@ -11,7 +13,7 @@ export type BlockquoteProps = {
  * Basic blockquote component
  * @example
  * <Blockquote>This is a quote</Blockquote>
- * <Blockquote footer={'— Someone'}>
+ * <Blockquote footer='— Someone'>
  *  <p>This is a quote from someone</p>
  * </Blockquote>
  */

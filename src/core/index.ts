@@ -1,9 +1,6 @@
 export { Alert } from './Alert';
 export type { AlertProps } from './Alert';
 
-export { Blockquote } from './Blockquote';
-export type { BlockquoteProps } from './Blockquote';
-
 export { Button, IconButton, IdeasButton } from './Buttons';
 export type { ButtonProps, IconButtonProps, IdeasButtonProps } from './Buttons';
 
@@ -98,6 +95,10 @@ export {
   Small,
   Subheading,
   Title,
+  Blockquote,
+  Code,
+  Kbd,
+  KbdKeys,
 } from './Typography';
 export type {
   BodyProps,
@@ -106,6 +107,9 @@ export type {
   SmallProps,
   SubheadingProps,
   TitleProps,
+  BlockquoteProps,
+  CodeProps,
+  KbdProps,
 } from './Typography';
 
 export { UserIcon } from './UserIcon';
