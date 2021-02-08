@@ -15,7 +15,7 @@ const writeFile = (obj) => {
   });
 };
 
-const appendFile = (obj, sub = false) => {
+const appendFile = (obj) => {
   if (fs.existsSync(obj.path)) {
     let file = fs.readFileSync(obj.path, 'utf-8');
     let tester = new RegExp(`.*${obj.template}.*`);
@@ -23,11 +23,7 @@ const appendFile = (obj, sub = false) => {
 
     for (const line of file.split('\n')) {
       if (tester.test(line)) {
-        if (sub) {
-          return;
-        } else {
-          throw new Error(`Duplicate line in ${obj.path}: ${count}`);
-        }
+        throw new Error(`Duplicate line in ${obj.path}: ${count}`);
       }
       count++;
     }
@@ -111,13 +107,6 @@ export type { ${name}Props } from './${name}';
   };
 };
 
-const subCollectionAppendFactory = (directory, name) => {
-  return {
-    path: `${directory.split('/').slice(0, -2).join('/')}/index.ts`,
-    template: `export { default as ${name} } from './${name}';`,
-  };
-};
-
 inquirer
   .prompt([
     {
@@ -129,22 +118,6 @@ inquirer
     },
 
     {
-      name: 'isSub',
-      type: 'confirm',
-      message: 'Is this component part of a sub-collection?',
-      default: false,
-    },
-
-    {
-      when: (answers) => {
-        return answers.isSub === true;
-      },
-      name: 'subCollection',
-      type: 'input',
-      message: 'What is the name of that sub-collection',
-    },
-
-    {
       name: 'component',
       type: 'input',
       message: 'What is the name of the component?',
@@ -152,14 +125,9 @@ inquirer
   ])
   .then((answers) => {
     console.log();
-    let { collection, isSub, subCollection, component } = answers;
+    let { collection, component } = answers;
     let directory = `src/${collection}`;
     let levels = [];
-
-    if (isSub) {
-      directory += `/${subCollection}`;
-      levels.push(directory);
-    }
 
     directory += `/${component}`;
     levels.push(directory);
@@ -171,14 +139,6 @@ inquirer
 
     for (const level of levels) {
       makeDir(level);
-    }
-
-    if (isSub) {
-      let subCollectionAppend = subCollectionAppendFactory(
-        directory,
-        subCollection,
-      );
-      appendFile(subCollectionAppend, true);
     }
 
     appendFile(indexAppend);
