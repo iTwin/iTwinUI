@@ -20,7 +20,8 @@
     "test:watch": "jest --watch",
     "createComponent": "node scripts/createComponent.js",
     "pretty": "prettier --config .prettierrc \"scripts/**/*\" src/{__tests__,core,style,utils}/**/*{tsx,ts,jsx,js,css,scss} --write",
-    "lint": "eslint */**/*.{js,ts,tsx} --fix",
+    "lint": "eslint */**/*.{js,ts,tsx} --max-warnings=0",
+    "lint:fix": "yarn lint --fix",
     "copy-files": "cpx package.json lib && cpx \"*.md\" lib",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -88,7 +89,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn pretty && yarn lint && yarn test"
+      "pre-commit": "yarn pretty && yarn lint:fix && yarn test"
     }
   },
   "sideEffects": [

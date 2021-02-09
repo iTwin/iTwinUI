@@ -273,7 +273,7 @@ it('should render menu with custom style', () => {
 it('should use custom renderer for menu items', () => {
   const { container } = render(
     <Select
-      itemRenderer={(option, itemProps) => (
+      itemRenderer={(option) => (
         <MenuItem style={{ color: option.value }}>{option.label}</MenuItem>
       )}
       options={[

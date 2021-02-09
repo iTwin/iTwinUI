@@ -166,7 +166,7 @@ export class Popover extends React.Component<PopoverProps, PopoverState> {
     };
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     clearTimeout(this.hoverTimeout);
     document.body.removeEventListener('click', this.onBodyClick, false);
     document.body.removeEventListener('keydown', this.onEsc, false);

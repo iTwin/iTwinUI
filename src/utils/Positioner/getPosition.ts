@@ -1,7 +1,7 @@
 // Everything here was taken from https://github.com/segmentio/evergreen/blob/master/src/positioner/src/getPosition.js
 // Evergreen is released under the MIT license.
 
-type Rect = {
+export type Rect = {
   bottom: number;
   height: number;
   left: number;
@@ -10,7 +10,7 @@ type Rect = {
   width: number;
 };
 
-type Dimension = {
+export type Dimension = {
   width: number;
   height: number;
 };

@@ -11,10 +11,12 @@ export type MenuItemProps = {
   /**
    * Value of the item.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value?: any;
   /**
    * Callback function that handles click and keyboard submit actions.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick?: (value?: any) => void;
   /**
    * SVG icon component shown on the left.

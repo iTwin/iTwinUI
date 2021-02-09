@@ -1,12 +1,12 @@
-import getPosition, { Position } from './getPosition';
+import getPosition, { Dimension, Position, Rect } from './getPosition';
 
-const dimensions = (overrides?: any) => ({
+const dimensions = (overrides?: Partial<Dimension>) => ({
   height: 100,
   width: 100,
   ...overrides,
 });
 
-const targetRect = (overrides?: any) => ({
+const targetRect = (overrides?: Partial<Rect>) => ({
   bottom: 150 - 30,
   height: 30,
   left: 250,
@@ -20,7 +20,7 @@ const targetRect = (overrides?: any) => ({
 
 const targetOffset = 6;
 
-const viewport = (overrides?: any) => ({
+const viewport = (overrides?: Partial<Dimension>) => ({
   height: 250,
   width: 850,
   ...overrides,
@@ -48,7 +48,7 @@ describe('automatic repositioning', () => {
     const position = getPosition(
       Position.RIGHT,
       dimensions({ width: 250 }),
-      targetRect({ left: 800, x: 800, right: 850 }),
+      targetRect({ left: 800, right: 850 }),
       targetOffset,
       viewport(),
     );
@@ -58,7 +58,7 @@ describe('automatic repositioning', () => {
     const position = getPosition(
       Position.LEFT,
       dimensions({ width: 250 }),
-      targetRect({ left: 50, x: 50, right: 100 }),
+      targetRect({ left: 50, right: 100 }),
       targetOffset,
       viewport({ width: 300 }),
     );
@@ -68,7 +68,7 @@ describe('automatic repositioning', () => {
     const position = getPosition(
       Position.TOP,
       dimensions({ height: 250 }),
-      targetRect({ top: 20, y: 20 }),
+      targetRect({ top: 20 }),
       targetOffset,
       viewport(),
     );
@@ -78,7 +78,7 @@ describe('automatic repositioning', () => {
     const position = getPosition(
       Position.BOTTOM,
       dimensions({ height: 250 }),
-      targetRect({ top: 290, y: 290, bottom: 295, height: 5 }),
+      targetRect({ top: 290, bottom: 295, height: 5 }),
       targetOffset,
       viewport({ height: 300 }),
     );
@@ -91,7 +91,7 @@ describe('overflowing viewport', () => {
     const position = getPosition(
       Position.BOTTOM,
       dimensions({ width: 250, height: 110 }),
-      targetRect({ left: 10, x: 10, top: 10, y: 10, bottom: 20 }),
+      targetRect({ left: 10, top: 10, bottom: 20 }),
       targetOffset,
       viewport(),
     );
@@ -101,7 +101,7 @@ describe('overflowing viewport', () => {
     const position = getPosition(
       Position.TOP,
       dimensions({ width: 50, height: 100 }),
-      targetRect({ left: 100, x: 100, top: 550, y: 550 }),
+      targetRect({ left: 100, top: 550 }),
       targetOffset,
       viewport({ height: 500 }),
     );

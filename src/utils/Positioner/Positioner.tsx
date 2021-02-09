@@ -73,17 +73,17 @@ export class Positioner extends React.Component<
       this.props.positionerRef || React.createRef<HTMLDivElement>();
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     if (this.latestAnimationFrame) {
       cancelAnimationFrame(this.latestAnimationFrame);
     }
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     this.update();
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { left, top, transformOrigin } = this.state;
     return (
       <Portal parentId={this.props.parentId}>

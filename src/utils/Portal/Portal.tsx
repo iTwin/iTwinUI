@@ -71,11 +71,11 @@ export class Portal extends React.Component<PortalProps> {
     this.element = appendElement(this.container);
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     this.container.removeChild(this.element);
   }
 
-  public render() {
+  public render(): JSX.Element {
     return ReactDOM.createPortal(this.props.children, this.element);
   }
 }

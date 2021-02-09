@@ -8,8 +8,7 @@ const makeDir = (path) => {
 };
 
 const writeFile = (obj) => {
-  const template = obj.template.replace(/\n/gm, '\r\n');
-  fs.writeFile(obj.path, template, (error) => {
+  fs.writeFile(obj.path, obj.template, (error) => {
     if (error) throw new Error(error.message);
     console.log('Successfully wrote', obj.path);
   });
