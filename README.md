@@ -49,7 +49,7 @@ const App = () => (
 
 ## Contributing
 
-This project is innersourced, so we welcome You to contribute to it and make this UI design system better. You can submit ideas or bugs by creating items in [our backlog](https://bentleycs.visualstudio.com/UX%20Design/_backlogs/backlog/UX%20Innersource/Backlog%20items).
+This project is innersourced, so we welcome You to contribute to it and make this UI design system better. You can submit ideas or bugs by creating items in [our backlog.](https://dev.azure.com/bentleycs/UX%20Design/_backlogs/backlog/iTwinUI/Features/?workitem=543453).
 Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) for more information.
 
 ---

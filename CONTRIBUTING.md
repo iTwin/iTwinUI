@@ -1,7 +1,7 @@
 # Contributing
 We welcome all types of contribution. 
 
-Need a feature or found a bug? Please create an item in [our backlog.](https://bentleycs.visualstudio.com/UX%20Design/_backlogs/backlog/UX%20Innersource/Backlog%20items)
+Need a feature or found a bug? Please create an item in [our backlog.](https://dev.azure.com/bentleycs/UX%20Design/_backlogs/backlog/iTwinUI/Features/?workitem=543453) Be sure to read description in the given link.
 
 Want to contribute by creating a PR? Great! Then read further.
 
@@ -10,35 +10,29 @@ We use yarn for package management, so be sure to have it installed
  `npm install -g yarn`
 
 1. `git clone https://bentleycs@dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React`
-2. `cd iTwinUI-react`
+2. `cd iTwinUI-React`
 3. `yarn install`
 
 If using vscode, our prettier and editor configs will be used.
 Please make sure to install all recommended extensions in [extensions.json](./.vscode/extensions.json).
 
-**src/core/index.ts** contains all shared types as well as all the exports for each component.
+## Storybook
+We use [Storybook](https://storybook.js.org) to test and demo the components. You can run it locally with `yarn storybook`.
+Be sure to add stories for your newly added component or feature. Read more [here](./stories/README.md) about storybook and how we write stories.
 
-Each component has a folder containing the source TypeScript and an index file to export it.
-Component groups (such as the TableComponents) should have their own subdirectory.
-This subdirectory exports all of its components up to the main index file.
+## Developing
 
-The build step (`yarn build`) compiles all the TypeScript and copies the output along with any needed styles or utilities to the lib/ folder.
+Before developing, please read our [style guide](./STYLEGUIDE.md)
 
-## Contributing
-
-**Recommended!**
-
-There is a script to scaffold out your component, run it with
+If you are creating a new component, use this script:
 
 `yarn createComponent`
 
-Or manually
+It ensures all needed imports are added and files are created.
 
-1. Make a folder under `src/core` with the name of the component
-2. In this folder, make a .tsx file of the same name and a file named index.ts
-3. index.ts contains two exports, a named and a default from the named .tsx file.
-4. `src/core/index.ts` exports this component
-5. Implement the component in the named .tsx file.
+Be sure to develop on your branch. We want to keep branch naming with developer name scope:
+
+`git checkout -b yourName/your-feature-name`
 
 ### Intended Folder Structure
 
@@ -77,38 +71,41 @@ export default './Alert';
 core/index.ts
 
 ```jsx
-...
+---
 export { Alert } from './Alert';
 export type { AlertProps } from './Alert';
-...
+---
 ```
-
-To extend the current collections, add the directory to the prompt in `scripts/createComponent`
-and import the directory from `src/index.ts`.
-### Development with Storybook
-
-`yarn storybook`
-
-Dynamically loads a development interface into the local browser with individual testing environments for all components contained in src/core. Read more [here](./stories/README.md)
 
 ### Testing
 
-Each component has a corresponding jest test inside of its directory
+Each component has a corresponding jest test inside of its directory. Be sure to cover your added code with tests.
 
-This test should achieve as much coverage as possible.
+Use `yarn test` to run the tests. Add `--watch` flag if you want tests to rerun after changes.
 
-Use `yarn test` to run the tests.
+We usually do not use `describe` block and our test case should start with 'should'.
+
+```jsx
+it('should be visible', () => {
+  const { getByText } = render(
+    <Tooltip parentId='container' content='some text' isVisible>
+      <div>Visible!</div>
+    </Tooltip>,
+  );
+
+  getByText('some text');
+});
+```
 
 ### Yalc
 
-You may want to install `yalc` and `concurrently` (`nodemon` or `chokindar-cli`) globally and use those two script to compile and push change to other project linked to iTwinUI-react :
-- Add those script to package.json :
-  - `"watch": "concurrently --kill-others \"yarn watch:tsx\" \"yarn watch:scss\" \"yarn watch:yalc:push\"",`
+You may want to install `yalc` and `concurrently` (`nodemon` or `chokindar-cli`) globally and use those two scripts to compile and push changes to other project linked to iTwinUI-react :
+- Add scripts to package.json :
+  - `"watch": "concurrently --kill-others \"yarn watch:tsx\" \"yarn watch:yalc:push\"",`
   - `"watch:tsx": "tsc --watch",`
-  - `"watch:scss": "node-sass src/ -wo lib/",`
-  - `"watch:yalc:push": "delay 20 && cd lib && nodemon -e js,ts,tsx,d.ts,css,scss -x \"yalc push\"",`
+  - `"watch:yalc:push": "delay 20 && cd lib && nodemon -e js,ts,tsx,d.ts -x \"yalc push\"",`
 - Chokindar version (untested) :
-  - `"watch:yalc:push": "delay 20 && cd lib && chokidar \"**/*.js\" \"**/*.css\" \"**/*.ts\" \"**/*.tsx\" \"**/*.d.ts\" -c \"yalc push\"",`
+  - `"watch:yalc:push": "delay 20 && cd lib && chokidar \"**/*.js\" \"**/*.ts\" \"**/*.tsx\" \"**/*.d.ts\" -c \"yalc push\"",`
 
 ### Changelog
 
@@ -127,14 +124,14 @@ The `CHANGELOG.md` file must be updated for any new components or changes that y
 
 1. Component created following project structure
 2. Component contains proper inline documentation
-3. Test has been created for component
+3. Tests have been added for component
 4. Update changelog.
-5. Create a branch `git checkout -b <branch_name>`
+5. Create a branch `git checkout -b yourName/your-feature-name`
 6. Stage `git add -A`
 7. Commit `git commit -m"<commit_message>"`
 8. Before the changes are committed, the formatter and tests are run; the commit will not happen if the tests fail.
 9. After ensuring that the tests passed and the changes were committed, `git push`
-10. If this fails, copy the suggested command and run that.
-11. Navigate to [the DevOps page](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React/pullrequests?_a=mine)
-12. Create a Pull Request
-13. Pending code review, your changes will be accepted into the repository.
+10. Navigate to [the DevOps page](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React/pullrequests?_a=mine)
+11. Create a Pull Request
+12. Pending code review, your changes will be accepted into the repository.
+13. When completing your pull request, you might want to add a custom merge message (available in completion step) to summarize the changes your commit brings.

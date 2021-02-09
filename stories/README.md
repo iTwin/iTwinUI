@@ -2,68 +2,82 @@
 
 ## How to run Storybook in development mode
 
-Exec `npm run storybook` from main file directory
+Execute `yarn storybook` command from main file directory
 
-## Directory
+## Folder structure
 
-stories/core : Contains all of the stories of the components contained in src/core.
+stories/core : Contains all of the stories of the components in src/core.
 
 ## Writing Stories
 
-Make sure to install the necessary Storybook add-ons if they are not and make sure to include them in [.storybook/main.js](../.storybook/main.js) or any other file as the usage section of that add-on says. Read the [Storybook 6](https://medium.com/storybookjs/storybook-6-0-1e14a2071000) documentation and make sure to use the correct file name and avoid the add-ons which will be deprecated soon.
-
-
 Given a component named `Alert`
 
-```
-import React from 'react'
-import { Alert } from '../../src/core'
+```jsx
+import { Meta, Story } from '@storybook/react';
+import React from 'react';
+import { Alert, AlertProps } from '../../src/core';
 
 export default {
   title: 'Alert',
   component: Alert,
-  parameters: { docs: { description: { component: 'A small box to quickly grab user attention and communicate a brief message' } } }
-}
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'A small box to quickly grab user attention and communicate a brief message',
+      },
+    },
+  },
+  argTypes: {
+    className: { table: { disable: true } },
+    style: { table: { disable: true } },
+    onClick: { table: { disable: true } },
+    onClose: { table: { disable: true } },
+  },
+} as Meta<React.PropsWithChildren<AlertProps>>;
 ```
 
-* `title` : this controls the name shown in the sidebar for the component. It should be unique. If a component is a sub-class of another component the title should be **Parent Component / Child Component**. Example: Input/Checkbox
-* `component`: the name of the component. Storybook uses this to get the props and other meta data about the component
+* `title` : this controls the name shown in the sidebar for the component. It should be unique. If a component is a sub-class of another component the title should be **Parent Component / Child Component**. Example: Input/Checkbox.
+* `component`: the name of the component. Storybook uses this to get the props and other meta data about the component.
 * `parameters`: set of static, named metadata about a story, typically used to control the behavior of Storybook features and addons. In the example above, it is being used to describe the component and Storybook docs add-on will display it in the Docs tab.
+i.e. use `controls: { hideNoControlsWarning: true }` to hide message if component has no props/controls in stories.
+* `argTypes`: used to set some default values/behavior to all stories. In this example we hide some props (className, style and click handlers) from the controls tab as there is no point to change those for the user. Read more about argTypes in the links below.
 
-```
-export const info = (args) => {
+```jsx
+export const Informational: Story<React.PropsWithChildren<AlertProps>> = (
+  args,
+) => {
   return (
     <Alert
-      type='info'
-      clickableText="More Info."
+      type='informational'
+      clickableText='More Info.'
+      onClose={action('Close!')}
+      onClick={action('Clicked more info!')}
       {...args}
     >
-      {args.message}
+      {args.children}
     </Alert>
-  )
-}
+  );
+};
 
-info.argTypes = {
-  clickableText: { defaultValue: 'More Info.' }
-}
-
-info.args = {
-  message: 'This is an info message'
-}
+Informational.args = {
+  children: 'This is an informational message.',
+  clickableText: 'More Info.',
+  type: 'informational',
+};
 
 ```
 
-* `info` - the name of the story
-* `args` - used for handling dynamic changes along with the storybook controls add-on
-* `info.argTypes` - used to set the default value for a prop. The default value can also be set in the parameters of export default
-* `info.args` - this can be used to define dynamically changing properties which are not in props
+* `Informational` - the name of the story. Should be always PascalCase. Use name `Basic` if story just displays component with default values.
+* `Informational.args` - this can be used to define initial values of the component props.
+* `action('Close!')` - use action from `@storybook/addon-actions` to display any actions happening in 'Actions' tab.
+
+Before writing more complicated stories, be sure to check up already written stories to keep the same code style. We already have used the most of the common storybook features.
 
 ## Useful links
 * [Writing Stories](https://storybook.js.org/docs/react/writing-stories/introduction)
-* [Argtypes](https://storybook.js.org/docs/react/api/argtypes)
+* [argTypes](https://storybook.js.org/docs/react/api/argtypes)
 * [args](https://storybook.js.org/docs/react/writing-stories/args)
-* [contols add-on](https://storybook.js.org/docs/react/essentials/controls)
-* [docs add-on](https://github.com/storybookjs/storybook/blob/master/addons/docs/README.md)
-* [More essential add-ons](https://storybook.js.org/addons)
-
-[Main README](../README.md)
+* [Controls add-on](https://storybook.js.org/docs/react/essentials/controls)
+* [Docs add-on](https://github.com/storybookjs/storybook/blob/master/addons/docs/README.md)
+* [Add-ons market place](https://storybook.js.org/addons)
