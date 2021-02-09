@@ -2,27 +2,30 @@
 @import '../inputs/variables';
 
 @mixin iui-buttons-group {
-  display: flex;
+  display: inline-flex;
+  width: fit-content;
+
+  & > * {
+    border-radius: 0;
+  }
 
   & > *:first-child {
-    border-radius: $iui-border-radius 0 0 $iui-border-radius;
+    border-top-left-radius: $iui-border-radius;
+    border-bottom-left-radius: $iui-border-radius;
   }
 
   & > *:last-child {
-    border-radius: 0 $iui-border-radius $iui-border-radius 0;
+    border-top-right-radius: $iui-border-radius;
+    border-bottom-right-radius: $iui-border-radius;
   }
 
-  & > *:not(:first-child):not(:last-child) {
-    border-radius: 0;
+  > *:not(:last-child) {
+    border-right: none;
   }
 
   > .iui-buttons-default,
   > .iui-buttons-default-large,
   > .iui-buttons-default-small {
-    &:not(:last-child) {
-      border-right: none;
-    }
-
     + :disabled {
       @include themed {
         border-left: 1px solid
@@ -30,9 +33,11 @@
       }
     }
 
-    &:enabled:hover + button {
-      border-left: 1px solid
-        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    &:enabled:not(.iui-buttons-active):hover + button {
+      @include themed {
+        border-left: 1px solid
+          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+      }
     }
 
     &:hover:enabled,
@@ -54,8 +59,10 @@
 
       &:hover {
         @include themed {
-          border: 1px solid
-            rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+          border-color: rgba(
+            t(iui-color-foreground-body-rgb),
+            t(iui-opacity-4)
+          );
         }
       }
 
@@ -102,6 +109,7 @@
     }
   }
 
+  // Border between 2 side-by-side disabled buttons
   > :disabled + :disabled {
     @include themed {
       border-left: 1px solid t(iui-color-background-4);
