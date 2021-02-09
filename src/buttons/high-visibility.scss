@@ -25,7 +25,7 @@
   &:hover:enabled {
     @include themed {
       background-color: t(iui-color-background-primary-overlay);
-      border: 1px solid t(iui-color-background-primary-overlay);
+      border-color: t(iui-color-background-primary-overlay);
     }
   }
 
