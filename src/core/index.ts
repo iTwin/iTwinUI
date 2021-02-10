@@ -1,8 +1,13 @@
 export { Alert } from './Alert';
 export type { AlertProps } from './Alert';
 
-export { Button, IconButton, IdeasButton } from './Buttons';
-export type { ButtonProps, IconButtonProps, IdeasButtonProps } from './Buttons';
+export { Button, IconButton, IdeasButton, SplitButton } from './Buttons';
+export type {
+  ButtonProps,
+  IconButtonProps,
+  IdeasButtonProps,
+  SplitButtonProps,
+} from './Buttons';
 
 export { ButtonGroup } from './ButtonGroup';
 

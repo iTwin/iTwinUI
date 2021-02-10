@@ -6,3 +6,6 @@ export type { IconButtonProps } from './IconButton';
 
 export { IconButton } from './IconButton';
 export type { IdeasButtonProps } from './IdeasButton';
+
+export { SplitButton } from './SplitButton';
+export type { SplitButtonProps } from './SplitButton';

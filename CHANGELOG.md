@@ -3,7 +3,8 @@
 `Date`
 
 ### What's new
-* **New components added: Blockquote, inline Code, and Kbd.**
+* **New SplitButton component added.**
+* **New Typography components added: Blockquote, inline Code, and Kbd.**
 * **Updated CONTRIBUTING and STYLEGUIDE docs.**
 
 ## 0.1.0
