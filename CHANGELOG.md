@@ -6,6 +6,7 @@
 * **New SplitButton component added.**
 * **New Typography components added: Blockquote, inline Code, and Kbd.**
 * **Updated CONTRIBUTING and STYLEGUIDE docs.**
+* **Added copyright header check to linter.**
 
 ## 0.1.0
 

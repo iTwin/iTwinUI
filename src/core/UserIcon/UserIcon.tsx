@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/user-icons.css';
 import { SvgAway, SvgClose2, SvgCheckmark } from '@bentley/icons-generic-react';
 import cx from 'classnames';

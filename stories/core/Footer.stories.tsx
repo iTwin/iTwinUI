@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Footer } from '../../src/core';

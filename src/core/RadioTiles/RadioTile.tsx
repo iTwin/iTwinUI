@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { SvgCheckmark } from '@bentley/icons-generic-react';
 import cx from 'classnames';
 import React from 'react';

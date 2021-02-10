@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/footer.css';
 import React from 'react';
 

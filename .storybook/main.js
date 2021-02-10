@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 module.exports = {
   stories: ['../stories/**/*.stories.tsx'],
   addons: [

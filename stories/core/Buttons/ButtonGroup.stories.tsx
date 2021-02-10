@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { ButtonGroup, IconButton } from '../../../src/core';
 import {

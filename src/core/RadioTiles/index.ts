@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 export { RadioTileGroup } from './RadioTileGroup';
 export type { RadioTileGroupProps } from './RadioTileGroup';
 

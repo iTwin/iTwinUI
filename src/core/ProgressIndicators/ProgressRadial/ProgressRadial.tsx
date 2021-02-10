@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/progress-indicators.css';
 import {
   SvgCheckmark as Positive,

@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { SvgStar } from '@bentley/icons-generic-react';
 import { useState } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react/types-6-0';

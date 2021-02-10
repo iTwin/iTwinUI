@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import DropdownMenu, { DropdownMenuProps } from './DropdownMenu';

@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/toast-notification.css';
 import React from 'react';
 import Toast, { ToastProps } from './Toast';

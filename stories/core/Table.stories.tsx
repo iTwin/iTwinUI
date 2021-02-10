@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { CellProps } from 'react-table';
 import { Table } from '../../src/core';

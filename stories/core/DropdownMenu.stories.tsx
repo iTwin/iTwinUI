@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { DropdownMenuProps } from '../../src/core/DropdownMenu/DropdownMenu';

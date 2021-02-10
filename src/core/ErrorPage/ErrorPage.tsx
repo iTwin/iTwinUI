@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/non-ideal-state.css';
 import Svg401 from '@bentley/illustrations/illustrations/401.svg';
 import Svg403 from '@bentley/illustrations/illustrations/403.svg';

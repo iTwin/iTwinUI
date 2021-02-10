@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/blockquote.css';
 import cx from 'classnames';
 import React from 'react';

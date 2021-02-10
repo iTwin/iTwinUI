@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import getPosition, { Dimension, Position, Rect } from './getPosition';
 
 const dimensions = (overrides?: Partial<Dimension>) => ({

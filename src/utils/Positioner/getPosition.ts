@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // Everything here was taken from https://github.com/segmentio/evergreen/blob/master/src/positioner/src/getPosition.js
 // Evergreen is released under the MIT license.
 

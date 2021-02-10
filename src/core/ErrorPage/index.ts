@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 export { ErrorPage } from './ErrorPage';
 export type {
   ErrorPageProps,

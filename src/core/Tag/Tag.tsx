@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/tags.css';
 import { SvgClose } from '@bentley/icons-generic-react';
 import React from 'react';

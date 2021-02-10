@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { SvgNetwork, SvgWindows } from '@bentley/icons-generic-react';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';

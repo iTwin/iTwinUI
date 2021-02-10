@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/alert.css';
 import { SvgClose, SvgInfo } from '@bentley/icons-generic-react';
 import {

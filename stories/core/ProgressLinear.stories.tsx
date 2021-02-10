@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 /* eslint-disable react/jsx-key */
 import {
   SvgErrorHollow,

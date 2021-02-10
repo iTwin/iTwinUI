@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { Checkbox } from '../../src/core';
 import { CheckboxProps } from '../../src/core/Checkbox/Checkbox';

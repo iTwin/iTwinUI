@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { create } from '@storybook/theming/create';
 import itwinImage from './public/itwin.svg';
 import itwinImageDark from './public/itwin-dark.svg';

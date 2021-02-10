@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/toggle-switch.css';
 import React from 'react';
 import cx from 'classnames';

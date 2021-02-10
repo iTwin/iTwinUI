@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import addons from '@storybook/addons';
 import { addParameters } from '@storybook/react';
 import { themes } from '@storybook/theming';

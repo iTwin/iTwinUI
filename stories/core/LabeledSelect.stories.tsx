@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { LabeledSelect } from '../../src/core';

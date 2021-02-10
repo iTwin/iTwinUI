@@ -1,5 +1,8 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 const inquirer = require('inquirer');
 const fs = require('fs');
+
+const copyrightHeader = `// Copyright (c) Bentley Systems, Incorporated. All rights reserved.`;
 
 const makeDir = (path) => {
   if (!fs.existsSync(path)) {
@@ -47,7 +50,8 @@ const functionalTemplate = (
 const componentFactory = (directory, name) => {
   return {
     path: `${directory}/${name}.tsx`,
-    template: `import React from 'react';
+    template: `${copyrightHeader}
+import React from 'react';
 
 export type ${name}Props = {};
 
@@ -66,7 +70,8 @@ export default ${name};
 const componentIndexFactory = (directory, name) => {
   return {
     path: `${directory}/index.ts`,
-    template: `export { ${name} } from './${name}';
+    template: `${copyrightHeader}
+export { ${name} } from './${name}';
 export type { ${name}Props } from './${name}';
 export default './${name}';
 `,
@@ -76,7 +81,8 @@ export default './${name}';
 const componentTestFactory = (directory, name) => {
   return {
     path: `${directory}/${name}.test.tsx`,
-    template: `import React from 'react';
+    template: `${copyrightHeader}
+import React from 'react';
 import { render } from '@testing-library/react';
 
 import { ${name} } from './${name}';

@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { Story, Meta } from '@storybook/react/types-6-0';
 import React from 'react';
 import { ErrorPage } from '../../src/core';

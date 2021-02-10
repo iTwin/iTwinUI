@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { Tooltip } from '../../src/core/Tooltip';
 import { Position } from '../../src/utils/Positioner';

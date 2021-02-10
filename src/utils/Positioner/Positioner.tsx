@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // Mostly taken from https://github.com/segmentio/evergreen/blob/master/src/positioner/src/Positioner.js
 
 import React from 'react';

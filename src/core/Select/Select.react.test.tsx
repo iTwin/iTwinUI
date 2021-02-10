@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Select, { SelectProps } from './Select';

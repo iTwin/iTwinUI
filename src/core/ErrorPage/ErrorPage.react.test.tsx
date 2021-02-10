@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { ErrorPage, ErrorPageType } from './ErrorPage';

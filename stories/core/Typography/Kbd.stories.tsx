@@ -1,3 +1,4 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { Kbd, KbdKeys, KbdProps } from '../../../src/core';
