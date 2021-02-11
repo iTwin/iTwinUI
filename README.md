@@ -30,6 +30,18 @@ npm install @bentley/itwinui-react
 yarn add @bentley/itwinui-react
 ```
 
+## Use
+Import the component you want and start using it!
+
+```jsx
+import { Button } from '@bentley/itwinui-react';
+
+const App = () => (
+  <Button>Hello!</Button>
+);
+```
+---
+
 ## Theming
 By default, all components use the light theme but we also provide support for switching to dark theme in two different ways:
 
@@ -63,17 +75,6 @@ const App = () => {
 ```
 
 > Note: You only need to use one of these methods, and it only needs to be done once.
-
-## Use
-Import the component you want and start using it!
-
-```jsx
-import { Button } from '@bentley/itwinui-react';
-
-const App = () => (
-  <Button>Hello!</Button>
-);
-```
 ---
 
 ## Contributing

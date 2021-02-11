@@ -30,6 +30,8 @@ If you are creating a new component, use this script:
 
 It ensures all needed imports are added and files are created.
 
+> Note: Every component needs to use `useTheme()` hook to ensure styling (theming) works fine. The script mentioned above adds it automatically.
+
 Be sure to develop on your branch. We want to keep branch naming with developer name scope:
 
 `git checkout -b yourName/your-feature-name`

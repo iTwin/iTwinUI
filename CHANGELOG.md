@@ -1,13 +1,17 @@
-## 0.1.X
+## 0.2.0
 
-`Date`
+`2021-02-11`
 
 ### What's new
-* **New SplitButton component added.**
-* **New Typography components added: Blockquote, inline Code, and Kbd.**
+* **`SplitButton` component added.**
+* **Typography components added: `Blockquote`, inline `Code`, and `Kbd`.**
 * **Updated CONTRIBUTING and STYLEGUIDE docs.**
-* **Added copyright header check to linter.**
-* **Added useTheme hook as an alternative to ThemeProvider.**
+* **Added copyright headers to all files.**
+* **Adding `ThemeProvider` is not mandatory anymore.**
+* **`useTheme()` hook can also be used as an alternative to `ThemeProvider` for theming.**
+
+### Fixes
+* **Components are themed in Storybook Docs tab.**
 
 ## 0.1.0
 
