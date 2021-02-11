@@ -30,26 +30,55 @@ npm install @bentley/itwinui-react
 yarn add @bentley/itwinui-react
 ```
 
-## Use
-Import the component you want and start using it!
-> You need to use `ThemeProvider` component only once, recommended in your root component.
+## Theming
+By default, all components use the light theme but we also provide support for switching to dark theme in two different ways:
 
-
+1. Use `ThemeProvider` in your root component where you can pass one of the following values:
+  - light (default)
+  - dark
+  - os (which respects the color scheme of the operating system)
 ```jsx
-import { Button, ThemeProvider } from '@bentley/itwinui-react';
+import { ThemeProvider } from '@bentley/itwinui-react';
 
 const App = () => (
   <>
-    <ThemeProvider />
-    <Button>Hello!</Button>
+    <ThemeProvider theme='dark' />
+    // Your code goes here.
   </>
+);
+```
+
+2. The `useTheme` hook also provides the same functionality if you can't use `ThemeProvider`.
+```jsx
+import { useTheme } from '@bentley/itwinui-react';
+
+const App = () => {
+  useTheme('dark');
+  return (
+    <>
+      // Your code goes here.
+    </>
+  );
+};
+```
+
+> Note: You only need to use one of these methods, and it only needs to be done once.
+
+## Use
+Import the component you want and start using it!
+
+```jsx
+import { Button } from '@bentley/itwinui-react';
+
+const App = () => (
+  <Button>Hello!</Button>
 );
 ```
 ---
 
 ## Contributing
 
-This project is innersourced, so we welcome You to contribute to it and make this UI design system better. You can submit ideas or bugs by creating items in [our backlog.](https://dev.azure.com/bentleycs/UX%20Design/_backlogs/backlog/iTwinUI/Features/?workitem=543453).
+This project is innersourced, so we welcome you to contribute to it and make this UI design system better. You can submit ideas or bugs by creating items in [our backlog](https://dev.azure.com/bentleycs/UX%20Design/_backlogs/backlog/iTwinUI/Features/?workitem=543453).
 Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) for more information.
 
 ---

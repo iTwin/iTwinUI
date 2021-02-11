@@ -6,6 +6,7 @@ import cx from 'classnames';
 import { Select } from '../Select';
 import { SelectProps } from '../Select/Select';
 import { StatusIconMap } from '../utils/common';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type LabeledSelectProps<T> = {
   /**
@@ -89,6 +90,8 @@ export const LabeledSelect = <T,>(
     selectStyle,
     ...rest
   } = props;
+
+  useTheme();
 
   const icon = status ? StatusIconMap[status] : svgIcon;
 

@@ -9,6 +9,7 @@ import {
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type AlertProps = {
   /**
@@ -55,6 +56,8 @@ export const Alert: React.FC<AlertProps> = (props) => {
     style,
     isSticky = false,
   } = props;
+
+  useTheme();
 
   const iconMap = {
     negative: <SvgError className='iui-alerts-status-icon' />,

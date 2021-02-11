@@ -3,6 +3,7 @@ import '@bentley/itwinui/css/inputs.css';
 import cx from 'classnames';
 import React from 'react';
 import { useRefs } from '../utils/hooks/useRefs';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type InputProps = {
   /**
@@ -21,6 +22,7 @@ export type InputProps = {
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
     const { setFocus = false, className, ...rest } = props;
+    useTheme();
     const inputRef = React.useRef<HTMLInputElement>(null);
     const refs = useRefs<HTMLInputElement>(inputRef, ref);
 

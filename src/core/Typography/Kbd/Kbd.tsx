@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/keyboard.css';
 import cx from 'classnames';
 import React from 'react';
+import { useTheme } from '../../utils/hooks/useTheme';
 import { CommonProps } from '../../utils/props';
 
 /**
@@ -38,6 +39,8 @@ export type KbdProps = {
  */
 export const Kbd: React.FC<KbdProps> = (props) => {
   const { className, children, ...rest } = props;
+
+  useTheme();
 
   return (
     <kbd className={cx('iui-keyboard', className)} {...rest}>

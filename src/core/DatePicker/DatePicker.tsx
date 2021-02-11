@@ -4,6 +4,7 @@ import cx from 'classnames';
 import React from 'react';
 import '@bentley/itwinui/css/date-picker.css';
 import { CommonProps } from '../utils/props';
+import { useTheme } from '../utils/hooks/useTheme';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (
@@ -133,6 +134,8 @@ export const DatePicker = ({
   style,
   setFocus = false,
 }: DatePickerProps): JSX.Element => {
+  useTheme();
+
   const monthNames = localizedNames?.months ?? defaultMonths;
   const shortDays = localizedNames?.shortDays ?? defaultShortDays;
   const longDays = localizedNames?.days ?? defaultLongDays;

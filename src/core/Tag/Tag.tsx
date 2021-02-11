@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/tags.css';
 import { SvgClose } from '@bentley/icons-generic-react';
 import React from 'react';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type TagProps = {
   /**
@@ -17,6 +18,7 @@ export type TagProps = {
  * <Tag onRemove={() => alert('Closed a tag!')}>I'm a tag</Tag>
  */
 export const Tag: React.FC<TagProps> = (props) => {
+  useTheme();
   return (
     <span className='iui-tag'>
       <span className='iui-tag-text'>{props.children}</span>

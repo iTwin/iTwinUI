@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/tabs.css';
 import cx from 'classnames';
 import React from 'react';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type HorizontalTabsProps = {
   /**
@@ -55,6 +56,8 @@ export const HorizontalTabs: React.FC<HorizontalTabsProps> = (props) => {
     contentClassName,
     children,
   } = props;
+
+  useTheme();
 
   const getValidIndex = React.useCallback((): number => {
     let index = 0;

@@ -4,6 +4,7 @@ import cx from 'classnames';
 import React from 'react';
 import '@bentley/itwinui/css/inputs.css';
 import { useRefs } from '../utils/hooks/useRefs';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type RadioTileProps = {
   /**
@@ -41,6 +42,8 @@ export const RadioTile = React.forwardRef<HTMLInputElement, RadioTileProps>(
       style,
       ...rest
     } = props;
+
+    useTheme();
 
     const inputElementRef = React.useRef<HTMLInputElement>(null);
     const refs = useRefs<HTMLInputElement>(inputElementRef, ref);

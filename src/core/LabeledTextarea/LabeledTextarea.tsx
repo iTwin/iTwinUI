@@ -5,6 +5,7 @@ import React from 'react';
 import { StatusIconMap } from '../utils/common';
 import { Textarea } from '../Textarea';
 import { TextareaProps } from '../Textarea/Textarea';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type LabeledTextareaProps = {
   /**
@@ -76,6 +77,8 @@ export const LabeledTextarea = React.forwardRef<
     svgIcon,
     ...textareaProps
   } = props;
+
+  useTheme();
 
   const icon = status ? StatusIconMap[status] : svgIcon;
 

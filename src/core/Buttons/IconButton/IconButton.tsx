@@ -4,6 +4,7 @@ import React from 'react';
 
 import '@bentley/itwinui/css/buttons.css';
 import Button, { ButtonProps } from '../Button/Button';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type IconButtonProps = {
   /**
@@ -23,6 +24,8 @@ export const IconButton = React.forwardRef<
   React.PropsWithChildren<IconButtonProps>
 >((props, ref) => {
   const { isActive, children, className, ...rest } = props;
+
+  useTheme();
 
   return (
     <Button

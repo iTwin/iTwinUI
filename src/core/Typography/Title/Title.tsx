@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/text.css';
 import cx from 'classnames';
 import React from 'react';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type TitleProps = {
   /**
@@ -20,6 +21,8 @@ export type TitleProps = {
 export const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
   (props, ref) => {
     const { className, isMuted = false, ...rest } = props;
+
+    useTheme();
 
     return (
       <h2

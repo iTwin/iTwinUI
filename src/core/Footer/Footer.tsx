@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/footer.css';
 import React from 'react';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type TitleTranslations = {
   termsOfService: string;
@@ -49,6 +50,8 @@ export const Footer: React.FC<FooterProps> = ({
   customElements,
   translatedTitles,
 }) => {
+  useTheme();
+
   const today = new Date();
   const titles = { ...footerTranslations, ...translatedTitles };
   const defaultElements = [

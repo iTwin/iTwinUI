@@ -3,6 +3,7 @@ import React from 'react';
 
 import '@bentley/itwinui/css/buttons.css';
 import { SvgSmileyHappy2 } from '@bentley/icons-generic-react';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type IdeasButtonProps = {
   /**
@@ -25,6 +26,8 @@ export const IdeasButton = React.forwardRef<
   IdeasButtonProps
 >((props, ref) => {
   const { feedbackLabel = 'Feedback', onClick } = props;
+
+  useTheme();
 
   return (
     <button

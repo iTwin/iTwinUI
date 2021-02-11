@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/text.css';
 import cx from 'classnames';
 import React from 'react';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type SmallProps = {
   /**
@@ -20,6 +21,8 @@ export type SmallProps = {
 export const Small = React.forwardRef<HTMLParagraphElement, SmallProps>(
   (props, ref) => {
     const { className, isMuted = false, ...rest } = props;
+
+    useTheme();
 
     return (
       <p

@@ -4,6 +4,7 @@ import cx from 'classnames';
 import React from 'react';
 import { Input, InputProps } from '../Input/Input';
 import { StatusIconMap } from '../utils/common';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type LabeledInputProps = {
   /**
@@ -62,6 +63,8 @@ export const LabeledInput = React.forwardRef<
     displayStyle = 'default',
     ...rest
   } = props;
+
+  useTheme();
 
   const icon = status ? StatusIconMap[status] : svgIcon;
 

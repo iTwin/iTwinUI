@@ -7,6 +7,7 @@
 * **New Typography components added: Blockquote, inline Code, and Kbd.**
 * **Updated CONTRIBUTING and STYLEGUIDE docs.**
 * **Added copyright header check to linter.**
+* **Added useTheme hook as an alternative to ThemeProvider.**
 
 ## 0.1.0
 

@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/wizards.css';
 import cx from 'classnames';
 import React from 'react';
+import { useTheme } from '../utils/hooks/useTheme';
 import { Step } from './Step';
 
 export type WizardLocalization = {
@@ -68,6 +69,8 @@ export const Wizard: React.FC<WizardProps> = ({
     Math.max(0, currentStep),
     steps.length - 1,
   );
+
+  useTheme();
 
   return (
     <>

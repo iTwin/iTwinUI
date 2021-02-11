@@ -7,6 +7,7 @@ import { DropdownMenu } from '../DropdownMenu';
 import MenuItem from '../Menu/MenuItem';
 
 import { CommonProps } from '../utils/props';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type ItemRendererProps = {
   /**
@@ -146,6 +147,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     menuClassName,
     menuStyle,
   } = props;
+
+  useTheme();
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [minWidth, setMinWidth] = React.useState(0);

@@ -43,7 +43,7 @@ const functionalTemplate = (
   name,
 ) => `export const ${name}: React.FC<${name}Props> = (props) => {
   const { ...rest } = props;
-
+  useTheme();
   return <div {...rest} />;
 };`;
 
@@ -52,6 +52,7 @@ const componentFactory = (directory, name) => {
     path: `${directory}/${name}.tsx`,
     template: `${copyrightHeader}
 import React from 'react';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type ${name}Props = {};
 

@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/blockquote.css';
 import cx from 'classnames';
 import React from 'react';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type BlockquoteProps = {
   /**
@@ -21,6 +22,8 @@ export type BlockquoteProps = {
 export const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
   (props, ref) => {
     const { className, children, footer, ...rest } = props;
+
+    useTheme();
 
     return (
       <blockquote

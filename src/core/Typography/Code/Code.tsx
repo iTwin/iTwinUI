@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/code.css';
 import cx from 'classnames';
 import React from 'react';
+import { useTheme } from '../../utils/hooks/useTheme';
 import { CommonProps } from '../../utils/props';
 
 export type CodeProps = {
@@ -18,6 +19,9 @@ export type CodeProps = {
  */
 export const Code: React.FC<CodeProps> = (props) => {
   const { className, children, ...rest } = props;
+
+  useTheme();
+
   return (
     <code className={cx('iui-code', className)} {...rest}>
       {children}

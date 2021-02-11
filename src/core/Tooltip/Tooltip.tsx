@@ -5,6 +5,7 @@ import { Position } from '../../utils/Positioner';
 import cx from 'classnames';
 import { CommonProps } from '../utils/props';
 import { Popover } from '../../utils';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type TooltipProps = {
   /**
@@ -45,6 +46,8 @@ export const Tooltip: React.FC<TooltipProps> = (props: TooltipProps) => {
     style,
     isVisible,
   } = props;
+
+  useTheme();
 
   const [visible, setVisible] = React.useState(isVisible);
 

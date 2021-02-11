@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import '@bentley/itwinui/css/buttons.css';
 import React from 'react';
+import { useTheme } from '../utils/hooks/useTheme';
 
 /**
  * Group buttons together for common actions
@@ -15,6 +16,7 @@ import React from 'react';
  * </ButtonGroup>
  */
 export const ButtonGroup: React.FC = ({ children }) => {
+  useTheme();
   return <div className='iui-buttons-group'>{children}</div>;
 };
 

@@ -10,6 +10,7 @@ import {
   useTable,
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators';
+import { useTheme } from '../utils/hooks/useTheme';
 
 /**
  * Table props.
@@ -69,6 +70,8 @@ export const Table = <
   props: TableProps<T>,
 ): JSX.Element => {
   const { columns, isLoading, emptyTableContent } = props;
+
+  useTheme();
 
   const defaultColumn = React.useMemo(
     () => ({

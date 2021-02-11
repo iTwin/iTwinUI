@@ -4,6 +4,7 @@ import { SvgAway, SvgClose2, SvgCheckmark } from '@bentley/icons-generic-react';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type UserIconStatus = 'online' | 'busy' | 'away' | 'offline';
 
@@ -76,6 +77,8 @@ export const UserIcon: React.FC<UserIconProps> = (props) => {
     className,
     style,
   } = props;
+
+  useTheme();
 
   const statusTitles = { ...defaultStatusTitles, ...translatedStatusTitles };
 

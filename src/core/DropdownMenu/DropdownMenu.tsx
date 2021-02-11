@@ -3,6 +3,7 @@ import React from 'react';
 import { Popover, Position } from '../../utils';
 import { PopoverProps } from '../../utils/Popover/Popover';
 import { Menu } from '../Menu';
+import { useTheme } from '../utils/hooks/useTheme';
 import { CommonProps } from '../utils/props';
 
 export type DropdownMenuProps = {
@@ -66,6 +67,8 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
     targetOffset = 0,
     ...restPopoverProps
   } = props;
+
+  useTheme();
 
   return (
     <Popover

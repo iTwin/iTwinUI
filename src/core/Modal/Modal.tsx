@@ -7,6 +7,7 @@ import { Portal } from '../../utils/Portal';
 
 import '@bentley/itwinui/css/modal.css';
 import { CommonProps } from '../utils/props';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type ModalProps = {
   /**
@@ -89,6 +90,8 @@ export const Modal: React.FC<ModalProps> = (props) => {
     children,
     modalRootId,
   } = props;
+
+  useTheme();
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
 

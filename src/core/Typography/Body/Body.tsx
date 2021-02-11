@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/text.css';
 import cx from 'classnames';
 import React from 'react';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type BodyProps = {
   /**
@@ -25,6 +26,8 @@ export type BodyProps = {
 export const Body = React.forwardRef<HTMLParagraphElement, BodyProps>(
   (props, ref) => {
     const { className, isMuted = false, isSkeleton = false, ...rest } = props;
+
+    useTheme();
 
     return (
       <p

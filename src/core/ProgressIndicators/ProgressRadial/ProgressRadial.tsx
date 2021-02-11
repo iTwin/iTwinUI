@@ -7,6 +7,7 @@ import {
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../../utils/props';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type ProgressRadialProps = {
   /**
@@ -56,6 +57,8 @@ export const ProgressRadial: React.FC<ProgressRadialProps> = (props) => {
     className,
     style,
   } = props;
+
+  useTheme();
 
   const statusMap = {
     negative: <Negative />,

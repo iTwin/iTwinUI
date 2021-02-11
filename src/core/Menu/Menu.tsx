@@ -3,6 +3,7 @@ import React from 'react';
 import cx from 'classnames';
 import '@bentley/itwinui/css/menu.css';
 import { CommonProps } from '../utils/props';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type MenuProps = {
   /**
@@ -21,6 +22,8 @@ export type MenuProps = {
  */
 export const Menu: React.FC<MenuProps> = (props) => {
   const { children, role = 'menu', className, style } = props;
+
+  useTheme();
 
   const [focusedIndex, setFocusedIndex] = React.useState<number>();
   const menuRef = React.useRef<HTMLUListElement>(null);

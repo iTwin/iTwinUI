@@ -4,6 +4,7 @@ import React from 'react';
 
 import '@bentley/itwinui/css/inputs.css';
 import { useRefs } from '../utils/hooks/useRefs';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type RadioProps = {
   /**
@@ -50,6 +51,8 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       setFocus = false,
       ...rest
     } = props;
+
+    useTheme();
 
     const inputElementRef = React.useRef<HTMLInputElement>(null);
     const refs = useRefs<HTMLInputElement>(inputElementRef, ref);

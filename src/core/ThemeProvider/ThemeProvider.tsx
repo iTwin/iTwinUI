@@ -1,12 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
-import '@bentley/itwinui/css/global.css';
-
-export type ThemeType = 'light' | 'dark';
+import { ThemeType, useTheme } from '../utils/hooks/useTheme';
 
 export type ThemeProviderProps = {
   /**
-   * Theme to be applied. If not defined, OS theme will be used.
+   * Theme to be applied. If not set, light theme will be used.
    */
   theme?: ThemeType;
 };
@@ -18,19 +16,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   theme,
   children,
 }) => {
-  React.useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('iui-theme-dark');
-      document.documentElement.classList.remove('iui-theme-light');
-    } else if (theme === 'light') {
-      document.documentElement.classList.add('iui-theme-light');
-      document.documentElement.classList.remove('iui-theme-dark');
-    } else {
-      document.documentElement.classList.remove('iui-theme-light');
-      document.documentElement.classList.remove('iui-theme-dark');
-    }
-  }, [theme]);
-
+  useTheme(theme);
   return <>{children}</>;
 };
 

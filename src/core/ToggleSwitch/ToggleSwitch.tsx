@@ -3,6 +3,7 @@ import '@bentley/itwinui/css/toggle-switch.css';
 import React from 'react';
 import cx from 'classnames';
 import { useRefs } from '../utils/hooks/useRefs';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type ToggleSwitchProps = {
   /**
@@ -57,6 +58,8 @@ export const ToggleSwitch = React.forwardRef<
     style,
     ...rest
   } = props;
+
+  useTheme();
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useRefs<HTMLInputElement>(inputElementRef, ref);

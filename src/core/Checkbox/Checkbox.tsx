@@ -4,6 +4,7 @@ import cx from 'classnames';
 import React from 'react';
 import { ProgressRadial } from '../ProgressIndicators';
 import { useRefs } from '../utils/hooks/useRefs';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type CheckboxProps = {
   /**
@@ -63,6 +64,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       checkmarkStyle,
       ...rest
     } = props;
+
+    useTheme();
 
     const inputElementRef = React.useRef<HTMLInputElement>(null);
     const refs = useRefs<HTMLInputElement>(inputElementRef, ref);

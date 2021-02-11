@@ -2,6 +2,7 @@
 import '@bentley/itwinui/css/text.css';
 import cx from 'classnames';
 import React from 'react';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type SubheadingProps = {
   /**
@@ -20,6 +21,8 @@ export type SubheadingProps = {
 export const Subheading = React.forwardRef<HTMLHeadingElement, SubheadingProps>(
   (props, ref) => {
     const { className, isMuted = false, ...rest } = props;
+
+    useTheme();
 
     return (
       <h3

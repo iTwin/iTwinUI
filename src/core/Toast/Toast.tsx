@@ -8,6 +8,7 @@ import {
   SvgSuccessHollow,
 } from '@bentley/icons-generic-react/lib/icons/status';
 import cx from 'classnames';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type ToastCategory = 'informational' | 'negative' | 'positive';
 
@@ -75,6 +76,8 @@ export const Toast: React.FC<ToastProps> = (props: ToastProps) => {
     hasCloseButton,
     onRemove,
   } = props;
+
+  useTheme();
 
   const closeTimeout = React.useRef(0);
 

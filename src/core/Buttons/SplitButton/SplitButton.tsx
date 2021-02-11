@@ -7,6 +7,7 @@ import { Position } from '../../../utils';
 import { SvgCaretDown2 } from '@bentley/icons-generic-react';
 
 import '@bentley/itwinui/css/buttons.css';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type SplitButtonProps = {
   /**
@@ -49,6 +50,8 @@ export const SplitButton: React.FC<SplitButtonProps> = (props) => {
     title,
     ...rest
   } = props;
+
+  useTheme();
 
   const [menuWidth, setMenuWidth] = React.useState(0);
   const ref = React.useRef<HTMLSpanElement>(null);

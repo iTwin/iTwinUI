@@ -9,6 +9,7 @@ import Svg503 from '@bentley/illustrations/illustrations/503.svg';
 import SvgError from '@bentley/illustrations/illustrations/error.svg';
 import React from 'react';
 import { Button } from '../Buttons/Button';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type ErrorPageType =
   | '401'
@@ -83,6 +84,8 @@ export const ErrorPage = ({
   secondaryButtonLabel,
   translatedErrorMessages,
 }: ErrorPageProps): JSX.Element => {
+  useTheme();
+
   const defaultErrorMessages = {
     badGateway: 'Bad gateway',
     error: 'Error',

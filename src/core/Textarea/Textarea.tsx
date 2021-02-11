@@ -4,6 +4,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import { useRefs } from '../utils/hooks/useRefs';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type TextareaProps = {
   /**
@@ -22,6 +23,8 @@ export type TextareaProps = {
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (props, ref) => {
     const { className, rows = 3, setFocus = false, ...rest } = props;
+
+    useTheme();
 
     const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
     const refs = useRefs<HTMLTextAreaElement>(ref, textAreaRef);

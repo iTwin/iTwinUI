@@ -4,6 +4,7 @@ import React from 'react';
 import '@bentley/itwinui/css/progress-indicators.css';
 import cx from 'classnames';
 import { CommonProps } from '../../utils/props';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type ProgressLinearProps = {
   /**
@@ -58,6 +59,8 @@ export const ProgressLinear: React.FC<ProgressLinearProps> = (
     className,
     style,
   } = props;
+
+  useTheme();
 
   const boundedValue = Math.min(100, Math.max(0, value));
 

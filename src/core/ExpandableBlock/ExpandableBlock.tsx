@@ -5,6 +5,7 @@ import React from 'react';
 import { CommonProps } from '../utils/props';
 
 import '@bentley/itwinui/css/expandable-blocks.css';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type ExpandableBlockProps = {
   /**
@@ -43,6 +44,8 @@ export const ExpandableBlock: React.FC<ExpandableBlockProps> = (props) => {
     style,
     isExpanded = false,
   } = props;
+
+  useTheme();
 
   const [expanded, setExpanded] = React.useState(isExpanded);
 

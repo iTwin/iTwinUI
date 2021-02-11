@@ -2,6 +2,7 @@
 import React from 'react';
 import { InputGroup } from '../InputGroup';
 import '@bentley/itwinui/css/inputs.css';
+import { useTheme } from '../utils/hooks/useTheme';
 
 export type RadioTileGroupProps = {
   /**
@@ -24,6 +25,8 @@ export type RadioTileGroupProps = {
  */
 export const RadioTileGroup: React.FC<RadioTileGroupProps> = (props) => {
   const { children, label } = props;
+
+  useTheme();
 
   return (
     <InputGroup label={label}>

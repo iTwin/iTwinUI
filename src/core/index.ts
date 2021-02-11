@@ -86,7 +86,7 @@ export { default as toaster } from './Toast';
 export type { ToastOptions } from './Toast';
 
 export { ThemeProvider } from './ThemeProvider';
-export type { ThemeProviderProps, ThemeType } from './ThemeProvider';
+export type { ThemeProviderProps } from './ThemeProvider';
 
 export { ToggleSwitch } from './ToggleSwitch';
 export type { ToggleSwitchProps } from './ToggleSwitch';
@@ -128,3 +128,6 @@ export type {
   WizardType,
   WizardLocalization,
 } from './Wizard';
+
+export { useTheme } from './utils/hooks/useTheme';
+export type { ThemeType } from './utils/hooks/useTheme';

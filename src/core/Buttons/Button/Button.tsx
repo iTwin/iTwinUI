@@ -3,6 +3,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import '@bentley/itwinui/css/buttons.css';
+import { useTheme } from '../../utils/hooks/useTheme';
 
 export type ButtonProps = {
   /**
@@ -37,6 +38,8 @@ export const Button = React.forwardRef<
     type = 'button',
     ...rest
   } = props;
+
+  useTheme();
 
   let buttonClass = `iui-buttons-${styleType}`;
   if (!!size) {
