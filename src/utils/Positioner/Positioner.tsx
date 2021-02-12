@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // Mostly taken from https://github.com/segmentio/evergreen/blob/master/src/positioner/src/Positioner.js
 
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import Portal from '../Portal/Portal';
 import getPosition, { Position } from './getPosition';
 
@@ -45,6 +45,10 @@ export type PositionerProps = {
    * Reference of the positioner.
    */
   positionerRef?: React.RefObject<HTMLDivElement>;
+  /**
+   * CSS properties to be applied to the positioner.
+   */
+  style?: CSSProperties;
 };
 
 type PositionerState = {
@@ -90,7 +94,13 @@ export class Positioner extends React.Component<
       <Portal parentId={this.props.parentId}>
         <div
           className='positioner'
-          style={{ left, top, transformOrigin, position: 'fixed' }}
+          style={{
+            left,
+            top,
+            transformOrigin,
+            position: 'fixed',
+            ...this.props.style,
+          }}
           ref={this.positionerRef}
         >
           {this.props.children}

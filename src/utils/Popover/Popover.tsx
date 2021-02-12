@@ -1,5 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { Position, Positioner } from '../Positioner';
 
 /**
@@ -67,6 +67,10 @@ export type PopoverProps = {
    * If true will automatically focus first element inside popover with 'autofocus', 'tabindex' attributes, button, a elements, or menuitem, menuitemradio roles on open.
    */
   bringFocusInside?: boolean;
+  /**
+   * CSS properties to be applied to the positioner inside this Popover.
+   */
+  style?: CSSProperties;
   /**
    * Handler function called when Popover is opened.
    */
@@ -198,6 +202,7 @@ export class Popover extends React.Component<PopoverProps, PopoverState> {
             bodyOffset={bodyOffset}
             targetOffset={targetOffset}
             parentId={this.props.parentId}
+            style={this.props.style}
           >
             {this.renderContent()}
           </Positioner>

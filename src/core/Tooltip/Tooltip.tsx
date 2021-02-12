@@ -70,6 +70,7 @@ export const Tooltip: React.FC<TooltipProps> = (props: TooltipProps) => {
       parentId={parentId}
       position={placement}
       isShown={visible}
+      style={{ zIndex: 1000 }}
     >
       {children}
     </Popover>

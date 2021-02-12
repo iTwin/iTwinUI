@@ -1,3 +1,12 @@
+## 0.X.X
+
+`Date`
+
+### What's new
+
+### Fixes
+* **Tooltips show properly when used in modals.**
+
 ## 0.2.0
 
 `2021-02-11`
