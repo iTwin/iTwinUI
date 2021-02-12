@@ -10,7 +10,7 @@ export type ThemeType = 'light' | 'dark' | 'os';
  * @param theme Light, dark, or based on OS setting.
  */
 export const useTheme = (theme?: ThemeType): void => {
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     switch (theme) {
       case 'light':
         addLightTheme();
