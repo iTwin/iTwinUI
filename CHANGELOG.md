@@ -1,11 +1,10 @@
-## 0.X.X
+## 0.2.1
 
-`Date`
-
-### What's new
+`2021-02-12`
 
 ### Fixes
 * **Tooltips show properly when used in modals.**
+* **Components do not blink on init, if OS theme is dark.**
 
 ## 0.2.0
 
