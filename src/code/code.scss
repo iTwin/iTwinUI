@@ -4,11 +4,12 @@
   display: inline-block;
   font-family: $iui-monospace;
   font-size: $iui-font-size-small;
-  padding: 0.1rem 0.3rem;
-  border-radius: $iui-border-radius / 2;
+  padding: 0 $iui-xs;
+  border-radius: $iui-border-radius;
   user-select: all;
 
   @include themed {
     background-color: t(iui-color-background-3);
+    color: t(iui-text-color);
   }
 }
