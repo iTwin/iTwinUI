@@ -48,3 +48,15 @@
 .iui-buttons-split {
   @include iui-buttons-split;
 }
+
+.iui-invisible {
+  @include iui-buttons-invisible;
+}
+
+.iui-small {
+  @include iui-buttons-invisible-small;
+}
+
+.iui-large {
+  @include iui-buttons-invisible-large;
+}

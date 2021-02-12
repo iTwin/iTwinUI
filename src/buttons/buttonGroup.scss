@@ -41,6 +41,7 @@
     }
 
     &:hover:enabled,
+    &:focus,
     &:focus-visible,
     &.iui-buttons-active {
       > .iui-buttons-icon {
