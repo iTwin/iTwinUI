@@ -1,6 +1,9 @@
 @import './index';
 
-* {
+*[class^='iui-'],
+*[class*=' iui-'],
+*[class^='iui-'] *,
+*[class*=' iui-'] * {
   margin: 0;
   padding: 0;
   border: 0;
@@ -53,11 +56,6 @@ a {
     }
     text-decoration: underline;
   }
-}
-
-ol,
-ul {
-  list-style: none;
 }
 
 blockquote,
