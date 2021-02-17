@@ -5,9 +5,6 @@ import React, { CSSProperties } from 'react';
 import Portal from '../Portal/Portal';
 import getPosition, { Position } from './getPosition';
 
-/**
- * Prop Description
- */
 export type PositionerProps = {
   /**
    * Children are required for the Positioner.
@@ -93,7 +90,7 @@ export class Positioner extends React.Component<
     return (
       <Portal parentId={this.props.parentId}>
         <div
-          className='positioner'
+          className='iui-positioner'
           style={{
             left,
             top,
