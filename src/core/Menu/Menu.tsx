@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import cx from 'classnames';
-import '@bentley/itwinui/css/menu.css';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/menu.css';
 
 export type MenuProps = {
   /**

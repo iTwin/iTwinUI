@@ -2,9 +2,9 @@
 import { SvgCheckmark } from '@bentley/icons-generic-react';
 import cx from 'classnames';
 import React from 'react';
-import '@bentley/itwinui/css/inputs.css';
 import { useRefs } from '../utils/hooks/useRefs';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/inputs.css';
 
 export type RadioTileProps = {
   /**

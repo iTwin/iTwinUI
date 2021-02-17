@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
-import '@bentley/itwinui/css/inputs.css';
 import cx from 'classnames';
 import { Position } from '../../utils';
 import { DropdownMenu } from '../DropdownMenu';
@@ -8,6 +7,7 @@ import MenuItem from '../Menu/MenuItem';
 
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/inputs.css';
 
 export type ItemRendererProps = {
   /**

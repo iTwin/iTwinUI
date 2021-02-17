@@ -1,12 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
-import '@bentley/itwinui/css/inputs.css';
 import cx from 'classnames';
 
 import { Select } from '../Select';
 import { SelectProps } from '../Select/Select';
 import { StatusIconMap } from '../utils/common';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/inputs.css';
 
 export type LabeledSelectProps<T> = {
   /**

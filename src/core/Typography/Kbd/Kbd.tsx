@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/keyboard.css';
 import cx from 'classnames';
 import React from 'react';
 import { useTheme } from '../../utils/hooks/useTheme';
 import { CommonProps } from '../../utils/props';
+import '@bentley/itwinui/css/keyboard.css';
 
 /**
  * Some predefined strings for common keyboard keys.

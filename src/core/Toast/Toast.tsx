@@ -1,5 +1,4 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/toast-notification.css';
 import React from 'react';
 import { Transition } from 'react-transition-group';
 import { SvgClose, SvgInfoHollow } from '@bentley/icons-generic-react';
@@ -9,6 +8,7 @@ import {
 } from '@bentley/icons-generic-react/lib/icons/status';
 import cx from 'classnames';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/toast-notification.css';
 
 export type ToastCategory = 'informational' | 'negative' | 'positive';
 

@@ -1,5 +1,4 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/progress-indicators.css';
 import {
   SvgCheckmark as Positive,
   SvgImportant as Negative,
@@ -8,6 +7,7 @@ import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../../utils/props';
 import { useTheme } from '../../utils/hooks/useTheme';
+import '@bentley/itwinui/css/progress-indicators.css';
 
 export type ProgressRadialProps = {
   /**

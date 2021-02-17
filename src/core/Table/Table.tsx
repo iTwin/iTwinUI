@@ -1,5 +1,4 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/flextables.css';
 import React from 'react';
 import {
   ColumnInstance,
@@ -11,6 +10,7 @@ import {
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/flextables.css';
 
 /**
  * Table props.

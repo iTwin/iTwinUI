@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/toggle-switch.css';
 import React from 'react';
 import cx from 'classnames';
 import { useRefs } from '../utils/hooks/useRefs';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/toggle-switch.css';
 
 export type ToggleSwitchProps = {
   /**

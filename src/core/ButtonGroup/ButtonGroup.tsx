@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/buttons.css';
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/buttons.css';
 
 /**
  * Group buttons together for common actions

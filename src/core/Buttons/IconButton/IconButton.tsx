@@ -2,9 +2,9 @@
 import cx from 'classnames';
 import React from 'react';
 
-import '@bentley/itwinui/css/buttons.css';
 import Button, { ButtonProps } from '../Button/Button';
 import { useTheme } from '../../utils/hooks/useTheme';
+import '@bentley/itwinui/css/buttons.css';
 
 export type IconButtonProps = {
   /**

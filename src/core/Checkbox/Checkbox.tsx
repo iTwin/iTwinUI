@@ -1,10 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/inputs.css';
 import cx from 'classnames';
 import React from 'react';
 import { ProgressRadial } from '../ProgressIndicators';
 import { useRefs } from '../utils/hooks/useRefs';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/inputs.css';
 
 export type CheckboxProps = {
   /**

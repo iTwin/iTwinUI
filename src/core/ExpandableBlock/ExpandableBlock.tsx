@@ -4,8 +4,8 @@ import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
 
-import '@bentley/itwinui/css/expandable-blocks.css';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/expandable-blocks.css';
 
 export type ExpandableBlockProps = {
   /**

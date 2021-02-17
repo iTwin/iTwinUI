@@ -1,5 +1,4 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/non-ideal-state.css';
 import Svg401 from '@bentley/illustrations/illustrations/401.svg';
 import Svg403 from '@bentley/illustrations/illustrations/403.svg';
 import Svg404 from '@bentley/illustrations/illustrations/404.svg';
@@ -10,6 +9,7 @@ import SvgError from '@bentley/illustrations/illustrations/error.svg';
 import React from 'react';
 import { Button } from '../Buttons/Button';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/non-ideal-state.css';
 
 export type ErrorPageType =
   | '401'

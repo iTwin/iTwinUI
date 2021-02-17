@@ -5,9 +5,9 @@ import cx from 'classnames';
 import { SvgRemove } from '@bentley/icons-generic-react';
 import { Portal } from '../../utils/Portal';
 
-import '@bentley/itwinui/css/modal.css';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/modal.css';
 
 export type ModalProps = {
   /**

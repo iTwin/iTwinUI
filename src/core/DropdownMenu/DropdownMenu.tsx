@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
+import { useTheme } from '../utils/hooks/useTheme';
 import { Popover, Position } from '../../utils';
 import { PopoverProps } from '../../utils/Popover/Popover';
 import { Menu } from '../Menu';
-import { useTheme } from '../utils/hooks/useTheme';
 import { CommonProps } from '../utils/props';
 
 export type DropdownMenuProps = {

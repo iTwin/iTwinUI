@@ -1,5 +1,4 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/alert.css';
 import { SvgClose, SvgInfo } from '@bentley/icons-generic-react';
 import {
   SvgError,
@@ -10,6 +9,7 @@ import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/alert.css';
 
 export type AlertProps = {
   /**

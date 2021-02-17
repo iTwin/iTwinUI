@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/inputs.css';
 import cx from 'classnames';
 import React from 'react';
 import { StatusIconMap } from '../utils/common';
 import { Textarea } from '../Textarea';
 import { TextareaProps } from '../Textarea/Textarea';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/inputs.css';
 
 export type LabeledTextareaProps = {
   /**

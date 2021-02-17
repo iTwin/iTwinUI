@@ -31,7 +31,7 @@
   "dependencies": {
     "@bentley/icons-generic-react": "^0.1.2",
     "@bentley/illustrations": "^1.0.1",
-    "@bentley/itwinui": "^0.1.3",
+    "@bentley/itwinui": "^0.2.0",
     "@types/react-table": "^7.0.18",
     "classnames": "^2.2.6",
     "react-table": "^7.1.0",

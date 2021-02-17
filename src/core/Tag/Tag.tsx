@@ -1,8 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import '@bentley/itwinui/css/tags.css';
 import { SvgClose } from '@bentley/icons-generic-react';
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/tags.css';
 
 export type TagProps = {
   /**

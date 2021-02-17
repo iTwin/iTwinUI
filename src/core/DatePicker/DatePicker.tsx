@@ -2,9 +2,9 @@
 import { SvgChevronLeft, SvgChevronRight } from '@bentley/icons-generic-react';
 import cx from 'classnames';
 import React from 'react';
-import '@bentley/itwinui/css/date-picker.css';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/date-picker.css';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (

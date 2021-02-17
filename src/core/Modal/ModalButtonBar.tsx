@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
-import '@bentley/itwinui/css/modal.css';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/modal.css';
 
 /**
  * Container for Buttons in modal.

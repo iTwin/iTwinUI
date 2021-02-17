@@ -1,10 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 
-import '@bentley/itwinui/css/progress-indicators.css';
 import cx from 'classnames';
 import { CommonProps } from '../../utils/props';
 import { useTheme } from '../../utils/hooks/useTheme';
+import '@bentley/itwinui/css/progress-indicators.css';
 
 export type ProgressLinearProps = {
   /**

@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
-import '@bentley/itwinui/css/tooltips.css';
 import { Position } from '../../utils/Positioner';
 import cx from 'classnames';
 import { CommonProps } from '../utils/props';
 import { Popover } from '../../utils';
 import { useTheme } from '../utils/hooks/useTheme';
+import '@bentley/itwinui/css/tooltips.css';
 
 export type TooltipProps = {
   /**
