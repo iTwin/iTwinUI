@@ -5,7 +5,7 @@ import { Footer } from '../../src/core';
 import { FooterProps } from '../../src/core/Footer/Footer';
 
 export default {
-  title: 'Footer',
+  title: 'Core/Footer',
   component: Footer,
   parameters: {
     docs: {

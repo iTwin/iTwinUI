@@ -7,7 +7,7 @@ import { HorizontalTabs } from '../../src/core';
 import { HorizontalTabsProps } from '../../src/core/HorizontalTabs/HorizontalTabs';
 
 export default {
-  title: 'HorizontalTabs',
+  title: 'Core/HorizontalTabs',
   component: HorizontalTabs,
   parameters: {
     docs: {

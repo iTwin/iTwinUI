@@ -7,7 +7,7 @@ import { ExpandableBlock } from '../../src/core';
 import { ExpandableBlockProps } from '../../src/core/ExpandableBlock/ExpandableBlock';
 
 export default {
-  title: 'ExpandableBlock',
+  title: 'Core/ExpandableBlock',
   component: ExpandableBlock,
   parameters: {
     docs: {

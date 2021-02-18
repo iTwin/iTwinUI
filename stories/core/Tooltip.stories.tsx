@@ -6,7 +6,7 @@ import { Story, Meta } from '@storybook/react';
 import { TooltipProps } from '../../src/core/Tooltip/Tooltip';
 
 export default {
-  title: 'Tooltip',
+  title: 'Core/Tooltip',
   component: Tooltip,
   parameters: {
     docs: { description: { component: 'Basic tooltip component' } },

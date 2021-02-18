@@ -31,7 +31,7 @@
   "dependencies": {
     "@bentley/icons-generic-react": "^0.1.2",
     "@bentley/illustrations": "^1.0.1",
-    "@bentley/itwinui": "^0.2.0",
+    "@bentley/itwinui": "^0.2.1",
     "@types/react-table": "^7.0.18",
     "classnames": "^2.2.6",
     "react-table": "^7.1.0",
@@ -71,6 +71,7 @@
     "inquirer": "^6.2.2",
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
+    "markdown-to-jsx": "6.11.4",
     "prettier": "^2.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

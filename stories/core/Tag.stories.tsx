@@ -11,7 +11,7 @@ export default {
       description: { component: 'Tags for showing categories, filters etc.' },
     },
   },
-  title: 'Tag',
+  title: 'Core/Tag',
 } as Meta<React.PropsWithChildren<TagProps>>;
 
 export const Basic: Story<React.PropsWithChildren<TagProps>> = ({

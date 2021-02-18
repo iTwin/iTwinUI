@@ -5,7 +5,7 @@ import { UserIcon } from '../../src/core';
 import { UserIconProps } from '../../src/core/UserIcon/UserIcon';
 
 export default {
-  title: 'UserIcon',
+  title: 'Core/UserIcon',
   component: UserIcon,
   parameters: {
     docs: { description: { component: 'Basic user icon component' } },

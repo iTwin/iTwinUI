@@ -6,7 +6,7 @@ import { Alert } from '../../src/core';
 import { AlertProps } from '../../src/core/Alert/Alert';
 
 export default {
-  title: 'Alert',
+  title: 'Core/Alert',
   component: Alert,
   parameters: {
     docs: {

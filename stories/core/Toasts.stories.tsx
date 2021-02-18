@@ -76,7 +76,7 @@ export default {
       },
     },
   },
-  title: 'Toasts',
+  title: 'Core/Toasts',
 } as Meta<ToastSettings>;
 
 export const Positive: Story<ToastSettings> = ({

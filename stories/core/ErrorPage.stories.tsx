@@ -5,7 +5,7 @@ import { ErrorPage } from '../../src/core';
 import { ErrorPageProps } from '../../src/core/ErrorPage/ErrorPage';
 
 export default {
-  title: 'ErrorPage',
+  title: 'Core/ErrorPage',
   component: ErrorPage,
   parameters: {
     docs: {

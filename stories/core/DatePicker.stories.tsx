@@ -11,7 +11,7 @@ import {
 import { SvgCalendar } from '@bentley/icons-generic-react';
 
 export default {
-  title: 'DatePicker',
+  title: 'Core/DatePicker',
   component: DatePicker,
   parameters: {
     docs: {

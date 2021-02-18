@@ -26,4 +26,5 @@ addParameters({
   docs: {
     theme: { ...themes.light, ...lightTheme },
   },
+  options: { showPanel: true },
 });

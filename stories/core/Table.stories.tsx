@@ -8,7 +8,7 @@ import { useMemo } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'Table',
+  title: 'Core/Table',
   component: Table,
   parameters: {
     docs: {

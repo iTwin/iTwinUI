@@ -13,7 +13,7 @@ import {
 } from '@bentley/icons-generic-react';
 
 export default {
-  title: 'DropdownMenu',
+  title: 'Core/DropdownMenu',
   component: DropdownMenu,
   parameters: {
     docs: { description: { component: 'Basic dropdown component' } },

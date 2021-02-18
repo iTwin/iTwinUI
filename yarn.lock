@@ -1033,10 +1033,10 @@
   resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/illustrations/-/illustrations-1.0.1.tgz#edfc43194174f2843f97d076569bf515ecf9ed60"
   integrity sha1-7fxDGUF08oQ/l9B2Vpv1Fez57WA=
 
-"@bentley/itwinui@^0.2.0":
-  version "0.2.0"
-  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/itwinui/-/itwinui-0.2.0.tgz#9d81d4c22fd4c8c20f2b7a6d770dd89cb031c98c"
-  integrity sha1-nYHUwi/UyMIPK3ptdw3YnLAxyYw=
+"@bentley/itwinui@^0.2.1":
+  version "0.2.1"
+  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/itwinui/-/itwinui-0.2.1.tgz#24e15e7234b4b1aeff6a7e6494e2900cdc397ed4"
+  integrity sha1-JOFecjS0sa7/an5klOKQDNw5ftQ=
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -8027,7 +8027,7 @@ markdown-escapes@^1.0.0:
   resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/markdown-escapes/-/markdown-escapes-1.0.4.tgz#c95415ef451499d7602b91095f3c8e8975f78535"
   integrity sha1-yVQV70UUmddgK5EJXzyOiXX3hTU=
 
-markdown-to-jsx@^6.11.4:
+markdown-to-jsx@6.11.4, markdown-to-jsx@^6.11.4:
   version "6.11.4"
   resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/markdown-to-jsx/-/markdown-to-jsx-6.11.4.tgz#b4528b1ab668aef7fe61c1535c27e837819392c5"
   integrity sha1-tFKLGrZorvf+YcFTXCfoN4GTksU=

@@ -6,7 +6,7 @@ import { Wizard } from '../../src/core';
 import { WizardProps } from '../../src/core/Wizard/Wizard';
 
 export default {
-  title: 'Wizard',
+  title: 'Core/Wizard',
   component: Wizard,
   parameters: {
     docs: {

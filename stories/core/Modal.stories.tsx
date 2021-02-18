@@ -9,7 +9,7 @@ import { ModalProps } from '../../src/core/Modal/Modal';
 import { useEffect, useState } from '@storybook/addons';
 
 export default {
-  title: 'Modal',
+  title: 'Core/Modal',
   component: Modal,
   parameters: {
     docs: { description: { component: 'Modal dialog component.' } },
