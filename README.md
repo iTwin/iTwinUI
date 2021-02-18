@@ -1,14 +1,18 @@
 ﻿<center>
-  <img src="https://dev.azure.com/bentleycs/c6d27a6d-51e6-4003-a205-5e88775e4d73/_apis/git/repositories/341cfc45-ed2c-47b4-909f-b24a3c34fe63/items?path=%2F.storybook%2Fpublic%2Fitwin.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=docz-removed&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="iTwin logo" width="167" height="40">
+
+  ![iTwinUI logo](https://www.bentley.com/-/media/Images/icons/iTwinUI_logo.png)
 
   **An open-source design system that helps us build a unified web experience.**
 
-  [![Build status](https://bentleycs.visualstudio.com/UX%20Design/_apis/build/status/bwc/bwc?branchName=master)](https://bentleycs.visualstudio.com/UX%20Design/_build/latest?definitionId=939)
-  [![Teams Link](https://img.shields.io/badge/Microsoft%20Teams-bwc--react-green.svg)](https://teams.microsoft.com/l/channel/19%3aa697e82c0d0a43e58bbd1d01881abac0%40thread.skype/bwc-react?groupId=7ec5737d-780e-40e6-bf0e-e3991fd6f3a1&tenantId=067e9632-ea4c-4ed9-9e6d-e294956e284b)
+  [![Build status](https://dev.azure.com/bentleycs/UX%20Design/_apis/build/status/iTwinUI?branchName=main)](https://dev.azure.com/bentleycs/UX%20Design/_build/latest?definitionId=4766&branchName=main)
+  [![@bentley/itwinui package in Packages feed in Azure Artifacts](https://feeds.dev.azure.com/bentleycs/_apis/public/Packaging/Feeds/cddcc498-6606-47b5-b068-e9fa20167bf8/Packages/2a2598be-dc85-46c1-9b3f-ac6137b357ed/Badge)](https://dev.azure.com/bentleycs/beconnect/_packaging?_a=package&feed=cddcc498-6606-47b5-b068-e9fa20167bf8&package=2a2598be-dc85-46c1-9b3f-ac6137b357ed&preferRelease=true)
+  [![Teams link](https://img.shields.io/badge/Teams-iTwinUI-7B83EB?logo=microsoft-teams&logoColor=white)](https://teams.microsoft.com/l/channel/19%3a6ed5d7dd0f5541158ae8ef9748f413de%40thread.skype/iTwinUI?groupId=7ec5737d-780e-40e6-bf0e-e3991fd6f3a1&tenantId=067e9632-ea4c-4ed9-9e6d-e294956e284b)
+
 
   [Key features](#key-features) • [How to setup](#how-to-setup) • [How to use](#how-to-use) • [Contributing](#contributing)
 
-  <img src="https://i.imgur.com/UVWfang.png" alt="A mockup of an iTwinUI interface.">
+  ![A mockup of an iTwinUI interface.](https://i.imgur.com/UVWfang.png)
+
 </center>
 
 ## Key features
@@ -60,13 +64,16 @@ Install the [stylelint plugin](https://marketplace.visualstudio.com/items?itemNa
 
 ## Contributing
 
-- When making a new component
-  - Make a new folder with the name of the component
-  - Break variables and mixins into seperate files where possible
-  - Make sure to include a classes.scss file in the folder as this file is used to generate all the relevant css classes
-    - This file should simply define classes using your mixins.
-    - Example from src/buttons/classes.scss, where index imports all mixins and relevant scss
-    - Make sure to import your style in src/classes.scss and src/mixins.scss
+Are you interested in helping iTwinUI grow & expand? We'd love to collaborate! Join us every Tuesday at 9:30AM EST within the [UX Standards/iTwinUI-React channel](https://teams.microsoft.com/l/channel/19%3aa697e82c0d0a43e58bbd1d01881abac0%40thread.skype/iTwinUI-React?groupId=7ec5737d-780e-40e6-bf0e-e3991fd6f3a1&tenantId=067e9632-ea4c-4ed9-9e6d-e294956e284b)'s open meeting.
+### To add a component
+
+We welcome UI components contributed by other teams! If you'd like to get your component added to iTwinUI, follow these guidelines:
+- Make a new folder with the name of the component.
+- Break variables and mixins into seperate files where possible.
+- Make sure to include a `classes.scss` file in the folder as this file is used to generate all the relevant css classes.
+  - This file should simply define classes using your mixins.
+  - Example from `src/buttons/classes.scss`, where index imports all mixins and relevant scss.
+  - Make sure to import your style in `src/classes.scss` and `src/mixins.scss`.
 
 ```
 @import './index';
@@ -84,24 +91,20 @@ Install the [stylelint plugin](https://marketplace.visualstudio.com/items?itemNa
   - `selectors`: an optional array of strings containing the selectors to be tested, 'html' is default
   - `misMatchThreshold`: an optional number that controls how different the test must be from the reference for it to fail. The higher the number the greater the difference must be to trigger a failure, '0.1' is default
 
-### Checklist
+### Committing your work
 
-1. Create branch of the form `feature/{description}` or `bug/{description}`
-2. Changes made in the `src/` directory
-3. Test added to `backstop/tests`
-
-- This is an HTML file that imports the style from `../../lib/css` and implements the classes
-- If this file grows too large (see `backstop/tests/tiles.html`) break it into smaller sections, each with a unique id
-
-4. Add the test the the scenarios array in `backstop/scenarios.js`.
-
-- If the test has subsections, add the ID's
-
+1. Create a branch of the form `feature/{description}` or `bug/{description}`.
+2. Changes made in the `src/` directory.
+3. Test added to `backstop/tests`.
+  - This is an HTML file that imports the style from `../../lib/css` and implements the classes.
+  - If this file grows too large (see `backstop/tests/tiles.html`) break it into smaller sections, each with a unique ID.
+4. Add the test the scenarios array in `backstop/scenarios.js`.
+  - If the test has subsections, add the ID's.
 5. Use `yarn develop {test name}` to run just the test for what you are developing, making changes as needed.
 6. Once you are satisfied with your work, run `yarn approve`.
 7. Stage and commit changes.
 8. On commit, `yarn lint` and `yarn test` will both be run.
-9. After ensuring that neither of these processes errors, push to your branch with `git push`
-10. Run `git merge master` to merge any missed changes.
-11. [Click this link](https://bentleycs.visualstudio.com/UX%20Design/_git/iTwin%20UI/pullrequests?_a=mine) and create a new pull request.
+9. After ensuring that neither of these processes errors, push to your branch with `git push`.
+10. Run `git merge main` to merge any missed changes.
+11. [Click this link](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI/pullrequests) and create a new pull request.
 12. Add reviewers and link work items.
