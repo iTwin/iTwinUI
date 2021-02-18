@@ -122,6 +122,10 @@ The `CHANGELOG.md` file must be updated for any new components or changes that y
 
 ## Pull Requests
 
+Before creating a PR, make sure your changes address a specific work item or bug in the iTwinUI backlog. Do a search to see if there are any existing items that are still open. If you don't find one, you can create one.
+
+To enable us to quickly review and accept your pull requests, always create one pull request per work item. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked work item.
+
 #### Checklist
 
 1. Component created following project structure
