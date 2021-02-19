@@ -15,6 +15,8 @@ export default {
   parameters: {
     previewTabs: { 'storybook/docs/panel': { hidden: true } },
     options: { showPanel: false },
+    controls: { disabled: true },
+    actions: { disabled: true },
   },
 } as Meta;
 
@@ -33,13 +35,23 @@ export const Overview: Story = () => {
     <Markdown
       options={{
         overrides: {
-          h1: { component: Headline },
-          h2: { component: Title, props: { style: { margin: '16px 0' } } },
+          h1: {
+            component: Headline,
+            props: { style: { fontSize: 'x-large' } },
+          },
+          h2: {
+            component: Title,
+            props: { style: { margin: '8px 0', fontSize: 'larger' } },
+          },
           h3: { component: Subheading },
           code: { component: Code },
           pre: {
             component: (args) => <pre {...args} />,
             props: { style: { margin: '16px' } },
+          },
+          em: {
+            component: (args) => <em {...args} />,
+            props: { style: { fontStyle: 'italic' } },
           },
           ol: {
             component: (args) => <ol {...args} />,
