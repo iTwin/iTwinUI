@@ -50,7 +50,7 @@ iTwinUI-react
         + - Alert
         |   |
         |   + - > Alert.react.test.tsx
-				|		|
+        |   |
         |   + - > Alert.tsx
         |   |
         |   + - > index.ts
@@ -79,7 +79,7 @@ export type { AlertProps } from './Alert';
 ---
 ```
 
-### Testing
+### Unit Testing
 
 Each component has a corresponding jest test inside of its directory. Be sure to cover your added code with tests.
 
@@ -99,15 +99,26 @@ it('should be visible', () => {
 });
 ```
 
-### Yalc
+### Linking
+If you want to test your changes in a local project, you can go into the `lib/` folder (which gets created when running `yarn build` or `yarn build:watch`) and run `yarn link`. Then from your test project, run `yarn link @bentley/itwinui-react`.
 
-You may want to install `yalc` and `concurrently` (`nodemon` or `chokindar-cli`) globally and use those two scripts to compile and push changes to other project linked to iTwinUI-react :
-- Add scripts to package.json :
-  - `"watch": "concurrently --kill-others \"yarn watch:tsx\" \"yarn watch:yalc:push\"",`
-  - `"watch:tsx": "tsc --watch",`
-  - `"watch:yalc:push": "delay 20 && cd lib && nodemon -e js,ts,tsx,d.ts -x \"yalc push\"",`
-- Chokindar version (untested) :
-  - `"watch:yalc:push": "delay 20 && cd lib && chokidar \"**/*.js\" \"**/*.ts\" \"**/*.tsx\" \"**/*.d.ts\" -c \"yalc push\"",`
+You might face an "invalid hook call" error if your test project is using a different version or instance of React. You can fix this by [linking React](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react) or by using [aliases](https://github.com/facebook/react/issues/13991#issuecomment-463486871) in your bundler. If it still doesn't work, you may consider using `yalc`.
+
+<details>
+<summary>Yalc instructions (untested)</summary>
+You may want to install `yalc`, `concurrently`, and `nodemon` or `chokidar-cli` globally to compile and push changes to another project linked to iTwinUI-react.
+Add these scripts to package.json:
+<pre>
+  "watch": "concurrently --kill-others \"yarn watch:tsx\" \"yarn watch:yalc:push\"",
+  "watch:tsx": "tsc --watch",
+  "watch:yalc:push": "delay 20 && cd lib && nodemon -e js,ts,tsx,d.ts -x \"yalc push\"",
+</pre>
+Chokidar version:
+<pre>
+  "watch:yalc:push": "delay 20 && cd lib && chokidar \"**/*.js\" \"**/*.ts\" \"**/*.tsx\" \"**/*.d.ts\" -c \"yalc push\"",
+</pre>
+</details>
+
 
 ### Changelog
 
@@ -122,7 +133,7 @@ The `CHANGELOG.md` file must be updated for any new components or changes that y
 
 ## Pull Requests
 
-Before creating a PR, make sure your changes address a specific work item or bug in the iTwinUI backlog. Do a search to see if there are any existing items that are still open. If you don't find one, you can create one.
+Before creating a pull request, make sure your changes address a specific work item or bug in the iTwinUI backlog. Do a search to see if there are any existing items that are still open. If you don't find one, you can create one.
 
 To enable us to quickly review and accept your pull requests, always create one pull request per work item. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked work item.
 
