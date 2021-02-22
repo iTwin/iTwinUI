@@ -90,7 +90,8 @@
     "react-dom": ">=16.8.6"
   },
   "resolutions": {
-    "braces": "^2.3.1"
+    "braces": "^2.3.1",
+    "immer": ">=8.0.1"
   },
   "husky": {
     "hooks": {
