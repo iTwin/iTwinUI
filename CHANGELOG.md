@@ -1,3 +1,15 @@
+## 0.3.0
+
+`2021-02-22`
+
+### What's new
+* **`Badge` component added.**
+* **Overview page added to Storybook.**
+
+### Fixes
+* **`positioner` class renamed to `iui-positioner`**
+* **React.FC removed, so children is required for some components.** 
+
 ## 0.2.1
 
 `2021-02-12`
