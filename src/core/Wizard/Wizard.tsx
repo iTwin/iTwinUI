@@ -58,13 +58,13 @@ const defaultWizardLocalization: WizardLocalization = {
  *  />
  */
 
-export const Wizard: React.FC<WizardProps> = ({
+export const Wizard = ({
   currentStep,
   steps,
   type = 'default',
   localization = defaultWizardLocalization,
   onStepClick,
-}) => {
+}: WizardProps) => {
   const boundedCurrentStep = Math.min(
     Math.max(0, currentStep),
     steps.length - 1,

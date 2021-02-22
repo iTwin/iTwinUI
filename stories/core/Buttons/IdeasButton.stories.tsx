@@ -15,17 +15,13 @@ export default {
   argTypes: {
     onClick: { table: { disable: true } },
   },
-} as Meta<React.PropsWithChildren<IdeasButtonProps>>;
+} as Meta<IdeasButtonProps>;
 
-export const Ideas: Story<React.PropsWithChildren<IdeasButtonProps>> = (
-  args,
-) => {
+export const Ideas: Story<IdeasButtonProps> = (args) => {
   return <IdeasButton onClick={action('clicked')} {...args} />;
 };
 
-export const LocalizedIdeas: Story<
-  React.PropsWithChildren<IdeasButtonProps>
-> = (args) => {
+export const LocalizedIdeas: Story<IdeasButtonProps> = (args) => {
   return <IdeasButton onClick={action('clicked')} {...args} />;
 };
 

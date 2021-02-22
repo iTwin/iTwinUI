@@ -17,11 +17,9 @@ export default {
       },
     },
   },
-} as Meta<React.PropsWithChildren<HorizontalTabsProps>>;
+} as Meta<HorizontalTabsProps>;
 
-const Template: Story<React.PropsWithChildren<HorizontalTabsProps>> = (
-  args,
-) => {
+const Template: Story<HorizontalTabsProps> = (args) => {
   const [index, setIndex] = useState(0);
   const getContent = () => {
     switch (index) {

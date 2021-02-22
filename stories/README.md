@@ -34,7 +34,7 @@ export default {
     onClick: { table: { disable: true } },
     onClose: { table: { disable: true } },
   },
-} as Meta<React.PropsWithChildren<AlertProps>>;
+} as Meta<AlertProps>;
 ```
 
 * `title` : this controls the name shown in the sidebar for the component. It should be unique. If a component is a sub-class of another component the title should be **Parent Component / Child Component**. Example: Input/Checkbox.
@@ -44,9 +44,7 @@ i.e. use `controls: { hideNoControlsWarning: true }` to hide message if componen
 * `argTypes`: used to set some default values/behavior to all stories. In this example we hide some props (className, style and click handlers) from the controls tab as there is no point to change those for the user. Read more about argTypes in the links below.
 
 ```jsx
-export const Informational: Story<React.PropsWithChildren<AlertProps>> = (
-  args,
-) => {
+export const Informational: Story<AlertProps> = (args) => {
   return (
     <Alert
       type='informational'

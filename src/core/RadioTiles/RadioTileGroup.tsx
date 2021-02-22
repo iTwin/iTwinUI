@@ -12,7 +12,7 @@ export type RadioTileGroupProps = {
   /**
    * RadioTile components.
    */
-  children: React.ReactNodeArray;
+  children: React.ReactNode;
 };
 
 /**
@@ -23,7 +23,7 @@ export type RadioTileGroupProps = {
  *   <RadioTile label='Second tile' icon={<SvgSmileySad />} />
  * </RadioTileGroup>
  */
-export const RadioTileGroup: React.FC<RadioTileGroupProps> = (props) => {
+export const RadioTileGroup = (props: RadioTileGroupProps) => {
   const { children, label } = props;
 
   useTheme();

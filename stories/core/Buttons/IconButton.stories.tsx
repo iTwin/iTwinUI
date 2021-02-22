@@ -19,9 +19,9 @@ export default {
       control: 'select',
     },
   },
-} as Meta<React.PropsWithChildren<IconButtonProps>>;
+} as Meta<IconButtonProps>;
 
-export const Add: Story<React.PropsWithChildren<IconButtonProps>> = (args) => {
+export const Add: Story<IconButtonProps> = (args) => {
   return (
     <IconButton onClick={action('clicked')} {...args}>
       <SvgAdd />
@@ -33,9 +33,7 @@ Add.args = {
   isActive: false,
 };
 
-export const SmallActiveAdd: Story<React.PropsWithChildren<IconButtonProps>> = (
-  args,
-) => {
+export const SmallActiveAdd: Story<IconButtonProps> = (args) => {
   return (
     <IconButton onClick={action('clicked')} isActive {...args}>
       <SvgAdd />
@@ -48,9 +46,7 @@ SmallActiveAdd.args = {
   isActive: true,
 };
 
-export const HighVisibilityAdd: Story<
-  React.PropsWithChildren<IconButtonProps>
-> = (args) => {
+export const HighVisibilityAdd: Story<IconButtonProps> = (args) => {
   return (
     <IconButton onClick={action('clicked')} {...args}>
       <SvgAdd />

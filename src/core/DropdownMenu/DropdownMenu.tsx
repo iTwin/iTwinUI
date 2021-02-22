@@ -27,6 +27,10 @@ export type DropdownMenuProps = {
    * @default Position.BOTTOM_LEFT
    */
   position?: Position;
+  /**
+   * Child element to wrap dropdown with.
+   */
+  children: React.ReactNode;
 } & Omit<
   PopoverProps,
   | 'content'
@@ -56,7 +60,7 @@ export type DropdownMenuProps = {
  *   <Button>Menu</Button>
  * </DropdownMenu>
  */
-export const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
+export const DropdownMenu = (props: DropdownMenuProps) => {
   const {
     menuItems,
     children,

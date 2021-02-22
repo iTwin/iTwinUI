@@ -5,15 +5,6 @@ import React from 'react';
 import { Alert } from './Alert';
 
 it('renders correctly in its default state', () => {
-  const { container } = render(<Alert />);
-
-  expect(container.querySelector('.iui-alerts-informational')).toBeTruthy();
-  expect(container.querySelector('.iui-alerts-status-icon')).toBeTruthy();
-  expect(container.querySelector('.iui-alerts-link')).toBeNull();
-  expect(container.querySelector('.iui-alerts-close-icon')).toBeNull();
-});
-
-it('renders children correctly', () => {
   const { container, getByText } = render(<Alert>This is an alert.</Alert>);
 
   expect(container.querySelector('.iui-alerts-informational')).toBeTruthy();

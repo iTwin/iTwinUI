@@ -12,12 +12,9 @@ export default {
     },
   },
   title: 'Core/Tag',
-} as Meta<React.PropsWithChildren<TagProps>>;
+} as Meta<TagProps>;
 
-export const Basic: Story<React.PropsWithChildren<TagProps>> = ({
-  children,
-  onRemove,
-}) => {
+export const Basic: Story<TagProps> = ({ children, onRemove }) => {
   return <Tag onRemove={onRemove}>{children}</Tag>;
 };
 
@@ -31,9 +28,7 @@ Basic.argTypes = {
   },
 };
 
-export const NoClose: Story<React.PropsWithChildren<TagProps>> = ({
-  children,
-}) => {
+export const NoClose: Story<TagProps> = ({ children }) => {
   return <Tag>{children}</Tag>;
 };
 

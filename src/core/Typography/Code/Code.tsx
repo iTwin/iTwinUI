@@ -17,7 +17,7 @@ export type CodeProps = {
  * @example
  * <p>Some <Code>inline code</Code> in a paragraph</p>
  */
-export const Code: React.FC<CodeProps> = (props) => {
+export const Code = (props: CodeProps) => {
   const { className, children, ...rest } = props;
 
   useTheme();

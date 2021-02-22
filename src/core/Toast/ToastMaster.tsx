@@ -10,7 +10,7 @@ type ToastMasterProps = {
   closeAllHandler: (closeAll: () => void) => void;
 };
 
-export const ToastMaster: React.FC<ToastMasterProps> = ({
+export const ToastMaster = ({
   addToastHandler,
   closeAllHandler,
 }: ToastMasterProps) => {

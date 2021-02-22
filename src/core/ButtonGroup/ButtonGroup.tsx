@@ -3,6 +3,13 @@ import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/buttons.css';
 
+export type ButtonGroupProps = {
+  /**
+   * Buttons in the ButtonGroup.
+   */
+  children: React.ReactNode;
+};
+
 /**
  * Group buttons together for common actions
  * @example
@@ -15,7 +22,7 @@ import '@bentley/itwinui/css/buttons.css';
  *   </IconButton>
  * </ButtonGroup>
  */
-export const ButtonGroup: React.FC = ({ children }) => {
+export const ButtonGroup = ({ children }: ButtonGroupProps) => {
   useTheme();
   return <div className='iui-buttons-group'>{children}</div>;
 };

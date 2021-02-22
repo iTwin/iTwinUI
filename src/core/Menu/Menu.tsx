@@ -20,7 +20,7 @@ export type MenuProps = {
 /**
  * Basic menu component. Can be used for select or dropdown components.
  */
-export const Menu: React.FC<MenuProps> = (props) => {
+export const Menu = (props: MenuProps) => {
   const { children, role = 'menu', className, style } = props;
 
   useTheme();

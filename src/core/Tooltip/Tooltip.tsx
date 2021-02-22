@@ -36,7 +36,7 @@ export type TooltipProps = {
  * @example
  * <Tooltip content='tooltip text'><div>Hover here</div></Tooltip>
  */
-export const Tooltip: React.FC<TooltipProps> = (props: TooltipProps) => {
+export const Tooltip = (props: TooltipProps) => {
   const {
     content,
     parentId,

@@ -25,6 +25,10 @@ export type ExpandableBlockProps = {
    * Callback function for toggling an expansion state.
    */
   onToggle?: (isExpanding: boolean) => void;
+  /**
+   * Content in the expandable block.
+   */
+  children: React.ReactNode;
 } & CommonProps;
 
 /**
@@ -34,7 +38,7 @@ export type ExpandableBlockProps = {
  * <ExpandableBlock title='Basic Block' caption='basic caption'>Content in block!</ExpandableBlock>
  * <ExpandableBlock title='Default Expanded Block' caption='basic caption' isExpanded={true}>Content in block!</ExpandableBlock>
  */
-export const ExpandableBlock: React.FC<ExpandableBlockProps> = (props) => {
+export const ExpandableBlock = (props: ExpandableBlockProps) => {
   const {
     caption,
     children,

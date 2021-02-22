@@ -33,6 +33,10 @@ export type InputGroupProps = {
    * Custom icon. If group has status, default status icon is used instead.
    */
   svgIcon?: JSX.Element;
+  /**
+   * Child inputs inside group.
+   */
+  children: React.ReactNode;
 } & CommonProps;
 
 /**
@@ -50,7 +54,7 @@ export type InputGroupProps = {
  *  <Radio />
  * </InputGroup>
  */
-export const InputGroup: React.FC<InputGroupProps> = (props) => {
+export const InputGroup = (props: InputGroupProps) => {
   const {
     children,
     disabled = false,

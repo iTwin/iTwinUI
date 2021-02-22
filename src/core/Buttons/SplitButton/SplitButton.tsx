@@ -25,6 +25,10 @@ export type SplitButtonProps = {
    * @default Position.BOTTOM_RIGHT
    */
   menuPosition?: Position;
+  /**
+   * Content of primary button.
+   */
+  children: React.ReactNode;
 } & ButtonProps;
 
 /**
@@ -37,7 +41,7 @@ export type SplitButtonProps = {
  * <SplitButton onClick={onClick} menuItems={menuItems}>Default</SplitButton>
  * <SplitButton onClick={onClick} menuItems={menuItems} styleType='high-visibility'>High visibility</SplitButton>
  */
-export const SplitButton: React.FC<SplitButtonProps> = (props) => {
+export const SplitButton = (props: SplitButtonProps) => {
   const {
     onClick,
     menuItems,

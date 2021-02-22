@@ -33,64 +33,67 @@ export type MenuItemProps = {
    * @default 'menuitem'
    */
   role?: string;
+  /**
+   * Content of the menu item.
+   */
+  children?: React.ReactNode;
 } & CommonProps;
 
 /**
  * Basic menu item component. Should be used inside `Menu` component for each item.
  */
-export const MenuItem = React.forwardRef<
-  HTMLLIElement,
-  React.PropsWithChildren<MenuItemProps>
->((props, ref) => {
-  const {
-    children,
-    isSelected,
-    value,
-    onClick,
-    icon,
-    badge,
-    className,
-    style,
-    role = 'menuitem',
-  } = props;
+export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
+  (props, ref) => {
+    const {
+      children,
+      isSelected,
+      value,
+      onClick,
+      icon,
+      badge,
+      className,
+      style,
+      role = 'menuitem',
+    } = props;
 
-  useTheme();
+    useTheme();
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-      case 'Spacebar':
-        onClick?.(value);
-        event.preventDefault();
-        break;
-      default:
-        break;
-    }
-  };
+    const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+      switch (event.key) {
+        case 'Enter':
+        case ' ':
+        case 'Spacebar':
+          onClick?.(value);
+          event.preventDefault();
+          break;
+        default:
+          break;
+      }
+    };
 
-  return (
-    <li
-      className={cx({ 'iui-active': isSelected }, className)}
-      onClick={() => onClick?.(value)}
-      ref={ref}
-      style={style}
-      role={role}
-      tabIndex={isSelected ? 0 : -1}
-      aria-selected={isSelected}
-      onKeyDown={onKeyDown}
-    >
-      {icon &&
-        React.cloneElement(icon, {
-          className: cx(icon.props.className, 'iui-menu-icon'),
-        })}
-      <span className='iui-content'>{children}</span>
-      {badge &&
-        React.cloneElement(badge, {
-          className: cx(badge.props.className, 'iui-menu-icon', 'iui-right'),
-        })}
-    </li>
-  );
-});
+    return (
+      <li
+        className={cx({ 'iui-active': isSelected }, className)}
+        onClick={() => onClick?.(value)}
+        ref={ref}
+        style={style}
+        role={role}
+        tabIndex={isSelected ? 0 : -1}
+        aria-selected={isSelected}
+        onKeyDown={onKeyDown}
+      >
+        {icon &&
+          React.cloneElement(icon, {
+            className: cx(icon.props.className, 'iui-menu-icon'),
+          })}
+        <span className='iui-content'>{children}</span>
+        {badge &&
+          React.cloneElement(badge, {
+            className: cx(badge.props.className, 'iui-menu-icon', 'iui-right'),
+          })}
+      </li>
+    );
+  },
+);
 
 export default MenuItem;

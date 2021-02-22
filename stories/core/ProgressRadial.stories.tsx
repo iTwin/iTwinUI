@@ -47,9 +47,7 @@ Negative.argTypes = {
   status: { defaultValue: 'negative' },
 };
 
-export const DeterminateWithContent: Story<
-  React.PropsWithChildren<ProgressRadialProps>
-> = (args) => {
+export const DeterminateWithContent: Story<ProgressRadialProps> = (args) => {
   const { value = 50, ...rest } = args;
   return (
     <ProgressRadial value={value} {...rest}>

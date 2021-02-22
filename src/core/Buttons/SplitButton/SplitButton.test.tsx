@@ -24,7 +24,9 @@ function renderComponent(
         </MenuItem>,
       ]}
       {...props}
-    />,
+    >
+      child
+    </SplitButton>,
   );
 }
 

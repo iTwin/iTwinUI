@@ -59,13 +59,13 @@ export type AlertProps = {
  * @example
  * <Alert>This is a basic alert.</Alert>
  */
-export const Alert: React.FC<AlertProps> = (props) => {
+export const Alert = (props: AlertProps) => {
   ...
 ```
 ```jsx
 // Bad (no comments)
 
-export const Alert: React.FC<AlertProps> = (props) => {
+export const Alert = (props: AlertProps) => {
   ...
 ```
 ```jsx
@@ -74,7 +74,7 @@ export const Alert: React.FC<AlertProps> = (props) => {
 /**
  * A small box to quickly grab user attention and communicate a brief message.
  */
-export const Alert: React.FC<AlertProps> = (props) => {
+export const Alert = (props: AlertProps) => {
   ...
 ```
 

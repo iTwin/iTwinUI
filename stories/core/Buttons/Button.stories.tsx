@@ -17,11 +17,9 @@ export default {
     className: { table: { disable: true } },
     type: { table: { disable: true } },
   },
-} as Meta<React.PropsWithChildren<ButtonProps>>;
+} as Meta<ButtonProps>;
 
-export const CallToAction: Story<React.PropsWithChildren<ButtonProps>> = (
-  args,
-) => {
+export const CallToAction: Story<ButtonProps> = (args) => {
   return (
     <Button onClick={action('clicked')} styleType='cta' {...args}>
       {args.children}
@@ -34,9 +32,7 @@ CallToAction.args = {
   styleType: 'cta',
 };
 
-export const HighVisibility: Story<React.PropsWithChildren<ButtonProps>> = (
-  args,
-) => {
+export const HighVisibility: Story<ButtonProps> = (args) => {
   return (
     <Button onClick={action('clicked')} styleType='high-visibility' {...args}>
       {args.children}
@@ -49,7 +45,7 @@ HighVisibility.args = {
   styleType: 'high-visibility',
 };
 
-export const Default: Story<React.PropsWithChildren<ButtonProps>> = (args) => {
+export const Default: Story<ButtonProps> = (args) => {
   return (
     <Button onClick={action('clicked')} styleType='default' {...args}>
       {args.children}
@@ -62,7 +58,7 @@ Default.args = {
   styleType: 'default',
 };
 
-export const WithIcon: Story<React.PropsWithChildren<ButtonProps>> = (args) => {
+export const WithIcon: Story<ButtonProps> = (args) => {
   return (
     <Button onClick={action('clicked')} styleType='high-visibility' {...args}>
       <div>

@@ -27,11 +27,9 @@ export default {
   args: {
     children: 'Content in block!',
   },
-} as Meta<React.PropsWithChildren<ExpandableBlockProps>>;
+} as Meta<ExpandableBlockProps>;
 
-export const Basic: Story<React.PropsWithChildren<ExpandableBlockProps>> = (
-  args,
-) => {
+export const Basic: Story<ExpandableBlockProps> = (args) => {
   return (
     <ExpandableBlock title='Basic Block' {...args}>
       {args.children}
@@ -44,9 +42,7 @@ Basic.argTypes = {
   isExpanded: { defaultValue: false },
 };
 
-export const WithCaption: Story<
-  React.PropsWithChildren<ExpandableBlockProps>
-> = (args) => {
+export const WithCaption: Story<ExpandableBlockProps> = (args) => {
   return (
     <ExpandableBlock title='Basic Block' caption='basic caption' {...args}>
       {args.children}
@@ -60,9 +56,7 @@ WithCaption.argTypes = {
   caption: { defaultValue: 'basic caption' },
 };
 
-export const Accordion: Story<React.PropsWithChildren<ExpandableBlockProps>> = (
-  args,
-) => {
+export const Accordion: Story<ExpandableBlockProps> = (args) => {
   const [openedBlock, setOpenedBlock] = useState<number>(undefined);
   const toggleHandler = (isExpanding: boolean, id: number) => {
     action(`isExpanding: ${isExpanding}, id: ${id}`, {

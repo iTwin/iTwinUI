@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
-import { ButtonGroup, IconButton } from '../../../src/core';
+import { ButtonGroup, ButtonGroupProps, IconButton } from '../../../src/core';
 import {
   SvgAdd,
   SvgDelete,
@@ -19,9 +19,9 @@ export default {
     },
     controls: { hideNoControlsWarning: true },
   },
-} as Meta;
+} as Meta<ButtonGroupProps>;
 
-export const WithIcons: Story = () => {
+export const WithIcons: Story<ButtonGroupProps> = () => {
   return (
     <ButtonGroup>
       <IconButton onClick={action('Clicked add!')}>

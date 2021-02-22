@@ -10,6 +10,10 @@ export type TagProps = {
    * Close icon is shown only when this function is passed.
    */
   onRemove?: React.MouseEventHandler;
+  /**
+   * Text inside the tag.
+   */
+  children: React.ReactNode;
 };
 
 /**
@@ -17,13 +21,15 @@ export type TagProps = {
  * @example
  * <Tag onRemove={() => alert('Closed a tag!')}>I'm a tag</Tag>
  */
-export const Tag: React.FC<TagProps> = (props) => {
+export const Tag = (props: TagProps) => {
+  const { children, onRemove } = props;
   useTheme();
+
   return (
     <span className='iui-tag'>
-      <span className='iui-tag-text'>{props.children}</span>
-      {props.onRemove && (
-        <SvgClose onClick={props.onRemove} className='iui-tag-close-icon' />
+      <span className='iui-tag-text'>{children}</span>
+      {onRemove && (
+        <SvgClose onClick={onRemove} className='iui-tag-close-icon' />
       )}
     </span>
   );

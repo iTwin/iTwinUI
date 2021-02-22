@@ -46,10 +46,7 @@ const footerTranslations: TitleTranslations = {
  * @example
  * <Footer customElements={[{title: 'Bentley', url: 'https://www.bentley.com/'}]} />
  */
-export const Footer: React.FC<FooterProps> = ({
-  customElements,
-  translatedTitles,
-}) => {
+export const Footer = ({ customElements, translatedTitles }: FooterProps) => {
   useTheme();
 
   const today = new Date();

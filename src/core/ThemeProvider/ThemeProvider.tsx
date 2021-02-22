@@ -7,15 +7,16 @@ export type ThemeProviderProps = {
    * Theme to be applied. If not set, light theme will be used.
    */
   theme?: ThemeType;
+  /**
+   * Optional children.
+   */
+  children?: React.ReactNode;
 };
 
 /**
  * Component providing global styles that are required for all components and allows changing theme.
  */
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  theme,
-  children,
-}) => {
+export const ThemeProvider = ({ theme, children }: ThemeProviderProps) => {
   useTheme(theme);
   return <>{children}</>;
 };

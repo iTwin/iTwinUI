@@ -41,7 +41,7 @@ const appendFile = (obj) => {
 
 const functionalTemplate = (
   name,
-) => `export const ${name}: React.FC<${name}Props> = (props) => {
+) => `export const ${name} = (props: ${name}Props) => {
   const { ...rest } = props;
   useTheme();
   return <div {...rest} />;

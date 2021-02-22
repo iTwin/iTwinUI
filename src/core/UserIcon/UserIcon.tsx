@@ -65,7 +65,7 @@ export const defaultStatusTitles: StatusTitles = {
  * <caption>X-large icon with image</caption>
  * <UserIcon size='x-large' title='Greg Bentley' abbreviation='GB' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
  */
-export const UserIcon: React.FC<UserIconProps> = (props) => {
+export const UserIcon = (props: UserIconProps) => {
   const {
     size = 'small',
     status,

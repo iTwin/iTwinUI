@@ -30,14 +30,14 @@ export type StepProps = {
   onClick?: (clickedIndex: number) => void;
 };
 
-export const Step: React.FC<StepProps> = ({
+export const Step = ({
   title,
   index,
   currentStepNumber,
   totalSteps,
   type,
   onClick,
-}) => {
+}: StepProps) => {
   const isLast = totalSteps === index + 1;
   const isPast = currentStepNumber > index;
   const isActive = currentStepNumber === index;

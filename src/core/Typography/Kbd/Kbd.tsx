@@ -37,7 +37,7 @@ export type KbdProps = {
  * <Kbd>A</Kbd>
  * <Kbd title='Enter'>{KbdKeys.Enter}</Kbd>
  */
-export const Kbd: React.FC<KbdProps> = (props) => {
+export const Kbd = (props: KbdProps) => {
   const { className, children, ...rest } = props;
 
   useTheme();

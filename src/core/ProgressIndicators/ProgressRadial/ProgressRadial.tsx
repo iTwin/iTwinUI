@@ -29,6 +29,10 @@ export type ProgressRadialProps = {
    * @default ''
    */
   size?: '' | 'small';
+  /**
+   * Content shown inside progress indicator.
+   */
+  children?: React.ReactNode;
 } & CommonProps;
 
 /**
@@ -47,7 +51,7 @@ export type ProgressRadialProps = {
  * <ProgressRadial size={'small'} indeterminate/>
  */
 
-export const ProgressRadial: React.FC<ProgressRadialProps> = (props) => {
+export const ProgressRadial = (props: ProgressRadialProps) => {
   const {
     value = 0,
     indeterminate = false,

@@ -47,9 +47,7 @@ export type ProgressLinearProps = {
  * <ProgressLinear status='positive' labels={['Upload done!', <SvgSuccessHollow className='iui-icon' />]} />
  * <ProgressLinear status='negative' />
  */
-export const ProgressLinear: React.FC<ProgressLinearProps> = (
-  props: ProgressLinearProps,
-) => {
+export const ProgressLinear = (props: ProgressLinearProps) => {
   const {
     value = 0,
     indeterminate = false,

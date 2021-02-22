@@ -52,6 +52,10 @@ export type ModalProps = {
    * @default 'iui-react-portal-container'
    */
   modalRootId?: string;
+  /**
+   * Content of the modal.
+   */
+  children: React.ReactNode;
 } & CommonProps;
 
 /**
@@ -75,7 +79,7 @@ export type ModalProps = {
  *   </ModalButtonBar>
  * </Modal>
  */
-export const Modal: React.FC<ModalProps> = (props) => {
+export const Modal = (props: ModalProps) => {
   const {
     isOpen = false,
     isDismissible = true,

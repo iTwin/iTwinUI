@@ -65,7 +65,7 @@ export type ToastProps = {
  * <Toast type='temporary' content='26 files are available for synchronization.' category='informational' />
  * <Toast type='persisting' content='Job processing error.' category='negative' />
  */
-export const Toast: React.FC<ToastProps> = (props: ToastProps) => {
+export const Toast = (props: ToastProps) => {
   const {
     content,
     category,

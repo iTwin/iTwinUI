@@ -32,6 +32,7 @@ module.exports = {
     "@typescript-eslint/no-empty-function": ["error", { "allow": ["arrowFunctions"] }],
     "react/display-name": "off",
     "react/self-closing-comp": [1],
-    "curly": "error"
+    "curly": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
 };

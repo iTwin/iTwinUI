@@ -35,6 +35,10 @@ export type HorizontalTabsProps = {
    * Custom CSS class name for content.
    */
   contentClassName?: string;
+  /**
+   * Content inside the tab area.
+   */
+  children?: React.ReactNode;
 };
 
 /**
@@ -45,7 +49,7 @@ export type HorizontalTabsProps = {
  * <HorizontalTabs labels={['Label 1','Active Index','Label 3']} activeIndex={1} />
  * <HorizontalTabs labels={['Label 1','Label 2','Label 3']} color={'green'} />
  */
-export const HorizontalTabs: React.FC<HorizontalTabsProps> = (props) => {
+export const HorizontalTabs = (props: HorizontalTabsProps) => {
   const {
     labels,
     activeIndex,

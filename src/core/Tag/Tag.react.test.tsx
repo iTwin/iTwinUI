@@ -1,22 +1,17 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 
 import { Tag } from './Tag';
 
 it('renders in its most basic state', () => {
-  const { container } = render(<Tag />);
-
-  expect(container.querySelector('.iui-tag')).toBeTruthy();
-  expect(container.querySelector('.iui-tag-text')).toBeTruthy();
-  expect(container.querySelector('.iui-tag-close-icon')).toBeNull();
-});
-
-it('renders tag text', () => {
   const { container } = render(<Tag>Mocked tag</Tag>);
+  expect(container.querySelector('.iui-tag')).toBeTruthy();
 
-  const element = screen.getByText('Mocked tag');
-  expect(element).toBeTruthy();
+  const text = container.querySelector('.iui-tag-text') as HTMLElement;
+  expect(text).toBeTruthy();
+  expect(text.textContent).toBe('Mocked tag');
+
   expect(container.querySelector('.iui-tag-close-icon')).toBeNull();
 });
 

@@ -5,7 +5,9 @@ import React from 'react';
 import { ExpandableBlock } from './ExpandableBlock';
 
 it('should render correctly in its most basic state', () => {
-  const { container } = render(<ExpandableBlock title='test title' />);
+  const { container } = render(
+    <ExpandableBlock title='test title'>content</ExpandableBlock>,
+  );
 
   const expandableBlock = container.querySelector(
     '.iui-expandable-block',
@@ -18,7 +20,9 @@ it('should render correctly in its most basic state', () => {
 
 it('should render with caption', () => {
   const { container } = render(
-    <ExpandableBlock title='test title' caption='test caption' />,
+    <ExpandableBlock title='test title' caption='test caption'>
+      content
+    </ExpandableBlock>,
   );
 
   const expandableBlock = container.querySelector(

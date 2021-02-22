@@ -34,6 +34,10 @@ export type AlertProps = {
    * @default false
    */
   isSticky?: boolean;
+  /**
+   * Alert message text.
+   */
+  children: React.ReactNode;
 } & CommonProps;
 
 /**
@@ -45,7 +49,7 @@ export type AlertProps = {
  * <Alert type='negative'>This is a negative alert.</Alert>
  * <Alert type='positive' clickableText="I am a clickable text" onClick={()=>alert("Pressed")}>This is a positive alert with a clickable text</Alert>
  */
-export const Alert: React.FC<AlertProps> = (props) => {
+export const Alert = (props: AlertProps) => {
   const {
     children,
     className,

@@ -23,11 +23,9 @@ export default {
     onClose: { table: { disable: true } },
     clickableText: { type: 'string' },
   },
-} as Meta<React.PropsWithChildren<AlertProps>>;
+} as Meta<AlertProps>;
 
-export const Informational: Story<React.PropsWithChildren<AlertProps>> = (
-  args,
-) => {
+export const Informational: Story<AlertProps> = (args) => {
   return (
     <Alert
       type='informational'
@@ -47,7 +45,7 @@ Informational.args = {
   type: 'informational',
 };
 
-export const Positive: Story<React.PropsWithChildren<AlertProps>> = (args) => {
+export const Positive: Story<AlertProps> = (args) => {
   return (
     <Alert
       type='positive'
@@ -67,7 +65,7 @@ Positive.args = {
   type: 'positive',
 };
 
-export const Warning: Story<React.PropsWithChildren<AlertProps>> = (args) => {
+export const Warning: Story<AlertProps> = (args) => {
   return (
     <Alert
       type='warning'
@@ -87,7 +85,7 @@ Warning.args = {
   type: 'warning',
 };
 
-export const Negative: Story<React.PropsWithChildren<AlertProps>> = (args) => {
+export const Negative: Story<AlertProps> = (args) => {
   return (
     <Alert
       type='negative'
@@ -107,7 +105,7 @@ Negative.args = {
   type: 'negative',
 };
 
-export const Sticky: Story<React.PropsWithChildren<AlertProps>> = (args) => {
+export const Sticky: Story<AlertProps> = (args) => {
   return (
     <Alert
       clickableText='More Info.'
@@ -127,7 +125,7 @@ Sticky.args = {
   isSticky: true,
 };
 
-export const Empty: Story<React.PropsWithChildren<AlertProps>> = (args) => {
+export const Empty: Story<AlertProps> = (args) => {
   return (
     <Alert type='informational' {...args}>
       {args.children}

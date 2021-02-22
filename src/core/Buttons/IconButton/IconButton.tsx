@@ -19,29 +19,28 @@ export type IconButtonProps = {
  * @example
  * <IconButton><SvgAdd /></IconButton>
  */
-export const IconButton = React.forwardRef<
-  HTMLButtonElement,
-  React.PropsWithChildren<IconButtonProps>
->((props, ref) => {
-  const { isActive, children, className, ...rest } = props;
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+  (props, ref) => {
+    const { isActive, children, className, ...rest } = props;
 
-  useTheme();
+    useTheme();
 
-  return (
-    <Button
-      ref={ref}
-      className={cx(
-        'iui-buttons-no-label',
-        {
-          'iui-buttons-active': isActive,
-        },
-        className,
-      )}
-      {...rest}
-    >
-      <svg className='iui-buttons-icon'>{children}</svg>
-    </Button>
-  );
-});
+    return (
+      <Button
+        ref={ref}
+        className={cx(
+          'iui-buttons-no-label',
+          {
+            'iui-buttons-active': isActive,
+          },
+          className,
+        )}
+        {...rest}
+      >
+        <svg className='iui-buttons-icon'>{children}</svg>
+      </Button>
+    );
+  },
+);
 
 export default IconButton;
