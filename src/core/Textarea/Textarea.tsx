@@ -2,7 +2,7 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { useRefs } from '../utils/hooks/useRefs';
+import { useMergedRefs } from '../utils/hooks/useMergedRefs';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/inputs.css';
 
@@ -27,7 +27,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     useTheme();
 
     const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
-    const refs = useRefs<HTMLTextAreaElement>(ref, textAreaRef);
+    const refs = useMergedRefs<HTMLTextAreaElement>(ref, textAreaRef);
 
     React.useEffect(() => {
       if (textAreaRef.current && setFocus) {

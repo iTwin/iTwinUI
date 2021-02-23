@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React, { CSSProperties } from 'react';
+import { mergeRefs } from '../../core/utils/hooks/useMergedRefs';
 import { Position, Positioner } from '../Positioner';
 
 /**
@@ -219,7 +220,8 @@ export class Popover extends React.Component<PopoverProps, PopoverState> {
   private renderTarget() {
     if (typeof this.props.children === 'function') {
       return React.cloneElement(this.props.children(this.toggle), {
-        ref: this.getTargetRef(),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref: mergeRefs(this.targetRef, (this.props.children as any).ref),
       });
     }
 
@@ -227,7 +229,8 @@ export class Popover extends React.Component<PopoverProps, PopoverState> {
       onClick: this.toggle,
       onMouseEnter: this.onHover(true),
       onMouseLeave: this.onLeaveHover(true),
-      ref: this.getTargetRef(),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref: mergeRefs(this.targetRef, (this.props.children as any).ref),
     });
   }
 

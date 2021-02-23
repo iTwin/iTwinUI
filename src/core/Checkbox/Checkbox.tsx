@@ -2,7 +2,7 @@
 import cx from 'classnames';
 import React from 'react';
 import { ProgressRadial } from '../ProgressIndicators';
-import { useRefs } from '../utils/hooks/useRefs';
+import { useMergedRefs } from '../utils/hooks/useMergedRefs';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/inputs.css';
 
@@ -68,7 +68,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     useTheme();
 
     const inputElementRef = React.useRef<HTMLInputElement>(null);
-    const refs = useRefs<HTMLInputElement>(inputElementRef, ref);
+    const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
 
     React.useEffect(() => {
       if (inputElementRef.current && setFocus) {
