@@ -29,7 +29,7 @@ export type ExpandableBlockProps = {
    * Content in the expandable block.
    */
   children: React.ReactNode;
-} & CommonProps;
+} & Omit<CommonProps, 'title'>;
 
 /**
  * Container that allows content to be hidden behind a brief title and a caption.

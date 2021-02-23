@@ -41,7 +41,7 @@ export type UserIconProps = {
    * Translated status messages shown on hover.
    */
   translatedStatusTitles?: StatusTitles;
-} & CommonProps;
+} & Omit<CommonProps, 'title'>;
 
 export const defaultStatusTitles: StatusTitles = {
   away: 'Away',

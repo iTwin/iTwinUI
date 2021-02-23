@@ -56,7 +56,7 @@ export type ModalProps = {
    * Content of the modal.
    */
   children: React.ReactNode;
-} & CommonProps;
+} & Omit<CommonProps, 'title'>;
 
 /**
  * Modal component which can wrap any content.
