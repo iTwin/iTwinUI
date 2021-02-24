@@ -20,5 +20,9 @@
 
   &.dropdown {
     padding-right: $iui-xs;
+
+    > .iui-buttons-icon {
+      margin-left: $iui-xxs / 2;
+    }
   }
 }

@@ -44,7 +44,8 @@
     padding-right: $iui-s;
 
     > .iui-buttons-icon {
-      margin: 0;
+      margin-right: 0;
+      margin-left: $iui-xxs;
     }
   }
 }
