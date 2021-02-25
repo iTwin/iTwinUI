@@ -6,8 +6,8 @@
   "main": "src/index.scss",
   "description": "CSS (Sass/SCSS) library for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications.",
   "homepage": "https://bentleycs.visualstudio.com/UX%20Design/_git/iTwinUI",
-  "url" : "https://dev.azure.com/bentleycs/UX%20Design/_boards/board/t/iTwinUI/Backlog%20items",
-  "email" : "3b7617b6.bentley.onmicrosoft.com@amer.teams.ms",
+  "url": "https://dev.azure.com/bentleycs/UX%20Design/_boards/board/t/iTwinUI/Backlog%20items",
+  "email": "3b7617b6.bentley.onmicrosoft.com@amer.teams.ms",
   "keywords": [
     "css",
     "sass",
@@ -25,7 +25,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn test && lint-staged"
+      "pre-commit": "yarn lint && lint-staged"
     }
   },
   "lint-staged": {
@@ -39,18 +39,19 @@
     "build:scss": "cpx \"./src/**/*.scss\" ./lib/scss",
     "build:css": "tsc ./scripts/src/compile.ts --outDir ./scripts/ && node ./scripts/compile.js",
     "build:jss": "tsc ./scripts/src/makeJss.ts --outDir ./scripts && node ./scripts/makeJss.js lib/css lib/jss",
-    "watch": "chokidar \"{src,scripts/src,backstop/tests}/**/*\" -c \"yarn build\" --initial",
+    "watch": "chokidar \"{src,scripts/src}/**/*\" -c \"yarn build\" --initial",
     "copy-files": "cpx package.json lib && cpx README.md lib",
-    "clean": "rimraf ./lib ./tests/results/bitmaps_test ./tests/results/engine_scripts",
+    "clean": "rimraf ./lib ./backstop/results/bitmaps_test",
     "lint": "node ./scripts/lint.js",
     "pretty": "prettier --config .prettierrc --write",
     "approve": "backstop --config=./backstop/backstop.js approve",
-    "test": "yarn build && backstop --config=./backstop/backstop.js test --docker",
+    "test": "yarn build && yarn test:ci",
+    "test:ci": "backstop --config=./backstop/backstop.js test --docker",
     "bump": "bump --prompt --all --commit --no-verify",
-    "develop": "yarn build && backstop --config=./backstop/backstop.js test --filter"
+    "develop": "yarn build && yarn test:ci --filter"
   },
   "devDependencies": {
-    "backstopjs": "^4.0.3",
+    "backstopjs": "^5.1.0",
     "chokidar-cli": "^1.2.2",
     "compare-versions": "^3.4.0",
     "cpx": "^1.5.0",

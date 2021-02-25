@@ -1,29 +1,24 @@
-const scenarios = require('./scenarios')
+const scenarios = require('./scenarios');
 
 const config = {
-  id: 'Bentley Web Components',
+  id: 'iTwinUI',
   engineOptions: {
     args: ['--no-sandbox'],
   },
   viewports: [
-    {
-      label: 'phone',
-      width: 320,
-      height: 480,
-    },
     {
       label: 'desktop',
       width: 1920,
       height: 1080,
     },
   ],
-  onBeforeScript: '',
-  onReadyScript: '',
+  onBeforeScript: 'puppet/onBefore.js',
+  onReadyScript: 'puppet/onReady.js',
   scenarios: scenarios,
   paths: {
     bitmaps_reference: 'backstop/results/bitmaps_reference',
     bitmaps_test: 'backstop/results/bitmaps_test',
-    engine_scripts: 'backstop/results/engine_scripts',
+    engine_scripts: 'backstop/engine_scripts',
     html_report: 'backstop/results/html_report',
     ci_report: 'backstop/results/ci_report',
   },

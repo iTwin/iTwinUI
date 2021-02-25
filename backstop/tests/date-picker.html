@@ -12,10 +12,10 @@
         var calendarElement = document.getElementsByClassName(
           'iui-date-picker-calendar',
         )[0]
-        if (calendarElement.style.display === 'none') {
-          calendarElement.style.display = 'block'
-        } else {
+        if (calendarElement.style.display === 'block') {
           calendarElement.style.display = 'none'
+        } else {
+          calendarElement.style.display = 'block'
         }
       }
     </script>
@@ -29,6 +29,7 @@
 
     <div class="iui-date-picker">
       <button
+        id="date-picker-toggle"
         class="iui-buttons-default iui-buttons-no-label"
         type="button"
         role="calendar-open"

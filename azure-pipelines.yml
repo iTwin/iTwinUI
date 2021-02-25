@@ -13,9 +13,9 @@ jobs:
   - checkout: self
     persistCredentials: True
   - task: NodeTool@0
-    displayName: Use Node 10.15.x
+    displayName: Use Node 10.19.x
     inputs:
-      versionSpec: 10.15.x
+      versionSpec: 10.19.x
   - task: YarnInstaller@2
     displayName: Use Yarn 1.x
   - task: npmAuthenticate@0
@@ -32,6 +32,27 @@ jobs:
     displayName: Yarn build
     inputs:
       Arguments: build
+  - task: DockerInstaller@0
+    inputs:
+      dockerVersion: '17.09.0-ce'
+  - task: Yarn@2
+    displayName: Yarn test
+    inputs:
+      Arguments: test:ci
+  - task: PublishTestResults@2
+    displayName: Publish test results
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/xunit.xml'
+      searchFolder: '$(System.DefaultWorkingDirectory)/backstop/results/ci_report'
+  - task: PublishPipelineArtifact@1
+    displayName: Publish test results artifact
+    condition: succeededOrFailed()
+    inputs:
+      targetPath: '$(System.DefaultWorkingDirectory)/backstop/results/'
+      artifact: 'backstop.js test results'
+      publishLocation: 'pipeline'
   - task: PowerShell@2
     displayName: Get package server version
     inputs:
