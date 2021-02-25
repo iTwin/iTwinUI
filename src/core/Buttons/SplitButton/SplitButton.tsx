@@ -4,7 +4,7 @@ import React from 'react';
 import { Button, ButtonProps } from '../';
 import { DropdownMenu } from '../../DropdownMenu';
 import { Position } from '../../../utils';
-import { SvgCaretDown2 } from '@bentley/icons-generic-react';
+import { SvgCaretDown2, SvgCaretUp2 } from '@bentley/icons-generic-react';
 
 import { useTheme } from '../../utils/hooks/useTheme';
 import '@bentley/itwinui/css/buttons.css';
@@ -57,6 +57,8 @@ export const SplitButton = (props: SplitButtonProps) => {
 
   useTheme();
 
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   const [menuWidth, setMenuWidth] = React.useState(0);
   const ref = React.useRef<HTMLSpanElement>(null);
 
@@ -80,9 +82,15 @@ export const SplitButton = (props: SplitButtonProps) => {
         position={menuPosition}
         menuItems={menuItems}
         style={{ minWidth: menuWidth }}
+        onOpen={() => setIsMenuOpen(true)}
+        onClose={() => setIsMenuOpen(false)}
       >
         <Button className='iui-buttons-split' styleType={styleType} size={size}>
-          <SvgCaretDown2 className='iui-buttons-icon' />
+          {isMenuOpen ? (
+            <SvgCaretUp2 className='iui-buttons-icon' />
+          ) : (
+            <SvgCaretDown2 className='iui-buttons-icon' />
+          )}
         </Button>
       </DropdownMenu>
     </span>

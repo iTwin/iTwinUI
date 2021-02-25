@@ -5,9 +5,16 @@ export type { AlertProps } from './Alert';
 export { Badge } from './Badge';
 export type { BadgeProps } from './Badge';
 
-export { Button, IconButton, IdeasButton, SplitButton } from './Buttons';
+export {
+  Button,
+  DropdownButton,
+  IconButton,
+  IdeasButton,
+  SplitButton,
+} from './Buttons';
 export type {
   ButtonProps,
+  DropdownButtonProps,
   IconButtonProps,
   IdeasButtonProps,
   SplitButtonProps,

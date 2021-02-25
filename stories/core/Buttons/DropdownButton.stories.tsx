@@ -2,23 +2,22 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
-import { MenuItem, SplitButton, SplitButtonProps } from '../../../src/core';
-import { Position } from '../../../src/utils';
+import {
+  MenuItem,
+  DropdownButton,
+  DropdownButtonProps,
+} from '../../../src/core';
 
 export default {
-  title: 'Buttons/SplitButton',
-  component: SplitButton,
+  title: 'Buttons/DropdownButton',
+  component: DropdownButton,
   argTypes: {
-    menuPosition: {
-      control: { type: 'select', options: Position },
-      defaultValue: Position.BOTTOM_RIGHT,
-    },
     style: { table: { disable: true } },
     className: { table: { disable: true } },
   },
-} as Meta<SplitButtonProps>;
+} as Meta<DropdownButtonProps>;
 
-export const Basic: Story<SplitButtonProps> = (args) => {
+export const Basic: Story<DropdownButtonProps> = (args) => {
   const onClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
@@ -37,18 +36,12 @@ export const Basic: Story<SplitButtonProps> = (args) => {
   ];
 
   return (
-    <SplitButton
-      onClick={action('Primary button clicked!')}
-      menuItems={menuItems}
-      styleType='default'
-      {...args}
-    >
+    <DropdownButton menuItems={menuItems} {...args}>
       {args.children}
-    </SplitButton>
+    </DropdownButton>
   );
 };
 
 Basic.args = {
   children: 'Default',
-  styleType: 'default',
 };
