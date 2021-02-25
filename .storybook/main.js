@@ -1,4 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+const WebpackPluginFailBuildOnWarning = require('./webpack-plugin-fail-build-on-warning');
+
 module.exports = {
   stories: [
     '../stories/intro/*.stories.tsx',
@@ -23,4 +25,10 @@ module.exports = {
     },
     '@storybook/addon-actions',
   ],
+  webpackFinal: async (config, { configType }) => {
+    if (configType === 'PRODUCTION') {
+      config.plugins.push(new WebpackPluginFailBuildOnWarning());
+    }
+    return config;
+  }
 };
