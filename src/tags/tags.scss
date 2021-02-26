@@ -15,7 +15,9 @@
   user-select: all;
   cursor: default;
   font-size: $iui-font-size;
+
   @include iui-font-family;
+
   @include themed {
     border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     background-color: t(iui-color-background-1);
@@ -35,6 +37,7 @@
     width: $iui-icons-small;
     height: $iui-icons-small;
     cursor: pointer;
+
     @include themed {
       color: t(iui-icons-color-actionable);
       fill: t(iui-icons-color-actionable);
@@ -67,6 +70,7 @@
       span#{&} {
         cursor: text;
         user-select: all;
+
         @include themed {
           color: t(iui-text-color-muted);
         }
@@ -74,6 +78,7 @@
       a#{&} {
         user-select: none;
         cursor: pointer;
+
         @include themed {
           color: t(iui-color-foreground-primary);
         }

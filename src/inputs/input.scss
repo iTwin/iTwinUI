@@ -26,6 +26,15 @@
     }
   }
 
+  &:-webkit-autofill {
+    @include iui-input-autofill;
+  }
+
+  /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+  &:autofill {
+    @include iui-input-autofill;
+  }
+
   &[disabled],
   &[readonly] {
     @include themed {
@@ -49,5 +58,17 @@
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       box-shadow: t(iui-focus-box-shadow);
     }
+  }
+}
+
+@mixin iui-input-autofill {
+  @include themed {
+    border-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-1));
+    color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-1));
+    background: linear-gradient(
+      rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+      rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+    ),
+      linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
   }
 }
