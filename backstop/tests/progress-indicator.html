@@ -17,563 +17,567 @@
     <theme-button></theme-button>
     <h1>Progress indicator</h1>
     <hr />
-    <h2>Linear</h2>
-    <div id="linear" style="width: 33vw; min-width: 300px;">
-      <div id="linear-determinate">
-        <h3>Determinate</h3><br>
-        <!-- Determinate without determinate class -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div style="width: 25%"></div>
+    <section id="demo-linear">
+      <h2>Linear</h2>
+      <div id="linear" style="width: 33vw; min-width: 300px;">
+        <div id="linear-determinate">
+          <h3>Determinate</h3><br>
+          <!-- Determinate without determinate class -->
+          <div class="iui-progress-indicator-linear">
+            <div class="iui-track">
+              <div style="width: 25%"></div>
+            </div>
           </div>
-        </div>
-        <br>
+          <br>
 
-        <!-- Determinate with determinate class -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div class="iui-determinate" style="width: 50%"></div>
+          <!-- Determinate with determinate class -->
+          <div class="iui-progress-indicator-linear">
+            <div class="iui-track">
+              <div class="iui-determinate" style="width: 50%"></div>
+            </div>
           </div>
-        </div>
-        <br>
+          <br>
 
-        <!-- Determinate with labels -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div style="width: 75%"></div>
+          <!-- Determinate with labels -->
+          <div class="iui-progress-indicator-linear">
+            <div class="iui-track">
+              <div style="width: 75%"></div>
+            </div>
+            <div class="iui-label">
+              <span>Loading iModel</span>
+              <span>75%</span>
+            </div>
           </div>
-          <div class="iui-label">
-            <span>Loading iModel</span>
-            <span>75%</span>
-          </div>
-        </div>
-        <br>
+          <br>
 
-        <!-- Determinate with success -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div class="iui-determinate" style="width: 100%"></div>
+          <!-- Determinate with success -->
+          <div class="iui-progress-indicator-linear iui-positive">
+            <div class="iui-track">
+              <div class="iui-determinate" style="width: 100%"></div>
+            </div>
           </div>
-        </div>
-        <br>
-        
-        <!-- Determinate with success & labels -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div class="iui-determinate" style="width: 100%"></div>
+          <br>
+          
+          <!-- Determinate with success & labels -->
+          <div class="iui-progress-indicator-linear iui-positive">
+            <div class="iui-track">
+              <div class="iui-determinate" style="width: 100%"></div>
+            </div>
+            <div class="iui-label">
+              <span>Upload successful!</span>
+                <!-- Use success-hollow.svg from generic-icons package. -->
+                <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="m8.00005 1.5a6.5 6.5 0 1 1 -6.5001 6.5 6.5 6.5 0 0 1 6.5001-6.5m0-1.5a8 8 0 1 0 8 8 8.02355 8.02355 0 0 0 -8-8zm-1.34905 11.9937-3.65095-3.3999 1.3959-1.3 2.3625 2.2 4.8322-4.5 1.3959 1.2999z"/>
+                </svg>
+            </div>
           </div>
-          <div class="iui-label">
-            <span>Upload successful!</span>
-              <!-- Use success-hollow.svg from generic-icons package. -->
-              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="m8.00005 1.5a6.5 6.5 0 1 1 -6.5001 6.5 6.5 6.5 0 0 1 6.5001-6.5m0-1.5a8 8 0 1 0 8 8 8.02355 8.02355 0 0 0 -8-8zm-1.34905 11.9937-3.65095-3.3999 1.3959-1.3 2.3625 2.2 4.8322-4.5 1.3959 1.2999z"/>
-              </svg>
-          </div>
-        </div>
-        <br>
+          <br>
 
-        <!-- Determinate with error -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div class="iui-determinate" style="width: 50%"></div>
+          <!-- Determinate with error -->
+          <div class="iui-progress-indicator-linear iui-negative">
+            <div class="iui-track">
+              <div class="iui-determinate" style="width: 50%"></div>
+            </div>
           </div>
+          <br>
+          
+          <!-- Determinate with error & labels -->
+          <div class="iui-progress-indicator-linear iui-negative">
+            <div class="iui-track">
+              <div class="iui-determinate" style="width: 50%"></div>
+            </div>
+            <div class="iui-label">
+              <span>Upload failed!</span>
+                <!-- Use error-hollow.svg from generic-icons package. -->
+                <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="m8 1.5a6.5 6.5 0 1 1 -6.5 6.5 6.5 6.5 0 0 1 6.5-6.5m0-1.5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
+                </svg>
+            </div>
+          </div>
+          <br>
         </div>
-        <br>
-        
-        <!-- Determinate with error & labels -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div class="iui-determinate" style="width: 50%"></div>
+
+        <div id="linear-indeterminate">
+          <h3>Indeterminate</h3><br>
+          <!-- Indeterminate -->
+          <div class="iui-progress-indicator-linear">
+            <div class="iui-track">
+              <div class="iui-indeterminate"></div>
+            </div>
           </div>
-          <div class="iui-label">
-            <span>Upload failed!</span>
-              <!-- Use error-hollow.svg from generic-icons package. -->
-              <svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="m8 1.5a6.5 6.5 0 1 1 -6.5 6.5 6.5 6.5 0 0 1 6.5-6.5m0-1.5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-              </svg>
+          <br>
+
+          <!-- Indeterminate with labels -->
+          <div class="iui-progress-indicator-linear">
+            <div class="iui-track">
+              <div class="iui-indeterminate"></div>
+            </div>
+            <div class="iui-label">
+              <span>Loading iModel</span>
+            </div>
           </div>
+          <br>
+
+          <!-- Indeterminate with success -->
+          <div class="iui-progress-indicator-linear iui-positive">
+            <div class="iui-track">
+              <div class="iui-indeterminate"></div>
+            </div>
+          </div>
+          <br>
+          
+          <!-- Indeterminate with success & labels -->
+          <div class="iui-progress-indicator-linear iui-positive">
+            <div class="iui-track">
+              <div class="iui-indeterminate"></div>
+            </div>
+            <div class="iui-label">
+              <span>Upload successful!</span>
+            </div>
+          </div>
+          <br>
+
+          <!-- Indeterminate with error -->
+          <div class="iui-progress-indicator-linear iui-negative">
+            <div class="iui-track">
+              <div class="iui-indeterminate"></div>
+            </div>
+          </div>
+          <br>
+          
+          <!-- Indeterminate with error & labels -->
+          <div class="iui-progress-indicator-linear iui-negative">
+            <div class="iui-track">
+              <div class="iui-indeterminate"></div>
+            </div>
+            <div class="iui-label">
+              <span>Upload failed!</span>
+            </div>
+          </div>
+          <br>
         </div>
-        <br>
       </div>
-
-      <div id="linear-indeterminate">
-        <h3>Indeterminate</h3><br>
-        <!-- Indeterminate -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div class="iui-indeterminate"></div>
-          </div>
-        </div>
-        <br>
-
-        <!-- Indeterminate with labels -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div class="iui-indeterminate"></div>
-          </div>
-          <div class="iui-label">
-            <span>Loading iModel</span>
-          </div>
-        </div>
-        <br>
-
-        <!-- Indeterminate with success -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div class="iui-indeterminate"></div>
-          </div>
-        </div>
-        <br>
-        
-        <!-- Indeterminate with success & labels -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div class="iui-indeterminate"></div>
-          </div>
-          <div class="iui-label">
-            <span>Upload successful!</span>
-          </div>
-        </div>
-        <br>
-
-        <!-- Indeterminate with error -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div class="iui-indeterminate"></div>
-          </div>
-        </div>
-        <br>
-        
-        <!-- Indeterminate with error & labels -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div class="iui-indeterminate"></div>
-          </div>
-          <div class="iui-label">
-            <span>Upload failed!</span>
-          </div>
-        </div>
-        <br>
-      </div>
-    </div>
+    </section>
 
     <hr />
 
-    <h2>Radial</h2>
-    <div id="radial">
-      <div id="radial-determinate">
-        <h3>Determinate</h3>
+    <section id="demo-radial">
+      <h2>Radial</h2>
+      <div id="radial">
+        <div id="radial-determinate">
+          <h3>Determinate</h3>
 
-        <p class="iui-text-small iui-text-muted">For determinate radial progress indicators, percentage is set by stroke-dashoffset: (88 - 88 * target / 100).<br />So 25% is stroke-dashoffset: 66; or stroke-dashoffset: calc(88 - 88 * 25 / 100);</p><br />
+          <p class="iui-text-small iui-text-muted">For determinate radial progress indicators, percentage is set by stroke-dashoffset: (88 - 88 * target / 100).<br />So 25% is stroke-dashoffset: 66; or stroke-dashoffset: calc(88 - 88 * 25 / 100);</p><br />
 
-        <!-- Determinate -->
-        <div class="iui-progress-indicator-radial iui-determinate">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
-            ></circle>
-          </svg>
-        </div>
-
-        <!-- Determinate with center content -->
-        <div class="iui-progress-indicator-radial iui-determinate">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">60</span>
-        </div>
-
-        <!-- Determinate with center icon -->
-        <div class="iui-progress-indicator-radial iui-determinate">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use pause.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
+          <!-- Determinate -->
+          <div class="iui-progress-indicator-radial iui-determinate">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
+              ></circle>
             </svg>
-          </span>
-        </div>
+          </div>
 
-        <!-- Determinate with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-determinate iui-positive">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use checkmark.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
-              />
+          <!-- Determinate with center content -->
+          <div class="iui-progress-indicator-radial iui-determinate">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
+              ></circle>
             </svg>
-          </span>
-        </div>
+            <span class="iui-inner-content">60</span>
+          </div>
 
-        <!-- Determinate with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-determinate iui-negative">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use important_2.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
+          <!-- Determinate with center icon -->
+          <div class="iui-progress-indicator-radial iui-determinate">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
+              ></circle>
             </svg>
-          </span>
-        </div>
+            <span class="iui-inner-content">
+              <!-- Use pause.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
+              </svg>
+            </span>
+          </div>
 
-        <!-- Small determinate -->
-        <div class="iui-progress-indicator-radial iui-determinate iui-small">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
-            ></circle>
-          </svg>
-        </div>
-
-        <!-- Small determinate with center icon -->
-        <div class="iui-progress-indicator-radial iui-determinate iui-small">
-
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use pause.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
+          <!-- Determinate with center icon & success -->
+          <div class="iui-progress-indicator-radial iui-determinate iui-positive">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(0)"
+              ></circle>
             </svg>
-          </span>
+            <span class="iui-inner-content">
+              <!-- Use checkmark.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Determinate with center icon & error -->
+          <div class="iui-progress-indicator-radial iui-determinate iui-negative">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use important_2.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
+              </svg>
+            </span>
+          </div>
+
+          <!-- Small determinate -->
+          <div class="iui-progress-indicator-radial iui-determinate iui-small">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
+              ></circle>
+            </svg>
+          </div>
+
+          <!-- Small determinate with center icon -->
+          <div class="iui-progress-indicator-radial iui-determinate iui-small">
+
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use pause.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Small determinate with center icon & success -->
+          <div class="iui-progress-indicator-radial iui-determinate iui-small iui-positive">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(0)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use checkmark.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Small determinate with center icon & error -->
+          <div class="iui-progress-indicator-radial iui-determinate iui-small iui-negative">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use important_2.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
+              </svg>
+            </span>
+          </div>
         </div>
 
-        <!-- Small determinate with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-determinate iui-small iui-positive">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use checkmark.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
-              />
+        <div id="radial-indeterminate">
+          <h3>Indeterminate</h3><br>
+          <!-- Indeterminate -->
+          <div class="iui-progress-indicator-radial iui-indeterminate">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle class="iui-fill" cx="16" cy="16" r="14"></circle>
             </svg>
-          </span>
-        </div>
+          </div>
 
-        <!-- Small determinate with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-determinate iui-small iui-negative">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use important_2.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
+          <!-- Indeterminate with center content -->
+          <div class="iui-progress-indicator-radial iui-indeterminate">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle class="iui-fill" cx="16" cy="16" r="14"></circle>
             </svg>
-          </span>
+            <span class="iui-inner-content">&hellip;</span>
+          </div>
+
+          <!-- Indeterminate with center icon -->
+          <div class="iui-progress-indicator-radial iui-indeterminate">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(0)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use pause.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Indeterminate with center icon & success -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-positive">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(0)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use checkmark.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Indeterminate with center icon & error -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-negative">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use important_2.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
+              </svg>
+            </span>
+          </div>
+
+          <!-- Small indeterminate -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle class="iui-fill" cx="16" cy="16" r="14"></circle>
+            </svg>
+          </div>
+
+          <!-- Small indeterminate with center icon -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(0)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use pause.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Small indeterminate with center icon & success -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-positive">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(0)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use checkmark.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Small indeterminate with center icon & error -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-negative">
+            <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
+              <circle class="iui-track" cx="16" cy="16" r="14"></circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
+              ></circle>
+            </svg>
+            <span class="iui-inner-content">
+              <!-- Use important_2.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
+              </svg>
+            </span>
+          </div>
+
+          <h4>IE specific</h4>
+          <!-- Indeterminate & IE safe -->
+          <div class="iui-progress-indicator-radial iui-indeterminate">
+            <span class="iui-progress-indicator-radial-ie"></span>
+          </div>
+
+          <!-- Indeterminate & IE safe with center content -->
+          <div class="iui-progress-indicator-radial iui-indeterminate">
+            <span class="iui-progress-indicator-radial-ie"></span>
+            <span class="iui-inner-content">&hellip;</span>
+          </div>
+
+          <!-- Indeterminate & IE safe with center icon -->
+          <div class="iui-progress-indicator-radial iui-indeterminate">
+            <span class="iui-progress-indicator-radial-ie"></span>
+            <span class="iui-inner-content">
+              <!-- Use pause.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Indeterminate & IE safe with center icon & success -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-positive">
+            <span class="iui-progress-indicator-radial-ie"></span>
+            <span class="iui-inner-content">
+              <!-- Use checkmark.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Indeterminate & IE safe with center icon & error -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-negative">
+            <span class="iui-progress-indicator-radial-ie"></span>
+            <span class="iui-inner-content">
+              <!-- Use important_2.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
+              </svg>
+            </span>
+          </div>
+
+          <!-- Small indeterminate & IE safe -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
+            <span class="iui-progress-indicator-radial-ie"></span>
+          </div>
+
+          <!-- Small indeterminate & IE safe with center icon -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
+            <span class="iui-progress-indicator-radial-ie"></span>
+            <span class="iui-inner-content">
+              <!-- Use pause.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Small indeterminate & IE safe with center icon & success -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-positive">
+            <span class="iui-progress-indicator-radial-ie"></span>
+            <span class="iui-inner-content">
+              <!-- Use checkmark.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Small indeterminate & IE safe with center icon & error -->
+          <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-negative">
+            <span class="iui-progress-indicator-radial-ie"></span>
+            <span class="iui-inner-content">
+              <!-- Use important_2.svg from generic-icons package. -->
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
+              </svg>
+            </span>
+          </div>
+
         </div>
       </div>
-
-      <div id="radial-indeterminate">
-        <h3>Indeterminate</h3><br>
-        <!-- Indeterminate -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle class="iui-fill" cx="16" cy="16" r="14"></circle>
-          </svg>
-        </div>
-
-        <!-- Indeterminate with center content -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle class="iui-fill" cx="16" cy="16" r="14"></circle>
-          </svg>
-          <span class="iui-inner-content">&hellip;</span>
-        </div>
-
-        <!-- Indeterminate with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use pause.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-            </svg>
-          </span>
-        </div>
-
-        <!-- Indeterminate with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-positive">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use checkmark.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
-              />
-            </svg>
-          </span>
-        </div>
-
-        <!-- Indeterminate with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-negative">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use important_2.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
-            </svg>
-          </span>
-        </div>
-
-        <!-- Small indeterminate -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle class="iui-fill" cx="16" cy="16" r="14"></circle>
-          </svg>
-        </div>
-
-        <!-- Small indeterminate with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use pause.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-            </svg>
-          </span>
-        </div>
-
-        <!-- Small indeterminate with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-positive">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use checkmark.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
-              />
-            </svg>
-          </span>
-        </div>
-
-        <!-- Small indeterminate with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-negative">
-          <svg class="iui-radial" viewBox="0 0 32 32" aria-hidden="true">
-            <circle class="iui-track" cx="16" cy="16" r="14"></circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100)"
-            ></circle>
-          </svg>
-          <span class="iui-inner-content">
-            <!-- Use important_2.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
-            </svg>
-          </span>
-        </div>
-
-        <h4>IE specific</h4>
-        <!-- Indeterminate & IE safe -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <span class="iui-progress-indicator-radial-ie"></span>
-        </div>
-
-        <!-- Indeterminate & IE safe with center content -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">&hellip;</span>
-        </div>
-
-        <!-- Indeterminate & IE safe with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <!-- Use pause.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-            </svg>
-          </span>
-        </div>
-
-        <!-- Indeterminate & IE safe with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-positive">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <!-- Use checkmark.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
-              />
-            </svg>
-          </span>
-        </div>
-
-        <!-- Indeterminate & IE safe with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-negative">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <!-- Use important_2.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
-            </svg>
-          </span>
-        </div>
-
-        <!-- Small indeterminate & IE safe -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
-          <span class="iui-progress-indicator-radial-ie"></span>
-        </div>
-
-        <!-- Small indeterminate & IE safe with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <!-- Use pause.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-            </svg>
-          </span>
-        </div>
-
-        <!-- Small indeterminate & IE safe with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-positive">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <!-- Use checkmark.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M6,13.4L1.3,8.7l1.4-1.4L6,10.6l7.3-7.3l1.4,1.4L6,13.4z"
-              />
-            </svg>
-          </span>
-        </div>
-
-        <!-- Small indeterminate & IE safe with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-negative">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <!-- Use important_2.svg from generic-icons package. -->
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"/>
-            </svg>
-          </span>
-        </div>
-
-      </div>
-    </div>
+    </section>
   </body>
 </html>

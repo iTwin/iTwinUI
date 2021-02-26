@@ -1,5 +1,10 @@
-const { scenario } = require('../scenarioHelper');
+const { scenario } = require('../scenarioHelper')
 
 module.exports = [
-  scenario('basic'),
-];
+  scenario('default', {
+    selectors: ['#demo-default'],
+  }),
+  scenario('no-label', {
+    selectors: ['#demo-no-label'],
+  }),
+]

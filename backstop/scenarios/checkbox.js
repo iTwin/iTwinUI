@@ -1,5 +1,14 @@
-const { scenario } = require('../scenarioHelper');
+const { scenario } = require('../scenarioHelper')
 
 module.exports = [
-  scenario('basic', { hideSelectors: ['.iui-indeterminate'] }),
-];
+  scenario('default', {
+    selectors: ['#demo-default'],
+  }),
+  scenario('inline', {
+    selectors: ['#demo-inline'],
+  }),
+  scenario('no-label', {
+    selectors: ['#demo-no-label'],
+    hideSelectors: ['.iui-indeterminate'],
+  }),
+]

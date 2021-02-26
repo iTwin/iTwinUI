@@ -36,3 +36,8 @@ html.custom-theme {
   --iui-color-foreground-accessory-rgb: 0, 255, 0;
   --iui-color-foreground-primary-rgb: 0, 0, 255;
 }
+
+/** For sections in backstop tests */
+section[id^='demo'] {
+  width: fit-content;
+}

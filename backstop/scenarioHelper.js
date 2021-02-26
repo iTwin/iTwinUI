@@ -14,7 +14,7 @@ function scenario(testCase, options = {}) {
     selectors: ['html'],
     selectorExpansion: true,
     expect: 0,
-    misMatchThreshold: 0.01,
+    misMatchThreshold: 0.001,
     requireSameDimensions: true,
   }, options);
 }
