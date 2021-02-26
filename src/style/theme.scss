@@ -73,9 +73,9 @@ $iui-text-color-placeholder--light: rgba(
 
 // Light theme > Focus color
 $iui-focus-box-shadow--light: rgba(
-    $iui-color-foreground-primary--light,
-    $iui-opacity-5--light
-  )
+  $iui-color-foreground-primary--light,
+  $iui-opacity-5--light
+)
   0 0 0 2px;
 
 // Light theme > Icon colors
@@ -175,9 +175,9 @@ $iui-text-color-placeholder--dark: rgba(
 
 // Dark theme > Focus color
 $iui-focus-box-shadow--dark: rgba(
-    $iui-color-foreground-primary--dark,
-    $iui-opacity-5--dark
-  )
+  $iui-color-foreground-primary--dark,
+  $iui-opacity-5--dark
+)
   0 0 0 2px;
 
 // Dark theme > Icon colors
@@ -223,17 +223,17 @@ $themes: (
     iui-color-foreground-warning: $iui-color-foreground-warning--light,
     iui-color-background-1-overlay: $iui-color-background-1-overlay--light,
     iui-color-background-primary-overlay:
-      $iui-color-background-primary-overlay--light,
+    $iui-color-background-primary-overlay--light,
     iui-color-background-positive-overlay:
-      $iui-color-background-positive-overlay--light,
+    $iui-color-background-positive-overlay--light,
     iui-color-foreground-primary-overlay:
-      $iui-color-foreground-primary-overlay--light,
+    $iui-color-foreground-primary-overlay--light,
     iui-color-foreground-positive-overlay:
-      $iui-color-foreground-positive-overlay--light,
+    $iui-color-foreground-positive-overlay--light,
     iui-color-foreground-warning-overlay:
-      $iui-color-foreground-warning-overlay--light,
+    $iui-color-foreground-warning-overlay--light,
     iui-color-foreground-negative-overlay:
-      $iui-color-foreground-negative-overlay--light,
+    $iui-color-foreground-negative-overlay--light,
     iui-opacity-1: $iui-opacity-1--light,
     iui-opacity-2: $iui-opacity-2--light,
     iui-opacity-3: $iui-opacity-3--light,
@@ -248,7 +248,7 @@ $themes: (
     iui-icons-color-actionable: $iui-icons-color-actionable--light,
     iui-icons-color-actionable-hover: $iui-icons-color-actionable-hover--light,
     iui-icons-color-actionable-disabled:
-      $iui-icons-color-actionable-disabled--light,
+    $iui-icons-color-actionable-disabled--light,
     iui-icons-color-primary: $iui-icons-color-primary--light,
     iui-icons-color-positive: $iui-icons-color-positive--light,
     iui-icons-color-negative: $iui-icons-color-negative--light,
@@ -273,17 +273,17 @@ $themes: (
     iui-color-foreground-warning: $iui-color-foreground-warning--dark,
     iui-color-background-1-overlay: $iui-color-background-1-overlay--dark,
     iui-color-background-primary-overlay:
-      $iui-color-background-primary-overlay--dark,
+    $iui-color-background-primary-overlay--dark,
     iui-color-background-positive-overlay:
-      $iui-color-background-positive-overlay--dark,
+    $iui-color-background-positive-overlay--dark,
     iui-color-foreground-primary-overlay:
-      $iui-color-foreground-primary-overlay--dark,
+    $iui-color-foreground-primary-overlay--dark,
     iui-color-foreground-positive-overlay:
-      $iui-color-foreground-positive-overlay--dark,
+    $iui-color-foreground-positive-overlay--dark,
     iui-color-foreground-warning-overlay:
-      $iui-color-foreground-warning-overlay--dark,
+    $iui-color-foreground-warning-overlay--dark,
     iui-color-foreground-negative-overlay:
-      $iui-color-foreground-negative-overlay--dark,
+    $iui-color-foreground-negative-overlay--dark,
     iui-opacity-1: $iui-opacity-1--dark,
     iui-opacity-2: $iui-opacity-2--dark,
     iui-opacity-3: $iui-opacity-3--dark,
@@ -298,7 +298,7 @@ $themes: (
     iui-icons-color-actionable: $iui-icons-color-actionable--dark,
     iui-icons-color-actionable-hover: $iui-icons-color-actionable-hover--dark,
     iui-icons-color-actionable-disabled:
-      $iui-icons-color-actionable-disabled--dark,
+    $iui-icons-color-actionable-disabled--dark,
     iui-icons-color-primary: $iui-icons-color-primary--dark,
     iui-icons-color-positive: $iui-icons-color-positive--dark,
     iui-icons-color-negative: $iui-icons-color-negative--dark,
@@ -309,26 +309,26 @@ $themes: (
 // Overrides of $themes used when creating CSS variables
 $cssVariables: (
   iui-text-color:
-    rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2)),
+  rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2)),
   iui-text-color-muted:
-    rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4)),
+  rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4)),
   iui-text-color-placeholder:
-    rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5)),
+  rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5)),
   iui-focus-box-shadow:
-    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5)) 0 0 0
-    2px,
+  rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5)) 0 0 0
+  2px,
   iui-icons-color-primary: var(--iui-color-foreground-primary),
   iui-icons-color-positive: var(--iui-color-foreground-positive),
   iui-icons-color-negative: var(--iui-color-foreground-negative),
   iui-icons-color-warning: var(--iui-color-foreground-warning),
   iui-icons-color:
-    rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4)),
+  rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4)),
   iui-icons-color-actionable:
-    rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2)),
+  rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2)),
   iui-icons-color-actionable-hover:
-    rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1)),
+  rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1)),
   iui-icons-color-actionable-disabled:
-    rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5)),
+  rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5)),
 );
 
 @function getfallbackvars() {
@@ -357,12 +357,16 @@ $fallbackvars: getfallbackvars();
       $cssVarValue: map-get($cssVariables, $key);
 
       --#{$key}: #{$cssVarValue};
-    } @else if (type-of($value) == color) {
+    }
+
+    @else if (type-of($value) == color) {
       $rgbVal: hextorgb($value);
 
       --#{$key}-rgb: #{$rgbVal};
       --#{$key}: rgb(var(--#{$key}-rgb));
-    } @else {
+    }
+
+    @else {
       --#{$key}: #{$value};
     }
   }

@@ -64,8 +64,8 @@
     "prettier-stylelint": "^0.4.2",
     "rimraf": "^2.6.2",
     "run-func": "^1.0.2",
-    "stylelint": "^9.9.0",
-    "stylelint-scss": "^3.4.0",
+    "stylelint": "^13.10.0",
+    "stylelint-scss": "^3.19.0",
     "typescript": "^3.3.3333",
     "version-bump-prompt": "^4.3.0"
   }

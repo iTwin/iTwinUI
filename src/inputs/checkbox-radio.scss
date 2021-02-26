@@ -87,11 +87,7 @@
 
   // Show check, partial, or dot depending on type
   & input:checked ~ .iui-checkbox-checkmark > svg > path.iui-check,
-  &
-    input:indeterminate
-    ~ .iui-checkbox-checkmark
-    > svg
-    > path.iui-check-partial,
+  & input:indeterminate ~ .iui-checkbox-checkmark > svg > path.iui-check-partial,
   & input:checked ~ .iui-radio-dot > svg > circle {
     opacity: 1;
     transition: opacity $iui-speed-fast ease;

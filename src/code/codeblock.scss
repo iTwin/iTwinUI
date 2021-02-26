@@ -24,7 +24,9 @@
       background-color: transparent;
       padding: round($iui-baseline/2) $iui-sm;
       cursor: pointer;
+
       @include iui-focus;
+
       @include themed {
         color: t(iui-text-color);
       }
@@ -50,7 +52,9 @@
     border-radius: 0 0 $iui-border-radius $iui-border-radius;
     font-family: $iui-monospace;
     white-space: normal;
+
     @include iui-focus;
+
     @include themed {
       border: 1px solid t(iui-color-background-3);
     }

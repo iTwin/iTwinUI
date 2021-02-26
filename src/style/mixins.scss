@@ -25,15 +25,19 @@
 @mixin iui-focus {
   &:focus {
     outline: 0;
+
     @include themed {
       box-shadow: t(iui-focus-box-shadow);
     }
   }
+
   &:focus:not(:focus-visible) {
     box-shadow: none;
   }
+
   &:focus-visible {
     outline: 0;
+
     @include themed {
       box-shadow: t(iui-focus-box-shadow);
     }

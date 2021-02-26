@@ -45,7 +45,9 @@ $iui-font-loaded-class: null !default;
         font-family: $iui-font-family;
       }
     }
-  } @else {
+  }
+
+  @else {
     font-family: $iui-font-family;
   }
 }

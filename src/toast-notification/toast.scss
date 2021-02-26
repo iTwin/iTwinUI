@@ -15,7 +15,7 @@
   @include themed {
     background-color: t(iui-color-background-1);
     box-shadow: 0 0 0 1px
-        rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4)),
+      rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4)),
       $iui-elevation-24;
   }
   border-radius: $iui-border-radius;

@@ -130,6 +130,9 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true
+  },
   "prettier.singleQuote": true,
   "prettier.semi": false,
   "prettier.trailingComma": "all",
