@@ -23,3 +23,33 @@
 .iui-icons-3xl {
   @include iui-icons-3xl;
 }
+
+.iui-muted {
+  @include themed {
+    fill: t(iui-icons-color);
+  }
+}
+
+.iui-primary {
+  @include themed {
+    fill: t(iui-icons-color-primary);
+  }
+}
+
+.iui-positive {
+  @include themed {
+    fill: t(iui-icons-color-positive);
+  }
+}
+
+.iui-warning {
+  @include themed {
+    fill: t(iui-icons-color-warning);
+  }
+}
+
+.iui-negative {
+  @include themed {
+    fill: t(iui-icons-color-negative);
+  }
+}
