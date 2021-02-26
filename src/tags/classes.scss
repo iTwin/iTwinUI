@@ -4,10 +4,6 @@
   @include iui-tag;
 }
 
-.iui-tag-text {
-  @include iui-tag-text;
-}
-
-.iui-tag-close-icon {
-  @include iui-tag-close-icon;
+.iui-tag-container {
+  @include iui-tag-container;
 }

@@ -15,13 +15,37 @@
   user-select: all;
   cursor: default;
   font-size: $iui-font-size;
-
   @include iui-font-family;
-
   @include themed {
     border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     background-color: t(iui-color-background-1);
     color: t(iui-text-color);
+  }
+
+  > .iui-tag-text {
+    @include iui-text;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  > .iui-tag-close-icon {
+    margin-left: $iui-s;
+    min-width: $iui-icons-small;
+    width: $iui-icons-small;
+    height: $iui-icons-small;
+    cursor: pointer;
+    @include themed {
+      color: t(iui-icons-color-actionable);
+      fill: t(iui-icons-color-actionable);
+    }
+
+    &:hover {
+      @include themed {
+        color: t(iui-icons-color-actionable-hover);
+        fill: t(iui-icons-color-actionable-hover);
+      }
+    }
   }
 
   &:hover {
@@ -31,31 +55,39 @@
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
     }
   }
+
+  &.iui-basic {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    border: none;
+
+    @at-root {
+      span#{&} {
+        cursor: text;
+        user-select: all;
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
+      }
+      a#{&} {
+        user-select: none;
+        cursor: pointer;
+        @include themed {
+          color: t(iui-color-foreground-primary);
+        }
+      }
+    }
+  }
 }
 
-@mixin iui-tag-text {
-  @include iui-text;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-@mixin iui-tag-close-icon {
-  margin-left: $iui-s;
-  min-width: $iui-icons-small;
-  width: $iui-icons-small;
-  height: $iui-icons-small;
-  cursor: pointer;
-
-  @include themed {
-    color: t(iui-icons-color-actionable);
-    fill: t(iui-icons-color-actionable);
+@mixin iui-tag-container {
+  > .iui-tag:not(:last-child) {
+    margin-right: $iui-xs;
   }
 
-  &:hover {
-    @include themed {
-      color: t(iui-icons-color-actionable-hover);
-      fill: t(iui-icons-color-actionable-hover);
-    }
+  > .iui-basic:not(:last-child)::after {
+    content: ',';
   }
 }
