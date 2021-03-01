@@ -33,11 +33,11 @@
     width: $iui-icons-default;
     height: $iui-icons-default;
     margin-left: 0;
-    margin-right: $iui-xs;
+    margin-right: $iui-s;
     transition: fill $iui-speed-fast ease-out;
 
     &.right {
-      margin-left: $iui-xs;
+      margin-left: $iui-s;
       margin-right: 0;
     }
   }

@@ -134,7 +134,7 @@
     "source.fixAll.stylelint": true
   },
   "prettier.singleQuote": true,
-  "prettier.semi": false,
+  "prettier.semi": true,
   "prettier.trailingComma": "all",
   "prettier.disableLanguages": ["vue", "markdown"],
   "prettier.jsxSingleQuote": true,

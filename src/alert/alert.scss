@@ -19,7 +19,7 @@
     display: inline-block;
     position: relative;
     top: 3px;
-    margin-right: $iui-sm;
+    margin-right: $iui-m;
     width: $iui-icons-default;
     height: $iui-icons-default;
 
@@ -35,7 +35,7 @@
   }
 
   > a {
-    margin-left: $iui-xs;
+    margin-left: $iui-s;
 
     &:focus-visible {
       outline: 0;

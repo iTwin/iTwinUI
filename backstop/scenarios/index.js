@@ -10,7 +10,7 @@ fs.readdirSync('backstop/scenarios/').forEach(file => {
   const newScenarios = require(`./${fileName}`);
   newScenarios.forEach(scenario => {
     scenario.label = `${fileName}_${scenario.label}`;
-    scenario.url = `./backstop/tests/${fileName}.html`;
+    scenario.url = `./backstop/minified/${fileName}.html`;
   });
   scenarios = scenarios.concat(newScenarios);
 });

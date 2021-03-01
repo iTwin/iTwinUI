@@ -12,6 +12,10 @@ backstop/results/html_report/*
 lib
 lib/*
 
+# Minified Files
+backstop/minified
+backstop/minified/*
+
 # Node
 node_modules
 node_modules/*

@@ -7,170 +7,308 @@
     <link rel="stylesheet" href="../../lib/css/location-marker.css" />
     <link rel="stylesheet" href="../assets/demo.css" />
     <script src="../assets/theme.js"></script>
+
+    <style>
+      section .iui-location-marker-default,
+      section .iui-location-marker-data-rich {
+        margin-right: 4px;
+      }
+    </style>
   </head>
   <body>
     <theme-button></theme-button>
     <h1>Location Marker</h1>
     <hr />
-    <h2 id="default">Default</h2>
 
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#6AB9EC" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#B1C854" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#F7706C" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#4585A5" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#FFC335" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#F7963E" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#73C7C1" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#85A9CF" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#A3779F" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#C8C2B4" />
-      </svg>
-    </div>
-    <div class="iui-location-marker-default">
-      <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
-        <path class="iui-location-marker-default-pin-dot" d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z" />
-        <path class="iui-location-marker-default-color" d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z" fill="#A47854" />
-      </svg>
-    </div>
+    <section id="demo-default">
+      <h2 id="default">Default</h2>
 
-    <br><br>
-
-    <h2 id="data-rich">Data-rich</h2>
-
-    <div class="iui-location-marker-data-rich">
-      <div class="iui-location-marker-data-rich-body" style="background-color: #6AB9EC;">A</div>
-      <div class="iui-location-marker-data-rich-arrow"></div>
-    </div>
-    <div class="iui-location-marker-data-rich">
-      <div class="iui-location-marker-data-rich-body" style="background-color: #B1C854;">+9</div>
-      <div class="iui-location-marker-data-rich-arrow"></div>
-    </div>
-    <div class="iui-location-marker-data-rich">
-      <div class="iui-location-marker-data-rich-body" style="background-color: #F7706C;">
-        <!-- Use placeholder.svg from generic-icons package. -->
-        <svg class="iui-location-marker-data-rich-icon iui-location-marker-data-rich-icon-monochrome" aria-hidden="true" viewBox="0 0 16 16">
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
           <path
-            d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#6AB9EC"
           />
         </svg>
       </div>
-      <div class="iui-location-marker-data-rich-arrow"></div>
-    </div>
-    <div class="iui-location-marker-data-rich">
-      <div class="iui-location-marker-data-rich-body" style="background-color: #4585A5;">
-        <!-- Use placeholder.svg from generic-icons package. -->
-        <svg class="iui-location-marker-data-rich-icon iui-location-marker-data-rich-icon-monochrome" aria-hidden="true" viewBox="0 0 16 16">
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
           <path
-            d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#B1C854"
           />
         </svg>
-        123
       </div>
-      <div class="iui-location-marker-data-rich-arrow"></div>
-    </div>
-    <br><br>
-    <div class="demo-striped-background" style="padding: 24px;">
-      <h3>Alarms</h3>
-      <br>
-      <div class="iui-location-marker-data-rich">
-        <div class="iui-location-marker-data-rich-body">
-          <!-- Use alarm-early-warning.svg from generic-icons package. -->
-          <svg class="iui-location-marker-data-rich-icon" aria-hidden="true" viewBox="0 0 16 16">
-            <circle cx="8" cy="8" fill="#0ff" r="6.5"/>
-            <path d="m8 2a6 6 0 1 1 -6 6 6.0068 6.0068 0 0 1 6-6m0-1a7 7 0 1 0 7 7 7 7 0 0 0 -7-7zm1 11h-2v-2h2zm0-8h-2v4.66667h2z"/>
-          </svg>
-        </div>
-        <div class="iui-location-marker-data-rich-arrow"></div>
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
+          <path
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#F7706C"
+          />
+        </svg>
       </div>
-      <div class="iui-location-marker-data-rich">
-        <div class="iui-location-marker-data-rich-body">
-          <!-- Use alarm-warning.svg from generic-icons package. -->
-          <svg class="iui-location-marker-data-rich-icon" aria-hidden="true" viewBox="0 0 16 16">
-            <path d="m.5 14.531h15l-7.5-14.062z" fill="#fff200"/>
-            <path d="m8 2.125 6.33334 11.875h-12.66668zm0-2.125-8 15h16zm1 13h-2v-2h2zm0-8h-2v4.66667h2z"/>
-          </svg>
-        </div>
-        <div class="iui-location-marker-data-rich-arrow"></div>
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
+          <path
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#4585A5"
+          />
+        </svg>
       </div>
-      <div class="iui-location-marker-data-rich">
-        <div class="iui-location-marker-data-rich-body">
-          <!-- Use alarm-alarm.svg from generic-icons package. -->
-          <svg class="iui-location-marker-data-rich-icon" aria-hidden="true" viewBox="0 0 16 16">
-            <path d="m1.5 1.5h13v13h-13z" fill="#f60"/>
-            <path d="m14 2v12h-12v-12zm1-1h-14v14h14zm-8 11h-2v-2h2zm0-8h-2v4.66667h2zm4 8h-2v-2h2zm0-8h-2v4.66667h2z"/>
-          </svg>
-        </div>
-        <div class="iui-location-marker-data-rich-arrow"></div>
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
+          <path
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#FFC335"
+          />
+        </svg>
       </div>
-      <div class="iui-location-marker-data-rich">
-        <div class="iui-location-marker-data-rich-body">
-          <!-- Use alarm-critical-alarm.svg from generic-icons package. -->
-          <svg class="iui-location-marker-data-rich-icon" aria-hidden="true" viewBox="0 0 16 16">
-            <path d="m2.6967 2.6967h10.6066v10.6066h-10.6066z" fill="#ed1c24" transform="matrix(.70710678 .70710678 -.70710678 .70710678 8 -3.31371)"/>
-            <path d="m8 1.41422 6.58578 6.58578-6.58578 6.58578-6.58578-6.58578zm0-1.41422-8 8 8 8 8-8z"/>
-            <path d="m4.5 7h7v2h-7z" fill="#fff"/>
-          </svg>
-        </div>
-        <div class="iui-location-marker-data-rich-arrow"></div>
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
+          <path
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#F7963E"
+          />
+        </svg>
       </div>
-    </div>
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
+          <path
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#73C7C1"
+          />
+        </svg>
+      </div>
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
+          <path
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#85A9CF"
+          />
+        </svg>
+      </div>
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
+          <path
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#A3779F"
+          />
+        </svg>
+      </div>
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
+          <path
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#C8C2B4"
+          />
+        </svg>
+      </div>
+      <div class="iui-location-marker-default">
+        <svg class="iui-location-marker-default-pin" viewBox="0 0 22 22">
+          <path
+            class="iui-location-marker-default-pin-dot"
+            d="m11 0a7.44506 7.44506 0 0 0 -7.5 7.2875c0 1.65 1.132 4.2625 3.25477 8.1125 1.55652 2.75 4.24523 6.6 4.24523 6.6s2.68865-3.9875 4.24528-6.7375c2.12272-3.85 3.25472-6.4625 3.25472-8.1125a7.4215 7.4215 0 0 0 -7.5-7.15z"
+          />
+          <path
+            class="iui-location-marker-default-color"
+            d="m11 1.01715a6.46476 6.46476 0 0 0 -6.48285 6.27033c0 1.72619 1.67181 4.97973 3.12836 7.62139.97564 1.7237 2.42828 3.92176 3.34118 5.27161.91413-1.39148 2.385-3.673 3.37336-5.41907 1.451-2.63171 3.1228-5.88525 3.1228-7.61139a6.39982 6.39982 0 0 0 -6.48285-6.13287zm.00183 8.98285a3 3 0 1 1 3-3 3 3 0 0 1 -3 3z"
+            fill="#A47854"
+          />
+        </svg>
+      </div>
+    </section>
 
-    <br><br>
+    <br /><br />
+
+    <section id="demo-data-rich">
+      <h2 id="data-rich">Data-rich</h2>
+
+      <div class="iui-location-marker-data-rich">
+        <div
+          class="iui-location-marker-data-rich-body"
+          style="background-color: #6AB9EC;"
+        >
+          A
+        </div>
+        <div class="iui-location-marker-data-rich-arrow"></div>
+      </div>
+      <div class="iui-location-marker-data-rich">
+        <div
+          class="iui-location-marker-data-rich-body"
+          style="background-color: #B1C854;"
+        >
+          +9
+        </div>
+        <div class="iui-location-marker-data-rich-arrow"></div>
+      </div>
+      <div class="iui-location-marker-data-rich">
+        <div
+          class="iui-location-marker-data-rich-body"
+          style="background-color: #F7706C;"
+        >
+          <!-- Use placeholder.svg from generic-icons package. -->
+          <svg
+            class="iui-location-marker-data-rich-icon iui-location-marker-data-rich-icon-monochrome"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+            />
+          </svg>
+        </div>
+        <div class="iui-location-marker-data-rich-arrow"></div>
+      </div>
+      <div class="iui-location-marker-data-rich">
+        <div
+          class="iui-location-marker-data-rich-body"
+          style="background-color: #4585A5;"
+        >
+          <!-- Use placeholder.svg from generic-icons package. -->
+          <svg
+            class="iui-location-marker-data-rich-icon iui-location-marker-data-rich-icon-monochrome"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+            /></svg
+          >&nbsp;123
+        </div>
+        <div class="iui-location-marker-data-rich-arrow"></div>
+      </div>
+      <br /><br />
+      <div class="demo-striped-background" style="padding: 24px;">
+        <h3>Alarms</h3>
+        <br />
+        <div class="iui-location-marker-data-rich">
+          <div class="iui-location-marker-data-rich-body">
+            <!-- Use alarm-early-warning.svg from generic-icons package. -->
+            <svg
+              class="iui-location-marker-data-rich-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <circle cx="8" cy="8" fill="#0ff" r="6.5" />
+              <path
+                d="m8 2a6 6 0 1 1 -6 6 6.0068 6.0068 0 0 1 6-6m0-1a7 7 0 1 0 7 7 7 7 0 0 0 -7-7zm1 11h-2v-2h2zm0-8h-2v4.66667h2z"
+              />
+            </svg>
+          </div>
+          <div class="iui-location-marker-data-rich-arrow"></div>
+        </div>
+        <div class="iui-location-marker-data-rich">
+          <div class="iui-location-marker-data-rich-body">
+            <!-- Use alarm-warning.svg from generic-icons package. -->
+            <svg
+              class="iui-location-marker-data-rich-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path d="m.5 14.531h15l-7.5-14.062z" fill="#fff200" />
+              <path
+                d="m8 2.125 6.33334 11.875h-12.66668zm0-2.125-8 15h16zm1 13h-2v-2h2zm0-8h-2v4.66667h2z"
+              />
+            </svg>
+          </div>
+          <div class="iui-location-marker-data-rich-arrow"></div>
+        </div>
+        <div class="iui-location-marker-data-rich">
+          <div class="iui-location-marker-data-rich-body">
+            <!-- Use alarm-alarm.svg from generic-icons package. -->
+            <svg
+              class="iui-location-marker-data-rich-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path d="m1.5 1.5h13v13h-13z" fill="#f60" />
+              <path
+                d="m14 2v12h-12v-12zm1-1h-14v14h14zm-8 11h-2v-2h2zm0-8h-2v4.66667h2zm4 8h-2v-2h2zm0-8h-2v4.66667h2z"
+              />
+            </svg>
+          </div>
+          <div class="iui-location-marker-data-rich-arrow"></div>
+        </div>
+        <div class="iui-location-marker-data-rich">
+          <div class="iui-location-marker-data-rich-body">
+            <!-- Use alarm-critical-alarm.svg from generic-icons package. -->
+            <svg
+              class="iui-location-marker-data-rich-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m2.6967 2.6967h10.6066v10.6066h-10.6066z"
+                fill="#ed1c24"
+                transform="matrix(.70710678 .70710678 -.70710678 .70710678 8 -3.31371)"
+              />
+              <path
+                d="m8 1.41422 6.58578 6.58578-6.58578 6.58578-6.58578-6.58578zm0-1.41422-8 8 8 8 8-8z"
+              />
+              <path d="m4.5 7h7v2h-7z" fill="#fff" />
+            </svg>
+          </div>
+          <div class="iui-location-marker-data-rich-arrow"></div>
+        </div>
+      </div>
+    </section>
+
+    <br /><br />
 
     <h2 id="regular">My location</h2>
 
     <div class="iui-location-marker-me">
       <div class="iui-location-marker-me-dot"></div>
-    </div>
-
     </div>
   </body>
 </html>

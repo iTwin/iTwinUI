@@ -126,12 +126,14 @@
       }
     }
 
-    > .iui-date-picker-calendar-header > .iui-date-picker-calendar-header-weekdays > div,
+    > .iui-date-picker-calendar-header
+      > .iui-date-picker-calendar-header-weekdays
+      > div,
     > .iui-date-picker-calendar-month > .iui-date-picker-calendar-week > div {
       display: inline-block;
       width: $iui-l;
       line-height: $iui-l;
-      margin: $iui-xxs;
+      margin: $iui-xxs $iui-xs;
     }
   }
 }
