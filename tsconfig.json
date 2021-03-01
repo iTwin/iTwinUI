@@ -19,21 +19,6 @@
     "skipLibCheck": true
   },
   "exclude": [
-    "node_modules",
-    "./node_modules/**/*",
-    "build",
-    "lib",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts",
-    "*rs.js",
-    "*rc.js",
-    "src/utils/*.js",
-    "lib/utils",
-    "*config.js",
-    "packages"
-  ],
-  "files": ["src/index.ts", "custom.d.ts"]
+    "stories/**/*"
+  ]
 }

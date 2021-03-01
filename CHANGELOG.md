@@ -1,3 +1,10 @@
+## 0.4.0
+
+`2021-XX-XX`
+
+### What's new
+* **Added selection to `Table`** Pass `isSelectable={true}` and `onSelect` to `Table`. 
+
 ## 0.3.0
 
 `2021-02-22`

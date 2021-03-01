@@ -1,16 +1,25 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
+import cx from 'classnames';
 import {
+  CellProps,
   ColumnInstance,
   HeaderGroup,
+  HeaderProps,
+  Hooks,
   Row,
   TableOptions,
+  TableState,
   useFlexLayout,
+  useMountedLayoutEffect,
+  useRowSelect,
   useTable,
 } from 'react-table';
+import { Checkbox } from '..';
 import { ProgressRadial } from '../ProgressIndicators';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/flextables.css';
+import { CommonProps } from '../utils/props';
 
 /**
  * Table props.
@@ -19,9 +28,27 @@ import '@bentley/itwinui/css/flextables.css';
 export type TableProps<
   T extends Record<string, unknown> = Record<string, unknown>
 > = TableOptions<T> & {
+  /**
+   * Flag whether data is loading.
+   * @default false
+   */
   isLoading?: boolean;
+  /**
+   * Content shown when there is no data.
+   */
   emptyTableContent: React.ReactNode;
-};
+  /**
+   * Flag whether table rows can be selectable.
+   */
+  isSelectable?: boolean;
+  /**
+   * Handler for rows selection.
+   */
+  onSelect?: (
+    selectedData: T[] | undefined,
+    tableState?: TableState<T>,
+  ) => void;
+} & CommonProps;
 
 /**
  * Table based on react-table
@@ -69,7 +96,15 @@ export const Table = <
 >(
   props: TableProps<T>,
 ): JSX.Element => {
-  const { columns, isLoading, emptyTableContent } = props;
+  const {
+    columns,
+    isLoading = false,
+    emptyTableContent,
+    className,
+    style,
+    isSelectable,
+    onSelect,
+  } = props;
 
   useTheme();
 
@@ -82,6 +117,39 @@ export const Table = <
     [],
   );
 
+  const useSelectionHook = (hooks: Hooks<T>) => {
+    if (!isSelectable) {
+      return;
+    }
+
+    hooks.allColumns.push((columns: ColumnInstance<T>[]) => [
+      // Let's make a column for selection
+      {
+        id: 'iui-table-checkbox-selector',
+        disableResizing: true,
+        disableGroupBy: true,
+        minWidth: 48,
+        width: 48,
+        maxWidth: 48,
+        columnClassName: 'iui-tables-slot',
+        cellClassName: 'iui-tables-slot',
+        Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<T>) => (
+          <Checkbox {...getToggleAllRowsSelectedProps()} />
+        ),
+        Cell: ({ row }: CellProps<T>) => (
+          <Checkbox {...row.getToggleRowSelectedProps()} />
+        ),
+      },
+      ...columns,
+    ]);
+
+    hooks.useInstanceBeforeDimensions.push(({ headerGroups }) => {
+      // Fix the parent group of the selection button to not be resizable
+      const selectionGroupHeader = headerGroups[0].headers[0];
+      selectionGroupHeader.canResize = false;
+    });
+  };
+
   const instance = useTable<T>(
     {
       ...props,
@@ -89,6 +157,8 @@ export const Table = <
       defaultColumn,
     },
     useFlexLayout,
+    useRowSelect,
+    useSelectionHook,
   );
 
   const {
@@ -98,7 +168,18 @@ export const Table = <
     getTableBodyProps,
     prepareRow,
     data,
+    selectedFlatRows,
+    state,
   } = instance;
+
+  useMountedLayoutEffect(() => {
+    if (isSelectable && selectedFlatRows) {
+      onSelect?.(
+        selectedFlatRows.map((row) => row.original),
+        state,
+      );
+    }
+  }, [selectedFlatRows, onSelect]);
 
   const getStyle = (
     column: ColumnInstance<T>,
@@ -121,7 +202,12 @@ export const Table = <
   };
 
   return (
-    <div className='iui-tables-table' {...getTableProps()}>
+    <div
+      {...getTableProps({
+        className: cx('iui-tables-table', className),
+        style,
+      })}
+    >
       <div>
         {headerGroups.slice(1).map((headerGroup: HeaderGroup<T>) => {
           const headerGroupProps = headerGroup.getHeaderGroupProps({
@@ -131,7 +217,11 @@ export const Table = <
             <div {...headerGroupProps} key={headerGroupProps.key}>
               {headerGroup.headers.map((column) => {
                 const columnProps = column.getHeaderProps({
-                  className: 'iui-tables-cell iui-tables-head',
+                  className: cx(
+                    'iui-tables-cell',
+                    'iui-tables-head',
+                    column.columnClassName,
+                  ),
                   style: getStyle(column),
                 });
                 return (
@@ -144,19 +234,21 @@ export const Table = <
           );
         })}
       </div>
-      <div className='iui-tables-body' {...getTableBodyProps()}>
+      <div {...getTableBodyProps({ className: 'iui-tables-body' })}>
         {!isLoading &&
           data.length !== 0 &&
           rows.map((row: Row<T>) => {
             prepareRow(row);
             const rowProps = row.getRowProps({
-              className: 'iui-tables-row',
+              className: cx('iui-tables-row', {
+                'iui-tables-row-active': row.isSelected,
+              }),
             });
             return (
               <div {...rowProps} key={rowProps.key}>
                 {row.cells.map((cell) => {
                   const cellProps = cell.getCellProps({
-                    className: 'iui-tables-cell',
+                    className: cx('iui-tables-cell', cell.column.cellClassName),
                     style: getStyle(cell.column),
                   });
                   return (

@@ -27,7 +27,7 @@ jobs:
   - task: Yarn@2
     displayName: Yarn install
     inputs:
-      Arguments: install
+      Arguments: install --frozen-lockfile
       customRegistry: useFeed
       customFeed: cddcc498-6606-47b5-b068-e9fa20167bf8
   - task: Yarn@2

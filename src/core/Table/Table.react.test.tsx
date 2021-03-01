@@ -90,3 +90,88 @@ it('should show empty message when there is no data', () => {
   const rows = container.querySelectorAll('.iui-tables-body .iui-tables-row');
   expect(rows.length).toBe(0);
 });
+
+it('should render table with custom className', () => {
+  const { container } = renderComponent({ className: 'test-className' });
+
+  const table = container.querySelector('.iui-tables-table.test-className');
+  expect(table).toBeTruthy();
+});
+
+it('should render table with custom style', () => {
+  const { container } = renderComponent({ style: { color: 'red' } });
+
+  const table = container.querySelector('.iui-tables-table') as HTMLElement;
+  expect(table).toBeTruthy();
+  expect(table.style.color).toEqual('red');
+});
+
+it('should render column with custom className', () => {
+  const { container } = renderComponent({
+    columns: [
+      {
+        Header: 'Header name',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            columnClassName: 'test-className',
+          },
+        ],
+      },
+    ],
+  });
+
+  const column = container.querySelector(
+    '.iui-tables-cell.iui-tables-head.test-className',
+  );
+  expect(column).toBeTruthy();
+});
+
+it('should render cell with custom className', () => {
+  const { container } = renderComponent({
+    columns: [
+      {
+        Header: 'Header name',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            cellClassName: 'test-className',
+          },
+        ],
+      },
+    ],
+  });
+
+  const cell = container.querySelector(
+    '.iui-tables-body .iui-tables-cell.test-className',
+  );
+  expect(cell).toBeTruthy();
+});
+
+it('should handle checkbox clicks', () => {
+  const onSelect = jest.fn();
+  const { container } = renderComponent({ isSelectable: true, onSelect });
+
+  expect(screen.queryByText('Header name')).toBeFalsy();
+  const rows = container.querySelectorAll('.iui-tables-body .iui-tables-row');
+  expect(rows.length).toBe(3);
+
+  expect(onSelect).not.toHaveBeenCalled();
+
+  const checkboxCells = container.querySelectorAll(
+    '.iui-tables-slot .iui-checkbox',
+  );
+  expect(checkboxCells.length).toBe(4);
+  fireEvent.click(checkboxCells[2]);
+  expect(onSelect).toHaveBeenCalledWith([mockedData()[1]], expect.any(Object));
+
+  fireEvent.click(checkboxCells[0]);
+  expect(onSelect).toHaveBeenCalledWith(mockedData(), expect.any(Object));
+
+  fireEvent.click(checkboxCells[0]);
+  expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
+});
