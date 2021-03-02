@@ -1033,10 +1033,10 @@
   resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/illustrations/-/illustrations-1.0.1.tgz#edfc43194174f2843f97d076569bf515ecf9ed60"
   integrity sha1-7fxDGUF08oQ/l9B2Vpv1Fez57WA=
 
-"@bentley/itwinui@^0.2.1":
-  version "0.2.1"
-  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/itwinui/-/itwinui-0.2.1.tgz#24e15e7234b4b1aeff6a7e6494e2900cdc397ed4"
-  integrity sha1-JOFecjS0sa7/an5klOKQDNw5ftQ=
+"@bentley/itwinui@^0.3.0":
+  version "0.3.0"
+  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/itwinui/-/itwinui-0.3.0.tgz#ae3ea5900999f6817550826d5336c39311011a4b"
+  integrity sha1-rj6lkAmZ9oF1UIJtUzbDkxEBGks=
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"

@@ -1,9 +1,15 @@
 ## 0.4.0
 
-`2021-XX-XX`
+`2021-03-02`
 
 ### What's new
-* **Added selection to `Table`** Pass `isSelectable={true}` and `onSelect` to `Table`. 
+* **`DropdownButton` component added.**
+* **Added selection to `Table`.** Pass `isSelectable={true}` and `onSelect` to `Table`.
+
+### Fixes
+* **Fixed child `ref` not getting set in `Popover`.**
+* **Fixed margins in various components** through base iTwinUI CSS package.
+* **Removed duplicate `title` prop from some components.**
 
 ## 0.3.0
 
