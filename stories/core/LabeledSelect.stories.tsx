@@ -54,7 +54,7 @@ export const Basic: Story<LabeledSelectProps<number>> = (args) => {
     placeholder = 'Placeholder text',
     ...rest
   } = args;
-  const [value, setValue] = useState<number>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label={label}
@@ -80,7 +80,7 @@ export const Positive: Story<LabeledSelectProps<number>> = (args) => {
     placeholder = 'Placeholder text',
     ...rest
   } = args;
-  const [value, setValue] = useState<number>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label={label}
@@ -111,7 +111,7 @@ export const Warning: Story<LabeledSelectProps<number>> = (args) => {
     placeholder = 'Placeholder text',
     ...rest
   } = args;
-  const [value, setValue] = useState<number>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label={label}
@@ -142,7 +142,7 @@ export const Negative: Story<LabeledSelectProps<number>> = (args) => {
     placeholder = 'Placeholder text',
     ...rest
   } = args;
-  const [value, setValue] = useState<number>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label={label}
@@ -174,7 +174,7 @@ export const WithCustomIcon: Story<LabeledSelectProps<number>> = (args) => {
     svgIcon = <SvgCamera />,
     ...rest
   } = args;
-  const [value, setValue] = useState<number>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label={label}

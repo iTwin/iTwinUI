@@ -18,12 +18,13 @@ export default {
 } as Meta<DropdownButtonProps>;
 
 export const Basic: Story<DropdownButtonProps> = (args) => {
+  const { menuItems, children, ...rest } = args;
   const onClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
   };
 
-  const menuItems = (close: () => void) => [
+  const buttonMenuItems = (close: () => void) => [
     <MenuItem key={1} onClick={onClick(1, close)}>
       Item #1
     </MenuItem>,
@@ -36,8 +37,8 @@ export const Basic: Story<DropdownButtonProps> = (args) => {
   ];
 
   return (
-    <DropdownButton menuItems={menuItems} {...args}>
-      {args.children}
+    <DropdownButton menuItems={menuItems || buttonMenuItems} {...rest}>
+      {children}
     </DropdownButton>
   );
 };

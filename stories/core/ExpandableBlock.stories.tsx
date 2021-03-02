@@ -57,7 +57,7 @@ WithCaption.argTypes = {
 };
 
 export const Accordion: Story<ExpandableBlockProps> = (args) => {
-  const [openedBlock, setOpenedBlock] = useState<number>(undefined);
+  const [openedBlock, setOpenedBlock] = useState<number | undefined>(undefined);
   const toggleHandler = (isExpanding: boolean, id: number) => {
     action(`isExpanding: ${isExpanding}, id: ${id}`, {
       clearOnStoryChange: false,

@@ -39,17 +39,21 @@ export const Basic: Story<ModalProps> = ({
     setIsModalOpen(false);
   };
 
-  const onClose = (event) => {
+  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
     action('onClose')(event);
     closeModal();
   };
 
-  const primaryButtonHandle = (event) => {
+  const primaryButtonHandle = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     action('Primary button')(event);
     closeModal();
   };
 
-  const secondaryButtonHandle = (event) => {
+  const secondaryButtonHandle = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     action('Secondary button')(event);
     closeModal();
   };

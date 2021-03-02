@@ -38,7 +38,7 @@ export const Basic: Story<SelectProps<number>> = (args) => {
     placeholder = 'Placeholder text',
     ...rest
   } = args;
-  const [value, setValue] = useState<number>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
@@ -71,7 +71,7 @@ export const WithIcons: Story<SelectProps<string>> = (args) => {
     placeholder = 'How are you today?',
     ...rest
   } = args;
-  const [value, setValue] = useState<string>(undefined);
+  const [value, setValue] = useState<string | undefined>(undefined);
   return (
     <div style={{ minHeight: 350 }}>
       <Select<string>
@@ -153,15 +153,18 @@ DisabledWithSelectedValue.args = {
 };
 
 export const ManyItems: Story<SelectProps<number>> = (args) => {
-  const { placeholder = 'Placeholder text', ...rest } = args;
-  const [value, setValue] = useState<number>(undefined);
+  const { placeholder = 'Placeholder text', options, ...rest } = args;
+  const [value, setValue] = useState<number | undefined>(undefined);
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
-        options={[...new Array(20)].map((_, index) => ({
-          label: `Item #${index}`,
-          value: index,
-        }))}
+        options={
+          options ||
+          [...new Array(20)].map((_, index) => ({
+            label: `Item #${index}`,
+            value: index,
+          }))
+        }
         value={value}
         onChange={setValue}
         placeholder={placeholder}
@@ -189,7 +192,9 @@ export const Custom: Story<SelectProps<string>> = (args) => {
     placeholder = 'Placeholder text',
     ...rest
   } = args;
-  const [selectedValue, setSelectedValue] = useState<string>(undefined);
+  const [selectedValue, setSelectedValue] = useState<string | undefined>(
+    undefined,
+  );
   return (
     <div style={{ minHeight: 350 }}>
       <Select<string>

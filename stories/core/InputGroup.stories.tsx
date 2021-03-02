@@ -103,7 +103,7 @@ export const CheckboxGroup: Story<InputGroupProps> = (args) => {
     }
   }, [option1, option2]);
 
-  const onAllChange = (value) => {
+  const onAllChange = (value: boolean) => {
     setAllOptions(value);
     setIsIndeterminate(false);
     setOption1(value);

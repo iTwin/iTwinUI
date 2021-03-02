@@ -19,31 +19,32 @@ export default {
 } as Meta<SplitButtonProps>;
 
 export const Basic: Story<SplitButtonProps> = (args) => {
-  const onClick = (index: number, close: () => void) => () => {
+  const { onClick, menuItems, children, ...rest } = args;
+  const onMenuItemClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
   };
 
-  const menuItems = (close: () => void) => [
-    <MenuItem key={1} onClick={onClick(1, close)}>
+  const buttonMenuItems = (close: () => void) => [
+    <MenuItem key={1} onClick={onMenuItemClick(1, close)}>
       Item #1
     </MenuItem>,
-    <MenuItem key={2} onClick={onClick(2, close)}>
+    <MenuItem key={2} onClick={onMenuItemClick(2, close)}>
       Item #2
     </MenuItem>,
-    <MenuItem key={3} onClick={onClick(3, close)}>
+    <MenuItem key={3} onClick={onMenuItemClick(3, close)}>
       Item #3
     </MenuItem>,
   ];
 
   return (
     <SplitButton
-      onClick={action('Primary button clicked!')}
-      menuItems={menuItems}
+      onClick={onClick || action('Primary button clicked!')}
+      menuItems={menuItems || buttonMenuItems}
       styleType='default'
-      {...args}
+      {...rest}
     >
-      {args.children}
+      {children}
     </SplitButton>
   );
 };

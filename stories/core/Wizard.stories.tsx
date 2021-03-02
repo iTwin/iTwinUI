@@ -2,8 +2,7 @@
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Wizard } from '../../src/core';
-import { WizardProps } from '../../src/core/Wizard/Wizard';
+import { Wizard, WizardLocalization, WizardProps } from '../../src/core';
 
 export default {
   title: 'Core/Wizard',
@@ -144,7 +143,7 @@ export const LocalizedLong: Story<WizardProps> = (args) => {
     type = 'long',
     ...rest
   } = args;
-  const localization = {
+  const localization: WizardLocalization = {
     stepsCountLabel: (currentStep, totalSteps) =>
       `Localized step ${currentStep} of ${totalSteps}:`,
   };

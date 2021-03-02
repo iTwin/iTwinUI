@@ -61,10 +61,11 @@ export default {
 } as Meta<TableProps>;
 
 export const TableWithData: Story<TableProps> = (args) => {
+  const { columns, data, ...rest } = args;
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
-  const columns = useMemo(
+  const tableColumns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -95,7 +96,7 @@ export const TableWithData: Story<TableProps> = (args) => {
     [],
   );
 
-  const data = useMemo(
+  const tableData = useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -106,15 +107,16 @@ export const TableWithData: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns}
-      data={data}
+      columns={columns || tableColumns}
+      data={data || tableData}
       emptyTableContent={'No data.'}
-      {...args}
+      {...rest}
     />
   );
 };
 
 export const Selectable: Story<TableProps> = (args) => {
+  const { columns, data, ...rest } = args;
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
@@ -129,7 +131,7 @@ export const Selectable: Story<TableProps> = (args) => {
     [],
   );
 
-  const columns = useMemo(
+  const tableColumns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -160,7 +162,7 @@ export const Selectable: Story<TableProps> = (args) => {
     [],
   );
 
-  const data = useMemo(
+  const tableData = useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -171,18 +173,19 @@ export const Selectable: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns}
-      data={data}
+      columns={columns || tableColumns}
+      data={data || tableData}
       emptyTableContent={'No data.'}
       isSelectable={true}
       onSelect={onSelect}
-      {...args}
+      {...rest}
     />
   );
 };
 
 export const Loading: Story<TableProps> = (args) => {
-  const columns = useMemo(
+  const { columns, data, ...rest } = args;
+  const tableColumns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -206,11 +209,11 @@ export const Loading: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns}
-      data={[]}
+      columns={columns || tableColumns}
+      data={data || []}
       isLoading={true}
       emptyTableContent={'No data.'}
-      {...args}
+      {...rest}
     />
   );
 };
@@ -220,8 +223,8 @@ Loading.args = {
   isLoading: true,
 };
 
-export const NoData: Story<TableProps> = (args) => {
-  const columns = useMemo(
+export const NoData: Story<TableProps> = ({ columns, data, ...rest }) => {
+  const tableColumns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -245,11 +248,11 @@ export const NoData: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns}
-      data={[]}
+      columns={columns || tableColumns}
+      data={data || []}
       isLoading={false}
       emptyTableContent={'No data.'}
-      {...args}
+      {...rest}
     />
   );
 };

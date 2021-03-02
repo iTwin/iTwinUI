@@ -72,7 +72,7 @@ export type SelectProps<T> = {
   /**
    * Custom renderer for the selected item in select.
    */
-  selectedItemRenderer?: (option?: SelectOption<T>) => JSX.Element;
+  selectedItemRenderer?: (option: SelectOption<T>) => JSX.Element;
   /**
    * Custom class for menu.
    */

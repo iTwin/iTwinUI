@@ -32,11 +32,12 @@ export default {
 } as Meta<DropdownMenuProps>;
 
 export const Basic: Story<DropdownMenuProps> = (args) => {
+  const { menuItems, ...rest } = args;
   const onClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
   };
-  const menuItems = (close: () => void) => [
+  const dropdownMenuItems = (close: () => void) => [
     <MenuItem key={1} onClick={onClick(1, close)}>
       Item #1
     </MenuItem>,
@@ -50,7 +51,7 @@ export const Basic: Story<DropdownMenuProps> = (args) => {
   return (
     // Body height is the same as Select component height therefore clicking outside would not close dropdown.
     <div style={{ minHeight: 150 }}>
-      <DropdownMenu menuItems={menuItems} {...args}>
+      <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
         <IconButton>
           <SvgMore2 />
         </IconButton>
@@ -60,11 +61,12 @@ export const Basic: Story<DropdownMenuProps> = (args) => {
 };
 
 export const WithIcons: Story<DropdownMenuProps> = (args) => {
+  const { menuItems, ...rest } = args;
   const onClick = (actionName: string, close: () => void) => () => {
     action(`${actionName} clicked!`)();
     close();
   };
-  const menuItems = (close: () => void) => [
+  const dropdownMenuItems = (close: () => void) => [
     <MenuItem key={1} onClick={onClick('Crop', close)} icon={<SvgCrop />}>
       Crop
     </MenuItem>,
@@ -77,7 +79,7 @@ export const WithIcons: Story<DropdownMenuProps> = (args) => {
   ];
   return (
     <div style={{ minHeight: 150 }}>
-      <DropdownMenu menuItems={menuItems} {...args}>
+      <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
         <IconButton>
           <SvgMore2 />
         </IconButton>
@@ -87,11 +89,12 @@ export const WithIcons: Story<DropdownMenuProps> = (args) => {
 };
 
 export const WithBadges: Story<DropdownMenuProps> = (args) => {
+  const { menuItems, ...rest } = args;
   const onClick = (actionName: string, close: () => void) => () => {
     action(`${actionName} clicked!`)();
     close();
   };
-  const menuItems = (close: () => void) => [
+  const dropdownMenuItems = (close: () => void) => [
     <MenuItem key={1} onClick={onClick('Crop', close)} badge={<SvgCrop />}>
       Crop
     </MenuItem>,
@@ -108,7 +111,7 @@ export const WithBadges: Story<DropdownMenuProps> = (args) => {
   ];
   return (
     <div style={{ minHeight: 150 }}>
-      <DropdownMenu menuItems={menuItems} {...args}>
+      <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
         <IconButton>
           <SvgMore2 />
         </IconButton>
