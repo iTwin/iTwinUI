@@ -5,7 +5,7 @@ import itwinImageDark from './public/itwin-dark.svg';
 
 export const lightTheme = create({
   base: 'light',
-  brandTitle: 'iTwin UI',
+  brandTitle: 'iTwinUI',
   brandImage: itwinImage,
 
   colorPrimary: '#008BE1',
@@ -40,7 +40,7 @@ export const lightTheme = create({
 
 export const darkTheme = create({
   base: 'dark',
-  brandTitle: 'iTwin UI',
+  brandTitle: 'iTwinUI',
   brandImage: itwinImageDark,
 
   colorPrimary: '#A5D7F5',
