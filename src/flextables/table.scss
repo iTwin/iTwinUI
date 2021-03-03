@@ -203,11 +203,6 @@
         border: solid 1px t(iui-color-foreground-primary);
         background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
       }
-
-      > .iui-tables-cell {
-        padding-top: $iui-flextables-density-vertical;
-        padding-bottom: $iui-flextables-density-vertical;
-      }
     }
 
     &.iui-tables-row-new {

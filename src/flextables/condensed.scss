@@ -6,11 +6,6 @@
     > .iui-tables-cell {
       padding: $iui-flextables-density-condensed;
     }
-
-    &.iui-tables-row-active > .iui-tables-cell {
-      padding-top: $iui-flextables-density-vertical-condensed;
-      padding-bottom: $iui-flextables-density-vertical-condensed;
-    }
   }
 
   .iui-tables-paginator > .content {
