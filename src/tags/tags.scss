@@ -61,10 +61,13 @@
 
   &.iui-basic {
     background-color: transparent;
+    text-transform: lowercase;
     padding: 0;
     margin: 0;
     height: auto;
     border: none;
+    border-radius: 0;
+    font-size: inherit;
 
     @at-root {
       span#{&} {
