@@ -1,5 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import toaster from './';
+import toaster from '.';
 import { ToastCategory } from './Toast';
 import { ToastOptions } from './Toaster';
 
