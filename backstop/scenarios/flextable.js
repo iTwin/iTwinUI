@@ -1,4 +1,4 @@
-const { scenario } = require('../scenarioHelper')
+const { scenario } = require('../scenarioHelper');
 
 module.exports = [
   scenario('default', {
@@ -16,4 +16,4 @@ module.exports = [
   scenario('empty-state', {
     selectors: ['#demo-empty-state'],
   }),
-]
+];

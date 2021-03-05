@@ -109,7 +109,10 @@ export interface ViewportLegacy {
  * @param testCase Name of the test case
  * @param options Custom options
  */
-export declare function scenario(testCase: string, options: Scenario = {}): Scenario;
+export declare function scenario(
+  testCase: string,
+  options: Scenario = {},
+): Scenario;
 
 /**
  * Performs click on element with provided selector.

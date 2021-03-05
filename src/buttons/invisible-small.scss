@@ -1,5 +1,5 @@
 @import './button';
-@import './invisible.scss';
+@import './invisible';
 
 @mixin iui-buttons-invisible-small {
   @include iui-buttons-invisible;

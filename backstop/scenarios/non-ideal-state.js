@@ -9,5 +9,7 @@ module.exports = [
   scenario('503', { selectors: ['#nis-503 .iui-non-ideal-state'] }),
   scenario('error', { selectors: ['#nis-error .iui-non-ideal-state'] }),
   scenario('redirect', { selectors: ['#nis-redirect .iui-non-ideal-state'] }),
-  scenario('multi-redirect', { selectors: ['#nis-multi-redirect .iui-non-ideal-state'] }),
+  scenario('multi-redirect', {
+    selectors: ['#nis-multi-redirect .iui-non-ideal-state'],
+  }),
 ];

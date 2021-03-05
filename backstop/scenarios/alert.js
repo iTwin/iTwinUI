@@ -3,7 +3,9 @@ const { scenario, hover } = require('../scenarioHelper');
 module.exports = [
   scenario('basic'),
   scenario('hover link in informational', {
-    actions: [hover('.iui-alerts-informational:not(.iui-sticky) .iui-alerts-link')],
+    actions: [
+      hover('.iui-alerts-informational:not(.iui-sticky) .iui-alerts-link'),
+    ],
     selectors: ['.iui-alerts-informational:not(.iui-sticky)'],
   }),
   scenario('hover link in positive', {

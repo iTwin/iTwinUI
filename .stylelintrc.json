@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "stylelint-config-sass-guidelines"
+  ],
+  "rules": {
+    "color-hex-case": "upper",
+    "declaration-block-semicolon-newline-after": "always-multi-line",
+    "declaration-property-value-disallowed-list": null,
+    "function-parentheses-space-inside": "never-single-line",
+    "max-nesting-depth": 6,
+    "order/order": null,
+    "order/properties-alphabetical-order": null,
+    "property-no-vendor-prefix": null,
+    "selector-class-pattern": [
+      "iui-[a-z]+",
+      {
+        "severity": "warning",
+        "resolveNestedSelectors": true
+      }
+    ],
+    "selector-combinator-space-after": "always",
+    "selector-combinator-space-before": "always",
+    "selector-no-vendor-prefix": null,
+    "selector-max-compound-selectors": 5,
+    "selector-max-id": 1,
+    "selector-no-qualifying-type": null,
+    "scss/dollar-variable-pattern": null
+  },
+  "ignoreFiles": [
+    "lib/**/*"
+  ]
+}

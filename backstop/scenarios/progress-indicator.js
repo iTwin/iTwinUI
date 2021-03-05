@@ -1,4 +1,4 @@
-const { scenario } = require('../scenarioHelper')
+const { scenario } = require('../scenarioHelper');
 
 module.exports = [
   scenario('linear', {
@@ -9,4 +9,4 @@ module.exports = [
     selectors: ['#demo-radial'],
     hideSelectors: ['.iui-indeterminate'],
   }),
-]
+];

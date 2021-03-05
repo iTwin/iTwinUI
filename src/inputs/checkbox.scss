@@ -11,16 +11,16 @@
   &.iui-loading {
     cursor: wait;
 
-    & input ~ .iui-checkbox-checkmark {
+    input ~ .iui-checkbox-checkmark {
       border: none;
       background-color: transparent;
     }
 
-    & input:disabled ~ .iui-checkbox-checkmark {
+    input:disabled ~ .iui-checkbox-checkmark {
       cursor: wait;
     }
 
-    & input:disabled ~ .iui-label {
+    input:disabled ~ .iui-label {
       cursor: wait;
     }
   }

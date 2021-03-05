@@ -1,23 +1,23 @@
 // LIGHT THEME //
 // Light theme > Background
-$iui-color-background-1--light: #fff;
-$iui-color-background-2--light: #f8f9fb;
-$iui-color-background-3--light: #eef0f3;
-$iui-color-background-4--light: #dce0e3;
-$iui-color-background-5--light: #c7ccd1;
-$iui-color-background-primary--light: #008be1;
-$iui-color-background-positive--light: #53a21a;
-$iui-color-background-negative--light: #d30a0a;
-$iui-color-background-warning--light: #f18b12;
+$iui-color-background-1--light: #FFF;
+$iui-color-background-2--light: #F8F9FB;
+$iui-color-background-3--light: #EEF0F3;
+$iui-color-background-4--light: #DCE0E3;
+$iui-color-background-5--light: #C7CCD1;
+$iui-color-background-primary--light: #008BE1;
+$iui-color-background-positive--light: #53A21A;
+$iui-color-background-negative--light: #D30A0A;
+$iui-color-background-warning--light: #F18B12;
 $iui-color-background-disabled--light: $iui-color-background-3--light;
 
 // Light theme > Foreground
 $iui-color-foreground-body--light: #000;
-$iui-color-foreground-accessory--light: #fff;
-$iui-color-foreground-primary--light: #008be1;
-$iui-color-foreground-positive--light: #53a21a;
-$iui-color-foreground-negative--light: #d30a0a;
-$iui-color-foreground-warning--light: #f18b12;
+$iui-color-foreground-accessory--light: #FFF;
+$iui-color-foreground-primary--light: #008BE1;
+$iui-color-foreground-positive--light: #53A21A;
+$iui-color-foreground-negative--light: #D30A0A;
+$iui-color-foreground-warning--light: #F18B12;
 
 // Light theme > Overlays
 $iui-color-background-1-overlay--light: darken(
@@ -102,24 +102,24 @@ $iui-icons-color-warning--light: $iui-color-foreground-warning--light;
 
 // DARK THEME //
 // Dark theme > Background
-$iui-color-background-1--dark: #5a6973;
-$iui-color-background-2--dark: #4f5d65;
+$iui-color-background-1--dark: #5A6973;
+$iui-color-background-2--dark: #4F5D65;
 $iui-color-background-3--dark: #445058;
-$iui-color-background-4--dark: #38444a;
-$iui-color-background-5--dark: #2d373c;
-$iui-color-background-primary--dark: #008be1;
-$iui-color-background-positive--dark: #53a21a;
-$iui-color-background-negative--dark: #d30a0a;
-$iui-color-background-warning--dark: #f18b12;
+$iui-color-background-4--dark: #38444A;
+$iui-color-background-5--dark: #2D373C;
+$iui-color-background-primary--dark: #008BE1;
+$iui-color-background-positive--dark: #53A21A;
+$iui-color-background-negative--dark: #D30A0A;
+$iui-color-background-warning--dark: #F18B12;
 $iui-color-background-disabled--dark: $iui-color-background-3--dark;
 
 // Dark theme > Foreground
-$iui-color-foreground-body--dark: #fff;
-$iui-color-foreground-accessory--dark: #fff;
-$iui-color-foreground-primary--dark: #a5d7f5;
-$iui-color-foreground-positive--dark: #c3e1af;
-$iui-color-foreground-negative--dark: #efa9a9;
-$iui-color-foreground-warning--dark: #f9d7ab;
+$iui-color-foreground-body--dark: #FFF;
+$iui-color-foreground-accessory--dark: #FFF;
+$iui-color-foreground-primary--dark: #A5D7F5;
+$iui-color-foreground-positive--dark: #C3E1AF;
+$iui-color-foreground-negative--dark: #EFA9A9;
+$iui-color-foreground-warning--dark: #F9D7AB;
 
 // Dark theme > Overlays
 $iui-color-background-1-overlay--dark: lighten(
@@ -357,16 +357,12 @@ $fallbackvars: getfallbackvars();
       $cssVarValue: map-get($cssVariables, $key);
 
       --#{$key}: #{$cssVarValue};
-    }
-
-    @else if (type-of($value) == color) {
+    } @else if (type-of($value) == color) {
       $rgbVal: hextorgb($value);
 
       --#{$key}-rgb: #{$rgbVal};
       --#{$key}: rgb(var(--#{$key}-rgb));
-    }
-
-    @else {
+    } @else {
       --#{$key}: #{$value};
     }
   }

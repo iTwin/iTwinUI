@@ -1,5 +1,5 @@
 @import '../style/index';
-@import '../icons/variables.scss';
+@import '../icons/variables';
 
 @mixin iui-progress-indicator-radial-ie() {
   @include iui-font-family;

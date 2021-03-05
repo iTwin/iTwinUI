@@ -30,6 +30,6 @@ const config = {
   debugWindow: false,
   dockerCommandTemplate:
     'docker run --rm -i --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
-}
+};
 
-module.exports = config
+module.exports = config;

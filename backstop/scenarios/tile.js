@@ -1,4 +1,4 @@
-const { scenario, hover, focus } = require('../scenarioHelper')
+const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
   // Tile types
@@ -118,4 +118,4 @@ module.exports = [
     actions: [focus('#test-tile-2 .iui-tile-button')],
     selectors: ['#test-tile-2'],
   }),
-]
+];

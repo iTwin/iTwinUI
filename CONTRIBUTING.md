@@ -26,6 +26,7 @@ See the **Checklist** below.
 `yarn build`
 
 ### To test
+
 Before running this command make sure Docker is running.
 
 `yarn test`
@@ -44,14 +45,16 @@ Before running this command make sure Docker is running.
 
 ### VSCode Users
 
-Install the [stylelint plugin](https://marketplace.visualstudio.com/items?itemName=shinnn.stylelint) for linter warnings in your editor
+Install the recommended plugins for linter warnings and code formatting.
 
 ---
 
 ## Developing
+
 ### Adding a component
 
 We welcome UI components contributed by other teams! If you'd like to get your component added to iTwinUI, follow these guidelines:
+
 - Make a new folder with the name of the component.
 - Break variables and mixins into seperate files where possible.
 - Make sure to include a `classes.scss` file in the folder as this file is used to generate all the relevant css classes.
@@ -68,18 +71,19 @@ We welcome UI components contributed by other teams! If you'd like to get your c
 ```
 
 ### Editing or enhancing a component
-When making changes to a component that already exists, we ask that all PRs distinctly list visual changes that have occurred.  These notes are used by the Visual Design team to update specifications and images within documentation.
+
+When making changes to a component that already exists, we ask that all PRs distinctly list visual changes that have occurred. These notes are used by the Visual Design team to update specifications and images within documentation.
 
 ### Adding tests
+
 For testing you will need [Docker](https://www.docker.com/products/docker-desktop). It helps to avoid cross-platform rendering differences.
+
 - Create `.html` file in `backstop/tests` displaying the elements you wish to test and their all possible states, using the built CSS in `lib/css`.
 - Create `.js` file in `backstop/scenarios` with the same name as `.html` file in previous step and ensure it exports scenarios list (take a look at `backstop/scenarios/alert.js`).
   - Use `scenario` function from `scenarioHelper.js` to create a scenario where the first argument is test case name and the second one is options.
     ```js
     const { scenario } = require('../scenarioHelper');
-    module.exports = [
-      scenario('basic'),
-    ];
+    module.exports = [scenario('basic')];
     ```
   - For actions like click, hover use according functions from `scenarioHelper.js` and pass them as scenario options `actions` property.
     ```js
@@ -105,6 +109,7 @@ For testing you will need [Docker](https://www.docker.com/products/docker-deskto
   - More information about options can be found in BackstopJS [GitHub](https://github.com/garris/BackstopJS#advanced-scenarios).
 
 ### Committing your work
+
 Before creating a pull request, make sure your changes address a specific work item or bug in the iTwinUI backlog. Do a search to see if there are any existing items that are still open. If you don't find one, you can create one.
 
 To enable us to quickly review and accept your pull requests, always create one pull request per work item. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked work item.

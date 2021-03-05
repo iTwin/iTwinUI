@@ -1,4 +1,8 @@
 {
-  "recommendations": ["esbenp.prettier-vscode", "shinnn.stylelint"],
+  "recommendations": [
+    "stylelint.vscode-stylelint",
+    "streetsidesoftware.code-spell-checker",
+    "esbenp.prettier-vscode",
+  ],
   "unwantedRecommendations": []
 }

@@ -1,33 +1,39 @@
 body {
   padding: 24px;
 }
+
 h1 {
   font-size: 32px;
   margin-bottom: 11px;
 }
+
 h2 {
   font-size: 22px;
   margin-bottom: 11px;
 }
+
 h3 {
   font-size: 16px;
 }
+
 hr {
-  border-top: 1px solid #c7ccd1;
+  border-top: 1px solid #C7CCD1;
   margin: 11px 0;
 }
+
 .demo-striped-background {
-  background-color: #f8f9fb;
+  background-color: #F8F9FB;
   width: 100%;
   margin: 0 -24px;
 }
 
 /* Dark theme */
 .iui-theme-dark body .demo-striped-background {
-  background-color: #4f5d65;
+  background-color: #4F5D65;
 }
+
 .iui-theme-dark body hr {
-  border-color: #2d373c;
+  border-color: #2D373C;
 }
 
 /* Custom high contrast theme */

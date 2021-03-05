@@ -1,4 +1,4 @@
-const { scenario } = require('../scenarioHelper')
+const { scenario } = require('../scenarioHelper');
 
 module.exports = [
   scenario('default', {
@@ -13,4 +13,4 @@ module.exports = [
   scenario('tiles', {
     selectors: ['#demo-tiles'],
   }),
-]
+];

@@ -101,7 +101,7 @@
     }
 
     // Adds focus to enabled radio tiles
-    & input:enabled:focus ~ .iui-radio-tile {
+    input:enabled:focus ~ .iui-radio-tile {
       outline: 0;
 
       @include themed {
@@ -126,7 +126,7 @@
     }
 
     // Styles checked radio tile
-    & input:checked ~ .iui-radio-tile {
+    input:checked ~ .iui-radio-tile {
       padding: $iui-s - 1;
       z-index: 3;
 
@@ -146,7 +146,7 @@
     }
 
     // Styles disabled radio tile
-    & input:disabled ~ .iui-radio-tile {
+    input:disabled ~ .iui-radio-tile {
       cursor: not-allowed;
       z-index: 0;
 
@@ -176,7 +176,7 @@
     }
 
     // Styles disabled checked radio tile
-    & input:disabled:checked ~ .iui-radio-tile {
+    input:disabled:checked ~ .iui-radio-tile {
       z-index: 3;
 
       @include themed {

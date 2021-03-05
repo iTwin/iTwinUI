@@ -6,11 +6,11 @@
   height: fit-content;
   position: relative;
 
-  & > .iui-tooltip {
+  > .iui-tooltip {
     @include iui-tooltip-hidden;
   }
 
-  & > .iui-tooltip.iui-tooltip-visible,
+  > .iui-tooltip.iui-tooltip-visible,
   &:hover > .iui-tooltip {
     @include iui-tooltip-visible;
   }

@@ -1,22 +1,25 @@
 function scenario(testCase, options = {}) {
-  return Object.assign({
-    label: testCase,
-    actions: [],
-    referenceUrl: '',
-    readyEvent: '',
-    readySelector: '',
-    delay: 1000,
-    hideSelectors: [],
-    removeSelectors: [],
-    hoverSelector: '',
-    clickSelector: '',
-    postInteractionWait: 500,
-    selectors: ['html'],
-    selectorExpansion: true,
-    expect: 0,
-    misMatchThreshold: 0.001,
-    requireSameDimensions: true,
-  }, options);
+  return Object.assign(
+    {
+      label: testCase,
+      actions: [],
+      referenceUrl: '',
+      readyEvent: '',
+      readySelector: '',
+      delay: 1000,
+      hideSelectors: [],
+      removeSelectors: [],
+      hoverSelector: '',
+      clickSelector: '',
+      postInteractionWait: 500,
+      selectors: ['html'],
+      selectorExpansion: true,
+      expect: 0,
+      misMatchThreshold: 0.001,
+      requireSameDimensions: true,
+    },
+    options,
+  );
 }
 
 const ScenarioActions = {
@@ -63,5 +66,5 @@ module.exports = {
   click,
   hover,
   focus,
-  keyPress
+  keyPress,
 };
