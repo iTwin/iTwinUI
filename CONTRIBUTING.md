@@ -1,25 +1,26 @@
 # Contributing
 
+We welcome all types of contribution.
+
+Need a feature or found a bug? Please create an item in [our backlog.](https://dev.azure.com/bentleycs/UX%20Design/_backlogs/backlog/iTwinUI/Features/?workitem=543453) Be sure to read description in the given link.
+
+Want to contribute by creating a PR? Great! Then read further.
+
 ## How to setup
 
 To clone and build iTwinUI you'll need [Git](https://git-scm.com) and [Yarn](https://yarnpkg.com) installed on your computer. From your command line:
 
-```
-# Clone this repository
-$ git clone https://bentleycs@dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI
+1. `git clone https://bentleycs@dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI`
+2. `cd iTwinUI`
+3. `yarn install`
 
-# Go into the repository
-$ cd iTwinUI
+### VSCode Users
 
-# Install dependencies
-$ yarn install
-```
+Install the recommended [plugins](./.vscode/extensions.json) for linter warnings in editor.
 
 ---
 
-## How to use
-
-See the **Checklist** below.
+## Run locally
 
 ### To build
 
@@ -27,25 +28,13 @@ See the **Checklist** below.
 
 ### To test
 
-Before running this command make sure Docker is running.
+Before running this command make sure Docker is running. Read more about [tests](#tests)
 
 `yarn test`
-
-### Update reference images
-
-`yarn approve`
 
 ### To lint SCSS and fix autofixable errors
 
 `yarn lint`
-
-### To clean
-
-`yarn clean`
-
-### VSCode Users
-
-Install the recommended plugins for linter warnings and code formatting.
 
 ---
 
@@ -55,26 +44,31 @@ Install the recommended plugins for linter warnings and code formatting.
 
 We welcome UI components contributed by other teams! If you'd like to get your component added to iTwinUI, follow these guidelines:
 
-- Make a new folder with the name of the component.
-- Break variables and mixins into seperate files where possible.
+- Make a new folder with the name of the component under `src` folder.
+- Break variables and mixins into separate files where possible.
 - Make sure to include a `classes.scss` file in the folder as this file is used to generate all the relevant css classes.
+
   - This file should simply define classes using your mixins.
-  - Example from `src/buttons/classes.scss`, where index imports all mixins and relevant scss.
+  - Example from `src/toggle-switch/classes.scss`, where index imports all mixins and relevant scss.
+
+    ```scss
+    @import './index';
+
+    .iui-toggle-switch {
+      @include iui-toggle-switch;
+    }
+    ```
+
   - Make sure to import your style in `src/classes.scss` and `src/mixins.scss`.
 
-```
-@import './index';
-
-.iui-button-high-visibility {
-  @include iui-button-high-visibility;
-}
-```
+- Write html for your new component in `your-component.html` file under `backstop/tests`
+- After running `yarn build` you can open minified html in browser to check up, how your component looks like from `backstop/minified`.
 
 ### Editing or enhancing a component
 
 When making changes to a component that already exists, we ask that all PRs distinctly list visual changes that have occurred. These notes are used by the Visual Design team to update specifications and images within documentation.
 
-### Adding tests
+### Tests
 
 For testing you will need [Docker](https://www.docker.com/products/docker-desktop). It helps to avoid cross-platform rendering differences.
 
@@ -108,22 +102,30 @@ For testing you will need [Docker](https://www.docker.com/products/docker-deskto
     ```
   - More information about options can be found in BackstopJS [GitHub](https://github.com/garris/BackstopJS#advanced-scenarios).
 
+### Changelog
+
+The `CHANGELOG.md` file must be updated for any new components or changes that you add. If unsure of which release your changes will go to, you can add a placeholder version and date (on the top):
+
+```
+## 0.1.X
+
+`Date`
+
+### What's new
+```
+
 ### Committing your work
 
 Before creating a pull request, make sure your changes address a specific work item or bug in the iTwinUI backlog. Do a search to see if there are any existing items that are still open. If you don't find one, you can create one.
 
 To enable us to quickly review and accept your pull requests, always create one pull request per work item. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked work item.
 
-1. Create a branch of the form `feature/{description}` or `bug/{description}`.
-2. Changes made in the `src/` directory.
-3. Test added to `backstop/tests` and `backstop/scenarios`.
-   - `.html` file has all possible states of the component.
-   - `.js` file has scenarios covering these cases.
-4. Use `yarn develop {test name}` to run just the test for what you are developing, making changes as needed.
-5. Once you are satisfied with your work, run `yarn approve`.
-6. Stage and commit changes.
-7. On commit, `yarn lint` will be run.
-8. After ensuring that neither of these processes errors, push to your branch with `git push`.
-9. Run `git merge main` to merge any missed changes.
-10. [Click this link](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI/pullrequests) and create a new pull request.
-11. Add reviewers and link work items.
+#### Checklist
+
+- Branch created in the form of `yourName/your-feature`.
+- Component created following project structure.
+- Tests added to `backstop/tests` and `backstop/scenarios`.
+  - `.html` file has all possible states of the component.
+  - `.js` file has scenarios covering these cases.
+- Updated changelog.
+- Ensure, that work item is linked in the PR and you have a proper description of the PR.
