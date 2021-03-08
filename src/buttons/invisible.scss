@@ -61,7 +61,7 @@
         left: 0;
         right: 0;
         margin: auto;
-        width: 92%;
+        width: calc(100% - #{$iui-s});
 
         @include themed() {
           background-color: t(iui-color-foreground-primary);
@@ -70,7 +70,6 @@
     }
 
     &:hover:enabled,
-    &:focus,
     &:focus-visible,
     &.iui-active {
       > svg {

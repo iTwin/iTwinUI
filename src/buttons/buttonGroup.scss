@@ -74,7 +74,7 @@
         opacity: 1;
         top: $iui-xxs;
         left: $iui-xxs;
-        width: 92%;
+        width: calc(100% - #{$iui-xs});
 
         @include themed {
           background-color: t(iui-color-foreground-primary);
