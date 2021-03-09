@@ -87,8 +87,8 @@ export type { SelectProps, SelectOption, ItemRendererProps } from './Select';
 export { Table } from './Table';
 export type { TableProps } from './Table';
 
-export { Tag } from './Tag';
-export type { TagProps } from './Tag';
+export { Tag, TagContainer } from './Tag';
+export type { TagProps, TagContainerProps } from './Tag';
 
 export { Textarea } from './Textarea';
 export type { TextareaProps } from './Textarea';

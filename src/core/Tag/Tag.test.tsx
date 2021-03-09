@@ -15,6 +15,17 @@ it('renders in its most basic state', () => {
   expect(container.querySelector('.iui-tag-close-icon')).toBeNull();
 });
 
+it('should propagate custom styles and className', () => {
+  const { container } = render(
+    <Tag className='test-class' style={{ color: 'yellow' }}>
+      Mocked tag
+    </Tag>,
+  );
+  const tag = container.querySelector('.iui-tag.test-class') as HTMLSpanElement;
+  expect(tag).toBeTruthy();
+  expect(tag.style.color).toEqual('yellow');
+});
+
 it('fires close event on click', () => {
   const fn = jest.fn();
   const result = render(<Tag onRemove={fn}>Mocked tag</Tag>);
@@ -25,4 +36,13 @@ it('fires close event on click', () => {
   expect(close).toBeTruthy();
   fireEvent.click(close);
   expect(fn).toHaveBeenCalledTimes(1);
+});
+
+it('should render correctly with basic styleType', () => {
+  const { container } = render(<Tag styleType='basic'>Mocked tag</Tag>);
+  expect(container.querySelector('.iui-tag.iui-basic')).toBeTruthy();
+
+  const text = container.querySelector('.iui-tag-text') as HTMLElement;
+  expect(text).toBeTruthy();
+  expect(text.textContent).toBe('Mocked tag');
 });

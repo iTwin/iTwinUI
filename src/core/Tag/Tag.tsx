@@ -1,8 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgClose } from '@bentley/icons-generic-react';
+import cx from 'classnames';
 import React from 'react';
+import { SvgClose } from '@bentley/icons-generic-react';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/tags.css';
+import { CommonProps } from '../utils/props';
 
 export type TagProps = {
   /**
@@ -14,19 +16,33 @@ export type TagProps = {
    * Text inside the tag.
    */
   children: React.ReactNode;
-};
+  /**
+   * Type of tag.
+   * Basic tags don't have an outline.
+   * @default 'default'
+   */
+  styleType?: 'default' | 'basic';
+} & CommonProps;
 
 /**
  * Tag for showing categories, filters etc.
  * @example
  * <Tag onRemove={() => alert('Closed a tag!')}>I'm a tag</Tag>
+ * <Tag type='basic'>Basic tag</Tag>
  */
 export const Tag = (props: TagProps) => {
-  const { children, onRemove } = props;
+  const { className, styleType, children, onRemove, ...rest } = props;
   useTheme();
 
   return (
-    <span className='iui-tag'>
+    <span
+      className={cx(
+        'iui-tag',
+        { 'iui-basic': styleType === 'basic' },
+        className,
+      )}
+      {...rest}
+    >
       <span className='iui-tag-text'>{children}</span>
       {onRemove && (
         <SvgClose onClick={onRemove} className='iui-tag-close-icon' />
