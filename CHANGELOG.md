@@ -1,3 +1,10 @@
+## 0.X.X
+
+`Date`
+
+### Fixes
+* **Fixed `Popover` overriding child's onClick.**
+
 ## 0.4.0
 
 `2021-03-02`

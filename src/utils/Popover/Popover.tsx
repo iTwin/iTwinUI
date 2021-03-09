@@ -1,5 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, MouseEventHandler } from 'react';
 import { mergeRefs } from '../../core/utils/hooks/useMergedRefs';
 import { Position, Positioner } from '../Positioner';
 
@@ -225,10 +225,21 @@ export class Popover extends React.Component<PopoverProps, PopoverState> {
       });
     }
 
-    return React.cloneElement(this.props.children as JSX.Element, {
-      onClick: this.toggle,
-      onMouseEnter: this.onHover(true),
-      onMouseLeave: this.onLeaveHover(true),
+    const { showOnHover = false } = this.props;
+    const childrenJsx = this.props.children as JSX.Element;
+    return React.cloneElement(childrenJsx, {
+      onClick: ((...args) => {
+        childrenJsx.props.onClick?.(...args);
+        !showOnHover && this.toggle();
+      }) as MouseEventHandler,
+      onMouseEnter: ((...args) => {
+        childrenJsx.props.onMouseEnter?.(...args);
+        this.onHover(true)();
+      }) as MouseEventHandler,
+      onMouseLeave: ((...args) => {
+        childrenJsx.props.onMouseLeave?.(...args);
+        this.onLeaveHover(true)();
+      }) as MouseEventHandler,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref: mergeRefs(this.targetRef, (this.props.children as any).ref),
     });

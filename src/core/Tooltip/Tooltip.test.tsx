@@ -46,3 +46,34 @@ it('should not be visible', () => {
 
   expect(queryByText('some text')).toBeNull();
 });
+
+it('should allow button clicks and hovers', () => {
+  const clickHandler = jest.fn();
+  const mouseEnterHandler = jest.fn();
+  const mouseLeaveHandler = jest.fn();
+
+  const { getByText } = render(
+    <Tooltip parentId='container' content='Tooltip!'>
+      <button
+        onClick={(event) => {
+          clickHandler(event.clientX, event.clientY);
+        }}
+        onMouseEnter={mouseEnterHandler}
+        onMouseLeave={mouseLeaveHandler}
+      >
+        Click me!
+      </button>
+    </Tooltip>,
+  );
+
+  fireEvent.click(getByText('Click me!'), {
+    clientX: 10,
+    clientY: 20,
+  });
+  fireEvent.mouseEnter(getByText('Click me!'));
+  fireEvent.mouseLeave(getByText('Click me!'));
+
+  expect(clickHandler).toBeCalledWith(10, 20);
+  expect(mouseEnterHandler).toBeCalledTimes(1);
+  expect(mouseLeaveHandler).toBeCalledTimes(1);
+});
