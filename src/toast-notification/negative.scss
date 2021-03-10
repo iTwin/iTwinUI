@@ -9,15 +9,6 @@
   }
 
   .iui-toast-message {
-    &::-moz-selection {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-negative-rgb),
-          t(iui-opacity-4)
-        );
-      }
-    }
-
     &::selection {
       @include themed {
         background-color: rgba(

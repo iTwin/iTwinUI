@@ -13,9 +13,9 @@ jobs:
   - checkout: self
     persistCredentials: True
   - task: NodeTool@0
-    displayName: Use Node 10.19.x
+    displayName: Use Node 12.17.x
     inputs:
-      versionSpec: 10.19.x
+      versionSpec: 12.17.x
   - task: YarnInstaller@2
     displayName: Use Yarn 1.x
   - task: npmAuthenticate@0
@@ -25,9 +25,17 @@ jobs:
   - task: Yarn@2
     displayName: Yarn install
     inputs:
-      Arguments: install
+      Arguments: install --frozen-lockfile
       customRegistry: useFeed
       customFeed: cddcc498-6606-47b5-b068-e9fa20167bf8
+  - task: Yarn@2
+    displayName: Yarn audit
+    inputs:
+      Arguments: 'audit --registry=https://registry.npmjs.org/'
+  - task: Yarn@2
+    displayName: Yarn lint
+    inputs:
+      Arguments: 'lint'
   - task: Yarn@2
     displayName: Yarn build
     inputs:

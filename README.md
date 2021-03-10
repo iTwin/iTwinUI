@@ -18,7 +18,7 @@
 
 The iTwinUI package is the evolution of the now retired [BWC package](https://dev.azure.com/bentleycs/UX%20Design/_git/bwc). It is a CSS (Sass/SCSS) library for building beautiful and well working web UI components with support for multiple color themes within Bentley Systems & iTwin.js applications.
 
-The goal of this project is to transform [UX Design specifications](https://ux.bentley.com/itwin/) into flexible and usable style for Bentley web applications. This is accomplished by developing the style using SASS (.scss) and providing end users with that SASS, as well as CSS and JSS. This provides great flexibility to the end user and more readily enables adoption of the iTwinUI standards.
+The goal of this project is to transform [UX Design specifications](https://ux.bentley.com/itwin/) into flexible and usable style for Bentley web applications. This is accomplished by developing the style using SASS (.scss) and providing end users with that SASS, as well as CSS. This provides great flexibility to the end user and more readily enables adoption of the iTwinUI standards.
 
 ---
 
@@ -49,17 +49,12 @@ Using SASS:
   }
 }
 ```
+> Note: We highly recommend using post-processing tools for CSS (like [postcss](https://www.npmjs.com/package/postcss) and [autoprefixer](https://www.npmjs.com/package/autoprefixer)) to add vendors' prefixes as we are not doing that manually in SCSS.
 
 Using CSS (applying global styles):
 
 ```css
 @import '@bentley/itwinui/css/global';
-```
-
-Using JSS:
-
-```js
-@import '@bentley/itwinui/jss/global.json';
 ```
 
 ---

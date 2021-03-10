@@ -13,15 +13,6 @@
     border-color: t(iui-color-foreground-primary);
   }
 
-  &::-moz-selection {
-    @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-primary-rgb),
-        t(iui-opacity-4)
-      );
-    }
-  }
-
   &::selection {
     @include themed {
       background-color: rgba(

@@ -26,6 +26,10 @@ Install the recommended [plugins](./.vscode/extensions.json) for linter warnings
 
 `yarn build`
 
+When developing you can use this command as it will automatically rebuild on files change:
+
+`yarn build:watch`
+
 ### To test
 
 Before running this command make sure Docker is running. Read more about [tests](#tests)
