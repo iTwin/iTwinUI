@@ -23,6 +23,7 @@
   padding: round($iui-baseline / 3) $iui-s;
   z-index: 999;
   box-shadow: $iui-elevation-24;
+  pointer-events: none;
 }
 
 @mixin iui-tooltip-hidden {
