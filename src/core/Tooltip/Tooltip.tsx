@@ -58,6 +58,7 @@ export const Tooltip = (props: TooltipProps) => {
   return (
     <Popover
       showOnHover
+      hoverTargetOnly
       content={
         <div
           className={cx('iui-tooltip', className)}
