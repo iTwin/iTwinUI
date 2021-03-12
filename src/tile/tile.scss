@@ -75,26 +75,7 @@
     }
 
     > svg {
-      width: $iui-icons-3xl;
-      height: $iui-icons-3xl;
-    }
-
-    > .iui-placeholder,
-    > .iui-play-icon {
-      width: $iui-icons-3xl;
-      height: $iui-icons-3xl;
-      transition: fill $iui-speed ease;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      &,
-      > path {
-        @include themed() {
-          fill: t(iui-icons-color);
-        }
-      }
+      @include iui-icons-3xl;
     }
 
     > .iui-play-icon {
@@ -103,13 +84,15 @@
 
       &,
       > path {
+        transition: fill $iui-speed-fast ease;
         @include themed() {
           fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
           filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
         }
       }
 
-      &:hover {
+      &:hover,
+      &:hover > path {
         @include themed() {
           fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
         }
@@ -226,10 +209,6 @@
         @include iui-icons-default;
         margin-right: $iui-s;
         flex-shrink: 0;
-
-        @include themed() {
-          fill: t(iui-icons-color);
-        }
       }
 
       > *:not(svg) {
