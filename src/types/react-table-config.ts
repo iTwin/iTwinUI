@@ -46,19 +46,21 @@ import {
   // UseRowStateOptions,
   UseRowStateRowProps,
   UseRowStateState,
-  // UseSortByColumnOptions,
+  UseSortByColumnOptions,
   UseSortByColumnProps,
   UseSortByHooks,
   UseSortByInstanceProps,
-  // UseSortByOptions,
+  UseSortByOptions,
   UseSortByState,
+  UseTableOptions,
 } from 'react-table';
 
 declare module 'react-table' {
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration
-
-  export interface TableOptions<D extends object>
-    extends UseRowSelectOptions<D>,
+  export interface TableOptions<
+    D extends object = {}
+  > extends UseTableOptions<D>,
+      UseRowSelectOptions<D>,
       // UseExpandedOptions<D>,
       // UseFiltersOptions<D>,
       // UseGlobalFiltersOptions<D>,
@@ -66,12 +68,7 @@ declare module 'react-table' {
       // UsePaginationOptions<D>,
       // UseResizeColumnsOptions<D>,
       // UseRowStateOptions<D>,
-      // UseSortByOptions<D>,
-      // note that having Record here allows you to add anything to the options, this matches the spirit of the
-      // underlying js library, but might be cleaner if it's replaced by a more specific type that matches your
-      // feature set, this is a safe default.
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      Record<string, any> {}
+      UseSortByOptions<D> {}
 
   export interface Hooks<D extends object = {}>
     extends UseExpandedHooks<D>,
@@ -102,11 +99,11 @@ declare module 'react-table' {
       UseRowStateState<D>,
       UseSortByState<D> {}
 
-  export interface ColumnInterface {
+  export interface ColumnInterface<D extends object = {}>
     // extends UseGlobalFiltersColumnOptions<D>,
     // UseGroupByColumnOptions<D>,
     // UseResizeColumnsColumnOptions<D>,
-    // UseSortByColumnOptions<D> {
+    extends UseSortByColumnOptions<D> {
     columnClassName?: string;
     cellClassName?: string;
   }

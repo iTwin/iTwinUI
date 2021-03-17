@@ -4,8 +4,7 @@ import React from 'react';
 
 import { Table, TableProps } from './Table';
 
-const onViewClick = jest.fn();
-const columns = [
+const columns = (onViewClick: () => void = jest.fn()) => [
   {
     Header: 'Header name',
     columns: [
@@ -38,9 +37,12 @@ const mockedData = () => [
   { name: 'Name3', description: 'Description3' },
 ];
 
-function renderComponent(initialsProps?: Partial<TableProps>) {
+function renderComponent(
+  initialsProps?: Partial<TableProps>,
+  onViewClick?: () => void,
+) {
   const defaultProps: TableProps = {
-    columns: columns,
+    columns: columns(onViewClick),
     data: mockedData(),
     emptyTableContent: 'Empty table',
   };
@@ -49,9 +51,11 @@ function renderComponent(initialsProps?: Partial<TableProps>) {
   return render(<Table {...props} />);
 }
 
-function assertRowsData(rows: NodeListOf<Element>) {
+function assertRowsData(
+  rows: NodeListOf<Element>,
+  data: { name: string; description: string }[] = mockedData(),
+) {
   expect(rows.length).toBe(3);
-  const data = mockedData();
   for (let i = 0; i < rows.length; i++) {
     const row = rows.item(i);
     const { name, description } = data[i];
@@ -62,15 +66,16 @@ function assertRowsData(rows: NodeListOf<Element>) {
     expect(cells[2].textContent).toEqual('View');
     fireEvent.click(cells[2].firstElementChild as HTMLElement);
   }
-  expect(onViewClick).toHaveBeenCalledTimes(3);
 }
 
 it('should render table with data', () => {
-  const { container } = renderComponent();
+  const onViewClick = jest.fn();
+  const { container } = renderComponent(undefined, onViewClick);
 
   expect(screen.queryByText('Header name')).toBeFalsy();
   const rows = container.querySelectorAll('.iui-tables-body .iui-tables-row');
   assertRowsData(rows);
+  expect(onViewClick).toHaveBeenCalledTimes(3);
 });
 
 it('should show spinner when loading', () => {
@@ -174,4 +179,124 @@ it('should handle checkbox clicks', () => {
 
   fireEvent.click(checkboxCells[0]);
   expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
+});
+
+it('should not show sorting icon if sorting is disabled', () => {
+  const { container } = renderComponent({
+    isSortable: false,
+  });
+
+  expect(container.querySelector('.iui-sort .iui-icon-wrapper')).toBeFalsy();
+});
+
+it('should not show sort icon if data is loading', () => {
+  const { container } = renderComponent({
+    isSortable: true,
+    isLoading: true,
+  });
+
+  expect(container.querySelector('.iui-sort .iui-icon-wrapper')).toBeFalsy();
+});
+
+it('should not show sort icon if data is empty', () => {
+  const { container } = renderComponent({
+    isSortable: true,
+    data: [],
+  });
+
+  expect(container.querySelector('.iui-sort .iui-icon-wrapper')).toBeFalsy();
+});
+
+it('should sort name column correctly', () => {
+  const mocked = [
+    { name: 'name1', description: 'Description1' },
+    { name: 'name3', description: 'Description3' },
+    { name: 'name2', description: 'Description2' },
+  ];
+  const sortedByName = [...mocked].sort((a, b) => (a.name > b.name ? 1 : -1));
+  const onSort = jest.fn();
+  const { container } = renderComponent({
+    isSortable: true,
+    data: mocked,
+    onSort,
+  });
+
+  const nameHeader = container.querySelector(
+    '.iui-tables-head',
+  ) as HTMLDivElement;
+  expect(nameHeader).toBeTruthy();
+  expect(nameHeader.classList).not.toContain('iui-active-sort');
+  let rows = container.querySelectorAll('.iui-tables-body .iui-tables-row');
+
+  assertRowsData(rows, mocked);
+
+  const sortIcon = container.querySelector(
+    '.iui-sort .iui-icon-wrapper',
+  ) as HTMLDivElement;
+  expect(sortIcon).toBeTruthy();
+
+  //first click
+  sortIcon.click();
+  rows = container.querySelectorAll('.iui-tables-body .iui-tables-row');
+  expect(nameHeader.classList).toContain('iui-active-sort');
+  assertRowsData(rows, sortedByName);
+  expect(onSort).toHaveBeenCalledWith(
+    expect.objectContaining({
+      sortBy: [
+        {
+          id: 'name',
+          desc: false,
+        },
+      ],
+    }),
+  );
+
+  //second click
+  sortIcon.click();
+  rows = container.querySelectorAll('.iui-tables-body .iui-tables-row');
+  expect(nameHeader.classList).toContain('iui-active-sort');
+  assertRowsData(rows, [...sortedByName].reverse());
+  expect(onSort).toHaveBeenCalledWith(
+    expect.objectContaining({
+      sortBy: [
+        {
+          id: 'name',
+          desc: true,
+        },
+      ],
+    }),
+  );
+
+  //third click resets it
+  sortIcon.click();
+  rows = container.querySelectorAll('.iui-tables-body .iui-tables-row');
+  expect(nameHeader.classList).not.toContain('iui-active-sort');
+  assertRowsData(rows, mocked);
+  expect(onSort).toHaveBeenCalledWith(
+    expect.objectContaining({
+      sortBy: [],
+    }),
+  );
+});
+
+it('should not show sort icon if disabled in column level', () => {
+  const mockedColumns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          disableSortBy: true,
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns: mockedColumns,
+    isSortable: true,
+  });
+
+  expect(container.querySelector('.iui-sort .iui-icon-wrapper')).toBeFalsy();
 });

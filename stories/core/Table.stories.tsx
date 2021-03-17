@@ -30,6 +30,12 @@ export default {
     isSelectable: {
       control: { disable: true },
     },
+    style: {
+      table: { disable: true },
+    },
+    className: {
+      table: { disable: true },
+    },
     initialState: {
       table: { disable: true },
     },
@@ -57,10 +63,40 @@ export default {
     selectSubRows: {
       table: { disable: true },
     },
+    manualSortBy: {
+      table: { disable: true },
+    },
+    defaultCanSort: {
+      table: { disable: true },
+    },
+    disableMultiSort: {
+      table: { disable: true },
+    },
+    isMultiSortEvent: {
+      table: { disable: true },
+    },
+    maxMultiSortColCount: {
+      table: { disable: true },
+    },
+    disableSortRemove: {
+      table: { disable: true },
+    },
+    disabledMultiRemove: {
+      table: { disable: true },
+    },
+    orderByFn: {
+      table: { disable: true },
+    },
+    sortTypes: {
+      table: { disable: true },
+    },
+    autoResetSortBy: {
+      table: { disable: true },
+    },
   },
 } as Meta<TableProps>;
 
-export const TableWithData: Story<TableProps> = (args) => {
+export const Basic: Story<TableProps> = (args) => {
   const { columns, data, ...rest } = args;
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
@@ -109,7 +145,7 @@ export const TableWithData: Story<TableProps> = (args) => {
     <Table
       columns={columns || tableColumns}
       data={data || tableData}
-      emptyTableContent={'No data.'}
+      emptyTableContent='No data.'
       {...rest}
     />
   );
@@ -175,12 +211,85 @@ export const Selectable: Story<TableProps> = (args) => {
     <Table
       columns={columns || tableColumns}
       data={data || tableData}
-      emptyTableContent={'No data.'}
+      emptyTableContent='No data.'
       isSelectable={true}
       onSelect={onSelect}
       {...rest}
     />
   );
+};
+
+export const Sortable: Story<TableProps> = (args) => {
+  const { columns, data, isSortable, ...rest } = args;
+  const onClickHandler = (
+    props: CellProps<{ name: string; description: string }>,
+  ) => action(props.row.original.name)();
+
+  const onSort = useCallback(
+    (state) => action(`Sort changed. Table state: ${JSON.stringify(state)}`)(),
+    [],
+  );
+
+  const tableColumns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+          },
+          {
+            id: 'description',
+            Header: 'Description Not Sortable',
+            accessor: 'description',
+            maxWidth: 200,
+            disableSortBy: true,
+          },
+          {
+            id: 'click-me',
+            Header: 'Click',
+            width: 100,
+            Cell: (props: CellProps<{ name: string; description: string }>) => {
+              const onClick = () => onClickHandler(props);
+              return <a onClick={onClick}>Click me!</a>;
+            },
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const tableData = useMemo(
+    () => [
+      { name: 'Name1', description: 'Description1' },
+      { name: 'Name3', description: 'Description3' },
+      { name: 'Name2', description: 'Description2' },
+    ],
+    [],
+  );
+
+  return (
+    <Table
+      columns={columns || tableColumns}
+      data={data || tableData}
+      emptyTableContent='No data.'
+      isSortable={isSortable}
+      onSort={onSort}
+      {...rest}
+    />
+  );
+};
+
+Sortable.args = {
+  data: [
+    { name: 'Name1', description: 'Description1' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name2', description: 'Description2' },
+  ],
+  isSortable: true,
 };
 
 export const Loading: Story<TableProps> = (args) => {
@@ -212,7 +321,7 @@ export const Loading: Story<TableProps> = (args) => {
       columns={columns || tableColumns}
       data={data || []}
       isLoading={true}
-      emptyTableContent={'No data.'}
+      emptyTableContent='No data.'
       {...rest}
     />
   );
@@ -251,7 +360,7 @@ export const NoData: Story<TableProps> = ({ columns, data, ...rest }) => {
       columns={columns || tableColumns}
       data={data || []}
       isLoading={false}
-      emptyTableContent={'No data.'}
+      emptyTableContent='No data.'
       {...rest}
     />
   );

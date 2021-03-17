@@ -2,24 +2,29 @@
 import React from 'react';
 import cx from 'classnames';
 import {
+  actions as TableActions,
   CellProps,
   ColumnInstance,
   HeaderGroup,
   HeaderProps,
   Hooks,
-  Row,
   TableOptions,
+  Row,
   TableState,
   useFlexLayout,
   useMountedLayoutEffect,
   useRowSelect,
+  useSortBy,
   useTable,
+  ActionType,
+  TableInstance,
 } from 'react-table';
 import { Checkbox } from '..';
 import { ProgressRadial } from '../ProgressIndicators';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/flextables.css';
 import { CommonProps } from '../utils/props';
+import { SvgSortDown, SvgSortUp } from '@bentley/icons-generic-react';
 
 /**
  * Table props.
@@ -27,7 +32,7 @@ import { CommonProps } from '../utils/props';
  */
 export type TableProps<
   T extends Record<string, unknown> = Record<string, unknown>
-> = TableOptions<T> & {
+> = Omit<TableOptions<T>, 'disableSortBy'> & {
   /**
    * Flag whether data is loading.
    * @default false
@@ -39,16 +44,28 @@ export type TableProps<
   emptyTableContent: React.ReactNode;
   /**
    * Flag whether table rows can be selectable.
+   * @default false
    */
   isSelectable?: boolean;
   /**
-   * Handler for rows selection.
+   * Handler for rows selection. Must be memoized.
    */
   onSelect?: (
     selectedData: T[] | undefined,
     tableState?: TableState<T>,
   ) => void;
-} & CommonProps;
+  /**
+   * Flag whether table columns can be sortable.
+   * @default false
+   */
+  isSortable?: boolean;
+  /**
+   * Callback function when sort changes.
+   * Use with `manualSortBy` to handle sorting yourself e.g. sort in server-side.
+   * Must be memoized.
+   */
+  onSort?: (state: TableState<T>) => void;
+} & Omit<CommonProps, 'title'>;
 
 /**
  * Table based on react-table
@@ -87,8 +104,9 @@ export type TableProps<
  * <Table
  *   columns={columns}
  *   data={data}
- *   emptyTableContent={'No data.'}
+ *   emptyTableContent='No data.'
  *   isLoading={false}
+ *   isSortable={true}
  * />
  */
 export const Table = <
@@ -102,8 +120,11 @@ export const Table = <
     emptyTableContent,
     className,
     style,
-    isSelectable,
+    isSelectable = false,
     onSelect,
+    isSortable = false,
+    onSort,
+    stateReducer,
   } = props;
 
   useTheme();
@@ -150,13 +171,30 @@ export const Table = <
     });
   };
 
+  const tableStateReducer = (
+    newState: TableState<T>,
+    action: ActionType,
+    previousState: TableState<T>,
+    instance?: TableInstance<T>,
+  ): TableState<T> => {
+    if (action.type === TableActions.toggleSortBy) {
+      onSort?.(newState);
+    }
+    return stateReducer
+      ? stateReducer(newState, action, previousState, instance)
+      : newState;
+  };
+
   const instance = useTable<T>(
     {
       ...props,
       columns,
       defaultColumn,
+      disableSortBy: !isSortable,
+      stateReducer: tableStateReducer,
     },
     useFlexLayout,
+    useSortBy,
     useRowSelect,
     useSelectionHook,
   );
@@ -217,16 +255,32 @@ export const Table = <
             <div {...headerGroupProps} key={headerGroupProps.key}>
               {headerGroup.headers.map((column) => {
                 const columnProps = column.getHeaderProps({
+                  ...column.getSortByToggleProps(),
                   className: cx(
                     'iui-tables-cell',
                     'iui-tables-head',
+                    { 'iui-active-sort': column.isSorted },
                     column.columnClassName,
                   ),
-                  style: getStyle(column),
+                  style: {
+                    ...getStyle(column),
+                    cursor: column.canSort ? 'pointer' : undefined,
+                  },
                 });
                 return (
                   <div {...columnProps} key={columnProps.key}>
                     {column.render('Header')}
+                    {!isLoading && data.length != 0 && column.canSort && (
+                      <div className='iui-sort'>
+                        <div className='iui-icon-wrapper'>
+                          {column.isSorted && column.isSortedDesc ? (
+                            <SvgSortUp />
+                          ) : (
+                            <SvgSortDown />
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 );
               })}
