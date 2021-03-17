@@ -183,9 +183,10 @@
       font-size: $iui-font-size;
       height: 100%;
       max-height: $iui-baseline * 6;
+      display: -webkit-box; /* stylelint-disable-line */
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
-
       @include themed() {
         color: t(iui-text-color-muted);
       }
@@ -223,6 +224,10 @@
       bottom: $iui-baseline / 2;
       right: $iui-s;
       visibility: hidden;
+
+      &.iui-visible {
+        visibility: visible;
+      }
     }
   }
 
@@ -273,7 +278,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     .iui-metadata {
       width: calc(100% - #{$iui-xl});
     }
@@ -331,6 +337,7 @@
         height: 100%;
         max-height: $iui-baseline * 4;
         margin-bottom: 0;
+        -webkit-line-clamp: 2;
       }
     }
   }
