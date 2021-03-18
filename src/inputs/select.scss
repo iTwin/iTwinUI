@@ -21,8 +21,6 @@ $iui-after-border: 5px solid;
     white-space: nowrap;
     user-select: none;
     position: relative;
-    margin-top: $iui-inputs-margin;
-    margin-bottom: 0;
     overflow: hidden;
     text-overflow: ellipsis;
 
@@ -54,6 +52,7 @@ $iui-after-border: 5px solid;
     width: 0;
     height: 0;
     opacity: 0;
+    position: absolute;
   }
 
   input ~ .iui-menu {

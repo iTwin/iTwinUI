@@ -32,7 +32,7 @@
     > .iui-quick-action {
       position: absolute;
       border-radius: 50%;
-      top: round($iui-baseline / 3);
+      top: round($iui-baseline / 2);
 
       > .iui-icon {
         @include themed() {

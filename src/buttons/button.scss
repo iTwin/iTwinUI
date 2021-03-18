@@ -11,7 +11,6 @@
   @include iui-font-family;
   display: inline-block;
   padding: $iui-button-padding-vertical $iui-m;
-  margin: $iui-inputs-margin 0;
   box-sizing: border-box;
   border-radius: $iui-border-radius;
   line-height: $iui-line-height;
@@ -82,7 +81,6 @@
 @mixin iui-buttons-small-size {
   padding: $iui-button-padding-small-vertical
     $iui-button-padding-small-horizontal;
-  margin: $iui-inputs-margin 0;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
 }
@@ -90,7 +88,6 @@
 @mixin iui-buttons-large-size {
   padding: $iui-button-padding-large-vertical
     $iui-button-padding-large-horizontal;
-  margin: $iui-inputs-margin-large 0;
   font-size: $iui-font-size-leading;
   font-weight: $iui-font-weight-normal;
 }
@@ -98,7 +95,6 @@
 @mixin iui-buttons-small-bordered-size {
   padding: $iui-button-padding-small-vertical
     $iui-button-padding-small-horizontal;
-  margin: $iui-inputs-margin 0;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
 }
@@ -106,7 +102,6 @@
 @mixin iui-buttons-large-bordered-size {
   padding: $iui-button-padding-large-vertical
     $iui-button-padding-large-horizontal;
-  margin: $iui-inputs-margin-large 0;
   font-size: $iui-font-size-leading;
   font-weight: $iui-font-weight-normal;
 }

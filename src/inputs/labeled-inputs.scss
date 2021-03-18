@@ -26,7 +26,7 @@
 
   > .iui-label {
     padding: 0;
-    margin: 0;
+    margin-bottom: $iui-inputs-margin;
     border: 0;
     display: block;
     width: fit-content;
@@ -50,6 +50,7 @@
     align-items: center;
     font-size: $iui-font-size-small;
     line-height: $iui-line-height;
+    margin-top: $iui-inputs-margin;
 
     @include themed {
       color: t(iui-text-color-muted);
@@ -81,7 +82,7 @@
 
     > .iui-label {
       flex-shrink: 0;
-      margin-right: $iui-sm;
+      margin: 0 $iui-sm 0 0;
     }
 
     > .iui-checkbox:not(:last-child),
@@ -91,6 +92,8 @@
     }
 
     > .iui-message {
+      margin: 0;
+
       svg {
         margin-right: 0;
       }
