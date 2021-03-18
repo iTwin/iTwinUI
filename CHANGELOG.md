@@ -3,6 +3,8 @@
 `2021-XX-XX`
 
 ### What's new
+
+* **`Tile` component added.**
 * **Added column sort to `Table`.** Pass `isSortable={true}` to enable sort for a table. You can disable sort for individual columns by setting `disableSortBy: true` in a column definition.
 
 ## 0.4.1

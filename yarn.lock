@@ -1023,20 +1023,20 @@
   resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha1-daLotRy3WKdVPWgEpZMteqznXDk=
 
-"@bentley/icons-generic-react@^0.1.3":
-  version "0.1.3"
-  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/icons-generic-react/-/icons-generic-react-0.1.3.tgz#54290f336d5618b02bcfeb1dfcfe347de63b93c2"
-  integrity sha1-VCkPM21WGLArz+sd/P40feY7k8I=
+"@bentley/icons-generic-react@^0.1.4":
+  version "0.1.4"
+  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/icons-generic-react/-/icons-generic-react-0.1.4.tgz#991c68d0ef43580a116e9e663fbbbd9537bf2208"
+  integrity sha1-mRxo0O9DWAoRbp5mP7u9lTe/Igg=
 
 "@bentley/illustrations@^1.0.1":
   version "1.0.1"
   resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/illustrations/-/illustrations-1.0.1.tgz#edfc43194174f2843f97d076569bf515ecf9ed60"
   integrity sha1-7fxDGUF08oQ/l9B2Vpv1Fez57WA=
 
-"@bentley/itwinui@^0.3.0":
-  version "0.3.0"
-  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/itwinui/-/itwinui-0.3.0.tgz#ae3ea5900999f6817550826d5336c39311011a4b"
-  integrity sha1-rj6lkAmZ9oF1UIJtUzbDkxEBGks=
+"@bentley/itwinui@^0.4.0":
+  version "0.4.0"
+  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/itwinui/-/itwinui-0.4.0.tgz#709fa4ba8fdde2bd12a92ed19c5d0f46a2a473fa"
+  integrity sha1-cJ+kuo/d4r0SqS7RnF0PRqKkc/o=
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"

@@ -93,6 +93,9 @@ export type { TagProps, TagContainerProps } from './Tag';
 export { Textarea } from './Textarea';
 export type { TextareaProps } from './Textarea';
 
+export { Tile } from './Tile';
+export type { TileProps } from './Tile';
+
 export { default as toaster } from './Toast';
 export type { ToastOptions } from './Toast';
 
