@@ -65,8 +65,8 @@ Basic.args = {
     <>
       <SvgTag2 />
       <TagContainer>
-        <Tag styleType='basic'>tag 1</Tag>
-        <Tag styleType='basic'>tag 2</Tag>
+        <Tag variant='basic'>tag 1</Tag>
+        <Tag variant='basic'>tag 2</Tag>
       </TagContainer>
     </>
   ),

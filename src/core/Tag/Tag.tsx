@@ -17,30 +17,26 @@ export type TagProps = {
    */
   children: React.ReactNode;
   /**
-   * Type of tag.
+   * Variant of tag.
    * Basic tags don't have an outline.
    * @default 'default'
    */
-  styleType?: 'default' | 'basic';
+  variant?: 'default' | 'basic';
 } & CommonProps;
 
 /**
  * Tag for showing categories, filters etc.
  * @example
  * <Tag onRemove={() => alert('Closed a tag!')}>I'm a tag</Tag>
- * <Tag type='basic'>Basic tag</Tag>
+ * <Tag variant='basic'>Basic tag</Tag>
  */
 export const Tag = (props: TagProps) => {
-  const { className, styleType, children, onRemove, ...rest } = props;
+  const { className, variant = 'default', children, onRemove, ...rest } = props;
   useTheme();
 
   return (
     <span
-      className={cx(
-        'iui-tag',
-        { 'iui-basic': styleType === 'basic' },
-        className,
-      )}
+      className={cx('iui-tag', { 'iui-basic': variant === 'basic' }, className)}
       {...rest}
     >
       <span className='iui-tag-text'>{children}</span>

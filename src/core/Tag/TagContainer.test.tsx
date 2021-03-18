@@ -8,8 +8,8 @@ import { TagContainer } from './TagContainer';
 it('should render correctly', () => {
   const { container } = render(
     <TagContainer>
-      <Tag styleType='basic'>Mocked tag 1</Tag>
-      <Tag styleType='basic'>Mocked tag 2</Tag>
+      <Tag variant='basic'>Mocked tag 1</Tag>
+      <Tag variant='basic'>Mocked tag 2</Tag>
     </TagContainer>,
   );
   expect(container.querySelector('.iui-tag-container')).toBeTruthy();

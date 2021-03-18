@@ -38,8 +38,8 @@ it('fires close event on click', () => {
   expect(fn).toHaveBeenCalledTimes(1);
 });
 
-it('should render correctly with basic styleType', () => {
-  const { container } = render(<Tag styleType='basic'>Mocked tag</Tag>);
+it('should render correctly with basic variant', () => {
+  const { container } = render(<Tag variant='basic'>Mocked tag</Tag>);
   expect(container.querySelector('.iui-tag.iui-basic')).toBeTruthy();
 
   const text = container.querySelector('.iui-tag-text') as HTMLElement;

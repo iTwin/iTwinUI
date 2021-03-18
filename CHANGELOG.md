@@ -1,11 +1,19 @@
 ## 0.5.0
 
-`2021-XX-XX`
+`2021-03-18`
 
 ### What's new
 
-* **`Tile` component added.**
+* **Added `Tile` component.**
 * **Added column sort to `Table`.** Pass `isSortable={true}` to enable sort for a table. You can disable sort for individual columns by setting `disableSortBy: true` in a column definition.
+* **Added support for `styleType='borderless'` to `IconButton`.**
+* **Added `TagContainer` component.**
+* **Added `variant='basic'` to `Tag`, for use with the new `TagContainer`.**
+
+### Fixes
+
+* **Fixed tooltip interactions with mouse.**
+* **Fixed margin issues in various components** through base iTwinUI CSS package.
 
 ## 0.4.1
 

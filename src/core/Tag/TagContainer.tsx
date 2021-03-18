@@ -16,7 +16,7 @@ export type TagContainerProps = {
  * TagContainer for grouping tags.
  * @example
  * <TagContainer><Tag>Tag 1</Tag><Tag>Tag 2</Tag></TagContainer>
- * <TagContainer><Tag styleType='basic'>Basic tag</Tag><Tag styleType='basic'>Basic tag 2</Tag></TagContainer>
+ * <TagContainer><Tag variant='basic'>Basic tag</Tag><Tag variant='basic'>Basic tag 2</Tag></TagContainer>
  */
 export const TagContainer = (props: TagContainerProps) => {
   const { className, children, ...rest } = props;

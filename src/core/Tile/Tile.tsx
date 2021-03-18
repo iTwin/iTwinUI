@@ -29,7 +29,7 @@ export type TileProps = {
    *  // or
    *  metadata={<>
    *    <SvgTag2 />
-   *    <TagContainer><Tag styleType='basic'>Tag 1</Tag><Tag styleType='basic'>Tag 2</Tag></TagContainer>
+   *    <TagContainer><Tag variant='basic'>Tag 1</Tag><Tag variant='basic'>Tag 2</Tag></TagContainer>
    *  </>}
    * />
    */
@@ -95,7 +95,7 @@ export type TileProps = {
  * <Tile
  *  name='Tile name'
  *  description='Tile description that takes upto 3 lines'
- *  metadata={<TagContainer><Tag styleType='basic'>Tag 1</Tag></TagContainer>}
+ *  metadata={<TagContainer><Tag variant='basic'>Tag 1</Tag></TagContainer>}
  *  thumbnail='/url/to/image.jpg'
  *  badge={<Badge backgroundColor='blue'>Badge label</Badge>}
  *  buttons={[<Button>Button 1</Button>, <Button>Button 2</Button>]}

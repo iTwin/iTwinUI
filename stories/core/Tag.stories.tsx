@@ -40,12 +40,12 @@ NoClose.argTypes = {
   onRemove: { table: { disable: true } },
 };
 
-export const BasicTagsContainer: Story = ({ styleType, ...rest }) => {
+export const BasicTagsContainer: Story = ({ variant, ...rest }) => {
   return (
     <TagContainer {...rest}>
-      <Tag styleType={styleType}>Tag 1</Tag>
-      <Tag styleType={styleType}>Tag 2</Tag>
-      <Tag styleType={styleType}>Tag 3</Tag>
+      <Tag variant={variant}>Tag 1</Tag>
+      <Tag variant={variant}>Tag 2</Tag>
+      <Tag variant={variant}>Tag 3</Tag>
     </TagContainer>
   );
 };
@@ -56,5 +56,5 @@ BasicTagsContainer.argTypes = {
 };
 
 BasicTagsContainer.args = {
-  styleType: 'basic',
+  variant: 'basic',
 };
