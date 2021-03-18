@@ -1,3 +1,12 @@
+## 0.4.1
+
+`2021-03-18`
+
+### Fixes
+
+- **Fixed styling issues in Tile**: description text now overflows with ellipsis and options icon has a visibility class.
+- **Removed extra margins from various inputs and buttons.**
+
 ## 0.4.0
 
 `2021-03-12`
