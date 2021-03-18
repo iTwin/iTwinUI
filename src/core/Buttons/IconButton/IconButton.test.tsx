@@ -59,3 +59,13 @@ it('renders disabled small icon button correctly', () => {
   const icon = container.querySelector('.iui-buttons-icon');
   expect(icon).toBeTruthy();
 });
+
+it('should render borderless button correctly', () => {
+  const { container } = render(
+    <IconButton styleType='borderless'>
+      <SvgAdd />
+    </IconButton>,
+  );
+
+  expect(container.querySelector('.iui-button.iui-invisible')).toBeTruthy();
+});

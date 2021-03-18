@@ -91,3 +91,25 @@ const {
     isSticky = false,
 } = props;
 ```
+
+### Use classnames object syntax for conditional classes
+```jsx
+// Good
+<Button
+  className={cx(
+    'iui-button',
+    { 'iui-invisible': styleType === 'borderless' },
+    className,
+  )}
+  ...
+```
+```jsx
+// Bad (using short circuiting)
+<Button
+  className={cx(
+    'iui-button',
+    styleType === 'borderless' && 'iui-invisible',
+    className,
+  )}
+  ...
+```

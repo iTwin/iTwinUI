@@ -12,32 +12,63 @@ export type IconButtonProps = {
    * @default false
    */
   isActive?: boolean;
-} & ButtonProps;
+  /**
+   * Style of the button.
+   * Use 'borderless' to hide outline.
+   * @default 'default'
+   */
+  styleType?: 'cta' | 'high-visibility' | 'default' | 'borderless';
+} & Omit<ButtonProps, 'styleType'>;
 
 /**
  * Icon button
  * @example
  * <IconButton><SvgAdd /></IconButton>
+ * <IconButton styleType='borderless'><SvgAdd /></IconButton>
  */
 export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   (props, ref) => {
-    const { isActive, children, className, ...rest } = props;
+    const {
+      isActive,
+      children,
+      styleType = 'default',
+      size,
+      className,
+      ...rest
+    } = props;
 
     useTheme();
 
-    return (
-      <Button
+    return styleType === 'borderless' ? (
+      <button
         ref={ref}
         className={cx(
-          'iui-buttons-no-label',
-          {
-            'iui-buttons-active': isActive,
-          },
+          'iui-button iui-invisible',
+          { [`iui-${size}`]: size },
           className,
         )}
         {...rest}
       >
-        <svg className='iui-buttons-icon'>{children}</svg>
+        {children}
+      </button>
+    ) : (
+      <Button
+        ref={ref}
+        className={cx(
+          'iui-buttons-no-label',
+          { 'iui-buttons-active': isActive },
+          className,
+        )}
+        styleType={styleType}
+        size={size}
+        {...rest}
+      >
+        {React.cloneElement(children as JSX.Element, {
+          className: cx(
+            'iui-buttons-icon',
+            (children as JSX.Element).props.className,
+          ),
+        })}
       </Button>
     );
   },

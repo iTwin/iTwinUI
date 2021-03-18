@@ -58,3 +58,13 @@ HighVisibilityAdd.args = {
   isActive: false,
   styleType: 'high-visibility',
 };
+
+export const Borderless: Story<IconButtonProps> = ({ styleType, ...rest }) => {
+  return (
+    <IconButton styleType={styleType} onClick={action('clicked')} {...rest}>
+      <SvgAdd />
+    </IconButton>
+  );
+};
+
+Borderless.args = { styleType: 'borderless' };
