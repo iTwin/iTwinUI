@@ -10,7 +10,6 @@
     "max-nesting-depth": 6,
     "order/order": null,
     "order/properties-alphabetical-order": null,
-    "property-no-vendor-prefix": null,
     "selector-class-pattern": [
       "iui-[a-z]+",
       {
@@ -20,7 +19,6 @@
     ],
     "selector-combinator-space-after": "always",
     "selector-combinator-space-before": "always",
-    "selector-no-vendor-prefix": true,
     "selector-max-compound-selectors": 5,
     "selector-max-id": 1,
     "selector-no-qualifying-type": null,

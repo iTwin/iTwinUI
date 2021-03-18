@@ -123,9 +123,7 @@
       }
 
       /* With blur */
-      @supports (
-        backdrop-filter: blur(5px)
-      ) {
+      @supports (backdrop-filter: blur(5px)) {
         @include themed() {
           background-color: rgba(0, 0, 0, t(iui-opacity-5));
           backdrop-filter: blur(5px);
@@ -185,7 +183,7 @@
       max-height: $iui-baseline * 6;
       display: -webkit-box; /* stylelint-disable-line */
       -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+      -webkit-box-orient: vertical; /* stylelint-disable-line */
       overflow: hidden;
       @include themed() {
         color: t(iui-text-color-muted);
