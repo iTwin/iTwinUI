@@ -47,6 +47,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
     onToggle,
     style,
     isExpanded = false,
+    ...rest
   } = props;
 
   useTheme();
@@ -81,6 +82,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         className,
       )}
       style={style}
+      {...rest}
     >
       <div
         aria-expanded={expanded}

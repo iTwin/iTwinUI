@@ -13,9 +13,13 @@ export type ModalButtonBarProps = {
 /**
  * Container for Buttons in modal.
  */
-export const ModalButtonBar = ({ children }: ModalButtonBarProps) => {
+export const ModalButtonBar = ({ children, ...rest }: ModalButtonBarProps) => {
   useTheme();
-  return <div className='iui-modal-button-bar'>{children}</div>;
+  return (
+    <div className='iui-modal-button-bar' {...rest}>
+      {children}
+    </div>
+  );
 };
 
 export default ModalButtonBar;

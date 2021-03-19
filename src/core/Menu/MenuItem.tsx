@@ -54,6 +54,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
       className,
       style,
       role = 'menuitem',
+      ...rest
     } = props;
 
     useTheme();
@@ -81,6 +82,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         tabIndex={isSelected ? 0 : -1}
         aria-selected={isSelected}
         onKeyDown={onKeyDown}
+        {...rest}
       >
         {icon &&
           React.cloneElement(icon, {

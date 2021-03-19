@@ -24,12 +24,12 @@ export type RadioTileGroupProps = {
  * </RadioTileGroup>
  */
 export const RadioTileGroup = (props: RadioTileGroupProps) => {
-  const { children, label } = props;
+  const { children, label, ...rest } = props;
 
   useTheme();
 
   return (
-    <InputGroup label={label}>
+    <InputGroup label={label} {...rest}>
       <div className='iui-radio-tile-container'>{children}</div>
     </InputGroup>
   );

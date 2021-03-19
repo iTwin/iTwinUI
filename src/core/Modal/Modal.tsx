@@ -93,6 +93,7 @@ export const Modal = (props: ModalProps) => {
     style,
     children,
     modalRootId,
+    ...rest
   } = props;
 
   useTheme();
@@ -146,6 +147,7 @@ export const Modal = (props: ModalProps) => {
             onKeyDown={handleKeyDown}
             ref={overlayRef}
             onMouseDown={handleMouseDown}
+            {...rest}
           >
             <div
               className='iui-modal-dialog'

@@ -46,7 +46,11 @@ const footerTranslations: TitleTranslations = {
  * @example
  * <Footer customElements={[{title: 'Bentley', url: 'https://www.bentley.com/'}]} />
  */
-export const Footer = ({ customElements, translatedTitles }: FooterProps) => {
+export const Footer = ({
+  customElements,
+  translatedTitles,
+  ...rest
+}: FooterProps) => {
   useTheme();
 
   const today = new Date();
@@ -71,7 +75,7 @@ export const Footer = ({ customElements, translatedTitles }: FooterProps) => {
     : defaultElements;
 
   return (
-    <footer className='iui-legal-footer'>
+    <footer className='iui-legal-footer' {...rest}>
       <ul>
         <li>© {today.getFullYear()} Bentley Systems, Incorporated</li>
         {elements.map((element, index) => {

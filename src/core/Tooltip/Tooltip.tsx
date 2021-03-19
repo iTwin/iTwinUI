@@ -29,7 +29,7 @@ export type TooltipProps = {
    * Control visibility if needed.
    */
   isVisible?: boolean;
-} & CommonProps;
+} & Omit<CommonProps, 'title'>;
 
 /**
  * Basic tooltip component
@@ -45,6 +45,7 @@ export const Tooltip = (props: TooltipProps) => {
     className,
     style,
     isVisible,
+    ...rest
   } = props;
 
   useTheme();
@@ -64,6 +65,7 @@ export const Tooltip = (props: TooltipProps) => {
           className={cx('iui-tooltip', className)}
           style={style}
           role='tooltip'
+          {...rest}
         >
           {content}
         </div>

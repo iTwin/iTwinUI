@@ -15,13 +15,13 @@ export type MenuProps = {
    * Menu items. Recommended to use `MenuItem` components.
    */
   children: React.ReactNode;
-} & CommonProps;
+} & Omit<CommonProps, 'title'>;
 
 /**
  * Basic menu component. Can be used for select or dropdown components.
  */
 export const Menu = (props: MenuProps) => {
-  const { children, role = 'menu', className, style } = props;
+  const { children, role = 'menu', className, style, ...rest } = props;
 
   useTheme();
 
@@ -73,6 +73,7 @@ export const Menu = (props: MenuProps) => {
       role={role}
       onKeyDown={onKeyDown}
       ref={menuRef}
+      {...rest}
     >
       {children}
     </ul>

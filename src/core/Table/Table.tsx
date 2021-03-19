@@ -125,6 +125,7 @@ export const Table = <
     isSortable = false,
     onSort,
     stateReducer,
+    ...rest
   } = props;
 
   useTheme();
@@ -239,12 +240,23 @@ export const Table = <
     return style;
   };
 
+  const ariaDataAttributes = Object.entries(rest).reduce(
+    (result, [key, value]) => {
+      if (key.startsWith('data-') || key.startsWith('aria-')) {
+        result[key] = value;
+      }
+      return result;
+    },
+    {} as Record<string, string>,
+  );
+
   return (
     <div
       {...getTableProps({
         className: cx('iui-tables-table', className),
         style,
       })}
+      {...ariaDataAttributes}
     >
       <div>
         {headerGroups.slice(1).map((headerGroup: HeaderGroup<T>) => {

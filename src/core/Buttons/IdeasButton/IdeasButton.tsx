@@ -24,8 +24,8 @@ export type IdeasButtonProps = {
 export const IdeasButton = React.forwardRef<
   HTMLButtonElement,
   IdeasButtonProps
->((props, ref) => {
-  const { feedbackLabel = 'Feedback', onClick } = props;
+>((props: IdeasButtonProps, ref) => {
+  const { feedbackLabel = 'Feedback', onClick, ...rest } = props;
 
   useTheme();
 
@@ -35,6 +35,7 @@ export const IdeasButton = React.forwardRef<
       className='iui-buttons-idea'
       onClick={onClick}
       type='button'
+      {...rest}
     >
       <SvgSmileyHappy2 className='iui-buttons-icon' />
       {feedbackLabel}

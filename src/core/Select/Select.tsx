@@ -146,6 +146,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     style,
     menuClassName,
     menuStyle,
+    ...rest
   } = props;
 
   useTheme();
@@ -231,6 +232,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           style={style}
+          {...rest}
         >
           <input
             type='checkbox'

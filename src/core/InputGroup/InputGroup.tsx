@@ -37,7 +37,7 @@ export type InputGroupProps = {
    * Child inputs inside group.
    */
   children: React.ReactNode;
-} & CommonProps;
+} & Omit<CommonProps, 'title'>;
 
 /**
  * Group Checkbox/Radio components together
@@ -65,6 +65,7 @@ export const InputGroup = (props: InputGroupProps) => {
     svgIcon,
     className,
     style,
+    ...rest
   } = props;
   useTheme();
   const icon = status ? StatusIconMap[status] : svgIcon;
@@ -81,6 +82,7 @@ export const InputGroup = (props: InputGroupProps) => {
         className,
       )}
       style={style}
+      {...rest}
     >
       {label && <div className='iui-label'>{label}</div>}
       {children}

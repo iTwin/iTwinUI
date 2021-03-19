@@ -56,6 +56,7 @@ export const ProgressLinear = (props: ProgressLinearProps) => {
     status,
     className,
     style,
+    ...rest
   } = props;
 
   useTheme();
@@ -72,6 +73,7 @@ export const ProgressLinear = (props: ProgressLinearProps) => {
         className,
       )}
       style={style}
+      {...rest}
     >
       <div className='iui-track'>
         <div

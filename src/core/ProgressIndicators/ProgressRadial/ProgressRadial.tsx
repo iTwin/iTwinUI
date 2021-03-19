@@ -60,6 +60,7 @@ export const ProgressRadial = (props: ProgressRadialProps) => {
     size = '',
     className,
     style,
+    ...rest
   } = props;
 
   useTheme();
@@ -87,6 +88,7 @@ export const ProgressRadial = (props: ProgressRadialProps) => {
         className,
       })}
       style={style}
+      {...rest}
     >
       <svg className='iui-radial' viewBox='0 0 32 32' aria-hidden='true'>
         <circle className='iui-track' cx='16' cy='16' r='14' />

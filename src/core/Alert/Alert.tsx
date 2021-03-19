@@ -38,7 +38,7 @@ export type AlertProps = {
    * Alert message text.
    */
   children: React.ReactNode;
-} & CommonProps;
+} & Omit<CommonProps, 'title'>;
 
 /**
  * A small box to quickly grab user attention and communicate a brief message
@@ -59,6 +59,7 @@ export const Alert = (props: AlertProps) => {
     onClose,
     style,
     isSticky = false,
+    ...rest
   } = props;
 
   useTheme();
@@ -78,6 +79,7 @@ export const Alert = (props: AlertProps) => {
         className,
       )}
       style={style}
+      {...rest}
     >
       {iconMap[type]}
       {children}

@@ -83,6 +83,7 @@ export const ErrorPage = ({
   secondaryButtonHandle,
   secondaryButtonLabel,
   translatedErrorMessages,
+  ...rest
 }: ErrorPageProps): JSX.Element => {
   useTheme();
 
@@ -243,7 +244,7 @@ export const ErrorPage = ({
   }
 
   return (
-    <div className='iui-non-ideal-state'>
+    <div className='iui-non-ideal-state' {...rest}>
       {getErrorIcon()}
       <div className='iui-non-ideal-state-title'>{getHeadingMessage()}</div>
       {errorMessage && (

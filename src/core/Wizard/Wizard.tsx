@@ -64,6 +64,7 @@ export const Wizard = ({
   type = 'default',
   localization = defaultWizardLocalization,
   onStepClick,
+  ...rest
 }: WizardProps) => {
   const boundedCurrentStep = Math.min(
     Math.max(0, currentStep),
@@ -80,6 +81,7 @@ export const Wizard = ({
           'iui-wizards-long': type === 'long',
           'iui-wizards-workflow': type === 'workflow',
         })}
+        {...rest}
       >
         <div className='iui-wizards-wrapper'>
           {steps.map((s, index) => (

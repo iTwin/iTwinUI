@@ -59,6 +59,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
     tabsClassName,
     contentClassName,
     children,
+    ...rest
   } = props;
 
   useTheme();
@@ -109,6 +110,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
           { 'iui-green': color === 'green' },
           tabsClassName,
         )}
+        {...rest}
       >
         {labels.map((label, index) => {
           const onClick = () => onTabClick(index);

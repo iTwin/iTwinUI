@@ -119,7 +119,7 @@ export type DatePickerProps = {
    * @default false
    */
   setFocus?: boolean;
-} & CommonProps;
+} & Omit<CommonProps, 'title'>;
 
 /**
  * Date picker component
@@ -133,6 +133,7 @@ export const DatePicker = ({
   className,
   style,
   setFocus = false,
+  ...rest
 }: DatePickerProps): JSX.Element => {
   useTheme();
 
@@ -312,7 +313,7 @@ export const DatePicker = ({
   };
 
   return (
-    <div className={cx('iui-date-picker', className)} style={style}>
+    <div className={cx('iui-date-picker', className)} style={style} {...rest}>
       <div
         className='iui-date-picker-calendar'
         style={{

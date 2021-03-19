@@ -22,9 +22,13 @@ export type ButtonGroupProps = {
  *   </IconButton>
  * </ButtonGroup>
  */
-export const ButtonGroup = ({ children }: ButtonGroupProps) => {
+export const ButtonGroup = ({ children, ...rest }: ButtonGroupProps) => {
   useTheme();
-  return <div className='iui-buttons-group'>{children}</div>;
+  return (
+    <div className='iui-buttons-group' {...rest}>
+      {children}
+    </div>
+  );
 };
 
 export default ButtonGroup;

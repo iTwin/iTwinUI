@@ -37,6 +37,7 @@ export const Step = ({
   totalSteps,
   type,
   onClick,
+  ...rest
 }: StepProps) => {
   const isLast = totalSteps === index + 1;
   const isPast = currentStepNumber > index;
@@ -57,6 +58,7 @@ export const Step = ({
           'iui-clickable': !!onClick && isPast,
         })}
         onClick={onCompletedClick}
+        {...rest}
       >
         {index !== 0 && (
           <span

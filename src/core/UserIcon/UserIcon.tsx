@@ -76,6 +76,7 @@ export const UserIcon = (props: UserIconProps) => {
     translatedStatusTitles,
     className,
     style,
+    ...rest
   } = props;
 
   useTheme();
@@ -94,6 +95,7 @@ export const UserIcon = (props: UserIconProps) => {
       className={cx(`iui-user-icons-${size}`, className)}
       title={title}
       style={style}
+      {...rest}
     >
       {status && (
         <span

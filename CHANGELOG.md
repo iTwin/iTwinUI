@@ -1,3 +1,11 @@
+## X.X.X
+
+`2021-XX-XX`
+
+### What's new
+
+* **Added ability to pass down HTML `data-*` attributes for all components**. Any valid props not used by components will be passed down to root elements.
+
 ## 0.5.0
 
 `2021-03-18`
