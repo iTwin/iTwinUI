@@ -154,10 +154,10 @@ it('should render options dropdown correctly', () => {
       name='test-name'
       thumbnail={<SvgPlaceholder />}
       moreOptions={[
-        <MenuItem key={1} onClick={() => onClickMock(1)}>
+        <MenuItem key={1} value={'v1'} onClick={(value) => onClickMock(value)}>
           Item 1
         </MenuItem>,
-        <MenuItem key={2} onClick={() => onClickMock(2)}>
+        <MenuItem key={2} value={'v2'} onClick={(value) => onClickMock(value)}>
           Item 1
         </MenuItem>,
       ]}
@@ -180,7 +180,7 @@ it('should render options dropdown correctly', () => {
   expect(menuItem).toBeTruthy();
   expect(menuItem.textContent).toBe('Item 1');
   menuItem.click();
-  expect(onClickMock).toBeCalledWith(1);
+  expect(onClickMock).toBeCalledWith('v1');
 });
 
 it('should propagate misc props correctly', () => {

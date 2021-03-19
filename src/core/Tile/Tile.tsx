@@ -7,6 +7,7 @@ import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/tile.css';
 import { DropdownMenu } from '..';
 import { CommonProps } from '../utils/props';
+import { IconButton } from '../Buttons';
 
 export type TileProps = {
   /**
@@ -189,22 +190,24 @@ export const Tile = (props: TileProps) => {
             menuItems={(close) =>
               moreOptions.map((option: React.ReactElement) =>
                 React.cloneElement(option, {
-                  onClick: () => {
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  onClick: (value: any) => {
                     close();
-                    option.props.onClick?.();
+                    option.props.onClick?.(value);
                   },
                 }),
               )
             }
           >
-            <button
-              className={cx(
-                'iui-button iui-invisible iui-small iui-more-options',
-                { 'iui-visible': isMenuVisible },
-              )}
+            <IconButton
+              styleType='borderless'
+              size='small'
+              className={cx('iui-more-options', {
+                'iui-visible': isMenuVisible,
+              })}
             >
               <SvgMore2 />
-            </button>
+            </IconButton>
           </DropdownMenu>
         )}
 
