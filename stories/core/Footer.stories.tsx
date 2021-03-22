@@ -1,20 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Footer } from '../../src/core';
-import { FooterProps } from '../../src/core/Footer/Footer';
+import { Footer, FooterProps } from '../../src/core';
 
 export default {
   title: 'Core/Footer',
   component: Footer,
   parameters: {
-    docs: {
-      description: {
-        component:
-          'Provides valuable information that allows people to navigate the site.',
-      },
-      inlineStories: false,
-    },
+    docs: { inlineStories: false },
   },
 } as Meta<FooterProps>;
 

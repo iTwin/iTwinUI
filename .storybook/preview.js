@@ -8,15 +8,7 @@ import { lightTheme, darkTheme } from './itwinTheme';
 const channel = addons.getChannel();
 
 // switch body class for story along with interface theme
-channel.on('DARK_MODE', (isDark) => {
-  if (isDark) {
-    document.documentElement.classList.remove('iui-theme-light');
-    document.documentElement.classList.add('iui-theme-dark');
-  } else {
-    document.documentElement.classList.remove('iui-theme-dark');
-    document.documentElement.classList.add('iui-theme-light');
-  }
-});
+channel.on('DARK_MODE', (isDark) => updateTheme(isDark));
 
 addParameters({
   darkMode: {
@@ -28,3 +20,27 @@ addParameters({
   },
   options: { showPanel: true },
 });
+
+// helper for updating theme according to dark mode flag
+const updateTheme = (isDark) => {
+  if (isDark) {
+    document.documentElement.classList.remove('iui-theme-light');
+    document.documentElement.classList.add('iui-theme-dark');
+  } else {
+    document.documentElement.classList.remove('iui-theme-dark');
+    document.documentElement.classList.add('iui-theme-light');
+  }
+};
+
+// update iframe theme for non-inline stories
+if (window.parent !== window) {
+  updateTheme(
+    window.parent.document.documentElement.classList.contains('iui-theme-dark'),
+  );
+
+  new MutationObserver(([mutation]) => {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+      updateTheme(mutation.target.classList.contains('iui-theme-dark'));
+    }
+  }).observe(window.parent.document.documentElement, { attributes: true });
+}

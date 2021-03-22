@@ -2,15 +2,13 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
-import IdeasButton, {
-  IdeasButtonProps,
-} from '../../../src/core/Buttons/IdeasButton/IdeasButton';
+import { IdeasButton, IdeasButtonProps } from '../../../src/core';
 
 export default {
   title: 'Buttons/IdeasButton',
   component: IdeasButton,
   parameters: {
-    docs: { description: { component: 'Button for feedback' } },
+    docs: { inlineStories: false },
   },
   argTypes: {
     onClick: { table: { disable: true } },
