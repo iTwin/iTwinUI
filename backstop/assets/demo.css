@@ -45,5 +45,6 @@ html.custom-theme {
 
 /** For sections in backstop tests */
 section[id^='demo'] {
+  width: -moz-fit-content; /* stylelint-disable */
   width: fit-content;
 }

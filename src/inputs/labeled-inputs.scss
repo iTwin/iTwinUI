@@ -13,7 +13,7 @@
   font-weight: $iui-font-weight-normal;
   cursor: default;
 
-  /* Pointer cursor used if this class is applied to a label component */
+  // Pointer cursor used if this class is applied to a label element
   @at-root {
     label#{&} {
       cursor: pointer;
@@ -34,7 +34,6 @@
     font-weight: $iui-font-weight-semibold;
     line-height: $iui-line-height;
     text-align: left;
-
     @include themed {
       color: t(iui-text-color);
     }
@@ -69,6 +68,12 @@
     a {
       user-select: none;
     }
+  }
+
+  // Appropriate spacing even if no text label is given
+  > .iui-checkbox,
+  > .iui-radio {
+    min-height: $iui-line-height;
   }
 
   &.iui-disabled > label {
@@ -112,8 +117,7 @@
     }
   }
 
-  /* Statuses */
-
+  // #region Statuses
   &.iui-positive {
     @include iui-inputs-status(
       iui-color-foreground-positive,
@@ -137,6 +141,7 @@
       iui-color-foreground-negative-rgb
     );
   }
+  // #endregion
 }
 
 @mixin iui-inputs-status($foregroundColor, $foregroundOverlay, $foregroundRgb) {
