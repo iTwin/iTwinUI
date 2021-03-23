@@ -1,3 +1,11 @@
+## 0.4.2
+
+`2021-03-23`
+
+### Fixes
+
+- **Fixed spacing and alignment in grouped radios and checkboxes.**
+
 ## 0.4.1
 
 `2021-03-18`
