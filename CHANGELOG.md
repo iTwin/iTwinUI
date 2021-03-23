@@ -1,10 +1,17 @@
-## X.X.X
+## 0.5.1
 
-`2021-XX-XX`
+`2021-03-23`
 
 ### What's new
 
 * **Added ability to pass down HTML `data-*` attributes for all components**. Any valid props not used by components will be passed down to root elements.
+
+### Fixes
+
+* **Fixed Tile menu option onClick not passing args.**
+* **Fixed Storybook theming of IdeasButton and Footer in Docs tab.** 
+* **Fixed spacing in InputGroup** through base iTwinUI CSS package.
+* **Fixed positioning of input elements** through base iTwinUI CSS package.
 
 ## 0.5.0
 
