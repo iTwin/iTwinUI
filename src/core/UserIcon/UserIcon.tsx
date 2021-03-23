@@ -54,16 +54,16 @@ export const defaultStatusTitles: StatusTitles = {
  * Basic user icon component
  * @example
  * <caption>Small icon with abbreviation</caption>
- * <UserIcon size='small' title='Greg Bentley' abbreviation='GB' backgroundColor='green'/>
+ * <UserIcon size='small' title='Terry Rivers' abbreviation='TR' backgroundColor='green'/>
  * @example
  * <caption>Medium icon with image</caption>
- * <UserIcon size='medium' title='Greg Bentley' abbreviation='GB' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
+ * <UserIcon size='medium' title='Terry Rivers' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
  * @example
  * <caption>Large icon with status</caption>
- * <UserIcon size='large' title='Greg Bentley' abbreviation='GB' backgroundColor='green' status='online' />
+ * <UserIcon size='large' title='Terry Rivers' abbreviation='TR' backgroundColor='green' status='online' />
  * @example
  * <caption>X-large icon with image</caption>
- * <UserIcon size='x-large' title='Greg Bentley' abbreviation='GB' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
+ * <UserIcon size='x-large' title='Terry Rivers' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
  */
 export const UserIcon = (props: UserIconProps) => {
   const {

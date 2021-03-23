@@ -1,6 +1,6 @@
 <center>
 
-  ![iTwinUI logo](https://www.bentley.com/-/media/Images/icons/iTwinUI_logo)
+  ![iTwinUI logo](https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-logo.png)
 
 # iTwinUI-React
 

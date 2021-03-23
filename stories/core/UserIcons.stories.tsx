@@ -16,7 +16,7 @@ export default {
       defaultValue: 'green',
     },
     title: {
-      defaultValue: 'Greg Bentley',
+      defaultValue: 'Terry Rivers',
     },
     className: { table: { disable: true } },
     style: { table: { disable: true } },
@@ -27,9 +27,9 @@ export const Small: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='small'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -40,7 +40,7 @@ Small.argTypes = {
     defaultValue: 'small',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -48,12 +48,12 @@ export const SmallWithImage: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='small'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -65,7 +65,7 @@ SmallWithImage.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -74,9 +74,9 @@ export const Medium: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -87,7 +87,7 @@ Medium.argTypes = {
     defaultValue: 'medium',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -95,12 +95,12 @@ export const MediumWithImage: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -112,7 +112,7 @@ MediumWithImage.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -121,9 +121,9 @@ export const Large: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -134,7 +134,7 @@ Large.argTypes = {
     defaultValue: 'large',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -142,12 +142,12 @@ export const LargeWithImage: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -159,7 +159,7 @@ LargeWithImage.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -168,9 +168,9 @@ export const XLarge: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='x-large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -181,7 +181,7 @@ XLarge.argTypes = {
     defaultValue: 'x-large',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -189,12 +189,12 @@ export const XLargeWithImage: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='x-large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -206,7 +206,7 @@ XLargeWithImage.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -215,10 +215,10 @@ export const MediumWithStatusOnline: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       status='online'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -232,7 +232,7 @@ MediumWithStatusOnline.argTypes = {
     defaultValue: 'online',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -240,13 +240,13 @@ export const MediumWithImageAndStatusOnline: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
       status='online'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -261,7 +261,7 @@ MediumWithImageAndStatusOnline.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -270,10 +270,10 @@ export const MediumWithStatusOffline: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       status='offline'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -287,7 +287,7 @@ MediumWithStatusOffline.argTypes = {
     defaultValue: 'offline',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -295,13 +295,13 @@ export const MediumWithImageAndStatusOffline: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
       status='offline'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -316,7 +316,7 @@ MediumWithImageAndStatusOffline.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -325,10 +325,10 @@ export const MediumWithStatusAway: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       status='away'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -342,7 +342,7 @@ MediumWithStatusAway.argTypes = {
     defaultValue: 'away',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -350,13 +350,13 @@ export const MediumWithImageAndStatusAway: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
       status='away'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -371,7 +371,7 @@ MediumWithImageAndStatusAway.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -380,10 +380,10 @@ export const MediumWithStatusBusy: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       status='busy'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -397,7 +397,7 @@ MediumWithStatusBusy.argTypes = {
     defaultValue: 'busy',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -405,13 +405,13 @@ export const MediumWithImageAndStatusBusy: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='medium'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
       status='busy'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -426,7 +426,7 @@ MediumWithImageAndStatusBusy.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -435,10 +435,10 @@ export const LargeWithStatusOnline: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       status='online'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -452,7 +452,7 @@ LargeWithStatusOnline.argTypes = {
     defaultValue: 'online',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -460,13 +460,13 @@ export const LargeWithImageAndStatusOnline: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
       status='online'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -481,7 +481,7 @@ LargeWithImageAndStatusOnline.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -490,10 +490,10 @@ export const LargeWithStatusOffline: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       status='offline'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -507,7 +507,7 @@ LargeWithStatusOffline.argTypes = {
     defaultValue: 'offline',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -515,13 +515,13 @@ export const LargeWithImageAndStatusOffline: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
       status='offline'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -536,7 +536,7 @@ LargeWithImageAndStatusOffline.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -545,10 +545,10 @@ export const LargeWithStatusAway: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       status='away'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -562,7 +562,7 @@ LargeWithStatusAway.argTypes = {
     defaultValue: 'away',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -570,13 +570,13 @@ export const LargeWithImageAndStatusAway: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
       status='away'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -591,7 +591,7 @@ LargeWithImageAndStatusAway.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -600,10 +600,10 @@ export const LargeWithStatusBusy: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       status='busy'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -617,7 +617,7 @@ LargeWithStatusBusy.argTypes = {
     defaultValue: 'busy',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
 };
 
@@ -625,13 +625,13 @@ export const LargeWithImageAndStatusBusy: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
       status='busy'
-      title='Greg Bentley'
+      title='Terry Rivers'
       {...args}
     />
   );
@@ -646,7 +646,7 @@ LargeWithImageAndStatusBusy.argTypes = {
   },
   image: {
     defaultValue: (
-      <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
+      <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
     ),
   },
 };
@@ -655,10 +655,10 @@ export const CustomStatusTranslation: Story<UserIconProps> = (args) => {
   return (
     <UserIcon
       size='large'
-      abbreviation='GB'
+      abbreviation='TR'
       backgroundColor='green'
       status='online'
-      title='Greg Bentley'
+      title='Terry Rivers'
       translatedStatusTitles={{
         away: 'AFK',
         busy: 'Do not disturb!',
@@ -678,7 +678,7 @@ CustomStatusTranslation.argTypes = {
     defaultValue: 'online',
   },
   abbreviation: {
-    defaultValue: 'GB',
+    defaultValue: 'TR',
   },
   translatedStatusTitles: {
     defaultValue: {

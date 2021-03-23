@@ -5,28 +5,28 @@ import { render, screen } from '@testing-library/react';
 import { defaultStatusTitles, UserIcon, UserIconStatus } from './UserIcon';
 
 function assertBaseElements(size = 'small', backgroundColor = 'white') {
-  const userIconContainer = screen.getByTitle('Greg Bentley');
+  const userIconContainer = screen.getByTitle('Terry Rivers');
   expect(userIconContainer.className).toEqual(`iui-user-icons-${size}`);
 
-  const abbreviation = screen.getByText('GB');
+  const abbreviation = screen.getByText('TR');
   expect(abbreviation.className).toEqual('iui-user-icons-initials');
   expect(abbreviation.style.backgroundColor).toEqual(backgroundColor);
 }
 
 it('should render with given abbreviation', () => {
-  render(<UserIcon abbreviation='GB' title='Greg Bentley' />);
+  render(<UserIcon abbreviation='TR' title='Terry Rivers' />);
   assertBaseElements();
 });
 
 it('should render with given abbreviation (longer than 2 chars)', () => {
-  render(<UserIcon abbreviation='GBentley' title='Greg Bentley' />);
+  render(<UserIcon abbreviation='TRivers' title='Terry Rivers' />);
   assertBaseElements();
 });
 
 it.each(['small', 'medium', 'large', 'x-large'] as Array<
   'small' | 'medium' | 'large' | 'x-large'
 >)('should render with %s size', (size) => {
-  render(<UserIcon abbreviation='GB' title='Greg Bentley' size={size} />);
+  render(<UserIcon abbreviation='TR' title='Terry Rivers' size={size} />);
   assertBaseElements(size);
 });
 
@@ -34,7 +34,7 @@ it.each(['', 'online', 'busy', 'away', 'offline'] as Array<UserIconStatus>)(
   'should render with the %s status',
   (status) => {
     const { container } = render(
-      <UserIcon abbreviation='GB' title='Greg Bentley' status={status} />,
+      <UserIcon abbreviation='TR' title='Terry Rivers' status={status} />,
     );
     assertBaseElements();
     const statusContainer = container.querySelector(
@@ -55,8 +55,8 @@ it.each(['', 'online', 'busy', 'away', 'offline'] as Array<UserIconStatus>)(
 it('should render with translated statuses', () => {
   const { container } = render(
     <UserIcon
-      abbreviation='GB'
-      title='Greg Bentley'
+      abbreviation='TR'
+      title='Terry Rivers'
       status='offline'
       translatedStatusTitles={{
         ...defaultStatusTitles,
@@ -74,8 +74,8 @@ it('should render with translated statuses', () => {
 it('should render with custom color', () => {
   render(
     <UserIcon
-      abbreviation='GB'
-      title='Greg Bentley'
+      abbreviation='TR'
+      title='Terry Rivers'
       backgroundColor={'pink'}
     />,
   );
@@ -84,15 +84,10 @@ it('should render with custom color', () => {
 
 it('renders with image', () => {
   const { container } = render(
-    <UserIcon
-      image={
-        <img src='https://prod-bentleycdn.azureedge.net/-/media/images/colleague-portraits/greg_bentley_gc1_1620_3896x4920.jpg?modified=20200504182215' />
-      }
-      title='Greg Bentley'
-    />,
+    <UserIcon image={<img />} title='Terry Rivers' />,
   );
 
-  const userIconContainer = screen.getByTitle('Greg Bentley');
+  const userIconContainer = screen.getByTitle('Terry Rivers');
   expect(userIconContainer.className).toEqual('iui-user-icons-small');
   const abbreviation = container.querySelector('.iui-user-icons-initials');
   expect(abbreviation).toBeFalsy();
@@ -103,8 +98,8 @@ it('renders with image', () => {
 it('should render with custom className', () => {
   const { container } = render(
     <UserIcon
-      abbreviation='GB'
-      title='Greg Bentley'
+      abbreviation='TR'
+      title='Terry Rivers'
       className='test-classname'
     />,
   );
