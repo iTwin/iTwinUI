@@ -19,7 +19,7 @@ import {
   ActionType,
   TableInstance,
 } from 'react-table';
-import { Checkbox } from '..';
+import { Checkbox } from '../Checkbox';
 import { ProgressRadial } from '../ProgressIndicators';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/flextables.css';

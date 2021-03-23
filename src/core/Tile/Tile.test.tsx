@@ -3,7 +3,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { Tile } from './Tile';
-import { Badge, Button, IconButton, MenuItem } from '..';
+import { Badge } from '../Badge';
+import { Button, IconButton } from '../Buttons';
+import { MenuItem } from '../Menu';
 import { SvgPlaceholder } from '@bentley/icons-generic-react';
 
 it('should render in its most basic state', () => {

@@ -33,6 +33,7 @@ module.exports = {
     "react/display-name": "off",
     "react/self-closing-comp": [1],
     "curly": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-restricted-imports": ["error", ".."]
   },
 };

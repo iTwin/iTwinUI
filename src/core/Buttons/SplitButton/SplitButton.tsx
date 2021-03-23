@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import cx from 'classnames';
 import React from 'react';
-import { Button, ButtonProps } from '../';
+import { Button, ButtonProps } from '../Button';
 import { DropdownMenu } from '../../DropdownMenu';
 import { Position } from '../../../utils';
 import { SvgCaretDown2, SvgCaretUp2 } from '@bentley/icons-generic-react';

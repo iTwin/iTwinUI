@@ -5,7 +5,7 @@ import { SvgNew, SvgCheckmark, SvgMore2 } from '@bentley/icons-generic-react';
 
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/tile.css';
-import { DropdownMenu } from '..';
+import { DropdownMenu } from '../DropdownMenu';
 import { CommonProps } from '../utils/props';
 import { IconButton } from '../Buttons';
 
