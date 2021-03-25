@@ -1,0 +1,71 @@
+@import '../style/index';
+@import '../inputs/variables';
+@import './button';
+
+@mixin iui-button-invisible {
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0 $iui-s;
+
+  // Sizes
+  &.iui-small {
+    padding: 0 $iui-xxs;
+  }
+
+  &.iui-large {
+    padding: 0 $iui-sm;
+  }
+
+  // If icon is by itself, button takes 1:1 size ratio
+  > .iui-icon:only-child {
+    margin-left: $iui-input-offset;
+    margin-right: $iui-input-offset;
+  }
+
+  &:enabled:hover,
+  &:enabled:active,
+  &:focus-visible {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-body-rgb),
+        t(iui-opacity-6)
+      );
+      border-color: transparent;
+    }
+  }
+
+  &.iui-selected:not(.iui-high-visibility):not(.iui-cta) {
+    &:enabled,
+    &:enabled:hover,
+    &:enabled:active {
+      background: transparent;
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6)
+        );
+      }
+      border-color: transparent;
+    }
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:active,
+  &[disabled]:focus {
+    background-color: transparent;
+    border-color: transparent;
+
+    > .iui-icon {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
+      }
+    }
+
+    &.iui-selected {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+      }
+    }
+  }
+}

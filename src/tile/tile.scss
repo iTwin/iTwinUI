@@ -1,5 +1,6 @@
 @import '../style/index';
 @import '../icons/index';
+@import '../button/index';
 
 @mixin iui-tile {
   @include iui-font-family;
@@ -30,23 +31,14 @@
 
     > .iui-type-indicator,
     > .iui-quick-action {
+      @include iui-button-invisible;
       position: absolute;
       border-radius: 50%;
       top: round($iui-baseline / 2);
 
       > .iui-icon {
-        @include themed() {
-          filter: drop-shadow(0 2px 1px rgba(0, 0, 0, t(iui-opacity-5)));
-        }
-      }
-
-      &:hover {
-        @include themed() {
-          background-color: rgba(0, 0, 0, t(iui-opacity-5));
-        }
-
-        > .iui-icon {
-          filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+        @include themed {
+          fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
         }
       }
     }
@@ -115,8 +107,8 @@
       }
     }
 
-    > .iui-picture + button,
-    > .iui-picture + button + button {
+    > .iui-picture + .iui-button,
+    > .iui-picture + .iui-button + .iui-button {
       /* Blur fallback */
       @include themed() {
         background-color: rgba(0, 0, 0, t(iui-opacity-4));
@@ -130,15 +122,25 @@
         }
       }
 
-      > svg {
+      &:enabled > .iui-icon {
         @include themed() {
           fill: t(iui-color-foreground-accessory);
+          filter: drop-shadow(0 2px 1px rgba(0, 0, 0, t(iui-opacity-5)));
         }
       }
 
-      &:hover {
+      &:hover,
+      &.iui-selected:enabled,
+      &.iui-selected:enabled:hover,
+      &.iui-selected:active {
         @include themed() {
           background-color: rgba(0, 0, 0, t(iui-opacity-4));
+        }
+
+        > svg {
+          @include themed() {
+            fill: t(iui-color-foreground-accessory);
+          }
         }
       }
     }
@@ -235,38 +237,24 @@
     user-select: none;
     white-space: nowrap;
 
-    > .iui-tile-button {
+    > .iui-button {
       flex: 1;
+      height: auto;
       padding: $iui-baseline $iui-sm;
-      transition: background-color $iui-speed-fast ease;
       overflow: hidden;
+      white-space: nowrap;
       text-overflow: ellipsis;
-      cursor: pointer;
+      text-align: center;
       margin: 0;
       border: initial;
-
-      @include themed() {
-        background-color: t(iui-color-background-1);
-      }
+      border-radius: 0;
 
       &,
       &:hover {
         @include themed() {
           border-top: 1px solid t(iui-color-background-4);
-          color: t(iui-color-foreground-primary);
         }
       }
-
-      &:hover {
-        @include themed() {
-          background-color: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          );
-        }
-      }
-
-      @include iui-focus;
     }
 
     > button:not(:last-child) {

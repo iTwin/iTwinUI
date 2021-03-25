@@ -58,11 +58,11 @@ module.exports = [
 
   //// Button hover
   scenario('State Double Button hover', {
-    actions: [hover('#test-tile-1 .iui-tile-button')],
+    actions: [hover('#test-tile-1 .iui-tile-buttons .iui-button')],
     selectors: ['#test-tile-1'],
   }),
   scenario('State Single Button hover', {
-    actions: [hover('#test-tile-2 .iui-tile-button')],
+    actions: [hover('#test-tile-2 .iui-tile-buttons .iui-button')],
     selectors: ['#test-tile-2'],
   }),
 
@@ -111,11 +111,11 @@ module.exports = [
 
   //// Button focus
   scenario('State Double Button focus', {
-    actions: [focus('#test-tile-1 .iui-tile-button')],
+    actions: [focus('#test-tile-1 .iui-tile-buttons .iui-button')],
     selectors: ['#test-tile-1'],
   }),
   scenario('State Single Button focus', {
-    actions: [focus('#test-tile-2 .iui-tile-button')],
+    actions: [focus('#test-tile-2 .iui-tile-buttons .iui-button')],
     selectors: ['#test-tile-2'],
   }),
 ];

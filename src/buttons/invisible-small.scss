@@ -1,8 +1,0 @@
-@import './button';
-@import './invisible';
-
-@mixin iui-buttons-invisible-small {
-  @include iui-buttons-invisible;
-  @include iui-buttons-small-size;
-  padding: $iui-button-padding-small-vertical;
-}

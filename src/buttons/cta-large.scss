@@ -1,7 +1,0 @@
-@import './button';
-@import './cta';
-
-@mixin iui-buttons-cta-large {
-  @include iui-buttons-cta;
-  @include iui-buttons-large-size;
-}

@@ -1,0 +1,32 @@
+@import '../style/index';
+@import './button';
+
+@mixin iui-button-cta {
+  @include themed {
+    background-color: t(iui-color-background-positive);
+    border-color: t(iui-color-background-positive);
+    color: t(iui-color-foreground-accessory);
+  }
+
+  > .iui-icon {
+    @include themed {
+      fill: t(iui-color-foreground-accessory);
+    }
+  }
+
+  &:enabled:hover,
+  &:enabled:active,
+  &:focus-visible {
+    @include themed {
+      background-color: t(iui-color-background-positive-overlay);
+      border-color: t(iui-color-background-positive-overlay);
+      color: t(iui-color-foreground-accessory);
+    }
+
+    > .iui-icon {
+      @include themed {
+        fill: t(iui-color-foreground-accessory);
+      }
+    }
+  }
+}

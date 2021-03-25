@@ -1,0 +1,36 @@
+@import './index';
+
+.iui-button {
+  @include iui-button;
+  @include iui-button-default;
+
+  &.iui-high-visibility {
+    @include iui-button-high-visibility;
+  }
+  
+  &.iui-cta {
+    @include iui-button-cta;
+  }
+  
+  &.iui-idea {
+    @include iui-button-idea;
+  }
+  
+  &.iui-invisible {
+    @include iui-button-invisible;
+  }
+
+  &[disabled] {
+    @include iui-button-disabled;
+  }
+  
+}
+
+.iui-button-group {
+  @include iui-button-group;
+}
+
+.iui-button-split-menu {
+  @include iui-button-group;
+  @include iui-button-split-menu;
+}

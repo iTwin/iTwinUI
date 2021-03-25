@@ -1,3 +1,18 @@
+# Changelog
+
+## 1.0.0 🎉
+
+`2021-03-16`
+
+### What's new
+
+- Button's hover visual appearance has been updated to be more consistent across the various states.
+
+### Breaking changes
+
+- **Button class names restructured** from `.iui-buttons-cta-large` into `.iui-button .iui-cta .iui-large`.
+- **Button label is wrapped** within `<span class="iui-label">`.
+
 ## 0.4.2
 
 `2021-03-23`

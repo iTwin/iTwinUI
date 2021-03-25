@@ -1,0 +1,30 @@
+@import '../style/index';
+
+@mixin iui-button-split-menu {
+  @include iui-button-group;
+
+  // Sizes
+  > .iui-button + .iui-button {
+    padding: $iui-xs;
+  }
+
+  > .iui-small + .iui-small {
+    padding: $iui-xxs;
+  }
+
+  > .iui-large + .iui-large {
+    padding: $iui-s;
+  }
+
+  > .iui-high-visibility + .iui-high-visibility,
+  > .iui-high-visibility + .iui-high-visibility:hover,
+  > .iui-cta + .iui-cta,
+  > .iui-cta + .iui-cta:hover {
+    @include themed {
+      border-left-color: rgba(
+        t(iui-color-foreground-accessory-rgb),
+        t(iui-opacity-4)
+      );
+    }
+  }
+}

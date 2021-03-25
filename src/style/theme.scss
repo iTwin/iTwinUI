@@ -22,7 +22,7 @@ $iui-color-foreground-warning--light: #F18B12;
 // Light theme > Overlays
 $iui-color-background-1-overlay--light: darken(
   $iui-color-background-1--light,
-  2%
+  5%
 );
 $iui-color-background-primary-overlay--light: darken(
   $iui-color-background-primary--light,
@@ -124,7 +124,7 @@ $iui-color-foreground-warning--dark: #F9D7AB;
 // Dark theme > Overlays
 $iui-color-background-1-overlay--dark: lighten(
   $iui-color-background-1--dark,
-  2%
+  5%
 );
 $iui-color-background-primary-overlay--dark: lighten(
   $iui-color-background-primary--dark,

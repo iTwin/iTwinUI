@@ -1,7 +1,0 @@
-@import './button';
-@import './high-visibility';
-
-@mixin iui-buttons-high-visibility-large {
-  @include iui-buttons-high-visibility;
-  @include iui-buttons-large-size;
-}

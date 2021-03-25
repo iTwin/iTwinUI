@@ -1,4 +1,5 @@
-@mixin iui-buttons-idea {
+@mixin iui-button-idea {
+  @include iui-button-high-visibility;
   border-radius: $iui-line-height;
   box-shadow: $iui-elevation-24;
   position: fixed;
