@@ -3,9 +3,6 @@
 @mixin iui-legal-footer {
   @include iui-font-family;
   text-align: center;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
   padding: $iui-baseline 0;
   font-size: $iui-font-size-small;
