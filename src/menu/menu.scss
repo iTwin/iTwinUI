@@ -33,6 +33,13 @@
       }
     }
 
+    &:hover.iui-disabled {
+      @include themed {
+        background-color: t(iui-color-background-disabled);
+        color: t(iui-text-color-muted);
+      }
+    }
+
     &:focus {
       outline: none;
 
@@ -63,6 +70,22 @@
   .iui-active > .iui-menu-icon {
     @include themed {
       fill: t(iui-color-foreground-primary);
+    }
+  }
+
+  .iui-disabled {
+    cursor: not-allowed;
+    user-select: none;
+
+    @include themed {
+      background-color: t(iui-color-background-disabled);
+      color: t(iui-text-color-muted);
+    }
+  }
+
+  .iui-disabled > .iui-menu-icon {
+    @include themed {
+      fill: t(iui-text-color-muted);
     }
   }
 
