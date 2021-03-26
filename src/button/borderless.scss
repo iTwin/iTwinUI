@@ -2,7 +2,7 @@
 @import '../inputs/variables';
 @import './button';
 
-@mixin iui-button-invisible {
+@mixin iui-button-borderless {
   background-color: transparent;
   border-color: transparent;
   padding: 0 $iui-s;

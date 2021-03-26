@@ -4,16 +4,16 @@
   display: inline-flex;
 
   > .iui-button {
-    &:not(.iui-invisible) {
+    &:not(.iui-borderless) {
       border-radius: 0;
     }
 
-    &:first-of-type:not(.iui-invisible) {
+    &:first-of-type:not(.iui-borderless) {
       border-top-left-radius: $iui-border-radius;
       border-bottom-left-radius: $iui-border-radius;
     }
 
-    &:last-of-type:not(.iui-invisible) {
+    &:last-of-type:not(.iui-borderless) {
       border-top-right-radius: $iui-border-radius;
       border-bottom-right-radius: $iui-border-radius;
     }
@@ -22,7 +22,7 @@
       border-right: none;
     }
 
-    &:not(.iui-high-visibility):not(.iui-cta):not(.iui-invisible) {
+    &:not(.iui-high-visibility):not(.iui-cta):not(.iui-borderless) {
       // Border trick for grouped default & disabled buttons
       &:enabled {
         + :disabled {

@@ -32,7 +32,7 @@
 
     > .iui-type-indicator,
     > .iui-quick-action {
-      @include iui-button-invisible;
+      @include iui-button-borderless;
       position: absolute;
       border-radius: 50%;
       top: round($iui-baseline / 2);

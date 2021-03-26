@@ -10,14 +10,14 @@ module.exports = [
   scenario('Type Default', {
     selectors: ['#demo-default'],
   }),
-  scenario('Type Invisible', {
-    selectors: ['#demo-invisible'],
+  scenario('Type Borderless', {
+    selectors: ['#demo-borderless'],
   }),
   scenario('Grouped Default', {
     selectors: ['#demo-grouped-default'],
   }),
-  scenario('Grouped Invisible', {
-    selectors: ['#demo-grouped-invisible'],
+  scenario('Grouped Borderless', {
+    selectors: ['#demo-grouped-borderless'],
   }),
   scenario('Type Split Menu', {
     selectors: ['#demo-split-menu'],
