@@ -2,7 +2,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Select, { SelectProps } from './Select';
-import { SvgSmileyHappy } from '@bentley/icons-generic-react';
+import SvgSmileyHappy from '@bentley/icons-generic-react/cjs/icons/SmileyHappy';
 import { MenuItem } from '../Menu';
 
 function assertSelect(

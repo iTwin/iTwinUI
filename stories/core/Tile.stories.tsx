@@ -12,13 +12,11 @@ import {
   Tile,
   TileProps,
 } from '../../src/core';
-import {
-  SvgFolder,
-  SvgImodel2,
-  SvgInfo2,
-  SvgStar,
-  SvgTag2,
-} from '@bentley/icons-generic-react';
+import SvgFolder from '@bentley/icons-generic-react/cjs/icons/Folder';
+import SvgImodel2 from '@bentley/icons-generic-react/cjs/icons/Imodel2';
+import SvgInfo2 from '@bentley/icons-generic-react/cjs/icons/Info2';
+import SvgStar from '@bentley/icons-generic-react/cjs/icons/Star';
+import SvgTag2 from '@bentley/icons-generic-react/cjs/icons/Tag2';
 import { LargeWithImageAndStatusOnline } from './UserIcons.stories';
 
 export default {

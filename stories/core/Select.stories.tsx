@@ -4,11 +4,9 @@ import { Story, Meta } from '@storybook/react';
 import { MenuItem, Select } from '../../src/core';
 import { SelectProps } from '../../src/core/Select/Select';
 import { useState } from '@storybook/addons';
-import {
-  SvgSmileyHappy,
-  SvgSmileyNeutral,
-  SvgSmileySad,
-} from '@bentley/icons-generic-react';
+import SvgSmileyHappy from '@bentley/icons-generic-react/cjs/icons/SmileyHappy';
+import SvgSmileyNeutral from '@bentley/icons-generic-react/cjs/icons/SmileyNeutral';
+import SvgSmileySad from '@bentley/icons-generic-react/cjs/icons/SmileySad';
 
 export default {
   title: 'Input/Select',

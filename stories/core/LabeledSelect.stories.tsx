@@ -3,7 +3,7 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { LabeledSelect } from '../../src/core';
 import { LabeledSelectProps } from '../../src/core/LabeledSelect/LabeledSelect';
-import { SvgCamera } from '@bentley/icons-generic-react';
+import SvgCamera from '@bentley/icons-generic-react/cjs/icons/Camera';
 import { useState } from '@storybook/addons';
 
 export default {

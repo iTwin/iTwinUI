@@ -5,12 +5,10 @@ import { DropdownMenuProps } from '../../src/core/DropdownMenu/DropdownMenu';
 import { DropdownMenu, IconButton, MenuItem } from '../../src/core';
 import { action } from '@storybook/addon-actions';
 import { Position } from '../../src/utils';
-import {
-  SvgClipboard,
-  SvgCrop,
-  SvgMore2,
-  SvgMove,
-} from '@bentley/icons-generic-react';
+import SvgClipboard from '@bentley/icons-generic-react/cjs/icons/Clipboard';
+import SvgCrop from '@bentley/icons-generic-react/cjs/icons/Crop';
+import SvgMore2 from '@bentley/icons-generic-react/cjs/icons/More2';
+import SvgMove from '@bentley/icons-generic-react/cjs/icons/Move';
 
 export default {
   title: 'Core/DropdownMenu',

@@ -1,9 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 /* eslint-disable react/jsx-key */
-import {
-  SvgErrorHollow,
-  SvgSuccessHollow,
-} from '@bentley/icons-generic-react/lib/icons/status';
+import SvgErrorHollow from '@bentley/icons-generic-react/cjs/icons/status/ErrorHollow';
+import SvgSuccessHollow from '@bentley/icons-generic-react/cjs/icons/status/SuccessHollow';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { ProgressLinear } from '../../src/core';

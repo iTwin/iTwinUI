@@ -1,5 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgAway, SvgClose2, SvgCheckmark } from '@bentley/icons-generic-react';
+import SvgAway from '@bentley/icons-generic-react/cjs/icons/Away';
+import SvgCheckmark from '@bentley/icons-generic-react/cjs/icons/Checkmark';
+import SvgClose2 from '@bentley/icons-generic-react/cjs/icons/Close2';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';

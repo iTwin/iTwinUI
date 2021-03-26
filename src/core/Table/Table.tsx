@@ -24,7 +24,8 @@ import { ProgressRadial } from '../ProgressIndicators';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/flextables.css';
 import { CommonProps } from '../utils/props';
-import { SvgSortDown, SvgSortUp } from '@bentley/icons-generic-react';
+import SvgSortDown from '@bentley/icons-generic-react/cjs/icons/SortDown';
+import SvgSortUp from '@bentley/icons-generic-react/cjs/icons/SortUp';
 
 /**
  * Table props.

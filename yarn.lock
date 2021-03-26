@@ -1023,10 +1023,10 @@
   resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha1-daLotRy3WKdVPWgEpZMteqznXDk=
 
-"@bentley/icons-generic-react@^0.1.4":
-  version "0.1.4"
-  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/icons-generic-react/-/icons-generic-react-0.1.4.tgz#991c68d0ef43580a116e9e663fbbbd9537bf2208"
-  integrity sha1-mRxo0O9DWAoRbp5mP7u9lTe/Igg=
+"@bentley/icons-generic-react@^0.2.0":
+  version "0.2.0"
+  resolved "https://pkgs.dev.azure.com/bentleycs/_packaging/Packages/npm/registry/@bentley/icons-generic-react/-/icons-generic-react-0.2.0.tgz#c3777118180b9573e18f140f08434151594e933e"
+  integrity sha1-w3dxGBgLlXPhjxQPCENBUVlOkz4=
 
 "@bentley/illustrations@^1.0.1":
   version "1.0.1"

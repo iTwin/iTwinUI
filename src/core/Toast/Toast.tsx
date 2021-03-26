@@ -1,11 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { Transition } from 'react-transition-group';
-import { SvgClose, SvgInfoHollow } from '@bentley/icons-generic-react';
-import {
-  SvgErrorHollow,
-  SvgSuccessHollow,
-} from '@bentley/icons-generic-react/lib/icons/status';
+import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
+import SvgErrorHollow from '@bentley/icons-generic-react/cjs/icons/status/ErrorHollow';
+import SvgInfoHollow from '@bentley/icons-generic-react/cjs/icons/InfoHollow';
+import SvgSuccessHollow from '@bentley/icons-generic-react/cjs/icons/status/SuccessHollow';
 import cx from 'classnames';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/toast-notification.css';

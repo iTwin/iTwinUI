@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import RadioTile from './RadioTile';
-import { SvgPlaceholder } from '@bentley/icons-generic-react';
+import SvgPlaceholder from '@bentley/icons-generic-react/cjs/icons/Placeholder';
 
 it('should render empty radio tile', () => {
   const { container } = render(<RadioTile />);

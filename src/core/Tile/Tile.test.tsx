@@ -6,7 +6,7 @@ import { Tile } from './Tile';
 import { Badge } from '../Badge';
 import { Button, IconButton } from '../Buttons';
 import { MenuItem } from '../Menu';
-import { SvgPlaceholder } from '@bentley/icons-generic-react';
+import SvgPlaceholder from '@bentley/icons-generic-react/cjs/icons/Placeholder';
 
 it('should render in its most basic state', () => {
   const { container } = render(

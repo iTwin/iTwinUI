@@ -1,10 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgClose, SvgInfo } from '@bentley/icons-generic-react';
-import {
-  SvgError,
-  SvgSuccess,
-  SvgWarning,
-} from '@bentley/icons-generic-react/lib/icons/status';
+import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
+import SvgInfo from '@bentley/icons-generic-react/cjs/icons/Info';
+import SvgError from '@bentley/icons-generic-react/cjs/icons/status/Error';
+import SvgSuccess from '@bentley/icons-generic-react/cjs/icons/status/Success';
+import SvgWarning from '@bentley/icons-generic-react/cjs/icons/status/Warning';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';

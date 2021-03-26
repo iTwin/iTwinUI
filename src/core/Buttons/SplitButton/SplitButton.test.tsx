@@ -4,7 +4,8 @@ import { render } from '@testing-library/react';
 
 import { SplitButton, SplitButtonProps } from './SplitButton';
 import { MenuItem } from '../../Menu';
-import { SvgCaretDown2, SvgCaretUp2 } from '@bentley/icons-generic-react';
+import SvgCaretDown2 from '@bentley/icons-generic-react/cjs/icons/CaretDown2';
+import SvgCaretUp2 from '@bentley/icons-generic-react/cjs/icons/CaretUp2';
 
 function renderComponent(
   onClick?: () => void,

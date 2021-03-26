@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import { render } from '@testing-library/react';
 import React from 'react';
-import { SvgAdd } from '@bentley/icons-generic-react';
+import SvgAdd from '@bentley/icons-generic-react/cjs/icons/Add';
 
 import { IconButton } from './IconButton';
 

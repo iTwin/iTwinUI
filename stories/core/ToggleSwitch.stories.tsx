@@ -1,5 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgCheckmark } from '@bentley/icons-generic-react';
+import SvgCheckmark from '@bentley/icons-generic-react/cjs/icons/Checkmark';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { ToggleSwitch } from '../../src/core';

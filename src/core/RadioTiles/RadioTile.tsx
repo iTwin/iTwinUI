@@ -1,5 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgCheckmark } from '@bentley/icons-generic-react';
+import SvgCheckmark from '@bentley/icons-generic-react/cjs/icons/Checkmark';
 import cx from 'classnames';
 import React from 'react';
 import { useMergedRefs } from '../utils/hooks/useMergedRefs';

@@ -1,8 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import cx from 'classnames';
-import { SvgNew, SvgCheckmark, SvgMore2 } from '@bentley/icons-generic-react';
-
+import SvgCheckmark from '@bentley/icons-generic-react/cjs/icons/Checkmark';
+import SvgMore2 from '@bentley/icons-generic-react/cjs/icons/More2';
+import SvgNew from '@bentley/icons-generic-react/cjs/icons/New';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu';

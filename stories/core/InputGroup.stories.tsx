@@ -1,13 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import {
-  SvgCheckmark,
-  SvgSmileyHappy,
-  SvgSmileySad,
-} from '@bentley/icons-generic-react';
-import {
-  SvgRevit,
-  SvgDgnDb,
-} from '@bentley/icons-generic-react/lib/icons/file-types';
+import SvgCheckmark from '@bentley/icons-generic-react/cjs/icons/Checkmark';
+import SvgDgnDb from '@bentley/icons-generic-react/cjs/icons/file-types/DgnDb';
+import SvgRevit from '@bentley/icons-generic-react/cjs/icons/file-types/Revit';
+import SvgSmileyHappy from '@bentley/icons-generic-react/cjs/icons/SmileyHappy';
+import SvgSmileySad from '@bentley/icons-generic-react/cjs/icons/SmileySad';
 import { action } from '@storybook/addon-actions';
 import { useEffect, useState } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react';

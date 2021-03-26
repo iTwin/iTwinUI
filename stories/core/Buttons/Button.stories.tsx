@@ -3,7 +3,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
 import Button, { ButtonProps } from '../../../src/core/Buttons/Button/Button';
-import { SvgAdd } from '@bentley/icons-generic-react';
+import SvgAdd from '@bentley/icons-generic-react/cjs/icons/Add';
 
 export default {
   title: 'Buttons/Button',

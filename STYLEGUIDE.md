@@ -113,3 +113,22 @@ const {
   )}
   ...
 ```
+
+### Import individual icons directly from the cjs module
+```jsx
+// Good
+import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
+import SvgInfo from '@bentley/icons-generic-react/cjs/icons/Info';
+```
+```jsx
+// Bad (using barrel)
+import { SvgClose } from '@bentley/icons-generic-react';
+```
+```jsx
+// Bad (using esm)
+import SvgClose from '@bentley/icons-generic-react/esm/icons/Close';
+```
+```jsx
+// Bad (combining imports)
+import { SvgClose, SvgInfo } from '@bentley/icons-generic-react/cjs/icons';
+```

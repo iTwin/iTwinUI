@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgNetwork, SvgWindows } from '@bentley/icons-generic-react';
+import SvgNetwork from '@bentley/icons-generic-react/cjs/icons/Network';
+import SvgWindows from '@bentley/icons-generic-react/cjs/icons/Windows';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { RadioTile, RadioTileGroup } from '../../src/core';

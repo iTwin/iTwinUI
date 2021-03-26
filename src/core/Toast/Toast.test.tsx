@@ -1,9 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgInfoHollow } from '@bentley/icons-generic-react';
-import {
-  SvgErrorHollow,
-  SvgSuccessHollow,
-} from '@bentley/icons-generic-react/lib/icons/status';
+import SvgErrorHollow from '@bentley/icons-generic-react/cjs/icons/status/ErrorHollow';
+import SvgInfoHollow from '@bentley/icons-generic-react/cjs/icons/InfoHollow';
+import SvgSuccessHollow from '@bentley/icons-generic-react/cjs/icons/status/SuccessHollow';
 import { act, render, RenderResult } from '@testing-library/react';
 import React from 'react';
 import Toast, { ToastCategory } from './Toast';

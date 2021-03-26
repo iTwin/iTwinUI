@@ -4,7 +4,8 @@ import cx from 'classnames';
 import { Button, ButtonProps } from '../Button';
 import { DropdownMenu } from '../../DropdownMenu';
 import { Position } from '../../../utils';
-import { SvgCaretDown2, SvgCaretUp2 } from '@bentley/icons-generic-react';
+import SvgCaretDown2 from '@bentley/icons-generic-react/cjs/icons/CaretDown2';
+import SvgCaretUp2 from '@bentley/icons-generic-react/cjs/icons/CaretUp2';
 
 import { useTheme } from '../../utils/hooks/useTheme';
 import '@bentley/itwinui/css/buttons.css';

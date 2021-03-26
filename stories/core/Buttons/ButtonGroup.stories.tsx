@@ -1,12 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 import React from 'react';
 import { ButtonGroup, ButtonGroupProps, IconButton } from '../../../src/core';
-import {
-  SvgAdd,
-  SvgDelete,
-  SvgEdit,
-  SvgUndo,
-} from '@bentley/icons-generic-react';
+import SvgAdd from '@bentley/icons-generic-react/cjs/icons/Add';
+import SvgDelete from '@bentley/icons-generic-react/cjs/icons/Delete';
+import SvgEdit from '@bentley/icons-generic-react/cjs/icons/Edit';
+import SvgUndo from '@bentley/icons-generic-react/cjs/icons/Undo';
 import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 

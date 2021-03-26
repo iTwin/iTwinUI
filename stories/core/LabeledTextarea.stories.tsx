@@ -1,5 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgCamera } from '@bentley/icons-generic-react';
+import SvgCamera from '@bentley/icons-generic-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { LabeledTextarea } from '../../src/core';

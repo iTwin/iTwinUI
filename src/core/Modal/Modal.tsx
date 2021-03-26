@@ -2,7 +2,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { SvgRemove } from '@bentley/icons-generic-react';
+import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
 import { Portal } from '../../utils/Portal';
 
 import { CommonProps } from '../utils/props';
@@ -165,7 +165,7 @@ export const Modal = (props: ModalProps) => {
                     onClick={onClose}
                     tabIndex={0}
                   >
-                    <SvgRemove />
+                    <SvgClose />
                   </div>
                 )}
               </div>

@@ -1,5 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgPlaceholder } from '@bentley/icons-generic-react';
+import SvgPlaceholder from '@bentley/icons-generic-react/cjs/icons/Placeholder';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { ToggleSwitch } from './ToggleSwitch';

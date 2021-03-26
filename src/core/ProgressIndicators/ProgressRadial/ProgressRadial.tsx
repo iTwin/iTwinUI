@@ -1,8 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import {
-  SvgCheckmark as Positive,
-  SvgImportant as Negative,
-} from '@bentley/icons-generic-react';
+import Positive from '@bentley/icons-generic-react/cjs/icons/Checkmark';
+import Negative from '@bentley/icons-generic-react/cjs/icons/Important';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../../utils/props';

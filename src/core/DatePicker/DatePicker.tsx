@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-import { SvgChevronLeft, SvgChevronRight } from '@bentley/icons-generic-react';
+import SvgChevronLeft from '@bentley/icons-generic-react/cjs/icons/ChevronLeft';
+import SvgChevronRight from '@bentley/icons-generic-react/cjs/icons/ChevronRight';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
