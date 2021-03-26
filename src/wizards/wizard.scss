@@ -125,6 +125,7 @@
     > .iui-wizards-step-completed {
       &.iui-clickable {
         > .iui-wizards-step-circle {
+          @include iui-focus(iui-focus-positive-box-shadow);
           cursor: pointer;
           transition: background-color $iui-speed-fast ease-out;
 

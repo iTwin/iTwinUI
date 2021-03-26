@@ -78,6 +78,12 @@ $iui-focus-box-shadow--light: rgba(
 )
   0 0 0 2px;
 
+$iui-focus-positive-box-shadow--light: rgba(
+  $iui-color-foreground-positive--light,
+  $iui-opacity-5--light
+)
+  0 0 0 2px;
+
 // Light theme > Icon colors
 $iui-icons-color--light: rgba(
   $iui-color-foreground-body--light,
@@ -179,6 +185,11 @@ $iui-focus-box-shadow--dark: rgba(
   $iui-opacity-5--dark
 )
   0 0 0 2px;
+$iui-focus-positive-box-shadow--dark: rgba(
+  $iui-color-foreground-positive--dark,
+  $iui-opacity-5--dark
+)
+  0 0 0 2px;
 
 // Dark theme > Icon colors
 $iui-icons-color--dark: rgba(
@@ -253,6 +264,7 @@ $themes: (
     iui-icons-color-positive: $iui-icons-color-positive--light,
     iui-icons-color-negative: $iui-icons-color-negative--light,
     iui-icons-color-warning: $iui-icons-color-warning--light,
+    iui-focus-positive-box-shadow: $iui-focus-positive-box-shadow--light
   ),
   dark: (
     iui-color-background-1: $iui-color-background-1--dark,
@@ -303,6 +315,7 @@ $themes: (
     iui-icons-color-positive: $iui-icons-color-positive--dark,
     iui-icons-color-negative: $iui-icons-color-negative--dark,
     iui-icons-color-warning: $iui-icons-color-warning--dark,
+    iui-focus-positive-box-shadow: $iui-focus-positive-box-shadow--dark,
   ),
 );
 
@@ -329,6 +342,9 @@ $cssVariables: (
   rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1)),
   iui-icons-color-actionable-disabled:
   rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5)),
+  iui-focus-positive-box-shadow:
+  rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-5)) 0 0 0
+  2px,
 );
 
 @function getfallbackvars() {

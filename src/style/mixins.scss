@@ -22,12 +22,12 @@
   }
 }
 
-@mixin iui-focus {
+@mixin iui-focus($box-shadow-value: iui-focus-box-shadow) {
   &:focus {
     outline: 0;
 
     @include themed {
-      box-shadow: t(iui-focus-box-shadow);
+      box-shadow: t($box-shadow-value);
     }
   }
 
@@ -39,7 +39,7 @@
     outline: 0;
 
     @include themed {
-      box-shadow: t(iui-focus-box-shadow);
+      box-shadow: t($box-shadow-value);
     }
   }
 }
