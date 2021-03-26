@@ -3,7 +3,7 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.stylelint": true,
+    "source.fixAll.stylelint": true
   },
   "files.eol": "\n",
   "files.insertFinalNewline": true,
@@ -18,11 +18,16 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
+  "[css]": {
+    "editor.formatOnSave": false
+  },
+  "[scss]": {
+    "editor.formatOnSave": false
+  },
   "javascript.format.semicolons": "insert",
   "javascript.preferences.quoteStyle": "single",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.disableLanguages": ["html", "scss", "css"],
-  "prettier.useEditorConfig": true,
+  "prettier.useEditorConfig": true
 }
