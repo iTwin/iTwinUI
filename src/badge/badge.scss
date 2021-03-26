@@ -1,6 +1,7 @@
 @import '../style/index';
 
 @mixin iui-badge {
+  @include iui-reset;
   @include iui-font-family;
   display: inline-block;
   font-size: $iui-font-size-small;

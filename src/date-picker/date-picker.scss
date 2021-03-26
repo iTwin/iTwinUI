@@ -2,6 +2,7 @@
 @import '../icons/index';
 
 @mixin iui-date-picker {
+  @include iui-reset;
   @include iui-font-family;
   display: inline-block;
   position: relative;

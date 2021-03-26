@@ -3,6 +3,7 @@
 @import '../icons/index';
 
 @mixin iui-alerts-alert {
+  @include iui-reset;
   @include iui-text-block;
   @include iui-font-family;
   padding: $iui-baseline $iui-sm;

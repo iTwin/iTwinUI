@@ -1,10 +1,8 @@
-/// Imports --------------------------------------------------------------------
-
 @import '../style/index';
 
-/// Mixins ---------------------------------------------------------------------
-
 @mixin iui-tooltip {
+  @include iui-reset;
+
   @include iui-font-family;
   display: block;
 

@@ -2,6 +2,8 @@
 @import '../text/index';
 
 @mixin iui-non-ideal-state {
+  @include iui-reset;
+
   @include iui-font-family;
   display: flex;
   flex-direction: column;

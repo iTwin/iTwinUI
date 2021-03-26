@@ -2,6 +2,8 @@
 @import '../icons/index';
 
 @mixin iui-toast {
+  @include iui-reset;
+
   @include iui-font-family;
   flex-direction: row;
   display: inline-flex;

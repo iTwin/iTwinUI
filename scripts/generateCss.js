@@ -13,6 +13,7 @@ const compileScss = async (path, outFile) => {
     sass.render({ file: path }, (error, result) => {
       if (error) {
         reject(error);
+        return;
       }
       fs.writeFileSync(`${outDir}/${outFile}.css`, result.css);
       console.log(` Wrote -> ${outFile}.css [${result.stats.duration} ms]`);

@@ -1,6 +1,8 @@
 @import '../style/index';
 
 @mixin iui-wizards {
+  @include iui-reset;
+
   @include iui-font-family;
 
   > .iui-wizards-wrapper {

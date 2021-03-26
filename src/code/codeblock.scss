@@ -2,6 +2,7 @@
 @import '../icons/index';
 
 @mixin iui-codeblock {
+  @include iui-reset;
   @include iui-font-family;
   margin: round($iui-baseline/2) 0;
 
@@ -19,13 +20,16 @@
     }
 
     > .iui-copy {
+      @include iui-reset;
+      @include iui-font-family;
+      @include iui-focus;
+      font-size: $iui-font-size;
       margin-left: auto;
       order: 2;
       background-color: transparent;
       padding: round($iui-baseline/2) $iui-sm;
       cursor: pointer;
-
-      @include iui-focus;
+      line-height: $iui-line-height;
 
       @include themed {
         color: t(iui-text-color);
@@ -47,6 +51,7 @@
   }
 
   > .iui-codeblock-content {
+    margin: 0;
     overflow-x: auto;
     overflow-y: auto;
     border-radius: 0 0 $iui-border-radius $iui-border-radius;

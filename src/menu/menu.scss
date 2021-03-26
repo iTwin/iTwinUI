@@ -3,6 +3,9 @@
 @import '../icons/index';
 
 @mixin iui-menu {
+  @include iui-reset;
+
+  @include iui-font-family;
   width: 100%;
   padding: 0;
   box-shadow: $iui-elevation-2;

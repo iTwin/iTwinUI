@@ -1,6 +1,8 @@
 @import '../style/index';
 
 @mixin iui-legal-footer {
+  @include iui-reset;
+
   @include iui-font-family;
   text-align: center;
   width: 100%;

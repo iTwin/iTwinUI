@@ -3,6 +3,8 @@
 @import '../text/mixins';
 
 @mixin iui-user-icons($size: $iui-icons-xl) {
+  @include iui-reset;
+
   @include iui-font-family;
   display: inline-block;
   position: relative;

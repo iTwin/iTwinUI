@@ -1,6 +1,8 @@
 @import '../style/index';
 
 @mixin iui-blockquote {
+  @include iui-reset;
+  @include iui-font-family;
   display: block;
   position: relative;
   padding: $iui-baseline $iui-m;
@@ -19,6 +21,10 @@
 
     @include themed {
       color: t(iui-text-color-muted);
+    }
+
+    > cite {
+      font-style: normal;
     }
   }
 }

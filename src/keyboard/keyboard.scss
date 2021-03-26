@@ -1,6 +1,8 @@
 @import '../style/index';
 
 @mixin iui-keyboard {
+  @include iui-reset;
+
   border-radius: $iui-border-radius;
   display: inline-block;
   font-size: $iui-font-size-small;

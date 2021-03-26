@@ -1,6 +1,8 @@
 @import '../style/index';
 
 @mixin iui-tabs {
+  @include iui-reset;
+
   @include iui-font-family;
   display: flex;
   list-style: none;

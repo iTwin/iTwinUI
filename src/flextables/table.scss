@@ -3,6 +3,8 @@
 @import './variables';
 
 @mixin iui-tables-table {
+  @include iui-reset;
+
   @include iui-font-family;
   display: flex;
   flex-direction: column;

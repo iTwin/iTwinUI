@@ -2,6 +2,8 @@
 @import '../icons/variables';
 
 @mixin iui-progress-indicator-linear($height: 4px) {
+  @include iui-reset;
+
   @include iui-font-family;
   text-align: left;
   display: block;

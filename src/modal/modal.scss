@@ -2,6 +2,7 @@
 @import '../icons/index';
 
 @mixin iui-modal {
+  @include iui-reset;
   @include iui-font-family;
   z-index: 999;
   position: fixed;

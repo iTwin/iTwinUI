@@ -2,6 +2,8 @@
 @import '../icons/variables';
 
 @mixin iui-progress-indicator-radial-ie() {
+  @include iui-reset;
+
   @include iui-font-family;
   display: inline-block;
   position: relative;

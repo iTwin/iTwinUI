@@ -4,6 +4,9 @@
 @import '../inputs/variables';
 
 @mixin iui-tag {
+  @include iui-reset;
+
+  @include iui-font-family;
   height: $iui-baseline * 3;
   margin: $iui-inputs-margin 0;
   border-radius: ($iui-baseline * 3) / 2;
@@ -15,8 +18,6 @@
   user-select: all;
   cursor: default;
   font-size: $iui-font-size;
-
-  @include iui-font-family;
 
   @include themed {
     border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
