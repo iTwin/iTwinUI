@@ -1,4 +1,7 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 /* eslint-disable react/jsx-key */
 import SvgErrorHollow from '@bentley/icons-generic-react/cjs/icons/status/ErrorHollow';
 import SvgSuccessHollow from '@bentley/icons-generic-react/cjs/icons/status/SuccessHollow';

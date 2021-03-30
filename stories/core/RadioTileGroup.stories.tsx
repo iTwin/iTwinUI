@@ -1,4 +1,7 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import SvgNetwork from '@bentley/icons-generic-react/cjs/icons/Network';
 import SvgWindows from '@bentley/icons-generic-react/cjs/icons/Windows';
 import { Meta, Story } from '@storybook/react';

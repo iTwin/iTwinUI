@@ -1,8 +1,15 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const copyrightHeader = `// Copyright (c) Bentley Systems, Incorporated. All rights reserved.`;
+const copyrightHeader =
+  '/*---------------------------------------------------------------------------------------------\n ' +
+  '* Copyright (c) Bentley Systems, Incorporated. All rights reserved.\n ' +
+  '* See LICENSE.md in the project root for license terms and full copyright notice.\n ' +
+  '*--------------------------------------------------------------------------------------------*/';
 
 const makeDir = (path) => {
   if (!fs.existsSync(path)) {

@@ -1,4 +1,7 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import SvgChevronLeft from '@bentley/icons-generic-react/cjs/icons/ChevronLeft';
 import SvgChevronRight from '@bentley/icons-generic-react/cjs/icons/ChevronRight';
 import cx from 'classnames';

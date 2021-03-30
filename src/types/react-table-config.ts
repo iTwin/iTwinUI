@@ -1,4 +1,7 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 // react-table was written with plain JS therefore these type overrides are needed
 // Link: https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-table
 /* eslint-disable @typescript-eslint/ban-types */

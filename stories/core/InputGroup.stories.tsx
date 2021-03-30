@@ -1,4 +1,7 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import SvgCheckmark from '@bentley/icons-generic-react/cjs/icons/Checkmark';
 import SvgDgnDb from '@bentley/icons-generic-react/cjs/icons/file-types/DgnDb';
 import SvgRevit from '@bentley/icons-generic-react/cjs/icons/file-types/Revit';

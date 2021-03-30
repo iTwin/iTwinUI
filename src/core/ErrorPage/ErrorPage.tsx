@@ -1,4 +1,7 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import Svg401 from '@bentley/illustrations/illustrations/401.svg';
 import Svg403 from '@bentley/illustrations/illustrations/403.svg';
 import Svg404 from '@bentley/illustrations/illustrations/404.svg';

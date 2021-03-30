@@ -1,4 +1,7 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import SvgStar from '@bentley/icons-generic-react/cjs/icons/Star';
 import { useState } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react/types-6-0';

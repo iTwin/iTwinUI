@@ -1,19 +1,26 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 const fs = require('fs');
 const fg = require('fast-glob');
 
-const pattern = process.argv.filter((x) => x !== '--fix');
+const pattern = process.argv.slice(2).filter((x) => x !== '--fix');
 const filePaths = fg.sync(pattern, {
   dot: true,
   ignore: [
-    'node_modules/**/*',
-    'coverage/**/*',
-    'lib/**/*',
-    'storybook-static/**/*',
+    '**/node_modules/**/*',
+    '**/coverage/**/*',
+    '**/lib/**/*',
+    '**/storybook-static/**/*',
   ],
 });
 
-const copyrightBanner = `// Copyright (c) Bentley Systems, Incorporated. All rights reserved.`;
+const copyrightBanner =
+  '/*---------------------------------------------------------------------------------------------\n ' +
+  '* Copyright (c) Bentley Systems, Incorporated. All rights reserved.\n ' +
+  '* See LICENSE.md in the project root for license terms and full copyright notice.\n ' +
+  '*--------------------------------------------------------------------------------------------*/';
 
 if (filePaths) {
   filePaths.forEach((filePath) => {

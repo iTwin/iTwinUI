@@ -1,4 +1,7 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import Positive from '@bentley/icons-generic-react/cjs/icons/Checkmark';
 import Negative from '@bentley/icons-generic-react/cjs/icons/Important';
 import cx from 'classnames';

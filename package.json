@@ -22,7 +22,7 @@
     "createComponent": "node scripts/createComponent.js",
     "pretty": "prettier --config .prettierrc \"scripts/**/*\" src/{__tests__,core,style,utils}/**/*{tsx,ts,jsx,js,css,scss} --write",
     "lint": "eslint */**/*.{js,ts,tsx} --max-warnings=0",
-    "lint:fix": "yarn lint --fix && yarn lint:copyright --fix */**/*.{ts,tsx}",
+    "lint:fix": "yarn lint --fix && yarn lint:copyright --fix */**/*.{js,ts,tsx}",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "copy-files": "cpx package.json lib && cpx \"*.md\" lib",
     "storybook": "start-storybook -p 6006",

@@ -1,4 +1,7 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import React, { CSSProperties, MouseEventHandler } from 'react';
 import { mergeRefs } from '../../core/utils/hooks/useMergedRefs';
 import { Position, Positioner } from '../Positioner';
