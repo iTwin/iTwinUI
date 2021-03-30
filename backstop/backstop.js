@@ -4,6 +4,7 @@ const config = {
   id: 'iTwinUI',
   engineOptions: {
     args: ['--no-sandbox'],
+    ignoreDefaultArgs: ['--hide-scrollbars'],
   },
   viewports: [
     {

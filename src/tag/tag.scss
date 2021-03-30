@@ -1,0 +1,90 @@
+@import '../style/index';
+@import '../icons/index';
+@import '../text/mixins';
+@import '../inputs/variables';
+
+@mixin iui-tag {
+  @include iui-reset;
+  @include iui-font-family;
+  @include iui-focus;
+  user-select: all;
+  text-transform: lowercase;
+  display: inline-flex;
+
+  &:not(a) {
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
+  }
+  
+  &:not(.iui-basic) {
+    height: $iui-baseline * 3;
+    margin: $iui-inputs-margin 0;
+    border-radius: ($iui-baseline * 3) / 2;
+    box-sizing: border-box;
+    padding: 0 $iui-xxs;
+    align-items: center;
+    transition: border $iui-speed-fast ease-out;
+    font-size: $iui-font-size;
+    text-transform: none;
+    cursor: default;
+    @include themed {
+      border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      background-color: t(iui-color-background-1);
+      color: t(iui-text-color);
+    }
+
+    > .iui-label {
+      @include iui-text;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin: 0 $iui-xs 0 $iui-s;
+
+      &:only-child {
+        margin: 0 $iui-s;
+      }
+    }
+
+    > .iui-button {
+      border-radius: 50%;
+    }
+
+    &:hover {  
+      @include themed {
+        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+      }
+    }
+  }
+}
+
+@mixin iui-tag-container {
+  @include themed {
+    color: t(iui-text-color-muted);
+  }
+
+  > .iui-tag:not(:last-child) {
+    margin-right: $iui-xs;
+  }
+
+  > .iui-basic:not(:last-child)::after {
+    content: ',';
+  }
+
+  &.iui-truncate {
+    @include iui-line-clamp(1);
+  }
+
+  &.iui-scroll {
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+
+  &.iui-visible {
+    border-radius: $iui-border-radius;
+    padding: $iui-inputs-margin $iui-sm;
+    @include themed {
+      background-color: t(iui-color-background-2);
+    }
+  }
+}

@@ -12,7 +12,11 @@
     />
     <link
       rel="stylesheet"
-      href="../../lib/css/tags.css"
+      href="../../lib/css/button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/tag.css"
     />
     <link
       rel="stylesheet"
@@ -22,9 +26,6 @@
       /* Forces grouped tags to display on 1 line, can be set by the dev team. */
       section .iui-tag-container {
         max-width: 420px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
       }
     </style>
     <script src="../assets/theme.js"></script>
@@ -33,131 +34,850 @@
     <theme-button></theme-button>
     <h1>Tag</h1>
     <hr />
-    <h2 id="default">Default</h2>
 
+    <h2>Default</h2>
     <section id="demo-default">
-      <span class="iui-tag">
+      <span
+        class="iui-tag"
+        tabindex="0"
+        id="test-tag-1"
+      >
         <span
-          class="iui-tag-text"
+          class="iui-label"
           title="Tag"
         >
           Tag
         </span>
-        <!-- Use close.svg from generic-icons package. -->
-        <svg
-          class="iui-tag-close-icon"
-          viewBox="0 0 16 16"
-          aria-hidden="true"
+        <button
+          class="iui-button iui-borderless iui-small"
+          tabindex="-1"
         >
-          <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6"></path>
-        </svg>
+          <!-- Use close_2.svg from generic-icons package. -->
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            alt="Delete tag"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+          </svg>
+        </button>
       </span>
 
       <br />
 
       <span
         class="iui-tag"
+        tabindex="0"
         title="Overflowing tag"
         style="max-width: 125px;"
       >
-        <span class="iui-tag-text">Overflowing tag</span>
-        <!-- Use close.svg from generic-icons package. -->
-        <svg
-          class="iui-tag-close-icon"
-          viewBox="0 0 16 16"
-          aria-hidden="true"
+        <span class="iui-label">Overflowing tag</span>
+        <button
+          class="iui-button iui-borderless iui-small"
+          tabindex="-1"
         >
-          <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6"></path>
-        </svg>
+          <!-- Use close_2.svg from generic-icons package. -->
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            alt="Delete tag"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+          </svg>
+        </button>
       </span>
 
       <br />
 
       <span
         class="iui-tag"
+        tabindex="0"
         title="Tag with no button"
       >
-        <span class="iui-tag-text">No button</span>
+        <span class="iui-label">No button</span>
       </span>
+    </section>
 
-      <br />
+    <hr />
 
-      <div class="iui-tag-container">
-        <span class="iui-tag">
+    <h2>Default tag containers</h2>
+    <section id="demo-default-container">
+
+      <div class="iui-tag-container iui-visible">
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
           <span
-            class="iui-tag-text"
+            class="iui-label"
             title="Tag"
           >
             Tag
           </span>
-          <!-- Use close.svg from generic-icons package. -->
-          <svg
-            class="iui-tag-close-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
           >
-            <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6"></path>
-          </svg>
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
         </span>
 
-        <span class="iui-tag">
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
           <span
-            class="iui-tag-text"
+            class="iui-label"
             title="Long tag"
           >
             Long tag
           </span>
-          <!-- Use close.svg from generic-icons package. -->
-          <svg
-            class="iui-tag-close-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
           >
-            <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6"></path>
-          </svg>
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
         </span>
 
-        <span class="iui-tag">
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
           <span
-            class="iui-tag-text"
+            class="iui-label"
             title="Very long tag"
           >
             Very long tag
           </span>
-          <!-- Use close.svg from generic-icons package. -->
-          <svg
-            class="iui-tag-close-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
           >
-            <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6"></path>
-          </svg>
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
         </span>
 
-        <span class="iui-tag">
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
           <span
-            class="iui-tag-text"
+            class="iui-label"
             title="Very very long tag"
           >
             Very very long tag
           </span>
-          <!-- Use close.svg from generic-icons package. -->
-          <svg
-            class="iui-tag-close-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
           >
-            <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6"></path>
-          </svg>
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
         </span>
       </div>
+
+      <br />
+
+
+      <div class="iui-tag-container iui-visible iui-truncate">
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+      </div>
+
+      <br />
+
+      <div class="iui-tag-container iui-visible iui-scroll">
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+
+        <span
+          class="iui-tag"
+          tabindex="0"
+        >
+          <span
+            class="iui-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small"
+            tabindex="-1"
+          >
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Delete tag"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+            </svg>
+          </button>
+        </span>
+      </div>
+
     </section>
 
     <hr />
-    <h2 id="basic">Basic</h2>
 
+    <h2>Basic tag containers</h2>
     <section id="demo-basic">
-      <div class="iui-tag-container">
+      <div class="iui-tag-container iui-truncate">
         <span class="iui-tag iui-basic">tags</span>
         <span class="iui-tag iui-basic">go</span>
         <span class="iui-tag iui-basic">here</span>
@@ -178,7 +898,7 @@
         <span class="iui-tag iui-basic">here</span>
       </div>
 
-      <div class="iui-tag-container">
+      <div class="iui-tag-container iui-truncate">
         <a
           href="#"
           class="iui-tag iui-basic"
