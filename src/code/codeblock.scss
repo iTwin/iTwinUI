@@ -17,36 +17,11 @@
 
     > .iui-title {
       margin-left: $iui-sm;
+      user-select: all;
     }
 
-    > .iui-copy {
-      @include iui-reset;
-      @include iui-font-family;
-      @include iui-focus;
-      font-size: $iui-font-size;
+    > .iui-button {
       margin-left: auto;
-      order: 2;
-      background-color: transparent;
-      padding: round($iui-baseline/2) $iui-sm;
-      cursor: pointer;
-      line-height: $iui-line-height;
-
-      @include themed {
-        color: t(iui-text-color);
-      }
-
-      > svg {
-        display: inline-block;
-        position: relative;
-        vertical-align: middle;
-        width: $iui-icons-default;
-        height: $iui-icons-default;
-        margin-right: $iui-s;
-
-        @include themed {
-          fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-        }
-      }
     }
   }
 

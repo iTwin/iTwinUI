@@ -12,6 +12,10 @@
     />
     <link
       rel="stylesheet"
+      href="../../lib/css/button.css"
+    />
+    <link
+      rel="stylesheet"
       href="../../lib/css/code.css"
     />
     <link
@@ -26,51 +30,59 @@
     <hr />
 
     <h2>Codeblock</h2>
-
-    <div class="iui-codeblock">
-      <div class="iui-title-bar">
-        <span class="iui-title">HTML</span>
-        <!-- Copy button will be placed within an borderless button in the future -->
-        <button class="iui-copy">
-          <svg viewBox="0 0 16 16">
-            <path
-              d="M5,10H3A1,1,0,0,1,2,9V2A1,1,0,0,1,3,1H8A1,1,0,0,1,9,2V4h1V2A2,2,0,0,0,8,0H3A2,2,0,0,0,1,2V9a2,2,0,0,0,2,2H5Z"
-            />
-            <path
-              d="M13,6a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V7A1,1,0,0,1,8,6h5m0-1H8A2,2,0,0,0,6,7v7a2,2,0,0,0,2,2h5a2,2,0,0,0,2-2V7a2,2,0,0,0-2-2Z"
-            />
-          </svg>
-          Copy
-        </button>
-      </div>
-
-      <pre
-        class="iui-codeblock-content"
-        style="height: 175px;"
+    <section id="demo-codeblock">
+      <div
+        class="iui-codeblock"
+        style="width: 770px;"
       >
-          <code>&lt;!DOCTYPE html&gt;</code>    
-          <code>&lt;html&gt;</code>
-          <code>&nbsp;&nbsp;&lt;head&gt;</code>
-          <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Hello world&lt;/title&gt;</code>
-          <code>&nbsp;&nbsp;&lt;/head&gt;</code>
-          <code>&nbsp;&nbsp;&lt;body&gt;</code>
-          <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;My first website!&lt;/h1&gt;</code>
-          <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</code>
-          <code>&nbsp;&nbsp;&lt;/body&gt;</code>
-          <code>&lt;/html&gt;</code>
-        </pre>
-    </div>
+        <div class="iui-title-bar">
+          <span class="iui-title">HTML</span>
+          <button class="iui-button iui-borderless">
+            <!-- Use copy.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Copy"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5,10H3A1,1,0,0,1,2,9V2A1,1,0,0,1,3,1H8A1,1,0,0,1,9,2V4h1V2A2,2,0,0,0,8,0H3A2,2,0,0,0,1,2V9a2,2,0,0,0,2,2H5Z"
+              />
+              <path
+                d="M13,6a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V7A1,1,0,0,1,8,6h5m0-1H8A2,2,0,0,0,6,7v7a2,2,0,0,0,2,2h5a2,2,0,0,0,2-2V7a2,2,0,0,0-2-2Z"
+              />
+            </svg>
+            Copy
+          </button>
+        </div>
 
-    <br />
-    <br />
+        <pre
+          class="iui-codeblock-content"
+          style="height: 175px;"
+        >
+            <code>&lt;!DOCTYPE html&gt;</code>    
+            <code>&lt;html&gt;</code>
+            <code>&nbsp;&nbsp;&lt;head&gt;</code>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Hello world&lt;/title&gt;</code>
+            <code>&nbsp;&nbsp;&lt;/head&gt;</code>
+            <code>&nbsp;&nbsp;&lt;body&gt;</code>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;My first website!&lt;/h1&gt;</code>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</code>
+            <code>&nbsp;&nbsp;&lt;/body&gt;</code>
+            <code>&lt;/html&gt;</code>
+          </pre>
+      </div>
+    </section>
+
+    <br /><br />
 
     <h2>Inline</h2>
-
-    <p>
-      The&nbsp;
-      <code class="iui-code">push()</code>
-      &nbsp;method adds one or more elements to the end of an array and returns
-      the new length of the array.
-    </p>
+    <section id="demo-inline">
+      <p>
+        The&nbsp;<code class="iui-code">push()</code>&nbsp;method adds one or more elements to the end of an array and
+        returns
+        the new length of the array.
+      </p>
+    </section>
   </body>
 </html>

@@ -1,3 +1,11 @@
 const { scenario } = require('../scenarioHelper');
 
-module.exports = [scenario('basic')];
+module.exports = [
+  // Code types
+  scenario('Type Codeblock', {
+    selectors: ['#demo-codeblock'],
+  }),
+  scenario('Type Inline', {
+    selectors: ['#demo-inline'],
+  }),
+];
