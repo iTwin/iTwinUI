@@ -34,6 +34,8 @@ module.exports = async (page, scenario) => {
     await page.waitForTimeout(scenario.postInteractionWait);
   }
 
+  await page.waitForTimeout(scenario.postInteractionWait);
+
   const scrollToSelector = scenario.scrollToSelector;
   if (scrollToSelector) {
     await page.waitForSelector(scrollToSelector);

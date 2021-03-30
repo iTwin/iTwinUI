@@ -18,7 +18,6 @@ fs.readdirSync('backstop/scenarios/').forEach((file) => {
 const darkScenarios = scenarios.map((s) => {
   const darkScenario = Object.assign({}, s);
   darkScenario.label = `dark_${darkScenario.label}`;
-  darkScenario.actions = [click('theme-button')].concat(darkScenario.actions);
   return darkScenario;
 });
 
