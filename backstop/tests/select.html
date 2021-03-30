@@ -18,6 +18,9 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <style>
+      section .iui-select { width: 440px; }
+    </style>
     <script src="../assets/theme.js"></script>
   </head>
 
@@ -25,268 +28,370 @@
     <theme-button></theme-button>
     <h1>Select</h1>
     <hr />
-    <h2 id="default">Default</h2>
+    <h2>Default</h2>
+    <section id="demo-default">
 
-    <label class="iui-input-container">
-      <div class="iui-label">Default label</div>
-      <div class="iui-select">
-        <input type="checkbox" />
-        <div class="iui-select-button iui-placeholder">
-          <span class="iui-content">
-            Please Please Please Please Please Please Please Please Please
-            Please Please Please Please Please Please Please Please Please
-            Please Please Please Please Please Please Please Please Please
-            Please Please Please Please Please Please Please Please Please
-            Please Please Please Please Please Please Please Please choose…
-          </span>
-        </div>
-        <ul
-          class="iui-menu"
-          style="position: absolute; top: 100%;"
-        >
-          <li tabindex="0"><span class="iui-content">Option 1</span></li>
-          <li tabindex="0"><span class="iui-content">Option 2</span></li>
-          <li tabindex="0"><span class="iui-content">Option 3</span></li>
-        </ul>
-      </div>
-      <div class="iui-message">Help message.</div>
-    </label>
-
-    <label class="iui-input-container">
-      <div class="iui-label">Empty label</div>
-      <div class="iui-select">
-        <input type="checkbox" />
-        <div class="iui-select-button">
-          <span class="iui-content"></span>
-        </div>
-        <ul
-          class="iui-menu"
-          style="position: absolute; top: 100%;"
-        >
-          <li tabindex="0"><span class="iui-content">Option 1</span></li>
-          <li tabindex="0"><span class="iui-content">Option 2</span></li>
-          <li tabindex="0"><span class="iui-content">Option 3</span></li>
-        </ul>
-      </div>
-      <div class="iui-message">Help message.</div>
-    </label>
-
-    <label class="iui-input-container">
-      <div class="iui-label">Selected label</div>
-      <div class="iui-select">
-        <input type="checkbox" />
-        <div class="iui-select-button">
-          <svg
-            class="iui-menu-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
+      <section id="demo-default-singular">
+        <label class="iui-input-container">
+          <div class="iui-label">Select label</div>
+          <div
+            class="iui-select"
+            id="test-select-1"
           >
+            <input
+              type="checkbox"
+              id="test-select-3"
+            />
+            <div class="iui-select-button iui-placeholder">
+              <span class="iui-content">Placeholder…</span>
+            </div>
+            <ul
+              class="iui-menu"
+              style="position: absolute; top: 100%;"
+            >
+              <li tabindex="0"><span class="iui-content">Option 1</span></li>
+              <li tabindex="0"><span class="iui-content">Option 2</span></li>
+              <li tabindex="0"><span class="iui-content">Option 3</span></li>
+            </ul>
+          </div>
+          <div class="iui-message">Help message.</div>
+        </label>
+      </section>
+
+      <label class="iui-input-container">
+        <div class="iui-label">Select label</div>
+        <div class="iui-select">
+          <input type="checkbox" />
+          <div class="iui-select-button">
+            <span class="iui-content"></span>
+          </div>
+          <ul
+            class="iui-menu"
+            style="position: absolute; top: 100%;"
+          >
+            <li tabindex="0"><span class="iui-content">Option 1</span></li>
+            <li tabindex="0"><span class="iui-content">Option 2</span></li>
+            <li tabindex="0"><span class="iui-content">Option 3</span></li>
+          </ul>
+        </div>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container">
+        <div class="iui-label">Select label</div>
+        <div class="iui-select">
+          <input type="checkbox" />
+          <div class="iui-select-button">
+            <svg
+              class="iui-menu-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+              />
+            </svg>
+            <span class="iui-content">Option 1</span>
+          </div>
+          <ul
+            class="iui-menu"
+            style="position: absolute; top: 100%;"
+          >
+            <li
+              class="iui-active"
+              tabindex="0"
+            >
+              <svg
+                class="iui-menu-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                />
+              </svg>
+              <span class="iui-content">Option 1</span>
+              <svg
+                class="iui-menu-icon iui-right"
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+              >
+                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+              </svg>
+            </li>
+            <li tabindex="0">
+              <svg
+                class="iui-menu-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                />
+              </svg>
+              <span class="iui-content">Option 2</span>
+            </li>
+            <li tabindex="0">
+              <svg
+                class="iui-menu-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                />
+              </svg>
+              <span class="iui-content">Option 3</span>
+            </li>
+          </ul>
+        </div>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-disabled">
+        <div class="iui-label">Select label</div>
+        <div class="iui-select">
+          <input
+            disabled
+            type="checkbox"
+          />
+          <div class="iui-select-button iui-placeholder">
+            <span class="iui-content">Placeholder…</span>
+          </div>
+          <ul
+            class="iui-menu"
+            style="position: absolute; top: 100%;"
+          >
+            <li tabindex="0"><span class="iui-content">Option 1</span></li>
+            <li tabindex="0"><span class="iui-content">Option 2</span></li>
+            <li tabindex="0"><span class="iui-content">Option 3</span></li>
+          </ul>
+        </div>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-disabled">
+        <div class="iui-label">Select label</div>
+        <div class="iui-select">
+          <input
+            disabled
+            type="checkbox"
+          />
+          <div class="iui-select-button">
+            <span class="iui-content">Option 1</span>
+          </div>
+          <ul
+            class="iui-menu"
+            style="position: absolute; top: 100%;"
+          >
+            <li
+              class="iui-menu-active"
+              tabindex="0"
+            >
+              <span class="iui-content">Option 1</span>
+              <svg
+                class="iui-menu-active-icon"
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+              >
+                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+              </svg>
+            </li>
+            <li tabindex="0"><span class="iui-content">Option 2</span></li>
+            <li tabindex="0"><span class="iui-content">Option 3</span></li>
+          </ul>
+        </div>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-positive">
+        <div class="iui-label">Select label</div>
+        <div class="iui-select">
+          <input type="checkbox" />
+          <div class="iui-select-button iui-placeholder">
+            <span class="iui-content">Placeholder…</span>
+          </div>
+          <ul
+            class="iui-menu"
+            style="position: absolute; top: 100%;"
+          >
+            <li tabindex="0"><span class="iui-content">Option 1</span></li>
+            <li tabindex="0"><span class="iui-content">Option 2</span></li>
+            <li tabindex="0"><span class="iui-content">Option 3</span></li>
+          </ul>
+        </div>
+        <div class="iui-message">
+          <!-- Use success.svg from generic-icons package. -->
+          <svg aria-hidden="true">
+            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.65,12,3,8.59l1.4-1.3,2.36,2.2L11.59,5,13,6.29Z" />
+          </svg>
+          Positive message.
+        </div>
+      </label>
+
+      <label class="iui-input-container iui-warning">
+        <div class="iui-label">Select label</div>
+        <div class="iui-select">
+          <input type="checkbox" />
+          <div class="iui-select-button iui-placeholder">
+            <span class="iui-content">Placeholder…</span>
+          </div>
+          <ul
+            class="iui-menu"
+            style="position: absolute; top: 100%;"
+          >
+            <li tabindex="0"><span class="iui-content">Option 1</span></li>
+            <li tabindex="0"><span class="iui-content">Option 2</span></li>
+            <li tabindex="0"><span class="iui-content">Option 3</span></li>
+          </ul>
+        </div>
+        <div class="iui-message">
+          <!-- Use warning.svg from generic-icons package. -->
+          <svg aria-hidden="true">
             <path
-              d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+              d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
             />
           </svg>
-          <span class="iui-content">
-            Very Very Very Very Very Very Very Very Very Very Very Very Very
-            Very Very Very Very Very Very Very Very Very Very Very Very Very
-            Very Very Very Very Very Very Very Very Very Very Very Very Very
-            Very Very Very Very Very Very Very Very Very Very Very Very Very
-            Very Very Very Very Very Very Very Very Very Very Very Very Very
-            Very Very Very Long Option 1
-          </span>
+          Warning message.
         </div>
-        <ul
-          class="iui-menu"
-          style="position: absolute; top: 100%;"
-        >
-          <li
-            class="iui-active"
-            tabindex="0"
+      </label>
+
+      <label class="iui-input-container iui-negative">
+        <div class="iui-label">Select label</div>
+        <div class="iui-select">
+          <input type="checkbox" />
+          <div class="iui-select-button iui-placeholder">
+            <span class="iui-content">Placeholder…</span>
+          </div>
+          <ul
+            class="iui-menu"
+            style="position: absolute; top: 100%;"
           >
-            <svg
-              class="iui-menu-icon"
-              aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
-              />
-            </svg>
-            <span class="iui-content">
-              Very Very Very Very Very Very Very Very Very Very Very Very Very
-              Very Very Very Very Very Very Very Very Very Very Very Very Very
-              Very Very Very Very Very Very Very Very Very Very Very Very Very
-              Very Very Very Very Very Very Very Very Very Very Very Very Very
-              Very Very Very Very Very Very Very Very Very Very Very Very Very
-              Very Very Very Long Option 1
-            </span>
-            <svg
-              class="iui-menu-icon iui-right"
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-            </svg>
-          </li>
-          <li tabindex="0">
-            <svg
-              class="iui-menu-icon"
-              aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
-              />
-            </svg>
-            <span class="iui-content">Option 2</span>
-          </li>
-          <li tabindex="0">
-            <svg
-              class="iui-menu-icon"
-              aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
-              />
-            </svg>
-            <span class="iui-content">Option 3</span>
-          </li>
-        </ul>
-      </div>
-      <div class="iui-message">Help message.</div>
-    </label>
-
-    <label class="iui-input-container iui-disabled">
-      <div class="iui-label">Disabled label</div>
-      <div class="iui-select">
-        <input
-          disabled
-          type="checkbox"
-        />
-        <div class="iui-select-button iui-placeholder">
-          <span class="iui-content">Please choose…</span>
+            <li tabindex="0"><span class="iui-content">Option 1</span></li>
+            <li tabindex="0"><span class="iui-content">Option 2</span></li>
+            <li tabindex="0"><span class="iui-content">Option 3</span></li>
+          </ul>
         </div>
-        <ul
-          class="iui-menu"
-          style="position: absolute; top: 100%;"
-        >
-          <li tabindex="0"><span class="iui-content">Option 1</span></li>
-          <li tabindex="0"><span class="iui-content">Option 2</span></li>
-          <li tabindex="0"><span class="iui-content">Option 3</span></li>
-        </ul>
-      </div>
-      <div class="iui-message">Help message.</div>
-    </label>
-
-    <label class="iui-input-container iui-disabled">
-      <div class="iui-label">Disabled selected label</div>
-      <div class="iui-select">
-        <input
-          disabled
-          type="checkbox"
-        />
-        <div class="iui-select-button">
-          <span class="iui-content">Option 1</span>
+        <div class="iui-message">
+          <!-- Use error.svg from generic-icons package. -->
+          <svg aria-hidden="true">
+            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM9,12H7V10H9ZM9,9H7V4H9Z" />
+          </svg>
+          Negative message.
         </div>
-        <ul
-          class="iui-menu"
-          style="position: absolute; top: 100%;"
-        >
-          <li
-            class="iui-menu-active"
-            tabindex="0"
-          >
-            <span class="iui-content">Option 1</span>
-            <svg
-              class="iui-menu-active-icon"
-              viewBox="0 0 16 16"
-              aria-hidden="true"
+      </label>
+
+    </section>
+
+    <section
+      id="demo-default-opened"
+      style="height: 420px;"
+    >
+
+      <section
+        id="demo-default-singular-opened"
+        style="height: 210px;"
+      >
+        <label class="iui-input-container">
+          <div class="iui-label">Select label</div>
+          <div class="iui-select">
+            <input
+              type="checkbox"
+              checked
+            />
+            <div class="iui-select-button iui-placeholder">
+              <span class="iui-content">Placeholder…</span>
+            </div>
+            <ul
+              class="iui-menu"
+              style="position: absolute; top: 100%;"
             >
-              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-            </svg>
-          </li>
-          <li tabindex="0"><span class="iui-content">Option 2</span></li>
-          <li tabindex="0"><span class="iui-content">Option 3</span></li>
-        </ul>
-      </div>
-      <div class="iui-message">Help message.</div>
-    </label>
+              <li tabindex="0"><span class="iui-content">Option 1</span></li>
+              <li
+                tabindex="0"
+                id="test-select-2"
+              ><span class="iui-content">Option 2</span></li>
+              <li tabindex="0"><span class="iui-content">Option 3</span></li>
+            </ul>
+          </div>
+          <div class="iui-message">Help message.</div>
+        </label>
+      </section>
 
-    <label class="iui-input-container iui-positive">
-      <div class="iui-label">Positive label</div>
-      <div class="iui-select">
-        <input type="checkbox" />
-        <div class="iui-select-button iui-placeholder">
-          <span class="iui-content">Please choose…</span>
-        </div>
-        <ul
-          class="iui-menu"
-          style="position: absolute; top: 100%;"
-        >
-          <li tabindex="0"><span class="iui-content">Option 1</span></li>
-          <li tabindex="0"><span class="iui-content">Option 2</span></li>
-          <li tabindex="0"><span class="iui-content">Option 3</span></li>
-        </ul>
-      </div>
-      <div class="iui-message">
-        <!-- Use success.svg from generic-icons package. -->
-        <svg aria-hidden="true">
-          <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.65,12,3,8.59l1.4-1.3,2.36,2.2L11.59,5,13,6.29Z" />
-        </svg>
-        Positive message.
-      </div>
-    </label>
-
-    <label class="iui-input-container iui-warning">
-      <div class="iui-label">Warning label</div>
-      <div class="iui-select">
-        <input type="checkbox" />
-        <div class="iui-select-button iui-placeholder">
-          <span class="iui-content">Please choose…</span>
-        </div>
-        <ul
-          class="iui-menu"
-          style="position: absolute; top: 100%;"
-        >
-          <li tabindex="0"><span class="iui-content">Option 1</span></li>
-          <li tabindex="0"><span class="iui-content">Option 2</span></li>
-          <li tabindex="0"><span class="iui-content">Option 3</span></li>
-        </ul>
-      </div>
-      <div class="iui-message">
-        <!-- Use warning.svg from generic-icons package. -->
-        <svg aria-hidden="true">
-          <path
-            d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+      <label class="iui-input-container">
+        <div class="iui-label">Select label</div>
+        <div class="iui-select">
+          <input
+            type="checkbox"
+            checked
           />
-        </svg>
-        Warning message.
-      </div>
-    </label>
-
-    <label class="iui-input-container iui-negative">
-      <div class="iui-label">Negative label</div>
-      <div class="iui-select">
-        <input type="checkbox" />
-        <div class="iui-select-button iui-placeholder">
-          <span class="iui-content">Please choose…</span>
+          <div class="iui-select-button">
+            <svg
+              class="iui-menu-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+              />
+            </svg>
+            <span class="iui-content">Option 1</span>
+          </div>
+          <ul
+            class="iui-menu"
+            style="position: absolute; top: 100%;"
+          >
+            <li
+              class="iui-active"
+              tabindex="0"
+            >
+              <svg
+                class="iui-menu-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                />
+              </svg>
+              <span class="iui-content">Option 1</span>
+              <svg
+                class="iui-menu-icon iui-right"
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+              >
+                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+              </svg>
+            </li>
+            <li tabindex="0">
+              <svg
+                class="iui-menu-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                />
+              </svg>
+              <span class="iui-content">Option 2</span>
+            </li>
+            <li class="iui-disabled">
+              <svg
+                class="iui-menu-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                />
+              </svg>
+              <span class="iui-content">Option 3</span>
+            </li>
+          </ul>
         </div>
-        <ul
-          class="iui-menu"
-          style="position: absolute; top: 100%;"
-        >
-          <li tabindex="0"><span class="iui-content">Option 1</span></li>
-          <li tabindex="0"><span class="iui-content">Option 2</span></li>
-          <li tabindex="0"><span class="iui-content">Option 3</span></li>
-        </ul>
-      </div>
-      <div class="iui-message">
-        <!-- Use error.svg from generic-icons package. -->
-        <svg aria-hidden="true">
-          <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM9,12H7V10H9ZM9,9H7V4H9Z" />
-        </svg>
-        Negative message.
-      </div>
-    </label>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+    </section>
   </body>
 </html>
