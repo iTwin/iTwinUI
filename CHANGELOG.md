@@ -1,17 +1,22 @@
 # Changelog
 
-## 1.0.0 🎉
+## 0.5.0
 
-`2021-03-16`
+`2021-03-31`
 
 ### What's new
 
-- Button's hover visual appearance has been updated to be more consistent across the various states.
+- **Updated button hover state** to have a more consistent visual appearance.
+- **Added menu item `iui-disabled` state**.
+- **Added new classes to tag container**: `iui-truncate` and `iui-scroll` classes for overflow and `iui-visible` for background.
 
-### Breaking changes
+### Fixes
 
+- **Removed footer positioning.**
+- **Removed global style resets.** They are now applied directly to our components.
 - **Button class names restructured** from `.iui-buttons-cta-large` into `.iui-button .iui-cta .iui-large`.
 - **Button label is wrapped** within `<span class="iui-label">`.
+- **`iui-invisible` button style is replaced with `iui-borderless`**, which is used in codeblock and tags.
 
 ## 0.4.2
 
