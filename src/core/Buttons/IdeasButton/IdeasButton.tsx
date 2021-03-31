@@ -6,7 +6,7 @@ import React from 'react';
 
 import SvgSmileyHappy2 from '@bentley/icons-generic-react/cjs/icons/SmileyHappy2';
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/buttons.css';
+import { Button } from '../Button';
 
 export type IdeasButtonProps = {
   /**
@@ -33,16 +33,15 @@ export const IdeasButton = React.forwardRef<
   useTheme();
 
   return (
-    <button
+    <Button
       ref={ref}
-      className='iui-buttons-idea'
+      className='iui-idea'
       onClick={onClick}
-      type='button'
+      startIcon={<SvgSmileyHappy2 />}
       {...rest}
     >
-      <SvgSmileyHappy2 className='iui-buttons-icon' />
       {feedbackLabel}
-    </button>
+    </Button>
   );
 });
 

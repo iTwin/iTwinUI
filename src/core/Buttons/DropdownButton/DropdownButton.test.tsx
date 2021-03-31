@@ -33,39 +33,35 @@ function renderComponent(...props: Partial<DropdownButtonProps>[]) {
 
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
-  expect(container.querySelector('.iui-buttons-default.dropdown')).toBeTruthy();
-  expect(container.querySelector('.iui-buttons-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-button.iui-dropdown')).toBeTruthy();
+  expect(container.querySelector('.iui-icon')).toBeTruthy();
 });
 
 it('should update icon when menu opens or closes', () => {
   const { container } = renderComponent();
 
-  const button = container.querySelector(
-    '.iui-buttons-default',
-  ) as HTMLButtonElement;
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
 
   const {
     container: { firstChild: downArrow },
-  } = render(<SvgCaretDown2 className='iui-buttons-icon' />);
-  expect(container.querySelector('.iui-buttons-icon')).toEqual(downArrow);
+  } = render(<SvgCaretDown2 className='iui-icon' />);
+  expect(container.querySelector('.iui-icon')).toEqual(downArrow);
 
   button.click();
   const {
     container: { firstChild: upArrow },
-  } = render(<SvgCaretUp2 className='iui-buttons-icon' />);
-  expect(container.querySelector('.iui-buttons-icon')).toEqual(upArrow);
+  } = render(<SvgCaretUp2 className='iui-icon' />);
+  expect(container.querySelector('.iui-icon')).toEqual(upArrow);
 
   button.click();
-  expect(container.querySelector('.iui-buttons-icon')).toEqual(downArrow);
+  expect(container.querySelector('.iui-icon')).toEqual(downArrow);
 });
 
 it('should work with menu items', () => {
   const { container } = renderComponent();
 
-  const button = container.querySelector(
-    '.iui-buttons-default',
-  ) as HTMLButtonElement;
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
 
   let menu = document.querySelector('.iui-menu') as HTMLUListElement;

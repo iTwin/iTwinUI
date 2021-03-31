@@ -16,13 +16,11 @@ it('renders icon button correctly', () => {
     </IconButton>,
   );
 
-  const button = container.querySelector(
-    '.iui-buttons-no-label',
-  ) as HTMLButtonElement;
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
   button.click();
   expect(onClickMock).toHaveBeenCalled();
-  const icon = container.querySelector('.iui-buttons-icon');
+  const icon = container.querySelector('.iui-icon');
   expect(icon).toBeTruthy();
 });
 
@@ -35,12 +33,12 @@ it('renders active icon button correctly', () => {
   );
 
   const button = container.querySelector(
-    '.iui-buttons-no-label.iui-buttons-active',
+    '.iui-button.iui-active',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   button.click();
   expect(onClickMock).toHaveBeenCalled();
-  const icon = container.querySelector('.iui-buttons-icon');
+  const icon = container.querySelector('.iui-icon');
   expect(icon).toBeTruthy();
 });
 
@@ -53,13 +51,13 @@ it('renders disabled small icon button correctly', () => {
   );
 
   const button = container.querySelector(
-    '.iui-buttons-no-label.iui-buttons-default-small',
+    '.iui-button.iui-small',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.disabled).toBe(true);
   button.click();
   expect(onClickMock).not.toHaveBeenCalled();
-  const icon = container.querySelector('.iui-buttons-icon');
+  const icon = container.querySelector('.iui-icon');
   expect(icon).toBeTruthy();
 });
 
@@ -70,5 +68,5 @@ it('should render borderless button correctly', () => {
     </IconButton>,
   );
 
-  expect(container.querySelector('.iui-button.iui-invisible')).toBeTruthy();
+  expect(container.querySelector('.iui-button.iui-borderless')).toBeTruthy();
 });

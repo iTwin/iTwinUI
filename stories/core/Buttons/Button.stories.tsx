@@ -11,9 +11,6 @@ import SvgAdd from '@bentley/icons-generic-react/cjs/icons/Add';
 export default {
   title: 'Buttons/Button',
   component: Button,
-  parameters: {
-    docs: { description: { component: 'Generic button component' } },
-  },
   argTypes: {
     onClick: { table: { disable: true } },
     style: { table: { disable: true } },
@@ -63,11 +60,13 @@ Default.args = {
 
 export const WithIcon: Story<ButtonProps> = (args) => {
   return (
-    <Button onClick={action('clicked')} styleType='high-visibility' {...args}>
-      <div>
-        <SvgAdd className='iui-buttons-icon' />
-        New
-      </div>
+    <Button
+      onClick={action('clicked')}
+      startIcon={<SvgAdd />}
+      styleType='high-visibility'
+      {...args}
+    >
+      {args.children}
     </Button>
   );
 };
@@ -77,5 +76,7 @@ WithIcon.argTypes = {
 };
 
 WithIcon.args = {
+  children: 'New',
   styleType: 'high-visibility',
+  startIcon: <SvgAdd />,
 };

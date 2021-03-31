@@ -6,7 +6,7 @@ import cx from 'classnames';
 import React from 'react';
 import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/tags.css';
+import '@bentley/itwinui/css/tag.css';
 import { CommonProps } from '../utils/props';
 
 export type TagProps = {

@@ -11,7 +11,7 @@ import SvgCaretDown2 from '@bentley/icons-generic-react/cjs/icons/CaretDown2';
 import SvgCaretUp2 from '@bentley/icons-generic-react/cjs/icons/CaretUp2';
 
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/buttons.css';
+import '@bentley/itwinui/css/button.css';
 
 export type DropdownButtonProps = {
   /**
@@ -20,7 +20,7 @@ export type DropdownButtonProps = {
    * and returns a list of `MenuItem` components.
    */
   menuItems: (close: () => void) => JSX.Element[];
-} & Omit<ButtonProps, 'onClick' | 'styleType'>;
+} & Omit<ButtonProps, 'onClick' | 'styleType' | 'endIcon'>;
 
 /**
  * Button that opens a DropdownMenu.
@@ -45,7 +45,7 @@ export const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
     if (ref.current) {
       setMenuWidth(ref.current.offsetWidth);
     }
-  }, [children]);
+  }, [children, size]);
 
   return (
     <DropdownMenu
@@ -56,17 +56,13 @@ export const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
       onClose={() => setIsMenuOpen(false)}
     >
       <Button
-        className={cx('dropdown', className)}
+        className={cx('iui-dropdown', className)}
         size={size}
+        endIcon={isMenuOpen ? <SvgCaretUp2 /> : <SvgCaretDown2 />}
         ref={ref}
         {...rest}
       >
         {children}
-        {isMenuOpen ? (
-          <SvgCaretUp2 className='iui-buttons-icon' />
-        ) : (
-          <SvgCaretDown2 className='iui-buttons-icon' />
-        )}
       </Button>
     </DropdownMenu>
   );

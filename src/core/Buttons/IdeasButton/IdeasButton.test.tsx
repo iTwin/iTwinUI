@@ -14,13 +14,13 @@ it('renders ideas button correctly', () => {
   );
 
   const button = container.querySelector(
-    '.iui-buttons-idea',
+    '.iui-button.iui-idea',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.type).toBe('button');
   button.click();
   expect(onClickMock).toHaveBeenCalled();
-  expect(container.querySelector('.iui-buttons-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-icon')).toBeTruthy();
   getByText('Feedback');
 });
 
@@ -31,12 +31,12 @@ it('takes localized label', () => {
   );
 
   const button = container.querySelector(
-    '.iui-buttons-idea',
+    '.iui-button.iui-idea',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.type).toBe('button');
   button.click();
   expect(onClickMock).toHaveBeenCalled();
-  expect(container.querySelector('.iui-buttons-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-icon')).toBeTruthy();
   getByText('my-feedback');
 });

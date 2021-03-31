@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/buttons.css';
+import '@bentley/itwinui/css/button.css';
 
 export type ButtonGroupProps = {
   /**
@@ -28,7 +28,7 @@ export type ButtonGroupProps = {
 export const ButtonGroup = ({ children, ...rest }: ButtonGroupProps) => {
   useTheme();
   return (
-    <div className='iui-buttons-group' {...rest}>
+    <div className='iui-button-group' {...rest}>
       {children}
     </div>
   );

@@ -5,13 +5,14 @@
 import cx from 'classnames';
 import React from 'react';
 import { Button, ButtonProps } from '../Button';
+import { IconButton } from '../IconButton';
 import { DropdownMenu } from '../../DropdownMenu';
 import { Position } from '../../../utils';
 import SvgCaretDown2 from '@bentley/icons-generic-react/cjs/icons/CaretDown2';
 import SvgCaretUp2 from '@bentley/icons-generic-react/cjs/icons/CaretUp2';
 
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/buttons.css';
+import '@bentley/itwinui/css/button.css';
 
 export type SplitButtonProps = {
   /**
@@ -30,10 +31,15 @@ export type SplitButtonProps = {
    */
   menuPosition?: Position;
   /**
+   * Style of the button.
+   * @default 'default'
+   */
+  styleType?: 'cta' | 'high-visibility' | 'default';
+  /**
    * Content of primary button.
    */
   children: React.ReactNode;
-} & ButtonProps;
+} & Omit<ButtonProps, 'styleType' | 'onClick'>;
 
 /**
  * Split button component with a DropdownMenu.
@@ -70,11 +76,11 @@ export const SplitButton = (props: SplitButtonProps) => {
     if (ref.current) {
       setMenuWidth(ref.current.offsetWidth);
     }
-  }, [children]);
+  }, [children, size]);
 
   return (
     <span
-      className={cx(className, 'iui-buttons-group')}
+      className={cx(className, 'iui-button-split-menu')}
       style={style}
       title={title}
       ref={ref}
@@ -89,13 +95,9 @@ export const SplitButton = (props: SplitButtonProps) => {
         onOpen={() => setIsMenuOpen(true)}
         onClose={() => setIsMenuOpen(false)}
       >
-        <Button className='iui-buttons-split' styleType={styleType} size={size}>
-          {isMenuOpen ? (
-            <SvgCaretUp2 className='iui-buttons-icon' />
-          ) : (
-            <SvgCaretDown2 className='iui-buttons-icon' />
-          )}
-        </Button>
+        <IconButton styleType={styleType} size={size}>
+          {isMenuOpen ? <SvgCaretUp2 /> : <SvgCaretDown2 />}
+        </IconButton>
       </DropdownMenu>
     </span>
   );

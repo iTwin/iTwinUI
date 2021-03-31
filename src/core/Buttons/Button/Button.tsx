@@ -6,7 +6,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/buttons.css';
+import '@bentley/itwinui/css/button.css';
 
 export type ButtonProps = {
   /**
@@ -15,9 +15,18 @@ export type ButtonProps = {
   size?: 'small' | 'large';
   /**
    * Style of the button.
+   * Use 'borderless' to hide outline.
    * @default 'default'
    */
-  styleType?: 'cta' | 'high-visibility' | 'default';
+  styleType?: 'cta' | 'high-visibility' | 'default' | 'borderless';
+  /**
+   * Icon shown before the main button content.
+   */
+  startIcon?: JSX.Element;
+  /**
+   * Icon shown after the main button content.
+   */
+  endIcon?: JSX.Element;
   /**
    * Content of the button.
    */
@@ -31,6 +40,7 @@ export type ButtonProps = {
  * <Button disabled={true}>This is a disabled button</Button>
  * <Button size='large' styleType='high-visibility'>This is a large high visibility button</Button>
  * <Button size='small' styleType='cta'>This is a small call to action button</Button>
+ * <Button startIcon={<SvgAdd />}>New</Button>
  */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -41,25 +51,39 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       style,
       styleType = 'default',
       type = 'button',
+      startIcon,
+      endIcon,
       ...rest
     } = props;
 
     useTheme();
 
-    let buttonClass = `iui-buttons-${styleType}`;
-    if (!!size) {
-      buttonClass = `${buttonClass}-${size}`;
-    }
-
     return (
       <button
         ref={ref}
-        className={cx(buttonClass, className)}
+        className={cx(
+          'iui-button',
+          {
+            [`iui-${size}`]: size,
+            [`iui-${styleType}`]: styleType !== 'default',
+          },
+          className,
+        )}
         style={style}
         type={type}
         {...rest}
       >
-        {children}
+        {startIcon &&
+          React.cloneElement(startIcon, {
+            className: cx('iui-icon', startIcon.props.className),
+          })}
+
+        <span className='iui-label'>{children}</span>
+
+        {endIcon &&
+          React.cloneElement(endIcon, {
+            className: cx('iui-icon', endIcon.props.className),
+          })}
       </button>
     );
   },

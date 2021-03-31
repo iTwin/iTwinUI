@@ -15,7 +15,7 @@ it('renders with two buttons', () => {
       <Button>Second</Button>
     </ButtonGroup>,
   );
-  expect(container.querySelector('.iui-buttons-group')).toBeTruthy();
+  expect(container.querySelector('.iui-button-group')).toBeTruthy();
   expect(container.querySelectorAll('button').length).toBe(2);
 });
 
@@ -28,6 +28,6 @@ it('renders with four buttons', () => {
       <Button>Fourth</Button>
     </ButtonGroup>,
   );
-  expect(container.querySelector('.iui-buttons-group')).toBeTruthy();
+  expect(container.querySelector('.iui-button-group')).toBeTruthy();
   expect(container.querySelectorAll('button').length).toBe(4);
 });

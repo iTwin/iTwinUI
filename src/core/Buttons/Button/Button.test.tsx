@@ -4,23 +4,23 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import React from 'react';
-
+import SvgPlaceholder from '@bentley/icons-generic-react/cjs/icons/Placeholder';
 import { Button } from './Button';
 
 it('renders default button correctly', () => {
   const onClickMock = jest.fn();
-  const { container, getByText } = render(
+  const { container } = render(
     <Button onClick={onClickMock}>Click me!</Button>,
   );
 
-  const button = container.querySelector(
-    '.iui-buttons-default',
-  ) as HTMLButtonElement;
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.type).toBe('button');
   button.click();
   expect(onClickMock).toHaveBeenCalled();
-  getByText('Click me!');
+
+  const label = container.querySelector('.iui-label') as HTMLSpanElement;
+  expect(label.textContent).toEqual('Click me!');
 });
 
 it('renders cta button correctly', () => {
@@ -32,7 +32,7 @@ it('renders cta button correctly', () => {
   );
 
   const button = container.querySelector(
-    '.iui-buttons-cta',
+    '.iui-button.iui-cta',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.type).toBe('button');
@@ -49,7 +49,7 @@ it('renders high-visibility button correctly', () => {
   );
 
   const button = container.querySelector(
-    '.iui-buttons-high-visibility',
+    '.iui-button.iui-high-visibility',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.type).toBe('button');
@@ -69,11 +69,10 @@ it('takes className and style', () => {
   );
 
   const button = container.querySelector(
-    '.iui-buttons-high-visibility',
+    '.iui-button.iui-high-visibility.my-button',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.style.minWidth).toBe('80px');
-  expect(button.className).toContain('my-button');
   getByText('Click me!');
 });
 
@@ -86,7 +85,7 @@ it('renders small cta correctly', () => {
   );
 
   const button = container.querySelector(
-    '.iui-buttons-cta-small',
+    '.iui-button.iui-cta.iui-small',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.type).toBe('button');
@@ -103,10 +102,40 @@ it('renders large high-visibility correctly', () => {
   );
 
   const button = container.querySelector(
-    '.iui-buttons-high-visibility-large',
+    '.iui-button.iui-high-visibility.iui-large',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.type).toBe('button');
   button.click();
   getByText('Click me!');
+});
+
+it('should render borderless button', () => {
+  const { container } = render(
+    <Button styleType='borderless'>Click me!</Button>,
+  );
+
+  const button = container.querySelector(
+    '.iui-button.iui-borderless',
+  ) as HTMLButtonElement;
+  expect(button).toBeTruthy();
+  expect(button.textContent).toBe('Click me!');
+});
+
+it('should render with icon correctly', () => {
+  const { container } = render(
+    <Button startIcon={<SvgPlaceholder />}>Click me!</Button>,
+  );
+
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
+  expect(button).toBeTruthy();
+  expect(button.type).toBe('button');
+
+  const {
+    container: { firstChild: placeholderIcon },
+  } = render(<SvgPlaceholder className='iui-icon' />);
+  expect(container.querySelector('.iui-icon')).toEqual(placeholderIcon);
+
+  const label = container.querySelector('.iui-icon + .iui-label')?.textContent;
+  expect(label).toEqual('Click me!');
 });
