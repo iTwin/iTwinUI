@@ -18,8 +18,8 @@ export default {
   parameters: {
     previewTabs: { 'storybook/docs/panel': { hidden: true } },
     options: { showPanel: false },
-    controls: { disabled: true },
-    actions: { disabled: true },
+    controls: { disable: true },
+    actions: { disable: true },
   },
 } as Meta;
 
@@ -29,7 +29,21 @@ export const Overview: Story = () => {
   );
 
   React.useEffect(() => {
-    const listener = (isDark) => setIsDarkTheme(isDark);
+    const hideAddonsButton = parent.document.querySelector(
+      'button[title="Hide addons [A]"]',
+    ) as HTMLButtonElement;
+
+    const isPanelOpen = !!parent.document.querySelector(
+      '#storybook-preview-wrapper',
+    )?.parentElement?.parentElement?.style.height;
+
+    if (isPanelOpen) {
+      hideAddonsButton.click();
+    }
+  });
+
+  React.useEffect(() => {
+    const listener = (isDark: boolean) => setIsDarkTheme(isDark);
     channel.on('DARK_MODE', listener);
     return () => channel.off('DARK_MODE', listener);
   }, []);
