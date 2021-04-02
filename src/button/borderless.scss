@@ -34,7 +34,7 @@
     }
   }
 
-  &.iui-selected:not(.iui-high-visibility):not(.iui-cta) {
+  &.iui-active:not(.iui-high-visibility):not(.iui-cta) {
     &:enabled,
     &:enabled:hover,
     &:enabled:active {
@@ -62,7 +62,7 @@
       }
     }
 
-    &.iui-selected {
+    &.iui-active {
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
       }

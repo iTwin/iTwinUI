@@ -56,7 +56,7 @@
   }
 
   // Adds stripe above active button
-  > .iui-selected {
+  > .iui-active {
     &::after {
       content: '';
       position: absolute;

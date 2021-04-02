@@ -131,9 +131,9 @@
       }
 
       &:hover,
-      &.iui-selected:enabled,
-      &.iui-selected:enabled:hover,
-      &.iui-selected:active {
+      &.iui-active:enabled,
+      &.iui-active:enabled:hover,
+      &.iui-active:active {
         @include themed() {
           background-color: rgba(0, 0, 0, t(iui-opacity-4));
         }
@@ -289,7 +289,7 @@
     }
   }
 
-  &.iui-active {
+  &.iui-selected {
     @include themed() {
       outline: solid 2px t(iui-color-foreground-primary);
       background: linear-gradient(

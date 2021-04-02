@@ -43,7 +43,7 @@
     }
   }
 
-  &.iui-selected:not(.iui-high-visibility):not(.iui-cta) {
+  &.iui-active:not(.iui-high-visibility):not(.iui-cta) {
     &:enabled,
     &:enabled:hover,
     &:enabled:active {
