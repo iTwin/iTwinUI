@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0
+
+`2021-04-02`
+
+### Fixes
+
+- **Updated active and selected states in button and tile.**
+- **Changed block comments to line comments.**
+- **Updated select classes.**
+
 ## 0.5.0
 
 `2021-03-31`
