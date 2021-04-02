@@ -20,6 +20,7 @@ export default {
     },
     className: { control: { disable: true } },
     style: { control: { disable: true } },
+    image: { control: { disable: true } },
   },
 } as Meta<UserIconProps>;
 

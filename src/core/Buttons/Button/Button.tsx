@@ -64,7 +64,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cx(
           'iui-button',
           {
-            [`iui-${size}`]: size,
+            [`iui-${size}`]: !!size,
             [`iui-${styleType}`]: styleType !== 'default',
           },
           className,

@@ -47,3 +47,7 @@ if (window.parent !== window) {
     }
   }).observe(window.parent.document.documentElement, { attributes: true });
 }
+
+export const parameters = {
+  controls: { sort: 'requiredFirst' },
+};

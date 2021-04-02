@@ -43,7 +43,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         className={cx(
           'iui-button',
           {
-            [`iui-${size}`]: size,
+            [`iui-${size}`]: !!size,
             [`iui-${styleType}`]: styleType !== 'default',
             'iui-active': isActive,
           },

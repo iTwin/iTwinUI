@@ -27,6 +27,7 @@ export default {
           Please, try to hover me!
         </div>
       ),
+      control: { disable: true },
     },
     placement: {
       control: {

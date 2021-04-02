@@ -253,7 +253,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           <div
             ref={selectRef}
             className={cx('iui-select-button', {
-              'iui-placeholder': !selectedItem && placeholder,
+              'iui-placeholder': !selectedItem && !!placeholder,
             })}
           >
             {!selectedItem && (

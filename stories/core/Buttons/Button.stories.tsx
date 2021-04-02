@@ -13,6 +13,8 @@ export default {
   component: Button,
   argTypes: {
     onClick: { control: { disable: true } },
+    startIcon: { control: { disable: true } },
+    endIcon: { control: { disable: true } },
     style: { control: { disable: true } },
     className: { control: { disable: true } },
     type: { control: { disable: true } },

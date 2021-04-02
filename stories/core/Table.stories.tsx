@@ -217,6 +217,8 @@ export const Selectable: Story<TableProps> = (args) => {
   );
 };
 
+Selectable.args = { isSelectable: true };
+
 export const Sortable: Story<TableProps> = (args) => {
   const { columns, data, isSortable, ...rest } = args;
   const onClickHandler = (

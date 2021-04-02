@@ -80,7 +80,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
     <div
       className={cx(
         'iui-expandable-block',
-        { 'iui-with-caption': caption },
+        { 'iui-with-caption': !!caption },
         { 'iui-expanded': expanded },
         className,
       )}

@@ -85,6 +85,9 @@ Basic.argTypes = {
   metadata: { control: { disable: true } },
   moreOptions: { control: { disable: true } },
   buttons: { control: { disable: true } },
+  leftIcon: { control: { disable: true } },
+  rightIcon: { control: { disable: true } },
+  badge: { control: { disable: true } },
 };
 
 export const AllProps: Story<TileProps> = (props) => {
@@ -154,7 +157,10 @@ export const Condensed: Story<TileProps> = (props) => {
     />
   );
 };
-Condensed.argTypes = { ...Basic.argTypes };
+Condensed.argTypes = {
+  ...Basic.argTypes,
+  thumbnail: { control: { disable: true } },
+};
 Condensed.args = {
   ...Basic.args,
   name: 'Condensed',
@@ -177,7 +183,10 @@ export const UserIcon: Story<TileProps> = (props) => {
     />
   );
 };
-UserIcon.argTypes = { ...Basic.argTypes };
+UserIcon.argTypes = {
+  ...Basic.argTypes,
+  thumbnail: { control: { disable: true } },
+};
 UserIcon.args = {
   ...Basic.args,
   name: 'Some User',
@@ -208,7 +217,10 @@ export const Folder: Story<TileProps> = (props) => {
     />
   );
 };
-Folder.argTypes = { ...Basic.argTypes };
+Folder.argTypes = {
+  ...Basic.argTypes,
+  thumbnail: { control: { disable: true } },
+};
 Folder.args = {
   ...Basic.args,
   variant: 'folder',
