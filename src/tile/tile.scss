@@ -110,12 +110,12 @@
 
     > .iui-picture + .iui-button,
     > .iui-picture + .iui-button + .iui-button {
-      /* Blur fallback */
+      // Blur fallback
       @include themed() {
         background-color: rgba(0, 0, 0, t(iui-opacity-4));
       }
 
-      /* With blur */
+      // With blur
       @supports (backdrop-filter: blur(5px)) {
         @include themed() {
           background-color: rgba(0, 0, 0, t(iui-opacity-5));
@@ -184,9 +184,9 @@
       font-size: $iui-font-size;
       height: 100%;
       max-height: $iui-baseline * 6;
-      display: -webkit-box; /* stylelint-disable-line */
+      display: -webkit-box; // stylelint-disable-line
       -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical; /* stylelint-disable-line */
+      -webkit-box-orient: vertical; // stylelint-disable-line
       overflow: hidden;
       @include themed() {
         color: t(iui-text-color-muted);

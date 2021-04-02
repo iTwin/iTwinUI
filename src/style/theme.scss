@@ -384,15 +384,14 @@ $fallbackvars: getfallbackvars();
   }
 }
 
-/*
-  Adds a CSS variable with a fallback value.
 
-  Usage example:
-  @include themed {
-    color: rgba(t(iui-color-background-1-rgb), 0.5);
-    background-color: t(iui-color-background-2) !important;
-  }
-*/
+//  Adds a CSS variable with a fallback value.
+//
+//  Usage example:
+//  @include themed {
+//    color: rgba(t(iui-color-background-1-rgb), 0.5);
+//    background-color: t(iui-color-background-2) !important;
+//  }
 @mixin themed($property: null, $var: null) {
   $fallback: true !global;
   @content;
