@@ -33,3 +33,46 @@ it('should propagate custom styles and className', () => {
   expect(tagsContainer).toBeTruthy();
   expect(tagsContainer.style.width).toEqual('50px');
 });
+
+it('should render scroll container', () => {
+  const { container } = render(
+    <TagContainer overflow='scroll' style={{ maxWidth: 200 }}>
+      <Tag variant='basic'>Mocked tag 1</Tag>
+      <Tag variant='basic'>Mocked tag 2</Tag>
+      <Tag variant='basic'>Mocked tag 3</Tag>
+      <Tag variant='basic'>Mocked tag 4</Tag>
+    </TagContainer>,
+  );
+  expect(container.querySelector('.iui-tag-container.iui-scroll')).toBeTruthy();
+  expect(container.querySelectorAll('.iui-tag').length).toEqual(4);
+});
+
+it('should render truncated container', () => {
+  const { container } = render(
+    <TagContainer overflow='truncate' style={{ maxWidth: 200 }}>
+      <Tag variant='basic'>Mocked tag 1</Tag>
+      <Tag variant='basic'>Mocked tag 2</Tag>
+      <Tag variant='basic'>Mocked tag 3</Tag>
+      <Tag variant='basic'>Mocked tag 4</Tag>
+    </TagContainer>,
+  );
+  expect(
+    container.querySelector('.iui-tag-container.iui-truncate'),
+  ).toBeTruthy();
+  expect(container.querySelectorAll('.iui-tag').length).toEqual(4);
+});
+
+it('should render filled background', () => {
+  const { container } = render(
+    <TagContainer background='filled'>
+      <Tag variant='basic'>Mocked tag 1</Tag>
+      <Tag variant='basic'>Mocked tag 2</Tag>
+      <Tag variant='basic'>Mocked tag 3</Tag>
+      <Tag variant='basic'>Mocked tag 4</Tag>
+    </TagContainer>,
+  );
+  expect(
+    container.querySelector('.iui-tag-container.iui-visible'),
+  ).toBeTruthy();
+  expect(container.querySelectorAll('.iui-tag').length).toEqual(4);
+});

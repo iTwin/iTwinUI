@@ -94,7 +94,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn pretty && yarn lint:fix && yarn test"
+      "pre-commit": "yarn pretty && yarn lint:fix"
     }
   },
   "sideEffects": [

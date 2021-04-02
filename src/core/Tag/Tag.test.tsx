@@ -11,11 +11,11 @@ it('renders in its most basic state', () => {
   const { container } = render(<Tag>Mocked tag</Tag>);
   expect(container.querySelector('.iui-tag')).toBeTruthy();
 
-  const text = container.querySelector('.iui-tag-text') as HTMLElement;
+  const text = container.querySelector('.iui-label') as HTMLElement;
   expect(text).toBeTruthy();
   expect(text.textContent).toBe('Mocked tag');
 
-  expect(container.querySelector('.iui-tag-close-icon')).toBeNull();
+  expect(container.querySelector('.iui-borderless')).toBeNull();
 });
 
 it('should propagate custom styles and className', () => {
@@ -34,7 +34,7 @@ it('fires close event on click', () => {
   const result = render(<Tag onRemove={fn}>Mocked tag</Tag>);
 
   const close = result.container.querySelector(
-    '.iui-tag-close-icon',
+    '.iui-borderless',
   ) as HTMLElement;
   expect(close).toBeTruthy();
   fireEvent.click(close);
@@ -45,7 +45,7 @@ it('should render correctly with basic variant', () => {
   const { container } = render(<Tag variant='basic'>Mocked tag</Tag>);
   expect(container.querySelector('.iui-tag.iui-basic')).toBeTruthy();
 
-  const text = container.querySelector('.iui-tag-text') as HTMLElement;
+  const text = container.querySelector('.iui-label') as HTMLElement;
   expect(text).toBeTruthy();
   expect(text.textContent).toBe('Mocked tag');
 });

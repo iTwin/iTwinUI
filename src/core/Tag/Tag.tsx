@@ -4,15 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import React from 'react';
-import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
+import SvgClose2 from '@bentley/icons-generic-react/cjs/icons/Close2';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/tag.css';
 import { CommonProps } from '../utils/props';
+import { IconButton } from '../Buttons';
 
 export type TagProps = {
   /**
    * Callback function that handles click on close icon.
    * Close icon is shown only when this function is passed.
+   * Use only with 'default' Tag.
    */
   onRemove?: React.MouseEventHandler;
   /**
@@ -42,9 +44,11 @@ export const Tag = (props: TagProps) => {
       className={cx('iui-tag', { 'iui-basic': variant === 'basic' }, className)}
       {...rest}
     >
-      <span className='iui-tag-text'>{children}</span>
+      <span className='iui-label'>{children}</span>
       {onRemove && (
-        <SvgClose onClick={onRemove} className='iui-tag-close-icon' />
+        <IconButton styleType='borderless' size='small' onClick={onRemove}>
+          <SvgClose2 />
+        </IconButton>
       )}
     </span>
   );

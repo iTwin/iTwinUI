@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Tag, TagContainer, TagProps } from '../../src/core';
+import { Tag, TagProps } from '../../../src/core';
 
 export default {
   component: Tag,
@@ -41,23 +41,4 @@ NoClose.args = {
 
 NoClose.argTypes = {
   onRemove: { table: { disable: true } },
-};
-
-export const BasicTagsContainer: Story = ({ variant, ...rest }) => {
-  return (
-    <TagContainer {...rest}>
-      <Tag variant={variant}>Tag 1</Tag>
-      <Tag variant={variant}>Tag 2</Tag>
-      <Tag variant={variant}>Tag 3</Tag>
-    </TagContainer>
-  );
-};
-
-BasicTagsContainer.argTypes = {
-  children: { table: { disable: true } },
-  onRemove: { table: { disable: true } },
-};
-
-BasicTagsContainer.args = {
-  variant: 'basic',
 };
