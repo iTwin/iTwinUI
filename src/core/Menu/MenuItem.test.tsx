@@ -14,12 +14,14 @@ function assertBaseElement(
     isSelected = false,
     hasIcon = false,
     hasBadge = false,
+    disabled = false,
   } = {},
 ) {
   expect(menuItem).toBeTruthy();
   expect(menuItem.tabIndex).toBe(isSelected ? 0 : -1);
   expect(menuItem.getAttribute('role')).toEqual(role);
   expect(menuItem.classList.contains('iui-active')).toBe(isSelected);
+  expect(menuItem.classList.contains('iui-disabled')).toBe(disabled);
   expect(menuItem.textContent).toContain('Test item');
   const content = menuItem.querySelector('.iui-content') as HTMLElement;
   expect(content).toBeTruthy();
@@ -42,6 +44,21 @@ it('should render as selected', () => {
 
   const menuItem = container.querySelector('li') as HTMLLIElement;
   assertBaseElement(menuItem, { isSelected: true });
+});
+
+it('should render as disabled', () => {
+  const mockedOnClick = jest.fn();
+  const { container } = render(
+    <MenuItem disabled onClick={mockedOnClick}>
+      Test item
+    </MenuItem>,
+  );
+
+  const menuItem = container.querySelector('li') as HTMLLIElement;
+  assertBaseElement(menuItem, { disabled: true });
+
+  fireEvent.click(menuItem);
+  expect(mockedOnClick).toHaveBeenCalledTimes(0);
 });
 
 it('should render with an icon', () => {

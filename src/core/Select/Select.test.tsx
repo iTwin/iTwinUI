@@ -27,7 +27,12 @@ function assertSelect(
 
 function assertMenu(
   menu: HTMLUListElement,
-  { maxHeight = '300px', hasIcon = false, selectedIndex = -1 } = {},
+  {
+    maxHeight = '300px',
+    hasIcon = false,
+    selectedIndex = -1,
+    disabledIndex = -1,
+  } = {},
 ) {
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual('listbox');
@@ -39,6 +44,9 @@ function assertMenu(
     expect(item.textContent).toContain(`Test${index}`);
     expect(!!item.querySelector('.iui-menu-icon')).toBe(hasIcon);
     expect(item.classList.contains('iui-active')).toBe(selectedIndex === index);
+    expect(item.classList.contains('iui-disabled')).toBe(
+      disabledIndex === index,
+    );
   });
 }
 
@@ -211,6 +219,23 @@ it('should show menu items with icons', () => {
   fireEvent.click(select.querySelector('input') as HTMLInputElement);
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu, { hasIcon: true });
+});
+
+it('should show menu with disabled item', () => {
+  const { container } = renderComponent({
+    options: [...new Array(3)].map((_, index) => ({
+      label: `Test${index}`,
+      value: index,
+      disabled: index === 1,
+    })),
+  });
+
+  const select = container.querySelector('.iui-select') as HTMLElement;
+  expect(select).toBeTruthy();
+
+  fireEvent.click(select.querySelector('input') as HTMLInputElement);
+  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  assertMenu(menu, { disabledIndex: 1 });
 });
 
 it('should show selected item in menu', () => {

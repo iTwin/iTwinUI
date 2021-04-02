@@ -16,6 +16,7 @@ import SvgMove from '@bentley/icons-generic-react/cjs/icons/Move';
 export default {
   title: 'Core/DropdownMenu',
   component: DropdownMenu,
+  subcomponents: { MenuItem },
   parameters: {
     docs: { description: { component: 'Basic dropdown component' } },
   },
@@ -45,7 +46,7 @@ export const Basic: Story<DropdownMenuProps> = (args) => {
     <MenuItem key={2} onClick={onClick(2, close)}>
       Item #2
     </MenuItem>,
-    <MenuItem key={3} onClick={onClick(3, close)}>
+    <MenuItem key={3} onClick={onClick(3, close)} disabled>
       Item #3
     </MenuItem>,
   ];

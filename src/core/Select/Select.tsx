@@ -36,6 +36,10 @@ export type SelectOption<T> = {
    * SVG icon component shown on the right.
    */
   icon?: JSX.Element;
+  /**
+   * Item is disabled.
+   */
+  disabled?: boolean;
 };
 
 export type SelectProps<T> = {
@@ -198,6 +202,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         return React.cloneElement(menuItem, {
           key: `${option.label}-${index}`,
           isSelected,
+          disabled: option.disabled,
           onClick: () => {
             onChange?.(option.value);
             close();

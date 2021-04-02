@@ -33,7 +33,7 @@ export const Basic: Story<SelectProps<number>> = (args) => {
   const {
     options = [
       { value: 1, label: 'Item #1' },
-      { value: 2, label: 'Item #2' },
+      { value: 2, label: 'Item #2', disabled: true },
       { value: 3, label: 'Item #3' },
     ],
     placeholder = 'Placeholder text',
@@ -57,7 +57,7 @@ Basic.args = {
   placeholder: 'Placeholder text',
   options: [
     { value: 1, label: 'Item #1' },
-    { value: 2, label: 'Item #2' },
+    { value: 2, label: 'Item #2', disabled: true },
     { value: 3, label: 'Item #3' },
   ],
 };

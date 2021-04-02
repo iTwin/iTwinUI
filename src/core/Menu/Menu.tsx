@@ -38,10 +38,14 @@ export const Menu = (props: MenuProps) => {
       return;
     }
 
-    const index = React.Children.toArray(children).findIndex(
-      (child: React.ReactElement) => child.props.isSelected,
+    const childrenArray = React.Children.toArray(children);
+    const selectedIndex = childrenArray.findIndex(
+      (child: JSX.Element) => child.props.isSelected,
     );
-    setFocusedIndex(index > -1 ? index : 0);
+    const firstEnabledIndex = childrenArray.findIndex(
+      (child: JSX.Element) => !child.props.disabled,
+    );
+    setFocusedIndex(selectedIndex > -1 ? selectedIndex : firstEnabledIndex);
   }, [children, focusedIndex]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
@@ -51,16 +55,25 @@ export const Menu = (props: MenuProps) => {
     }
 
     const currentIndex = focusedIndex ?? 0;
+    const isItemDisabled = (index: number) =>
+      items[index].classList.contains('iui-disabled');
+
     switch (event.key) {
       case 'ArrowDown': {
-        const newIndex = Math.min(currentIndex + 1, items.length - 1);
-        setFocusedIndex(newIndex);
+        let newIndex = Math.min(currentIndex + 1, items.length - 1);
+        while (newIndex < items.length - 1 && isItemDisabled(newIndex)) {
+          newIndex++;
+        }
+        !isItemDisabled(newIndex) && setFocusedIndex(newIndex);
         event.preventDefault();
         break;
       }
       case 'ArrowUp': {
-        const newIndex = Math.max(currentIndex - 1, 0);
-        setFocusedIndex(newIndex);
+        let newIndex = Math.max(currentIndex - 1, 0);
+        while (newIndex > 0 && isItemDisabled(newIndex)) {
+          newIndex--;
+        }
+        !isItemDisabled(newIndex) && setFocusedIndex(newIndex);
         event.preventDefault();
         break;
       }

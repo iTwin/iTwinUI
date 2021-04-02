@@ -14,6 +14,10 @@ export type MenuItemProps = {
    */
   isSelected?: boolean;
   /**
+   * Item is disabled.
+   */
+  disabled?: boolean;
+  /**
    * Value of the item.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -50,6 +54,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
     const {
       children,
       isSelected,
+      disabled,
       value,
       onClick,
       icon,
@@ -67,7 +72,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         case 'Enter':
         case ' ':
         case 'Spacebar':
-          onClick?.(value);
+          !disabled && onClick?.(value);
           event.preventDefault();
           break;
         default:
@@ -77,12 +82,18 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
 
     return (
       <li
-        className={cx({ 'iui-active': isSelected }, className)}
-        onClick={() => onClick?.(value)}
+        className={cx(
+          {
+            'iui-active': isSelected,
+            'iui-disabled': disabled,
+          },
+          className,
+        )}
+        onClick={() => !disabled && onClick?.(value)}
         ref={ref}
         style={style}
         role={role}
-        tabIndex={isSelected ? 0 : -1}
+        tabIndex={disabled ? undefined : isSelected ? 0 : -1}
         aria-selected={isSelected}
         onKeyDown={onKeyDown}
         {...rest}
