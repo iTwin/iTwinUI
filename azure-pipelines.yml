@@ -42,6 +42,38 @@ jobs:
         displayName: Yarn audit
         inputs:
           Arguments: 'audit --registry=https://registry.npmjs.org/'
+      - task: SynopsysDetectTask@6
+        displayName: BlackDuck scan
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+        inputs:
+          BlackDuckService: 'Black Duck Hub'
+          DetectVersion: 'latest'
+          DetectArguments: |
+            --detect.project.name="iTwinUI-React"
+            --detect.project.version.name=latest
+        
+            --detect.code.location.name=iTwinUI-React-codeLocation
+            --detect.project.version.phase=DEVELOPMENT
+            --detect.cleanup=false
+            --detect.output.path=$(Build.ArtifactStagingDirectory)
+        
+            --detect.project.version.distribution=OPENSOURCE
+            --detect.source.path=$(Build.SourcesDirectory)
+        
+            --logging.level.com.synopsys.integration=INFO
+        
+            --detect.detector.search.depth=10
+            --detect.detector.search.continue=true
+            --detect.sbt.report.depth=10
+        
+            --detect.tools.excluded=SIGNATURE_SCAN
+            --detect.yarn.prod.only=true
+
+            --detect.policy.check.fail.on.severities=BLOCKER,CRITICAL
+        
+            --detect.bom.aggregate.name=iTwinUI-React-Aggregate-codeLocation
+            --detect.bom.aggregate.remediation.mode=DIRECT
+          DetectFolder: '$(System.WorkFolder)\_tool\BlackDuck\'
       - task: Yarn@2
         displayName: Yarn build
         inputs:
