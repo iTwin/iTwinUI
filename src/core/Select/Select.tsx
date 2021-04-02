@@ -161,14 +161,13 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [minWidth, setMinWidth] = React.useState(0);
 
-  const inputRef = React.useRef<HTMLInputElement>(null);
   const selectRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (inputRef.current && setFocus) {
-      inputRef.current.focus();
+    if (selectRef.current && !disabled && setFocus) {
+      selectRef.current.focus();
     }
-  }, [setFocus]);
+  }, [setFocus, disabled]);
 
   React.useEffect(() => {
     if (selectRef.current) {
@@ -235,26 +234,23 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       onClose={() => setIsOpen(false)}
     >
       {(toggle) => (
-        <label
+        <div
           className={cx('iui-select', className)}
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           style={style}
           {...rest}
         >
-          <input
-            type='checkbox'
-            checked={isOpen}
-            disabled={disabled}
-            ref={inputRef}
-            onChange={toggle}
-            onKeyDown={(e) => onKeyDown(e, toggle)}
-          />
           <div
             ref={selectRef}
             className={cx('iui-select-button', {
               'iui-placeholder': !selectedItem && !!placeholder,
+              'iui-disabled': disabled,
+              'iui-active': isOpen,
             })}
+            onClick={() => !disabled && toggle()}
+            onKeyDown={(e) => !disabled && onKeyDown(e, toggle)}
+            tabIndex={!disabled ? 0 : undefined}
           >
             {!selectedItem && (
               <span className='iui-content'>{placeholder}</span>
@@ -268,14 +264,14 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
                   React.cloneElement(selectedItem.icon, {
                     className: cx(
                       selectedItem?.icon.props.className,
-                      'iui-menu-icon',
+                      'iui-icon',
                     ),
                   })}
                 <span className='iui-content'>{selectedItem.label}</span>
               </>
             )}
           </div>
-        </label>
+        </div>
       )}
     </DropdownMenu>
   );

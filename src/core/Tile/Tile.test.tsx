@@ -28,7 +28,7 @@ it('should render new and selected states', () => {
   const { container } = render(
     <Tile isSelected name='test-name' thumbnail={<SvgPlaceholder />} />,
   );
-  expect(container.querySelector('.iui-tile.iui-active')).toBeTruthy();
+  expect(container.querySelector('.iui-tile.iui-selected')).toBeTruthy();
 
   const { container: container2 } = render(
     <Tile isNew name='test-name' thumbnail={<SvgPlaceholder />} />,

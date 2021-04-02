@@ -140,7 +140,7 @@ export const Tile = (props: TileProps) => {
         'iui-tile',
         { 'iui-folder': variant === 'folder' },
         { 'iui-new': isNew },
-        { 'iui-active': isSelected },
+        { 'iui-selected': isSelected },
         className,
       )}
       {...rest}

@@ -99,7 +99,7 @@ export const LabeledSelect = <T,>(
   const icon = status ? StatusIconMap[status] : svgIcon;
 
   return (
-    <label
+    <div
       className={cx(
         'iui-input-container',
         {
@@ -124,7 +124,7 @@ export const LabeledSelect = <T,>(
           {message}
         </div>
       )}
-    </label>
+    </div>
   );
 };
 

@@ -100,12 +100,12 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
       >
         {icon &&
           React.cloneElement(icon, {
-            className: cx(icon.props.className, 'iui-menu-icon'),
+            className: cx(icon.props.className, 'iui-icon'),
           })}
         <span className='iui-content'>{children}</span>
         {badge &&
           React.cloneElement(badge, {
-            className: cx(badge.props.className, 'iui-menu-icon', 'iui-right'),
+            className: cx(badge.props.className, 'iui-icon'),
           })}
       </li>
     );

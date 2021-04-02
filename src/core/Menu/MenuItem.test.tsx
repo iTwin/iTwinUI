@@ -26,10 +26,12 @@ function assertBaseElement(
   const content = menuItem.querySelector('.iui-content') as HTMLElement;
   expect(content).toBeTruthy();
   expect(content.textContent).toContain('Test item');
-  expect(!!menuItem.querySelector('.iui-menu-icon:not(.iui-right)')).toBe(
-    hasIcon,
-  );
-  expect(!!menuItem.querySelector('.iui-menu-icon.iui-right')).toBe(hasBadge);
+  expect(
+    (menuItem.firstChild as HTMLElement).classList.contains('iui-icon'),
+  ).toBe(hasIcon);
+  expect(
+    (menuItem.lastChild as HTMLElement).classList.contains('iui-icon'),
+  ).toBe(hasBadge);
 }
 
 it('should render content', () => {

@@ -22,7 +22,7 @@ function assertSelect(
     isPlaceholderVisible,
   );
   expect(selectButton.textContent).toEqual(text);
-  expect(!!selectButton.querySelector('.iui-menu-icon')).toBe(hasIcon);
+  expect(!!selectButton.querySelector('.iui-icon')).toBe(hasIcon);
 }
 
 function assertMenu(
@@ -42,7 +42,7 @@ function assertMenu(
   expect(menuItems.length).toBe(3);
   menuItems.forEach((item, index) => {
     expect(item.textContent).toContain(`Test${index}`);
-    expect(!!item.querySelector('.iui-menu-icon')).toBe(hasIcon);
+    expect(!!item.querySelector('.iui-icon')).toBe(hasIcon);
     expect(item.classList.contains('iui-active')).toBe(selectedIndex === index);
     expect(item.classList.contains('iui-disabled')).toBe(
       disabledIndex === index,
@@ -113,23 +113,34 @@ it('should show value with icon inside select', () => {
 });
 
 it('should render disabled select', () => {
-  const { container } = renderComponent({ disabled: true });
+  const mockedFn = jest.fn();
+  const { container } = renderComponent({
+    disabled: true,
+    onChange: mockedFn,
+  });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
-  assertSelect(select);
-  const input = select.querySelector('input') as HTMLInputElement;
-  expect(input).toBeTruthy();
-  expect(input.disabled).toBe(true);
+  const selectButton = container.querySelector(
+    '.iui-select-button.iui-disabled',
+  ) as HTMLElement;
+  expect(selectButton).toBeTruthy();
+  selectButton.click();
+  expect(mockedFn).not.toHaveBeenCalled();
+  expect(selectButton.getAttribute('tabIndex')).toBeNull();
+  fireEvent.keyDown(selectButton, 'Spacebar');
+  expect(document.querySelector('.iui-menu')).toBeNull();
 });
 
-it('should set focus on input', () => {
+it('should set focus on select', () => {
   const { container } = renderComponent({ setFocus: true });
 
   const select = container.querySelector('.iui-select') as HTMLElement;
   assertSelect(select);
-  const input = select.querySelector('input') as HTMLInputElement;
-  expect(input).toBeTruthy();
-  expect(document.activeElement).toEqual(input);
+  const selectButton = container.querySelector(
+    '.iui-select-button',
+  ) as HTMLElement;
+  expect(selectButton).toBeTruthy();
+  expect(document.activeElement).toEqual(selectButton);
+  expect(selectButton.getAttribute('tabIndex')).toBe('0');
 });
 
 it('should render select with custom className', () => {
@@ -180,8 +191,7 @@ it('should open menu on click', () => {
   let menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeFalsy();
 
-  // In tests click on <label> element does not go to the input
-  fireEvent.click(select.querySelector('input') as HTMLInputElement);
+  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu);
 });
@@ -196,9 +206,12 @@ it.each(['Enter', ' ', 'Spacebar'])(
     let menu = document.querySelector('.iui-menu') as HTMLUListElement;
     expect(menu).toBeFalsy();
 
-    fireEvent.keyDown(select.querySelector('input') as HTMLInputElement, {
-      key,
-    });
+    fireEvent.keyDown(
+      select.querySelector('.iui-select-button') as HTMLElement,
+      {
+        key,
+      },
+    );
     menu = document.querySelector('.iui-menu') as HTMLUListElement;
     assertMenu(menu);
   },
@@ -216,7 +229,7 @@ it('should show menu items with icons', () => {
   const select = container.querySelector('.iui-select') as HTMLElement;
   expect(select).toBeTruthy();
 
-  fireEvent.click(select.querySelector('input') as HTMLInputElement);
+  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu, { hasIcon: true });
 });
@@ -233,7 +246,7 @@ it('should show menu with disabled item', () => {
   const select = container.querySelector('.iui-select') as HTMLElement;
   expect(select).toBeTruthy();
 
-  fireEvent.click(select.querySelector('input') as HTMLInputElement);
+  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu, { disabledIndex: 1 });
 });
@@ -250,7 +263,7 @@ it('should show selected item in menu', () => {
   const select = container.querySelector('.iui-select') as HTMLElement;
   expect(select).toBeTruthy();
 
-  fireEvent.click(select.querySelector('input') as HTMLInputElement);
+  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu, { selectedIndex: 1 });
   expect(scrollIntoViewMock).toHaveBeenCalledTimes(1);
@@ -265,7 +278,7 @@ it('should call onChange on item click', () => {
   const select = container.querySelector('.iui-select') as HTMLElement;
   expect(select).toBeTruthy();
 
-  fireEvent.click(select.querySelector('input') as HTMLInputElement);
+  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu);
 
@@ -281,7 +294,7 @@ it('should render menu with custom className', () => {
   const select = container.querySelector('.iui-select') as HTMLElement;
   expect(select).toBeTruthy();
 
-  fireEvent.click(select.querySelector('input') as HTMLInputElement);
+  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu);
   expect(menu.classList).toContain('test-className');
@@ -293,7 +306,7 @@ it('should render menu with custom style', () => {
   const select = container.querySelector('.iui-select') as HTMLElement;
   expect(select).toBeTruthy();
 
-  fireEvent.click(select.querySelector('input') as HTMLInputElement);
+  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu);
   expect(menu.style.color).toEqual('red');
@@ -316,7 +329,7 @@ it('should use custom renderer for menu items', () => {
   const select = container.querySelector('.iui-select') as HTMLElement;
   expect(select).toBeTruthy();
 
-  fireEvent.click(select.querySelector('input') as HTMLInputElement);
+  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeTruthy();
   const menuItems = menu.querySelectorAll('li');
