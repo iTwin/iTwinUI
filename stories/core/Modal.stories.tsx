@@ -14,16 +14,13 @@ import { useEffect, useState } from '@storybook/addons';
 export default {
   title: 'Core/Modal',
   component: Modal,
-  parameters: {
-    docs: { description: { component: 'Modal dialog component.' } },
-  },
   args: {
     title: 'This is the title',
   },
   argTypes: {
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
-    onClose: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+    onClose: { control: { disable: true } },
   },
 } as Meta<ModalProps>;
 

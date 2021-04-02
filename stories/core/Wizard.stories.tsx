@@ -10,16 +10,9 @@ import { Wizard, WizardLocalization, WizardProps } from '../../src/core';
 export default {
   title: 'Core/Wizard',
   component: Wizard,
-  parameters: {
-    docs: {
-      description: {
-        component: 'Basic Wizard Component',
-      },
-    },
-  },
   argTypes: {
-    localization: { table: { disable: true } },
-    onStepClick: { table: { disable: true } },
+    localization: { control: { disable: true } },
+    onStepClick: { control: { disable: true } },
   },
 } as Meta<WizardProps>;
 

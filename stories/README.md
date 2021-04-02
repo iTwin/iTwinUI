@@ -29,10 +29,10 @@ export default {
     },
   },
   argTypes: {
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
-    onClick: { table: { disable: true } },
-    onClose: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+    onClick: { control: { disable: true } },
+    onClose: { control: { disable: true } },
   },
 } as Meta<AlertProps>;
 ```

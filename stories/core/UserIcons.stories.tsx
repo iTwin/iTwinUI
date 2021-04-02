@@ -10,9 +10,6 @@ import { UserIconProps } from '../../src/core/UserIcon/UserIcon';
 export default {
   title: 'Core/UserIcon',
   component: UserIcon,
-  parameters: {
-    docs: { description: { component: 'Basic user icon component' } },
-  },
   argTypes: {
     backgroundColor: {
       control: 'color',
@@ -21,8 +18,8 @@ export default {
     title: {
       defaultValue: 'Terry Rivers',
     },
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
   },
 } as Meta<UserIconProps>;
 

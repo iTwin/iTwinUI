@@ -11,14 +11,6 @@ import { LabeledTextareaProps } from '../../src/core/LabeledTextarea/LabeledText
 export default {
   title: 'Input/LabeledTextarea',
   component: LabeledTextarea,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'Textarea wrapper that allows for additional styling and labelling',
-      },
-    },
-  },
   argTypes: {
     label: {
       defaultValue: 'Textarea Label',

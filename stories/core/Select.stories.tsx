@@ -14,18 +14,11 @@ import SvgSmileySad from '@bentley/icons-generic-react/cjs/icons/SmileySad';
 export default {
   title: 'Input/Select',
   component: Select,
-  parameters: {
-    docs: {
-      description: {
-        component: 'Select component to select value from options.',
-      },
-    },
-  },
   argTypes: {
-    style: { table: { disable: true } },
-    className: { table: { disable: true } },
-    menuStyle: { table: { disable: true } },
-    menuClassName: { table: { disable: true } },
+    style: { control: { disable: true } },
+    className: { control: { disable: true } },
+    menuStyle: { control: { disable: true } },
+    menuClassName: { control: { disable: true } },
   },
 } as Meta<SelectProps<unknown>>;
 
@@ -180,7 +173,7 @@ ManyItems.args = {
 };
 
 ManyItems.argTypes = {
-  options: { table: { disable: true } },
+  options: { control: { disable: true } },
 };
 
 export const Custom: Story<SelectProps<string>> = (args) => {

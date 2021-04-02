@@ -15,9 +15,6 @@ export default {
   title: 'Buttons/ButtonGroup',
   component: ButtonGroup,
   parameters: {
-    docs: {
-      description: { component: 'Group buttons together for common actions' },
-    },
     controls: { hideNoControlsWarning: true },
   },
 } as Meta<ButtonGroupProps>;

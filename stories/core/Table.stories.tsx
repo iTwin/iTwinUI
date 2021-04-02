@@ -13,11 +13,6 @@ import { action } from '@storybook/addon-actions';
 export default {
   title: 'Core/Table',
   component: Table,
-  parameters: {
-    docs: {
-      description: { component: 'Table component based on react-table' },
-    },
-  },
   args: {
     data: [
       { name: 'Name1', description: 'Description1' },
@@ -34,10 +29,10 @@ export default {
       control: { disable: true },
     },
     style: {
-      table: { disable: true },
+      control: { disable: true },
     },
     className: {
-      table: { disable: true },
+      control: { disable: true },
     },
     initialState: {
       table: { disable: true },

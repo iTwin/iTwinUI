@@ -13,11 +13,8 @@ import SvgAdd from '@bentley/icons-generic-react/cjs/icons/Add';
 export default {
   title: 'Buttons/IconButton',
   component: IconButton,
-  parameters: {
-    docs: { description: { component: 'Button with icon' } },
-  },
   argTypes: {
-    onClick: { table: { disable: true } },
+    onClick: { control: { disable: true } },
     styleType: {
       control: 'select',
     },

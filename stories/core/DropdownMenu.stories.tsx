@@ -17,9 +17,6 @@ export default {
   title: 'Core/DropdownMenu',
   component: DropdownMenu,
   subcomponents: { MenuItem },
-  parameters: {
-    docs: { description: { component: 'Basic dropdown component' } },
-  },
   argTypes: {
     position: {
       control: {
@@ -28,8 +25,8 @@ export default {
       },
       defaultValue: Position.BOTTOM_LEFT,
     },
-    style: { table: { disable: true } },
-    className: { table: { disable: true } },
+    style: { control: { disable: true } },
+    className: { control: { disable: true } },
   },
 } as Meta<DropdownMenuProps>;
 

@@ -12,14 +12,6 @@ import { HorizontalTabsProps } from '../../src/core/HorizontalTabs/HorizontalTab
 export default {
   title: 'Core/HorizontalTabs',
   component: HorizontalTabs,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.',
-      },
-    },
-  },
 } as Meta<HorizontalTabsProps>;
 
 const Template: Story<HorizontalTabsProps> = (args) => {

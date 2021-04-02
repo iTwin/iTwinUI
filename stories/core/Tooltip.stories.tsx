@@ -11,9 +11,6 @@ import { TooltipProps } from '../../src/core/Tooltip/Tooltip';
 export default {
   title: 'Core/Tooltip',
   component: Tooltip,
-  parameters: {
-    docs: { description: { component: 'Basic tooltip component' } },
-  },
   argTypes: {
     content: {
       defaultValue: 'Here I am!',
@@ -37,8 +34,8 @@ export default {
         options: Object.values(Position),
       },
     },
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
     visible: { defaultValue: false },
   },
 } as Meta<TooltipProps>;

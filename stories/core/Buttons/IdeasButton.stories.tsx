@@ -14,7 +14,7 @@ export default {
     docs: { inlineStories: false },
   },
   argTypes: {
-    onClick: { table: { disable: true } },
+    onClick: { control: { disable: true } },
   },
 } as Meta<IdeasButtonProps>;
 

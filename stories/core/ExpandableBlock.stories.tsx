@@ -12,20 +12,12 @@ import { ExpandableBlockProps } from '../../src/core/ExpandableBlock/ExpandableB
 export default {
   title: 'Core/ExpandableBlock',
   component: ExpandableBlock,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'Container that allows content to be hidden behind a brief title and a caption',
-      },
-    },
-  },
   argTypes: {
     onToggle: {
       action: 'isExpanding',
     },
-    style: { table: { disable: true } },
-    className: { table: { disable: true } },
+    style: { control: { disable: true } },
+    className: { control: { disable: true } },
   },
   args: {
     children: 'Content in block!',
@@ -94,7 +86,7 @@ export const Accordion: Story<ExpandableBlockProps> = (args) => {
 };
 
 Accordion.argTypes = {
-  title: { table: { disable: true } },
-  isExpanded: { table: { disable: true } },
-  onToggle: { table: { disable: true } },
+  title: { control: { disable: true } },
+  isExpanded: { control: { disable: true } },
+  onToggle: { control: { disable: true } },
 };

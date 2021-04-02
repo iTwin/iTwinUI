@@ -10,7 +10,6 @@ import { HeadlineProps } from '../../../src/core/Typography/Headline/Headline';
 export default {
   title: 'Typography/Headline',
   component: Headline,
-  parameters: { docs: { description: { component: 'Headline component' } } },
   args: {
     children: "I'm a Headline",
     isMuted: false,

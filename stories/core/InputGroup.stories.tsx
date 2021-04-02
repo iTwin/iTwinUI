@@ -18,13 +18,10 @@ import { InputGroupProps } from '../../src/core/InputGroup/InputGroup';
 export default {
   title: 'Input/InputGroup',
   component: InputGroup,
-  parameters: {
-    docs: { description: { component: 'Group checkboxes or radios together' } },
-  },
   argTypes: {
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
-    svgIcon: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+    svgIcon: { control: { disable: true } },
   },
 } as Meta<InputGroupProps>;
 

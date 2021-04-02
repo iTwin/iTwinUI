@@ -16,15 +16,10 @@ import SvgCalendar from '@bentley/icons-generic-react/cjs/icons/Calendar';
 export default {
   title: 'Core/DatePicker',
   component: DatePicker,
-  parameters: {
-    docs: {
-      description: { component: 'Date picker component to select a date.' },
-    },
-  },
   argTypes: {
-    onChange: { table: { disable: true } },
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
+    onChange: { control: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
     date: { control: 'date' },
     setFocus: { defaultValue: true },
   },

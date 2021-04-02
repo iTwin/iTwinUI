@@ -16,8 +16,8 @@ export default {
       control: { type: 'select', options: Position },
       defaultValue: Position.BOTTOM_RIGHT,
     },
-    style: { table: { disable: true } },
-    className: { table: { disable: true } },
+    style: { control: { disable: true } },
+    className: { control: { disable: true } },
   },
 } as Meta<SplitButtonProps>;
 

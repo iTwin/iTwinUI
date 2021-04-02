@@ -9,12 +9,9 @@ import { RadioProps } from '../../src/core/Radio/Radio';
 export default {
   title: 'Input/Radio',
   component: Radio,
-  parameters: {
-    docs: { description: { component: 'Basic radio input component' } },
-  },
   argTypes: {
-    checkmarkClassName: { table: { disable: true } },
-    checkmarkStyle: { table: { disable: true } },
+    checkmarkClassName: { control: { disable: true } },
+    checkmarkStyle: { control: { disable: true } },
   },
 } as Meta<RadioProps>;
 

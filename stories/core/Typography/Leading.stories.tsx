@@ -10,7 +10,6 @@ import { LeadingProps } from '../../../src/core/Typography/Leading/Leading';
 export default {
   title: 'Typography/Leading',
   component: Leading,
-  parameters: { docs: { description: { component: 'Leading component' } } },
   args: {
     children: "I'm a Leading",
     isMuted: false,

@@ -11,19 +11,11 @@ import { AlertProps } from '../../src/core/Alert/Alert';
 export default {
   title: 'Core/Alert',
   component: Alert,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'A small box to quickly grab user attention and communicate a brief message',
-      },
-    },
-  },
   argTypes: {
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
-    onClick: { table: { disable: true } },
-    onClose: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+    onClick: { control: { disable: true } },
+    onClose: { control: { disable: true } },
     clickableText: { type: 'string' },
   },
 } as Meta<AlertProps>;

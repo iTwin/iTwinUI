@@ -15,8 +15,8 @@ export default {
   title: 'Buttons/DropdownButton',
   component: DropdownButton,
   argTypes: {
-    style: { table: { disable: true } },
-    className: { table: { disable: true } },
+    style: { control: { disable: true } },
+    className: { control: { disable: true } },
   },
 } as Meta<DropdownButtonProps>;
 

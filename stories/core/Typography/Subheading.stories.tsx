@@ -10,7 +10,6 @@ import { SubheadingProps } from '../../../src/core/Typography/Subheading/Subhead
 export default {
   title: 'Typography/Subheading',
   component: Subheading,
-  parameters: { docs: { description: { component: 'Subheading component' } } },
   args: {
     children: "I'm a Subheading",
     isMuted: false,

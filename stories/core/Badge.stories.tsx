@@ -9,8 +9,8 @@ import { Badge, BadgeProps } from '../../src/core';
 export default {
   component: Badge,
   argTypes: {
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
     backgroundColor: { control: 'color' },
   },
   title: 'Core/Badge',

@@ -12,13 +12,6 @@ import { useState } from '@storybook/addons';
 export default {
   title: 'Input/LabeledSelect',
   component: LabeledSelect,
-  parameters: {
-    docs: {
-      description: {
-        component: 'Labeled select component to select value from options.',
-      },
-    },
-  },
   decorators: [
     (Story) => (
       // Body height is the same as Select component height therefore clicking outside would not close dropdown.
@@ -38,10 +31,10 @@ export default {
     ],
   },
   argTypes: {
-    style: { table: { disable: true } },
-    className: { table: { disable: true } },
-    selectStyle: { table: { disable: true } },
-    selectClassName: { table: { disable: true } },
+    style: { control: { disable: true } },
+    className: { control: { disable: true } },
+    selectStyle: { control: { disable: true } },
+    selectClassName: { control: { disable: true } },
   },
 } as Meta<LabeledSelectProps<unknown>>;
 

@@ -12,9 +12,6 @@ import { RadioTileGroupProps } from '../../src/core/RadioTiles/RadioTileGroup';
 export default {
   title: 'Input/RadioTileGroup',
   component: RadioTileGroup,
-  parameters: {
-    docs: { description: { component: 'Basic radio tiles component' } },
-  },
 } as Meta<RadioTileGroupProps>;
 
 export const Monochrome: Story<RadioTileGroupProps> = (args) => {

@@ -9,13 +9,10 @@ import { Kbd, KbdKeys, KbdProps } from '../../../src/core';
 export default {
   title: 'Typography/Keyboard Key',
   component: Kbd,
-  parameters: {
-    docs: { description: { component: 'Basic inline Kbd component' } },
-  },
   argTypes: {
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
-    title: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+    title: { control: { disable: true } },
     children: {
       defaultValue: 'A',
       type: 'string',

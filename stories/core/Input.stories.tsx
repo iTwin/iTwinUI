@@ -10,7 +10,6 @@ import { InputProps } from '../../src/core/Input/Input';
 export default {
   title: 'Input/Input',
   component: Input,
-  parameters: { docs: { description: { component: 'Basic text input' } } },
 } as Meta<InputProps>;
 
 export const Basic: Story<InputProps> = (args) => {

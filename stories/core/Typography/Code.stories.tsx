@@ -11,12 +11,11 @@ export default {
   component: Code,
   parameters: {
     controls: { hideNoControlsWarning: true },
-    docs: { description: { component: 'Basic inline code component' } },
   },
   argTypes: {
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
-    title: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+    title: { control: { disable: true } },
     children: { defaultValue: 'push()', type: 'string' },
   },
 } as Meta<CodeProps>;

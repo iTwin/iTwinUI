@@ -25,8 +25,8 @@ import { LargeWithImageAndStatusOnline } from './UserIcons.stories';
 export default {
   component: Tile,
   argTypes: {
-    className: { table: { disable: true } },
-    style: { table: { disable: true } },
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
   },
   title: 'Core/Tile',
 } as Meta<TileProps>;

@@ -10,7 +10,6 @@ import { TitleProps } from '../../../src/core/Typography/Title/Title';
 export default {
   title: 'Typography/Title',
   component: Title,
-  parameters: { docs: { description: { component: 'Title component' } } },
   args: {
     children: "I'm a Title",
     isMuted: false,

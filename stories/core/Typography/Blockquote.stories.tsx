@@ -9,9 +9,6 @@ import { Blockquote, BlockquoteProps } from '../../../src/core';
 export default {
   title: 'Typography/Blockquote',
   component: Blockquote,
-  parameters: {
-    docs: { description: { component: 'Basic blockquote component' } },
-  },
   args: {
     children: 'This is a quote',
     cite: '',

@@ -10,8 +10,8 @@ export default {
   component: Tag,
   title: 'Core/Tag',
   argTypes: {
-    style: { table: { disable: true } },
-    className: { table: { disable: true } },
+    style: { control: { disable: true } },
+    className: { control: { disable: true } },
   },
 } as Meta<TagProps>;
 
@@ -40,5 +40,5 @@ NoClose.args = {
 };
 
 NoClose.argTypes = {
-  onRemove: { table: { disable: true } },
+  onRemove: { control: { disable: true } },
 };

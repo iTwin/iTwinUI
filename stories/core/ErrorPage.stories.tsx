@@ -10,13 +10,6 @@ import { ErrorPageProps } from '../../src/core/ErrorPage/ErrorPage';
 export default {
   title: 'Core/ErrorPage',
   component: ErrorPage,
-  parameters: {
-    docs: {
-      description: {
-        component: 'A stylized display to communicate common http errors',
-      },
-    },
-  },
   argTypes: {
     errorType: {
       type: { required: true },

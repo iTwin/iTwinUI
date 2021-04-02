@@ -72,12 +72,6 @@ export default {
   },
   parameters: {
     controls: { expanded: true },
-    docs: {
-      description: {
-        component:
-          'The toaster is used to create a toast on top of an overlay to quickly grab user attention and communicate a brief message.',
-      },
-    },
   },
   title: 'Core/Toasts',
 } as Meta<ToastSettings>;

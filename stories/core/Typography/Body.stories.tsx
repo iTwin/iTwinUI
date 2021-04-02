@@ -10,7 +10,6 @@ import { BodyProps } from '../../../src/core/Typography/Body/Body';
 export default {
   title: 'Typography/Body',
   component: Body,
-  parameters: { docs: { description: { component: 'Body component' } } },
   args: {
     children: "I'm a Body",
     isMuted: false,

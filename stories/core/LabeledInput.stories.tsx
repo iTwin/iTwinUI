@@ -11,19 +11,11 @@ import { LabeledInputProps } from '../../src/core/LabeledInput/LabeledInput';
 export default {
   title: 'Input/LabeledInput',
   component: LabeledInput,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'Text input wrapper that provides additional styling and labeling',
-      },
-    },
-  },
   argTypes: {
     label: { defaultValue: 'This is a label' },
-    inputClassName: { table: { disable: true } },
-    inputStyle: { table: { disable: true } },
-    svgIcon: { table: { disable: true } },
+    inputClassName: { control: { disable: true } },
+    inputStyle: { control: { disable: true } },
+    svgIcon: { control: { disable: true } },
     placeholder: { defaultValue: 'Enter text here...', type: 'string' },
     disabled: { type: 'boolean' },
   },

@@ -13,9 +13,6 @@ import { ProgressLinearProps } from '../../src/core/ProgressIndicators/ProgressL
 export default {
   title: 'ProgressIndicators/ProgressLinear',
   component: ProgressLinear,
-  parameters: {
-    docs: { description: { component: 'Shows progress on a linear bar' } },
-  },
 } as Meta<ProgressLinearProps>;
 
 export const Determinate: Story<ProgressLinearProps> = (args) => {

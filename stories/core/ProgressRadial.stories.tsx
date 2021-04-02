@@ -10,9 +10,6 @@ import { ProgressRadialProps } from '../../src/core/ProgressIndicators/ProgressR
 export default {
   title: 'ProgressIndicators/ProgressRadial',
   component: ProgressRadial,
-  parameters: {
-    docs: { description: { component: 'Circular Progress Indicator' } },
-  },
   argTypes: {
     value: { defaultValue: 50 },
   },

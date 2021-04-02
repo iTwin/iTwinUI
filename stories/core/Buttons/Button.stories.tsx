@@ -12,10 +12,10 @@ export default {
   title: 'Buttons/Button',
   component: Button,
   argTypes: {
-    onClick: { table: { disable: true } },
-    style: { table: { disable: true } },
-    className: { table: { disable: true } },
-    type: { table: { disable: true } },
+    onClick: { control: { disable: true } },
+    style: { control: { disable: true } },
+    className: { control: { disable: true } },
+    type: { control: { disable: true } },
   },
 } as Meta<ButtonProps>;
 
@@ -72,7 +72,7 @@ export const WithIcon: Story<ButtonProps> = (args) => {
 };
 
 WithIcon.argTypes = {
-  children: { table: { disable: true } },
+  children: { control: { disable: true } },
 };
 
 WithIcon.args = {

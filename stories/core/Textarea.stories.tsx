@@ -10,9 +10,6 @@ import { TextareaProps } from '../../src/core/Textarea/Textarea';
 export default {
   title: 'Input/Textarea',
   component: Textarea,
-  parameters: {
-    docs: { description: { component: 'Basic textarea component' } },
-  },
   argTypes: {
     placeholder: { defaultValue: 'This is a textarea', type: 'string' },
   },

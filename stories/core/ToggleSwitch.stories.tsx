@@ -11,9 +11,6 @@ import { ToggleSwitchProps } from '../../src/core/ToggleSwitch/ToggleSwitch';
 export default {
   title: 'Input/ToggleSwitch',
   component: ToggleSwitch,
-  parameters: {
-    docs: { description: { component: 'A switch for turning on and off.' } },
-  },
 } as Meta<ToggleSwitchProps>;
 
 export const Basic: Story<ToggleSwitchProps> = (args) => {

@@ -77,6 +77,11 @@ export type ErrorPageProps = {
   translatedErrorMessages?: ErrorTypeTranslations;
 };
 
+/**
+ * A stylized display to communicate common http errors.
+ * @example
+ * <ErrorPage errorType='401' />
+ */
 export const ErrorPage = ({
   errorType,
   errorName,
