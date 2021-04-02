@@ -25,7 +25,7 @@ module.exports = [
   // Focus states
   //// Select
   scenario('State focus', {
-    actions: [focus('#test-select-3')],
+    actions: [focus('#test-select-1')],
     selectors: ['#demo-default-singular'],
   }),
 
