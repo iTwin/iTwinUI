@@ -1,10 +1,18 @@
 ## 0.6.0
 
-`2021-03-XX`
+`2021-04-05`
 
 ### What's new
 
-- **`Button` has new `startIcon` and `endIcon` props** and all button styling has been completely revamped.
+- **`Button` has new `startIcon` and `endIcon` props**, and all button styling has been completely revamped.
+- **`MenuItem` and `SelectOption` have a new `disabled` prop.**
+- **`TagContainer` has new `overflow` and `background` props**, which offer scrolling capabilities and better visuals.
+
+### Fixes
+
+- **Icons are now imported directly to reduce bundle size for CommonJS.**
+- **`Footer` no longer has `fixed` position** in base iTwinUI CSS, allowing for manually positioning it.
+- **Some global style resets have been removed** in base iTwinUI CSS to prevent conflicts.
 
 ## 0.5.1
 
