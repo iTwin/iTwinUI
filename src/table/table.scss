@@ -1,5 +1,5 @@
 @import '../style/index';
-@import '../icons/index';
+@import '../icon/index';
 @import './variables';
 
 @mixin iui-tables-table {
@@ -71,7 +71,7 @@
       display: flex;
       flex-grow: 1;
       min-width: 145px;
-      padding: $iui-flextables-density;
+      padding: $iui-table-density;
       overflow: hidden;
       list-style: none;
       flex-basis: 145px;
@@ -284,7 +284,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: $iui-flextables-density;
+      padding: $iui-table-density;
       flex: 1;
 
       > .iui-full-line {

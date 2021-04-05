@@ -4,11 +4,11 @@
 @mixin iui-tables-extra-condensed {
   .iui-tables-row {
     > .iui-tables-cell {
-      padding: $iui-flextables-density-extra-condensed;
+      padding: $iui-table-density-extra-condensed;
     }
   }
 
   .iui-tables-paginator > .content {
-    padding: $iui-flextables-density-extra-condensed;
+    padding: $iui-table-density-extra-condensed;
   }
 }

@@ -1,6 +1,6 @@
 @import '../style/index';
 @import '../text/mixins';
-@import '../icons/index';
+@import '../icon/index';
 
 @mixin iui-expandable-block {
   @include iui-reset;
