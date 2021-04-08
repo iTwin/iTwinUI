@@ -29,14 +29,13 @@
     }
   },
   "lint-staged": {
-    "*.{scss,html}": [
-      "stylelint --fix"
-    ]
+    "*.{scss,html}": ["stylelint --fix"],
+    "*.{scss,html,js}": ["yarn lint:copyright --fix"]
   },
   "scripts": {
     "build": "yarn clean && yarn build:scss && yarn build:css && yarn build:html && yarn copy-files",
     "build:scss": "cpx \"./src/**/*.scss\" ./lib/scss",
-    "build:css": "node ./scripts/generateCss.js src lib/css && yarn postcss-processing",
+    "build:css": "node ./scripts/generateCss.js src lib/css && yarn postcss-processing && yarn lint:copyright --fix lib/css/*",
     "build:html": "html-minifier --input-dir ./backstop/tests --output-dir ./backstop/minified --remove-comments --collapse-whitespace --collapse-inline-tag-whitespace && yarn print \"Finished minifying HTML files.\"",
     "build:watch": "yarn build && concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn build:watch:html\"",
     "build:watch:scss": "chokidar \"src/**/*\" -c \"yarn build:scss && yarn build:css\"",
@@ -45,6 +44,7 @@
     "postcss-processing": "postcss lib/css --use autoprefixer --use postcss-discard-comments -d lib/css --no-map && yarn print \"Finished post-processing CSS.\"",
     "clean": "rimraf ./lib ./backstop/results/bitmaps_test",
     "lint": "stylelint \"src/**/*.scss\" \"backstop/tests/*.html\"",
+    "lint:copyright": "node scripts/copyrightLinter.js",
     "approve": "backstop --config=./backstop/backstop.js approve",
     "test": "yarn build && yarn test:ci",
     "test:ci": "backstop --config=./backstop/backstop.js test --docker",
