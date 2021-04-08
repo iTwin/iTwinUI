@@ -1,9 +1,7 @@
 @import '../style/index';
 @import './alert';
 
-@mixin iui-alerts-warning {
-  @include iui-alerts-alert;
-
+@mixin iui-alert-warning {
   @include themed {
     background: linear-gradient(
       rgba(t(iui-color-foreground-warning-rgb), t(iui-opacity-6)),
@@ -13,38 +11,38 @@
     border-color: t(iui-color-foreground-warning);
   }
 
-  &::selection {
-    @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-warning-rgb),
-        t(iui-opacity-4)
-      );
-    }
-  }
-
-  > .iui-alerts-status-icon:first-child,
-  > .iui-alerts-status-icon:first-child > * {
+  > .iui-icon,
+  > .iui-icon > * {
     @include themed {
       fill: t(iui-color-foreground-warning);
     }
   }
 
-  > a:focus-visible {
-    @include themed {
-      box-shadow: rgba(t(iui-color-foreground-warning-rgb), t(iui-opacity-5)) 0
-        0 0 2px;
+  > .iui-message {
+    > a {
+      @include themed {
+        color: t(iui-color-foreground-warning);
+      }
+  
+      &:hover {
+        @include themed {
+          color: t(iui-color-foreground-warning-overlay);
+        }
+      }
+    }
+
+    &::selection {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-warning-rgb),
+          t(iui-opacity-4)
+        );
+      }
     }
   }
 
-  > .iui-alerts-link {
-    @include themed {
-      color: t(iui-color-foreground-warning);
-    }
-
-    &:hover {
-      @include themed {
-        color: t(iui-color-foreground-warning-overlay);
-      }
-    }
+  > .iui-message > a,
+  > .iui-button {
+    @include iui-focus(iui-focus-warning-box-shadow);
   }
 }

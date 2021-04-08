@@ -1,17 +1,21 @@
 @import './index';
 
-.iui-alerts-informational {
-  @include iui-alerts-informational;
-}
+.iui-alert {
+  @include iui-alert;
 
-.iui-alerts-positive {
-  @include iui-alerts-positive;
-}
+  &.iui-informational {
+    @include iui-alert-informational;
+  }
+  
+  &.iui-positive {
+    @include iui-alert-positive;
+  }
 
-.iui-alerts-warning {
-  @include iui-alerts-warning;
-}
+  &.iui-warning {
+    @include iui-alert-warning;
+  }
 
-.iui-alerts-negative {
-  @include iui-alerts-negative;
+  &.iui-negative {
+    @include iui-alert-negative;
+  }
 }

@@ -2,28 +2,24 @@
 @import '../text/index';
 @import '../icon/index';
 
-@mixin iui-alerts-alert {
+@mixin iui-alert {
   @include iui-reset;
-  @include iui-text-block;
   @include iui-font-family;
-  padding: $iui-baseline $iui-sm;
   border-radius: $iui-border-radius;
   box-sizing: border-box;
-
+  display: flex;
+  align-items: center;
   @include themed {
     border: 1px solid t(iui-color-background-5);
-    background-color: t(iui-color-background-1);
     color: t(iui-text-color);
   }
 
-  > .iui-alerts-status-icon {
-    display: inline-block;
-    position: relative;
-    top: 3px;
-    margin-right: $iui-m;
+  > .iui-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin-left: $iui-m;
     width: $iui-icons-default;
     height: $iui-icons-default;
-
     @include themed {
       fill: t(iui-icons-color);
     }
@@ -35,41 +31,24 @@
     }
   }
 
-  > a {
-    margin-left: $iui-s;
+  > .iui-message {
+    margin: $iui-baseline $iui-m;
 
-    &:focus-visible {
-      outline: 0;
-    }
-  }
-
-  > .iui-alerts-close-icon {
-    float: right;
-    display: inline-block;
-    position: relative;
-    top: 3px;
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    cursor: pointer;
-
-    @include themed {
-      fill: t(iui-icons-color-actionable);
-    }
-
-    &:hover {
-      @include themed {
-        fill: t(iui-icons-color-actionable-hover);
+    > a {
+      margin-left: $iui-s;
+      text-decoration: underline;
+      user-select: none;
+      white-space: nowrap;
+  
+      &:hover {
+        text-decoration: none;
       }
     }
   }
 
-  > .iui-alerts-link {
-    text-decoration: underline;
-    user-select: none;
-
-    &:hover {
-      text-decoration: none;
-    }
+  > .iui-button {
+    margin-left: auto;
+    margin-right: $iui-s;
   }
 
   &.iui-sticky {
@@ -78,6 +57,5 @@
     top: 0;
     left: 0;
     width: 100vw;
-    max-width: 100%;
   }
 }
