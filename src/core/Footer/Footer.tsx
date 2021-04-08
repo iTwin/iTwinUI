@@ -5,6 +5,7 @@
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/footer.css';
+import { CommonProps } from '../utils/props';
 
 export type TitleTranslations = {
   termsOfService: string;
@@ -23,7 +24,7 @@ export type FooterProps = {
    * Provide localized strings.
    */
   translatedTitles?: TitleTranslations;
-};
+} & Omit<CommonProps, 'title'>;
 
 export type FooterElement = {
   /**
@@ -46,6 +47,8 @@ const footerTranslations: TitleTranslations = {
 
 /**
  * Footer element with all needed legal and info links.
+ * Be sure to place it manually at the bottom of your page.
+ * You can use position 'absolute' with relative body or set the height of the content and place footer at the end.
  * @example
  * <Footer customElements={[{title: 'Bentley', url: 'https://www.bentley.com/'}]} />
  */
@@ -84,7 +87,7 @@ export const Footer = ({
         {elements.map((element, index) => {
           return (
             <li key={`${element.title}-${index}`}>
-              <span className='iui-footer-separator' />
+              <span className='iui-separator' />
               {element.url ? (
                 <a href={element.url} target='_blank' rel='noreferrer'>
                   {element.title}

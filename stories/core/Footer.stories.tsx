@@ -9,9 +9,6 @@ import { Footer, FooterProps } from '../../src/core';
 export default {
   title: 'Core/Footer',
   component: Footer,
-  parameters: {
-    docs: { inlineStories: false },
-  },
 } as Meta<FooterProps>;
 
 export const Basic: Story<FooterProps> = ({
@@ -42,3 +39,15 @@ Custom.args = {
     },
   ],
 } as FooterProps;
+
+export const BottomFixed: Story<FooterProps> = ({ ...rest }: FooterProps) => {
+  return (
+    <div>
+      <Footer style={{ position: 'fixed', bottom: 0 }} {...rest} />
+    </div>
+  );
+};
+
+BottomFixed.parameters = {
+  docs: { inlineStories: false },
+};

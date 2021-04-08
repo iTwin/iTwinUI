@@ -35,44 +35,45 @@ const urls: FooterElement[] = [
   },
 ];
 
-describe('Footer', () => {
-  it('should show all default footer elements', () => {
-    const { container } = renderComponent();
-    const copyright = container.querySelector<HTMLLIElement>('li:first-child');
-    const today = new Date();
-    expect(copyright?.textContent).toBe(
-      `© ${today.getFullYear()} Bentley Systems, Incorporated`,
+it('should show all default footer elements', () => {
+  const { container } = renderComponent();
+  const copyright = container.querySelector<HTMLLIElement>('li:first-child');
+  const today = new Date();
+  expect(copyright?.textContent).toBe(
+    `© ${today.getFullYear()} Bentley Systems, Incorporated`,
+  );
+  const allLi = container.querySelectorAll<HTMLAnchorElement>('li > a');
+  allLi.forEach((element, i) => {
+    expect(element).toBeTruthy();
+    expect(element.textContent).toBe(urls[i].title);
+    expect(element.href).toBe(urls[i].url);
+    expect((element.previousSibling as HTMLSpanElement).classList).toContain(
+      'iui-separator',
     );
-    const allLi = container.querySelectorAll<HTMLAnchorElement>('li > a');
-    allLi.forEach((element, i) => {
-      expect(element).toBeTruthy();
-      expect(element.textContent).toBe(urls[i].title);
-      expect(element.href).toBe(urls[i].url);
-    });
   });
+});
 
-  it('should show all default footer elements', () => {
-    const customUrls: FooterElement[] = [
-      {
-        title: 'Custom link',
-        url: 'https://www.bentley.com/',
-      },
-      {
-        title: 'Products link',
-      },
-    ];
-    const { container } = renderComponent(customUrls);
-    const copyright = container.querySelector<HTMLLIElement>('li:first-child');
-    const today = new Date();
-    expect(copyright?.textContent).toBe(
-      `© ${today.getFullYear()} Bentley Systems, Incorporated`,
-    );
-    const allData = [...urls, ...customUrls];
-    allData.forEach((element) => {
-      const link = screen.getByText(element.title) as HTMLAnchorElement;
-      if (element.url) {
-        expect(link.href).toBe(element.url);
-      }
-    });
+it('should show all default footer elements', () => {
+  const customUrls: FooterElement[] = [
+    {
+      title: 'Custom link',
+      url: 'https://www.bentley.com/',
+    },
+    {
+      title: 'Products link',
+    },
+  ];
+  const { container } = renderComponent(customUrls);
+  const copyright = container.querySelector<HTMLLIElement>('li:first-child');
+  const today = new Date();
+  expect(copyright?.textContent).toBe(
+    `© ${today.getFullYear()} Bentley Systems, Incorporated`,
+  );
+  const allData = [...urls, ...customUrls];
+  allData.forEach((element) => {
+    const link = screen.getByText(element.title) as HTMLAnchorElement;
+    if (element.url) {
+      expect(link.href).toBe(element.url);
+    }
   });
 });
