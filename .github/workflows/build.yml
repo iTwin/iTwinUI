@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+
+      - name: Use Node 12.X
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12.x
+
+      - name: yarn install
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+
+      - name: yarn audit
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: audit
+
+      - name: yarn lint
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: lint
+
+      - name: yarn build
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build
+
+      - name: Finish
+        run: |
+          echo Finished
