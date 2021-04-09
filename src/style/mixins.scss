@@ -53,6 +53,57 @@
   vertical-align: baseline;
 }
 
+@mixin iui-anchor {
+  @include themed {
+    color: t(iui-color-foreground-primary);
+  }
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    @include themed {
+      color: t(iui-color-foreground-primary-overlay);
+    }
+    text-decoration: underline;
+  }
+}
+
+@mixin iui-scrollbar {
+  @include themed {
+    scrollbar-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4))
+      transparent;
+  }
+
+  &::-webkit-scrollbar {
+    width: $iui-s;
+    height: $iui-s;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-body-rgb),
+        t(iui-opacity-4)
+      );
+    }
+    border-radius: $iui-s / 2;
+
+    &:hover {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-body-rgb),
+          t(iui-opacity-3)
+        );
+      }
+    }
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+}
+
 @mixin iui-line-clamp($lines: 1) {
   overflow: hidden;
   @supports(-webkit-line-clamp: 1) {

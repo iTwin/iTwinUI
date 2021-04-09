@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0
+
+`2021-04-XX`
+
+### Fixes
+
+- **Removed remaining global CSS overrides.** It is recommended to apply `iui-body` class to `<body>` element in your app. Also, `<a>` styling was moved into `iui-anchor` class and mixin.
+
 ## 0.6.0
 
 `2021-04-02`

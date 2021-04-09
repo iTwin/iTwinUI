@@ -303,7 +303,11 @@
         align-items: center;
         flex: 1;
 
-        > a,
+        > a {
+          @include iui-anchor;
+          margin: 0 $iui-s;
+        }
+
         > .iui-ellipsis {
           margin: 0 $iui-s;
         }

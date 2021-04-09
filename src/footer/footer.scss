@@ -43,6 +43,7 @@
       }
 
       > a {
+        @include iui-anchor;
         @include themed {
           color: t(iui-text-color-muted);
         }

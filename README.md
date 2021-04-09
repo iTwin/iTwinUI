@@ -36,10 +36,12 @@ yarn add @bentley/itwinui
 
 ## Use
 
-Using SASS:
+You need to add `iui-body` class to your `<body>` element in order to get recommended stylings.
+
+### Using SASS:
 
 ```scss
-@import '@bentley/itwinui/scss/mixins';
+@import '@bentley/itwinui/scss/variables';
 
 .my-class {
   padding: $iui-m;
@@ -52,7 +54,7 @@ Using SASS:
 
 > Note: We highly recommend using post-processing tools for CSS (like [postcss](https://www.npmjs.com/package/postcss) and [autoprefixer](https://www.npmjs.com/package/autoprefixer)) to add vendors' prefixes as we are not doing that manually in SCSS.
 
-Using CSS (applying global styles):
+### Using CSS (applying global styles):
 
 ```css
 @import '@bentley/itwinui/css/global';

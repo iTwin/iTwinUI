@@ -25,8 +25,8 @@ const config = {
   },
   report: ['CI'],
   engine: 'puppeteer',
-  asyncCaptureLimit: 5,
-  asyncCompareLimit: 5,
+  asyncCaptureLimit: 10,
+  asyncCompareLimit: 50,
   debug: false,
   debugWindow: false,
   dockerCommandTemplate:

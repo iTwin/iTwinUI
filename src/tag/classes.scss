@@ -6,6 +6,10 @@
   @include iui-tag;
 }
 
+a.iui-tag {
+  @include iui-anchor;
+}
+
 .iui-tag-container {
   @include iui-tag-container;
 }

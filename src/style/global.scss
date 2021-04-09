@@ -2,21 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-
-body {
+.iui-body {
   @include themed {
     background-color: t(iui-color-background-1);
     color: t(iui-text-color);
@@ -26,85 +12,27 @@ body {
   line-height: $iui-line-height;
 
   @include iui-font-family;
-
-  &,
-  * {
-    @extend %iui-scrollbar;
-  }
+  @include iui-scrollbar;
 }
 
-a {
-  @include themed {
-    color: t(iui-color-foreground-primary);
-  }
-  text-decoration: none;
-  cursor: pointer;
+.iui-anchor {
+  @include iui-anchor;
+}
 
-  &:hover {
+[class*='iui-'],
+[class*='iui-'] * {
+  // Text highlight
+  ::selection {
     @include themed {
-      color: t(iui-color-foreground-primary-overlay);
-    }
-    text-decoration: underline;
-  }
-}
-
-blockquote,
-q {
-  quotes: none;
-
-  &::before,
-  &::after {
-    content: '';
-    content: none;
-  }
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/// Scrollbars ---------------------------------------------------------------------
-%iui-scrollbar {
-  @include themed {
-    scrollbar-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4))
-      transparent;
-
-    &::-webkit-scrollbar {
-      width: $iui-s;
-      height: $iui-s;
-    }
-
-    &::-webkit-scrollbar-thumb {
       background-color: rgba(
-        t(iui-color-foreground-body-rgb),
+        t(iui-color-foreground-primary-rgb),
         t(iui-opacity-4)
       );
-      border-radius: $iui-s / 2;
-
-      &:hover {
-        background-color: rgba(
-          t(iui-color-foreground-body-rgb),
-          t(iui-opacity-3)
-        );
-      }
-    }
-
-    &::-webkit-scrollbar-track,
-    &::-webkit-scrollbar-corner {
-      background-color: transparent;
     }
   }
-}
 
-/// Text highlight ---------------------------------------------------------------------
-::selection {
-  @include themed {
-    background-color: rgba(
-      t(iui-color-foreground-primary-rgb),
-      t(iui-opacity-4)
-    );
-  }
+  // Scrollbar
+  @include iui-scrollbar;
 }
 
 html {
