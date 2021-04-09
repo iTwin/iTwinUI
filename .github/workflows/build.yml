@@ -43,6 +43,7 @@ jobs:
         with:
           cmd: build
 
-      - name: Finish
-        run: |
-          echo Finished
+      - name: yarn test
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: test
