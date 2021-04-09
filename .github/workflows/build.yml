@@ -20,25 +20,10 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: yarn install
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install --no-lockfile --ignore-engines
-
-      - name: yarn audit
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: audit
-
-      - name: yarn lint
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: lint
-
-      - name: yarn build
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build
+      - run: yarn install --no-lockfile
+      - run: yarn audit
+      - run: yarn lint
+      - run: yarn build
 
       - name: yarn test
         uses: docker://backstopjs/backstopjs:latest
