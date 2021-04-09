@@ -6,16 +6,13 @@ on:
   pull_request:
     branches: [main]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  # This workflow contains a single job called "build"
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
 
       - name: Use Node 12.X
@@ -44,6 +41,7 @@ jobs:
           cmd: build
 
       - name: yarn test
-        uses: borales/actions-yarn@v2.0.0
+        uses: docker://backstopjs/backstopjs:latest
         with:
-          cmd: test
+          entrypoint: backstop
+          args: --config=./backstop/backstop.js test
