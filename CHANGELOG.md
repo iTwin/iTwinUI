@@ -2,11 +2,18 @@
 
 ## 0.7.0
 
-`2021-04-XX`
+`2021-04-09`
+
+### What's new
+
+- **Added `variables.scss`** to import only SASS variables.
+- **Added file upload component.**
 
 ### Fixes
 
+- **Alert class name restructured.**
 - **Removed remaining global CSS overrides.** It is recommended to apply `iui-body` class to `<body>` element in your app. Also, `<a>` styling was moved into `iui-anchor` class and mixin.
+- **Renamed css files to singular.**
 
 ## 0.6.0
 
