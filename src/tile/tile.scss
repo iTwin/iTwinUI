@@ -149,7 +149,7 @@
     }
   }
 
-  .iui-content {
+  > .iui-content {
     padding: $iui-baseline $iui-sm;
     position: relative;
     display: flex;
