@@ -3,10 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Tooltip } from '../../src/core/Tooltip';
-import { Position } from '../../src/utils/Positioner';
+import { Tooltip, TooltipProps } from '../../src/core';
 import { Story, Meta } from '@storybook/react';
-import { TooltipProps } from '../../src/core/Tooltip/Tooltip';
 
 export default {
   title: 'Core/Tooltip',
@@ -29,80 +27,60 @@ export default {
       ),
       control: { disable: true },
     },
-    placement: {
-      control: {
-        type: 'select',
-        options: Object.values(Position),
-      },
-    },
+    visible: { control: { type: 'boolean' } },
     className: { control: { disable: true } },
     style: { control: { disable: true } },
-    visible: { defaultValue: false },
   },
 } as Meta<TooltipProps>;
 
 export const Top: Story<TooltipProps> = (args) => {
-  const { children, ...rest } = args;
-  return <Tooltip {...rest}>{children}</Tooltip>;
-};
-
-Top.argTypes = {
-  placement: {
-    defaultValue: Position.TOP,
-  },
-};
-
-export const Right: Story<TooltipProps> = (args) => {
-  const { children, ...rest } = args;
-  return <Tooltip {...rest}>{children}</Tooltip>;
-};
-
-Right.argTypes = {
-  placement: {
-    defaultValue: Position.RIGHT,
-  },
-};
-
-export const Bottom: Story<TooltipProps> = (args) => {
-  const { children, ...rest } = args;
-  return <Tooltip {...rest}>{children}</Tooltip>;
-};
-
-Bottom.argTypes = {
-  placement: {
-    defaultValue: Position.BOTTOM,
-  },
-};
-
-export const Left: Story<TooltipProps> = (args) => {
-  const { children, ...rest } = args;
-  return <Tooltip {...rest}>{children}</Tooltip>;
-};
-
-Left.argTypes = {
-  placement: {
-    defaultValue: Position.LEFT,
-  },
-};
-
-export const Controlled: Story<TooltipProps> = (args) => {
-  const { children, isVisible = true, ...rest } = args;
+  const { children, placement, ...rest } = args;
   return (
-    <Tooltip isVisible={isVisible} {...rest}>
+    <Tooltip placement={placement} {...rest}>
       {children}
     </Tooltip>
   );
 };
 
-Controlled.argTypes = {
-  placement: {
-    defaultValue: Position.LEFT,
-  },
-  visible: {
-    defaultValue: true,
-  },
-  children: {
-    defaultValue: (
+Top.args = { placement: 'top' };
+
+export const Right: Story<TooltipProps> = (args) => {
+  const { children, placement, ...rest } = args;
+  return (
+    <Tooltip placement={placement} {...rest}>
+      {children}
+    </Tooltip>
+  );
+};
+
+Right.args = { placement: 'right' };
+
+export const Bottom: Story<TooltipProps> = (args) => {
+  const { children, placement, ...rest } = args;
+  return (
+    <Tooltip placement={placement} {...rest}>
+      {children}
+    </Tooltip>
+  );
+};
+
+Bottom.args = { placement: 'bottom' };
+
+export const Left: Story<TooltipProps> = (args) => {
+  const { children, placement, ...rest } = args;
+  return (
+    <Tooltip placement={placement} {...rest}>
+      {children}
+    </Tooltip>
+  );
+};
+
+Left.args = { placement: 'left' };
+
+export const Controlled: Story<TooltipProps> = (args) => {
+  const { visible = true, ...rest } = args;
+  return (
+    <Tooltip visible={visible} {...rest}>
       <div
         style={{
           marginTop: 40,
@@ -110,8 +88,13 @@ Controlled.argTypes = {
           width: 'fit-content',
         }}
       >
-        No need to hover me!
+        No need to hover me
       </div>
-    ),
-  },
+    </Tooltip>
+  );
+};
+
+Controlled.args = {
+  placement: 'left',
+  visible: true,
 };

@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { Position } from '../../utils';
 import { DropdownMenu } from '../DropdownMenu';
 import MenuItem from '../Menu/MenuItem';
+import { PopoverProps, PopoverInstance } from '../utils/Popover';
 
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
@@ -88,7 +88,8 @@ export type SelectProps<T> = {
    * Custom style for menu.
    */
   menuStyle?: React.CSSProperties;
-} & CommonProps;
+} & Pick<PopoverProps, 'onShow' | 'onHide'> &
+  CommonProps;
 
 /**
  * Select component to select value from options.
@@ -153,6 +154,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     style,
     menuClassName,
     menuStyle,
+    onShow,
+    onHide,
     ...rest
   } = props;
 
@@ -160,8 +163,25 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [minWidth, setMinWidth] = React.useState(0);
+  const toggle = () => setIsOpen((open) => !open);
 
   const selectRef = React.useRef<HTMLDivElement>(null);
+
+  const onShowHandler = React.useCallback(
+    (instance: PopoverInstance) => {
+      setIsOpen(true);
+      onShow?.(instance);
+    },
+    [onShow],
+  );
+
+  const onHideHandler = React.useCallback(
+    (instance: PopoverInstance) => {
+      setIsOpen(false);
+      onHide?.(instance);
+    },
+    [onHide],
+  );
 
   React.useEffect(() => {
     if (selectRef.current && !disabled && setFocus) {
@@ -188,7 +208,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     }
   };
 
-  const menu = React.useCallback(
+  const menuItems = React.useCallback(
     (close: () => void) => {
       return options.map((option, index) => {
         const isSelected = value === option.value;
@@ -202,8 +222,9 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           key: `${option.label}-${index}`,
           isSelected,
           disabled: option.disabled,
+          value: option.value,
           onClick: () => {
-            onChange?.(option.value);
+            !option.disabled && onChange?.(option.value);
             close();
           },
           ref: (el: HTMLElement) => isSelected && el?.scrollIntoView(),
@@ -225,54 +246,49 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   return (
     <DropdownMenu
-      menuItems={menu}
-      position={Position.BOTTOM}
+      menuItems={menuItems}
+      placement='bottom-start'
       className={menuClassName}
       style={{ minWidth, maxHeight: `300px`, overflowY: 'auto', ...menuStyle }}
       role='listbox'
-      onOpen={() => setIsOpen(true)}
-      onClose={() => setIsOpen(false)}
+      onShow={onShowHandler}
+      onHide={onHideHandler}
+      visible={isOpen}
+      disabled={disabled}
     >
-      {(toggle) => (
+      <div
+        className={cx('iui-select', className)}
+        aria-expanded={isOpen}
+        aria-haspopup='listbox'
+        style={style}
+        {...rest}
+      >
         <div
-          className={cx('iui-select', className)}
-          aria-expanded={isOpen}
-          aria-haspopup='listbox'
-          style={style}
-          {...rest}
+          ref={selectRef}
+          className={cx('iui-select-button', {
+            'iui-placeholder': !selectedItem && !!placeholder,
+            'iui-disabled': disabled,
+            'iui-active': isOpen,
+          })}
+          onClick={() => !disabled && toggle()}
+          onKeyDown={(e) => !disabled && onKeyDown(e, toggle)}
+          tabIndex={!disabled ? 0 : undefined}
         >
-          <div
-            ref={selectRef}
-            className={cx('iui-select-button', {
-              'iui-placeholder': !selectedItem && !!placeholder,
-              'iui-disabled': disabled,
-              'iui-active': isOpen,
-            })}
-            onClick={() => !disabled && toggle()}
-            onKeyDown={(e) => !disabled && onKeyDown(e, toggle)}
-            tabIndex={!disabled ? 0 : undefined}
-          >
-            {!selectedItem && (
-              <span className='iui-content'>{placeholder}</span>
-            )}
-            {selectedItem &&
-              selectedItemRenderer &&
-              selectedItemRenderer(selectedItem)}
-            {selectedItem && !selectedItemRenderer && (
-              <>
-                {selectedItem?.icon &&
-                  React.cloneElement(selectedItem.icon, {
-                    className: cx(
-                      selectedItem?.icon.props.className,
-                      'iui-icon',
-                    ),
-                  })}
-                <span className='iui-content'>{selectedItem.label}</span>
-              </>
-            )}
-          </div>
+          {!selectedItem && <span className='iui-content'>{placeholder}</span>}
+          {selectedItem &&
+            selectedItemRenderer &&
+            selectedItemRenderer(selectedItem)}
+          {selectedItem && !selectedItemRenderer && (
+            <>
+              {selectedItem?.icon &&
+                React.cloneElement(selectedItem.icon, {
+                  className: cx(selectedItem?.icon.props.className, 'iui-icon'),
+                })}
+              <span className='iui-content'>{selectedItem.label}</span>
+            </>
+          )}
         </div>
-      )}
+      </div>
     </DropdownMenu>
   );
 };

@@ -3,14 +3,25 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import ReactDOM from 'react-dom';
 import cx from 'classnames';
-
 import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
-import { Portal } from '../../utils/Portal';
-
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/modal.css';
+
+/**
+ * Get the portal container, or create one if it doesn't exist.
+ */
+const getContainer = (containerId: string) => {
+  let container = document.getElementById(containerId);
+  if (container === null) {
+    container = document.createElement('div');
+    container.setAttribute('id', containerId);
+    document.body.appendChild(container);
+  }
+  return container;
+};
 
 export type ModalProps = {
   /**
@@ -95,11 +106,13 @@ export const Modal = (props: ModalProps) => {
     className,
     style,
     children,
-    modalRootId,
+    modalRootId = 'iui-react-portal-container',
     ...rest
   } = props;
 
   useTheme();
+
+  const container = getContainer(modalRootId);
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -140,44 +153,37 @@ export const Modal = (props: ModalProps) => {
     }
   };
 
-  return (
-    <>
-      <Portal parentId={modalRootId}>
-        {isOpen && (
-          <div
-            className={cx('iui-modal', 'iui-modal-visible', className)}
-            tabIndex={-1}
-            onKeyDown={handleKeyDown}
-            ref={overlayRef}
-            onMouseDown={handleMouseDown}
-            {...rest}
-          >
-            <div
-              className='iui-modal-dialog'
-              id={id}
-              style={style}
-              role='dialog'
-              aria-modal='true'
-              onMouseDown={(event) => event.stopPropagation()}
-            >
-              <div className='iui-modal-title-bar'>
-                <div className='iui-modal-title'>{title}</div>
-                {isDismissible && (
-                  <div
-                    className='iui-modal-close'
-                    onClick={onClose}
-                    tabIndex={0}
-                  >
-                    <SvgClose />
-                  </div>
-                )}
+  return ReactDOM.createPortal(
+    isOpen && (
+      <div
+        className={cx('iui-modal', 'iui-modal-visible', className)}
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
+        ref={overlayRef}
+        onMouseDown={handleMouseDown}
+        {...rest}
+      >
+        <div
+          className='iui-modal-dialog'
+          id={id}
+          style={style}
+          role='dialog'
+          aria-modal='true'
+          onMouseDown={(event) => event.stopPropagation()}
+        >
+          <div className='iui-modal-title-bar'>
+            <div className='iui-modal-title'>{title}</div>
+            {isDismissible && (
+              <div className='iui-modal-close' onClick={onClose} tabIndex={0}>
+                <SvgClose />
               </div>
-              {children}
-            </div>
+            )}
           </div>
-        )}
-      </Portal>
-    </>
+          {children}
+        </div>
+      </div>
+    ),
+    container,
   );
 };
 

@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
-import { Popover, Position } from '../../utils';
-import { PopoverProps } from '../../utils/Popover/Popover';
 import { Menu } from '../Menu';
 import { CommonProps } from '../utils/props';
+import { Popover, PopoverProps, PopoverInstance } from '../utils/Popover';
+import { mergeRefs } from '../utils/hooks/useMergedRefs';
 
 export type DropdownMenuProps = {
   /**
@@ -21,29 +21,11 @@ export type DropdownMenuProps = {
    */
   role?: string;
   /**
-   * How many pixels should the positioned element be from the parent / target element.
-   * @default 0
-   */
-  targetOffset?: number;
-  /**
-   * Position where dropdown will be shown.
-   * @default Position.BOTTOM_LEFT
-   */
-  position?: Position;
-  /**
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-} & Omit<
-  PopoverProps,
-  | 'content'
-  | 'bringFocusInside'
-  | 'hoverTargetOnly'
-  | 'bodyOffset'
-  | 'targetOffset'
-  | 'position'
-> &
-  CommonProps;
+} & PopoverProps &
+  Omit<CommonProps, 'title'>;
 
 /**
  * Dropdown menu component.
@@ -69,26 +51,67 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     children,
     className,
     style,
-    position = Position.BOTTOM_LEFT,
     role = 'menu',
-    targetOffset = 0,
-    ...restPopoverProps
+    visible,
+    placement = 'bottom-start',
+    onShow,
+    onHide,
+    trigger,
+    ...rest
   } = props;
+
+  const [isVisible, setIsVisible] = React.useState(visible ?? false);
+  React.useEffect(() => {
+    setIsVisible(visible ?? false);
+  }, [visible]);
+
+  const open = React.useCallback(() => setIsVisible(true), []);
+  const close = React.useCallback(() => setIsVisible(false), []);
+
+  const targetRef = React.useRef<HTMLElement>(null);
+
+  const onShowHandler = React.useCallback(
+    (instance: PopoverInstance) => {
+      setIsVisible(true);
+      onShow?.(instance);
+    },
+    [onShow],
+  );
+
+  const onHideHandler = React.useCallback(
+    (instance: PopoverInstance) => {
+      setIsVisible(false);
+      targetRef.current?.focus();
+      onHide?.(instance);
+    },
+    [onHide],
+  );
 
   useTheme();
 
   return (
     <Popover
-      targetOffset={targetOffset}
-      position={position}
-      content={(close) => (
+      content={
         <Menu className={className} style={style} role={role}>
-          {menuItems(close)}
+          {React.useMemo(() => menuItems(close), [menuItems, close])}
         </Menu>
-      )}
-      {...restPopoverProps}
+      }
+      visible={trigger === undefined ? isVisible : undefined}
+      onClickOutside={close}
+      placement={placement}
+      onShow={onShowHandler}
+      onHide={onHideHandler}
+      trigger={visible === undefined ? trigger : undefined}
+      {...rest}
     >
-      {children}
+      {React.cloneElement(children as JSX.Element, {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref: mergeRefs(targetRef, (props.children as any).ref),
+        onClick: (args: unknown) => {
+          trigger === undefined && (isVisible ? close() : open());
+          (children as JSX.Element).props.onClick?.(args);
+        },
+      })}
     </Popover>
   );
 };

@@ -58,15 +58,15 @@ it('should close menu after menu item click', () => {
   const button = screen.getByText('Click here');
   fireEvent.click(button);
 
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertBaseElement(menu);
 
   const menuItem = menu.querySelector('li') as HTMLLIElement;
   expect(menuItem).toBeTruthy();
   fireEvent.click(menuItem);
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
-  expect(menu).toBeFalsy();
+  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
+  expect(tippy.style.visibility).toEqual('hidden');
 });
 
 it('should render menu with custom role', () => {
@@ -99,4 +99,32 @@ it('should render menu with custom style', () => {
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertBaseElement(menu);
   expect(menu.style.color).toEqual('red');
+});
+
+it('should be mounted lazily', () => {
+  let content: unknown;
+  renderComponent({
+    onCreate: (i) => {
+      content = i.props.content;
+    },
+    onShow: (i) => {
+      content = i.props.content;
+    },
+  });
+  expect((content as Element).children.length).toBe(0);
+
+  screen.getByText('Click here').click();
+  expect((content as Element).children.length).toBe(1);
+});
+
+it('should focus target after hide', () => {
+  const { container } = renderComponent();
+
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
+
+  button.click();
+  expect(document.activeElement).not.toEqual(button);
+
+  button.click();
+  expect(document.activeElement).toEqual(button);
 });

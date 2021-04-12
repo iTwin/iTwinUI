@@ -68,6 +68,9 @@ it('should work with menu items', () => {
   expect(menu).toBeFalsy();
 
   button.click();
+  let tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
+  expect(tippy.style.visibility).toEqual('visible');
+
   menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeTruthy();
 
@@ -77,6 +80,6 @@ it('should work with menu items', () => {
   expect(menuItem).toBeTruthy();
   menuItem.click();
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
-  expect(menu).toBeFalsy();
+  tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
+  expect(tippy.style.visibility).toEqual('hidden');
 });

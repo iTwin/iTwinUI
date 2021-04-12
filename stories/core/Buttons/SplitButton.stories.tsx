@@ -6,16 +6,11 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
 import { MenuItem, SplitButton, SplitButtonProps } from '../../../src/core';
-import { Position } from '../../../src/utils';
 
 export default {
   title: 'Buttons/SplitButton',
   component: SplitButton,
   argTypes: {
-    menuPosition: {
-      control: { type: 'select', options: Position },
-      defaultValue: Position.BOTTOM_RIGHT,
-    },
     style: { control: { disable: true } },
     className: { control: { disable: true } },
   },

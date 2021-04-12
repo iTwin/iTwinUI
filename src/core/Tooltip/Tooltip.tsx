@@ -3,12 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Position } from '../../utils/Positioner';
 import cx from 'classnames';
 import { CommonProps } from '../utils/props';
-import { Popover } from '../../utils';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/tooltip.css';
+import { Popover, PopoverProps } from '../utils/Popover';
 
 export type TooltipProps = {
   /**
@@ -16,69 +15,39 @@ export type TooltipProps = {
    */
   content: React.ReactNode;
   /**
-   * Placement of tooltip
-   * @default Position.BOTTOM
-   */
-  placement?: Position;
-  /**
-   * ID of portal container.
-   */
-  parentId?: string;
-  /**
    * Element to have tooltip on. Has to be valid JSX element.
    */
   children: JSX.Element;
-  /**
-   * Control visibility if needed.
-   */
-  isVisible?: boolean;
-} & Omit<CommonProps, 'title'>;
+} & Omit<PopoverProps, 'className'> &
+  Omit<CommonProps, 'title'>;
 
 /**
  * Basic tooltip component
  * @example
- * <Tooltip content='tooltip text'><div>Hover here</div></Tooltip>
+ * <Tooltip content='tooltip text' placement='top'><div>Hover here</div></Tooltip>
  */
 export const Tooltip = (props: TooltipProps) => {
-  const {
-    content,
-    parentId,
-    placement = Position.BOTTOM,
-    children,
-    className,
-    style,
-    isVisible,
-    ...rest
-  } = props;
+  const { content, children, className, style, visible, ref, ...rest } = props;
 
   useTheme();
 
-  const [visible, setVisible] = React.useState(isVisible);
-
-  React.useEffect(() => {
-    setVisible(isVisible);
-  }, [isVisible]);
-
   return (
     <Popover
-      showOnHover
-      hoverTargetOnly
+      visible={visible}
+      interactive={false}
       content={
         <div
           className={cx('iui-tooltip', className)}
           style={style}
           role='tooltip'
-          {...rest}
         >
           {content}
         </div>
       }
-      parentId={parentId}
-      position={placement}
-      isShown={visible}
-      style={{ zIndex: 1000 }}
+      ref={ref}
+      {...rest}
     >
-      {children}
+      {React.cloneElement(children, { title: undefined })}
     </Popover>
   );
 };

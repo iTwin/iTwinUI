@@ -102,7 +102,7 @@ export const Alert = (props: AlertProps) => {
           onClick={onClose}
           aria-label='Close'
         >
-          <SvgClose className='iui-icon' aria-hidden='true' />
+          <SvgClose aria-hidden='true' />
         </IconButton>
       )}
     </div>

@@ -7,7 +7,7 @@ import React from 'react';
 import { Button, ButtonProps } from '../Button';
 import { IconButton } from '../IconButton';
 import { DropdownMenu } from '../../DropdownMenu';
-import { Position } from '../../../utils';
+import { Placement } from 'tippy.js';
 import SvgCaretDown2 from '@bentley/icons-generic-react/cjs/icons/CaretDown2';
 import SvgCaretUp2 from '@bentley/icons-generic-react/cjs/icons/CaretUp2';
 
@@ -26,11 +26,11 @@ export type SplitButtonProps = {
    */
   menuItems: (close: () => void) => JSX.Element[];
   /**
-   * Position of the dropdown menu.
-   * @default Position.BOTTOM_RIGHT
+   * Placement of the dropdown menu.
+   * @default 'bottom-end'
    */
-  menuPosition?: Position;
-  /**
+  menuPlacement?: Placement;
+  /*
    * Style of the button.
    * @default 'default'
    */
@@ -56,7 +56,7 @@ export const SplitButton = (props: SplitButtonProps) => {
     onClick,
     menuItems,
     className,
-    menuPosition = Position.BOTTOM_RIGHT,
+    menuPlacement = 'bottom-end',
     styleType = 'default',
     size,
     children,
@@ -89,11 +89,11 @@ export const SplitButton = (props: SplitButtonProps) => {
         {children}
       </Button>
       <DropdownMenu
-        position={menuPosition}
+        placement={menuPlacement}
         menuItems={menuItems}
         style={{ minWidth: menuWidth }}
-        onOpen={() => setIsMenuOpen(true)}
-        onClose={() => setIsMenuOpen(false)}
+        onShow={React.useCallback(() => setIsMenuOpen(true), [])}
+        onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
         <IconButton styleType={styleType} size={size}>
           {isMenuOpen ? <SvgCaretUp2 /> : <SvgCaretDown2 />}

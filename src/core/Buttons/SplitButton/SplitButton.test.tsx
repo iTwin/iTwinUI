@@ -103,6 +103,6 @@ it('should work with menu items', () => {
   expect(menuItem).toBeTruthy();
   menuItem.click();
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
-  expect(menu).toBeFalsy();
+  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
+  expect(tippy.style.visibility).toEqual('hidden');
 });

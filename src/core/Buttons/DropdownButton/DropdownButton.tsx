@@ -6,7 +6,6 @@ import React from 'react';
 import cx from 'classnames';
 import { Button, ButtonProps } from '../Button';
 import { DropdownMenu } from '../../DropdownMenu';
-import { Position } from '../../../utils';
 import SvgCaretDown2 from '@bentley/icons-generic-react/cjs/icons/CaretDown2';
 import SvgCaretUp2 from '@bentley/icons-generic-react/cjs/icons/CaretUp2';
 
@@ -49,11 +48,10 @@ export const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
 
   return (
     <DropdownMenu
-      position={Position.BOTTOM_RIGHT}
       menuItems={menuItems}
       style={{ minWidth: menuWidth }}
-      onOpen={() => setIsMenuOpen(true)}
-      onClose={() => setIsMenuOpen(false)}
+      onShow={() => setIsMenuOpen(true)}
+      onHide={() => setIsMenuOpen(false)}
     >
       <Button
         className={cx('iui-dropdown', className)}

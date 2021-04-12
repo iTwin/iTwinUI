@@ -133,6 +133,8 @@ export const Tile = (props: TileProps) => {
   useTheme();
 
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
+  const showMenu = React.useCallback(() => setIsMenuVisible(true), []);
+  const hideMenu = React.useCallback(() => setIsMenuVisible(false), []);
 
   return (
     <div
@@ -189,8 +191,8 @@ export const Tile = (props: TileProps) => {
 
         {moreOptions && (
           <DropdownMenu
-            onOpen={() => setIsMenuVisible(true)}
-            onClose={() => setIsMenuVisible(false)}
+            onShow={showMenu}
+            onHide={hideMenu}
             menuItems={(close) =>
               moreOptions.map((option: React.ReactElement) =>
                 React.cloneElement(option, {

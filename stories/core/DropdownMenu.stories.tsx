@@ -7,7 +7,6 @@ import { Story, Meta } from '@storybook/react';
 import { DropdownMenuProps } from '../../src/core/DropdownMenu/DropdownMenu';
 import { DropdownMenu, IconButton, MenuItem } from '../../src/core';
 import { action } from '@storybook/addon-actions';
-import { Position } from '../../src/utils';
 import SvgClipboard from '@bentley/icons-generic-react/cjs/icons/Clipboard';
 import SvgCrop from '@bentley/icons-generic-react/cjs/icons/Crop';
 import SvgMore2 from '@bentley/icons-generic-react/cjs/icons/More2';
@@ -18,13 +17,6 @@ export default {
   component: DropdownMenu,
   subcomponents: { MenuItem },
   argTypes: {
-    position: {
-      control: {
-        type: 'select',
-        options: Object.values(Position),
-      },
-      defaultValue: Position.BOTTOM_LEFT,
-    },
     style: { control: { disable: true } },
     className: { control: { disable: true } },
   },
