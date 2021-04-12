@@ -21,7 +21,6 @@
   <img src="https://itwinplatformcdn.azureedge.net/iTwinUI/interface-mockup.png" alt="A mockup of an iTwinUI interface." />
 </p>
 
-
 ## Key features
 
 The iTwinUI package is a CSS (Sass/SCSS) library for building beautiful and well working web UI components with support for multiple color themes within Bentley Systems & iTwin.js applications.
@@ -72,7 +71,7 @@ You need to add `iui-body` class to your `<body>` element in order to get recomm
 
 ## Contributing
 
-Are you interested in helping iTwinUI grow & expand? You can submit ideas or bugs by creating items in [issues](https://github.com/iTwin/iTwinUI/issues).
+Are you interested in helping iTwinUI grow & expand? You can submit feature requests or bugs by creating items in [issues](https://github.com/iTwin/iTwinUI/issues).
 Please read our [CONTRIBUTING.md](https://github.com/iTwin/iTwinUI/blob/main/CONTRIBUTING.md) for more information.
 
 ## Changelog
