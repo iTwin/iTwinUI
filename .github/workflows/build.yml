@@ -27,10 +27,11 @@ jobs:
       - run: yarn test:ci
 
       - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v1.11
+        uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
           files: '${{ github.workspace }}/backstop/results/ci_report/xunit.xml'
+          github_token: ${{ github.token }}
     
       - name: Publish test results artifact
         if: always()
