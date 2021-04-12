@@ -2,7 +2,7 @@
   <img src="https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-logo.png" alt="iTwinUI logo" />
 </p>
 
-<div align="center">An open-source design system that helps us build a unified web experience.</div>
+<p align="center">An open-source design system that helps us build a unified web experience.</p>
   
 <div align="center">
   
