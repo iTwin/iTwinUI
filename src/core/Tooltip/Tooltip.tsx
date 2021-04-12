@@ -8,7 +8,7 @@ import cx from 'classnames';
 import { CommonProps } from '../utils/props';
 import { Popover } from '../../utils';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/tooltips.css';
+import '@bentley/itwinui/css/tooltip.css';
 
 export type TooltipProps = {
   /**

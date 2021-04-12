@@ -56,3 +56,8 @@ it('should set default theme', () => {
   render(<ThemeProvider />);
   expectDarkTheme();
 });
+
+it('should set body class', () => {
+  render(<ThemeProvider />);
+  expect(document.body.classList).toContain('iui-body');
+});

@@ -121,7 +121,11 @@ export const Basic: Story<TableProps> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               const onClick = () => onClickHandler(props);
-              return <a onClick={onClick}>Click me!</a>;
+              return (
+                <a className='iui-anchor' onClick={onClick}>
+                  Click me!
+                </a>
+              );
             },
           },
         ],
@@ -187,7 +191,11 @@ export const Selectable: Story<TableProps> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               const onClick = () => onClickHandler(props);
-              return <a onClick={onClick}>Click me!</a>;
+              return (
+                <a className='iui-anchor' onClick={onClick}>
+                  Click me!
+                </a>
+              );
             },
           },
         ],
@@ -253,7 +261,11 @@ export const Sortable: Story<TableProps> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               const onClick = () => onClickHandler(props);
-              return <a onClick={onClick}>Click me!</a>;
+              return (
+                <a className='iui-anchor' onClick={onClick}>
+                  Click me!
+                </a>
+              );
             },
           },
         ],

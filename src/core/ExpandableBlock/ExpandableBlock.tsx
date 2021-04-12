@@ -8,7 +8,7 @@ import React from 'react';
 import { CommonProps } from '../utils/props';
 
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/expandable-blocks.css';
+import '@bentley/itwinui/css/expandable-block.css';
 
 export type ExpandableBlockProps = {
   /**

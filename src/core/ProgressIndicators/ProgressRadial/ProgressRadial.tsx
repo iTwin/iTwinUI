@@ -8,7 +8,7 @@ import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../../utils/props';
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/progress-indicators.css';
+import '@bentley/itwinui/css/progress-indicator.css';
 
 export type ProgressRadialProps = {
   /**

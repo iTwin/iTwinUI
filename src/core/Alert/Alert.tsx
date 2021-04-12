@@ -12,6 +12,7 @@ import React from 'react';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@bentley/itwinui/css/alert.css';
+import { IconButton } from '../Buttons/IconButton';
 
 export type AlertProps = {
   /**
@@ -67,16 +68,17 @@ export const Alert = (props: AlertProps) => {
   useTheme();
 
   const iconMap = {
-    negative: <SvgError className='iui-alerts-status-icon' />,
-    informational: <SvgInfo className='iui-alerts-status-icon' />,
-    positive: <SvgSuccess className='iui-alerts-status-icon' />,
-    warning: <SvgWarning className='iui-alerts-status-icon' />,
+    negative: <SvgError className='iui-icon' />,
+    informational: <SvgInfo className='iui-icon' />,
+    positive: <SvgSuccess className='iui-icon' />,
+    warning: <SvgWarning className='iui-icon' />,
   };
 
   return (
     <div
       className={cx(
-        `iui-alerts-${type}`,
+        'iui-alert',
+        `iui-${type}`,
         { 'iui-sticky': isSticky },
         className,
       )}
@@ -84,14 +86,24 @@ export const Alert = (props: AlertProps) => {
       {...rest}
     >
       {iconMap[type]}
-      {children}
-      {clickableText && (
-        <a className='iui-alerts-link' onClick={onClick}>
-          {clickableText}
-        </a>
-      )}
+      <span className='iui-message'>
+        {children}
+        {clickableText && (
+          <a style={{ cursor: 'pointer' }} onClick={onClick}>
+            {clickableText}
+          </a>
+        )}
+      </span>
+
       {onClose && (
-        <SvgClose className='iui-alerts-close-icon' onClick={onClose} />
+        <IconButton
+          styleType='borderless'
+          size='small'
+          onClick={onClose}
+          aria-label='Close'
+        >
+          <SvgClose className='iui-icon' aria-hidden='true' />
+        </IconButton>
       )}
     </div>
   );

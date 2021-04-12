@@ -14,6 +14,12 @@ export type ThemeType = 'light' | 'dark' | 'os';
  */
 export const useTheme = (theme?: ThemeType): void => {
   React.useLayoutEffect(() => {
+    if (!document.body.classList.contains('iui-body')) {
+      document.body.classList.add('iui-body');
+    }
+  }, []);
+
+  React.useLayoutEffect(() => {
     switch (theme) {
       case 'light':
         addLightTheme();

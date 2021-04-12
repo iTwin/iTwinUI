@@ -9,7 +9,7 @@ import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/user-icons.css';
+import '@bentley/itwinui/css/user-icon.css';
 
 export type UserIconStatus = 'online' | 'busy' | 'away' | 'offline';
 
