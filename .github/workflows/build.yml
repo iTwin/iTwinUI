@@ -30,7 +30,7 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
-          files: '${{ github.workspace }}/backstop/results/ci_report/xunit.xml'
+          files: 'backstop/results/**/*.xml'
           github_token: ${{ github.token }}
     
       - name: Publish test results artifact
