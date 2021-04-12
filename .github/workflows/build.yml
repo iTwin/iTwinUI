@@ -26,8 +26,14 @@ jobs:
       - run: yarn build
       - run: yarn test:ci
 
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        if: always()
+        with:
+          files: /backstop/results/ci_report/*.xml
+    
       - name: Publish test results artifact
-        if: ${{ success() || failure() }}
+        if: always()
         uses: actions/upload-artifact@v2.2.3
         with:
           # Artifact name
