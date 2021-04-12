@@ -1,18 +1,21 @@
-﻿<center>
+<p align="center">
+  <img src="https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-logo.png" alt="iTwinUI logo" />
+</p>
 
-![iTwinUI logo](https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-logo.png)
+<h3 align="center">An open-source design system that helps us build a unified web experience.<h3>
+  
+<div align="center">
+  [![Dependencies Status](https://status.david-dm.org/gh/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
+</div>
 
-**An open-source design system that helps us build a unified web experience.**
+<div align="center">
+  [Key features](#key-features) • [Install](#install) • [Use](#use) • [Contributing](#contributing)
+</div>
 
-[![Build status](https://dev.azure.com/bentleycs/UX%20Design/_apis/build/status/iTwinUI?branchName=main)](https://dev.azure.com/bentleycs/UX%20Design/_build/latest?definitionId=4766&branchName=main)
-[![@bentley/itwinui package in Packages feed in Azure Artifacts](https://feeds.dev.azure.com/bentleycs/_apis/public/Packaging/Feeds/cddcc498-6606-47b5-b068-e9fa20167bf8/Packages/2a2598be-dc85-46c1-9b3f-ac6137b357ed/Badge)](https://dev.azure.com/bentleycs/beconnect/_packaging?_a=package&feed=cddcc498-6606-47b5-b068-e9fa20167bf8&package=2a2598be-dc85-46c1-9b3f-ac6137b357ed&preferRelease=true)
-[![Teams link](https://img.shields.io/badge/Teams-iTwinUI-7B83EB?logo=microsoft-teams&logoColor=white)](https://teams.microsoft.com/l/channel/19%3a6ed5d7dd0f5541158ae8ef9748f413de%40thread.skype/iTwinUI?groupId=7ec5737d-780e-40e6-bf0e-e3991fd6f3a1&tenantId=067e9632-ea4c-4ed9-9e6d-e294956e284b)
+<p align="center">
+  ![A mockup of an iTwinUI interface.](https://itwinplatformcdn.azureedge.net/iTwinUI/interface-mockup.png)
+</p>
 
-[Key features](#key-features) • [Install](#install) • [Use](#use) • [Contributing](#contributing)
-
-![A mockup of an iTwinUI interface.](https://itwinplatformcdn.azureedge.net/iTwinUI/interface-mockup.png)
-
-</center>
 
 ## Key features
 
