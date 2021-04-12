@@ -31,7 +31,7 @@ jobs:
         if: always()
         with:
           files: 'backstop/results/**/*.xml'
-          github_token: ${{ github.token }}
+          comment_on_pr: false
     
       - name: Publish test results artifact
         if: always()
