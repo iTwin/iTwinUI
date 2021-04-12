@@ -6,7 +6,7 @@
   
 <div align="center">
   
-  ![Build status](https://github.com/iTwin/iTwinUI/actions/workflows/build.yml/badge.svg)
+  ![Build status](https://github.com/iTwin/iTwinUI/actions/workflows/build.yml/badge.svg?branch=main)
   [![Dependencies Status](https://status.david-dm.org/gh/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
 
 </div>
