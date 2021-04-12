@@ -1,3 +1,11 @@
+## 0.6.2
+
+`2021-04-12`
+
+### What's new
+
+- **`iui-body` class is added to body.** Global overrides were removed.
+
 ## 0.6.1
 
 `2021-04-08`
