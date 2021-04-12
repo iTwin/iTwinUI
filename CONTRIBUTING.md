@@ -2,7 +2,7 @@
 
 We welcome all types of contribution.
 
-Need a feature or found a bug? Please create an item in [our backlog.](https://dev.azure.com/bentleycs/UX%20Design/_backlogs/backlog/iTwinUI/Features/?workitem=543453) Be sure to read description in the given link.
+Need a feature or found a bug? Please create an [issue.](https://github.com/iTwin/iTwinUI/issues)
 
 Want to contribute by creating a PR? Great! Then read further.
 
@@ -10,7 +10,7 @@ Want to contribute by creating a PR? Great! Then read further.
 
 To clone and build iTwinUI you'll need [Git](https://git-scm.com) and [Yarn](https://yarnpkg.com) installed on your computer. From your command line:
 
-1. `git clone https://bentleycs@dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI`
+1. `git clone https://github.com/iTwin/iTwinUI.git`
 2. `cd iTwinUI`
 3. `yarn install`
 
@@ -46,7 +46,7 @@ Before running this command make sure Docker is running. Read more about [tests]
 
 ### Adding a component
 
-We welcome UI components contributed by other teams! If you'd like to get your component added to iTwinUI, follow these guidelines:
+We welcome UI components contributions! If you'd like to get your component added to iTwinUI, follow these guidelines:
 
 - Make a new folder with the name of the component under `src` folder.
 - Break variables and mixins into separate files where possible.
@@ -120,9 +120,9 @@ The `CHANGELOG.md` file must be updated for any new components or changes that y
 
 ### Committing your work
 
-Before creating a pull request, make sure your changes address a specific work item or bug in the iTwinUI backlog. Do a search to see if there are any existing items that are still open. If you don't find one, you can create one.
+Before creating a pull request, make sure your changes address a specific issue. Do a search to see if there are any existing items that are still open. If you don't find one, you can create one.
 
-To enable us to quickly review and accept your pull requests, always create one pull request per work item. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked work item.
+To enable us to quickly review and accept your pull requests, always create one pull request per issue. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked issue.
 
 #### Checklist
 
@@ -132,4 +132,4 @@ To enable us to quickly review and accept your pull requests, always create one 
   - `.html` file has all possible states of the component.
   - `.js` file has scenarios covering these cases.
 - Updated changelog.
-- Ensure, that work item is linked in the PR and you have a proper description of the PR.
+- Ensure, that issue is linked in the PR and you have a proper description of the PR.
