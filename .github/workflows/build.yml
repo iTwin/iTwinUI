@@ -27,7 +27,7 @@ jobs:
       - run: yarn test:ci
 
       - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        uses: EnricoMi/publish-unit-test-result-action@v1.11
         if: always()
         with:
           files: /backstop/results/ci_report/*.xml
