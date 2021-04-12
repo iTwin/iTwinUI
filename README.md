@@ -26,7 +26,7 @@
 
 The iTwinUI package is a CSS (Sass/SCSS) library for building beautiful and well working web UI components with support for multiple color themes within Bentley Systems & iTwin.js applications.
 
-The goal of this project is to transform [UX Design specifications](https://ux.bentley.com/itwin/) into flexible and usable style for Bentley web applications. This is accomplished by developing the style using SASS (.scss) and providing end users with that SASS, as well as CSS. This provides great flexibility to the end user and more readily enables adoption of the iTwinUI standards.
+The goal of this project is to transform UX design specifications into flexible and usable style for Bentley web applications. This is accomplished by developing the style using Sass (.scss) and providing end users with that Sass, as well as CSS. This provides great flexibility to the end user and more readily enables adoption of the iTwinUI standards.
 
 ---
 
@@ -46,7 +46,7 @@ yarn add @bentley/itwinui
 
 You need to add `iui-body` class to your `<body>` element in order to get recommended stylings.
 
-### Using SASS:
+### Using Sass:
 
 ```scss
 @import '@bentley/itwinui/scss/variables';
@@ -72,9 +72,9 @@ You need to add `iui-body` class to your `<body>` element in order to get recomm
 
 ## Contributing
 
-Are you interested in helping iTwinUI grow & expand? You can submit ideas or bugs by creating items in [our backlog](https://dev.azure.com/bentleycs/UX%20Design/_backlogs/backlog/iTwinUI/Features/?workitem=543453).
-Please read our [CONTRIBUTING.md](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI?path=%2FCONTRIBUTING.md&_a=preview) for more information.
+Are you interested in helping iTwinUI grow & expand? You can submit ideas or bugs by creating items in [issues](https://github.com/iTwin/iTwinUI/issues).
+Please read our [CONTRIBUTING.md](https://github.com/iTwin/iTwinUI/blob/main/CONTRIBUTING.md) for more information.
 
 ## Changelog
 
-Read our [CHANGELOG.md](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI?path=%2FCHANGELOG.md&_a=preview) to find recent changes.
+Read our [CHANGELOG.md](https://github.com/iTwin/iTwinUI/blob/main/CHANGELOG.md) to find recent changes.
