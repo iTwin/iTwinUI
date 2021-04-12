@@ -5,9 +5,7 @@
   "license": "MIT",
   "main": "src/index.scss",
   "description": "CSS (Sass/SCSS) library for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications.",
-  "homepage": "https://bentleycs.visualstudio.com/UX%20Design/_git/iTwinUI",
-  "url": "https://dev.azure.com/bentleycs/UX%20Design/_boards/board/t/iTwinUI/Backlog%20items",
-  "email": "3b7617b6.bentley.onmicrosoft.com@amer.teams.ms",
+  "homepage": "https://github.com/iTwin/iTwinUI",
   "keywords": [
     "css",
     "sass",
