@@ -26,7 +26,7 @@ jobs:
       - run: yarn build
 
       - name: yarn test
-        uses: docker://backstopjs/backstopjs:latest
+        uses: docker://backstopjs/backstopjs
         with:
           entrypoint: backstop
           args: --config=./backstop/backstop.js test
