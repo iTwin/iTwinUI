@@ -32,6 +32,8 @@ jobs:
         with:
           files: 'backstop/results/**/*.xml'
           comment_on_pr: false
+          check_name: 'Test results'
+          fail_on: 'nothing'
     
       - name: Publish test results artifact
         if: always()
