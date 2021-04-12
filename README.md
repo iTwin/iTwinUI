@@ -5,15 +5,20 @@
 <h3 align="center">An open-source design system that helps us build a unified web experience.<h3>
   
 <div align="center">
+  
+  ![Build status](https://github.com/iTwin/iTwinUI/actions/workflows/build.yml/badge.svg)
   [![Dependencies Status](https://status.david-dm.org/gh/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
+
 </div>
 
 <div align="center">
+  
   [Key features](#key-features) • [Install](#install) • [Use](#use) • [Contributing](#contributing)
+
 </div>
 
 <p align="center">
-  ![A mockup of an iTwinUI interface.](https://itwinplatformcdn.azureedge.net/iTwinUI/interface-mockup.png)
+  <img src="https://itwinplatformcdn.azureedge.net/iTwinUI/interface-mockup.png" alt="A mockup of an iTwinUI interface." />
 </p>
 
 
