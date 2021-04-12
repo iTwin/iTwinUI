@@ -26,12 +26,6 @@ jobs:
       - run: yarn build
       - run: yarn test:ci
 
-      - name: yarn test
-        if: ${{ false }}
-        uses: docker://backstopjs/backstopjs
-        with:
-          entrypoint: backstop
-          args: --config=./backstop/backstop.js test
       - name: Publish test results artifact
         if: ${{ success() || failure() }}
         uses: actions/upload-artifact@v2.2.3
