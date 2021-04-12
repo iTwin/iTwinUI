@@ -39,7 +39,15 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2.2.3
         with:
-          # Artifact name
           name: 'backstop_test_results'
-          # A file, directory or wildcard pattern that describes what to upload
           path: '${{ github.workspace }}/backstop/results/'
+          
+      - run: yarn pack
+        working-directory: './lib'
+
+      - name: Publish package artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: 'package'
+          path: '${{ github.workspace }}/lib/bentley-itwinui-*.tgz'
+
