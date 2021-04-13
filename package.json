@@ -56,8 +56,8 @@
     "@types/classnames": "^2.2.7",
     "@types/jest": "^26.0.20",
     "@types/node": "^10.12.2",
-    "@types/react": "^16.4.18",
-    "@types/react-dom": "^16.0.9",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
     "@types/react-transition-group": "^2.9.2",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
@@ -76,8 +76,8 @@
     "jest-cli": "^26.6.3",
     "markdown-to-jsx": "6.11.4",
     "prettier": "^2.2.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "rimraf": "^2.6.2",
     "storybook-dark-mode": "^1.0.7",
     "tippy.js": "^6.3.1",
@@ -88,8 +88,8 @@
     "webpack": "^5.15.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "react": "^16.8.6 || ^17.0.0",
+    "react-dom": "^16.8.6 || ^17.0.0"
   },
   "resolutions": {
     "braces": "^2.3.1"
