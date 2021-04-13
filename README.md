@@ -1,24 +1,19 @@
-<center>
+<p align="center">
+  <img src="https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-logo.png" alt="iTwinUI logo" />
+</p>
 
-  ![iTwinUI logo](https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-logo.png)
+<h1 align="center">iTwinUI-react</h1>
 
-# iTwinUI-React
+<div align="center">
+  
+  [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/iTwin/iTwinUI-react/blob/main/LICENSE.md)
+  ![Build status](https://github.com/iTwin/iTwinUI-react/actions/workflows/build.yml/badge.svg?branch=main)
 
-[![Build Status](https://dev.azure.com/bentleycs/UX%20Design/_apis/build/status/iTwinUI-React?branchName=main)](https://dev.azure.com/bentleycs/UX%20Design/_build/latest?definitionId=4767&branchName=main)
-[![@bentley/itwinui-react package in Azure Artifacts](https://feeds.dev.azure.com/bentleycs/_apis/public/Packaging/Feeds/cddcc498-6606-47b5-b068-e9fa20167bf8/Packages/dc2d8c28-1b1d-4967-abb1-2cfa5c8ec9a7/Badge)](https://dev.azure.com/bentleycs/beconnect/_packaging?_a=package&feed=cddcc498-6606-47b5-b068-e9fa20167bf8&package=dc2d8c28-1b1d-4967-abb1-2cfa5c8ec9a7&preferRelease=true)
-[![Teams Link](https://img.shields.io/badge/Teams-iTwinUI--React-7B83EB?logo=microsoft-teams&logoColor=white)](https://teams.microsoft.com/l/channel/19%3aa697e82c0d0a43e58bbd1d01881abac0%40thread.skype/@bentley/itwinui-react?groupId=7ec5737d-780e-40e6-bf0e-e3991fd6f3a1&tenantId=067e9632-ea4c-4ed9-9e6d-e294956e284b)
+</div>
 
+## What is iTwinUI-react?
 
-[iTwinUI documentation](https://ux.bentley.com/itwin)
-
-[iTwinUI-React documentation and demo](https://ux.bentley.com/itwin/react)
-
-
-</center>
-
-## What is iTwinUI-React?
-
-[iTwinUI-React](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React) is a library built on top of the [iTwinUI](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI) library.
+iTwinUI-React is a library built on top of the [iTwinUI](https://github.com/iTwin/iTwinUI) library.
 The goal of this project is to provide React components for using the styles and components from the core `iTwinUI` project.
 
 ---
@@ -26,11 +21,11 @@ The goal of this project is to provide React components for using the styles and
 ## Install
 
 ```
-npm install @bentley/itwinui-react
+npm install @itwinui/react
 ```
 
 ```
-yarn add @bentley/itwinui-react
+yarn add @itwinui/react
 ```
 
 ---
@@ -39,7 +34,7 @@ yarn add @bentley/itwinui-react
 Import the component you want and start using it!
 
 ```jsx
-import { Button } from '@bentley/itwinui-react';
+import { Button } from '@itwinui/react';
 
 const App = () => (
   <Button>Hello!</Button>
@@ -56,7 +51,7 @@ By default, all components use the light theme but we also provide support for s
   - `os` (which respects the color scheme of the operating system)
 
 ```jsx
-import { ThemeProvider } from '@bentley/itwinui-react';
+import { ThemeProvider } from '@itwinui/react';
 
 const App = () => (
   <>
@@ -69,7 +64,7 @@ const App = () => (
 - The `useTheme` hook also provides the same functionality as `ThemeProvider`.
 
 ```jsx
-import { useTheme } from '@bentley/itwinui-react';
+import { useTheme } from '@itwinui/react';
 
 const App = () => {
   useTheme('dark');
@@ -87,10 +82,10 @@ const App = () => {
 
 ## Contributing
 
-This project is innersourced, so we welcome you to contribute to it and make this UI design system better. You can submit ideas or bugs by creating items in [our backlog](https://dev.azure.com/bentleycs/UX%20Design/_backlogs/backlog/iTwinUI/Features/?workitem=543453).
-Please read our [CONTRIBUTING.md](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React?path=%2FCONTRIBUTING.md&_a=preview) for more information.
+We welcome you to contribute and make this UI design system better. You can submit feature requests or bugs by creating an [issue](https://github.com/iTwin/iTwinUI-react/issues).
+Please read our [CONTRIBUTING.md](https://github.com/iTwin/iTwinUI-react/blob/main/CONTRIBUTING.md) for more information.
 
 ---
 
 ## Changelog
-Read our [CHANGELOG.md](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React?path=%2FCHANGELOG.md&_a=preview) to find recent changes.
+Read our [CHANGELOG.md](https://github.com/iTwin/iTwinUI-react/blob/main/CHANGELOG.md) to find recent changes.

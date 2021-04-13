@@ -7,9 +7,20 @@
   "module": "esm/index.js",
   "typings": "cjs/index.d.ts",
   "description": "A react implementation of our iTwinUI UX standards",
+  "homepage": "https://github.com/iTwin/iTwinUI-react",
   "keywords": [
+    "component",
+    "components",
+    "design-system",
+    "design",
+    "framework",
+    "frontend",
+    "itwin",
     "itwinui",
-    "react"
+    "react-component",
+    "react",
+    "ui",
+    "ux"
   ],
   "scripts": {
     "build": "yarn clean && yarn mkdirp lib/ && yarn copy-files && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",

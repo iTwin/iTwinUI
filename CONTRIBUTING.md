@@ -1,7 +1,7 @@
 # Contributing
 We welcome all types of contribution. 
 
-Need a feature or found a bug? Please create an item in [our backlog.](https://dev.azure.com/bentleycs/UX%20Design/_backlogs/backlog/iTwinUI/Features/?workitem=543453) Be sure to read description in the given link.
+Need a feature or found a bug? Please create an [issue.](https://github.com/iTwin/iTwinUI-react/issues)
 
 Want to contribute by creating a PR? Great! Then read further.
 
@@ -9,8 +9,8 @@ Want to contribute by creating a PR? Great! Then read further.
 We use yarn for package management, so be sure to have it installed
  `npm install -g yarn`
 
-1. `git clone https://bentleycs@dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React`
-2. `cd iTwinUI-React`
+1. `git clone https://github.com/iTwin/iTwinUI-react.git`
+2. `cd iTwinUI-react`
 3. `yarn install`
 
 If using vscode, our prettier and editor configs will be used.
@@ -100,7 +100,7 @@ it('should be visible', () => {
 ```
 
 ### Linking
-If you want to test your changes in a local project, you can go into the `lib/` folder (which gets created when running `yarn build` or `yarn build:watch`) and run `yarn link`. Then from your test project, run `yarn link @bentley/itwinui-react`.
+If you want to test your changes in a local project, you can go into the `lib/` folder (which gets created when running `yarn build` or `yarn build:watch`) and run `yarn link`. Then from your test project, run `yarn link @itwinui/react`.
 
 You might face an "invalid hook call" error if your test project is using a different version or instance of React. You can fix this by [linking React](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react) or by using [aliases](https://github.com/facebook/react/issues/13991#issuecomment-463486871) in your bundler. If it still doesn't work, you may consider using `yalc`.
 
@@ -133,9 +133,9 @@ The `CHANGELOG.md` file must be updated for any new components or changes that y
 
 ## Pull Requests
 
-Before creating a pull request, make sure your changes address a specific work item or bug in the iTwinUI backlog. Do a search to see if there are any existing items that are still open. If you don't find one, you can create one.
+Before creating a pull request, make sure your changes address a specific issue. Do a search to see if there are any existing issues that are still open. If you don't find one, you can create one.
 
-To enable us to quickly review and accept your pull requests, always create one pull request per work item. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked work item.
+To enable us to quickly review and accept your pull requests, always create one pull request per issue. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked issue.
 
 #### Checklist
 
@@ -146,9 +146,9 @@ To enable us to quickly review and accept your pull requests, always create one 
 5. Create a branch `git checkout -b yourName/your-feature-name`
 6. Stage `git add -A`
 7. Commit `git commit -m"<commit_message>"`
-8. Before the changes are committed, the formatter and tests are run; the commit will not happen if the tests fail.
-9. After ensuring that the tests passed and the changes were committed, `git push`
-10. Navigate to [the DevOps page](https://dev.azure.com/bentleycs/UX%20Design/_git/iTwinUI-React/pullrequests?_a=mine)
+8. Before the changes are committed, the formatter is run.
+9. After ensuring the changes are committed, `git push`
+10. Navigate to [the github page](https://github.com/iTwin/iTwinUI-react/pulls)
 11. Create a Pull Request
 12. Pending code review, your changes will be accepted into the repository.
 13. When completing your pull request, you might want to add a custom merge message (available in completion step) to summarize the changes your commit brings.
