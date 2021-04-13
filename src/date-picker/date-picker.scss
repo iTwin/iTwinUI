@@ -27,27 +27,10 @@
 
       > .iui-month-year {
         display: inline-flex;
-        width: calc(100% - 32px);
+        width: calc(100% - #{$iui-xs});
         align-items: center;
         justify-content: space-between;
-        height: $iui-icons-default;
-        padding: $iui-m;
-
-        > svg,
-        img {
-          width: $iui-icons-default;
-          height: $iui-icons-default;
-          cursor: pointer;
-          @include themed {
-            fill: t(iui-icons-color-actionable);
-          }
-
-          &:hover {
-            @include themed {
-              fill: t(iui-icons-color-actionable-hover);
-            }
-          }
-        }
+        height: $iui-line-height * 2;
       }
 
       > .iui-weekday {

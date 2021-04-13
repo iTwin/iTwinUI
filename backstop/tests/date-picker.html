@@ -16,6 +16,10 @@
     />
     <link
       rel="stylesheet"
+      href="../../lib/css/button.css"
+    />
+    <link
+      rel="stylesheet"
       href="../../lib/css/date-picker.css"
     />
     <link
@@ -42,23 +46,41 @@
         <div class="iui-calendar">
           <div class="iui-header">
             <div class="iui-month-year">
-              <!-- Use chevron-left.svg from generic-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
+              <button
+                aria-label="Previous month"
+                type="button"
                 role="month-previous"
-                aria-hidden="true"
+                class="iui-button iui-borderless"
               >
-                <path d="M11.3 0l1.4 1.4L6.1 8l6.6 6.6-1.4 1.4-8-8z"></path>
-              </svg>
+                <!-- Use chevron-left.svg from generic-icons package. -->
+                <svg
+                  class="iui-icon"
+                  aria-hidden="true"
+                  alt="Previous month"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M11.3 0l1.4 1.4L6.1 8l6.6 6.6-1.4 1.4-8-8z" />
+                </svg>
+              </button>
+
               <span aria-live="polite">August 2020</span>
-              <!-- Use chevron-right.svg from generic-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
+
+              <button
+                aria-label="Next month"
+                type="button"
                 role="month-next"
-                aria-hidden="true"
+                class="iui-button iui-borderless"
               >
-                <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z"></path>
-              </svg>
+                <!-- Use chevron-right.svg from generic-icons package. -->
+                <svg
+                  class="iui-icon"
+                  aria-hidden="true"
+                  alt="Next month"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z" />
+                </svg>
+              </button>
             </div>
             <div class="iui-weekday">
               <div
