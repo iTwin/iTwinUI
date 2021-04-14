@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Build and run tests
     runs-on: ubuntu-latest
 
     steps:
@@ -34,14 +35,14 @@ jobs:
           comment_on_pr: false
           check_name: 'Test results'
           fail_on: 'nothing'
-    
+
       - name: Publish test results artifact
         if: always()
         uses: actions/upload-artifact@v2.2.3
         with:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/backstop/results/'
-          
+
       - run: yarn pack
         working-directory: './lib'
 
@@ -50,4 +51,3 @@ jobs:
         with:
           name: 'package'
           path: '${{ github.workspace }}/lib/bentley-itwinui-*.tgz'
-
