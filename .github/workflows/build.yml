@@ -4,8 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
+    paths-ignore:
+      - '**.md'
   pull_request:
     branches: [main]
+    paths-ignore:
+      - '**.md'
 
 jobs:
   build:
@@ -47,7 +51,8 @@ jobs:
         working-directory: './lib'
 
       - name: Publish package artifact
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: actions/upload-artifact@v2.2.3
         with:
           name: 'package'
-          path: '${{ github.workspace }}/lib/bentley-itwinui-*.tgz'
+          path: '${{ github.workspace }}/lib/itwin-itwinui-css-*.tgz'
