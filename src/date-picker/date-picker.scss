@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
-@import '../inputs/variables';
 
 @mixin iui-date-picker {
   @include iui-reset;
@@ -16,6 +15,17 @@
     background-color: t(iui-color-background-1);
   }
 
+  @include iui-calendar;
+  @include iui-time;
+
+  > div:not(:last-child) {
+    @include themed {
+      border-right: 1px solid t(iui-color-background-4);
+    }
+  }
+}
+
+@mixin iui-calendar {
   > .iui-calendar {
     > .iui-header {
       border: none;
@@ -31,16 +41,31 @@
         width: 100%;
         align-items: center;
         justify-content: space-between;
-        padding: $iui-input-offset $iui-xs;
+        padding: 0 $iui-xs;
         box-sizing: border-box;
 
         > span {
           margin: 0 $iui-xs;
+          width: 156px;
+          white-space: nowrap;
+          display: inline-flex;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: center;
+          line-height: $iui-baseline * 4;
+        }
+
+        .iui-month {
+          overflow: hidden;
+          max-width: 15ch;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
       }
 
       > .iui-weekdays {
-        height: $iui-baseline * 3;
+        line-height: $iui-baseline * 3;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -117,7 +142,9 @@
       }
     }
   }
+}
 
+@mixin iui-time {
   > .iui-time,
   > .iui-period {
     padding: $iui-baseline $iui-s;
@@ -156,14 +183,7 @@
   }
 
   > .iui-period {
-    padding-right: $iui-s;
     display: flex;
     align-items: center;
-  }
-
-  > div:not(:last-child) {
-    @include themed {
-      border-right: 1px solid t(iui-color-background-4);
-    }
   }
 }
