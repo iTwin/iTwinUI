@@ -31,20 +31,11 @@
         width: 100%;
         align-items: center;
         justify-content: space-between;
-        padding: $iui-input-offset 0;
+        padding: $iui-input-offset $iui-xs;
+        box-sizing: border-box;
 
         > span {
           margin: 0 $iui-xs;
-        }
-
-        > .iui-button {
-          &:first-child {
-            margin-left: $iui-xs;
-          }
-
-          &:last-child {
-            margin-right: $iui-xs;
-          }
         }
       }
 
