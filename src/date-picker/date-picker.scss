@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../inputs/variables';
 
 @mixin iui-date-picker {
   @include iui-reset;
@@ -30,7 +31,7 @@
         width: 100%;
         align-items: center;
         justify-content: space-between;
-        height: $iui-line-height * 2;
+        padding: $iui-input-offset 0;
 
         > span {
           margin: 0 $iui-xs;
