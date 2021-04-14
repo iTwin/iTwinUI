@@ -5,69 +5,45 @@
 
 @mixin iui-toast {
   @include iui-reset;
-
   @include iui-font-family;
-  flex-direction: row;
   display: inline-flex;
+  flex-direction: row;
   align-items: center;
   box-sizing: border-box;
   pointer-events: all;
   margin: 0 $iui-m $iui-baseline $iui-m;
   min-height: $iui-baseline * 4;
   max-height: 100%;
-
+  border-radius: $iui-border-radius;
   @include themed {
     background-color: t(iui-color-background-1);
+    border: 1px solid t(iui-color-foreground-body);
     box-shadow: 0 0 0 1px
       rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4)),
       $iui-elevation-24;
   }
-  border-radius: $iui-border-radius;
 
-  @include themed {
-    border: 1px solid t(iui-color-foreground-body);
-  }
+  > .iui-color {
+    display: flex;
+    align-self: stretch !important;
+    justify-content: center;
+    align-items: center;
+    width: $iui-l * 2;
+    flex-shrink: 0;
+    @include themed {
+      background-color: t(iui-color-background-5);
+    }
 
-  @media screen and (max-width: 400px) {
-    width: calc(100vw - 36px);
-  }
-
-  @media screen and (min-width: 401px) {
-    min-width: 400px;
-    max-width: 640px;
-  }
-
-  .iui-toast-icon-container {
-    order: 1;
-    align-self: stretch;
-    min-height: ($iui-baseline * 4) - 2;
-
-    .iui-toast-icon-background {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
+    > .iui-icon {
+      height: $iui-icons-default;
+      width: $iui-icons-default;
       @include themed {
-        background-color: t(iui-color-background-5);
-      }
-      height: 100%;
-      width: $iui-l * 2;
-
-      .iui-toast-status-icon {
-        height: $iui-icons-default;
-        width: $iui-icons-default;
-
-        path {
-          @include themed {
-            fill: t(iui-color-foreground-accessory) !important;
-          }
-        }
+        fill: t(iui-color-foreground-accessory);
       }
     }
   }
 
-  .iui-toast-message {
-    order: 2;
+  > .iui-message {
     flex-grow: 1;
     font-size: $iui-font-size;
     margin-top: $iui-baseline / 2;
@@ -77,40 +53,26 @@
     line-height: $iui-line-height;
     font-weight: $iui-font-weight-normal;
     font-style: normal;
-
     @include themed {
       color: t(iui-text-color);
     }
   }
 
-  .iui-toast-link {
-    order: 3;
+  > .iui-anchor {
     font-size: $iui-font-size-small;
-    margin-top: $iui-baseline / 2;
-    margin-bottom: $iui-baseline / 2;
-    margin-right: $iui-l;
+    margin-right: $iui-m;
     user-select: none;
-    cursor: pointer;
+    text-decoration: underline;
+    white-space: nowrap;
+    @include iui-focus;
 
-    a {
-      text-decoration: underline;
-
-      @include themed {
-        color: t(iui-color-foreground-primary);
-      }
-
-      &:hover {
-        text-decoration: none;
-      }
-
-      &:focus {
-        outline: 0;
-
-        @include themed {
-          box-shadow: t(iui-focus-box-shadow);
-        }
-      }
+    &:hover {
+      text-decoration: none;
     }
+  }
+
+  > .iui-button {
+    margin-right: $iui-s;
   }
 
   .iui-toast-close-icon-container {
@@ -137,5 +99,14 @@
         }
       }
     }
+  }
+
+  @media screen and (max-width: 400px) {
+    width: calc(100vw - 36px);
+  }
+
+  @media screen and (min-width: 401px) {
+    min-width: 400px;
+    max-width: 640px;
   }
 }

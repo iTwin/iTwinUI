@@ -16,6 +16,10 @@
     />
     <link
       rel="stylesheet"
+      href="../../lib/css/button.css"
+    />
+    <link
+      rel="stylesheet"
       href="../../lib/css/toast-notification.css"
     />
     <link
@@ -33,13 +37,18 @@
     <theme-button></theme-button>
     <h1>Toast notification</h1>
     <hr />
-    <div class="iui-toast-wrapper">
-      <div class="iui-toast-positive">
-        <div class="iui-toast-icon-container">
-          <div class="iui-toast-icon-background">
+
+    <section id="demo-toast">
+      <div class="iui-toast-wrapper">
+
+        <div
+          class="iui-toast iui-positive"
+          id="demo-positive"
+        >
+          <div class="iui-color">
             <!-- Use success-hollow.svg from generic-icons package. -->
             <svg
-              class="iui-toast-status-icon"
+              class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
@@ -48,29 +57,35 @@
               />
             </svg>
           </div>
-        </div>
-        <div class="iui-toast-message">Job processing completed.</div>
-        <div class="iui-toast-link">
-          <a>View the report</a>
-        </div>
-        <div class="iui-toast-close-icon-container">
-          <!-- Use close.svg from generic-icons package. -->
-          <svg
-            class="iui-toast-close-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
+          <div class="iui-message">Job processing completed.</div>
+          <a
+            class="iui-anchor"
+            href="#"
+          >View the report</a>
+          <button
+            aria-label="Close"
+            type="button"
+            class="iui-button iui-borderless iui-small"
           >
-            <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6" />
-          </svg>
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Close"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m13.25 1-5.25 5.25-5.25-5.25-1.75 1.75 5.25 5.25-5.25 5.25 1.75 1.75 5.25-5.25 5.25 5.25 1.75-1.75-5.25-5.25 5.25-5.25z"
+              />
+            </svg>
+          </button>
         </div>
-      </div>
 
-      <div class="iui-toast-positive">
-        <div class="iui-toast-icon-container">
-          <div class="iui-toast-icon-background">
+        <div class="iui-toast iui-positive">
+          <div class="iui-color">
             <!-- Use success-hollow.svg from generic-icons package. -->
             <svg
-              class="iui-toast-status-icon"
+              class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
@@ -79,26 +94,31 @@
               />
             </svg>
           </div>
-        </div>
-        <div class="iui-toast-message">Processing completed.</div>
-        <div class="iui-toast-close-icon-container">
-          <svg
-            class="iui-toast-close-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
+          <div class="iui-message">Processing completed.</div>
+          <button
+            aria-label="Close"
+            type="button"
+            class="iui-button iui-borderless iui-small"
           >
-            <!-- Use close.svg from generic-icons package. -->
-            <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6" />
-          </svg>
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Close"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m13.25 1-5.25 5.25-5.25-5.25-1.75 1.75 5.25 5.25-5.25 5.25 1.75 1.75 5.25-5.25 5.25 5.25 1.75-1.75-5.25-5.25 5.25-5.25z"
+              />
+            </svg>
+          </button>
         </div>
-      </div>
 
-      <div class="iui-toast-positive">
-        <div class="iui-toast-icon-container">
-          <div class="iui-toast-icon-background">
+        <div class="iui-toast iui-positive">
+          <div class="iui-color">
             <!-- Use success-hollow.svg from generic-icons package. -->
             <svg
-              class="iui-toast-status-icon"
+              class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
@@ -107,86 +127,93 @@
               />
             </svg>
           </div>
+          <div class="iui-message">
+            Bacon ipsum dolor amet shoulder andouille meatball meatloaf chicken
+            pork loin alcatra boudin pig beef ribs. Short loin short ribs buffalo
+            shankle, jerky fatback leberkas meatball boudin. Kevin meatloaf flank
+            pancetta, picanha tail kielbasa salami ham hock sirloin cow
+            frankfurter capicola. Jowl shankle short ribs rump shank ribeye,
+            frankfurter sausage.
+          </div>
         </div>
-        <div class="iui-toast-message">
-          Bacon ipsum dolor amet shoulder andouille meatball meatloaf chicken
-          pork loin alcatra boudin pig beef ribs. Short loin short ribs buffalo
-          shankle, jerky fatback leberkas meatball boudin. Kevin meatloaf flank
-          pancetta, picanha tail kielbasa salami ham hock sirloin cow
-          frankfurter capicola. Jowl shankle short ribs rump shank ribeye,
-          frankfurter sausage.
-        </div>
-      </div>
 
-      <div class="iui-toast-informational">
-        <div class="iui-toast-icon-container">
-          <div class="iui-toast-icon-background">
+        <div class="iui-toast iui-informational">
+          <div class="iui-color">
             <!-- Use info-hollow.svg from generic-icons package. -->
             <svg
-              class="iui-toast-status-icon"
+              class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
               <path
                 d="M8,1.5A6.5,6.5,0,1,1,1.5,8,6.50736,6.50736,0,0,1,8,1.5M8,0a8,8,0,1,0,8,8A8.02352,8.02352,0,0,0,8,0ZM9.2,3.2a.92336.92336,0,0,1,1,.9A1.30936,1.30936,0,0,1,8.9,5.3a.94477.94477,0,0,1-1-1A1.22815,1.22815,0,0,1,9.2,3.2Zm-2,9.6c-.5,0-.9-.3-.5-1.7l.6-2.4c.1-.4.1-.5,0-.5-.2-.1-.9.2-1.3.5l-.2-.5A6.49723,6.49723,0,0,1,9.1,6.6c.5,0,.6.6.3,1.6l-.7,2.6c-.1.5-.1.6.1.6a2.00284,2.00284,0,0,0,1.1-.6l.3.4A5.76883,5.76883,0,0,1,7.2,12.8Z"
-                fill="#2b9be3"
               />
             </svg>
           </div>
-        </div>
-        <div class="iui-toast-message">
-          Bacon ipsum dolor amet shoulder andouille meatball meatloaf chicken
-          pork loin alcatra boudin pig beef ribs. Short loin short ribs buffalo
-          shankle, jerky fatback leberkas meatball boudin. Kevin meatloaf flank
-          pancetta, picanha tail kielbasa salami ham hock sirloin cow
-          frankfurter capicola. Jowl shankle short ribs rump shank ribeye,
-          frankfurter sausage.
-        </div>
-        <div class="iui-toast-link">
-          <a>View</a>
-        </div>
-        <div class="iui-toast-close-icon-container">
-          <!-- Use close.svg from generic-icons package. -->
-          <svg
-            class="iui-toast-close-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
+          <div class="iui-message">
+            Bacon ipsum dolor amet shoulder andouille meatball meatloaf chicken
+            pork loin alcatra boudin pig beef ribs. Short loin short ribs buffalo
+            shankle, jerky fatback leberkas meatball boudin. Kevin meatloaf flank
+            pancetta, picanha tail kielbasa salami ham hock sirloin cow
+            frankfurter capicola. Jowl shankle short ribs rump shank ribeye,
+            frankfurter sausage.
+          </div>
+          <a
+            class="iui-anchor"
+            href="#"
+          >View</a>
+          <button
+            aria-label="Close"
+            type="button"
+            class="iui-button iui-borderless iui-small"
           >
-            <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6" />
-          </svg>
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Close"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m13.25 1-5.25 5.25-5.25-5.25-1.75 1.75 5.25 5.25-5.25 5.25 1.75 1.75 5.25-5.25 5.25 5.25 1.75-1.75-5.25-5.25 5.25-5.25z"
+              />
+            </svg>
+          </button>
         </div>
-      </div>
 
-      <div class="iui-toast-informational">
-        <div class="iui-toast-icon-container">
-          <div class="iui-toast-icon-background">
+        <div
+          class="iui-toast iui-informational"
+          id="demo-informational"
+        >
+          <div class="iui-color">
             <!-- Use info-hollow.svg from generic-icons package. -->
             <svg
-              class="iui-toast-status-icon"
+              class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
               <path
                 d="M8,1.5A6.5,6.5,0,1,1,1.5,8,6.50736,6.50736,0,0,1,8,1.5M8,0a8,8,0,1,0,8,8A8.02352,8.02352,0,0,0,8,0ZM9.2,3.2a.92336.92336,0,0,1,1,.9A1.30936,1.30936,0,0,1,8.9,5.3a.94477.94477,0,0,1-1-1A1.22815,1.22815,0,0,1,9.2,3.2Zm-2,9.6c-.5,0-.9-.3-.5-1.7l.6-2.4c.1-.4.1-.5,0-.5-.2-.1-.9.2-1.3.5l-.2-.5A6.49723,6.49723,0,0,1,9.1,6.6c.5,0,.6.6.3,1.6l-.7,2.6c-.1.5-.1.6.1.6a2.00284,2.00284,0,0,0,1.1-.6l.3.4A5.76883,5.76883,0,0,1,7.2,12.8Z"
-                fill="#2b9be3"
               />
             </svg>
           </div>
+          <div class="iui-message">
+            26 files are available for synchronization.
+          </div>
+          <a
+            class="iui-anchor"
+            href="#"
+          >View</a>
         </div>
-        <div class="iui-toast-message">
-          26 files are available for synchronization.
-        </div>
-        <div class="iui-toast-link">
-          <a>View</a>
-        </div>
-      </div>
 
-      <div class="iui-toast-negative">
-        <div class="iui-toast-icon-container">
-          <div class="iui-toast-icon-background">
+        <div
+          class="iui-toast iui-negative"
+          id="demo-negative"
+        >
+          <div class="iui-color">
             <!-- Use error-hollow.svg from generic-icons package. -->
             <svg
-              class="iui-toast-status-icon"
+              class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
@@ -195,22 +222,31 @@
               />
             </svg>
           </div>
-        </div>
-        <div class="iui-toast-message">Job processing error.</div>
-        <div class="iui-toast-link">
-          <a>View the report</a>
-        </div>
-        <div class="iui-toast-close-icon-container">
-          <!-- Use close.svg from generic-icons package. -->
-          <svg
-            class="iui-toast-close-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
+          <div class="iui-message">Job processing error.</div>
+          <a
+            class="iui-anchor"
+            href="#"
+          >View the report</a>
+          <button
+            aria-label="Close"
+            type="button"
+            class="iui-button iui-borderless iui-small"
           >
-            <path d="M14 0L8 6 2 0 0 2l6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6" />
-          </svg>
+            <!-- Use close_2.svg from generic-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              alt="Close"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m13.25 1-5.25 5.25-5.25-5.25-1.75 1.75 5.25 5.25-5.25 5.25 1.75 1.75 5.25-5.25 5.25 5.25 1.75-1.75-5.25-5.25 5.25-5.25z"
+              />
+            </svg>
+          </button>
         </div>
+
       </div>
-    </div>
+    </section>
   </body>
 </html>

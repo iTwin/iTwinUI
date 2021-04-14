@@ -4,13 +4,11 @@
 @import './toast';
 
 @mixin iui-toast-positive {
-  @include iui-toast;
-
   @include themed {
     border-color: t(iui-color-foreground-positive);
   }
 
-  .iui-toast-message {
+  > .iui-message {
     &::selection {
       @include themed {
         background-color: rgba(
@@ -21,9 +19,26 @@
     }
   }
 
-  .iui-toast-icon-container > .iui-toast-icon-background {
+  > .iui-color {
     @include themed {
       background-color: t(iui-color-background-positive);
     }
+  }
+
+  > .iui-anchor {
+    @include themed {
+      color: t(iui-color-foreground-positive);
+    }
+
+    &:hover {
+      @include themed {
+        color: t(iui-color-foreground-positive-overlay);
+      }
+    }
+  }
+
+  > .iui-anchor,
+  > .iui-button {
+    @include iui-focus(iui-focus-positive-box-shadow);
   }
 }
