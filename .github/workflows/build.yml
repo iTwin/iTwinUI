@@ -42,13 +42,3 @@ jobs:
         with:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/backstop/results/'
-
-      - run: yarn pack
-        working-directory: './lib'
-
-      - name: Publish package artifact
-        if: ${{ github.ref == 'refs/heads/main' }}
-        uses: actions/upload-artifact@v2.2.3
-        with:
-          name: 'package'
-          path: '${{ github.workspace }}/lib/itwin-itwinui-css-*.tgz'
