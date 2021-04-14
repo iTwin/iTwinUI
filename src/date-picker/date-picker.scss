@@ -15,6 +15,17 @@
     background-color: t(iui-color-background-1);
   }
 
+  @include iui-calendar;
+  @include iui-time;
+
+  > div:not(:last-child) {
+    @include themed {
+      border-right: 1px solid t(iui-color-background-4);
+    }
+  }
+}
+
+@mixin iui-calendar {
   > .iui-calendar {
     > .iui-header {
       border: none;
@@ -27,48 +38,67 @@
 
       > .iui-month-year {
         display: inline-flex;
-        width: calc(100% - 32px);
+        width: 100%;
         align-items: center;
         justify-content: space-between;
-        height: $iui-icons-default;
-        padding: $iui-m;
+        padding: 0 $iui-xs;
+        box-sizing: border-box;
 
-        > svg,
-        img {
-          width: $iui-icons-default;
-          height: $iui-icons-default;
-          cursor: pointer;
-          @include themed {
-            fill: t(iui-icons-color-actionable);
-          }
+        > span {
+          margin: 0 $iui-xs;
+          width: 156px;
+          white-space: nowrap;
+          display: inline-flex;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: center;
+          line-height: $iui-baseline * 4;
+        }
 
-          &:hover {
-            @include themed {
-              fill: t(iui-icons-color-actionable-hover);
-            }
-          }
+        .iui-month {
+          overflow: hidden;
+          max-width: 15ch;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
       }
 
-      > .iui-weekday {
-        white-space: nowrap;
-        height: $iui-xl;
+      > .iui-weekdays {
+        line-height: $iui-baseline * 3;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0 $iui-s;
         @include themed {
           background-color: t(iui-color-background-2);
+        }
+
+        > div {
+          white-space: nowrap;
+          overflow: hidden;
+          width: $iui-xl;
+          text-align: center;
         }
       }
     }
 
     > .iui-dates {
-      margin: 0 $iui-s $iui-s;
-
       > .iui-week {
         white-space: nowrap;
-        height: $iui-xl;
+        height: $iui-baseline * 3;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 0 $iui-s;
 
         > .iui-date {
           @include iui-focus;
           cursor: pointer;
+          display: inline-block;
+          width: $iui-l;
+          line-height: $iui-l;
+          margin: 0 $iui-xs;
 
           &:hover:not(.iui-selected) {
             border-radius: $iui-border-radius;
@@ -111,13 +141,49 @@
         }
       }
     }
+  }
+}
 
-    > .iui-header > .iui-weekday > div,
-    > .iui-dates > .iui-week > div {
-      display: inline-block;
-      width: $iui-l;
-      line-height: $iui-l;
-      margin: $iui-xxs $iui-xs;
+@mixin iui-time {
+  > .iui-time,
+  > .iui-period {
+    padding: $iui-baseline $iui-s;
+    overflow-y: auto;
+
+    > ol {
+      @include iui-reset;
+      list-style: none;
+
+      > li {
+        @include iui-focus;
+        padding: $iui-baseline $iui-m;
+        border-radius: $iui-border-radius;
+
+        &:hover {
+          cursor: pointer;
+          @include themed {
+            color: t(iui-color-foreground-primary);
+            background-color: rgba(
+              t(iui-color-foreground-primary-rgb),
+              t(iui-opacity-6)
+            );
+          }
+        }
+
+        &.iui-selected {
+          font-weight: $iui-font-weight-semibold;
+          cursor: default;
+          @include themed {
+            background-color: t(iui-color-background-primary);
+            color: t(iui-color-foreground-accessory);
+          }
+        }
+      }
     }
+  }
+
+  > .iui-period {
+    display: flex;
+    align-items: center;
   }
 }
