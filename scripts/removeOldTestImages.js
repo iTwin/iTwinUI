@@ -14,12 +14,12 @@ global.report = (res) => {
 };
 require('../backstop/results/html_report/config');
 
-const newestImages = results.tests.map((test) => test.pair.test.substr(32));
+const newImages = results.tests.map((test) => test.pair.test.substr(32));
 const referenceImages = fs.readdirSync(REFERENCE_FOLDER_PATH);
 
 let count = 0;
 referenceImages.forEach((fileName) => {
-  if (!newestImages.includes(fileName)) {
+  if (!newImages.includes(fileName)) {
     console.log('Removing: ', fileName);
     fs.unlinkSync(`${REFERENCE_FOLDER_PATH}/${fileName}`);
     count++;
