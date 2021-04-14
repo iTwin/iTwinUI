@@ -5,8 +5,14 @@ module.exports = [
   scenario('Type Date', {
     selectors: ['#demo-date'],
   }),
+  scenario('Type Date with year skipping buttons', {
+    selectors: ['#demo-date-year-skipping'],
+  }),
   scenario('Type Date & Time', {
     selectors: ['#demo-date-and-time'],
+  }),
+  scenario('Type Date & Time 24 hour format', {
+    selectors: ['#demo-date-and-time-24h'],
   }),
 
   // Hover states
