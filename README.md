@@ -71,7 +71,7 @@ You need to add `iui-body` class to your `<body>` element in order to get recomm
 
 ## Contributing
 
-Are you interested in helping iTwinUI grow & expand? You can submit feature requests or bugs by creating items in [issues](https://github.com/iTwin/iTwinUI/issues).
+Are you interested in helping iTwinUI grow & expand? You can submit feature requests or bugs by creating [issues](https://github.com/iTwin/iTwinUI/issues).
 Please read our [CONTRIBUTING.md](https://github.com/iTwin/iTwinUI/blob/main/CONTRIBUTING.md) for more information.
 
 ## Changelog
