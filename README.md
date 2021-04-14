@@ -32,11 +32,11 @@ The goal of this project is to transform UX design specifications into flexible 
 ## Install
 
 ```
-npm install @bentley/itwinui
+npm install @itwin/itwinui-css
 ```
 
 ```
-yarn add @bentley/itwinui
+yarn add @itwin/itwinui-css
 ```
 
 ---
@@ -48,7 +48,7 @@ You need to add `iui-body` class to your `<body>` element in order to get recomm
 ### Using Sass:
 
 ```scss
-@import '@bentley/itwinui/scss/variables';
+@import '@itwin/itwinui-css/scss/variables';
 
 .my-class {
   padding: $iui-m;
@@ -64,7 +64,7 @@ You need to add `iui-body` class to your `<body>` element in order to get recomm
 ### Using CSS (applying global styles):
 
 ```css
-@import '@bentley/itwinui/css/global';
+@import '@itwin/itwinui-css/css/global';
 ```
 
 ---
