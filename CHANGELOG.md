@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0
+
+`2021-04-14`
+
+### What's new
+
+- **Date picker can now display time** and classes have been renamed.
+
 ## 0.7.0
 
 `2021-04-09`
