@@ -45,13 +45,14 @@ export const Basic: Story<DatePickerProps> = (args) => {
       </IconButton>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
       {opened && (
-        <DatePicker
-          date={currentDate}
-          onChange={onChange}
-          style={{ display: 'block' }}
-          localizedNames={localizedNames}
-          setFocus={setFocus}
-        />
+        <div style={{ marginTop: 4 }}>
+          <DatePicker
+            date={currentDate}
+            onChange={onChange}
+            localizedNames={localizedNames}
+            setFocus={setFocus}
+          />
+        </div>
       )}
     </>
   );
@@ -85,13 +86,14 @@ export const Localized: Story<DatePickerProps> = (args) => {
       </IconButton>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
       {opened && (
-        <DatePicker
-          date={currentDate}
-          onChange={onChange}
-          style={{ display: 'block' }}
-          localizedNames={localizedNames}
-          setFocus={setFocus}
-        />
+        <div style={{ marginTop: 4 }}>
+          <DatePicker
+            date={currentDate}
+            onChange={onChange}
+            localizedNames={localizedNames}
+            setFocus={setFocus}
+          />
+        </div>
       )}
     </>
   );

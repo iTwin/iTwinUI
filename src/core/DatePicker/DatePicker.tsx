@@ -9,6 +9,7 @@ import React from 'react';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/date-picker.css';
+import { IconButton } from '../Buttons/IconButton';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (
@@ -296,53 +297,31 @@ export const DatePicker = ({
     }
   };
 
-  const onPreviousMonthKeyClick = (event: React.KeyboardEvent<SVGElement>) => {
-    if (
-      event.key === 'Enter' ||
-      event.key === ' ' ||
-      event.key === 'Spacebar'
-    ) {
-      handleMoveToPreviousMonth();
-    }
-  };
-
-  const onNextMonthKeyClick = (event: React.KeyboardEvent<SVGElement>) => {
-    if (
-      event.key === 'Enter' ||
-      event.key === ' ' ||
-      event.key === 'Spacebar'
-    ) {
-      handleMoveToNextMonth();
-    }
-  };
-
   return (
     <div className={cx('iui-date-picker', className)} style={style} {...rest}>
-      <div
-        className='iui-date-picker-calendar'
-        style={{
-          display: 'inline-flex',
-          flexDirection: 'column',
-          position: 'initial',
-        }}
-      >
-        <div className='iui-date-picker-calendar-header'>
-          <div className='iui-date-picker-calendar-header-content'>
-            <SvgChevronLeft
+      <div className='iui-calendar'>
+        <div className='iui-header'>
+          <div className='iui-month-year'>
+            <IconButton
+              styleType='borderless'
               onClick={handleMoveToPreviousMonth}
-              onKeyDown={onPreviousMonthKeyClick}
-              tabIndex={0}
-            />
-            <span>
-              {monthNames[displayedMonthIndex]} {displayedYear}
+            >
+              <SvgChevronLeft aria-hidden={true} />
+            </IconButton>
+            <span aria-live='polite'>
+              <span
+                className='iui-month'
+                title={monthNames[displayedMonthIndex]}
+              >
+                {monthNames[displayedMonthIndex]}
+              </span>
+              &nbsp;{displayedYear}
             </span>
-            <SvgChevronRight
-              onClick={handleMoveToNextMonth}
-              onKeyDown={onNextMonthKeyClick}
-              tabIndex={0}
-            />
+            <IconButton styleType='borderless' onClick={handleMoveToNextMonth}>
+              <SvgChevronRight aria-hidden={true} />
+            </IconButton>
           </div>
-          <div className='iui-date-picker-calendar-header-weekdays'>
+          <div className='iui-weekdays'>
             {shortDays.map((day, index) => (
               <div key={day} title={longDays[index]}>
                 {day}
@@ -351,7 +330,7 @@ export const DatePicker = ({
           </div>
         </div>
         <div
-          className='iui-date-picker-calendar-month'
+          className='iui-dates'
           onKeyDown={handleCalendarKeyDown}
           role='listbox'
         >
@@ -359,14 +338,14 @@ export const DatePicker = ({
             return (
               <div
                 key={`week-${displayedMonthIndex}-${weekIndex}`}
-                className='iui-date-picker-calendar-week'
+                className='iui-week'
               >
                 {weekDays.map((weekDay, dayIndex) => {
                   const dateValue = weekDay.getDate();
                   return (
                     <div
                       key={`day-${displayedMonthIndex}-${dayIndex}`}
-                      className={cx('iui-date-picker-calendar-week-selector', {
+                      className={cx('iui-date', {
                         'iui-outside-month':
                           weekDay.getMonth() !== displayedMonthIndex,
                         'iui-today': isSameDay(weekDay, new Date()),
