@@ -47,16 +47,13 @@
       display: flex;
       align-items: center;
       margin-bottom: $iui-baseline;
+      justify-content: space-between;
 
       > .iui-title {
         font-size: $iui-font-size-subheading;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-      }
-
-      > .iui-button {
-        margin-left: auto;
       }
     }
 
