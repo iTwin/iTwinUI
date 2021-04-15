@@ -8,11 +8,11 @@ import { Button, ButtonProps } from '../Button';
 import { IconButton } from '../IconButton';
 import { DropdownMenu } from '../../DropdownMenu';
 import { Placement } from 'tippy.js';
-import SvgCaretDown2 from '@bentley/icons-generic-react/cjs/icons/CaretDown2';
-import SvgCaretUp2 from '@bentley/icons-generic-react/cjs/icons/CaretUp2';
+import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
+import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
 
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/button.css';
+import '@itwin/itwinui-css/css/button.css';
 
 export type SplitButtonProps = {
   /**
@@ -96,7 +96,7 @@ export const SplitButton = (props: SplitButtonProps) => {
         onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
         <IconButton styleType={styleType} size={size}>
-          {isMenuOpen ? <SvgCaretUp2 /> : <SvgCaretDown2 />}
+          {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
         </IconButton>
       </DropdownMenu>
     </span>

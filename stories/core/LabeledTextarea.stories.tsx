@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgCamera from '@bentley/icons-generic-react/cjs/icons/Camera';
+import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { LabeledTextarea } from '../../src/core';

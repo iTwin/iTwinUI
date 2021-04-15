@@ -13,7 +13,7 @@ export default {
   argTypes: {
     backgroundColor: {
       control: 'color',
-      defaultValue: 'green',
+      defaultValue: '#6ab9ec',
     },
     title: {
       defaultValue: 'Terry Rivers',
@@ -29,7 +29,7 @@ export const Small: Story<UserIconProps> = (args) => {
     <UserIcon
       size='small'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       title='Terry Rivers'
       {...args}
     />
@@ -50,7 +50,7 @@ export const SmallWithImage: Story<UserIconProps> = (args) => {
     <UserIcon
       size='small'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -76,7 +76,7 @@ export const Medium: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       title='Terry Rivers'
       {...args}
     />
@@ -97,7 +97,7 @@ export const MediumWithImage: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -123,7 +123,7 @@ export const Large: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       title='Terry Rivers'
       {...args}
     />
@@ -144,7 +144,7 @@ export const LargeWithImage: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -170,7 +170,7 @@ export const XLarge: Story<UserIconProps> = (args) => {
     <UserIcon
       size='x-large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       title='Terry Rivers'
       {...args}
     />
@@ -191,7 +191,7 @@ export const XLargeWithImage: Story<UserIconProps> = (args) => {
     <UserIcon
       size='x-large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -217,7 +217,7 @@ export const MediumWithStatusOnline: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       status='online'
       title='Terry Rivers'
       {...args}
@@ -242,7 +242,7 @@ export const MediumWithImageAndStatusOnline: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -272,7 +272,7 @@ export const MediumWithStatusOffline: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       status='offline'
       title='Terry Rivers'
       {...args}
@@ -297,7 +297,7 @@ export const MediumWithImageAndStatusOffline: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -327,7 +327,7 @@ export const MediumWithStatusAway: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       status='away'
       title='Terry Rivers'
       {...args}
@@ -352,7 +352,7 @@ export const MediumWithImageAndStatusAway: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -382,7 +382,7 @@ export const MediumWithStatusBusy: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       status='busy'
       title='Terry Rivers'
       {...args}
@@ -407,7 +407,7 @@ export const MediumWithImageAndStatusBusy: Story<UserIconProps> = (args) => {
     <UserIcon
       size='medium'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -437,7 +437,7 @@ export const LargeWithStatusOnline: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       status='online'
       title='Terry Rivers'
       {...args}
@@ -462,7 +462,7 @@ export const LargeWithImageAndStatusOnline: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -492,7 +492,7 @@ export const LargeWithStatusOffline: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       status='offline'
       title='Terry Rivers'
       {...args}
@@ -517,7 +517,7 @@ export const LargeWithImageAndStatusOffline: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -547,7 +547,7 @@ export const LargeWithStatusAway: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       status='away'
       title='Terry Rivers'
       {...args}
@@ -572,7 +572,7 @@ export const LargeWithImageAndStatusAway: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -602,7 +602,7 @@ export const LargeWithStatusBusy: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       status='busy'
       title='Terry Rivers'
       {...args}
@@ -627,7 +627,7 @@ export const LargeWithImageAndStatusBusy: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       image={
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
@@ -657,7 +657,7 @@ export const CustomStatusTranslation: Story<UserIconProps> = (args) => {
     <UserIcon
       size='large'
       abbreviation='TR'
-      backgroundColor='green'
+      backgroundColor='#6ab9ec'
       status='online'
       title='Terry Rivers'
       translatedStatusTitles={{

@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 /* eslint-disable react/jsx-key */
-import SvgErrorHollow from '@bentley/icons-generic-react/cjs/icons/status/ErrorHollow';
-import SvgSuccessHollow from '@bentley/icons-generic-react/cjs/icons/status/SuccessHollow';
+import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErrorHollow';
+import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { ProgressLinear } from '../../src/core';
@@ -66,7 +66,7 @@ LabeledLeftRight.argTypes = {
 export const Positive: Story<ProgressLinearProps> = (args) => {
   const {
     value = 100,
-    labels = ['Upload done!', <SvgSuccessHollow className='iui-icon' />],
+    labels = ['Upload done!', <SvgStatusSuccessHollow className='iui-icon' />],
     status = 'positive',
     ...rest
   } = args;
@@ -77,7 +77,10 @@ export const Positive: Story<ProgressLinearProps> = (args) => {
 
 Positive.argTypes = {
   labels: {
-    defaultValue: ['Upload done!', <SvgSuccessHollow className='iui-icon' />],
+    defaultValue: [
+      'Upload done!',
+      <SvgStatusSuccessHollow className='iui-icon' />,
+    ],
   },
   status: { defaultValue: 'positive' },
   value: { defaultValue: 100 },
@@ -86,7 +89,7 @@ Positive.argTypes = {
 export const Negative: Story<ProgressLinearProps> = (args) => {
   const {
     value = 45,
-    labels = ['Upload failed', <SvgErrorHollow className='iui-icon' />],
+    labels = ['Upload failed', <SvgStatusErrorHollow className='iui-icon' />],
     status = 'negative',
     ...rest
   } = args;
@@ -97,7 +100,10 @@ export const Negative: Story<ProgressLinearProps> = (args) => {
 
 Negative.argTypes = {
   labels: {
-    defaultValue: ['Upload failed', <SvgErrorHollow className='iui-icon' />],
+    defaultValue: [
+      'Upload failed',
+      <SvgStatusErrorHollow className='iui-icon' />,
+    ],
   },
   status: { defaultValue: 'negative' },
   value: { defaultValue: 45 },

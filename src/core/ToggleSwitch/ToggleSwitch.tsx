@@ -6,7 +6,7 @@ import React from 'react';
 import cx from 'classnames';
 import { useMergedRefs } from '../utils/hooks/useMergedRefs';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/toggle-switch.css';
+import '@itwin/itwinui-css/css/toggle-switch.css';
 
 export type ToggleSwitchProps = {
   /**

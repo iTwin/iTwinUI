@@ -8,7 +8,7 @@ import { StatusIconMap } from '../utils/common';
 import { Textarea } from '../Textarea';
 import { TextareaProps } from '../Textarea/Textarea';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/inputs.css';
+import '@itwin/itwinui-css/css/inputs.css';
 
 export type LabeledTextareaProps = {
   /**

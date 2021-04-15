@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import React from 'react';
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/text.css';
+import '@itwin/itwinui-css/css/text.css';
 
 export type TitleProps = {
   /**

@@ -7,7 +7,7 @@ import React from 'react';
 import { Input, InputProps } from '../Input/Input';
 import { StatusIconMap } from '../utils/common';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/inputs.css';
+import '@itwin/itwinui-css/css/inputs.css';
 
 export type LabeledInputProps = {
   /**

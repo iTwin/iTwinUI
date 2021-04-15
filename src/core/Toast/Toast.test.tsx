@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgErrorHollow from '@bentley/icons-generic-react/cjs/icons/status/ErrorHollow';
-import SvgInfoHollow from '@bentley/icons-generic-react/cjs/icons/InfoHollow';
-import SvgSuccessHollow from '@bentley/icons-generic-react/cjs/icons/status/SuccessHollow';
+import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErrorHollow';
+import SvgInfoCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/InfoCircularHollow';
+import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
 import { act, render, RenderResult } from '@testing-library/react';
 import React from 'react';
 import Toast, { ToastCategory } from './Toast';
@@ -31,15 +31,15 @@ it('renders the category classes & icons correctly', () => {
     let expectedIcon: RenderResult = {} as RenderResult;
     if (category === 'negative') {
       expectedIcon = render(
-        <SvgErrorHollow className='iui-toast-status-icon' />,
+        <SvgStatusErrorHollow className='iui-toast-status-icon' />,
       );
     } else if (category === 'informational') {
       expectedIcon = render(
-        <SvgInfoHollow className='iui-toast-status-icon' />,
+        <SvgInfoCircularHollow className='iui-toast-status-icon' />,
       );
     } else if (category === 'positive') {
       expectedIcon = render(
-        <SvgSuccessHollow className='iui-toast-status-icon' />,
+        <SvgStatusSuccessHollow className='iui-toast-status-icon' />,
       );
     }
     const icon = container.querySelector('.iui-toast-status-icon');

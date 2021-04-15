@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 
-import SvgSmileyHappy2 from '@bentley/icons-generic-react/cjs/icons/SmileyHappy2';
+import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import { useTheme } from '../../utils/hooks/useTheme';
 import { Button } from '../Button';
 
@@ -37,7 +37,7 @@ export const IdeasButton = React.forwardRef<
       ref={ref}
       className='iui-idea'
       onClick={onClick}
-      startIcon={<SvgSmileyHappy2 />}
+      startIcon={<SvgSmileyHappy />}
       {...rest}
     >
       {feedbackLabel}

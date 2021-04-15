@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { ButtonGroup, ButtonGroupProps, IconButton } from '../../../src/core';
-import SvgAdd from '@bentley/icons-generic-react/cjs/icons/Add';
-import SvgDelete from '@bentley/icons-generic-react/cjs/icons/Delete';
-import SvgEdit from '@bentley/icons-generic-react/cjs/icons/Edit';
-import SvgUndo from '@bentley/icons-generic-react/cjs/icons/Undo';
+import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
+import SvgDelete from '@itwin/itwinui-icons-react/cjs/icons/Delete';
+import SvgEdit from '@itwin/itwinui-icons-react/cjs/icons/Edit';
+import SvgUndo from '@itwin/itwinui-icons-react/cjs/icons/Undo';
 import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 

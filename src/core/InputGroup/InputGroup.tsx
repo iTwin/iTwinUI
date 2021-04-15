@@ -7,7 +7,7 @@ import React from 'react';
 import { StatusIconMap } from '../utils/common';
 import { useTheme } from '../utils/hooks/useTheme';
 import { CommonProps } from '../utils/props';
-import '@bentley/itwinui/css/inputs.css';
+import '@itwin/itwinui-css/css/inputs.css';
 
 export type InputGroupProps = {
   /**

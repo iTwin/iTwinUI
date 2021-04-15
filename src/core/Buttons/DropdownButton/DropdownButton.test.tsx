@@ -7,8 +7,8 @@ import { render } from '@testing-library/react';
 
 import { DropdownButton, DropdownButtonProps } from './DropdownButton';
 import { MenuItem } from '../../Menu';
-import SvgCaretDown2 from '@bentley/icons-generic-react/cjs/icons/CaretDown2';
-import SvgCaretUp2 from '@bentley/icons-generic-react/cjs/icons/CaretUp2';
+import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
+import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
 
 function renderComponent(...props: Partial<DropdownButtonProps>[]) {
   return render(
@@ -45,13 +45,13 @@ it('should update icon when menu opens or closes', () => {
 
   const {
     container: { firstChild: downArrow },
-  } = render(<SvgCaretDown2 className='iui-icon' />);
+  } = render(<SvgCaretDownSmall className='iui-icon' />);
   expect(container.querySelector('.iui-icon')).toEqual(downArrow);
 
   button.click();
   const {
     container: { firstChild: upArrow },
-  } = render(<SvgCaretUp2 className='iui-icon' />);
+  } = render(<SvgCaretUpSmall className='iui-icon' />);
   expect(container.querySelector('.iui-icon')).toEqual(upArrow);
 
   button.click();

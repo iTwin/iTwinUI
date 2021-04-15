@@ -7,7 +7,7 @@ import React from 'react';
 import cx from 'classnames';
 import { CommonProps } from '../../utils/props';
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/progress-indicator.css';
+import '@itwin/itwinui-css/css/progress-indicator.css';
 
 export type ProgressLinearProps = {
   /**
@@ -47,7 +47,7 @@ export type ProgressLinearProps = {
  * Labeled - Left & Right
  * <ProgressLinear value={50} labels={['Loading...', '50%']} />
  * Positive / Negative. Add iui-icon class on svg icon as label
- * <ProgressLinear status='positive' labels={['Upload done!', <SvgSuccessHollow className='iui-icon' />]} />
+ * <ProgressLinear status='positive' labels={['Upload done!', <SvgStatusSuccessHollow className='iui-icon' />]} />
  * <ProgressLinear status='negative' />
  */
 export const ProgressLinear = (props: ProgressLinearProps) => {

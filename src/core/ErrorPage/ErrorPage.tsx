@@ -2,17 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import Svg401 from '@bentley/illustrations/illustrations/401.svg';
-import Svg403 from '@bentley/illustrations/illustrations/403.svg';
-import Svg404 from '@bentley/illustrations/illustrations/404.svg';
-import Svg500 from '@bentley/illustrations/illustrations/500.svg';
-import Svg502 from '@bentley/illustrations/illustrations/502.svg';
-import Svg503 from '@bentley/illustrations/illustrations/503.svg';
-import SvgError from '@bentley/illustrations/illustrations/error.svg';
+import Svg401 from '@itwin/itwinui-illustrations-react/cjs/illustrations/401';
+import Svg403 from '@itwin/itwinui-illustrations-react/cjs/illustrations/403';
+import Svg404 from '@itwin/itwinui-illustrations-react/cjs/illustrations/404';
+import Svg500 from '@itwin/itwinui-illustrations-react/cjs/illustrations/500';
+import Svg502 from '@itwin/itwinui-illustrations-react/cjs/illustrations/502';
+import Svg503 from '@itwin/itwinui-illustrations-react/cjs/illustrations/503';
+import SvgError from '@itwin/itwinui-illustrations-react/cjs/illustrations/Error';
 import React from 'react';
 import { Button } from '../Buttons/Button';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/non-ideal-state.css';
+import '@itwin/itwinui-css/css/non-ideal-state.css';
 
 export type ErrorPageType =
   | '401'
@@ -110,60 +110,48 @@ export const ErrorPage = ({
     switch (errorType) {
       case '401': {
         return (
-          <img
-            src={Svg401}
+          <Svg401
             className='iui-non-ideal-state-icon'
-            alt={getHeadingMessage()}
             data-testid='error-401'
           />
         );
       }
       case '403': {
         return (
-          <img
-            src={Svg403}
+          <Svg403
             className='iui-non-ideal-state-icon'
-            alt={getHeadingMessage()}
             data-testid='error-403'
           />
         );
       }
       case '404': {
         return (
-          <img
-            src={Svg404}
+          <Svg404
             className='iui-non-ideal-state-icon'
-            alt={getHeadingMessage()}
             data-testid='error-404'
           />
         );
       }
       case '500': {
         return (
-          <img
-            src={Svg500}
+          <Svg500
             className='iui-non-ideal-state-icon'
-            alt={getHeadingMessage()}
             data-testid='error-500'
           />
         );
       }
       case '502': {
         return (
-          <img
-            src={Svg502}
+          <Svg502
             className='iui-non-ideal-state-icon'
-            alt={getHeadingMessage()}
             data-testid='error-502'
           />
         );
       }
       case '503': {
         return (
-          <img
-            src={Svg503}
+          <Svg503
             className='iui-non-ideal-state-icon'
-            alt={getHeadingMessage()}
             data-testid='error-503'
           />
         );
@@ -171,10 +159,8 @@ export const ErrorPage = ({
       case 'generic':
       default: {
         return (
-          <img
-            src={SvgError}
+          <SvgError
             className='iui-non-ideal-state-icon'
-            alt={getHeadingMessage()}
             data-testid='error-generic'
           />
         );

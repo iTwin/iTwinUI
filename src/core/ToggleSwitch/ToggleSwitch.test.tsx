@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgPlaceholder from '@bentley/icons-generic-react/cjs/icons/Placeholder';
+import SvgPlaceholder from '@itwin/itwinui-icons-react/cjs/icons/Placeholder';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { ToggleSwitch } from './ToggleSwitch';

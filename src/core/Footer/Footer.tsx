@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/footer.css';
+import '@itwin/itwinui-css/css/footer.css';
 import { CommonProps } from '../utils/props';
 
 export type TitleTranslations = {

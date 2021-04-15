@@ -6,11 +6,11 @@ import React from 'react';
 import cx from 'classnames';
 import { Button, ButtonProps } from '../Button';
 import { DropdownMenu } from '../../DropdownMenu';
-import SvgCaretDown2 from '@bentley/icons-generic-react/cjs/icons/CaretDown2';
-import SvgCaretUp2 from '@bentley/icons-generic-react/cjs/icons/CaretUp2';
+import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
+import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
 
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/button.css';
+import '@itwin/itwinui-css/css/button.css';
 
 export type DropdownButtonProps = {
   /**
@@ -56,7 +56,7 @@ export const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
       <Button
         className={cx('iui-dropdown', className)}
         size={size}
-        endIcon={isMenuOpen ? <SvgCaretUp2 /> : <SvgCaretDown2 />}
+        endIcon={isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
         ref={ref}
         {...rest}
       >

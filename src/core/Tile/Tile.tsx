@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import SvgCheckmark from '@bentley/icons-generic-react/cjs/icons/Checkmark';
-import SvgMore2 from '@bentley/icons-generic-react/cjs/icons/More2';
-import SvgNew from '@bentley/icons-generic-react/cjs/icons/New';
+import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
+import SvgMoreSmall from '@itwin/itwinui-icons-react/cjs/icons/MoreSmall';
+import SvgNew from '@itwin/itwinui-icons-react/cjs/icons/New';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/tile.css';
+import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu';
 import { CommonProps } from '../utils/props';
 import { IconButton } from '../Buttons';
@@ -105,7 +105,7 @@ export type TileProps = {
  *  badge={<Badge backgroundColor='blue'>Badge label</Badge>}
  *  buttons={[<Button>Button 1</Button>, <Button>Button 2</Button>]}
  *  moreOptions={[<MenuItem>Item 1</MenuItem>, <MenuItem>Item 2</MenuItem>]}
- *  leftIcon={<IconButton><SvgInfo2 /></IconButton>}
+ *  leftIcon={<IconButton><SvgInfo /></IconButton>}
  *  rightIcon={<IconButton><SvgStar /></IconButton>}
  *  isSelected={true}
  *  isNew={false}
@@ -212,7 +212,7 @@ export const Tile = (props: TileProps) => {
                 'iui-visible': isMenuVisible,
               })}
             >
-              <SvgMore2 />
+              <SvgMoreSmall />
             </IconButton>
           </DropdownMenu>
         )}

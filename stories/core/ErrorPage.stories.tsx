@@ -106,7 +106,12 @@ customHtmlMessage.args = {
   errorMessage: (
     <>
       A React component with an{' '}
-      <a href='https://www.bentley.com' target='_blank' rel='noreferrer'>
+      <a
+        className='iui-anchor'
+        href='https://www.bentley.com'
+        target='_blank'
+        rel='noreferrer'
+      >
         anchor
       </a>{' '}
       may be passed.

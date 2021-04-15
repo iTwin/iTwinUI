@@ -11,7 +11,7 @@ import {
   DatePickerProps,
   generateLocalizedStrings,
 } from '../../src/core/DatePicker/DatePicker';
-import SvgCalendar from '@bentley/icons-generic-react/cjs/icons/Calendar';
+import SvgCalendar from '@itwin/itwinui-icons-react/cjs/icons/Calendar';
 
 export default {
   title: 'Core/DatePicker',

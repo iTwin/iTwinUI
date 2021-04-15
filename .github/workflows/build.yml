@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build and run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node 12.X
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12.x
+
+      - run: yarn install --frozen-lockfile
+      - run: yarn audit
+      - run: yarn lint
+      - run: yarn lint:copyright ${{ github.workspace }}/*/**.{js,ts,tsx}
+      - run: yarn build
+      - run: yarn test --coverage
+      - run: yarn build-storybook
+
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: 'coverage/junit.xml'
+          comment_on_pr: false
+          check_name: 'Test results'
+          fail_on: 'nothing'
+
+      - name: Publish storybook artifact
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: 'storybook'
+          path: '${{ github.workspace }}/storybook-static/'

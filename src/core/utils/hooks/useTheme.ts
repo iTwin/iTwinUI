@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import '@bentley/itwinui/css/global.css';
+import '@itwin/itwinui-css/css/global.css';
 
 export type ThemeType = 'light' | 'dark' | 'os';
 

@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgChevronLeft from '@bentley/icons-generic-react/cjs/icons/ChevronLeft';
-import SvgChevronRight from '@bentley/icons-generic-react/cjs/icons/ChevronRight';
+import SvgChevronLeft from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeft';
+import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/date-picker.css';
+import '@itwin/itwinui-css/css/date-picker.css';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (

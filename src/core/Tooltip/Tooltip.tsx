@@ -6,7 +6,7 @@ import React from 'react';
 import cx from 'classnames';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/tooltip.css';
+import '@itwin/itwinui-css/css/tooltip.css';
 import { Popover, PopoverProps } from '../utils/Popover';
 
 export type TooltipProps = {
@@ -44,6 +44,7 @@ export const Tooltip = (props: TooltipProps) => {
           {content}
         </div>
       }
+      offset={[0, 4]}
       ref={ref}
       {...rest}
     >

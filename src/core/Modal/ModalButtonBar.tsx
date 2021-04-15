@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/modal.css';
+import '@itwin/itwinui-css/css/modal.css';
 
 export type ModalButtonBarProps = {
   /**

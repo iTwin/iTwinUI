@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgCamera from '@bentley/icons-generic-react/cjs/icons/Camera';
+import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { LabeledInput } from '../../src/core';
@@ -119,6 +119,7 @@ export const WithCustomIcon: Story<LabeledInputProps> = (args) => {
     <LabeledInput
       placeholder='Enter text here'
       label='This is a label'
+      message='⬅ This is a custom icon'
       svgIcon={<SvgCamera />}
       {...args}
     />

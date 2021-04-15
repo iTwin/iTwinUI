@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import React from 'react';
-import SvgAdd from '@bentley/icons-generic-react/cjs/icons/Add';
+import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
 
 import { IconButton } from './IconButton';
 

@@ -2,14 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgAway from '@bentley/icons-generic-react/cjs/icons/Away';
-import SvgCheckmark from '@bentley/icons-generic-react/cjs/icons/Checkmark';
-import SvgClose2 from '@bentley/icons-generic-react/cjs/icons/Close2';
+import SvgAway from '@itwin/itwinui-icons-react/cjs/icons/Away';
+import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
+import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/user-icon.css';
+import '@itwin/itwinui-css/css/user-icon.css';
 
 export type UserIconStatus = 'online' | 'busy' | 'away' | 'offline';
 
@@ -90,7 +90,7 @@ export const UserIcon = (props: UserIconProps) => {
 
   const iconMap: { [key in UserIconStatus]: JSX.Element } = {
     away: <SvgAway className='iui-user-icons-status-symbol' />,
-    offline: <SvgClose2 className='iui-user-icons-status-symbol' />,
+    offline: <SvgCloseSmall className='iui-user-icons-status-symbol' />,
     online: <SvgCheckmark className='iui-user-icons-status-symbol' />,
     busy: <></>,
   };

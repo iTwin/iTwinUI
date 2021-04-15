@@ -2,11 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgCheckmark from '@bentley/icons-generic-react/cjs/icons/Checkmark';
-import SvgDgnDb from '@bentley/icons-generic-react/cjs/icons/file-types/DgnDb';
-import SvgRevit from '@bentley/icons-generic-react/cjs/icons/file-types/Revit';
-import SvgSmileyHappy from '@bentley/icons-generic-react/cjs/icons/SmileyHappy';
-import SvgSmileySad from '@bentley/icons-generic-react/cjs/icons/SmileySad';
+import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
+import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
+import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
 import { action } from '@storybook/addon-actions';
 import { useEffect, useState } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react';
@@ -26,16 +24,8 @@ export default {
 } as Meta<InputGroupProps>;
 
 export const RadioGroup: Story<InputGroupProps> = (args) => {
-  const option1Label = (
-    <div style={{ display: 'flex' }}>
-      <SvgSmileyHappy style={{ width: 16, height: 16 }} />
-    </div>
-  );
-  const option2Label = (
-    <div style={{ display: 'flex' }}>
-      <SvgSmileySad style={{ width: 16, height: 16 }} />
-    </div>
-  );
+  const option1Label = <SvgSmileyHappy />;
+  const option2Label = <SvgSmileySad />;
   return (
     <>
       <InputGroup
@@ -69,16 +59,8 @@ RadioGroup.args = {
 };
 
 export const CheckboxGroup: Story<InputGroupProps> = (args) => {
-  const option1Label = (
-    <div style={{ display: 'flex' }}>
-      <SvgRevit style={{ width: 16, height: 16 }} />
-    </div>
-  );
-  const option2Label = (
-    <div style={{ display: 'flex' }}>
-      <SvgDgnDb style={{ width: 16, height: 16 }} />
-    </div>
-  );
+  const option1Label = 'Football';
+  const option2Label = 'Hockey';
   const [option1, setOption1] = useState(true);
   const [option2, setOption2] = useState(false);
   const [allOptions, setAllOptions] = useState(false);
@@ -107,8 +89,8 @@ export const CheckboxGroup: Story<InputGroupProps> = (args) => {
   };
   return (
     <InputGroup
-      label='Checkbox group'
-      message='Choose some file types'
+      label='Select your hobbies'
+      message='Choose some hobbies'
       {...args}
     >
       <Checkbox
@@ -134,8 +116,8 @@ export const CheckboxGroup: Story<InputGroupProps> = (args) => {
 };
 
 CheckboxGroup.args = {
-  label: 'Checkbox group',
-  message: 'Choose some file types',
+  label: 'Select your hobbies',
+  message: 'Choose some hobbies',
 };
 
 export const ToggleGroup: Story<InputGroupProps> = (args) => {

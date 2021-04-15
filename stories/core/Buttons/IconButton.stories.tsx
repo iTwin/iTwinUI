@@ -8,7 +8,7 @@ import { Story, Meta } from '@storybook/react';
 import IconButton, {
   IconButtonProps,
 } from '../../../src/core/Buttons/IconButton/IconButton';
-import SvgAdd from '@bentley/icons-generic-react/cjs/icons/Add';
+import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
 
 export default {
   title: 'Buttons/IconButton',

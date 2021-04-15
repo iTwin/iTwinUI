@@ -2,16 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
-import SvgInfo from '@bentley/icons-generic-react/cjs/icons/Info';
-import SvgError from '@bentley/icons-generic-react/cjs/icons/status/Error';
-import SvgSuccess from '@bentley/icons-generic-react/cjs/icons/status/Success';
-import SvgWarning from '@bentley/icons-generic-react/cjs/icons/status/Warning';
+import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
+import SvgInfoCircular from '@itwin/itwinui-icons-react/cjs/icons/InfoCircular';
+import SvgStatusError from '@itwin/itwinui-icons-react/cjs/icons/StatusError';
+import SvgStatusSuccess from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccess';
+import SvgStatusWarning from '@itwin/itwinui-icons-react/cjs/icons/StatusWarning';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/alert.css';
+import '@itwin/itwinui-css/css/alert.css';
 import { IconButton } from '../Buttons/IconButton';
 
 export type AlertProps = {
@@ -68,10 +68,10 @@ export const Alert = (props: AlertProps) => {
   useTheme();
 
   const iconMap = {
-    negative: <SvgError className='iui-icon' />,
-    informational: <SvgInfo className='iui-icon' />,
-    positive: <SvgSuccess className='iui-icon' />,
-    warning: <SvgWarning className='iui-icon' />,
+    negative: <SvgStatusError className='iui-icon' />,
+    informational: <SvgInfoCircular className='iui-icon' />,
+    positive: <SvgStatusSuccess className='iui-icon' />,
+    warning: <SvgStatusWarning className='iui-icon' />,
   };
 
   return (
@@ -102,7 +102,7 @@ export const Alert = (props: AlertProps) => {
           onClick={onClose}
           aria-label='Close'
         >
-          <SvgClose aria-hidden='true' />
+          <SvgCloseSmall aria-hidden='true' />
         </IconButton>
       )}
     </div>

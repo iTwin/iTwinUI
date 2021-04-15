@@ -6,7 +6,7 @@ import cx from 'classnames';
 import React from 'react';
 import { useTheme } from '../../utils/hooks/useTheme';
 import { CommonProps } from '../../utils/props';
-import '@bentley/itwinui/css/code.css';
+import '@itwin/itwinui-css/css/code.css';
 
 export type CodeProps = {
   /**

@@ -15,11 +15,11 @@ import {
   Tile,
   TileProps,
 } from '../../src/core';
-import SvgFolder from '@bentley/icons-generic-react/cjs/icons/Folder';
-import SvgImodel2 from '@bentley/icons-generic-react/cjs/icons/Imodel2';
-import SvgInfo2 from '@bentley/icons-generic-react/cjs/icons/Info2';
-import SvgStar from '@bentley/icons-generic-react/cjs/icons/Star';
-import SvgTag2 from '@bentley/icons-generic-react/cjs/icons/Tag2';
+import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
+import SvgPlaceholder from '@itwin/itwinui-icons-react/cjs/icons/Placeholder';
+import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
+import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
+import SvgTag from '@itwin/itwinui-icons-react/cjs/icons/Tag';
 import { LargeWithImageAndStatusOnline } from './UserIcons.stories';
 
 export default {
@@ -64,7 +64,7 @@ Basic.args = {
   thumbnail: 'https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png',
   metadata: (
     <>
-      <SvgTag2 />
+      <SvgTag />
       <TagContainer>
         <Tag variant='basic'>tag 1</Tag>
         <Tag variant='basic'>tag 2</Tag>
@@ -128,7 +128,7 @@ AllProps.args = {
   isSelected: true,
   leftIcon: (
     <IconButton styleType='borderless' onClick={action('clicked left icon')}>
-      <SvgInfo2 />
+      <SvgInfo />
     </IconButton>
   ),
   rightIcon: (
@@ -167,7 +167,7 @@ Condensed.args = {
   description: undefined,
   metadata: undefined,
   badge: undefined,
-  thumbnail: <SvgImodel2 />,
+  thumbnail: <SvgPlaceholder />,
 };
 
 export const UserIcon: Story<TileProps> = (props) => {

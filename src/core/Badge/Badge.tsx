@@ -6,7 +6,7 @@ import React from 'react';
 import cx from 'classnames';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/badge.css';
+import '@itwin/itwinui-css/css/badge.css';
 
 export type BadgeProps = {
   /**

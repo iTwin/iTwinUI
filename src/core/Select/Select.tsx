@@ -10,7 +10,7 @@ import { PopoverProps, PopoverInstance } from '../utils/Popover';
 
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/inputs.css';
+import '@itwin/itwinui-css/css/inputs.css';
 
 export type ItemRendererProps = {
   /**

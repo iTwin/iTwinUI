@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgChevronRight from '@bentley/icons-generic-react/cjs/icons/ChevronRight';
+import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
 
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/expandable-block.css';
+import '@itwin/itwinui-css/css/expandable-block.css';
 
 export type ExpandableBlockProps = {
   /**

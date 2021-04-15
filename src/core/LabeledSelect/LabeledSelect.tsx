@@ -9,7 +9,7 @@ import { Select } from '../Select';
 import { SelectProps } from '../Select/Select';
 import { StatusIconMap } from '../utils/common';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/inputs.css';
+import '@itwin/itwinui-css/css/inputs.css';
 
 export type LabeledSelectProps<T> = {
   /**

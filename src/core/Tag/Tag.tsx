@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import React from 'react';
-import SvgClose2 from '@bentley/icons-generic-react/cjs/icons/Close2';
+import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/tag.css';
+import '@itwin/itwinui-css/css/tag.css';
 import { CommonProps } from '../utils/props';
 import { IconButton } from '../Buttons';
 
@@ -47,7 +47,7 @@ export const Tag = (props: TagProps) => {
       <span className='iui-label'>{children}</span>
       {onRemove && (
         <IconButton styleType='borderless' size='small' onClick={onRemove}>
-          <SvgClose2 />
+          <SvgCloseSmall />
         </IconButton>
       )}
     </span>

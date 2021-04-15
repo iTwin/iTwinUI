@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Transition } from 'react-transition-group';
-import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
-import SvgErrorHollow from '@bentley/icons-generic-react/cjs/icons/status/ErrorHollow';
-import SvgInfoHollow from '@bentley/icons-generic-react/cjs/icons/InfoHollow';
-import SvgSuccessHollow from '@bentley/icons-generic-react/cjs/icons/status/SuccessHollow';
+import SvgClose from '@itwin/itwinui-icons-react/cjs/icons/Close';
+import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErrorHollow';
+import SvgInfoCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/InfoCircularHollow';
+import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
 import cx from 'classnames';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/toast-notification.css';
+import '@itwin/itwinui-css/css/toast-notification.css';
 
 export type ToastCategory = 'informational' | 'negative' | 'positive';
 
@@ -119,12 +119,12 @@ export const Toast = (props: ToastProps) => {
   const getCategoryIcon = React.useCallback(() => {
     switch (category) {
       case 'positive':
-        return <SvgSuccessHollow className='iui-toast-status-icon' />;
+        return <SvgStatusSuccessHollow className='iui-toast-status-icon' />;
       case 'informational':
-        return <SvgInfoHollow className='iui-toast-status-icon' />;
+        return <SvgInfoCircularHollow className='iui-toast-status-icon' />;
       case 'negative':
       default:
-        return <SvgErrorHollow className='iui-toast-status-icon' />;
+        return <SvgStatusErrorHollow className='iui-toast-status-icon' />;
     }
   }, [category]);
 

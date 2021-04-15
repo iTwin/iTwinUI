@@ -6,7 +6,7 @@ import cx from 'classnames';
 import React from 'react';
 import { useMergedRefs } from '../utils/hooks/useMergedRefs';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/inputs.css';
+import '@itwin/itwinui-css/css/inputs.css';
 
 export type InputProps = {
   /**

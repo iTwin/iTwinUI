@@ -1,30 +1,36 @@
 ## Style guide
 
 ### Import only React and use members from there instead of separate imports
+
 ```jsx
 // Good
 import React from 'react';
 ```
+
 ```jsx
 // Bad
 import React, { useState } from 'react';
 ```
+
 ```jsx
 // Bad
 import * as React from 'react';
 ```
 
 ### Use type instead of interface
+
 ```jsx
 // Good
-export type AlertProps = {...};
+export type AlertProps = { ... };
 ```
+
 ```jsx
 // Bad
-export interface IAlertProps {...};
+export interface IAlertProps {}
 ```
 
 ### Comment all props in multiline using jsdoc
+
 ```jsx
 // Good
 export type AlertProps = {
@@ -35,6 +41,7 @@ export type AlertProps = {
   type?: 'positive' | 'warning' | 'negative' | 'informational';
   ...
 ```
+
 ```jsx
 
 // Bad (single line)
@@ -43,6 +50,7 @@ export type AlertProps = {
   type?: 'positive' | 'warning' | 'negative' | 'informational';
   ...
 ```
+
 ```jsx
 // Bad (no comment at all)
 export type AlertProps = {
@@ -51,6 +59,7 @@ export type AlertProps = {
 ```
 
 ### Add description and example how to use the component
+
 ```jsx
 // Good
 
@@ -62,12 +71,14 @@ export type AlertProps = {
 export const Alert = (props: AlertProps) => {
   ...
 ```
+
 ```jsx
 // Bad (no comments)
 
 export const Alert = (props: AlertProps) => {
   ...
 ```
+
 ```jsx
 // Bad (no example)
 
@@ -79,20 +90,22 @@ export const Alert = (props: AlertProps) => {
 ```
 
 ### Destruct props and set default values
+
 ```jsx
 const {
-    children,
-    className,
-    type = 'informational',
-    clickableText,
-    onClick,
-    onClose,
-    style,
-    isSticky = false,
+  children,
+  className,
+  type = 'informational',
+  clickableText,
+  onClick,
+  onClose,
+  style,
+  isSticky = false,
 } = props;
 ```
 
 ### Use classnames object syntax for conditional classes
+
 ```jsx
 // Good
 <Button
@@ -103,6 +116,7 @@ const {
   )}
   ...
 ```
+
 ```jsx
 // Bad (using short circuiting)
 <Button
@@ -115,20 +129,24 @@ const {
 ```
 
 ### Import individual icons directly from the cjs module
+
 ```jsx
 // Good
-import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
-import SvgInfo from '@bentley/icons-generic-react/cjs/icons/Info';
+import SvgClose from '@itwin/itwinui-icons-react/cjs/icons/Close';
+import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
 ```
+
 ```jsx
 // Bad (using barrel)
-import { SvgClose } from '@bentley/icons-generic-react';
+import { SvgClose } from '@itwin/itwinui-icons-react';
 ```
+
 ```jsx
 // Bad (using esm)
-import SvgClose from '@bentley/icons-generic-react/esm/icons/Close';
+import SvgClose from '@itwin/itwinui-icons-react/esm/icons/Close';
 ```
+
 ```jsx
 // Bad (combining imports)
-import { SvgClose, SvgInfo } from '@bentley/icons-generic-react/cjs/icons';
+import { SvgClose, SvgInfo } from '@itwin/itwinui-icons-react/cjs/icons';
 ```

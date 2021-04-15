@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/button.css';
+import '@itwin/itwinui-css/css/button.css';
 
 export type ButtonGroupProps = {
   /**

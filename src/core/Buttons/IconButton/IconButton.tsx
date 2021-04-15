@@ -7,7 +7,7 @@ import React from 'react';
 
 import { ButtonProps } from '../Button';
 import { useTheme } from '../../utils/hooks/useTheme';
-import '@bentley/itwinui/css/button.css';
+import '@itwin/itwinui-css/css/button.css';
 
 export type IconButtonProps = {
   /**

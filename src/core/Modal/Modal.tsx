@@ -5,10 +5,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
-import SvgClose from '@bentley/icons-generic-react/cjs/icons/Close';
+import SvgClose from '@itwin/itwinui-icons-react/cjs/icons/Close';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
-import '@bentley/itwinui/css/modal.css';
+import '@itwin/itwinui-css/css/modal.css';
 
 /**
  * Get the portal container, or create one if it doesn't exist.
