@@ -39,7 +39,7 @@
     font-size: $iui-font-size-small;
     justify-content: space-between;
 
-    > :last-child:first-child {
+    > :only-child {
       margin: 0 auto;
     }
 
@@ -66,7 +66,7 @@
         color: t(iui-color-foreground-positive);
       }
 
-      > .iui-icon {
+      .iui-icon {
         @include themed {
           fill: t(iui-color-foreground-positive);
         }
@@ -99,7 +99,7 @@
         color: t(iui-color-foreground-negative);
       }
 
-      > .iui-icon {
+      .iui-icon {
         @include themed {
           fill: t(iui-color-foreground-negative);
         }
