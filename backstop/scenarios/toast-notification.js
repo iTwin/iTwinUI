@@ -3,7 +3,7 @@ const { scenario, hover, focus } = require('../scenarioHelper');
 module.exports = [
   // Toast types
   scenario('Type All', {
-    selectors: ['#demo-toast'],
+    selectors: ['.iui-toast-wrapper'],
   }),
 
   // Hover states
