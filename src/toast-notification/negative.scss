@@ -19,7 +19,7 @@
     }
   }
 
-  > .iui-color {
+  > .iui-status-area {
     @include themed {
       background-color: t(iui-color-background-negative);
     }
