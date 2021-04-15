@@ -12,7 +12,6 @@
   pointer-events: all;
   margin: 0 $iui-m $iui-baseline $iui-m;
   min-height: $iui-baseline * 4;
-  max-height: 100%;
   border-radius: $iui-border-radius;
   @include themed {
     background-color: t(iui-color-background-1);
