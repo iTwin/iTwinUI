@@ -43,42 +43,25 @@
       min-width: 95%;
     }
 
-    .iui-modal-title-bar {
-      position: relative;
+    .iui-title-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: $iui-baseline;
+      justify-content: space-between;
 
-      > .iui-modal-title {
+      > .iui-title {
         font-size: $iui-font-size-subheading;
-        margin-bottom: $iui-baseline;
-      }
-
-      > .iui-modal-close {
-        display: inline-block;
-        position: absolute;
-        right: 0;
-        top: $iui-xs;
-        cursor: pointer;
-
-        > svg,
-        img {
-          width: $iui-icons-default;
-          height: $iui-icons-default;
-
-          @include themed {
-            fill: t(iui-icons-color-actionable);
-          }
-
-          &:hover {
-            @include themed {
-              fill: t(iui-icons-color-actionable-hover);
-            }
-          }
-        }
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
-    .iui-modal-button-bar {
+    .iui-button-bar {
       margin-top: $iui-baseline;
-      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
 
       > .iui-button:not(:last-child) {
         margin-right: $iui-s;
