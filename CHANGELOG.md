@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.9.0
+
+`2021-04-15`
+
+### What's new
+
+- **Toast notifications have shortened classes and use borderless buttons.**
+- **Modals have shortened classes and use borderless buttons.**
+
+### Fixes
+
+- **Fixed SVG issues** within linear progress indicator, checkbox, and radio.
+
 ## 0.8.0
 
 `2021-04-14`
