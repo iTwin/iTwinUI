@@ -39,7 +39,7 @@
     font-size: $iui-font-size-small;
     justify-content: space-between;
 
-    > :last-child:first-child {
+    > :only-child {
       margin: 0 auto;
     }
 
