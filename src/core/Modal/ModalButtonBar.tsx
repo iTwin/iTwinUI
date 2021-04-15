@@ -19,7 +19,7 @@ export type ModalButtonBarProps = {
 export const ModalButtonBar = ({ children, ...rest }: ModalButtonBarProps) => {
   useTheme();
   return (
-    <div className='iui-modal-button-bar' {...rest}>
+    <div className='iui-button-bar' {...rest}>
       {children}
     </div>
   );

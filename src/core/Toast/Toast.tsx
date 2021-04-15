@@ -4,13 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Transition } from 'react-transition-group';
-import SvgClose from '@itwin/itwinui-icons-react/cjs/icons/Close';
+import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
 import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErrorHollow';
 import SvgInfoCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/InfoCircularHollow';
 import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
 import cx from 'classnames';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/toast-notification.css';
+import { IconButton } from '../Buttons';
 
 export type ToastCategory = 'informational' | 'negative' | 'positive';
 
@@ -119,12 +120,12 @@ export const Toast = (props: ToastProps) => {
   const getCategoryIcon = React.useCallback(() => {
     switch (category) {
       case 'positive':
-        return <SvgStatusSuccessHollow className='iui-toast-status-icon' />;
+        return <SvgStatusSuccessHollow className='iui-icon' aria-hidden />;
       case 'informational':
-        return <SvgInfoCircularHollow className='iui-toast-status-icon' />;
+        return <SvgInfoCircularHollow className='iui-icon' aria-hidden />;
       case 'negative':
       default:
-        return <SvgStatusErrorHollow className='iui-toast-status-icon' />;
+        return <SvgStatusErrorHollow className='iui-icon' aria-hidden />;
     }
   }, [category]);
 
@@ -152,22 +153,18 @@ export const Toast = (props: ToastProps) => {
           }}
         >
           <div ref={onRef}>
-            <div className={`iui-toast-${category}`}>
-              <div className='iui-toast-icon-container'>
-                <div className='iui-toast-icon-background'>
-                  {getCategoryIcon()}
-                </div>
-              </div>
-              <div className='iui-toast-message'>{content}</div>
+            <div className={`iui-toast iui-${category}`}>
+              <div className='iui-status-area'>{getCategoryIcon()}</div>
+              <div className='iui-message'>{content}</div>
               {link && (
-                <div className='iui-toast-link'>
-                  <a onClick={link.onClick}>{link.title}</a>
-                </div>
+                <a className='iui-anchor' onClick={link.onClick}>
+                  {link.title}
+                </a>
               )}
               {(type === 'persisting' || hasCloseButton) && (
-                <div className='iui-toast-close-icon-container'>
-                  <SvgClose className='iui-toast-close-icon' onClick={close} />
-                </div>
+                <IconButton size='small' styleType='borderless' onClick={close}>
+                  <SvgCloseSmall aria-hidden />
+                </IconButton>
               )}
             </div>
           </div>

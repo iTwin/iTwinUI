@@ -15,11 +15,11 @@ function assertBaseElement(
   const dialog = overlay.querySelector('.iui-modal-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
 
-  const title = dialog.querySelector('.iui-modal-title-bar') as HTMLElement;
+  const title = dialog.querySelector('.iui-title-bar') as HTMLElement;
   expect(title).toBeTruthy();
   expect(title.textContent).toEqual('Modal Title');
 
-  const closeButton = dialog.querySelector('.iui-modal-close');
+  const closeButton = dialog.querySelector('.iui-button.iui-borderless');
   expect(!!closeButton).toBe(isDismissible);
 
   expect(dialog.textContent).toContain('Body');

@@ -26,23 +26,23 @@ it('renders the category classes & icons correctly', () => {
       />,
     );
 
-    expect(container.querySelector(`.iui-toast-${category}`)).toBeTruthy();
+    expect(container.querySelector(`.iui-toast.iui-${category}`)).toBeTruthy();
 
     let expectedIcon: RenderResult = {} as RenderResult;
     if (category === 'negative') {
       expectedIcon = render(
-        <SvgStatusErrorHollow className='iui-toast-status-icon' />,
+        <SvgStatusErrorHollow className='iui-icon' aria-hidden />,
       );
     } else if (category === 'informational') {
       expectedIcon = render(
-        <SvgInfoCircularHollow className='iui-toast-status-icon' />,
+        <SvgInfoCircularHollow className='iui-icon' aria-hidden />,
       );
     } else if (category === 'positive') {
       expectedIcon = render(
-        <SvgStatusSuccessHollow className='iui-toast-status-icon' />,
+        <SvgStatusSuccessHollow className='iui-icon' aria-hidden />,
       );
     }
-    const icon = container.querySelector('.iui-toast-status-icon');
+    const icon = container.querySelector('.iui-icon');
     expect(expectedIcon.container.firstChild).toEqual(icon);
   });
 });
@@ -77,7 +77,7 @@ it('renders a report message Link correctly', () => {
     />,
   );
 
-  const link = container.querySelector('.iui-toast-link > a') as HTMLElement;
+  const link = container.querySelector('.iui-anchor') as HTMLElement;
   expect(link.textContent).toBe('View Message Function');
   link.click();
   expect(mockedFn).toHaveBeenCalled();
@@ -94,9 +94,7 @@ it('renders the close icon correctly', () => {
     />,
   );
 
-  expect(
-    container.querySelector('.iui-toast-close-icon-container'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-button.iui-borderless')).toBeTruthy();
 });
 
 it('not render close icon in temporary', () => {
@@ -110,7 +108,7 @@ it('not render close icon in temporary', () => {
     />,
   );
 
-  expect(container.querySelector('.iui-toast-close-icon-container')).toBeNull();
+  expect(container.querySelector('.iui-button.iui-borderless')).toBeNull();
 });
 
 it('renders the close icon when hasCloseButton', () => {
@@ -125,9 +123,7 @@ it('renders the close icon when hasCloseButton', () => {
     />,
   );
 
-  expect(
-    container.querySelector('.iui-toast-close-icon-container'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-button.iui-borderless')).toBeTruthy();
 });
 
 it('should close temporary toast after 7s', () => {

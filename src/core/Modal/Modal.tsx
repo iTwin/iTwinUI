@@ -5,10 +5,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
-import SvgClose from '@itwin/itwinui-icons-react/cjs/icons/Close';
+import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/modal.css';
+import { IconButton } from '../Buttons/IconButton';
 
 /**
  * Get the portal container, or create one if it doesn't exist.
@@ -171,12 +172,12 @@ export const Modal = (props: ModalProps) => {
           aria-modal='true'
           onMouseDown={(event) => event.stopPropagation()}
         >
-          <div className='iui-modal-title-bar'>
-            <div className='iui-modal-title'>{title}</div>
+          <div className='iui-title-bar'>
+            <div className='iui-title'>{title}</div>
             {isDismissible && (
-              <div className='iui-modal-close' onClick={onClose} tabIndex={0}>
-                <SvgClose />
-              </div>
+              <IconButton size='small' styleType='borderless' onClick={onClose}>
+                <SvgCloseSmall aria-hidden />
+              </IconButton>
             )}
           </div>
           {children}

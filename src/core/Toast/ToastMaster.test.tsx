@@ -49,8 +49,8 @@ it('should add two toasts and then close them', () => {
   act(() => {
     addToast(mockToastObject2);
   });
-  expect(container.querySelector('.iui-toast-negative')).toBeTruthy();
-  expect(container.querySelector('.iui-toast-informational')).toBeTruthy();
+  expect(container.querySelector('.iui-toast.iui-negative')).toBeTruthy();
+  expect(container.querySelector('.iui-toast.iui-informational')).toBeTruthy();
 
   act(() => {
     closeAll();
