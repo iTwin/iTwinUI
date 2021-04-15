@@ -13,7 +13,7 @@
 
 ## What is iTwinUI-react?
 
-iTwinUI-React is a library built on top of the [iTwinUI](https://github.com/iTwin/iTwinUI) library.
+iTwinUI-react is a library built on top of the [iTwinUI](https://github.com/iTwin/iTwinUI) library.
 The goal of this project is to provide React components for using the styles and components from the core `iTwinUI` project.
 
 ---
@@ -21,11 +21,11 @@ The goal of this project is to provide React components for using the styles and
 ## Install
 
 ```
-npm install @itwinui/react
+npm install @itwin/itwinui-react
 ```
 
 ```
-yarn add @itwinui/react
+yarn add @itwin/itwinui-react
 ```
 
 ---
@@ -34,7 +34,7 @@ yarn add @itwinui/react
 Import the component you want and start using it!
 
 ```jsx
-import { Button } from '@itwinui/react';
+import { Button } from '@itwin/itwinui-react';
 
 const App = () => (
   <Button>Hello!</Button>
@@ -51,7 +51,7 @@ By default, all components use the light theme but we also provide support for s
   - `os` (which respects the color scheme of the operating system)
 
 ```jsx
-import { ThemeProvider } from '@itwinui/react';
+import { ThemeProvider } from '@itwin/itwinui-react';
 
 const App = () => (
   <>
@@ -64,7 +64,7 @@ const App = () => (
 - The `useTheme` hook also provides the same functionality as `ThemeProvider`.
 
 ```jsx
-import { useTheme } from '@itwinui/react';
+import { useTheme } from '@itwin/itwinui-react';
 
 const App = () => {
   useTheme('dark');

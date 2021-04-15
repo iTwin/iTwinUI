@@ -1,13 +1,15 @@
 # Contributing
-We welcome all types of contribution. 
+
+We welcome all types of contribution.
 
 Need a feature or found a bug? Please create an [issue.](https://github.com/iTwin/iTwinUI-react/issues)
 
 Want to contribute by creating a PR? Great! Then read further.
 
 ## Getting Started
+
 We use yarn for package management, so be sure to have it installed
- `npm install -g yarn`
+`npm install -g yarn`
 
 1. `git clone https://github.com/iTwin/iTwinUI-react.git`
 2. `cd iTwinUI-react`
@@ -17,6 +19,7 @@ If using vscode, our prettier and editor configs will be used.
 Please make sure to install all recommended extensions in [extensions.json](./.vscode/extensions.json).
 
 ## Storybook
+
 We use [Storybook](https://storybook.js.org) to test and demo the components. You can run it locally with `yarn storybook`.
 Be sure to add stories for your newly added component or feature. Read more [here](./stories/README.md) about storybook and how we write stories.
 
@@ -100,7 +103,8 @@ it('should be visible', () => {
 ```
 
 ### Linking
-If you want to test your changes in a local project, you can go into the `lib/` folder (which gets created when running `yarn build` or `yarn build:watch`) and run `yarn link`. Then from your test project, run `yarn link @itwinui/react`.
+
+If you want to test your changes in a local project, you can go into the `lib/` folder (which gets created when running `yarn build` or `yarn build:watch`) and run `yarn link`. Then from your test project, run `yarn link @itwin/itwinui-react`.
 
 You might face an "invalid hook call" error if your test project is using a different version or instance of React. You can fix this by [linking React](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react) or by using [aliases](https://github.com/facebook/react/issues/13991#issuecomment-463486871) in your bundler. If it still doesn't work, you may consider using `yalc`.
 
@@ -119,12 +123,12 @@ Chokidar version:
 </pre>
 </details>
 
-
 ### Changelog
 
 The `CHANGELOG.md` file must be updated for any new components or changes that you add. If unsure of which release your changes will go to, you can add a placeholder version and date (on the top):
+
 ```
-## 0.1.X
+## 1.X.X
 
 `Date`
 
