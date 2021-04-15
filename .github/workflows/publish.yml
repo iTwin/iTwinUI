@@ -1,0 +1,28 @@
+name: CD
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    name: Publish npm package
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node 12.X
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12.x
+          registry-url: https://registry.npmjs.org/
+
+      - run: yarn install
+      - run: yarn build
+
+      - run: npm publish --access public
+        working-directory: './lib'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}

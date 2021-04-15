@@ -1,3 +1,22 @@
+# Changelog
+
+## 1.0.0
+
+`2021-04-15`
+
+### What's new
+
+- **Replaced `Popover` with tippy.js library.**
+  - Components affected: `DropdownMenu`, `Select`, `DropdownButton`, `SplitButton`, `Tooltip`.
+  - These components now use `TippyProps` (e.g. `onShow`, `onHide`, `visible`, `placement`), replacing old props.
+- **Added `getUserColor` function** that returns a data-visualization color for `UserIcon` background.
+- **Updated React to v17.**
+- **iTwinUI is now open source and public!** 🎉
+
+### Fixes
+
+- **Fixed several icon issues.**
+
 ## 0.6.2
 
 `2021-04-12`
