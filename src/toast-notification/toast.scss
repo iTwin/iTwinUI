@@ -74,32 +74,6 @@
     margin-right: $iui-s;
   }
 
-  .iui-toast-close-icon-container {
-    order: 4;
-    align-self: flex-start;
-    margin-top: $iui-baseline * 1.25;
-    margin-right: $iui-m;
-    width: $iui-icons-small;
-    height: $iui-icons-small;
-    display: flex;
-
-    .iui-toast-close-icon {
-      height: $iui-icons-small;
-      width: $iui-icons-small;
-      cursor: pointer;
-
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
-
-      &:hover {
-        @include themed {
-          fill: t(iui-icons-color-actionable-hover);
-        }
-      }
-    }
-  }
-
   @media screen and (max-width: 400px) {
     width: calc(100vw - 36px);
   }
