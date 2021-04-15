@@ -38,7 +38,7 @@ export type UserIconProps = {
    */
   image?: JSX.Element;
   /**
-   * Color of the icon. You can use `@bentley/get-user-color` package to generate color from user email.
+   * Color of the icon. You can use `getUserColor` function to generate color from user name or email.
    * @default 'white'
    */
   backgroundColor?: string;

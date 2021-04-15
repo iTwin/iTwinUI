@@ -146,5 +146,7 @@ export type {
   WizardLocalization,
 } from './Wizard';
 
+export { getUserColor } from './utils/common';
+
 export { useTheme } from './utils/hooks/useTheme';
 export type { ThemeType } from './utils/hooks/useTheme';
