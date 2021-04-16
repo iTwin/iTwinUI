@@ -175,9 +175,7 @@
       }
 
       > .iui-name-label {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+        @include iui-line-clamp(1);
       }
     }
 
@@ -204,6 +202,7 @@
       width: 100%;
       display: flex;
       align-items: center;
+      margin-top: auto;
 
       @include themed() {
         color: t(iui-text-color-muted);
@@ -271,7 +270,7 @@
 
   &:hover,
   &:focus-within {
-    .iui-metadata {
+    .iui-more-options ~ .iui-metadata {
       width: calc(100% - #{$iui-xl});
     }
 
