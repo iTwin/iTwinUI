@@ -36,9 +36,3 @@ jobs:
           comment_on_pr: false
           check_name: 'Test results'
           fail_on: 'nothing'
-
-      - name: Publish storybook artifact
-        uses: actions/upload-artifact@v2.2.3
-        with:
-          name: 'storybook'
-          path: '${{ github.workspace }}/storybook-static/'

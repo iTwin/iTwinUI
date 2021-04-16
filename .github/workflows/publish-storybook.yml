@@ -1,0 +1,25 @@
+name: Publish storybook
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node 12.X
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12.x
+
+      - run: yarn install --frozen-lockfile
+      - run: yarn build-storybook
+          
+      - name: Publish storybook
+        uses: peaceiris/actions-gh-pages@v3.7.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ github.workspace }}/storybook-static/
