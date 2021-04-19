@@ -184,10 +184,8 @@
       font-size: $iui-font-size;
       height: 100%;
       max-height: $iui-baseline * 6;
-      display: -webkit-box; // stylelint-disable-line
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical; // stylelint-disable-line
-      overflow: hidden;
+      
+      @include iui-line-clamp(3);
       @include themed() {
         color: t(iui-text-color-muted);
       }
