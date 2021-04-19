@@ -184,7 +184,7 @@
       font-size: $iui-font-size;
       height: 100%;
       max-height: $iui-baseline * 6;
-      
+
       @include iui-line-clamp(3);
       @include themed() {
         color: t(iui-text-color-muted);
@@ -268,7 +268,7 @@
 
   &:hover,
   &:focus-within {
-    .iui-more-options ~ .iui-metadata {
+    .iui-metadata:not(:last-child) {
       width: calc(100% - #{$iui-xl});
     }
 
