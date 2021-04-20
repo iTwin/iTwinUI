@@ -118,10 +118,10 @@
       }
 
       // With blur
-      @supports (backdrop-filter: $iui-frosted-glass) {
+      @supports (backdrop-filter: $iui-blur) {
         @include themed() {
           background-color: rgba(0, 0, 0, t(iui-opacity-5));
-          backdrop-filter: $iui-frosted-glass;
+          backdrop-filter: $iui-blur;
         }
       }
 
