@@ -31,7 +31,7 @@ const config = {
   debug: false,
   debugWindow: false,
   dockerCommandTemplate:
-    'docker run --rm -i --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
+    'docker run --rm -i --mount type=bind,source="{cwd}",target=/src --env PUPPETEER_PRODUCT=firefox backstopjs/backstopjs:{version} {backstopCommand} {args}',
 };
 
 module.exports = config;
