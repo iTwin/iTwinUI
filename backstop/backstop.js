@@ -5,6 +5,7 @@ const config = {
   engineOptions: {
     args: ['--no-sandbox'],
     ignoreDefaultArgs: ['--hide-scrollbars'],
+    product: 'firefox',
   },
   viewports: [
     {
