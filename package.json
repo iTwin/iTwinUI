@@ -27,8 +27,12 @@
     }
   },
   "lint-staged": {
-    "*.{scss,html}": ["stylelint --fix"],
-    "*.{scss,html,js}": ["yarn lint:copyright --fix"]
+    "*.{scss,html}": [
+      "stylelint --fix"
+    ],
+    "*.{scss,html,js}": [
+      "yarn lint:copyright --fix"
+    ]
   },
   "scripts": {
     "build": "yarn clean && yarn build:scss && yarn build:css && yarn build:html && yarn copy-files",
@@ -45,7 +49,7 @@
     "lint:copyright": "node scripts/copyrightLinter.js",
     "approve": "backstop --config=./backstop/backstop.js approve",
     "test": "yarn build && yarn test:ci",
-    "test:ci": "backstop --config=./backstop/backstop.js test --docker",
+    "test:ci": "PUPPETEER_PRODUCT=firefox yarn install && backstop --config=./backstop/backstop.js test --docker",
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js"
   },
