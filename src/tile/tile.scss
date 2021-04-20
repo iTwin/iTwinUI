@@ -155,6 +155,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 2;
+    min-width: 0;
 
     > .iui-name {
       display: flex;
@@ -175,9 +176,9 @@
       }
 
       > .iui-name-label {
-        text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        text-overflow: ellipsis;
       }
     }
 
@@ -186,10 +187,8 @@
       font-size: $iui-font-size;
       height: 100%;
       max-height: $iui-baseline * 6;
-      display: -webkit-box; // stylelint-disable-line
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical; // stylelint-disable-line
-      overflow: hidden;
+
+      @include iui-line-clamp(3);
       @include themed() {
         color: t(iui-text-color-muted);
       }
@@ -204,6 +203,7 @@
       width: 100%;
       display: flex;
       align-items: center;
+      margin-top: auto;
 
       @include themed() {
         color: t(iui-text-color-muted);
@@ -271,7 +271,7 @@
 
   &:hover,
   &:focus-within {
-    .iui-metadata {
+    .iui-metadata:not(:last-child) {
       width: calc(100% - #{$iui-xl});
     }
 
