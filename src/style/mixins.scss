@@ -72,6 +72,7 @@
   @include themed {
     scrollbar-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4))
       transparent;
+    scrollbar-width: thin;
   }
 
   &::-webkit-scrollbar {
