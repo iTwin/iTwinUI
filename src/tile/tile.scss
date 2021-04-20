@@ -118,10 +118,10 @@
       }
 
       // With blur
-      @supports (backdrop-filter: $iui-blur) {
+      @supports (backdrop-filter: $iui-blur-filter) {
         @include themed() {
           background-color: rgba(0, 0, 0, t(iui-opacity-5));
-          backdrop-filter: $iui-blur;
+          backdrop-filter: $iui-blur-filter;
         }
       }
 
