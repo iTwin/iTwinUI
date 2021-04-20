@@ -14,7 +14,7 @@
 ## What is iTwinUI-react?
 
 iTwinUI-react is a library built on top of the [iTwinUI](https://github.com/iTwin/iTwinUI) library.
-The goal of this project is to provide React components for using the styles and components from the core `iTwinUI` project.
+The goal of this project is to provide React components for using the styles and components from the core `iTwinUI` project. Check out the [demo website](https://itwin.github.io/iTwinUI-react/?path=/story/overview--overview) to see the components in action.
 
 ---
 
