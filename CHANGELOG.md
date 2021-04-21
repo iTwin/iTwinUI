@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0]
+
+`2021-04-21`
+
+### What's new
+
+- **`DropdownButton` now supports `styleType='borderless'`.**
+- **`Tooltip` has a new uniform visual style** through base CSS package.
+
+### Fixes
+
+- **Fixed minor bugs in `Tile` and `Footer`** through base CSS package.
+
 ## 1.0.0
 
 `2021-04-15`
@@ -198,3 +211,5 @@
 - **New RadioTileGroup component added.**
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
+
+[1.1.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.0.0...v1.1.0
