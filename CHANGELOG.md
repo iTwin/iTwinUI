@@ -1,6 +1,20 @@
 # Changelog
 
-## 0.9.0
+## [0.10.0]
+
+`2021-04-21`
+
+### What's new
+
+- **Tooltip styling has been updated** to use a frosted glass background.
+
+### Fixes
+
+- **Fixed tile visual bugs:** folder name overflow and metadata spacing.
+- **Fixed footer hover and focus states.**
+- **Fixed scrollbar width in firefox.**
+
+## [0.9.0]
 
 `2021-04-15`
 
@@ -118,3 +132,6 @@
 ### Fixes
 
 - **Global style resets have 0 specificity now.**
+
+[0.10.0]: https://github.com/iTwin/iTwinUI/compare/v0.9.0...v0.10.0
+[0.9.0]: https://github.com/iTwin/iTwinUI/compare/v0.8.0...v0.9.0
