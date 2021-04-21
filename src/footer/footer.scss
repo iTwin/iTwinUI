@@ -44,8 +44,13 @@
 
       > a {
         @include iui-anchor;
-        @include themed {
-          color: t(iui-text-color-muted);
+        @include iui-focus;
+
+        &,
+        &:hover {
+          @include themed {
+            color: t(iui-text-color-muted);
+          }
         }
       }
     }
