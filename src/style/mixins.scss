@@ -117,17 +117,18 @@
   }
 }
 
-@mixin iui-blur($blur-value: 5px, $background-value: iui-color-foreground-body-rgb) {
+@mixin iui-blur {
   // Blur fallback
   @include themed {
-    background-color: rgba(t($background-value), t(iui-opacity-3));
+    background-color: rgba(0, 0, 0, t(iui-opacity-3));
+    color: t(iui-color-foreground-accessory);
   }
 
   // With blur
-  @supports(backdrop-filter: blur(5px)) {
+  @supports(backdrop-filter: $iui-blur-filter) {
     @include themed() {
-      background-color: rgba(t($background-value), t(iui-opacity-4));
-      backdrop-filter: blur($blur-value);
+      background-color: rgba(0, 0, 0, t(iui-opacity-4));
+      backdrop-filter: $iui-blur-filter;
     }
   }
 }
