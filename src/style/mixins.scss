@@ -117,3 +117,18 @@
     -webkit-box-orient: vertical; /* stylelint-disable-line */
   }
 }
+
+@mixin iui-blur($opacity: 4) {
+  // Blur fallback
+  @include themed {
+    background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity - 1}));
+  }
+
+  // With blur
+  @supports(backdrop-filter: $iui-blur-filter) {
+    @include themed() {
+      background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity}));
+      backdrop-filter: $iui-blur-filter;
+    }
+  }
+}

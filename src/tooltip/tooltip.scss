@@ -4,14 +4,8 @@
 
 @mixin iui-tooltip {
   @include iui-reset;
-
   @include iui-font-family;
   display: block;
-
-  @include themed {
-    color: t(iui-color-foreground-body);
-    background-color: rgba(t(iui-color-background-5-rgb), t(iui-opacity-2));
-  }
   text-align: center;
   border-radius: $iui-border-radius;
   font-size: $iui-font-size-small;
@@ -24,6 +18,10 @@
   z-index: 999;
   box-shadow: $iui-elevation-24;
   pointer-events: none;
+  @include iui-blur($opacity: 3);
+  @include themed {
+    color: t(iui-color-foreground-accessory);
+  }
 }
 
 @mixin iui-tooltip-hidden {
