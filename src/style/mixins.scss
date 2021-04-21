@@ -121,7 +121,6 @@
   // Blur fallback
   @include themed {
     background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity - 1}));
-    color: t(iui-color-foreground-accessory);
   }
 
   // With blur

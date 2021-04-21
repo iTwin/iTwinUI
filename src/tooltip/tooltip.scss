@@ -19,6 +19,9 @@
   box-shadow: $iui-elevation-24;
   pointer-events: none;
   @include iui-blur;
+  @include themed {
+    color: t(iui-color-foreground-accessory);
+  }
 }
 
 @mixin iui-tooltip-hidden {
