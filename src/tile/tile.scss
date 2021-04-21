@@ -112,7 +112,7 @@
 
     > .iui-picture + .iui-button,
     > .iui-picture + .iui-button + .iui-button {
-      @include iui-blur;
+      @include iui-blur(5);
 
       &:enabled > .iui-icon {
         @include themed() {
@@ -125,14 +125,8 @@
       &.iui-active:enabled,
       &.iui-active:enabled:hover,
       &.iui-active:active {
-        @include themed {
-          background-color: rgba(0, 0, 0, t(iui-opacity-2));
-        }
-
-        @supports(backdrop-filter: $iui-blur-filter) {
-          @include themed() {
-            background-color: rgba(0, 0, 0, t(iui-opacity-3));
-          }
+        @include themed() {
+          background-color: rgba(0, 0, 0, t(iui-opacity-4));
         }
 
         > svg {
