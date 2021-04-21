@@ -12,21 +12,11 @@ module.exports = [
     scrollToSelector: ['.iui-legal-footer'],
   }),
 
-  // Hover states
-  //// Footer link
-  scenario('State hover', {
+  // Hover & focus states
+  scenario('State hover and focus', {
     selectors: ['viewport'],
     viewports: [{ width: 800, height: 600 }],
     scrollToSelector: ['.iui-legal-footer'],
-    actions: [hover('#test-link')],
-  }),
-
-  // Focus states
-  //// Footer link
-  scenario('State focus', {
-    selectors: ['viewport'],
-    viewports: [{ width: 800, height: 600 }],
-    scrollToSelector: ['.iui-legal-footer'],
-    actions: [focus('#test-link')],
+    actions: [hover('#test-link-1'), focus('#test-link-2')],
   }),
 ];
