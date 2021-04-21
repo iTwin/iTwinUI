@@ -1,0 +1,51 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../user-icon/index';
+
+
+@mixin iui-header {
+  @include themed {
+    color: t(iui-text-color);
+    background-color: t(iui-color-background-2);
+    border-bottom: 2px solid t(iui-color-background-5);
+  }
+  fill: currentColor;
+  display: flex;
+  width: 100%;
+  height: 56px;
+  font-size: 14px;
+  transition: height 0.2s;
+
+  > * {
+    align-items: center;
+    display: flex;
+  }
+
+  // Created a custom user icon, in react, I was switching with props from small to medium.
+  // and needed to apply transition manually.
+  .iui-header-user-icon {
+    @include iui-user-icons-medium;
+    transition: height 0.2s, width 0.2s, font-size 0.2s;
+      
+    * {
+      transition: height 0.2s, width 0.2s, font-size 0.2s, line-height 0.2s, font-weight 0.2s;
+    }
+  }
+  
+  &.iui-slim,
+  // .iui-slim-on-hover-demo is only to test the animation, not a feature suggestion :)
+  &.iui-slim-on-hover-demo:hover {
+    height: 32px;
+    
+    .iui-header-user-icon {
+      @include iui-user-icons-small;
+    }
+  }
+
+  > :first-child {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+}

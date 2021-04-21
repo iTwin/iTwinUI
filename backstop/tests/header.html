@@ -1,0 +1,237 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html id="theme">
+  <head>
+    <title>Header | iTwinUI</title>
+    <link
+      rel="icon"
+      href="../assets/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/global.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/toggle-switch.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/user-icon.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/header.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Header</h1>
+    <hr />
+
+    <section id="default">
+      <h2 id="default">Default</h2>
+      <div class="iui-header">
+        <!-- Left section -->
+        <div>
+          <div style="display: flex; gap: 10; place-items: center; height: 100%;">
+            <!-- Project Button -->
+            <button
+              class="iui-button iui-borderless"
+              style="height: 100%;"
+              type="button"
+            >
+              <span class="iui-label">My awesome Project</span>
+            </button>
+            <!-- IModel Button -->
+            <button
+              class="iui-button iui-borderless"
+              style="height: 100%;"
+              type="button"
+            >
+              <span class="iui-label">My incredible iModel</span>
+            </button>
+          </div>
+        </div>
+        <!-- Right section -->
+        <div>
+          <!-- Profile dropdown button -->
+          <!-- Used structure is as follow (from react): 
+              <DropdownButton>
+                <UserIcon size= slim ? "small" : "medium" color= blue />
+              </DropdownButton
+              Changed here to use iui-header-user-icon created just for this, that
+              adjust the size itself;
+          -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            style="height: 100%;"
+            type="button"
+            aria-expanded="false"
+          >
+            <span
+              class="iui-label"
+              style="display: flex;"
+            >
+              <span
+                class="iui-header-user-icon"
+                title="Terry Rivers"
+              >
+                <span class="iui-user-icons-stroke"></span>
+                <abbr
+                  class="iui-user-icons-initials"
+                  style="background-color: #4585A5;"
+                >
+                  TR
+                </abbr>
+              </span>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z">
+              </path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <hr />
+
+    <section id="slim">
+      <h2 id="slim">Slim</h2>
+
+      <!-- For SLIM, add class "iui-slim" below -->
+      <div class="iui-header iui-slim">
+        <div>
+          <div style="display: flex; gap: 10; place-items: center; height: 100%;"><button
+              class="iui-button iui-borderless"
+              style="height: 100%;"
+              type="button"
+            >
+              <span class="iui-label">My awesome Project</span>
+            </button>
+            <button
+              class="iui-button iui-borderless"
+              style="height: 100%;"
+              type="button"
+            >
+              <span class="iui-label">My incredible iModel</span>
+            </button>
+          </div>
+        </div>
+        <div>
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            style="height: 100%;"
+            type="button"
+            aria-expanded="false"
+          >
+            <span
+              class="iui-label"
+              style="display: flex;"
+            >
+              <span
+                class="iui-header-user-icon"
+                title="Terry Rivers"
+              >
+                <span class="iui-user-icons-stroke"></span>
+                <abbr
+                  class="iui-user-icons-initials"
+                  style="background-color: #4585A5;"
+                >
+                  TR
+                </abbr>
+              </span>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z">
+              </path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <section id="hoverslim">
+      <h2 id="hoverslim">Animation (Hover to trigger the switch)</h2>
+
+      <!-- Not a suggest, this is just to be able to test the animation -->
+      <div class="iui-header iui-slim-on-hover-demo">
+        <div>
+          <div style="display: flex; gap: 10; place-items: center; height: 100%;"><button
+              class="iui-button iui-borderless"
+              style="height: 100%;"
+              type="button"
+            >
+              <span class="iui-label">My awesome Project</span>
+            </button>
+            <button
+              class="iui-button iui-borderless"
+              style="height: 100%;"
+              type="button"
+            >
+              <span class="iui-label">My incredible iModel</span>
+            </button>
+          </div>
+        </div>
+        <div>
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            style="height: 100%;"
+            type="button"
+            aria-expanded="false"
+          >
+            <span
+              class="iui-label"
+              style="display: flex;"
+            >
+              <span
+                class="iui-header-user-icon"
+                title="Terry Rivers"
+              >
+                <span class="iui-user-icons-stroke"></span>
+                <abbr
+                  class="iui-user-icons-initials"
+                  style="background-color: #4585A5;"
+                >
+                  TR
+                </abbr>
+              </span>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z">
+              </path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
