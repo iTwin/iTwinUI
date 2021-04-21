@@ -112,7 +112,7 @@
 
     > .iui-picture + .iui-button,
     > .iui-picture + .iui-button + .iui-button {
-      @include iui-blur(5);
+      @include iui-blur($opacity: 5);
 
       &:enabled > .iui-icon {
         @include themed() {
