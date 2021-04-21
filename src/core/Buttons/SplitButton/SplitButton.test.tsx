@@ -12,7 +12,7 @@ import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
 
 function renderComponent(
   onClick?: () => void,
-  ...props: Partial<SplitButtonProps>[]
+  props?: Partial<SplitButtonProps>,
 ) {
   return render(
     <SplitButton

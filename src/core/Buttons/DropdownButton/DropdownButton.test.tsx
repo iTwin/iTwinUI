@@ -10,7 +10,7 @@ import { MenuItem } from '../../Menu';
 import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
 import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
 
-function renderComponent(...props: Partial<DropdownButtonProps>[]) {
+function renderComponent(props?: Partial<DropdownButtonProps>) {
   return render(
     <DropdownButton
       menuItems={(close) => [
@@ -82,4 +82,9 @@ it('should work with menu items', () => {
 
   tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy.style.visibility).toEqual('hidden');
+});
+
+it('should render borderless button correctly', () => {
+  const { container } = renderComponent({ styleType: 'borderless' });
+  expect(container.querySelector('.iui-button.iui-borderless')).toBeTruthy();
 });
