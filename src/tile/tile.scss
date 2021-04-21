@@ -112,18 +112,7 @@
 
     > .iui-picture + .iui-button,
     > .iui-picture + .iui-button + .iui-button {
-      // Blur fallback
-      @include themed() {
-        background-color: rgba(0, 0, 0, t(iui-opacity-4));
-      }
-
-      // With blur
-      @supports (backdrop-filter: blur(5px)) {
-        @include themed() {
-          background-color: rgba(0, 0, 0, t(iui-opacity-5));
-          backdrop-filter: blur(5px);
-        }
-      }
+      @include iui-blur($opacity: 5);
 
       &:enabled > .iui-icon {
         @include themed() {
