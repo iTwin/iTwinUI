@@ -71,7 +71,7 @@
 
       > .iui-icon {
         @include themed {
-          fill: t(iui-color-foreground-primary);
+          fill: t(iui-icons-color-primary);
         }
       }
     }

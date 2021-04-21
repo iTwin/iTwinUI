@@ -25,7 +25,7 @@
 
       > svg {
         @include themed {
-          fill: t(iui-color-foreground-body);
+          fill: t(iui-icons-color-actionable);
         }
         transition: fill $iui-speed-fast ease-out;
       }
@@ -43,7 +43,7 @@
 
         > svg {
           @include themed {
-            fill: t(iui-color-foreground-primary);
+            fill: t(iui-icons-color-primary);
           }
           transition: fill $iui-speed-fast ease-out;
         }
@@ -66,7 +66,7 @@
 
         svg {
           @include themed {
-            fill: t(iui-color-foreground-primary);
+            fill: t(iui-icons-color-primary);
           }
         }
       }
@@ -87,14 +87,14 @@
 
       svg {
         @include themed {
-          fill: t(iui-color-foreground-positive);
+          fill: t(iui-icons-color-positive);
         }
       }
     }
 
     > li > a:hover > svg {
       @include themed {
-        fill: t(iui-color-foreground-positive);
+        fill: t(iui-icons-color-positive);
       }
     }
   }
