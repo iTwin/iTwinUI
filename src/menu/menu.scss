@@ -85,7 +85,7 @@
   
       > .iui-icon {
         @include themed {
-          fill: t(iui-text-color-muted);
+          fill: t(iui-icons-color-actionable-disabled);
         }
       }
     }
@@ -98,6 +98,6 @@
   margin-right: $iui-s;
   flex: 0 0 auto;
   @include themed {
-    fill: t(iui-text-color);
+    fill: t(iui-icons-color-actionable);
   }
 }
