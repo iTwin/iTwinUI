@@ -24,10 +24,6 @@
     />
     <link
       rel="stylesheet"
-      href="../../lib/css/toggle-switch.css"
-    />
-    <link
-      rel="stylesheet"
       href="../../lib/css/user-icon.css"
     />
     <link
@@ -45,7 +41,7 @@
       }
 
       .demo-side-navigation {
-        background-color: var(--iui-color-background-2);
+        background-color: var(--iui-color-background-1);
         width: 72px;
         height: 55px;
         border-right: 1px solid var(--iui-color-background-5);
@@ -60,6 +56,10 @@
         height: 24px;
         fill: var(--iui-icons-color-actionable);
       }
+
+      body {
+        background-color: var(--iui-color-background-2) !important;
+      }
     </style>
   </head>
   <body class="iui-body">
@@ -70,7 +70,7 @@
     <h2>Default</h2>
     <section id="default">
 
-      <div class="iui-header">
+      <header class="iui-header">
         <div class="iui-left">
           <!-- Application Button -->
           <button
@@ -97,7 +97,7 @@
 
           <!-- Project Button -->
           <button
-            class="iui-button iui-borderless iui-project"
+            class="iui-button iui-borderless iui-header-button iui-detailed"
             type="button"
           >
             <div class="iui-thumbnail-area">
@@ -107,6 +107,14 @@
               <div class="iui-name">Project Alpha</div>
               <div class="iui-id">0x0123456789</div>
             </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+            </svg>
           </button>
 
           <!-- Use chevron-right.svg from generic-icons package. -->
@@ -121,7 +129,7 @@
 
           <!-- IModel Button -->
           <button
-            class="iui-button iui-borderless iui-imodel"
+            class="iui-button iui-borderless iui-active iui-header-button iui-detailed"
             type="button"
           >
             <div class="iui-thumbnail-area">
@@ -131,543 +139,14 @@
               <div class="iui-name">Model Beta</div>
               <div class="iui-id">0x0123456789</div>
             </span>
-          </button>
-        </div>
-
-        <div class="iui-center">
-
-        </div>
-
-        <div class="iui-right">
-          <!-- Notifications -->
-          <button
-            class="iui-button iui-borderless"
-            type="button"
-            aria-label="Notifications"
-            aria-expanded="false"
-          >
-            <!-- Use notification.svg from generic-icons package. -->
             <svg
               viewBox="0 0 16 16"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
-              <path
-                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
-              />
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
             </svg>
-          </button>
-
-          <!-- Help -->
-          <button
-            class="iui-button iui-borderless"
-            type="button"
-            aria-label="Help"
-            aria-expanded="false"
-          >
-            <!-- Use help-circular-hollow.svg from generic-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path
-                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
-              />
-            </svg>
-          </button>
-
-          <!-- Profile dropdown button -->
-          <!-- Used structure is as follow (from react): 
-              <DropdownButton>
-                <UserIcon size= slim ? "small" : "medium" color= blue />
-              </DropdownButton
-              Changed here to use iui-header-user-icon created just for this, that
-              adjust the size itself;
-          -->
-          <button
-            class="iui-button iui-dropdown iui-borderless"
-            type="button"
-            aria-label="My account"
-            aria-expanded="false"
-          >
-            <span
-              class="iui-label"
-              style="display: flex;"
-            >
-              <span
-                class="iui-header-user-icon"
-                title="Terry Rivers"
-              >
-                <span class="iui-user-icons-stroke"></span>
-                <abbr
-                  class="iui-user-icons-initials"
-                  style="background-color: #4585A5;"
-                >
-                  TR
-                </abbr>
-              </span>
-            </span>
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z">
-              </path>
-            </svg>
-          </button>
-
-          <!-- More menu -->
-          <button
-            class="iui-button iui-borderless"
-            type="button"
-            aria-label="More options"
-            aria-expanded="false"
-          >
-            <!-- Use more-vertical.svg from generic-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path
-                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <br />
-
-      <div class="iui-header">
-        <div class="iui-left">
-          <!-- Application Button -->
-          <button
-            class="iui-button iui-borderless iui-large iui-application"
-            type="button"
-            aria-label="Microstation"
-          >
-            <span class="iui-brand-logo">
-              <svg
-                viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                class="iui-icon"
-              >
-                <path
-                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
-                />
-              </svg>
-            </span>
-            <span class="iui-label">MicroStation</span>
-          </button>
-
-          <div class="iui-divider"></div>
-
-          <!-- Project Button -->
-          <button
-            class="iui-button iui-borderless iui-project"
-            type="button"
-          >
-            <div class="iui-thumbnail-area">
-              <div class="iui-thumbnail"></div>
-            </div>
-            <span class="iui-label">
-              <div class="iui-name">Project Alpha</div>
-            </span>
-          </button>
-
-          <!-- Use chevron-right.svg from generic-icons package. -->
-          <svg
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            class="iui-chevron"
-          >
-            <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-          </svg>
-
-          <!-- IModel Button -->
-          <button
-            class="iui-button iui-borderless iui-active iui-imodel"
-            type="button"
-          >
-            <div class="iui-thumbnail-area">
-              <div class="iui-thumbnail"></div>
-            </div>
-            <span class="iui-label">
-              <div class="iui-name">Model Beta</div>
-            </span>
-          </button>
-        </div>
-
-        <div class="iui-center">
-
-        </div>
-
-        <div class="iui-right">
-          <!-- Notifications -->
-          <button
-            class="iui-button iui-borderless"
-            type="button"
-            aria-label="Notifications"
-            aria-expanded="false"
-          >
-            <!-- Use notification.svg from generic-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
-              <path
-                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
-              />
-            </svg>
-          </button>
-
-          <!-- Help -->
-          <button
-            class="iui-button iui-borderless"
-            type="button"
-            aria-label="Help"
-            aria-expanded="false"
-          >
-            <!-- Use help-circular-hollow.svg from generic-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path
-                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
-              />
-            </svg>
-          </button>
-
-          <!-- Profile dropdown button -->
-          <!-- Used structure is as follow (from react): 
-              <DropdownButton>
-                <UserIcon size= slim ? "small" : "medium" color= blue />
-              </DropdownButton
-              Changed here to use iui-header-user-icon created just for this, that
-              adjust the size itself;
-          -->
-          <button
-            class="iui-button iui-dropdown iui-borderless"
-            type="button"
-            aria-label="My account"
-            aria-expanded="false"
-          >
-            <span
-              class="iui-label"
-              style="display: flex;"
-            >
-              <span
-                class="iui-header-user-icon"
-                title="Terry Rivers"
-              >
-                <span class="iui-user-icons-stroke"></span>
-                <abbr
-                  class="iui-user-icons-initials"
-                  style="background-color: #4585A5;"
-                >
-                  TR
-                </abbr>
-              </span>
-            </span>
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z">
-              </path>
-            </svg>
-          </button>
-
-          <!-- More menu -->
-          <button
-            class="iui-button iui-borderless"
-            type="button"
-            aria-label="More options"
-            aria-expanded="false"
-          >
-            <!-- Use more-vertical.svg from generic-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path
-                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-    </section>
-
-    <hr />
-
-    <h2 id="slim">Slim</h2>
-    <section id="slim">
-
-      <div class="iui-header iui-slim">
-        <div class="iui-left">
-          <!-- Application Button -->
-          <button
-            class="iui-button iui-borderless iui-large iui-application"
-            type="button"
-            aria-label="Microstation"
-          >
-            <span class="iui-brand-logo">
-              <svg
-                viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                class="iui-icon"
-              >
-                <path
-                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
-                />
-              </svg>
-            </span>
-            <span class="iui-label">MicroStation</span>
-          </button>
-
-          <div class="iui-divider"></div>
-
-          <!-- Project Button -->
-          <button
-            class="iui-button iui-borderless iui-project"
-            type="button"
-          >
-            <div class="iui-thumbnail-area">
-              <div class="iui-thumbnail"></div>
-            </div>
-            <span class="iui-label">
-              <div class="iui-name">Project Alpha</div>
-              <div class="iui-id">0x0123456789</div>
-            </span>
-          </button>
-
-          <!-- Use chevron-right.svg from generic-icons package. -->
-          <svg
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            class="iui-chevron"
-          >
-            <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-          </svg>
-
-          <!-- IModel Button -->
-          <button
-            class="iui-button iui-borderless iui-imodel"
-            type="button"
-          >
-            <div class="iui-thumbnail-area">
-              <div class="iui-thumbnail"></div>
-            </div>
-            <span class="iui-label">
-              <div class="iui-name">Model Beta</div>
-              <div class="iui-id">0x0123456789</div>
-            </span>
-          </button>
-        </div>
-
-        <div class="iui-center">
-
-        </div>
-
-        <div class="iui-right">
-          <!-- Notifications -->
-          <button
-            class="iui-button iui-borderless"
-            type="button"
-            aria-label="Notifications"
-            aria-expanded="false"
-          >
-            <!-- Use notification.svg from generic-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
-              <path
-                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
-              />
-            </svg>
-          </button>
-
-          <!-- Help -->
-          <button
-            class="iui-button iui-borderless"
-            type="button"
-            aria-label="Help"
-            aria-expanded="false"
-          >
-            <!-- Use help-circular-hollow.svg from generic-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path
-                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
-              />
-            </svg>
-          </button>
-
-          <!-- Profile dropdown button -->
-          <!-- Used structure is as follow (from react): 
-              <DropdownButton>
-                <UserIcon size= slim ? "small" : "medium" color= blue />
-              </DropdownButton
-              Changed here to use iui-header-user-icon created just for this, that
-              adjust the size itself;
-          -->
-          <button
-            class="iui-button iui-dropdown iui-borderless"
-            type="button"
-            aria-label="My account"
-            aria-expanded="false"
-          >
-            <span
-              class="iui-label"
-              style="display: flex;"
-            >
-              <span
-                class="iui-header-user-icon"
-                title="Terry Rivers"
-              >
-                <span class="iui-user-icons-stroke"></span>
-                <abbr
-                  class="iui-user-icons-initials"
-                  style="background-color: #4585A5;"
-                >
-                  TR
-                </abbr>
-              </span>
-            </span>
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z">
-              </path>
-            </svg>
-          </button>
-
-          <!-- More menu -->
-          <button
-            class="iui-button iui-borderless"
-            type="button"
-            aria-label="More options"
-            aria-expanded="false"
-          >
-            <!-- Use more-vertical.svg from generic-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path
-                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-    </section>
-
-    <hr />
-
-    <h2>Animation (Hover to trigger the switch)</h2>
-    <section>
-
-      <!-- Not a suggest, this is just to be able to test the animation -->
-      <div class="iui-header iui-slim-on-hover-demo">
-        <div class="iui-left">
-          <!-- Application Button -->
-          <button
-            class="iui-button iui-borderless iui-large iui-application"
-            type="button"
-            aria-label="Microstation"
-          >
-            <span class="iui-brand-logo">
-              <svg
-                viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                class="iui-icon"
-              >
-                <path
-                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
-                />
-              </svg>
-            </span>
-            <span class="iui-label">MicroStation</span>
-          </button>
-
-          <div class="iui-divider"></div>
-
-          <!-- Project Button -->
-          <button
-            class="iui-button iui-borderless iui-project"
-            type="button"
-          >
-            <div class="iui-thumbnail-area">
-              <div class="iui-thumbnail"></div>
-            </div>
-            <span class="iui-label">
-              <div class="iui-name">Project Alpha</div>
-              <div class="iui-id">0x0123456789</div>
-            </span>
-          </button>
-
-          <!-- Use chevron-right.svg from generic-icons package. -->
-          <svg
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            class="iui-chevron"
-          >
-            <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-          </svg>
-
-          <!-- IModel Button -->
-          <button
-            class="iui-button iui-borderless iui-imodel"
-            type="button"
-          >
-            <div class="iui-thumbnail-area">
-              <div class="iui-thumbnail"></div>
-            </div>
-            <span class="iui-label">
-              <div class="iui-name">Model Beta</div>
-              <div class="iui-id">0x0123456789</div>
-            </span>
           </button>
         </div>
 
@@ -722,13 +201,6 @@
           </button>
 
           <!-- Profile dropdown button -->
-          <!-- Used structure is as follow (from react): 
-              <DropdownButton>
-                <UserIcon size= slim ? "small" : "medium" color= blue />
-              </DropdownButton
-              Changed here to use iui-header-user-icon created just for this, that
-              adjust the size itself;
-          -->
           <button
             class="iui-button iui-dropdown iui-borderless"
             type="button"
@@ -736,31 +208,21 @@
             aria-expanded="false"
           >
             <span
-              class="iui-label"
-              style="display: flex;"
+              class="iui-user-icons-medium"
+              title="Terry Rivers"
             >
-              <span
-                class="iui-header-user-icon"
-                title="Terry Rivers"
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color: #6AB9EC;"
               >
-                <span class="iui-user-icons-stroke"></span>
-                <abbr
-                  class="iui-user-icons-initials"
-                  style="background-color: #4585A5;"
-                >
-                  TR
-                </abbr>
-              </span>
+                TR
+              </abbr>
+              <img
+                src="https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png"
+                alt="Terry Rivers"
+              />
             </span>
-            <svg
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="iui-icon"
-            >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z">
-              </path>
-            </svg>
           </button>
 
           <!-- More menu -->
@@ -783,7 +245,693 @@
             </svg>
           </button>
         </div>
-      </div>
+      </header>
+
+      <br />
+
+      <header class="iui-header">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <button
+            class="iui-button iui-borderless iui-large iui-application"
+            type="button"
+            aria-label="Microstation"
+          >
+            <span class="iui-brand-logo">
+              <svg
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
+                />
+              </svg>
+            </span>
+          </button>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <button
+            class="iui-button iui-borderless iui-header-button"
+            type="button"
+          >
+            <span class="iui-label">
+              <div class="iui-name">Project Alpha</div>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+            </svg>
+          </button>
+
+          <!-- Use chevron-right.svg from generic-icons package. -->
+          <svg
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            class="iui-chevron"
+          >
+            <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+          </svg>
+
+          <!-- IModel Button -->
+          <button
+            class="iui-button iui-borderless iui-active iui-header-button"
+            type="button"
+          >
+            <span class="iui-label">
+              <div class="iui-name">Model Beta</div>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="iui-center">
+
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+          >
+            <!-- Use notification.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
+              <path
+                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
+              />
+            </svg>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <!-- Use help-circular-hollow.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+            <span
+              class="iui-user-icons-medium iui-user-icon"
+              title="Terry Rivers"
+            >
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color: #6AB9EC;"
+              >
+                TR
+              </abbr>
+            </span>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <!-- Use more-vertical.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+    </section>
+
+    <hr />
+
+    <h2>Slim</h2>
+    <section id="slim">
+
+      <header class="iui-header iui-slim">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <button
+            class="iui-button iui-borderless iui-large iui-application"
+            type="button"
+            aria-label="Microstation"
+          >
+            <span class="iui-brand-logo">
+              <svg
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">MicroStation</span>
+          </button>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <button
+            class="iui-button iui-borderless iui-header-button iui-detailed"
+            type="button"
+          >
+            <div class="iui-thumbnail-area">
+              <div class="iui-thumbnail"></div>
+            </div>
+            <span class="iui-label">
+              <div class="iui-name">Project Alpha</div>
+              <div class="iui-id">0x0123456789</div>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+            </svg>
+          </button>
+
+          <!-- Use chevron-right.svg from generic-icons package. -->
+          <svg
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            class="iui-chevron"
+          >
+            <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+          </svg>
+
+          <!-- IModel Button -->
+          <button
+            class="iui-button iui-borderless iui-active iui-header-button iui-detailed"
+            type="button"
+          >
+            <div class="iui-thumbnail-area">
+              <div class="iui-thumbnail"></div>
+            </div>
+            <span class="iui-label">
+              <div class="iui-name">Model Beta</div>
+              <div class="iui-id">0x0123456789</div>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="iui-center">
+
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+          >
+            <!-- Use notification.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
+              <path
+                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
+              />
+            </svg>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <!-- Use help-circular-hollow.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+            <span
+              class="iui-user-icons-small"
+              title="Terry Rivers"
+            >
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color: #6AB9EC;"
+              >
+                TR
+              </abbr>
+              <img
+                src="https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png"
+                alt="Terry Rivers"
+              />
+            </span>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <!-- Use more-vertical.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <br />
+
+      <header class="iui-header iui-slim">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <button
+            class="iui-button iui-borderless iui-large iui-application"
+            type="button"
+            aria-label="Microstation"
+          >
+            <span class="iui-brand-logo">
+              <svg
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
+                />
+              </svg>
+            </span>
+          </button>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <button
+            class="iui-button iui-borderless iui-header-button"
+            type="button"
+          >
+            <span class="iui-label">
+              <div class="iui-name">Project Alpha</div>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+            </svg>
+          </button>
+
+          <!-- Use chevron-right.svg from generic-icons package. -->
+          <svg
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            class="iui-chevron"
+          >
+            <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+          </svg>
+
+          <!-- IModel Button -->
+          <button
+            class="iui-button iui-borderless iui-active iui-header-button"
+            type="button"
+          >
+            <span class="iui-label">
+              <div class="iui-name">Model Beta</div>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="iui-center">
+
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+          >
+            <!-- Use notification.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
+              <path
+                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
+              />
+            </svg>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <!-- Use help-circular-hollow.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+            <span
+              class="iui-user-icons-small iui-user-icon"
+              title="Terry Rivers"
+            >
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color: #6AB9EC;"
+              >
+                TR
+              </abbr>
+            </span>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <!-- Use more-vertical.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+    </section>
+
+    <hr />
+
+    <h2>Animation (Hover to trigger the switch)</h2>
+    <section>
+
+      <!-- Not a suggest, this is just to be able to test the animation -->
+      <header class="iui-header iui-slim-on-hover-demo">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <button
+            class="iui-button iui-borderless iui-large iui-application"
+            type="button"
+            aria-label="Microstation"
+          >
+            <span class="iui-brand-logo">
+              <svg
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">MicroStation</span>
+          </button>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <button
+            class="iui-button iui-borderless iui-header-button iui-detailed"
+            type="button"
+          >
+            <div class="iui-thumbnail-area">
+              <div class="iui-thumbnail"></div>
+            </div>
+            <span class="iui-label">
+              <div class="iui-name">Project Alpha</div>
+              <div class="iui-id">0x0123456789</div>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+            </svg>
+          </button>
+
+          <!-- Use chevron-right.svg from generic-icons package. -->
+          <svg
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            class="iui-chevron"
+          >
+            <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+          </svg>
+
+          <!-- IModel Button -->
+          <button
+            class="iui-button iui-borderless iui-active iui-header-button iui-detailed"
+            type="button"
+          >
+            <div class="iui-thumbnail-area">
+              <div class="iui-thumbnail"></div>
+            </div>
+            <span class="iui-label">
+              <div class="iui-name">Model Beta</div>
+              <div class="iui-id">0x0123456789</div>
+            </span>
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="iui-center">
+
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+          >
+            <!-- Use notification.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
+              <path
+                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
+              />
+            </svg>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <!-- Use help-circular-hollow.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+            <span
+              class="iui-user-icons-medium"
+              title="Terry Rivers"
+            >
+              <span class="iui-user-icons-stroke"></span>
+              <abbr
+                class="iui-user-icons-initials"
+                style="background-color: #6AB9EC;"
+              >
+                TR
+              </abbr>
+              <img
+                src="https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png"
+                alt="Terry Rivers"
+              />
+            </span>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <!-- Use more-vertical.svg from generic-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
       <div class="demo-side-navigation">
         <svg
           class="demo-side-navigation-icon"
