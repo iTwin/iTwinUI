@@ -88,6 +88,14 @@ export type SelectProps<T> = {
    * Custom style for menu.
    */
   menuStyle?: React.CSSProperties;
+  /**
+   * Props to customize Popover behavior.
+   * @see tippy.js {@link https://atomiks.github.io/tippyjs/v6/all-props/ props}
+   */
+  popoverProps?: Omit<
+    PopoverProps,
+    'onShow' | 'onHide' | 'visible' | 'disabled'
+  >;
 } & Pick<PopoverProps, 'onShow' | 'onHide'> &
   CommonProps;
 
@@ -156,6 +164,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     menuStyle,
     onShow,
     onHide,
+    popoverProps,
     ...rest
   } = props;
 
@@ -255,6 +264,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       onHide={onHideHandler}
       visible={isOpen}
       disabled={disabled}
+      {...popoverProps}
     >
       <div
         className={cx('iui-select', className)}

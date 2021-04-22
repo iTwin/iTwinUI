@@ -29,7 +29,8 @@ export type PopoverProps = {
 } & Omit<TippyProps, 'placement' | 'trigger' | 'visible'>;
 
 /**
- * Wrapper around Tippy with pre-configured props and plugins (e.g. lazy mounting, focus, etc).
+ * Wrapper around {@link https://atomiks.github.io/tippyjs tippy.js}
+ * with pre-configured props and plugins (e.g. lazy mounting, focus, etc).
  * @private
  */
 export const Popover = React.forwardRef((props: PopoverProps, ref) => {
