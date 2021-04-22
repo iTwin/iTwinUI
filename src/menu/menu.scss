@@ -98,7 +98,7 @@
 
 // Complex menu
 @mixin iui-complex-menu {
-  > .iui-content {
+  > .iui-complex-content {
     padding: $iui-baseline $iui-sm;
 
     > .iui-button-bar {
