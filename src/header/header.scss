@@ -2,24 +2,116 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../user-icon/index';
+@import '../icon/index';
 
 
 @mixin iui-header {
+  @include iui-reset;
+  @include iui-font-family;
   @include themed {
-    color: t(iui-text-color);
     background-color: t(iui-color-background-2);
     border-bottom: 2px solid t(iui-color-background-5);
+    color: t(iui-text-color);
   }
-  fill: currentColor;
   display: flex;
+  justify-content: space-between;
   width: 100%;
-  height: 56px;
-  font-size: 14px;
-  transition: height 0.2s;
+  height: $iui-baseline * 5;
+  transition: height $iui-speed-fast ease-out;
 
-  > * {
-    align-items: center;
+  > .iui-left,
+  > .iui-center,
+  > .iui-right {
     display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  > .iui-left {
+    > .iui-application,
+    > .iui-project,
+    > .iui-imodel {
+      padding-left: 0;
+      overflow: hidden;
+      transition: height $iui-speed-fast ease-out;
+
+      > .iui-label {
+        transition: font-size $iui-speed-fast ease-out;
+      }
+
+      > .iui-brand-logo,
+      > .iui-thumbnail-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        > .iui-icon,
+        > .iui-thumbnail {
+          width: $iui-icons-large;
+          height: $iui-icons-large;
+          transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+        }
+
+        > .iui-thumbnail {
+          border-radius: $iui-border-radius;
+          background-position: center;
+          background-size: cover;
+          @include themed {
+            background-color: t(iui-color-background-3);
+          }
+        }
+      }
+
+      > .iui-brand-logo {
+        width: $iui-l * 3;
+      }
+
+      > .iui-thumbnail-area {
+        width: $iui-l * 2;
+      }
+    }
+
+    > .iui-project,
+    > .iui-imodel {
+      > .iui-label {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        transition: padding-top $iui-speed-fast ease-out;
+
+        > .iui-id {
+          transition: opacity $iui-speed-fast ease-out;
+        }
+      }
+    }
+
+    > .iui-chevron {
+      @include iui-icons-small;
+    }
+  }
+
+  > .iui-center {
+    > .iui-input {
+      border-radius: $iui-line-height;
+      width: 20vw;
+    }
+  }
+
+
+
+  .iui-button {
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .iui-divider {
+    width: 1px;
+    height: $iui-baseline * 2;
+    margin: 0 $iui-xs;
+    @include themed {
+      background-color: t(iui-color-background-4);
+    }
   }
 
   // Created a custom user icon, in react, I was switching with props from small to medium.
@@ -36,16 +128,48 @@
   &.iui-slim,
   // .iui-slim-on-hover-demo is only to test the animation, not a feature suggestion :)
   &.iui-slim-on-hover-demo:hover {
-    height: 32px;
+    height: round($iui-baseline * 2.5);
+
+    > .iui-left {
+      > .iui-application {
+        > .iui-label {
+          font-size: $iui-font-size;
+        }
+
+        > .iui-brand-logo > .iui-icon {
+          width: $iui-icons-default;
+          height: $iui-icons-default;
+        }
+      }
+
+      > .iui-project,
+      > .iui-imodel {
+        > .iui-thumbnail-area > .iui-thumbnail {
+          width: $iui-icons-default;
+          height: $iui-icons-default;
+          //margin: 0 8px 0 4px;
+        }
+
+        > .iui-label {
+          padding-top: $iui-baseline * 2;
+
+          > .iui-id {
+            opacity: 0;
+          }
+        }
+      }
+    }
     
     .iui-header-user-icon {
       @include iui-user-icons-small;
     }
   }
 
+  /*
   > :first-child {
     flex-grow: 1;
     flex-shrink: 1;
     min-width: 0;
   }
+  */
 }
