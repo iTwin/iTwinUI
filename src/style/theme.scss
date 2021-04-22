@@ -15,7 +15,7 @@ $iui-color-background-disabled--light: $iui-color-background-3--light;
 
 // Light theme > Foreground
 $iui-color-foreground-body--light: #000;
-$iui-color-foreground-body-invert--light: Invert($iui-color-foreground-body--light);
+$iui-color-foreground-body-invert--light: #FFF;
 $iui-color-foreground-accessory--light: #FFF;
 $iui-color-foreground-primary--light: #008BE1;
 $iui-color-foreground-positive--light: #53A21A;
@@ -133,7 +133,7 @@ $iui-color-background-disabled--dark: $iui-color-background-3--dark;
 
 // Dark theme > Foreground
 $iui-color-foreground-body--dark: #FFF;
-$iui-color-foreground-body-invert--dark: Invert($iui-color-foreground-body--dark);
+$iui-color-foreground-body-invert--dark: #000;
 $iui-color-foreground-accessory--dark: #FFF;
 $iui-color-foreground-primary--dark: #A5D7F5;
 $iui-color-foreground-positive--dark: #C3E1AF;
