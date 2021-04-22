@@ -18,9 +18,10 @@
   z-index: 999;
   box-shadow: $iui-elevation-24;
   pointer-events: none;
-  @include iui-blur($opacity: 3);
+  // @include iui-blur($opacity: 3);
   @include themed {
-    color: t(iui-color-foreground-accessory);
+    background-color: t(iui-color-foreground-body);
+    color: t(iui-color-foreground-body-invert);
   }
 }
 
