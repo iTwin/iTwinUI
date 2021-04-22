@@ -39,7 +39,7 @@
       href="../assets/demo.css"
     />
     <style>
-      #demo-default {
+      #demo-list {
         width: 50%;
       }
 
@@ -55,10 +55,12 @@
 
       .iui-content .iui-text-leading {
         margin-bottom: 0;
+        user-select: all;
       }
 
       .iui-content .iui-text-muted {
         margin-bottom: 11px;
+        user-select: all;
       }
     </style>
     <script src="../assets/theme.js"></script>
@@ -68,149 +70,153 @@
     <h1>Menu</h1>
     <hr />
     <h2>List</h2>
-    <section id="demo-default">
+    <section id="demo-list">
       <div>
-        <div class="iui-menu">
-          <ul>
-            <li tabindex="0"><span class="iui-content">Option 1</span></li>
-            <li tabindex="0"><span class="iui-content">Option 2</span></li>
-            <li class="iui-disabled"><span class="iui-content">Option 3</span></li>
-          </ul>
-        </div>
+        <ul class="iui-menu">
+          <li
+            tabindex="0"
+            id="test-link-1"
+          ><span class="iui-content">Option 1</span></li>
+          <li tabindex="0"><span class="iui-content">Option 2</span></li>
+          <li class="iui-disabled"><span class="iui-content">Option 3</span></li>
+        </ul>
       </div>
 
       <br />
 
       <div>
-        <div class="iui-menu">
-          <ul>
-            <li class="iui-active">
-              <span class="iui-content">Option 1</span>
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-            </li>
-            <li><span class="iui-content">Option 2</span></li>
-            <li><span class="iui-content">Option 3</span></li>
-          </ul>
-        </div>
+        <ul class="iui-menu">
+          <li
+            class="iui-active"
+            tabindex="0"
+          >
+            <span class="iui-content">Option 1</span>
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </li>
+          <li tabindex="0"><span class="iui-content">Option 2</span></li>
+          <li
+            id="test-link-2"
+            tabindex="0"
+          ><span class="iui-content">Option 3</span></li>
+        </ul>
       </div>
 
       <br />
 
       <div>
-        <div class="iui-menu">
-          <ul>
-            <li>
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-              <span class="iui-content">Option 1</span>
-            </li>
-            <li>
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-              <span class="iui-content">Option 2</span>
-            </li>
-            <li class="iui-disabled">
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-              <span class="iui-content">Option 3</span>
-            </li>
-          </ul>
-        </div>
+        <ul class="iui-menu">
+          <li tabindex="0">
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+            <span class="iui-content">Option 1</span>
+          </li>
+          <li tabindex="0">
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+            <span class="iui-content">Option 2</span>
+          </li>
+          <li class="iui-disabled">
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+            <span class="iui-content">Option 3</span>
+          </li>
+        </ul>
       </div>
 
       <br />
 
       <div>
-        <div class="iui-menu">
-          <ul>
-            <li class="iui-active">
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-              <span class="iui-content">
-                Very Very Very Very Very Very Very Very Very Very Very Very Very
-                Very Very Very Very Very Very Very Very Very Very Very Very Very
-                Very Very Very Very Very Very Very Very Very Very Very Very Very
-                Very Very Very Very Very Very Very Very Very Very Very Very Very
-                Very Very Very Very Very Very Very Very Very Very Very Very Very
-                Very Very Very Long Option 1
-              </span>
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-            </li>
-            <li>
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-              <span class="iui-content">Option 2</span>
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-            </li>
-            <li>
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-              <span class="iui-content">Option 3</span>
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-            </li>
-          </ul>
-        </div>
+        <ul class="iui-menu">
+          <li
+            class="iui-active"
+            tabindex="0"
+          >
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+            <span class="iui-content">
+              Very Very Very Very Very Very Very Very Very Very Very Very Very
+              Very Very Very Very Very Very Very Very Very Very Very Very Very
+              Very Very Very Very Very Very Very Very Very Very Very Very Very
+              Very Very Very Very Very Very Very Very Very Very Very Very Very
+              Very Very Very Very Very Very Very Very Very Very Very Very Very
+              Very Very Very Long Option 1
+            </span>
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </li>
+          <li tabindex="0">
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+            <span class="iui-content">Option 2</span>
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </li>
+          <li tabindex="0">
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+            <span class="iui-content">Option 3</span>
+            <svg
+              class="iui-icon"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+            </svg>
+          </li>
+        </ul>
       </div>
     </section>
 
     <br />
     <hr />
     <h2>Complex</h2>
-    <section id="demo-filter">
+    <section id="demo-complex">
 
       <div class="iui-menu">
         <div class="iui-content">

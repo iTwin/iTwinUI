@@ -2,6 +2,13 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-menu {
-  @include iui-menu;
+ul.iui-menu,
+ol.iui-menu {
+  @include iui-dropdown;
+  @include iui-list-menu;
+}
+
+div.iui-menu {
+  @include iui-dropdown;
+  @include iui-complex-menu;
 }
