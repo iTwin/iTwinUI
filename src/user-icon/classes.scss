@@ -2,18 +2,19 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-user-icons-small {
-  @include iui-user-icons-small;
-}
+.iui-user-icon {
+  @include iui-user-icon;
+  @include iui-user-icon-default;
 
-.iui-user-icons-medium {
-  @include iui-user-icons-medium;
-}
+  &.iui-small {
+    @include iui-user-icon-small;
+  }
 
-.iui-user-icons-large {
-  @include iui-user-icons-large;
-}
+  &.iui-large {
+    @include iui-user-icon-large;
+  }
 
-.iui-user-icons-x-large {
-  @include iui-user-icons-x-large;
+  &.iui-xl {
+    @include iui-user-icon-xl;
+  }
 }

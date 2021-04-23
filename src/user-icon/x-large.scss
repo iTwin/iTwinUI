@@ -3,10 +3,12 @@
 @import '../icon/variables';
 @import './user-icon';
 
-@mixin iui-user-icons-x-large {
-  @include iui-user-icons($size: $iui-icons-3xl);
+@mixin iui-user-icon-xl {
+  width: $iui-icons-3xl;
+  height: $iui-icons-3xl;
 
-  > .iui-user-icons-initials {
+  > .iui-initials {
     font-size: $iui-font-size-title;
+    line-height: $iui-icons-3xl;
   }
 }

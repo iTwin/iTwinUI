@@ -3,6 +3,11 @@
 @import '../icon/variables';
 @import './user-icon';
 
-@mixin iui-user-icons-medium {
-  @include iui-user-icons($size: $iui-icons-xl);
+@mixin iui-user-icon-default {
+  width: $iui-icons-xl;
+  height: $iui-icons-xl;
+
+  > .iui-initials {
+    line-height: $iui-icons-xl;
+  }
 }
