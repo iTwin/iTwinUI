@@ -1,0 +1,221 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<html id="theme">
+  <head>
+    <title>Side Navigation</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/css/global.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/side-navigation.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/tooltips.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <style>
+    #demo-sidenav-container.iui-expanded
+    .iui-sidenav-tooltip-container {
+      display: none;
+    }
+    /* tooltip */
+    .iui-sidenav-item-container .iui-sidenav-tooltip-container {
+      margin-left: 64px;
+      position: absolute;
+      opacity: 0;
+      display: none;
+    }
+
+    .iui-active > .iui-sidenav-tooltip-container {
+      margin-left: 62px;
+    }
+
+    .iui-sidenav-item-container:hover .iui-sidenav-tooltip-container {
+      opacity: 1;
+      display: block;
+    }
+
+    .iui-disabled:hover > .iui-sidenav-tooltip-container {
+      opacity: 0;
+      display: none;
+    }
+    </style>
+
+    <script>
+      function handleHidePanel() {
+        const administration = document.getElementById(
+          'demo-sidenav-container',
+        )
+        if (administration.classList.contains('iui-expanded')) {
+          administration.classList.remove('iui-expanded');
+          administration.classList.add('iui-collapsed');
+        } else {
+          administration.classList.add('iui-expanded');
+          administration.classList.remove('iui-collapsed');
+        }
+      }
+    </script>
+
+    <script src="../assets/theme.js"></script>
+  </head>
+
+  <body>
+    <theme-button></theme-button>
+    <h1>Side navigation</h1>
+
+    <hr />
+    <br />
+
+    <div>
+      <div
+        id="demo-sidenav-container"
+        class="iui-side-navigation iui-collapsed"
+      >
+        <div
+          id="iui-expand-container"
+          class="iui-expand-container"
+          onclick="handleHidePanel()"
+          tabindex="0"
+        >
+          <!-- Use chevron-left.svg from generic-icons package. -->
+          <svg
+            viewBox="0 0 16 16"
+            class="iui-icon"
+          >
+            <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z"></path>
+          </svg>
+        </div>
+
+        <div
+          id="iui-sidenav-content"
+          class="iui-sidenav-content"
+        >
+          <div
+            id="iui-sidenav-items-container"
+            class="iui-sidenav-items-container"
+          >
+            <div
+              id="side-bar-items"
+              class="iui-sidenav-items"
+            >
+              <a
+                class="iui-sidenav-item-container iui-active"
+                tabindex="0"
+              >
+                <!-- Use airplane.svg from generic-icons package. -->
+                <svg
+                  class="iui-sidenav-item-icon"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M14.003 15.433L12.467 4.735l3.004-3.008s.801-1.204.4-1.605c-.333-.334-1.601.401-1.601.401L11.199 3.6.585 1.994l-.601.602L8.462 6.34l-4.139 4.145-3.07-.2L.183 11.42l2.47.67c-.4 1.336-.2 1.47-.2 1.47s.2.2 1.469-.2l.667 2.473 1.135-1.07-.2-3.075 4.139-4.145 3.738 8.49z"
+                  ></path>
+                </svg>
+                <span class="iui-sidenav-item-caption">Side navigation Item #1</span>
+                <div
+                  class="iui-sidenav-tooltip-container"
+                  role="tooltip"
+                >
+                  <span class="iui-tooltip right">
+                    Side navigation Item #1
+                  </span>
+                </div>
+              </a>
+
+              <a
+                class="iui-sidenav-item-container"
+                tabindex="0"
+              >
+                <!-- Use bolt.svg from generic-icons package. -->
+                <svg
+                  class="iui-sidenav-item-icon"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M13.42 6.5v-.01c-.11-.2-.3-.3-.53-.31H9.68L11.24.74a.571.571 0 00-.31-.679.603.603 0 00-.72.15L2.66 8.85a.59.59 0 00.45.98h3.21l-1.57 5.43c-.07.28.07.569.35.689.07.04.15.05.2.05h.03c.17.01.34-.07.46-.21l7.55-8.639c.16-.18.19-.44.08-.65z"
+                  ></path>
+                </svg>
+                <span class="iui-sidenav-item-caption">Side navigation Item #2</span>
+                <div
+                  class="iui-sidenav-tooltip-container"
+                  role="tooltip"
+                >
+                  <span class="iui-tooltip right">
+                    Side navigation Item #2
+                  </span>
+                </div>
+              </a>
+
+              <a class="iui-sidenav-item-container iui-disabled">
+                <!-- Use camera.svg from generic-icons package. -->
+                <svg
+                  class="iui-sidenav-item-icon"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M1.5 3H3a.5.5 0 000-1H1.5a.5.5 0 000 1z"></path>
+                  <path
+                    d="M15 4h-3.45L11 2.62A1.29 1.29 0 009.85 2H6a1.28 1.28 0 00-1.19.62L4.27 4H1a1 1 0 00-1 1v8a1 1 0 001 1h14a1 1 0 001-1V5a1 1 0 00-1-1zm-7 9a4 4 0 114-4 4 4 0 01-4 4zm4.5-7a.5.5 0 11.5-.5.5.5 0 01-.5.5z"
+                  ></path>
+                  <path d="M8 6a3 3 0 103 3 3 3 0 00-3-3"></path>
+                </svg>
+                <span class="iui-sidenav-item-caption">Side navigation Item #3</span>
+                <div
+                  class="iui-sidenav-tooltip-container"
+                  role="tooltip"
+                >
+                  <span class="iui-tooltip right">
+                    Side navigation Item #3
+                  </span>
+                </div>
+              </a>
+            </div>
+
+            <div
+              id="administration-panel-item"
+              class="iui-bottom-container"
+            >
+              <a
+                class="iui-sidenav-item-container"
+                tabindex="0"
+              >
+                <!-- Use tools.svg from generic-icons package. -->
+                <svg
+                  class="iui-sidenav-item-icon"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M14.9 3.6L16 .7l-.7-.7-2.8 1.1-.5 1.5-5.6 5.6c-.7-.4-1.5-.2-2 .3L.5 12.4c-.7.7-.7 1.7 0 2.4l.7.7c.7.7 1.7.7 2.4 0l3.9-3.9c.5-.5.6-1.4.3-2L13.4 4"
+                  ></path>
+                  <path
+                    d="M3.5 7.9l.2-.2c.5-.4 1.1-.7 1.9-.7.2 0 .4 0 .6.1l1.6-1.6c.8-2-.2-4.3-2.2-5.2C4.8 0 3.9-.1 3.1.1L6 3 3 6 .1 3.1C-.4 5.2.9 7.4 3 7.9h.5M10.5 8.3L8.9 9.9c.1.4.1.9 0 1.3l4.5 4.5c.5.5 1.4.5 1.9 0l.4-.4c.5-.5.5-1.4 0-1.9"
+                  ></path>
+                </svg>
+                <span
+                  title="Administration"
+                  class="iui-sidenav-item-caption"
+                >
+                  Administration
+                </span>
+                <div
+                  class="iui-sidenav-tooltip-container"
+                  role="tooltip"
+                >
+                  <span class="iui-tooltip right">
+                    Administration
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
