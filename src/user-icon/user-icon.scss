@@ -29,7 +29,9 @@
   }
 
   > .iui-initials {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     left: 0;
     top: 0;
@@ -43,8 +45,17 @@
     text-decoration: none;
     text-transform: uppercase;
     background-color: $iui-color-dataviz-celery;
+    overflow: hidden;
     @include themed {
       color: t(iui-color-foreground-accessory);
+    }
+
+    > .iui-icon {
+      width: 50%;
+      height: 50%;
+      @include themed {
+        fill: t(iui-color-foreground-accessory);
+      }
     }
   }
 
