@@ -30,7 +30,6 @@
   }
 
   > .iui-initials {
-    @include iui-text(leading);
     display: block;
     position: absolute;
     z-index: 0;
