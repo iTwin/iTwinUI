@@ -15,7 +15,7 @@
   transition: height $iui-speed-fast ease-out;
   @include themed {
     background-color: t(iui-color-background-1);
-    border-bottom: 2px solid t(iui-color-background-5);
+    border-bottom: $iui-xxs solid t(iui-color-background-5);
     color: t(iui-text-color);
   }
 
@@ -128,14 +128,6 @@
 
   > .iui-center {
     justify-content: center;
-
-    > .iui-input {
-      border-radius: $iui-line-height;
-      width: 20vw;
-      @include themed {
-        background-color: t(iui-color-background-2);
-      }
-    }
   }
 
   > .iui-right {

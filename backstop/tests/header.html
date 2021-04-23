@@ -57,8 +57,18 @@
         fill: var(--iui-icons-color-actionable);
       }
 
+      .iui-input {
+        border-radius: 22px;
+        width: 20vw;
+        background-color: var(--iui-color-background-2);
+      }
+
       body {
         background-color: var(--iui-color-background-2) !important;
+      }
+
+      section {
+        width: auto !important;
       }
     </style>
   </head>
@@ -68,7 +78,7 @@
     <hr />
 
     <h2>Default</h2>
-    <section id="default">
+    <section id="demo-default">
 
       <header class="iui-header">
         <div class="iui-left">
@@ -99,6 +109,7 @@
           <button
             class="iui-button iui-borderless iui-header-button iui-detailed"
             type="button"
+            id="test-button-1"
           >
             <div class="iui-thumbnail-area">
               <div class="iui-thumbnail"></div>
@@ -165,6 +176,7 @@
             type="button"
             aria-label="Notifications"
             aria-expanded="false"
+            id="test-button-2"
           >
             <!-- Use notification.svg from generic-icons package. -->
             <svg
@@ -410,7 +422,7 @@
     <hr />
 
     <h2>Slim</h2>
-    <section id="slim">
+    <section id="demo-slim">
 
       <header class="iui-header iui-slim">
         <div class="iui-left">
@@ -441,6 +453,7 @@
           <button
             class="iui-button iui-borderless iui-header-button iui-detailed"
             type="button"
+            id="test-button-1"
           >
             <div class="iui-thumbnail-area">
               <div class="iui-thumbnail"></div>
@@ -499,6 +512,7 @@
             type="button"
             aria-label="Notifications"
             aria-expanded="false"
+            id="test-button-1"
           >
             <!-- Use notification.svg from generic-icons package. -->
             <svg
