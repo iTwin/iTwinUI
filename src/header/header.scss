@@ -29,13 +29,27 @@
   }
 
   > .iui-left {
+    &:nth-last-child(2) {
+      width: unset;
+      overflow: hidden;
+    }
+    
     > .iui-application,
     > .iui-header-button {
       overflow: hidden;
       transition: height $iui-speed-fast ease-out;
 
       > .iui-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
         transition: font-size $iui-speed-fast ease-out;
+
+        > * {
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          text-align: left;
+        }
       }
 
       > .iui-brand-logo,
@@ -120,6 +134,10 @@
 
   > .iui-right {
     justify-content: flex-end;
+
+    &:nth-child(2) {
+      width: unset;
+    }
 
     .iui-user-icon {
       transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
