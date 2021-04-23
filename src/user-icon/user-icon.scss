@@ -15,7 +15,6 @@
   > .iui-stroke {
     display: block;
     position: absolute;
-    z-index: 2;
     left: 0;
     top: 0;
     width: 100%;
@@ -32,7 +31,6 @@
   > .iui-initials {
     display: block;
     position: absolute;
-    z-index: 0;
     left: 0;
     top: 0;
     width: 100%;
@@ -54,7 +52,6 @@
     display: block;
     position: absolute;
     object-fit: cover;
-    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
@@ -71,7 +68,6 @@
     width: calc(100% / 4);
     height: calc(100% / 4);
     border-radius: 50%;
-    z-index: 3;
     @include themed {
       border: 2px solid t(iui-color-background-1);
       background-color: t(iui-color-background-1);

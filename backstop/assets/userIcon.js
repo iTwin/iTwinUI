@@ -50,17 +50,6 @@ class UserIcon extends HTMLElement {
       class="iui-user-icon iui-${size}"
       title="${person.title}"
     >
-      ${
-        status
-          ? `<span
-              title="${status}"
-              class="iui-status iui-${status}"
-            >
-              ${icon && icon}
-            </span>`
-          : ''
-      }
-      <span class="iui-stroke"></span>
       <abbr
         class="iui-initials"
         style="background-color: ${person.color};"
@@ -73,6 +62,17 @@ class UserIcon extends HTMLElement {
               src="https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png"
               alt="${person.title}"
             />`
+          : ''
+      }
+      <span class="iui-stroke"></span>
+      ${
+        status
+          ? `<span
+              title="${status}"
+              class="iui-status iui-${status}"
+            >
+              ${icon && icon}
+            </span>`
           : ''
       }
     </span>
