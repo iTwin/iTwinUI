@@ -83,12 +83,12 @@
       @include themed {
         fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
       }
-      width: calc(100% / 6);
-      height: calc(100% / 6);
+      width: calc(100% / 1.5);
+      height: calc(100% / 1.5);
       display: block;
       position: absolute;
-      right: calc(100% / 24);
-      bottom: calc(100% / 24);
+      right: calc(100% / 6);
+      bottom: calc(100% / 6);
     }
 
     &.iui-online,
