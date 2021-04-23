@@ -14,7 +14,7 @@
     @include iui-user-icon-size($size: $iui-icons-xxl, $font-size: $iui-font-size-subheading);
   }
 
-  &.iui-xl {
+  &.iui-x-large {
     @include iui-user-icon-size($size: $iui-icons-3xl, $font-size: $iui-font-size-title);
   }
 }
