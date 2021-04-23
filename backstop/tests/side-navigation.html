@@ -6,8 +6,20 @@
   <head>
     <title>Side Navigation</title>
     <link
+      rel="icon"
+      href="../assets/favicon.ico"
+    />
+    <link
       rel="stylesheet"
       href="../../lib/css/global.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/button.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/tooltip.css"
     />
     <link
       rel="stylesheet"
@@ -15,40 +27,33 @@
     />
     <link
       rel="stylesheet"
-      href="../../lib/css/tooltips.css"
-    />
-    <link
-      rel="stylesheet"
       href="../assets/demo.css"
     />
     <style>
-    #demo-sidenav-container.iui-expanded
-    .iui-sidenav-tooltip-container {
-      display: none;
-    }
-    /* tooltip */
-    .iui-sidenav-item-container .iui-sidenav-tooltip-container {
-      margin-left: 64px;
-      position: absolute;
-      opacity: 0;
-      display: none;
-    }
+      section {
+        height: 666px;
+      }
 
-    .iui-active > .iui-sidenav-tooltip-container {
-      margin-left: 62px;
-    }
+      body {
+        background-color: var(--iui-color-background-2) !important;
+      }
 
-    .iui-sidenav-item-container:hover .iui-sidenav-tooltip-container {
-      opacity: 1;
-      display: block;
-    }
+      .iui-tooltip {
+        position: absolute;
+        margin-left: 80px;
+        margin-top: 14px;
+        display: none;
+      }
 
-    .iui-disabled:hover > .iui-sidenav-tooltip-container {
-      opacity: 0;
-      display: none;
-    }
+      .iui-button:hover + .iui-tooltip {
+        display: block;
+      }
+
+      .iui-expanded .iui-tooltip {
+        display: none !important;
+      }
     </style>
-
+    <script src="../assets/theme.js"></script>
     <script>
       function handleHidePanel() {
         const administration = document.getElementById(
@@ -63,159 +68,186 @@
         }
       }
     </script>
-
-    <script src="../assets/theme.js"></script>
   </head>
 
-  <body>
+  <body class="iui-body">
     <theme-button></theme-button>
     <h1>Side navigation</h1>
 
     <hr />
-    <br />
 
-    <div>
+    <section id="demo-side-navigation">
       <div
-        id="demo-sidenav-container"
         class="iui-side-navigation iui-collapsed"
+        id="demo-sidenav-container"
       >
-        <div
-          id="iui-expand-container"
-          class="iui-expand-container"
+        <!-- Expand arrow -->
+        <button
+          class="iui-button iui-expand"
+          role="button"
+          aria-label="Expand menu"
           onclick="handleHidePanel()"
-          tabindex="0"
         >
-          <!-- Use chevron-left.svg from generic-icons package. -->
+          <!-- Use chevron-right.svg from generic-icons package. -->
           <svg
-            viewBox="0 0 16 16"
             class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
           >
-            <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z"></path>
+            <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
           </svg>
-        </div>
+        </button>
 
-        <div
-          id="iui-sidenav-content"
-          class="iui-sidenav-content"
-        >
+        <!-- Rest of the tabs -->
+        <div class="iui-content">
           <div
-            id="iui-sidenav-items-container"
-            class="iui-sidenav-items-container"
+            class="iui-content-container"
+            role="tablist"
+            aria-label="Applications"
           >
-            <div
-              id="side-bar-items"
-              class="iui-sidenav-items"
-            >
-              <a
-                class="iui-sidenav-item-container iui-active"
-                tabindex="0"
+            <div class="iui-top">
+              <button
+                class="iui-button iui-large iui-active"
+                role="tab"
+                aria-selected="true"
+                aria-label="Home"
+                aria-controls="home-tab"
               >
-                <!-- Use airplane.svg from generic-icons package. -->
+                <!-- Use home.svg from generic-icons package. -->
                 <svg
-                  class="iui-sidenav-item-icon"
+                  class="iui-icon"
                   viewBox="0 0 16 16"
+                  aria-hidden="true"
                 >
-                  <path
-                    d="M14.003 15.433L12.467 4.735l3.004-3.008s.801-1.204.4-1.605c-.333-.334-1.601.401-1.601.401L11.199 3.6.585 1.994l-.601.602L8.462 6.34l-4.139 4.145-3.07-.2L.183 11.42l2.47.67c-.4 1.336-.2 1.47-.2 1.47s.2.2 1.469-.2l.667 2.473 1.135-1.07-.2-3.075 4.139-4.145 3.738 8.49z"
-                  ></path>
+                  <path d="m2 14.6s0 .4.3.4h4.7v-4h2v4h4.5c.5 0 .5-.4.5-.4v-6.1l-6-4.5-6 4.5z" />
+                  <path d="m14 5.3v-3.3h-2v1.8l-4-2.8-8 5.7 1 1.3 7-5 7 5 1-1.3z" />
                 </svg>
-                <span class="iui-sidenav-item-caption">Side navigation Item #1</span>
-                <div
-                  class="iui-sidenav-tooltip-container"
-                  role="tooltip"
-                >
-                  <span class="iui-tooltip right">
-                    Side navigation Item #1
-                  </span>
-                </div>
-              </a>
+                <span class="iui-label">Home</span>
+              </button>
+              <span class="iui-tooltip">Home</span>
 
-              <a
-                class="iui-sidenav-item-container"
-                tabindex="0"
+              <button
+                class="iui-button iui-large"
+                role="tab"
+                aria-selected="false"
+                aria-label="Documents"
+                aria-controls="documents-tab"
               >
-                <!-- Use bolt.svg from generic-icons package. -->
+                <!-- Use document.svg from generic-icons package. -->
                 <svg
-                  class="iui-sidenav-item-icon"
+                  class="iui-icon"
                   viewBox="0 0 16 16"
+                  aria-hidden="true"
                 >
-                  <path
-                    d="M13.42 6.5v-.01c-.11-.2-.3-.3-.53-.31H9.68L11.24.74a.571.571 0 00-.31-.679.603.603 0 00-.72.15L2.66 8.85a.59.59 0 00.45.98h3.21l-1.57 5.43c-.07.28.07.569.35.689.07.04.15.05.2.05h.03c.17.01.34-.07.46-.21l7.55-8.639c.16-.18.19-.44.08-.65z"
-                  ></path>
+                  <path d="m10 0h-8v16h12v-12h-4z" />
+                  <path d="m11 0v3h3z" />
                 </svg>
-                <span class="iui-sidenav-item-caption">Side navigation Item #2</span>
-                <div
-                  class="iui-sidenav-tooltip-container"
-                  role="tooltip"
-                >
-                  <span class="iui-tooltip right">
-                    Side navigation Item #2
-                  </span>
-                </div>
-              </a>
+                <span class="iui-label">Documents</span>
+              </button>
+              <span class="iui-tooltip">Documents</span>
 
-              <a class="iui-sidenav-item-container iui-disabled">
-                <!-- Use camera.svg from generic-icons package. -->
+              <button
+                class="iui-button iui-large"
+                role="tab"
+                aria-selected="false"
+                aria-label="Map"
+                aria-controls="map-tab"
+              >
+                <!-- Use map.svg from generic-icons package. -->
                 <svg
-                  class="iui-sidenav-item-icon"
+                  class="iui-icon"
                   viewBox="0 0 16 16"
+                  aria-hidden="true"
                 >
-                  <path d="M1.5 3H3a.5.5 0 000-1H1.5a.5.5 0 000 1z"></path>
+                  <path d="m11.2 11.4-1.5 4.6h6.3v-3.2z" />
+                  <path d="m11.7 9.8 4.3 1.3v-11.1h-1.2z" />
+                  <circle
+                    cx="5"
+                    cy="5.9"
+                    r="1.7"
+                  />
                   <path
-                    d="M15 4h-3.45L11 2.62A1.29 1.29 0 009.85 2H6a1.28 1.28 0 00-1.19.62L4.27 4H1a1 1 0 00-1 1v8a1 1 0 001 1h14a1 1 0 001-1V5a1 1 0 00-1-1zm-7 9a4 4 0 114-4 4 4 0 01-4 4zm4.5-7a.5.5 0 11.5-.5.5.5 0 01-.5.5z"
-                  ></path>
-                  <path d="M8 6a3 3 0 103 3 3 3 0 00-3-3"></path>
+                    d="m0 0v16h8l5.1-16zm6.8 9.5c-.7 1.2-1.8 2.9-1.8 2.9s-1.2-1.7-1.8-2.9c-1-1.7-1.4-2.8-1.4-3.6 0-1.8 1.4-3.2 3.2-3.2s3.2 1.4 3.2 3.2c0 .8-.4 1.9-1.4 3.6"
+                  />
                 </svg>
-                <span class="iui-sidenav-item-caption">Side navigation Item #3</span>
-                <div
-                  class="iui-sidenav-tooltip-container"
-                  role="tooltip"
+                <span class="iui-label">Map</span>
+              </button>
+              <span class="iui-tooltip">Map</span>
+
+              <button
+                class="iui-button iui-large"
+                role="tab"
+                aria-selected="false"
+                aria-label="Archives"
+                aria-controls="archives-tab"
+                disabled
+              >
+                <!-- Use archive.svg from generic-icons package. -->
+                <svg
+                  class="iui-icon"
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
                 >
-                  <span class="iui-tooltip right">
-                    Side navigation Item #3
-                  </span>
-                </div>
-              </a>
+                  <path d="M11,8v2H5V8H0v7h16V8H11z" />
+                  <path d="M6,8h4v1H6" />
+                  <path d="M11,1v2H5V1H0v6h16V1H11z" />
+                  <path d="M6,1h4v1H6" />
+                </svg>
+                <span class="iui-label">Archives</span>
+              </button>
+              <span class="iui-tooltip">Archives</span>
+
+              <button
+                class="iui-button iui-large"
+                role="tab"
+                aria-selected="false"
+                aria-label="Calendar"
+                aria-controls="calendar-tab"
+              >
+                <!-- Use calendar.svg from generic-icons package. -->
+                <svg
+                  class="iui-icon"
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M13,13H9V10h4ZM16,3V15a1,1,0,0,1-1,1H1a1,1,0,0,1-1-1V3A1,1,0,0,1,1,2H3V0H4V2h8V0h1V2h2A1,1,0,0,1,16,3ZM15,6H1v9H15Z"
+                  />
+                </svg>
+                <span class="iui-label">Calendar</span>
+              </button>
+              <span class="iui-tooltip">Calendar</span>
             </div>
 
-            <div
-              id="administration-panel-item"
-              class="iui-bottom-container"
-            >
-              <a
-                class="iui-sidenav-item-container"
-                tabindex="0"
+            <div class="iui-bottom">
+              <button
+                class="iui-button iui-large"
+                role="tab"
+                aria-selected="false"
+                aria-label="Administration"
+                aria-controls="administration-tab"
               >
                 <!-- Use tools.svg from generic-icons package. -->
                 <svg
-                  class="iui-sidenav-item-icon"
+                  class="iui-icon"
                   viewBox="0 0 16 16"
+                  aria-hidden="true"
                 >
                   <path
                     d="M14.9 3.6L16 .7l-.7-.7-2.8 1.1-.5 1.5-5.6 5.6c-.7-.4-1.5-.2-2 .3L.5 12.4c-.7.7-.7 1.7 0 2.4l.7.7c.7.7 1.7.7 2.4 0l3.9-3.9c.5-.5.6-1.4.3-2L13.4 4"
-                  ></path>
+                  />
                   <path
                     d="M3.5 7.9l.2-.2c.5-.4 1.1-.7 1.9-.7.2 0 .4 0 .6.1l1.6-1.6c.8-2-.2-4.3-2.2-5.2C4.8 0 3.9-.1 3.1.1L6 3 3 6 .1 3.1C-.4 5.2.9 7.4 3 7.9h.5M10.5 8.3L8.9 9.9c.1.4.1.9 0 1.3l4.5 4.5c.5.5 1.4.5 1.9 0l.4-.4c.5-.5.5-1.4 0-1.9"
-                  ></path>
+                  />
                 </svg>
-                <span
-                  title="Administration"
-                  class="iui-sidenav-item-caption"
-                >
-                  Administration
-                </span>
-                <div
-                  class="iui-sidenav-tooltip-container"
-                  role="tooltip"
-                >
-                  <span class="iui-tooltip right">
-                    Administration
-                  </span>
-                </div>
-              </a>
+                <span class="iui-label">Administration</span>
+              </button>
+              <span class="iui-tooltip">Administration</span>
             </div>
           </div>
         </div>
       </div>
+    </section>
+
   </body>
 </html>
