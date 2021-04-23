@@ -73,6 +73,7 @@
 
       > .iui-brand-logo {
         width: $iui-l * 3 - 1;
+        flex-shrink: 0;
       }
 
       > .iui-label {
@@ -107,6 +108,10 @@
         }
       }
 
+      > .iui-icon {
+        flex-shrink: 0;
+      }
+
       &.iui-active {
         @include themed {
           box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
@@ -116,6 +121,7 @@
 
     > .iui-chevron {
       @include iui-icons-small;
+      flex-shrink: 0;
       margin: 0 $iui-xs;
     }
   }
