@@ -6,8 +6,9 @@
   
 <div align="center">
   
+  [![itwinui-css on npm](https://img.shields.io/npm/v/@itwin/itwinui-css)](https://www.npmjs.com/package/@itwin/itwinui-css)
   ![Build status](https://github.com/iTwin/iTwinUI/actions/workflows/build.yml/badge.svg?branch=main)
-  [![Dependencies Status](https://status.david-dm.org/gh/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
+  [![Dependencies Status](https://status.david-dm.org/gh/itwin/iTwinUI.svg)](https://david-dm.org/itwin/iTwinUI)
 
 </div>
 
