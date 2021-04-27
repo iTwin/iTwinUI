@@ -76,7 +76,7 @@
       }
 
       > .iui-label {
-        margin-right: 12px;
+        margin-right: $iui-sm;
         transition: margin-right $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
       }
     }
