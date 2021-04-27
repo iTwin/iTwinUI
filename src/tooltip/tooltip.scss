@@ -16,7 +16,7 @@
   box-sizing: content-box;
   padding: round($iui-baseline / 3) $iui-s;
   z-index: 999;
-  box-shadow: $iui-elevation-24;
+  box-shadow: $iui-elevation-8;
   pointer-events: none;
   @include iui-blur($opacity: 3);
   @include themed {
