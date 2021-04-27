@@ -25,10 +25,11 @@
     display: flex;
     align-items: center;
     height: 100%;
-    width: 33%;
   }
 
   > .iui-left {
+    flex: 1 1 auto;
+
     &:nth-last-child(2) {
       flex-basis: 100%;
     }
@@ -130,6 +131,7 @@
   }
 
   > .iui-right {
+    flex: 1 1 auto;
     justify-content: flex-end;
 
     &:nth-child(2) {
