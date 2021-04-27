@@ -30,8 +30,7 @@
 
   > .iui-left {
     &:nth-last-child(2) {
-      width: unset;
-      overflow: hidden;
+      flex-basis: 100%;
     }
     
     > .iui-application,
@@ -134,7 +133,7 @@
     justify-content: flex-end;
 
     &:nth-child(2) {
-      width: unset;
+      width: auto;
     }
 
     .iui-user-icon {
