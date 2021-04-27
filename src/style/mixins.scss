@@ -125,7 +125,7 @@
   }
 
   // With blur
-  @supports(-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  @supports(backdrop-filter: $iui-blur-filter) {
     @include themed() {
       background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity}));
       backdrop-filter: $iui-blur-filter;
