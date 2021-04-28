@@ -5,44 +5,67 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { ErrorPage, ErrorPageType } from './ErrorPage';
+import Svg401 from '@itwin/itwinui-illustrations-react/cjs/illustrations/401';
+import Svg403 from '@itwin/itwinui-illustrations-react/cjs/illustrations/403';
+import Svg404 from '@itwin/itwinui-illustrations-react/cjs/illustrations/404';
+import Svg500 from '@itwin/itwinui-illustrations-react/cjs/illustrations/500';
+import Svg502 from '@itwin/itwinui-illustrations-react/cjs/illustrations/502';
+import Svg503 from '@itwin/itwinui-illustrations-react/cjs/illustrations/503';
+import SvgError from '@itwin/itwinui-illustrations-react/cjs/illustrations/Error';
 
 describe(ErrorPage, () => {
   const defaultTests = [
     {
       errorType: '401',
       errorName: 'Unauthorized',
+      illustration: <Svg401 className='iui-non-ideal-state-illustration' />,
     },
     {
       errorType: '403',
       errorName: 'Forbidden',
+      illustration: <Svg403 className='iui-non-ideal-state-illustration' />,
     },
     {
       errorType: '404',
       errorName: 'Page not found',
+      illustration: <Svg404 className='iui-non-ideal-state-illustration' />,
     },
     {
       errorType: '500',
       errorName: 'Internal server error',
+      illustration: <Svg500 className='iui-non-ideal-state-illustration' />,
     },
     {
       errorType: '502',
       errorName: 'Bad gateway',
+      illustration: <Svg502 className='iui-non-ideal-state-illustration' />,
     },
     {
       errorType: '503',
       errorName: 'Service unavailable',
+      illustration: <Svg503 className='iui-non-ideal-state-illustration' />,
     },
     {
       errorType: 'generic',
       errorName: 'Error',
+      illustration: <SvgError className='iui-non-ideal-state-illustration' />,
     },
-  ] as { errorType: ErrorPageType; errorName: string }[];
+  ] as {
+    errorType: ErrorPageType;
+    errorName: string;
+    illustration: JSX.Element;
+  }[];
 
   defaultTests.forEach((test) => {
     it(`displays ${test.errorType} error with default message`, () => {
-      render(<ErrorPage errorType={test.errorType} />);
+      const { container } = render(<ErrorPage errorType={test.errorType} />);
       screen.getByText(test.errorName);
-      screen.getByTestId(`error-${test.errorType}`);
+      const {
+        container: { firstChild: illustration },
+      } = render(test.illustration);
+      expect(
+        container.querySelector('.iui-non-ideal-state-illustration'),
+      ).toEqual(illustration);
     });
   });
 
@@ -95,7 +118,6 @@ describe(ErrorPage, () => {
       );
       screen.getByText(test.errorName);
       screen.getByText(test.errorMessage);
-      screen.getByTestId(`error-${test.errorType}`);
     });
   });
 
