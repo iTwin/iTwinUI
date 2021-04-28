@@ -36,11 +36,6 @@
       > .iui-input-container + .iui-input-container {
         margin-left: $iui-s;
 
-        > .iui-label {
-          //visibility: hidden;
-          display: none;
-        }
-
         > .iui-input {
           width: $iui-3xl;
         }
