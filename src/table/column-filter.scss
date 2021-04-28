@@ -8,7 +8,7 @@
   padding: $iui-baseline $iui-sm;
   width: fit-content;
 
-  .iui-overlay {
+  .iui-icon-overlay {
     position: relative;
 
     > .iui-input {
@@ -18,6 +18,8 @@
     > .iui-borderless {
       position: absolute;
       right: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 
