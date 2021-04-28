@@ -106,15 +106,19 @@
       }
     }
 
-    > .iui-input,
-    > .iui-textarea {
-      padding-right: $iui-xl;
-
-      + .iui-message {
-        position: absolute;
-        top: 50%;
-        right: $iui-sm;
-        transform: translateY(-50%);
+    &.iui-positive,
+    &.iui-warning,
+    &.iui-negative {
+      > .iui-input,
+      > .iui-textarea {
+        padding-right: $iui-xl;
+  
+        + .iui-message {
+          position: absolute;
+          top: 50%;
+          right: $iui-sm;
+          transform: translateY(-50%);
+        }
       }
     }
   }
