@@ -92,7 +92,7 @@
 
     > .iui-user-icons-status-symbol {
       @include themed {
-        fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+        fill: t(iui-icons-color);
       }
       width: $size / 6;
       height: $size / 6;
