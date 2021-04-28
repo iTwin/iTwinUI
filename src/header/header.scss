@@ -28,11 +28,7 @@
   }
 
   > .iui-left {
-    flex: 1 1 auto;
-
-    &:nth-last-child(2) {
-      flex-basis: 100%;
-    }
+    flex: 2 1 33%;
     
     > .iui-application,
     > .iui-header-button {
@@ -91,6 +87,7 @@
           border-radius: $iui-border-radius;
           background-position: center;
           background-size: cover;
+          overflow: hidden;
           @include themed {
             background-color: t(iui-color-background-3);
           }
@@ -105,6 +102,9 @@
 
         > .iui-id {
           transition: opacity $iui-speed-fast ease-out;
+          @include themed {
+            opacity: t(iui-opacity-4);
+          }
         }
       }
 
@@ -128,15 +128,12 @@
 
   > .iui-center {
     justify-content: center;
+    flex: 1 1 auto;
   }
 
   > .iui-right {
-    flex: 1 1 auto;
+    flex: 2 1 33%;
     justify-content: flex-end;
-
-    &:nth-child(2) {
-      width: auto;
-    }
 
     .iui-user-icon {
       transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
