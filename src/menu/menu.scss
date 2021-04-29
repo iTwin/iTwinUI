@@ -7,7 +7,6 @@
 @mixin iui-dropdown {
   @include iui-reset;
   @include iui-font-family;
-  width: 100%;
   box-shadow: $iui-elevation-2;
   @include themed {
     background-color: t(iui-color-background-1);
@@ -17,6 +16,7 @@
 @mixin iui-list-menu {
   list-style-type: none;
   user-select: none;
+  width: 100%;
   margin: 0;
   padding: 0;
 
