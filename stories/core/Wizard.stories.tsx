@@ -169,3 +169,39 @@ LocalizedLong.args = {
   ],
   type: 'long',
 };
+
+export const WithTooltips: Story<WizardProps> = (args) => {
+  const {
+    currentStep = 2,
+    steps = [
+      { name: 'First Step', description: 'First Tooltip' },
+      { name: 'Completed Step', description: 'Completed Tooltip' },
+      { name: 'Current Step', description: 'Current Tooltip' },
+      { name: 'Next Step', description: 'Next Tooltip' },
+      { name: 'Last Step', description: 'Last Tooltip' },
+    ],
+    ...rest
+  } = args;
+  const onStepClick = (index: number) => {
+    action(`Clicked index: ${index}`)();
+  };
+  return (
+    <Wizard
+      currentStep={currentStep}
+      steps={steps}
+      onStepClick={onStepClick}
+      {...rest}
+    />
+  );
+};
+
+WithTooltips.args = {
+  currentStep: 2,
+  steps: [
+    { name: 'First Step', description: 'First Step Description' },
+    { name: 'Completed Step', description: 'Completed Step Description' },
+    { name: 'Current Step', description: 'Current Step Description' },
+    { name: 'Next Step', description: 'Next Step Description' },
+    { name: 'Last Step', description: 'Last Step Description' },
+  ],
+};
