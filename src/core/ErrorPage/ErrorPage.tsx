@@ -82,17 +82,19 @@ export type ErrorPageProps = {
  * @example
  * <ErrorPage errorType='401' />
  */
-export const ErrorPage = ({
-  errorType,
-  errorName,
-  errorMessage,
-  primaryButtonHandle,
-  primaryButtonLabel,
-  secondaryButtonHandle,
-  secondaryButtonLabel,
-  translatedErrorMessages,
-  ...rest
-}: ErrorPageProps): JSX.Element => {
+export const ErrorPage = (props: ErrorPageProps): JSX.Element => {
+  const {
+    errorType,
+    errorName,
+    errorMessage,
+    primaryButtonHandle,
+    primaryButtonLabel,
+    secondaryButtonHandle,
+    secondaryButtonLabel,
+    translatedErrorMessages,
+    ...rest
+  } = props;
+
   useTheme();
 
   const defaultErrorMessages = {

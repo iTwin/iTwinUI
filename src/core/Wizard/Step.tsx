@@ -33,15 +33,17 @@ export type StepProps = {
   onClick?: (clickedIndex: number) => void;
 };
 
-export const Step = ({
-  title,
-  index,
-  currentStepNumber,
-  totalSteps,
-  type,
-  onClick,
-  ...rest
-}: StepProps) => {
+export const Step = (props: StepProps) => {
+  const {
+    title,
+    index,
+    currentStepNumber,
+    totalSteps,
+    type,
+    onClick,
+    ...rest
+  } = props;
+
   const isLast = totalSteps === index + 1;
   const isPast = currentStepNumber > index;
   const isActive = currentStepNumber === index;

@@ -92,16 +92,34 @@ export const Alert = (props: AlertProps) => {
 ### Destruct props and set default values
 
 ```jsx
-const {
-  children,
-  className,
-  type = 'informational',
-  clickableText,
-  onClick,
-  onClose,
-  style,
-  isSticky = false,
-} = props;
+// Good
+export const Alert = (props: AlertProps) => {
+  const {
+    children,
+    className,
+    type = 'informational',
+    clickableText,
+    onClick,
+    onClose,
+    style,
+    isSticky = false,
+  } = props;
+  ...
+```
+
+```jsx
+// Bad
+export const Alert = ({
+    children,
+    className,
+    type = 'informational',
+    clickableText,
+    onClick,
+    onClose,
+    style,
+    isSticky = false,
+  }: AlertProps) => {
+  ...
 ```
 
 ### Use classnames object syntax for conditional classes

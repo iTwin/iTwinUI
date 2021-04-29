@@ -52,11 +52,9 @@ const footerTranslations: TitleTranslations = {
  * @example
  * <Footer customElements={[{title: 'Bentley', url: 'https://www.bentley.com/'}]} />
  */
-export const Footer = ({
-  customElements,
-  translatedTitles,
-  ...rest
-}: FooterProps) => {
+export const Footer = (props: FooterProps) => {
+  const { customElements, translatedTitles, ...rest } = props;
+
   useTheme();
 
   const today = new Date();

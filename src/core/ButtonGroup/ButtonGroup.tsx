@@ -25,7 +25,9 @@ export type ButtonGroupProps = {
  *   </IconButton>
  * </ButtonGroup>
  */
-export const ButtonGroup = ({ children, ...rest }: ButtonGroupProps) => {
+export const ButtonGroup = (props: ButtonGroupProps) => {
+  const { children, ...rest } = props;
+
   useTheme();
   return (
     <div className='iui-button-group' {...rest}>

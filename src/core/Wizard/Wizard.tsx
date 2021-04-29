@@ -61,14 +61,16 @@ const defaultWizardLocalization: WizardLocalization = {
  *  />
  */
 
-export const Wizard = ({
-  currentStep,
-  steps,
-  type = 'default',
-  localization = defaultWizardLocalization,
-  onStepClick,
-  ...rest
-}: WizardProps) => {
+export const Wizard = (props: WizardProps) => {
+  const {
+    currentStep,
+    steps,
+    type = 'default',
+    localization = defaultWizardLocalization,
+    onStepClick,
+    ...rest
+  } = props;
+
   const boundedCurrentStep = Math.min(
     Math.max(0, currentStep),
     steps.length - 1,

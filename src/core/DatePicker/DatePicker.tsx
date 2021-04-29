@@ -131,15 +131,17 @@ export type DatePickerProps = {
  * @example
  * <DatePicker date={new Date()} onChange={(e) => console.log('New date value: ' + e)} />
  */
-export const DatePicker = ({
-  date,
-  onChange,
-  localizedNames,
-  className,
-  style,
-  setFocus = false,
-  ...rest
-}: DatePickerProps): JSX.Element => {
+export const DatePicker = (props: DatePickerProps): JSX.Element => {
+  const {
+    date,
+    onChange,
+    localizedNames,
+    className,
+    style,
+    setFocus = false,
+    ...rest
+  } = props;
+
   useTheme();
 
   const monthNames = localizedNames?.months ?? defaultMonths;

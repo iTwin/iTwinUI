@@ -16,7 +16,9 @@ export type ModalButtonBarProps = {
 /**
  * Container for Buttons in modal.
  */
-export const ModalButtonBar = ({ children, ...rest }: ModalButtonBarProps) => {
+export const ModalButtonBar = (props: ModalButtonBarProps) => {
+  const { children, ...rest } = props;
+
   useTheme();
   return (
     <div className='iui-button-bar' {...rest}>

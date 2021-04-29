@@ -13,10 +13,9 @@ type ToastMasterProps = {
   closeAllHandler: (closeAll: () => void) => void;
 };
 
-export const ToastMaster = ({
-  addToastHandler,
-  closeAllHandler,
-}: ToastMasterProps) => {
+export const ToastMaster = (props: ToastMasterProps) => {
+  const { addToastHandler, closeAllHandler } = props;
+
   const idCounter = React.useRef<number>(0);
   const [toasts, setToasts] = React.useState<ToastProps[]>([]);
 

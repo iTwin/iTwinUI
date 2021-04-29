@@ -19,7 +19,9 @@ export type ThemeProviderProps = {
 /**
  * Component providing global styles that are required for all components and allows changing theme.
  */
-export const ThemeProvider = ({ theme, children }: ThemeProviderProps) => {
+export const ThemeProvider = (props: ThemeProviderProps) => {
+  const { theme, children } = props;
+
   useTheme(theme);
   return <>{children}</>;
 };
