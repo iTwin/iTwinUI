@@ -35,10 +35,9 @@
     "lint": "eslint */**/*.{js,ts,tsx} --max-warnings=0",
     "lint:fix": "yarn lint --fix && yarn lint:copyright --fix */**/*.{js,ts,tsx}",
     "lint:copyright": "node scripts/copyrightLinter.js",
-    "copy-files": "cpx package.json lib && cpx \"*.md\" lib",
+    "copy-files": "cpx package.json lib && cpx \"{README,LICENSE,CHANGELOG}.md \" lib",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "refreshVSToken": "vsts-npm-auth -config .npmrc"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@itwin/itwinui-css": "^0.10.0",
