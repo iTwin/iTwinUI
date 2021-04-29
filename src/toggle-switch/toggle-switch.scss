@@ -147,7 +147,7 @@
 
         > .iui-icon {
           @include themed {
-            fill: t(iui-color-foreground-body);
+            fill: t(iui-icons-color-actionable);
           }
           opacity: 0;
         }

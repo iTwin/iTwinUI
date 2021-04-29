@@ -77,7 +77,7 @@
 
     > .iui-status-symbol {
       @include themed {
-        fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+        fill: t(iui-icons-color);
       }
       width: calc(100% / 1.5);
       height: calc(100% / 1.5);
