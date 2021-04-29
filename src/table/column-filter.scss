@@ -6,7 +6,6 @@
 @mixin iui-column-filter {
   @include iui-dropdown;
   padding: $iui-baseline $iui-sm;
-  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -33,6 +32,10 @@
 
   > .iui-input-container {
     align-self: flex-end;
+
+    &:not(.iui-inline) {
+      width: 100%;
+    }
   }
 
   > .iui-button-bar {
