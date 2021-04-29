@@ -1,12 +1,18 @@
 # Changelog
 
-## [X.X.X]
+## [1.2.0]
 
-`2021-XX-XX`
+`2021-04-29`
 
 ### What's new
 
 - **Added optional tooltip for `Wizard` steps.** Provide `description` property to `steps` prop.
+- **`DropdownMenu` has new `popoverProps`** for customizing popover behavior.
+
+### Fixes
+
+- **Fixed image sizing issues in `ErrorPage`**.
+- **Fixed tooltip text blurring issues** through base CSS package.
 
 ## [1.1.0]
 
@@ -220,4 +226,5 @@
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
 
+[1.2.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.0.0...v1.1.0
