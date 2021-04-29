@@ -1,5 +1,53 @@
 # Changelog
 
+## [0.11.0]
+
+`2021-04-28`
+
+### What's new
+
+- **Added `iui-color-foreground-body-invert` variable.**
+- **Icons now use `iui-icons-color-` variables**, allowing easy overrides.
+
+### Fixes
+
+- **Fixed tooltip text blurring issues** by removing frosted glass effect.
+
+## [0.10.0]
+
+`2021-04-21`
+
+### What's new
+
+- **Tooltip styling has been updated** to use a frosted glass background.
+
+### Fixes
+
+- **Fixed tile visual bugs:** folder name overflow and metadata spacing.
+- **Fixed footer hover and focus states.**
+- **Fixed scrollbar width in firefox.**
+
+## [0.9.0]
+
+`2021-04-15`
+
+### What's new
+
+- **Toast notifications have shortened classes and use borderless buttons.**
+- **Modals have shortened classes and use borderless buttons.**
+
+### Fixes
+
+- **Fixed SVG issues** within linear progress indicator, checkbox, and radio.
+
+## 0.8.0
+
+`2021-04-14`
+
+### What's new
+
+- **Date picker can now display time** and classes have been renamed.
+
 ## 0.7.0
 
 `2021-04-09`
@@ -97,3 +145,7 @@
 ### Fixes
 
 - **Global style resets have 0 specificity now.**
+
+[0.11.0]: https://github.com/iTwin/iTwinUI/compare/v0.10.0...v0.11.0
+[0.10.0]: https://github.com/iTwin/iTwinUI/compare/v0.9.0...v0.10.0
+[0.9.0]: https://github.com/iTwin/iTwinUI/compare/v0.8.0...v0.9.0

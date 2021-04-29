@@ -39,7 +39,7 @@
     font-size: $iui-font-size-small;
     justify-content: space-between;
 
-    > :last-child:first-child {
+    > :only-child {
       margin: 0 auto;
     }
 
@@ -47,7 +47,7 @@
       user-select: none;
     }
 
-    .iui-icon {
+    svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
     }
@@ -66,9 +66,9 @@
         color: t(iui-color-foreground-positive);
       }
 
-      > .iui-icon {
+      svg {
         @include themed {
-          fill: t(iui-color-foreground-positive);
+          fill: t(iui-icons-color-positive);
         }
       }
 
@@ -99,9 +99,9 @@
         color: t(iui-color-foreground-negative);
       }
 
-      > .iui-icon {
+      svg {
         @include themed {
-          fill: t(iui-color-foreground-negative);
+          fill: t(iui-icons-color-negative);
         }
       }
 

@@ -1,6 +1,6 @@
 {
-  "name": "@bentley/itwinui",
-  "version": "0.7.0",
+  "name": "@itwin/itwinui-css",
+  "version": "0.11.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -27,8 +27,12 @@
     }
   },
   "lint-staged": {
-    "*.{scss,html}": ["stylelint --fix"],
-    "*.{scss,html,js}": ["yarn lint:copyright --fix"]
+    "*.{scss,html}": [
+      "stylelint --fix"
+    ],
+    "*.{scss,html,js}": [
+      "yarn lint:copyright --fix"
+    ]
   },
   "scripts": {
     "build": "yarn clean && yarn build:scss && yarn build:css && yarn build:html && yarn copy-files",
