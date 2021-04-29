@@ -7,9 +7,34 @@
   @include iui-dropdown;
   padding: $iui-baseline $iui-sm;
   width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  > .iui-date-time {
+    display: flex;
+
+    > .iui-input-container > .iui-input {
+      width: $iui-3xl * 2;
+    }
+
+    > .iui-input-container + .iui-input-container {
+      margin-left: $iui-s;
+
+      > .iui-input {
+        width: $iui-3xl;
+      }
+
+    }
+  }
+
+  > .iui-toggle-switch {
+    align-self: flex-start;
+  }
 
   .iui-icon-overlay {
     position: relative;
+    width: 100%;
 
     > .iui-input {
       padding-right: $iui-l * 2;
@@ -23,34 +48,14 @@
     }
   }
 
-  .iui-right-align {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-    > .iui-date-time {
-      display: flex;
-
-      > .iui-input-container > .iui-input {
-        width: $iui-3xl * 2;
-      }
-
-      > .iui-input-container + .iui-input-container {
-        margin-left: $iui-s;
-
-        > .iui-input {
-          width: $iui-3xl;
-        }
-
-      }
-    }
+  > .iui-input-container {
+    align-self: flex-end;
   }
 
   > .iui-button-bar {
     margin-top: $iui-baseline;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
 
     > .iui-button:not(:last-child) {
       margin-right: $iui-s;
