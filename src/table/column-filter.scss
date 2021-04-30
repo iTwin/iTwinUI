@@ -6,23 +6,35 @@
 @mixin iui-column-filter {
   @include iui-dropdown;
   padding: $iui-baseline $iui-sm;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: flex-end;
-
-  > .iui-toggle-switch {
-    align-self: flex-start;
-  }
 
   > .iui-input-container:not(.iui-inline) {
     width: 100%;
   }
 
-  > .iui-button-bar {
-    margin-top: $iui-baseline;
+  > .iui-input {
+    margin-bottom: $iui-baseline;
+  }
 
-    > .iui-button:not(:last-child) {
-      margin-right: $iui-s;
+  > .iui-button-bar {
+    display: flex;
+    width: 100%;
+    align-content: center;
+
+    > .iui-button {
+      &:first-of-type {
+        margin-left: auto;
+      }
+
+      &:not(:last-child) {
+        margin-right: $iui-s;
+      }
+    }
+
+    > .iui-toggle-switch {
+      display: inline-flex;
     }
   }
 }
