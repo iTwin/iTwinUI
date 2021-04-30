@@ -5,7 +5,7 @@ module.exports = [
     selectors: ['#demo-text-area'],
   }),
   scenario('Type flextable', {
-    selectors: ['#demo-flextable'],
+    selectors: ['#demo-table'],
   }),
   scenario('Type not wrapping anything', {
     selectors: ['#demo-no-wrap'],
