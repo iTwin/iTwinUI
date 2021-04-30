@@ -14,12 +14,8 @@
     align-self: flex-start;
   }
 
-  > .iui-input-container {
-    align-self: flex-end;
-
-    &:not(.iui-inline) {
-      width: 100%;
-    }
+  > .iui-input-container:not(.iui-inline) {
+    width: 100%;
   }
 
   > .iui-button-bar {
