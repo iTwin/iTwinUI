@@ -4,7 +4,7 @@ module.exports = [
   scenario('Type text area', {
     selectors: ['#demo-text-area'],
   }),
-  scenario('Type flextable', {
+  scenario('Type table', {
     selectors: ['#demo-table'],
   }),
   scenario('Type not wrapping anything', {
