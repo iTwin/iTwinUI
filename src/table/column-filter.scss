@@ -14,22 +14,6 @@
     align-self: flex-start;
   }
 
-  .iui-icon-overlay {
-    position: relative;
-    width: 100%;
-
-    > .iui-input {
-      padding-right: $iui-l * 2;
-    }
-
-    > .iui-borderless {
-      position: absolute;
-      right: 0;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-
   > .iui-input-container {
     align-self: flex-end;
 

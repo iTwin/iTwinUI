@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  position: relative;
   padding: 0;
   margin: 0 0 $iui-baseline;
   text-align: left;
@@ -52,24 +53,34 @@
     font-size: $iui-font-size-small;
     line-height: $iui-line-height;
     margin-top: $iui-inputs-margin;
-
     @include themed {
       color: t(iui-text-color-muted);
     }
 
-    svg {
+    > svg,
+    :where(:not(.iui-button)) svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
       margin-right: $iui-xs;
-
       @include themed {
         fill: t(iui-icons-color);
       }
     }
 
+    > .iui-borderless {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
     a {
       user-select: none;
     }
+  }
+
+  &:not(.iui-inline) > .iui-message > .iui-borderless {
+    position: absolute;
+    top: $iui-l + 1;
+    right: 0;
   }
 
   // Appropriate spacing even if no text label is given
@@ -101,24 +112,30 @@
     > .iui-message {
       margin: 0;
 
-      svg {
+      > svg,
+      :where(:not(.iui-button)) svg {
         margin-right: 0;
       }
     }
 
-    &.iui-positive,
-    &.iui-warning,
-    &.iui-negative {
-      > .iui-input,
-      > .iui-textarea {
-        padding-right: $iui-xl;
-  
-        + .iui-message {
-          position: absolute;
-          top: 50%;
-          right: $iui-sm;
-          transform: translateY(-50%);
+    > .iui-input,
+    > .iui-textarea {
+      padding-right: $iui-icons-default + $iui-l;
+
+      + .iui-message {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        > svg,
+        :where(:not(.iui-button)) svg {
+          margin-right: $iui-sm;
         }
+      }
+
+      &:last-child {
+        padding-right: $iui-sm;
       }
     }
   }
