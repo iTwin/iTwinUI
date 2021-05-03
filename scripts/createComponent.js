@@ -75,6 +75,30 @@ export default ${name};
   };
 };
 
+const storiesFactory = (directory, name) => {
+  return {
+    path: `${directory}/${name}.stories.tsx`,
+    template: `${copyrightHeader}
+import { Story, Meta } from '@storybook/react';
+import React from 'react';
+import { ${name}, ${name}Props } from '../../src/core';
+
+export default {
+  component: ${name},
+  argTypes: {
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+  },
+  title: 'Core/${name}',
+} as Meta<${name}Props>;
+
+export const Basic: Story<${name}Props> = (args) => {
+  return <${name} {...args} />;
+};
+`,
+  };
+};
+
 const componentIndexFactory = (directory, name) => {
   return {
     path: `${directory}/index.ts`,
@@ -123,23 +147,14 @@ export type { ${name}Props } from './${name}';
 inquirer
   .prompt([
     {
-      name: 'collection',
-      type: 'list',
-      message: 'Which collection would you like to add to?',
-      choices: ['core', 'utils'],
-      default: 0,
-    },
-
-    {
       name: 'component',
       type: 'input',
       message: 'What is the name of the component?',
     },
   ])
-  .then((answers) => {
+  .then(({ component }) => {
     console.log();
-    let { collection, component } = answers;
-    let directory = `src/${collection}`;
+    let directory = 'src/core';
     let levels = [];
 
     directory += `/${component}`;
@@ -159,4 +174,6 @@ inquirer
     writeFile(componentOut);
     writeFile(componentTest);
     writeFile(componentIndex);
+
+    writeFile(storiesFactory('src/core', component));
   });
