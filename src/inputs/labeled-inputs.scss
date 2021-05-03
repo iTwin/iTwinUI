@@ -58,7 +58,7 @@
     }
 
     > svg,
-    :where(:not(.iui-button)) svg {
+    :is(:not(.iui-button)) svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
       margin-right: $iui-xs;
@@ -79,7 +79,8 @@
 
   &:not(.iui-inline) > .iui-message > .iui-borderless {
     position: absolute;
-    top: $iui-l + 1;
+    top: 50%;
+    transform: translateY(-50%);
     right: 0;
   }
 
@@ -94,7 +95,6 @@
   }
 
   &.iui-inline {
-    position: relative;
     flex-direction: row;
     align-items: center;
 
@@ -113,7 +113,7 @@
       margin: 0;
 
       > svg,
-      :where(:not(.iui-button)) svg {
+      :is(:not(.iui-button)) svg {
         margin-right: 0;
       }
     }
@@ -129,7 +129,7 @@
         transform: translateY(-50%);
 
         > svg,
-        :where(:not(.iui-button)) svg {
+        :is(:not(.iui-button)) svg {
           margin-right: $iui-sm;
         }
       }
