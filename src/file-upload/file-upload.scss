@@ -10,7 +10,6 @@
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
   position: relative;
-  display: flex;
 
   > .iui-content {
     visibility: hidden;
@@ -40,18 +39,28 @@
       z-index: -1;
     }
 
-    > .iui-icon {
+    > svg {
       @include iui-icons-3xl;
+      margin-top: $iui-baseline;
+      margin-bottom: $iui-baseline;
+    }
 
-      + span,
-      + label {
-        margin-top: $iui-baseline;
-      }
+    > label {
+      cursor: pointer;
+      margin: 0 0 0 24px;
     }
 
     &:only-child {
       visibility: visible;
       position: relative;
+      flex-direction: row;
+
+      &:focus-within {
+        outline: 0;
+        @include themed {
+          box-shadow: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5)) 0 0 0 2px;
+        }
+      }
     }
   }
 
@@ -68,8 +77,8 @@
     visibility: visible;
     z-index: 3;
 
-    > .iui-icon,
-    > .iui-icon > * {
+    > svg,
+    > svg > * {
       @include themed {
         fill: t(iui-icons-color-primary);
       }
