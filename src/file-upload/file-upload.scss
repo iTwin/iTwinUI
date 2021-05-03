@@ -28,6 +28,7 @@
     padding: round($iui-baseline / 2) $iui-sm;
     @include themed {
       background-color: t(iui-color-background-2);
+      border: 1px solid t(iui-color-background-2);
     }
 
     > .iui-browse-input {
@@ -61,7 +62,7 @@
         rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
       ),
         linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-      border: 1px solid t(iui-color-foreground-primary);
+      border-color: t(iui-color-foreground-primary);
       color: t(iui-color-foreground-primary);
     }
     visibility: visible;
