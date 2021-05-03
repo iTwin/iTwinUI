@@ -58,7 +58,7 @@
     }
 
     > svg,
-    :is(:not(.iui-button)) svg {
+    :not(.iui-button) svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
       margin-right: $iui-xs;
@@ -113,7 +113,7 @@
       margin: 0;
 
       > svg,
-      :is(:not(.iui-button)) svg {
+      :not(.iui-button) svg {
         margin-right: 0;
       }
     }
@@ -129,7 +129,7 @@
         transform: translateY(-50%);
 
         > svg,
-        :is(:not(.iui-button)) svg {
+        :not(.iui-button) svg {
           margin-right: $iui-sm;
         }
       }
