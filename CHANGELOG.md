@@ -6,7 +6,7 @@
 
 ### What's new
 
-- **Added new column-filter component** in table.css
+- **Added new column-filter component** under table.css.
 - **Added new file-upload template.**
 - **Restructured user-icon classes** from `.iui-user-icons-small` into `.iui-user-icon .iui-small`.
 
