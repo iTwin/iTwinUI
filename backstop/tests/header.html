@@ -87,21 +87,22 @@
           <button
             class="iui-button iui-borderless iui-large iui-application"
             type="button"
-            aria-label="Microstation"
+            aria-label="App name"
+            aria-expanded="false"
           >
             <span class="iui-brand-logo">
+              <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
               <svg
                 viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
                 class="iui-icon"
               >
                 <path
-                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
+                  d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
                 />
               </svg>
             </span>
-            <span class="iui-label">MicroStation</span>
+            <span class="iui-label">App name</span>
           </button>
 
           <div class="iui-divider"></div>
@@ -110,6 +111,8 @@
           <button
             class="iui-button iui-borderless iui-header-button iui-detailed"
             type="button"
+            aria-label="Project picker"
+            aria-expanded="false"
             id="test-button-1"
           >
             <div class="iui-thumbnail-area">
@@ -119,20 +122,21 @@
               <div class="iui-name">Project Alpha</div>
               <div class="iui-id">0x0123456789</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
 
-          <!-- Use chevron-right.svg from generic-icons package. -->
+          <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
           <svg
             viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             class="iui-chevron"
           >
@@ -143,6 +147,8 @@
           <button
             class="iui-button iui-borderless iui-active iui-header-button iui-detailed"
             type="button"
+            aria-label="Model picker"
+            aria-expanded="false"
           >
             <div class="iui-thumbnail-area">
               <div class="iui-thumbnail"></div>
@@ -151,13 +157,15 @@
               <div class="iui-name">Model Beta</div>
               <div class="iui-id">0x0123456789</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
         </div>
@@ -179,10 +187,9 @@
             aria-expanded="false"
             id="test-button-2"
           >
-            <!-- Use notification.svg from generic-icons package. -->
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -200,10 +207,9 @@
             aria-label="Help"
             aria-expanded="false"
           >
-            <!-- Use help-circular-hollow.svg from generic-icons package. -->
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -245,10 +251,9 @@
             aria-label="More options"
             aria-expanded="false"
           >
-            <!-- Use more-vertical.svg from generic-icons package. -->
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -268,17 +273,18 @@
           <button
             class="iui-button iui-borderless iui-large iui-application"
             type="button"
-            aria-label="Microstation"
+            aria-label="App name"
+            aria-expanded="false"
           >
             <span class="iui-brand-logo">
+              <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
               <svg
                 viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
                 class="iui-icon"
               >
                 <path
-                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
+                  d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
                 />
               </svg>
             </span>
@@ -290,24 +296,27 @@
           <button
             class="iui-button iui-borderless iui-header-button"
             type="button"
+            aria-label="Project picker"
+            aria-expanded="false"
           >
             <span class="iui-label">
               <div class="iui-name">Project Alpha</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
 
-          <!-- Use chevron-right.svg from generic-icons package. -->
+          <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
           <svg
             viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             class="iui-chevron"
           >
@@ -318,17 +327,21 @@
           <button
             class="iui-button iui-borderless iui-active iui-header-button"
             type="button"
+            aria-label="Model picker"
+            aria-expanded="false"
           >
             <span class="iui-label">
               <div class="iui-name">Model Beta</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
         </div>
@@ -341,10 +354,9 @@
             aria-label="Notifications"
             aria-expanded="false"
           >
-            <!-- Use notification.svg from generic-icons package. -->
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -362,10 +374,9 @@
             aria-label="Help"
             aria-expanded="false"
           >
-            <!-- Use help-circular-hollow.svg from generic-icons package. -->
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -403,10 +414,9 @@
             aria-label="More options"
             aria-expanded="false"
           >
-            <!-- Use more-vertical.svg from generic-icons package. -->
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -431,21 +441,22 @@
           <button
             class="iui-button iui-borderless iui-large iui-application"
             type="button"
-            aria-label="Microstation"
+            aria-label="App name"
+            aria-expanded="false"
           >
             <span class="iui-brand-logo">
+              <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
               <svg
                 viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
                 class="iui-icon"
               >
                 <path
-                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
+                  d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
                 />
               </svg>
             </span>
-            <span class="iui-label">MicroStation</span>
+            <span class="iui-label">App name</span>
           </button>
 
           <div class="iui-divider"></div>
@@ -454,6 +465,8 @@
           <button
             class="iui-button iui-borderless iui-header-button iui-detailed"
             type="button"
+            aria-label="Project picker"
+            aria-expanded="false"
             id="test-button-1"
           >
             <div class="iui-thumbnail-area">
@@ -463,20 +476,21 @@
               <div class="iui-name">Project Alpha</div>
               <div class="iui-id">0x0123456789</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
 
-          <!-- Use chevron-right.svg from generic-icons package. -->
+          <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
           <svg
             viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             class="iui-chevron"
           >
@@ -487,6 +501,8 @@
           <button
             class="iui-button iui-borderless iui-active iui-header-button iui-detailed"
             type="button"
+            aria-label="Model picker"
+            aria-expanded="false"
           >
             <div class="iui-thumbnail-area">
               <div class="iui-thumbnail"></div>
@@ -495,13 +511,15 @@
               <div class="iui-name">Model Beta</div>
               <div class="iui-id">0x0123456789</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
         </div>
@@ -515,10 +533,9 @@
             aria-expanded="false"
             id="test-button-1"
           >
-            <!-- Use notification.svg from generic-icons package. -->
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -536,10 +553,9 @@
             aria-label="Help"
             aria-expanded="false"
           >
-            <!-- Use help-circular-hollow.svg from generic-icons package. -->
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -581,10 +597,9 @@
             aria-label="More options"
             aria-expanded="false"
           >
-            <!-- Use more-vertical.svg from generic-icons package. -->
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -604,17 +619,18 @@
           <button
             class="iui-button iui-borderless iui-large iui-application"
             type="button"
-            aria-label="Microstation"
+            aria-label="App name"
+            aria-expanded="false"
           >
             <span class="iui-brand-logo">
+              <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
               <svg
                 viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
                 class="iui-icon"
               >
                 <path
-                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
+                  d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
                 />
               </svg>
             </span>
@@ -626,24 +642,27 @@
           <button
             class="iui-button iui-borderless iui-header-button"
             type="button"
+            aria-label="Project picker"
+            aria-expanded="false"
           >
             <span class="iui-label">
               <div class="iui-name">Project Alpha</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
 
-          <!-- Use chevron-right.svg from generic-icons package. -->
+          <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
           <svg
             viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             class="iui-chevron"
           >
@@ -654,17 +673,21 @@
           <button
             class="iui-button iui-borderless iui-active iui-header-button"
             type="button"
+            aria-label="Model picker"
+            aria-expanded="false"
           >
             <span class="iui-label">
               <div class="iui-name">Model Beta</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
         </div>
@@ -677,10 +700,9 @@
             aria-label="Notifications"
             aria-expanded="false"
           >
-            <!-- Use notification.svg from generic-icons package. -->
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -698,10 +720,9 @@
             aria-label="Help"
             aria-expanded="false"
           >
-            <!-- Use help-circular-hollow.svg from generic-icons package. -->
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -739,10 +760,9 @@
             aria-label="More options"
             aria-expanded="false"
           >
-            <!-- Use more-vertical.svg from generic-icons package. -->
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -768,21 +788,22 @@
           <button
             class="iui-button iui-borderless iui-large iui-application"
             type="button"
-            aria-label="Microstation"
+            aria-label="App name"
+            aria-expanded="false"
           >
             <span class="iui-brand-logo">
+              <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
               <svg
                 viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
                 class="iui-icon"
               >
                 <path
-                  d="m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1"
+                  d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
                 />
               </svg>
             </span>
-            <span class="iui-label">MicroStation</span>
+            <span class="iui-label">App name</span>
           </button>
 
           <div class="iui-divider"></div>
@@ -791,6 +812,8 @@
           <button
             class="iui-button iui-borderless iui-header-button iui-detailed"
             type="button"
+            aria-label="Project picker"
+            aria-expanded="false"
           >
             <div class="iui-thumbnail-area">
               <div class="iui-thumbnail"></div>
@@ -799,20 +822,21 @@
               <div class="iui-name">Project Alpha</div>
               <div class="iui-id">0x0123456789</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
 
-          <!-- Use chevron-right.svg from generic-icons package. -->
+          <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
           <svg
             viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             class="iui-chevron"
           >
@@ -823,6 +847,8 @@
           <button
             class="iui-button iui-borderless iui-active iui-header-button iui-detailed"
             type="button"
+            aria-label="Model picker"
+            aria-expanded="false"
           >
             <div class="iui-thumbnail-area">
               <div class="iui-thumbnail"></div>
@@ -831,13 +857,15 @@
               <div class="iui-name">Model Beta</div>
               <div class="iui-id">0x0123456789</div>
             </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
-              <path d="M4.807 6h6.395a.28.28 0 01.24.443L8.27 9.9a.34.34 0 01-.481 0L4.566 6.443A.27.27 0 014.806 6z" />
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
             </svg>
           </button>
         </div>
@@ -850,10 +878,9 @@
             aria-label="Notifications"
             aria-expanded="false"
           >
-            <!-- Use notification.svg from generic-icons package. -->
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -871,10 +898,9 @@
             aria-label="Help"
             aria-expanded="false"
           >
-            <!-- Use help-circular-hollow.svg from generic-icons package. -->
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -916,10 +942,9 @@
             aria-label="More options"
             aria-expanded="false"
           >
-            <!-- Use more-vertical.svg from generic-icons package. -->
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
             <svg
               viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
               class="iui-icon"
             >
@@ -932,35 +957,35 @@
       </header>
 
       <div class="demo-side-navigation">
+        <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
         <svg
           class="demo-side-navigation-icon"
-          xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
         >
           <path
-            d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+            d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
           />
         </svg>
       </div>
       <div class="demo-side-navigation">
+        <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
         <svg
           class="demo-side-navigation-icon"
-          xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
         >
           <path
-            d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+            d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
           />
         </svg>
       </div>
       <div class="demo-side-navigation">
+        <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
         <svg
           class="demo-side-navigation-icon"
-          xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
         >
           <path
-            d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+            d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
           />
         </svg>
       </div>
