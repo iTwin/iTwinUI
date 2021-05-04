@@ -29,95 +29,7 @@
 
   > .iui-left {
     flex: 2 1 33%;
-    
-    > .iui-application,
-    > .iui-header-button {
-      overflow: hidden;
-      transition: height $iui-speed-fast ease-out;
-
-      > .iui-label {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        transition: font-size $iui-speed-fast ease-out;
-
-        > * {
-          width: 100%;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          text-align: left;
-        }
-      }
-
-      > .iui-brand-logo,
-      > .iui-thumbnail-area {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-
-        > .iui-icon,
-        > .iui-thumbnail {
-          width: $iui-icons-large;
-          height: $iui-icons-large;
-          transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
-        }
-      }
-    }
-
-    > .iui-application {
-      padding: 0;
-
-      > .iui-brand-logo {
-        width: $iui-l * 3 - 1;
-        flex-shrink: 0;
-      }
-
-      > .iui-label {
-        margin-right: $iui-sm;
-        transition: margin-right $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
-      }
-    }
-
-    > .iui-header-button {
-      > .iui-thumbnail-area {
-        width: $iui-l;
-        margin-right: $iui-sm;
-
-        > .iui-thumbnail {
-          border-radius: $iui-border-radius;
-          background-position: center;
-          background-size: cover;
-          overflow: hidden;
-          @include themed {
-            background-color: t(iui-color-background-3);
-          }
-        }
-      }
-
-      > .iui-label {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        transition: padding-top $iui-speed-fast ease-out;
-
-        > .iui-id {
-          transition: opacity $iui-speed-fast ease-out;
-          @include themed {
-            opacity: t(iui-opacity-4);
-          }
-        }
-      }
-
-      > .iui-icon {
-        flex-shrink: 0;
-      }
-
-      &.iui-active {
-        @include themed {
-          box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-        }
-      }
-    }
+    @include iui-header-buttons;
 
     > .iui-chevron {
       @include iui-icons-small;
@@ -193,6 +105,119 @@
     > .iui-right {
       .iui-user-icon {
         @include iui-user-icons-small;
+      }
+    }
+  }
+}
+
+@mixin iui-header-buttons {
+  > .iui-application,
+  > .iui-header-button {
+    overflow: hidden;
+    transition: height $iui-speed-fast ease-out;
+
+    > .iui-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: font-size $iui-speed-fast ease-out;
+
+      > * {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+      }
+    }
+
+    > .iui-brand-logo,
+    > .iui-thumbnail-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      > .iui-icon,
+      > .iui-thumbnail {
+        width: $iui-icons-large;
+        height: $iui-icons-large;
+        transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+      }
+    }
+  }
+
+  > .iui-application {
+    padding: 0;
+
+    > .iui-brand-logo {
+      width: $iui-l * 3 - 1;
+      flex-shrink: 0;
+    }
+
+    > .iui-label {
+      margin-right: $iui-sm;
+      transition: margin-right $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
+    }
+  }
+
+  > .iui-header-button {
+    > .iui-thumbnail-area {
+      width: $iui-l;
+      margin-right: $iui-sm;
+
+      > .iui-thumbnail {
+        border-radius: $iui-border-radius;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include themed {
+          background-color: t(iui-color-background-3);
+        }
+
+        > svg {
+          width: 75%;
+          height: 75%;
+          @include themed {
+            fill: t(iui-icons-color);
+          }
+        }
+
+        > .iui-picture {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-position: center;
+          background-size: cover;
+        }
+      }
+    }
+
+    > .iui-label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: padding-top $iui-speed-fast ease-out;
+
+      > .iui-id {
+        transition: opacity $iui-speed-fast ease-out;
+        @include themed {
+          opacity: t(iui-opacity-4);
+        }
+      }
+    }
+
+    > .iui-icon {
+      flex-shrink: 0;
+    }
+
+    &.iui-active {
+      @include themed {
+        box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
       }
     }
   }
