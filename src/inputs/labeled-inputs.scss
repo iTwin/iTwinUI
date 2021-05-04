@@ -77,13 +77,6 @@
     }
   }
 
-  &:not(.iui-inline) > .iui-message > .iui-borderless {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
-  }
-
   // Appropriate spacing even if no text label is given
   > .iui-checkbox,
   > .iui-radio {
