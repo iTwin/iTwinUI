@@ -11,6 +11,7 @@
   flex-direction: column;
   width: $iui-3xl * 3;
   box-shadow: $iui-elevation-2;
+  backface-visibility: hidden;
 
   @include themed() {
     background-color: t(iui-color-background-1);
