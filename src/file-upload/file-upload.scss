@@ -58,18 +58,10 @@
         }
       }
 
-      > label {
-        cursor: pointer;
+      > .iui-label {
         margin: 0 0 0 $iui-l;
 
-        &:hover {
-          &::first-line {
-            text-decoration: underline;
-          }
-        }
-
-        &::first-line {
-          @include iui-anchor;
+        > label {
           font-weight: bold;
         }
       }
