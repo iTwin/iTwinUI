@@ -3,5 +3,6 @@
 @import './index';
 
 .iui-menu {
-  @include iui-menu;
+  @include iui-dropdown;
+  @include iui-list-menu;
 }

@@ -4,57 +4,45 @@
 @import '../style/index';
 @import '../text/mixins';
 
-@mixin iui-user-icons($size: $iui-icons-xl) {
+@mixin iui-user-icon {
   @include iui-reset;
-
   @include iui-font-family;
   display: inline-block;
   position: relative;
-  width: $size;
-  height: $size;
   margin: 0;
   user-select: none;
 
-  > .iui-user-icons-stroke {
+  > .iui-stroke {
     display: block;
     position: absolute;
-    z-index: 2;
     left: 0;
     top: 0;
-    width: $size;
-    height: $size;
-    line-height: $size;
+    width: 100%;
+    height: 100%;
     margin: 0;
     border-radius: 50%;
     box-sizing: border-box;
-
     @include themed {
       box-shadow: inset 0 0 0 2px
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
     }
   }
 
-  > .iui-user-icons-initials {
-    @include iui-text(leading);
-
+  > .iui-initials {
     display: block;
     position: absolute;
-
-    z-index: 0;
     left: 0;
     top: 0;
-    width: $size;
-    height: $size;
-    line-height: $size;
+    width: 100%;
+    height: 100%;
     margin: 0;
     border-radius: 50%;
-
-    text-align: center;
+    font-style: normal;
     font-weight: $iui-font-weight-semibold;
+    text-align: center;
     text-decoration: none;
     text-transform: uppercase;
     background-color: $iui-color-dataviz-celery;
-
     @include themed {
       color: t(iui-color-foreground-accessory);
     }
@@ -64,25 +52,24 @@
     display: block;
     position: absolute;
     object-fit: cover;
-    z-index: 1;
     left: 0;
     top: 0;
-    width: $size;
-    height: $size;
+    width: 100%;
+    height: 100%;
     border-width: 0;
     border-radius: 50%;
   }
 
-  > .iui-user-icons-status {
-    display: block;
+  > .iui-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     right: -2px;
     bottom: -2px;
-    width: $size / 4;
-    height: $size / 4;
+    width: calc(100% / 4);
+    height: calc(100% / 4);
     border-radius: 50%;
-    z-index: 3;
-
     @include themed {
       border: 2px solid t(iui-color-background-1);
       background-color: t(iui-color-background-1);
@@ -90,16 +77,12 @@
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
     }
 
-    > .iui-user-icons-status-symbol {
+    > .iui-status-symbol {
       @include themed {
         fill: t(iui-icons-color);
       }
-      width: $size / 6;
-      height: $size / 6;
-      display: block;
-      position: absolute;
-      right: $size / 24;
-      bottom: $size / 24;
+      width: calc(100% / 1.5);
+      height: calc(100% / 1.5);
     }
 
     &.iui-online,
