@@ -104,7 +104,8 @@
     
     > .iui-right {
       .iui-user-icon {
-        @include iui-user-icons-small;
+        @include iui-user-icon;
+        @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
       }
     }
   }
