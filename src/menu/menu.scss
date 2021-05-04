@@ -89,7 +89,7 @@
   
       > .iui-icon {
         @include themed {
-          fill: t(iui-icons-color);
+          fill: t(iui-icons-color-actionable-disabled);
         }
       }
     }
