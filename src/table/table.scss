@@ -78,10 +78,6 @@
       list-style: none;
       flex-basis: 145px;
 
-      > .iui-user-icons-small {
-        margin-right: $iui-s;
-      }
-
       > svg {
         width: $iui-icons-default;
         height: $iui-icons-default;
@@ -98,8 +94,7 @@
         margin-right: $iui-xs;
       }
 
-      > .iui-user-icons-medium-block,
-      > .iui-user-icons-small-block {
+      > .iui-user-icon {
         margin-right: $iui-s;
       }
 
@@ -247,8 +242,8 @@
       > .iui-tables-cell {
         > img,
         > svg,
-        > .iui-user-icons-medium,
-        > .iui-user-icons-small > img {
+        > .iui-user-icon,
+        > .iui-user-icon > img {
           filter: $iui-icons-color-multicolor-disabled;
         }
       }
