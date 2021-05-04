@@ -130,7 +130,7 @@
         }
         user-select: none;
 
-        > .iui-icon {
+        .iui-icon {
           @include themed {
             fill: t(iui-icons-color-actionable);
           }
@@ -327,8 +327,8 @@
 
         > a > .iui-icon {
           @include themed {
-            color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-            fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+            color: t(iui-icons-color-actionable);
+            fill: t(iui-icons-color-actionable);
           }
           display: block;
           width: $iui-icons-default;
@@ -338,8 +338,8 @@
 
           &:hover {
             @include themed {
-              color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-              fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+              color: t(iui-icons-color-actionable-hover);
+              fill: t(iui-icons-color-actionable-hover);
             }
           }
         }

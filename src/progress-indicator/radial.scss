@@ -118,7 +118,7 @@
 
     .iui-inner-content svg {
       @include themed {
-        fill: t(iui-color-foreground-positive);
+        fill: t(iui-icons-color-positive);
       }
     }
 
@@ -150,7 +150,7 @@
 
     .iui-inner-content svg {
       @include themed {
-        fill: t(iui-color-foreground-negative);
+        fill: t(iui-icons-color-negative);
       }
     }
 

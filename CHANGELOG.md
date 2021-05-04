@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.11.0]
+
+`2021-04-28`
+
+### What's new
+
+- **Added `iui-color-foreground-body-invert` variable.**
+- **Icons now use `iui-icons-color-` variables**, allowing easy overrides.
+
+### Fixes
+
+- **Fixed tooltip text blurring issues** by removing frosted glass effect.
+
 ## [0.10.0]
 
 `2021-04-21`
@@ -133,5 +146,6 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.11.0]: https://github.com/iTwin/iTwinUI/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/iTwin/iTwinUI/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/iTwin/iTwinUI/compare/v0.8.0...v0.9.0
