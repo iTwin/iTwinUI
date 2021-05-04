@@ -42,14 +42,6 @@
       textarea,
       section {width: 960px !important;}
       section {margin-bottom: 22px;}
-
-      #demo-no-wrap label {
-        cursor: pointer;
-        margin: 0 0 0 24px;
-      }
-      label:hover > strong {text-decoration: underline;}
-      #demo-no-wrap .iui-content {flex-direction: row;}
-      strong {color: var(--iui-color-foreground-primary);}
     </style>
   </head>
   <body class="iui-body">
@@ -61,23 +53,15 @@
     <section>
 
       <div class="iui-file-upload">
-        <div class="iui-content">
-          <input
-            class="iui-browse-input"
-            type="file"
-            name="files[]"
-            id="file"
-            data-multiple-caption="{count} files selected"
-            multiple
-          />
-          <span>Drop file to upload.</span>
-        </div>
-
         <textarea
           placeholder="Type a new message…"
           class="iui-textarea"
           rows="1"
         ></textarea>
+
+        <div class="iui-content">
+          <span>Drop file to upload.</span>
+        </div>
       </div>
 
     </section>
@@ -85,23 +69,15 @@
     <section id="demo-text-area">
 
       <div class="iui-file-upload iui-drag">
-        <div class="iui-content">
-          <input
-            class="iui-browse-input"
-            type="file"
-            name="files[]"
-            id="file"
-            data-multiple-caption="{count} files selected"
-            multiple
-          />
-          <span>Drop file to upload.</span>
-        </div>
-
         <textarea
           placeholder="Type a new message…"
           class="iui-textarea"
           rows="1"
         ></textarea>
+
+        <div class="iui-content">
+          <span>Drop file to upload.</span>
+        </div>
       </div>
 
     </section>
@@ -112,26 +88,6 @@
     <section>
 
       <div class="iui-file-upload">
-        <div class="iui-content">
-          <input
-            class="iui-browse-input"
-            type="file"
-            name="files[]"
-            id="file"
-            data-multiple-caption="{count} files selected"
-            multiple
-          />
-          <!-- Use upload.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
-          >
-            <path d="m2 5h4v7h4v-7h4l-6-5zm12 6v3h-12v-3h-2v5h16v-5z" />
-          </svg>
-          <span>Drop file to upload.</span>
-        </div>
-
         <div class="iui-tables-table">
           <div class="iui-tables-row">
             <div class="iui-tables-cell iui-tables-head">
@@ -401,6 +357,17 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="iui-content">
+          <!-- Use upload.svg from @itwin/itwinui-icons package. -->
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path d="m2 5h4v7h4v-7h4l-6-5zm12 6v3h-12v-3h-2v5h16v-5z" />
+          </svg>
+          <span>Drop file to upload.</span>
         </div>
       </div>
 
@@ -409,26 +376,6 @@
     <section id="demo-table">
 
       <div class="iui-file-upload iui-drag">
-        <div class="iui-content">
-          <input
-            class="iui-browse-input"
-            type="file"
-            name="files[]"
-            id="file"
-            data-multiple-caption="{count} files selected"
-            multiple
-          />
-          <!-- Use upload.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
-          >
-            <path d="m2 5h4v7h4v-7h4l-6-5zm12 6v3h-12v-3h-2v5h16v-5z" />
-          </svg>
-          <span>Drop file to upload.</span>
-        </div>
-
         <div class="iui-tables-table">
           <div class="iui-tables-row">
             <div class="iui-tables-cell iui-tables-head">
@@ -698,6 +645,17 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="iui-content">
+          <!-- Use upload.svg from @itwin/itwinui-icons package. -->
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path d="m2 5h4v7h4v-7h4l-6-5zm12 6v3h-12v-3h-2v5h16v-5z" />
+          </svg>
+          <span>Drop file to upload.</span>
         </div>
       </div>
 
@@ -720,15 +678,20 @@
           />
           <!-- Use upload.svg from @itwin/itwinui-icons package. -->
           <svg
-            class="iui-icon"
             viewBox="0 0 16 16"
             aria-hidden="true"
           >
             <path d="m2 5h4v7h4v-7h4l-6-5zm12 6v3h-12v-3h-2v5h16v-5z" />
           </svg>
-          <label for="file">
-            <strong>Choose a file</strong><br />or drag & drop it here.
-          </label>
+          <div class="iui-template-text">
+            <label
+              class="iui-anchor"
+              for="file"
+            >
+              Choose a file
+            </label>
+            <div>or drag & drop it here.</div>
+          </div>
         </div>
       </div>
 
@@ -746,15 +709,20 @@
           />
           <!-- Use upload.svg from @itwin/itwinui-icons package. -->
           <svg
-            class="iui-icon"
             viewBox="0 0 16 16"
             aria-hidden="true"
           >
             <path d="m2 5h4v7h4v-7h4l-6-5zm12 6v3h-12v-3h-2v5h16v-5z" />
           </svg>
-          <label for="file">
-            <strong>Choose a file</strong><br />or drag & drop it here.
-          </label>
+          <div class="iui-template-text">
+            <label
+              class="iui-anchor"
+              for="file"
+            >
+              Choose a file
+            </label>
+            <div>or drag & drop it here.</div>
+          </div>
         </div>
       </div>
 
