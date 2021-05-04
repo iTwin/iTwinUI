@@ -16,7 +16,7 @@
   > .iui-icon,
   > .iui-icon > * {
     @include themed {
-      fill: t(iui-color-foreground-positive);
+      fill: t(iui-icons-color-positive);
     }
   }
 
