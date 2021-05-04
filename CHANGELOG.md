@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.12.0]
+
+`2021-05-04`
+
+### What's new
+
+- **Added new column-filter component** in table.css
+- **Added new file-upload template.**
+- **Restructured user-icon classes** from `.iui-user-icons-small` into `.iui-user-icon .iui-small`.
+
+### Fixes
+
+- **Fixed some icon issues in table and pill tabs.**
+- **Fixed some visual issues in file-upload.**
+- **Fixed tile text blurring issues.**
+
 ## [0.11.0]
 
 `2021-04-28`
@@ -146,6 +162,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.12.0]: https://github.com/iTwin/iTwinUI/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/iTwin/iTwinUI/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/iTwin/iTwinUI/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/iTwin/iTwinUI/compare/v0.8.0...v0.9.0
