@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../icon/index';
 @import './tabs';
 
 @mixin iui-tabs-pill {
@@ -28,6 +29,8 @@
           fill: t(iui-icons-color-actionable);
         }
         transition: fill $iui-speed-fast ease-out;
+        width: $iui-icons-default;
+        height: $iui-icons-default;
       }
 
       &::after {
