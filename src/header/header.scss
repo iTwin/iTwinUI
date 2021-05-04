@@ -180,6 +180,8 @@
         > svg {
           width: 75%;
           height: 75%;
+          max-width: $iui-icons-default;
+          max-height: $iui-icons-default;
           @include themed {
             fill: t(iui-icons-color);
           }
