@@ -18,7 +18,7 @@ module.exports = [
 
   //// Slim
   scenario('Type Default State hover & focus', {
-    actions: [hover('#test-button-1'), focus('#test-button-2')],
+    actions: [hover('#test-button-3'), focus('#test-button-4')],
     selectors: ['#demo-slim'],
   }),
 ];
