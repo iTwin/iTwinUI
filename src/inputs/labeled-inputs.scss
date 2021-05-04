@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  position: relative;
   padding: 0;
   margin: 0 0 $iui-baseline;
   text-align: left;
@@ -52,19 +53,23 @@
     font-size: $iui-font-size-small;
     line-height: $iui-line-height;
     margin-top: $iui-inputs-margin;
-
     @include themed {
       color: t(iui-text-color-muted);
     }
 
-    svg {
+    > svg,
+    :not(.iui-button) svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
       margin-right: $iui-xs;
-
       @include themed {
         fill: t(iui-icons-color);
       }
+    }
+
+    > .iui-borderless {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
 
     a {
@@ -83,7 +88,6 @@
   }
 
   &.iui-inline {
-    position: relative;
     flex-direction: row;
     align-items: center;
 
@@ -101,20 +105,30 @@
     > .iui-message {
       margin: 0;
 
-      svg {
+      > svg,
+      :not(.iui-button) svg {
         margin-right: 0;
       }
     }
 
     > .iui-input,
     > .iui-textarea {
-      padding-right: $iui-xl;
+      padding-right: $iui-icons-default + $iui-l;
 
       + .iui-message {
         position: absolute;
         top: 50%;
-        right: $iui-sm;
+        right: 0;
         transform: translateY(-50%);
+
+        > svg,
+        :not(.iui-button) svg {
+          margin-right: $iui-sm;
+        }
+      }
+
+      &:last-child {
+        padding-right: $iui-sm;
       }
     }
   }
