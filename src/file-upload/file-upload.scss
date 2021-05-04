@@ -57,13 +57,13 @@
           box-shadow: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5)) 0 0 0 2px;
         }
       }
+    }
 
-      > .iui-label {
-        margin-left: $iui-l;
+    .iui-template-text {
+      margin-left: $iui-l;
 
-        > label {
-          font-weight: $iui-font-weight-bold;
-        }
+      > label {
+        font-weight: $iui-font-weight-bold;
       }
     }
   }
