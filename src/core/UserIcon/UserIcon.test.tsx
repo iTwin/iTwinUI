@@ -9,10 +9,12 @@ import { defaultStatusTitles, UserIcon, UserIconStatus } from './UserIcon';
 
 function assertBaseElements(size = 'small', backgroundColor = 'white') {
   const userIconContainer = screen.getByTitle('Terry Rivers');
-  expect(userIconContainer.className).toEqual(`iui-user-icons-${size}`);
+  expect(userIconContainer.className).toEqual(
+    `iui-user-icon${size !== 'medium' ? ` iui-${size}` : ''}`,
+  );
 
   const abbreviation = screen.getByText('TR');
-  expect(abbreviation.className).toEqual('iui-user-icons-initials');
+  expect(abbreviation.className).toEqual('iui-initials');
   expect(abbreviation.style.backgroundColor).toEqual(backgroundColor);
 }
 
@@ -41,7 +43,7 @@ it.each(['', 'online', 'busy', 'away', 'offline'] as Array<UserIconStatus>)(
     );
     assertBaseElements();
     const statusContainer = container.querySelector(
-      '.iui-user-icons-status',
+      '.iui-status',
     ) as HTMLElement;
     if (!status) {
       expect(statusContainer).toBeFalsy();
@@ -68,9 +70,7 @@ it('should render with translated statuses', () => {
     />,
   );
 
-  const statusContainer = container.querySelector(
-    '.iui-user-icons-status',
-  ) as HTMLElement;
+  const statusContainer = container.querySelector('.iui-status') as HTMLElement;
   expect(statusContainer.getAttribute('title')).toEqual('test-offline');
 });
 
@@ -91,8 +91,8 @@ it('renders with image', () => {
   );
 
   const userIconContainer = screen.getByTitle('Terry Rivers');
-  expect(userIconContainer.className).toEqual('iui-user-icons-small');
-  const abbreviation = container.querySelector('.iui-user-icons-initials');
+  expect(userIconContainer.className).toEqual('iui-user-icon iui-small');
+  const abbreviation = container.querySelector('.iui-initials');
   expect(abbreviation).toBeFalsy();
   const img = container.querySelector('img');
   expect(img).toBeTruthy();

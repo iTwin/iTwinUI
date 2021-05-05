@@ -47,14 +47,9 @@ BorderlessTabs.args = {
 };
 
 export const PillTabs = Template.bind({});
-
-const style: React.CSSProperties = {
-  width: 16,
-  height: 16,
-};
 PillTabs.args = {
   labels: [...new Array(3)].map((_, index) => (
-    <SvgStar key={index} style={style} />
+    <SvgStar key={index} aria-hidden />
   )),
   type: 'pill',
 };

@@ -5,7 +5,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
-import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
+import SvgClose from '@itwin/itwinui-icons-react/cjs/icons/Close';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/modal.css';
@@ -175,8 +175,13 @@ export const Modal = (props: ModalProps) => {
           <div className='iui-title-bar'>
             <div className='iui-title'>{title}</div>
             {isDismissible && (
-              <IconButton size='small' styleType='borderless' onClick={onClose}>
-                <SvgCloseSmall aria-hidden />
+              <IconButton
+                size='small'
+                styleType='borderless'
+                onClick={onClose}
+                aria-label='Close'
+              >
+                <SvgClose />
               </IconButton>
             )}
           </div>

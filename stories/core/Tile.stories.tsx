@@ -16,7 +16,7 @@ import {
   TileProps,
 } from '../../src/core';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
-import SvgPlaceholder from '@itwin/itwinui-icons-react/cjs/icons/Placeholder';
+import SvgImodelHollow from '@itwin/itwinui-icons-react/cjs/icons/ImodelHollow';
 import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import SvgTag from '@itwin/itwinui-icons-react/cjs/icons/Tag';
@@ -167,7 +167,7 @@ Condensed.args = {
   description: undefined,
   metadata: undefined,
   badge: undefined,
-  thumbnail: <SvgPlaceholder />,
+  thumbnail: <SvgImodelHollow />,
 };
 
 export const UserIcon: Story<TileProps> = (props) => {

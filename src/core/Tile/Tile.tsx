@@ -5,7 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
-import SvgMoreSmall from '@itwin/itwinui-icons-react/cjs/icons/MoreSmall';
+import SvgMore from '@itwin/itwinui-icons-react/cjs/icons/More';
 import SvgNew from '@itwin/itwinui-icons-react/cjs/icons/New';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/tile.css';
@@ -48,7 +48,7 @@ export type TileProps = {
    *  // or
    *  thumbnail={<UserIcon image={<img src='icon.png' />} />}
    *  // or
-   *  thumbnail={<SvgImodel2 />}
+   *  thumbnail={<SvgImodelHollow />}
    * />
    */
   thumbnail: string | React.ReactNode;
@@ -176,8 +176,10 @@ export const Tile = (props: TileProps) => {
 
       <div className='iui-content'>
         <div className='iui-name'>
-          {isSelected && <SvgCheckmark className='iui-informational' />}
-          {isNew && <SvgNew className='iui-positive' />}
+          {isSelected && (
+            <SvgCheckmark className='iui-informational' aria-hidden />
+          )}
+          {isNew && <SvgNew className='iui-positive' aria-hidden />}
           <span className='iui-name-label'>{name}</span>
         </div>
 
@@ -211,8 +213,9 @@ export const Tile = (props: TileProps) => {
               className={cx('iui-more-options', {
                 'iui-visible': isMenuVisible,
               })}
+              aria-label='More options'
             >
-              <SvgMoreSmall />
+              <SvgMore />
             </IconButton>
           </DropdownMenu>
         )}

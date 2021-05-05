@@ -307,8 +307,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
             <IconButton
               styleType='borderless'
               onClick={handleMoveToPreviousMonth}
+              aria-label='Previous month'
             >
-              <SvgChevronLeft aria-hidden={true} />
+              <SvgChevronLeft />
             </IconButton>
             <span aria-live='polite'>
               <span
@@ -319,8 +320,12 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
               </span>
               &nbsp;{displayedYear}
             </span>
-            <IconButton styleType='borderless' onClick={handleMoveToNextMonth}>
-              <SvgChevronRight aria-hidden={true} />
+            <IconButton
+              styleType='borderless'
+              onClick={handleMoveToNextMonth}
+              aria-label='Next month'
+            >
+              <SvgChevronRight />
             </IconButton>
           </div>
           <div className='iui-weekdays'>

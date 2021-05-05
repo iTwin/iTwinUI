@@ -89,34 +89,39 @@ export const UserIcon = (props: UserIconProps) => {
   const statusTitles = { ...defaultStatusTitles, ...translatedStatusTitles };
 
   const iconMap: { [key in UserIconStatus]: JSX.Element } = {
-    away: <SvgAway className='iui-user-icons-status-symbol' />,
-    offline: <SvgCloseSmall className='iui-user-icons-status-symbol' />,
-    online: <SvgCheckmark className='iui-user-icons-status-symbol' />,
+    away: <SvgAway className='iui-status-symbol' aria-hidden />,
+    offline: <SvgCloseSmall className='iui-status-symbol' aria-hidden />,
+    online: <SvgCheckmark className='iui-status-symbol' aria-hidden />,
     busy: <></>,
   };
 
   return (
     <span
-      className={cx(`iui-user-icons-${size}`, className)}
+      className={cx(
+        'iui-user-icon',
+        { [`iui-${size}`]: size !== 'medium' },
+        className,
+      )}
       title={title}
       style={style}
       {...rest}
     >
+      {image ?? (
+        <abbr className='iui-initials' style={{ backgroundColor }}>
+          {abbreviation?.substring(0, 2)}
+        </abbr>
+      )}
+      <span className='iui-stroke' />
       {status && (
         <span
           title={statusTitles[status]}
-          className={cx('iui-user-icons-status', {
+          className={cx('iui-status', {
             [`iui-${status}`]: !!status,
           })}
+          aria-label={statusTitles[status]}
         >
           {iconMap[status]}
         </span>
-      )}
-      <span className='iui-user-icons-stroke' />
-      {image ?? (
-        <abbr className='iui-user-icons-initials' style={{ backgroundColor }}>
-          {abbreviation?.substring(0, 2)}
-        </abbr>
       )}
     </span>
   );

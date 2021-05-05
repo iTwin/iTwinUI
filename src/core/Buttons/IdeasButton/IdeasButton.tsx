@@ -37,7 +37,7 @@ export const IdeasButton = React.forwardRef<
       ref={ref}
       className='iui-idea'
       onClick={onClick}
-      startIcon={<SvgSmileyHappy />}
+      startIcon={<SvgSmileyHappy aria-hidden />}
       {...rest}
     >
       {feedbackLabel}

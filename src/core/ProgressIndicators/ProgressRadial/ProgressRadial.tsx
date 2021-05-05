@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import Positive from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
-import Negative from '@itwin/itwinui-icons-react/cjs/icons/Important';
+import Positive from '@itwin/itwinui-icons-react/cjs/icons/CheckmarkSmall';
+import Negative from '@itwin/itwinui-icons-react/cjs/icons/ImportantSmall';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../../utils/props';
@@ -67,8 +67,8 @@ export const ProgressRadial = (props: ProgressRadialProps) => {
   useTheme();
 
   const statusMap = {
-    negative: <Negative />,
-    positive: <Positive />,
+    negative: <Negative aria-hidden />,
+    positive: <Positive aria-hidden />,
   };
 
   const fillStyle: React.CSSProperties = {

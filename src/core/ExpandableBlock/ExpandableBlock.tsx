@@ -94,7 +94,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         onClick={handleToggle}
         onKeyDown={onKeyDown}
       >
-        <SvgChevronRight className='iui-icon' />
+        <SvgChevronRight className='iui-icon' aria-hidden />
         <div className='iui-title'>{title}</div>
         {caption && <div className='iui-caption'>{caption}</div>}
       </div>

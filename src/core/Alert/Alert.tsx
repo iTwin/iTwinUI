@@ -68,10 +68,10 @@ export const Alert = (props: AlertProps) => {
   useTheme();
 
   const iconMap = {
-    negative: <SvgStatusError className='iui-icon' />,
-    informational: <SvgInfoCircular className='iui-icon' />,
-    positive: <SvgStatusSuccess className='iui-icon' />,
-    warning: <SvgStatusWarning className='iui-icon' />,
+    negative: <SvgStatusError className='iui-icon' aria-hidden />,
+    informational: <SvgInfoCircular className='iui-icon' aria-hidden />,
+    positive: <SvgStatusSuccess className='iui-icon' aria-hidden />,
+    warning: <SvgStatusWarning className='iui-icon' aria-hidden />,
   };
 
   return (
@@ -102,7 +102,7 @@ export const Alert = (props: AlertProps) => {
           onClick={onClose}
           aria-label='Close'
         >
-          <SvgCloseSmall aria-hidden='true' />
+          <SvgCloseSmall aria-hidden />
         </IconButton>
       )}
     </div>

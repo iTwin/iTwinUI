@@ -1209,20 +1209,20 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
-"@itwin/itwinui-css@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-0.11.0.tgz#fef1c8357186c17749a36d8e28c1b19c5a222887"
-  integrity sha512-r92v6sLsYXD3JaRlg4wrgDOJQmjjA6AD7T3mm72rNkx0QRDu8nEPuWPZWRxeg256F/bfTVbHz+z2dynGTo5KNQ==
+"@itwin/itwinui-css@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-0.12.0.tgz#c58b19a75d72a98da69db3d06dc226d9f44dafe0"
+  integrity sha512-YdY5WFsi04a9E8rEiDTk6dhYtwpy3x3tMD6DyVH7N5M3alAaBm6tL3vY5/r2MJkIz/zIZPdMU0IjPIMlNN7aQQ==
 
-"@itwin/itwinui-icons-react@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-icons-react/-/itwinui-icons-react-0.1.0.tgz#812bf14c090d7c5a412e9a678781b5a793966ca9"
-  integrity sha512-zD11tk6ze8ObJD30l5TOSjQq7giNOwqqLNSqATWSjyiuYnnNlxm80ApKXFfzo+j3hnLg4mQvwhzDPyyMIYzHEw==
+"@itwin/itwinui-icons-react@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-icons-react/-/itwinui-icons-react-1.1.0.tgz#bb270ba11c8b0443c62b2e6cc1fb17974d8494e9"
+  integrity sha512-Ir1lZE7sJyAsHnmTdH3B3QCejRvi7i6EhuumbCoKV0UkXVmVO0QDsldEuBSGhkHXLsHmDTRyfYOnyFZODfL42Q==
 
-"@itwin/itwinui-illustrations-react@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-0.1.0.tgz#f440c70ae83d22a67b47d209ddf8c5695d07563d"
-  integrity sha512-mX09el9b0/xB0obzEV8mitFK7J2D5PvnmxCNedxOlzVCl+jNopcOHFzxBrvzkPv1vgjCAhmQOY8tMr8wT+FUxw==
+"@itwin/itwinui-illustrations-react@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-1.0.0.tgz#1289701cd3c4a171924616ae0a55507566b209e3"
+  integrity sha512-ROArH2yaMsXHOd213fBG/vektZe4uAwIzYKhjLobc2YnCHB4PfAgkYjysgqpiWUxtcB/lGenr70doL8CqyxxDg==
 
 "@jest/console@^26.6.2":
   version "26.6.2"

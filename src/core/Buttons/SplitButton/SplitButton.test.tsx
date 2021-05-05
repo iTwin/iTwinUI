@@ -69,13 +69,13 @@ it('should update icon when menu opens or closes', () => {
 
   const {
     container: { firstChild: downArrow },
-  } = render(<SvgCaretDownSmall className='iui-icon' />);
+  } = render(<SvgCaretDownSmall className='iui-icon' aria-hidden />);
   expect(container.querySelector('.iui-icon')).toEqual(downArrow);
 
   dropdownButton.click();
   const {
     container: { firstChild: upArrow },
-  } = render(<SvgCaretUpSmall className='iui-icon' />);
+  } = render(<SvgCaretUpSmall className='iui-icon' aria-hidden />);
   expect(container.querySelector('.iui-icon')).toEqual(upArrow);
 
   dropdownButton.click();

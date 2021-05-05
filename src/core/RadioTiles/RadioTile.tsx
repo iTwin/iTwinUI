@@ -61,7 +61,7 @@ export const RadioTile = React.forwardRef<HTMLInputElement, RadioTileProps>(
       <label className={className} style={style}>
         <input type='radio' ref={refs} {...rest} />
         <div className='iui-radio-tile'>
-          <SvgCheckmark className='iui-checkmark' />
+          <SvgCheckmark className='iui-checkmark' aria-hidden />
           {icon &&
             React.cloneElement(icon, {
               className: cx('iui-icon', icon.props.className),

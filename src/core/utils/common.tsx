@@ -10,9 +10,9 @@ import React from 'react';
 export const StatusIconMap: {
   [key in 'negative' | 'positive' | 'warning']: JSX.Element;
 } = {
-  negative: <SvgStatusError />,
-  positive: <SvgStatusSuccess />,
-  warning: <SvgStatusWarning />,
+  negative: <SvgStatusError aria-hidden />,
+  positive: <SvgStatusSuccess aria-hidden />,
+  warning: <SvgStatusWarning aria-hidden />,
 };
 
 const USER_COLORS = [

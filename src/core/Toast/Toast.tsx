@@ -162,8 +162,13 @@ export const Toast = (props: ToastProps) => {
                 </a>
               )}
               {(type === 'persisting' || hasCloseButton) && (
-                <IconButton size='small' styleType='borderless' onClick={close}>
-                  <SvgCloseSmall aria-hidden />
+                <IconButton
+                  size='small'
+                  styleType='borderless'
+                  onClick={close}
+                  aria-label='Close'
+                >
+                  <SvgCloseSmall />
                 </IconButton>
               )}
             </div>

@@ -63,8 +63,15 @@ export const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
         className={cx('iui-dropdown', className)}
         size={size}
         styleType={styleType}
-        endIcon={isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
+        endIcon={
+          isMenuOpen ? (
+            <SvgCaretUpSmall aria-hidden />
+          ) : (
+            <SvgCaretDownSmall aria-hidden />
+          )
+        }
         ref={ref}
+        aria-label='Dropdown'
         {...rest}
       >
         {children}
