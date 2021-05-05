@@ -35,7 +35,7 @@ $iui-button-padding-large: $iui-xs * 6;
     background-color $iui-speed-fast ease-out,
     border-color $iui-speed-fast ease-out;
 
-  > .iui-icon {
+  > svg.iui-icon {
     width: $iui-icons-default;
     height: $iui-icons-default;
     transition: fill $iui-speed-fast ease-out;
