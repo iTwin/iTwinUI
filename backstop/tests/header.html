@@ -24,6 +24,10 @@
     />
     <link
       rel="stylesheet"
+      href="../../lib/css/toggle-switch.css"
+    />
+    <link
+      rel="stylesheet"
       href="../../lib/css/user-icon.css"
     />
     <link
@@ -73,6 +77,7 @@
       }
     </style>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Header</h1>
@@ -810,11 +815,19 @@
 
     <hr />
 
-    <h2>Animation (Hover to trigger the switch)</h2>
-    <section>
+    <h2>Animation (Toggle default ⇔ slim)</h2>
+    <section id="demo-slim-toggle">
 
-      <!-- Not a suggest, this is just to be able to test the animation -->
-      <header class="iui-header iui-slim-on-hover-demo">
+      <label class="iui-toggle-switch">
+        <input type="checkbox" />
+        <span class="iui-toggle">
+          <span class="iui-handle"></span>
+        </span>
+        <span class="iui-label">Slim</span>
+      </label>
+      <br />
+
+      <header class="iui-header">
         <div class="iui-left">
           <!-- Application Button -->
           <button
@@ -1040,4 +1053,11 @@
 
     </section>
   </body>
+
+  <script>
+    const toggleSwitch = document.querySelector('#demo-slim-toggle input[type=checkbox]');
+    toggleSwitch.addEventListener('change', (e) => {
+      document.querySelector('#demo-slim-toggle .iui-header').classList.toggle('iui-slim');
+    });
+  </script>
 </html>
