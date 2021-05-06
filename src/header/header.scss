@@ -76,37 +76,30 @@
     height: round($iui-baseline * 2.5);
 
     > .iui-left {
-      > .iui-application {
-        > .iui-label {
-          font-size: $iui-font-size;
-          margin-right: $iui-l;
-        }
-
-        > .iui-brand-logo > .iui-icon {
-          width: $iui-icons-default;
-          height: $iui-icons-default;
-        }
-      }
-
-      > .iui-header-button {
-        > .iui-thumbnail-area > .iui-thumbnail {
-          width: $iui-icons-default;
-          height: $iui-icons-default;
-        }
-
-        &.iui-detailed > .iui-label {
-          padding-top: $iui-baseline * 2;
-
-          > .iui-id {
-            opacity: 0;
+      .iui-header-button {
+        &:first-of-type {
+          .iui-header-button-icon {
+            margin: 0 $iui-m;
           }
+
+          > .iui-label {
+            font-size: $iui-font-size;
+          }
+        }
+
+        .iui-header-button-icon {
+          width: $iui-icons-default;
+          height: $iui-icons-default;
+        }
+
+        .iui-description {
+          display: none;
         }
       }
     }
 
     > .iui-right {
       .iui-user-icon {
-        @include iui-user-icon;
         @include iui-user-icon-size(
           $size: $iui-icons-large,
           $font-size: $iui-font-size-small
@@ -116,116 +109,59 @@
   }
 }
 
+@mixin iui-header-button-icon(
+  $size: $iui-icons-large,
+  $border-radius: $iui-border-radius
+) {
+  width: $size;
+  height: $size;
+  border-radius: $border-radius;
+}
+
 @mixin iui-header-buttons {
-  > .iui-application,
-  > .iui-header-button {
-    overflow: hidden;
-    transition: height $iui-speed-fast ease-out;
-
+  .iui-header-button {
     > .iui-label {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: font-size $iui-speed-fast ease-out;
+      text-align: left;
+      font-size: $iui-font-size;
 
-      > * {
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: left;
-      }
-    }
-
-    > .iui-brand-logo,
-    > .iui-thumbnail-area {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-
-      > .iui-icon,
-      > .iui-thumbnail {
-        width: $iui-icons-large;
-        height: $iui-icons-large;
-        transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
-      }
-    }
-  }
-
-  > .iui-application {
-    padding: 0;
-
-    > .iui-brand-logo {
-      width: $iui-l * 3 - 1;
-      flex-shrink: 0;
-    }
-
-    > .iui-label {
-      margin-right: $iui-sm;
-      transition: margin-right $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
-    }
-  }
-
-  > .iui-header-button {
-    > .iui-thumbnail-area {
-      width: $iui-l;
-      margin-right: $iui-sm;
-
-      > .iui-thumbnail {
-        border-radius: $iui-border-radius;
-        background-position: center;
-        background-size: cover;
-        overflow: hidden;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        @include themed {
-          background-color: t(iui-color-background-3);
-        }
-
-        > svg {
-          width: 75%;
-          height: 75%;
-          max-width: $iui-icons-default;
-          max-height: $iui-icons-default;
-          @include themed {
-            fill: t(iui-icons-color);
-          }
-        }
-
-        > .iui-picture {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-position: center;
-          background-size: cover;
-        }
-      }
-    }
-
-    > .iui-label {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      transition: padding-top $iui-speed-fast ease-out;
-
-      > .iui-id {
-        transition: opacity $iui-speed-fast ease-out;
+      .iui-description {
         @include themed {
           opacity: t(iui-opacity-4);
         }
       }
     }
 
-    > .iui-icon {
-      flex-shrink: 0;
+    .iui-header-button-icon {
+      @include iui-header-button-icon;
     }
 
-    &.iui-active {
-      @include themed {
-        box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+    // For application button
+    &:first-of-type {
+      .iui-header-button-icon {
+        margin: 0 $iui-sm;
+      }
+
+      > .iui-label {
+        font-size: $iui-font-size-leading;
+      }
+    }
+
+    // For breadcrumbs
+    &:not(:first-of-type) {
+      svg.iui-header-button-icon.iui-header-button-icon {
+        padding: $iui-xs;
+        @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
+        @include themed {
+          background-color: t(iui-color-background-3);
+          fill: t(iui-icons-color);
+        }
+      }
+
+      &.iui-active {
+        @include themed {
+          box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+        }
+        @include iui-focus;
       }
     }
   }
