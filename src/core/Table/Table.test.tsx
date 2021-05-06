@@ -4,8 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-
 import { Table, TableProps } from './Table';
+import * as IntersectionHooks from '../utils/hooks/useIntersection';
+
+const intersectionCallbacks = new Map<Element, () => void>();
+jest
+  .spyOn(IntersectionHooks, 'useIntersection')
+  .mockImplementation((onIntersect) => {
+    return (el: HTMLElement) => intersectionCallbacks.set(el, onIntersect);
+  });
+
+const mockIntersection = (element: Element) => {
+  intersectionCallbacks.get(element)?.();
+};
 
 const columns = (onViewClick: () => void = jest.fn()) => [
   {
@@ -34,11 +45,11 @@ const columns = (onViewClick: () => void = jest.fn()) => [
   },
 ];
 
-const mockedData = () => [
-  { name: 'Name1', description: 'Description1' },
-  { name: 'Name2', description: 'Description2' },
-  { name: 'Name3', description: 'Description3' },
-];
+const mockedData = (count = 3) =>
+  [...new Array(count)].map((_, index) => ({
+    name: `Name${index + 1}`,
+    description: `Description${index + 1}`,
+  }));
 
 function renderComponent(
   initialsProps?: Partial<TableProps>,
@@ -70,6 +81,10 @@ function assertRowsData(
     fireEvent.click(cells[2].firstElementChild as HTMLElement);
   }
 }
+
+beforeEach(() => {
+  intersectionCallbacks.clear();
+});
 
 it('should render table with data', () => {
   const onViewClick = jest.fn();
@@ -302,4 +317,40 @@ it('should not show sort icon if disabled in column level', () => {
   });
 
   expect(container.querySelector('.iui-sort .iui-icon-wrapper')).toBeFalsy();
+});
+
+it('should trigger onBottomReached', () => {
+  const onBottomReached = jest.fn();
+  const { container } = renderComponent({
+    data: mockedData(50),
+    onBottomReached,
+  });
+
+  const rows = container.querySelectorAll('.iui-tables-body .iui-tables-row');
+  expect(rows.length).toBe(50);
+
+  expect(onBottomReached).not.toHaveBeenCalled();
+  expect(intersectionCallbacks.size).toBe(50);
+  mockIntersection(rows[49]);
+
+  expect(onBottomReached).toHaveBeenCalledTimes(1);
+});
+
+it('should trigger onRowInViewport', () => {
+  const onRowInViewport = jest.fn();
+  const { container } = renderComponent({
+    data: mockedData(50),
+    onRowInViewport,
+  });
+
+  const rows = container.querySelectorAll('.iui-tables-body .iui-tables-row');
+  expect(rows.length).toBe(50);
+
+  expect(onRowInViewport).not.toHaveBeenCalled();
+  expect(intersectionCallbacks.size).toBe(50);
+  for (let i = 0; i < 10; i++) {
+    mockIntersection(rows[i]);
+  }
+
+  expect(onRowInViewport).toHaveBeenCalledTimes(10);
 });

@@ -29,6 +29,8 @@ import '@itwin/itwinui-css/css/table.css';
 import { CommonProps } from '../utils/props';
 import SvgSortDown from '@itwin/itwinui-icons-react/cjs/icons/SortDown';
 import SvgSortUp from '@itwin/itwinui-icons-react/cjs/icons/SortUp';
+import { getCellStyle } from './utils';
+import { TableRowMemoized } from './TableRowMemoized';
 
 /**
  * Table props.
@@ -69,6 +71,21 @@ export type TableProps<
    * Must be memoized.
    */
   onSort?: (state: TableState<T>) => void;
+  /**
+   * Callback function when scroll reaches bottom. Can be used for lazy-loading the data.
+   * If you want to use it in older browsers e.g. IE, then you need to have IntersectionObserver polyfill.
+   */
+  onBottomReached?: () => void;
+  /**
+   * Callback function when row is in viewport.
+   * If you want to use it in older browsers e.g. IE, then you need to have IntersectionObserver polyfill.
+   */
+  onRowInViewport?: (rowData: T) => void;
+  /**
+   * Margin in pixels when row is considered to be already in viewport. Used for `onBottomReached` and `onRowInViewport`.
+   * @default 300
+   */
+  intersectionMargin?: number;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -129,6 +146,9 @@ export const Table = <
     isSortable = false,
     onSort,
     stateReducer,
+    onBottomReached,
+    onRowInViewport,
+    intersectionMargin = 300,
     ...rest
   } = props;
 
@@ -142,6 +162,16 @@ export const Table = <
     }),
     [],
   );
+
+  // useRef prevents from rerendering when one of these callbacks changes
+  const onSelectRef = React.useRef(onSelect);
+  const onBottomReachedRef = React.useRef(onBottomReached);
+  const onRowInViewportRef = React.useRef(onRowInViewport);
+  React.useEffect(() => {
+    onSelectRef.current = onSelect;
+    onBottomReachedRef.current = onBottomReached;
+    onRowInViewportRef.current = onRowInViewport;
+  }, [onBottomReached, onRowInViewport, onSelect]);
 
   const useSelectionHook = (hooks: Hooks<T>) => {
     if (!isSelectable) {
@@ -217,32 +247,12 @@ export const Table = <
 
   useMountedLayoutEffect(() => {
     if (isSelectable && selectedFlatRows) {
-      onSelect?.(
+      onSelectRef.current?.(
         selectedFlatRows.map((row) => row.original),
         state,
       );
     }
-  }, [selectedFlatRows, onSelect]);
-
-  const getStyle = (
-    column: ColumnInstance<T>,
-  ): React.CSSProperties | undefined => {
-    const style = {} as React.CSSProperties;
-    style.flex = `1 1 145px`;
-    if (column.width) {
-      const width =
-        typeof column.width === 'string' ? column.width : `${column.width}px`;
-      style.width = width;
-      style.flex = `0 0 ${width}`;
-    }
-    if (column.maxWidth) {
-      style.maxWidth = `${column.maxWidth}px`;
-    }
-    if (column.minWidth) {
-      style.minWidth = `${column.minWidth}px`;
-    }
-    return style;
-  };
+  }, [selectedFlatRows, onSelectRef]);
 
   const ariaDataAttributes = Object.entries(rest).reduce(
     (result, [key, value]) => {
@@ -279,7 +289,7 @@ export const Table = <
                     column.columnClassName,
                   ),
                   style: {
-                    ...getStyle(column),
+                    ...getCellStyle(column),
                     cursor: column.canSort ? 'pointer' : undefined,
                   },
                 });
@@ -305,8 +315,7 @@ export const Table = <
         })}
       </div>
       <div {...getTableBodyProps({ className: 'iui-tables-body' })}>
-        {!isLoading &&
-          data.length !== 0 &&
+        {data.length !== 0 &&
           rows.map((row: Row<T>) => {
             prepareRow(row);
             const rowProps = row.getRowProps({
@@ -315,24 +324,35 @@ export const Table = <
               }),
             });
             return (
-              <div {...rowProps} key={rowProps.key}>
-                {row.cells.map((cell) => {
-                  const cellProps = cell.getCellProps({
-                    className: cx('iui-tables-cell', cell.column.cellClassName),
-                    style: getStyle(cell.column),
-                  });
-                  return (
-                    <div {...cellProps} key={cellProps.key}>
-                      {cell.render('Cell')}
-                    </div>
-                  );
-                })}
-              </div>
+              <TableRowMemoized
+                row={row}
+                rowProps={rowProps}
+                isLast={row.index === data.length - 1}
+                onRowInViewport={onRowInViewportRef}
+                onBottomReached={onBottomReachedRef}
+                intersectionMargin={intersectionMargin}
+                state={state}
+                key={rowProps.key}
+              />
             );
           })}
-        {isLoading && (
+        {isLoading && data.length === 0 && (
           <div className={'iui-tables-message-container'}>
             <ProgressRadial indeterminate={true} />
+          </div>
+        )}
+        {isLoading && data.length !== 0 && (
+          <div className='iui-tables-row'>
+            <div
+              className='iui-tables-cell'
+              style={{ justifyContent: 'center' }}
+            >
+              <ProgressRadial
+                indeterminate={true}
+                size='small'
+                style={{ float: 'none', marginLeft: 0 }}
+              />
+            </div>
           </div>
         )}
         {!isLoading && data.length === 0 && (

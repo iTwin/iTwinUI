@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.0
+
+`2021-05-XX`
+
+### What's new
+
+- **Added lazy loading to `Table`** with new `onBottomReached` and `onRowInViewport` props.
+
+### Fixes
+
+- **Fixed `Table` bug when change of `onSelection` handler would cause infinite rerendering loop.**
+
 ## [1.2.0]
 
 `2021-04-29`
