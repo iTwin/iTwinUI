@@ -104,7 +104,8 @@
     "react-dom": "^16.8.6 || ^17.0.0"
   },
   "resolutions": {
-    "braces": "^2.3.1"
+    "braces": "^2.3.1",
+    "hosted-git-info": ">=3.0.8"
   },
   "husky": {
     "hooks": {
