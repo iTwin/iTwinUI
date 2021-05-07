@@ -4,7 +4,6 @@
 
 .iui-user-icon {
   @include iui-user-icon;
-  @include iui-user-icon-size;
 
   &#{&} {
     @include iui-user-icon-size;
