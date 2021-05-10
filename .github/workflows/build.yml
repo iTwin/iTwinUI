@@ -57,10 +57,10 @@ jobs:
       - run: yarn test --coverage
 
       - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: EnricoMi/publish-unit-test-result-action@v1.16
         if: always()
         with:
           files: 'coverage/junit.xml'
-          comment_on_pr: false
+          comment_mode: off
           check_name: 'Test results'
           fail_on: 'nothing'
