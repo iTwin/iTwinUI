@@ -21,7 +21,7 @@ jobs:
           node-version: 12.x
 
       - run: yarn install --frozen-lockfile
-      - run: yarn audit
+      - run: yarn audit --groups dependencies
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
       - run: yarn build
