@@ -48,14 +48,9 @@
     justify-content: flex-end;
 
     .iui-user-icon {
-      transition: width $iui-speed-fast ease-out,
-        height $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
-
+      &,
       * {
-        transition: width $iui-speed-fast ease-out,
-          height $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out,
-          line-height $iui-speed-fast ease-out,
-          font-weight $iui-speed-fast ease-out;
+        transition: all $iui-speed-fast ease-out;
       }
     }
   }
@@ -81,6 +76,10 @@
         > .iui-label {
           font-size: $iui-font-size;
         }
+
+        .iui-header-button-icon {
+          margin: 0 $iui-l + $iui-xs;
+        }
       }
 
       .iui-header-button-icon {
@@ -89,6 +88,12 @@
       }
 
       .iui-header-button {
+        svg.iui-header-button-icon.iui-header-button-icon {
+          width: $iui-icons-small;
+          height: $iui-icons-small;
+          padding: $iui-xxs;
+        }
+  
         .iui-description {
           display: none;
         }
@@ -161,7 +166,7 @@
 
       .iui-description {
         @include themed {
-          opacity: t(iui-opacity-4);
+          opacity: t(iui-opacity-3);
         }
       }
     }
@@ -176,10 +181,10 @@
     }
 
     &.iui-active {
+      @include iui-focus;
       @include themed {
         box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
       }
-      @include iui-focus;
     }
   }
 }
