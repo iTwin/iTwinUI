@@ -10,7 +10,7 @@
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
 
-  .iui-icon {
+  > .iui-icon {
     @include themed {
       fill: t(iui-icons-color-actionable);
     }
