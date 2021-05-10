@@ -28,11 +28,11 @@ jobs:
       - run: yarn test:ci
 
       - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: EnricoMi/publish-unit-test-result-action@v1.16
         if: always()
         with:
-          files: 'backstop/results/**/*.xml'
-          comment_on_pr: false
+          files: 'backstop/results/ci_report/xunit.xml'
+          comment_mode: off
           check_name: 'Test results'
           fail_on: 'nothing'
 
