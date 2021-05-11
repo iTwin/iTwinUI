@@ -1,0 +1,15 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../icon/variables';
+@import '../style/index';
+@import '../text/mixins';
+
+@mixin iui-user-icon-size($size: $iui-icons-xl, $font-size: $iui-font-size-leading) {
+  width: $size;
+  height: $size;
+
+  > .iui-initials {
+    line-height: $size;
+    font-size: $font-size;
+  }
+}

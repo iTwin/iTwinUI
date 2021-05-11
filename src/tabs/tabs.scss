@@ -51,7 +51,7 @@
 
         @include themed {
           color: t(iui-color-foreground-primary);
-          fill: t(iui-color-foreground-primary);
+          fill: t(iui-icons-color-primary);
         }
         transition: color $iui-speed-fast ease-out,
           background-color $iui-speed-fast ease-out;
@@ -83,7 +83,7 @@
       &:hover {
         @include themed {
           color: t(iui-color-foreground-positive);
-          fill: t(iui-color-foreground-positive);
+          fill: t(iui-icons-color-positive);
         }
       }
 
