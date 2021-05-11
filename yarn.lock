@@ -1214,15 +1214,15 @@
   resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-0.12.0.tgz#c58b19a75d72a98da69db3d06dc226d9f44dafe0"
   integrity sha512-YdY5WFsi04a9E8rEiDTk6dhYtwpy3x3tMD6DyVH7N5M3alAaBm6tL3vY5/r2MJkIz/zIZPdMU0IjPIMlNN7aQQ==
 
-"@itwin/itwinui-icons-react@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-icons-react/-/itwinui-icons-react-1.1.0.tgz#bb270ba11c8b0443c62b2e6cc1fb17974d8494e9"
-  integrity sha512-Ir1lZE7sJyAsHnmTdH3B3QCejRvi7i6EhuumbCoKV0UkXVmVO0QDsldEuBSGhkHXLsHmDTRyfYOnyFZODfL42Q==
+"@itwin/itwinui-icons-react@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-icons-react/-/itwinui-icons-react-1.1.1.tgz#f31e89588eb519f8f6d39032ac1ce359f2185d99"
+  integrity sha512-+Z43/PYkdfeLzo/2+NevRe9q1Ew1w1BQfsLr4gU60ZHhWi57gaik/b66ZNI6ZKb9IX0YG7xgPDUDUgl+rFTPVg==
 
-"@itwin/itwinui-illustrations-react@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-1.0.0.tgz#1289701cd3c4a171924616ae0a55507566b209e3"
-  integrity sha512-ROArH2yaMsXHOd213fBG/vektZe4uAwIzYKhjLobc2YnCHB4PfAgkYjysgqpiWUxtcB/lGenr70doL8CqyxxDg==
+"@itwin/itwinui-illustrations-react@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-1.0.1.tgz#455c6910ed07429472a80d11581a9fe9cf3ff496"
+  integrity sha512-Z/qgZodNmko7sq8xo7QQ10di7B8gcszaGo+UCsfFsNaVykcT1IjIbI4a2ia50nio2h8Af7dMiAcXgqMs+g3Uzw==
 
 "@jest/console@^26.6.2":
   version "26.6.2"
@@ -11265,10 +11265,10 @@ trim-trailing-lines@^1.0.0:
   resolved "https://registry.yarnpkg.com/trim-trailing-lines/-/trim-trailing-lines-1.1.4.tgz#bd4abbec7cc880462f10b2c8b5ce1d8d1ec7c2c0"
   integrity sha512-rjUWSqnfTNrjbB9NQWfPMH/xRK1deHeGsHoVfpxJ++XeYXE0d6B1En37AHfw3jtfTU7dzMzZL2jjpe8Qb5gLIQ==
 
-trim@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/trim/-/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
-  integrity sha1-WFhUf2spB1fulczMZm+1AITEYN0=
+trim@0.0.1, trim@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/trim/-/trim-0.0.3.tgz#05243a47a3a4113e6b49367880a9cca59697a20b"
+  integrity sha512-h82ywcYhHK7veeelXrCScdH7HkWfbIT1D/CgYO+nmDarz3SGNssVBMws6jU16Ga60AJCRAvPV6w6RLuNerQqjg==
 
 trough@^1.0.0:
   version "1.0.5"

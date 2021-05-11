@@ -29,11 +29,14 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       - run: yarn audit
+        continue-on-error: true
+
+      - run: yarn audit --groups dependencies
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{js,ts,tsx}
       - run: yarn build
       - run: yarn build-storybook
-  
+
   test:
     name: Run tests
     runs-on: ubuntu-latest
