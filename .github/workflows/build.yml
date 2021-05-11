@@ -23,7 +23,7 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       - run: yarn audit
-        continue_on_error: true
+        continue-on-error: true
 
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
