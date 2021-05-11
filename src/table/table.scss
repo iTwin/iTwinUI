@@ -18,6 +18,9 @@
 
   > .iui-tables-body {
     width: 100%;
+    @include themed {
+      background-color: t(iui-color-background-1);
+    }
   }
 
   &.iui-zebra-striping > .iui-tables-body > .iui-tables-row:nth-child(even) {
@@ -193,6 +196,20 @@
         > .iui-sort,
         > .iui-sort > .iui-icon-wrapper {
           visibility: visible;
+        }
+      }
+
+      &.iui-active-filter > .iui-filter {
+        visibility: visible;
+
+        &,
+        > * {
+          &,
+          &:hover {
+            @include themed {
+              fill: t(iui-icons-color-primary);
+            }
+          }
         }
       }
     }
