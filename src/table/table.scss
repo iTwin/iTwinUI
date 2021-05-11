@@ -175,6 +175,16 @@
           visibility: hidden;
         }
 
+        > .iui-active-filter {
+          visibility: visible;
+  
+          > .iui-icon {
+            @include themed {
+              fill: t(iui-icons-color-primary);
+            }
+          }
+        }
+
         &:hover {
           @include themed {
             background-color: t(iui-color-background-4);
@@ -196,20 +206,6 @@
         > .iui-sort,
         > .iui-sort > .iui-icon-wrapper {
           visibility: visible;
-        }
-      }
-
-      &.iui-active-filter > .iui-filter {
-        visibility: visible;
-
-        &,
-        > * {
-          &,
-          &:hover {
-            @include themed {
-              fill: t(iui-icons-color-primary);
-            }
-          }
         }
       }
     }
