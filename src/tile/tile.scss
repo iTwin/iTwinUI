@@ -11,6 +11,7 @@
   flex-direction: column;
   width: $iui-3xl * 3;
   box-shadow: $iui-elevation-2;
+  backface-visibility: hidden;
 
   @include themed() {
     background-color: t(iui-color-background-1);
@@ -38,12 +39,6 @@
       position: absolute;
       border-radius: 50%;
       top: round($iui-baseline / 2);
-
-      > .iui-icon {
-        @include themed {
-          fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-        }
-      }
     }
 
     > .iui-type-indicator {

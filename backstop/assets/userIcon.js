@@ -19,17 +19,17 @@ const persons = {
 };
 
 const statusIcons = {
-  online: `<!-- Use checkmark.svg from generic-icons package. -->
-  <svg class="iui-user-icons-status-symbol" aria-hidden="true" viewBox="0 0 16 16">
+  online: `<!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
+  <svg class="iui-status-symbol" aria-hidden="true" viewBox="0 0 16 16">
     <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
   </svg>`,
-  away: `<!-- Use away_2.svg from generic-icons package. -->
-  <svg class="iui-user-icons-status-symbol" aria-hidden="true" viewBox="0 0 16 16" >
-    <path d="m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z" />
+  away: `<!-- Use away.svg from @itwin/itwinui-icons package. -->
+  <svg class="iui-status-symbol" aria-hidden="true" viewBox="0 0 16 16" >
+    <path d="m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z"/>
   </svg>`,
-  offline: `<!-- Use close_2.svg from generic-icons package. -->
-  <svg class="iui-user-icons-status-symbol" aria-hidden="true" viewBox="0 0 16 16">
-    <path d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+  offline: `<!-- Use close-small.svg from @itwin/itwinui-icons package. -->
+  <svg class="iui-status-symbol" aria-hidden="true" viewBox="0 0 16 16">
+    <path d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z"/>
   </svg>`,
 };
 
@@ -47,22 +47,11 @@ class UserIcon extends HTMLElement {
 
     const innerHtml = `
     <span
-      class="iui-user-icons-${size}"
+      class="iui-user-icon iui-${size}"
       title="${person.title}"
     >
-      ${
-        status
-          ? `<span
-              title="${status}"
-              class="iui-user-icons-status iui-${status}"
-            >
-              ${icon && icon}
-            </span>`
-          : ''
-      }
-      <span class="iui-user-icons-stroke"></span>
       <abbr
-        class="iui-user-icons-initials"
+        class="iui-initials"
         style="background-color: ${person.color};"
       >
         ${person.abbr}
@@ -73,6 +62,17 @@ class UserIcon extends HTMLElement {
               src="https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png"
               alt="${person.title}"
             />`
+          : ''
+      }
+      <span class="iui-stroke"></span>
+      ${
+        status
+          ? `<span
+              title="${status}"
+              class="iui-status iui-${status}"
+            >
+              ${icon && icon}
+            </span>`
           : ''
       }
     </span>
