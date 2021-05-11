@@ -85,6 +85,7 @@
       .iui-header-button-icon {
         width: $iui-icons-default;
         height: $iui-icons-default;
+        margin: 0 $iui-xs;
       }
 
       .iui-header-button {
@@ -118,6 +119,7 @@
   width: $size;
   height: $size;
   border-radius: $border-radius;
+  transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, margin $iui-speed-fast ease-out;
 }
 
 @mixin iui-header-buttons {
@@ -153,6 +155,7 @@
     > .iui-label {
       margin-right: $iui-sm;
       font-size: $iui-font-size-leading;
+      transition: font-size $iui-speed-fast ease-out;
     }
   }
 
