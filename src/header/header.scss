@@ -133,7 +133,7 @@
     white-space: nowrap;
     height: 100%;
 
-    &[type=button] {
+    &[role='button'] {
       @include iui-focus;
       cursor: pointer;
   
@@ -171,7 +171,7 @@
       }
     }
 
-    svg.iui-header-button-icon.iui-header-button-icon {
+    svg.iui-header-button-icon {
       padding: $iui-xs;
       @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
       @include themed {
@@ -183,7 +183,7 @@
     &.iui-active {
       &,
       &:hover {
-        svg.iui-header-button-icon.iui-header-button-icon {
+        svg.iui-header-button-icon {
           @include themed {
             background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
           }
