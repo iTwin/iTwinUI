@@ -51,9 +51,11 @@
     "test": "yarn build && yarn test:ci",
     "test:ci": "backstop --config=./backstop/backstop.js test --docker",
     "clean:images": "node scripts/removeOldTestImages.js",
-    "print": "node scripts/print.js"
+    "print": "node scripts/print.js",
+    "audit:ci": "audit-ci --moderate --report-type=full --allowlist=postcss"
   },
   "devDependencies": {
+    "audit-ci": "^4.0.0",
     "autoprefixer": "^10.2.4",
     "backstopjs": "~5.1.0",
     "chokidar-cli": "^2.1.0",
