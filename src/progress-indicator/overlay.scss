@@ -17,7 +17,7 @@
   // Blur fallback
   @include themed {
     background-color: rgba(
-      t(iui-color-background-1-rgb),
+      t(#{$backgroundColor}-rgb),
       t(iui-opacity-2)
     );
   }
@@ -26,7 +26,7 @@
   @supports(backdrop-filter: $iui-blur-filter) {
     @include themed {
       background-color: rgba(
-        t(iui-color-background-1-rgb),
+        t(#{$backgroundColor}-rgb),
         t(iui-opacity-3)
       );
       backdrop-filter: $iui-blur-filter;
