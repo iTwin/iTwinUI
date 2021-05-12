@@ -129,3 +129,54 @@
     }
   }
 }
+
+@mixin iui-user-icon-list {
+  display: flex;
+
+  .iui-user-icon:not(:first-child),
+  > .iui-tooltip-container > .iui-user-icon {
+    margin-left: -4px;
+
+    &.iui-small {
+      margin-left: -2px;
+    }
+
+    &.iui-large {
+      margin-left: -6px;
+    }
+
+    &.iui-x-large {
+      margin-left: -8px;
+    }
+
+    > .iui-initials {
+      @include themed {
+        box-shadow: 0 0 0 4px t(iui-color-background-1);
+      }
+    }
+  }
+
+  &.iui-animated {
+    .iui-user-icon {
+      transition: margin-left $iui-speed ease-out;
+    }
+
+    &:hover {
+      .iui-user-icon:not(:first-child) {
+        margin-left: 4px;
+    
+        &.iui-small {
+          margin-left: 2px;
+        }
+    
+        &.iui-large {
+          margin-left: 6px;
+        }
+    
+        &.iui-x-large {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}
