@@ -2,16 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { Table } from './Table';
-export type { TableProps } from './Table';
+export { BaseFilter } from './BaseFilter';
+export type { BaseFilterProps } from './BaseFilter';
 
-export { BaseFilter, FilterButtonBar, tableFilters } from './filters';
+export { tableFilters } from './tableFilters';
+
+export type { TableFilterProps, TableFilterValue } from './types';
+
+export { FilterButtonBar } from './FilterButtonBar';
 export type {
-  BaseFilterProps,
   FilterButtonBarProps,
   FilterButtonBarTranslation,
-  TableFilterProps,
-  TableFilterValue,
-} from './filters';
+} from './FilterButtonBar';
 
-export default './Table';
+export { FilterToggle } from './FilterToggle';

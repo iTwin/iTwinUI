@@ -3,9 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
-import { CellProps } from 'react-table';
-import { Code, Table } from '../../src/core';
-import { TableProps } from '../../src/core/Table/Table';
+import { CellProps, Column, TableState } from 'react-table';
+import {
+  Code,
+  Table,
+  tableFilters,
+  TableFilterValue,
+  TableProps,
+} from '../../src/core';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
@@ -307,6 +312,128 @@ Sortable.args = {
   isSortable: true,
 };
 
+export const Filters: Story<TableProps> = (args) => {
+  const { columns, data, ...rest } = args;
+  const onClickHandler = (
+    props: CellProps<{ name: string; description: string; ids: number[] }>,
+  ) => action(props.row.original.name)();
+
+  const localizedStrings = useMemo(
+    () => ({
+      filter: 'Filter',
+      clear: 'Clear',
+    }),
+    [],
+  );
+
+  const tableColumns = useMemo(
+    (): Column[] => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            fieldType: 'text',
+            Filter: tableFilters.TextFilter(localizedStrings),
+          },
+          {
+            id: 'description',
+            Header: 'Description',
+            accessor: 'description',
+            fieldType: 'text',
+            Filter: tableFilters.TextFilter(localizedStrings),
+            maxWidth: 200,
+          },
+          {
+            id: 'ids',
+            Header: 'IDs (enter one of the IDs in the filter)',
+            accessor: 'ids',
+            Cell: (
+              props: CellProps<{
+                name: string;
+                description: string;
+                ids: number[];
+              }>,
+            ) => {
+              return props.row.original.ids.join(', ');
+            },
+            Filter: tableFilters.TextFilter(localizedStrings),
+            filter: 'includes',
+          },
+          {
+            id: 'click-me',
+            Header: 'Click',
+            width: 100,
+            Cell: (
+              props: CellProps<{
+                name: string;
+                description: string;
+                ids: number[];
+              }>,
+            ) => {
+              const onClick = () => onClickHandler(props);
+              return (
+                <a className='iui-anchor' onClick={onClick}>
+                  Click me!
+                </a>
+              );
+            },
+          },
+        ],
+      },
+    ],
+    [localizedStrings],
+  );
+
+  const tableData = useMemo(
+    () => [
+      { name: 'Name1', description: 'Description1', ids: ['1'] },
+      { name: 'Name2', description: 'Description2', ids: ['2', '3', '4'] },
+      { name: 'Name3', description: 'Description3', ids: ['3', '4'] },
+    ],
+    [],
+  );
+
+  const onFilter = React.useCallback(
+    (
+      filters: TableFilterValue<{
+        name: string;
+        description: string;
+        ids: number[];
+      }>[],
+      state: TableState,
+    ) => {
+      action(
+        `Filter changed. Filters: ${JSON.stringify(
+          filters,
+        )}, State: ${JSON.stringify(state)}`,
+      )();
+    },
+    [],
+  );
+
+  return (
+    <Table
+      columns={columns || tableColumns}
+      data={data || tableData}
+      emptyTableContent='No data.'
+      onFilter={onFilter}
+      {...rest}
+    />
+  );
+};
+
+Filters.args = {
+  data: [
+    { name: 'Name1', description: 'Description1', ids: ['1'] },
+    { name: 'Name2', description: 'Description2', ids: ['2', '3', '4'] },
+    { name: 'Name3', description: 'Description3', ids: ['3', '4'] },
+  ],
+  emptyFilteredTableContent: 'No results found. Clear or try another filter.',
+};
+
 export const LazyLoading: Story<TableProps> = (args) => {
   const { columns, ...rest } = args;
 
@@ -356,7 +483,7 @@ export const LazyLoading: Story<TableProps> = (args) => {
     }));
   };
 
-  const [tableData, setTableData] = useState(() => generateData(1, 100));
+  const [tableData, setTableData] = useState(() => generateData(0, 100));
 
   const [isLoading, setIsLoading] = useState(false);
 

@@ -17,5 +17,8 @@
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "skipLibCheck": true
-  }
+  },
+  "exclude": [
+    "lib/**/*"
+  ]
 }

@@ -15,10 +15,10 @@ import {
   // UseExpandedOptions,
   UseExpandedRowProps,
   UseExpandedState,
-  // UseFiltersColumnOptions,
+  UseFiltersColumnOptions,
   UseFiltersColumnProps,
   UseFiltersInstanceProps,
-  // UseFiltersOptions,
+  UseFiltersOptions,
   UseFiltersState,
   // UseGlobalFiltersColumnOptions,
   UseGlobalFiltersInstanceProps,
@@ -59,13 +59,14 @@ import {
 } from 'react-table';
 
 declare module 'react-table' {
+  export type FieldType = 'text' | 'number' | 'date' | string;
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration
   export interface TableOptions<
     D extends object = {}
   > extends UseTableOptions<D>,
       UseRowSelectOptions<D>,
       // UseExpandedOptions<D>,
-      // UseFiltersOptions<D>,
+      UseFiltersOptions<D>,
       // UseGlobalFiltersOptions<D>,
       // UseGroupByOptions<D>,
       // UsePaginationOptions<D>,
@@ -106,9 +107,24 @@ declare module 'react-table' {
     // extends UseGlobalFiltersColumnOptions<D>,
     // UseGroupByColumnOptions<D>,
     // UseResizeColumnsColumnOptions<D>,
-    extends UseSortByColumnOptions<D> {
+    extends UseSortByColumnOptions<D>,
+      UseFiltersColumnOptions<D> {
     columnClassName?: string;
     cellClassName?: string;
+    /**
+     * Type of the data in cell. Used for manual filtering.
+     */
+    fieldType?: FieldType;
+    /**
+     * Filter component used as a column filter. Should use filters from `tableFilters`.
+     */
+    Filter?: Renderer<FilterProps<D>>;
+    /**
+     * String value or custom function to use for filtering.
+     * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `exact`, `equals`, `between`.
+     * More info about these filters: https://github.com/tannerlinsley/react-table/blob/master/src/filterTypes.js
+     */
+    filter?: FilterType<D> | DefaultFilterTypes | string;
   }
 
   export interface ColumnInstance<D extends object = {}>
