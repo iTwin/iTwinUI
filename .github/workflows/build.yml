@@ -30,15 +30,6 @@ jobs:
       - run: yarn build
       - run: yarn test:ci
 
-      - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          files: 'backstop/results/**/*.xml'
-          comment_on_pr: false
-          check_name: 'Test results'
-          fail_on: 'nothing'
-
       - name: Publish test results artifact
         if: always()
         uses: actions/upload-artifact@v2.2.3
