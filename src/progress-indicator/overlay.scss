@@ -37,4 +37,21 @@
     width: 50%;
     max-width: 33vw;
   }
+
+  // Fade out on completion
+  @keyframes closeAnimation {
+    from {
+      @include themed {
+        opacity: t(iui-opacity-1);
+      }
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  .iui-overlay-exiting {
+    animation: closeAnimation $iui-speed-fast linear;
+  }
 }
