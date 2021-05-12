@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.1]
+
+`2021-05-12`
+
+### Fixes
+
+- **Added missing header imports in barrel.**
+
 ## [0.13.0]
 
 `2021-05-12`
@@ -175,6 +183,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.13.1]: https://github.com/iTwin/iTwinUI/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/iTwin/iTwinUI/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/iTwin/iTwinUI/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/iTwin/iTwinUI/compare/v0.10.0...v0.11.0
