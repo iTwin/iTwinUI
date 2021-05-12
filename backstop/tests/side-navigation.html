@@ -4,7 +4,7 @@
 -->
 <html id="theme">
   <head>
-    <title>Side Navigation</title>
+    <title>Side Navigation | iTwinUI</title>
     <link
       rel="icon"
       href="../assets/favicon.ico"
@@ -40,13 +40,15 @@
 
       .iui-tooltip {
         position: absolute;
-        margin-left: 80px;
         margin-top: 14px;
         display: none;
       }
 
+      .iui-top .iui-tooltip { margin-left: 80px; }
+      .iui-bottom .iui-tooltip { margin-left: 8px; }
+
       .iui-button:hover + .iui-tooltip {
-        display: block;
+        display: inline-block;
       }
 
       .iui-expanded .iui-tooltip {
@@ -238,6 +240,13 @@
         </div>
       </div>
     </section>
+
+    <script>
+      const tooltips = document.querySelectorAll('.iui-top .iui-tooltip');
+      tooltips.forEach((tooltip, index) => {
+        tooltip.style.marginTop = `${14 + index * 55}px`;
+      })
+    </script>
 
   </body>
 </html>
