@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.13.1]
+
+`2021-05-12`
+
+### Fixes
+
+- **Added missing header imports in barrel.**
+
+## [0.13.0]
+
+`2021-05-12`
+
+### What's new
+
+- **Added header component**. Also added header button and header logo.
+
+### Fixes
+
+- **Added filter icon active state and table background color.**
+- **Increased specificity of default user-icon**
+
 ## [0.12.0]
 
 `2021-05-04`
@@ -162,6 +183,8 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.13.1]: https://github.com/iTwin/iTwinUI/compare/v0.13.0...v0.13.1
+[0.13.0]: https://github.com/iTwin/iTwinUI/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/iTwin/iTwinUI/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/iTwin/iTwinUI/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/iTwin/iTwinUI/compare/v0.9.0...v0.10.0
