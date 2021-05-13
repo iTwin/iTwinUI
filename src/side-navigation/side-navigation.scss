@@ -51,9 +51,7 @@
   }
 
   &.iui-expanded > .iui-expand > .iui-icon {
-    transform: rotate(180deg);
-    // NOT WORKING
-    animation: 5s ease roll;
+    transform: scaleX(-1);
   }
 
   .iui-button {
@@ -92,7 +90,7 @@
         
         &,
         > * {
-          transition: fill $iui-speed-fast ease-out;
+          transition: transform $iui-speed ease-out, fill $iui-speed-fast ease-out;
         }
       }
     }
