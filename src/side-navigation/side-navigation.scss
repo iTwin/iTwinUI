@@ -14,12 +14,12 @@
     border-right: 1px solid t(iui-color-background-5);
   }
 
-  > .iui-content {
+  > .iui-content-container {
     display: flex;
     flex-direction: row;
     height: calc(100% - #{$iui-line-height});
 
-    > .iui-content-container {
+    > .iui-content {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -46,7 +46,7 @@
   }
 
   &.iui-expanded,
-  > .iui-content > .iui-content-container {
+  > .iui-content-container > .iui-content {
     max-width: $iui-3xl * 3;
   }
 
