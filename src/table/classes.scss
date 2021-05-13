@@ -2,8 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-tables-table {
-  @include iui-tables-table;
+.iui-table {
+  @include iui-table;
 }
 
 .iui-tables-condensed {

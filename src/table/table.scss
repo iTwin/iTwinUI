@@ -4,9 +4,8 @@
 @import '../icon/index';
 @import './variables';
 
-@mixin iui-tables-table {
+@mixin iui-table {
   @include iui-reset;
-
   @include iui-font-family;
   display: flex;
   flex-direction: column;
@@ -16,12 +15,189 @@
     box-sizing: border-box;
   }
 
-  > .iui-tables-body {
+  .iui-header,
+  .iui-row {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .iui-header {
+    user-select: none;
+    @include themed {
+      background-color: t(iui-color-background-3);
+    }
+
+    .iui-sort {
+      visibility: hidden;
+      margin-left: auto;
+      @include iui-icons-default;
+    }
+
+    .iui-active-sort {
+      @include themed {
+        background-color: t(iui-color-background-4);
+      }
+
+      .iui-sort {
+        visibility: visible;
+        
+        &,
+        & > * {
+          @include themed {
+            fill: t(iui-icons-color-actionable);
+          }
+        }
+      }
+    }
+  }
+
+  .iui-body {
     width: 100%;
     @include themed {
       background-color: t(iui-color-background-1);
     }
   }
+
+  .iui-row {
+    margin-top: -1px;
+    @include themed {
+      border-bottom: solid 1px t(iui-color-background-4);
+    }
+  }
+
+  .iui-cell {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    min-width: 145px;
+    padding: $iui-table-density;
+    overflow: hidden;
+    list-style: none;
+    flex-basis: 145px;
+
+    > svg {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+      //margin-right: $iui-sm;
+    }
+
+    > .iui-status,
+    > .iui-progress-indicator-radial {
+      float: right;
+      margin-left: auto;
+    }
+
+    > .iui-status {
+      margin-right: $iui-xs;
+    }
+
+    > .iui-user-icon {
+      margin-right: $iui-s;
+    }
+
+    &.iui-tables-slot {
+      width: $iui-l * 2;
+      padding: 0;
+      flex-grow: 0;
+      min-width: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: $iui-l * 2;
+
+      > .iui-icon {
+        @include themed {
+          fill: t(iui-icons-color-actionable);
+          color: t(iui-icons-color-actionable);
+        }
+        width: $iui-icons-default;
+        height: $iui-icons-default;
+        margin: 0;
+      }
+    }
+
+    &.iui-tables-head {
+      @include themed {
+        background-color: t(iui-color-background-3);
+      }
+      user-select: none;
+
+      .iui-icon {
+        @include themed {
+          fill: t(iui-icons-color-actionable);
+        }
+
+        &:hover {
+          @include themed {
+            fill: t(iui-icons-color-actionable-hover);
+          }
+        }
+      }
+
+      > .iui-filter {
+        margin-left: $iui-sm;
+        cursor: pointer;
+
+        > .iui-icon {
+          width: $iui-icons-default;
+          height: $iui-icons-default;
+        }
+      }
+
+      > .iui-sort {
+        flex-grow: 1;
+        justify-content: flex-end !important;
+
+        > .iui-icon-wrapper {
+          cursor: pointer;
+
+          > .iui-icon {
+            width: $iui-icons-default;
+            height: $iui-icons-default;
+          }
+        }
+      }
+
+      > .iui-filter,
+      > .iui-sort,
+      > .iui-sort > .iui-icon-wrapper {
+        height: $iui-icons-default;
+        width: $iui-icons-default;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+      }
+
+      > .iui-filter.iui-active {
+        visibility: visible;
+
+        > .iui-icon {
+          @include themed {
+            fill: t(iui-icons-color-primary);
+          }
+        }
+      }
+
+      &:hover {
+        @include themed {
+          background-color: t(iui-color-background-4);
+        }
+
+        > .iui-filter,
+        > .iui-sort,
+        > .iui-sort > .iui-icon-wrapper {
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+
+
+  /* EVERYTHING BELOW HERE IS OLD */
+
 
   &.iui-zebra-striping > .iui-tables-body > .iui-tables-row:nth-child(even) {
     @include themed {
@@ -43,9 +219,6 @@
 
   .iui-tables-row {
     margin-top: -1px;
-    display: flex;
-    flex-grow: 1;
-    width: 100%;
     border-top: 1px solid transparent;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
@@ -195,17 +368,6 @@
           > .iui-sort > .iui-icon-wrapper {
             visibility: visible;
           }
-        }
-      }
-
-      &.iui-active-sort {
-        @include themed {
-          background-color: t(iui-color-background-4);
-        }
-
-        > .iui-sort,
-        > .iui-sort > .iui-icon-wrapper {
-          visibility: visible;
         }
       }
     }
