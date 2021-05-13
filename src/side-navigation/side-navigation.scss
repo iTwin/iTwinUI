@@ -60,6 +60,8 @@
     border-left: none;
     border-right: none;
     overflow: hidden;
+    justify-content: flex-start;
+    height: $iui-baseline * 5;
 
     &,
     &:hover {
@@ -79,25 +81,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    &.iui-expand {
-      height: $iui-line-height;
-      border: none;
-
-      > .iui-icon {
-        @include iui-icons-small;
-        
-        &,
-        > * {
-          transition: transform $iui-speed ease-out, fill $iui-speed-fast ease-out;
-        }
-      }
-    }
-
-    &:not(.iui-expand) {
-      justify-content: flex-start;
-      height: $iui-baseline * 5;
     }
 
     &.iui-active {
@@ -138,6 +121,17 @@
       outline: 0;
       box-shadow: inset 0 0 $iui-xs
         rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
+    }
+  }
+
+  .iui-expand {
+    height: $iui-line-height;
+    border: none;
+    justify-content: center;
+
+    > .iui-icon {
+      @include iui-icons-small;
+      transition: transform $iui-speed ease-out;
     }
   }
 }
