@@ -10,7 +10,6 @@
   border-radius: $iui-border-radius;
   @include themed {
     border: 1px solid t(iui-color-background-3);
-    color: t(iui-text-color);
   }
 
   legend {
