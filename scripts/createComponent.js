@@ -3,9 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 const fs = require('fs');
-const copyrightBannerScss = require('./copyrightLinter').copyrightBannerScss;
-const copyrightBannerHtml = require('./copyrightLinter').copyrightBannerHtml;
-const copyrightBannerJs = require('./copyrightLinter').copyrightBannerJs;
+const {
+  copyrightBannerScss,
+  copyrightBannerHtml,
+  copyrightBannerJs,
+} = require('./copyrightLinter');
 
 const componentName = process.argv.slice(2).join('-');
 
@@ -111,11 +113,11 @@ const demoHtmlFactory = (directory) => {
   </head>
   <body class="iui-body">
     <theme-button></theme-button>
-    <h1>Alert</h1>
+    <h1>${componentName}</h1>
     <hr />
 
-    <section>
-      <div class="iui-${componentName}" />
+    <section id="demo-default">
+      <div class="iui-${componentName}"></div>
     </section>
   </body>
 </html>
@@ -132,7 +134,11 @@ const scenarioJsFactory = (directory) => {
   const template = `${copyrightBannerJs}
   const { scenario } = require('../scenarioHelper');
 
-  module.exports = [scenario('default')];
+  module.exports = [
+    scenario('default', {
+      selectors: ['#demo-default'],
+    }),
+  ];
 `;
 
   return {
@@ -141,7 +147,7 @@ const scenarioJsFactory = (directory) => {
   };
 };
 
-// Write/append all the files if component componentName passed as command line arg
+// Write/append all the files if componentName passed as command line arg
 if (componentName) {
   makeDir(`src/${componentName}`);
 
