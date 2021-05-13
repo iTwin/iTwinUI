@@ -1,0 +1,8 @@
+# Each line is a file pattern followed by one or more owners.
+# The owners will be requested for
+# review when someone opens a pull request.
+# See https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners
+
+# These owners will be the default owners for everything in
+# the repo, unless a later match takes precedence.
+*       @iTwin/itwinui

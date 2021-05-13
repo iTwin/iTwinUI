@@ -53,7 +53,7 @@
         transition: opacity $iui-speed-fast ease;
 
         @include themed {
-          fill: t(iui-color-foreground-primary);
+          fill: t(iui-icons-color-primary);
         }
       }
     }
@@ -62,7 +62,7 @@
   > .iui-label {
     margin-right: $iui-s;
 
-    > svg {
+    svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
       vertical-align: middle;
@@ -128,7 +128,7 @@
   input:disabled ~ .iui-checkbox-checkmark > svg > path,
   input:disabled ~ .iui-radio-dot > svg > circle {
     @include themed {
-      fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      fill: t(iui-icons-color-actionable-disabled);
     }
   }
 

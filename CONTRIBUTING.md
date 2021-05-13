@@ -32,7 +32,7 @@ When developing you can use this command as it will automatically rebuild on fil
 
 ### To test
 
-Before running this command make sure Docker is running. Read more about [tests](#tests)
+Before running this command make sure Docker is running. Read more about [tests](#tests).
 
 `yarn test`
 
@@ -76,6 +76,19 @@ When making changes to a component that already exists, we ask that all PRs dist
 
 For testing you will need [Docker](https://www.docker.com/products/docker-desktop). It helps to avoid cross-platform rendering differences.
 
+To run selected tests use command:
+
+ `yarn test --filter="test_name"`
+
+To approve tests use command:
+
+`yarn approve`
+
+To delete old/unused tests images that left after refactoring or renames use command:
+
+`yarn clean:images`
+
+How to write tests:
 - Create `.html` file in `backstop/tests` displaying the elements you wish to test and their all possible states, using the built CSS in `lib/css`.
 - Create `.js` file in `backstop/scenarios` with the same name as `.html` file in previous step and ensure it exports scenarios list (take a look at `backstop/scenarios/alert.js`).
   - Use `scenario` function from `scenarioHelper.js` to create a scenario where the first argument is test case name and the second one is options.

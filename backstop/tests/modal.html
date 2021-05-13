@@ -56,21 +56,22 @@
       id="myModal"
     >
       <div class="iui-modal-dialog">
-        <div class="iui-modal-title-bar">
-          <div class="iui-modal-title">Title</div>
-          <div
-            class="iui-modal-close"
-            onclick="openModal()"
+        <div class="iui-title-bar">
+          <div class="iui-title">Title</div>
+          <button
+            aria-label="Close"
+            type="button"
+            class="iui-button iui-borderless iui-small"
           >
-            <!-- Use close.svg from generic-icons package. -->
+            <!-- Use close.svg from @itwin/itwinui-icons package. -->
             <svg
-              viewBox="0 0 16 16"
-              aria-label="Close"
+              class="iui-icon"
               aria-hidden="true"
+              viewBox="0 0 16 16"
             >
-              <path d="m14 0-6 6-6-6-2 2 6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6z" />
+              <path d="m14 0-6 6-6-6-2 2 6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6" />
             </svg>
-          </div>
+          </button>
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -81,7 +82,7 @@
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        <div class="iui-modal-button-bar">
+        <div class="iui-button-bar">
           <button
             class="iui-button iui-high-visibility"
             onclick="openModal()"

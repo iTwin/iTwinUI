@@ -6,88 +6,103 @@
 @mixin iui-date-picker {
   @include iui-reset;
   @include iui-font-family;
-  display: inline-block;
-  position: relative;
-
-  > .iui-date-picker-label {
-    cursor: pointer;
-    margin-left: $iui-m;
+  box-shadow: $iui-elevation-2;
+  user-select: none;
+  text-align: center;
+  height: $iui-baseline * 26;
+  display: inline-flex;
+  @include themed {
+    background-color: t(iui-color-background-1);
   }
 
-  > .iui-date-picker-calendar {
-    z-index: 1;
-    position: absolute;
-    top: 42px;
-    left: 0;
-    display: none;
-    box-shadow: $iui-elevation-2;
-    user-select: none;
-    text-align: center;
+  @include iui-calendar;
+  @include iui-time;
 
+  > div:not(:last-child) {
     @include themed {
-      background-color: t(iui-color-background-1);
+      border-right: 1px solid t(iui-color-background-4);
     }
+  }
+}
 
-    > .iui-date-picker-calendar-header {
+@mixin iui-calendar {
+  > .iui-calendar {
+    > .iui-header {
       border: none;
       padding: 0;
       position: relative;
       font-weight: $iui-font-weight-bold;
-
       @include themed {
         background-color: t(iui-color-background-1);
       }
 
-      > .iui-date-picker-calendar-header-content {
+      > .iui-month-year {
         display: inline-flex;
-        width: calc(100% - 32px);
+        width: 100%;
         align-items: center;
         justify-content: space-between;
-        height: $iui-icons-default;
-        padding: $iui-m;
+        padding: 0 $iui-xs;
+        box-sizing: border-box;
 
-        > svg,
-        img {
-          width: $iui-icons-default;
-          height: $iui-icons-default;
-          cursor: pointer;
+        > span {
+          margin: 0 $iui-xs;
+          width: 156px;
+          white-space: nowrap;
+          display: inline-flex;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: center;
+          line-height: $iui-baseline * 4;
+        }
 
-          @include themed {
-            fill: t(iui-icons-color-actionable);
-          }
-
-          &:hover {
-            @include themed {
-              fill: t(iui-icons-color-actionable-hover);
-            }
-          }
+        .iui-month {
+          overflow: hidden;
+          max-width: 15ch;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
       }
 
-      > .iui-date-picker-calendar-header-weekdays {
-        white-space: nowrap;
-        height: $iui-xl;
-
+      > .iui-weekdays {
+        line-height: $iui-baseline * 3;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0 $iui-s;
         @include themed {
           background-color: t(iui-color-background-2);
+        }
+
+        > div {
+          white-space: nowrap;
+          overflow: hidden;
+          width: $iui-xl;
+          text-align: center;
         }
       }
     }
 
-    > .iui-date-picker-calendar-month {
-      margin: 0 $iui-s $iui-s;
-
-      > .iui-date-picker-calendar-week {
+    > .iui-dates {
+      > .iui-week {
         white-space: nowrap;
-        height: $iui-xl;
+        height: $iui-baseline * 3;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 0 $iui-s;
 
-        > .iui-date-picker-calendar-week-selector {
+        > .iui-date {
+          @include iui-focus;
           cursor: pointer;
+          display: inline-block;
+          width: $iui-l;
+          line-height: $iui-l;
+          margin: 0 $iui-xs;
 
           &:hover:not(.iui-selected) {
             border-radius: $iui-border-radius;
             font-weight: $iui-font-weight-semibold;
-
             @include themed {
               color: t(iui-color-foreground-primary);
               background-color: rgba(
@@ -100,7 +115,6 @@
           &.iui-today {
             font-weight: $iui-font-weight-semibold;
             border-radius: 50%;
-
             @include themed {
               background-color: rgba(
                 t(iui-color-foreground-body-rgb),
@@ -113,7 +127,6 @@
             font-weight: $iui-font-weight-semibold;
             border-radius: $iui-border-radius;
             cursor: default;
-
             @include themed {
               background-color: t(iui-color-background-primary);
               color: t(iui-color-foreground-accessory);
@@ -128,13 +141,49 @@
         }
       }
     }
+  }
+}
 
-    > .iui-date-picker-calendar-header > .iui-date-picker-calendar-header-weekdays > div,
-    > .iui-date-picker-calendar-month > .iui-date-picker-calendar-week > div {
-      display: inline-block;
-      width: $iui-l;
-      line-height: $iui-l;
-      margin: $iui-xxs $iui-xs;
+@mixin iui-time {
+  > .iui-time,
+  > .iui-period {
+    padding: $iui-baseline $iui-s;
+    overflow-y: auto;
+
+    > ol {
+      @include iui-reset;
+      list-style: none;
+
+      > li {
+        @include iui-focus;
+        padding: $iui-baseline $iui-m;
+        border-radius: $iui-border-radius;
+
+        &:hover {
+          cursor: pointer;
+          @include themed {
+            color: t(iui-color-foreground-primary);
+            background-color: rgba(
+              t(iui-color-foreground-primary-rgb),
+              t(iui-opacity-6)
+            );
+          }
+        }
+
+        &.iui-selected {
+          font-weight: $iui-font-weight-semibold;
+          cursor: default;
+          @include themed {
+            background-color: t(iui-color-background-primary);
+            color: t(iui-color-foreground-accessory);
+          }
+        }
+      }
     }
+  }
+
+  > .iui-period {
+    display: flex;
+    align-items: center;
   }
 }

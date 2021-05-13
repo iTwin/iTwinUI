@@ -1,5 +1,90 @@
 # Changelog
 
+## [0.13.1]
+
+`2021-05-12`
+
+### Fixes
+
+- **Added missing header imports in barrel.**
+
+## [0.13.0]
+
+`2021-05-12`
+
+### What's new
+
+- **Added header component**. Also added header button and header logo.
+
+### Fixes
+
+- **Added filter icon active state and table background color.**
+- **Increased specificity of default user-icon**
+
+## [0.12.0]
+
+`2021-05-04`
+
+### What's new
+
+- **Added new column-filter component** under table.css.
+- **Added new file-upload template.**
+- **Restructured user-icon classes** from `.iui-user-icons-small` into `.iui-user-icon .iui-small`.
+
+### Fixes
+
+- **Fixed some icon issues in table and pill tabs.**
+- **Fixed some visual issues in file-upload.**
+- **Fixed tile text blurring issues.**
+
+## [0.11.0]
+
+`2021-04-28`
+
+### What's new
+
+- **Added `iui-color-foreground-body-invert` variable.**
+- **Icons now use `iui-icons-color-` variables**, allowing easy overrides.
+
+### Fixes
+
+- **Fixed tooltip text blurring issues** by removing frosted glass effect.
+
+## [0.10.0]
+
+`2021-04-21`
+
+### What's new
+
+- **Tooltip styling has been updated** to use a frosted glass background.
+
+### Fixes
+
+- **Fixed tile visual bugs:** folder name overflow and metadata spacing.
+- **Fixed footer hover and focus states.**
+- **Fixed scrollbar width in firefox.**
+
+## [0.9.0]
+
+`2021-04-15`
+
+### What's new
+
+- **Toast notifications have shortened classes and use borderless buttons.**
+- **Modals have shortened classes and use borderless buttons.**
+
+### Fixes
+
+- **Fixed SVG issues** within linear progress indicator, checkbox, and radio.
+
+## 0.8.0
+
+`2021-04-14`
+
+### What's new
+
+- **Date picker can now display time** and classes have been renamed.
+
 ## 0.7.0
 
 `2021-04-09`
@@ -97,3 +182,10 @@
 ### Fixes
 
 - **Global style resets have 0 specificity now.**
+
+[0.13.1]: https://github.com/iTwin/iTwinUI/compare/v0.13.0...v0.13.1
+[0.13.0]: https://github.com/iTwin/iTwinUI/compare/v0.12.0...v0.13.0
+[0.12.0]: https://github.com/iTwin/iTwinUI/compare/v0.11.0...v0.12.0
+[0.11.0]: https://github.com/iTwin/iTwinUI/compare/v0.10.0...v0.11.0
+[0.10.0]: https://github.com/iTwin/iTwinUI/compare/v0.9.0...v0.10.0
+[0.9.0]: https://github.com/iTwin/iTwinUI/compare/v0.8.0...v0.9.0

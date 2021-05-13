@@ -11,6 +11,7 @@
   flex-direction: column;
   width: $iui-3xl * 3;
   box-shadow: $iui-elevation-2;
+  backface-visibility: hidden;
 
   @include themed() {
     background-color: t(iui-color-background-1);
@@ -38,12 +39,6 @@
       position: absolute;
       border-radius: 50%;
       top: round($iui-baseline / 2);
-
-      > .iui-icon {
-        @include themed {
-          fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-        }
-      }
     }
 
     > .iui-type-indicator {
@@ -112,18 +107,7 @@
 
     > .iui-picture + .iui-button,
     > .iui-picture + .iui-button + .iui-button {
-      // Blur fallback
-      @include themed() {
-        background-color: rgba(0, 0, 0, t(iui-opacity-4));
-      }
-
-      // With blur
-      @supports (backdrop-filter: blur(5px)) {
-        @include themed() {
-          background-color: rgba(0, 0, 0, t(iui-opacity-5));
-          backdrop-filter: blur(5px);
-        }
-      }
+      @include iui-blur($opacity: 5);
 
       &:enabled > .iui-icon {
         @include themed() {
@@ -155,6 +139,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 2;
+    min-width: 0;
 
     > .iui-name {
       display: flex;
@@ -175,9 +160,9 @@
       }
 
       > .iui-name-label {
-        text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        text-overflow: ellipsis;
       }
     }
 
@@ -186,10 +171,8 @@
       font-size: $iui-font-size;
       height: 100%;
       max-height: $iui-baseline * 6;
-      display: -webkit-box; // stylelint-disable-line
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical; // stylelint-disable-line
-      overflow: hidden;
+
+      @include iui-line-clamp(3);
       @include themed() {
         color: t(iui-text-color-muted);
       }
@@ -204,6 +187,7 @@
       width: 100%;
       display: flex;
       align-items: center;
+      margin-top: auto;
 
       @include themed() {
         color: t(iui-text-color-muted);
@@ -271,7 +255,7 @@
 
   &:hover,
   &:focus-within {
-    .iui-metadata {
+    .iui-metadata:not(:last-child) {
       width: calc(100% - #{$iui-xl});
     }
 

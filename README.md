@@ -6,8 +6,9 @@
   
 <div align="center">
   
-  ![Build status](https://github.com/iTwin/iTwinUI/actions/workflows/build.yml/badge.svg?branch=main)
-  [![Dependencies Status](https://status.david-dm.org/gh/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
+  [![itwinui-css on npm](https://img.shields.io/npm/v/@itwin/itwinui-css)](https://www.npmjs.com/package/@itwin/itwinui-css)
+  [![Build status](https://github.com/iTwin/iTwinUI/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/iTwin/iTwinUI/actions/workflows/build.yml?query=branch%3Amain)
+  [![Dependencies Status](https://img.shields.io/badge/dependencies-none-brightgreen)](https://www.npmjs.com/package/@itwin/itwinui-css?activeTab=dependencies)
 
 </div>
 
@@ -32,11 +33,11 @@ The goal of this project is to transform UX design specifications into flexible 
 ## Install
 
 ```
-npm install @bentley/itwinui
+npm install @itwin/itwinui-css
 ```
 
 ```
-yarn add @bentley/itwinui
+yarn add @itwin/itwinui-css
 ```
 
 ---
@@ -48,7 +49,7 @@ You need to add `iui-body` class to your `<body>` element in order to get recomm
 ### Using Sass:
 
 ```scss
-@import '@bentley/itwinui/scss/variables';
+@import '@itwin/itwinui-css/scss/variables';
 
 .my-class {
   padding: $iui-m;
@@ -64,14 +65,14 @@ You need to add `iui-body` class to your `<body>` element in order to get recomm
 ### Using CSS (applying global styles):
 
 ```css
-@import '@bentley/itwinui/css/global';
+@import '@itwin/itwinui-css/css/global';
 ```
 
 ---
 
 ## Contributing
 
-Are you interested in helping iTwinUI grow & expand? You can submit feature requests or bugs by creating items in [issues](https://github.com/iTwin/iTwinUI/issues).
+Are you interested in helping iTwinUI grow and expand? You can submit feature requests or bugs by creating [issues](https://github.com/iTwin/iTwinUI/issues).
 Please read our [CONTRIBUTING.md](https://github.com/iTwin/iTwinUI/blob/main/CONTRIBUTING.md) for more information.
 
 ## Changelog

@@ -18,6 +18,9 @@
 
   > .iui-tables-body {
     width: 100%;
+    @include themed {
+      background-color: t(iui-color-background-1);
+    }
   }
 
   &.iui-zebra-striping > .iui-tables-body > .iui-tables-row:nth-child(even) {
@@ -78,10 +81,6 @@
       list-style: none;
       flex-basis: 145px;
 
-      > .iui-user-icons-small {
-        margin-right: $iui-s;
-      }
-
       > svg {
         width: $iui-icons-default;
         height: $iui-icons-default;
@@ -98,8 +97,7 @@
         margin-right: $iui-xs;
       }
 
-      > .iui-user-icons-medium-block,
-      > .iui-user-icons-small-block {
+      > .iui-user-icon {
         margin-right: $iui-s;
       }
 
@@ -130,7 +128,7 @@
         }
         user-select: none;
 
-        > .iui-icon {
+        .iui-icon {
           @include themed {
             fill: t(iui-icons-color-actionable);
           }
@@ -175,6 +173,16 @@
           justify-content: center;
           align-items: center;
           visibility: hidden;
+        }
+
+        > .iui-filter.iui-active {
+          visibility: visible;
+  
+          > .iui-icon {
+            @include themed {
+              fill: t(iui-icons-color-primary);
+            }
+          }
         }
 
         &:hover {
@@ -247,8 +255,8 @@
       > .iui-tables-cell {
         > img,
         > svg,
-        > .iui-user-icons-medium,
-        > .iui-user-icons-small > img {
+        > .iui-user-icon,
+        > .iui-user-icon > img {
           filter: $iui-icons-color-multicolor-disabled;
         }
       }
@@ -327,8 +335,8 @@
 
         > a > .iui-icon {
           @include themed {
-            color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-            fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+            color: t(iui-icons-color-actionable);
+            fill: t(iui-icons-color-actionable);
           }
           display: block;
           width: $iui-icons-default;
@@ -338,8 +346,8 @@
 
           &:hover {
             @include themed {
-              color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-              fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+              color: t(iui-icons-color-actionable-hover);
+              fill: t(iui-icons-color-actionable-hover);
             }
           }
         }

@@ -2,18 +2,22 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-user-icons-small {
-  @include iui-user-icons-small;
-}
+.iui-user-icon {
+  @include iui-user-icon;
 
-.iui-user-icons-medium {
-  @include iui-user-icons-medium;
-}
+  &#{&} {
+    @include iui-user-icon-size;
+  }
 
-.iui-user-icons-large {
-  @include iui-user-icons-large;
-}
+  &.iui-small {
+    @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
+  }
 
-.iui-user-icons-x-large {
-  @include iui-user-icons-x-large;
+  &.iui-large {
+    @include iui-user-icon-size($size: $iui-icons-xxl, $font-size: $iui-font-size-subheading);
+  }
+
+  &.iui-x-large {
+    @include iui-user-icon-size($size: $iui-icons-3xl, $font-size: $iui-font-size-title);
+  }
 }

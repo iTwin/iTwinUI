@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Build and run tests
     runs-on: ubuntu-latest
 
     steps:
@@ -20,40 +21,23 @@ jobs:
           node-version: 12.x
 
       - run: yarn install --frozen-lockfile
-      - run: yarn audit
+
+      - run: yarn audit:ci
+
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
       - run: yarn build
       - run: yarn test:ci
 
-      - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          files: 'backstop/results/**/*.xml'
-          comment_on_pr: false
-          check_name: 'Test results'
-          fail_on: 'nothing'
-    
       - name: Publish test results artifact
         if: always()
         uses: actions/upload-artifact@v2.2.3
         with:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/backstop/results/'
-          
-      - run: yarn pack
-        working-directory: './lib'
 
-      - name: Publish package artifact
-        uses: actions/upload-artifact@v2.2.3
-        with:
-          name: 'package'
-          path: '${{ github.workspace }}/lib/bentley-itwinui-*.tgz'
-          
       - name: GitHub Pages action
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{ github.workspace }}/backstop/results
-
