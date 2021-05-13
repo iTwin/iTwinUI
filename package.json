@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -43,6 +43,7 @@
     "build:watch:scss": "chokidar \"src/**/*\" -c \"yarn build:scss && yarn build:css\"",
     "build:watch:html": "chokidar \"backstop/tests/**/*\" -c \"yarn build:html\"",
     "copy-files": "cpx package.json lib && cpx README.md lib",
+    "createComponent": "node ./scripts/createComponent.js",
     "postcss-processing": "postcss lib/css --use autoprefixer --use postcss-discard-comments -d lib/css --no-map && yarn print \"Finished post-processing CSS.\"",
     "clean": "rimraf ./lib ./backstop/results/bitmaps_test",
     "lint": "stylelint \"src/**/*.scss\" \"backstop/tests/*.html\"",
