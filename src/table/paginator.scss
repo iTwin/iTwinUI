@@ -1,0 +1,109 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../icon/index';
+@import './variables';
+
+@mixin iui-paginator {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: $iui-table-density;
+  user-select: none;
+  @include themed {
+    background-color: t(iui-color-background-3);
+  }
+
+  > .iui-left,
+  > .iui-center,
+  > .iui-right {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    flex: 1;
+  }
+
+  > .iui-left {
+
+  }
+
+  > .iui-center {
+    width: 33%;
+    justify-content: center;
+    @include themed {
+      color: t(iui-text-color);
+    }
+
+    .iui-button-container {
+      margin: 0 $iui-xs;
+      position: relative;
+
+      > .iui-borderless {
+        position: absolute;
+        transform: translateY(-50%);
+      }
+
+      &:first-child > .iui-borderless {
+        right: 0;
+      }
+
+      &:last-child > .iui-borderless {
+        left: 0;
+      }
+    }
+
+    > a {
+      @include iui-anchor;
+      @include iui-focus;
+      margin: 0 $iui-s;
+    }
+
+    > .iui-ellipsis {
+      margin: 0 $iui-s;
+    }
+
+    > .iui-current,
+    > .iui-ellipsis {
+      cursor: default;
+      @include themed {
+        color: t(iui-text-color);
+      }
+    }
+
+    > .iui-current {
+      text-decoration: underline;
+      font-weight: $iui-font-weight-semibold;
+    }
+  }
+
+  > .iui-right {
+    justify-content: flex-end;
+
+    > .iui-input-container {
+      margin: 0;
+      position: absolute;
+      right: 0;
+
+      > .iui-select {
+        @include themed {
+          border-color: t(iui-color-background-3);
+          background-color: t(iui-color-background-3);
+          color: t(iui-text-color-muted);
+        }
+        cursor: pointer;
+        padding: 0 $iui-baseline 0 $iui-baseline/2;
+        height: auto;
+
+        &:hover,
+        &:focus {
+          @include themed {
+            background-color: none;
+          }
+        }
+      }
+    }
+  }
+}

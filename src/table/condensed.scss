@@ -3,14 +3,15 @@
 @import '../style/index';
 @import './variables';
 
-@mixin iui-tables-condensed {
-  .iui-tables-row {
-    > .iui-tables-cell {
+@mixin iui-table-condensed {
+  .iui-header,
+  .iui-row {
+    .iui-cell {
       padding: $iui-table-density-condensed;
     }
   }
 
-  .iui-tables-paginator > .content {
+  .iui-paginator {
     padding: $iui-table-density-condensed;
   }
 }
