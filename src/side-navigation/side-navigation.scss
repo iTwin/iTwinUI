@@ -78,6 +78,9 @@
   
     > .iui-label {
       margin-left: $iui-icons-large !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &.iui-expand {
