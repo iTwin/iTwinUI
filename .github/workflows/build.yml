@@ -36,8 +36,9 @@ jobs:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/backstop/results/'
 
-      - name: GitHub Pages action
+      - name: Host test results on gh pages
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{ github.workspace }}/backstop/results
+          destination_dir: ${{ github.event.number }}
