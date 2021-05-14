@@ -4,15 +4,15 @@ We welcome all types of contribution.
 
 Need a feature or found a bug? Please create an [issue.](https://github.com/iTwin/iTwinUI/issues)
 
-Want to contribute by creating a PR? Great! Then read further.
+Want to contribute by creating a PR? Great! [Fork the repo](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks) and read further.
 
 ## How to setup
 
-To clone and build iTwinUI you'll need [Git](https://git-scm.com) and [Yarn](https://yarnpkg.com) installed on your computer. From your command line:
+To clone and build iTwinUI you'll need [Git](https://git-scm.com) and [Yarn](https://yarnpkg.com) installed on your computer.
 
-1. `git clone https://github.com/iTwin/iTwinUI.git`
-2. `cd iTwinUI`
-3. `yarn install`
+1. [Create a local clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#step-2-create-a-local-clone-of-your-fork) of your forked repo. You can do this from the command line or using the Github Desktop app.
+2. Go to the directory where you cloned iTwinUI. e.g. `cd iTwinUI`
+3. Run `yarn install` from that directory.
 
 ### VSCode Users
 
@@ -123,13 +123,17 @@ How to write tests:
 
 The `CHANGELOG.md` file must be updated for any new components or changes that you add. If unsure of which release your changes will go to, you can add a placeholder version and date (on the top):
 
+<details>
+<summary>Example</summary>
+
 ```
-## 0.1.X
+## 1.X.X
 
 `Date`
 
 ### What's new
 ```
+</details>
 
 ### Committing your work
 
@@ -139,7 +143,6 @@ To enable us to quickly review and accept your pull requests, always create one 
 
 #### Checklist
 
-- Branch created in the form of `yourName/your-feature`.
 - Component created following project structure.
 - Tests added to `backstop/tests` and `backstop/scenarios`.
   - `.html` file has all possible states of the component.
