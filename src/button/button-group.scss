@@ -21,7 +21,7 @@
     }
 
     &:not(:last-of-type) {
-      border-right: none;
+      border-right-color: transparent;
     }
 
     &:not(.iui-high-visibility):not(.iui-cta):not(.iui-borderless) {
