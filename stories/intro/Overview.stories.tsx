@@ -21,6 +21,7 @@ export default {
     options: { showPanel: false },
     controls: { disable: true },
     actions: { disable: true },
+    storysource: { disable: true },
   },
 } as Meta;
 
@@ -30,18 +31,23 @@ export const Overview: Story = () => {
   );
 
   React.useEffect(() => {
-    const hideAddonsButton = parent.document.querySelector(
-      'button[title="Hide addons [A]"]',
+    const shortcutsButton = parent.document.querySelector(
+      'button[title="Shortcuts"]',
     ) as HTMLButtonElement;
+    shortcutsButton?.click();
 
-    const isPanelOpen = !!parent.document.querySelector(
-      '#storybook-preview-wrapper',
-    )?.parentElement?.parentElement?.style.height;
+    setTimeout(() => {
+      const addonsToggle = parent.document.querySelector('a#A') as HTMLElement;
+      const checkmark = addonsToggle?.firstElementChild?.firstElementChild;
 
-    if (isPanelOpen) {
-      hideAddonsButton.click();
-    }
-  });
+      // Panel is open if checkmark is an svg
+      if (checkmark?.tagName === 'svg') {
+        addonsToggle?.click();
+      } else {
+        shortcutsButton?.click();
+      }
+    });
+  }, []);
 
   React.useEffect(() => {
     const listener = (isDark: boolean) => setIsDarkTheme(isDark);
@@ -91,7 +97,7 @@ export const Overview: Story = () => {
           },
           img: {
             component: (args) =>
-              args.src.includes('iTwinUI_logo') ? (
+              args.src.includes('iTwinUI-logo') ? (
                 <img
                   src={isDarkTheme ? itwinImageDark : itwinImage}
                   width={167}
