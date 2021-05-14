@@ -61,3 +61,9 @@ if (filePaths) {
     }
   });
 }
+
+module.exports = {
+  copyrightBannerScss,
+  copyrightBannerHtml,
+  copyrightBannerJs,
+};
