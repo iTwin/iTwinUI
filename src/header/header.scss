@@ -31,7 +31,7 @@
     flex: 2 1 33%;
     @include iui-header-buttons;
 
-    > .iui-chevron {
+    .iui-chevron {
       @include iui-icons-small;
       flex-shrink: 0;
       margin: 0 $iui-xs;
