@@ -44,11 +44,12 @@ jobs:
           folder: ${{ github.workspace }}/backstop/results
           target-folder: ${{ github.event.number }}
 
-      - uses: LouisBrunner/checks-action@v1.1.2
+      - name: Post gh pages link under Checks
+        uses: LouisBrunner/checks-action@v1.1.2
         if: always()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Test results
           conclusion: ${{ job.status }}
           output: |
-            {'summary': 'See backstop html report at https://itwin.github.com/itwin/${{ github.event.number }}/html_report'}
+            {"summary": "See backstop html report at https://itwin.github.com/itwin/${{ github.event.number }}/html_report"}
