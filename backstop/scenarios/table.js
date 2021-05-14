@@ -16,4 +16,5 @@ module.exports = [
   scenario('empty-state', {
     selectors: ['#demo-empty-state'],
   }),
+  scenario('expander', { selectors: ['#demo-expander'] }),
 ];
