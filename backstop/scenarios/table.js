@@ -1,19 +1,17 @@
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
-  scenario('default', {
+  // Table types
+  scenario('Type Default', {
     selectors: ['#demo-default'],
   }),
-  scenario('zebra-striping', {
-    selectors: ['#demo-zebra-striping'],
+  scenario('Type Extras', {
+    selectors: ['#demo-extras'],
   }),
-  scenario('sticky', {
-    selectors: ['#demo-sticky'],
-  }),
-  scenario('loading', {
+  scenario('Type Loading', {
     selectors: ['#demo-loading'],
   }),
-  scenario('empty-state', {
+  scenario('Type Empty', {
     selectors: ['#demo-empty-state'],
   }),
 ];
