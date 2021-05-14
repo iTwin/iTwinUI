@@ -33,6 +33,12 @@
     }
   }
 
+  // Focus trap
+  &:focus,
+  &:focus-visible {
+    outline: 0;
+  }
+
   .iui-progress-indicator-linear {
     width: 50%;
     max-width: 33vw;
