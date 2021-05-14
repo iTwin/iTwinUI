@@ -2,16 +2,16 @@
 
 We welcome all types of contribution.
 
-Need a feature or found a bug? Please create an [issue.](https://github.com/iTwin/iTwinUI/issues)
+Need a feature or found a bug? Please create an [issue](https://github.com/iTwin/iTwinUI/issues).
 
 Want to contribute by creating a PR? Great! [Fork the repo](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks) and read further.
 
 ## How to setup
 
-To clone and build iTwinUI you'll need [Git](https://git-scm.com) and [Yarn](https://yarnpkg.com) installed on your computer.
+To clone and build iTwinUI, you'll need [Git](https://git-scm.com) and [Yarn 1](https://yarnpkg.com/getting-started/install) installed on your computer.
 
 1. [Create a local clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#step-2-create-a-local-clone-of-your-fork) of your forked repo. You can do this from the command line or using the Github Desktop app.
-2. Go to the directory where you cloned iTwinUI. e.g. `cd iTwinUI`
+2. Go to the directory where you cloned iTwinUI. e.g. `cd iTwinUI`.
 3. Run `yarn install` from that directory.
 
 ### VSCode Users
@@ -46,26 +46,15 @@ Before running this command make sure Docker is running. Read more about [tests]
 
 ### Adding a component
 
-We welcome UI components contributions! If you'd like to get your component added to iTwinUI, follow these guidelines:
+We welcome UI components contributions! If you'd like to get your component added to iTwinUI,  run `yarn createComponent [component-name]` (replacing `[component-name]` with the name of your component) to automatically create all the necessary files. Then follow these guidelines:
 
-- Make a new folder with the name of the component under `src` folder.
+- Add all your component styles in `src/[component-name]/[component-name].scss` file.
 - Break variables and mixins into separate files where possible.
-- Make sure to include a `classes.scss` file in the folder as this file is used to generate all the relevant css classes.
-
-  - This file should simply define classes using your mixins.
-  - Example from `src/toggle-switch/classes.scss`, where index imports all mixins and relevant scss.
-
-    ```scss
-    @import './index';
-
-    .iui-toggle-switch {
-      @include iui-toggle-switch;
-    }
-    ```
-
-  - Make sure to import your style in `src/classes.scss` and `src/mixins.scss`.
-
-- Write html for your new component in `your-component.html` file under `backstop/tests`
+- Define classes for your mixin in `src/[component-name]/classes.scss` file.
+  - *Running the `createComponent` command will do this for you.*
+- Make sure your component index and classes are imported in `src/index.scss` and `src/classes.scss`.
+  - *Running the `createComponent` command will also do this for you but you need to manually sort the imports alphabetically.*
+- Write tests for your new component in `backstop/tests/[component-name].html` and `backstop/scenarios/[component-name].js`. See [Tests](#Tests) section below.
 - After running `yarn build` you can open minified html in browser to check up, how your component looks like from `backstop/minified`.
 
 ### Editing or enhancing a component
@@ -117,7 +106,7 @@ How to write tests:
       scenario('hide part', { hideSelectors: ['.hide-selector'] }),
     ];
     ```
-  - More information about options can be found in BackstopJS [GitHub](https://github.com/garris/BackstopJS#advanced-scenarios).
+  - More information about options can be found in [BackstopJS GitHub](https://github.com/garris/BackstopJS#advanced-scenarios).
 
 ### Changelog
 
@@ -143,9 +132,10 @@ To enable us to quickly review and accept your pull requests, always create one 
 
 #### Checklist
 
-- Component created following project structure.
+- Component added or modified using [guidelines](#Developing) above.
 - Tests added to `backstop/tests` and `backstop/scenarios`.
   - `.html` file has all possible states of the component.
   - `.js` file has scenarios covering these cases.
 - Updated changelog.
-- Ensure, that issue is linked in the PR and you have a proper description of the PR.
+
+After verifying that- Ensure, that issue is linked in the PR and you have a proper description of the PR.
