@@ -4,6 +4,7 @@
 
 @mixin iui-button-group {
   display: inline-flex;
+  align-items: center;
 
   > .iui-button {
     &:not(.iui-borderless) {
