@@ -48,10 +48,10 @@
   &.iui-expanded,
   > .iui-content {
     max-width: $iui-3xl * 3;
-  }
 
-  &.iui-expanded > .iui-expand > .iui-icon {
-    transform: scaleX(-1);
+    > .iui-expand > .iui-icon {
+      transform: scaleX(-1);
+    }
   }
 
   .iui-button {
