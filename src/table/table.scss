@@ -28,18 +28,11 @@
       background-color: t(iui-color-background-3);
     }
 
-    .iui-filter {
+    > .iui-cell:not(.iui-tables-slot) > .iui-borderless {
       margin-left: $iui-xs;
-      position: relative;
 
-      > .iui-borderless {
-        position: absolute;
-        left: 0;
-        transform: translateY(-50%);
-
-        &:not(.iui-active) {
-          visibility: hidden;
-        }
+      &:not(.iui-active) {
+        visibility: hidden;
       }
     }
 
@@ -130,7 +123,8 @@
         display: flex;
         flex-grow: 1;
         min-width: 145px;
-        padding: $iui-table-density;
+        min-height: $iui-baseline * 5;
+        padding: 0 $iui-m;
         overflow: hidden;
         list-style: none;
         flex-basis: 145px;
@@ -327,7 +321,8 @@
     display: flex;
     flex-grow: 1;
     min-width: 145px;
-    padding: $iui-table-density;
+    min-height: $iui-baseline * 5;
+    padding: 0 $iui-m;
     overflow: hidden;
     list-style: none;
     flex-basis: 145px;

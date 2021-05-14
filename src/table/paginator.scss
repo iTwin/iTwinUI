@@ -10,7 +10,8 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  padding: $iui-table-density;
+  min-height: $iui-baseline * 5;
+  padding: 0 $iui-m;
   user-select: none;
   @include themed {
     background-color: t(iui-color-background-3);
