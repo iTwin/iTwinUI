@@ -29,3 +29,7 @@
     @include iui-progress-indicator-radial-indeterminate;
   }
 }
+
+.iui-progress-indicator-overlay {
+  @include iui-progress-indicator-overlay;
+}
