@@ -82,7 +82,8 @@
       &:focus,
       &:focus-visible {
         @include themed {
-          box-shadow: t(iui-focus-box-shadow), inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
+          box-shadow: inset 0 0 $iui-xs
+            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)), inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
         }
       }
 
