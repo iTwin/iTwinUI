@@ -31,6 +31,10 @@
     flex: 2 1 33%;
     @include iui-header-buttons;
 
+    > nav {
+      display: contents;
+    }
+
     .iui-chevron {
       @include iui-icons-small;
       flex-shrink: 0;

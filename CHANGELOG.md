@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.0]
+
+`2021-05-XX`
+
+### Fixes
+
+- **Added nav and aria attributes to header breadcrumbs.**
+
 ## [0.13.1]
 
 `2021-05-12`
