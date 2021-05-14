@@ -37,6 +37,10 @@
     />
     <link
       rel="stylesheet"
+      href="../../lib/css/button.css"
+    />
+    <link
+      rel="stylesheet"
       href="../assets/demo.css"
     />
     <style>
@@ -3737,6 +3741,271 @@
         </div>
         <div class="iui-tables-body">
           <div class="iui-tables-message-container">No data.</div>
+        </div>
+      </div>
+      <div
+        role="table"
+        style="min-width: 48px;"
+        class="iui-tables-table iui-zebra-striping"
+      >
+        <div class="iui-tables-rowgroup">
+          <div
+            role="row"
+            style="display: flex; flex: 1 0 auto; min-width: 48px;"
+            class="iui-tables-row"
+          >
+            <div
+              colspan="1"
+              role="columnheader"
+              style="box-sizing: border-box; flex: 0 0 48px; min-width: 48px; width: 48px; max-width: 48px;"
+              class="iui-tables-cell iui-tables-head iui-tables-slot"
+            ><label
+                class="iui-checkbox"
+                style="cursor: pointer;"
+              ><input
+                  type="checkbox"
+                  title="Toggle All Rows Selected"
+                ><span class="iui-checkbox-checkmark"><svg
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      class="iui-check"
+                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                    ></path>
+                    <path
+                      class="iui-check-partial"
+                      d="m1 6.5h14v3h-14z"
+                    ></path>
+                  </svg></span></label></div>
+            <div
+              colspan="1"
+              role="columnheader"
+              style="box-sizing: border-box; flex: 0 0 60px; min-width: 0; width: 60px;"
+              class="iui-tables-cell iui-tables-head"
+            >&nbsp;</div>
+            <div
+              colspan="1"
+              role="columnheader"
+              style="box-sizing: border-box; flex: 1 1 145px; min-width: 0; width: 0;"
+              class="iui-tables-cell iui-tables-head"
+            >Name</div>
+            <div
+              colspan="1"
+              role="columnheader"
+              style="box-sizing: border-box; flex: 1 1 145px; min-width: 0; width: 0; max-width: 200px;"
+              class="iui-tables-cell iui-tables-head"
+            >Description</div>
+            <div
+              colspan="1"
+              role="columnheader"
+              style="box-sizing: border-box; flex: 0 0 100px; min-width: 0; width: 100px;"
+              class="iui-tables-cell iui-tables-head"
+            >Click</div>
+          </div>
+        </div>
+        <div
+          role="rowgroup"
+          class="iui-tables-body"
+        >
+          <div class="iui-tables-rowgroup">
+            <div
+              role="row"
+              style="display: flex; flex: 1 0 auto; min-width: 48px;"
+              class="iui-tables-row"
+            >
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 0 0 48px; min-width: 48px; width: 48px; max-width: 48px;"
+                class="iui-tables-cell iui-tables-slot"
+              ><label
+                  class="iui-checkbox"
+                  style="cursor: pointer;"
+                ><input
+                    type="checkbox"
+                    title="Toggle Row Selected"
+                  ><span class="iui-checkbox-checkmark"><svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      ></path>
+                      <path
+                        class="iui-check-partial"
+                        d="m1 6.5h14v3h-14z"
+                      ></path>
+                    </svg></span></label></div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 0 0 60px; min-width: 0; width: 60px;"
+                class="iui-tables-cell iui-tables-slot"
+              ><button
+                  class="iui-button iui-small iui-borderless"
+                  type="button"
+                ><svg
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="iui-icon"
+                    aria-hidden="true"
+                  >
+                    <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z"></path>
+                  </svg></button></div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 1 1 145px; min-width: 0; width: 0;"
+                class="iui-tables-cell"
+              >Name1</div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 1 1 145px; min-width: 0; width: 0; max-width: 200px;"
+                class="iui-tables-cell"
+              >Description1</div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 0 0 100px; min-width: 0; width: 100px;"
+                class="iui-tables-cell"
+              ><a class="iui-anchor">Click me!</a></div>
+            </div>
+          </div>
+          <div class="iui-tables-rowgroup iui-tables-rowgroup-active iui-tables-row-expanded">
+            <div
+              role="row"
+              style="display: flex; flex: 1 0 auto; min-width: 48px;"
+              class="iui-tables-row iui-tables-row-active"
+            >
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 0 0 48px; min-width: 48px; width: 48px; max-width: 48px;"
+                class="iui-tables-cell iui-tables-slot"
+              ><label
+                  class="iui-checkbox"
+                  style="cursor: pointer;"
+                ><input
+                    type="checkbox"
+                    title="Toggle Row Selected"
+                  ><span class="iui-checkbox-checkmark"><svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      ></path>
+                      <path
+                        class="iui-check-partial"
+                        d="m1 6.5h14v3h-14z"
+                      ></path>
+                    </svg></span></label></div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 0 0 60px; min-width: 0; width: 60px;"
+                class="iui-tables-cell iui-tables-slot"
+              ><button
+                  class="iui-button iui-small iui-borderless"
+                  type="button"
+                ><svg
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="iui-icon"
+                    aria-hidden="true"
+                  >
+                    <path d="M16 4.7l-1.4-1.4L8 9.9 1.4 3.3 0 4.7l8 8z"></path>
+                  </svg></button></div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 1 1 145px; min-width: 0; width: 0;"
+                class="iui-tables-cell"
+              >Name2</div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 1 1 145px; min-width: 0; width: 0; max-width: 200px;"
+                class="iui-tables-cell"
+              >Description2</div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 0 0 100px; min-width: 0; width: 100px;"
+                class="iui-tables-cell"
+              ><a class="iui-anchor">Click me!</a></div>
+            </div>
+            <div class="iui-tables-subcomponent">
+              <div style="padding: 16px;">
+                <h3 class="iui-text-leading">Extra information</h3>
+                <pre><code>{
+  "values": {
+    "name": "Name2",
+    "description": "Description2"
+  }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="iui-tables-rowgroup">
+            <div
+              role="row"
+              style="display: flex; flex: 1 0 auto; min-width: 48px;"
+              class="iui-tables-row"
+            >
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 0 0 48px; min-width: 48px; width: 48px; max-width: 48px;"
+                class="iui-tables-cell iui-tables-slot"
+              ><label
+                  class="iui-checkbox"
+                  style="cursor: pointer;"
+                ><input
+                    type="checkbox"
+                    title="Toggle Row Selected"
+                  ><span class="iui-checkbox-checkmark"><svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      ></path>
+                      <path
+                        class="iui-check-partial"
+                        d="m1 6.5h14v3h-14z"
+                      ></path>
+                    </svg></span></label></div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 0 0 60px; min-width: 0; width: 60px;"
+                class="iui-tables-cell iui-tables-slot"
+              ><button
+                  class="iui-button iui-small iui-borderless"
+                  type="button"
+                ><svg
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="iui-icon"
+                    aria-hidden="true"
+                  >
+                    <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z"></path>
+                  </svg></button></div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 1 1 145px; min-width: 0; width: 0;"
+                class="iui-tables-cell"
+              >Name3</div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 1 1 145px; min-width: 0; width: 0; max-width: 200px;"
+                class="iui-tables-cell"
+              >Description3</div>
+              <div
+                role="cell"
+                style="box-sizing: border-box; flex: 0 0 100px; min-width: 0; width: 100px;"
+                class="iui-tables-cell"
+              ><a class="iui-anchor">Click me!</a></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

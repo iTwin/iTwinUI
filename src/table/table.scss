@@ -23,7 +23,7 @@
     }
   }
 
-  &.iui-zebra-striping > .iui-tables-body > .iui-tables-row:nth-child(even) {
+  &.iui-zebra-striping > .iui-tables-body > .iui-tables-rowgroup:nth-child(even) {
     @include themed {
       background: rgba(t(iui-color-foreground-body-rgb), 0.02);
     }
@@ -41,18 +41,32 @@
     border: none;
   }
 
-  .iui-tables-row {
+  .iui-tables-rowgroup {
     margin-top: -1px;
-    display: flex;
     flex-grow: 1;
     width: 100%;
     border-top: 1px solid transparent;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
-
     @include themed {
       border-bottom: solid 1px t(iui-color-background-4);
     }
+
+    &.iui-tables-rowgroup-active {
+      @include themed {
+        border: solid 1px t(iui-color-foreground-primary);
+      }
+    }
+
+    &.iui-tables-rowgroup-expanded > .iui-tables-subcomponent {
+      @include themed {
+        background: rgba(t(iui-color-background-2-rgb), t(iui-opacity-3));
+      }
+    }
+  }
+
+  .iui-tables-row {
+    display: flex;
 
     > .iui-tables-slot > .iui-tables-menu {
       visibility: hidden;
@@ -177,7 +191,7 @@
 
         > .iui-filter.iui-active {
           visibility: visible;
-  
+
           > .iui-icon {
             @include themed {
               fill: t(iui-icons-color-primary);
@@ -210,10 +224,19 @@
       }
     }
 
+    &.iui-tables-row-expanded {
+      border-bottom: 1px solid transparent;
+    }
+
     &.iui-tables-row-active {
       @include themed {
-        border: solid 1px t(iui-color-foreground-primary);
         background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+      }
+
+      &.iui-tables-row-expanded {
+        @include themed {
+          border-bottom: solid 1px t(iui-color-foreground-primary);
+        }
       }
     }
 
