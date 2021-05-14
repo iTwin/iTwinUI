@@ -51,5 +51,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Test results
           conclusion: ${{ job.status }}
-          output: |
-            {"summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}
+          details_url: https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/
