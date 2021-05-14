@@ -14,29 +14,24 @@
     border-right: 1px solid t(iui-color-background-5);
   }
 
-  > .iui-content-container {
+  > .iui-content {
     display: flex;
-    flex-direction: row;
-    height: calc(100% - #{$iui-line-height});
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
 
-    > .iui-content {
+    > .iui-top {
+      flex-grow: 1;
       display: flex;
       flex-direction: column;
-      width: 100%;
 
-      > .iui-top {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-
-        > .iui-button:not(:last-of-type) {
-          border-bottom: none;
-        }
-      }
-      
-      > .iui-bottom > .iui-button {
+      > .iui-button:not(:last-of-type) {
         border-bottom: none;
       }
+    }
+    
+    > .iui-bottom > .iui-button {
+      border-bottom: none;
     }
   }
 
@@ -46,7 +41,7 @@
   }
 
   &.iui-expanded,
-  > .iui-content-container > .iui-content {
+  > .iui-content {
     max-width: $iui-3xl * 3;
   }
 
