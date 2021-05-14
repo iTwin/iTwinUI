@@ -49,7 +49,7 @@ Before running this command make sure Docker is running. Read more about [tests]
 We welcome UI components contributions! If you'd like to get your component added to iTwinUI,  run `yarn createComponent [component-name]` (replacing `[component-name]` with the name of your component) to automatically create all the necessary files. Then follow these guidelines:
 
 - Add all your component styles in `src/[component-name]/[component-name].scss` file.
-- Break variables and mixins into separate files where possible.
+  - Break variables and mixins into separate files where possible.
 - Define classes for your mixin in `src/[component-name]/classes.scss` file.
   - *Running the `createComponent` command will do this for you.*
 - Make sure your component index and classes are imported in `src/index.scss` and `src/classes.scss`.
@@ -138,4 +138,4 @@ To enable us to quickly review and accept your pull requests, always create one 
   - `.js` file has scenarios covering these cases.
 - Updated changelog.
 
-After verifying that- Ensure, that issue is linked in the PR and you have a proper description of the PR.
+After verifying that your changes look good, you can [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that an issue is linked in the PR and you have a proper description of the PR.
