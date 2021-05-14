@@ -4,14 +4,9 @@
 @import './variables';
 
 @mixin iui-table-extra-condensed {
-  .iui-header,
-  .iui-row {
-    .iui-cell {
-      padding: $iui-table-density-extra-condensed;
-    }
-  }
-
+  .iui-header .iui-cell,
+  .iui-row .iui-cell,
   .iui-paginator {
-    padding: $iui-table-density-extra-condensed;
+    min-height: $iui-baseline * 3;
   }
 }

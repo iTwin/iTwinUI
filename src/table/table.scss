@@ -103,7 +103,7 @@
       }
   
       &:hover:not(.iui-disabled) {
-        &:not(.iui-active) {
+        &:not(.iui-selected) {
           @include themed {
             background-color: rgba(
               t(iui-color-foreground-primary-rgb),
@@ -188,16 +188,6 @@
             }
           }
   
-          > .iui-filter {
-            margin-left: $iui-sm;
-            cursor: pointer;
-  
-            > .iui-icon {
-              width: $iui-icons-default;
-              height: $iui-icons-default;
-            }
-          }
-  
           > .iui-sort {
             flex-grow: 1;
             justify-content: flex-end !important;
@@ -223,7 +213,7 @@
             visibility: hidden;
           }
   
-          > .iui-filter.iui-active {
+          > .iui-filter.iui-selected {
             visibility: visible;
     
             > .iui-icon {
@@ -249,27 +239,54 @@
   
       // #region Selection
       &:not(.iui-selected) + .iui-selected {
-        border-bottom-color: transparent;
+        padding-bottom: 2px;
+        border-bottom: none;
       }
 
-      &.iui-active {
-        @include themed {
-          border-color: t(iui-color-foreground-primary);
-          border-bottom-color: transparent;
-          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+      &.iui-selected {
+        padding: 0;
+        border-bottom: 0 none;
+
+        border: solid 1px t(iui-color-foreground-primary);
+        background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+
+        &:hover {
+          background: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-5)
+          );
         }
 
-        + .iui-active {
-          @include themed {
-            border-top-color: transparent;
-          }
-
-          + :not(.iui-selected) {
-            @include themed {
-              border-top-color: t(iui-color-foreground-primary);
-            }
-          }
+        & + .iui-selected {
+          border-bottom: 0;
+          padding-bottom: 2px;
+          border-top: 1px solid
+            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
+          padding-top: 0;
         }
+
+        &:last-child {
+          padding-bottom: 1px;
+          border-bottom: 1px solid t(iui-color-foreground-primary);
+        }
+
+        &:first-child {
+          border-bottom: 0;
+          padding-bottom: 2px;
+        }
+
+        // Last selected item in a row.
+        & + :not(.iui-selected) {
+          padding-top: 0;
+          margin-left: 0;
+          margin-right: 0;
+          border-top: 1px solid t(iui-color-foreground-primary);
+        }
+      }
+
+      &:last-child {
+        padding-bottom: 2px;
+        border-bottom: 0;
       }
       // #endregion Selection
   
@@ -313,6 +330,52 @@
           filter: $iui-icons-color-multicolor-disabled;
         }
       }
+
+      &.iui-positive {
+        @include themed {
+          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-positive);
+        }
+
+        .iui-status {
+          @include themed {
+            fill: t(iui-icons-color-positive);
+          }
+        }
+      }
+      
+      &.iui-warning {
+        @include themed {
+          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-warning);
+        }
+
+        .iui-status {
+          @include themed {
+            fill: t(iui-icons-color-warning);
+          }
+        }
+      }
+
+      &.iui-negative {
+        @include themed {
+          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-negative);
+        }
+
+        .iui-status {
+          @include themed {
+            fill: t(iui-icons-color-negative);
+          }
+        }
+      }
+    }
+
+    &.iui-message {
+      text-align: center;
+      height: 100%;
+      padding: $iui-xl;
+      @include themed {
+        color: t(iui-text-color-muted);
+        background-color: t(iui-color-background-2);
+      }
     }
   }
 
@@ -327,14 +390,9 @@
     list-style: none;
     flex-basis: 145px;
 
-    &.iui-right-align {
-      justify-content: flex-end;
-    }
-
     > svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
-      //margin-right: $iui-sm;
     }
 
     > .iui-status,
@@ -371,85 +429,40 @@
         margin: 0;
       }
     }
+    
+    &.iui-right-align {
+      justify-content: flex-end;
+    }
 
-    &.iui-tables-head {
+    &.iui-positive {
       @include themed {
-        background-color: t(iui-color-background-3);
+        background-color: rgba(
+          t(iui-color-foreground-positive-rgb),
+          t(iui-opacity-6)
+        );
       }
-      user-select: none;
-
-      .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable);
-        }
-
-        &:hover {
-          @include themed {
-            fill: t(iui-icons-color-actionable-hover);
-          }
-        }
+    }
+    
+    &.iui-warning {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-warning-rgb),
+          t(iui-opacity-6)
+        );
       }
+    }
 
-      > .iui-filter {
-        margin-left: $iui-sm;
-        cursor: pointer;
-
-        > .iui-icon {
-          width: $iui-icons-default;
-          height: $iui-icons-default;
-        }
-      }
-
-      > .iui-sort {
-        flex-grow: 1;
-        justify-content: flex-end !important;
-
-        > .iui-icon-wrapper {
-          cursor: pointer;
-
-          > .iui-icon {
-            width: $iui-icons-default;
-            height: $iui-icons-default;
-          }
-        }
-      }
-
-      > .iui-filter,
-      > .iui-sort,
-      > .iui-sort > .iui-icon-wrapper {
-        height: $iui-icons-default;
-        width: $iui-icons-default;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        visibility: hidden;
-      }
-
-      > .iui-filter.iui-active {
-        visibility: visible;
-
-        > .iui-icon {
-          @include themed {
-            fill: t(iui-icons-color-primary);
-          }
-        }
-      }
-
-      &:hover {
-        @include themed {
-          background-color: t(iui-color-background-4);
-        }
-
-        > .iui-filter,
-        > .iui-sort,
-        > .iui-sort > .iui-icon-wrapper {
-          visibility: visible;
-        }
+    &.iui-negative {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-negative-rgb),
+          t(iui-opacity-6)
+        );
       }
     }
   }
 
-  &.iui-zebra-striping > .iui-body > .iui-row:nth-child(even):not(.iui-active) {
+  &.iui-zebra-striping > .iui-body > .iui-row:nth-child(even):not(.iui-selected) {
     @include themed {
       background: rgba(t(iui-color-foreground-body-rgb), 0.02);
     }
@@ -460,26 +473,5 @@
     overflow-x: hidden;
     overflow-y: scroll;
     overflow: overlay;
-  }
-  
-  /* EVERYTHING BELOW HERE IS OLD */
-
-  
-
-  .iui-select .iui-select-button {
-    background-color: transparent;
-    border: none;
-  }
-
-
-  .iui-tables-message-container {
-    @include themed {
-      color: t(iui-text-color-muted);
-      background-color: t(iui-color-background-2);
-    }
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    padding: $iui-xl;
   }
 }

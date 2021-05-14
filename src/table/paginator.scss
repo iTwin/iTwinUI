@@ -38,45 +38,27 @@
       color: t(iui-text-color);
     }
 
-    .iui-button-container {
-      margin: 0 $iui-xs;
-      position: relative;
-
-      > .iui-borderless {
-        position: absolute;
-        transform: translateY(-50%);
-      }
-
-      &:first-child > .iui-borderless {
-        right: 0;
-      }
-
-      &:last-child > .iui-borderless {
-        left: 0;
-      }
-    }
-
-    > a {
-      @include iui-anchor;
-      @include iui-focus;
+    .iui-button-group {
       margin: 0 $iui-s;
-    }
 
-    > .iui-ellipsis {
-      margin: 0 $iui-s;
-    }
+      > .iui-button,
+      > .iui-ellipsis {
+        width: 38px;
 
-    > .iui-current,
-    > .iui-ellipsis {
-      cursor: default;
-      @include themed {
-        color: t(iui-text-color);
+        &.iui-small {
+          width: 27px;
+        }
       }
-    }
 
-    > .iui-current {
-      text-decoration: underline;
-      font-weight: $iui-font-weight-semibold;
+      > .iui-ellipsis {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
+      }
     }
   }
 
@@ -89,20 +71,18 @@
       right: 0;
 
       > .iui-select {
-        @include themed {
-          border-color: t(iui-color-background-3);
-          background-color: t(iui-color-background-3);
-          color: t(iui-text-color-muted);
-        }
         cursor: pointer;
         padding: 0 $iui-baseline 0 $iui-baseline/2;
         height: auto;
+        
 
-        &:hover,
-        &:focus {
+        > .iui-select-button {
+          background-color: transparent;
+          border-color: transparent;
           @include themed {
-            background-color: none;
+            color: t(iui-text-color-muted);
           }
+
         }
       }
     }
