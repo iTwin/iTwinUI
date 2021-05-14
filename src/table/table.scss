@@ -28,7 +28,7 @@
       background-color: t(iui-color-background-3);
     }
 
-    > .iui-cell:not(.iui-tables-slot) > .iui-borderless {
+    > .iui-cell:not(.iui-slot) > .iui-borderless {
       margin-left: $iui-xs;
 
       &:not(.iui-active) {
@@ -36,7 +36,7 @@
       }
     }
 
-    .iui-cell:not(.iui-tables-slot) {
+    .iui-cell:not(.iui-slot) {
       @include iui-focus;
       cursor: pointer;
 
@@ -98,7 +98,7 @@
         }
       }
   
-      > .iui-tables-slot > .iui-button {
+      > .iui-slot > .iui-button {
         visibility: hidden;
       }
   
@@ -112,7 +112,7 @@
           }
         }
   
-        > .iui-tables-slot > .iui-button {
+        > .iui-slot > .iui-button {
           visibility: visible;
         }
       }
@@ -149,7 +149,7 @@
           margin-right: $iui-s;
         }
   
-        &.iui-tables-slot {
+        &.iui-slot {
           width: $iui-l * 2;
           padding: 0;
           flex-grow: 0;
@@ -320,7 +320,7 @@
           color: t(iui-text-color-muted);
         }
   
-        &:hover > .iui-tables-slot > .iui-button {
+        &:hover > .iui-slot > .iui-button {
           visibility: hidden;
         }
   
@@ -341,6 +341,15 @@
             fill: t(iui-icons-color-positive);
           }
         }
+
+        *::selection {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-positive-rgb),
+              t(iui-opacity-4)
+            );
+          }
+        }
       }
       
       &.iui-warning {
@@ -353,6 +362,15 @@
             fill: t(iui-icons-color-warning);
           }
         }
+
+        *::selection {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-warning-rgb),
+              t(iui-opacity-4)
+            );
+          }
+        }
       }
 
       &.iui-negative {
@@ -363,6 +381,15 @@
         .iui-status {
           @include themed {
             fill: t(iui-icons-color-negative);
+          }
+        }
+
+        *::selection {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-negative-rgb),
+              t(iui-opacity-4)
+            );
           }
         }
       }
@@ -409,7 +436,7 @@
       margin-right: $iui-s;
     }
 
-    &.iui-tables-slot {
+    &.iui-slot {
       width: $iui-l * 2;
       padding: 0;
       flex-grow: 0;
@@ -441,6 +468,15 @@
           t(iui-opacity-6)
         );
       }
+
+      &::selection {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-positive-rgb),
+            t(iui-opacity-4)
+          );
+        }
+      }
     }
     
     &.iui-warning {
@@ -449,6 +485,15 @@
           t(iui-color-foreground-warning-rgb),
           t(iui-opacity-6)
         );
+
+        &::selection {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-warning-rgb),
+              t(iui-opacity-4)
+            );
+          }
+        }
       }
     }
 
@@ -458,6 +503,15 @@
           t(iui-color-foreground-negative-rgb),
           t(iui-opacity-6)
         );
+      }
+
+      &::selection {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-negative-rgb),
+            t(iui-opacity-4)
+          );
+        }
       }
     }
   }
