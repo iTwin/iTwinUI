@@ -52,7 +52,7 @@ jobs:
         with:
           route: POST /repos/{owner}/{repo}/check-runs
           owner: ${{ github.repository_owner }}
-          repo: ${{ github.repository.name }}
+          repo: ${{ github.event.repository.name }}
           name: 'Test results'
           head_sha: ${{ github.sha }}
           conclusion: '${{ job.status }}'
