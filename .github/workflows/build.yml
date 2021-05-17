@@ -45,7 +45,7 @@ jobs:
           target-folder: ${{ github.event.number }}
 
       - name: Post gh pages link under Checks
-      - uses: actions/github-script@v4
+        uses: actions/github-script@v4
         if: always()
         with:
           script: |
