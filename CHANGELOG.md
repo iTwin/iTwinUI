@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.15.0]
+
+`2021-05-17`
+
+### What's new
+
+- **Added side-navigation component.**
+- **Added `.iui-required` class to labeled inputs** and removed automatic colon after all labels.
+
 ## [0.14.0]
 
 `2021-05-17`
