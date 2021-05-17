@@ -47,7 +47,7 @@
       .iui-top .iui-tooltip { margin-left: 80px; }
       .iui-bottom .iui-tooltip { margin-left: 80px; }
 
-      .iui-button:hover + .iui-tooltip {
+      .iui-sidenav-button:hover + .iui-tooltip {
         display: inline-block;
       }
 
@@ -85,7 +85,7 @@
       >
         <!-- Expand arrow -->
         <button
-          class="iui-button iui-expand"
+          class="iui-button iui-expand iui-sidenav-button"
           role="button"
           aria-label="Expand menu"
           onclick="handleHidePanel()"
@@ -103,13 +103,13 @@
 
         <!-- Rest of the tabs -->
         <div
-          class="iui-content"
+          class="iui-sidenav-content"
           role="tablist"
           aria-label="Applications"
         >
           <div class="iui-top">
             <button
-              class="iui-button iui-large iui-active"
+              class="iui-button iui-large iui-active iui-sidenav-button"
               role="tab"
               aria-selected="true"
               aria-label="Home"
@@ -130,7 +130,7 @@
             <span class="iui-tooltip">Home</span>
 
             <button
-              class="iui-button iui-large"
+              class="iui-button iui-large iui-sidenav-button"
               role="tab"
               aria-selected="false"
               aria-label="Documents"
@@ -149,7 +149,7 @@
             <span class="iui-tooltip">Documents</span>
 
             <button
-              class="iui-button iui-large"
+              class="iui-button iui-large iui-sidenav-button"
               role="tab"
               aria-selected="false"
               aria-label="Map"
@@ -170,7 +170,7 @@
             <span class="iui-tooltip">Map</span>
 
             <button
-              class="iui-button iui-large"
+              class="iui-button iui-large iui-sidenav-button"
               role="tab"
               aria-selected="false"
               aria-label="Archives"
@@ -190,7 +190,7 @@
             <span class="iui-tooltip">Archives</span>
 
             <button
-              class="iui-button iui-large"
+              class="iui-button iui-large iui-sidenav-button"
               role="tab"
               aria-selected="false"
               aria-label="Calendar"
@@ -214,7 +214,7 @@
 
           <div class="iui-bottom">
             <button
-              class="iui-button iui-large"
+              class="iui-button iui-large iui-sidenav-button"
               role="tab"
               aria-selected="false"
               aria-label="Administration"

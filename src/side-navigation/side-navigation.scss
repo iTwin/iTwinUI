@@ -14,7 +14,7 @@
     border-right: 1px solid t(iui-color-background-5);
   }
 
-  > .iui-content {
+  > .iui-sidenav-content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -25,18 +25,14 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-    }
 
-    > .iui-top > .iui-button:not(:last-of-type) {
-      border-bottom: none;
+      .iui-sidenav-button:not(:last-of-type) {
+        border-bottom: none;
+      }
     }
     
     > .iui-bottom {
       justify-content: flex-end;
-
-      > .iui-button {
-        border-bottom: none;
-      }
     }
   }
 
@@ -54,7 +50,7 @@
     }
   }
 
-  .iui-button {
+  .iui-sidenav-button {
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -73,13 +69,13 @@
       width: $iui-icons-large;
       height: $iui-icons-large;
       flex-shrink: 0;
-    }
-  
-    > .iui-label {
-      margin-left: $iui-icons-large !important;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      
+      + .iui-label {
+        margin-left: $iui-icons-large;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     &.iui-active {
@@ -124,7 +120,7 @@
     }
   }
 
-  .iui-expand {
+  .iui-sidenav-button.iui-expand {
     height: $iui-line-height;
     border: none;
     justify-content: center;
