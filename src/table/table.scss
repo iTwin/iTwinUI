@@ -15,30 +15,56 @@
     box-sizing: border-box;
   }
 
-  .iui-header,
-  .iui-row {
-    display: flex;
-    flex-grow: 1;
-    width: 100%;
-  }
-
   .iui-header {
+    width: 100%;
     user-select: none;
     @include themed {
       background-color: t(iui-color-background-3);
     }
 
-    > .iui-cell:not(.iui-slot) > .iui-borderless {
-      margin-left: $iui-xs;
-
-      &:not(.iui-active) {
-        visibility: hidden;
-      }
-    }
-
     .iui-cell:not(.iui-slot) {
       @include iui-focus;
       cursor: pointer;
+      position: relative;
+      overflow: visible;
+
+      > .iui-borderless {
+        margin-left: $iui-xs;
+
+        &:not(.iui-active) {
+          visibility: hidden;
+        }
+      }
+
+      > .iui-resizer {
+        height: 100%;
+        width: $iui-m;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateX(50%);
+        touch-action: none;
+        cursor: ew-resize;
+        z-index: 100;
+        display: none;
+        
+        > .iui-resizer-bar {
+          height: 100%;
+          width: $iui-xxs;
+          margin: 0 auto;
+          transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+          @include themed {
+            background-color: t(iui-color-background-5);
+          }
+        }
+
+        &:hover > .iui-resizer-bar {
+          width: $iui-xs;
+          @include themed {
+            background-color: t(iui-color-foreground-primary);
+          }
+        }
+      }
 
       &:hover,
       &:focus,
@@ -50,6 +76,12 @@
         .iui-sort,
         .iui-borderless {
           visibility: visible;
+        }
+      }
+
+      &:hover {
+        > .iui-resizer {
+          display: block;
         }
       }
     }
@@ -78,6 +110,12 @@
             fill: t(iui-icons-color-actionable);
           }
         }
+      }
+    }
+
+    .iui-row + .iui-row {
+      @include themed {
+        border-top: 1px solid t(iui-color-background-5);
       }
     }
   }
@@ -122,12 +160,12 @@
         align-items: center;
         display: flex;
         flex-grow: 1;
-        min-width: 145px;
+        min-width: $iui-l * 6;
         min-height: $iui-baseline * 5;
         padding: 0 $iui-m;
         overflow: hidden;
         list-style: none;
-        flex-basis: 145px;
+        flex-basis: $iui-l * 6;
   
         > svg {
           width: $iui-icons-default;
@@ -239,7 +277,7 @@
   
       // #region Selection
       &:not(.iui-selected) + .iui-selected {
-        padding-bottom: 2px;
+        padding-bottom: $iui-xxs;
         border-bottom: none;
       }
 
@@ -259,7 +297,7 @@
 
         & + .iui-selected {
           border-bottom: 0;
-          padding-bottom: 2px;
+          padding-bottom: $iui-xxs;
           border-top: 1px solid
             rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
           padding-top: 0;
@@ -272,7 +310,7 @@
 
         &:first-child {
           border-bottom: 0;
-          padding-bottom: 2px;
+          padding-bottom: $iui-xxs;
         }
 
         // Last selected item in a row.
@@ -285,22 +323,13 @@
       }
 
       &:last-child {
-        padding-bottom: 2px;
+        padding-bottom: $iui-xxs;
         border-bottom: 0;
       }
       // #endregion Selection
   
       &.iui-new {
         font-weight: $iui-font-weight-semibold;
-
-        /* UNSURE ABOUT THIS
-        .iui-positive {
-          @include themed {
-            fill: t(iui-color-foreground-positive);
-          }
-        }
-        */
-  
         
         > .iui-main-column::before {
           @include themed {
@@ -406,20 +435,27 @@
     }
   }
 
+  .iui-row {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+  }
+
   .iui-cell {
     align-items: center;
     display: flex;
     flex-grow: 1;
-    min-width: 145px;
+    min-width: $iui-l * 6;
     min-height: $iui-baseline * 5;
     padding: 0 $iui-m;
     overflow: hidden;
     list-style: none;
-    flex-basis: 145px;
+    flex-basis: $iui-l * 6;
 
     > svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
+      flex-shrink: 0;
     }
 
     > .iui-status,
@@ -523,7 +559,7 @@
   }
 
   &.iui-fixed > .iui-body {
-    max-height: 300px;
+    max-height: $iui-baseline * 27;
     overflow-x: hidden;
     overflow-y: scroll;
     overflow: overlay;
