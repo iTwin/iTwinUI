@@ -50,14 +50,12 @@ jobs:
         uses: actions/github-script@v4
         if: always()
         with:
+          debug: true
           script: |
             github.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               conclusion: '${{ job.status }}',
               name: 'Test results',
-              output: '{
-                "title": "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/",
-                "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"
-              }'
+              output: '{ "title": "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/" }'
             })
