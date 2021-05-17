@@ -55,7 +55,7 @@ jobs:
             github.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head_sha: ${{ github.sha }},
+              head_sha: '${{ github.sha }}',
               conclusion: '${{ job.status }}',
               name: 'Test results',
               output: '{ "title": "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/" }'
