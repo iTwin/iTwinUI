@@ -42,10 +42,10 @@
   }
 
   &.iui-expanded,
-  > .iui-content {
+  > .iui-sidenav-content {
     max-width: $iui-3xl * 3;
 
-    > .iui-expand > .iui-icon {
+    > .iui-sidenav-button.iui-expand > .iui-icon {
       transform: scaleX(-1);
     }
   }
