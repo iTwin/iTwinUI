@@ -31,7 +31,13 @@
     flex: 2 1 33%;
     @include iui-header-buttons;
 
-    > .iui-chevron {
+    > nav {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .iui-chevron {
       @include iui-icons-small;
       flex-shrink: 0;
       margin: 0 $iui-xs;

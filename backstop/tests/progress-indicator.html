@@ -28,8 +28,19 @@
     />
     <!-- Margin on the bottom of each test div to space them out. -->
     <style>
-      .iui-progress-indicator-radial {
+      #demo-radial .iui-progress-indicator-radial {
         margin-right: 16px;
+      }
+
+      #demo-overlay {
+        width: 33%;
+      }
+      
+      #demo-overlay-content {
+        padding: 11px 12px;
+        border: 1px solid var(--iui-color-background-5);
+        position: relative;
+        margin-bottom: 11px;
       }
     </style>
     <script src="../assets/theme.js"></script>
@@ -902,6 +913,72 @@
                 />
               </svg>
             </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <h2>Overlay</h2>
+    <section id="demo-overlay">
+
+      <div id="demo-overlay-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.
+
+        <div
+          class="iui-progress-indicator-overlay"
+          tabindex="0"
+        >
+          <!-- Linear indeterminate with label -->
+          <div class="iui-progress-indicator-linear">
+            <div class="iui-track">
+              <div class="iui-indeterminate"></div>
+            </div>
+            <div class="iui-label">
+              <span>Loading content</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="demo-overlay-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.
+
+        <div
+          class="iui-progress-indicator-overlay"
+          tabindex="0"
+        >
+          <!-- Radial indeterminate -->
+          <div class="iui-progress-indicator-radial iui-indeterminate">
+            <svg
+              class="iui-radial"
+              viewBox="0 0 32 32"
+              aria-hidden="true"
+            >
+              <circle
+                class="iui-track"
+                cx="16"
+                cy="16"
+                r="14"
+              >
+              </circle>
+              <circle
+                class="iui-fill"
+                cx="16"
+                cy="16"
+                r="14"
+              >
+              </circle>
+            </svg>
           </div>
         </div>
       </div>
