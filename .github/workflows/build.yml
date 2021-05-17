@@ -45,12 +45,15 @@ jobs:
           target-folder: ${{ github.event.number }}
 
       - name: Post gh pages link under Checks
-        uses: LouisBrunner/checks-action@v1.1.2
+      - uses: actions/github-script@v4
         if: always()
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: Test results
-          conclusion: ${{ job.status }}
-          details_url: https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/
-          output: |
-            {"summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}
+          script: |
+            github.issues.createComment({
+              name: 'Test results',
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              conclusion: job.status,
+              output: '{"summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}'
+              details_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
+            })
