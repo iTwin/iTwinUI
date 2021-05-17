@@ -47,11 +47,16 @@ jobs:
           target-folder: ${{ github.event.number }}
 
       - name: Post gh pages link under Checks
-        uses: LouisBrunner/checks-action@v1.1.2
+        uses: actions/github-script@v4
         if: always()
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: Test results
-          conclusion: ${{ job.status }}
-          output: |
-            {"text_description": "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/", "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}
+          debug: true
+          script: |
+            github.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head_sha: '${{ github.sha }}',
+              conclusion: '${{ job.status }}',
+              name: 'Test results',
+              output: { "title": "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/" }
+            })
