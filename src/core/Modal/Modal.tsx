@@ -10,19 +10,7 @@ import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/modal.css';
 import { IconButton } from '../Buttons/IconButton';
-
-/**
- * Get the portal container, or create one if it doesn't exist.
- */
-const getContainer = (containerId: string) => {
-  let container = document.getElementById(containerId);
-  if (container === null) {
-    container = document.createElement('div');
-    container.setAttribute('id', containerId);
-    document.body.appendChild(container);
-  }
-  return container;
-};
+import { getContainer } from '../utils/common';
 
 export type ModalProps = {
   /**

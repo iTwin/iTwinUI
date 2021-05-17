@@ -5,7 +5,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { Button, toaster } from '../../src/core';
-import { ToastSettings } from '../../src/core/Toast/ToastMaster';
+import { ToastProps } from '../../src/core/Toast/Toast';
 
 export default {
   argTypes: {
@@ -74,9 +74,9 @@ export default {
     controls: { expanded: true },
   },
   title: 'Core/Toasts',
-} as Meta<ToastSettings>;
+} as Meta<ToastProps>;
 
-export const Positive: Story<ToastSettings> = ({
+export const Positive: Story<ToastProps> = ({
   content,
   duration,
   hasCloseButton,
@@ -115,7 +115,7 @@ Positive.argTypes = {
   },
 };
 
-export const Negative: Story<ToastSettings> = ({
+export const Negative: Story<ToastProps> = ({
   duration,
   hasCloseButton,
   content,
@@ -154,7 +154,7 @@ Negative.argTypes = {
   },
 };
 
-export const Informational: Story<ToastSettings> = ({
+export const Informational: Story<ToastProps> = ({
   duration,
   hasCloseButton,
   content,

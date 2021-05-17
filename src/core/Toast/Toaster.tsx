@@ -4,8 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { getContainer } from '../utils/common';
 import { ToastCategory, ToastProps } from './Toast';
-import { ToastSettings, ToastMaster } from './ToastMaster';
+import { ToastWrapper } from './ToastWrapper';
+
+const TOASTS_CONTAINER_ID = 'iui-toasts-container';
 
 export type ToastOptions = Omit<
   ToastProps,
@@ -13,23 +16,8 @@ export type ToastOptions = Omit<
 >;
 
 export default class Toaster {
-  private addToast: (settings: ToastSettings) => void;
-  private closeAllHandler: () => void;
-
-  constructor() {
-    this._addHandler = this._addHandler.bind(this);
-    this._closeAllHandler = this._closeAllHandler.bind(this);
-
-    const container = document.createElement('div');
-    document.body.appendChild(container);
-    ReactDOM.render(
-      <ToastMaster
-        addToastHandler={this._addHandler}
-        closeAllHandler={this._closeAllHandler}
-      />,
-      container,
-    );
-  }
+  private toasts: ToastProps[] = [];
+  private lastId = 0;
 
   public positive(content: React.ReactNode, settings?: ToastOptions): void {
     this.createToast(content, 'positive', settings);
@@ -51,22 +39,45 @@ export default class Toaster {
     category: ToastCategory,
     settings?: ToastOptions,
   ) {
-    this.addToast({
-      ...settings,
-      content,
-      category,
-    });
+    ++this.lastId;
+    const currentId = this.lastId;
+    this.toasts = [
+      {
+        ...settings,
+        content,
+        category,
+        onRemove: () => {
+          this.removeToast(currentId);
+          settings?.onRemove?.();
+        },
+        id: currentId,
+        isVisible: true,
+      },
+      ...this.toasts,
+    ];
+
+    this.updateView();
+  }
+
+  private removeToast(id: number) {
+    this.toasts = this.toasts.filter((toast) => toast.id !== id);
+    this.updateView();
+  }
+
+  private updateView() {
+    ReactDOM.render(
+      <ToastWrapper toasts={this.toasts} />,
+      getContainer(TOASTS_CONTAINER_ID),
+    );
   }
 
   public closeAll(): void {
-    this.closeAllHandler();
-  }
-
-  private _addHandler(addHandler: (settings: ToastSettings) => void) {
-    this.addToast = addHandler;
-  }
-
-  private _closeAllHandler(closeAll: () => void) {
-    this.closeAllHandler = closeAll;
+    this.toasts = this.toasts.map((toast) => {
+      return {
+        ...toast,
+        isVisible: false,
+      };
+    });
+    this.updateView();
   }
 }
