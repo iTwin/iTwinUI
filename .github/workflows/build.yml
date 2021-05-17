@@ -14,8 +14,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Use Node 12.X
         uses: actions/setup-node@v2.1.5
@@ -57,7 +55,7 @@ jobs:
             github.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head_sha: '${{ github.sha }}',
+              head_sha: '${{ github.event.pull_request.head.sha }}',
               conclusion: '${{ job.status }}',
               name: 'Test results',
               output: {
