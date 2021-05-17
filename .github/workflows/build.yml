@@ -27,17 +27,19 @@ jobs:
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
       - run: yarn build
+        if: ${{ false }}
       - run: yarn test:ci
+        if: ${{ false }}
 
       - name: Publish test results artifact
-        if: failure()
+        if: ${{ false }}
         uses: actions/upload-artifact@v2.2.3
         with:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/backstop/results/'
 
       - name: Host test results on gh pages
-        if: always()
+        if: ${{ false }}
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
@@ -50,10 +52,9 @@ jobs:
         with:
           script: |
             github.checks.create({
-              name: 'Test results',
               owner: context.repo.owner,
               repo: context.repo.repo,
               conclusion: job.status,
-              output: '{"title": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}'
-              details_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
+              name: 'Test results',
+              output: {"summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}'
             })
