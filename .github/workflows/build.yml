@@ -58,8 +58,8 @@ jobs:
         with:
           debug: true
           route: POST /repos/{owner}/{repo}/check-runs
-          owner: octokit
-          repo: request-action
+          owner: iTwin
+          repo: iTwinUI
           name: 'Test results'
           head_sha: ${{ github.sha }}
           conclusion: '${{ job.status }}'
