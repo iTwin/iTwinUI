@@ -49,11 +49,11 @@ jobs:
         if: always()
         with:
           script: |
-            github.issues.createComment({
+            github.checks.create({
               name: 'Test results',
               owner: context.repo.owner,
               repo: context.repo.repo,
               conclusion: job.status,
-              output: '{"summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}'
+              output: '{"title": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}'
               details_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
             })
