@@ -32,7 +32,9 @@
     @include iui-header-buttons;
 
     > nav {
-      display: contents;
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
 
     .iui-chevron {
