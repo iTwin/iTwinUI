@@ -56,5 +56,5 @@ jobs:
               repo: context.repo.repo,
               conclusion: job.status,
               name: 'Test results',
-              output: {"summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}'
+              output: {"summary": "See backstop html report at https://itwin.github.io/iTwinUI/100/html_report/"}'
             })
