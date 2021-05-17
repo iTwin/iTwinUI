@@ -58,6 +58,7 @@ jobs:
               head_sha: '${{ github.event.pull_request.head.sha }}',
               conclusion: '${{ job.status }}',
               name: 'Test results',
+              details_url: "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/",
               output: {
                 "title": "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/",
                 "summary": "See backstop report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"
