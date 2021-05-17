@@ -41,8 +41,13 @@
       color: t(iui-text-color);
     }
 
-    &::after {
-      content: ':';
+    &.iui-required {
+      &::after {
+        content: ' *';
+        @include themed {
+          color: t(iui-color-foreground-negative);
+        }
+      }
     }
   }
 
