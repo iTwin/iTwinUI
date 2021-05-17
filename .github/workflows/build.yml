@@ -54,4 +54,4 @@ jobs:
           name: Test results
           conclusion: ${{ job.status }}
           output: |
-            {"title": "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/", "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}
+            {"text_description": "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/", "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}
