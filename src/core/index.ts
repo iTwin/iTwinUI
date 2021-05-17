@@ -51,6 +51,14 @@ export type { FileUploadProps, FileUploadTemplateProps } from './FileUpload';
 export { Footer } from './Footer';
 export type { FooterProps, FooterElement, TitleTranslations } from './Footer';
 
+export { Header, HeaderBreadcrumbs, HeaderButton, HeaderLogo } from './Header';
+export type {
+  HeaderProps,
+  HeaderBreadcrumbsProps,
+  HeaderButtonProps,
+  HeaderLogoProps,
+} from './Header';
+
 export { HorizontalTabs } from './HorizontalTabs';
 export type { HorizontalTabsProps } from './HorizontalTabs';
 

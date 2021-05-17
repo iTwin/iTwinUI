@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.x.x
+
+`Date`
+
+### What's new
+
+- **Added new `Header` component,** with a condensed version available through `isSlim` prop.
+  - **Added new `HeaderLogo` component** for use with the Header `appLogo` prop.
+  - **Added new `HeaderBreadcrumbs` and `HeaderButton` component** for use with the Header `breadcrumbs` prop.
+
 ## [1.4.1]
 
 `2021-05-17`
