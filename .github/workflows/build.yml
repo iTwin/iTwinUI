@@ -54,7 +54,10 @@ jobs:
             github.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              conclusion: job.status,
+              conclusion: '${{ job.status }}',
               name: 'Test results',
-              output: '{"summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}'
+              output: '{
+                "title": "https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/",
+                "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/",
+              }'
             })
