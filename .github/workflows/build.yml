@@ -59,3 +59,5 @@ jobs:
           output: |
             title: https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/
             summary: 'See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
