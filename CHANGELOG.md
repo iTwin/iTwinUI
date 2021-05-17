@@ -2,7 +2,12 @@
 
 ## [0.14.0]
 
-`2021-05-XX`
+`2021-05-17`
+
+### What's new
+
+- **Added progress indicator overlay.**
+- **Added fieldset component.**
 
 ### Fixes
 
@@ -191,6 +196,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.14.0]: https://github.com/iTwin/iTwinUI/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/iTwin/iTwinUI/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/iTwin/iTwinUI/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/iTwin/iTwinUI/compare/v0.11.0...v0.12.0
