@@ -46,20 +46,13 @@ jobs:
           folder: ${{ github.workspace }}/backstop/results
           target-folder: ${{ github.event.number }}
 
-      - name: Dump github context
-        run: echo "$GITHUB_CONTEXT"
-        shell: bash
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-
       - name: Post gh pages link under Checks
         uses: octokit/request-action@v2.x
         if: always()
         with:
-          debug: true
           route: POST /repos/{owner}/{repo}/check-runs
-          owner: iTwin
-          repo: iTwinUI
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.repository.name }}
           name: 'Test results'
           head_sha: ${{ github.sha }}
           conclusion: '${{ job.status }}'
