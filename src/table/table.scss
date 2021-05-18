@@ -136,7 +136,7 @@
         }
       }
   
-      > .iui-slot > .iui-button {
+      > .iui-slot > .iui-more-options {
         visibility: hidden;
       }
   
@@ -146,12 +146,14 @@
             background-color: rgba(
               t(iui-color-foreground-primary-rgb),
               t(iui-opacity-6)
-            ) !important;
+            );
           }
         }
   
-        > .iui-slot > .iui-button {
+        & > .iui-slot > .iui-more-options,
+        &:focus-within > .iui-slot > .iui-more-options {
           visibility: visible;
+          // FOCUS WITHIN not working
         }
       }
   
@@ -431,6 +433,18 @@
       @include themed {
         color: t(iui-text-color-muted);
         background-color: t(iui-color-background-2);
+      }
+    }
+
+    &.iui-expandable {
+      .iui-row-group {
+        @include themed {
+          border-bottom: solid 1px t(iui-color-background-4);
+        }
+
+        .iui-row {
+          border-color: transparent;
+        }
       }
     }
   }
