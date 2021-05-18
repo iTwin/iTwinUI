@@ -18,6 +18,7 @@ export default {
     svgIcon: { control: { disable: true } },
     placeholder: { defaultValue: 'Enter text here...', type: 'string' },
     disabled: { type: 'boolean' },
+    required: { type: 'boolean' },
   },
 } as Meta<LabeledInputProps>;
 

@@ -39,6 +39,7 @@ export const RadioGroup: Story<InputGroupProps> = (args) => {
           onChange={action('Clicked option 1!')}
           label={option1Label}
           disabled={args.disabled}
+          required={args.required}
         />
         <Radio
           name='choice'
@@ -47,6 +48,7 @@ export const RadioGroup: Story<InputGroupProps> = (args) => {
           label={option2Label}
           setFocus={true}
           disabled={args.disabled}
+          required={args.required}
         />
       </InputGroup>
     </>
@@ -98,18 +100,21 @@ export const CheckboxGroup: Story<InputGroupProps> = (args) => {
         indeterminate={isIndeterminate}
         checked={allOptions}
         disabled={args.disabled}
+        required={args.required}
       />
       <Checkbox
         onChange={(event) => setOption1(event.target.checked)}
         label={option1Label}
         checked={option1}
         disabled={args.disabled}
+        required={args.required}
       />
       <Checkbox
         onChange={(event) => setOption2(event.target.checked)}
         label={option2Label}
         checked={option2}
         disabled={args.disabled}
+        required={args.required}
       />
     </InputGroup>
   );

@@ -33,6 +33,15 @@ it('should render disabled component', () => {
   );
 });
 
+it('should handle required attribute', () => {
+  const { container } = render(<LabeledInput label='some label' required />);
+  assertBaseElement(container);
+  expect(container.querySelector('.iui-label.iui-required')).toBeTruthy();
+  expect(
+    (container.querySelector('input') as HTMLInputElement).required,
+  ).toBeTruthy();
+});
+
 it('should render message', () => {
   const { container, getByText } = render(
     <LabeledInput

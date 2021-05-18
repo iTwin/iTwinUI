@@ -38,6 +38,21 @@ it('should render disabled group', () => {
   inputs.forEach((input) => expect(input.disabled).toBe(true));
 });
 
+it('should render required group', () => {
+  const { container } = render(
+    <InputGroup label='some label' required>
+      <Checkbox required />
+      <Checkbox required />
+    </InputGroup>,
+  );
+  expect(container.querySelector('.iui-input-container')).toBeTruthy();
+  expect(container.querySelector('.iui-label.iui-required')).toBeTruthy();
+
+  const inputs = container.querySelectorAll('input');
+  expect(inputs.length).toBe(2);
+  inputs.forEach((input) => expect(input.required).toBeTruthy());
+});
+
 it('should render message', () => {
   const { container, getByText } = render(
     <InputGroup

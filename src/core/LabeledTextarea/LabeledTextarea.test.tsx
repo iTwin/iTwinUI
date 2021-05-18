@@ -60,6 +60,19 @@ it('should be disabled', () => {
   expect(textarea.disabled).toBe(true);
 });
 
+it('should handle required attribute', () => {
+  const { container } = render(<LabeledTextarea label='Label' required />);
+
+  expect(container.querySelector('.iui-input-container')).toBeTruthy();
+  expect(container.querySelector('.iui-label.iui-required')).toBeTruthy();
+
+  const textarea = container.querySelector(
+    '.iui-input-container textarea.iui-textarea',
+  ) as HTMLTextAreaElement;
+  expect(textarea).toBeTruthy();
+  expect(textarea.required).toBeTruthy();
+});
+
 it('should add custom class names and styles', () => {
   const { container } = render(
     <LabeledTextarea

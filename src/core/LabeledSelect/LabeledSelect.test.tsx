@@ -137,3 +137,12 @@ it('should render with custom style on select', () => {
   expect(select).toBeTruthy();
   expect(select.style.color).toEqual('red');
 });
+
+it('should handle required attribute', () => {
+  const { container } = renderComponent({ required: true });
+  assertBaseElement(
+    container.querySelector('.iui-input-container') as HTMLElement,
+  );
+
+  expect(container.querySelector('.iui-label.iui-required')).toBeTruthy();
+});

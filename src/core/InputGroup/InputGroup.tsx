@@ -33,6 +33,11 @@ export type InputGroupProps = {
    */
   disabled?: boolean;
   /**
+   * Whether the whole input group is required.
+   * @default false
+   */
+  required?: boolean;
+  /**
    * Custom icon. If group has status, default status icon is used instead.
    */
   svgIcon?: JSX.Element;
@@ -68,6 +73,7 @@ export const InputGroup = (props: InputGroupProps) => {
     svgIcon,
     className,
     style,
+    required = false,
     ...rest
   } = props;
   useTheme();
@@ -87,7 +93,15 @@ export const InputGroup = (props: InputGroupProps) => {
       style={style}
       {...rest}
     >
-      {label && <div className='iui-label'>{label}</div>}
+      {label && (
+        <div
+          className={cx('iui-label', {
+            'iui-required': required,
+          })}
+        >
+          {label}
+        </div>
+      )}
       {children}
       {(message || icon) && (
         <div className='iui-message'>

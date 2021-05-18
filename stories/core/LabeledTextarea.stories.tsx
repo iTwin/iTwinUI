@@ -26,6 +26,7 @@ export default {
       defaultValue: false,
       type: 'boolean',
     },
+    required: { type: 'boolean' },
   },
 } as Meta<LabeledTextareaProps>;
 

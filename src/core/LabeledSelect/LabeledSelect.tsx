@@ -42,6 +42,11 @@ export type LabeledSelectProps<T> = {
    * @default 'default'
    */
   displayStyle?: 'default' | 'inline';
+  /**
+   * If true, shows a red asterisk but does not prevent form submission.
+   * @default false
+   */
+  required?: boolean;
 } & SelectProps<T>;
 
 /**
@@ -91,6 +96,7 @@ export const LabeledSelect = <T,>(
     style,
     selectClassName,
     selectStyle,
+    required = false,
     ...rest
   } = props;
 
@@ -111,7 +117,15 @@ export const LabeledSelect = <T,>(
       )}
       style={style}
     >
-      {label && <div className='iui-label'>{label}</div>}
+      {label && (
+        <div
+          className={cx('iui-label', {
+            'iui-required': required,
+          })}
+        >
+          {label}
+        </div>
+      )}
       <Select
         disabled={disabled}
         className={selectClassName}
