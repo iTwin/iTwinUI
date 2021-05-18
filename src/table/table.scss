@@ -27,13 +27,13 @@
     @include iui-table-cell;
   }
 
-  &.iui-zebra-striping > .iui-body > .iui-row:nth-child(even):not(.iui-selected) {
+  &.iui-zebra-striping > .iui-table-body > .iui-row:nth-child(even):not(.iui-selected) {
     @include themed {
       background: rgba(t(iui-color-foreground-body-rgb), 0.02);
     }
   }
 
-  &.iui-fixed > .iui-body {
+  &.iui-fixed > .iui-table-body {
     max-height: $iui-baseline * 27;
     overflow-x: hidden;
     overflow-y: scroll;
