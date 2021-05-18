@@ -346,14 +346,14 @@
       font-weight: $iui-font-weight-semibold;
       
       > .iui-main-column::before {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-        }
         content: '•';
         position: absolute;
         left: 0;
         font-size: $iui-font-size-title;
-      }   
+        @include themed {
+          color: t(iui-color-foreground-positive);
+        }
+      }
     }
 
     &.iui-disabled,
