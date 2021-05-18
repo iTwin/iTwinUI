@@ -8,6 +8,9 @@ module.exports = [
   scenario('Type Extras', {
     selectors: ['#demo-extras'],
   }),
+  scenario('Type Expandable Rows', {
+    selectors: ['#demo-expandable-rows'],
+  }),
   scenario('Type Loading', {
     selectors: ['#demo-loading'],
   }),
