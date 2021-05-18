@@ -15,11 +15,11 @@
     box-sizing: border-box;
   }
 
-  .iui-header {
+  .iui-table-header {
     @include iui-table-header;
   }
 
-  .iui-body {
+  .iui-table-body {
     @include iui-table-body;
   }
 
