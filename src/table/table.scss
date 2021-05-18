@@ -16,554 +16,15 @@
   }
 
   .iui-header {
-    width: 100%;
-    user-select: none;
-    @include themed {
-      background-color: t(iui-color-background-3);
-    }
-
-    .iui-cell:not(.iui-slot) {
-      @include iui-focus;
-      cursor: pointer;
-      position: relative;
-      overflow: visible;
-
-      > .iui-borderless {
-        margin-left: $iui-xs;
-
-        &:not(.iui-active) {
-          visibility: hidden;
-        }
-      }
-
-      > .iui-resizer {
-        height: 100%;
-        width: $iui-m;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translateX(50%);
-        touch-action: none;
-        cursor: ew-resize;
-        z-index: 100;
-        display: none;
-        
-        > .iui-resizer-bar {
-          height: 100%;
-          width: $iui-xxs;
-          margin: 0 auto;
-          transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
-          @include themed {
-            background-color: t(iui-color-background-5);
-          }
-        }
-
-        &:hover > .iui-resizer-bar {
-          width: $iui-xs;
-          @include themed {
-            background-color: t(iui-color-foreground-primary);
-          }
-        }
-      }
-
-      &:hover,
-      &:focus,
-      &:focus-within {
-        @include themed {
-          background-color: t(iui-color-background-4);
-        }
-
-        .iui-sort,
-        .iui-borderless {
-          visibility: visible;
-        }
-      }
-
-      &:hover {
-        > .iui-resizer {
-          display: block;
-        }
-      }
-    }
-
-    .iui-sort {
-      visibility: hidden;
-      margin-left: auto;
-      width: $iui-icons-default;
-      height: $iui-icons-default;
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
-    }
-
-    .iui-active-sort {
-      @include themed {
-        background-color: t(iui-color-background-4);
-      }
-
-      .iui-sort {
-        visibility: visible;
-        
-        &,
-        & > * {
-          @include themed {
-            fill: t(iui-icons-color-actionable);
-          }
-        }
-      }
-    }
-
-    .iui-row + .iui-row {
-      @include themed {
-        border-top: 1px solid t(iui-color-background-5);
-      }
-    }
+    @include iui-table-header;
   }
 
   .iui-body {
-    width: 100%;
-    @include themed {
-      background-color: t(iui-color-background-1);
-    }
-    
-    .iui-row {
-      margin-top: -1px;
-      border: solid 1px transparent;
-
-      &:not(:last-child) {
-        @include themed {
-          border-bottom: solid 1px t(iui-color-background-4);
-        }
-      }
-  
-      > .iui-slot > .iui-more-options {
-        visibility: hidden;
-      }
-  
-      &:hover:not(.iui-disabled) {
-        &:not(.iui-selected) {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-primary-rgb),
-              t(iui-opacity-6)
-            );
-          }
-        }
-  
-        & > .iui-slot > .iui-more-options,
-        &:focus-within > .iui-slot > .iui-more-options {
-          visibility: visible;
-          // FOCUS WITHIN not working
-        }
-      }
-  
-      > .iui-cell {
-        position: relative;
-        align-items: center;
-        display: flex;
-        flex-grow: 1;
-        min-width: $iui-l * 6;
-        min-height: $iui-baseline * 5;
-        padding: 0 $iui-m;
-        overflow: hidden;
-        list-style: none;
-        flex-basis: $iui-l * 6;
-  
-        > svg {
-          width: $iui-icons-default;
-          height: $iui-icons-default;
-          margin-right: $iui-sm;
-        }
-  
-        > .iui-status,
-        > .iui-progress-indicator-radial {
-          float: right;
-          margin-left: auto;
-        }
-  
-        > .iui-status {
-          margin-right: $iui-xs;
-        }
-  
-        > .iui-user-icon {
-          margin-right: $iui-s;
-        }
-  
-        &.iui-slot {
-          width: $iui-l * 2;
-          padding: 0;
-          flex-grow: 0;
-          min-width: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-basis: $iui-l * 2;
-  
-          > .iui-icon {
-            @include themed {
-              fill: t(iui-icons-color-actionable);
-              color: t(iui-icons-color-actionable);
-            }
-            width: $iui-icons-default;
-            height: $iui-icons-default;
-            margin: 0;
-          }
-        }
-  
-        &.iui-tables-head {
-          @include themed {
-            background-color: t(iui-color-background-3);
-          }
-          user-select: none;
-  
-          .iui-icon {
-            @include themed {
-              fill: t(iui-icons-color-actionable);
-            }
-  
-            &:hover {
-              @include themed {
-                fill: t(iui-icons-color-actionable-hover);
-              }
-            }
-          }
-  
-          > .iui-sort {
-            flex-grow: 1;
-            justify-content: flex-end !important;
-  
-            > .iui-icon-wrapper {
-              cursor: pointer;
-  
-              > .iui-icon {
-                width: $iui-icons-default;
-                height: $iui-icons-default;
-              }
-            }
-          }
-  
-          > .iui-filter,
-          > .iui-sort,
-          > .iui-sort > .iui-icon-wrapper {
-            height: $iui-icons-default;
-            width: $iui-icons-default;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            visibility: hidden;
-          }
-  
-          > .iui-filter.iui-selected {
-            visibility: visible;
-    
-            > .iui-icon {
-              @include themed {
-                fill: t(iui-icons-color-primary);
-              }
-            }
-          }
-  
-          &:hover {
-            @include themed {
-              background-color: t(iui-color-background-4);
-            }
-  
-            > .iui-filter,
-            > .iui-sort,
-            > .iui-sort > .iui-icon-wrapper {
-              visibility: visible;
-            }
-          }
-        }
-      }
-  
-      // #region Selection
-      &:not(.iui-selected) + .iui-selected {
-        padding-bottom: $iui-xxs;
-        border-bottom: none;
-      }
-
-      &.iui-selected {
-        padding: 0;
-        border-bottom: 0 none;
-
-        border: solid 1px t(iui-color-foreground-primary);
-        background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
-
-        &:hover {
-          background: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-5)
-          );
-        }
-
-        & + .iui-selected {
-          border-bottom: 0;
-          padding-bottom: $iui-xxs;
-          border-top: 1px solid
-            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
-          padding-top: 0;
-        }
-
-        &:last-child {
-          padding-bottom: 1px;
-          border-bottom: 1px solid t(iui-color-foreground-primary);
-        }
-
-        &:first-child {
-          border-bottom: 0;
-          padding-bottom: $iui-xxs;
-        }
-
-        // Last selected item in a row.
-        & + :not(.iui-selected) {
-          padding-top: 0;
-          margin-left: 0;
-          margin-right: 0;
-          border-top: 1px solid t(iui-color-foreground-primary);
-        }
-      }
-
-      &:last-child {
-        padding-bottom: $iui-xxs;
-        border-bottom: 0;
-      }
-      // #endregion Selection
-  
-      &.iui-new {
-        font-weight: $iui-font-weight-semibold;
-        
-        > .iui-main-column::before {
-          @include themed {
-            color: t(iui-color-foreground-positive);
-          }
-          content: '•';
-          position: absolute;
-          left: 0;
-          font-size: $iui-font-size-title;
-        }   
-      }
-  
-      &.iui-disabled {
-        font-style: italic;
-        cursor: not-allowed;
-        @include themed {
-          color: t(iui-text-color-muted);
-        }
-  
-        &:hover > .iui-slot > .iui-button {
-          visibility: hidden;
-        }
-  
-        img,
-        svg:not(.iui-radial),
-        .iui-user-icon {
-          filter: $iui-icons-color-multicolor-disabled;
-        }
-      }
-
-      &.iui-positive {
-        @include themed {
-          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-positive);
-        }
-
-        .iui-status {
-          @include themed {
-            fill: t(iui-icons-color-positive);
-          }
-        }
-
-        *::selection {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-positive-rgb),
-              t(iui-opacity-4)
-            );
-          }
-        }
-      }
-      
-      &.iui-warning {
-        @include themed {
-          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-warning);
-        }
-
-        .iui-status {
-          @include themed {
-            fill: t(iui-icons-color-warning);
-          }
-        }
-
-        *::selection {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-warning-rgb),
-              t(iui-opacity-4)
-            );
-          }
-        }
-      }
-
-      &.iui-negative {
-        @include themed {
-          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-negative);
-        }
-
-        .iui-status {
-          @include themed {
-            fill: t(iui-icons-color-negative);
-          }
-        }
-
-        *::selection {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-negative-rgb),
-              t(iui-opacity-4)
-            );
-          }
-        }
-      }
-    }
-
-    &.iui-message {
-      text-align: center;
-      height: 100%;
-      padding: $iui-xl;
-      @include themed {
-        color: t(iui-text-color-muted);
-        background-color: t(iui-color-background-2);
-      }
-    }
-
-    &.iui-expandable {
-      .iui-row-group {
-        @include themed {
-          border-bottom: solid 1px t(iui-color-background-4);
-        }
-
-        .iui-row {
-          border-color: transparent;
-        }
-      }
-    }
-  }
-
-  .iui-row {
-    display: flex;
-    flex-grow: 1;
-    width: 100%;
+    @include iui-table-body;
   }
 
   .iui-cell {
-    align-items: center;
-    display: flex;
-    flex-grow: 1;
-    min-width: $iui-l * 6;
-    min-height: $iui-baseline * 5;
-    padding: 0 $iui-m;
-    overflow: hidden;
-    list-style: none;
-    flex-basis: $iui-l * 6;
-
-    > svg {
-      width: $iui-icons-default;
-      height: $iui-icons-default;
-      flex-shrink: 0;
-    }
-
-    > .iui-status,
-    > .iui-progress-indicator-radial {
-      float: right;
-      margin-left: auto;
-    }
-
-    > .iui-status {
-      margin-right: $iui-xs;
-    }
-
-    > .iui-user-icon {
-      margin-right: $iui-s;
-    }
-
-    &.iui-slot {
-      width: $iui-l * 2;
-      padding: 0;
-      flex-grow: 0;
-      min-width: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-basis: $iui-l * 2;
-
-      > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable);
-          color: t(iui-icons-color-actionable);
-        }
-        width: $iui-icons-default;
-        height: $iui-icons-default;
-        margin: 0;
-      }
-    }
-    
-    &.iui-right-align {
-      justify-content: flex-end;
-    }
-
-    &.iui-positive {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-positive-rgb),
-          t(iui-opacity-6)
-        );
-      }
-
-      &::selection {
-        @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-positive-rgb),
-            t(iui-opacity-4)
-          );
-        }
-      }
-    }
-    
-    &.iui-warning {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-warning-rgb),
-          t(iui-opacity-6)
-        );
-
-        &::selection {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-warning-rgb),
-              t(iui-opacity-4)
-            );
-          }
-        }
-      }
-    }
-
-    &.iui-negative {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-negative-rgb),
-          t(iui-opacity-6)
-        );
-      }
-
-      &::selection {
-        @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-negative-rgb),
-            t(iui-opacity-4)
-          );
-        }
-      }
-    }
+    @include iui-table-cell;
   }
 
   &.iui-zebra-striping > .iui-body > .iui-row:nth-child(even):not(.iui-selected) {
@@ -577,5 +38,552 @@
     overflow-x: hidden;
     overflow-y: scroll;
     overflow: overlay;
+  }
+}
+
+@mixin iui-table-header {
+  width: 100%;
+  user-select: none;
+  @include themed {
+    background-color: t(iui-color-background-3);
+  }
+
+  .iui-row {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .iui-cell:not(.iui-slot) {
+    @include iui-focus;
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+
+    > .iui-borderless {
+      margin-left: $iui-xs;
+
+      &:not(.iui-active) {
+        visibility: hidden;
+      }
+    }
+
+    > .iui-resizer {
+      height: 100%;
+      width: $iui-m;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateX(50%);
+      touch-action: none;
+      cursor: ew-resize;
+      z-index: 100;
+      display: none;
+        
+      > .iui-resizer-bar {
+        height: 100%;
+        width: $iui-xxs;
+        margin: 0 auto;
+        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+        @include themed {
+          background-color: t(iui-color-background-5);
+        }
+      }
+
+      &:hover > .iui-resizer-bar {
+        width: $iui-xs;
+        @include themed {
+          background-color: t(iui-color-foreground-primary);
+        }
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      @include themed {
+        background-color: t(iui-color-background-4);
+      }
+
+      .iui-sort,
+      .iui-borderless {
+        visibility: visible;
+      }
+    }
+
+    &:hover {
+      > .iui-resizer {
+        display: block;
+      }
+    }
+  }
+
+  // Sort icon
+  .iui-sort {
+    visibility: hidden;
+    margin-left: auto;
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
+  }
+
+  // Sorted column
+  .iui-active-sort {
+    @include themed {
+      background-color: t(iui-color-background-4);
+    }
+
+    .iui-sort {
+      visibility: visible;
+        
+      &,
+      > * {
+        @include themed {
+          fill: t(iui-icons-color-actionable);
+        }
+      }
+    }
+  }
+
+  // Double header
+  .iui-row + .iui-row {
+    @include themed {
+      border-top: 1px solid t(iui-color-background-5);
+    }
+  }
+}
+
+@mixin iui-table-body {
+  width: 100%;
+  @include themed {
+    background-color: t(iui-color-background-1);
+  }
+  
+  .iui-row {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    margin-top: -1px;
+    border: solid 1px transparent;
+
+    // Last row doesn't get bottom border. Up for debate.
+    &:not(:last-child) {
+      @include themed {
+        border-bottom: solid 1px t(iui-color-background-4);
+      }
+    }
+
+    > .iui-slot > .iui-more-options {
+      visibility: hidden;
+    }
+
+    &:hover:not(.iui-disabled) {
+      &:not(.iui-selected):not(.iui-expanded-content) {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-6)
+          );
+        }
+      }
+
+      > .iui-slot > .iui-more-options,
+      &:focus-within > .iui-slot > .iui-more-options {
+        visibility: visible;
+        // FOCUS WITHIN not working
+      }
+    }
+
+    > .iui-cell {
+      position: relative;
+      align-items: center;
+      display: flex;
+      flex-grow: 1;
+      min-width: $iui-l * 6;
+      min-height: $iui-baseline * 5;
+      padding: 0 $iui-m;
+      overflow: hidden;
+      list-style: none;
+      flex-basis: $iui-l * 6;
+
+      > svg {
+        width: $iui-icons-default;
+        height: $iui-icons-default;
+        margin-right: $iui-m;
+      }
+
+      > .iui-status,
+      > .iui-progress-indicator-radial {
+        float: right;
+        margin-left: auto;
+      }
+
+      > .iui-status {
+        margin-right: $iui-xs;
+      }
+
+      > .iui-user-icon {
+        margin-right: $iui-s;
+      }
+
+      &.iui-slot {
+        width: $iui-l * 2;
+        padding: 0;
+        flex-grow: 0;
+        min-width: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: $iui-l * 2;
+
+        > .iui-icon {
+          @include themed {
+            fill: t(iui-icons-color-actionable);
+            color: t(iui-icons-color-actionable);
+          }
+          width: $iui-icons-default;
+          height: $iui-icons-default;
+          margin: 0;
+        }
+      }
+
+      // #region Indented rows
+      &.iui-expander-indent-0 {
+        padding-left: 0;
+      }
+
+      &.iui-expander-indent-1 {
+        padding-left: $iui-xl;
+      }
+
+      &.iui-expander-indent-2 {
+        padding-left: $iui-xl * 2;
+      }
+
+      &.iui-indent-1 {
+        padding-left: $iui-xl + $iui-s;
+      }
+
+      &.iui-indent-2 {
+        padding-left: ($iui-xl + $iui-s) * 2;
+      }
+      // #endregion Indented rows
+    }
+
+    // #region Selection
+    &:not(.iui-selected) + .iui-selected {
+      padding-bottom: $iui-xxs;
+      border-bottom: none;
+    }
+
+    &.iui-selected {
+      padding: 0;
+      border-bottom: 0 none;
+      @include themed {
+        border: solid 1px t(iui-color-foreground-primary);
+        background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+      }
+
+      &:hover {
+        @include themed {
+          background: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-5)
+          );
+        }
+      }
+
+      + .iui-selected {
+        border-bottom: 0;
+        padding-bottom: $iui-xxs;
+        padding-top: 0;
+        @include themed {
+          border-top: 1px solid
+            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
+        }
+      }
+
+      &:last-child {
+        padding-bottom: 1px;
+        @include themed {
+          border-bottom: 1px solid t(iui-color-foreground-primary);
+        }
+      }
+
+      &:first-child {
+        border-bottom: 0;
+        padding-bottom: $iui-xxs;
+      }
+
+      // Last selected item in a row.
+      + :not(.iui-selected) {
+        padding-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        @include themed {
+          border-top: 1px solid t(iui-color-foreground-primary);
+        }
+      }
+
+      // Added by Jon, not fully tested
+      + .iui-expanded-content {
+        @include themed {
+          border-color: t(iui-color-foreground-primary);
+        }
+      }
+    }
+
+    &:last-child {
+      padding-bottom: $iui-xxs;
+      border-bottom: 0;
+    }
+    // #endregion Selection
+
+    // #region Statuses & states
+    &.iui-new {
+      font-weight: $iui-font-weight-semibold;
+      
+      > .iui-main-column::before {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+        }
+        content: '•';
+        position: absolute;
+        left: 0;
+        font-size: $iui-font-size-title;
+      }   
+    }
+
+    &.iui-disabled,
+    &.iui-disabled + .iui-expanded-content {
+      font-style: italic;
+      cursor: not-allowed;
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
+
+      &:hover > .iui-slot > .iui-more-options {
+        visibility: hidden;
+      }
+
+      img,
+      svg:not(.iui-radial),
+      .iui-user-icon {
+        filter: $iui-icons-color-multicolor-disabled;
+      }
+    }
+
+    &.iui-positive {
+      &,
+      + .iui-expanded-content {
+        @include themed {
+          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-positive);
+        }
+
+        *::selection {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-positive-rgb),
+              t(iui-opacity-4)
+            );
+          }
+        }
+      }
+
+      .iui-status {
+        @include themed {
+          fill: t(iui-icons-color-positive);
+        }
+      }
+    }
+    
+    &.iui-warning {
+      &,
+      + .iui-expanded-content {
+        @include themed {
+          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-warning);
+        }
+
+        *::selection {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-warning-rgb),
+              t(iui-opacity-4)
+            );
+          }
+        }
+      }
+
+      .iui-status {
+        @include themed {
+          fill: t(iui-icons-color-warning);
+        }
+      }
+    }
+
+    &.iui-negative {
+      &,
+      + .iui-expanded-content {
+        @include themed {
+          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-negative);
+        }
+
+        *::selection {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-negative-rgb),
+              t(iui-opacity-4)
+            );
+          }
+        }
+      }
+
+      .iui-status {
+        @include themed {
+          fill: t(iui-icons-color-negative);
+        }
+      }
+    }
+
+    &.iui-expanded {
+      .iui-expander > .iui-icon {
+        transform: rotate(90deg);
+      }
+
+      + .iui-expanded-content {
+        @include themed {
+          border-top: solid 1px t(iui-color-background-1);
+        }
+      }
+    }
+    // #endregion Selection
+  }
+
+  // Empty & loading states
+  &.iui-message {
+    text-align: center;
+    height: 100%;
+    padding: $iui-xl;
+    @include themed {
+      color: t(iui-text-color-muted);
+      background-color: t(iui-color-background-2);
+    }
+  }
+}
+
+@mixin iui-table-cell {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  min-width: $iui-l * 6;
+  min-height: $iui-baseline * 5;
+  padding: 0 $iui-m;
+  overflow: hidden;
+  list-style: none;
+  flex-basis: $iui-l * 6;
+
+  > svg {
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    flex-shrink: 0;
+  }
+
+  > .iui-status,
+  > .iui-progress-indicator-radial {
+    float: right;
+    margin-left: auto;
+  }
+
+  > .iui-status {
+    margin-right: $iui-xs;
+  }
+
+  > .iui-user-icon {
+    margin-right: $iui-s;
+  }
+
+  > .iui-expander {
+    margin: 0 4px;
+  }
+
+  &.iui-slot {
+    width: $iui-l * 2;
+    padding: 0;
+    flex-grow: 0;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: $iui-l * 2;
+
+    > .iui-icon {
+      @include themed {
+        fill: t(iui-icons-color-actionable);
+        color: t(iui-icons-color-actionable);
+      }
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+      margin: 0;
+    }
+  }
+    
+  &.iui-right-align {
+    justify-content: flex-end;
+  }
+
+  &.iui-positive {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-positive-rgb),
+        t(iui-opacity-6)
+      );
+    }
+
+    &::selection {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-positive-rgb),
+          t(iui-opacity-4)
+        );
+      }
+    }
+  }
+    
+  &.iui-warning {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-warning-rgb),
+        t(iui-opacity-6)
+      );
+
+      &::selection {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-warning-rgb),
+            t(iui-opacity-4)
+          );
+        }
+      }
+    }
+  }
+
+  &.iui-negative {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-negative-rgb),
+        t(iui-opacity-6)
+      );
+    }
+
+    &::selection {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-negative-rgb),
+          t(iui-opacity-4)
+        );
+      }
+    }
   }
 }

@@ -28,10 +28,6 @@
     flex: 1;
   }
 
-  > .iui-left {
-
-  }
-
   > .iui-center {
     width: 33%;
     justify-content: center;
@@ -83,7 +79,6 @@
           @include themed {
             color: t(iui-text-color-muted);
           }
-
         }
       }
     }
