@@ -8,7 +8,7 @@ module.exports = [
   }),
   scenario('radial', {
     selectors: ['#demo-radial'],
-    hideSelectors: ['h3', 'h4', 'p'],
+    hideSelectors: ['h3', 'p'],
   }),
   scenario('overlay', {
     selectors: ['#demo-overlay'],
