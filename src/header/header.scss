@@ -28,7 +28,7 @@
   }
 
   > .iui-left {
-    flex: 2 1 33%;
+    flex: 2 1 45%;
     @include iui-header-buttons;
 
     > nav {
@@ -50,7 +50,8 @@
   }
 
   > .iui-right {
-    flex: 2 1 33%;
+    min-width: 0;
+    flex: 2 1 20%;
     justify-content: flex-end;
 
     .iui-user-icon {
@@ -116,6 +117,36 @@
       }
     }
   }
+
+  @media (max-width: 768px) {
+    &,
+    &.iui-slim.iui-slim {
+      .iui-left {
+        .iui-header-button {
+          .iui-header-button-icon.iui-header-button-icon {
+            opacity: 0;
+            width: 0;
+            margin: 0;
+            padding: 0;
+          }
+
+          .iui-header-button-icon + .iui-label {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .iui-left {
+      .iui-header-logo > .iui-label {
+        opacity: 0;
+        width: 0;
+        margin: 0;
+      }
+    }
+  }
 }
 
 @mixin iui-header-button-icon(
@@ -161,20 +192,32 @@
     > .iui-label {
       margin-right: $iui-sm;
       font-size: $iui-font-size-leading;
-      transition: font-size $iui-speed-fast ease-out;
+      transition: all $iui-speed-fast ease;
     }
   }
 
   .iui-header-button {
+    max-width: 25vw;
+
     > .iui-label {
       text-align: left;
       font-size: $iui-font-size;
+      overflow: hidden;
+
+      > div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
       .iui-description {
         @include themed {
           opacity: t(iui-opacity-3);
         }
       }
+    }
+
+    > .iui-icon {
+      flex-shrink: 0;
     }
 
     svg.iui-header-button-icon {
