@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.15.0]
+
+`2021-05-17`
+
+### What's new
+
+- **Added side-navigation component.**
+- **Added `.iui-required` class to labeled inputs** and removed automatic colon after all labels.
+
+## [0.14.0]
+
+`2021-05-17`
+
+### What's new
+
+- **Added progress indicator overlay.**
+- **Added fieldset component.**
+
+### Fixes
+
+- **Added nav and aria attributes to header breadcrumbs.**
+
 ## [0.13.1]
 
 `2021-05-12`
@@ -183,6 +205,8 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.15.0]: https://github.com/iTwin/iTwinUI/compare/v0.14.0...v0.15.0
+[0.14.0]: https://github.com/iTwin/iTwinUI/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/iTwin/iTwinUI/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/iTwin/iTwinUI/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/iTwin/iTwinUI/compare/v0.11.0...v0.12.0

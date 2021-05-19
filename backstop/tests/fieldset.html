@@ -1,0 +1,182 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html id="theme">
+  <head>
+    <title>Fieldset | iTwinUI</title>
+    <link
+      rel="icon"
+      href="../assets/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Fieldset</h1>
+    <hr />
+
+    <section id="demo-default">
+      <fieldset class="iui-fieldset">
+        <legend>General settings</legend>
+
+        <label class="iui-input-container iui-inline">
+          <div class="iui-label">Resolution</div>
+          <div class="iui-select">
+            <div
+              tabindex="0"
+              class="iui-select-button"
+            >
+              <span class="iui-content">2560 x 1600</span>
+            </div>
+          </div>
+        </label>
+
+        <div class="iui-input-container iui-inline">
+          <div class="iui-label">Color theme</div>
+          <label class="iui-radio">
+            <input
+              type="radio"
+              name="radio-demo-1"
+              value="light"
+            />
+            <span class="iui-radio-dot">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  r="6"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Light</span>
+          </label>
+          <label class="iui-radio">
+            <input
+              type="radio"
+              name="radio-demo-1"
+              value="dark"
+            />
+            <span class="iui-radio-dot">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  r="6"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Dark</span>
+          </label>
+          <label class="iui-radio">
+            <input
+              type="radio"
+              name="radio-demo-1"
+              value="match-device"
+              checked
+            />
+            <span class="iui-radio-dot">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  r="6"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Match device</span>
+          </label>
+        </div>
+
+        <label class="iui-toggle-switch">
+          <input
+            type="checkbox"
+            checked
+          />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
+          <span class="iui-label">Share usage statistics</span>
+        </label>
+
+        <label class="iui-toggle-switch">
+          <input
+            type="checkbox"
+            checked
+          />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
+          <span class="iui-label">Share crash logs</span>
+        </label>
+
+        <label class="iui-toggle-switch">
+          <input
+            type="checkbox"
+            disabled
+          />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
+          <span class="iui-label">Advanced settings</span>
+        </label>
+
+      </fieldset>
+
+      <br />
+
+      <fieldset
+        class="iui-fieldset"
+        disabled
+      >
+        <legend>Advanced settings</legend>
+
+        <label class="iui-input-container iui-inline iui-disabled">
+          <div class="iui-label">Internal URL</div>
+          <input
+            value="http://127.0.0.1:5500/backstop/minified/fieldset.html"
+            class="iui-input"
+            disabled
+          />
+        </label>
+
+        <label class="iui-toggle-switch">
+          <input type="checkbox" />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
+          <span class="iui-label">Enable GPU rendering</span>
+        </label>
+
+        <label class="iui-toggle-switch">
+          <input type="checkbox" />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
+          <span class="iui-label">Enable overclock mode</span>
+        </label>
+      </fieldset>
+    </section>
+  </body>
+</html>

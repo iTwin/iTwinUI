@@ -30,7 +30,7 @@
 
     &:not(:last-child) {
       > a {
-        border-right: 0;
+        border-right: none;
       }
     }
 
