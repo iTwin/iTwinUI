@@ -106,7 +106,8 @@
         }
   
         .iui-description {
-          display: none;
+          opacity: 0;
+          height: 0;
         }
       }
     }
@@ -214,6 +215,8 @@
       }
 
       .iui-description {
+        height: $iui-baseline * 2;
+        transition: all 0.2s ease;
         @include themed {
           opacity: t(iui-opacity-3);
         }
