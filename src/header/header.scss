@@ -4,7 +4,7 @@
 @import '../user-icon/index';
 @import '../icon/index';
 
-@mixin iui-global-header {
+@mixin iui-page-header {
   @include iui-reset;
   @include iui-font-family;
   display: flex;
