@@ -1,4 +1,21 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+
 $iui-border-radius: 3px;
 $iui-blur-filter: blur(5px);
+
+
+// All inputs
+$iui-input-offset: 3px;
+
+$iui-input-height: $iui-baseline * 4 - $iui-input-offset * 2;
+$iui-input-height-small: $iui-baseline * 3 - $iui-input-offset * 2;
+$iui-input-height-large: $iui-baseline * 5 - $iui-input-offset * 2;
+
+$iui-input-padding-width: $iui-sm;
+$iui-input-padding-width-small: $iui-sm / 2;
+$iui-input-padding-width-large: $iui-sm * 1.5;
+
+$iui-input-padding-height: (($iui-input-height - $iui-line-height) / 2) - 1;
+$iui-input-padding-height-small: (($iui-input-height-small - $iui-line-height) / 2) - 1;
+$iui-input-padding-height-large: (($iui-input-height-large - $iui-line-height) / 2) - 1;

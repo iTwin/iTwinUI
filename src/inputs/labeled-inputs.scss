@@ -166,6 +166,12 @@
 }
 
 @mixin iui-inputs-status($foregroundColor, $foregroundOverlay, $foregroundRgb) {
+  *::selection {
+    @include themed {
+      background-color: rgba(t($foregroundRgb), t(iui-opacity-4));
+    }
+  }
+
   > .iui-message {
     @include themed {
       color: t($foregroundColor);
@@ -193,12 +199,6 @@
         }
       }
     }
-
-    &::selection {
-      @include themed {
-        background-color: rgba(t($foregroundRgb), t(iui-opacity-4));
-      }
-    }
   }
 
   > input,
@@ -206,7 +206,15 @@
   > textarea,
   > .iui-textarea,
   > .iui-select > .iui-select-button {
-    padding-bottom: $iui-inputs-padding - 1px;
+    padding-bottom: $iui-input-padding-height - 1px;
+
+    &.iui-small {
+      padding-bottom: $iui-input-padding-height-small - 1px;
+    }
+
+    &.iui-large {
+      padding-bottom: $iui-input-padding-height-large - 1px;
+    }
 
     @include themed {
       border-bottom: 2px solid t($foregroundColor) !important;

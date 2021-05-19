@@ -5,8 +5,8 @@
 
 @mixin iui-input {
   @include iui-font-family;
+  @include iui-input-sizes;
   width: 100%;
-  padding: $iui-inputs-padding $iui-sm;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
   line-height: $iui-line-height;
@@ -14,7 +14,6 @@
   appearance: none;
   box-sizing: border-box;
   transition: border-color $iui-speed-fast ease-out;
-
   @include themed {
     color: t(iui-text-color);
     background-color: t(iui-color-background-1);
@@ -22,6 +21,7 @@
   }
 
   &::placeholder {
+    user-select: none;
     @include themed {
       color: t(iui-text-color-placeholder);
     }
@@ -71,5 +71,21 @@
       rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
     ),
       linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+  }
+}
+
+@mixin iui-input-sizes {
+  padding: $iui-input-padding-height $iui-input-padding-width;
+  min-height: $iui-input-height;
+
+  &.iui-small {
+    padding: $iui-input-padding-height-small $iui-input-padding-width-small;
+    min-height: $iui-input-height-small;
+  }
+
+  &.iui-large {
+    padding: $iui-input-padding-height-large $iui-input-padding-width-large;
+    min-height: $iui-input-height-large;
+    font-size: $iui-font-size-leading;
   }
 }
