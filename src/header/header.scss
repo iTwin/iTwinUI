@@ -3,7 +3,6 @@
 @import '../style/index';
 @import '../user-icon/index';
 @import '../icon/index';
-@import '../style/mixins';
 
 @mixin iui-page-header {
   @include iui-reset;
