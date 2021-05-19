@@ -28,13 +28,19 @@
   }
 
   > .iui-left {
-    flex: 2 1 45%;
     @include iui-header-buttons;
 
     > nav {
       display: flex;
       align-items: center;
       height: 100%;
+    }
+
+    &,
+    > nav {
+      overflow: hidden;
+      margin-bottom: -$iui-xs;
+      padding-bottom: $iui-xs;
     }
 
     .iui-chevron {
@@ -46,12 +52,9 @@
 
   > .iui-center {
     justify-content: center;
-    flex: 1 1 auto;
   }
 
   > .iui-right {
-    min-width: 0;
-    flex: 2 1 20%;
     justify-content: flex-end;
 
     .iui-user-icon {
@@ -198,6 +201,7 @@
 
   .iui-header-button {
     max-width: 25vw;
+    overflow: hidden;
 
     > .iui-label {
       text-align: left;
