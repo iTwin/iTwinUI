@@ -3,6 +3,7 @@
 @import '../style/index';
 @import '../user-icon/index';
 @import '../icon/index';
+@import '../style/mixins';
 
 @mixin iui-page-header {
   @include iui-reset;
@@ -106,8 +107,7 @@
         }
   
         .iui-description {
-          opacity: 0;
-          height: 0;
+          @include iui-display-none;
         }
       }
     }
@@ -128,10 +128,7 @@
       .iui-left {
         .iui-header-button {
           .iui-header-button-icon.iui-header-button-icon {
-            opacity: 0;
-            width: 0;
-            margin: 0;
-            padding: 0;
+            @include iui-display-none;
           }
 
           .iui-header-button-icon + .iui-label {
@@ -145,9 +142,7 @@
   @media (max-width: 1024px) {
     .iui-left {
       .iui-header-logo > .iui-label {
-        opacity: 0;
-        width: 0;
-        margin: 0;
+        @include iui-display-none;
       }
     }
   }
