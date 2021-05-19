@@ -280,7 +280,7 @@
 
     &.iui-selected {
       padding: 0;
-      border-bottom: 0 none;
+      border-bottom: none;
       @include themed {
         border: solid 1px t(iui-color-foreground-primary);
         background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
@@ -296,7 +296,7 @@
       }
 
       + .iui-selected {
-        border-bottom: 0;
+        border-bottom: none;
         padding-bottom: $iui-xxs;
         padding-top: 0;
         @include themed {
@@ -313,7 +313,7 @@
       }
 
       &:first-child {
-        border-bottom: 0;
+        border-bottom: none;
         padding-bottom: $iui-xxs;
       }
 
@@ -337,7 +337,7 @@
 
     &:last-child {
       padding-bottom: $iui-xxs;
-      border-bottom: 0;
+      border-bottom: none;
     }
     // #endregion Selection
 
@@ -376,75 +376,15 @@
     }
 
     &.iui-positive {
-      &,
-      + .iui-expanded-content {
-        @include themed {
-          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-positive);
-        }
-
-        *::selection {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-positive-rgb),
-              t(iui-opacity-4)
-            );
-          }
-        }
-      }
-
-      .iui-status {
-        @include themed {
-          fill: t(iui-icons-color-positive);
-        }
-      }
+      @include iui-table-row-status;
     }
     
     &.iui-warning {
-      &,
-      + .iui-expanded-content {
-        @include themed {
-          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-warning);
-        }
-
-        *::selection {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-warning-rgb),
-              t(iui-opacity-4)
-            );
-          }
-        }
-      }
-
-      .iui-status {
-        @include themed {
-          fill: t(iui-icons-color-warning);
-        }
-      }
+      @include iui-table-row-status($status:warning);
     }
 
     &.iui-negative {
-      &,
-      + .iui-expanded-content {
-        @include themed {
-          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-negative);
-        }
-
-        *::selection {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-negative-rgb),
-              t(iui-opacity-4)
-            );
-          }
-        }
-      }
-
-      .iui-status {
-        @include themed {
-          fill: t(iui-icons-color-negative);
-        }
-      }
+      @include iui-table-row-status($status:negative);
     }
 
     &.iui-expanded {
@@ -584,6 +524,30 @@
           t(iui-opacity-4)
         );
       }
+    }
+  }
+}
+
+@mixin iui-table-row-status($status: positive) {
+  &,
+  + .iui-expanded-content {
+    @include themed {
+      box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-#{$status});
+    }
+
+    *::selection {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-#{$status}-rgb),
+          t(iui-opacity-4)
+        );
+      }
+    }
+  }
+
+  .iui-status {
+    @include themed {
+      fill: t(iui-icons-color-#{$status});
     }
   }
 }
