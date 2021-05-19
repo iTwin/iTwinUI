@@ -216,7 +216,7 @@
 
       .iui-description {
         height: $iui-baseline * 2;
-        transition: all 0.2s ease;
+        transition: all $iui-speed-fast ease;
         @include themed {
           opacity: t(iui-opacity-3);
         }
