@@ -28,13 +28,19 @@
   }
 
   > .iui-left {
-    flex: 2 1 33%;
     @include iui-header-buttons;
 
     > nav {
       display: flex;
       align-items: center;
       height: 100%;
+    }
+
+    &,
+    > nav {
+      overflow: hidden;
+      margin-bottom: -$iui-xs;
+      padding-bottom: $iui-xs;
     }
 
     .iui-chevron {
@@ -46,11 +52,9 @@
 
   > .iui-center {
     justify-content: center;
-    flex: 1 1 auto;
   }
 
   > .iui-right {
-    flex: 2 1 33%;
     justify-content: flex-end;
 
     .iui-user-icon {
@@ -102,7 +106,7 @@
         }
   
         .iui-description {
-          display: none;
+          @include iui-display-none;
         }
       }
     }
@@ -113,6 +117,31 @@
           $size: $iui-icons-large,
           $font-size: $iui-font-size-small
         );
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    &,
+    &.iui-slim.iui-slim {
+      .iui-left {
+        .iui-header-button {
+          .iui-header-button-icon.iui-header-button-icon {
+            @include iui-display-none;
+          }
+
+          .iui-header-button-icon + .iui-label {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .iui-left {
+      .iui-header-logo > .iui-label {
+        display: none;
       }
     }
   }
@@ -166,15 +195,30 @@
   }
 
   .iui-header-button {
+    max-width: 25vw;
+    overflow: hidden;
+
     > .iui-label {
       text-align: left;
       font-size: $iui-font-size;
+      overflow: hidden;
+
+      > div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
       .iui-description {
+        height: $iui-baseline * 2;
+        transition: all $iui-speed-fast ease;
         @include themed {
           opacity: t(iui-opacity-3);
         }
       }
+    }
+
+    > .iui-icon {
+      flex-shrink: 0;
     }
 
     svg.iui-header-button-icon {

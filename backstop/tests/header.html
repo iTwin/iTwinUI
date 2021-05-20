@@ -44,11 +44,15 @@
         fill: var(--iui-icons-color-actionable);
       }
 
-      .iui-input {
+      .demo-searchbar {
         border-radius: 22px;
         width: 20vw;
         background-color: var(--iui-color-background-2);
         margin: 12px;
+      }
+
+      @media (max-width: 1024px) {
+        .demo-searchbar { display: none; }
       }
 
       body {
@@ -173,7 +177,7 @@
           <input
             type="search"
             placeholder="Search within Model Beta…"
-            class="iui-input"
+            class="iui-input demo-searchbar"
           >
         </div>
 
@@ -974,7 +978,7 @@
   <script>
     const toggleSwitch = document.querySelector('#demo-slim-toggle input[type=checkbox]');
     toggleSwitch.addEventListener('change', (e) => {
-      document.querySelector('#demo-slim-toggle .iui-header').classList.toggle('iui-slim');
+      document.querySelector('#demo-slim-toggle .iui-page-header').classList.toggle('iui-slim');
     });
   </script>
 </html>
