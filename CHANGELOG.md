@@ -10,6 +10,10 @@
   - **Added new `HeaderLogo` component** for use with the Header `appLogo` prop.
   - **Added new `HeaderBreadcrumbs` and `HeaderButton` component** for use with the Header `breadcrumbs` prop.
 
+### Fixes
+
+- **Fixed `Table` bug where filter actions would also trigger sorting.**
+
 ## [1.4.1]
 
 `2021-05-17`

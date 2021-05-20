@@ -35,7 +35,13 @@ export const BaseFilter = (props: BaseFilterProps) => {
   useTheme();
 
   return (
-    <div className={cx('iui-column-filter', className)} style={style}>
+    <div
+      className={cx('iui-column-filter', className)}
+      style={style}
+      onClick={(e: React.MouseEvent) => {
+        e.stopPropagation();
+      }}
+    >
       {children}
     </div>
   );

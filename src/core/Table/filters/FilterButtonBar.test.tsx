@@ -5,6 +5,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { FilterButtonBar, FilterButtonBarProps } from './FilterButtonBar';
+import { BaseFilter } from './BaseFilter';
 
 const setFilter = jest.fn();
 const clearFilter = jest.fn();
@@ -74,4 +75,20 @@ it('should call callbacks on clicks', () => {
 
   screen.getByText('Clear').click();
   expect(clearFilter).toHaveBeenCalled();
+});
+
+it('should consume the click event and stop its propagation', () => {
+  const parentClick = jest.fn();
+  render(
+    <div onClick={parentClick}>
+      <BaseFilter>
+        <FilterButtonBar setFilter={setFilter} clearFilter={clearFilter} />
+      </BaseFilter>
+    </div>,
+  );
+
+  screen.getByText('Filter').click();
+
+  screen.getByText('Clear').click();
+  expect(parentClick).not.toHaveBeenCalled();
 });
