@@ -6,6 +6,7 @@ export { BaseFilter } from './BaseFilter';
 export type { BaseFilterProps } from './BaseFilter';
 
 export { tableFilters } from './tableFilters';
+export type { DateRangeFilterOptions } from './tableFilters';
 
 export type { TableFilterProps, TableFilterValue } from './types';
 

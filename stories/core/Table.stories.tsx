@@ -315,15 +315,39 @@ Sortable.args = {
 export const Filters: Story<TableProps> = (args) => {
   const { columns, data, ...rest } = args;
   const onClickHandler = (
-    props: CellProps<{ name: string; description: string; ids: number[] }>,
+    props: CellProps<{
+      name: string;
+      description: string;
+      ids: number[];
+      date: Date;
+    }>,
   ) => action(props.row.original.name)();
 
-  const localizedStrings = useMemo(
+  const translatedLabels = useMemo(
     () => ({
       filter: 'Filter',
       clear: 'Clear',
+      from: 'From',
+      to: 'To',
     }),
     [],
+  );
+
+  const formatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat('en-us', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      }),
+    [],
+  );
+
+  const formatDate = useCallback(
+    (date: Date) => {
+      return formatter.format(date);
+    },
+    [formatter],
   );
 
   const tableColumns = useMemo(
@@ -336,14 +360,14 @@ export const Filters: Story<TableProps> = (args) => {
             Header: 'Name',
             accessor: 'name',
             fieldType: 'text',
-            Filter: tableFilters.TextFilter(localizedStrings),
+            Filter: tableFilters.TextFilter(translatedLabels),
           },
           {
             id: 'description',
             Header: 'Description',
             accessor: 'description',
             fieldType: 'text',
-            Filter: tableFilters.TextFilter(localizedStrings),
+            Filter: tableFilters.TextFilter(translatedLabels),
             maxWidth: 200,
           },
           {
@@ -359,8 +383,27 @@ export const Filters: Story<TableProps> = (args) => {
             ) => {
               return props.row.original.ids.join(', ');
             },
-            Filter: tableFilters.TextFilter(localizedStrings),
+            Filter: tableFilters.TextFilter(translatedLabels),
             filter: 'includes',
+          },
+          {
+            id: 'date',
+            Header: 'Date',
+            accessor: 'date',
+            Cell: (
+              props: CellProps<{
+                name: string;
+                description: string;
+                ids: number[];
+                date: Date;
+              }>,
+            ) => {
+              return formatDate(props.row.original.date);
+            },
+            Filter: tableFilters.DateRangeFilter({
+              translatedLabels,
+            }),
+            filter: 'betweenDate',
           },
           {
             id: 'click-me',
@@ -371,6 +414,7 @@ export const Filters: Story<TableProps> = (args) => {
                 name: string;
                 description: string;
                 ids: number[];
+                date: Date;
               }>,
             ) => {
               const onClick = () => onClickHandler(props);
@@ -384,7 +428,7 @@ export const Filters: Story<TableProps> = (args) => {
         ],
       },
     ],
-    [localizedStrings],
+    [formatDate, translatedLabels],
   );
 
   const tableData = useMemo(
@@ -402,6 +446,7 @@ export const Filters: Story<TableProps> = (args) => {
         name: string;
         description: string;
         ids: number[];
+        date: Date;
       }>[],
       state: TableState,
     ) => {
@@ -427,9 +472,24 @@ export const Filters: Story<TableProps> = (args) => {
 
 Filters.args = {
   data: [
-    { name: 'Name1', description: 'Description1', ids: ['1'] },
-    { name: 'Name2', description: 'Description2', ids: ['2', '3', '4'] },
-    { name: 'Name3', description: 'Description3', ids: ['3', '4'] },
+    {
+      name: 'Name1',
+      description: 'Description1',
+      ids: ['1'],
+      date: new Date('May 1, 2021'),
+    },
+    {
+      name: 'Name2',
+      description: 'Description2',
+      ids: ['2', '3', '4'],
+      date: new Date('May 2, 2021'),
+    },
+    {
+      name: 'Name3',
+      description: 'Description3',
+      ids: ['3', '4'],
+      date: new Date('May 3, 2021'),
+    },
   ],
   emptyFilteredTableContent: 'No results found. Clear or try another filter.',
 };

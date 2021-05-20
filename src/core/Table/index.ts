@@ -8,6 +8,7 @@ export type { TableProps } from './Table';
 export { BaseFilter, FilterButtonBar, tableFilters } from './filters';
 export type {
   BaseFilterProps,
+  DateRangeFilterOptions,
   FilterButtonBarProps,
   FilterButtonBarTranslation,
   TableFilterProps,

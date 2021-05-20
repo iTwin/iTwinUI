@@ -33,6 +33,7 @@ import SvgSortUp from '@itwin/itwinui-icons-react/cjs/icons/SortUp';
 import { getCellStyle } from './utils';
 import { TableRowMemoized } from './TableRowMemoized';
 import { FilterToggle, TableFilterValue } from './filters';
+import { customFilterFunctions } from './filters/customFilterFunctions';
 
 /**
  * Table props.
@@ -163,6 +164,7 @@ export const Table = <
     intersectionMargin = 300,
     onFilter,
     emptyFilteredTableContent,
+    filterTypes: filterFunctions,
     ...rest
   } = props;
 
@@ -271,6 +273,7 @@ export const Table = <
       defaultColumn,
       disableSortBy: !isSortable,
       stateReducer: tableStateReducer,
+      filterTypes: { ...customFilterFunctions, ...filterFunctions },
     },
     useFlexLayout,
     useFilters,
