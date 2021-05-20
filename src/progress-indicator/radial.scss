@@ -48,7 +48,7 @@
 @mixin iui-progress-indicator-radial {
   position: relative;
   display: inline-block;
-  @include iui-progress-indicator-radial-size;
+  @include iui-progress-indicator-radial-size($size:$iui-icons-xl);
 
   > svg.iui-radial {
     height: 100%;
@@ -238,7 +238,7 @@
   }
 }
 
-@mixin iui-progress-indicator-radial-size($size:$iui-icons-xl) {
+@mixin iui-progress-indicator-radial-size($size) {
   width: $size;
   height: $size;
 }
