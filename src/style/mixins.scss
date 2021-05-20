@@ -128,3 +128,12 @@
     }
   }
 }
+
+/// Simulates display: none but keeps the element in DOM tree
+@mixin iui-display-none {
+  opacity: 0;
+  height: 0.1px;
+  width: 0.1px;
+  margin: 0;
+  padding: 0;
+}

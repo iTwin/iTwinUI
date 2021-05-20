@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.16.0]
+
+`2021-05-20`
+
+### What's new
+
+- **Changed header class to `.iui-page-header`** and made it responsive.
+
 ## [0.15.0]
 
 `2021-05-17`
@@ -205,6 +213,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.16.0]: https://github.com/iTwin/iTwinUI/compare/v0.16.0...v0.16.0
 [0.15.0]: https://github.com/iTwin/iTwinUI/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/iTwin/iTwinUI/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/iTwin/iTwinUI/compare/v0.13.0...v0.13.1
