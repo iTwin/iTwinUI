@@ -136,7 +136,7 @@ export const Header = (props: HeaderProps) => {
   const headerTranslations = { ...defaultTranslations, ...translatedStrings };
   return (
     <header
-      className={cx('iui-header', { 'iui-slim': isSlim }, className)}
+      className={cx('iui-page-header', { 'iui-slim': isSlim }, className)}
       {...rest}
     >
       <div className='iui-left'>

@@ -14,7 +14,6 @@ import {
 
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/header.css';
-import { ClassNameProps } from '../utils/props';
 
 export type HeaderButtonProps = {
   /**
@@ -42,7 +41,7 @@ export type HeaderButtonProps = {
  * @example
  * <HeaderButton name='Project A' description='0n00434' menuItems={...} />
  * <HeaderButton name='Project B' description='0n00434' startIcon={<SvgImodelHollow />} />
- * <HeaderButton name='Project C' startIcon={<img src='project.png' />} />
+ * <HeaderButton name='Project C' startIcon={<img style={{ objectFit: 'cover' }} src='project.png' />} />
  * <HeaderButton name='Project D' isActive />
  */
 export const HeaderButton = (props: HeaderButtonProps) => {
@@ -55,20 +54,20 @@ export const HeaderButton = (props: HeaderButtonProps) => {
     startIcon,
     ...rest
   } = props;
+
+  useTheme();
+
   const buttonProps: ButtonProps & { styleType: 'borderless' } = {
-    startIcon: React.isValidElement<ClassNameProps>(startIcon)
-      ? React.cloneElement(startIcon, {
-          className: cx('iui-header-button-icon', startIcon.props.className),
+    startIcon: React.isValidElement(startIcon)
+      ? React.cloneElement(startIcon as JSX.Element, {
+          className: cx(
+            'iui-header-button-icon',
+            (startIcon as JSX.Element).props.className,
+          ),
         })
       : undefined,
     styleType: 'borderless',
-    className: cx(
-      'iui-header-button',
-      {
-        'iui-active': isActive,
-      },
-      className,
-    ),
+    className: cx('iui-header-button', { 'iui-active': isActive }, className),
     'aria-current': isActive ? 'location' : undefined,
     children: (
       <>
@@ -78,7 +77,7 @@ export const HeaderButton = (props: HeaderButtonProps) => {
     ),
     ...rest,
   };
-  useTheme();
+
   return menuItems ? (
     <DropdownButton {...buttonProps} menuItems={menuItems} />
   ) : (

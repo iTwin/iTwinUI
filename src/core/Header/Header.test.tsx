@@ -12,24 +12,24 @@ it('should render in its most basic state', () => {
   const { container } = render(
     <Header appLogo={<div className='app-title-container'>AppTitle</div>} />,
   );
-  expect(container.querySelector('.iui-header')).toBeTruthy();
+  expect(container.querySelector('.iui-page-header')).toBeTruthy();
   expect(
-    container.querySelector('.iui-header > .iui-left:first-child'),
+    container.querySelector('.iui-page-header > .iui-left:first-child'),
   ).toBeTruthy();
   expect(
     container.querySelector(
-      '.iui-header > .iui-left > .app-title-container:first-child',
+      '.iui-page-header > .iui-left > .app-title-container:first-child',
     ),
   ).toBeTruthy();
   expect(
     container.querySelector(
-      '.iui-header > .iui-left > .iui-divider:nth-child(2)',
+      '.iui-page-header > .iui-left > .iui-divider:nth-child(2)',
     ),
   ).toBeNull();
   expect(
-    container.querySelector('.iui-header > .iui-right:last-child'),
+    container.querySelector('.iui-page-header > .iui-right:last-child'),
   ).toBeTruthy();
-  expect(container.querySelector('.iui-header > .iui-center')).toBeNull();
+  expect(container.querySelector('.iui-page-header > .iui-center')).toBeNull();
 });
 
 it('renders isSlim correctly', () => {
@@ -37,7 +37,7 @@ it('renders isSlim correctly', () => {
     <Header appLogo={<div>AppTitle</div>} isSlim={true} />,
   );
 
-  expect(container.querySelector('.iui-header.iui-slim')).toBeTruthy();
+  expect(container.querySelector('.iui-page-header.iui-slim')).toBeTruthy();
 });
 
 it('renders breadcrumbs correctly', () => {
