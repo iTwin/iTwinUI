@@ -189,11 +189,13 @@
         }
       }
 
-      > .iui-slot > .iui-more-options,
-      &:focus-within > .iui-slot > .iui-more-options {
+      > .iui-slot > .iui-more-options {
         visibility: visible;
-        // FOCUS WITHIN not working
       }
+    }
+
+    &:focus-within > .iui-slot > .iui-more-options {
+      visibility: visible;
     }
 
     > .iui-cell {
