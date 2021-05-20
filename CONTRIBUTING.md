@@ -4,7 +4,11 @@ We welcome all types of contribution.
 
 Need a feature or found a bug? Please create an [issue](https://github.com/iTwin/iTwinUI/issues).
 
-Want to contribute by creating a PR? Great! [Fork the repo](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks) and read further.
+Have a question or suggestion? Please create a [discussion](https://github.com/iTwin/iTwinUI/discussions).
+
+Want to contribute by creating a pull request? Great! [Fork the repo](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks) and read further.
+
+---
 
 ## How to setup
 
@@ -36,7 +40,7 @@ The minified html files are outputted into the `backstop/minified/` folder and c
 
 `yarn test`
 
-_Before running this command make sure Docker is running. Read more about [tests](#Tests)._
+_Before running this command, make sure Docker is running. See [Tests section](#Tests) below for more details._
 
 ### To lint SCSS and fix autofixable errors
 
@@ -49,7 +53,7 @@ _Before running this command make sure Docker is running. Read more about [tests
 ### Directory structure
 
 - **`src/` contains all the .scss files**.
-  - After running build, the generated .css files are put in `lib/css` folder (in project root).
+  - After running build, the generated .css files are put in `lib/css/` folder (in project root).
 - **`backstop/tests/` contains the .html files** that uses those built styles.
   - After running build, the minified .html files are put in `backstop/minified/` folder.
 - **`backstop/scenarios/` contains the .js files** where visual test scenarios are defined.
@@ -67,29 +71,22 @@ If you'd like to get your component added to iTwinUI,  run `yarn createComponent
 - Write tests for your new component in `backstop/tests/[component-name].html` and `backstop/scenarios/[component-name].js`. See [Tests](#Tests) section below.
 - After running `yarn build` you can open minified html in browser to check up, how your component looks like from `backstop/minified`.
 
-### Editing or enhancing a component
+### Testing
 
-When making changes to a component that already exists, we ask that all PRs distinctly list visual changes that have occurred. These notes are used by the Visual Design team to update specifications and images within documentation.
+For running tests you will need [Docker](https://www.docker.com/products/docker-desktop). It helps to avoid cross-platform rendering differences.
 
-### Tests
+- To run tests for a specific component, use this command:
 
-For testing you will need [Docker](https://www.docker.com/products/docker-desktop). It helps to avoid cross-platform rendering differences.
+  `yarn test --filter=[component_name]` (e.g. `yarn test --filter=side-navigation`)
 
-To run selected tests use command:
+- To approve test images, run `yarn approve`.
 
- `yarn test --filter="test_name"`
+- To delete old/unused tests images, run `yarn clean:images`.
 
-To approve tests use command:
-
-`yarn approve`
-
-To delete old/unused tests images that left after refactoring or renames use command:
-
-`yarn clean:images`
-
-How to write tests:
+#### How to write tests:
 
 - Create `.html` file in `backstop/tests` displaying the elements you wish to test and their all possible states, using the built CSS in `lib/css/`.
+
 - Create `.js` file in `backstop/scenarios` with the same name as `.html` file in previous step and ensure it exports scenarios list (take a look at `backstop/scenarios/alert.js`).
   - Use `scenario` function from `scenarioHelper.js` to create a scenario where the first argument is test case name and the second one is options.
     ```js
@@ -137,16 +134,19 @@ The `CHANGELOG.md` file must be updated for any new components or changes that y
 
 ### Committing your work
 
-Before creating a pull request, make sure your changes address a specific issue. Do a search to see if there are any existing items that are still open. If you don't find one, you can create one.
+Before creating a pull request, make sure your changes address a specific issue. Do a search to see if there are any existing issues that are still open. If you don't find one, you can create one.
 
 To enable us to quickly review and accept your pull requests, always create one pull request per issue. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked issue.
 
 #### Checklist
 
 - Component added or modified using [guidelines](#Developing) above.
-- Tests added to `backstop/tests/` and `backstop/scenarios/`.
+- Tests added or updated in `backstop/tests/` and `backstop/scenarios/`.
   - `.html` file has all possible states of the component.
   - `.js` file has scenarios covering these cases.
+  - All existing and new tests should pass.
 - Updated changelog.
 
-After verifying that your changes look good, you can [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that an issue is linked in the PR and you have a proper description of the PR.
+After verifying that your changes are ready, you can [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that an issue is linked to the pull request and that you have a proper description with screenshots.
+
+If your pull request changes an existing component, we ask that the description distinctly lists all visual changes that have occurred. These notes are used by the Visual Design team to update specifications and images within documentation.
