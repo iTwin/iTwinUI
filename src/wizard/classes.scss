@@ -2,14 +2,14 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-wizards {
-  @include iui-wizards;
+.iui-wizard {
+  @include iui-wizard;
 }
 
-.iui-wizards-long {
-  @include iui-wizards-long;
+.iui-wizard-long {
+  @include iui-wizard-long;
 }
 
-.iui-wizards-workflow {
-  @include iui-wizards-workflow;
+.iui-wizard-workflow {
+  @include iui-wizard-workflow;
 }

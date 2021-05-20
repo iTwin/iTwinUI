@@ -11,15 +11,11 @@ module.exports = [
     selectors: ['#demo-workflow'],
   }),
   scenario('Default wizard hover on complete', {
-    actions: [hover('#demo-default .iui-wizards-step-completed:first-child')],
+    actions: [hover('#demo-default .iui-completed:first-child')],
     selectors: ['#demo-default'],
   }),
   scenario('Long wizard focus on complete', {
-    actions: [
-      focus(
-        '#demo-long .iui-wizards-step-completed:first-child > .iui-wizards-step-circle'
-      ),
-    ],
+    actions: [focus('#demo-long .iui-completed:first-child > .iui-circle')],
     selectors: ['#demo-long'],
   }),
 ];
