@@ -30,7 +30,7 @@
   > .iui-label {
     padding: 0;
     margin-bottom: $iui-inputs-margin;
-    border: 0;
+    border: none;
     display: block;
     width: fit-content;
     font-size: $iui-font-size;
@@ -41,8 +41,13 @@
       color: t(iui-text-color);
     }
 
-    &::after {
-      content: ':';
+    &.iui-required {
+      &::after {
+        content: ' *';
+        @include themed {
+          color: t(iui-color-foreground-negative);
+        }
+      }
     }
   }
 
