@@ -141,7 +141,7 @@
   @media (max-width: 1024px) {
     .iui-left {
       .iui-header-logo > .iui-label {
-        @include iui-display-none;
+        display: none;
       }
     }
   }
@@ -190,7 +190,7 @@
     > .iui-label {
       margin-right: $iui-sm;
       font-size: $iui-font-size-leading;
-      transition: all $iui-speed-fast ease;
+      transition: font-size $iui-speed-fast ease-out;
     }
   }
 
