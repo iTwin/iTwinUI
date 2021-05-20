@@ -26,15 +26,17 @@ Install the recommended [plugins](./.vscode/extensions.json) for linter warnings
 
 `yarn build`
 
-When developing you can use this command as it will automatically rebuild on files change:
+You can also use `yarn build:watch` to rebuild automatically when files change.
 
-`yarn build:watch`
+### To preview
 
-### To test
+The minified html files are outputted into the `backstop/minified/` folder and can be opened directly in your browser. You may want to use a local http server (e.g. with the  [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)).
 
-Before running this command make sure Docker is running. Read more about [tests](#tests).
+### To run visual tests
 
 `yarn test`
+
+_Before running this command make sure Docker is running. Read more about [tests](#Tests)._
 
 ### To lint SCSS and fix autofixable errors
 
@@ -44,9 +46,17 @@ Before running this command make sure Docker is running. Read more about [tests]
 
 ## Developing
 
+### Directory structure
+
+- **`src/` contains all the .scss files**.
+  - After running build, the generated .css files are put in `lib/css` folder (in project root).
+- **`backstop/tests/` contains the .html files** that uses those built styles.
+  - After running build, the minified .html files are put in `backstop/minified/` folder.
+- **`backstop/scenarios/` contains the .js files** where visual test scenarios are defined.
+
 ### Adding a component
 
-We welcome UI components contributions! If you'd like to get your component added to iTwinUI,  run `yarn createComponent [component-name]` (replacing `[component-name]` with the name of your component) to automatically create all the necessary files. Then follow these guidelines:
+If you'd like to get your component added to iTwinUI,  run `yarn createComponent [component-name]` (replacing `[component-name]` with the name of your component) to automatically create all the necessary files. Then follow these guidelines:
 
 - Add all your component styles in `src/[component-name]/[component-name].scss` file.
   - Break variables and mixins into separate files where possible.
@@ -78,7 +88,8 @@ To delete old/unused tests images that left after refactoring or renames use com
 `yarn clean:images`
 
 How to write tests:
-- Create `.html` file in `backstop/tests` displaying the elements you wish to test and their all possible states, using the built CSS in `lib/css`.
+
+- Create `.html` file in `backstop/tests` displaying the elements you wish to test and their all possible states, using the built CSS in `lib/css/`.
 - Create `.js` file in `backstop/scenarios` with the same name as `.html` file in previous step and ensure it exports scenarios list (take a look at `backstop/scenarios/alert.js`).
   - Use `scenario` function from `scenarioHelper.js` to create a scenario where the first argument is test case name and the second one is options.
     ```js
@@ -110,13 +121,13 @@ How to write tests:
 
 ### Changelog
 
-The `CHANGELOG.md` file must be updated for any new components or changes that you add. If unsure of which release your changes will go to, you can add a placeholder version and date (on the top):
+The `CHANGELOG.md` file must be updated for any new components or changes that you add. At the top of the file, create an "unreleased" section with a placeholder date (if not already present).
 
 <details>
 <summary>Example</summary>
 
 ```
-## 1.X.X
+## Unreleased
 
 `Date`
 
@@ -133,7 +144,7 @@ To enable us to quickly review and accept your pull requests, always create one 
 #### Checklist
 
 - Component added or modified using [guidelines](#Developing) above.
-- Tests added to `backstop/tests` and `backstop/scenarios`.
+- Tests added to `backstop/tests/` and `backstop/scenarios/`.
   - `.html` file has all possible states of the component.
   - `.js` file has scenarios covering these cases.
 - Updated changelog.
