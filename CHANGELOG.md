@@ -6,7 +6,7 @@
 
 ### What's new
 
-- **Changed header class to `iui-page-header`** and made it responsive.
+- **Changed header class to `.iui-page-header`** and made it responsive.
 
 ## [0.15.0]
 
