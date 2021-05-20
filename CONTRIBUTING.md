@@ -70,7 +70,7 @@ We provide a script that can automatically create all the necessary files for yo
   - *Running the `createComponent` command will do this for you.*
 - Make sure your component index and classes are imported in `src/index.scss` and `src/classes.scss`.
   - *Running the `createComponent` command will also do this for you but you need to manually sort the imports alphabetically.*
-- Write tests for your new component in `backstop/tests/[component-name].html` and `backstop/scenarios/[component-name].js`. See See [Testing](#Testing) section below.
+- Write tests for your new component in `backstop/tests/[component-name].html` and `backstop/scenarios/[component-name].js`. See [Testing](#Testing) section below.
 - After running `yarn build` you can open minified html in browser to check up, how your component looks like from `backstop/minified`.
 
 ### Testing
