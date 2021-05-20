@@ -50,11 +50,12 @@
 }
 
 @mixin iui-anchor {
+  @include iui-focus;
+  text-decoration: none;
+  cursor: pointer;
   @include themed {
     color: t(iui-color-foreground-primary);
   }
-  text-decoration: none;
-  cursor: pointer;
 
   &:hover {
     @include themed {

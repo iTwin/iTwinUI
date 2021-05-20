@@ -1,0 +1,40 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-breadcrumb {
+  @include iui-reset;
+  @include iui-font-family;
+  display: flex;
+  align-items: center;
+
+  .iui-button {
+    margin-right: $iui-s;
+  }
+  
+  ol {
+    @include iui-reset;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+
+    li {
+      a {
+        @include iui-anchor;
+        user-select: none;
+      }
+
+      &:not(:first-child) {
+        margin-left: $iui-m;
+
+        &::before {
+          content: '›';
+          margin-right: $iui-m;
+          @include themed {
+            color: t(iui-text-color-muted);
+          }
+        }
+      }
+    }
+  }
+}

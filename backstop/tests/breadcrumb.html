@@ -1,0 +1,97 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html id="theme">
+  <head>
+    <title>Breadcrumb | iTwinUI</title>
+    <link
+      rel="icon"
+      href="../assets/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Breadcrumb</h1>
+    <hr />
+
+    <section id="demo-default">
+
+      <nav
+        class="iui-breadcrumb"
+        aria-label="Breadcrumb"
+      >
+        <button class="iui-button iui-borderless iui-dropdown">
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="M1,13a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H7V3A1,1,0,0,0,6,2H2A1,1,0,0,0,1,3Z" />
+          </svg>
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+            />
+          </svg>
+        </button>
+        <ol>
+          <li
+            itemscope
+            itemtype="http://data-vocabulary.org/Breadcrumb"
+          >
+            <a
+              href="http://www.example.com/"
+              itemprop="url"
+            >
+              <span itemprop="title">Root</span>
+            </a>
+          </li>
+          <li
+            itemscope
+            itemtype="http://data-vocabulary.org/Breadcrumb"
+          >
+            <a
+              href="http://www.example.com/news"
+              itemprop="url"
+            >
+              <span itemprop="title">Nested</span>
+            </a>
+          </li>
+          <li
+            itemscope
+            itemtype="http://data-vocabulary.org/Breadcrumb"
+          >
+            <a
+              href="http://www.example.com/news/news-story.1"
+              itemprop="url"
+            >
+              <span itemprop="title">Double nested</span>
+            </a>
+          </li>
+          <li
+            itemscope
+            itemtype="http://data-vocabulary.org/Breadcrumb"
+          >
+            <span itemprop="title">You are here</span>
+          </li>
+        </ol>
+      </nav>
+
+    </section>
+  </body>
+</html>
