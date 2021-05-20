@@ -21,8 +21,8 @@
       border-bottom-right-radius: $iui-border-radius;
     }
 
-    &:not(:last-of-type) {
-      border-right-color: transparent;
+    &.iui-default:not(:last-of-type) {
+      border-right: none;
     }
 
     &:not(.iui-high-visibility):not(.iui-cta):not(.iui-borderless) {
