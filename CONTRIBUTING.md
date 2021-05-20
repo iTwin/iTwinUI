@@ -40,7 +40,7 @@ The minified html files are outputted into the `backstop/minified/` folder and c
 
 `yarn test`
 
-_Before running this command, make sure Docker is running. See [Tests section](#Tests) below for more details._
+_Before running this command, make sure Docker is running. See [Testing](#Testing) section below for more details._
 
 ### To lint SCSS and fix autofixable errors
 
@@ -58,9 +58,11 @@ _Before running this command, make sure Docker is running. See [Tests section](#
   - After running build, the minified .html files are put in `backstop/minified/` folder.
 - **`backstop/scenarios/` contains the .js files** where visual test scenarios are defined.
 
-### Adding a component
+### Adding a new component
 
-If you'd like to get your component added to iTwinUI,  run `yarn createComponent [component-name]` (replacing `[component-name]` with the name of your component) to automatically create all the necessary files. Then follow these guidelines:
+If you'd like to get your component added to iTwinUI, follow these guidelines.
+
+We provide a script that can automatically create all the necessary files for you. Simply run `yarn createComponent [component-name]` (e.g. `yarn createComponent my-component`).
 
 - Add all your component styles in `src/[component-name]/[component-name].scss` file.
   - Break variables and mixins into separate files where possible.
@@ -68,7 +70,7 @@ If you'd like to get your component added to iTwinUI,  run `yarn createComponent
   - *Running the `createComponent` command will do this for you.*
 - Make sure your component index and classes are imported in `src/index.scss` and `src/classes.scss`.
   - *Running the `createComponent` command will also do this for you but you need to manually sort the imports alphabetically.*
-- Write tests for your new component in `backstop/tests/[component-name].html` and `backstop/scenarios/[component-name].js`. See [Tests](#Tests) section below.
+- Write tests for your new component in `backstop/tests/[component-name].html` and `backstop/scenarios/[component-name].js`. See See [Testing](#Testing) section below.
 - After running `yarn build` you can open minified html in browser to check up, how your component looks like from `backstop/minified`.
 
 ### Testing
@@ -132,13 +134,15 @@ The `CHANGELOG.md` file must be updated for any new components or changes that y
 ```
 </details>
 
-### Committing your work
+---
+
+## Committing your work
 
 Before creating a pull request, make sure your changes address a specific issue. Do a search to see if there are any existing issues that are still open. If you don't find one, you can create one.
 
 To enable us to quickly review and accept your pull requests, always create one pull request per issue. Never merge multiple requests in one unless they have the same root cause. Be sure to follow best practices and keep code changes as small as possible. Avoid pure formatting changes or random "fixes" that are unrelated to the linked issue.
 
-#### Checklist
+### Checklist
 
 - Component added or modified using [guidelines](#Developing) above.
 - Tests added or updated in `backstop/tests/` and `backstop/scenarios/`.
