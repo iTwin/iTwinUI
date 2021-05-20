@@ -175,5 +175,5 @@ inquirer
     writeFile(componentTest);
     writeFile(componentIndex);
 
-    writeFile(storiesFactory('src/core', component));
+    writeFile(storiesFactory('stories/core', component));
   });
