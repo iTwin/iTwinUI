@@ -43,6 +43,7 @@ jobs:
           branch: gh-pages
           folder: ${{ github.workspace }}/backstop/results
           target-folder: ${{ github.event.number }}
+          single-commit: true
 
       - name: Post gh pages link under Checks
         uses: LouisBrunner/checks-action@v1.1.2
