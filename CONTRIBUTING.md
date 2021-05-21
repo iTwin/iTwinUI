@@ -6,7 +6,7 @@ Need a feature or found a bug? Please create an [issue](https://github.com/iTwin
 
 Have a question or suggestion? Please create a [discussion](https://github.com/iTwin/iTwinUI/discussions).
 
-Want to contribute by creating a pull request? Great! [Fork the repo](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks) and read further.
+Want to contribute by creating a pull request? Great! [Fork iTwinUI](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks) to get started.
 
 ---
 
@@ -14,7 +14,7 @@ Want to contribute by creating a pull request? Great! [Fork the repo](https://do
 
 To clone and build iTwinUI, you'll need [Git](https://git-scm.com) and [Yarn 1](https://yarnpkg.com/getting-started/install) installed on your computer.
 
-1. [Create a local clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#step-2-create-a-local-clone-of-your-fork) of your forked repo. You can do this from the command line or using the Github Desktop app.
+1. [Create a local clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#step-2-create-a-local-clone-of-your-fork) of your forked repository. You can do this from the command line or using the Github Desktop app.
 2. Go to the directory where you cloned iTwinUI. e.g. `cd iTwinUI`.
 3. Run `yarn install` from that directory.
 
@@ -52,7 +52,7 @@ _Before running this command, make sure Docker is running. See [Testing](#Testin
 
 ### Directory structure
 
-- **`src/` contains all the .scss files**.
+- **`src/` contains all the .scss files** with a folder for each component.
   - After running build, the generated .css files are put in `lib/css/` folder (in project root).
 - **`backstop/tests/` contains the .html files** that uses those built styles.
   - After running build, the minified .html files are put in `backstop/minified/` folder.
@@ -87,9 +87,9 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 
 #### How to write tests:
 
-- Create `.html` file in `backstop/tests` displaying the elements you wish to test and their all possible states, using the built CSS in `lib/css/`.
+- Write the html in `backstop/tests/[component-name].html` displaying the elements you wish to test and their all possible states, using the built CSS in `lib/css/`.
 
-- Create `.js` file in `backstop/scenarios` with the same name as `.html` file in previous step and ensure it exports scenarios list (take a look at `backstop/scenarios/alert.js`).
+- Write the test cases in `backstop/scenarios/[component-name].js` and ensure it exports scenarios list (see `backstop/scenarios/alert.js` for example).
   - Use `scenario` function from `scenarioHelper.js` to create a scenario where the first argument is test case name and the second one is options.
     ```js
     const { scenario } = require('../scenarioHelper');
