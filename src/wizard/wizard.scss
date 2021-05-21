@@ -61,67 +61,6 @@
           color: t(iui-text-color-muted);
         }
       }
-
-      &.iui-current {
-        > .iui-title {
-          @include themed {
-            color: t(iui-color-foreground-positive);
-          }
-          font-weight: $iui-font-weight-semibold;
-        }
-  
-        > .iui-circle {
-          @include themed {
-            color: t(iui-color-foreground-accessory);
-            border: 1px solid t(iui-color-background-positive);
-            background-color: t(iui-color-background-positive);
-          }
-          font-weight: $iui-font-weight-semibold;
-        }
-  
-        > .iui-before {
-          @include themed {
-            background-color: t(iui-color-foreground-positive) !important;
-          }
-        }
-      }
-
-      &.iui-completed {
-        &.iui-clickable {
-          > .iui-circle {
-            @include iui-focus(iui-focus-positive-box-shadow);
-            cursor: pointer;
-            transition: background-color $iui-speed-fast ease-out;
-  
-            &:hover {
-              @include themed {
-                color: t(iui-color-foreground-accessory);
-                border: 1px solid t(iui-color-background-positive);
-                background-color: t(iui-color-background-positive);
-              }
-            }
-          }
-        }
-  
-        > .iui-title {
-          @include themed {
-            color: t(iui-color-foreground-positive);
-          }
-        }
-  
-        > .iui-circle {
-          @include themed {
-            color: t(iui-color-foreground-positive);
-            border: 1px solid t(iui-color-foreground-positive);
-          }
-        }
-  
-        > .iui-track {
-          @include themed {
-            background-color: t(iui-color-foreground-positive) !important;
-          }
-        }
-      }
     }
 
     .iui-track,
@@ -161,6 +100,67 @@
       }
 
       &.iui-filled {
+        @include themed {
+          background-color: t(iui-color-foreground-positive) !important;
+        }
+      }
+    }
+
+    .iui-step.iui-current {
+      > .iui-title {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+        }
+        font-weight: $iui-font-weight-semibold;
+      }
+
+      > .iui-circle {
+        @include themed {
+          color: t(iui-color-foreground-accessory);
+          border: 1px solid t(iui-color-background-positive);
+          background-color: t(iui-color-background-positive);
+        }
+        font-weight: $iui-font-weight-semibold;
+      }
+
+      > .iui-before {
+        @include themed {
+          background-color: t(iui-color-foreground-positive) !important;
+        }
+      }
+    }
+
+    .iui-step.iui-completed {
+      &.iui-clickable {
+        > .iui-circle {
+          @include iui-focus(iui-focus-positive-box-shadow);
+          cursor: pointer;
+          transition: background-color $iui-speed-fast ease-out;
+
+          &:hover {
+            @include themed {
+              color: t(iui-color-foreground-accessory);
+              border: 1px solid t(iui-color-background-positive);
+              background-color: t(iui-color-background-positive);
+            }
+          }
+        }
+      }
+
+      > .iui-title {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+        }
+      }
+
+      > .iui-circle {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+          border: 1px solid t(iui-color-foreground-positive);
+        }
+      }
+
+      > .iui-track {
         @include themed {
           background-color: t(iui-color-foreground-positive) !important;
         }
