@@ -15,7 +15,7 @@ module.exports = [
     selectors: ['#demo-default'],
   }),
   scenario('Long wizard focus on complete', {
-    actions: [focus('#demo-long .iui-completed:first-child > .iui-circle')],
+    actions: [focus('#demo-long .iui-completed:first-child .iui-circle')],
     selectors: ['#demo-long'],
   }),
 ];
