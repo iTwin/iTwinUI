@@ -107,14 +107,14 @@
     }
 
     .iui-step.iui-current {
-      > .iui-title {
+      .iui-title {
         @include themed {
           color: t(iui-color-foreground-positive);
         }
         font-weight: $iui-font-weight-semibold;
       }
 
-      > .iui-circle {
+      .iui-circle {
         @include themed {
           color: t(iui-color-foreground-accessory);
           border: 1px solid t(iui-color-background-positive);
@@ -123,7 +123,7 @@
         font-weight: $iui-font-weight-semibold;
       }
 
-      > .iui-before {
+      .iui-before {
         @include themed {
           background-color: t(iui-color-foreground-positive) !important;
         }
@@ -132,7 +132,7 @@
 
     .iui-step.iui-completed {
       &.iui-clickable {
-        > .iui-circle {
+        .iui-circle {
           @include iui-focus(iui-focus-positive-box-shadow);
           cursor: pointer;
           transition: background-color $iui-speed-fast ease-out;
@@ -147,20 +147,20 @@
         }
       }
 
-      > .iui-title {
+      .iui-title {
         @include themed {
           color: t(iui-color-foreground-positive);
         }
       }
 
-      > .iui-circle {
+      .iui-circle {
         @include themed {
           color: t(iui-color-foreground-positive);
           border: 1px solid t(iui-color-foreground-positive);
         }
       }
 
-      > .iui-track {
+      .iui-track {
         @include themed {
           background-color: t(iui-color-foreground-positive) !important;
         }
