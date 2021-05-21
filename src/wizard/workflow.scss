@@ -6,20 +6,19 @@
   @include iui-wizard;
 
   > .iui-wizard-container {
-    > .iui-wizard-step {
-      > .iui-circle {
+    .iui-wizard-step {
+      .iui-idk .iui-circle {
         padding-left: $iui-m;
         padding-right: $iui-m;
         border-radius: $iui-sm;
-
+        width: auto;
         @include themed {
           border-color: t(iui-color-foreground-positive);
           color: t(iui-color-foreground-positive);
         }
-        width: auto;
       }
 
-      &.iui-current > .iui-circle {
+      &.iui-current .iui-circle {
         border-radius: 0;
 
         @include themed {
@@ -30,15 +29,11 @@
       }
     }
 
-    > .iui-track,
-    > .iui-wizard-step > .iui-track {
-      &.iui-before,
-      &.iui-after,
-      &.iui-main {
-        @include themed {
-          background-color: t(iui-color-foreground-positive);
-        }
+    .iui-wizard-step .iui-idk .iui-track {
+      @include themed {
+        background-color: t(iui-color-foreground-positive);
       }
     }
+    
   }
 }
