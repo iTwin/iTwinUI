@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../icon/index';
 
 @mixin iui-breadcrumbs {
   @include iui-reset;
@@ -21,17 +22,22 @@
       text-overflow: ellipsis;
       max-width: $iui-3xl * 2;
 
+      .iui-icon {
+        vertical-align: middle;
+        @include iui-icons-small;
+      }
+
       a {
         @include iui-anchor;
       }
 
       a,
       .iui-ellipsis {
-        margin: 0 $iui-m;
+        margin: 0 $iui-sm;
       }
 
       button {
-        margin: 0 $iui-s;
+        margin: 0 $iui-xs;
       }
 
       &:not(.iui-current) button {
@@ -55,6 +61,7 @@
         }
       }
 
+      /*
       &:not(:first-child)::before {
         content: '\203A'; // ›
         font-size: $iui-font-size-subheading;
@@ -62,6 +69,7 @@
           color: t(iui-text-color-muted);
         }
       }
+      */
 
       &:last-child {
         a,
