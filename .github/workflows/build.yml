@@ -25,11 +25,11 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            console.log(await github.pulls.list({
+            console.log((await github.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'open'
-            }).data)
+            })).data)
 
       - name: Cache node modules
         uses: actions/cache@v2
