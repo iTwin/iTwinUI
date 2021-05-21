@@ -8,14 +8,14 @@
   display: flex;
   align-items: center;
   
-  .iui-crumbs {
+  .breadcrumbs-list {
     @include iui-reset;
     list-style-type: none;
     display: flex;
     align-items: center;
     user-select: none;
 
-    .iui-crumb {
+    .breadcrumbs-item {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
