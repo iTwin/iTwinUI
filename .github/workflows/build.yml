@@ -21,15 +21,20 @@ jobs:
           node-version: 12.x
 
       - name: List open pull requests
+        id: open_prs
         uses: actions/github-script@v4
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
+          result-encoding: string
           script: |
-            console.log((await github.pulls.list({
+            return ((await github.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'open'
-            })).data.map(pr => pr.number))
+            })).data.map(pr => pr.number).join('\n'))
+            
+      - name: Print output from open_prs
+        run: echo "${{steps.open_prs.outputs.result}}"
 
       - name: Cache node modules
         uses: actions/cache@v2
