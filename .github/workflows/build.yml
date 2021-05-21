@@ -19,7 +19,18 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 12.x
-          
+
+      - name: List open pull requests
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            console.log(await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            }))
+
       - name: Cache node modules
         uses: actions/cache@v2
         with:
@@ -41,17 +52,6 @@ jobs:
         with:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/backstop/results/'
-
-      - name: List open pull requests
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            console.log(await github.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: open
-            }))
 
       - name: Host test results on gh pages
         if: always()
