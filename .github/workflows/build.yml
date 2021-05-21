@@ -62,7 +62,7 @@ jobs:
           folder: ${{ github.workspace }}/backstop/results
           target-folder: ${{ github.event.number }}
           single-commit: true
-          clean_exclude: ${{steps.open_prs.outputs.result}}
+          clean-exclude: ${{steps.open_prs.outputs.result}}
 
       - name: Post gh pages link under Checks
         uses: actions/github-script@v4
@@ -75,5 +75,8 @@ jobs:
               head_sha: '${{ github.event.pull_request.head.sha }}',
               conclusion: '${{ job.status }}',
               name: 'Test results',
-              output: { "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/" }
+              output: {
+                "title": "Test results",
+                "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"
+              }
             })
