@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
 
-  .iui-button {
+  > .iui-button {
     margin-right: $iui-s;
   }
   
@@ -17,18 +17,21 @@
     list-style-type: none;
     display: flex;
     align-items: center;
+    user-select: none;
 
     li {
+      white-space: nowrap;
+
       a {
         @include iui-anchor;
-        user-select: none;
       }
 
       &:not(:first-child) {
         margin-left: $iui-m;
 
         &::before {
-          content: '›';
+          content: '\203A';
+          font-size: $iui-font-size-subheading;
           margin-right: $iui-m;
           @include themed {
             color: t(iui-text-color-muted);
@@ -36,5 +39,9 @@
         }
       }
     }
+  }
+
+  .iui-input-container {
+    margin: 0;
   }
 }

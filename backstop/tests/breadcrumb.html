@@ -18,6 +18,11 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <style>
+      .iui-input {
+        width: 450px;
+      }
+    </style>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -65,6 +70,12 @@
             itemscope
             itemtype="http://data-vocabulary.org/Breadcrumb"
           >
+            <span>&mldr;</span>
+          </li>
+          <li
+            itemscope
+            itemtype="http://data-vocabulary.org/Breadcrumb"
+          >
             <a
               href="http://www.example.com/news"
               itemprop="url"
@@ -90,6 +101,55 @@
             <span itemprop="title">You are here</span>
           </li>
         </ol>
+      </nav>
+
+      <br />
+
+      <nav
+        class="iui-breadcrumb"
+        aria-label="Breadcrumb"
+      >
+        <button class="iui-button iui-borderless iui-dropdown">
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="M1,13a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H7V3A1,1,0,0,0,6,2H2A1,1,0,0,0,1,3Z" />
+          </svg>
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+            />
+          </svg>
+        </button>
+        <label class="iui-input-container iui-inline">
+          <input
+            value="C:/Root/Lorem/Ipsum/Nested/Double nested/You are here/"
+            class="iui-input"
+          />
+          <div class="iui-message">
+            <button
+              class="iui-button iui-borderless"
+              aria-label="Clear"
+            >
+              <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z"
+                />
+              </svg>
+            </button>
+          </div>
+        </label>
       </nav>
 
     </section>
