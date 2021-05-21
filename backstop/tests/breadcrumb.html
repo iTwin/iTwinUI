@@ -60,16 +60,13 @@
             itemtype="http://data-vocabulary.org/Breadcrumb"
           >
             <a
-              href="http://www.example.com/"
+              href="#"
               itemprop="url"
             >
               <span itemprop="title">Root</span>
             </a>
           </li>
-          <li
-            itemscope
-            itemtype="http://data-vocabulary.org/Breadcrumb"
-          >
+          <li>
             <span>&mldr;</span>
           </li>
           <li
@@ -77,7 +74,7 @@
             itemtype="http://data-vocabulary.org/Breadcrumb"
           >
             <a
-              href="http://www.example.com/news"
+              href="#"
               itemprop="url"
             >
               <span itemprop="title">Nested</span>
@@ -88,7 +85,7 @@
             itemtype="http://data-vocabulary.org/Breadcrumb"
           >
             <a
-              href="http://www.example.com/news/news-story.1"
+              href="#"
               itemprop="url"
             >
               <span itemprop="title">Double nested</span>
@@ -98,7 +95,13 @@
             itemscope
             itemtype="http://data-vocabulary.org/Breadcrumb"
           >
-            <span itemprop="title">You are here</span>
+            <a
+              href="#"
+              itemprop="url"
+              aria-current='page'
+            >
+              <span itemprop="title">You are here</span>
+            </a>
           </li>
         </ol>
       </nav>

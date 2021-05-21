@@ -22,8 +22,16 @@
     li {
       white-space: nowrap;
 
-      a {
+      a:not([aria-current]) {
         @include iui-anchor;
+      }
+
+      [aria-current] {
+        text-decoration: none;
+        @include iui-focus;
+        @include themed {
+          color: t(iui-text-color);
+        }
       }
 
       &:not(:first-child) {
