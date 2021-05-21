@@ -20,7 +20,10 @@
     user-select: none;
 
     li {
+      overflow: hidden;
       white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: $iui-3xl * 2;
 
       a:not([aria-current]) {
         @include iui-anchor;
@@ -34,16 +37,12 @@
         }
       }
 
-      &:not(:first-child) {
-        margin-left: $iui-m;
-
-        &::before {
-          content: '\203A';
-          font-size: $iui-font-size-subheading;
-          margin-right: $iui-m;
-          @include themed {
-            color: t(iui-text-color-muted);
-          }
+      &:not(:first-child)::before {
+        content: '\203A';
+        font-size: $iui-font-size-subheading;
+        margin: 0 $iui-m;
+        @include themed {
+          color: t(iui-text-color-muted);
         }
       }
     }
