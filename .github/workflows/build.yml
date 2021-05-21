@@ -20,22 +20,6 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: List open pull requests
-        id: open_prs
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          result-encoding: string
-          script: |
-            return ((await github.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open'
-            })).data.map(pr => pr.number).join('\n'))
-            
-      - name: Print output from open_prs
-        run: echo "${{steps.open_prs.outputs.result}}"
-
       - name: Cache node modules
         uses: actions/cache@v2
         with:
@@ -50,7 +34,6 @@ jobs:
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
       - run: yarn build
       - run: yarn test:ci
-        if: false
 
       - name: Publish test results artifact
         if: failure()
@@ -58,6 +41,18 @@ jobs:
         with:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/backstop/results/'
+
+      - name: List open pull requests
+        id: open_prs
+        uses: actions/github-script@v4
+        with:
+          result-encoding: string
+          script: |
+            return ((await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            })).data.map(pr => pr.number).join('\n'))
 
       - name: Host test results on gh pages
         if: always()
@@ -67,13 +62,18 @@ jobs:
           folder: ${{ github.workspace }}/backstop/results
           target-folder: ${{ github.event.number }}
           single-commit: true
+          clean_exclude: ${{steps.open_prs.outputs.result}}
 
       - name: Post gh pages link under Checks
-        uses: LouisBrunner/checks-action@v1.1.2
+        uses: actions/github-script@v4
         if: always()
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: Test results
-          conclusion: ${{ job.status }}
-          output: |
-            {"summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"}
+          script: |
+            github.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head_sha: '${{ github.event.pull_request.head.sha }}',
+              conclusion: '${{ job.status }}',
+              name: 'Test results',
+              output: { "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/" }
+            })
