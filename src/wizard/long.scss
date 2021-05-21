@@ -5,16 +5,16 @@
 @mixin iui-wizard-long {
   @include iui-wizard;
 
-  > .iui-wrapper > .iui-step > .iui-title {
+  > .iui-wizard-container .iui-wizard-step .iui-step-name {
     display: none;
   }
 
-  > .iui-steps {
+  .iui-wizard-steps {
     display: block;
     font-size: $iui-font-size-subheading;
     text-align: center;
 
-    > .iui-steps-count {
+    .iui-steps-count {
       @include themed {
         color: t(iui-text-color-muted);
       }

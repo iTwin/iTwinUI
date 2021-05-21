@@ -5,8 +5,8 @@
 @mixin iui-wizard-workflow {
   @include iui-wizard;
 
-  > .iui-wrapper {
-    > .iui-step {
+  > .iui-wizard-container {
+    > .iui-wizard-step {
       > .iui-circle {
         padding-left: $iui-m;
         padding-right: $iui-m;
@@ -31,7 +31,7 @@
     }
 
     > .iui-track,
-    > .iui-step > .iui-track {
+    > .iui-wizard-step > .iui-track {
       &.iui-before,
       &.iui-after,
       &.iui-main {

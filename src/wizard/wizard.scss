@@ -6,7 +6,7 @@
   @include iui-reset;
   @include iui-font-family;
 
-  > .iui-wrapper {
+  > .iui-wizard-container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -14,7 +14,7 @@
     width: 100%;
     margin-bottom: $iui-baseline / 2;
 
-    .iui-step {
+    .iui-wizard-step {
       align-items: center;
       display: flex;
       flex-direction: column-reverse;
@@ -30,7 +30,7 @@
         text-decoration: none;
       }
 
-      .iui-title {
+      .iui-step-name {
         text-align: center;
         width: $iui-3xl * 2;
         @include themed {
@@ -64,7 +64,7 @@
     }
 
     .iui-track,
-    .iui-step > .iui-track {
+    .iui-wizard-step > .iui-track {
       height: $iui-xxs;
       position: absolute;
       top: $iui-l / 2;
@@ -106,8 +106,8 @@
       }
     }
 
-    .iui-step.iui-current {
-      .iui-title {
+    .iui-wizard-step.iui-current {
+      .iui-step-name {
         @include themed {
           color: t(iui-color-foreground-positive);
         }
@@ -130,7 +130,7 @@
       }
     }
 
-    .iui-step.iui-completed {
+    .iui-wizard-step.iui-completed {
       &.iui-clickable {
         .iui-circle {
           @include iui-focus(iui-focus-positive-box-shadow);
@@ -147,7 +147,7 @@
         }
       }
 
-      .iui-title {
+      .iui-step-name {
         @include themed {
           color: t(iui-color-foreground-positive);
         }
