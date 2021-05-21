@@ -2,47 +2,71 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-breadcrumb {
+@mixin iui-breadcrumbs {
   @include iui-reset;
   @include iui-font-family;
   display: flex;
   align-items: center;
-
-  > .iui-button {
-    margin-right: $iui-s;
-  }
   
-  ol {
+  .iui-crumbs {
     @include iui-reset;
     list-style-type: none;
     display: flex;
     align-items: center;
     user-select: none;
 
-    li {
+    .iui-crumb {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       max-width: $iui-3xl * 2;
 
-      a:not([aria-current]) {
+      a {
         @include iui-anchor;
       }
 
-      [aria-current] {
-        text-decoration: none;
-        @include iui-focus;
+      a,
+      .iui-ellipsis {
+        margin: 0 $iui-m;
+      }
+
+      button {
+        margin: 0 $iui-s;
+      }
+
+      &:not(.iui-current) button {
         @include themed {
-          color: t(iui-text-color);
+          color: t(iui-color-foreground-primary);
+        }
+
+        &:hover {
+          @include themed {
+            color: t(iui-color-foreground-primary-overlay);
+          }
+        }
+      }
+
+      &.iui-current {
+        a {
+          text-decoration: none;
+          @include themed {
+            color: t(iui-text-color);
+          }
         }
       }
 
       &:not(:first-child)::before {
         content: '\203A'; // ›
         font-size: $iui-font-size-subheading;
-        margin: 0 $iui-m;
         @include themed {
           color: t(iui-text-color-muted);
+        }
+      }
+
+      &:last-child {
+        a,
+        button {
+          margin-right: 0;
         }
       }
     }

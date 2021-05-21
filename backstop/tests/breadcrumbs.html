@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html id="theme">
   <head>
-    <title>Breadcrumb | iTwinUI</title>
+    <title>Breadcrumbs | iTwinUI</title>
     <link
       rel="icon"
       href="../assets/favicon.ico"
@@ -27,14 +27,14 @@
   </head>
   <body class="iui-body">
     <theme-button></theme-button>
-    <h1>Breadcrumb</h1>
+    <h1>Breadcrumbs</h1>
     <hr />
 
     <section id="demo-default">
 
       <nav
-        class="iui-breadcrumb"
-        aria-label="Breadcrumb"
+        class="iui-breadcrumbs"
+        aria-label="Breadcrumbs"
       >
         <button class="iui-button iui-borderless iui-dropdown">
           <!-- Use folder.svg from @itwin/itwinui-icons package. -->
@@ -55,32 +55,24 @@
             />
           </svg>
         </button>
-        <ol>
-          <li>
-            <a href="#">
-              <span>Root</span>
-            </a>
+        <ol class="iui-crumbs">
+          <li class="iui-crumb">
+            <a href="#">Root</a>
           </li>
-          <li>
-            <span>&mldr;</span>
+          <li class="iui-crumb">
+            <span class="iui-ellipsis">&mldr;</span>
           </li>
-          <li>
-            <a href="#">
-              <span>Nested</span>
-            </a>
+          <li class="iui-crumb">
+            <a href="#">Nested</a>
           </li>
-          <li>
-            <a href="#">
-              <span>Double nested</span>
-            </a>
+          <li class="iui-crumb">
+            <a href="#">Double nested</a>
           </li>
-          <li>
+          <li class="iui-crumb iui-current">
             <a
               href="#"
               aria-current='page'
-            >
-              <span>You are here</span>
-            </a>
+            >You are here</a>
           </li>
         </ol>
       </nav>
@@ -88,8 +80,63 @@
       <br />
 
       <nav
-        class="iui-breadcrumb"
-        aria-label="Breadcrumb"
+        class="iui-breadcrumbs"
+        aria-label="Breadcrumbs"
+      >
+        <button class="iui-button iui-borderless iui-dropdown">
+          <!-- Use folder.svg from @itwin/itwinui-icons package. -->
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="M1,13a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H7V3A1,1,0,0,0,6,2H2A1,1,0,0,0,1,3Z" />
+          </svg>
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+            />
+          </svg>
+        </button>
+        <ol class="iui-crumbs">
+          <li class="iui-crumb">
+            <button class="iui-button iui-borderless">
+              <span class="iui-label">Root</span>
+            </button>
+          </li>
+          <li class="iui-crumb">
+            <span class="iui-ellipsis">&mldr;</span>
+          </li>
+          <li class="iui-crumb">
+            <button class="iui-button iui-borderless">
+              <span class="iui-label">Nested</span>
+            </button>
+          </li>
+          <li class="iui-crumb">
+            <button class="iui-button iui-borderless">
+              <span class="iui-label">Double nested</span>
+            </button>
+          </li>
+          <li class="iui-crumb iui-current">
+            <button
+              class="iui-button iui-borderless"
+              aria-current='page'
+            >
+              <span class="iui-label">You are here</span>
+            </button>
+          </li>
+        </ol>
+      </nav>
+
+      <br />
+
+      <nav
+        class="iui-breadcrumbs"
+        aria-label="Breadcrumbs"
       >
         <button class="iui-button iui-borderless iui-dropdown">
           <!-- Use folder.svg from @itwin/itwinui-icons package. -->
