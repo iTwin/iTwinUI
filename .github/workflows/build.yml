@@ -108,6 +108,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
+          single-commit: true
           folder: ${{ github.workspace }}/backstop/tests
           clean-exclude: ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
@@ -135,7 +136,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          single-commit: true
           folder: ${{ github.workspace }}/backstop/minified
           target-folder: backstop/minified
           git-config-name: github-actions[bot]
