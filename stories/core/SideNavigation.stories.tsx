@@ -24,7 +24,7 @@ export default {
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
-    mainItems: { control: { disable: true } },
+    items: { control: { disable: true } },
     secondaryItems: { control: { disable: true } },
   },
   args: { style: { height: 'calc(100vh - 24px) ' } },
