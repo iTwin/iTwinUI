@@ -108,8 +108,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/backstop/index.html
-          target-folder: .
+          folder: ${{ github.workspace }}/backstop/tests
           clean-exclude: ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
