@@ -47,8 +47,7 @@
     @include iui-input-autofill;
   }
 
-  &[disabled],
-  &[readonly] {
+  &[disabled] {
     @include themed {
       background-color: t(iui-color-background-disabled);
       border-color: t(iui-color-background-disabled);
