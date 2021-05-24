@@ -65,16 +65,6 @@
         }
       }
 
-      /*
-      &:not(:first-child)::before {
-        content: '\203A'; // ›
-        font-size: $iui-font-size-subheading;
-        @include themed {
-          color: t(iui-text-color-muted);
-        }
-      }
-      */
-
       &:last-child {
         a,
         button {
