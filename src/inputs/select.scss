@@ -4,7 +4,7 @@
 @import '../menu/index';
 @import './variables';
 
-$iui-wizards-step-track-after-border: 5px solid;
+$iui-after-border: 5px solid;
 
 @mixin iui-select {
   @include iui-reset;
@@ -46,10 +46,10 @@ $iui-wizards-step-track-after-border: 5px solid;
       transform: translateY(-50%);
       width: 0;
       height: 0;
-      border-left: $iui-wizards-step-track-after-border transparent;
-      border-right: $iui-wizards-step-track-after-border transparent;
+      border-left: $iui-after-border transparent;
+      border-right: $iui-after-border transparent;
       @include themed {
-        border-top: $iui-wizards-step-track-after-border t(iui-icons-color-actionable);
+        border-top: $iui-after-border t(iui-icons-color-actionable);
       }
     }
 
@@ -61,7 +61,7 @@ $iui-wizards-step-track-after-border: 5px solid;
       &::after {
         border-bottom: none;
         @include themed {
-          border-top: $iui-wizards-step-track-after-border t(iui-icons-color-actionable-hover);
+          border-top: $iui-after-border t(iui-icons-color-actionable-hover);
         }
       }
     }
@@ -70,13 +70,13 @@ $iui-wizards-step-track-after-border: 5px solid;
       &::after {
         border-top: none;
         @include themed {
-          border-bottom: $iui-wizards-step-track-after-border t(iui-icons-color-actionable);
+          border-bottom: $iui-after-border t(iui-icons-color-actionable);
         }
       }
 
       &:hover::after {
         @include themed {
-          border-bottom: $iui-wizards-step-track-after-border t(iui-icons-color-actionable-hover);
+          border-bottom: $iui-after-border t(iui-icons-color-actionable-hover);
         }
       }
     }
@@ -90,7 +90,7 @@ $iui-wizards-step-track-after-border: 5px solid;
       
       &::after {
         @include themed {
-          border-top: $iui-wizards-step-track-after-border t(iui-icons-color-actionable-disabled);
+          border-top: $iui-after-border t(iui-icons-color-actionable-disabled);
         }
       }
     }
