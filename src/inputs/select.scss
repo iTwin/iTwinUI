@@ -18,7 +18,7 @@ $iui-after-border: 5px solid;
     @include iui-focus;
     display: flex;
     align-items: center;
-    min-height: ($iui-baseline * 4) - ($iui-input-offset * 2);
+    min-height: $iui-input-height;
     padding-right: $iui-xl;
     white-space: nowrap;
     user-select: none;
@@ -93,5 +93,20 @@ $iui-after-border: 5px solid;
         }
       }
     }
+  }
+
+  &.iui-small > .iui-select-button {
+    padding-top: $iui-input-padding-height-small;
+    padding-bottom: $iui-input-padding-height-small;
+    padding-left: $iui-input-padding-width-small;
+    min-height: $iui-input-height-small;
+  }
+
+  &.iui-large > .iui-select-button {
+    padding-top: $iui-input-padding-height-large;
+    padding-bottom: $iui-input-padding-height-large;
+    padding-left: $iui-input-padding-width-large;
+    min-height: $iui-input-height-large;
+    font-size: $iui-font-size-leading;
   }
 }

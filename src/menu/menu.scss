@@ -23,7 +23,8 @@
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
-    padding: ($iui-input-padding-height + 1) $iui-sm;
+    padding: 0 $iui-sm;
+    min-height: $iui-input-height;
     cursor: pointer;
     @include themed {
       color: t(iui-text-color);
