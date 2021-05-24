@@ -2,19 +2,19 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-wizard-long {
-  @include iui-wizard;
+@mixin iui-wizards-long {
+  @include iui-wizards;
 
-  > .iui-wizard-container .iui-wizard-step .iui-step-name {
+  > .iui-wizards-wrapper .iui-wizards-step .iui-wizards-step-title {
     display: none;
   }
 
-  .iui-wizard-steps {
+  .iui-wizards-steps {
     display: block;
     font-size: $iui-font-size-subheading;
     text-align: center;
 
-    .iui-steps-count {
+    .iui-wizards-steps-count {
       @include themed {
         color: t(iui-text-color-muted);
       }

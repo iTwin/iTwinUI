@@ -2,12 +2,12 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-wizard-workflow {
-  @include iui-wizard;
+@mixin iui-wizards-workflow {
+  @include iui-wizards;
 
-  > .iui-wizard-container {
-    > .iui-wizard-step {
-      > .iui-circle {
+  > .iui-wizards-wrapper {
+    > .iui-wizards-step {
+      > .iui-wizards-step-circle {
         padding-left: $iui-m;
         padding-right: $iui-m;
         border-radius: $iui-sm;
@@ -19,7 +19,7 @@
         width: auto;
       }
 
-      &.iui-current > .iui-circle {
+      &.iui-wizards-step-current > .iui-wizards-step-circle {
         border-radius: 0;
 
         @include themed {
@@ -30,11 +30,11 @@
       }
     }
 
-    > .iui-track,
-    > .iui-wizard-step > .iui-track {
-      &.iui-before,
-      &.iui-after,
-      &.iui-main {
+    > .iui-wizards-step-track,
+    > .iui-wizards-step > .iui-wizards-step-track {
+      &.iui-wizards-step-track-before,
+      &.iui-wizards-step-track-after,
+      &.iui-wizards-step-track-main {
         @include themed {
           background-color: t(iui-color-foreground-positive);
         }
