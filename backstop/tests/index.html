@@ -18,7 +18,6 @@
         const contents = await fetch('https://api.github.com/repos/itwin/itwinui/contents/backstop/tests');
         const fileNames = (await contents.json()).map(file => file.name);
         let htmlString = `<ul>${fileNames.map(fileName => `<li><a href="./backstop/minified/${fileName}">${fileName}</a></li>`).join('')}</ul>`;
-        console.log(htmlString)
         document.getElementsByTagName('body')[0].innerHTML = htmlString;
       })();
     </script>
