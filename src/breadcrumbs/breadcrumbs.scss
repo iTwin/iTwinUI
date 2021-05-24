@@ -16,12 +16,16 @@
     align-items: center;
     user-select: none;
 
-    .iui-breadcrumbs-item {
+    .iui-breadcrumbs-item a,
+    .iui-breadcrumbs-item .iui-button .iui-label {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       max-width: $iui-3xl * 2;
+      text-align: left;
+    }
 
+    .iui-breadcrumbs-item {
       .iui-icon {
         vertical-align: middle;
         @include iui-icons-small;
