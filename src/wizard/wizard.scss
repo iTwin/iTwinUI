@@ -99,7 +99,7 @@
         position: relative;
       }
 
-      &.iui-filled {
+      &.iui-wizards-step-track-filled {
         @include themed {
           background-color: t(iui-color-foreground-positive) !important;
         }
