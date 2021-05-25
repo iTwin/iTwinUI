@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../button/index';
 @import './variables';
 
 @mixin iui-paginator {
@@ -29,7 +30,6 @@
   }
 
   > .iui-center {
-    width: 33%;
     justify-content: center;
     @include themed {
       color: t(iui-text-color);
@@ -40,10 +40,10 @@
 
       > .iui-button,
       > .iui-ellipsis {
-        width: 38px;
+        width: $iui-button-height;
 
         &.iui-small {
-          width: 27px;
+          width: $iui-button-height-small;
         }
       }
 
