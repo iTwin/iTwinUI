@@ -22,7 +22,6 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       max-width: $iui-3xl * 2;
-      text-align: left;
     }
 
     .iui-breadcrumbs-item {
@@ -33,6 +32,8 @@
 
       a {
         @include iui-anchor;
+        text-align: left;
+        display: inline-block;
       }
 
       a,
