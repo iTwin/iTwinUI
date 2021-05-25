@@ -109,7 +109,7 @@ jobs:
         with:
           branch: gh-pages
           single-commit: true
-          folder: ${{ github.workspace }}/backstop/tests
+          folder: ${{ github.workspace }}/backstop/index
           clean-exclude: ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
