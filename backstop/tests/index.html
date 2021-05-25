@@ -1,0 +1,25 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      a {
+        color: #008BE1;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      (async () => {
+        const contents = await fetch('https://api.github.com/repos/itwin/itwinui/contents/backstop/tests');
+        const fileNames = (await contents.json()).map(file => file.name).filter(fileName => fileName !== 'index.html');
+        let htmlString = `<ul>${fileNames.map(fileName => `<li><a href="./backstop/minified/${fileName}">${fileName}</a></li>`).join('')}</ul>`;
+        document.getElementsByTagName('body')[0].innerHTML = htmlString;
+      })();
+    </script>
+  </body>
+</html>
