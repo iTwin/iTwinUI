@@ -19,8 +19,8 @@
     list-style-type: none;
     user-select: none;
 
-    .iui-breadcrumbs-item a,
-    .iui-breadcrumbs-item .iui-button .iui-label {
+    .iui-breadcrumbs-item > .iui-anchor,
+    .iui-breadcrumbs-item > .iui-button > .iui-label {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -32,22 +32,20 @@
         @include iui-icons-small;
       }
 
-      a {
-        @include iui-anchor;
-        text-align: left;
+      > .iui-anchor {
         display: inline-block;
       }
 
-      a,
+      > .iui-anchor,
       .iui-ellipsis {
         margin: 0 $iui-sm;
       }
 
-      button {
+      > .iui-button {
         margin: 0 $iui-xs;
       }
 
-      &:not(.iui-current) button {
+      &:not(.iui-current) .iui-borderless {
         @include themed {
           color: t(iui-color-foreground-primary);
         }
@@ -60,8 +58,7 @@
       }
 
       &.iui-current {
-        a {
-          text-decoration: none;
+        > .iui-anchor {
           @include themed {
             color: t(iui-text-color);
           }
@@ -69,8 +66,8 @@
       }
 
       &:last-child {
-        a,
-        button {
+        > .iui-anchor,
+        > .iui-button {
           margin-right: 0;
         }
       }
