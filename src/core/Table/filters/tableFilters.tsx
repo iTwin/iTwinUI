@@ -8,6 +8,11 @@ import {
   DateRangeTranslation,
 } from './DateRangeFilter/DateRangeFilter';
 import { FilterButtonBarTranslation } from './FilterButtonBar';
+import {
+  NumberRangeTranslation,
+  NumberRangeFilterProps,
+  NumberRangeFilter,
+} from './NumberRangeFilter/NumberRangeFilter';
 import { TextFilter } from './TextFilter/TextFilter';
 import { TableFilterProps } from './types';
 
@@ -52,4 +57,13 @@ export const tableFilters = {
   >(
     props: TableFilterProps<T>,
   ) => <DateRangeFilter {...props} {...options} />,
+  /**
+   * Number range filter.
+   * @param translatedLabels Translated filter labels.
+   */
+  NumberRangeFilter: (
+    translatedLabels?: NumberRangeTranslation & FilterButtonBarTranslation,
+  ) => <T extends Record<string, unknown>>(
+    props: NumberRangeFilterProps<T>,
+  ) => <NumberRangeFilter {...props} translatedLabels={translatedLabels} />,
 };
