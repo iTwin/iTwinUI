@@ -9,7 +9,8 @@
 
   &,
   .iui-breadcrumbs-list,
-  .iui-breadcrumbs-item {
+  .iui-breadcrumbs-item,
+  .iui-breadcrumbs-separator {
     display: flex;
     align-items: center;
   }
@@ -20,19 +21,7 @@
     user-select: none;
   }
 
-  .iui-breadcrumbs-item > .iui-anchor,
-  .iui-breadcrumbs-item > .iui-button > .iui-label {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: $iui-3xl * 2;
-  }
-
   .iui-breadcrumbs-item {
-    .iui-icon {
-      @include iui-icons-small;
-    }
-
     > .iui-anchor {
       display: inline-block;
     }
@@ -46,7 +35,15 @@
       margin: 0 $iui-xs;
     }
 
-    &:not(.iui-current) .iui-borderless {
+    > .iui-anchor,
+    > .iui-button > .iui-label {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: $iui-3xl * 2;
+    }
+
+    &:not(.iui-current) > .iui-button {
       @include themed {
         color: t(iui-color-foreground-primary);
       }
@@ -72,5 +69,9 @@
         margin-right: 0;
       }
     }
+  }
+
+  .iui-breadcrumbs-separator > svg {
+    @include iui-icons-small;
   }
 }
