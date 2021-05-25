@@ -56,6 +56,11 @@
           color: t(iui-text-color-muted);
         }
       }
+
+      > .iui-active::after {
+        top: auto;
+        bottom: $iui-xxs;
+      }
     }
   }
 
