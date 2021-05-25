@@ -32,13 +32,9 @@
 
       .iui-wizards-step-title {
         text-align: center;
-        width: $iui-3xl * 2;
+        width: 20vW;
         @include themed {
           color: t(iui-text-color-muted);
-        }
-
-        @media screen and (max-width: 1024px) {
-          width: $iui-xxl * 2;
         }
       }
 
