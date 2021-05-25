@@ -6,14 +6,17 @@
 @mixin iui-breadcrumbs {
   @include iui-reset;
   @include iui-font-family;
-  display: flex;
-  align-items: center;
+
+  &,
+  .iui-breadcrumbs-list,
+  .iui-breadcrumbs-item {
+    display: flex;
+    align-items: center;
+  }
   
   .iui-breadcrumbs-list {
     @include iui-reset;
     list-style-type: none;
-    display: flex;
-    align-items: center;
     user-select: none;
 
     .iui-breadcrumbs-item a,
