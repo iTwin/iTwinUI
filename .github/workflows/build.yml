@@ -62,7 +62,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               sha: '${{ github.event.pull_request.head.sha }}',
-              conclusion: '${{ job.status }}',
+              state: '${{ job.status }}',
               description: 'Test results',
               target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
             })
