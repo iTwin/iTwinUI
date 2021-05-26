@@ -8,6 +8,9 @@ module.exports = [
   scenario('Type Default Opened', {
     selectors: ['#demo-default-opened'],
   }),
+  scenario('Sizes', {
+    selectors: ['#demo-sizes'],
+  }),
 
   // Hover states
   //// Select
