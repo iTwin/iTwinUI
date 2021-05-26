@@ -11,7 +11,7 @@
 
 ## Fixes
 
-- **Fix wizard responsive design issues.**
+- **Fixed wizard responsive design issues.**
 - **Fixed sass deprecation warning about `!global` assignments.**
 
 ## [0.16.0]
