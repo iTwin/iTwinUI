@@ -2,18 +2,15 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-tabs-horizontal {
+.iui-tabs {
+  @include iui-tabs;
   @include iui-tabs-horizontal;
-}
 
-.iui-tabs-borderless {
-  @include iui-tabs-borderless;
-}
-
-.iui-tabs-pill {
-  @include iui-tabs-pill;
-}
-
-.iui-tabs-content-area {
-  @include iui-tabs-content-area;
+  &.iui-borderless {
+    @include iui-tabs-borderless;
+  }
+  
+  &.iui-pill {
+    @include iui-tabs-pill;
+  }
 }

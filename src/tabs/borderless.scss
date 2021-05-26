@@ -5,14 +5,14 @@
 
 @mixin iui-tabs-borderless {
   @include iui-tabs;
-  margin: $iui-baseline/2 0;
 
   > li {
-    > a {
-      line-height: $iui-line-height;
-      padding: $iui-line-height $iui-l;
+    > button {
+      height: $iui-baseline * 6;
+      padding: 0 $iui-l;
+      background-color: transparent;
 
-      &:hover {
+      &:enabled:hover {
         @include themed {
           background-color: rgba(
             t(iui-color-foreground-primary-rgb),
@@ -21,32 +21,35 @@
         }
       }
 
-      &::after {
-        bottom: $iui-xxs;
-        left: $iui-xxs;
-        right: $iui-xxs;
-      }
-    }
-
-    &.iui-tabs-active > a {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
+      &.iui-active {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-6)
+          );
+          box-shadow: inset 0 calc(#{$iui-xxs} * -1) 0 0;
+        }
       }
     }
   }
 
   &.iui-green > li {
-    > a:hover,
-    &.iui-tabs-active > a {
+    > button.iui-active,
+    > button:enabled:hover {
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-positive-rgb),
           t(iui-opacity-6)
         );
       }
+    }
+  }
+
+  ~ .iui-tabs-content-area {
+    box-sizing: border-box;
+    margin-top: -2px;
+    @include themed {
+      border-top: 2px solid t(iui-color-background-5);
     }
   }
 }

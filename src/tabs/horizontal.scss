@@ -7,40 +7,43 @@
   @include iui-tabs;
 
   > li {
-    > a {
-      line-height: $iui-line-height;
-
+    > button {
+      height: $iui-baseline * 3;
+      padding: 0 $iui-m;
+      box-sizing: border-box;
       @include themed {
         background-color: t(iui-color-background-2);
         border: 1px solid t(iui-color-background-5);
       }
+      
 
-      &:hover {
+      &.iui-active {
+        border-bottom-color: transparent;
         @include themed {
-          background-color: t(iui-color-background-1);
+          box-shadow: inset 0 $iui-xxs 0 0;
         }
       }
 
-      &::after {
-        top: 0;
-        left: 0;
-        width: 100%;
-      }
-    }
-
-    &:not(:last-child) {
-      > a {
-        border-right: none;
-      }
-    }
-
-    &.iui-tabs-active {
-      > a {
+      &[disabled] {
         @include themed {
-          border-bottom: 1px solid t(iui-color-background-1);
-          background-color: t(iui-color-background-1);
+          background-color: t(iui-color-background-3);
         }
       }
+    }
+
+    &:not(:last-child) > button {
+      border-right: none;
+    }
+  }
+
+  &:not(.iui-borderless):not(.iui-pill) ~ .iui-tabs-content-area {
+    box-sizing: border-box;
+    padding-left: $iui-m;
+    padding-right: $iui-m;
+    margin-top: -1px;
+    @include themed {
+      background-color: t(iui-color-background-1);
+      border: 1px solid t(iui-color-background-5);
     }
   }
 }

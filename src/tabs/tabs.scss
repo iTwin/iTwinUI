@@ -4,13 +4,11 @@
 
 @mixin iui-tabs {
   @include iui-reset;
-
-  @include iui-font-family;
   display: flex;
   list-style: none;
   padding: 0;
-  margin: round($iui-baseline/2) 0 0 0;
   user-select: none;
+
 
   > li {
     display: inline-block;
@@ -19,6 +17,7 @@
     margin: 0;
 
     > a {
+      @include iui-focus;
       display: block;
       position: relative;
       padding: ($iui-baseline / 2) $iui-m;
@@ -26,6 +25,7 @@
       font-size: $iui-font-size;
       line-height: $iui-line-height;
       cursor: pointer;
+      text-decoration: none;
 
       @include themed {
         color: t(iui-text-color);
@@ -58,6 +58,41 @@
       }
     }
 
+    > button {
+      @include iui-reset;
+      @include iui-font-family;
+      @include iui-focus;
+      font-size: $iui-font-size;
+      cursor: pointer;
+      transition: background-color $iui-speed-fast ease-out, box-shadow $iui-speed-fast ease-out;
+      @include themed {
+        color: t(iui-text-color);
+        box-shadow: inset 0 0 0 0 t(iui-color-foreground-primary);
+      }
+
+      &:hover:enabled,
+      &.iui-active {
+        @include themed {
+          background-color: t(iui-color-background-1);
+        }
+      }
+
+      &.iui-active {
+        cursor: default;
+        pointer-events: none;
+        @include themed {
+          color: t(iui-color-foreground-primary);
+        }
+      }
+
+      &[disabled] {
+        cursor: not-allowed;
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
+      }
+    }
+
     &.iui-tabs-active {
       > a {
         font-weight: $iui-font-weight-bold;
@@ -79,6 +114,17 @@
   }
 
   &.iui-green > li {
+    > button {
+      @include iui-focus(iui-focus-positive-box-shadow);
+
+      &.iui-active {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+          //box-shadow: inset 0 0 0 0 t(iui-color-foreground-positive);
+        }
+      }
+    }
+
     > a {
       &:hover {
         @include themed {
@@ -99,5 +145,10 @@
         color: t(iui-text-color);
       }
     }
+  }
+
+  ~ .iui-tabs-content-area {
+    padding-top: $iui-baseline;
+    padding-bottom: $iui-baseline;
   }
 }

@@ -6,23 +6,47 @@
 
 @mixin iui-tabs-pill {
   @include iui-tabs;
-  display: flex;
   flex-flow: row;
   justify-content: space-evenly;
-  margin: $iui-baseline/2 0;
+  border-radius: $iui-border-radius;
+  gap: 2px;
+  @include themed {
+    background-color: t(iui-color-background-2);
+    border: 2px solid t(iui-color-background-2);
+  }
 
   > li {
-    margin: 0;
-    text-align: center;
     flex: 1 1 0;
+
+    > button {
+      height: $iui-baseline * 4;
+      background-color: transparent;
+      border-radius: $iui-border-radius;
+      width: 100%;
+
+      &:enabled:hover {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-6)
+          ) !important;
+        }
+      }
+
+      &.iui-active {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-6)
+          );
+          box-shadow: inset 0 calc(#{$iui-xxs} * -1) 0 0;
+        }
+      }
+    }
 
     > a {
       line-height: $iui-line-height;
       padding: ($iui-line-height / 2) 0;
-
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
 
       > svg {
         @include themed {
