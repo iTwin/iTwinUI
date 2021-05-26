@@ -1,0 +1,77 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../icon/index';
+
+@mixin iui-breadcrumbs {
+  @include iui-reset;
+  @include iui-font-family;
+
+  &,
+  .iui-breadcrumbs-list,
+  .iui-breadcrumbs-item,
+  .iui-breadcrumbs-separator {
+    display: flex;
+    align-items: center;
+  }
+  
+  .iui-breadcrumbs-list {
+    @include iui-reset;
+    list-style-type: none;
+    user-select: none;
+  }
+
+  .iui-breadcrumbs-item {
+    > .iui-anchor {
+      display: inline-block;
+    }
+
+    > .iui-anchor,
+    .iui-ellipsis {
+      margin: 0 $iui-sm;
+    }
+
+    > .iui-button {
+      margin: 0 $iui-xs;
+    }
+
+    > .iui-anchor,
+    > .iui-button > .iui-label {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: $iui-3xl * 2;
+    }
+
+    &:not(.iui-current) > .iui-button {
+      @include themed {
+        color: t(iui-color-foreground-primary);
+      }
+
+      &:hover {
+        @include themed {
+          color: t(iui-color-foreground-primary-overlay);
+        }
+      }
+    }
+
+    &.iui-current {
+      > .iui-anchor {
+        @include themed {
+          color: t(iui-text-color);
+        }
+      }
+    }
+
+    &:last-child {
+      > .iui-anchor,
+      > .iui-button {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .iui-breadcrumbs-separator > svg {
+    @include iui-icons-small;
+  }
+}
