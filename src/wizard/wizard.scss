@@ -4,34 +4,35 @@
 
 @mixin iui-wizards {
   @include iui-reset;
-
   @include iui-font-family;
 
   > .iui-wizards-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: flex-start;
     width: 100%;
     margin-bottom: $iui-baseline / 2;
 
     > .iui-wizards-step {
       align-items: center;
-
-      @include themed {
-        color: t(iui-color-background-positive);
-      }
       display: flex;
       flex-direction: column-reverse;
       font-size: $iui-font-size-small;
       font-weight: $iui-font-weight-normal;
       line-height: $iui-line-height;
       position: relative;
+      @include themed {
+        color: t(iui-color-background-positive);
+      }
 
       &:hover {
         text-decoration: none;
       }
 
       > .iui-wizards-step-title {
+        text-align: center;
+        width: 20vw;
         @include themed {
           color: t(iui-text-color-muted);
         }
@@ -39,12 +40,6 @@
 
       > .iui-wizards-step-circle {
         align-items: center;
-
-        @include themed {
-          border: 1px solid t(iui-color-background-5);
-          background-color: t(iui-color-background-1);
-          color: t(iui-text-color-muted);
-        }
         border-radius: 50%;
         display: flex;
         height: $iui-l;
@@ -56,6 +51,11 @@
         text-align: center;
         z-index: 1;
         user-select: none;
+        @include themed {
+          border: 1px solid t(iui-color-background-5);
+          background-color: t(iui-color-background-1);
+          color: t(iui-text-color-muted);
+        }
       }
     }
 
