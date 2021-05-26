@@ -63,7 +63,8 @@ jobs:
               repo: context.repo.repo,
               sha: '${{ github.event.pull_request.head.sha }}',
               state: '${{ job.status }}',
-              description: 'Test results',
+              context: 'Test results',
+              description: 'Backstop html report',
               target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
             })
 
