@@ -1,0 +1,317 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html id="theme">
+  <head>
+    <title>Breadcrumbs | iTwinUI</title>
+    <link
+      rel="icon"
+      href="../assets/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <style>
+      .iui-input { width: 450px; }
+      .iui-input-container { margin: 0; }
+
+      #demo-anchors,
+      #demo-buttons,
+      #demo-not-tested {
+        padding: 11px 12px;
+      }
+    </style>
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Breadcrumbs</h1>
+    <hr />
+
+    <section id="demo-all">
+
+      <section id="demo-anchors">
+
+        <nav
+          class="iui-breadcrumbs"
+          aria-label="Breadcrumbs"
+        >
+          <button class="iui-button iui-borderless iui-dropdown">
+            <!-- Use folder.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path d="M1,13a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H7V3A1,1,0,0,0,6,2H2A1,1,0,0,0,1,3Z" />
+            </svg>
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+          <ol class="iui-breadcrumbs-list">
+            <li class="iui-breadcrumbs-item">
+              <a
+                class="iui-anchor"
+                href="#"
+              >Root</a>
+            </li>
+            <li
+              class="iui-breadcrumbs-separator"
+              aria-hidden
+            >
+              <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+              </svg>
+            </li>
+            <li class="iui-breadcrumbs-item">
+              <span class="iui-ellipsis">&mldr;</span>
+            </li>
+            <li
+              class="iui-breadcrumbs-separator"
+              aria-hidden
+            >
+              <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+              </svg>
+            </li>
+            <li class="iui-breadcrumbs-item">
+              <a
+                class="iui-anchor"
+                href="#"
+                id="test-1"
+              >Nested</a>
+            </li>
+            <li
+              class="iui-breadcrumbs-separator"
+              aria-hidden
+            >
+              <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+              </svg>
+            </li>
+            <li class="iui-breadcrumbs-item">
+              <a
+                class="iui-anchor"
+                href="#"
+                id="test-2"
+              >Double nested folder with truncation</a>
+            </li>
+            <li
+              class="iui-breadcrumbs-separator"
+              aria-hidden
+            >
+              <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+              </svg>
+            </li>
+            <li class="iui-breadcrumbs-item iui-current">
+              <a
+                class="iui-anchor"
+                href="#"
+                aria-current='page'
+              >You are here</a>
+            </li>
+          </ol>
+        </nav>
+
+      </section>
+
+      <section id="demo-buttons">
+
+        <nav
+          class="iui-breadcrumbs"
+          aria-label="Breadcrumbs"
+        >
+          <button class="iui-button iui-borderless iui-dropdown">
+            <!-- Use folder.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path d="M1,13a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H7V3A1,1,0,0,0,6,2H2A1,1,0,0,0,1,3Z" />
+            </svg>
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+          <ol class="iui-breadcrumbs-list">
+            <li class="iui-breadcrumbs-item">
+              <button class="iui-button iui-borderless">
+                <span class="iui-label">Root</span>
+              </button>
+            </li>
+            <li
+              class="iui-breadcrumbs-separator"
+              aria-hidden
+            >
+              <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+              <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+              </svg>
+            </li>
+            <li class="iui-breadcrumbs-item">
+              <span class="iui-ellipsis">&mldr;</span>
+            </li>
+            <li
+              class="iui-breadcrumbs-separator"
+              aria-hidden
+            >
+              <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+              </svg>
+            </li>
+            <li class="iui-breadcrumbs-item">
+              <button
+                class="iui-button iui-borderless"
+                id="test-3"
+              >
+                <span class="iui-label">Nested</span>
+              </button>
+            </li>
+            <li
+              class="iui-breadcrumbs-separator"
+              aria-hidden
+            >
+              <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+              </svg>
+            </li>
+            <li class="iui-breadcrumbs-item">
+              <button
+                class="iui-button iui-borderless"
+                id="test-4"
+              >
+                <span class="iui-label">Double nested folder with truncation</span>
+              </button>
+            </li>
+            <li
+              class="iui-breadcrumbs-separator"
+              aria-hidden
+            >
+              <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+              </svg>
+            </li>
+            <li class="iui-breadcrumbs-item iui-current">
+              <button
+                class="iui-button iui-borderless"
+                aria-current='page'
+              >
+                <span class="iui-label">You are here</span>
+              </button>
+            </li>
+          </ol>
+        </nav>
+
+      </section>
+
+    </section>
+
+    <section id="demo-not-tested">
+
+      <nav
+        class="iui-breadcrumbs"
+        aria-label="Breadcrumbs"
+      >
+        <button class="iui-button iui-borderless iui-dropdown">
+          <!-- Use folder.svg from @itwin/itwinui-icons package. -->
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="M1,13a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H7V3A1,1,0,0,0,6,2H2A1,1,0,0,0,1,3Z" />
+          </svg>
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+            />
+          </svg>
+        </button>
+        <label class="iui-input-container iui-inline">
+          <input
+            value="C:/Root/Lorem/Ipsum/Nested/Double nested folder with truncation/You are here/"
+            class="iui-input"
+            spellcheck="false"
+          />
+          <div class="iui-message">
+            <button
+              class="iui-button iui-borderless"
+              aria-label="Close"
+            >
+              <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z"
+                />
+              </svg>
+            </button>
+          </div>
+        </label>
+      </nav>
+
+    </section>
+
+  </body>
+</html>
