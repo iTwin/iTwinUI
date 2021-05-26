@@ -58,16 +58,13 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            github.checks.create({
+            github.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head_sha: '${{ github.event.pull_request.head.sha }}',
+              sha: '${{ github.event.pull_request.head.sha }}',
               conclusion: '${{ job.status }}',
-              name: 'Test results',
-              output: {
-                "title": "Test results",
-                "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"
-              }
+              description: 'Test results',
+              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
             })
 
   deploy:
