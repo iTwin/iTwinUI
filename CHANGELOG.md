@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.17.0]
+
+`2021-05-26`
+
+### What's new
+
+- **Added breadcrumbs component.**
+- **Added `.iui-x-small` and `.iui-large` sizes to radial progress indicator.**
+
+## Fixes
+
+- **Fix wizard responsive design issues.**
+- **Fixed sass deprecation warning about `!global` assignments.**
+
 ## [0.16.0]
 
 `2021-05-20`
