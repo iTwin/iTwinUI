@@ -36,7 +36,7 @@
     }
   }
 
-  &:not(.iui-borderless):not(.iui-pill) ~ .iui-tabs-content-area {
+  &:not(.iui-borderless):not(.iui-pill) ~ .iui-tabs-content {
     box-sizing: border-box;
     padding-left: $iui-m;
     padding-right: $iui-m;
