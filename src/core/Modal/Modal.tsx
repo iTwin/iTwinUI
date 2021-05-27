@@ -121,6 +121,9 @@ export const Modal = (props: ModalProps) => {
     } else {
       document.body.style.overflow = originalBodyOverflow.current;
     }
+    return () => {
+      document.body.style.overflow = originalBodyOverflow.current;
+    };
   }, [isOpen]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {

@@ -33,6 +33,10 @@ function renderComponent(props?: Partial<ModalProps>) {
   );
 }
 
+beforeEach(() => {
+  document.body.style.overflow = '';
+});
+
 it('should render in basic form', () => {
   renderComponent();
 
@@ -168,4 +172,32 @@ it('should work with portal container properly', () => {
   renderComponent({ modalRootId: 'test-id' });
   container = document.querySelector('body > #test-id') as HTMLElement;
   expect(container.children.length).toBe(2);
+});
+
+it('should reset body overflow on closing and unmounting', () => {
+  const { rerender, unmount } = render(
+    <Modal title='Test title' isOpen>
+      Test Content
+    </Modal>,
+  );
+  expect(document.body.style.overflow).toEqual('hidden');
+
+  // Closing by setting isOpen to false
+  rerender(
+    <Modal title='Test title' isOpen={false}>
+      Test Content
+    </Modal>,
+  );
+  expect(document.body.style.overflow).not.toEqual('hidden');
+
+  rerender(
+    <Modal title='Test title' isOpen={true}>
+      Test Content
+    </Modal>,
+  );
+  expect(document.body.style.overflow).toEqual('hidden');
+
+  // Closing by unmounting/destructing the Modal
+  unmount();
+  expect(document.body.style.overflow).not.toEqual('hidden');
 });
