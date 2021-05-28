@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.17.1]
+
+`2021-05-28`
+
+### Fixes
+
+- **Improved wizard responsive design** by using percentage width.
+- **Fixed user-icon size not working when placed in icon button.**
+
 ## [0.17.0]
 
 `2021-05-26`
@@ -9,7 +18,7 @@
 - **Added breadcrumbs component.**
 - **Added `.iui-x-small` and `.iui-large` sizes to radial progress indicator.**
 
-## Fixes
+### Fixes
 
 - **Fixed wizard responsive design issues.**
 - **Fixed Sass deprecation warning about `!global` assignments.**
