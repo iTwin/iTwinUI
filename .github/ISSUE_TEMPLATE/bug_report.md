@@ -1,10 +1,5 @@
 ---
-name: Bug report 🐞
-about: Create a report to help us improve
-title: ''
-labels: bug
-assignees: ''
-
+about: Create a bug report to help us improve
 ---
 
 #### Environment
