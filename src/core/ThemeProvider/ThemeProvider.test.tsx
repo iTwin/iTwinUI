@@ -7,9 +7,11 @@ import { render } from '@testing-library/react';
 
 import { ThemeProvider } from './ThemeProvider';
 
-const expectLightTheme = () => {
-  expect(document.documentElement.classList).toContain('iui-theme-light');
-  expect(document.documentElement.classList).not.toContain('iui-theme-dark');
+const expectLightTheme = (ownerDocument = document) => {
+  expect(ownerDocument.documentElement.classList).toContain('iui-theme-light');
+  expect(ownerDocument.documentElement.classList).not.toContain(
+    'iui-theme-dark',
+  );
 };
 
 const expectDarkTheme = () => {
@@ -39,6 +41,20 @@ it('should respect os theme (dark)', () => {
 it('should set light theme', () => {
   render(<ThemeProvider theme='light' />);
   expectLightTheme();
+});
+
+it('should set light theme specifying ownerDocument', () => {
+  const testDocument = new DOMParser().parseFromString(
+    `<!DOCTYPE html><body><p>Test</p></body>`,
+    'text/html',
+  );
+  render(
+    <ThemeProvider
+      theme='light'
+      themeOptions={{ ownerDocument: testDocument }}
+    />,
+  );
+  expectLightTheme(testDocument);
 });
 
 it('should set dark theme', () => {

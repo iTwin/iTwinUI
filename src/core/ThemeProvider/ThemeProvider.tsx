@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { ThemeType, useTheme } from '../utils/hooks/useTheme';
+import { ThemeOptions, ThemeType, useTheme } from '../utils/hooks/useTheme';
 
 export type ThemeProviderProps = {
   /**
@@ -14,15 +14,19 @@ export type ThemeProviderProps = {
    * Optional children.
    */
   children?: React.ReactNode;
+  /**
+   * Options that can be specified to override default theming behavior.
+   */
+  themeOptions?: ThemeOptions;
 };
 
 /**
  * Component providing global styles that are required for all components and allows changing theme.
  */
 export const ThemeProvider = (props: ThemeProviderProps) => {
-  const { theme, children } = props;
+  const { theme, children, themeOptions } = props;
 
-  useTheme(theme);
+  useTheme(theme, themeOptions);
   return <>{children}</>;
 };
 

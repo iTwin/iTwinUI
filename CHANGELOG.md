@@ -7,6 +7,7 @@
 ### What's new
 
 - **Added number range filter to `Table`.** Use `tableFilters.NumberRangeFilter`.
+- **Updated `ThemeProvider` component and `useTheme` hook to allow specification of ownerDocument**. This provides support for theme in popup browser windows.
 
 ## [1.5.0]
 
