@@ -1209,20 +1209,20 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
-"@itwin/itwinui-css@^0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-0.16.0.tgz#b05c316185fc0504a457e3b80733deb6efec9f68"
-  integrity sha512-W5DQs+/Dgv6FiUdZTLjnVHfcpK0+nPvBbSN6GiuubE8Y83d5JOelDAmSz0HtrmFVTjNcKUZf9+KXt7b8hg2JFQ==
+"@itwin/itwinui-css@^0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-0.17.1.tgz#c6a3ab7bc440e38d4db517f489929d84f5db8a6c"
+  integrity sha512-7yW8TeHt08i1rmHAXkWsJ4MjYyH0G6KpziqXDCs7jeBXQuQnSeK/baZwMtPm6/2Z9fRnebWoHpiZhJCqi9a2UQ==
 
 "@itwin/itwinui-icons-react@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-icons-react/-/itwinui-icons-react-1.1.1.tgz#f31e89588eb519f8f6d39032ac1ce359f2185d99"
-  integrity sha512-+Z43/PYkdfeLzo/2+NevRe9q1Ew1w1BQfsLr4gU60ZHhWi57gaik/b66ZNI6ZKb9IX0YG7xgPDUDUgl+rFTPVg==
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-icons-react/-/itwinui-icons-react-1.1.3.tgz#11cab736a37b66d9e0cec89de9593b55da9de5d2"
+  integrity sha512-CNTjNvbuscb8nGOpu9PGRQc5ciYlwcKVOSxs8HYBa9xdf2QKl3iPuj3+B85tsNYGkZJGa6DMli1KAhr2w27aSw==
 
 "@itwin/itwinui-illustrations-react@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-1.0.1.tgz#455c6910ed07429472a80d11581a9fe9cf3ff496"
-  integrity sha512-Z/qgZodNmko7sq8xo7QQ10di7B8gcszaGo+UCsfFsNaVykcT1IjIbI4a2ia50nio2h8Af7dMiAcXgqMs+g3Uzw==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-1.0.2.tgz#4b1f04a1c331937ec501dde3a25275bb2d995cec"
+  integrity sha512-sgBmBBOGOLNPuT/G700iQqlPB/QRBBWczSkVZJ7mpCZaktMfJxX2SH1NhUUpJ4emf20dsLEeAo62Gz7ek7DMkA==
 
 "@jest/console@^26.6.2":
   version "26.6.2"

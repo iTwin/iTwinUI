@@ -26,10 +26,10 @@ export type ProgressRadialProps = {
    */
   status?: 'positive' | 'negative';
   /**
-   * Size of the Progress.
+   * Size of the progress indicator. Defaults to medium size.
    * @default ''
    */
-  size?: '' | 'small';
+  size?: '' | 'x-small' | 'small' | 'large';
   /**
    * Content shown inside progress indicator.
    */
@@ -84,7 +84,7 @@ export const ProgressRadial = (props: ProgressRadialProps) => {
       className={cx('iui-progress-indicator-radial', {
         'iui-determinate': !indeterminate,
         'iui-indeterminate': indeterminate,
-        'iui-small': size === 'small',
+        [`iui-${size}`]: !!size,
         [`iui-${status}`]: !!status,
         className,
       })}

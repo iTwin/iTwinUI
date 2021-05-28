@@ -37,10 +37,8 @@ describe('Wizard step (long)', () => {
     // Correct title
     const title = getByText('First step');
     expect(title.className).toBe('iui-wizards-step-title');
-    // Track after
-    expect(
-      container.querySelector('.iui-wizards-step-track-after'),
-    ).toBeTruthy();
+    // No track after
+    expect(container.querySelector('.iui-wizards-step-track-after')).toBeNull();
     // Circle
     const circle = getByText('1');
     expect(circle.className).toBe('iui-wizards-step-circle');
@@ -81,10 +79,8 @@ describe('Wizard step (long)', () => {
     // Correct title
     const title = getByText('First step');
     expect(title.className).toBe('iui-wizards-step-title');
-    // Track after
-    expect(
-      container.querySelector('.iui-wizards-step-track-after'),
-    ).toBeTruthy();
+    // No track after
+    expect(container.querySelector('.iui-wizards-step-track-after')).toBeNull();
     // Circle
     const circle = getByText('1');
     expect(circle.className).toBe('iui-wizards-step-circle');
@@ -119,17 +115,15 @@ describe('Wizard step (long)', () => {
     expect(stepContainer.className).not.toContain('iui-clickable');
     stepContainer.click();
     expect(mockedClick).not.toHaveBeenCalled();
-    // Track before
+    // No track before
     expect(
       container.querySelector('.iui-wizards-step-track-before'),
-    ).toBeTruthy();
+    ).toBeNull();
     // Correct title
     const title = getByText('Second step');
     expect(title.className).toBe('iui-wizards-step-title');
-    // Track after
-    expect(
-      container.querySelector('.iui-wizards-step-track-after'),
-    ).toBeTruthy();
+    // No track after
+    expect(container.querySelector('.iui-wizards-step-track-after')).toBeNull();
     // Circle
     const circle = getByText('2');
     expect(circle.className).toBe('iui-wizards-step-circle');
@@ -154,10 +148,10 @@ describe('Wizard step (long)', () => {
 
     // Renders as active
     expect(container.querySelector('.iui-wizards-step-current')).toBeTruthy();
-    // Track before
+    // No track before
     expect(
       container.querySelector('.iui-wizards-step-track-before'),
-    ).toBeTruthy();
+    ).toBeNull();
     // Correct title
     const title = getByText('Last step');
     expect(title.className).toBe('iui-wizards-step-title');
@@ -187,16 +181,14 @@ describe('Wizard step (workflow)', () => {
 
     // Renders as active
     expect(container.querySelector('.iui-wizards-step-current')).toBeTruthy();
-    // There is no track before
+    // No track before
     expect(
       container.querySelector('.iui-wizards-step-track-before'),
     ).toBeNull();
     // No title
     expect(container.querySelector('iui-wizards-step-title')).toBeNull();
-    // Track after
-    expect(
-      container.querySelector('.iui-wizards-step-track-after'),
-    ).toBeTruthy();
+    // No track after
+    expect(container.querySelector('.iui-wizards-step-track-after')).toBeNull();
     // Circle
     const circle = container.querySelector(
       '.iui-wizards-step-circle',
@@ -224,16 +216,14 @@ describe('Wizard step (workflow)', () => {
 
     // Renders as completed
     expect(container.querySelector('.iui-wizards-step-completed')).toBeTruthy();
-    // Track before
+    // No track before
     expect(
       container.querySelector('.iui-wizards-step-track-before'),
     ).toBeNull();
     // No title
     expect(container.querySelector('iui-wizards-step-title')).toBeNull();
-    // Track after
-    expect(
-      container.querySelector('.iui-wizards-step-track-after'),
-    ).toBeTruthy();
+    // No track after
+    expect(container.querySelector('.iui-wizards-step-track-after')).toBeNull();
     // Circle
     const circle = container.querySelector(
       '.iui-wizards-step-circle',
@@ -263,16 +253,14 @@ describe('Wizard step (workflow)', () => {
 
     // Renders step
     expect(container.querySelector('.iui-wizards-step')).toBeTruthy();
-    // Track before
+    // No track before
     expect(
       container.querySelector('.iui-wizards-step-track-before'),
-    ).toBeTruthy();
+    ).toBeNull();
     // No title
     expect(container.querySelector('iui-wizards-step-title')).toBeNull();
-    // Track after
-    expect(
-      container.querySelector('.iui-wizards-step-track-after'),
-    ).toBeTruthy();
+    // No track after
+    expect(container.querySelector('.iui-wizards-step-track-after')).toBeNull();
     // Circle
     const circle = container.querySelector(
       '.iui-wizards-step-circle',
@@ -300,10 +288,10 @@ describe('Wizard step (workflow)', () => {
 
     // Renders as active
     expect(container.querySelector('.iui-wizards-step-current')).toBeTruthy();
-    // Track before
+    // No track before
     expect(
       container.querySelector('.iui-wizards-step-track-before'),
-    ).toBeTruthy();
+    ).toBeNull();
     // No title
     expect(container.querySelector('iui-wizards-step-title')).toBeNull();
     // Track after
@@ -317,4 +305,85 @@ describe('Wizard step (workflow)', () => {
     // Main track
     expect(container.querySelector('.iui-wizards-step-track-main')).toBeNull();
   });
+});
+
+it('should set dynamic inline width based on total steps', () => {
+  const { container: container1 } = render(
+    <Step
+      title='Mock step'
+      index={1}
+      currentStepNumber={0}
+      totalSteps={4}
+      type={'default'}
+    />,
+  );
+
+  const step1 = container1.querySelector('.iui-wizards-step') as HTMLElement;
+  expect(step1).toBeTruthy();
+  expect(step1.style.width).toEqual('25%');
+
+  const { container: container2 } = render(
+    <Step
+      title='Mock step'
+      index={1}
+      currentStepNumber={1}
+      totalSteps={8}
+      type={'default'}
+    />,
+  );
+
+  const step2 = container2.querySelector('.iui-wizards-step') as HTMLElement;
+  expect(step2).toBeTruthy();
+  expect(step2.style.width).toEqual('12.5%');
+});
+
+it('should not set dynamic inline width for long and workflow wizard types', () => {
+  const { container: container1 } = render(
+    <Step
+      title='Mock step'
+      index={1}
+      currentStepNumber={0}
+      totalSteps={4}
+      type={'long'}
+    />,
+  );
+
+  const step1 = container1.querySelector('.iui-wizards-step') as HTMLElement;
+  expect(step1).toBeTruthy();
+  expect(step1.style.width).toBeFalsy(); // not 25%
+
+  const { container: container2 } = render(
+    <Step
+      title='Mock step'
+      index={1}
+      currentStepNumber={1}
+      totalSteps={8}
+      type={'workflow'}
+    />,
+  );
+
+  const step2 = container2.querySelector('.iui-wizards-step') as HTMLElement;
+  expect(step2).toBeTruthy();
+  expect(step2.style.width).toBeFalsy(); // not 12.5%
+});
+
+it('should add className and style props correctly', () => {
+  const { container } = render(
+    <Step
+      title='Mock step'
+      index={1}
+      currentStepNumber={0}
+      totalSteps={4}
+      type={'default'}
+      className='custom-class'
+      style={{ width: 50, color: 'red' }}
+    />,
+  );
+
+  const step = container.querySelector(
+    '.iui-wizards-step.custom-class',
+  ) as HTMLElement;
+  expect(step).toBeTruthy();
+  expect(step.style.width).toEqual('50px');
+  expect(step.style.color).toEqual('red');
 });

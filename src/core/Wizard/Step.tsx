@@ -5,6 +5,7 @@
 import cx from 'classnames';
 import React from 'react';
 import { Tooltip } from '../Tooltip';
+import { StylingProps } from '../utils/props';
 import { WizardType } from './Wizard';
 
 export type StepProps = {
@@ -36,7 +37,7 @@ export type StepProps = {
    * A tooltip giving detailed description to this step.
    */
   description?: string;
-};
+} & StylingProps;
 
 export const Step = (props: StepProps) => {
   const {
@@ -47,6 +48,8 @@ export const Step = (props: StepProps) => {
     type,
     onClick,
     description,
+    className,
+    style,
     ...rest
   } = props;
 
@@ -62,15 +65,23 @@ export const Step = (props: StepProps) => {
 
   const stepShape = (
     <span
-      className={cx('iui-wizards-step', {
-        'iui-wizards-step-completed': isPast,
-        'iui-wizards-step-current': isActive,
-        'iui-clickable': !!onClick && isPast,
-      })}
+      className={cx(
+        'iui-wizards-step',
+        {
+          'iui-wizards-step-completed': isPast,
+          'iui-wizards-step-current': isActive,
+          'iui-clickable': !!onClick && isPast,
+        },
+        className,
+      )}
+      style={{
+        width: type === 'default' ? `${100 / totalSteps}%` : undefined,
+        ...style,
+      }}
       onClick={onCompletedClick}
       {...rest}
     >
-      {index !== 0 && (
+      {index !== 0 && type === 'default' && (
         <span
           className={cx(
             'iui-wizards-step-track',
@@ -82,7 +93,7 @@ export const Step = (props: StepProps) => {
       {type !== 'workflow' && (
         <span className='iui-wizards-step-title'>{title}</span>
       )}
-      {!isLast && (
+      {!isLast && type === 'default' && (
         <span
           className={cx(
             'iui-wizards-step-track',

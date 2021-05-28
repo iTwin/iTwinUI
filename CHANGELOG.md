@@ -8,6 +8,11 @@
 
 - **Added number range filter to `Table`.** Use `tableFilters.NumberRangeFilter`.
 - **Updated `ThemeProvider` component and `useTheme` hook to allow specification of ownerDocument**. This provides support for theme in popup browser windows.
+- **Added new sizes to `ProgressRadial`.** The `size` prop can now accept 'x-small' and 'large' as values.
+
+### Fixes
+
+- **Fixed `Wizard` resizing and `UserIcon` size issues** through base CSS package.
 
 ## [1.5.0]
 
