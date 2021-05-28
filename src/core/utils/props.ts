@@ -9,13 +9,16 @@ export type ClassNameProps = {
   className?: string;
 };
 
-export type CommonProps = {
+export type StylingProps = {
   /**
    * Custom CSS style properties.
    */
   style?: React.CSSProperties;
+} & ClassNameProps;
+
+export type CommonProps = {
   /**
    * HTML title attribute.
    */
   title?: string;
-} & ClassNameProps;
+} & StylingProps;
