@@ -2,10 +2,10 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../menu/index';
 
 @mixin iui-date-picker {
-  @include iui-reset;
-  @include iui-font-family;
+  @include iui-dropdown;
   box-shadow: $iui-elevation-2;
   user-select: none;
   text-align: center;
@@ -16,6 +16,13 @@
   }
 
   @include iui-calendar;
+  @include iui-time;
+
+  > div:not(:last-child) {
+    @include themed {
+      border-right: 1px solid t(iui-color-background-4);
+    }
+  }
 }
 
 @mixin iui-calendar {
@@ -138,36 +145,10 @@
 }
 
 @mixin iui-time {
-  @include iui-reset;
-  @include iui-font-family;
-  user-select: none;
-  text-align: center;
-  height: $iui-baseline * 26;
-  display: inline-flex;
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
-
-  &:not(:first-child) {
-    @include themed {
-      border-left: 1px solid t(iui-color-background-4);
-    }
-  }
-
-  &:first-child {
-    box-shadow: $iui-elevation-2;
-  }
-
   > .iui-time,
   > .iui-period {
     padding: $iui-baseline $iui-s;
     overflow-y: auto;
-
-    &:not(:first-child) {
-      @include themed {
-        border-left: 1px solid t(iui-color-background-4);
-      }
-    }
    
     > ol {
       @include iui-reset;
