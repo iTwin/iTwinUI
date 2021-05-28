@@ -69,6 +69,7 @@ it('should set default theme', () => {
   render(<ThemeProvider theme='dark' />);
   expectDarkTheme();
 
+  // should preserve dark theme since it was set before
   render(<ThemeProvider />);
   expectDarkTheme();
 });

@@ -50,7 +50,7 @@ export const useTheme = (
         break;
       default:
         if (
-          !ownerDocument.documentElement.classList.value.includes('iui-theme')
+          ownerDocument.documentElement.className.indexOf('iui-theme') === -1
         ) {
           addLightTheme(ownerDocument);
         }
