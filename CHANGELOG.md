@@ -2,7 +2,7 @@
 
 ## [1.6.0]
 
-`Date`
+`2021-05-31`
 
 ### What's new
 
@@ -12,6 +12,8 @@
 
 ### Fixes
 
+- **Fixed `Modal` leaving behind inline styles on body when unmounted.**
+- **Moved `Select` dropdown element inside the main select container.**
 - **Fixed `Wizard` resizing and `UserIcon` size issues** through base CSS package.
 
 ## [1.5.0]
