@@ -16,13 +16,6 @@
   }
 
   @include iui-calendar;
-  @include iui-time;
-
-  > div:not(:last-child) {
-    @include themed {
-      border-right: 1px solid t(iui-color-background-4);
-    }
-  }
 }
 
 @mixin iui-calendar {
@@ -141,49 +134,5 @@
         }
       }
     }
-  }
-}
-
-@mixin iui-time {
-  > .iui-time,
-  > .iui-period {
-    padding: $iui-baseline $iui-s;
-    overflow-y: auto;
-   
-    > ol {
-      @include iui-reset;
-      list-style: none;
-
-      > li {
-        @include iui-focus;
-        padding: $iui-baseline $iui-m;
-        border-radius: $iui-border-radius;
-
-        &:hover {
-          cursor: pointer;
-          @include themed {
-            color: t(iui-color-foreground-primary);
-            background-color: rgba(
-              t(iui-color-foreground-primary-rgb),
-              t(iui-opacity-6)
-            );
-          }
-        }
-
-        &.iui-selected {
-          font-weight: $iui-font-weight-semibold;
-          cursor: default;
-          @include themed {
-            background-color: t(iui-color-background-primary);
-            color: t(iui-color-foreground-accessory);
-          }
-        }
-      }
-    }
-  }
-
-  > .iui-period {
-    display: flex;
-    align-items: center;
   }
 }

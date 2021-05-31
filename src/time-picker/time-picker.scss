@@ -1,0 +1,74 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../menu/index';
+
+@mixin iui-time-picker {
+  @include iui-reset;
+  @include iui-font-family;
+  user-select: none;
+  text-align: center;
+  height: $iui-baseline * 26;
+  display: inline-flex;
+  @include themed {
+    background-color: t(iui-color-background-1);
+  }
+
+  &:not(:first-child) {
+    @include themed {
+      border-left: 1px solid t(iui-color-background-4);
+    }
+  }
+
+  &:first-child {
+    box-shadow: $iui-elevation-2;
+  }
+
+  > .iui-time,
+  > .iui-period {
+    padding: $iui-baseline $iui-s;
+    overflow-y: auto;
+
+    &:not(:first-child) {
+      @include themed {
+        border-left: 1px solid t(iui-color-background-4);
+      }
+    }
+
+    > ol {
+      @include iui-reset;
+      list-style: none;
+
+      > li {
+        @include iui-focus;
+        padding: $iui-baseline $iui-m;
+        border-radius: $iui-border-radius;
+
+        &:hover {
+          cursor: pointer;
+          @include themed {
+            color: t(iui-color-foreground-primary);
+            background-color: rgba(
+              t(iui-color-foreground-primary-rgb),
+              t(iui-opacity-6)
+            );
+          }
+        }
+
+        &.iui-selected {
+          font-weight: $iui-font-weight-semibold;
+          cursor: default;
+          @include themed {
+            background-color: t(iui-color-background-primary);
+            color: t(iui-color-foreground-accessory);
+          }
+        }
+      }
+    }
+  }
+
+  > .iui-period {
+    display: flex;
+    align-items: center;
+  }
+};
