@@ -95,6 +95,10 @@
       }
     }
 
+    &:hover > .iui-resizer {
+      display: block;
+    }
+
     &:hover,
     &:focus,
     &:focus-within {
@@ -105,12 +109,6 @@
       .iui-sort,
       .iui-borderless {
         visibility: visible;
-      }
-    }
-
-    &:hover {
-      > .iui-resizer {
-        display: block;
       }
     }
   }
