@@ -39,6 +39,7 @@ $iui-button-padding-large: $iui-xs * 6;
     width: $iui-icons-default;
     height: $iui-icons-default;
     transition: fill $iui-speed-fast ease-out;
+    pointer-events: none;
   }
 
   &:enabled:hover {
