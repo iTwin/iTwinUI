@@ -132,13 +132,6 @@
 
     .iui-sort {
       visibility: visible;
-        
-      &,
-      > * {
-        @include themed {
-          fill: t(iui-icons-color-actionable);
-        }
-      }
     }
   }
 
