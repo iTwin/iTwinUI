@@ -1,5 +1,9 @@
 ---
+name: Feature request 💄
 about: Request a feature from this project
+title: ''
+labels: enhancement
+assignees: ''
 ---
 
 #### Feature

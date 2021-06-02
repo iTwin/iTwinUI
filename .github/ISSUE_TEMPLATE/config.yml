@@ -1,11 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Bug report 🐞
-    url: https://github.com/iTwin/iTwinUI-react/issues/new?labels=bug&template=bug_report.md&projects=iTwin/iTwinUI-react/1
-    about: Create a report to help us improve
-  - name: Feature request 💄
-    url: https://github.com/iTwin/iTwinUI-react/issues/new?labels=enhancement&template=feature_request.md&projects=iTwin/iTwinUI-react/1
-    about: Request a new component or an enhancement to an existing one
   - name: Questions 🤔
     url: https://github.com/iTwin/iTwinUI-react/discussions/categories/q-a
     about: Ask questions and get help from contributors through GitHub Discussions.

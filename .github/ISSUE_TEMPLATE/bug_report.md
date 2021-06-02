@@ -1,5 +1,9 @@
 ---
+name: Bug report 🐞
 about: Create a bug report to help us improve
+title: ''
+labels: bug
+assignees: ''
 ---
 
 #### Environment
@@ -8,7 +12,7 @@ about: Create a bug report to help us improve
 - __Browser name and version__: <!-- fill this out -->
 
 #### Code Sandbox
-Link to a minimal repro (fork [this code sandbox](https://codesandbox.io/s/itwinui-react-example-son74)): <!-- here -->
+Link to a minimal repro: <!-- fork this sandbox: https://codesandbox.io/s/itwinui-react-example-son74 -->
 
 #### Steps to reproduce
 1. <!-- fill this out -->
