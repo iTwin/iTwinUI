@@ -80,7 +80,7 @@
     margin-top: $iui-baseline;
   }
 
-  .iui-content {
+  .iui-expandable-content {
     transform: scaleY(0);
     transform-origin: top;
     transition: transform $iui-speed-fast ease-in-out;
@@ -145,7 +145,7 @@
       }
     }
 
-    > .iui-content {
+    > .iui-expandable-content {
       transform: scaleY(1);
       opacity: 1;
       height: auto;
