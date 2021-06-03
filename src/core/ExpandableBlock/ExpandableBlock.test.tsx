@@ -51,7 +51,9 @@ it('should render content when expanded', () => {
     '.iui-expandable-block.iui-expanded',
   );
   expect(expandableBlock).toBeTruthy();
-  const content = container.querySelector('.iui-content') as HTMLElement;
+  const content = container.querySelector(
+    '.iui-expandable-content',
+  ) as HTMLElement;
   expect(content).toBeTruthy();
   expect(content.textContent).toEqual('test content');
 });
@@ -73,7 +75,9 @@ it('should trigger onToggle when clicked only on header', () => {
   fireEvent.click(header);
   expect(onToggleMock).toHaveBeenCalledTimes(1);
 
-  const content = container.querySelector('.iui-content') as HTMLElement;
+  const content = container.querySelector(
+    '.iui-expandable-content',
+  ) as HTMLElement;
   expect(content).toBeTruthy();
   fireEvent.click(content);
   expect(onToggleMock).toHaveBeenCalledTimes(1);

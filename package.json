@@ -41,7 +41,7 @@
     "audit:ci": "audit-ci --moderate --report-type=full --allowlist=postcss"
   },
   "dependencies": {
-    "@itwin/itwinui-css": "^0.17.1",
+    "@itwin/itwinui-css": "^0.18.0",
     "@itwin/itwinui-icons-react": "^1.1.1",
     "@itwin/itwinui-illustrations-react": "^1.0.1",
     "@tippyjs/react": "^4.2.5",

@@ -98,7 +98,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         <div className='iui-title'>{title}</div>
         {caption && <div className='iui-caption'>{caption}</div>}
       </div>
-      <div className='iui-content'>{children}</div>
+      <div className='iui-expandable-content'>{children}</div>
     </div>
   );
 };
