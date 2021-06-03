@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### Fixes
+
+- **Fixed Dart Sass deprecation warning about division operator** by replacing / with \*.
+
 ## [0.17.1]
 
 `2021-05-28`
@@ -8,7 +16,6 @@
 
 - **Improved wizard responsive design** by using percentage width.
 - **Fixed user-icon size not working when placed in icon button.**
-- **Fixed `DEPRECATION WARNING: Using / for division is deprecated and will be removed in Dart Sass 2.0.0.`.** when using scss files in project with Dart Sass 1.32.0 or later.
 
 ## [0.17.0]
 
