@@ -11,7 +11,7 @@
   font-weight: $iui-font-weight-semibold;
   font-family: $iui-monospace;
   line-height: 1;
-  padding: round($iui-baseline / 3) $iui-s;
+  padding: round($iui-baseline * 0.3333) $iui-s;
   white-space: nowrap;
   text-transform: uppercase;
   user-select: none;

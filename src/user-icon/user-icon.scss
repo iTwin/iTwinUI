@@ -67,8 +67,8 @@
     position: absolute;
     right: -2px;
     bottom: -2px;
-    width: calc(100% / 4);
-    height: calc(100% / 4);
+    width: calc(100% * 0.25);
+    height: calc(100% * 0.25);
     border-radius: 50%;
     @include themed {
       border: 2px solid t(iui-color-background-1);
@@ -81,8 +81,8 @@
       @include themed {
         fill: t(iui-icons-color);
       }
-      width: calc(100% / 1.5);
-      height: calc(100% / 1.5);
+      width: calc(100%* 0.6666667);
+      height: calc(100%* 0.6666667);
     }
 
     &.iui-online,
