@@ -5,9 +5,13 @@
 @mixin iui-wizards-long {
   @include iui-wizards;
 
-  > .iui-wizards-wrapper > .iui-wizards-step > .iui-wizards-step-title {
-    display: none;
-  }
+  > .iui-wizards-wrapper > .iui-wizards-step {
+    width: auto;
+    
+    > .iui-wizards-step-title {
+      display: none;
+    }
+  } 
 
   > .iui-wizards-steps {
     display: block;

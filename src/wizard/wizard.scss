@@ -22,6 +22,8 @@
       font-weight: $iui-font-weight-normal;
       line-height: $iui-line-height;
       position: relative;
+      width: 20%;
+
       @include themed {
         color: t(iui-color-background-positive);
       }
@@ -32,7 +34,6 @@
 
       > .iui-wizards-step-title {
         text-align: center;
-        width: 20vw;
         @include themed {
           color: t(iui-text-color-muted);
         }
