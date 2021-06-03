@@ -21,7 +21,7 @@
     > a {
       display: block;
       position: relative;
-      padding: ($iui-baseline / 2) $iui-m;
+      padding: ($iui-baseline * 0.5) $iui-m;
       box-sizing: border-box;
       font-size: $iui-font-size;
       line-height: $iui-line-height;

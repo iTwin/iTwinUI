@@ -27,7 +27,7 @@
       width: $iui-icons-default;
       height: $iui-icons-default;
       margin-right: $iui-sm;
-      margin-top: $iui-baseline / 4;
+      margin-top: $iui-baseline * 0.25;
       line-height: 3 * $iui-baseline;
       text-align: center;
       font-size: $iui-font-size-subheading;
@@ -80,7 +80,7 @@
     margin-top: $iui-baseline;
   }
 
-  .iui-content {
+  .iui-expandable-content {
     transform: scaleY(0);
     transform-origin: top;
     transition: transform $iui-speed-fast ease-in-out;
@@ -145,7 +145,7 @@
       }
     }
 
-    > .iui-content {
+    > .iui-expandable-content {
       transform: scaleY(1);
       opacity: 1;
       height: auto;

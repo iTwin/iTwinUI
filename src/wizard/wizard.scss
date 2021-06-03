@@ -12,7 +12,7 @@
     justify-content: space-around;
     align-items: flex-start;
     width: 100%;
-    margin-bottom: $iui-baseline / 2;
+    margin-bottom: $iui-baseline * 0.5;
 
     > .iui-wizards-step {
       align-items: center;
@@ -64,7 +64,7 @@
     > .iui-wizards-step > .iui-wizards-step-track {
       height: $iui-xxs;
       position: absolute;
-      top: $iui-l / 2;
+      top: $iui-l * 0.5;
       z-index: 0;
 
       &.iui-wizards-step-track-before,

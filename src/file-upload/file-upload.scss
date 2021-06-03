@@ -25,7 +25,7 @@
     align-items: center;
     box-sizing: border-box;
     user-select: none;
-    padding: round($iui-baseline / 2) $iui-sm;
+    padding: round($iui-baseline * 0.5) $iui-sm;
     @include themed {
       background-color: t(iui-color-background-2);
       border: 1px solid t(iui-color-background-2);

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### Fixes
+
+- **Fixed Dart Sass deprecation warning about division operator** by replacing / with \*.
+
 ## [0.17.1]
 
 `2021-05-28`
