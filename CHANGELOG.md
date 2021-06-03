@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.1]
+
+`2021-06-03`
+
+### Fixes
+
+- **Fixed `ExpandableBlock` breaking some components when used together**, through base CSS package.
+
 ## [1.6.0]
 
 `2021-05-31`
@@ -288,6 +296,7 @@
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
 
+[1.6.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.4.1...v1.5.0
 [1.4.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.4.0...v1.4.1
