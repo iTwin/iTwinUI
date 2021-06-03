@@ -1,12 +1,17 @@
 # Changelog
 
-## Unreleased
+## [0.18.0]
 
-`Date`
+`2021-06-03`
+
+### What's new
+
+- **Added separate time-picker component** for standalone use or within date-picker.
 
 ### Fixes
 
-- **Fixed Dart Sass deprecation warning about division operator** by replacing / with \*.
+- **Renamed expandable block content class to `.iui-expandable-content`** to prevent conflicts with other components.
+- **Fixed Dart Sass deprecation warning about division operator** by replacing `/` with `*`.
 
 ## [0.17.1]
 
@@ -244,6 +249,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.18.0]: https://github.com/iTwin/iTwinUI/compare/v0.17.1...v0.18.0
 [0.17.1]: https://github.com/iTwin/iTwinUI/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/iTwin/iTwinUI/compare/v0.16.0...v0.17.0
 [0.16.0]: https://github.com/iTwin/iTwinUI/compare/v0.15.0...v0.16.0
