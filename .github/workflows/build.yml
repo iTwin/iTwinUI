@@ -55,7 +55,7 @@ jobs:
           git-config-email: github-actions[bot]@users.noreply.github.com
 
       - name: Post gh pages link under Checks
-        if: github.ref != 'refs/heads/main'
+        if: github.event.pull_request.head.repo.full_name == github.repository && github.ref != 'refs/heads/main'
         uses: actions/github-script@v4
         with:
           script: |
