@@ -25,7 +25,6 @@
     display: flex;
     align-items: center;
     position: relative;
-    height: 100%;
     flex: 1;
   }
 
@@ -51,7 +50,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: default;
         @include themed {
           color: t(iui-text-color-muted);
         }
@@ -69,13 +67,9 @@
 
     > .iui-input-container {
       margin: 0;
-      position: absolute;
-      right: 0;
 
       > .iui-select {
-        cursor: pointer;
         padding: 0 $iui-baseline 0 $iui-baseline/2;
-        height: auto;
 
         > .iui-select-button {
           background-color: transparent;

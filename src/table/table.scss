@@ -153,12 +153,8 @@
     flex-grow: 1;
     margin-top: -1px;
     border: solid 1px transparent;
-
-    // Last row doesn't get bottom border. Up for debate.
-    &:not(:last-child) {
-      @include themed {
-        border-bottom: solid 1px t(iui-color-background-4);
-      }
+    @include themed {
+      border-bottom-color: t(iui-color-background-4);
     }
 
     > .iui-slot > .iui-more-options {
@@ -166,7 +162,7 @@
     }
 
     &:hover:not(.iui-disabled) {
-      &:not(.iui-selected):not(.iui-expanded-content) {
+      &:not(.iui-selected):not(.iui-expandable-content) {
         @include themed {
           background-color: rgba(
             t(iui-color-foreground-primary-rgb),
@@ -184,81 +180,6 @@
       visibility: visible;
     }
 
-    > .iui-cell {
-      position: relative;
-      align-items: center;
-      display: flex;
-      flex-grow: 1;
-      min-width: $iui-l * 6;
-      min-height: $iui-baseline * 5;
-      padding: 0 $iui-m;
-      overflow: hidden;
-      flex-basis: $iui-l * 6;
-
-      > .iui-icon {
-        width: $iui-icons-default;
-        height: $iui-icons-default;
-        margin-right: $iui-m;
-      }
-
-      > .iui-status,
-      > .iui-progress-indicator-radial {
-        float: right;
-        margin-left: auto;
-      }
-
-      > .iui-status {
-        margin-right: $iui-xs;
-      }
-
-      > .iui-user-icon {
-        margin-right: $iui-s;
-      }
-
-      &.iui-slot {
-        width: $iui-l * 2;
-        padding: 0;
-        flex-grow: 0;
-        min-width: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-basis: $iui-l * 2;
-
-        > .iui-icon {
-          @include themed {
-            fill: t(iui-icons-color-actionable);
-            color: t(iui-icons-color-actionable);
-          }
-          width: $iui-icons-default;
-          height: $iui-icons-default;
-          margin: 0;
-        }
-      }
-
-      // #region Indented rows
-      &.iui-expander-indent-0 {
-        padding-left: 0;
-      }
-
-      &.iui-expander-indent-1 {
-        padding-left: $iui-xl;
-      }
-
-      &.iui-expander-indent-2 {
-        padding-left: $iui-xl * 2;
-      }
-
-      &.iui-indent-1 {
-        padding-left: $iui-xl + $iui-s;
-      }
-
-      &.iui-indent-2 {
-        padding-left: ($iui-xl + $iui-s) * 2;
-      }
-      // #endregion Indented rows
-    }
-
     // #region Selection
     &:not(.iui-selected) + .iui-selected {
       padding-bottom: $iui-xxs;
@@ -267,7 +188,6 @@
 
     &.iui-selected {
       padding: 0;
-      border-bottom: none;
       @include themed {
         border: solid 1px t(iui-color-foreground-primary);
         background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
@@ -315,16 +235,11 @@
       }
 
       // Added by Jon, not fully tested
-      + .iui-expanded-content {
+      + .iui-expandable-content {
         @include themed {
           border-color: t(iui-color-foreground-primary);
         }
       }
-    }
-
-    &:last-child {
-      padding-bottom: $iui-xxs;
-      border-bottom: none;
     }
     // #endregion Selection
 
@@ -344,7 +259,7 @@
     }
 
     &.iui-disabled,
-    &.iui-disabled + .iui-expanded-content {
+    &.iui-disabled + .iui-expandable-content {
       font-style: italic;
       cursor: not-allowed;
       @include themed {
@@ -363,7 +278,7 @@
     }
 
     &.iui-positive {
-      @include iui-table-row-status;
+      @include iui-table-row-status($status:positive);
     }
     
     &.iui-warning {
@@ -374,18 +289,22 @@
       @include iui-table-row-status($status:negative);
     }
 
-    &.iui-expanded {
+    &.iui-row-expanded {
+      @include themed {
+        border-bottom-color: transparent;
+      }
+
       .iui-expander > .iui-icon {
         transform: rotate(90deg);
       }
 
-      + .iui-expanded-content {
+      + .iui-expandable-content {
         @include themed {
-          border-top: solid 1px t(iui-color-background-1);
+          border-top-color: transparent;
         }
       }
     }
-    // #endregion Selection
+    // #endregion Statuses & states
   }
 
   // Empty & loading states
@@ -410,28 +329,30 @@
   overflow: hidden;
   flex-basis: $iui-l * 6;
 
-  > svg {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    flex-shrink: 0;
-  }
+  &.iui-main-column {
+    position: relative;
+    
+    .iui-filetype,
+    .iui-status .iui-icon {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+      flex-shrink: 0;
+    }
 
-  > .iui-status,
-  > .iui-progress-indicator-radial {
-    float: right;
-    margin-left: auto;
-  }
+    .iui-filetype {
+      margin-right: $iui-sm;
+    }
 
-  > .iui-status {
-    margin-right: $iui-xs;
-  }
-
-  > .iui-user-icon {
-    margin-right: $iui-s;
-  }
-
-  > .iui-expander {
-    margin: 0 4px;
+    .iui-status {
+      // Hello code reviewers
+      margin-right: -3px;
+      margin-left: auto;
+      width: $iui-l;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &.iui-slot {
@@ -443,16 +364,6 @@
     justify-content: center;
     align-items: center;
     flex-basis: $iui-l * 2;
-
-    > .iui-icon {
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-        color: t(iui-icons-color-actionable);
-      }
-      width: $iui-icons-default;
-      height: $iui-icons-default;
-      margin: 0;
-    }
   }
     
   &.iui-right-align {
@@ -460,74 +371,21 @@
   }
 
   &.iui-positive {
-    @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-positive-rgb),
-        t(iui-opacity-6)
-      );
-    }
-
-    &::selection {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-positive-rgb),
-          t(iui-opacity-4)
-        );
-      }
-    }
+    @include iui-table-cell-status($status:positive);
   }
     
   &.iui-warning {
-    @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-warning-rgb),
-        t(iui-opacity-6)
-      );
-
-      &::selection {
-        @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-warning-rgb),
-            t(iui-opacity-4)
-          );
-        }
-      }
-    }
+    @include iui-table-cell-status($status:warning);
   }
 
   &.iui-negative {
-    @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-negative-rgb),
-        t(iui-opacity-6)
-      );
-    }
-
-    &::selection {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-negative-rgb),
-          t(iui-opacity-4)
-        );
-      }
-    }
-  }
-
-  &.iui-editable {
-    cursor: pointer;
-    @include iui-focus;
-
-    &:hover {
-      @include themed {
-        box-shadow: inset 0 0 0 1px t(iui-color-foreground-primary);
-      }
-    }
+    @include iui-table-cell-status($status:negative);
   }
 }
 
-@mixin iui-table-row-status($status: positive) {
+@mixin iui-table-row-status($status) {
   &,
-  + .iui-expanded-content {
+  + .iui-expandable-content {
     @include themed {
       box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-#{$status});
     }
@@ -545,6 +403,24 @@
   .iui-status {
     @include themed {
       fill: t(iui-icons-color-#{$status});
+    }
+  }
+}
+
+@mixin iui-table-cell-status($status) {
+  @include themed {
+    background-color: rgba(
+      t(iui-color-foreground-#{$status}-rgb),
+      t(iui-opacity-6)
+    );
+  }
+
+  &::selection {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-#{$status}-rgb),
+        t(iui-opacity-4)
+      );
     }
   }
 }
