@@ -76,7 +76,7 @@
     height: $iui-baseline * 5;
 
     &,
-    &:hover {
+    &:enabled:hover {
       @include themed {
         border-color: t(iui-color-background-5);
       }
