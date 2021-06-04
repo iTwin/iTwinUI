@@ -14,7 +14,7 @@
   width: max-content;
   overflow-wrap: break-word;
   box-sizing: content-box;
-  padding: round($iui-baseline / 3) $iui-s;
+  padding: round($iui-baseline * 0.33) $iui-s;
   z-index: 999;
   box-shadow: $iui-elevation-8;
   pointer-events: none;

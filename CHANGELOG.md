@@ -1,5 +1,41 @@
 # Changelog
 
+## [0.18.0]
+
+`2021-06-03`
+
+### What's new
+
+- **Added separate time-picker component** for standalone use or within date-picker.
+
+### Fixes
+
+- **Renamed expandable block content class to `.iui-expandable-content`** to prevent conflicts with other components.
+- **Fixed Dart Sass deprecation warning about division operator** by replacing `/` with `*`.
+
+## [0.17.1]
+
+`2021-05-28`
+
+### Fixes
+
+- **Improved wizard responsive design** by using percentage width.
+- **Fixed user-icon size not working when placed in icon button.**
+
+## [0.17.0]
+
+`2021-05-26`
+
+### What's new
+
+- **Added breadcrumbs component.**
+- **Added `.iui-x-small` and `.iui-large` sizes to radial progress indicator.**
+
+### Fixes
+
+- **Fixed wizard responsive design issues.**
+- **Fixed Sass deprecation warning about `!global` assignments.**
+
 ## [0.16.0]
 
 `2021-05-20`
@@ -213,7 +249,10 @@
 
 - **Global style resets have 0 specificity now.**
 
-[0.16.0]: https://github.com/iTwin/iTwinUI/compare/v0.16.0...v0.16.0
+[0.18.0]: https://github.com/iTwin/iTwinUI/compare/v0.17.1...v0.18.0
+[0.17.1]: https://github.com/iTwin/iTwinUI/compare/v0.17.0...v0.17.1
+[0.17.0]: https://github.com/iTwin/iTwinUI/compare/v0.16.0...v0.17.0
+[0.16.0]: https://github.com/iTwin/iTwinUI/compare/v0.15.0...v0.16.0
 [0.15.0]: https://github.com/iTwin/iTwinUI/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/iTwin/iTwinUI/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/iTwin/iTwinUI/compare/v0.13.0...v0.13.1
