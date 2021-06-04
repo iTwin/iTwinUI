@@ -21,6 +21,7 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     onClose: { control: { disable: true } },
+    ownerDocument: { control: { disable: true } },
   },
 } as Meta<ModalProps>;
 

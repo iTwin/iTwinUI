@@ -51,10 +51,15 @@ export type ModalProps = {
   id?: string;
   /**
    * Id of the root where the modal will be rendered in.
-   * If nothing set, RootId will be the default value of the Portal Component.
    * @default 'iui-react-portal-container'
    */
   modalRootId?: string;
+  /**
+   * Document where the modal will be rendered.
+   * Can be specified to render in a different document (e.g. a popup window).
+   * @default document
+   */
+  ownerDocument?: Document;
   /**
    * Content of the modal.
    */
@@ -96,12 +101,13 @@ export const Modal = (props: ModalProps) => {
     style,
     children,
     modalRootId = 'iui-react-portal-container',
+    ownerDocument = document,
     ...rest
   } = props;
 
   useTheme();
 
-  const container = getContainer(modalRootId);
+  const container = getContainer(modalRootId, ownerDocument);
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -116,15 +122,15 @@ export const Modal = (props: ModalProps) => {
 
   React.useEffect(() => {
     if (isOpen) {
-      originalBodyOverflow.current = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
+      originalBodyOverflow.current = ownerDocument.body.style.overflow;
+      ownerDocument.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = originalBodyOverflow.current;
+      ownerDocument.body.style.overflow = originalBodyOverflow.current;
     }
     return () => {
-      document.body.style.overflow = originalBodyOverflow.current;
+      ownerDocument.body.style.overflow = originalBodyOverflow.current;
     };
-  }, [isOpen]);
+  }, [isOpen, ownerDocument]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     // Prevents React from resetting its properties

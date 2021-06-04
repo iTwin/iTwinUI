@@ -93,10 +93,10 @@ export const hideOnEsc = {
 
     return {
       onShow() {
-        document.addEventListener('keydown', onKeyDown);
+        instance.popper.addEventListener('keydown', onKeyDown);
       },
       onHide() {
-        document.removeEventListener('keydown', onKeyDown);
+        instance.popper.removeEventListener('keydown', onKeyDown);
       },
     };
   },

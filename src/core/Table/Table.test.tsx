@@ -55,6 +55,7 @@ const mockedData = (count = 3) =>
 function renderComponent(
   initialsProps?: Partial<TableProps>,
   onViewClick?: () => void,
+  renderContainer?: HTMLElement,
 ) {
   const defaultProps: TableProps = {
     columns: columns(onViewClick),
@@ -64,7 +65,10 @@ function renderComponent(
   };
 
   const props = { ...defaultProps, ...initialsProps };
-  return render(<Table {...props} />);
+  return render(
+    <Table {...props} />,
+    renderContainer && { container: renderContainer },
+  );
 }
 
 function assertRowsData(
@@ -600,4 +604,41 @@ it('should not trigger sorting when filter is clicked', () => {
 
   expect(onFilter).toHaveBeenCalled();
   expect(onSort).not.toHaveBeenCalled();
+});
+
+it('should render filter dropdown in the correct document', () => {
+  const mockDocument = new DOMParser().parseFromString(
+    `<!DOCTYPE html><html><body><div></div></body></html>`,
+    'text/html',
+  );
+  const mockContainer = mockDocument.querySelector('div') as HTMLDivElement;
+
+  const onFilter = jest.fn();
+  const mockedColumns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          Filter: tableFilters.TextFilter(),
+          fieldType: 'text',
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent(
+    { columns: mockedColumns, onFilter },
+    undefined,
+    mockContainer,
+  );
+  expect(container.querySelector('.iui-tables-table')).toBeTruthy();
+
+  const filterIcon = container.querySelector('.iui-filter') as HTMLElement;
+  expect(filterIcon).toBeTruthy();
+  filterIcon.click();
+
+  expect(mockDocument.querySelector('.iui-column-filter')).toBeTruthy();
+  expect(document.querySelector('.iui-column-filter')).toBeFalsy();
 });

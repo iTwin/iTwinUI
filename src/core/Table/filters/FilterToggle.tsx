@@ -13,6 +13,7 @@ import { Popover } from '../../utils/Popover';
 
 export type FilterToggleProps<T extends Record<string, unknown>> = {
   column: HeaderGroup<T>;
+  ownerDocument?: Document;
 };
 
 /**
@@ -21,7 +22,7 @@ export type FilterToggleProps<T extends Record<string, unknown>> = {
 export const FilterToggle = <T extends Record<string, unknown>>(
   props: FilterToggleProps<T>,
 ) => {
-  const { column } = props;
+  const { column, ownerDocument = document } = props;
 
   useTheme();
 
@@ -49,7 +50,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           placement='bottom'
           visible={isVisible}
           onClickOutside={close}
-          appendTo={document.body}
+          appendTo={ownerDocument.body}
         >
           <div
             className={cx('iui-filter', {

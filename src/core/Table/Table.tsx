@@ -170,6 +170,8 @@ export const Table = <
 
   useTheme();
 
+  const [ownerDocument, setOwnerDocument] = React.useState<Document>();
+
   const defaultColumn = React.useMemo(
     () => ({
       maxWidth: 0,
@@ -318,6 +320,7 @@ export const Table = <
 
   return (
     <div
+      ref={(element) => setOwnerDocument(element?.ownerDocument)}
       {...getTableProps({
         className: cx('iui-tables-table', className),
         style,
@@ -349,7 +352,10 @@ export const Table = <
                   <div {...columnProps} key={columnProps.key}>
                     {column.render('Header')}
                     {!isLoading && data.length != 0 && (
-                      <FilterToggle column={column} />
+                      <FilterToggle
+                        column={column}
+                        ownerDocument={ownerDocument}
+                      />
                     )}
                     {!isLoading && data.length != 0 && column.canSort && (
                       <div className='iui-sort'>
