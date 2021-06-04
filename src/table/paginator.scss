@@ -69,7 +69,7 @@
       margin: 0;
 
       > .iui-select {
-        padding: 0 $iui-baseline 0 $iui-baseline/2;
+        padding: 0 $iui-baseline 0 $iui-baseline * 0.5;
 
         > .iui-select-button {
           background-color: transparent;
