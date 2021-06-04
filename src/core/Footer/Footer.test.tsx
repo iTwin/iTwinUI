@@ -5,10 +5,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { Footer, FooterElement } from './Footer';
+import { Footer, FooterProps, FooterElement } from './Footer';
 
-const renderComponent = (elements?: FooterElement[]) => {
-  return render(<Footer customElements={elements} />);
+const renderComponent = (props?: Partial<FooterProps>) => {
+  return render(<Footer {...props} />);
 };
 
 const urls: FooterElement[] = [
@@ -63,7 +63,7 @@ it('should show all default footer elements', () => {
       title: 'Products link',
     },
   ];
-  const { container } = renderComponent(customUrls);
+  const { container } = renderComponent({ customElements: customUrls });
   const copyright = container.querySelector<HTMLLIElement>('li:first-child');
   const today = new Date();
   expect(copyright?.textContent).toBe(
@@ -76,4 +76,19 @@ it('should show all default footer elements', () => {
       expect(link.href).toBe(element.url);
     }
   });
+});
+
+it('should propagate classname and style props correctly', () => {
+  const { container } = renderComponent({
+    className: 'custom-class',
+    style: { position: 'fixed', bottom: 0 },
+  });
+
+  const footer = container.querySelector(
+    '.iui-legal-footer.custom-class',
+  ) as HTMLElement;
+
+  expect(footer).toBeTruthy();
+  expect(footer.style.position).toEqual('fixed');
+  expect(footer.style.bottom).toEqual('0px');
 });

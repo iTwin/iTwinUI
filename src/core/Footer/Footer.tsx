@@ -3,9 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import cx from 'classnames';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/footer.css';
-import { CommonProps } from '../utils/props';
+import { StylingProps } from '../utils/props';
 
 export type TitleTranslations = {
   termsOfService: string;
@@ -24,7 +25,7 @@ export type FooterProps = {
    * Provide localized strings.
    */
   translatedTitles?: TitleTranslations;
-} & Omit<CommonProps, 'title'>;
+} & StylingProps;
 
 export type FooterElement = {
   /**
@@ -53,7 +54,7 @@ const footerTranslations: TitleTranslations = {
  * <Footer customElements={[{title: 'Bentley', url: 'https://www.bentley.com/'}]} />
  */
 export const Footer = (props: FooterProps) => {
-  const { customElements, translatedTitles, ...rest } = props;
+  const { customElements, translatedTitles, className, ...rest } = props;
 
   useTheme();
 
@@ -79,7 +80,7 @@ export const Footer = (props: FooterProps) => {
     : defaultElements;
 
   return (
-    <footer className='iui-legal-footer' {...rest}>
+    <footer className={cx('iui-legal-footer', className)} {...rest}>
       <ul>
         <li>© {today.getFullYear()} Bentley Systems, Incorporated</li>
         {elements.map((element, index) => {

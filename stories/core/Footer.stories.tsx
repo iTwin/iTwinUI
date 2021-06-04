@@ -9,6 +9,10 @@ import { Footer, FooterProps } from '../../src/core';
 export default {
   title: 'Core/Footer',
   component: Footer,
+  argTypes: {
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+  },
 } as Meta<FooterProps>;
 
 export const Basic: Story<FooterProps> = ({
