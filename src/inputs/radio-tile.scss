@@ -45,7 +45,7 @@
         height: $iui-icons-xl;
         display: block;
         margin: 0 auto;
-        margin-top: round($iui-baseline / 2);
+        margin-top: round($iui-baseline * 0.5);
         margin-bottom: $iui-baseline;
 
         @include themed {
