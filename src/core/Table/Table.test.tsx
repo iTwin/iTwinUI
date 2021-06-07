@@ -642,3 +642,46 @@ it('should render filter dropdown in the correct document', () => {
   expect(mockDocument.querySelector('.iui-column-filter')).toBeTruthy();
   expect(document.querySelector('.iui-column-filter')).toBeFalsy();
 });
+
+it('should rerender table when columns change', () => {
+  const data = mockedData();
+  const { rerender } = render(
+    <Table
+      columns={[
+        {
+          Header: 'Header name',
+          columns: [
+            {
+              id: 'name',
+              Header: 'Name',
+              Cell: () => 'test1',
+            },
+          ],
+        },
+      ]}
+      data={data}
+      emptyTableContent='No data.'
+    />,
+  );
+  expect(screen.getAllByText('test1').length).toBe(3);
+
+  rerender(
+    <Table
+      columns={[
+        {
+          Header: 'Header name',
+          columns: [
+            {
+              id: 'name',
+              Header: 'Name',
+              Cell: () => 'test2',
+            },
+          ],
+        },
+      ]}
+      data={data}
+      emptyTableContent='No data.'
+    />,
+  );
+  expect(screen.getAllByText('test2').length).toBe(3);
+});

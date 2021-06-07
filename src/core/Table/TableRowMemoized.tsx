@@ -66,5 +66,8 @@ export const TableRowMemoized = React.memo(
     prevProp.onBottomReached === nextProp.onBottomReached &&
     prevProp.row.original === nextProp.row.original &&
     prevProp.state.selectedRowIds?.[prevProp.row.id] ===
-      nextProp.state.selectedRowIds?.[nextProp.row.id],
+      nextProp.state.selectedRowIds?.[nextProp.row.id] &&
+    prevProp.row.cells.every(
+      (cell, index) => nextProp.row.cells[index].column === cell.column,
+    ),
 ) as typeof TableRow;

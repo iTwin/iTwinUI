@@ -11,6 +11,7 @@
 ### Fixes
 
 - **Fixed `ownerDocument` in `useTheme` breaking SSR build.**
+- **Fixed when `Table` columns change doesn't cause rows to re-render.**
 
 ## [1.6.1]
 
