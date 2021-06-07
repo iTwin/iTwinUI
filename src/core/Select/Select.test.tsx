@@ -62,16 +62,8 @@ function renderComponent(props?: Partial<SelectProps<number>>) {
   );
 }
 
-const originalScrollIntoView = window.HTMLElement.prototype.scrollIntoView;
-const scrollIntoViewMock = jest.fn();
-
 beforeEach(() => {
-  window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
   jest.clearAllMocks();
-});
-
-afterAll(() => {
-  window.HTMLElement.prototype.scrollIntoView = originalScrollIntoView;
 });
 
 it('should render empty select', () => {
@@ -252,6 +244,7 @@ it('should show menu with disabled item', () => {
 });
 
 it('should show selected item in menu', () => {
+  const scrollSpy = spyOn(window.HTMLElement.prototype, 'scrollIntoView');
   const { container } = renderComponent({
     value: 1,
     options: [...new Array(3)].map((_, index) => ({
@@ -266,7 +259,7 @@ it('should show selected item in menu', () => {
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu, { selectedIndex: 1 });
-  expect(scrollIntoViewMock).toHaveBeenCalledTimes(1);
+  expect(scrollSpy).toHaveBeenCalledTimes(1);
 });
 
 it('should call onChange on item click', () => {

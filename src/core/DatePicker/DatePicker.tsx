@@ -6,10 +6,10 @@ import SvgChevronLeft from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeft';
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import cx from 'classnames';
 import React from 'react';
-import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/date-picker.css';
 import { IconButton } from '../Buttons/IconButton';
+import { TimePicker, TimePickerProps } from '../TimePicker';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (
@@ -124,7 +124,12 @@ export type DatePickerProps = {
    * @default false
    */
   setFocus?: boolean;
-} & Omit<CommonProps, 'title'>;
+  /**
+   * Show time picker near the calendar.
+   * @default false
+   */
+  showTime?: boolean;
+} & Omit<TimePickerProps, 'date' | 'onChange' | 'setFocusHour'>;
 
 /**
  * Date picker component
@@ -139,6 +144,12 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     className,
     style,
     setFocus = false,
+    showTime = false,
+    use12Hours = false,
+    precision,
+    hourStep,
+    minuteStep,
+    secondStep,
     ...rest
   } = props;
 
@@ -156,6 +167,8 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
   const [displayedYear, setDisplayedYear] = React.useState(
     selectedDay ? selectedDay.getFullYear() : new Date().getFullYear(),
   );
+  // Used to focus days only when days are changed
+  // e.g. without this, when changing months day would be focused
   const needFocus = React.useRef(setFocus);
 
   React.useEffect(() => {
@@ -215,10 +228,16 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
   }, [days]);
 
   const getNewFocusedDate = (newYear: number, newMonth: number) => {
-    return selectedDay?.getMonth() === newMonth &&
-      selectedDay?.getFullYear() === newYear
-      ? selectedDay
-      : new Date(newYear, newMonth, 1);
+    const currentDate = selectedDay ?? new Date();
+    const newDate = new Date(
+      newYear,
+      newMonth,
+      currentDate.getDate(),
+      currentDate.getHours(),
+      currentDate.getMinutes(),
+      currentDate.getSeconds(),
+    );
+    return newDate;
   };
 
   const handleMoveToPreviousMonth = () => {
@@ -241,9 +260,18 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     if (day.getMonth() !== selectedDay?.getMonth()) {
       setMonthAndYear(day.getMonth(), day.getFullYear());
     }
-    setSelectedDay(day);
-    setFocusedDay(day);
-    onChange?.(day);
+    const currentDate = selectedDay ?? new Date();
+    const newDate = new Date(
+      day.getFullYear(),
+      day.getMonth(),
+      day.getDate(),
+      currentDate.getHours(),
+      currentDate.getMinutes(),
+      currentDate.getSeconds(),
+    );
+    setSelectedDay(newDate);
+    setFocusedDay(newDate);
+    onChange?.(newDate);
   };
 
   const handleCalendarKeyDown = (
@@ -376,6 +404,17 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
           })}
         </div>
       </div>
+      {showTime && (
+        <TimePicker
+          date={selectedDay}
+          use12Hours={use12Hours}
+          precision={precision}
+          hourStep={hourStep}
+          minuteStep={minuteStep}
+          secondStep={secondStep}
+          onChange={(date) => onChange?.(date)}
+        />
+      )}
     </div>
   );
 };

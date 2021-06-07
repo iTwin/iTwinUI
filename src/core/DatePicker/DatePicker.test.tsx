@@ -260,3 +260,11 @@ it('should navigate with keyboard', () => {
   expect(day.textContent).toBe('3');
   expect(onClick).toHaveBeenCalledTimes(2);
 });
+
+it('should show time selection', () => {
+  const { container } = render(
+    <DatePicker date={new Date(2020, 0, 10)} showTime />,
+  );
+  expect(container.querySelector('.iui-date-picker')).toBeTruthy();
+  expect(container.querySelector('.iui-time')).toBeTruthy();
+});
