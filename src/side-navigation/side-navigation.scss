@@ -80,7 +80,7 @@
 
     &,
     &:enabled:hover,
-    &:disabled,
+    &[disabled],
     &:focus-visible {
       @include themed {
         border-color: t(iui-color-background-5);
