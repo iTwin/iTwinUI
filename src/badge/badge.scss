@@ -8,7 +8,7 @@
   display: inline-block;
   font-size: $iui-font-size-small;
   padding: 0 $iui-xs;
-  margin: round($iui-baseline / 2) 0;
+  margin: round($iui-baseline * 0.5) 0;
   border-radius: $iui-border-radius;
   text-transform: uppercase;
   user-select: none;

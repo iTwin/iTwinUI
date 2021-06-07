@@ -17,11 +17,11 @@
       color: t(iui-text-color-muted);
     }
   }
-  
+
   &:not(.iui-basic) {
     height: $iui-baseline * 3;
     margin: $iui-input-margin-height 0;
-    border-radius: ($iui-baseline * 3) / 2;
+    border-radius: ($iui-baseline * 3) * 0.5;
     box-sizing: border-box;
     padding: 0 $iui-xxs;
     align-items: center;
@@ -51,7 +51,7 @@
       border-radius: 50%;
     }
 
-    &:hover {  
+    &:hover {
       @include themed {
         border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
       }

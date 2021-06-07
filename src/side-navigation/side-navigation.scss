@@ -36,7 +36,7 @@
         border-bottom: none;
       }
     }
-    
+
     > .iui-bottom {
       justify-content: flex-end;
 
@@ -73,20 +73,25 @@
     border-right: none;
     overflow: hidden;
     justify-content: flex-start;
-    height: $iui-baseline * 5;
+    
+    &:not(.iui-expand) {
+      height: $iui-baseline * 5;
+    }
 
     &,
-    &:hover {
+    &:enabled:hover,
+    &[disabled],
+    &:focus-visible {
       @include themed {
         border-color: t(iui-color-background-5);
       }
     }
 
-    > .iui-icon {
+    > .iui-icon:not(.iui-user-icon) {
       width: $iui-icons-large;
       height: $iui-icons-large;
       flex-shrink: 0;
-      
+
       + .iui-label {
         margin-left: $iui-icons-large;
         white-space: nowrap;
@@ -111,7 +116,7 @@
         }
       }
     }
-  
+
     &[disabled] {
       @include themed {
         background-color: t(iui-color-background-2);
@@ -135,19 +140,19 @@
       box-shadow: inset 0 0 $iui-xs
         rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
     }
-  }
 
-  .iui-sidenav-button.iui-expand {
-    height: $iui-line-height;
-    justify-content: center;
-    border: none;
-    @include themed {
-      border-bottom: 1px solid t(iui-color-background-5);
-    }
+    &.iui-expand {
+      height: $iui-line-height;
+      justify-content: center;
+      border: none;
+      @include themed {
+        border-bottom: 1px solid t(iui-color-background-5);
+      }
 
-    > .iui-icon {
-      @include iui-icons-small;
-      transition: transform $iui-speed ease-out;
+      > .iui-icon {
+        @include iui-icons-small;
+        transition: transform $iui-speed ease-out;
+      }
     }
   }
 }
