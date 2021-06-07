@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.7.0]
+
+`2021-06-07`
+
+### What's new
+
+- **Added `TimePicker` component.**
+
+### Fixes
+
+- **Fixed `ownerDocument` in `useTheme` breaking SSR build.**
+
 ## [1.6.1]
 
 `2021-06-03`

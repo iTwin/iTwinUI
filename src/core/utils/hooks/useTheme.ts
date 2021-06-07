@@ -26,14 +26,19 @@ export const useTheme = (
   theme?: ThemeType,
   themeOptions?: ThemeOptions,
 ): void => {
-  const ownerDocument = themeOptions?.ownerDocument ?? document;
+  const getOwnerDocument = React.useCallback(() => {
+    return themeOptions?.ownerDocument ?? document;
+  }, [themeOptions?.ownerDocument]);
+
   React.useLayoutEffect(() => {
+    const ownerDocument = getOwnerDocument();
     if (!ownerDocument.body.classList.contains('iui-body')) {
       ownerDocument.body.classList.add('iui-body');
     }
-  }, [ownerDocument]);
+  }, [getOwnerDocument]);
 
   React.useLayoutEffect(() => {
+    const ownerDocument = getOwnerDocument();
     switch (theme) {
       case 'light':
         addLightTheme(ownerDocument);
@@ -55,7 +60,7 @@ export const useTheme = (
           addLightTheme(ownerDocument);
         }
     }
-  }, [ownerDocument, theme]);
+  }, [getOwnerDocument, theme]);
 };
 
 const addLightTheme = (ownerDocument: Document) => {
