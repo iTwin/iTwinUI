@@ -6,12 +6,14 @@
 
 ### What's new
 
-- **Added `TimePicker` component.**
+- **Added `TimePicker` component** for standalone use or within `DatePicker` (through `showTime` prop).
+- **Improved popup window support** by removing `document` references in `Popover` and adding `ownerDocument` prop to `Modal`.
 
 ### Fixes
 
 - **Fixed `ownerDocument` in `useTheme` breaking SSR build.**
 - **Fixed when `Table` columns change doesn't cause rows to re-render.**
+- **Fixed `SidenavButton` styling issues** through base CSS package.
 
 ## [1.6.1]
 
@@ -309,6 +311,7 @@
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
 
+[1.7.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.6.1...v1.7.0
 [1.6.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.4.1...v1.5.0
