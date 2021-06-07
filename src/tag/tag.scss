@@ -20,7 +20,7 @@
 
   &:not(.iui-basic) {
     height: $iui-baseline * 3;
-    margin: $iui-input-margin-height 0;
+    margin: $iui-input-offset 0;
     border-radius: ($iui-baseline * 3) * 0.5;
     box-sizing: border-box;
     padding: 0 $iui-xxs;
@@ -83,7 +83,7 @@
 
   &.iui-visible {
     border-radius: $iui-border-radius;
-    padding: $iui-input-margin-height $iui-sm;
+    padding: $iui-input-offset $iui-sm;
     @include themed {
       background-color: t(iui-color-background-2);
     }

@@ -29,7 +29,7 @@
 
   > .iui-label {
     padding: 0;
-    margin-bottom: $iui-input-margin-height;
+    margin-bottom: $iui-input-offset;
     border: none;
     display: block;
     width: fit-content;
@@ -57,7 +57,7 @@
     align-items: center;
     font-size: $iui-font-size-small;
     line-height: $iui-line-height;
-    margin-top: $iui-input-margin-height;
+    margin-top: $iui-input-offset;
     @include themed {
       color: t(iui-text-color-muted);
     }
