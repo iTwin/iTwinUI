@@ -18,7 +18,7 @@ $iui-after-border: 5px solid;
     @include iui-focus;
     display: flex;
     align-items: center;
-    min-height: $iui-input-height;
+    min-height: $iui-component-height;
     padding-right: $iui-xl;
     white-space: nowrap;
     user-select: none;
@@ -96,17 +96,17 @@ $iui-after-border: 5px solid;
   }
 
   &.iui-small > .iui-select-button {
-    padding-top: $iui-input-padding-height-small;
-    padding-bottom: $iui-input-padding-height-small;
-    padding-left: $iui-input-padding-width-small;
-    min-height: $iui-input-height-small;
+    padding-top: $iui-component-padding-height-small;
+    padding-bottom: $iui-component-padding-height-small;
+    padding-left: $iui-component-padding-width-small;
+    min-height: $iui-component-height-small;
   }
 
   &.iui-large > .iui-select-button {
-    padding-top: $iui-input-padding-height-large;
-    padding-bottom: $iui-input-padding-height-large;
-    padding-left: $iui-input-padding-width-large;
-    min-height: $iui-input-height-large;
+    padding-top: $iui-component-padding-height-large;
+    padding-bottom: $iui-component-padding-height-large;
+    padding-left: $iui-component-padding-width-large;
+    min-height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
   }
 }

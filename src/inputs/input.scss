@@ -12,8 +12,8 @@
   appearance: none;
   box-sizing: border-box;
   transition: border-color $iui-speed-fast ease-out;
-  padding: $iui-input-padding-height $iui-input-padding-width;
-  min-height: $iui-input-height;
+  padding: $iui-component-padding-height $iui-component-padding-width;
+  min-height: $iui-component-height;
   @include themed {
     color: t(iui-text-color);
     background-color: t(iui-color-background-1);
@@ -21,13 +21,13 @@
   }
 
   &.iui-small {
-    padding: $iui-input-padding-height-small $iui-input-padding-width-small;
-    min-height: $iui-input-height-small;
+    padding: $iui-component-padding-height-small $iui-component-padding-width-small;
+    min-height: $iui-component-height-small;
   }
 
   &.iui-large {
-    padding: $iui-input-padding-height-large $iui-input-padding-width-large;
-    min-height: $iui-input-height-large;
+    padding: $iui-component-padding-height-large $iui-component-padding-width-large;
+    min-height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
   }
 

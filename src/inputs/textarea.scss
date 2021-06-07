@@ -5,7 +5,7 @@
 @mixin iui-textarea {
   @include iui-input;
   resize: vertical;
-  min-height: $iui-input-height;
+  min-height: $iui-component-height;
 
   &[disabled],
   &[readonly] {

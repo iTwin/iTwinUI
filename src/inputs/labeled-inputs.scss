@@ -29,7 +29,7 @@
 
   > .iui-label {
     padding: 0;
-    margin-bottom: $iui-input-offset;
+    margin-bottom: $iui-component-offset;
     border: none;
     display: block;
     width: fit-content;
@@ -57,7 +57,7 @@
     align-items: center;
     font-size: $iui-font-size-small;
     line-height: $iui-line-height;
-    margin-top: $iui-input-offset;
+    margin-top: $iui-component-offset;
     @include themed {
       color: t(iui-text-color-muted);
     }
@@ -206,14 +206,14 @@
   > textarea,
   > .iui-textarea,
   > .iui-select > .iui-select-button {
-    padding-bottom: $iui-input-padding-height - 1px;
+    padding-bottom: $iui-component-padding-height - 1px;
 
     &.iui-small {
-      padding-bottom: $iui-input-padding-height-small - 1px;
+      padding-bottom: $iui-component-padding-height-small - 1px;
     }
 
     &.iui-large {
-      padding-bottom: $iui-input-padding-height-large - 1px;
+      padding-bottom: $iui-component-padding-height-large - 1px;
     }
 
     @include themed {

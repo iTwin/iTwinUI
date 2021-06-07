@@ -6,16 +6,16 @@ $iui-blur-filter: blur(5px);
 
 
 // All inputs
-$iui-input-offset: 3px;
+$iui-component-offset: 3px;
 
-$iui-input-height: $iui-baseline * 4 - $iui-input-offset * 2; // 38px
-$iui-input-height-small: $iui-baseline * 3 - $iui-input-offset * 2; // 27px
-$iui-input-height-large: $iui-baseline * 5 - $iui-input-offset * 2; // 49px
+$iui-component-height: $iui-baseline * 4 - $iui-component-offset * 2; // 38px
+$iui-component-height-small: $iui-baseline * 3 - $iui-component-offset * 2; // 27px
+$iui-component-height-large: $iui-baseline * 5 - $iui-component-offset * 2; // 49px
 
-$iui-input-padding-width: $iui-sm; // 12px
-$iui-input-padding-width-small: $iui-sm * 0.5; // 6px
-$iui-input-padding-width-large: $iui-sm * 1.5; // 18px
+$iui-component-padding-width: $iui-sm; // 12px
+$iui-component-padding-width-small: $iui-sm * 0.5; // 6px
+$iui-component-padding-width-large: $iui-sm * 1.5; // 18px
 
-$iui-input-padding-height: (($iui-input-height - $iui-line-height) * 0.5) - 1; // 12.5px
-$iui-input-padding-height-small: (($iui-input-height-small - $iui-line-height) * 0.5) - 1; // 7px
-$iui-input-padding-height-large: (($iui-input-height-large - $iui-line-height) * 0.5) - 1; // 18px
+$iui-component-padding-height: (($iui-component-height - $iui-line-height) * 0.5) - 1; // 12.5px
+$iui-component-padding-height-small: (($iui-component-height-small - $iui-line-height) * 0.5) - 1; // 7px
+$iui-component-padding-height-large: (($iui-component-height-large - $iui-line-height) * 0.5) - 1; // 18px

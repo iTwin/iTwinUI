@@ -24,7 +24,7 @@
     align-items: center;
     font-size: $iui-font-size;
     padding: 0 $iui-sm;
-    min-height: $iui-input-height;
+    min-height: $iui-component-height;
     cursor: pointer;
     @include themed {
       color: t(iui-text-color);
@@ -63,8 +63,8 @@
 
     &.iui-active {
       box-sizing: border-box;
-      padding-top: $iui-input-padding-height;
-      padding-bottom: $iui-input-padding-height;
+      padding-top: $iui-component-padding-height;
+      padding-bottom: $iui-component-padding-height;
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
