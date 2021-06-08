@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { getContainer, getUserColor } from './common';
+import { getContainer, getDocument, getUserColor, getWindow } from './common';
 
 it('should return color for given user name', () => {
   expect(getUserColor('Terry Rivers')).toEqual('#6AB9EC');
@@ -28,4 +28,18 @@ it('should respect ownerDocument arg', () => {
   expect(mockDocument.getElementById('test-id')).toBeTruthy();
   expect(getContainer('test-id', mockDocument)).toBe(container);
   expect(getContainer('test-id', document)).not.toBe(container);
+});
+
+it('should get document when it is defined', () => {
+  expect(getDocument()).toBeTruthy();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  jest.spyOn(global as any, 'document', 'get').mockReturnValue(undefined);
+  expect(getDocument()).toBeFalsy();
+});
+
+it('should get window when it is defined', () => {
+  expect(getWindow()).toBeTruthy();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  jest.spyOn(global as any, 'window', 'get').mockReturnValue(undefined);
+  expect(getDocument()).toBeFalsy();
 });

@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.1]
+
+`2021-06-08`
+
+### Fixes
+
+- **Replaced all `document` and `window` with get functions to support SSR.**
+
 ## [1.7.0]
 
 `2021-06-07`

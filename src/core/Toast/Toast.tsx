@@ -12,6 +12,7 @@ import cx from 'classnames';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/toast-notification.css';
 import { IconButton } from '../Buttons';
+import { getWindow } from '../utils/common';
 
 export type ToastCategory = 'informational' | 'negative' | 'positive';
 
@@ -108,13 +109,18 @@ export const Toast = (props: ToastProps) => {
   };
 
   const setCloseTimeout = (timeout: number) => {
-    closeTimeout.current = window.setTimeout(() => {
+    const definedWindow = getWindow();
+    if (!definedWindow) {
+      return;
+    }
+
+    closeTimeout.current = definedWindow.setTimeout(() => {
       close();
     }, timeout);
   };
 
   const clearCloseTimeout = () => {
-    clearTimeout(closeTimeout.current);
+    getWindow()?.clearTimeout(closeTimeout.current);
   };
 
   const getCategoryIcon = React.useCallback(() => {

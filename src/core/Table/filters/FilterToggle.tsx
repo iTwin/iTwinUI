@@ -10,6 +10,7 @@ import { HeaderGroup } from 'react-table';
 import '@itwin/itwinui-css/css/table.css';
 import { useTheme } from '../../utils/hooks/useTheme';
 import { Popover } from '../../utils/Popover';
+import { getDocument } from '../../utils/common';
 
 export type FilterToggleProps<T extends Record<string, unknown>> = {
   column: HeaderGroup<T>;
@@ -22,7 +23,7 @@ export type FilterToggleProps<T extends Record<string, unknown>> = {
 export const FilterToggle = <T extends Record<string, unknown>>(
   props: FilterToggleProps<T>,
 ) => {
-  const { column, ownerDocument = document } = props;
+  const { column, ownerDocument = getDocument() } = props;
 
   useTheme();
 
@@ -50,7 +51,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           placement='bottom'
           visible={isVisible}
           onClickOutside={close}
-          appendTo={ownerDocument.body}
+          appendTo={ownerDocument?.body}
         >
           <div
             className={cx('iui-filter', {

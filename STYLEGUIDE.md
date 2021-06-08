@@ -168,3 +168,25 @@ import SvgClose from '@itwin/itwinui-icons-react/esm/icons/Close';
 // Bad (combining imports)
 import { SvgClose, SvgInfo } from '@itwin/itwinui-icons-react/cjs/icons';
 ```
+
+### Use `getDocument`, `getWindow` instead of direct access
+
+```jsx
+// Good
+getWindow()?.clearTimeout(1);
+```
+
+```jsx
+// Good
+getDocument()?.createElement('div');
+```
+
+```jsx
+// Bad
+window.clearTimeout(1);
+```
+
+```jsx
+// Bad
+document.createElement('div');
+```

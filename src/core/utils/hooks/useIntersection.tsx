@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import { getWindow } from '../common';
 
 /**
  * Hook that uses `IntersectionObserver` to trigger `onIntersect` callback when element is in viewport.
@@ -24,7 +25,7 @@ export const useIntersection = (
 
   const setRef = React.useCallback(
     (node: HTMLElement | null) => {
-      if (!window.IntersectionObserver) {
+      if (!getWindow()?.IntersectionObserver) {
         return;
       }
 

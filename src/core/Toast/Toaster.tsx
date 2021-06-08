@@ -65,10 +65,12 @@ export default class Toaster {
   }
 
   private updateView() {
-    ReactDOM.render(
-      <ToastWrapper toasts={this.toasts} />,
-      getContainer(TOASTS_CONTAINER_ID),
-    );
+    const container = getContainer(TOASTS_CONTAINER_ID);
+    if (!container) {
+      return;
+    }
+
+    ReactDOM.render(<ToastWrapper toasts={this.toasts} />, container);
   }
 
   public closeAll(): void {

@@ -51,12 +51,31 @@ export const getUserColor = (emailOrName: string) => {
  * @param containerId id of the container to find or create
  * @param ownerDocument Can be changed if the container should be in a different document (e.g. in popup).
  */
-export const getContainer = (containerId: string, ownerDocument = document) => {
-  let container = ownerDocument.getElementById(containerId);
-  if (container == null) {
+export const getContainer = (
+  containerId: string,
+  ownerDocument = getDocument(),
+) => {
+  let container = ownerDocument?.getElementById(containerId) ?? undefined;
+  if (container == null && !!ownerDocument) {
     container = ownerDocument.createElement('div');
     container.setAttribute('id', containerId);
     ownerDocument.body.appendChild(container);
   }
   return container;
+};
+
+/**
+ * Get document if it is defined.
+ * Used to support SSR/SSG applications.
+ */
+export const getDocument = () => {
+  return typeof document === 'undefined' ? undefined : document;
+};
+
+/**
+ * Get window if it is defined.
+ * Used to support SSR/SSG applications.
+ */
+export const getWindow = () => {
+  return typeof window === 'undefined' ? undefined : window;
 };
