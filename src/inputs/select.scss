@@ -96,16 +96,16 @@ $iui-after-border: 5px solid;
   }
 
   &.iui-small > .iui-select-button {
-    padding-top: $iui-component-padding-height-small;
-    padding-bottom: $iui-component-padding-height-small;
-    padding-left: $iui-component-padding-width-small;
+    padding-top: $iui-component-padding-vertical-small;
+    padding-bottom: $iui-component-padding-vertical-small;
+    padding-left: $iui-component-padding-horizontal-small;
     min-height: $iui-component-height-small;
   }
 
   &.iui-large > .iui-select-button {
-    padding-top: $iui-component-padding-height-large;
-    padding-bottom: $iui-component-padding-height-large;
-    padding-left: $iui-component-padding-width-large;
+    padding-top: $iui-component-padding-vertical-large;
+    padding-bottom: $iui-component-padding-vertical-large;
+    padding-left: $iui-component-padding-horizontal-large;
     min-height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
   }

@@ -63,8 +63,8 @@
 
     &.iui-active {
       box-sizing: border-box;
-      padding-top: $iui-component-padding-height;
-      padding-bottom: $iui-component-padding-height;
+      padding-top: $iui-component-padding-vertical;
+      padding-bottom: $iui-component-padding-vertical;
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),

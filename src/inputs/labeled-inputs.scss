@@ -206,14 +206,14 @@
   > textarea,
   > .iui-textarea,
   > .iui-select > .iui-select-button {
-    padding-bottom: $iui-component-padding-height - 1px;
+    padding-bottom: $iui-component-padding-vertical - 1px;
 
     &.iui-small {
-      padding-bottom: $iui-component-padding-height-small - 1px;
+      padding-bottom: $iui-component-padding-vertical-small - 1px;
     }
 
     &.iui-large {
-      padding-bottom: $iui-component-padding-height-large - 1px;
+      padding-bottom: $iui-component-padding-vertical-large - 1px;
     }
 
     @include themed {
