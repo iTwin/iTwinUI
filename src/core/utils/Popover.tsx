@@ -70,7 +70,12 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     role: undefined,
     offset: [0, 0],
     ...props,
-    plugins: [lazyLoad, removeTabIndex, hideOnEsc, ...(props.plugins || [])],
+    plugins: [
+      lazyLoad,
+      removeTabIndex,
+      hideOnEscOrTab,
+      ...(props.plugins || []),
+    ],
   };
 
   if (props.render) {
@@ -83,11 +88,31 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
   return <Tippy {...computedProps} ref={refs} />;
 });
 
-export const hideOnEsc = {
+/**
+ * Plugin to hide Popover when either Esc key is pressed,
+ * or when the content inside is not tabbable and Tab key is pressed.
+ */
+export const hideOnEscOrTab = {
   fn(instance: Instance) {
+    /** @returns true if none of the children are tabbable */
+    const shouldHideOnTab = () => {
+      const descendents = Array.from<HTMLElement>(
+        instance.popper.querySelectorAll('*'),
+      );
+      return !descendents.some((el) => el?.tabIndex >= 0);
+    };
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        instance.hide();
+      switch (event.key) {
+        case 'Escape':
+          instance.hide();
+          break;
+        case 'Tab':
+          if (shouldHideOnTab()) {
+            event.shiftKey && event.preventDefault(); // focus popover target on Shift+Tab
+            instance.hide();
+          }
+          break;
       }
     };
 

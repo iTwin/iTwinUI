@@ -9,7 +9,7 @@ import { DropdownMenu, IconButton, MenuItem } from '../../src/core';
 import { action } from '@storybook/addon-actions';
 import SvgClipboard from '@itwin/itwinui-icons-react/cjs/icons/Clipboard';
 import SvgCrop from '@itwin/itwinui-icons-react/cjs/icons/Crop';
-import SvgMoreSmall from '@itwin/itwinui-icons-react/cjs/icons/MoreSmall';
+import SvgMore from '@itwin/itwinui-icons-react/cjs/icons/More';
 import SvgMove from '@itwin/itwinui-icons-react/cjs/icons/Move';
 
 export default {
@@ -44,7 +44,7 @@ export const Basic: Story<DropdownMenuProps> = (args) => {
     <div style={{ minHeight: 150 }}>
       <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
         <IconButton>
-          <SvgMoreSmall />
+          <SvgMore />
         </IconButton>
       </DropdownMenu>
     </div>
@@ -72,7 +72,7 @@ export const WithIcons: Story<DropdownMenuProps> = (args) => {
     <div style={{ minHeight: 150 }}>
       <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
         <IconButton>
-          <SvgMoreSmall />
+          <SvgMore />
         </IconButton>
       </DropdownMenu>
     </div>
@@ -104,7 +104,7 @@ export const WithBadges: Story<DropdownMenuProps> = (args) => {
     <div style={{ minHeight: 150 }}>
       <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
         <IconButton>
-          <SvgMoreSmall />
+          <SvgMore />
         </IconButton>
       </DropdownMenu>
     </div>

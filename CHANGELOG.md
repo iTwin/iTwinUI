@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+- **Fixed `DropdownMenu` not closing when tabbing out.**
+  - Also fixed derived components: `DropdownButton`, `SplitButton`, and `Select`.
+
 ## [1.7.1]
 
 `2021-06-08`
