@@ -93,7 +93,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         ref={ref}
         style={style}
         role={role}
-        tabIndex={disabled ? undefined : isSelected ? 0 : -1}
+        tabIndex={disabled ? undefined : -1}
         aria-selected={isSelected}
         onKeyDown={onKeyDown}
         {...rest}

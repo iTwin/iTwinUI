@@ -18,7 +18,7 @@ function assertBaseElement(
   } = {},
 ) {
   expect(menuItem).toBeTruthy();
-  expect(menuItem.tabIndex).toBe(isSelected ? 0 : -1);
+  expect(menuItem.getAttribute('tabindex')).toEqual(disabled ? null : '-1');
   expect(menuItem.getAttribute('role')).toEqual(role);
   expect(menuItem.classList.contains('iui-active')).toBe(isSelected);
   expect(menuItem.classList.contains('iui-disabled')).toBe(disabled);
