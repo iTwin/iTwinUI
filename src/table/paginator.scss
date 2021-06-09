@@ -64,21 +64,5 @@
 
   > .iui-right {
     justify-content: flex-end;
-
-    > .iui-input-container {
-      margin: 0;
-
-      > .iui-select {
-        padding: 0 $iui-baseline 0 $iui-baseline * 0.5;
-
-        > .iui-select-button {
-          background-color: transparent;
-          border-color: transparent;
-          @include themed {
-            color: t(iui-text-color-muted);
-          }
-        }
-      }
-    }
   }
 }
