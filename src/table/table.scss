@@ -302,11 +302,11 @@
   align-items: center;
   display: flex;
   flex-grow: 1;
-  min-width: $iui-l * 6;
+  min-width: $iui-xxl;
   min-height: $iui-baseline * 5;
   padding: 0 $iui-m;
   overflow: hidden;
-  flex-basis: $iui-l * 6;
+  flex-basis: $iui-xxl;
 
   &.iui-main-column {
     position: relative;
@@ -323,7 +323,6 @@
     }
 
     .iui-status {
-      // Hello code reviewers
       margin-right: -3px;
       margin-left: auto;
       width: $iui-l;
