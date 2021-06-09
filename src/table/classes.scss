@@ -14,6 +14,18 @@
   }
 }
 
+.iui-table-header {
+  @include iui-table-header;
+}
+
+.iui-table-body {
+  @include iui-table-body;
+}
+
+.iui-cell {
+  @include iui-table-cell;
+}
+
 .iui-paginator {
   @include iui-paginator;
 }

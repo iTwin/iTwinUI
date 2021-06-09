@@ -14,18 +14,6 @@
     box-sizing: border-box;
   }
 
-  .iui-table-header {
-    @include iui-table-header;
-  }
-
-  .iui-table-body {
-    @include iui-table-body;
-  }
-
-  .iui-cell {
-    @include iui-table-cell;
-  }
-
   &.iui-zebra-striping > .iui-table-body > .iui-row:nth-child(even):not(.iui-selected) {
     @include themed {
       background: rgba(t(iui-color-foreground-body-rgb), 0.02);
@@ -38,6 +26,8 @@
     overflow-y: scroll;
     overflow: overlay;
   }
+
+  @include iui-table-cell-icon;
 }
 
 @mixin iui-table-header { 
@@ -304,34 +294,10 @@
   flex-grow: 1;
   min-width: $iui-xxl;
   min-height: $iui-baseline * 5;
-  padding: 0 $iui-m;
+  padding-left: $iui-m;
   overflow: hidden;
   flex-basis: $iui-xxl;
-
-  &.iui-main-column {
-    position: relative;
-    
-    .iui-filetype,
-    .iui-status .iui-icon {
-      width: $iui-icons-default;
-      height: $iui-icons-default;
-      flex-shrink: 0;
-    }
-
-    .iui-filetype {
-      margin-right: $iui-sm;
-    }
-
-    .iui-status {
-      margin-right: -3px;
-      margin-left: auto;
-      width: $iui-l;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+  position: relative;
 
   &.iui-slot {
     width: $iui-l * 2;
@@ -378,7 +344,7 @@
     }
   }
 
-  .iui-status {
+  .iui-cell-end-icon > svg {
     @include themed {
       fill: t(iui-icons-color-#{$status});
     }
@@ -400,5 +366,31 @@
         t(iui-opacity-4)
       );
     }
+  }
+}
+
+@mixin iui-table-cell-icon {
+  .iui-cell-end-icon,
+  .iui-cell-start-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > svg {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+    }
+  }
+
+  .iui-cell-start-icon {
+    margin-right: $iui-s;
+  }
+
+  .iui-cell-end-icon {
+    width: $iui-l;
+    height: $iui-l;
+    margin-right: $iui-sm;
+    margin-left: auto;
   }
 }
