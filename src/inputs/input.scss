@@ -1,12 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import './variables';
 
 @mixin iui-input {
   @include iui-font-family;
   width: 100%;
-  padding: $iui-inputs-padding $iui-sm;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
   line-height: $iui-line-height;
@@ -14,14 +12,27 @@
   appearance: none;
   box-sizing: border-box;
   transition: border-color $iui-speed-fast ease-out;
-
+  padding: $iui-component-padding-vertical $iui-component-padding-horizontal;
+  min-height: $iui-component-height;
   @include themed {
     color: t(iui-text-color);
     background-color: t(iui-color-background-1);
     border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
   }
 
+  &.iui-small {
+    padding: $iui-component-padding-vertical-small $iui-component-padding-horizontal-small;
+    min-height: $iui-component-height-small;
+  }
+
+  &.iui-large {
+    padding: $iui-component-padding-vertical-large $iui-component-padding-horizontal-large;
+    min-height: $iui-component-height-large;
+    font-size: $iui-font-size-leading;
+  }
+
   &::placeholder {
+    user-select: none;
     @include themed {
       color: t(iui-text-color-placeholder);
     }
@@ -36,8 +47,7 @@
     @include iui-input-autofill;
   }
 
-  &[disabled],
-  &[readonly] {
+  &[disabled] {
     @include themed {
       background-color: t(iui-color-background-disabled);
       border-color: t(iui-color-background-disabled);

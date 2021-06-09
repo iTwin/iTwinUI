@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.18.1]
+
+`2021-06-07`
+
+### Fixes
+
+- **Fixed sidenav buttons not always overriding styles from default button.**
+
 ## [0.18.0]
 
 `2021-06-03`
@@ -249,6 +257,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.18.1]: https://github.com/iTwin/iTwinUI/compare/v0.18.0...v0.18.1
 [0.18.0]: https://github.com/iTwin/iTwinUI/compare/v0.17.1...v0.18.0
 [0.17.1]: https://github.com/iTwin/iTwinUI/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/iTwin/iTwinUI/compare/v0.16.0...v0.17.0

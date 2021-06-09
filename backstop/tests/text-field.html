@@ -18,6 +18,14 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <style>
+      section[id^='demo'] {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+    </style>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -26,7 +34,7 @@
     <hr />
 
     <h2>Default</h2>
-    <div id="default">
+    <section id="demo-default">
       <label class="iui-input-container">
         <div class="iui-label iui-required">Input label</div>
         <input
@@ -41,6 +49,16 @@
         <div class="iui-label">Input label</div>
         <input
           value="A value"
+          class="iui-input"
+        />
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container">
+        <div class="iui-label">Input label</div>
+        <input
+          readonly
+          value="A read-only value"
           class="iui-input"
         />
         <div class="iui-message">Help message.</div>
@@ -122,12 +140,12 @@
         </div>
       </label>
 
-    </div>
+    </section>
 
     <br />
 
     <h2>Inline</h2>
-    <div id="inline">
+    <section id="demo-inline">
       <label class="iui-input-container iui-inline">
         <div class="iui-label iui-required">Input label</div>
         <input
@@ -239,12 +257,12 @@
           </button>
         </div>
       </label>
-    </div>
+    </section>
 
     <br />
 
     <h2>Without label</h2>
-    <div id="no-label">
+    <section id="demo-no-label">
       <label class="iui-input-container iui-inline">
         <input
           placeholder="Placeholder…"
@@ -324,7 +342,28 @@
           </svg>
         </div>
       </label>
-    </div>
+
+      <label class="iui-input-container iui-inline">
+        <input
+          value="Small"
+          class="iui-input iui-small"
+        />
+      </label>
+
+      <label class="iui-input-container iui-inline">
+        <input
+          value="Default"
+          class="iui-input"
+        />
+      </label>
+
+      <label class="iui-input-container iui-inline">
+        <input
+          value="Large"
+          class="iui-input iui-large"
+        />
+      </label>
+    </section>
 
     <br />
 

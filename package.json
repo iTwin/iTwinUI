@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -76,6 +76,8 @@
   "resolutions": {
     "braces": "^2.3.1",
     "hosted-git-info": ">=3.0.8",
-    "jimp": ">=0.16.1"
+    "jimp": ">=0.16.1",
+    "trim-newlines": "^3.0.1",
+    "glob-parent": "^5.1.2"
   }
 }

@@ -18,6 +18,13 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <style>
+      section[id^='demo'] {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+    </style>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -68,8 +75,6 @@
           <span class="iui-label">Option 4</span>
         </label>
       </div>
-
-      <br />
 
       <div class="iui-input-container">
         <div class="iui-label">Toggle switch group label</div>
@@ -208,8 +213,6 @@
         </label>
       </div>
 
-      <br />
-
       <h3>Toggle switch on right</h3>
       <div
         id="right"
@@ -259,8 +262,6 @@
           </span>
         </label>
       </div>
-
-      <br />
 
       <h3>No label</h3>
       <div id="no-label">

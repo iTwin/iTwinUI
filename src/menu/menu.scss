@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../inputs/variables';
 @import '../icon/index';
 
 @mixin iui-dropdown {
@@ -24,7 +23,8 @@
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
-    padding: ($iui-inputs-padding + 1) $iui-sm;
+    padding: 0 $iui-sm;
+    min-height: $iui-component-height;
     cursor: pointer;
     @include themed {
       color: t(iui-text-color);
@@ -63,8 +63,8 @@
 
     &.iui-active {
       box-sizing: border-box;
-      padding-top: $iui-inputs-padding;
-      padding-bottom: $iui-inputs-padding;
+      padding-top: $iui-component-padding-vertical;
+      padding-bottom: $iui-component-padding-vertical;
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),

@@ -1,12 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../inputs/variables';
 @import '../icon/index';
 
-$iui-button-height: $iui-baseline * 4 - $iui-input-offset * 2;
-$iui-button-height-small: $iui-baseline * 3 - $iui-input-offset * 2;
-$iui-button-height-large: $iui-baseline * 5 - $iui-input-offset * 2;
 $iui-button-padding: $iui-xs * 4;
 $iui-button-padding-small: $iui-xs * 2;
 $iui-button-padding-large: $iui-xs * 6;
@@ -51,7 +47,7 @@ $iui-button-padding-large: $iui-xs * 6;
 
 @mixin iui-button-sizes {
   padding: 0 $iui-button-padding;
-  height: $iui-button-height;
+  height: $iui-component-height;
 
   > .iui-icon + .iui-label,
   > .iui-label + .iui-icon,
@@ -61,7 +57,7 @@ $iui-button-padding-large: $iui-xs * 6;
 
   &.iui-small {
     padding: 0 $iui-button-padding-small;
-    height: $iui-button-height-small;
+    height: $iui-component-height-small;
 
     > .iui-icon + .iui-label,
     > .iui-label + .iui-icon,
@@ -72,7 +68,7 @@ $iui-button-padding-large: $iui-xs * 6;
 
   &.iui-large {
     padding: 0 $iui-button-padding-large;
-    height: $iui-button-height-large;
+    height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
 
     > .iui-icon + .iui-label,

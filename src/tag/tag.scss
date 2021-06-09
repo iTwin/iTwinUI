@@ -3,7 +3,6 @@
 @import '../style/index';
 @import '../icon/index';
 @import '../text/mixins';
-@import '../inputs/variables';
 
 @mixin iui-tag {
   @include iui-reset;
@@ -21,7 +20,7 @@
 
   &:not(.iui-basic) {
     height: $iui-baseline * 3;
-    margin: $iui-inputs-margin 0;
+    margin: $iui-component-offset 0;
     border-radius: ($iui-baseline * 3) * 0.5;
     box-sizing: border-box;
     padding: 0 $iui-xxs;
@@ -84,7 +83,7 @@
 
   &.iui-visible {
     border-radius: $iui-border-radius;
-    padding: $iui-inputs-margin $iui-sm;
+    padding: $iui-component-offset $iui-sm;
     @include themed {
       background-color: t(iui-color-background-2);
     }

@@ -1,12 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import './variables';
 
 @mixin iui-textarea {
   @include iui-input;
   resize: vertical;
-  min-height: 38px;
+  min-height: $iui-component-height;
 
   &[disabled],
   &[readonly] {
