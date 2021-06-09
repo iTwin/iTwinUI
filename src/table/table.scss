@@ -98,9 +98,6 @@
   // Sort icon
   .iui-sort {
     visibility: hidden;
-    margin-left: auto;
-    width: $iui-icons-default;
-    height: $iui-icons-default;
     @include themed {
       fill: t(iui-icons-color-actionable);
     }
@@ -140,7 +137,7 @@
     }
 
     &:hover:not(.iui-disabled) {
-      &:not(.iui-selected):not(.iui-expanded-content) {
+      &:not(.iui-expanded-content) {
         @include themed {
           background-color: rgba(
             t(iui-color-foreground-primary-rgb),
@@ -187,15 +184,6 @@
       @include themed {
         border-color: t(iui-color-foreground-primary);
         background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
-      }
-
-      &:hover {
-        @include themed {
-          background: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          );
-        }
       }
 
       + .iui-selected {
