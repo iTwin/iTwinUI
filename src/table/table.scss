@@ -288,9 +288,8 @@
   }
 
   // Empty & loading states
-  &.iui-message {
+  > .iui-table-empty {
     text-align: center;
-    height: 100%;
     padding: $iui-xl;
     @include themed {
       color: t(iui-text-color-muted);
