@@ -55,9 +55,8 @@
     @include iui-focus;
     cursor: pointer;
     position: relative;
-    overflow: visible;
 
-    > .iui-borderless {
+    > .iui-filter-button {
       margin-left: $iui-xs;
 
       &:not(.iui-active) {
@@ -107,7 +106,7 @@
       }
 
       .iui-sort,
-      .iui-borderless {
+      .iui-filter-button {
         visibility: visible;
       }
     }
