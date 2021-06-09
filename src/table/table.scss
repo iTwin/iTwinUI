@@ -37,7 +37,6 @@
   .iui-cell:not(.iui-slot) {
     @include iui-focus;
     cursor: pointer;
-    position: relative;
 
     > .iui-filter-button {
       margin-left: $iui-xs;

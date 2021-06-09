@@ -83,27 +83,30 @@
               <div class="iui-cell">
                 Name
                 <button
-                  class="iui-button iui-borderless"
-                  aria-label="Modify filter"
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
                   type="button"
                 >
-                  <!-- Use filter.svg from @itwin/itwinui-icons package. -->
+                  <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
                   <svg
                     class="iui-icon"
                     aria-hidden="true"
                     viewBox="0 0 16 16"
                   >
-                    <path d="m0 0v2l6 5v9l4-3v-6l6-5v-2z" />
+                    <path
+                      d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
                   </svg>
                 </button>
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                <div class="iui-cell-end-icon">
+                  <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
+                  <svg
+                    class="iui-icon iui-sort"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
+                  </svg>
+                </div>
                 <div class="iui-resizer">
                   <div class="iui-resizer-bar"></div>
                 </div>
@@ -111,27 +114,30 @@
               <div class="iui-cell iui-sorted">
                 Modified
                 <button
-                  class="iui-button iui-borderless"
-                  aria-label="Modify filter"
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
                   type="button"
                 >
-                  <!-- Use filter.svg from @itwin/itwinui-icons package. -->
+                  <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
                   <svg
                     class="iui-icon"
                     aria-hidden="true"
                     viewBox="0 0 16 16"
                   >
-                    <path d="m0 0v2l6 5v9l4-3v-6l6-5v-2z" />
+                    <path
+                      d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
                   </svg>
                 </button>
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                <div class="iui-cell-end-icon">
+                  <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
+                  <svg
+                    class="iui-icon iui-sort"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
+                  </svg>
+                </div>
                 <div class="iui-resizer">
                   <div class="iui-resizer-bar"></div>
                 </div>
@@ -139,7 +145,7 @@
               <div class="iui-cell">
                 Modified by
                 <button
-                  class="iui-button iui-borderless iui-active"
+                  class="iui-button iui-borderless iui-filter-button iui-active"
                   aria-label="Modify filter"
                   type="button"
                 >
@@ -152,14 +158,16 @@
                     <path d="m0 0v2l6 5v9l4-3v-6l6-5v-2z" />
                   </svg>
                 </button>
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                <div class="iui-cell-end-icon">
+                  <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
+                  <svg
+                    class="iui-icon iui-sort"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
+                  </svg>
+                </div>
                 <div class="iui-resizer">
                   <div class="iui-resizer-bar"></div>
                 </div>
@@ -181,14 +189,16 @@
                       d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
                   </svg>
                 </button>
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                <div class="iui-cell-end-icon">
+                  <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
+                  <svg
+                    class="iui-icon iui-sort"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
+                  </svg>
+                </div>
               </div>
               <div class="iui-cell iui-slot">
                 <button
@@ -417,27 +427,30 @@
               <div class="iui-cell">
                 Name
                 <button
-                  class="iui-button iui-borderless"
-                  aria-label="Modify filter"
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
                   type="button"
                 >
-                  <!-- Use filter.svg from @itwin/itwinui-icons package. -->
+                  <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
                   <svg
                     class="iui-icon"
                     aria-hidden="true"
                     viewBox="0 0 16 16"
                   >
-                    <path d="m0 0v2l6 5v9l4-3v-6l6-5v-2z" />
+                    <path
+                      d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
                   </svg>
                 </button>
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                <div class="iui-cell-end-icon">
+                  <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
+                  <svg
+                    class="iui-icon iui-sort"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
+                  </svg>
+                </div>
                 <div class="iui-resizer">
                   <div class="iui-resizer-bar"></div>
                 </div>
@@ -445,27 +458,30 @@
               <div class="iui-cell iui-sorted">
                 Modified
                 <button
-                  class="iui-button iui-borderless"
-                  aria-label="Modify filter"
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
                   type="button"
                 >
-                  <!-- Use filter.svg from @itwin/itwinui-icons package. -->
+                  <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
                   <svg
                     class="iui-icon"
                     aria-hidden="true"
                     viewBox="0 0 16 16"
                   >
-                    <path d="m0 0v2l6 5v9l4-3v-6l6-5v-2z" />
+                    <path
+                      d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
                   </svg>
                 </button>
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                <div class="iui-cell-end-icon">
+                  <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
+                  <svg
+                    class="iui-icon iui-sort"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
+                  </svg>
+                </div>
                 <div class="iui-resizer">
                   <div class="iui-resizer-bar"></div>
                 </div>
@@ -473,7 +489,7 @@
               <div class="iui-cell">
                 Modified by
                 <button
-                  class="iui-button iui-borderless iui-active"
+                  class="iui-button iui-borderless iui-filter-button iui-active"
                   aria-label="Modify filter"
                   type="button"
                 >
@@ -486,14 +502,16 @@
                     <path d="m0 0v2l6 5v9l4-3v-6l6-5v-2z" />
                   </svg>
                 </button>
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                <div class="iui-cell-end-icon">
+                  <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
+                  <svg
+                    class="iui-icon iui-sort"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
+                  </svg>
+                </div>
                 <div class="iui-resizer">
                   <div class="iui-resizer-bar"></div>
                 </div>
@@ -515,14 +533,16 @@
                       d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
                   </svg>
                 </button>
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                <div class="iui-cell-end-icon">
+                  <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
+                  <svg
+                    class="iui-icon iui-sort"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
+                  </svg>
+                </div>
               </div>
               <div class="iui-cell iui-slot">
                 <button
