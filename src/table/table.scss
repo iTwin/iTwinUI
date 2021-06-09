@@ -20,13 +20,6 @@
     }
   }
 
-  &.iui-fixed > .iui-table-body {
-    max-height: $iui-baseline * 27;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    overflow: overlay;
-  }
-
   @include iui-table-cell-icon;
 }
 
@@ -126,6 +119,10 @@
 }
 
 @mixin iui-table-body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow: overlay;
+
   @include themed {
     background-color: t(iui-color-background-1);
   }
