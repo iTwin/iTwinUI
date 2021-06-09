@@ -143,7 +143,7 @@
     }
 
     &:hover:not(.iui-disabled) {
-      &:not(.iui-selected):not(.iui-expandable-content) {
+      &:not(.iui-selected):not(.iui-expanded-content) {
         @include themed {
           background-color: rgba(
             t(iui-color-foreground-primary-rgb),
@@ -168,11 +168,11 @@
         border-bottom-color: transparent;
       }
 
-      .iui-expander > .iui-icon {
+      .iui-row-expander > .iui-icon {
         transform: rotate(90deg);
       }
 
-      + .iui-expandable-content {
+      + .iui-expanded-content {
         @include themed {
           border-left-color: t(iui-color-background-4);
           border-right-color: t(iui-color-background-4);
@@ -215,13 +215,13 @@
       }
 
       + :not(.iui-selected),
-      + .iui-expandable-content + :not(.iui-selected) {
+      + .iui-expanded-content + :not(.iui-selected) {
         @include themed {
           border-top-color: t(iui-color-foreground-primary);
         }
       }
 
-      + .iui-expandable-content {
+      + .iui-expanded-content {
         @include themed {
           border-color: transparent t(iui-color-foreground-primary);
         }
@@ -245,7 +245,7 @@
     }
 
     &.iui-disabled,
-    &.iui-disabled + .iui-expandable-content {
+    &.iui-disabled + .iui-expanded-content {
       font-style: italic;
       cursor: not-allowed;
       @include themed {
@@ -329,7 +329,7 @@
 
 @mixin iui-table-row-status($status) {
   &,
-  + .iui-expandable-content {
+  + .iui-expanded-content {
     @include themed {
       box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-#{$status});
     }
