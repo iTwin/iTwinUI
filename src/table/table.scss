@@ -306,10 +306,6 @@
     align-items: center;
     flex-basis: $iui-l * 2;
   }
-    
-  &.iui-right-align {
-    justify-content: flex-end;
-  }
 
   &.iui-positive {
     @include iui-table-cell-status($status:positive);
