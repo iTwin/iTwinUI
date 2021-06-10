@@ -1,0 +1,68 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../icon/index';
+@import '../button/index';
+@import './variables';
+
+@mixin iui-paginator {
+  @include iui-reset;
+  @include iui-font-family;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+  min-height: $iui-baseline * 5;
+  padding: 0 $iui-m;
+  user-select: none;
+  @include themed {
+    background-color: t(iui-color-background-3);
+  }
+
+  > .iui-left,
+  > .iui-center,
+  > .iui-right {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex: 1;
+  }
+
+  > .iui-center {
+    justify-content: center;
+    @include themed {
+      color: t(iui-text-color);
+    }
+
+    .iui-button-group {
+      margin: 0 $iui-s;
+
+      > .iui-button,
+      > .iui-ellipsis {
+        width: $iui-component-height;
+
+        &.iui-small {
+          width: $iui-component-height-small;
+        }
+      }
+
+      > .iui-ellipsis {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
+      }
+
+      > .iui-active::after {
+        top: auto;
+        bottom: $iui-xxs;
+      }
+    }
+  }
+
+  > .iui-right {
+    justify-content: flex-end;
+  }
+}
