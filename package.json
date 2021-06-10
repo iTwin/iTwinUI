@@ -78,6 +78,7 @@
     "hosted-git-info": ">=3.0.8",
     "jimp": ">=0.16.1",
     "trim-newlines": "^3.0.1",
-    "glob-parent": "^5.1.2"
+    "glob-parent": "^5.1.2",
+    "jpeg-js": "^0.4.0"
   }
 }
