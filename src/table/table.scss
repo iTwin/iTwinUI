@@ -150,7 +150,7 @@
       }
     }
 
-    &:focus-within > .iui-slot > .iui-more-options {
+    &:not(.iui-disabled):focus-within > .iui-slot > .iui-more-options {
       visibility: visible;
     }
 
@@ -279,7 +279,6 @@
   min-width: $iui-xxl;
   min-height: $iui-baseline * 5;
   padding-left: $iui-m;
-  overflow: hidden;
   flex-basis: $iui-xxl;
   position: relative;
 
