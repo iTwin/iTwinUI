@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@import './space';
+@import './baseline';
 
 $iui-border-radius: 3px;
 $iui-blur-filter: blur(5px);
 
-
-// All inputs
 $iui-component-offset: 3px;
 
 $iui-component-height: $iui-baseline * 4 - $iui-component-offset * 2; // 38px
