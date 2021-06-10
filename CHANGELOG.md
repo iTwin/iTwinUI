@@ -1,8 +1,12 @@
 # Changelog
 
-## [0.19.1]
+## [0.20.0]
 
 `2021-06-10`
+
+### What's new
+
+- **Updated table class names and added some new styles.**
 
 ### Fixes
 
@@ -273,6 +277,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.20.0]: https://github.com/iTwin/iTwinUI/compare/v0.19.0...v0.20.0
 [0.19.0]: https://github.com/iTwin/iTwinUI/compare/v0.18.1...v0.19.0
 [0.18.1]: https://github.com/iTwin/iTwinUI/compare/v0.18.0...v0.18.1
 [0.18.0]: https://github.com/iTwin/iTwinUI/compare/v0.17.1...v0.18.0
