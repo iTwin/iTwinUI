@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.0]
+
+`2021-06-10`
+
+### What's new
+
+- **Added small and large sizes to inputs and buttons.** Also removed bottom margin.
+
 ## [0.18.1]
 
 `2021-06-07`
