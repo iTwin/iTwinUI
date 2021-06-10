@@ -12,6 +12,7 @@ import {
   generateLocalizedStrings,
 } from '../../src/core/DatePicker/DatePicker';
 import SvgCalendar from '@itwin/itwinui-icons-react/cjs/icons/Calendar';
+import { CreeveyMeta } from 'creevey';
 
 export default {
   title: 'Core/DatePicker',
@@ -24,10 +25,32 @@ export default {
     date: { control: 'date' },
     setFocus: { defaultValue: true },
   },
-} as Meta<DatePickerProps>;
+  parameters: {
+    creevey: {
+      ignoreElements: ['#picker-button + span'],
+      tests: {
+        async open() {
+          const button = await this.browser.findElement({
+            id: 'picker-button',
+          });
+
+          await this.browser.actions().click(button).perform();
+          await this.expect(await this.takeScreenshot()).to.matchImage(
+            'opened',
+          );
+        },
+      },
+    },
+  },
+} as Meta<DatePickerProps> & CreeveyMeta;
 
 export const Basic: Story<DatePickerProps> = (args) => {
-  const { date = new Date(), setFocus = true, localizedNames, ...rest } = args;
+  const {
+    date = new Date(2021, 4, 11, 14, 55, 22),
+    setFocus = true,
+    localizedNames,
+    ...rest
+  } = args;
   const [opened, setOpened] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date(date));
   const onChange = (date: Date) => {
@@ -41,7 +64,7 @@ export const Basic: Story<DatePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)}>
+      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
         <SvgCalendar />
       </IconButton>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
@@ -61,12 +84,12 @@ export const Basic: Story<DatePickerProps> = (args) => {
 };
 
 Basic.args = {
-  date: new Date(),
+  date: new Date(2021, 4, 11, 14, 55, 22),
 };
 
 export const WithTime: Story<DatePickerProps> = (args) => {
   const {
-    date = new Date(),
+    date = new Date(2021, 4, 11, 14, 55, 22),
     setFocus = true,
     showTime = true,
     localizedNames,
@@ -85,7 +108,7 @@ export const WithTime: Story<DatePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)}>
+      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
         <SvgCalendar />
       </IconButton>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
@@ -106,14 +129,14 @@ export const WithTime: Story<DatePickerProps> = (args) => {
 };
 
 WithTime.args = {
-  date: new Date(),
+  date: new Date(2021, 4, 11, 14, 55, 22),
   setFocus: true,
   showTime: true,
 };
 
 export const Localized: Story<DatePickerProps> = (args) => {
   const {
-    date = new Date(),
+    date = new Date(2021, 4, 11, 14, 55, 22),
     setFocus = true,
     localizedNames = generateLocalizedStrings('ja'),
     ...rest
@@ -131,7 +154,7 @@ export const Localized: Story<DatePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)}>
+      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
         <SvgCalendar />
       </IconButton>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
@@ -151,6 +174,6 @@ export const Localized: Story<DatePickerProps> = (args) => {
 };
 
 Localized.args = {
-  date: new Date(),
+  date: new Date(2021, 4, 11, 14, 55, 22),
   localizedNames: generateLocalizedStrings('ja'),
 };

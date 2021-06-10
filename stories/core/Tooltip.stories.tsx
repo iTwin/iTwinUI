@@ -5,6 +5,7 @@
 import React from 'react';
 import { Tooltip, TooltipProps } from '../../src/core';
 import { Story, Meta } from '@storybook/react';
+import { CreeveyMeta } from 'creevey';
 
 export default {
   title: 'Core/Tooltip',
@@ -16,6 +17,7 @@ export default {
     children: {
       defaultValue: (
         <div
+          id='tooltip-target'
           style={{
             marginTop: 40,
             marginLeft: 100,
@@ -31,7 +33,24 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
   },
-} as Meta<TooltipProps>;
+  parameters: {
+    creevey: {
+      captureElement: null,
+      skip: { stories: 'Controlled' },
+      tests: {
+        async hover() {
+          const text = await this.browser.findElement({
+            css: '#tooltip-target',
+          });
+          await this.browser.actions().move({ origin: text }).perform();
+          await this.expect(await this.takeScreenshot()).to.matchImage(
+            'hovered',
+          );
+        },
+      },
+    },
+  },
+} as Meta<TooltipProps> & CreeveyMeta;
 
 export const Top: Story<TooltipProps> = (args) => {
   const { children, placement, ...rest } = args;

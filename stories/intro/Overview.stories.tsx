@@ -11,6 +11,7 @@ import itwinImage from '../../.storybook/public/itwin.svg';
 import itwinImageDark from '../../.storybook/public/itwin-dark.svg';
 import { Headline, Subheading, Title, Code } from '../../src/';
 import cx from 'classnames';
+import { CreeveyMeta } from 'creevey';
 
 const channel = addons.getChannel();
 
@@ -22,8 +23,11 @@ export default {
     controls: { disable: true },
     actions: { disable: true },
     storysource: { disable: true },
+    creevey: {
+      skip: 'Overview',
+    },
   },
-} as Meta;
+} as Meta & CreeveyMeta;
 
 export const Overview: Story = () => {
   const [isDarkTheme, setIsDarkTheme] = React.useState(

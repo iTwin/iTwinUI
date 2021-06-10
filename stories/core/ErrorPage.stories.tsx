@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { CreeveyMeta } from 'creevey';
 import React from 'react';
 import { ErrorPage } from '../../src/core';
 import { ErrorPageProps } from '../../src/core/ErrorPage/ErrorPage';
@@ -19,7 +20,12 @@ export default {
     primaryButtonHandle: { action: 'Primary button clicked' },
     secondaryButtonHandle: { action: 'Secondary button clicked' },
   },
-} as Meta<ErrorPageProps>;
+  parameters: {
+    creevey: {
+      captureElement: null,
+    },
+  },
+} as Meta<ErrorPageProps> & CreeveyMeta;
 
 export const unauthorized: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />

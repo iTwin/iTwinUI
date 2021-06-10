@@ -11,6 +11,7 @@ import SvgClipboard from '@itwin/itwinui-icons-react/cjs/icons/Clipboard';
 import SvgCrop from '@itwin/itwinui-icons-react/cjs/icons/Crop';
 import SvgMore from '@itwin/itwinui-icons-react/cjs/icons/More';
 import SvgMove from '@itwin/itwinui-icons-react/cjs/icons/Move';
+import { CreeveyMeta } from 'creevey';
 
 export default {
   title: 'Core/DropdownMenu',
@@ -20,7 +21,23 @@ export default {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
   },
-} as Meta<DropdownMenuProps>;
+  parameters: {
+    creevey: {
+      tests: {
+        async open() {
+          const button = await this.browser.findElement({
+            css: '.iui-button',
+          });
+          const closed = await this.takeScreenshot();
+
+          await button.sendKeys(' ');
+          const opened = await this.takeScreenshot();
+          await this.expect({ closed, opened }).to.matchImages();
+        },
+      },
+    },
+  },
+} as Meta<DropdownMenuProps> & CreeveyMeta;
 
 export const Basic: Story<DropdownMenuProps> = (args) => {
   const { menuItems, ...rest } = args;

@@ -10,6 +10,7 @@ import { Button } from '../../src/core';
 import { Modal, ModalButtonBar } from '../../src/core/Modal';
 import { ModalProps } from '../../src/core/Modal/Modal';
 import { useEffect, useState } from '@storybook/addons';
+import { CreeveyMeta } from 'creevey';
 
 export default {
   title: 'Core/Modal',
@@ -23,7 +24,24 @@ export default {
     onClose: { control: { disable: true } },
     ownerDocument: { control: { disable: true } },
   },
-} as Meta<ModalProps>;
+  parameters: {
+    creevey: {
+      captureElement: null,
+      tests: {
+        async open() {
+          const button = await this.browser.findElement({
+            className: 'iui-button',
+          });
+
+          await button.click();
+          await this.expect(await this.takeScreenshot()).to.matchImage(
+            'opened',
+          );
+        },
+      },
+    },
+  },
+} as Meta<ModalProps> & CreeveyMeta;
 
 export const Basic: Story<ModalProps> = ({
   isOpen,

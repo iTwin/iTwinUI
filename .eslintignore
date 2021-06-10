@@ -3,3 +3,4 @@ scripts/**
 lib/**
 custom.d.ts
 storybook-static/**
+tests/**

@@ -5,6 +5,7 @@
 import { action } from '@storybook/addon-actions';
 import { useEffect, useState } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react';
+import { CreeveyMeta } from 'creevey';
 import React from 'react';
 import { ExpandableBlock } from '../../src/core';
 import { ExpandableBlockProps } from '../../src/core/ExpandableBlock/ExpandableBlock';
@@ -22,7 +23,27 @@ export default {
   args: {
     children: 'Content in block!',
   },
-} as Meta<ExpandableBlockProps>;
+  parameters: {
+    creevey: {
+      captureElement: null,
+      tests: {
+        async open() {
+          const button = await this.browser.findElement({
+            className: 'iui-header',
+          });
+
+          await button.click();
+          const opened = await this.takeScreenshot();
+
+          await button.click();
+          const closed = await this.takeScreenshot();
+
+          await this.expect({ opened, closed }).matchImages();
+        },
+      },
+    },
+  },
+} as Meta<ExpandableBlockProps> & CreeveyMeta;
 
 export const Basic: Story<ExpandableBlockProps> = (args) => {
   return (

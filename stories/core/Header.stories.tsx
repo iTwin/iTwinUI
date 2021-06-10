@@ -24,6 +24,7 @@ import SvgVersion from '@itwin/itwinui-icons-react/cjs/icons/Pin';
 import SvgNetwork from '@itwin/itwinui-icons-react/cjs/icons/Network';
 import SvgNotification from '@itwin/itwinui-icons-react/cjs/icons/Notification';
 import { SvgImodel } from '@itwin/itwinui-icons-react';
+import { CreeveyMeta } from 'creevey';
 
 export default {
   title: 'Core/Header',
@@ -43,7 +44,12 @@ export default {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
   },
-} as Meta<HeaderProps>;
+  parameters: {
+    creevey: {
+      delay: 1000,
+    },
+  },
+} as Meta<HeaderProps> & CreeveyMeta;
 
 const buildClickHandler = (menu: string, close: () => void) => (
   index: number,

@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
+import { CreeveyStory } from 'creevey';
 import React from 'react';
 import { Footer, FooterProps } from '../../src/core';
 
@@ -44,7 +45,9 @@ Custom.args = {
   ],
 } as FooterProps;
 
-export const BottomFixed: Story<FooterProps> = ({ ...rest }: FooterProps) => {
+export const BottomFixed: Story<FooterProps> & CreeveyStory = ({
+  ...rest
+}: FooterProps) => {
   return (
     <div>
       <Footer style={{ position: 'fixed', bottom: 0 }} {...rest} />
@@ -54,4 +57,10 @@ export const BottomFixed: Story<FooterProps> = ({ ...rest }: FooterProps) => {
 
 BottomFixed.parameters = {
   docs: { inlineStories: false },
+};
+
+BottomFixed.parameters = {
+  creevey: {
+    captureElement: null,
+  },
 };

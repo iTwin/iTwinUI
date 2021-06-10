@@ -14,6 +14,7 @@ import {
   MeridiemType,
 } from '../../src/core';
 import SvgCalendar from '@itwin/itwinui-icons-react/cjs/icons/Calendar';
+import { CreeveyMeta } from 'creevey';
 
 export default {
   title: 'Core/TimePicker',
@@ -24,10 +25,31 @@ export default {
     style: { control: { disable: true } },
     date: { control: { type: 'date' } },
   },
-} as Meta<TimePickerProps>;
+  parameters: {
+    creevey: {
+      ignoreElements: ['#time-input'],
+      tests: {
+        async open() {
+          const button = await this.browser.findElement({
+            css: '.iui-button.iui-borderless',
+          });
+
+          await this.browser.actions().click(button).perform();
+          await this.expect(await this.takeScreenshot()).to.matchImage(
+            'opened',
+          );
+        },
+      },
+    },
+  },
+} as Meta<TimePickerProps> & CreeveyMeta;
 
 export const Basic: Story<TimePickerProps> = (args) => {
-  const { date = new Date(), setFocusHour = true, ...rest } = args;
+  const {
+    date = new Date(2021, 4, 11, 14, 55, 22),
+    setFocusHour = true,
+    ...rest
+  } = args;
   const [opened, setOpened] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date(date));
   const onChange = (date: Date) => {
@@ -54,6 +76,7 @@ export const Basic: Story<TimePickerProps> = (args) => {
         }
         style={{ width: 150 }}
         readOnly
+        id='time-input'
       />
       {opened && (
         <div>
@@ -70,7 +93,7 @@ export const Basic: Story<TimePickerProps> = (args) => {
 };
 
 Basic.args = {
-  date: new Date(),
+  date: new Date(2021, 4, 11, 14, 55, 22),
   setFocusHour: true,
   hourRenderer: (date: Date) =>
     date.getHours().toLocaleString(undefined, { minimumIntegerDigits: 2 }),

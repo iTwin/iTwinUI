@@ -35,8 +35,8 @@ jobs:
       - run: yarn build
       - run: yarn build-storybook
 
-  test:
-    name: Run tests
+  unit-test:
+    name: Run unit tests
     runs-on: ubuntu-latest
 
     steps:
@@ -65,3 +65,27 @@ jobs:
           comment_mode: off
           check_name: 'Test results'
           fail_on: 'nothing'
+
+  visual-test:
+    name: Run visual tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node 12.X
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12.x
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - run: yarn install --frozen-lockfile
+
+      # `&` symbol is needed as it prevents Storybook from running endlessly
+      - run: yarn storybook &
+      - run: yarn creevey

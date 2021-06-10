@@ -27,6 +27,7 @@ module.exports = {
       },
     },
     '@storybook/addon-actions',
+    'creevey',
   ],
   webpackFinal: async (config, { configType }) => {
     if (configType === 'PRODUCTION') {

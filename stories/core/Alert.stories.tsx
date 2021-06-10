@@ -7,6 +7,7 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { Alert } from '../../src/core';
 import { AlertProps } from '../../src/core/Alert/Alert';
+import { CreeveyStory } from 'creevey';
 
 export default {
   title: 'Core/Alert',
@@ -100,7 +101,7 @@ Negative.args = {
   type: 'negative',
 };
 
-export const Sticky: Story<AlertProps> = (args) => {
+export const Sticky: Story<AlertProps> & CreeveyStory = (args) => {
   return (
     <Alert
       clickableText='More Info.'
@@ -118,6 +119,12 @@ Sticky.args = {
   clickableText: 'More Info.',
   type: 'informational',
   isSticky: true,
+};
+
+Sticky.parameters = {
+  creevey: {
+    captureElement: null,
+  },
 };
 
 export const Empty: Story<AlertProps> = (args) => {

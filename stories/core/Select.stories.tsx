@@ -10,6 +10,7 @@ import { useState } from '@storybook/addons';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import SvgSmileyNeutral from '@itwin/itwinui-icons-react/cjs/icons/SmileyNeutral';
 import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
+import { CreeveyMeta, CreeveyStory } from 'creevey';
 
 export default {
   title: 'Input/Select',
@@ -20,7 +21,41 @@ export default {
     menuStyle: { control: { disable: true } },
     menuClassName: { control: { disable: true } },
   },
-} as Meta<SelectProps<unknown>>;
+  parameters: {
+    creevey: {
+      skip: {
+        stories: ['Disabled With Selected Value', 'With Selected Value'],
+      },
+      tests: {
+        async open() {
+          const button = await this.browser.findElement({
+            className: 'iui-select-button',
+          });
+          const closed = await this.takeScreenshot();
+
+          await button.sendKeys(' ');
+          const opened = await this.takeScreenshot();
+
+          const menuItem = await this.browser.findElement({
+            css: '.iui-menu li:last-child',
+          });
+          await menuItem.click();
+          const selected = await this.takeScreenshot();
+
+          await button.sendKeys(' ');
+          const openedWithValue = await this.takeScreenshot();
+
+          await this.expect({
+            closed,
+            opened,
+            selected,
+            openedWithValue,
+          }).to.matchImages();
+        },
+      },
+    },
+  },
+} as Meta<SelectProps<unknown>> & CreeveyMeta;
 
 export const Basic: Story<SelectProps<number>> = (args) => {
   const {
@@ -122,7 +157,9 @@ WithSelectedValue.args = {
   value: 2,
 };
 
-export const Disabled: Story<SelectProps<number>> = Basic.bind({});
+export const Disabled: Story<SelectProps<number>> & CreeveyStory = Basic.bind(
+  {},
+);
 
 Disabled.args = {
   disabled: true,
@@ -131,6 +168,16 @@ Disabled.args = {
     { value: 2, label: 'Item #2' },
     { value: 3, label: 'Item #3' },
   ],
+};
+
+Disabled.parameters = {
+  creevey: {
+    tests: {
+      async open() {
+        await this.expect(await this.takeScreenshot()).to.matchImage('open');
+      },
+    },
+  },
 };
 
 export const DisabledWithSelectedValue: Story<

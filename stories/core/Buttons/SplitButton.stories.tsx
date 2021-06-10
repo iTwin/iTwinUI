@@ -6,6 +6,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
 import { MenuItem, SplitButton, SplitButtonProps } from '../../../src/core';
+import { CreeveyMeta } from 'creevey';
 
 export default {
   title: 'Buttons/SplitButton',
@@ -14,7 +15,24 @@ export default {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
   },
-} as Meta<SplitButtonProps>;
+  parameters: {
+    creevey: {
+      captureElement: null,
+      tests: {
+        async open() {
+          const button = await this.browser.findElement({
+            css: '.iui-button:last-child',
+          });
+          const closed = await this.takeScreenshot();
+
+          await button.sendKeys(' ');
+          const opened = await this.takeScreenshot();
+          await this.expect({ closed, opened }).to.matchImages();
+        },
+      },
+    },
+  },
+} as Meta<SplitButtonProps> & CreeveyMeta;
 
 export const Basic: Story<SplitButtonProps> = (args) => {
   const { onClick, menuItems, children, ...rest } = args;

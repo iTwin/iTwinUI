@@ -10,6 +10,7 @@ import {
   DropdownButton,
   DropdownButtonProps,
 } from '../../../src/core';
+import { CreeveyMeta } from 'creevey';
 
 export default {
   title: 'Buttons/DropdownButton',
@@ -18,7 +19,24 @@ export default {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
   },
-} as Meta<DropdownButtonProps>;
+  parameters: {
+    creevey: {
+      captureElement: null,
+      tests: {
+        async open() {
+          const button = await this.browser.findElement({
+            className: 'iui-button',
+          });
+          const closed = await this.takeScreenshot();
+
+          await button.sendKeys(' ');
+          const opened = await this.takeScreenshot();
+          await this.expect({ closed, opened }).to.matchImages();
+        },
+      },
+    },
+  },
+} as Meta<DropdownButtonProps> & CreeveyMeta;
 
 export const Basic: Story<DropdownButtonProps> = (args) => {
   const { menuItems, children, ...rest } = args;
