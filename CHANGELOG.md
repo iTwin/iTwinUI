@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.1]
+
+`2021-06-10`
+
+### Fixes
+
+- **Fixed undefined variable error in variables.scss**.
+
 ## [0.19.0]
 
 `2021-06-10`
