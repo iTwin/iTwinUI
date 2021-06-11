@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`2021-06-11`
+
+### Fixes
+
+- **Fixed `ProgressRadial` not using `className` prop correctly.**
+
 ## [1.7.2]
 
 `2021-06-09`

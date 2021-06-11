@@ -81,13 +81,16 @@ export const ProgressRadial = (props: ProgressRadialProps) => {
 
   return (
     <div
-      className={cx('iui-progress-indicator-radial', {
-        'iui-determinate': !indeterminate,
-        'iui-indeterminate': indeterminate,
-        [`iui-${size}`]: !!size,
-        [`iui-${status}`]: !!status,
+      className={cx(
+        'iui-progress-indicator-radial',
+        {
+          'iui-determinate': !indeterminate,
+          'iui-indeterminate': indeterminate,
+          [`iui-${size}`]: !!size,
+          [`iui-${status}`]: !!status,
+        },
         className,
-      })}
+      )}
       style={style}
       {...rest}
     >
