@@ -106,10 +106,21 @@
   }
 
   // Adds focus to enabled checkbox & radio
-  input:enabled:focus ~ .iui-checkbox-checkmark,
-  input:enabled:focus ~ .iui-radio-dot {
-    @include themed {
-      box-shadow: t(iui-focus-box-shadow);
+  input:enabled {
+    &:focus {
+      ~ .iui-checkbox-checkmark,
+      ~ .iui-radio-dot {
+        @include themed {
+          box-shadow: t(iui-focus-box-shadow);
+        }
+      }
+    }
+
+    &:focus:not(:focus-visible) {
+      ~ .iui-checkbox-checkmark,
+      ~ .iui-radio-dot {
+        box-shadow: none;
+      }
     }
   }
 
