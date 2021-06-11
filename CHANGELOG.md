@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.20.1]
+
+`2021-06-11`
+
+### Fixes
+
+- **Fixed file-upload input selector so it can now be nested inside label.**
+- **Changed checkboxes and radio so they no longer get focus ring for mouse clicks.**
+
 ## [0.20.0]
 
 `2021-06-10`
@@ -277,6 +286,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.20.1]: https://github.com/iTwin/iTwinUI/compare/v0.20.0...v0.20.1
 [0.20.0]: https://github.com/iTwin/iTwinUI/compare/v0.19.0...v0.20.0
 [0.19.0]: https://github.com/iTwin/iTwinUI/compare/v0.18.1...v0.19.0
 [0.18.1]: https://github.com/iTwin/iTwinUI/compare/v0.18.0...v0.18.1
