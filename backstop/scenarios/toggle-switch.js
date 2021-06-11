@@ -1,10 +1,11 @@
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
-  scenario('default', {
+  // Types
+  scenario('Type default', {
     selectors: ['#demo-default'],
   }),
-  scenario('no-label', {
+  scenario('Type no-label', {
     selectors: ['#demo-no-label'],
     hideSelectors: ['h3'],
   }),

@@ -18,11 +18,6 @@
       href="../assets/demo.css"
     />
     <style>
-      .iui-tooltip-container {
-        margin-left: 90px;
-        margin-bottom: 35px;
-      }
-
       .right {
         top: -5px;
         left: 100%;
@@ -49,19 +44,20 @@
         margin-top: 5px;
       }
 
-      section {
+      section[id^='demo'] {
+        gap: 33px;
         background-image: url('https://images.unsplash.com/photo-1544306094-e2dcf9479da3');
-        padding: 64px; 
+        padding: 64px;
+        padding-left: 128px;
       }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Tooltip</h1>
-
     <hr />
-    <br />
 
     <section id="demo-tooltip">
       <div class="iui-tooltip-container">

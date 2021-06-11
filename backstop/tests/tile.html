@@ -18,8 +18,6 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/userIcon.js"></script>
     <style>
       /* Set the width of all tiles */
       .iui-tile {
@@ -27,23 +25,20 @@
         margin-bottom: 11px;
       }
 
-      /* Set the gap between tiles */
-      .iui-tile:not(:last-child) {
-        margin-right: 16px;
-      }
-
       /* Set the thumbnail image */
       div.iui-picture {
         background-image: url('../assets/image-test.jpg');
       }
 
-      section {
-        height: fit-content;
-        display: flex;
+      section[id^='demo'] {
+        flex-direction: row;
         flex-wrap: wrap;
-        padding: 16px;
+        gap: 16px;
+        height: fit-content;
       }
     </style>
+    <script src="../assets/theme.js"></script>
+    <script src="../assets/userIcon.js"></script>
   </head>
 
   <body class="iui-body">

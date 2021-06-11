@@ -18,48 +18,24 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
-    <script src="../assets/theme.js"></script>
     <style>
-      #demo-default button,
-      #demo-high-visibility button,
-      #demo-cta button,
-      #demo-disabled button,
-      #demo-borderless button,
-      #demo-split-menu .iui-button-split-menu {
-        margin-right: 4px;
-      }
-
-      .demo-container,
-      .iui-button-group,
-      .iui-button-split-menu {
-        margin-bottom: 11px;
-      }
-
-      .demo-container .iui-button {
-        margin-right: 4px;
-      }
-
-      #demo-default button,
-      #demo-borderless button,
-      #demo-grouped span {
-        margin-bottom: 11px;
+      div[id^='demo'] {
+        display: flex;
+        gap: 4px;
       }
     </style>
+    <script src="../assets/theme.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Button</h1>
     <hr />
 
-    <h2>Default</h2>
-
-    <h3>High visibility</h3>
-
+    <h2>High visibility</h2>
     <section id="demo-high-visibility">
-      <div
-        id="demo-high-visibility-small"
-        class="demo-container"
-      >
+
+      <div id="demo-high-visibility-small">
         <button class="iui-button iui-high-visibility iui-small">
           <span class="iui-label">Small</span>
         </button>
@@ -123,10 +99,7 @@
         </button>
       </div>
 
-      <div
-        id="demo-high-visibility-normal"
-        class="demo-container"
-      >
+      <div id="demo-high-visibility-normal">
         <button class="iui-button iui-high-visibility">
           <span class="iui-label">Normal</span>
         </button>
@@ -190,10 +163,7 @@
         </button>
       </div>
 
-      <div
-        id="demo-high-visibility-large"
-        class="demo-container"
-      >
+      <div id="demo-high-visibility-large">
         <button class="iui-button iui-high-visibility iui-large">
           <span class="iui-label">Large</span>
         </button>
@@ -256,14 +226,13 @@
           <span class="iui-label">Large disabled</span>
         </button>
       </div>
+
     </section>
 
-    <h3>Call to action</h3>
+    <h2>Call to action</h2>
     <section id="demo-cta">
-      <div
-        id="demo-cta-small"
-        class="demo-container"
-      >
+
+      <div id="demo-cta-small">
         <button class="iui-button iui-cta iui-small">
           <span class="iui-label">Small</span>
         </button>
@@ -327,10 +296,7 @@
         </button>
       </div>
 
-      <div
-        id="demo-cta-medium"
-        class="demo-container"
-      >
+      <div id="demo-cta-medium">
         <button class="iui-button iui-cta">
           <span class="iui-label">Normal</span>
         </button>
@@ -394,10 +360,7 @@
         </button>
       </div>
 
-      <div
-        id="demo-cta-large"
-        class="demo-container"
-      >
+      <div id="demo-cta-large">
         <button class="iui-button iui-cta iui-large">
           <span class="iui-label">Large</span>
         </button>
@@ -460,14 +423,13 @@
           <span class="iui-label">Large disabled</span>
         </button>
       </div>
+
     </section>
 
-    <h3>Default</h3>
+    <h2>Default</h2>
     <section id="demo-default">
-      <div
-        id="demo-default-small"
-        class="demo-container"
-      >
+
+      <div id="demo-default-small">
         <button class="iui-button iui-small">
           <span class="iui-label">Small</span>
         </button>
@@ -545,10 +507,7 @@
         </button>
       </div>
 
-      <div
-        id="demo-default-medium"
-        class="demo-container"
-      >
+      <div id="demo-default-medium">
         <button class="iui-button">
           <span class="iui-label">Normal</span>
         </button>
@@ -626,10 +585,7 @@
         </button>
       </div>
 
-      <div
-        id="demo-default-large"
-        class="demo-container"
-      >
+      <div id="demo-default-large">
         <button class="iui-button iui-large">
           <span class="iui-label">Large</span>
         </button>
@@ -706,14 +662,13 @@
           <span class="iui-label">Large disabled</span>
         </button>
       </div>
+
     </section>
 
-    <h3>Borderless</h3>
+    <h2>Borderless</h2>
     <section id="demo-borderless">
-      <div
-        id="demo-borderless-small"
-        class="demo-container"
-      >
+
+      <div id="demo-borderless-small">
         <button class="iui-button iui-borderless iui-small">
           <span class="iui-label">Small</span>
         </button>
@@ -792,10 +747,7 @@
         </button>
       </div>
 
-      <div
-        id="demo-borderless-medium"
-        class="demo-container"
-      >
+      <div id="demo-borderless-medium">
         <button class="iui-button iui-borderless">
           <span class="iui-label">Normal</span>
         </button>
@@ -873,10 +825,7 @@
         </button>
       </div>
 
-      <div
-        id="demo-borderless-large"
-        class="demo-container"
-      >
+      <div id="demo-borderless-large">
         <button class="iui-button iui-borderless iui-large">
           <span class="iui-label">Large</span>
         </button>
@@ -953,6 +902,7 @@
           <span class="iui-label">Large disabled</span>
         </button>
       </div>
+
     </section>
 
     <hr />
@@ -974,8 +924,6 @@
         </button>
       </span>
 
-      <br />
-
       <span class="iui-button-group">
         <button class="iui-button">
           <span class="iui-label">Left</span>
@@ -988,8 +936,6 @@
         </button>
       </span>
 
-      <br />
-
       <span class="iui-button-group">
         <button class="iui-button iui-large">
           <span class="iui-label">Left</span>
@@ -1001,8 +947,6 @@
           <span class="iui-label">Right</span>
         </button>
       </span>
-
-      <br />
 
       <span class="iui-button-group">
         <button
@@ -1077,8 +1021,6 @@
         </button>
       </span>
 
-      <br />
-
       <span class="iui-button-group">
         <button
           disabled
@@ -1156,8 +1098,6 @@
         </button>
       </span>
 
-      <br />
-
       <span class="iui-button-group">
         <button
           title="List view"
@@ -1188,8 +1128,6 @@
           </svg>
         </button>
       </span>
-
-      <br />
 
       <span class="iui-button-group">
         <button
@@ -1223,6 +1161,7 @@
           </svg>
         </button>
       </span>
+
     </section>
 
     <br />
@@ -1242,8 +1181,6 @@
         </button>
       </span>
 
-      <br />
-
       <span class="iui-button-group">
         <button class="iui-button iui-borderless">
           <span class="iui-label">Left</span>
@@ -1256,8 +1193,6 @@
         </button>
       </span>
 
-      <br />
-
       <span class="iui-button-group">
         <button class="iui-button iui-borderless iui-large">
           <span class="iui-label">Left</span>
@@ -1269,8 +1204,6 @@
           <span class="iui-label">Right</span>
         </button>
       </span>
-
-      <br />
 
       <span class="iui-button-group">
         <button
@@ -1345,8 +1278,6 @@
         </button>
       </span>
 
-      <br />
-
       <span class="iui-button-group">
         <button
           disabled
@@ -1424,8 +1355,6 @@
         </button>
       </span>
 
-      <br />
-
       <span class="iui-button-group">
         <button
           title="List view"
@@ -1456,8 +1385,6 @@
           </svg>
         </button>
       </span>
-
-      <br />
 
       <span class="iui-button-group">
         <button
@@ -1491,6 +1418,7 @@
           </svg>
         </button>
       </span>
+
     </section>
 
     <br />
@@ -1498,263 +1426,267 @@
     <h3>Split menu</h3>
     <section id="demo-split-menu">
 
-      <span class="iui-button-split-menu">
-        <button class="iui-button iui-small iui-high-visibility">
-          <span class="iui-label">Small split menu</span>
-        </button>
-        <button class="iui-button iui-small iui-high-visibility">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
+      <div id="demo-split-menu-small">
+
+        <span class="iui-button-split-menu">
+          <button class="iui-button iui-small iui-high-visibility">
+            <span class="iui-label">Small split menu</span>
+          </button>
+          <button class="iui-button iui-small iui-high-visibility">
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+
+        <span class="iui-button-split-menu">
+          <button class="iui-button iui-small iui-cta">
+            <span class="iui-label">Small split menu</span>
+          </button>
+          <button class="iui-button iui-small iui-cta">
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+
+        <span class="iui-button-split-menu">
+          <button class="iui-button iui-small">
+            <span class="iui-label">Small split menu</span>
+          </button>
+          <button class="iui-button iui-small">
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+
+        <span class="iui-button-split-menu">
+          <button
+            class="iui-button iui-small"
+            disabled
           >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <button class="iui-button iui-small iui-cta">
-          <span class="iui-label">Small split menu</span>
-        </button>
-        <button class="iui-button iui-small iui-cta">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
+            <span class="iui-label">Small split menu</span>
+          </button>
+          <button
+            class="iui-button iui-small"
+            disabled
           >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
 
-      <span class="iui-button-split-menu">
-        <button class="iui-button iui-small">
-          <span class="iui-label">Small split menu</span>
-        </button>
-        <button class="iui-button iui-small">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
+      </div>
+
+      <div id="demo-split-menu-medium">
+        <span class="iui-button-split-menu">
+          <button class="iui-button iui-high-visibility">
+            <span class="iui-label">Split menu</span>
+          </button>
+          <button class="iui-button iui-high-visibility">
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+
+        <span class="iui-button-split-menu">
+          <button class="iui-button iui-cta">
+            <span class="iui-label">Split menu</span>
+          </button>
+          <button class="iui-button iui-cta">
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+
+        <span class="iui-button-split-menu">
+          <button class="iui-button">
+            <span class="iui-label">Split menu</span>
+          </button>
+          <button class="iui-button">
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+
+        <span class="iui-button-split-menu">
+          <button
+            class="iui-button"
+            disabled
           >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <button
-          class="iui-button iui-small"
-          disabled
-        >
-          <span class="iui-label">Small split menu</span>
-        </button>
-        <button
-          class="iui-button iui-small"
-          disabled
-        >
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
+            <span class="iui-label">Split menu</span>
+          </button>
+          <button
+            class="iui-button"
+            disabled
           >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+      </div>
 
-      <br />
+      <div id="demo-split-menu-large">
+        <span class="iui-button-split-menu">
+          <button class="iui-button iui-large iui-high-visibility">
+            <span class="iui-label">Large split menu</span>
+          </button>
+          <button class="iui-button iui-large iui-high-visibility">
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
 
-      <span class="iui-button-split-menu">
-        <button class="iui-button iui-high-visibility">
-          <span class="iui-label">Split menu</span>
-        </button>
-        <button class="iui-button iui-high-visibility">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
+        <span class="iui-button-split-menu">
+          <button class="iui-button iui-large iui-cta">
+            <span class="iui-label">Large split menu</span>
+          </button>
+          <button class="iui-button iui-large iui-cta">
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+
+        <span class="iui-button-split-menu">
+          <button class="iui-button iui-large">
+            <span class="iui-label">Large split menu</span>
+          </button>
+          <button class="iui-button iui-large">
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+
+        <span class="iui-button-split-menu">
+          <button
+            class="iui-button iui-large"
+            disabled
           >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <button class="iui-button iui-cta">
-          <span class="iui-label">Split menu</span>
-        </button>
-        <button class="iui-button iui-cta">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
+            <span class="iui-label">Large split menu</span>
+          </button>
+          <button
+            class="iui-button iui-large"
+            disabled
           >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
+            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+              />
+            </svg>
+          </button>
+        </span>
+      </div>
 
-      <span class="iui-button-split-menu">
-        <button class="iui-button">
-          <span class="iui-label">Split menu</span>
-        </button>
-        <button class="iui-button">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <button
-          class="iui-button"
-          disabled
-        >
-          <span class="iui-label">Split menu</span>
-        </button>
-        <button
-          class="iui-button"
-          disabled
-        >
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
-
-      <br />
-
-      <span class="iui-button-split-menu">
-        <button class="iui-button iui-large iui-high-visibility">
-          <span class="iui-label">Large split menu</span>
-        </button>
-        <button class="iui-button iui-large iui-high-visibility">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <button class="iui-button iui-large iui-cta">
-          <span class="iui-label">Large split menu</span>
-        </button>
-        <button class="iui-button iui-large iui-cta">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <button class="iui-button iui-large">
-          <span class="iui-label">Large split menu</span>
-        </button>
-        <button class="iui-button iui-large">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <button
-          class="iui-button iui-large"
-          disabled
-        >
-          <span class="iui-label">Large split menu</span>
-        </button>
-        <button
-          class="iui-button iui-large"
-          disabled
-        >
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
-        </button>
-      </span>
     </section>
 
     <hr />
 
     <h2>Ideas</h2>
     <p class="iui-text-small iui-text-muted">Look to the bottom right of your browser window.</p><br />
-    <section id="demo-ideas">
-      <button class="iui-button iui-idea">
-        <!-- Use smiley-happy.svg from @itwin/itwinui-icons package. -->
-        <svg
-          class="iui-icon"
-          aria-hidden="true"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="m8 12.5a5.1892 5.1892 0 0 1 -3.8716-1.666.49964.49964 0 1 1 .7432-.668 4.19111 4.19111 0 0 0 3.1284 1.334 4.19111 4.19111 0 0 0 3.1284-1.334.49964.49964 0 1 1 .7432.668 5.1892 5.1892 0 0 1 -3.8716 1.666zm3-7.5a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm-6 0a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm3-5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8z"
-          />
-        </svg>
-        <span class="iui-label">Feedback</span>
-      </button>
-    </section>
+    <button class="iui-button iui-idea">
+      <!-- Use smiley-happy.svg from @itwin/itwinui-icons package. -->
+      <svg
+        class="iui-icon"
+        aria-hidden="true"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="m8 12.5a5.1892 5.1892 0 0 1 -3.8716-1.666.49964.49964 0 1 1 .7432-.668 4.19111 4.19111 0 0 0 3.1284 1.334 4.19111 4.19111 0 0 0 3.1284-1.334.49964.49964 0 1 1 .7432.668 5.1892 5.1892 0 0 1 -3.8716 1.666zm3-7.5a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm-6 0a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm3-5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8z"
+        />
+      </svg>
+      <span class="iui-label">Feedback</span>
+    </button>
+
   </body>
 </html>

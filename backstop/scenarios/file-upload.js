@@ -1,6 +1,7 @@
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
+  // Types
   scenario('Type text area', {
     selectors: ['#demo-text-area'],
   }),

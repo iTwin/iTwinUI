@@ -1,14 +1,14 @@
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Tag types
-  scenario('Type Default', {
+  // Types
+  scenario('Type default', {
     selectors: ['#demo-default'],
   }),
-  scenario('Type Basic', {
+  scenario('Type basic', {
     selectors: ['#demo-basic'],
   }),
-  scenario('Type Container', {
+  scenario('Type container', {
     selectors: ['#demo-default-container'],
   }),
 

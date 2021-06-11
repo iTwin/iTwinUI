@@ -37,17 +37,7 @@ hr {
   margin: 11px 0;
 }
 
-.demo-striped-background {
-  background-color: #F8F9FB;
-  width: 100%;
-  margin: 0 -24px;
-}
-
 /* Dark theme */
-.iui-theme-dark body .demo-striped-background {
-  background-color: #4F5D65;
-}
-
 .iui-theme-dark body hr {
   border-color: #2D373C;
 }
@@ -63,4 +53,8 @@ html.custom-theme {
 section[id^='demo'] {
   width: -moz-fit-content; /* stylelint-disable */
   width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 11px 12px;
 }

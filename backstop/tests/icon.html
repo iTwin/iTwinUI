@@ -18,17 +18,15 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
-    <script src="../assets/theme.js"></script>
     <style>
-      section {
-        margin-bottom: 22px;
-      }
-
-      section svg {
-        margin-right: 4px;
+      section[id^='demo'] {
+        flex-direction: row;
+        gap: 4px;
       }
     </style>
+    <script src="../assets/theme.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Icon</h1>
@@ -103,6 +101,8 @@
       </svg>
     </section>
 
+    <br />
+
     <h2>Actionable icons</h2>
     <section>
       <p class="iui-text-small iui-text-muted">
@@ -114,6 +114,8 @@
         &nbsp;if an icon is actionable!
       </p>
     </section>
+
+    <br />
 
     <h2>Icons with status</h2>
     <section id="demo-status">

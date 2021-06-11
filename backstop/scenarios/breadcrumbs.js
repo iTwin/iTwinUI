@@ -5,9 +5,9 @@
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Breadcrumb types
-  scenario('Type Breadcrumb', {
-    selectors: ['#demo-all'],
+  // Types
+  scenario('Type all', {
+    selectors: ['#demo-breadcrumbs'],
   }),
 
   // Hover & focus states

@@ -18,31 +18,34 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/userIcon.js"></script>
     <style>
-      .iui-input-container,
-      .iui-table,
-      textarea,
-      section {width: 960px !important;}
-      section {margin-bottom: 22px;}
+      section[id^='demo'] {
+        width: 50%;
+      }
+
+      .iui-table {
+        width: 100%;
+      }
 
       .demo-right-align {
         justify-content: flex-end;
       } 
     </style>
+    <script src="../assets/theme.js"></script>
+    <script src="../assets/userIcon.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>File upload</h1>
     <hr />
 
     <h2>Text area</h2>
-    <section>
+    <section id="demo-not-tested">
 
       <div class="iui-file-upload">
         <textarea
-          placeholder="Type a new message…"
+          placeholder="Type a new message&mldr;"
           class="iui-textarea"
           rows="1"
         ></textarea>
@@ -53,12 +56,11 @@
       </div>
 
     </section>
-
     <section id="demo-text-area">
 
       <div class="iui-file-upload iui-drag">
         <textarea
-          placeholder="Type a new message…"
+          placeholder="Type a new message&mldr;"
           class="iui-textarea"
           rows="1"
         ></textarea>
@@ -70,10 +72,10 @@
 
     </section>
 
-    <hr />
+    <br />
 
     <h2>Table</h2>
-    <section>
+    <section id="demo-not-tested">
 
       <div class="iui-file-upload">
         <div class="iui-table">
@@ -416,7 +418,6 @@
       </div>
 
     </section>
-
     <section id="demo-table">
 
       <div class="iui-file-upload iui-drag">
@@ -761,7 +762,7 @@
 
     </section>
 
-    <hr />
+    <br />
 
     <h2>Not wrapping anything</h2>
     <section id="demo-no-wrap">

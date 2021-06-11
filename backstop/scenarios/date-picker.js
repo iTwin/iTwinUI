@@ -1,17 +1,17 @@
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Date picker types
-  scenario('Type Date', {
+  // Types
+  scenario('Type date', {
     selectors: ['#demo-date'],
   }),
-  scenario('Type Date with year skipping buttons', {
+  scenario('Type date with year skipping buttons', {
     selectors: ['#demo-date-year-skipping'],
   }),
-  scenario('Type Date & Time', {
+  scenario('Type date & time', {
     selectors: ['#demo-date-and-time'],
   }),
-  scenario('Type Date & Time 24 hour format', {
+  scenario('Type date & time 24 hour format', {
     selectors: ['#demo-date-and-time-24h'],
   }),
 

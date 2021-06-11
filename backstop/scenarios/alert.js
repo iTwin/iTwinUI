@@ -1,8 +1,10 @@
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Alert types
-  scenario('Type All'),
+  // Types
+  scenario('Type all', {
+    hideSelectors: ['h1', 'hr', 'theme-button'],
+  }),
 
   // Hover states
   scenario('State hover link in informational', {

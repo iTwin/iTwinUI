@@ -1,20 +1,20 @@
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
-  // Table types
-  scenario('Type Default', {
+  // Types
+  scenario('Type default', {
     selectors: ['#demo-default'],
   }),
-  scenario('Type Extras', {
+  scenario('Type extras', {
     selectors: ['#demo-extras'],
   }),
-  scenario('Type Expandable Rows', {
+  scenario('Type expandable rows', {
     selectors: ['#demo-expandable-rows'],
   }),
-  scenario('Type Loading', {
+  scenario('Type loading', {
     selectors: ['#demo-loading'],
   }),
-  scenario('Type Empty', {
+  scenario('Type empty', {
     selectors: ['#demo-empty-state'],
   }),
 ];

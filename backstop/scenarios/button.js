@@ -1,28 +1,29 @@
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
-  scenario('Type High Visibility', {
+  // Types
+  scenario('Type high visibility', {
     selectors: ['#demo-high-visibility'],
   }),
   scenario('Type CTA', {
     selectors: ['#demo-cta'],
   }),
-  scenario('Type Default', {
+  scenario('Type default', {
     selectors: ['#demo-default'],
   }),
-  scenario('Type Borderless', {
+  scenario('Type borderless', {
     selectors: ['#demo-borderless'],
   }),
-  scenario('Grouped Default', {
+  scenario('Type grouped default', {
     selectors: ['#demo-grouped-default'],
   }),
-  scenario('Grouped Borderless', {
+  scenario('Type grouped borderless', {
     selectors: ['#demo-grouped-borderless'],
   }),
-  scenario('Type Split Menu', {
+  scenario('Type split menu', {
     selectors: ['#demo-split-menu'],
   }),
-  scenario('Type Ideas', {
+  scenario('Type ideas', {
     selectors: ['.iui-idea'],
   }),
 ];

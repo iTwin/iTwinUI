@@ -1,14 +1,11 @@
-/*---------------------------------------------------------------------------------------------
- * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
- * See LICENSE.md in the project root for license terms and full copyright notice.
- *--------------------------------------------------------------------------------------------*/
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
-  scenario('Type Time', {
+  // Types
+  scenario('Type time', {
     selectors: ['#demo-time'],
   }),
-  scenario('Type Time with minutes', {
+  scenario('Type time with minutes', {
     selectors: ['#demo-time-minutes'],
   }),
 ];

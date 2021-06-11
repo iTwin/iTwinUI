@@ -1,16 +1,15 @@
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
-  // Progress indicator types
-  scenario('linear', {
+  // Types
+  scenario('Type linear', {
     selectors: ['#demo-linear'],
     hideSelectors: ['.iui-indeterminate', 'h3'],
   }),
-  scenario('radial', {
+  scenario('Type radial', {
     selectors: ['#demo-radial'],
-    hideSelectors: ['h3', 'p'],
   }),
-  scenario('overlay', {
+  scenario('Type overlay', {
     selectors: ['#demo-overlay'],
     hideSelectors: ['.iui-indeterminate'],
   }),

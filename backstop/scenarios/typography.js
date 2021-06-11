@@ -1,3 +1,9 @@
 const { scenario } = require('../scenarioHelper');
 
-module.exports = [scenario('basic', { hideSelectors: ['.iui-skeleton'] })];
+module.exports = [
+  // Types
+  scenario('Type all', {
+    selectors: ['#demo-tooltip'],
+    hideSelectors: ['.iui-skeleton'],
+  }),
+];

@@ -1,11 +1,11 @@
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
-  // Column filter types
-  scenario('Type Text filter', {
+  // Types
+  scenario('Type text filter', {
     selectors: ['#demo-text'],
   }),
-  scenario('Type Date filter', {
+  scenario('Type date filter', {
     selectors: ['#demo-date'],
   }),
 ];

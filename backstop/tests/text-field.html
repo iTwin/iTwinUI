@@ -20,14 +20,12 @@
     />
     <style>
       section[id^='demo'] {
-        width: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 11px;
+        width: 50%;
       }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Text field</h1>
@@ -38,7 +36,7 @@
       <label class="iui-input-container">
         <div class="iui-label iui-required">Input label</div>
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
           required
         />
@@ -68,7 +66,7 @@
         <div class="iui-label">Input label</div>
         <input
           disabled
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">Help message.</div>
@@ -87,7 +85,7 @@
       <label class="iui-input-container iui-positive">
         <div class="iui-label">Input label</div>
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">
@@ -105,7 +103,7 @@
       <label class="iui-input-container iui-warning">
         <div class="iui-label">Input label</div>
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">
@@ -125,7 +123,7 @@
       <label class="iui-input-container iui-negative">
         <div class="iui-label">Input label</div>
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">
@@ -149,7 +147,7 @@
       <label class="iui-input-container iui-inline">
         <div class="iui-label iui-required">Input label</div>
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
           required
         />
@@ -167,7 +165,7 @@
         <div class="iui-label">Input label</div>
         <input
           disabled
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
       </label>
@@ -184,7 +182,7 @@
       <label class="iui-input-container iui-inline iui-positive">
         <div class="iui-label">Input label</div>
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">
@@ -201,7 +199,7 @@
       <label class="iui-input-container iui-inline iui-warning">
         <div class="iui-label">Input label</div>
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">
@@ -220,7 +218,7 @@
       <label class="iui-input-container iui-inline iui-negative">
         <div class="iui-label">Input label</div>
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">
@@ -265,7 +263,7 @@
     <section id="demo-no-label">
       <label class="iui-input-container iui-inline">
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
       </label>
@@ -280,7 +278,7 @@
       <label class="iui-input-container iui-inline iui-disabled">
         <input
           disabled
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
       </label>
@@ -295,7 +293,7 @@
 
       <label class="iui-input-container iui-inline iui-positive">
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">
@@ -311,7 +309,7 @@
 
       <label class="iui-input-container iui-inline iui-warning">
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">
@@ -329,7 +327,7 @@
 
       <label class="iui-input-container iui-inline iui-negative">
         <input
-          placeholder="Placeholder…"
+          placeholder="Placeholder&mldr;"
           class="iui-input"
         />
         <div class="iui-message">
@@ -368,25 +366,26 @@
     <br />
 
     <h2>Auto-complete demo</h2>
-
-    <form
-      method="post"
-      action=""
-    >
-      <label
-        for="email"
-        class="iui-input-container"
+    <section id="demo-not-tested">
+      <form
+        method="post"
+        action=""
       >
-        <div class="iui-label">Email address</div>
-        <input
-          placeholder="email@example.com"
-          type="email"
-          name="email"
-          id="email"
-          autocomplete="on"
-          class="iui-input"
-        />
-      </label>
-    </form>
+        <label
+          for="email"
+          class="iui-input-container"
+        >
+          <div class="iui-label">Email address</div>
+          <input
+            placeholder="email@example.com"
+            type="email"
+            name="email"
+            id="email"
+            autocomplete="on"
+            class="iui-input"
+          />
+        </label>
+      </form>
+    </section>
   </body>
 </html>

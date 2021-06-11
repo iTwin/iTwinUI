@@ -19,6 +19,11 @@
       href="../assets/demo.css"
     />
     <style>
+      #demo-default {
+        flex-direction: row;
+        gap: 4px;
+      }
+
       /* Forces grouped tags to display on 1 line, can be set by the dev team. */
       section .iui-tag-container {
         max-width: 420px;
@@ -26,6 +31,7 @@
     </style>
     <script src="../assets/theme.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Tag</h1>
@@ -33,6 +39,7 @@
 
     <h2>Default</h2>
     <section id="demo-default">
+
       <span
         class="iui-tag"
         tabindex="0"
@@ -62,8 +69,6 @@
         </button>
       </span>
 
-      <br />
-
       <span
         class="iui-tag"
         tabindex="0"
@@ -89,8 +94,6 @@
         </button>
       </span>
 
-      <br />
-
       <span
         class="iui-tag"
         tabindex="0"
@@ -98,6 +101,7 @@
       >
         <span class="iui-label">No button</span>
       </span>
+
     </section>
 
     <hr />
@@ -443,9 +447,6 @@
         </span>
       </div>
 
-      <br />
-
-
       <div class="iui-tag-container iui-visible iui-truncate">
         <span
           class="iui-tag"
@@ -556,8 +557,6 @@
           </button>
         </span>
       </div>
-
-      <br />
 
       <div class="iui-tag-container iui-visible iui-scroll">
         <span
@@ -903,6 +902,7 @@
 
     <h2>Basic tag containers</h2>
     <section id="demo-basic">
+
       <div class="iui-tag-container iui-truncate">
         <span class="iui-tag iui-basic">tags</span>
         <span class="iui-tag iui-basic">go</span>
@@ -1034,6 +1034,7 @@
           here
         </a>
       </div>
+
     </section>
   </body>
 </html>

@@ -1,11 +1,11 @@
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Select types
-  scenario('Type Default', {
+  // Types
+  scenario('Type default', {
     selectors: ['#demo-default'],
   }),
-  scenario('Type Default Opened', {
+  scenario('Type default opened', {
     selectors: ['#demo-default-opened'],
   }),
   scenario('Sizes', {
@@ -20,7 +20,7 @@ module.exports = [
   }),
 
   //// Select menu item
-  scenario('State Menu hover', {
+  scenario('State menu hover', {
     actions: [hover('#test-select-2')],
     selectors: ['#demo-default-singular-opened'],
   }),
@@ -33,7 +33,7 @@ module.exports = [
   }),
 
   //// Select menu item
-  scenario('State Menu focus', {
+  scenario('State menu focus', {
     actions: [focus('#test-select-2')],
     selectors: ['#demo-default-singular-opened'],
   }),

@@ -1,7 +1,7 @@
 const { scenario, click, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Side Navigation types
+  // Types
   scenario('Type collapsed', {
     selectors: ['#demo-side-navigation'],
   }),

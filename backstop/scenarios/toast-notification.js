@@ -1,8 +1,8 @@
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Toast types
-  scenario('Type All', {
+  // Types
+  scenario('Type all', {
     selectors: ['.iui-toast-wrapper'],
   }),
 

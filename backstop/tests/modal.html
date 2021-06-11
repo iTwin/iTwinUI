@@ -25,6 +25,7 @@
     </style>
     <script src="../assets/theme.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Modal</h1>
@@ -35,13 +36,6 @@
       onclick="openModal()"
       class="iui-anchor"
     >Open modal</a>
-
-    <script>
-      function openModal() {
-        var element = document.getElementById('myModal');
-        element.classList.toggle('iui-modal-visible');
-      }
-    </script>
 
     <div
       class="iui-modal"
@@ -90,5 +84,12 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function openModal() {
+        var element = document.getElementById('myModal');
+        element.classList.toggle('iui-modal-visible');
+      }
+    </script>
   </body>
 </html>

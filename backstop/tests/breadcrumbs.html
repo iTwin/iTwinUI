@@ -22,22 +22,21 @@
       .iui-input { width: 450px; }
       .iui-input-container { margin: 0; }
 
-      #demo-anchors,
-      #demo-buttons,
-      #demo-not-tested {
-        padding: 11px 12px;
+      div[id^='demo'] {
+        padding: 11px 0;
       }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Breadcrumbs</h1>
     <hr />
 
-    <section id="demo-all">
+    <section id="demo-breadcrumbs">
 
-      <section id="demo-anchors">
+      <div id="demo-anchors">
 
         <nav
           class="iui-breadcrumbs"
@@ -144,9 +143,9 @@
           </ol>
         </nav>
 
-      </section>
+      </div>
 
-      <section id="demo-buttons">
+      <div id="demo-buttons">
 
         <nav
           class="iui-breadcrumbs"
@@ -256,7 +255,7 @@
           </ol>
         </nav>
 
-      </section>
+      </div>
 
     </section>
 

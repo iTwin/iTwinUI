@@ -1,7 +1,8 @@
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
-  scenario('Type All', {
+  // Types
+  scenario('Type all', {
     selectors: ['#demo-tooltip'],
   }),
 ];
