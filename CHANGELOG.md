@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.20.1]
+
+`2021-06-11`
+
+### Fixes
+
+- **Fixed file-upload input selector so it can now be nested inside label.**
+- **Changed checkboxes and radio so they no longer get focus ring for mouse clicks.**
+
 ## [0.20.0]
 
 `2021-06-10`
