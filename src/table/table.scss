@@ -103,6 +103,7 @@
     visibility: hidden;
     @include themed {
       fill: t(iui-icons-color-actionable);
+      opacity: t(iui-opacity-3);
     }
   }
 
@@ -114,6 +115,7 @@
 
     .iui-sort {
       visibility: visible;
+      opacity: 1;
     }
   }
 }
