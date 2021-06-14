@@ -11,6 +11,6 @@ module.exports = [
   }),
   scenario('Type overlay', {
     selectors: ['#demo-overlay'],
-    hideSelectors: ['.iui-indeterminate'],
+    hideSelectors: ['.iui-fill', '.iui-track .iui-indeterminate'],
   }),
 ];
