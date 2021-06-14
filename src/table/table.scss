@@ -23,7 +23,7 @@
   @include iui-table-cell-icon;
 }
 
-@mixin iui-table-header { 
+@mixin iui-table-header {
   user-select: none;
   @include themed {
     background-color: t(iui-color-background-3);
@@ -36,10 +36,14 @@
 
   .iui-cell:not(.iui-slot) {
     @include iui-focus;
-    cursor: pointer;
+
+    &.iui-actionable {
+      cursor: pointer;
+    }
 
     > .iui-filter-button {
       margin-left: $iui-xs;
+      margin-right: $iui-xs;
 
       &:not(.iui-active) {
         visibility: hidden;
@@ -57,7 +61,7 @@
       cursor: ew-resize;
       z-index: 100;
       display: none;
-        
+
       > .iui-resizer-bar {
         height: 100%;
         width: $iui-xxs;
@@ -122,7 +126,7 @@
   @include themed {
     background-color: t(iui-color-background-1);
   }
-  
+
   .iui-row {
     display: flex;
     flex-grow: 1;
@@ -216,7 +220,7 @@
     // #region Statuses & states
     &.iui-new {
       font-weight: $iui-font-weight-semibold;
-      
+
       > .iui-main-column::before {
         content: '•';
         position: absolute;
@@ -248,15 +252,15 @@
     }
 
     &.iui-positive {
-      @include iui-table-row-status($status:positive);
+      @include iui-table-row-status($status: positive);
     }
-    
+
     &.iui-warning {
-      @include iui-table-row-status($status:warning);
+      @include iui-table-row-status($status: warning);
     }
 
     &.iui-negative {
-      @include iui-table-row-status($status:negative);
+      @include iui-table-row-status($status: negative);
     }
     // #endregion Statuses & states
   }
@@ -294,15 +298,15 @@
   }
 
   &.iui-positive {
-    @include iui-table-cell-status($status:positive);
+    @include iui-table-cell-status($status: positive);
   }
-    
+
   &.iui-warning {
-    @include iui-table-cell-status($status:warning);
+    @include iui-table-cell-status($status: warning);
   }
 
   &.iui-negative {
-    @include iui-table-cell-status($status:negative);
+    @include iui-table-cell-status($status: negative);
   }
 }
 
