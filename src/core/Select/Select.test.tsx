@@ -336,3 +336,11 @@ it('should use custom renderer for menu items', () => {
   expect(menuItems[1].style.color).toEqual('green');
   expect(menuItems[2].style.color).toEqual('red');
 });
+
+it.each(['small', 'large'] as const)(
+  'should render small and large sizes',
+  (size) => {
+    const { container } = renderComponent({ size });
+    expect(container.querySelector(`.iui-select.iui-${size}`)).toBeTruthy();
+  },
+);

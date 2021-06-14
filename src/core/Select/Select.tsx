@@ -65,6 +65,10 @@ export type SelectProps<T> = {
    */
   disabled?: boolean;
   /**
+   * Modify size of select.
+   */
+  size?: 'small' | 'large';
+  /**
    * Set focus on select.
    * @default false
    */
@@ -155,6 +159,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     onChange,
     placeholder,
     disabled = false,
+    size,
     setFocus = false,
     itemRenderer,
     selectedItemRenderer,
@@ -255,7 +260,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   return (
     <div
-      className={cx('iui-select', className)}
+      className={cx('iui-select', { [`iui-${size}`]: !!size }, className)}
       aria-expanded={isOpen}
       aria-haspopup='listbox'
       style={style}

@@ -44,3 +44,11 @@ it('should take class and style', () => {
   expect(input).toBeTruthy();
   expect(input.style.width).toBe('50px');
 });
+
+it.each(['small', 'large'] as const)(
+  'should render small and large sizes',
+  (size) => {
+    const { container } = render(<Input size={size} />);
+    expect(container.querySelector(`.iui-input.iui-${size}`)).toBeTruthy();
+  },
+);

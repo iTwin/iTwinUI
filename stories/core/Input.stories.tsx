@@ -29,3 +29,12 @@ Disabled.args = {
   placeholder: 'Disabled Input',
   disabled: true,
 };
+
+export const Small: Story<InputProps> = (args) => {
+  return <Input placeholder='Small Input' size='small' {...args} />;
+};
+
+Small.args = {
+  placeholder: 'Small Input',
+  size: 'small',
+};

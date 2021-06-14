@@ -14,17 +14,22 @@ export type InputProps = {
    * @default false
    */
   setFocus?: boolean;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+  /**
+   * Modify size of the input.
+   */
+  size?: 'small' | 'large';
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>;
 
 /**
  * Basic input component
  * @example
  * <Input setFocus />
  * <Input disabled />
+ * <Input size='small' />
  */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
-    const { setFocus = false, className, ...rest } = props;
+    const { setFocus = false, size, className, ...rest } = props;
     useTheme();
     const inputRef = React.useRef<HTMLInputElement>(null);
     const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
@@ -36,7 +41,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }, [setFocus]);
 
     return (
-      <input className={cx('iui-input', className)} ref={refs} {...rest} />
+      <input
+        className={cx('iui-input', { [`iui-${size}`]: !!size }, className)}
+        ref={refs}
+        {...rest}
+      />
     );
   },
 );
