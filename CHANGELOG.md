@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`2021-06-XX`
+
+### Fixes
+
+- **Fixed table bugs**: filter icon spacing, sort icon opacity, and header cell cursor.
+
 ## [0.20.1]
 
 `2021-06-11`
