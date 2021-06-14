@@ -6,7 +6,7 @@
 
 ### Fixes
 
-- **Fixed table bugs**: filter icon spacing, sort icon opacity, and header cell cursor.
+- **Fixed table bugs**: filter icon spacing, sort icon fill, and header cell cursor.
 
 ## [0.20.1]
 

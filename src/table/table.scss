@@ -43,7 +43,7 @@
 
     > .iui-filter-button {
       margin-left: $iui-xs;
-      margin-right: $iui-xs;
+      margin-right: $iui-s;
 
       &:not(.iui-active) {
         visibility: hidden;
@@ -102,8 +102,7 @@
   .iui-sort {
     visibility: hidden;
     @include themed {
-      fill: t(iui-icons-color-actionable);
-      opacity: t(iui-opacity-3);
+      fill: t(iui-icons-color);
     }
   }
 
@@ -115,7 +114,9 @@
 
     .iui-sort {
       visibility: visible;
-      opacity: 1;
+      @include themed {
+        fill: t(iui-icons-color-actionable);
+      }
     }
   }
 }
