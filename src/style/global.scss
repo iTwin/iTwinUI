@@ -57,7 +57,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
+  *:not(.iui-fill),
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
