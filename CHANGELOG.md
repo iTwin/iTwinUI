@@ -1,8 +1,8 @@
 # Changelog
 
-## Unreleased
+## [0.20.2]
 
-`2021-06-XX`
+`2021-06-14`
 
 ### Fixes
 
@@ -294,6 +294,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.20.2]: https://github.com/iTwin/iTwinUI/compare/v0.20.1...v0.20.2
 [0.20.1]: https://github.com/iTwin/iTwinUI/compare/v0.20.0...v0.20.1
 [0.20.0]: https://github.com/iTwin/iTwinUI/compare/v0.19.0...v0.20.0
 [0.19.0]: https://github.com/iTwin/iTwinUI/compare/v0.18.1...v0.19.0
