@@ -6,5 +6,6 @@ module.exports = [
   }),
   scenario('no-label', {
     selectors: ['#demo-no-label'],
+    hideSelectors: ['h3'],
   }),
 ];

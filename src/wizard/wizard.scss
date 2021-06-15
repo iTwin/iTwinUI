@@ -12,7 +12,7 @@
     justify-content: space-around;
     align-items: flex-start;
     width: 100%;
-    margin-bottom: $iui-baseline / 2;
+    margin-bottom: $iui-baseline * 0.5;
 
     > .iui-wizards-step {
       align-items: center;
@@ -22,6 +22,8 @@
       font-weight: $iui-font-weight-normal;
       line-height: $iui-line-height;
       position: relative;
+      width: 20%;
+
       @include themed {
         color: t(iui-color-background-positive);
       }
@@ -32,7 +34,6 @@
 
       > .iui-wizards-step-title {
         text-align: center;
-        width: 20vw;
         @include themed {
           color: t(iui-text-color-muted);
         }
@@ -63,7 +64,7 @@
     > .iui-wizards-step > .iui-wizards-step-track {
       height: $iui-xxs;
       position: absolute;
-      top: $iui-l / 2;
+      top: $iui-l * 0.5;
       z-index: 0;
 
       &.iui-wizards-step-track-before,

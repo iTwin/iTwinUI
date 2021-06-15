@@ -19,7 +19,20 @@
       href="../assets/demo.css"
     />
     <style>
-      section .iui-select { width: 440px; }
+      section[id^='demo'] {
+        width: 440px;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+
+      #demo-default-opened {
+        height: 420px;
+      }
+      
+      #demo-default-singular-opened {
+        height: 210px;
+      }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
@@ -173,15 +186,11 @@
 
     </section>
 
-    <section
-      id="demo-default-opened"
-      style="height: 420px;"
-    >
+    <br />
 
-      <section
-        id="demo-default-singular-opened"
-        style="height: 210px;"
-      >
+    <section id="demo-default-opened">
+
+      <section id="demo-default-singular-opened">
         <label class="iui-input-container">
           <div class="iui-label">Select label</div>
           <div class="iui-select">
@@ -284,6 +293,39 @@
         </div>
         <div class="iui-message">Help message.</div>
       </label>
+
+    </section>
+
+    <br />
+
+    <section id="demo-sizes">
+
+      <div class="iui-select iui-small">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Small</span>
+        </div>
+      </div>
+
+      <div class="iui-select">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Default</span>
+        </div>
+      </div>
+
+      <div class="iui-select iui-large">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Large</span>
+        </div>
+      </div>
 
     </section>
   </body>

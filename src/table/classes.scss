@@ -2,16 +2,32 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-tables-table {
-  @include iui-tables-table;
+.iui-table {
+  @include iui-table;
+
+  &.iui-condensed {
+    @include iui-table-condensed;
+  }
+
+  &.iui-extra-condensed {
+    @include iui-table-extra-condensed;
+  }
 }
 
-.iui-tables-condensed {
-  @include iui-tables-condensed;
+.iui-table-header {
+  @include iui-table-header;
 }
 
-.iui-tables-extra-condensed {
-  @include iui-tables-extra-condensed;
+.iui-table-body {
+  @include iui-table-body;
+}
+
+.iui-cell {
+  @include iui-table-cell;
+}
+
+.iui-paginator {
+  @include iui-paginator;
 }
 
 .iui-column-filter {
