@@ -43,85 +43,16 @@
         }
       }
     }
-
-    > a {
-      line-height: $iui-line-height;
-      padding: ($iui-line-height / 2) 0;
-
-      > svg {
-        @include themed {
-          fill: t(iui-icons-color-actionable);
-        }
-        transition: fill $iui-speed-fast ease-out;
-        width: $iui-icons-default;
-        height: $iui-icons-default;
-      }
-
-      &::after {
-        bottom: $iui-xxs;
-        left: $iui-xxs;
-        right: $iui-xxs;
-      }
-
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-primary);
-        }
-
-        > svg {
-          @include themed {
-            fill: t(iui-icons-color-primary);
-          }
-          transition: fill $iui-speed-fast ease-out;
-        }
-      }
-    }
-
-    &.iui-tabs-active {
-      > a {
-        font-weight: $iui-font-weight-normal;
-
-        @include themed {
-          color: t(iui-color-foreground-primary);
-        }
-
-        &:hover {
-          @include themed {
-            color: t(iui-color-foreground-primary);
-          }
-        }
-
-        svg {
-          @include themed {
-            fill: t(iui-icons-color-primary);
-          }
-        }
-      }
-    }
   }
 
-  &.iui-green {
-    > .iui-tabs-active > a {
+  &.iui-green > li {
+    button:enabled:hover,
+    button.iui-active {
       @include themed {
-        color: t(iui-color-foreground-positive);
-      }
-
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-        }
-      }
-
-      svg {
-        @include themed {
-          fill: t(iui-icons-color-positive);
-        }
-      }
-    }
-
-    > li > a:hover > svg {
-      @include themed {
-        fill: t(iui-icons-color-positive);
+        background-color: rgba(
+          t(iui-color-foreground-positive-rgb),
+          t(iui-opacity-6)
+        ) !important;
       }
     }
   }

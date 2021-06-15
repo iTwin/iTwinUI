@@ -16,48 +16,6 @@
     padding: 0;
     margin: 0;
 
-    > a {
-      @include iui-focus;
-      display: block;
-      position: relative;
-      padding: ($iui-baseline / 2) $iui-m;
-      box-sizing: border-box;
-      font-size: $iui-font-size;
-      line-height: $iui-line-height;
-      cursor: pointer;
-      text-decoration: none;
-
-      @include themed {
-        color: t(iui-text-color);
-      }
-      transition: color $iui-speed-fast ease-out,
-        background-color $iui-speed-fast ease-out;
-
-      &::after {
-        content: '';
-        position: absolute;
-        z-index: 1;
-        transition: all $iui-speed-fast;
-        height: $iui-xxs;
-        opacity: 0;
-
-        @include themed {
-          background-color: t(iui-color-foreground-primary);
-        }
-      }
-
-      &:hover {
-        text-decoration: none;
-
-        @include themed {
-          color: t(iui-color-foreground-primary);
-          fill: t(iui-icons-color-primary);
-        }
-        transition: color $iui-speed-fast ease-out,
-          background-color $iui-speed-fast ease-out;
-      }
-    }
-
     > button {
       @include iui-reset;
       @include iui-font-family;
@@ -92,57 +50,15 @@
         }
       }
     }
-
-    &.iui-tabs-active {
-      > a {
-        font-weight: $iui-font-weight-bold;
-        cursor: default;
-
-        &:hover {
-          @include themed {
-            color: t(iui-text-color);
-          }
-        }
-
-        &::after {
-          @include themed {
-            opacity: t(iui-opacity-1);
-          }
-        }
-      }
-    }
   }
 
-  &.iui-green > li {
-    > button {
-      @include iui-focus(iui-focus-positive-box-shadow);
+  &.iui-green > li > button {
+    @include iui-focus(iui-focus-positive-box-shadow);
 
-      &.iui-active {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-          //box-shadow: inset 0 0 0 0 t(iui-color-foreground-positive);
-        }
-      }
-    }
-
-    > a {
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-          fill: t(iui-icons-color-positive);
-        }
-      }
-
-      &::after {
-        @include themed {
-          background-color: t(iui-color-foreground-positive);
-        }
-      }
-    }
-
-    &.iui-tabs-active > a:hover {
+    &.iui-active {
       @include themed {
-        color: t(iui-text-color);
+        color: t(iui-color-foreground-positive);
+        //box-shadow: inset 0 0 0 0 t(iui-color-foreground-positive);
       }
     }
   }
