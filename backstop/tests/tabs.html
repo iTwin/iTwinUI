@@ -18,6 +18,11 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <style>
+      .iui-button {
+        margin-left: 4px;
+      }
+    </style>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -43,7 +48,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -51,7 +56,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Active</span>
+            <span class="iui-tab-label">Active</span>
           </button>
         </li>
         <li>
@@ -63,7 +68,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -71,7 +76,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Left</span>
+            <span class="iui-tab-label">Left</span>
           </button>
         </li>
         <li>
@@ -84,7 +89,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -92,7 +97,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Disabled</span>
+            <span class="iui-tab-label">Disabled</span>
           </button>
         </li>
         <li>
@@ -102,7 +107,19 @@
             aria-selected="false"
             aria-controls="none-tab"
           >
-            <span class="iui-label">None</span>
+            <span class="iui-tab-label">None</span>
+          </button>
+        </li>
+        <li>
+          <button class="iui-button iui-borderless iui-small">
+            <!-- Use add-circular.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M13,9H9v4H7V9H3V7h4V3h2v4h4V9z" />
+            </svg>
           </button>
         </li>
       </ul>
@@ -138,7 +155,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -146,7 +163,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Active</span>
+            <span class="iui-tab-label">Active</span>
           </button>
         </li>
         <li>
@@ -158,7 +175,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -166,7 +183,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Left</span>
+            <span class="iui-tab-label">Left</span>
           </button>
         </li>
         <li>
@@ -179,7 +196,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -187,7 +204,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Disabled</span>
+            <span class="iui-tab-label">Disabled</span>
           </button>
         </li>
         <li>
@@ -197,7 +214,19 @@
             aria-selected="false"
             aria-controls="none-tab"
           >
-            <span class="iui-label">None</span>
+            <span class="iui-tab-label">None</span>
+          </button>
+        </li>
+        <li>
+          <button class="iui-button iui-borderless iui-small">
+            <!-- Use add-circular.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M13,9H9v4H7V9H3V7h4V3h2v4h4V9z" />
+            </svg>
           </button>
         </li>
       </ul>
@@ -233,7 +262,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -241,9 +270,9 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">
+            <span class="iui-tab-label">
               <div>Active</div>
-              <div class="iui-description">Sublabel</div>
+              <div class="iui-tab-description">Sublabel</div>
             </span>
           </button>
         </li>
@@ -256,7 +285,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -264,9 +293,9 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">
+            <span class="iui-tab-label">
               <div>Left</div>
-              <div class="iui-description">Sublabel</div>
+              <div class="iui-tab-description">Sublabel</div>
             </span>
           </button>
         </li>
@@ -280,7 +309,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -288,9 +317,9 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">
+            <span class="iui-tab-label">
               <div>Disabled</div>
-              <div class="iui-description">Sublabel</div>
+              <div class="iui-tab-description">Sublabel</div>
             </span>
           </button>
         </li>
@@ -301,7 +330,19 @@
             aria-selected="false"
             aria-controls="none-tab"
           >
-            <span class="iui-label">None</span>
+            <span class="iui-tab-label">None</span>
+          </button>
+        </li>
+        <li>
+          <button class="iui-button iui-borderless">
+            <!-- Use add-circular.svg from @itwin/itwinui-icons package. -->
+            <svg
+              class="iui-icon"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M13,9H9v4H7V9H3V7h4V3h2v4h4V9z" />
+            </svg>
           </button>
         </li>
       </ul>
@@ -342,7 +383,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -350,7 +391,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Active</span>
+            <span class="iui-tab-label">Active</span>
           </button>
         </li>
         <li>
@@ -362,7 +403,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -370,7 +411,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Left</span>
+            <span class="iui-tab-label">Left</span>
           </button>
         </li>
         <li>
@@ -383,7 +424,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -391,7 +432,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Disabled</span>
+            <span class="iui-tab-label">Disabled</span>
           </button>
         </li>
         <li>
@@ -401,7 +442,7 @@
             aria-selected="false"
             aria-controls="none-tab"
           >
-            <span class="iui-label">None</span>
+            <span class="iui-tab-label">None</span>
           </button>
         </li>
       </ul>
@@ -437,7 +478,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -445,7 +486,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Active</span>
+            <span class="iui-tab-label">Active</span>
           </button>
         </li>
         <li>
@@ -457,7 +498,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -465,7 +506,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Left</span>
+            <span class="iui-tab-label">Left</span>
           </button>
         </li>
         <li>
@@ -478,7 +519,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -486,7 +527,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Disabled</span>
+            <span class="iui-tab-label">Disabled</span>
           </button>
         </li>
         <li>
@@ -496,7 +537,7 @@
             aria-selected="false"
             aria-controls="none-tab"
           >
-            <span class="iui-label">None</span>
+            <span class="iui-tab-label">None</span>
           </button>
         </li>
       </ul>
@@ -532,7 +573,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -540,9 +581,9 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">
+            <span class="iui-tab-label">
               <div>Active</div>
-              <div class="iui-description">Sublabel</div>
+              <div class="iui-tab-description">Sublabel</div>
             </span>
           </button>
         </li>
@@ -555,7 +596,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -563,9 +604,9 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">
+            <span class="iui-tab-label">
               <div>Left</div>
-              <div class="iui-description">Sublabel</div>
+              <div class="iui-tab-description">Sublabel</div>
             </span>
           </button>
         </li>
@@ -579,7 +620,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -587,9 +628,9 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">
+            <span class="iui-tab-label">
               <div>Disabled</div>
-              <div class="iui-description">Sublabel</div>
+              <div class="iui-tab-description">Sublabel</div>
             </span>
           </button>
         </li>
@@ -600,7 +641,7 @@
             aria-selected="false"
             aria-controls="none-tab"
           >
-            <span class="iui-label">None</span>
+            <span class="iui-tab-label">None</span>
           </button>
         </li>
       </ul>
@@ -641,7 +682,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -649,7 +690,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Active</span>
+            <span class="iui-tab-label">Active</span>
           </button>
         </li>
         <li>
@@ -661,7 +702,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -669,7 +710,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Left</span>
+            <span class="iui-tab-label">Left</span>
           </button>
         </li>
         <li>
@@ -682,7 +723,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -690,7 +731,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Disabled</span>
+            <span class="iui-tab-label">Disabled</span>
           </button>
         </li>
         <li>
@@ -700,7 +741,7 @@
             aria-selected="false"
             aria-controls="none-tab"
           >
-            <span class="iui-label">None</span>
+            <span class="iui-tab-label">None</span>
           </button>
         </li>
       </ul>
@@ -736,7 +777,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -744,7 +785,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Active</span>
+            <span class="iui-tab-label">Active</span>
           </button>
         </li>
         <li>
@@ -756,7 +797,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -764,7 +805,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Left</span>
+            <span class="iui-tab-label">Left</span>
           </button>
         </li>
         <li>
@@ -777,7 +818,7 @@
           >
             <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
-              class="iui-icon"
+              class="iui-tab-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
@@ -785,7 +826,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-label">Disabled</span>
+            <span class="iui-tab-label">Disabled</span>
           </button>
         </li>
         <li>
@@ -795,7 +836,7 @@
             aria-selected="false"
             aria-controls="none-tab"
           >
-            <span class="iui-label">None</span>
+            <span class="iui-tab-label">None</span>
           </button>
         </li>
       </ul>

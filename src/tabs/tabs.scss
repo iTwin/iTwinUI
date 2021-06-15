@@ -5,6 +5,7 @@
 @mixin iui-tabs {
   @include iui-reset;
   display: flex;
+  align-items: center;
   list-style: none;
   padding: 0;
   user-select: none;
@@ -30,30 +31,6 @@
       box-shadow: inset 0 0 0 0 t(iui-color-foreground-primary);
     }
 
-    .iui-icon:not(.iui-user-icon) {
-      width: $iui-icons-default;
-      height: $iui-icons-default;
-      transition: fill $iui-speed-fast ease-out;
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
-
-      + .iui-label {
-        margin-left: $iui-s;
-      }
-    }
-
-    .iui-label {
-      text-align: left;
-
-      .iui-description {
-        font-size: $iui-font-size-small;
-        @include themed {
-          opacity: t(iui-opacity-3);
-        }
-      }
-    }
-
     &.iui-active {
       cursor: default;
       pointer-events: none;
@@ -61,7 +38,7 @@
         color: t(iui-color-foreground-primary);
       }
 
-      .iui-icon:not(.iui-user-icon) {
+      .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-primary);
         }
@@ -74,11 +51,35 @@
         color: t(iui-text-color-muted);
       }
 
-      .iui-icon:not(.iui-user-icon) {
+      .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-actionable-disabled);
         }
       }
+    }
+  }
+
+  .iui-tab-icon {
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    transition: fill $iui-speed-fast ease-out;
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
+
+    + .iui-tab-label {
+      margin-left: $iui-s;
+    }
+  }
+
+  .iui-tab-label {
+    text-align: left;
+  }
+
+  .iui-tab-description {
+    font-size: $iui-font-size-small;
+    @include themed {
+      opacity: t(iui-opacity-3);
     }
   }
 
@@ -90,7 +91,7 @@
         color: t(iui-color-foreground-positive);
       }
 
-      .iui-icon:not(.iui-user-icon) {
+      .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-positive);
         }

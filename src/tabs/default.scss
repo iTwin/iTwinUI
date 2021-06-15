@@ -13,7 +13,7 @@
       border: 1px solid t(iui-color-background-5);
     }
 
-    &:enabled:hover {
+    &:hover {
       @include themed {
         background-color: t(iui-color-background-1);
       }
@@ -34,12 +34,12 @@
     }
   }
 
-  li:not(:last-child) .iui-tab {
-    border-right: none;
+  li:not(:first-child) .iui-tab {
+    border-left: none;
   }
 
   &.iui-large .iui-tab {
-    height: $iui-baseline * 5;
+    height: $iui-baseline * 4;
   }
 
   ~ .iui-tabs-content {
