@@ -4,7 +4,10 @@
 
 .iui-tabs {
   @include iui-tabs;
-  @include iui-tabs-default;
+
+  &.iui-default {
+    @include iui-tabs-default;
+  }
 
   &.iui-borderless {
     @include iui-tabs-borderless;

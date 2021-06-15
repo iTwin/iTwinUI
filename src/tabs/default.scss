@@ -4,63 +4,51 @@
 @import './tabs';
 
 @mixin iui-tabs-default {
-  @include iui-tabs;
+  .iui-tab {
+    height: $iui-baseline * 3;
+    padding: 0 $iui-m;
+    box-sizing: border-box;
+    @include themed {
+      background-color: t(iui-color-background-2);
+      border: 1px solid t(iui-color-background-5);
+    }
 
-  > li {
-    > button {
-      height: $iui-baseline * 3;
-      padding: 0 $iui-m;
-      box-sizing: border-box;
+    &:enabled:hover {
       @include themed {
-        background-color: t(iui-color-background-2);
-        border: 1px solid t(iui-color-background-5);
-      }
-
-      .iui-label {
-        text-align: left;
-
-        .iui-description {
-          font-size: $iui-font-size-small;
-          @include themed {
-            opacity: t(iui-opacity-3);
-          }
-        }
-      }
-      
-
-      &.iui-active {
-        border-bottom-color: transparent;
-        @include themed {
-          box-shadow: inset 0 $iui-xxs 0 0;
-        }
-      }
-
-      &[disabled] {
-        @include themed {
-          background-color: t(iui-color-background-3);
-        }
+        background-color: t(iui-color-background-1);
       }
     }
 
-    &:not(:last-child) > button {
-      border-right: none;
+    &.iui-active {
+      border-bottom-color: transparent;
+      @include themed {
+        background-color: t(iui-color-background-1);
+        box-shadow: inset 0 $iui-xxs 0 0;
+      }
+    }
+
+    &[disabled] {
+      @include themed {
+        background-color: t(iui-color-background-3);
+      }
     }
   }
 
-  &:not(.iui-borderless):not(.iui-pill) ~ .iui-tabs-content {
-    box-sizing: border-box;
+  li:not(:last-child) .iui-tab {
+    border-right: none;
+  }
+
+  &.iui-large .iui-tab {
+    height: $iui-baseline * 5;
+  }
+
+  ~ .iui-tabs-content {
     padding-left: $iui-m;
     padding-right: $iui-m;
     margin-top: -1px;
     @include themed {
       background-color: t(iui-color-background-1);
       border: 1px solid t(iui-color-background-5);
-    }
-  }
-
-  &.iui-large {
-    > li > button {
-      height: $iui-baseline * 5;
     }
   }
 }

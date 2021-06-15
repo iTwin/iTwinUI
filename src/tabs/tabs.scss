@@ -9,77 +9,80 @@
   padding: 0;
   user-select: none;
 
-
   > li {
     display: inline-block;
     position: relative;
     padding: 0;
     margin: 0;
+  }
 
-    > button {
-      @include iui-reset;
-      @include iui-font-family;
-      @include iui-focus;
-      display: flex;
-      align-items: center;
-      font-size: $iui-font-size;
-      cursor: pointer;
-      transition: background-color $iui-speed-fast ease-out, box-shadow $iui-speed-fast ease-out;
+  .iui-tab {
+    @include iui-reset;
+    @include iui-font-family;
+    @include iui-focus;
+    display: flex;
+    align-items: center;
+    font-size: $iui-font-size;
+    cursor: pointer;
+    transition: background-color $iui-speed-fast ease-out, box-shadow $iui-speed-fast ease-out;
+    @include themed {
+      color: t(iui-text-color);
+      box-shadow: inset 0 0 0 0 t(iui-color-foreground-primary);
+    }
+
+    .iui-icon:not(.iui-user-icon) {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+      transition: fill $iui-speed-fast ease-out;
       @include themed {
-        color: t(iui-text-color);
-        box-shadow: inset 0 0 0 0 t(iui-color-foreground-primary);
+        fill: t(iui-icons-color-actionable);
+      }
+
+      + .iui-label {
+        margin-left: $iui-s;
+      }
+    }
+
+    .iui-label {
+      text-align: left;
+
+      .iui-description {
+        font-size: $iui-font-size-small;
+        @include themed {
+          opacity: t(iui-opacity-3);
+        }
+      }
+    }
+
+    &.iui-active {
+      cursor: default;
+      pointer-events: none;
+      @include themed {
+        color: t(iui-color-foreground-primary);
       }
 
       .iui-icon:not(.iui-user-icon) {
-        width: $iui-icons-default;
-        height: $iui-icons-default;
-        transition: fill $iui-speed-fast ease-out;
         @include themed {
-          fill: t(iui-icons-color-actionable);
-        }
-
-        + .iui-label {
-          margin-left: $iui-s;
+          fill: t(iui-icons-color-primary);
         }
       }
+    }
 
-      &:hover:enabled,
-      &.iui-active {
-        @include themed {
-          background-color: t(iui-color-background-1);
-        }
+    &[disabled] {
+      cursor: not-allowed;
+      @include themed {
+        color: t(iui-text-color-muted);
       }
 
-      &.iui-active {
-        cursor: default;
-        pointer-events: none;
+      .iui-icon:not(.iui-user-icon) {
         @include themed {
-          color: t(iui-color-foreground-primary);
-        }
-
-        .iui-icon:not(.iui-user-icon) {
-          @include themed {
-            fill: t(iui-icons-color-primary);
-          }
-        }
-      }
-
-      &[disabled] {
-        cursor: not-allowed;
-        @include themed {
-          color: t(iui-text-color-muted);
-        }
-
-        .iui-icon:not(.iui-user-icon) {
-          @include themed {
-            fill: t(iui-icons-color-actionable-disabled);
-          }
+          fill: t(iui-icons-color-actionable-disabled);
         }
       }
     }
   }
 
-  &.iui-green > li > button {
+  &.iui-green .iui-tab {
     @include iui-focus(iui-focus-positive-box-shadow);
 
     &.iui-active {
@@ -98,5 +101,6 @@
   ~ .iui-tabs-content {
     padding-top: $iui-baseline;
     padding-bottom: $iui-baseline;
+    box-sizing: border-box;
   }
 }
