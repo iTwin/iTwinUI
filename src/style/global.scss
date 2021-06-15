@@ -10,7 +10,7 @@
 
   font-size: $iui-font-size;
   line-height: $iui-line-height;
-  scroll-behavior: smooth;
+
   @include iui-font-family;
   @include iui-scrollbar;
 }
