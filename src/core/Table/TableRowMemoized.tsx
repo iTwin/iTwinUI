@@ -45,7 +45,7 @@ const TableRow = <T extends Record<string, unknown>>(props: {
     <div {...rowProps} key={rowProps.key} ref={rowRef}>
       {row.cells.map((cell) => {
         const cellProps = cell.getCellProps({
-          className: cx('iui-tables-cell', cell.column.cellClassName),
+          className: cx('iui-cell', cell.column.cellClassName),
           style: getCellStyle(cell.column),
         });
         return (

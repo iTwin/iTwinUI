@@ -11,11 +11,13 @@ import '@itwin/itwinui-css/css/table.css';
 import { useTheme } from '../../utils/hooks/useTheme';
 import { Popover } from '../../utils/Popover';
 import { getDocument } from '../../utils/common';
+import { IconButton } from '../../Buttons';
+import { StylingProps } from '../../utils/props';
 
 export type FilterToggleProps<T extends Record<string, unknown>> = {
   column: HeaderGroup<T>;
   ownerDocument?: Document;
-};
+} & StylingProps;
 
 /**
  * Handles showing filter icon and opening filter component.
@@ -23,7 +25,7 @@ export type FilterToggleProps<T extends Record<string, unknown>> = {
 export const FilterToggle = <T extends Record<string, unknown>>(
   props: FilterToggleProps<T>,
 ) => {
-  const { column, ownerDocument = getDocument() } = props;
+  const { column, ownerDocument = getDocument(), className, ...rest } = props;
 
   useTheme();
 
@@ -53,21 +55,18 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           onClickOutside={close}
           appendTo={ownerDocument?.body}
         >
-          <div
-            className={cx('iui-filter', {
-              'iui-active': isVisible || column.filterValue,
-            })}
+          <IconButton
+            styleType='borderless'
+            isActive={isVisible || column.filterValue}
+            className={cx('iui-filter-button', className)}
             onClick={(e: React.MouseEvent) => {
               e.stopPropagation();
               setIsVisible((v) => !v);
             }}
+            {...rest}
           >
-            {column.filterValue ? (
-              <SvgFilter className='iui-icon' />
-            ) : (
-              <SvgFilterHollow className='iui-icon' />
-            )}
-          </div>
+            {column.filterValue ? <SvgFilter /> : <SvgFilterHollow />}
+          </IconButton>
         </Popover>
       )}
     </>

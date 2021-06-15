@@ -7,6 +7,7 @@
 ### What's new
 
 - **Added `size` prop to `Input` and `Select` components.** Supports small and large sizes.
+- **Updated `Table` styles** through base CSS package.
 
 ### Fixes
 
