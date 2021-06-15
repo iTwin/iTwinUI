@@ -23,6 +23,7 @@
       background-color: transparent;
       border-radius: $iui-border-radius;
       width: 100%;
+      justify-content: center;
 
       &:enabled:hover {
         @include themed {

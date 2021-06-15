@@ -20,12 +20,27 @@
       @include iui-reset;
       @include iui-font-family;
       @include iui-focus;
+      display: flex;
+      align-items: center;
       font-size: $iui-font-size;
       cursor: pointer;
       transition: background-color $iui-speed-fast ease-out, box-shadow $iui-speed-fast ease-out;
       @include themed {
         color: t(iui-text-color);
         box-shadow: inset 0 0 0 0 t(iui-color-foreground-primary);
+      }
+
+      .iui-icon:not(.iui-user-icon) {
+        width: $iui-icons-default;
+        height: $iui-icons-default;
+        transition: fill $iui-speed-fast ease-out;
+        @include themed {
+          fill: t(iui-icons-color-actionable);
+        }
+
+        + .iui-label {
+          margin-left: $iui-s;
+        }
       }
 
       &:hover:enabled,
@@ -41,12 +56,24 @@
         @include themed {
           color: t(iui-color-foreground-primary);
         }
+
+        .iui-icon:not(.iui-user-icon) {
+          @include themed {
+            fill: t(iui-icons-color-primary);
+          }
+        }
       }
 
       &[disabled] {
         cursor: not-allowed;
         @include themed {
           color: t(iui-text-color-muted);
+        }
+
+        .iui-icon:not(.iui-user-icon) {
+          @include themed {
+            fill: t(iui-icons-color-actionable-disabled);
+          }
         }
       }
     }
@@ -58,7 +85,12 @@
     &.iui-active {
       @include themed {
         color: t(iui-color-foreground-positive);
-        //box-shadow: inset 0 0 0 0 t(iui-color-foreground-positive);
+      }
+
+      .iui-icon:not(.iui-user-icon) {
+        @include themed {
+          fill: t(iui-icons-color-positive);
+        }
       }
     }
   }

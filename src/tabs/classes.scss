@@ -4,7 +4,7 @@
 
 .iui-tabs {
   @include iui-tabs;
-  @include iui-tabs-horizontal;
+  @include iui-tabs-default;
 
   &.iui-borderless {
     @include iui-tabs-borderless;

@@ -3,7 +3,7 @@
 @import '../style/index';
 @import './tabs';
 
-@mixin iui-tabs-horizontal {
+@mixin iui-tabs-default {
   @include iui-tabs;
 
   > li {
@@ -14,6 +14,17 @@
       @include themed {
         background-color: t(iui-color-background-2);
         border: 1px solid t(iui-color-background-5);
+      }
+
+      .iui-label {
+        text-align: left;
+
+        .iui-description {
+          font-size: $iui-font-size-small;
+          @include themed {
+            opacity: t(iui-opacity-3);
+          }
+        }
       }
       
 
@@ -44,6 +55,12 @@
     @include themed {
       background-color: t(iui-color-background-1);
       border: 1px solid t(iui-color-background-5);
+    }
+  }
+
+  &.iui-large {
+    > li > button {
+      height: $iui-baseline * 5;
     }
   }
 }

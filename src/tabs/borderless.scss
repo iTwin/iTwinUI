@@ -8,7 +8,7 @@
 
   > li {
     > button {
-      height: $iui-baseline * 6;
+      height: $iui-baseline * 4;
       padding: 0 $iui-l;
       background-color: transparent;
 
@@ -45,11 +45,17 @@
     }
   }
 
+  &.iui-large {
+    > li > button {
+      height: $iui-baseline * 6;
+    }
+  }
+
   ~ .iui-tabs-content {
     box-sizing: border-box;
     margin-top: -2px;
     @include themed {
-      border-top: 2px solid t(iui-color-background-5);
+      border-top: 2px solid t(iui-color-background-4);
     }
   }
 }
