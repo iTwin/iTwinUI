@@ -5,7 +5,7 @@
 
 @mixin iui-tabs-default {
   .iui-tab {
-    height: $iui-baseline * 3;
+    height: $iui-component-height;
     padding: 0 $iui-m;
     box-sizing: border-box;
     @include themed {
@@ -39,7 +39,7 @@
   }
 
   &.iui-large .iui-tab {
-    height: $iui-baseline * 4;
+    height: $iui-component-height-large;
   }
 
   ~ .iui-tabs-content {

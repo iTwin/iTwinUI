@@ -6,7 +6,7 @@
 @mixin iui-tabs-borderless {
   .iui-tab {
     height: $iui-component-height;
-    padding: 0 $iui-component-padding-horizontal;
+    padding: 0 ($iui-component-padding-horizontal * 2);
     background-color: transparent;
 
     &:enabled:hover {
