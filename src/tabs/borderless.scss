@@ -50,9 +50,9 @@
   }
 
   ~ .iui-tabs-content {
-    margin-top: -2px;
+    margin-top: -$iui-xxs;
     @include themed {
-      border-top: 2px solid t(iui-color-background-4);
+      border-top: $iui-xxs solid t(iui-color-background-4);
     }
   }
 }
