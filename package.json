@@ -38,7 +38,7 @@
     "copy-files": "cpx package.json lib && cpx \"{README,LICENSE,CHANGELOG}.md \" lib",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "audit:ci": "audit-ci --moderate --report-type=full --allowlist=postcss"
+    "audit:ci": "audit-ci --moderate --report-type=full"
   },
   "dependencies": {
     "@itwin/itwinui-css": "^0.20.2",
