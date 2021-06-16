@@ -9,7 +9,7 @@
     padding: 0 ($iui-component-padding-horizontal * 2);
     background-color: transparent;
 
-    &:enabled:hover {
+    &:hover {
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
@@ -30,7 +30,7 @@
   }
 
   &.iui-green .iui-active,
-  &.iui-green .iui-tab:enabled:hover {
+  &.iui-green .iui-tab:hover {
     @include themed {
       background-color: rgba(
         t(iui-color-foreground-positive-rgb),
@@ -41,6 +41,12 @@
 
   &.iui-large .iui-tab {
     height: $iui-component-height-large;
+  }
+
+  .iui-tab[disabled]:hover {
+    @include themed {
+      background-color: transparent;
+    }
   }
 
   ~ .iui-tabs-content {

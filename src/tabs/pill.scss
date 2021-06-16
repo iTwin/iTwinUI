@@ -28,7 +28,7 @@
     width: 100%;
     justify-content: center;
 
-    &:enabled:hover {
+    &:hover {
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
@@ -48,13 +48,19 @@
     }
   }
 
-  &.iui-green .iui-tab:enabled:hover,
+  &.iui-green .iui-tab:hover,
   &.iui-green .iui-active {
     @include themed {
       background-color: rgba(
         t(iui-color-foreground-positive-rgb),
         t(iui-opacity-6)
       );
+    }
+  }
+
+  .iui-tab[disabled]:hover {
+    @include themed {
+      background-color: transparent;
     }
   }
 }
