@@ -5,7 +5,6 @@
 @import './tabs';
 
 @mixin iui-tabs-pill {
-  flex-flow: row;
   justify-content: space-evenly;
   border-radius: $iui-border-radius;
   @include themed {
