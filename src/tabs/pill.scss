@@ -43,7 +43,19 @@
           t(iui-color-foreground-primary-rgb),
           t(iui-opacity-6)
         );
-        box-shadow: inset 0 (-$iui-xxs) 0 0;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: $iui-xxs;
+        bottom: $iui-xxs;
+        width: calc(100% - #{$iui-xs});
+        height: $iui-xxs;
+        border-radius: 1px;
+        @include themed {
+          background-color: t(iui-color-foreground-primary);
+        }
       }
     }
   }
@@ -55,6 +67,12 @@
         t(iui-color-foreground-positive-rgb),
         t(iui-opacity-6)
       );
+    }
+  }
+
+  &.iui-green .iui-active::after {
+    @include themed {
+      background-color: t(iui-color-foreground-positive);
     }
   }
 
