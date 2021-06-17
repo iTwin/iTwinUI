@@ -76,6 +76,7 @@
   }
 
   .iui-tab-description {
+    display: none;
     font-size: $iui-font-size-small;
     @include themed {
       opacity: t(iui-opacity-3);

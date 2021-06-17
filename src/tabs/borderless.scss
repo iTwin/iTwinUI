@@ -39,8 +39,14 @@
     }
   }
 
-  &.iui-large .iui-tab {
-    height: $iui-component-height-large;
+  &.iui-large {
+    .iui-tab {
+      height: $iui-component-height-large;
+    }
+
+    .iui-tab-description {
+      display: block;
+    }
   }
 
   .iui-tab[disabled]:hover {
