@@ -203,6 +203,59 @@ it('should handle checkbox clicks', () => {
   expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
 });
 
+it('should not trigger onSelect when sorting and filtering', () => {
+  const onSort = jest.fn();
+  const onSelect = jest.fn();
+  const onFilter = jest.fn();
+  const mockedColumns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          Filter: tableFilters.TextFilter(),
+          fieldType: 'text',
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns: mockedColumns,
+    isSortable: true,
+    onSelect,
+    onSort,
+    onFilter,
+  });
+
+  const nameHeader = container.querySelector(
+    '.iui-table-header .iui-cell',
+  ) as HTMLDivElement;
+  expect(nameHeader).toBeTruthy();
+  expect(nameHeader.classList).not.toContain('iui-sorted');
+
+  nameHeader.click();
+  expect(onSort).toHaveBeenCalled();
+  expect(onSelect).not.toHaveBeenCalled();
+
+  const filterIcon = container.querySelector(
+    '.iui-filter-button .iui-icon',
+  ) as HTMLElement;
+  expect(filterIcon).toBeTruthy();
+  fireEvent.click(filterIcon);
+
+  const filterInput = document.querySelector(
+    '.iui-column-filter input',
+  ) as HTMLInputElement;
+  expect(filterInput).toBeTruthy();
+
+  fireEvent.change(filterInput, { target: { value: '2' } });
+  screen.getByText('Filter').click();
+  expect(onFilter).toHaveBeenCalled();
+  expect(onSelect).not.toHaveBeenCalled();
+});
+
 it('should not show sorting icon if sorting is disabled', () => {
   const { container } = renderComponent({
     isSortable: false,

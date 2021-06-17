@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### Fixes
+
+- **Fixed a bug when `Table` sorting or filtering triggered `onSelect`.**
+
 ## [1.8.0]
 
 `2021-06-15`
