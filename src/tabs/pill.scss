@@ -6,11 +6,6 @@
 
 @mixin iui-tabs-pill {
   justify-content: space-evenly;
-  border-radius: $iui-border-radius;
-  @include themed {
-    background-color: t(iui-color-background-2);
-    border: $iui-xxs solid t(iui-color-background-2);
-  }
 
   > li {
     flex: 1 1 0;
@@ -20,12 +15,21 @@
     }
   }
 
+  &.iui-green .iui-tab:hover {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-positive-rgb),
+        t(iui-opacity-6)
+      );
+    }
+  }
+
   .iui-tab {
     height: $iui-component-height;
     background-color: transparent;
-    border-radius: $iui-border-radius;
     width: 100%;
     justify-content: center;
+    border-radius: $iui-border-radius;
 
     &:hover {
       @include themed {
@@ -35,49 +39,13 @@
         );
       }
     }
-
-    &.iui-active {
+    
+    &[disabled]:hover {
       @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: $iui-xxs;
-        bottom: $iui-xxs;
-        width: calc(100% - #{$iui-xs});
-        height: $iui-xxs;
-        border-radius: 1px;
-        @include themed {
-          background-color: t(iui-color-foreground-primary);
-        }
+        background-color: transparent;
       }
     }
   }
 
-  &.iui-green .iui-tab:hover,
-  &.iui-green .iui-active {
-    @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-positive-rgb),
-        t(iui-opacity-6)
-      );
-    }
-  }
 
-  &.iui-green .iui-active::after {
-    @include themed {
-      background-color: t(iui-color-foreground-positive);
-    }
-  }
-
-  .iui-tab[disabled]:hover {
-    @include themed {
-      background-color: transparent;
-    }
-  }
 }

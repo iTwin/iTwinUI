@@ -23,7 +23,6 @@
       border-bottom-color: transparent;
       @include themed {
         background-color: t(iui-color-background-1);
-        box-shadow: inset 0 $iui-xxs 0 0;
       }
     }
 
@@ -38,6 +37,12 @@
     border-left: none;
   }
 
+  &.iui-green .iui-tab {
+    @include themed {
+      box-shadow: inset inherit inherit inherit inherit t(iui-color-foreground-positive);
+    }
+  }
+
   &.iui-large {
     .iui-tab {
       height: $iui-component-height-large;
@@ -45,6 +50,14 @@
 
     .iui-tab-description {
       display: block;
+    }
+  }
+
+  &.iui-not-animated .iui-tab {
+    box-shadow: inset 0 0 0 0;
+
+    &.iui-active {
+      box-shadow: inset 0 $iui-xxs 0 0;
     }
   }
 

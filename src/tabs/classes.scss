@@ -2,6 +2,10 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+.iui-tabs-wrapper {
+  position: relative;
+}
+
 .iui-tabs {
   @include iui-tabs;
 
@@ -15,5 +19,13 @@
   
   &.iui-pill {
     @include iui-tabs-pill;
+  }
+
+  &.iui-animated {
+    @include iui-tab-animated;
+  }
+
+  &.iui-not-animated {
+    @include iui-tab-not-animated;
   }
 }
