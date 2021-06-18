@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.20.3]
+
+`2021-06-18`
+
+### Fixes
+
+- **Fixed select text truncation bug.**
+- **Fixed table column resizer activation.**
+
 ## [0.20.2]
 
 `2021-06-14`
