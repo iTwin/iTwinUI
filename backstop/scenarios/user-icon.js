@@ -1,13 +1,17 @@
 const { scenario } = require('../scenarioHelper');
 
-module.exports = [scenario('basic')];
-
 module.exports = [
-  // User icon types
+  // Types
   scenario('Type default', {
     selectors: ['#demo-default'],
   }),
   scenario('Type online status', {
     selectors: ['#demo-status'],
+  }),
+  scenario('Type list', {
+    selectors: ['#demo-list'],
+  }),
+  scenario('Type animated', {
+    selectors: ['#demo-animated'],
   }),
 ];

@@ -73,7 +73,7 @@
 
   > .iui-status {
     display: flex;
-    align-items: center;
+    place-content: center;
     justify-content: center;
     position: absolute;
     right: -$iui-xxs;
@@ -131,8 +131,7 @@
 @mixin iui-user-icon-list {
   display: flex;
 
-  .iui-user-icon:not(:first-child),
-  > .iui-tooltip-container > .iui-user-icon {
+  .iui-user-icon:not(:first-child) {
     margin-left: -$iui-xs;
 
     &.iui-small {
