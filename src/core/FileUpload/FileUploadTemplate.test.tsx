@@ -39,3 +39,20 @@ it('should render FileUploadTemplate', () => {
   expect(svg).toBeTruthy();
   expect(svg).toEqual(uploadIcon.firstChild);
 });
+
+it('should accept input props', () => {
+  const { container } = render(
+    <FileUploadTemplate
+      onChange={jest.fn}
+      acceptMultiple={false}
+      acceptType='.txt, .png'
+    />,
+  );
+
+  const input = container.querySelector(
+    '.iui-browse-input',
+  ) as HTMLInputElement;
+  expect(input).toBeTruthy();
+  expect(input.multiple).toBeFalsy();
+  expect(input.accept).toEqual('.txt, .png');
+});

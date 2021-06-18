@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`2021-06-XX`
+
+### What's new
+
+- **Added `acceptType` prop to `FileUploadTemplate`.**
+
 ## [1.8.1]
 
 `2021-06-17`

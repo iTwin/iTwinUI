@@ -14,9 +14,15 @@ export type FileUploadTemplateProps = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   /**
    * Whether the file input accepts multiple files.
+   * Passed to the `multiple` attribute of native file input.
    * @default true
    */
   acceptMultiple?: boolean;
+  /**
+   * File types allowed.
+   * Passed to the `accept` attribute of native file input.
+   */
+  acceptType?: string;
   /**
    * Localized version of primary clickable label. Gets styled like a hyperlink.
    * @default 'Choose a file'
@@ -43,6 +49,7 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
   const {
     onChange,
     acceptMultiple = true,
+    acceptType,
     label = 'Choose a file',
     subtitle = 'or drag & drop it here.',
     children,
@@ -51,16 +58,16 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
 
   return (
     <>
-      <input
-        className='iui-browse-input'
-        type='file'
-        id='file-input'
-        onChange={onChange}
-        multiple={acceptMultiple}
-      />
       <SvgUpload className='iui-icon' aria-hidden />
       <div className='iui-template-text'>
-        <label htmlFor='file-input' className='iui-anchor'>
+        <label className='iui-anchor'>
+          <input
+            className='iui-browse-input'
+            type='file'
+            onChange={onChange}
+            multiple={acceptMultiple}
+            accept={acceptType}
+          />
           {label}
         </label>
         <div>{subtitle}</div>
