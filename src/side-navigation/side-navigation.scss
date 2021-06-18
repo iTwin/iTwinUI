@@ -1,0 +1,158 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../icon/index';
+
+@mixin iui-side-navigation {
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  transition: max-width $iui-speed-fast ease-out;
+  height: 100%;
+  @include themed {
+    background-color: t(iui-color-background-3);
+    border-right: 1px solid t(iui-color-background-5);
+  }
+
+  > .iui-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+
+    > .iui-top,
+    > .iui-bottom {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    > .iui-top {
+      .iui-sidenav-button:first-of-type {
+        border-top: none;
+      }
+
+      .iui-sidenav-button:not(:last-of-type) {
+        border-bottom: none;
+      }
+    }
+
+    > .iui-bottom {
+      justify-content: flex-end;
+
+      .iui-sidenav-button {
+        border-bottom: none;
+      }
+    }
+
+    + .iui-sidenav-button.iui-expand {
+      border: none;
+      @include themed {
+        border-top: 1px solid t(iui-color-background-5);
+      }
+    }
+  }
+
+  &.iui-collapsed {
+    min-width: $iui-icons-large * 3;
+    max-width: $iui-icons-large * 3;
+  }
+
+  &.iui-expanded,
+  > .iui-sidenav-content {
+    max-width: $iui-3xl * 3;
+
+    > .iui-sidenav-button.iui-expand > .iui-icon {
+      transform: scaleX(-1);
+    }
+  }
+
+  .iui-sidenav-button {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    overflow: hidden;
+    justify-content: flex-start;
+    
+    &:not(.iui-expand) {
+      height: $iui-baseline * 5;
+    }
+
+    &,
+    &:enabled:hover,
+    &[disabled],
+    &:focus-visible {
+      @include themed {
+        border-color: t(iui-color-background-5);
+      }
+    }
+
+    > .iui-icon:not(.iui-user-icon) {
+      width: $iui-icons-large;
+      height: $iui-icons-large;
+      flex-shrink: 0;
+
+      + .iui-label {
+        margin-left: $iui-icons-large;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &.iui-active {
+      &:focus,
+      &:focus-visible {
+        @include themed {
+          box-shadow: inset 0 0 $iui-xs
+            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)), inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
+        }
+      }
+
+      &,
+      &:focus:not(:focus-visible) {
+        @include themed {
+          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
+        }
+      }
+    }
+
+    &[disabled] {
+      @include themed {
+        background-color: t(iui-color-background-2);
+      }
+    }
+
+    &:focus {
+      outline: 0;
+      @include themed {
+        box-shadow: inset 0 0 $iui-xs
+          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
+      }
+    }
+
+    &:focus:not(:focus-visible) {
+      box-shadow: none;
+    }
+
+    &:focus-visible {
+      outline: 0;
+      box-shadow: inset 0 0 $iui-xs
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
+    }
+
+    &.iui-expand {
+      height: $iui-line-height;
+      justify-content: center;
+      border: none;
+      @include themed {
+        border-bottom: 1px solid t(iui-color-background-5);
+      }
+
+      > .iui-icon {
+        @include iui-icons-small;
+        transition: transform $iui-speed ease-out;
+      }
+    }
+  }
+}

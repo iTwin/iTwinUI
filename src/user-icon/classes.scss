@@ -4,7 +4,10 @@
 
 .iui-user-icon {
   @include iui-user-icon;
-  @include iui-user-icon-size;
+
+  &#{&} {
+    @include iui-user-icon-size;
+  }
 
   &.iui-small {
     @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
@@ -17,8 +20,4 @@
   &.iui-x-large {
     @include iui-user-icon-size($size: $iui-icons-3xl, $font-size: $iui-font-size-title);
   }
-}
-
-.iui-user-icon-list {
-  @include iui-user-icon-list;
 }

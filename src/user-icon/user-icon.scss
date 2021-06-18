@@ -29,9 +29,7 @@
   }
 
   > .iui-initials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     position: absolute;
     left: 0;
     top: 0;
@@ -45,7 +43,6 @@
     text-decoration: none;
     text-transform: uppercase;
     background-color: $iui-color-dataviz-celery;
-    overflow: hidden;
     @include themed {
       color: t(iui-color-foreground-accessory);
     }
@@ -72,12 +69,14 @@
   }
 
   > .iui-status {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     right: -2px;
     bottom: -2px;
-    width: calc(100% / 4);
-    height: calc(100% / 4);
+    width: 25%;
+    height: 25%;
     border-radius: 50%;
     @include themed {
       border: 2px solid t(iui-color-background-1);
@@ -88,14 +87,10 @@
 
     > .iui-status-symbol {
       @include themed {
-        fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+        fill: t(iui-icons-color);
       }
       width: calc(100% / 1.5);
       height: calc(100% / 1.5);
-      display: block;
-      position: absolute;
-      right: calc(100% / 6);
-      bottom: calc(100% / 6);
     }
 
     &.iui-online,

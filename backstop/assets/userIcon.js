@@ -19,17 +19,17 @@ const persons = {
 };
 
 const statusIcons = {
-  online: `<!-- Use checkmark.svg from generic-icons package. -->
+  online: `<!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
   <svg class="iui-status-symbol" aria-hidden="true" viewBox="0 0 16 16">
     <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
   </svg>`,
-  away: `<!-- Use away_2.svg from generic-icons package. -->
+  away: `<!-- Use away.svg from @itwin/itwinui-icons package. -->
   <svg class="iui-status-symbol" aria-hidden="true" viewBox="0 0 16 16" >
-    <path d="m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z" />
+    <path d="m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z"/>
   </svg>`,
-  offline: `<!-- Use close_2.svg from generic-icons package. -->
+  offline: `<!-- Use close-small.svg from @itwin/itwinui-icons package. -->
   <svg class="iui-status-symbol" aria-hidden="true" viewBox="0 0 16 16">
-    <path d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
+    <path d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z"/>
   </svg>`,
 };
 

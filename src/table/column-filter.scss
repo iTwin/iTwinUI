@@ -1,0 +1,37 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../menu/index';
+
+@mixin iui-column-filter {
+  @include iui-dropdown;
+  padding: $iui-baseline $iui-sm;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  > .iui-input-container:not(.iui-inline) {
+    width: 100%;
+  }
+
+  > .iui-input-container,
+  > .iui-input {
+    margin-bottom: $iui-baseline;
+  }
+
+  > .iui-button-bar {
+    display: flex;
+    width: 100%;
+    align-content: center;
+
+    > .iui-button {
+      &:first-of-type {
+        margin-left: auto;
+      }
+
+      &:not(:last-child) {
+        margin-right: $iui-s;
+      }
+    }
+  }
+}

@@ -8,8 +8,9 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  position: relative;
   padding: 0;
-  margin: 0 0 $iui-baseline;
+  margin: 0;
   text-align: left;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
@@ -28,8 +29,8 @@
 
   > .iui-label {
     padding: 0;
-    margin-bottom: $iui-inputs-margin;
-    border: 0;
+    margin-bottom: $iui-component-offset;
+    border: none;
     display: block;
     width: fit-content;
     font-size: $iui-font-size;
@@ -40,8 +41,13 @@
       color: t(iui-text-color);
     }
 
-    &::after {
-      content: ':';
+    &.iui-required {
+      &::after {
+        content: ' *';
+        @include themed {
+          color: t(iui-color-foreground-negative);
+        }
+      }
     }
   }
 
@@ -51,20 +57,24 @@
     align-items: center;
     font-size: $iui-font-size-small;
     line-height: $iui-line-height;
-    margin-top: $iui-inputs-margin;
-
+    margin-top: $iui-component-offset;
     @include themed {
       color: t(iui-text-color-muted);
     }
 
-    svg {
+    > svg,
+    :not(.iui-button) svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
       margin-right: $iui-xs;
-
       @include themed {
-        fill: t(iui-text-color-muted);
+        fill: t(iui-icons-color);
       }
+    }
+
+    > .iui-borderless {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
 
     a {
@@ -83,7 +93,6 @@
   }
 
   &.iui-inline {
-    position: relative;
     flex-direction: row;
     align-items: center;
 
@@ -101,20 +110,30 @@
     > .iui-message {
       margin: 0;
 
-      svg {
+      > svg,
+      :not(.iui-button) svg {
         margin-right: 0;
       }
     }
 
     > .iui-input,
     > .iui-textarea {
-      padding-right: $iui-xl;
+      padding-right: $iui-icons-default + $iui-l;
 
       + .iui-message {
         position: absolute;
         top: 50%;
-        right: $iui-sm;
+        right: 0;
         transform: translateY(-50%);
+
+        > svg,
+        :not(.iui-button) svg {
+          margin-right: $iui-sm;
+        }
+      }
+
+      &:last-child {
+        padding-right: $iui-sm;
       }
     }
   }
@@ -147,6 +166,12 @@
 }
 
 @mixin iui-inputs-status($foregroundColor, $foregroundOverlay, $foregroundRgb) {
+  *::selection {
+    @include themed {
+      background-color: rgba(t($foregroundRgb), t(iui-opacity-4));
+    }
+  }
+
   > .iui-message {
     @include themed {
       color: t($foregroundColor);
@@ -174,12 +199,6 @@
         }
       }
     }
-
-    &::selection {
-      @include themed {
-        background-color: rgba(t($foregroundRgb), t(iui-opacity-4));
-      }
-    }
   }
 
   > input,
@@ -187,7 +206,15 @@
   > textarea,
   > .iui-textarea,
   > .iui-select > .iui-select-button {
-    padding-bottom: $iui-inputs-padding - 1px;
+    padding-bottom: $iui-component-padding-vertical - 1px;
+
+    &.iui-small {
+      padding-bottom: $iui-component-padding-vertical-small - 1px;
+    }
+
+    &.iui-large {
+      padding-bottom: $iui-component-padding-vertical-large - 1px;
+    }
 
     @include themed {
       border-bottom: 2px solid t($foregroundColor) !important;

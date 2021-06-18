@@ -1,0 +1,35 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../inputs/index';
+
+@mixin iui-fieldset {
+  @include iui-reset;
+  @include iui-font-family;
+  padding: $iui-baseline $iui-sm;
+  border-radius: $iui-border-radius;
+  @include themed {
+    border: 1px solid t(iui-color-background-3);
+  }
+
+  legend {
+    font-size: $iui-font-size-leading;
+    padding: $iui-component-padding-vertical-small $iui-s;
+    border-radius: $iui-border-radius;
+    user-select: none;
+    @include themed {
+      background-color: t(iui-color-background-3);
+      color: t(iui-text-color);
+    }
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+
+    legend {
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
+    }
+  }
+}

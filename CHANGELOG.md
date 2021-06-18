@@ -1,5 +1,175 @@
 # Changelog
 
+## [0.20.3]
+
+`2021-06-18`
+
+### Fixes
+
+- **Fixed select text truncation bug.**
+- **Fixed table column resizer activation.**
+
+## [0.20.2]
+
+`2021-06-14`
+
+### Fixes
+
+- **Fixed table bugs**: filter icon spacing, sort icon fill, and header cell cursor.
+
+## [0.20.1]
+
+`2021-06-11`
+
+### Fixes
+
+- **Fixed file-upload input selector so it can now be nested inside label.**
+- **Changed checkboxes and radio so they no longer get focus ring for mouse clicks.**
+
+## [0.20.0]
+
+`2021-06-10`
+
+### What's new
+
+- **Updated table class names and added some new styles.**
+
+### Fixes
+
+- **Fixed undefined variable error in variables.scss**.
+
+## [0.19.0]
+
+`2021-06-10`
+
+### What's new
+
+- **Added small and large sizes to inputs and buttons.** Also removed bottom margin.
+
+## [0.18.1]
+
+`2021-06-07`
+
+### Fixes
+
+- **Fixed sidenav buttons not always overriding styles from default button.**
+
+## [0.18.0]
+
+`2021-06-03`
+
+### What's new
+
+- **Added separate time-picker component** for standalone use or within date-picker.
+
+### Fixes
+
+- **Renamed expandable block content class to `.iui-expandable-content`** to prevent conflicts with other components.
+- **Fixed Dart Sass deprecation warning about division operator** by replacing `/` with `*`.
+
+## [0.17.1]
+
+`2021-05-28`
+
+### Fixes
+
+- **Improved wizard responsive design** by using percentage width.
+- **Fixed user-icon size not working when placed in icon button.**
+
+## [0.17.0]
+
+`2021-05-26`
+
+### What's new
+
+- **Added breadcrumbs component.**
+- **Added `.iui-x-small` and `.iui-large` sizes to radial progress indicator.**
+
+### Fixes
+
+- **Fixed wizard responsive design issues.**
+- **Fixed Sass deprecation warning about `!global` assignments.**
+
+## [0.16.0]
+
+`2021-05-20`
+
+### What's new
+
+- **Changed header class to `.iui-page-header`** and made it responsive.
+
+## [0.15.0]
+
+`2021-05-17`
+
+### What's new
+
+- **Added side-navigation component.**
+- **Added `.iui-required` class to labeled inputs** and removed automatic colon after all labels.
+
+## [0.14.0]
+
+`2021-05-17`
+
+### What's new
+
+- **Added progress indicator overlay.**
+- **Added fieldset component.**
+
+### Fixes
+
+- **Added nav and aria attributes to header breadcrumbs.**
+
+## [0.13.1]
+
+`2021-05-12`
+
+### Fixes
+
+- **Added missing header imports in barrel.**
+
+## [0.13.0]
+
+`2021-05-12`
+
+### What's new
+
+- **Added header component**. Also added header button and header logo.
+
+### Fixes
+
+- **Added filter icon active state and table background color.**
+- **Increased specificity of default user-icon**
+
+## [0.12.0]
+
+`2021-05-04`
+
+### What's new
+
+- **Added new column-filter component** under table.css.
+- **Added new file-upload template.**
+- **Restructured user-icon classes** from `.iui-user-icons-small` into `.iui-user-icon .iui-small`.
+
+### Fixes
+
+- **Fixed some icon issues in table and pill tabs.**
+- **Fixed some visual issues in file-upload.**
+- **Fixed tile text blurring issues.**
+
+## [0.11.0]
+
+`2021-04-28`
+
+### What's new
+
+- **Added `iui-color-foreground-body-invert` variable.**
+- **Icons now use `iui-icons-color-` variables**, allowing easy overrides.
+
+### Fixes
+
+- **Fixed tooltip text blurring issues** by removing frosted glass effect.
+
 ## [0.10.0]
 
 `2021-04-21`
@@ -133,5 +303,21 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.20.3]: https://github.com/iTwin/iTwinUI/compare/v0.20.2...v0.20.3
+[0.20.2]: https://github.com/iTwin/iTwinUI/compare/v0.20.1...v0.20.2
+[0.20.1]: https://github.com/iTwin/iTwinUI/compare/v0.20.0...v0.20.1
+[0.20.0]: https://github.com/iTwin/iTwinUI/compare/v0.19.0...v0.20.0
+[0.19.0]: https://github.com/iTwin/iTwinUI/compare/v0.18.1...v0.19.0
+[0.18.1]: https://github.com/iTwin/iTwinUI/compare/v0.18.0...v0.18.1
+[0.18.0]: https://github.com/iTwin/iTwinUI/compare/v0.17.1...v0.18.0
+[0.17.1]: https://github.com/iTwin/iTwinUI/compare/v0.17.0...v0.17.1
+[0.17.0]: https://github.com/iTwin/iTwinUI/compare/v0.16.0...v0.17.0
+[0.16.0]: https://github.com/iTwin/iTwinUI/compare/v0.15.0...v0.16.0
+[0.15.0]: https://github.com/iTwin/iTwinUI/compare/v0.14.0...v0.15.0
+[0.14.0]: https://github.com/iTwin/iTwinUI/compare/v0.13.1...v0.14.0
+[0.13.1]: https://github.com/iTwin/iTwinUI/compare/v0.13.0...v0.13.1
+[0.13.0]: https://github.com/iTwin/iTwinUI/compare/v0.12.0...v0.13.0
+[0.12.0]: https://github.com/iTwin/iTwinUI/compare/v0.11.0...v0.12.0
+[0.11.0]: https://github.com/iTwin/iTwinUI/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/iTwin/iTwinUI/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/iTwin/iTwinUI/compare/v0.8.0...v0.9.0

@@ -2,10 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './color';
 
-@mixin no-border {
-  border: 0 none transparent;
-}
-
 @mixin no-link {
   text-decoration: none;
 
@@ -49,16 +45,17 @@
 @mixin iui-reset {
   margin: 0;
   padding: 0;
-  border: 0;
+  border: none;
   vertical-align: baseline;
 }
 
 @mixin iui-anchor {
+  @include iui-focus;
+  text-decoration: none;
+  cursor: pointer;
   @include themed {
     color: t(iui-color-foreground-primary);
   }
-  text-decoration: none;
-  cursor: pointer;
 
   &:hover {
     @include themed {
@@ -87,7 +84,7 @@
         t(iui-opacity-4)
       );
     }
-    border-radius: $iui-s / 2;
+    border-radius: $iui-s * 0.5;
 
     &:hover {
       @include themed {
@@ -131,4 +128,13 @@
       backdrop-filter: $iui-blur-filter;
     }
   }
+}
+
+/// Simulates display: none but keeps the element in DOM tree
+@mixin iui-display-none {
+  opacity: 0;
+  height: 0.1px;
+  width: 0.1px;
+  margin: 0;
+  padding: 0;
 }

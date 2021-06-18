@@ -1,0 +1,984 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html id="theme">
+  <head>
+    <title>Header | iTwinUI</title>
+    <link
+      rel="icon"
+      href="../assets/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script src="../assets/theme.js"></script>
+    <script src="../assets/userIcon.js"></script>
+    <style>
+      div.demo-picture {
+        background-image: url('../assets/image-test.jpg');
+        background-position: center;
+        background-size: cover;
+      }
+
+      .demo-side-navigation {
+        background-color: var(--iui-color-background-1);
+        width: 72px;
+        height: 55px;
+        border-right: 1px solid var(--iui-color-background-5);
+        border-bottom: 1px solid var(--iui-color-background-5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .demo-side-navigation-icon {
+        width: 24px;
+        height: 24px;
+        fill: var(--iui-icons-color-actionable);
+      }
+
+      .demo-searchbar {
+        border-radius: 22px;
+        width: 20vw;
+        background-color: var(--iui-color-background-2);
+        margin: 12px;
+      }
+
+      @media (max-width: 1024px) {
+        .demo-searchbar { display: none; }
+      }
+
+      body {
+        background-color: var(--iui-color-background-2) !important;
+      }
+
+      section {
+        width: auto !important;
+      }
+    </style>
+  </head>
+
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Header</h1>
+    <hr />
+
+    <h2>Default</h2>
+    <section id="demo-default">
+
+      <header class="iui-page-header">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <div
+            class="iui-header-logo"
+            role="button"
+            aria-label="App name"
+            aria-expanded="false"
+            tabindex="0"
+          >
+            <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-header-button-icon"
+            >
+              <path
+                d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
+              />
+            </svg>
+            <span class="iui-label">App name</span>
+          </div>
+
+          <div class="iui-divider"></div>
+
+          <nav aria-label="breadcrumbs">
+            <!-- Project Button -->
+            <button
+              class="iui-button iui-borderless iui-large iui-header-button"
+              type="button"
+              aria-label="Project picker"
+              aria-expanded="false"
+              id="test-button-1"
+            >
+              <div class="iui-icon iui-header-button-icon demo-picture"></div>
+              <span class="iui-label">
+                <div>Project Alpha</div>
+                <div class="iui-description">0x0123456789</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+
+            <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-chevron"
+            >
+              <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+            </svg>
+
+            <!-- IModel Button -->
+            <button
+              class="iui-button iui-borderless iui-active iui-large iui-header-button"
+              type="button"
+              aria-label="Model picker"
+              aria-expanded="false"
+              aria-current="location"
+            >
+              <!-- Use model.svg from @itwin/itwinui-icons package. -->
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+                class="iui-icon iui-header-button-icon"
+              >
+                <path
+                  d="m14 11.126-6-2.954v-6.811l-.5-.246-.5.246v6.811l-6 2.954v.559l.565.278 5.935-2.922 5.935 2.922.565-.278z"
+                  opacity=".33"
+                />
+                <path
+                  d="m7.5 0-7.5 3.69232v8.61536l7.5 3.69232 7.5-3.69232v-8.61536zm5.93549 4.03674-5.93549 2.92226-5.93549-2.92232 5.93549-2.92206zm-12.43549 7.64862v-6.81121l6 2.95349v6.81158zm13 0-6 2.95386v-6.81164l6-2.9535z"
+                />
+              </svg>
+              <span class="iui-label">
+                <div>Model Beta</div>
+                <div class="iui-description">0x0123456789</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+          </nav>
+        </div>
+
+        <div class="iui-center">
+          <input
+            type="search"
+            placeholder="Search within Model Beta…"
+            class="iui-input demo-searchbar"
+          >
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+            id="test-button-2"
+          >
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
+              <path
+                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
+              />
+            </svg>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+            <user-icon type="2"></user-icon>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <br />
+
+      <header class="iui-page-header">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <div
+            class="iui-header-logo"
+            role="button"
+            aria-label="App name"
+            aria-expanded="false"
+            tabindex="0"
+          >
+            <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-header-button-icon"
+            >
+              <path
+                d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
+              />
+            </svg>
+          </div>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <nav aria-label="breadcrumbs">
+            <button
+              class="iui-button iui-borderless iui-header-button iui-large"
+              type="button"
+              aria-label="Project picker"
+              aria-expanded="false"
+            >
+              <span class="iui-label">
+                <div class="iui-name">Project Alpha</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+
+            <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-chevron"
+            >
+              <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+            </svg>
+
+            <!-- IModel Button -->
+            <button
+              class="iui-button iui-borderless iui-active iui-large iui-header-button"
+              type="button"
+              aria-label="Model picker"
+              aria-expanded="false"
+              aria-current="location"
+            >
+              <span class="iui-label">
+                <div class="iui-name">Model Beta</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+          </nav>
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+          >
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
+              <path
+                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
+              />
+            </svg>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+
+            <user-icon type="2"></user-icon>
+            </span>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+    </section>
+
+    <hr />
+
+    <h2>Slim</h2>
+    <section id="demo-slim">
+
+      <header class="iui-page-header iui-slim">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <div
+            class="iui-header-logo"
+            role="button"
+            aria-label="App name"
+            aria-expanded="false"
+            tabindex="0"
+          >
+            <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-header-button-icon"
+            >
+              <path
+                d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
+              />
+            </svg>
+            <span class="iui-label">App name</span>
+          </div>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <nav aria-label="breadcrumbs">
+            <button
+              class="iui-button iui-borderless iui-header-button iui-large"
+              type="button"
+              aria-label="Project picker"
+              aria-expanded="false"
+              id="test-button-3"
+            >
+              <div class="iui-icon iui-header-button-icon demo-picture"></div>
+              <span class="iui-label">
+                <div>Project Alpha</div>
+                <div class="iui-description">0x0123456789</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+
+            <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-chevron"
+            >
+              <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+            </svg>
+
+            <!-- IModel Button -->
+            <button
+              class="iui-button iui-borderless iui-active iui-large iui-header-button"
+              type="button"
+              aria-label="Model picker"
+              aria-expanded="false"
+              aria-current="location"
+            >
+              <!-- Use model.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon iui-header-button-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m14 11.126-6-2.954v-6.811l-.5-.246-.5.246v6.811l-6 2.954v.559l.565.278 5.935-2.922 5.935 2.922.565-.278z"
+                  opacity=".33"
+                />
+                <path
+                  d="m7.5 0-7.5 3.69232v8.61536l7.5 3.69232 7.5-3.69232v-8.61536zm5.93549 4.03674-5.93549 2.92226-5.93549-2.92232 5.93549-2.92206zm-12.43549 7.64862v-6.81121l6 2.95349v6.81158zm13 0-6 2.95386v-6.81164l6-2.9535z"
+                />
+              </svg>
+              <span class="iui-label">
+                <div>Model Beta</div>
+                <div class="iui-description">0x0123456789</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+          </nav>
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+            id="test-button-4"
+          >
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
+              <path
+                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
+              />
+            </svg>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+            <user-icon
+              type="2"
+              size="small"
+            ></user-icon>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <br />
+
+      <header class="iui-page-header iui-slim">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <div
+            class="iui-header-logo"
+            role="button"
+            aria-label="App name"
+            aria-expanded="false"
+            tabindex="0"
+          >
+            <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-header-button-icon"
+            >
+              <path
+                d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
+              />
+            </svg>
+          </div>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <nav aria-label="breadcrumbs">
+            <button
+              class="iui-button iui-borderless iui-large iui-header-button"
+              type="button"
+              aria-label="Project picker"
+              aria-expanded="false"
+            >
+              <span class="iui-label">
+                <div class="iui-name">Project Alpha</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+
+            <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-chevron"
+            >
+              <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+            </svg>
+
+            <!-- IModel Button -->
+            <button
+              class="iui-button iui-borderless iui-active iui-large iui-header-button"
+              type="button"
+              aria-label="Model picker"
+              aria-expanded="false"
+              aria-current="location"
+            >
+              <span class="iui-label">
+                <div class="iui-name">Model Beta</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+          </nav>
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+          >
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
+              <path
+                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
+              />
+            </svg>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+            <user-icon
+              type="2"
+              size="small"
+            ></user-icon>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+    </section>
+
+    <hr />
+
+    <h2>Animation (Toggle default ⇔ slim)</h2>
+    <section id="demo-slim-toggle">
+
+      <label class="iui-toggle-switch">
+        <input type="checkbox" />
+        <span class="iui-toggle">
+          <span class="iui-handle"></span>
+        </span>
+        <span class="iui-label">Slim</span>
+      </label>
+      <br />
+
+      <header class="iui-page-header">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <div
+            class="iui-header-logo"
+            role="button"
+            aria-label="App name"
+            aria-expanded="false"
+            tabindex="0"
+          >
+            <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-header-button-icon"
+            >
+              <path
+                d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
+              />
+            </svg>
+            <span class="iui-label">App name</span>
+          </div>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <nav aria-label="breadcrumbs">
+            <button
+              class="iui-button iui-borderless iui-header-button iui-large"
+              type="button"
+              aria-label="Project picker"
+              aria-expanded="false"
+            >
+
+              <div class="iui-icon iui-header-button-icon demo-picture"></div>
+              <span class="iui-label">
+                <div>Project Alpha</div>
+                <div class="iui-description">0x0123456789</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+
+            <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-chevron"
+            >
+              <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+            </svg>
+
+            <!-- IModel Button -->
+            <button
+              class="iui-button iui-borderless iui-active iui-header-button iui-large"
+              type="button"
+              aria-label="Model picker"
+              aria-expanded="false"
+              aria-current="location"
+            >
+              <!-- Use model.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon iui-header-button-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m14 11.126-6-2.954v-6.811l-.5-.246-.5.246v6.811l-6 2.954v.559l.565.278 5.935-2.922 5.935 2.922.565-.278z"
+                  opacity=".33"
+                />
+                <path
+                  d="m7.5 0-7.5 3.69232v8.61536l7.5 3.69232 7.5-3.69232v-8.61536zm5.93549 4.03674-5.93549 2.92226-5.93549-2.92232 5.93549-2.92206zm-12.43549 7.64862v-6.81121l6 2.95349v6.81158zm13 0-6 2.95386v-6.81164l6-2.9535z"
+                />
+              </svg>
+              <span class="iui-label">
+                <div>Model Beta</div>
+                <div class="iui-description">0x0123456789</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                class="iui-icon"
+              >
+                <path
+                  d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                />
+              </svg>
+            </button>
+          </nav>
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+          >
+            <!-- Use notification.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path d="m7.5 14c.9 0 1.5-.4 1.5-1h-3c0 .6.7 1 1.5 1" />
+              <path
+                d="m11.7 10.4v-3.3c0-1.9-1.4-3.4-3.2-3.8v-.4c0-.4-.5-.9-1-.9-.6 0-1 .5-1 .9v.4c-1.9.5-3.2 2-3.2 3.8v3.3l-1.3 1.2v.4h11v-.4l-1.3-1.2"
+              />
+            </svg>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <!-- Use help-circular-hollow.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m10.015 6.34611a2.51955 2.51955 0 0 1 -.93 1.79 1.99113 1.99113 0 0 0 -.78992 1.5h-1.11008a2.92148 2.92148 0 0 1 1.12-2.29c.78686-.67739.62127-1.96-.38-1.96-.63324.02175-.74.69627-.74 1.28h-1.2a2.8677 2.8677 0 0 1 .68-2.09 2.04145 2.04145 0 0 1 3.35 1.77zm-1.5196 4.80527a.74526.74526 0 1 1 -.74526-.74526.74525.74525 0 0 1 .74526.74526zm-.4954-9.65027a6.49889 6.49889 0 1 1 -6.4989 6.49889 6.50625 6.50625 0 0 1 6.4989-6.49889m0-1.5a7.99889 7.99889 0 1 0 7.9989 7.99889 7.99889 7.99889 0 0 0 -7.9989-7.99889z"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+            <user-icon
+              type="2"
+              showPlaceholder="true"
+            ></user-icon>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <!-- Use more-vertical.svg from @itwin/itwinui-icons package. -->
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              class="iui-icon"
+            >
+              <path
+                d="m8 4a2 2 0 1 1 2-2 2 2 0 0 1 -2 2zm2 4a2 2 0 1 0 -2 2 2 2 0 0 0 2-2zm0 6a2 2 0 1 0 -2 2 2 2 0 0 0 2-2z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="demo-side-navigation">
+        <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+        <svg
+          class="demo-side-navigation-icon"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+          />
+        </svg>
+      </div>
+      <div class="demo-side-navigation">
+        <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+        <svg
+          class="demo-side-navigation-icon"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+          />
+        </svg>
+      </div>
+      <div class="demo-side-navigation">
+        <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+        <svg
+          class="demo-side-navigation-icon"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+          />
+        </svg>
+      </div>
+
+    </section>
+  </body>
+
+  <script>
+    const toggleSwitch = document.querySelector('#demo-slim-toggle input[type=checkbox]');
+    toggleSwitch.addEventListener('change', (e) => {
+      document.querySelector('#demo-slim-toggle .iui-page-header').classList.toggle('iui-slim');
+    });
+  </script>
+</html>

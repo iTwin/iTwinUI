@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../icon/index';
 @import './tabs';
 
 @mixin iui-tabs-pill {
@@ -17,7 +18,7 @@
 
     > a {
       line-height: $iui-line-height;
-      padding: ($iui-line-height / 2) 0;
+      padding: ($iui-line-height * 0.5) 0;
 
       @include themed {
         background-color: t(iui-color-background-1);
@@ -25,9 +26,11 @@
 
       > svg {
         @include themed {
-          fill: t(iui-color-foreground-body);
+          fill: t(iui-icons-color-actionable);
         }
         transition: fill $iui-speed-fast ease-out;
+        width: $iui-icons-default;
+        height: $iui-icons-default;
       }
 
       &::after {
@@ -43,7 +46,7 @@
 
         > svg {
           @include themed {
-            fill: t(iui-color-foreground-primary);
+            fill: t(iui-icons-color-primary);
           }
           transition: fill $iui-speed-fast ease-out;
         }
@@ -66,7 +69,7 @@
 
         svg {
           @include themed {
-            fill: t(iui-color-foreground-primary);
+            fill: t(iui-icons-color-primary);
           }
         }
       }
@@ -87,14 +90,14 @@
 
       svg {
         @include themed {
-          fill: t(iui-color-foreground-positive);
+          fill: t(iui-icons-color-positive);
         }
       }
     }
 
     > li > a:hover > svg {
       @include themed {
-        fill: t(iui-color-foreground-positive);
+        fill: t(iui-icons-color-positive);
       }
     }
   }

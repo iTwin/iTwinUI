@@ -1,0 +1,63 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-progress-indicator-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  pointer-events: none;
+
+  // Blur fallback
+  @include themed {
+    background-color: rgba(
+      t(iui-color-background-1-rgb),
+      t(iui-opacity-2)
+    );
+  }
+
+  // With blur
+  @supports(backdrop-filter: $iui-blur-filter) {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-background-1-rgb),
+        t(iui-opacity-3)
+      );
+      backdrop-filter: $iui-blur-filter;
+    }
+  }
+
+  // Focus trap
+  &:focus,
+  &:focus-visible {
+    outline: 0;
+  }
+
+  .iui-progress-indicator-linear {
+    width: 50%;
+    max-width: 33vw;
+  }
+
+  // Fade out on completion
+  @keyframes closeAnimation {
+    from {
+      @include themed {
+        opacity: t(iui-opacity-1);
+      }
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  .iui-overlay-exiting {
+    animation: closeAnimation $iui-speed-fast linear;
+  }
+}

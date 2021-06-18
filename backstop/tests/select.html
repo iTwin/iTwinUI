@@ -12,18 +12,27 @@
     />
     <link
       rel="stylesheet"
-      href="../../lib/css/global.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../lib/css/inputs.css"
+      href="../../lib/css/all.css"
     />
     <link
       rel="stylesheet"
       href="../assets/demo.css"
     />
     <style>
-      section .iui-select { width: 440px; }
+      section[id^='demo'] {
+        width: 440px;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+
+      #demo-default-opened {
+        height: 420px;
+      }
+      
+      #demo-default-singular-opened {
+        height: 210px;
+      }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
@@ -37,7 +46,7 @@
 
       <section id="demo-default-singular">
         <label class="iui-input-container">
-          <div class="iui-label">Select label</div>
+          <div class="iui-label iui-required">Select label</div>
           <div class="iui-select">
             <div
               tabindex="0"
@@ -71,16 +80,21 @@
             tabindex="0"
             class="iui-select-button"
           >
+            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
               class="iui-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
               <path
-                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-content">Option 1</span>
+            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+              qui officia deserunt mollit anim id est laborum.</span>
           </div>
         </div>
         <div class="iui-message">Help message.</div>
@@ -100,7 +114,11 @@
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div class="iui-select-button iui-disabled">
-            <span class="iui-content">Option 1</span>
+            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+              qui officia deserunt mollit anim id est laborum.</span>
           </div>
         </div>
         <div class="iui-message">Help message.</div>
@@ -117,9 +135,12 @@
           </div>
         </div>
         <div class="iui-message">
-          <!-- Use success.svg from generic-icons package. -->
-          <svg aria-hidden="true">
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.65,12,3,8.59l1.4-1.3,2.36,2.2L11.59,5,13,6.29Z" />
+          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
           </svg>
           Positive message.
         </div>
@@ -136,10 +157,13 @@
           </div>
         </div>
         <div class="iui-message">
-          <!-- Use warning.svg from generic-icons package. -->
-          <svg aria-hidden="true">
+          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
             <path
-              d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
             />
           </svg>
           Warning message.
@@ -157,9 +181,12 @@
           </div>
         </div>
         <div class="iui-message">
-          <!-- Use error.svg from generic-icons package. -->
-          <svg aria-hidden="true">
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM9,12H7V10H9ZM9,9H7V4H9Z" />
+          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
           </svg>
           Negative message.
         </div>
@@ -167,15 +194,11 @@
 
     </section>
 
-    <section
-      id="demo-default-opened"
-      style="height: 420px;"
-    >
+    <br />
 
-      <section
-        id="demo-default-singular-opened"
-        style="height: 210px;"
-      >
+    <section id="demo-default-opened">
+
+      <section id="demo-default-singular-opened">
         <label class="iui-input-container">
           <div class="iui-label">Select label</div>
           <div class="iui-select">
@@ -189,7 +212,11 @@
               class="iui-menu"
               style="position: absolute; top: 100%;"
             >
-              <li tabindex="0"><span class="iui-content">Option 1</span></li>
+              <li tabindex="0"><span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></li>
               <li
                 tabindex="0"
                 id="test-select-2"
@@ -208,16 +235,21 @@
             tabindex="0"
             class="iui-select-button iui-active"
           >
+            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
               class="iui-icon"
               aria-hidden="true"
               viewBox="0 0 16 16"
             >
               <path
-                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-content">Option 1</span>
+            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+              qui officia deserunt mollit anim id est laborum.</span>
           </div>
           <ul
             class="iui-menu"
@@ -227,16 +259,22 @@
               class="iui-active"
               tabindex="0"
             >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
               <svg
                 class="iui-icon"
                 aria-hidden="true"
                 viewBox="0 0 16 16"
               >
                 <path
-                  d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
                 />
               </svg>
-              <span class="iui-content">Option 1</span>
+              <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+                in culpa qui officia deserunt mollit anim id est laborum.</span>
+              <!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
               <svg
                 class="iui-icon"
                 viewBox="0 0 16 16"
@@ -246,25 +284,27 @@
               </svg>
             </li>
             <li tabindex="0">
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
               <svg
                 class="iui-icon"
                 aria-hidden="true"
                 viewBox="0 0 16 16"
               >
                 <path
-                  d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
                 />
               </svg>
               <span class="iui-content">Option 2</span>
             </li>
             <li class="iui-disabled">
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
               <svg
                 class="iui-icon"
                 aria-hidden="true"
                 viewBox="0 0 16 16"
               >
                 <path
-                  d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
                 />
               </svg>
               <span class="iui-content">Option 3</span>
@@ -273,6 +313,39 @@
         </div>
         <div class="iui-message">Help message.</div>
       </label>
+
+    </section>
+
+    <br />
+
+    <section id="demo-sizes">
+
+      <div class="iui-select iui-small">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Small</span>
+        </div>
+      </div>
+
+      <div class="iui-select">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Default</span>
+        </div>
+      </div>
+
+      <div class="iui-select iui-large">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Large</span>
+        </div>
+      </div>
 
     </section>
   </body>

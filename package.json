@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.10.0",
+  "version": "0.20.3",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -43,6 +43,7 @@
     "build:watch:scss": "chokidar \"src/**/*\" -c \"yarn build:scss && yarn build:css\"",
     "build:watch:html": "chokidar \"backstop/tests/**/*\" -c \"yarn build:html\"",
     "copy-files": "cpx package.json lib && cpx README.md lib",
+    "createComponent": "node ./scripts/createComponent.js",
     "postcss-processing": "postcss lib/css --use autoprefixer --use postcss-discard-comments -d lib/css --no-map && yarn print \"Finished post-processing CSS.\"",
     "clean": "rimraf ./lib ./backstop/results/bitmaps_test",
     "lint": "stylelint \"src/**/*.scss\" \"backstop/tests/*.html\"",
@@ -51,9 +52,11 @@
     "test": "yarn build && yarn test:ci",
     "test:ci": "backstop --config=./backstop/backstop.js test --docker",
     "clean:images": "node scripts/removeOldTestImages.js",
-    "print": "node scripts/print.js"
+    "print": "node scripts/print.js",
+    "audit:ci": "audit-ci --moderate --report-type=full"
   },
   "devDependencies": {
+    "audit-ci": "^4.0.0",
     "autoprefixer": "^10.2.4",
     "backstopjs": "~5.1.0",
     "chokidar-cli": "^2.1.0",
@@ -63,7 +66,7 @@
     "husky": "=4",
     "lint-staged": "^10.5.4",
     "node-sass": "^5.0.0",
-    "postcss": "^8.2.7",
+    "postcss": "^8.2.15",
     "postcss-cli": "^8.3.1",
     "postcss-discard-comments": "^4.0.2",
     "rimraf": "^3.0.2",
@@ -72,6 +75,10 @@
   },
   "resolutions": {
     "braces": "^2.3.1",
-    "jimp": ">=0.16.1"
+    "hosted-git-info": ">=3.0.8",
+    "jimp": ">=0.16.1",
+    "trim-newlines": "^3.0.1",
+    "glob-parent": "^5.1.2",
+    "jpeg-js": "^0.4.3"
   }
 }

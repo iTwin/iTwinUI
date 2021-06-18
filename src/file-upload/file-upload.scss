@@ -25,12 +25,13 @@
     align-items: center;
     box-sizing: border-box;
     user-select: none;
-    padding: round($iui-baseline / 2) $iui-sm;
+    padding: round($iui-baseline * 0.5) $iui-sm;
     @include themed {
       background-color: t(iui-color-background-2);
+      border: 1px solid t(iui-color-background-2);
     }
 
-    > .iui-browse-input {
+    .iui-browse-input {
       width: 0.1px;
       height: 0.1px;
       opacity: 0;
@@ -39,18 +40,31 @@
       z-index: -1;
     }
 
-    > .iui-icon {
+    > svg {
       @include iui-icons-3xl;
-
-      + span,
-      + label {
-        margin-top: $iui-baseline;
-      }
+      margin-top: $iui-baseline;
+      margin-bottom: $iui-baseline;
     }
 
     &:only-child {
       visibility: visible;
       position: relative;
+      flex-direction: row;
+
+      &:focus-within {
+        outline: 0;
+        @include themed {
+          box-shadow: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5)) 0 0 0 2px;
+        }
+      }
+    }
+
+    .iui-template-text {
+      margin-left: $iui-l;
+
+      > label {
+        font-weight: $iui-font-weight-bold;
+      }
     }
   }
 
@@ -61,16 +75,15 @@
         rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
       ),
         linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-      border: 1px solid t(iui-color-foreground-primary);
+      border-color: t(iui-color-foreground-primary);
       color: t(iui-color-foreground-primary);
     }
     visibility: visible;
-    z-index: 3;
 
-    > .iui-icon,
-    > .iui-icon > * {
+    > svg,
+    > svg > * {
       @include themed {
-        fill: t(iui-color-foreground-primary);
+        fill: t(iui-icons-color-primary);
       }
     }
   }

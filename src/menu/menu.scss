@@ -1,26 +1,30 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../inputs/variables';
 @import '../icon/index';
 
-@mixin iui-menu {
+@mixin iui-dropdown {
   @include iui-reset;
   @include iui-font-family;
-  width: 100%;
-  padding: 0;
   box-shadow: $iui-elevation-2;
-  list-style-type: none;
-  user-select: none;
   @include themed {
     background-color: t(iui-color-background-1);
   }
+}
 
-  li {
+@mixin iui-list-menu {
+  list-style-type: none;
+  user-select: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  > li {
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
-    padding: ($iui-inputs-padding + 1) $iui-sm;
+    padding: 0 $iui-sm;
+    min-height: $iui-component-height;
     cursor: pointer;
     @include themed {
       color: t(iui-text-color);
@@ -59,8 +63,8 @@
 
     &.iui-active {
       box-sizing: border-box;
-      padding-top: $iui-inputs-padding;
-      padding-bottom: $iui-inputs-padding;
+      padding-top: $iui-component-padding-vertical;
+      padding-bottom: $iui-component-padding-vertical;
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
@@ -71,7 +75,7 @@
 
       > .iui-icon {
         @include themed {
-          fill: t(iui-color-foreground-primary);
+          fill: t(iui-icons-color-primary);
         }
       }
     }
@@ -85,7 +89,7 @@
   
       > .iui-icon {
         @include themed {
-          fill: t(iui-text-color-muted);
+          fill: t(iui-icons-color-actionable-disabled);
         }
       }
     }
@@ -98,6 +102,6 @@
   margin-right: $iui-s;
   flex: 0 0 auto;
   @include themed {
-    fill: t(iui-text-color);
+    fill: t(iui-icons-color-actionable);
   }
 }

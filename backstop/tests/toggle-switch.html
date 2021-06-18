@@ -12,20 +12,19 @@
     />
     <link
       rel="stylesheet"
-      href="../../lib/css/global.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../lib/css/inputs.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../lib/css/toggle-switch.css"
+      href="../../lib/css/all.css"
     />
     <link
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <style>
+      section[id^='demo'] {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+    </style>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -33,11 +32,10 @@
     <h1>Toggle switch</h1>
     <hr />
 
+    <h2>Default</h2>
     <section id="demo-default">
-      <h2 id="default">Default</h2>
-
       <div class="iui-input-container">
-        <div class="iui-label">Toggle switch group label</div>
+        <div class="iui-label iui-required">Toggle switch group label</div>
         <label class="iui-toggle-switch">
           <input
             type="checkbox"
@@ -78,8 +76,6 @@
         </label>
       </div>
 
-      <br />
-
       <div class="iui-input-container">
         <div class="iui-label">Toggle switch group label</div>
         <label class="iui-toggle-switch">
@@ -88,14 +84,14 @@
             checked
           />
           <span class="iui-toggle">
-            <!-- Use placeholder.svg from generic-icons package. -->
+            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
               class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
               <path
-                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
             <span class="iui-handle"></span>
@@ -105,14 +101,14 @@
         <label class="iui-toggle-switch">
           <input type="checkbox" />
           <span class="iui-toggle">
-            <!-- Use placeholder.svg from generic-icons package. -->
+            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
               class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
               <path
-                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
             <span class="iui-handle"></span>
@@ -126,14 +122,14 @@
             disabled
           />
           <span class="iui-toggle">
-            <!-- Use placeholder.svg from generic-icons package. -->
+            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
               class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
               <path
-                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
             <span class="iui-handle"></span>
@@ -146,14 +142,14 @@
             disabled
           />
           <span class="iui-toggle">
-            <!-- Use placeholder.svg from generic-icons package. -->
+            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
             <svg
               class="iui-icon"
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
               <path
-                d="M1,1v14h14V1H1z M14,2.7v10.6L8.7,8L14,2.7z M8,7.3L2.7,2h10.6L8,7.3z M7.3,8L2,13.3V2.7L7.3,8z M8,8.7l5.3,5.3H2.7L8,8.7z"
+                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
             <span class="iui-handle"></span>
@@ -165,9 +161,8 @@
 
     <hr />
 
+    <h2>Without group label</h2>
     <section id="demo-no-label">
-      <h2>Without group label</h2>
-
       <h3>Toggle switch on left</h3>
       <div
         id="left"
@@ -218,8 +213,6 @@
         </label>
       </div>
 
-      <br />
-
       <h3>Toggle switch on right</h3>
       <div
         id="right"
@@ -269,8 +262,6 @@
           </span>
         </label>
       </div>
-
-      <br />
 
       <h3>No label</h3>
       <div id="no-label">

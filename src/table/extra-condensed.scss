@@ -3,14 +3,10 @@
 @import '../style/index';
 @import './variables';
 
-@mixin iui-tables-extra-condensed {
-  .iui-tables-row {
-    > .iui-tables-cell {
-      padding: $iui-table-density-extra-condensed;
-    }
-  }
-
-  .iui-tables-paginator > .content {
-    padding: $iui-table-density-extra-condensed;
+@mixin iui-table-extra-condensed {
+  .iui-table-header .iui-cell,
+  .iui-row .iui-cell,
+  + .iui-paginator {
+    min-height: $iui-baseline * 3;
   }
 }

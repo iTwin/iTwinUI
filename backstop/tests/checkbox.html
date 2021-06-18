@@ -12,24 +12,19 @@
     />
     <link
       rel="stylesheet"
-      href="../../lib/css/global.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../lib/css/inputs.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../lib/css/progress-indicator.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../lib/css/icon.css"
+      href="../../lib/css/all.css"
     />
     <link
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <style>
+      section[id^='demo'] {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+    </style>
     <script src="../assets/theme.js"></script>
   </head>
 
@@ -38,11 +33,10 @@
     <h1>Checkbox</h1>
     <hr />
 
+    <h2>Default</h2>
     <section id="demo-default">
-      <h2>Default</h2>
-
       <div class="iui-input-container">
-        <div class="iui-label">Checkbox group label</div>
+        <div class="iui-label iui-required">Checkbox group label</div>
         <label class="iui-checkbox">
           <input
             type="checkbox"
@@ -328,9 +322,12 @@
           <span class="iui-label">Option 4</span>
         </label>
         <div class="iui-message">
-          <!-- Use success.svg from generic-icons package. -->
-          <svg aria-hidden="true">
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.65,12,3,8.59l1.4-1.3,2.36,2.2L11.59,5,13,6.29Z" />
+          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
           </svg>
           Positive message.
         </div>
@@ -429,10 +426,13 @@
           <span class="iui-label">Option 4</span>
         </label>
         <div class="iui-message">
-          <!-- Use warning.svg from generic-icons package. -->
-          <svg aria-hidden="true">
+          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
             <path
-              d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
             />
           </svg>
           Warning message.
@@ -532,9 +532,12 @@
           <span class="iui-label">Option 4</span>
         </label>
         <div class="iui-message">
-          <!-- Use error.svg from generic-icons package. -->
-          <svg aria-hidden="true">
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM9,12H7V10H9ZM9,9H7V4H9Z" />
+          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
           </svg>
           Negative message.
         </div>
@@ -564,13 +567,10 @@
             </svg>
           </span>
           <span class="iui-label">
-            <!-- Use smiley-happy-very_2.svg from generic-icons package. -->
+            <!-- Use smiley-happy-very.svg from @itwin/itwinui-icons package. -->
             <svg viewBox="0 0 16 16">
               <path
-                d="M8,0C3.58,0,0,3.58,0,8s3.58,8,8,8s8-3.58,8-8S12.42,0,8,0z M11,5c0.62,0.08,1.06,0.63,1,1.25c0.06,0.62-0.38,1.17-1,1.25
-                c-0.62-0.08-1.06-0.63-1-1.25C9.94,5.63,10.38,5.08,11,5z M5,5c0.62,0.08,1.06,0.63,1,1.25C6.06,6.87,5.62,7.42,5,7.5
-                C4.38,7.42,3.94,6.87,4,6.25C3.94,5.63,4.38,5.08,5,5z M8,13.5C5.38,13.63,3.15,11.62,3,9c0-0.28,0.22-0.5,0.5-0.5S4,8.72,4,9
-                c0.15,2.07,1.93,3.63,4,3.5c2.07,0.13,3.85-1.43,4-3.5c0-0.28,0.22-0.5,0.5-0.5S13,8.72,13,9C12.85,11.62,10.62,13.63,8,13.5z"
+                d="m8 0a8 8 0 1 0 8 8 7.9978 7.9978 0 0 0 -8-8zm3 5a1.1465 1.1465 0 0 1 1 1.25 1.1465 1.1465 0 0 1 -1 1.25 1.1465 1.1465 0 0 1 -1-1.25 1.1465 1.1465 0 0 1 1-1.25zm-6 0a1.1465 1.1465 0 0 1 1 1.25 1.1465 1.1465 0 0 1 -1 1.25 1.1465 1.1465 0 0 1 -1-1.25 1.1465 1.1465 0 0 1 1-1.25zm3 8.5a4.77362 4.77362 0 0 1 -5-4.5.5.5 0 0 1 1 0 3.77239 3.77239 0 0 0 4 3.5 3.77239 3.77239 0 0 0 4-3.5.5.5 0 0 1 1 0 4.77362 4.77362 0 0 1 -5 4.5z"
               />
             </svg>
           </span>
@@ -594,15 +594,11 @@
             </svg>
           </span>
           <span class="iui-label">
-            <!-- Use smiley-happy_2.svg from generic-icons package. -->
+            <!-- Use smiley-happy.svg from @itwin/itwinui-icons package. -->
             <svg viewBox="0 0 16 16">
-              <path d="M8,12.5c-1.4681,0.0174-2.8749-0.588-3.8716-1.666c-0.1845-0.2052-0.1676-0.5211,0.0376-0.7056
-              C4.3712,9.944,4.6871,9.9608,4.8716,10.166C5.679,11.0328,6.8155,11.5174,8,11.5c1.1845,0.0174,2.321-0.4672,3.1284-1.334
-              c0.1845-0.2052,0.5004-0.222,0.7056-0.0376c0.2052,0.1845,0.222,0.5004,0.0376,0.7056C10.8749,11.912,9.4681,12.5174,8,12.5z M11,5
-              c0.6173,0.0763,1.0611,0.631,1,1.25c0.0611,0.619-0.3827,1.1737-1,1.25c-0.6173-0.0763-1.0611-0.631-1-1.25
-              C9.9389,5.631,10.3827,5.0763,11,5z M5,5c0.6173,0.0763,1.0611,0.631,1,1.25C6.0611,6.869,5.6173,7.4237,5,7.5
-              C4.3827,7.4237,3.9389,6.869,4,6.25C3.9389,5.631,4.3827,5.0763,5,5z M8,0C3.5817,0,0,3.5817,0,8s3.5817,8,8,8s8-3.5817,8-8
-              S12.4183,0,8,0z" />
+              <path
+                d="m8 12.5a5.1892 5.1892 0 0 1 -3.8716-1.666.49964.49964 0 1 1 .7432-.668 4.19111 4.19111 0 0 0 3.1284 1.334 4.19111 4.19111 0 0 0 3.1284-1.334.49964.49964 0 1 1 .7432.668 5.1892 5.1892 0 0 1 -3.8716 1.666zm3-7.5a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm-6 0a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm3-5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8z"
+              />
             </svg>
           </span>
         </label>
@@ -629,15 +625,11 @@
             </svg>
           </span>
           <span class="iui-label">
-            <!-- Use smiley-sad_2.svg from generic-icons package. -->
+            <!-- Use smiley-sad.svg from @itwin/itwinui-icons package. -->
             <svg viewBox="0 0 16 16">
-              <path d="M11.5,12.5c-0.142,0.0003-0.2774-0.0601-0.3721-0.166C10.3208,11.467,9.1844,10.9824,8,11
-              c-1.1844-0.0176-2.3208,0.467-3.1279,1.334c-0.1833,0.2065-0.4993,0.2253-0.7059,0.042c-0.2065-0.1833-0.2253-0.4993-0.042-0.7059
-              c0.0012-0.0014,0.0025-0.0028,0.0037-0.0042C5.1248,10.5879,6.5317,9.9825,8,10c1.4683-0.0175,2.8752,0.5879,3.8721,1.666
-              c0.1845,0.2055,0.1674,0.5216-0.0381,0.7061C11.7422,12.4544,11.6233,12.5,11.5,12.5z M11,5c0.6173,0.0763,1.0611,0.631,1,1.25
-              c0.0611,0.619-0.3827,1.1737-1,1.25c-0.6173-0.0763-1.0611-0.631-1-1.25C9.9389,5.631,10.3827,5.0763,11,5z M5,5
-              c0.6173,0.0763,1.0611,0.631,1,1.25C6.0611,6.869,5.6173,7.4237,5,7.5C4.3827,7.4237,3.9389,6.869,4,6.25
-              C3.9389,5.631,4.3827,5.0763,5,5z M8,0C3.5817,0,0,3.5817,0,8s3.5817,8,8,8s8-3.5817,8-8S12.4183,0,8,0z" />
+              <path
+                d="m11.5 12.5a.4978.4978 0 0 1 -.3721-.166 4.18825 4.18825 0 0 0 -3.1279-1.334 4.18825 4.18825 0 0 0 -3.1279 1.334.5.5 0 1 1 -.7479-.6639l.0037-.0042a5.18983 5.18983 0 0 1 3.8721-1.6659 5.18955 5.18955 0 0 1 3.8721 1.666.5.5 0 0 1 -.3721.834zm-.5-7.5a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm-6 0a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm3-5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8z"
+              />
             </svg>
           </span>
         </label>
@@ -663,14 +655,11 @@
             </svg>
           </span>
           <span class="iui-label">
-            <!-- Use smiley-sad-very_2.svg from generic-icons package. -->
+            <!-- Use smiley-sad-very.svg from @itwin/itwinui-icons package. -->
             <svg viewBox="0 0 16 16">
-              <path d="M8,0C3.58,0,0,3.58,0,8s3.58,8,8,8s8-3.58,8-8S12.42,0,8,0z M10.46,5.23l1.5,0.75c0.02,0.09,0.03,0.18,0.04,0.27
-              c0.06,0.62-0.38,1.17-1,1.25c-0.62-0.08-1.06-0.63-1-1.25C9.99,5.86,10.16,5.48,10.46,5.23z M4.04,5.98l1.5-0.75
-              C5.84,5.48,6.01,5.86,6,6.25C6.06,6.87,5.62,7.42,5,7.5C4.38,7.42,3.94,6.87,4,6.25C4.01,6.16,4.02,6.07,4.04,5.98z M12.44,12.47
-              c-0.05,0.02-0.11,0.03-0.16,0.03c-0.22,0-0.41-0.14-0.48-0.34C11.25,10.54,9.71,9.47,8,9.5c-1.71-0.03-3.25,1.04-3.8,2.66
-              c-0.09,0.26-0.37,0.4-0.63,0.31C3.3,12.39,3.16,12.11,3.25,11.84C3.94,9.82,5.86,8.47,8,8.5h0.07c2.11,0,4,1.34,4.68,3.34
-              C12.84,12.11,12.7,12.39,12.44,12.47z" />
+              <path
+                d="m8 0a8 8 0 1 0 8 8 7.9978 7.9978 0 0 0 -8-8zm2.46 5.23 1.5.75a2.51225 2.51225 0 0 1 .04.27 1.1465 1.1465 0 0 1 -1 1.25 1.1465 1.1465 0 0 1 -1-1.25 1.2907 1.2907 0 0 1 .46-1.02zm-6.42.75 1.5-.75a1.2907 1.2907 0 0 1 .46 1.02 1.1465 1.1465 0 0 1 -1 1.25 1.1465 1.1465 0 0 1 -1-1.25 2.51225 2.51225 0 0 1 .04-.27zm8.4 6.49a.45292.45292 0 0 1 -.16.03.50833.50833 0 0 1 -.48-.34 3.934 3.934 0 0 0 -3.8-2.66 3.934 3.934 0 0 0 -3.8 2.66.4953.4953 0 0 1 -.63.31.48522.48522 0 0 1 -.32-.63 4.94692 4.94692 0 0 1 4.75-3.34h.07a4.94288 4.94288 0 0 1 4.68 3.34.4875.4875 0 0 1 -.31.63z"
+              />
             </svg>
           </span>
         </label>
@@ -681,11 +670,10 @@
 
     <br />
 
+    <h2>Inline</h2>
     <section id="demo-inline">
-      <h2>Inline</h2>
-
       <div class="iui-input-container iui-inline">
-        <div class="iui-label">Checkbox group label</div>
+        <div class="iui-label iui-required">Checkbox group label</div>
         <label class="iui-checkbox">
           <input
             type="checkbox"
@@ -969,9 +957,12 @@
           <span class="iui-label">Option 4</span>
         </label>
         <div class="iui-message">
-          <!-- Use success.svg from generic-icons package. -->
-          <svg aria-hidden="true">
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.65,12,3,8.59l1.4-1.3,2.36,2.2L11.59,5,13,6.29Z" />
+          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
           </svg>
         </div>
       </div>
@@ -1069,10 +1060,13 @@
           <span class="iui-label">Option 4</span>
         </label>
         <div class="iui-message">
-          <!-- Use warning.svg from generic-icons package. -->
-          <svg aria-hidden="true">
+          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
             <path
-              d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
             />
           </svg>
         </div>
@@ -1171,9 +1165,12 @@
           <span class="iui-label">Option 4</span>
         </label>
         <div class="iui-message">
-          <!-- Use error.svg from generic-icons package. -->
-          <svg aria-hidden="true">
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM9,12H7V10H9ZM9,9H7V4H9Z" />
+          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
           </svg>
         </div>
       </div>
@@ -1181,9 +1178,8 @@
 
     <br />
 
+    <h2>Without group label</h2>
     <section id="demo-no-label">
-      <h2>Without group label</h2>
-
       <h3>Checkbox on left</h3>
       <div
         id="left"
@@ -1413,8 +1409,6 @@
         </label>
       </div>
 
-      <br />
-
       <h3>Checkbox on right</h3>
       <div
         id="right"
@@ -1643,8 +1637,6 @@
           </span>
         </label>
       </div>
-
-      <br />
 
       <h3>Empty label</h3>
       <label class="iui-checkbox">

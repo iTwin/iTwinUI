@@ -11,6 +11,7 @@
   flex-direction: column;
   width: $iui-3xl * 3;
   box-shadow: $iui-elevation-2;
+  backface-visibility: hidden;
 
   @include themed() {
     background-color: t(iui-color-background-1);
@@ -37,13 +38,7 @@
       @include iui-button-borderless;
       position: absolute;
       border-radius: 50%;
-      top: round($iui-baseline / 2);
-
-      > .iui-icon {
-        @include themed {
-          fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-        }
-      }
+      top: round($iui-baseline * 0.5);
     }
 
     > .iui-type-indicator {
@@ -56,7 +51,7 @@
 
     > .iui-badge-container {
       position: absolute;
-      bottom: round($iui-baseline / 2);
+      bottom: round($iui-baseline * 0.5);
       width: calc(100% - 2 * #{$iui-sm});
       height: auto;
       right: $iui-sm;
@@ -152,7 +147,7 @@
       align-items: center;
       font-size: $iui-font-size-leading;
       user-select: all;
-      margin-bottom: $iui-baseline / 2;
+      margin-bottom: $iui-baseline * 0.5;
 
       @include themed() {
         color: t(iui-text-color);
@@ -213,7 +208,7 @@
 
     > .iui-more-options {
       position: absolute;
-      bottom: $iui-baseline / 2;
+      bottom: $iui-baseline * 0.5;
       right: $iui-s;
       visibility: hidden;
 

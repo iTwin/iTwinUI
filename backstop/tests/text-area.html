@@ -12,37 +12,36 @@
     />
     <link
       rel="stylesheet"
-      href="../../lib/css/global.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../lib/css/inputs.css"
+      href="../../lib/css/all.css"
     />
     <link
       rel="stylesheet"
       href="../assets/demo.css"
     />
-    <script src="../assets/theme.js"></script>
     <style>
-      section {
-        width: 100% !important;
+      section[id^='demo'] {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
       }
     </style>
+    <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Text area</h1>
     <hr />
 
+    <h2>Default</h2>
     <section id="demo-default">
-      <h2>Default</h2>
-
       <label class="iui-input-container">
-        <div class="iui-label">Textarea label</div>
+        <div class="iui-label iui-required">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-textarea"
           rows="3"
+          required
         ></textarea>
         <div class="iui-message">Help message.</div>
       </label>
@@ -90,9 +89,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           rows="3"
         ></textarea>
         <div class="iui-message">
-          <!-- Use success.svg from generic-icons package. -->
-          <svg aria-hidden="true">
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.65,12,3,8.59l1.4-1.3,2.36,2.2L11.59,5,13,6.29Z" />
+          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
           </svg>
           Positive message.
         </div>
@@ -106,10 +108,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           rows="3"
         ></textarea>
         <div class="iui-message">
-          <!-- Use warning.svg from generic-icons package. -->
-          <svg aria-hidden="true">
+          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
             <path
-              d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
             />
           </svg>
           Warning message.
@@ -124,9 +129,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           rows="3"
         ></textarea>
         <div class="iui-message">
-          <!-- Use error.svg from generic-icons package. -->
-          <svg aria-hidden="true">
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM9,12H7V10H9ZM9,9H7V4H9Z" />
+          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
           </svg>
           Negative message.
         </div>
@@ -135,15 +143,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
     <br />
 
+    <h2>Inline</h2>
     <section id="demo-inline">
-      <h2>Inline</h2>
-
       <label class="iui-input-container iui-inline">
-        <div class="iui-label">Textarea label</div>
+        <div class="iui-label iui-required">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-textarea"
           rows="3"
+          required
         ></textarea>
       </label>
 
@@ -187,12 +195,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           rows="3"
         ></textarea>
         <div class="iui-message">
-          <!-- Use success.svg from generic-icons package. -->
+          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
           <svg
             aria-hidden="true"
-            title="Positive message."
+            viewBox="0 0 16 16"
           >
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM6.65,12,3,8.59l1.4-1.3,2.36,2.2L11.59,5,13,6.29Z" />
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
           </svg>
         </div>
       </label>
@@ -205,13 +213,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           rows="3"
         ></textarea>
         <div class="iui-message">
-          <!-- Use warning.svg from generic-icons package. -->
+          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
           <svg
             aria-hidden="true"
-            title="Warning message."
+            viewBox="0 0 16 16"
           >
             <path
-              d="M15.87,13.29,9.1,1.67A1.15,1.15,0,0,0,8,1H8a1.17,1.17,0,0,0-1.1.69L.13,13.28A1.2,1.2,0,0,0,1.23,15H14.68a1.19,1.19,0,0,0,1.19-1.71ZM9,13H7V11H9Zm0-3H7V5H9Z"
+              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
             />
           </svg>
         </div>
@@ -225,12 +233,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           rows="3"
         ></textarea>
         <div class="iui-message">
-          <!-- Use error.svg from generic-icons package. -->
+          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
           <svg
             aria-hidden="true"
-            title="Negative message."
+            viewBox="0 0 16 16"
           >
-            <path d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0ZM9,12H7V10H9ZM9,9H7V4H9Z" />
+            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
           </svg>
         </div>
       </label>
