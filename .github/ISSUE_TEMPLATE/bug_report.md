@@ -6,6 +6,12 @@ labels: bug
 assignees: ''
 ---
 
+<!--
+Thank you for contributing to iTwinUI-react by creating an issue!
+Make sure you first do a search for existing issues so that is not a duplicate.
+Also go through our FAQ: https://github.com/iTwin/iTwinUI-react/wiki/FAQ
+-->
+
 #### Environment
 - __Package version(s)__: <!-- fill this out -->
 - __Operating System__: <!-- fill this out -->
@@ -20,10 +26,10 @@ Link to a minimal repro: <!-- fork this sandbox: https://codesandbox.io/s/itwinu
 1. <!-- fill this out -->
 
 #### Actual behavior
-A clear and concise description of what the bug is.
+<!-- A clear and concise description of what the bug is. -->
 
 #### Expected behavior
-A clear and concise description of what you expected to happen.
+<!-- A clear and concise description of what you expected to happen. -->
 
 #### Additional information
-Add anything else you want to mention (additional context, possible solution, etc.).
+<!-- Add anything else you want to mention (additional context, possible solution, etc) -->

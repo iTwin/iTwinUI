@@ -22,7 +22,8 @@ export type TooltipProps = {
   Omit<CommonProps, 'title'>;
 
 /**
- * Basic tooltip component
+ * Basic tooltip component to display informative content when an element is hovered or focused.
+ * Uses the {@link Popover} component, which is a wrapper around [tippy.js](https://atomiks.github.io/tippyjs).
  * @example
  * <Tooltip content='tooltip text' placement='top'><div>Hover here</div></Tooltip>
  */

@@ -93,8 +93,8 @@ export type SelectProps<T> = {
    */
   menuStyle?: React.CSSProperties;
   /**
-   * Props to customize Popover behavior.
-   * @see tippy.js {@link https://atomiks.github.io/tippyjs/v6/all-props/ props}
+   * Props to customize {@link Popover} behavior.
+   * @see [tippy.js props](https://atomiks.github.io/tippyjs/v6/all-props/)
    */
   popoverProps?: Omit<
     PopoverProps,

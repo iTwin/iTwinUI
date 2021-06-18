@@ -18,7 +18,7 @@ The goal of this project is to provide React components for using the styles and
 
 ---
 
-## Install
+## Installation
 
 ```
 npm install @itwin/itwinui-react
@@ -30,7 +30,7 @@ yarn add @itwin/itwinui-react
 
 ---
 
-## Use
+## Usage
 
 Import the component you want and start using it!
 
@@ -84,6 +84,12 @@ const App = () => {
 ```
 
 *Note: You only need to use one of these methods, and it only needs to be done once.*
+
+---
+
+## FAQ
+
+For a list of frequently asked questions, visit the [wiki](https://github.com/iTwin/iTwinUI-react/wiki/FAQ).
 
 ---
 
