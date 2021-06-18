@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.20.2",
+  "version": "0.20.3",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
