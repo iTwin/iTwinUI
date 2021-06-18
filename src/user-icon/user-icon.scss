@@ -135,10 +135,10 @@
 
   .iui-user-icon:not(:first-child),
   > .iui-tooltip-container > .iui-user-icon {
-    margin-left: -4px;
+    margin-left: -$iui-xs;
 
     &.iui-small {
-      margin-left: -2px;
+      margin-left: -$iui-xxs;
     }
 
     &.iui-large {
@@ -146,12 +146,12 @@
     }
 
     &.iui-x-large {
-      margin-left: -8px;
+      margin-left: -$iui-s;
     }
 
     > .iui-initials {
       @include themed {
-        box-shadow: 0 0 0 4px t(iui-color-background-1);
+        box-shadow: 0 0 0 $iui-xs t(iui-color-background-1);
       }
     }
   }
@@ -163,10 +163,10 @@
 
     &:hover {
       .iui-user-icon:not(:first-child) {
-        margin-left: 4px;
+        margin-left: $iui-xs;
     
         &.iui-small {
-          margin-left: 2px;
+          margin-left: $iui-xxs;
         }
     
         &.iui-large {
@@ -174,7 +174,7 @@
         }
     
         &.iui-x-large {
-          margin-left: 8px;
+          margin-left: $iui-s;
         }
       }
     }
