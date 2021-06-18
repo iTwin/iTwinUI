@@ -1,0 +1,47 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import './toast';
+
+/// category must be one of: positive, negative, primary (informational), warning
+@mixin iui-toast-category($category) {
+  @include themed {
+    border-color: t(iui-color-foreground-#{$category});
+  }
+
+  > .iui-message {
+    &::selection {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-#{$category}-rgb),
+          t(iui-opacity-4)
+        );
+      }
+    }
+  }
+
+  > .iui-status-area {
+    @include themed {
+      background-color: t(iui-color-background-#{$category});
+    }
+  }
+
+  @if $category != primary {
+    > .iui-anchor {
+      @include themed {
+        color: t(iui-color-foreground-#{$category});
+      }
+
+      &:hover {
+        @include themed {
+          color: t(iui-color-foreground-#{$category}-overlay);
+        }
+      }
+    }
+
+    > .iui-anchor,
+    > .iui-button {
+      @include iui-focus(iui-focus-#{$category}-box-shadow);
+    }
+  }
+}
