@@ -1,4 +1,4 @@
-const { scenario } = require('../scenarioHelper');
+const { scenario, hover } = require('../scenarioHelper');
 
 module.exports = [
   // Types
@@ -13,5 +13,12 @@ module.exports = [
   }),
   scenario('Type animated', {
     selectors: ['#demo-animated'],
+  }),
+
+  // Hover states
+  //// Animated
+  scenario('State hover animated', {
+    actions: [hover('#test-animated-1')],
+    selectors: ['#demo-animated-1'],
   }),
 ];
