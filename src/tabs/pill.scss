@@ -39,13 +39,11 @@
         );
       }
     }
-    
+
     &[disabled]:hover {
       @include themed {
         background-color: transparent;
       }
     }
   }
-
-
 }

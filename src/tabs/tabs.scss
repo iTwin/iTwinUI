@@ -76,8 +76,6 @@
   }
 
   &.iui-green .iui-tab {
-    @include iui-focus(iui-focus-positive-box-shadow);
-
     &.iui-active {
       @include themed {
         color: t(iui-color-foreground-positive);
