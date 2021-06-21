@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.21.0]
+
+`2021-06-21`
+
+- **Added new 'warning' category to toast-notification.**
+
 ## [0.20.3]
 
 `2021-06-18`
