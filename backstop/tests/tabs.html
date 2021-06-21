@@ -919,21 +919,21 @@
     </section>
 
     <script>
-      document.querySelectorAll('.iui-tabs:not(.iui-default)').forEach((tabs) => {
+      document.querySelectorAll('.iui-tabs').forEach((tabs) => {
         const wrapper = tabs.parentElement;
         const activeTab = tabs.querySelector('.iui-active');
         const stripe = wrapper.querySelector('.iui-tab-stripe');
         const setStripe = (activeEl) => {
           stripe.style.left = `${activeEl.offsetLeft}px`;
-          stripe.style.width = `${activeEl.offsetWidth}px`;
+          stripe.style.width = window.getComputedStyle(activeEl).width;
         }
-        setStripe(activeTab);
+        stripe && setStripe(activeTab);
 
         [...tabs.children].forEach(({ firstElementChild: tab }) => {
           tab.addEventListener('click', () => {
             tabs.querySelector('.iui-active')?.classList.remove('iui-active');
             tab.classList.add('iui-active');
-            setStripe(tab); // needs to be set in react for animation
+            stripe && setStripe(tab); // needs to be set in react for animation
           });
         });
       });
