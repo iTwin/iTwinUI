@@ -925,7 +925,7 @@
         const stripe = wrapper.querySelector('.iui-tab-stripe');
         const setStripe = (activeEl) => {
           stripe.style.left = `${activeEl.offsetLeft}px`;
-          stripe.style.width = window.getComputedStyle(activeEl).width;
+          stripe.style.width = `${activeEl.getBoundingClientRect().width}px`;
         }
         stripe && setStripe(activeTab);
 
