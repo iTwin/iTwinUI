@@ -1435,5 +1435,14 @@
       </div>
     </section>
 
+    <script>
+      document.querySelectorAll('#demo-list .iui-user-icon-list').forEach((list) => {
+        const lastIcon = list.querySelector('.iui-user-icon:nth-last-child(2)');
+        const tooltip = list.querySelector('.iui-tooltip');
+        tooltip.style.visibility = 'visible';
+        lastIcon.addEventListener('mouseenter', () => { tooltip.style.opacity = 1; });
+        lastIcon.addEventListener('mouseleave', () => { tooltip.style.opacity = 0; });
+      });
+    </script>
   </body>
 </html>
