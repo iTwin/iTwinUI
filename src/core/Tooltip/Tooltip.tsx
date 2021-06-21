@@ -28,7 +28,16 @@ export type TooltipProps = {
  * <Tooltip content='tooltip text' placement='top'><div>Hover here</div></Tooltip>
  */
 export const Tooltip = (props: TooltipProps) => {
-  const { content, children, className, style, visible, ref, ...rest } = props;
+  const {
+    content,
+    children,
+    className,
+    style,
+    visible,
+    ref,
+    id,
+    ...rest
+  } = props;
 
   useTheme();
 
@@ -41,6 +50,7 @@ export const Tooltip = (props: TooltipProps) => {
           className={cx('iui-tooltip', className)}
           style={style}
           role='tooltip'
+          id={id}
         >
           {content}
         </div>

@@ -51,6 +51,7 @@ export const FilterButtonBar = (props: FilterButtonBarProps) => {
     translatedLabels,
     className,
     style,
+    id,
   } = props;
 
   const translatedStrings = { ...defaultStrings, ...translatedLabels };
@@ -58,7 +59,7 @@ export const FilterButtonBar = (props: FilterButtonBarProps) => {
   useTheme();
 
   return (
-    <div className={cx('iui-button-bar', className)} style={style}>
+    <div className={cx('iui-button-bar', className)} style={style} id={id}>
       {children}
       <Button styleType='high-visibility' onClick={setFilter}>
         {translatedStrings.filter}

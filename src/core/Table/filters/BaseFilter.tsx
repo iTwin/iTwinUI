@@ -30,7 +30,7 @@ export type BaseFilterProps = {
  * </BaseFilter>
  */
 export const BaseFilter = (props: BaseFilterProps) => {
-  const { children, className, style } = props;
+  const { children, className, style, id } = props;
 
   useTheme();
 
@@ -41,6 +41,7 @@ export const BaseFilter = (props: BaseFilterProps) => {
       onClick={(e: React.MouseEvent) => {
         e.stopPropagation();
       }}
+      id={id}
     >
       {children}
     </div>

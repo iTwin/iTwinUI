@@ -21,4 +21,8 @@ export type CommonProps = {
    * HTML title attribute.
    */
   title?: string;
+  /**
+   * HTML id attribute.
+   */
+  id?: string;
 } & StylingProps;

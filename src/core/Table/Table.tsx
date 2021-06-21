@@ -153,6 +153,7 @@ export const Table = <
     emptyTableContent,
     className,
     style,
+    id,
     isSelectable = false,
     onSelect,
     isSortable = false,
@@ -331,6 +332,7 @@ export const Table = <
   return (
     <div
       ref={(element) => setOwnerDocument(element?.ownerDocument)}
+      id={id}
       {...getTableProps({
         className: cx('iui-table', className),
         style,

@@ -46,10 +46,6 @@ export type ModalProps = {
    */
   onKeyDown?: React.KeyboardEventHandler;
   /**
-   * Id of the modal.
-   */
-  id?: string;
-  /**
    * Id of the root where the modal will be rendered in.
    * @default 'iui-react-portal-container'
    */

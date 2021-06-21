@@ -58,6 +58,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     onShow,
     onHide,
     trigger,
+    id,
     ...rest
   } = props;
 
@@ -93,7 +94,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
   return (
     <Popover
       content={
-        <Menu className={className} style={style} role={role}>
+        <Menu className={className} style={style} role={role} id={id}>
           {React.useMemo(() => menuItems(close), [menuItems, close])}
         </Menu>
       }
