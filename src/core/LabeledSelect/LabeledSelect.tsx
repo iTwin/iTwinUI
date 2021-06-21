@@ -102,7 +102,7 @@ export const LabeledSelect = <T,>(
 
   useTheme();
 
-  const icon = status ? StatusIconMap[status] : svgIcon;
+  const icon = status ? StatusIconMap[status]() : svgIcon;
 
   return (
     <div

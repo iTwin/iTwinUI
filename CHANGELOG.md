@@ -7,6 +7,7 @@
 ### What's new
 
 - **Added `acceptType` prop to `FileUploadTemplate`.**
+- **Added 'warning' category to `Toast`.** Use `toaster.warning()`.
 
 ## [1.8.1]
 

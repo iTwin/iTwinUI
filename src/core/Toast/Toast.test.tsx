@@ -2,18 +2,22 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErrorHollow';
-import SvgInfoCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/InfoCircularHollow';
-import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
 import { act, render, RenderResult } from '@testing-library/react';
 import React from 'react';
 import Toast, { ToastCategory } from './Toast';
+import {
+  SvgInfoCircular,
+  SvgStatusError,
+  SvgStatusSuccess,
+  SvgStatusWarning,
+} from '@itwin/itwinui-icons-react';
 
 it('renders the category classes & icons correctly', () => {
   const categories: Array<ToastCategory> = [
     'negative',
     'informational',
     'positive',
+    'warning',
   ];
   categories.forEach((category) => {
     const { container } = render(
@@ -31,15 +35,19 @@ it('renders the category classes & icons correctly', () => {
     let expectedIcon: RenderResult = {} as RenderResult;
     if (category === 'negative') {
       expectedIcon = render(
-        <SvgStatusErrorHollow className='iui-icon' aria-hidden />,
+        <SvgStatusError className='iui-icon' aria-hidden />,
       );
     } else if (category === 'informational') {
       expectedIcon = render(
-        <SvgInfoCircularHollow className='iui-icon' aria-hidden />,
+        <SvgInfoCircular className='iui-icon' aria-hidden />,
       );
     } else if (category === 'positive') {
       expectedIcon = render(
-        <SvgStatusSuccessHollow className='iui-icon' aria-hidden />,
+        <SvgStatusSuccess className='iui-icon' aria-hidden />,
+      );
+    } else if (category === 'warning') {
+      expectedIcon = render(
+        <SvgStatusWarning className='iui-icon' aria-hidden />,
       );
     }
     const icon = container.querySelector('.iui-icon');

@@ -34,6 +34,10 @@ export default class Toaster {
     this.createToast(content, 'negative', settings);
   }
 
+  public warning(content: React.ReactNode, settings?: ToastOptions): void {
+    this.createToast(content, 'warning', settings);
+  }
+
   private createToast(
     content: React.ReactNode,
     category: ToastCategory,

@@ -5,16 +5,17 @@
 import React from 'react';
 import { Transition } from 'react-transition-group';
 import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
-import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErrorHollow';
-import SvgInfoCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/InfoCircularHollow';
-import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
 import cx from 'classnames';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/toast-notification.css';
 import { IconButton } from '../Buttons';
-import { getWindow } from '../utils/common';
+import { getWindow, StatusIconMap } from '../utils/common';
 
-export type ToastCategory = 'informational' | 'negative' | 'positive';
+export type ToastCategory =
+  | 'informational'
+  | 'negative'
+  | 'positive'
+  | 'warning';
 
 export type ToastProps = {
   /**
@@ -83,6 +84,8 @@ export const Toast = (props: ToastProps) => {
 
   useTheme();
 
+  const StatusIcon = StatusIconMap[category];
+
   const closeTimeout = React.useRef(0);
 
   const [visible, setVisible] = React.useState(isVisible);
@@ -123,18 +126,6 @@ export const Toast = (props: ToastProps) => {
     getWindow()?.clearTimeout(closeTimeout.current);
   };
 
-  const getCategoryIcon = React.useCallback(() => {
-    switch (category) {
-      case 'positive':
-        return <SvgStatusSuccessHollow className='iui-icon' aria-hidden />;
-      case 'informational':
-        return <SvgInfoCircularHollow className='iui-icon' aria-hidden />;
-      case 'negative':
-      default:
-        return <SvgStatusErrorHollow className='iui-icon' aria-hidden />;
-    }
-  }, [category]);
-
   const onRef = (ref: HTMLDivElement) => {
     if (ref) {
       const { height } = ref.getBoundingClientRect();
@@ -160,7 +151,9 @@ export const Toast = (props: ToastProps) => {
         >
           <div ref={onRef}>
             <div className={`iui-toast iui-${category}`}>
-              <div className='iui-status-area'>{getCategoryIcon()}</div>
+              <div className='iui-status-area'>
+                {<StatusIcon className='iui-icon' />}
+              </div>
               <div className='iui-message'>{content}</div>
               {link && (
                 <a className='iui-anchor' onClick={link.onClick}>

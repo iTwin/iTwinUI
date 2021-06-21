@@ -213,3 +213,27 @@ Informational.argTypes = {
     defaultValue: 'This is an informational toast message',
   },
 };
+
+export const Warning: Story<ToastProps> = ({ content, ...options }) => {
+  const displayWarningToast = () => {
+    toaster.warning(content, { ...options });
+  };
+
+  return (
+    <>
+      <Button styleType='high-visibility' onClick={displayWarningToast}>
+        Warning
+      </Button>
+      <Button
+        style={{ display: 'block', marginTop: 16 }}
+        onClick={() => toaster.closeAll()}
+      >
+        Close All
+      </Button>
+    </>
+  );
+};
+
+Warning.args = {
+  content: 'This is an informational toast message',
+};

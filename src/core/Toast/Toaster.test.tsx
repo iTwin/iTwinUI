@@ -60,7 +60,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-it('should add toast with succuss', () => {
+it('should add toast with success', () => {
   toaster.positive('mockContent', mockedOptions());
   expect(toaster['toasts'].length).toBe(1);
   assertAddedToast(toaster['toasts'][0], 'positive', 'mockContent', 1);
@@ -74,6 +74,11 @@ it('should add toast with negative', () => {
 it('should add toast with informational', () => {
   toaster.informational('mockContent', mockedOptions());
   assertAddedToast(toaster['toasts'][0], 'informational', 'mockContent', 1);
+});
+
+it('should add toast with warning', () => {
+  toaster.warning('mockContent', mockedOptions());
+  assertAddedToast(toaster['toasts'][0], 'warning', 'mockContent', 1);
 });
 
 it('should add toasts and remove all', () => {

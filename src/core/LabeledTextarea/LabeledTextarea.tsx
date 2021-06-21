@@ -84,7 +84,7 @@ export const LabeledTextarea = React.forwardRef<
 
   useTheme();
 
-  const icon = status ? StatusIconMap[status] : svgIcon;
+  const icon = status ? StatusIconMap[status]() : svgIcon;
 
   return (
     <label
