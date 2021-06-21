@@ -28,7 +28,7 @@
       @include themed {
         color: t(iui-color-foreground-primary);
       }
-  
+
       .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-primary);
@@ -104,7 +104,7 @@
     @include themed {
       box-shadow: inset 0 0 0 0;
     }
-    
+
     &.iui-active {
       @include themed {
         box-shadow: inset 0 (-$iui-xxs) 0 0;
@@ -119,11 +119,9 @@
 
 @mixin iui-tab-animated {
   ~ .iui-tab-stripe {
-    width: 100%;
     height: $iui-xxs;
     position: absolute;
     top: $iui-component-height - $iui-xxs;
-    left: 0;
     transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
     @include themed {
       background-color: t(iui-color-foreground-primary);
