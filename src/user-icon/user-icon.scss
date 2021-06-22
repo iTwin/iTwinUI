@@ -134,22 +134,28 @@
   .iui-user-icon:not(:first-child) {
     margin-left: -$iui-xs;
 
-    &.iui-small {
-      margin-left: -$iui-xxs;
-    }
-
-    &.iui-large {
-      margin-left: -6px;
-    }
-
-    &.iui-x-large {
-      margin-left: -$iui-s;
-    }
-
-    > .iui-initials {
+    .iui-initials {
       @include themed {
         box-shadow: 0 0 0 $iui-xs t(iui-color-background-1);
       }
+    }
+
+    &.iui-small {
+      margin-left: -$iui-xxs;
+
+      .iui-initials {
+        @include themed {
+          box-shadow: 0 0 0 $iui-xxs t(iui-color-background-1);
+        }
+      }
+    }
+
+    &.iui-large {
+      margin-left: -$iui-s;
+    }
+
+    &.iui-x-large {
+      margin-left: -$iui-sm;
     }
   }
 
@@ -167,11 +173,11 @@
         }
     
         &.iui-large {
-          margin-left: 6px;
+          margin-left: $iui-s;
         }
     
         &.iui-x-large {
-          margin-left: $iui-s;
+          margin-left: $iui-sm;
         }
       }
     }
