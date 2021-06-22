@@ -39,9 +39,12 @@
       }
     }
 
-    > .iui-anchor,
+    > .iui-anchor {
+      @include iui-focus(iui-color-foreground-#{$category}, 2px);
+    }
+
     > .iui-button {
-      @include iui-focus(iui-focus-#{$category}-box-shadow);
+      @include iui-focus(iui-color-foreground-#{$category});
     }
   }
 }

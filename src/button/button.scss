@@ -41,7 +41,6 @@ $iui-button-padding-large: $iui-xs * 6;
     text-decoration: none;
   }
 
-  @include iui-focus;
   @include iui-button-sizes;
 }
 

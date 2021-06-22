@@ -13,6 +13,7 @@
   }
 
   > .iui-header {
+    @include iui-focus;
     @include themed {
       border-bottom: 1px solid t(iui-color-background-4);
       background-color: t(iui-color-background-3);
@@ -64,14 +65,6 @@
 
       @include themed {
         color: t(iui-text-color-muted);
-      }
-    }
-
-    &:focus {
-      outline: 0;
-
-      @include themed {
-        box-shadow: t(iui-focus-box-shadow);
       }
     }
   }

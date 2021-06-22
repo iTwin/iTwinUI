@@ -20,25 +20,19 @@
   }
 }
 
-@mixin iui-focus($box-shadow-value: iui-focus-box-shadow) {
+@mixin iui-focus($color: iui-color-foreground-primary, $offset: -2px) {
   &:focus {
-    outline: 0;
-
-    @include themed {
-      box-shadow: t($box-shadow-value);
-    }
+    outline: 2px solid t($color);
+    outline-offset: $offset;
   }
 
   &:focus:not(:focus-visible) {
-    box-shadow: none;
+    outline: none;
   }
 
   &:focus-visible {
-    outline: 0;
-
-    @include themed {
-      box-shadow: t($box-shadow-value);
-    }
+    outline: 2px solid t($color);
+    outline-offset: $offset;
   }
 }
 
@@ -50,7 +44,7 @@
 }
 
 @mixin iui-anchor {
-  @include iui-focus;
+  @include iui-focus(iui-color-foreground-primary, 2px);
   text-decoration: none;
   cursor: pointer;
   @include themed {

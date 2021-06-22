@@ -220,11 +220,6 @@
       border-bottom: 2px solid t($foregroundColor) !important;
     }
 
-    &:focus {
-      @include themed {
-        border-bottom: 2px solid t($foregroundColor);
-        box-shadow: rgba(t($foregroundRgb), t(iui-opacity-5)) 0 0 0 2px;
-      }
-    }
+    @include iui-focus($foregroundColor);
   }
 }

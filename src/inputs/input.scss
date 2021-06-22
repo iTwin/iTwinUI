@@ -4,6 +4,7 @@
 
 @mixin iui-input {
   @include iui-font-family;
+  @include iui-focus;
   width: 100%;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
@@ -60,15 +61,6 @@
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
     }
     transition: border-color $iui-speed-fast ease-out;
-  }
-
-  &:focus {
-    outline: 0;
-
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-      box-shadow: t(iui-focus-box-shadow);
-    }
   }
 }
 

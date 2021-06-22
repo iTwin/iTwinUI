@@ -62,7 +62,6 @@
     user-select: none;
     text-decoration: underline;
     white-space: nowrap;
-    @include iui-focus;
 
     &:hover {
       text-decoration: none;

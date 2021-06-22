@@ -73,21 +73,13 @@
       }
     }
 
-    &:hover:not(:disabled),
-    &:focus {
-      ~ .iui-toggle {
-        @include themed {
-          border: 1px solid
-            rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-        }
-
-        > .iui-handle {
-          @include themed {
-            opacity: t(iui-opacity-1);
-          }
-        }
+    &:hover:not(:disabled) ~ .iui-toggle > .iui-handle {
+      @include themed {
+        opacity: t(iui-opacity-1);
       }
     }
+
+
 
     // Checked toggle switch
     &:checked {
@@ -112,8 +104,7 @@
         }
       }
 
-      &:hover:not(:disabled),
-      &:focus {
+      &:hover:not(:disabled) {
         ~ .iui-toggle {
           @include themed {
             border-color: t(iui-color-background-primary);
@@ -171,7 +162,19 @@
     // Focus on non-disabled toggle switch
     &:enabled:focus ~ .iui-toggle {
       @include themed {
-        box-shadow: t(iui-focus-box-shadow);
+        outline: 2px solid t(iui-color-foreground-primary);
+        outline-offset: 2px;
+      }
+    }
+
+    &:enabled:focus:not(:focus-visible) ~ .iui-toggle {
+      outline: none;
+    }
+
+    &:enabled:focus-visible ~ .iui-toggle {
+      @include themed {
+        outline: 2px solid t(iui-color-foreground-primary);
+        outline-offset: 2px;
       }
     }
   }

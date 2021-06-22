@@ -4,6 +4,7 @@
 @import './button';
 
 @mixin iui-button-high-visibility {
+  @include iui-focus(iui-color-foreground-accessory, -4px);
   @include themed {
     background-color: t(iui-color-background-primary);
     border-color: t(iui-color-background-primary);

@@ -20,6 +20,7 @@
   padding: 0;
 
   > li {
+    @include iui-focus;
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
@@ -47,18 +48,13 @@
       }
     }
 
-    &:hover:not(.iui-disabled):not(.iui-active),
-    &:focus:not(.iui-disabled):not(.iui-active) {
+    &:hover:not(.iui-disabled):not(.iui-active) {
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
           t(iui-opacity-6)
         );
       }
-    }
-
-    &:focus {
-      outline: none;
     }
 
     &.iui-active {

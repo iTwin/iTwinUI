@@ -4,6 +4,7 @@
 @import './button';
 
 @mixin iui-button-cta {
+  @include iui-focus(iui-color-foreground-accessory, -4px);
   @include themed {
     background-color: t(iui-color-background-positive);
     border-color: t(iui-color-background-positive);

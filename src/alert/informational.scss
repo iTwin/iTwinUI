@@ -21,10 +21,7 @@
   }
 
   > .iui-message > a {
-    @include iui-focus;
-    @include themed {
-      color: t(iui-color-foreground-primary);
-    }
+    @include iui-anchor;
 
     &:hover {
       @include themed {

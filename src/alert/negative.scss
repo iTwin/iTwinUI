@@ -43,8 +43,11 @@
     }
   }
 
-  > .iui-message > a,
+  > .iui-message > a {
+    @include iui-focus(iui-color-foreground-negative, 2px);
+  }
+
   > .iui-button {
-    @include iui-focus(iui-focus-negative-box-shadow);
+    @include iui-focus(iui-color-foreground-negative);
   }
 }

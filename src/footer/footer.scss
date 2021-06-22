@@ -15,7 +15,6 @@
     list-style-type: none;
     margin: 0 auto;
     padding: 0;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +43,6 @@
 
       > a {
         @include iui-anchor;
-        @include iui-focus;
 
         &,
         &:hover {
