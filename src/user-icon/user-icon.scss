@@ -49,13 +49,17 @@
     @include themed {
       color: t(iui-color-foreground-accessory);
     }
+  }
 
-    > .iui-icon {
-      width: 50%;
-      height: 50%;
-      @include themed {
-        fill: t(iui-color-foreground-accessory);
-      }
+  > .iui-icon {
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    @include themed {
+      fill: t(iui-color-foreground-accessory);
     }
   }
 
