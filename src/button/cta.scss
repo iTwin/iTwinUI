@@ -18,8 +18,7 @@
   }
 
   &:enabled:hover,
-  &:enabled:active,
-  &:focus-visible {
+  &:enabled:active {
     @include themed {
       background-color: t(iui-color-background-positive-overlay);
       border-color: t(iui-color-background-positive-overlay);

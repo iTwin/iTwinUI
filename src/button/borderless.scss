@@ -24,8 +24,7 @@
   }
 
   &:enabled:hover,
-  &:enabled:active,
-  &:focus-visible {
+  &:enabled:active {
     @include themed {
       background-color: rgba(
         t(iui-color-foreground-body-rgb),
