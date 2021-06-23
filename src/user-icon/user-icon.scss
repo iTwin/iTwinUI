@@ -7,7 +7,7 @@
 @mixin iui-user-icon {
   @include iui-reset;
   @include iui-font-family;
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   margin: 0;
   user-select: none;
