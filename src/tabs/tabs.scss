@@ -13,7 +13,6 @@
   .iui-tab {
     @include iui-reset;
     @include iui-font-family;
-    @include iui-focus;
     position: relative;
     display: flex;
     align-items: center;
@@ -48,6 +47,20 @@
         }
       }
     }
+
+    &:focus {
+      outline: 2px solid t(iui-color-foreground-primary);
+      outline-offset: -2px;
+    }
+  
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+  
+    &:focus-visible {
+      outline: 2px solid t(iui-color-foreground-primary);
+      outline-offset: -2px;
+    }
   }
 
   .iui-tab-icon {
@@ -76,7 +89,10 @@
   }
 
   &.iui-green .iui-tab {
-    @include iui-focus(iui-focus-positive-box-shadow);
+    &:focus,
+    &:focus-visible {
+      outline-color: t(iui-color-foreground-positive);
+    }
 
     &.iui-active {
       @include themed {
