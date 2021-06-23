@@ -49,8 +49,8 @@
     }
 
     &:focus {
-      outline: $iui-xxs solid t(iui-color-foreground-primary);
-      outline-offset: -$iui-xxs;
+      outline: 1px solid t(iui-color-foreground-primary);
+      outline-offset: -1px;
     }
   
     &:focus:not(:focus-visible) {
