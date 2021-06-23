@@ -19,13 +19,14 @@
   margin: 0;
   padding: 0;
 
-  > li {
+  > li:not(.iui-divider) {
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
-    padding: 0 $iui-sm;
+    padding: $iui-component-padding-vertical $iui-sm;
     min-height: $iui-component-height;
     cursor: pointer;
+    box-sizing: border-box;
     @include themed {
       color: t(iui-text-color);
     }
@@ -36,19 +37,28 @@
 
     > .iui-content {
       flex: 1 1 auto;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      height: $iui-line-height;
+
+      .iui-menu-description {
+        font-size: $iui-font-size-small;
+        @include themed {
+          opacity: t(iui-opacity-3);
+        }
+      }
 
       + .iui-icon {
         margin-right: 0;
         margin-left: $iui-s;
       }
+
+      &,
+      > * {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
-    &:hover:not(.iui-disabled):not(.iui-active),
-    &:focus:not(.iui-disabled):not(.iui-active) {
+    &:hover:not(.iui-disabled):not(.iui-active) {
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
@@ -58,13 +68,24 @@
     }
 
     &:focus {
+      @include themed {
+        outline: 1px solid t(iui-color-foreground-primary);
+        outline-offset: -1px;
+      }
+    }
+  
+    &:focus:not(:focus-visible) {
       outline: none;
+    }
+  
+    &:focus-visible {
+      @include themed {
+        outline: 1px solid t(iui-color-foreground-primary);
+        outline-offset: -1px;
+      }
     }
 
     &.iui-active {
-      box-sizing: border-box;
-      padding-top: $iui-component-padding-vertical;
-      padding-bottom: $iui-component-padding-vertical;
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
@@ -78,13 +99,17 @@
           fill: t(iui-icons-color-primary);
         }
       }
+
+      &:focus,
+      &:focus-visible {
+        outline-offset: -2px;
+      }
     }
 
     &.iui-disabled {
       cursor: not-allowed;
       @include themed {
-        background-color: t(iui-color-background-disabled);
-        color: t(iui-text-color-muted);
+        color: t(iui-text-color-placeholder);
       }
   
       > .iui-icon {
@@ -92,6 +117,15 @@
           fill: t(iui-icons-color-actionable-disabled);
         }
       }
+    }
+  }
+
+  > .iui-divider {
+    height: 1px;
+    width: calc(100% - #{$iui-l});
+    margin: auto;
+    @include themed {
+      background-color: t(iui-color-background-4);
     }
   }
 }
