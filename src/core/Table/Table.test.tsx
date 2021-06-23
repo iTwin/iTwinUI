@@ -2,11 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { Table, TableProps } from './Table';
 import * as IntersectionHooks from '../utils/hooks/useIntersection';
 import { tableFilters } from './filters';
+import { CellProps } from 'react-table';
+import { SvgChevronDown, SvgChevronRight } from '@itwin/itwinui-icons-react';
 
 const intersectionCallbacks = new Map<Element, () => void>();
 jest
@@ -749,4 +751,75 @@ it('should rerender table when columns change', () => {
     />,
   );
   expect(screen.getAllByText('test2').length).toBe(3);
+});
+
+it('should expand correctly', () => {
+  const onExpandMock = jest.fn();
+  const { container, getByText } = renderComponent({
+    subComponent: (row) => (
+      <div>{`Expanded component, name: ${row.original.name}`}</div>
+    ),
+    onExpand: onExpandMock,
+  });
+  const {
+    container: { firstChild: expandedIconHtml },
+  } = render(<SvgChevronDown className='iui-icon' aria-hidden />);
+  const {
+    container: { firstChild: collapsedIconHtml },
+  } = render(<SvgChevronRight className='iui-icon' aria-hidden />);
+
+  expect(
+    container.querySelectorAll('.iui-button.iui-borderless > .iui-icon')[0],
+  ).toEqual(collapsedIconHtml);
+
+  act(() => {
+    fireEvent.click(container.querySelectorAll('.iui-button')[0]);
+  });
+
+  getByText('Expanded component, name: Name1');
+  expect(
+    container.querySelectorAll('.iui-button.iui-borderless > .iui-icon')[0],
+  ).toEqual(expandedIconHtml);
+});
+
+it('should expand correctly with a custom expander cell', () => {
+  const onExpandMock = jest.fn();
+  const { getByText, queryByText } = renderComponent({
+    subComponent: (row) => (
+      <div>{`Expanded component, name: ${row.original.name}`}</div>
+    ),
+    onExpand: onExpandMock,
+    expanderCell: (props: CellProps<{ name: string; description: string }>) => {
+      return (
+        <button
+          onClick={() => {
+            props.row.toggleRowExpanded();
+          }}
+        >
+          Expand {props.row.original.name}
+        </button>
+      );
+    },
+  });
+
+  expect(queryByText('Expanded component, name: Name1')).toBeNull();
+  expect(queryByText('Expanded component, name: Name3')).toBeNull();
+
+  act(() => {
+    fireEvent.click(getByText('Expand Name1'));
+    fireEvent.click(getByText('Expand Name2'));
+  });
+
+  getByText('Expanded component, name: Name1');
+  getByText('Expanded component, name: Name2');
+
+  act(() => {
+    fireEvent.click(getByText('Expand Name1'));
+    fireEvent.click(getByText('Expand Name3'));
+  });
+
+  expect(queryByText('Expanded component, name: Name1')).toBeNull();
+  getByText('Expanded component, name: Name2');
+  getByText('Expanded component, name: Name3');
+  expect(onExpandMock).toHaveBeenCalledTimes(4);
 });

@@ -12,7 +12,7 @@ import {
   UseColumnOrderState,
   UseExpandedHooks,
   UseExpandedInstanceProps,
-  // UseExpandedOptions,
+  UseExpandedOptions,
   UseExpandedRowProps,
   UseExpandedState,
   UseFiltersColumnOptions,
@@ -65,7 +65,7 @@ declare module 'react-table' {
     D extends object = {}
   > extends UseTableOptions<D>,
       UseRowSelectOptions<D>,
-      // UseExpandedOptions<D>,
+      UseExpandedOptions<D>,
       UseFiltersOptions<D>,
       // UseGlobalFiltersOptions<D>,
       // UseGroupByOptions<D>,

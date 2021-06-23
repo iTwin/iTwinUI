@@ -22,6 +22,7 @@ const TableRow = <T extends Record<string, unknown>>(props: {
   onBottomReached: React.MutableRefObject<(() => void) | undefined>;
   intersectionMargin: number;
   state: TableState<T>; // Needed for explicitly checking selection changes
+  subComponent?: (row: Row<T>) => React.ReactNode;
 }) => {
   const {
     row,
@@ -30,6 +31,7 @@ const TableRow = <T extends Record<string, unknown>>(props: {
     onRowInViewport,
     onBottomReached,
     intersectionMargin,
+    subComponent,
   } = props;
 
   const onIntersect = React.useCallback(() => {
@@ -42,19 +44,24 @@ const TableRow = <T extends Record<string, unknown>>(props: {
   });
 
   return (
-    <div {...rowProps} key={rowProps.key} ref={rowRef}>
-      {row.cells.map((cell) => {
-        const cellProps = cell.getCellProps({
-          className: cx('iui-cell', cell.column.cellClassName),
-          style: getCellStyle(cell.column),
-        });
-        return (
-          <div {...cellProps} key={cellProps.key}>
-            {cell.render('Cell')}
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div {...rowProps} ref={rowRef}>
+        {row.cells.map((cell) => {
+          const cellProps = cell.getCellProps({
+            className: cx('iui-cell', cell.column.cellClassName),
+            style: getCellStyle(cell.column),
+          });
+          return (
+            <div {...cellProps} key={cellProps.key}>
+              {cell.render('Cell')}
+            </div>
+          );
+        })}
+      </div>
+      {row.isExpanded && subComponent && (
+        <div className='iui-row iui-expanded-content'>{subComponent(row)}</div>
+      )}
+    </>
   );
 };
 
@@ -67,6 +74,9 @@ export const TableRowMemoized = React.memo(
     prevProp.row.original === nextProp.row.original &&
     prevProp.state.selectedRowIds?.[prevProp.row.id] ===
       nextProp.state.selectedRowIds?.[nextProp.row.id] &&
+    prevProp.state.expanded?.[prevProp.row.id] ===
+      nextProp.state.expanded?.[nextProp.row.id] &&
+    prevProp.subComponent === nextProp.subComponent &&
     prevProp.row.cells.every(
       (cell, index) => nextProp.row.cells[index].column === cell.column,
     ),
