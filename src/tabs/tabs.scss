@@ -56,11 +56,6 @@
     &:focus:not(:focus-visible) {
       outline: none;
     }
-  
-    &:focus-visible {
-      outline: $iui-xxs solid t(iui-color-foreground-primary);
-      outline-offset: -$iui-xxs;
-    }
   }
 
   .iui-tab-icon {
@@ -89,8 +84,7 @@
   }
 
   &.iui-green .iui-tab {
-    &:focus,
-    &:focus-visible {
+    &:focus {
       outline-color: t(iui-color-foreground-positive);
     }
 
