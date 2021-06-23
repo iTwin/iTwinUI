@@ -18,11 +18,11 @@ import { TableFilterProps } from './types';
 
 export type DateRangeFilterOptions = {
   /**
-   * Function that formats date into string.
+   * Function that formats selected date into a `string` that is shown inside the input.
    */
   formatDate?: (date: Date) => string;
   /**
-   * Function that parses string into date.
+   * Function that parses user input string into a `Date`.
    * If string is invalid, return invalid `Date` object (`new Date('')`)
    * Recommended to use pattern matching in order to parse string when date is fully entered.
    */
@@ -49,8 +49,13 @@ export const tableFilters = {
   ) => <TextFilter {...props} translatedLabels={translatedLabels} />,
   /**
    * Date range filter.
-   * By default it handles `en-us` date format. If you want to use other format
+   *
+   * By default it handles user input in `en-us` date format. If you want to use other format
    * please provide `formatDate`, `parseInput` and `placeholder`.
+   *
+   * It only works with `Date` type object properties.
+   * If your data is different type e.g. `string`, you can use `accessor` property in column description:
+   * `accessor: (rowData) => new Date(rowData.date)`.
    */
   DateRangeFilter: (options?: DateRangeFilterOptions) => <
     T extends Record<string, unknown>
@@ -59,6 +64,10 @@ export const tableFilters = {
   ) => <DateRangeFilter {...props} {...options} />,
   /**
    * Number range filter.
+   *
+   * It only works with `number` type object properties.
+   * If your data is different type e.g. `string`, you can use `accessor` property in column description:
+   * `accessor: (rowData) => Number(rowData.numberProp)`.
    * @param translatedLabels Translated filter labels.
    */
   NumberRangeFilter: (

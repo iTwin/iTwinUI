@@ -109,7 +109,13 @@ declare module 'react-table' {
     // UseResizeColumnsColumnOptions<D>,
     extends UseSortByColumnOptions<D>,
       UseFiltersColumnOptions<D> {
+    /**
+     * Custom class name applied to header column cell.
+     */
     columnClassName?: string;
+    /**
+     * Custom class name applied to each column's cell.
+     */
     cellClassName?: string;
     /**
      * Type of the data in cell. Used for manual filtering.
