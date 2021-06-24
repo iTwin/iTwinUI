@@ -17,7 +17,7 @@ module.exports = {
   browsers: {
     chrome: {
       browserName: 'chrome',
-      version: '88.0',
+      version: '91.0',
       // Increase parallel sessions
       limit: 5,
     },

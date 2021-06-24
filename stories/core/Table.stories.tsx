@@ -25,7 +25,7 @@ import {
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
-import { CreeveyStoryParams } from 'creevey';
+import { CreeveyMeta, CreeveyStoryParams } from 'creevey';
 
 export default {
   title: 'Core/Table',
@@ -112,7 +112,10 @@ export default {
       table: { disable: true },
     },
   },
-} as Meta<TableProps>;
+  parameters: {
+    creevey: { skip: { stories: ['Lazy Loading', 'Row In Viewport'] } },
+  },
+} as Meta<TableProps> & CreeveyMeta;
 
 export const Basic: Story<TableProps> = (args) => {
   const { columns, data, ...rest } = args;
