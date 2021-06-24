@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.21.0]
+
+`2021-06-21`
+
+- **Added new 'warning' category to toast-notification.**
+
+## [0.20.3]
+
+`2021-06-18`
+
+### Fixes
+
+- **Fixed select text truncation bug.**
+- **Fixed table column resizer activation.**
+
 ## [0.20.2]
 
 `2021-06-14`
@@ -294,6 +309,8 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.21.0]: https://github.com/iTwin/iTwinUI/compare/v0.20.3...v0.21.0
+[0.20.3]: https://github.com/iTwin/iTwinUI/compare/v0.20.2...v0.20.3
 [0.20.2]: https://github.com/iTwin/iTwinUI/compare/v0.20.1...v0.20.2
 [0.20.1]: https://github.com/iTwin/iTwinUI/compare/v0.20.0...v0.20.1
 [0.20.0]: https://github.com/iTwin/iTwinUI/compare/v0.19.0...v0.20.0

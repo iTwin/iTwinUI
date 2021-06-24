@@ -34,14 +34,111 @@
     <h2>Default</h2>
     <section id="demo-default">
 
-      <div>
-        <ul class="iui-tabs-horizontal">
-          <li><a>Item</a></li>
-          <li class="iui-tabs-active"><a>Active</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
+      <div class="iui-tabs-wrapper">
+        <ul
+          class="iui-tabs iui-default"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
+          <li>
+            <button class="iui-button iui-borderless">
+              <!-- Use add-circular.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M13,9H9v4H7V9H3V7h4V3h2v4h4V9z" />
+              </svg>
+            </button>
+          </li>
         </ul>
-        <div class="iui-tabs-content-area">
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
           veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -50,16 +147,133 @@
           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
           est laborum.
         </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
       </div>
 
-      <div>
-        <ul class="iui-tabs-horizontal iui-green">
-          <li><a>Item</a></li>
-          <li class="iui-tabs-active"><a>Active</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
+      <br />
+
+      <div class="iui-tabs-wrapper">
+        <ul
+          class="iui-tabs iui-default iui-green"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
+          <li>
+            <button class="iui-button iui-borderless">
+              <!-- Use add-circular.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M13,9H9v4H7V9H3V7h4V3h2v4h4V9z" />
+              </svg>
+            </button>
+          </li>
         </ul>
-        <div class="iui-tabs-content-area">
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
           veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -67,6 +281,164 @@
           velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
           est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
+      </div>
+
+      <br />
+
+      <div
+        class="iui-tabs-wrapper"
+        id="demo-default-2"
+      >
+        <ul
+          class="iui-tabs iui-default iui-large"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+              id="test-tab-1"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+              id="test-tab-2"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
+          <li>
+            <button class="iui-button iui-borderless iui-animated iui-large">
+              <!-- Use add-circular.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M13,9H9v4H7V9H3V7h4V3h2v4h4V9z" />
+              </svg>
+            </button>
+          </li>
+        </ul>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
         </div>
       </div>
 
@@ -77,40 +449,379 @@
     <h2>Borderless</h2>
     <section id="demo-borderless">
 
-      <div>
-        <ul class="iui-tabs-borderless">
-          <li class="iui-tabs-active"><a>Active</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
+      <div class="iui-tabs-wrapper">
+        <ul
+          class="iui-tabs iui-borderless iui-animated"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
         </ul>
-        <p>
+        <div class="iui-tab-stripe"></div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
           veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
           commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
       </div>
 
-      <div>
-        <ul class="iui-tabs-borderless iui-green">
-          <li class="iui-tabs-active"><a>Active</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
+      <br />
+
+      <div class="iui-tabs-wrapper">
+        <ul
+          class="iui-tabs iui-borderless iui-animated iui-green"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
         </ul>
-        <p>
+        <div class="iui-tab-stripe"></div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
           veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
           commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
+      </div>
+
+      <br />
+
+      <div
+        class="iui-tabs-wrapper"
+        id="demo-borderless-2"
+      >
+        <ul
+          class="iui-tabs iui-borderless iui-animated iui-large"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+              id="test-tab-3"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+              id="test-tab-4"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
+        </ul>
+        <div class="iui-tab-stripe"></div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
       </div>
 
     </section>
@@ -120,14 +831,105 @@
     <h2>Pill</h2>
     <section id="demo-pill">
 
-      <div>
-        <ul class="iui-tabs-pill">
-          <li class="iui-tabs-active"><a>Active</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
+      <div
+        class="iui-tabs-wrapper"
+        id="demo-pill-2"
+      >
+        <ul
+          class="iui-tabs iui-pill iui-animated"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+              id="test-tab-5"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+              id="test-tab-6"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
         </ul>
-        <p>
+        <div class="iui-tab-stripe"></div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
           veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -135,83 +937,123 @@
           velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
           est laborum.
-        </p>
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
       </div>
 
-      <div>
-        <ul class="iui-tabs-pill">
-          <li class="iui-tabs-active">
-            <a>
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a>
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a>
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a>
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-            </a>
-          </li>
-        </ul>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </p>
-      </div>
+      <br />
 
-      <div>
-        <ul class="iui-tabs-pill iui-green">
-          <li class="iui-tabs-active"><a>Active</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
-          <li><a>Item</a></li>
+      <div class="iui-tabs-wrapper">
+        <ul
+          class="iui-tabs iui-pill iui-animated iui-green"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-tab-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+                />
+              </svg>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
         </ul>
-        <p>
+        <div class="iui-tab-stripe"></div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
           veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -219,75 +1061,56 @@
           velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
           est laborum.
-        </p>
-      </div>
-
-      <div>
-        <ul class="iui-tabs-pill iui-green">
-          <li class="iui-tabs-active">
-            <a>
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a>
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a>
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a>
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-            </a>
-          </li>
-        </ul>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </p>
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
       </div>
 
     </section>
+
+    <script>
+      document.querySelectorAll('.iui-tabs').forEach((tabs) => {
+        const wrapper = tabs.parentElement;
+        const activeTab = tabs.querySelector('.iui-active');
+        const stripe = wrapper.querySelector('.iui-tab-stripe');
+        const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
+        const setStripe = (activeEl) => {
+          stripe.style.left = `${activeEl.offsetLeft}px`;
+          stripe.style.width = `${activeEl.getBoundingClientRect().width}px`;
+        }
+        stripe && setStripe(activeTab);
+
+        [...tabs.children].forEach(({ firstElementChild: tab }) => {
+          tab.addEventListener('click', () => {
+            tabs.querySelector('.iui-active')?.classList.remove('iui-active');
+            tab.classList.add('iui-active');
+            tabpanels.forEach((panel) => {
+              if (panel.id === tab.getAttribute('aria-controls')) {
+                panel.removeAttribute('hidden');
+              } else {
+                panel.hidden = 'true';
+              }
+            });
+            stripe && setStripe(tab); // needs to be set in react for animation
+          });
+        });
+      });
+    </script>
   </body>
 </html>

@@ -7,7 +7,9 @@
 @mixin iui-user-icon {
   @include iui-reset;
   @include iui-font-family;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   margin: 0;
   user-select: none;
@@ -23,13 +25,15 @@
     border-radius: 50%;
     box-sizing: border-box;
     @include themed {
-      box-shadow: inset 0 0 0 2px
+      box-shadow: inset 0 0 0 $iui-xxs
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
     }
   }
 
   > .iui-initials {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     left: 0;
     top: 0;
@@ -43,8 +47,18 @@
     text-decoration: none;
     text-transform: uppercase;
     background-color: $iui-color-dataviz-celery;
+    overflow: hidden;
     @include themed {
       color: t(iui-color-foreground-accessory);
+    }
+  }
+
+  > .iui-icon {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    @include themed {
+      fill: t(iui-color-foreground-accessory);
     }
   }
 
@@ -65,13 +79,13 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: -2px;
-    bottom: -2px;
+    right: -$iui-xxs;
+    bottom: -$iui-xxs;
     width: 25%;
     height: 25%;
     border-radius: 50%;
     @include themed {
-      border: 2px solid t(iui-color-background-1);
+      border: $iui-xxs solid t(iui-color-background-1);
       background-color: t(iui-color-background-1);
       box-shadow: inset 0 0 0 1px
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
@@ -112,6 +126,62 @@
     &.iui-busy {
       @include themed {
         background-color: t(iui-color-background-negative);
+      }
+    }
+  }
+}
+
+@mixin iui-user-icon-list {
+  display: flex;
+
+  .iui-user-icon:not(:first-child) {
+    margin-left: -$iui-xs;
+
+    .iui-initials {
+      @include themed {
+        box-shadow: 0 0 0 $iui-xs t(iui-color-background-1);
+      }
+    }
+
+    &.iui-small {
+      margin-left: -$iui-xxs;
+
+      .iui-initials {
+        @include themed {
+          box-shadow: 0 0 0 $iui-xxs t(iui-color-background-1);
+        }
+      }
+    }
+
+    &.iui-large {
+      margin-left: -$iui-s;
+    }
+
+    &.iui-x-large {
+      margin-left: -$iui-sm;
+    }
+  }
+
+  &.iui-animated {
+    .iui-user-icon {
+      transition: margin-left $iui-speed ease-out;
+    }
+
+    &:hover {
+      .iui-user-icon:not(:first-child) {
+        margin-left: $iui-xs;
+    
+        &.iui-small {
+          margin-left: $iui-xxs;
+        }
+    
+        &.iui-large {
+          margin-left: $iui-s;
+        }
+    
+        &.iui-x-large {
+          margin-left: $iui-sm;
+        }
       }
     }
   }
