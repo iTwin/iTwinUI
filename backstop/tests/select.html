@@ -19,7 +19,20 @@
       href="../assets/demo.css"
     />
     <style>
-      section .iui-select { width: 440px; }
+      section[id^='demo'] {
+        width: 440px;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+
+      #demo-default-opened {
+        height: 420px;
+      }
+      
+      #demo-default-singular-opened {
+        height: 210px;
+      }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
@@ -77,7 +90,11 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-content">Option 1</span>
+            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+              qui officia deserunt mollit anim id est laborum.</span>
           </div>
         </div>
         <div class="iui-message">Help message.</div>
@@ -97,7 +114,11 @@
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div class="iui-select-button iui-disabled">
-            <span class="iui-content">Option 1</span>
+            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+              qui officia deserunt mollit anim id est laborum.</span>
           </div>
         </div>
         <div class="iui-message">Help message.</div>
@@ -173,15 +194,11 @@
 
     </section>
 
-    <section
-      id="demo-default-opened"
-      style="height: 420px;"
-    >
+    <br />
 
-      <section
-        id="demo-default-singular-opened"
-        style="height: 210px;"
-      >
+    <section id="demo-default-opened">
+
+      <section id="demo-default-singular-opened">
         <label class="iui-input-container">
           <div class="iui-label">Select label</div>
           <div class="iui-select">
@@ -195,7 +212,11 @@
               class="iui-menu"
               style="position: absolute; top: 100%;"
             >
-              <li tabindex="0"><span class="iui-content">Option 1</span></li>
+              <li tabindex="0"><span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></li>
               <li
                 tabindex="0"
                 id="test-select-2"
@@ -224,7 +245,11 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-content">Option 1</span>
+            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+              qui officia deserunt mollit anim id est laborum.</span>
           </div>
           <ul
             class="iui-menu"
@@ -244,7 +269,11 @@
                   d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
                 />
               </svg>
-              <span class="iui-content">Option 1</span>
+              <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+                in culpa qui officia deserunt mollit anim id est laborum.</span>
               <!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
               <svg
                 class="iui-icon"
@@ -284,6 +313,39 @@
         </div>
         <div class="iui-message">Help message.</div>
       </label>
+
+    </section>
+
+    <br />
+
+    <section id="demo-sizes">
+
+      <div class="iui-select iui-small">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Small</span>
+        </div>
+      </div>
+
+      <div class="iui-select">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Default</span>
+        </div>
+      </div>
+
+      <div class="iui-select iui-large">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Large</span>
+        </div>
+      </div>
 
     </section>
   </body>

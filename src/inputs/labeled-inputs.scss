@@ -10,7 +10,7 @@
   flex-wrap: nowrap;
   position: relative;
   padding: 0;
-  margin: 0 0 $iui-baseline;
+  margin: 0;
   text-align: left;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
@@ -29,7 +29,7 @@
 
   > .iui-label {
     padding: 0;
-    margin-bottom: $iui-inputs-margin;
+    margin-bottom: $iui-component-offset;
     border: none;
     display: block;
     width: fit-content;
@@ -57,7 +57,7 @@
     align-items: center;
     font-size: $iui-font-size-small;
     line-height: $iui-line-height;
-    margin-top: $iui-inputs-margin;
+    margin-top: $iui-component-offset;
     @include themed {
       color: t(iui-text-color-muted);
     }
@@ -166,6 +166,12 @@
 }
 
 @mixin iui-inputs-status($foregroundColor, $foregroundOverlay, $foregroundRgb) {
+  *::selection {
+    @include themed {
+      background-color: rgba(t($foregroundRgb), t(iui-opacity-4));
+    }
+  }
+
   > .iui-message {
     @include themed {
       color: t($foregroundColor);
@@ -193,12 +199,6 @@
         }
       }
     }
-
-    &::selection {
-      @include themed {
-        background-color: rgba(t($foregroundRgb), t(iui-opacity-4));
-      }
-    }
   }
 
   > input,
@@ -206,7 +206,15 @@
   > textarea,
   > .iui-textarea,
   > .iui-select > .iui-select-button {
-    padding-bottom: $iui-inputs-padding - 1px;
+    padding-bottom: $iui-component-padding-vertical - 1px;
+
+    &.iui-small {
+      padding-bottom: $iui-component-padding-vertical-small - 1px;
+    }
+
+    &.iui-large {
+      padding-bottom: $iui-component-padding-vertical-large - 1px;
+    }
 
     @include themed {
       border-bottom: 2px solid t($foregroundColor) !important;

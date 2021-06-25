@@ -1,4 +1,21 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@import './space';
+@import './baseline';
+
 $iui-border-radius: 3px;
 $iui-blur-filter: blur(5px);
+
+$iui-component-offset: 3px;
+
+$iui-component-height: $iui-baseline * 4 - $iui-component-offset * 2; // 38px
+$iui-component-height-small: $iui-baseline * 3 - $iui-component-offset * 2; // 27px
+$iui-component-height-large: $iui-baseline * 5 - $iui-component-offset * 2; // 49px
+
+$iui-component-padding-horizontal: $iui-sm; // 12px
+$iui-component-padding-horizontal-small: $iui-sm * 0.5; // 6px
+$iui-component-padding-horizontal-large: $iui-sm * 1.5; // 18px
+
+$iui-component-padding-vertical: (($iui-component-height - $iui-line-height) * 0.5) - 1; // 12.5px
+$iui-component-padding-vertical-small: (($iui-component-height-small - $iui-line-height) * 0.5) - 1; // 7px
+$iui-component-padding-vertical-large: (($iui-component-height-large - $iui-line-height) * 0.5) - 1; // 18px

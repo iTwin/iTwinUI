@@ -2,18 +2,30 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-tabs-horizontal {
-  @include iui-tabs-horizontal;
+.iui-tabs-wrapper {
+  position: relative;
 }
 
-.iui-tabs-borderless {
-  @include iui-tabs-borderless;
-}
+.iui-tabs {
+  @include iui-tabs;
 
-.iui-tabs-pill {
-  @include iui-tabs-pill;
-}
+  &.iui-default {
+    @include iui-tabs-default;
+  }
 
-.iui-tabs-content-area {
-  @include iui-tabs-content-area;
+  &.iui-borderless {
+    @include iui-tabs-borderless;
+  }
+  
+  &.iui-pill {
+    @include iui-tabs-pill;
+  }
+
+  &.iui-animated {
+    @include iui-tab-animated;
+  }
+
+  &.iui-not-animated {
+    @include iui-tab-not-animated;
+  }
 }
