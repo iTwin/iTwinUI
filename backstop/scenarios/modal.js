@@ -6,5 +6,6 @@ module.exports = [
     actions: [click('#open-modal')],
     selectors: ['document'],
     hideSelectors: ['h1', 'hr', 'a', 'theme-button'],
+    viewports: [{ width: 800, height: 600 }],
   }),
 ];
