@@ -21,5 +21,6 @@ module.exports = [
   scenario('State hover animated', {
     actions: [hover('#test-animated-1')],
     selectors: ['#demo-animated-1'],
+    postInteractionWait: 500,
   }),
 ];
