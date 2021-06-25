@@ -13,8 +13,10 @@ module.exports = [
   }),
   scenario('Type loading', {
     selectors: ['#demo-loading'],
+    viewports: [{ width: 900, height: 600 }],
   }),
   scenario('Type empty', {
     selectors: ['#demo-empty-state'],
+    viewports: [{ width: 900, height: 600 }],
   }),
 ];
