@@ -44,7 +44,7 @@ jobs:
 
       - name: Host test results on gh pages
         continue-on-error: true
-        if: github.event.pull_request.head.repo.full_name == github.repository && github.ref != 'refs/heads/main'
+        if: failure()
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
@@ -55,7 +55,7 @@ jobs:
           git-config-email: github-actions[bot]@users.noreply.github.com
 
       - name: Post gh pages link under Checks
-        if: github.event.pull_request.head.repo.full_name == github.repository && github.ref != 'refs/heads/main'
+        if: failure()
         uses: actions/github-script@v4
         with:
           script: |
@@ -71,7 +71,7 @@ jobs:
 
   deploy:
     name: Deploy demo html pages
-    # if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
