@@ -23,39 +23,41 @@
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
-    padding: $iui-component-padding-vertical $iui-sm;
-    min-height: $iui-component-height;
+    padding: 0 $iui-sm;
+    height: $iui-component-height;
     cursor: pointer;
     box-sizing: border-box;
     @include themed {
       color: t(iui-text-color);
     }
 
-    > .iui-icon {
-      @include iui-menu-icon;
+    .iui-content,
+    .iui-menu-label,
+    .iui-menu-description {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    > .iui-content {
+    .iui-content {
       flex: 1 1 auto;
-
-      .iui-menu-description {
-        font-size: $iui-font-size-small;
-        @include themed {
-          opacity: t(iui-opacity-3);
-        }
-      }
 
       + .iui-icon {
         margin-right: 0;
         margin-left: $iui-s;
       }
+    }
 
-      &,
-      > * {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .iui-menu-description {
+      display: none;
+      font-size: $iui-font-size-small;
+      @include themed {
+        opacity: t(iui-opacity-3);
       }
+    }
+
+    > .iui-icon {
+      @include iui-menu-icon;
     }
 
     &:hover:not(.iui-disabled):not(.iui-active) {
@@ -76,6 +78,14 @@
   
     &:focus:not(:focus-visible) {
       outline: none;
+    }
+
+    &.iui-large {
+      height: $iui-component-height-large;
+
+      .iui-menu-description {
+        display: block;
+      }
     }
 
     &.iui-active {
