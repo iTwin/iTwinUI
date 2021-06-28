@@ -19,7 +19,7 @@
   margin: 0;
   padding: 0;
 
-  > li:not(.iui-divider) {
+  > .iui-menu-item {
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
@@ -77,13 +77,6 @@
     &:focus:not(:focus-visible) {
       outline: none;
     }
-  
-    &:focus-visible {
-      @include themed {
-        outline: 1px solid t(iui-color-foreground-primary);
-        outline-offset: -1px;
-      }
-    }
 
     &.iui-active {
       @include themed {
@@ -100,9 +93,8 @@
         }
       }
 
-      &:focus,
-      &:focus-visible {
-        outline-offset: -2px;
+      &:focus {
+        outline-offset: -$iui-xxs;
       }
     }
 
@@ -120,7 +112,7 @@
     }
   }
 
-  > .iui-divider {
+  > .iui-menu-divider {
     height: 1px;
     width: calc(100% - #{$iui-l});
     margin: auto;
