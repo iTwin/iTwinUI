@@ -18,117 +18,118 @@
   width: 100%;
   margin: 0;
   padding: 0;
+}
 
-  > .iui-menu-item {
-    display: flex;
-    align-items: center;
-    font-size: $iui-font-size;
-    padding: 0 $iui-sm;
-    height: $iui-component-height;
-    cursor: pointer;
-    box-sizing: border-box;
+@mixin iui-menu-item {
+  display: flex;
+  align-items: center;
+  font-size: $iui-font-size;
+  padding: 0 $iui-sm;
+  height: $iui-component-height;
+  cursor: pointer;
+  box-sizing: border-box;
+  line-height: normal;
+  @include themed {
+    color: t(iui-text-color);
+  }
+
+  .iui-content,
+  .iui-menu-label,
+  .iui-menu-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .iui-content {
+    flex: 1 1 auto;
+
+    + .iui-icon {
+      margin-right: 0;
+      margin-left: $iui-s;
+    }
+  }
+
+  .iui-menu-description {
+    display: none;
+    font-size: $iui-font-size-small;
     @include themed {
-      color: t(iui-text-color);
+      opacity: t(iui-opacity-3);
     }
+  }
 
-    .iui-content,
-    .iui-menu-label,
+  > .iui-icon {
+    @include iui-menu-icon;
+  }
+
+  &:hover:not(.iui-disabled):not(.iui-active) {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-primary-rgb),
+        t(iui-opacity-6)
+      );
+    }
+  }
+
+  &:focus {
+    @include themed {
+      outline: 1px solid t(iui-color-foreground-primary);
+      outline-offset: -1px;
+    }
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &.iui-large {
+    height: $iui-component-height-large;
+
     .iui-menu-description {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      display: block;
     }
+  }
 
-    .iui-content {
-      flex: 1 1 auto;
-
-      + .iui-icon {
-        margin-right: 0;
-        margin-left: $iui-s;
-      }
-    }
-
-    .iui-menu-description {
-      display: none;
-      font-size: $iui-font-size-small;
-      @include themed {
-        opacity: t(iui-opacity-3);
-      }
+  &.iui-active {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-primary-rgb),
+        t(iui-opacity-5)
+      );
+      border: solid 1px t(iui-color-foreground-primary);
     }
 
     > .iui-icon {
-      @include iui-menu-icon;
-    }
-
-    &:hover:not(.iui-disabled):not(.iui-active) {
       @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
+        fill: t(iui-icons-color-primary);
       }
     }
 
     &:focus {
-      @include themed {
-        outline: 1px solid t(iui-color-foreground-primary);
-        outline-offset: -1px;
-      }
-    }
-  
-    &:focus:not(:focus-visible) {
-      outline: none;
-    }
-
-    &.iui-large {
-      height: $iui-component-height-large;
-
-      .iui-menu-description {
-        display: block;
-      }
-    }
-
-    &.iui-active {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-5)
-        );
-        border: solid 1px t(iui-color-foreground-primary);
-      }
-
-      > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-primary);
-        }
-      }
-
-      &:focus {
-        outline-offset: -$iui-xxs;
-      }
-    }
-
-    &.iui-disabled {
-      cursor: not-allowed;
-      @include themed {
-        color: t(iui-text-color-placeholder);
-      }
-  
-      > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable-disabled);
-        }
-      }
+      outline-offset: -$iui-xxs;
     }
   }
 
-  > .iui-menu-divider {
-    height: 1px;
-    width: calc(100% - #{$iui-l});
-    margin: auto;
+  &.iui-disabled {
+    cursor: not-allowed;
     @include themed {
-      background-color: t(iui-color-background-4);
+      color: t(iui-text-color-placeholder);
     }
+
+    > .iui-icon {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
+      }
+    }
+  }
+}
+
+@mixin iui-menu-divider {
+  height: 1px;
+  width: calc(100% - #{$iui-l});
+  margin: auto;
+  @include themed {
+    background-color: t(iui-color-background-4);
   }
 }
 
