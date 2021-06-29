@@ -10,6 +10,7 @@ import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/toast-notification.css';
 import { IconButton } from '../Buttons';
 import { getWindow, StatusIconMap } from '../utils/common';
+import { CommonProps } from '../utils/props';
 
 export type ToastCategory =
   | 'informational'
@@ -84,8 +85,6 @@ export const Toast = (props: ToastProps) => {
 
   useTheme();
 
-  const StatusIcon = StatusIconMap[category];
-
   const closeTimeout = React.useRef(0);
 
   const [visible, setVisible] = React.useState(isVisible);
@@ -150,31 +149,66 @@ export const Toast = (props: ToastProps) => {
           }}
         >
           <div ref={onRef}>
-            <div className={`iui-toast iui-${category}`}>
-              <div className='iui-status-area'>
-                {<StatusIcon className='iui-icon' />}
-              </div>
-              <div className='iui-message'>{content}</div>
-              {link && (
-                <a className='iui-anchor' onClick={link.onClick}>
-                  {link.title}
-                </a>
-              )}
-              {(type === 'persisting' || hasCloseButton) && (
-                <IconButton
-                  size='small'
-                  styleType='borderless'
-                  onClick={close}
-                  aria-label='Close'
-                >
-                  <SvgCloseSmall />
-                </IconButton>
-              )}
-            </div>
+            <ToastPresentation
+              category={category}
+              content={content}
+              link={link}
+              type={type}
+              hasCloseButton={hasCloseButton}
+              onClose={close}
+            />
           </div>
         </div>
       )}
     </Transition>
+  );
+};
+
+export type ToastPresentationProps = Omit<
+  ToastProps,
+  'duration' | 'id' | 'isVisible' | 'onRemove'
+> & { onClose?: () => void } & CommonProps;
+
+/**
+ * The presentational part of a toast notification, without any animation or logic.
+ * @private
+ */
+export const ToastPresentation = (props: ToastPresentationProps) => {
+  const {
+    content,
+    category,
+    type = 'temporary',
+    link,
+    hasCloseButton,
+    onClose,
+    className,
+    ...rest
+  } = props;
+
+  const StatusIcon = StatusIconMap[category];
+
+  return (
+    <div className={cx(`iui-toast iui-${category}`, className)} {...rest}>
+      <div className='iui-status-area'>
+        {<StatusIcon className='iui-icon' />}
+      </div>
+      <div className='iui-message'>{content}</div>
+      {link && (
+        <a className='iui-anchor' onClick={link.onClick}>
+          {link.title}
+        </a>
+      )}
+      {(type === 'persisting' || hasCloseButton) && (
+        <IconButton
+          size='small'
+          styleType='borderless'
+          onClick={onClose}
+          aria-label='Close'
+        >
+          <SvgCloseSmall />
+        </IconButton>
+      )}
+    </div>
   );
 };
 
