@@ -109,6 +109,10 @@ $iui-after-border: 5px solid;
       padding-bottom: $iui-component-padding-vertical-small;
       min-height: $iui-component-height-small;
     }
+
+    .iui-menu-divider {
+      width: calc(100% - #{$iui-sm});
+    }
   }
 
   &.iui-large {
@@ -122,6 +126,10 @@ $iui-after-border: 5px solid;
       padding-bottom: $iui-component-padding-vertical-large;
       min-height: $iui-component-height-large;
       font-size: $iui-font-size-leading;
+    }
+
+    .iui-menu-divider {
+      width: calc(100% - #{$iui-xl});
     }
   }
 }
