@@ -1,8 +1,20 @@
 # Changelog
 
+## [0.22.0]
+
+`2021-06-28`
+
+### What's new
+
+- **Updated tabs styles to support sublabels, icons, and disabled tabs.**
+- **Added user-icon lists and svg support to user-icons.**
+- **Added transition to table expandable rows.**
+
 ## [0.21.0]
 
 `2021-06-21`
+
+### What's new
 
 - **Added new 'warning' category to toast-notification.**
 
@@ -309,6 +321,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.22.0]: https://github.com/iTwin/iTwinUI/compare/v0.21.0...v0.22.0
 [0.21.0]: https://github.com/iTwin/iTwinUI/compare/v0.20.3...v0.21.0
 [0.20.3]: https://github.com/iTwin/iTwinUI/compare/v0.20.2...v0.20.3
 [0.20.2]: https://github.com/iTwin/iTwinUI/compare/v0.20.1...v0.20.2
