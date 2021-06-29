@@ -20,6 +20,10 @@
     flex-grow: 1;
     width: 100%;
 
+    .iui-sidenav-button {
+      padding-left: $iui-l;
+    }
+
     > .iui-top,
     > .iui-bottom {
       flex-grow: 1;

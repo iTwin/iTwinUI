@@ -28,7 +28,7 @@ $iui-after-border: 5px solid;
       @include iui-menu-icon;
     }
 
-    > .iui-content {
+    > .iui-label {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -100,8 +100,12 @@ $iui-after-border: 5px solid;
 
   &.iui-small {
     .iui-select-button,
-    .iui-menu .iui-menu-item {
+    .iui-menu-item {
       padding-left: $iui-component-padding-horizontal-small;
+    }
+    
+    .iui-icon + .iui-label {
+      margin-left: $iui-component-padding-horizontal-small;
     }
 
     .iui-select-button {
@@ -117,15 +121,19 @@ $iui-after-border: 5px solid;
 
   &.iui-large {
     .iui-select-button,
-    .iui-menu .iui-menu-item {
+    .iui-menu-item {
       padding-left: $iui-component-padding-horizontal-large;
+    }
+
+    .iui-icon + .iui-label {
+      margin-left: round($iui-component-padding-horizontal-large * 0.666);
     }
 
     .iui-select-button {
       padding-top: $iui-component-padding-vertical-large;
       padding-bottom: $iui-component-padding-vertical-large;
-      min-height: $iui-component-height-large;
       font-size: $iui-font-size-leading;
+      min-height: $iui-component-height-large;
     }
 
     .iui-menu-divider {

@@ -25,14 +25,6 @@
         flex-direction: column;
         gap: 11px;
       }
-
-      #demo-default-opened {
-        height: 420px;
-      }
-      
-      #demo-default-singular-opened {
-        height: 210px;
-      }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
@@ -53,7 +45,7 @@
               id="test-select-1"
               class="iui-select-button iui-placeholder"
             >
-              <span class="iui-content">Placeholder…</span>
+              <span class="iui-label">Placeholder…</span>
             </div>
           </div>
           <div class="iui-message">Help message.</div>
@@ -67,7 +59,7 @@
             tabindex="0"
             class="iui-select-button"
           >
-            <span class="iui-content"></span>
+            <span class="iui-label"></span>
           </div>
         </div>
         <div class="iui-message">Help message.</div>
@@ -90,7 +82,7 @@
                 d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
               />
             </svg>
-            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            <span class="iui-label">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
@@ -104,7 +96,7 @@
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div class="iui-select-button iui-placeholder iui-disabled">
-            <span class="iui-content">Placeholder…</span>
+            <span class="iui-label">Placeholder…</span>
           </div>
         </div>
         <div class="iui-message">Help message.</div>
@@ -114,7 +106,7 @@
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div class="iui-select-button iui-disabled">
-            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            <span class="iui-label">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
@@ -131,7 +123,7 @@
             tabindex="0"
             class="iui-select-button iui-placeholder"
           >
-            <span class="iui-content">Placeholder…</span>
+            <span class="iui-label">Placeholder…</span>
           </div>
         </div>
         <div class="iui-message">
@@ -153,7 +145,7 @@
             tabindex="0"
             class="iui-select-button iui-placeholder"
           >
-            <span class="iui-content">Placeholder…</span>
+            <span class="iui-label">Placeholder…</span>
           </div>
         </div>
         <div class="iui-message">
@@ -177,7 +169,7 @@
             tabindex="0"
             class="iui-select-button iui-placeholder"
           >
-            <span class="iui-content">Placeholder…</span>
+            <span class="iui-label">Placeholder…</span>
           </div>
         </div>
         <div class="iui-message">
@@ -196,138 +188,6 @@
 
     <br />
 
-    <section id="demo-default-opened">
-
-      <section id="demo-default-singular-opened">
-        <label class="iui-input-container">
-          <div class="iui-label">Select label</div>
-          <div class="iui-select">
-            <div
-              tabindex="0"
-              class="iui-select-button iui-placeholder iui-active"
-            >
-              <span class="iui-content">Placeholder…</span>
-            </div>
-            <ul
-              class="iui-menu"
-              style="position: absolute; top: 100%;"
-            >
-              <li
-                class="iui-menu-item"
-                tabindex="0"
-              ><span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></li>
-              <li
-                class="iui-menu-item"
-                tabindex="0"
-                id="test-select-2"
-              ><span class="iui-content">Option 2</span></li>
-              <li
-                class="iui-menu-item"
-                tabindex="0"
-              ><span class="iui-content">Option 3</span></li>
-            </ul>
-          </div>
-          <div class="iui-message">Help message.</div>
-        </label>
-      </section>
-
-      <label class="iui-input-container">
-        <div class="iui-label">Select label</div>
-        <div class="iui-select">
-          <div
-            tabindex="0"
-            class="iui-select-button iui-active"
-          >
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-icon"
-              aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
-            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</span>
-          </div>
-          <ul
-            class="iui-menu"
-            style="position: absolute; top: 100%;"
-          >
-            <li
-              class="iui-menu-item iui-active"
-              tabindex="0"
-            >
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                class="iui-icon"
-                aria-hidden="true"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-              <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                in culpa qui officia deserunt mollit anim id est laborum.</span>
-              <!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
-              <svg
-                class="iui-icon"
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-              </svg>
-            </li>
-            <li
-              class="iui-menu-item"
-              tabindex="0"
-            >
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                class="iui-icon"
-                aria-hidden="true"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-              <span class="iui-content">Option 2</span>
-            </li>
-            <li class="iui-menu-item iui-disabled">
-              <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-              <svg
-                class="iui-icon"
-                aria-hidden="true"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-                />
-              </svg>
-              <span class="iui-content">Option 3</span>
-            </li>
-          </ul>
-        </div>
-        <div class="iui-message">Help message.</div>
-      </label>
-
-    </section>
-
-    <br />
-
     <section id="demo-sizes">
 
       <div class="iui-select iui-small">
@@ -335,7 +195,17 @@
           tabindex="0"
           class="iui-select-button"
         >
-          <span class="iui-content">Small</span>
+          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+            />
+          </svg>
+          <span class="iui-label">Small</span>
         </div>
       </div>
 
@@ -344,7 +214,17 @@
           tabindex="0"
           class="iui-select-button"
         >
-          <span class="iui-content">Default</span>
+          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+            />
+          </svg>
+          <span class="iui-label">Default</span>
         </div>
       </div>
 
@@ -353,7 +233,17 @@
           tabindex="0"
           class="iui-select-button"
         >
-          <span class="iui-content">Large</span>
+          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
+            />
+          </svg>
+          <span class="iui-label">Large</span>
         </div>
       </div>
 

@@ -8,6 +8,16 @@
   border-color: transparent;
   padding: 0 $iui-s;
 
+  + .iui-menu .iui-menu-item {
+    padding: 0 $iui-s;
+
+    > .iui-icon + .iui-label,
+    > .iui-label + .iui-icon,
+    > .iui-icon + .iui-icon {
+      margin-left: $iui-s;
+    }
+  }
+
   // Sizes
   &.iui-small {
     padding: 0 $iui-xxs;
@@ -15,6 +25,16 @@
 
   &.iui-large {
     padding: 0 $iui-sm;
+
+    + .iui-menu .iui-menu-item {
+      padding: 0 $iui-sm;
+  
+      > .iui-icon + .iui-label,
+      > .iui-label + .iui-icon,
+      > .iui-icon + .iui-icon {
+        margin-left: $iui-sm;
+      }
+    }
   }
 
   // If icon is by itself, button takes 1:1 size ratio

@@ -25,7 +25,7 @@
   align-items: center;
   font-size: $iui-font-size;
   padding: 0 $iui-sm;
-  height: $iui-component-height;
+  min-height: $iui-component-height;
   cursor: pointer;
   box-sizing: border-box;
   line-height: normal;
@@ -33,7 +33,7 @@
     color: t(iui-text-color);
   }
 
-  .iui-content,
+  .iui-label,
   .iui-menu-label,
   .iui-menu-description {
     white-space: nowrap;
@@ -41,7 +41,7 @@
     text-overflow: ellipsis;
   }
 
-  .iui-content {
+  .iui-label {
     flex: 1 1 auto;
 
     + .iui-icon {
@@ -60,6 +60,16 @@
 
   > .iui-icon {
     @include iui-menu-icon;
+  }
+
+  > svg.iui-header-menu-icon {
+    margin: 0 $iui-xs;
+  }
+
+  > div.iui-header-menu-icon {
+    width: $iui-icons-large;
+    height: $iui-icons-large;
+    border-radius: $iui-border-radius;
   }
 
   &:hover:not(.iui-disabled):not(.iui-active) {
@@ -136,9 +146,13 @@
 @mixin iui-menu-icon {
   width: $iui-icons-default;
   height: $iui-icons-default;
-  margin-right: $iui-s;
+  //margin: 0 $iui-xs;
   flex: 0 0 auto;
   @include themed {
     fill: t(iui-icons-color-actionable);
+  }
+
+  + .iui-label {
+    margin-left: round($iui-component-padding-horizontal * 0.666);
   }
 }
