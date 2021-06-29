@@ -24,8 +24,8 @@ it('should render tags', () => {
 
   const tabContainer = container.querySelector('ul') as HTMLElement;
   expect(tabContainer).toBeTruthy();
-  expect(tabContainer.className).toEqual('iui-tabs-horizontal');
-  expect(tabContainer.querySelectorAll('a').length).toBe(3);
+  expect(tabContainer.className).toEqual('iui-tabs iui-default');
+  expect(tabContainer.querySelectorAll('button').length).toBe(3);
   screen.getByText('Test content');
 });
 
@@ -34,7 +34,7 @@ it('should render borderless tags', () => {
 
   const tabContainer = container.querySelector('ul') as HTMLElement;
   expect(tabContainer).toBeTruthy();
-  expect(tabContainer.className).toEqual('iui-tabs-borderless');
+  expect(tabContainer.className).toContain('iui-tabs iui-borderless');
 });
 
 it('should render pill tags', () => {
@@ -42,7 +42,7 @@ it('should render pill tags', () => {
 
   const tabContainer = container.querySelector('ul') as HTMLElement;
   expect(tabContainer).toBeTruthy();
-  expect(tabContainer.className).toEqual('iui-tabs-pill');
+  expect(tabContainer.className).toContain('iui-tabs iui-pill');
 });
 
 it('should render green tags', () => {
@@ -57,7 +57,7 @@ it('should call onTabSelected when switching tabs', () => {
   const onTabSelected = jest.fn();
   const { container } = renderComponent({ onTabSelected });
 
-  const tabs = container.querySelectorAll('a');
+  const tabs = container.querySelectorAll('button');
   expect(tabs.length).toBe(3);
   fireEvent.click(tabs[2]);
   expect(onTabSelected).toHaveBeenCalledWith(2);
@@ -66,21 +66,21 @@ it('should call onTabSelected when switching tabs', () => {
 it('should set active tab', () => {
   const { container } = renderComponent({ activeIndex: 2 });
 
-  const tabs = container.querySelectorAll('li');
+  const tabs = container.querySelectorAll('button');
   expect(tabs.length).toBe(3);
-  expect(tabs[0].className).not.toContain('iui-tabs-active');
-  expect(tabs[1].className).not.toContain('iui-tabs-active');
-  expect(tabs[2].className).toContain('iui-tabs-active');
+  expect(tabs[0].className).not.toContain('iui-tab iui-active');
+  expect(tabs[1].className).not.toContain('iui-tab iui-active');
+  expect(tabs[2].className).toContain('iui-tab iui-active');
 });
 
 it('should not fail with invalid active tab and set the first one', () => {
   const { container } = renderComponent({ activeIndex: 100 });
 
-  const tabs = container.querySelectorAll('li');
+  const tabs = container.querySelectorAll('button');
   expect(tabs.length).toBe(3);
-  expect(tabs[0].className).toContain('iui-tabs-active');
-  expect(tabs[1].className).not.toContain('iui-tabs-active');
-  expect(tabs[2].className).not.toContain('iui-tabs-active');
+  expect(tabs[0].className).toContain('iui-tab iui-active');
+  expect(tabs[1].className).not.toContain('iui-tab iui-active');
+  expect(tabs[2].className).not.toContain('iui-tab iui-active');
 });
 
 it('should add custom classnames', () => {
