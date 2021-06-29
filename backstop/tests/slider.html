@@ -1,0 +1,305 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+
+<!DOCTYPE html>
+<html id="theme">
+
+  <head>
+    <title>Slider | iTwin UI</title>
+    <link
+      rel="icon"
+      href="../assets/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script src="../assets/theme.js"></script>
+  </head>
+
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Slider</h1>
+    <hr />
+    <br>
+
+    <h2>Blue Progress Slider w/ticks</h2>
+    <div
+      class="iui-slider-component-container"
+      style="width: 100%;"
+    >
+      <span class="iui-left">0</span>
+      <div class="iui-slider-container iui-progress-slider">
+        <input
+          class="iui-slider"
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+        >
+        <div class="iui-slider-display-container">
+          <div class="iui-track"></div>
+          <div class="iui-slider-progress"></div>
+          <div class="iui-slider-thumb"></div>
+          <output class="iui-tooltip">
+            50
+          </output>
+        </div>
+        <div class="iui-slider-ticks">
+          <!-- You could generate the ticks based on your min, max & step values. -->
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
+      </div>
+
+      <span class="iui-right">100</span>
+    </div>
+
+    <br>
+    <br>
+
+    <h2>Green Progress Slider</h2>
+    <div
+      class="iui-slider-component-container"
+      style="width: 100%;"
+    >
+      <span class="iui-left">0</span>
+      <div class="iui-slider-container iui-progress-slider iui-positive">
+        <input
+          class="iui-slider"
+          type="range"
+          min="0"
+          max="100"
+        >
+        <div class="iui-slider-display-container">
+          <div class="iui-track"></div>
+          <div class="iui-slider-progress"></div>
+          <div class="iui-slider-thumb"></div>
+          <output class="iui-tooltip">
+            50
+          </output>
+        </div>
+      </div>
+      <span class="iui-right">100</span>
+    </div>
+
+    <br>
+    <br>
+
+    <h2>Blue Range Slider w/ticks</h2>
+    <div
+      class="iui-slider-component-container"
+      style="width: 100%;"
+    >
+      <span class="iui-left">0</span>
+      <div class="
+          iui-slider-container iui-range-slider">
+        <input
+          type="range"
+          class="iui-slider iui-slider-left"
+          min="0"
+          max="100"
+          value="20"
+        >
+        <input
+          type="range"
+          class="iui-slider iui-slider-right"
+          min="0"
+          max="100"
+          value="80"
+        >
+        <div class="iui-slider-display-container">
+          <output class="iui-tooltip iui-left">
+            20
+          </output>
+          <output class="iui-tooltip iui-right">
+            80
+          </output>
+          <div class="iui-track"></div>
+          <div class="iui-slider-range"></div>
+          <div class="iui-slider-thumb iui-left"></div>
+          <div class="iui-slider-thumb iui-right"></div>
+        </div>
+        <div class="iui-slider-ticks">
+          <!-- You could generate the ticks based on your min, max & step values. -->
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
+      </div>
+      <span class="iui-right">100</span>
+    </div>
+
+    <br>
+    <br>
+
+    <h2>Green Range Slider</h2>
+    <div
+      class="iui-slider-component-container"
+      style="width: 100%;"
+    >
+      <span class="iui-left">0</span>
+      <div class="
+          iui-slider-container iui-range-slider iui-positive">
+        <input
+          type="range"
+          class="iui-slider iui-slider-left"
+          min="0"
+          max="100"
+          value="20"
+        >
+        <input
+          type="range"
+          class="iui-slider iui-slider-right"
+          min="0"
+          max="100"
+          value="80"
+        >
+        <div class="iui-slider-display-container">
+          <output class="iui-tooltip iui-left">
+            20
+          </output>
+          <output class="iui-tooltip iui-right">
+            80
+          </output>
+          <div class="iui-track"></div>
+          <div class="iui-slider-range"></div>
+          <div class="iui-slider-thumb iui-left"></div>
+          <div class="iui-slider-thumb iui-right"></div>
+        </div>
+      </div>
+      <span class="iui-right">100</span>
+    </div>
+
+    <script>
+      const allRanges = document.querySelectorAll(".iui-slider-container.iui-range-slider");
+      allRanges.forEach(wrap => {
+        var inputLeft = wrap.querySelector(".iui-slider.iui-slider-left");
+        var inputRight = wrap.querySelector(".iui-slider.iui-slider-right");
+        var thumbLeft = wrap.querySelector(".iui-slider-thumb.iui-left");
+        var thumbRight = wrap.querySelector(".iui-slider-thumb.iui-right");
+        var range = wrap.querySelector(".iui-slider-range");
+
+        function setLeftValue() {
+          var _this = inputLeft,
+            min = parseInt(_this.min),
+            max = parseInt(_this.max);
+
+          _this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
+
+          var percent = ((_this.value - min) / (max - min)) * 100;
+          thumbLeft.style.left = `${percent}%`;
+          range.style.left = `${percent}%`;
+        }
+        setLeftValue();
+
+        function setRightValue() {
+          var _this = inputRight,
+            min = parseInt(_this.min),
+            max = parseInt(_this.max);
+
+          _this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
+
+          var percent = 100 - (((_this.value - min) / (max - min)) * 100);
+
+          thumbRight.style.right = `${percent}%`;
+          range.style.right = `${percent}%`;
+        }
+        setRightValue();
+
+        inputLeft.addEventListener("input", setLeftValue);
+        inputRight.addEventListener("input", setRightValue);
+
+        inputLeft.addEventListener("mouseover", function () {
+          thumbLeft.classList.add("hover");
+        });
+        inputLeft.addEventListener("mouseout", function () {
+          thumbLeft.classList.remove("hover");
+        });
+        inputLeft.addEventListener("mousedown", function () {
+          thumbLeft.classList.add("active");
+        });
+        inputLeft.addEventListener("mouseup", function () {
+          thumbLeft.classList.remove("active");
+        });
+
+        inputRight.addEventListener("mouseover", function () {
+          thumbRight.classList.add("hover");
+        });
+        inputRight.addEventListener("mouseout", function () {
+          thumbRight.classList.remove("hover");
+        });
+        inputRight.addEventListener("mousedown", function () {
+          thumbRight.classList.add("active");
+        });
+        inputRight.addEventListener("mouseup", function () {
+          thumbRight.classList.remove("active");
+        });
+      });
+
+      const allProgressSliders = document.querySelectorAll(".iui-slider-container.iui-progress-slider");
+      allProgressSliders.forEach(wrap => {
+        const range = wrap.querySelector(".iui-slider");
+        const tooltip = wrap.querySelector(".iui-tooltip");
+        const progressFill = wrap.querySelector(".iui-slider-progress")
+        const thumb = wrap.querySelector(".iui-slider-thumb")
+        range.addEventListener("input", () => {
+          setTooltip(range, tooltip, progressFill, thumb);
+        });
+        setTooltip(range, tooltip, progressFill, thumb);
+      });
+
+      const allRangeSliders = document.querySelectorAll(".iui-slider-container.iui-range-slider");
+      allRangeSliders.forEach(wrap => {
+        const leftRange = wrap.querySelector(".iui-slider.iui-slider-left");
+        const leftTooltip = wrap.querySelector(".iui-tooltip.iui-left");
+        leftRange.addEventListener("input", () => {
+          setTooltip(leftRange, leftTooltip);
+        });
+        setTooltip(leftRange, leftTooltip);
+
+        const rightRange = wrap.querySelector(".iui-slider.iui-slider-right");
+        const rightTooltip = wrap.querySelector(".iui-tooltip.iui-right");
+        rightRange.addEventListener("input", () => {
+          setTooltip(rightRange, rightTooltip);
+        });
+        setTooltip(rightRange, rightTooltip);
+      });
+
+      function setTooltip(range, tooltip, progressFill, thumb) {
+        const val = range.value;
+        const min = range.min ? range.min : 0;
+        const max = range.max ? range.max : 100;
+        const newVal = Number(((val - min) * 100) / (max - min));
+        tooltip.innerHTML = val;
+
+        tooltip.style.left = `${newVal}%`;
+        thumb && (thumb.style.left = `${newVal}%`);
+        progressFill && (progressFill.style.width = `${newVal}%`);
+      }
+    </script>
+  </body>
+</html>

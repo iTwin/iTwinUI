@@ -1,0 +1,260 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+$thumb-height: $iui-m;  // 16px
+$track-height: $iui-xs;  // 4px
+$tick-height: $iui-s+$iui-xxs;
+
+@mixin iui-slider-component-container {
+  display: inline-flex;
+
+  span.iui-left {
+    @include iui-font-family;
+    margin-right: $iui-s;
+    margin-top: $iui-xxs;
+  }
+
+  span.iui-right {
+    @include iui-font-family;
+    margin-left: $iui-s;
+    margin-top: $iui-xxs;
+  }
+}
+
+@mixin iui-slider-container {
+  display: flex;
+  position: relative;
+  z-index: 1; // above ticks
+  width: 100%;
+  pointer-events: none;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+
+  .iui-tooltip {
+    display: none;
+  }
+
+  &.iui-range-slider .iui-slider {
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &.iui-range-slider .iui-slider.iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-left {
+    @include themed {
+      background: t(iui-color-background-4);
+      border: 1px solid t(iui-color-foreground-body);
+    }
+  }
+
+  &.iui-range-slider .iui-slider.iui-slider-right:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-right {
+    @include themed {
+      background: t(iui-color-background-4);
+      border: 1px solid t(iui-color-foreground-body);
+    }
+  }
+
+  // hidden input[type=range] that is used to process events and hold value
+  .iui-slider {
+    appearance: none;
+    width: 100%;
+    border-radius: $track-height;
+    height: $track-height;
+    margin: 0;
+    margin-top: 12px;
+    pointer-events: all;
+    cursor: pointer;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+
+    &.iui-slider-right {  // right slider sits on top of left slider.
+      position: absolute;
+      top: 0;
+    }
+
+    // Firefox
+    &::-moz-range-track,
+    &::-moz-range-progress {
+      width: 100%;
+      height: $track-height;
+    }
+
+    &::-moz-range-thumb {
+      pointer-events: all;
+      cursor: pointer;
+      appearance: none;
+      margin: 0;
+      height: $thumb-height;
+      width: $thumb-height;
+      border-radius: 100%;
+      opacity: 0;
+    }
+
+    // Chromium and Safari
+    &::-webkit-slider-runnable-track {
+      width: 100%;
+      height: $thumb-height;
+    }
+
+    &::-webkit-slider-thumb {
+      pointer-events: all;
+      cursor: pointer;
+      appearance: none;
+      height: $thumb-height;
+      width: $thumb-height;
+      border-radius: 100%;
+    }
+  }
+
+  // container for components drawn over top of input control
+  .iui-slider-display-container {
+    top: 0;
+    position: absolute;
+    margin: 0 ($thumb-height * 0.5);
+    width: calc(100% - #{$thumb-height});
+
+    .iui-track {
+      pointer-events: none;  // let pointer event through to underlying range control
+      position: absolute;
+      width: 100%;
+      height: $track-height;
+      @include themed {
+        background-color: t(iui-color-background-4);
+      }
+      margin-top: 12px;
+    }
+
+    .iui-slider-thumb {
+      display: block;
+      position: absolute;
+      pointer-events: none;
+      height: $thumb-height;
+      width: $thumb-height;
+      border-radius: 100%;
+      transform: translate((-$thumb-height - 2) * 0.5, $track-height + 1); // 2 and 1 to adjust for border width
+      z-index: 2;
+      @include themed {
+        background: t(iui-color-background-1);
+        border: 1px solid t(iui-color-background-5);
+      }
+    }
+  }
+
+  &.iui-progress-slider {
+    .iui-slider:hover ~ .iui-slider-display-container .iui-slider-progress ~ .iui-tooltip {
+      position: absolute;
+      display: block;
+      margin-top: -$iui-xl;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .iui-slider-display-container {
+      .iui-slider-progress {
+        pointer-events: none;
+        display: block;
+        position: absolute;
+        height: $track-height;
+        border-radius: $track-height;
+        width: 10%;  // set via script
+        top: 12px;
+        z-index: 1;
+
+        @include themed {
+          background-color: t(iui-color-foreground-primary);
+        }
+      }
+    }
+
+    &.iui-positive .iui-slider-display-container .iui-slider-progress {
+      @include themed {
+        background-color: t(iui-color-foreground-positive);
+      }
+    }
+  }
+
+  &.iui-range-slider {
+    .iui-slider-left,
+    .iui-slider-right {
+      pointer-events: none;
+    }
+
+    .iui-slider-display-container {
+      .iui-slider-range {
+        position: absolute;
+        height: $track-height;
+        z-index: 1;
+        left: 25%;
+        right: 25%;
+        bottom: 0;
+        top: 12px;
+        pointer-events: none;
+        @include themed {
+          background-color: t(iui-color-foreground-primary);
+        }
+      }
+
+      .iui-slider-thumb {
+        &.iui-left {
+          transform: translate((-$thumb-height - 2) * 0.5, $track-height + 1); // 2 and 1 to adjust for border width
+        }
+
+        &.iui-right {
+          transform: translate(($thumb-height + 2) * 0.5, $track-height + 1); // 2 and 1 to adjust for border width
+        }
+      }
+    }
+
+    &.iui-positive .iui-slider-display-container .iui-slider-range {
+      @include themed {
+        background-color: t(iui-color-foreground-positive);
+      }
+    }
+
+    .iui-slider-left:hover ~ .iui-slider-display-container .iui-tooltip.iui-left {
+      position: absolute;
+      display: block;
+      margin-top: -$iui-xl;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .iui-slider-right:hover ~ .iui-slider-display-container .iui-tooltip.iui-right {
+      position: absolute;
+      display: block;
+      margin-top: -$iui-xl;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@mixin iui-slider-ticks {
+  position: relative;
+  padding-top: 16px;
+  width: calc(100% - #{$thumb-height});
+  display: flex;
+  pointer-events: none;
+  justify-content: space-between;
+  margin-left: $thumb-height*0.5;
+  margin-right: $thumb-height*0.5;
+
+  .iui-slider-tick {
+    position: relative;
+    display: flex;
+    pointer-events: none;
+    justify-content: center;
+    width: 1px;
+    @include themed {
+      background-color: t(iui-color-background-4);
+    }
+
+    height: $tick-height;
+    line-height: $tick-height * 4.25;
+    margin-bottom: $tick-height * 2;
+  }
+}
+
