@@ -18,13 +18,25 @@
   width: 100%;
   margin: 0;
   padding: 0;
+
+  &.iui-header-menu {
+    svg.iui-header-menu-icon {
+      margin: 0 $iui-xs;
+    }
+
+    div.iui-header-menu-icon {
+      width: $iui-icons-large;
+      height: $iui-icons-large;
+      border-radius: $iui-border-radius;
+    }
+  }
 }
 
 @mixin iui-menu-item {
   display: flex;
   align-items: center;
   font-size: $iui-font-size;
-  padding: 0 $iui-sm;
+  padding: 0 $iui-component-padding-horizontal;
   height: $iui-component-height;
   cursor: pointer;
   box-sizing: border-box;
@@ -33,7 +45,7 @@
     color: t(iui-text-color);
   }
 
-  .iui-content,
+  .iui-label,
   .iui-menu-label,
   .iui-menu-description {
     white-space: nowrap;
@@ -41,7 +53,7 @@
     text-overflow: ellipsis;
   }
 
-  .iui-content {
+  .iui-label {
     flex: 1 1 auto;
 
     + .iui-icon {
@@ -136,9 +148,12 @@
 @mixin iui-menu-icon {
   width: $iui-icons-default;
   height: $iui-icons-default;
-  margin-right: $iui-s;
   flex: 0 0 auto;
   @include themed {
     fill: t(iui-icons-color-actionable);
+  }
+
+  + .iui-label {
+    margin-left: $iui-s;
   }
 }

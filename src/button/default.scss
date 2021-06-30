@@ -43,6 +43,15 @@
     &.iui-large {
       padding-right: $iui-sm;
     }
+
+    // Flipping the expand arrow
+    .iui-icon:last-child {
+      transition: transform $iui-speed-fast ease;
+    }
+
+    &.iui-expanded .iui-icon:last-child {
+      transform: scaleY(-1);
+    }
   }
 
   &.iui-active:not(.iui-high-visibility):not(.iui-cta) {

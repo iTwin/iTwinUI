@@ -68,7 +68,7 @@ $iui-after-border: 5px solid;
       }
     }
 
-    &.iui-active {
+    &.iui-expanded {
       &::after {
         border-top: none;
         @include themed {
@@ -98,38 +98,16 @@ $iui-after-border: 5px solid;
     }
   }
 
-  &.iui-small {
-    .iui-select-button,
-    .iui-menu .iui-menu-item {
-      padding-left: $iui-component-padding-horizontal-small;
-    }
-
-    .iui-select-button {
-      padding-top: $iui-component-padding-vertical-small;
-      padding-bottom: $iui-component-padding-vertical-small;
-      min-height: $iui-component-height-small;
-    }
-
-    .iui-menu-divider {
-      width: calc(100% - #{$iui-sm});
-    }
+  &.iui-small .iui-select-button {
+    padding-top: $iui-component-padding-vertical-small;
+    padding-bottom: $iui-component-padding-vertical-small;
+    min-height: $iui-component-height-small;
   }
 
-  &.iui-large {
-    .iui-select-button,
-    .iui-menu .iui-menu-item {
-      padding-left: $iui-component-padding-horizontal-large;
-    }
-
-    .iui-select-button {
-      padding-top: $iui-component-padding-vertical-large;
-      padding-bottom: $iui-component-padding-vertical-large;
-      min-height: $iui-component-height-large;
-      font-size: $iui-font-size-leading;
-    }
-
-    .iui-menu-divider {
-      width: calc(100% - #{$iui-xl});
-    }
+  &.iui-large .iui-select-button {
+    padding-top: $iui-component-padding-vertical-large;
+    padding-bottom: $iui-component-padding-vertical-large;
+    min-height: $iui-component-height-large;
+    font-size: $iui-font-size-leading;
   }
 }

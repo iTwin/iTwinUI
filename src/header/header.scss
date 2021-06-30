@@ -219,6 +219,10 @@
 
     > .iui-icon {
       flex-shrink: 0;
+
+      &:not(.iui-header-button-icon) {
+        transition: transform $iui-speed-fast ease;
+      }
     }
 
     svg.iui-header-button-icon {
@@ -253,6 +257,10 @@
           box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
         }
       }
+    }
+
+    &.iui-expanded > .iui-icon:not(.iui-header-button-icon) {
+      transform: scaleY(-1);
     }
   }
 }
