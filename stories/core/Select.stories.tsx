@@ -141,6 +141,7 @@ export const WithSelectedValue: Story<SelectProps<number>> = (args) => {
         value={value}
         onChange={setValue}
         placeholder={placeholder}
+        popoverProps={{ visible: true }}
         {...rest}
       />
     </div>
@@ -155,6 +156,7 @@ WithSelectedValue.args = {
     { value: 3, label: 'Item #3' },
   ],
   value: 2,
+  popoverProps: { visible: true },
 };
 
 export const Disabled: Story<SelectProps<number>> & CreeveyStory = Basic.bind(

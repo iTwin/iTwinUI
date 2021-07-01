@@ -96,10 +96,7 @@ export type SelectProps<T> = {
    * Props to customize {@link Popover} behavior.
    * @see [tippy.js props](https://atomiks.github.io/tippyjs/v6/all-props/)
    */
-  popoverProps?: Omit<
-    PopoverProps,
-    'onShow' | 'onHide' | 'visible' | 'disabled'
-  >;
+  popoverProps?: Omit<PopoverProps, 'onShow' | 'onHide' | 'disabled'>;
 } & Pick<PopoverProps, 'onShow' | 'onHide'> &
   CommonProps;
 
@@ -175,7 +172,11 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   useTheme();
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(popoverProps?.visible ?? false);
+  React.useEffect(() => {
+    setIsOpen((open) => popoverProps?.visible ?? open);
+  }, [popoverProps]);
+
   const [minWidth, setMinWidth] = React.useState(0);
   const toggle = () => setIsOpen((open) => !open);
 
@@ -279,9 +280,9 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         role='listbox'
         onShow={onShowHandler}
         onHide={onHideHandler}
-        visible={isOpen}
         disabled={disabled}
         {...popoverProps}
+        visible={isOpen}
       >
         <div
           ref={selectRef}

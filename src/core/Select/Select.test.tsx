@@ -188,6 +188,30 @@ it('should open menu on click', () => {
   assertMenu(menu);
 });
 
+it('should respect visible prop', () => {
+  const options = [...new Array(3)].map((_, index) => ({
+    label: `Test${index}`,
+    value: index,
+  }));
+
+  const { container, rerender } = render(
+    <Select options={options} popoverProps={{ visible: true }} />,
+  );
+
+  const select = container.querySelector('.iui-select') as HTMLElement;
+  expect(select).toBeTruthy();
+
+  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
+  expect(tippy.style.visibility).toEqual('visible');
+  assertMenu(document.querySelector('.iui-menu') as HTMLUListElement);
+
+  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
+  expect(tippy.style.visibility).toEqual('hidden');
+
+  rerender(<Select options={options} popoverProps={{ visible: true }} />);
+  expect(tippy.style.visibility).toEqual('visible');
+});
+
 it.each(['Enter', ' ', 'Spacebar'])(
   'should open menu on "%s" key press',
   (key) => {
