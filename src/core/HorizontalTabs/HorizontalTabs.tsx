@@ -6,6 +6,7 @@ import cx from 'classnames';
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/tabs.css';
+import { useResizeObserver } from '../utils/hooks/useResizeObserver';
 
 export type HorizontalTabsProps = {
   /**
@@ -81,6 +82,8 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
 
+  const tablistSize = useResizeObserver(tablistRef);
+
   const [currentIndex, setCurrentIndex] = React.useState(getValidIndex());
   const [stripeStyle, setStripeStyle] = React.useState<React.CSSProperties>({});
 
@@ -88,14 +91,17 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
     if (activeIndex != null && currentIndex !== activeIndex) {
       setCurrentIndex(getValidIndex());
     }
-    const activeTab = tablistRef.current?.children[currentIndex] as HTMLElement;
+  }, [activeIndex, currentIndex, getValidIndex]);
+
+  React.useLayoutEffect(() => {
     if (type !== 'default') {
+      const activeTab = tablistRef.current?.children[currentIndex];
       setStripeStyle({
         width: activeTab?.getBoundingClientRect().width,
-        left: activeTab?.offsetLeft,
+        left: (activeTab as HTMLElement)?.offsetLeft,
       });
     }
-  }, [activeIndex, currentIndex, getValidIndex, type]);
+  }, [currentIndex, type, tablistSize]);
 
   const onTabClick = (index: number) => {
     if (onTabSelected) {
