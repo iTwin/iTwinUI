@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../icon/index';
 
 $thumb-height: $iui-m;  // 16px
 $track-height: $iui-xs;  // 4px
@@ -9,16 +10,25 @@ $tick-height: $iui-s+$iui-xxs;
 @mixin iui-slider-component-container {
   display: inline-flex;
 
-  span.iui-left {
+  span.iui-left,
+  span.iui-right {
     @include iui-font-family;
-    margin-right: $iui-s;
+    user-select: all;
     margin-top: $iui-xxs;
+
+    .iui-icon {
+      @include iui-icons-default;
+      margin-top: 4px;
+    }
+  }
+  
+  span.iui-left {
+    margin-right: $iui-s;
+    text-align: right;
   }
 
   span.iui-right {
-    @include iui-font-family;
     margin-left: $iui-s;
-    margin-top: $iui-xxs;
   }
 }
 
@@ -28,32 +38,11 @@ $tick-height: $iui-s+$iui-xxs;
   z-index: 1; // above ticks
   width: 100%;
   pointer-events: none;
-  width: 100%;
   flex-direction: column;
   justify-content: center;
 
   .iui-tooltip {
     display: none;
-  }
-
-  &.iui-range-slider .iui-slider {
-    &:focus-visible {
-      outline: none;
-    }
-  }
-
-  &.iui-range-slider .iui-slider.iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-left {
-    @include themed {
-      background: t(iui-color-background-4);
-      border: 1px solid t(iui-color-foreground-body);
-    }
-  }
-
-  &.iui-range-slider .iui-slider.iui-slider-right:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-right {
-    @include themed {
-      background: t(iui-color-background-4);
-      border: 1px solid t(iui-color-foreground-body);
-    }
   }
 
   // hidden input[type=range] that is used to process events and hold value
@@ -63,19 +52,23 @@ $tick-height: $iui-s+$iui-xxs;
     border-radius: $track-height;
     height: $track-height;
     margin: 0;
-    margin-top: 12px;
+    margin-top: $iui-baseline;
     pointer-events: all;
     cursor: pointer;
     background-color: transparent;
     position: absolute;
     top: 0;
 
+    &:active {
+      cursor: grabbing;
+    }
+
     &.iui-slider-right {  // right slider sits on top of left slider.
       position: absolute;
       top: 0;
     }
 
-    // Firefox
+    // #region Firefox
     &::-moz-range-track,
     &::-moz-range-progress {
       width: 100%;
@@ -84,16 +77,21 @@ $tick-height: $iui-s+$iui-xxs;
 
     &::-moz-range-thumb {
       pointer-events: all;
-      cursor: pointer;
+      cursor: grab;
       appearance: none;
       margin: 0;
       height: $thumb-height;
       width: $thumb-height;
       border-radius: 100%;
       opacity: 0;
-    }
 
-    // Chromium and Safari
+      &:active {
+        cursor: grabbing;
+      }
+    }
+    // #endregion
+
+    // #region Chromium and Safari
     &::-webkit-slider-runnable-track {
       width: 100%;
       height: $thumb-height;
@@ -101,13 +99,18 @@ $tick-height: $iui-s+$iui-xxs;
 
     &::-webkit-slider-thumb {
       pointer-events: all;
-      cursor: pointer;
+      cursor: grab;
       appearance: none;
       height: $thumb-height;
       width: $thumb-height;
       border-radius: 100%;
+
+      &:active {
+        cursor: grabbing;
+      }
     }
   }
+  // #endregion 
 
   // container for components drawn over top of input control
   .iui-slider-display-container {
@@ -121,10 +124,10 @@ $tick-height: $iui-s+$iui-xxs;
       position: absolute;
       width: 100%;
       height: $track-height;
+      margin-top: 12px;
       @include themed {
         background-color: t(iui-color-background-4);
       }
-      margin-top: 12px;
     }
 
     .iui-slider-thumb {
@@ -136,6 +139,7 @@ $tick-height: $iui-s+$iui-xxs;
       border-radius: 100%;
       transform: translate((-$thumb-height - 2) * 0.5, $track-height + 1); // 2 and 1 to adjust for border width
       z-index: 2;
+      transition: border $iui-speed-fast ease;
       @include themed {
         background: t(iui-color-background-1);
         border: 1px solid t(iui-color-background-5);
@@ -144,12 +148,15 @@ $tick-height: $iui-s+$iui-xxs;
   }
 
   &.iui-progress-slider {
-    .iui-slider:hover ~ .iui-slider-display-container .iui-slider-progress ~ .iui-tooltip {
-      position: absolute;
-      display: block;
-      margin-top: -$iui-xl;
-      left: 50%;
-      transform: translateX(-50%);
+    .iui-slider:hover,
+    .iui-slider:focus-visible {
+      ~ .iui-slider-display-container .iui-slider-progress ~ .iui-tooltip {
+        position: absolute;
+        display: block;
+        margin-top: -$iui-xl;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
 
     .iui-slider-display-container {
@@ -162,16 +169,9 @@ $tick-height: $iui-s+$iui-xxs;
         width: 10%;  // set via script
         top: 12px;
         z-index: 1;
-
         @include themed {
           background-color: t(iui-color-foreground-primary);
         }
-      }
-    }
-
-    &.iui-positive .iui-slider-display-container .iui-slider-progress {
-      @include themed {
-        background-color: t(iui-color-foreground-positive);
       }
     }
   }
@@ -208,26 +208,67 @@ $tick-height: $iui-s+$iui-xxs;
       }
     }
 
-    &.iui-positive .iui-slider-display-container .iui-slider-range {
+    .iui-slider-left:hover ~ .iui-slider-display-container .iui-tooltip.iui-left,
+    .iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-tooltip.iui-left,
+    .iui-slider-right:hover ~ .iui-slider-display-container .iui-tooltip.iui-right,
+    .iui-slider-right:focus-visible ~ .iui-slider-display-container .iui-tooltip.iui-right {
+      position: absolute;
+      display: block;
+      margin-top: -$iui-xl;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  //Focus for slider
+  &:not(.iui-range-slider) .iui-slider:focus-visible {
+    outline: none;
+  
+    + .iui-slider-display-container .iui-slider-thumb {
+      @include themed {
+        border: 2px solid t(iui-color-foreground-primary);
+      }
+    }
+  }
+    
+  //Focus for range
+  &.iui-range-slider .iui-slider {
+    &:focus-visible {
+      outline: none;
+    }
+  
+    &.iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-left,
+    &.iui-slider-right:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-right {
+      @include themed {
+        border: 2px solid t(iui-color-foreground-primary);
+      }
+    }
+  }
+
+  // Theme
+  &.iui-positive {
+    .iui-slider-display-container .iui-slider-progress,
+    .iui-slider-display-container .iui-slider-range {
       @include themed {
         background-color: t(iui-color-foreground-positive);
       }
     }
 
-    .iui-slider-left:hover ~ .iui-slider-display-container .iui-tooltip.iui-left {
-      position: absolute;
-      display: block;
-      margin-top: -$iui-xl;
-      left: 50%;
-      transform: translateX(-50%);
+    //Focus for slider
+    &:not(.iui-range-slider) .iui-slider:focus-visible + .iui-slider-display-container .iui-slider-thumb {
+      @include themed {
+        border-color: t(iui-color-foreground-positive);
+      }
     }
-
-    .iui-slider-right:hover ~ .iui-slider-display-container .iui-tooltip.iui-right {
-      position: absolute;
-      display: block;
-      margin-top: -$iui-xl;
-      left: 50%;
-      transform: translateX(-50%);
+    
+    //Focus for range
+    &.iui-range-slider .iui-slider {
+      &.iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-left,
+      &.iui-slider-right:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-right {
+        @include themed {
+          border-color: t(iui-color-foreground-positive);
+        }
+      }
     }
   }
 }
@@ -241,6 +282,7 @@ $tick-height: $iui-s+$iui-xxs;
   justify-content: space-between;
   margin-left: $thumb-height*0.5;
   margin-right: $thumb-height*0.5;
+  user-select: none;
 
   .iui-slider-tick {
     position: relative;
@@ -248,13 +290,12 @@ $tick-height: $iui-s+$iui-xxs;
     pointer-events: none;
     justify-content: center;
     width: 1px;
-    @include themed {
-      background-color: t(iui-color-background-4);
-    }
-
     height: $tick-height;
     line-height: $tick-height * 4.25;
     margin-bottom: $tick-height * 2;
+    @include themed {
+      background-color: t(iui-color-background-4);
+    }
   }
 }
 
