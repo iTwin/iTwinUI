@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.22.1]
+
+`2021-07-01`
+
+## Fixes
+
+- **Added back svg selector to tab icons** for backwards compatibility.
+
 ## [0.22.0]
 
 `2021-06-28`
