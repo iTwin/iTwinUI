@@ -4,100 +4,161 @@
 
 @mixin iui-tabs {
   @include iui-reset;
-
-  @include iui-font-family;
+  position: relative;
   display: flex;
+  align-items: center;
   list-style: none;
-  padding: 0;
-  margin: round($iui-baseline/2) 0 0 0;
   user-select: none;
 
-  > li {
-    display: inline-block;
+  .iui-tab {
+    @include iui-reset;
+    @include iui-font-family;
     position: relative;
-    padding: 0;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: $iui-font-size;
+    cursor: pointer;
+    transition: background-color $iui-speed-fast ease-out;
+    @include themed {
+      color: t(iui-text-color);
+    }
 
-    > a {
-      display: block;
-      position: relative;
-      padding: ($iui-baseline * 0.5) $iui-m;
-      box-sizing: border-box;
-      font-size: $iui-font-size;
-      line-height: $iui-line-height;
-      cursor: pointer;
-
+    &.iui-active {
       @include themed {
-        color: t(iui-text-color);
-      }
-      transition: color $iui-speed-fast ease-out,
-        background-color $iui-speed-fast ease-out;
-
-      &::after {
-        content: '';
-        position: absolute;
-        z-index: 1;
-        transition: all $iui-speed-fast;
-        height: $iui-xxs;
-        opacity: 0;
-
-        @include themed {
-          background-color: t(iui-color-foreground-primary);
-        }
+        color: t(iui-color-foreground-primary);
       }
 
-      &:hover {
-        text-decoration: none;
-
+      .iui-tab-icon {
         @include themed {
-          color: t(iui-color-foreground-primary);
           fill: t(iui-icons-color-primary);
         }
-        transition: color $iui-speed-fast ease-out,
-          background-color $iui-speed-fast ease-out;
       }
     }
 
-    &.iui-tabs-active {
-      > a {
-        font-weight: $iui-font-weight-bold;
-        cursor: default;
+    &[disabled] {
+      cursor: not-allowed;
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
 
-        &:hover {
-          @include themed {
-            color: t(iui-text-color);
-          }
+      .iui-tab-icon {
+        @include themed {
+          fill: t(iui-icons-color-actionable-disabled);
         }
+      }
+    }
 
-        &::after {
-          @include themed {
-            opacity: t(iui-opacity-1);
-          }
+    &:focus {
+      outline: 1px solid t(iui-color-foreground-primary);
+      outline-offset: -1px;
+    }
+  
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+  }
+
+  .iui-tab-icon {
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    transition: fill $iui-speed-fast ease-out;
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
+
+    + .iui-tab-label {
+      margin-left: $iui-s;
+    }
+  }
+
+  .iui-tab-label {
+    text-align: left;
+  }
+
+  .iui-tab-description {
+    display: none;
+    font-size: $iui-font-size-small;
+    @include themed {
+      opacity: t(iui-opacity-3);
+    }
+  }
+
+  &.iui-green .iui-tab {
+    &:focus {
+      outline-color: t(iui-color-foreground-positive);
+    }
+
+    &.iui-active {
+      @include themed {
+        color: t(iui-color-foreground-positive);
+      }
+
+      .iui-tab-icon {
+        @include themed {
+          fill: t(iui-icons-color-positive);
         }
       }
     }
   }
 
-  &.iui-green > li {
-    > a {
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-          fill: t(iui-icons-color-positive);
-        }
-      }
+  ~ .iui-tabs-content {
+    padding-top: $iui-baseline;
+    padding-bottom: $iui-baseline;
+    box-sizing: border-box;
+  }
+}
 
-      &::after {
-        @include themed {
-          background-color: t(iui-color-foreground-positive);
-        }
+@mixin iui-tab-not-animated {
+  .iui-tab {
+    transition: box-shadow $iui-speed-fast ease-out;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 0;
+      transition: height $iui-speed-fast ease-out;
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
       }
     }
 
-    &.iui-tabs-active > a:hover {
-      @include themed {
-        color: t(iui-text-color);
-      }
+    &.iui-active::after {
+      height: $iui-xxs;
+    }
+  }
+
+  &.iui-green .iui-tab::after {
+    @include themed {
+      background-color: t(iui-color-foreground-positive);
+    }
+  }
+
+  .iui-tab-stripe {
+    display: none;
+  }
+}
+
+@mixin iui-tab-animated {
+  ~ .iui-tab-stripe {
+    height: $iui-xxs;
+    position: absolute;
+    top: $iui-component-height - $iui-xxs;
+    transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
+    @include themed {
+      background-color: t(iui-color-foreground-primary);
+    }
+  }
+
+  &.iui-large ~ .iui-tab-stripe {
+    top: $iui-component-height-large - $iui-xxs;
+  }
+
+  &.iui-green ~ .iui-tab-stripe {
+    @include themed {
+      background-color: t(iui-color-foreground-positive);
     }
   }
 }

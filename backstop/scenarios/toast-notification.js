@@ -19,6 +19,10 @@ module.exports = [
     actions: [hover('#demo-negative a')],
     selectors: ['#demo-negative'],
   }),
+  scenario('State hover link in warning', {
+    actions: [hover('#demo-warning a')],
+    selectors: ['#demo-warning'],
+  }),
 
   // Focus states
   scenario('State focus link in informational', {
@@ -32,5 +36,9 @@ module.exports = [
   scenario('State focus link in negative', {
     actions: [focus('#demo-negative a')],
     selectors: ['#demo-negative'],
+  }),
+  scenario('State focus link in warning', {
+    actions: [focus('#demo-warning a')],
+    selectors: ['#demo-warning'],
   }),
 ];
