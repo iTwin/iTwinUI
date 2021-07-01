@@ -28,7 +28,8 @@
         color: t(iui-color-foreground-primary);
       }
 
-      .iui-tab-icon {
+      .iui-tab-icon,
+      > svg {
         @include themed {
           fill: t(iui-icons-color-primary);
         }
@@ -41,7 +42,8 @@
         color: t(iui-text-color-muted);
       }
 
-      .iui-tab-icon {
+      .iui-tab-icon,
+      > svg {
         @include themed {
           fill: t(iui-icons-color-actionable-disabled);
         }
@@ -58,7 +60,8 @@
     }
   }
 
-  .iui-tab-icon {
+  .iui-tab-icon,
+  .iui-tab > svg { // svg selector should be removed in the future
     width: $iui-icons-default;
     height: $iui-icons-default;
     transition: fill $iui-speed-fast ease-out;
@@ -93,7 +96,8 @@
         color: t(iui-color-foreground-positive);
       }
 
-      .iui-tab-icon {
+      .iui-tab-icon,
+      > svg {
         @include themed {
           fill: t(iui-icons-color-positive);
         }
