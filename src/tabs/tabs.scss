@@ -4,6 +4,7 @@
 
 @mixin iui-tabs {
   @include iui-reset;
+  @include iui-font-family;
   position: relative;
   display: flex;
   align-items: center;
@@ -18,7 +19,9 @@
     align-items: center;
     font-size: $iui-font-size;
     cursor: pointer;
-    transition: background-color $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background-color $iui-speed-fast ease-out;
+    }
     @include themed {
       color: t(iui-text-color);
     }
@@ -64,7 +67,9 @@
   .iui-tab > svg { // svg selector should be removed in the future
     width: $iui-icons-default;
     height: $iui-icons-default;
-    transition: fill $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: fill $iui-speed-fast ease-out;
+    }
     @include themed {
       fill: t(iui-icons-color-actionable);
     }
@@ -114,7 +119,9 @@
 
 @mixin iui-tab-not-animated {
   .iui-tab {
-    transition: box-shadow $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: box-shadow $iui-speed-fast ease-out;
+    }
     
     &::after {
       content: '';
@@ -123,7 +130,9 @@
       bottom: 0;
       width: 100%;
       height: 0;
-      transition: height $iui-speed-fast ease-out;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: height $iui-speed-fast ease-out;
+      }
       @include themed {
         background-color: t(iui-color-foreground-primary);
       }
@@ -150,7 +159,9 @@
     height: $iui-xxs;
     position: absolute;
     top: $iui-component-height - $iui-xxs;
-    transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
+    }
     @include themed {
       background-color: t(iui-color-foreground-primary);
     }

@@ -163,8 +163,10 @@
   }
 
   &.iui-animated {
-    .iui-user-icon {
-      transition: margin-left $iui-speed ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      .iui-user-icon {
+        transition: margin-left $iui-speed ease-out;
+      }
     }
 
     &:hover {

@@ -66,7 +66,9 @@
         height: 100%;
         width: $iui-xxs;
         margin: 0 auto;
-        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+        }
         @include themed {
           background-color: t(iui-color-background-5);
         }
@@ -134,7 +136,9 @@
     display: flex;
     flex-grow: 1;
     border: solid 1px transparent;
-    transition: border $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: border $iui-speed-fast ease-out;
+    }
     @include themed {
       border-bottom-color: t(iui-color-background-4);
     }
@@ -162,8 +166,10 @@
       visibility: visible;
     }
 
-    .iui-row-expander > .iui-icon {
-      transition: transform $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      .iui-row-expander > .iui-icon {
+        transition: transform $iui-speed-fast ease-out;
+      }
     }
 
     &.iui-row-expanded {
@@ -195,12 +201,16 @@
 
       &.iui-enter-active {
         opacity: 1;
-        transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+        }
       }
 
       &.iui-exit-active {
         opacity: 0;
-        transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+        }
       }
     }    
 
