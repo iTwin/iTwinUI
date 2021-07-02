@@ -4,31 +4,21 @@
 @import './tabs';
 
 @mixin iui-tabs-borderless {
-  @include iui-tabs;
-  margin: $iui-baseline/2 0;
+  .iui-tab {
+    height: $iui-component-height;
+    padding: 0 ($iui-component-padding-horizontal * 2);
+    background-color: transparent;
 
-  > li {
-    > a {
-      line-height: $iui-line-height;
-      padding: $iui-line-height $iui-l;
-
-      &:hover {
-        @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          );
-        }
-      }
-
-      &::after {
-        bottom: $iui-xxs;
-        left: $iui-xxs;
-        right: $iui-xxs;
+    &:hover {
+      @include themed {
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6)
+        );
       }
     }
 
-    &.iui-tabs-active > a {
+    &.iui-active {
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
@@ -38,15 +28,36 @@
     }
   }
 
-  &.iui-green > li {
-    > a:hover,
-    &.iui-tabs-active > a {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-positive-rgb),
-          t(iui-opacity-6)
-        );
-      }
+  &.iui-green .iui-active,
+  &.iui-green .iui-tab:hover {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-positive-rgb),
+        t(iui-opacity-6)
+      );
+    }
+  }
+
+  &.iui-large {
+    .iui-tab {
+      height: $iui-component-height-large;
+    }
+
+    .iui-tab-description {
+      display: block;
+    }
+  }
+
+  .iui-tab[disabled]:hover {
+    @include themed {
+      background-color: transparent;
+    }
+  }
+
+  ~ .iui-tabs-content {
+    margin-top: -$iui-xxs;
+    @include themed {
+      border-top: $iui-xxs solid t(iui-color-background-4);
     }
   }
 }

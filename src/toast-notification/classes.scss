@@ -72,14 +72,18 @@
   @include iui-toast;
 
   &.iui-informational {
-    @include iui-toast-informational;
+    @include iui-toast-category($category: primary);
   }
   
   &.iui-positive {
-    @include iui-toast-positive;
+    @include iui-toast-category($category: positive);
   }
 
   &.iui-negative {
-    @include iui-toast-negative;
+    @include iui-toast-category($category: negative);
+  }
+
+  &.iui-warning {
+    @include iui-toast-category($category: warning);
   }
 }

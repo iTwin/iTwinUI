@@ -21,15 +21,18 @@ $iui-after-border: 5px solid;
     align-items: center;
     min-height: $iui-component-height;
     padding-right: $iui-xl;
-    white-space: nowrap;
     user-select: none;
     position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
     transition: border-color $iui-speed-fast ease-out;
 
     > .iui-icon {
       @include iui-menu-icon;
+    }
+
+    > .iui-content {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     &.iui-placeholder {

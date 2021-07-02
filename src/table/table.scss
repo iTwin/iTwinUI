@@ -60,8 +60,8 @@
       transform: translateX(50%);
       touch-action: none;
       cursor: ew-resize;
-      z-index: 100;
-      display: none;
+      z-index: 1;
+      opacity: 0;
 
       > .iui-resizer-bar {
         height: 100%;
@@ -82,7 +82,7 @@
     }
 
     &:hover > .iui-resizer {
-      display: block;
+      opacity: 1;
     }
 
     &:hover,
@@ -135,6 +135,7 @@
     display: flex;
     flex-grow: 1;
     border: solid 1px transparent;
+    transition: border $iui-speed-fast ease-out;
     @include themed {
       border-bottom-color: t(iui-color-background-4);
     }
@@ -162,7 +163,12 @@
       visibility: visible;
     }
 
+    .iui-row-expander > .iui-icon {
+      transition: transform $iui-speed-fast ease-out;
+    }
+
     &.iui-row-expanded {
+      overflow: hidden;
       @include themed {
         border-left-color: t(iui-color-background-4);
         border-right-color: t(iui-color-background-4);
@@ -180,6 +186,24 @@
         }
       }
     }
+
+    &.iui-expanded-content {
+      overflow: hidden;
+
+      &.iui-enter {
+        opacity: 0;
+      }
+
+      &.iui-enter-active {
+        opacity: 1;
+        transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+      }
+
+      &.iui-exit-active {
+        opacity: 0;
+        transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+      }
+    }    
 
     // #region Selection
     &:not(.iui-selected) + .iui-selected,
@@ -216,6 +240,10 @@
       + .iui-expanded-content {
         @include themed {
           border-color: transparent t(iui-color-foreground-primary);
+
+          &:last-child {
+            border-bottom-color: t(iui-color-foreground-primary);
+          }
         }
       }
     }

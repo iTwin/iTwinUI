@@ -5,99 +5,44 @@
 @import './tabs';
 
 @mixin iui-tabs-pill {
-  @include iui-tabs;
-  display: flex;
-  flex-flow: row;
   justify-content: space-evenly;
-  margin: $iui-baseline/2 0;
 
   > li {
-    margin: 0;
-    text-align: center;
     flex: 1 1 0;
 
-    > a {
-      line-height: $iui-line-height;
-      padding: ($iui-line-height * 0.5) 0;
-
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
-
-      > svg {
-        @include themed {
-          fill: t(iui-icons-color-actionable);
-        }
-        transition: fill $iui-speed-fast ease-out;
-        width: $iui-icons-default;
-        height: $iui-icons-default;
-      }
-
-      &::after {
-        bottom: $iui-xxs;
-        left: $iui-xxs;
-        right: $iui-xxs;
-      }
-
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-primary);
-        }
-
-        > svg {
-          @include themed {
-            fill: t(iui-icons-color-primary);
-          }
-          transition: fill $iui-speed-fast ease-out;
-        }
-      }
-    }
-
-    &.iui-tabs-active {
-      > a {
-        font-weight: $iui-font-weight-normal;
-
-        @include themed {
-          color: t(iui-color-foreground-primary);
-        }
-
-        &:hover {
-          @include themed {
-            color: t(iui-color-foreground-primary);
-          }
-        }
-
-        svg {
-          @include themed {
-            fill: t(iui-icons-color-primary);
-          }
-        }
-      }
+    &:not(:last-child) {
+      margin-right: $iui-xxs;
     }
   }
 
-  &.iui-green {
-    > .iui-tabs-active > a {
+  &.iui-green .iui-tab:hover {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-positive-rgb),
+        t(iui-opacity-6)
+      );
+    }
+  }
+
+  .iui-tab {
+    height: $iui-component-height;
+    background-color: transparent;
+    width: 100%;
+    justify-content: center;
+    border-radius: $iui-border-radius;
+
+    &:hover {
       @include themed {
-        color: t(iui-color-foreground-positive);
-      }
-
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-        }
-      }
-
-      svg {
-        @include themed {
-          fill: t(iui-icons-color-positive);
-        }
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6)
+        );
       }
     }
 
-    > li > a:hover > svg {
+    &[disabled]:hover {
       @include themed {
-        fill: t(iui-icons-color-positive);
+        background-color: transparent;
       }
     }
   }
