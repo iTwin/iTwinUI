@@ -5,7 +5,7 @@
 
 $thumb-height: $iui-m;  // 16px
 $track-height: $iui-xs;  // 4px
-$tick-height: $iui-s+$iui-xxs;
+$tick-height: $iui-s + $iui-xxs;
 
 @mixin iui-slider-component-container {
   display: inline-flex;
@@ -21,7 +21,7 @@ $tick-height: $iui-s+$iui-xxs;
       margin-top: 4px;
     }
   }
-  
+
   span.iui-left {
     margin-right: $iui-s;
     text-align: right;
@@ -110,7 +110,7 @@ $tick-height: $iui-s+$iui-xxs;
       }
     }
   }
-  // #endregion 
+  // #endregion
 
   // container for components drawn over top of input control
   .iui-slider-display-container {
@@ -223,20 +223,20 @@ $tick-height: $iui-s+$iui-xxs;
   //Focus for slider
   &:not(.iui-range-slider) .iui-slider:focus-visible {
     outline: none;
-  
+
     + .iui-slider-display-container .iui-slider-thumb {
       @include themed {
         border: 2px solid t(iui-color-foreground-primary);
       }
     }
   }
-    
+
   //Focus for range
   &.iui-range-slider .iui-slider {
     &:focus-visible {
       outline: none;
     }
-  
+
     &.iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-left,
     &.iui-slider-right:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-right {
       @include themed {
@@ -260,7 +260,7 @@ $tick-height: $iui-s+$iui-xxs;
         border-color: t(iui-color-foreground-positive);
       }
     }
-    
+
     //Focus for range
     &.iui-range-slider .iui-slider {
       &.iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-left,
