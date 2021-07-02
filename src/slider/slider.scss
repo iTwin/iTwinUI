@@ -5,7 +5,7 @@
 
 $thumb-height: $iui-m;  // 16px
 $track-height: $iui-xs;  // 4px
-$tick-height: $iui-s + $iui-xxs;
+$tick-height: ($iui-s + $iui-xxs);
 
 @mixin iui-slider-component-container {
   display: inline-flex;
@@ -33,13 +33,10 @@ $tick-height: $iui-s + $iui-xxs;
 }
 
 @mixin iui-slider-container {
-  display: flex;
   position: relative;
   z-index: 1; // above ticks
   width: 100%;
   pointer-events: none;
-  flex-direction: column;
-  justify-content: center;
 
   .iui-tooltip {
     display: none;
