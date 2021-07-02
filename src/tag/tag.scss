@@ -6,7 +6,6 @@
 
 @mixin iui-tag {
   @include iui-reset;
-  @include iui-reduced-motion;
   @include iui-font-family;
   @include iui-focus;
   user-select: all;
@@ -26,7 +25,9 @@
     box-sizing: border-box;
     padding: 0 $iui-xxs;
     align-items: center;
-    transition: border $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: border $iui-speed-fast ease-out;
+    }
     font-size: $iui-font-size;
     text-transform: none;
     cursor: default;

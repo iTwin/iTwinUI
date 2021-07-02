@@ -4,7 +4,6 @@
 @import '../icon/index';
 
 @mixin iui-radio-tile {
-  @include iui-reduced-motion;
   @include iui-font-family;
   display: inline-flex;
   width: fit-content;
@@ -34,7 +33,9 @@
       padding: $iui-s;
       position: relative;
       z-index: 1;
-      transition: border-color $iui-speed-fast ease-out;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: border-color $iui-speed-fast ease-out;
+      }
 
       @include themed {
         border: 1px solid
@@ -48,11 +49,12 @@
         margin: 0 auto;
         margin-top: round($iui-baseline * 0.5);
         margin-bottom: $iui-baseline;
-
+        @media (prefers-reduced-motion: no-preference) {
+          transition: fill $iui-speed-fast ease-out;
+        }
         @include themed {
           fill: t(iui-icons-color);
         }
-        transition: fill $iui-speed-fast ease-out;
       }
 
       > .iui-checkmark {
@@ -115,17 +117,21 @@
 
     // Adds hover to everything that is not checked or  disabled
     &:hover > input:enabled:not(:checked) ~ .iui-radio-tile {
+      z-index: 2;
       @include themed {
         border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
       }
-      transition: border-color $iui-speed-fast ease-out;
-      z-index: 2;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: border-color $iui-speed-fast ease-out;
+      }
 
       > .iui-icon {
         @include themed {
           fill: t(iui-icons-color-actionable);
         }
-        transition: fill $iui-speed-fast ease-out;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: fill $iui-speed-fast ease-out;
+        }
       }
     }
 

@@ -6,14 +6,15 @@
 
 @mixin iui-page-header {
   @include iui-reset;
-  @include iui-reduced-motion;
   @include iui-font-family;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: $iui-baseline * 5;
-  transition: height $iui-speed-fast ease-out;
   user-select: none;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: height $iui-speed-fast ease-out;
+  }
   @include themed {
     background-color: t(iui-color-background-1);
     border-bottom: $iui-xxs solid t(iui-color-background-5);
@@ -58,10 +59,12 @@
   > .iui-right {
     justify-content: flex-end;
 
-    .iui-user-icon {
-      &,
-      * {
-        transition: all $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      .iui-user-icon {
+        &,
+        * {
+          transition: all $iui-speed-fast ease-out;
+        }
       }
     }
   }
@@ -155,7 +158,9 @@
   width: $size;
   height: $size;
   border-radius: $border-radius;
-  transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, margin $iui-speed-fast ease-out;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, margin $iui-speed-fast ease-out;
+  }
 }
 
 @mixin iui-header-buttons {
@@ -191,7 +196,9 @@
     > .iui-label {
       margin-right: $iui-sm;
       font-size: $iui-font-size-leading;
-      transition: font-size $iui-speed-fast ease-out;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: font-size $iui-speed-fast ease-out;
+      }
     }
   }
 
@@ -211,7 +218,9 @@
 
       .iui-description {
         height: $iui-baseline * 2;
-        transition: all $iui-speed-fast ease;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: all $iui-speed-fast ease;
+        }
         @include themed {
           opacity: t(iui-opacity-3);
         }
