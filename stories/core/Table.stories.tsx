@@ -39,78 +39,39 @@ export default {
     emptyTableContent: 'No data.',
   },
   argTypes: {
-    columns: {
-      control: { disable: true },
-    },
-    isSelectable: {
-      control: { disable: true },
-    },
-    style: {
-      control: { disable: true },
-    },
-    className: {
-      control: { disable: true },
-    },
-    initialState: {
-      table: { disable: true },
-    },
-    stateReducer: {
-      table: { disable: true },
-    },
-    useControlledState: {
-      table: { disable: true },
-    },
-    defaultColumn: {
-      table: { disable: true },
-    },
-    getSubRows: {
-      table: { disable: true },
-    },
-    getRowId: {
-      table: { disable: true },
-    },
-    manualRowSelectedKey: {
-      table: { disable: true },
-    },
-    autoResetSelectedRows: {
-      table: { disable: true },
-    },
-    selectSubRows: {
-      table: { disable: true },
-    },
-    manualSortBy: {
-      table: { disable: true },
-    },
-    defaultCanSort: {
-      table: { disable: true },
-    },
-    disableMultiSort: {
-      table: { disable: true },
-    },
-    isMultiSortEvent: {
-      table: { disable: true },
-    },
-    maxMultiSortColCount: {
-      table: { disable: true },
-    },
-    disableSortRemove: {
-      table: { disable: true },
-    },
-    disabledMultiRemove: {
-      table: { disable: true },
-    },
-    orderByFn: {
-      table: { disable: true },
-    },
-    sortTypes: {
-      table: { disable: true },
-    },
-    autoResetSortBy: {
-      table: { disable: true },
-    },
-    autoResetHiddenColumns: {
-      table: { disable: true },
-    },
+    columns: { control: { disable: true } },
+    isSelectable: { control: { disable: true } },
+    style: { control: { disable: true } },
+    className: { control: { disable: true } },
+    id: { control: { disable: true } },
+    initialState: { table: { disable: true } },
+    stateReducer: { table: { disable: true } },
+    useControlledState: { table: { disable: true } },
+    defaultColumn: { table: { disable: true } },
+    getSubRows: { table: { disable: true } },
+    getRowId: { table: { disable: true } },
+    manualRowSelectedKey: { table: { disable: true } },
+    autoResetSelectedRows: { table: { disable: true } },
+    selectSubRows: { table: { disable: true } },
+    manualSortBy: { table: { disable: true } },
+    defaultCanSort: { table: { disable: true } },
+    disableMultiSort: { table: { disable: true } },
+    isMultiSortEvent: { table: { disable: true } },
+    maxMultiSortColCount: { table: { disable: true } },
+    disableSortRemove: { table: { disable: true } },
+    disabledMultiRemove: { table: { disable: true } },
+    orderByFn: { table: { disable: true } },
+    sortTypes: { table: { disable: true } },
+    autoResetSortBy: { table: { disable: true } },
+    autoResetHiddenColumns: { table: { disable: true } },
+    autoResetFilters: { table: { disable: true } },
+    filterTypes: { table: { disable: true } },
+    defaultCanFilter: { table: { disable: true } },
+    manualFilters: { table: { disable: true } },
+    paginateExpandedRows: { table: { disable: true } },
+    expandSubRows: { table: { disable: true } },
+    autoResetExpanded: { table: { disable: true } },
+    manualExpandedKey: { table: { disable: true } },
   },
   parameters: {
     creevey: { skip: { stories: ['Lazy Loading', 'Row In Viewport'] } },
