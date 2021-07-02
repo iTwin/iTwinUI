@@ -163,6 +163,8 @@
   }
 
   &.iui-animated {
+    @include iui-reduced-motion;
+
     .iui-user-icon {
       transition: margin-left $iui-speed ease-out;
     }
