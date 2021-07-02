@@ -41,6 +41,7 @@
   cursor: pointer;
   box-sizing: border-box;
   line-height: normal;
+  border: 1px solid transparent;
   @include themed {
     color: t(iui-text-color);
   }
