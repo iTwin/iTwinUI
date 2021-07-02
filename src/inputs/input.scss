@@ -3,6 +3,8 @@
 @import '../style/index';
 
 @mixin iui-input {
+  @include iui-reset;
+  @include iui-reduced-motion;
   @include iui-font-family;
   width: 100%;
   font-size: $iui-font-size;

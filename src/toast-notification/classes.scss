@@ -3,6 +3,7 @@
 @import './index';
 
 .iui-toast-wrapper {
+  @include iui-reduced-motion;
   margin-left: auto;
   margin-right: auto;
   left: 0;

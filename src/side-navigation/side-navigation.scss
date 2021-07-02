@@ -4,6 +4,7 @@
 @import '../icon/index';
 
 @mixin iui-side-navigation {
+  @include iui-reduced-motion;
   display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;

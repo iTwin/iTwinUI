@@ -5,6 +5,7 @@
 
 @mixin iui-modal {
   @include iui-reset;
+  @include iui-reduced-motion;
   @include iui-font-family;
   z-index: 999;
   position: fixed;

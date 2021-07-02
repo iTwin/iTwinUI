@@ -4,7 +4,7 @@
 
 @mixin iui-keyboard {
   @include iui-reset;
-
+  @include iui-reduced-motion;
   border-radius: $iui-border-radius;
   display: inline-block;
   font-size: $iui-font-size-small;
@@ -30,6 +30,5 @@
       box-shadow: 0 0 0 t(iui-color-background-5),
         0 0 0 0 rgba(255, 255, 255, t(iui-opacity-5)) inset;
     }
-    transition: box-shadow $iui-speed-fast ease-out;
   }
 }

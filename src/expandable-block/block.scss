@@ -6,6 +6,7 @@
 
 @mixin iui-expandable-block {
   @include iui-reset;
+  @include iui-reduced-motion;
   @include iui-font-family;
   box-sizing: border-box;
   @include themed {

@@ -3,6 +3,8 @@
 @import '../style/index';
 
 @mixin iui-inputs-checkbox-radio {
+  @include iui-reset;
+  @include iui-reduced-motion;
   @include iui-font-family;
   display: flex;
   align-items: center;

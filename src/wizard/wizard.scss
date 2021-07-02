@@ -4,6 +4,7 @@
 
 @mixin iui-wizards {
   @include iui-reset;
+  @include iui-reduced-motion;
   @include iui-font-family;
 
   > .iui-wizards-wrapper {

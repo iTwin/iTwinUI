@@ -6,6 +6,7 @@
 
 @mixin iui-tile {
   @include iui-reset;
+  @include iui-reduced-motion;
   @include iui-font-family;
   display: inline-flex;
   flex-direction: column;

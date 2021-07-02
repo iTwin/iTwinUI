@@ -4,6 +4,7 @@
 
 @mixin iui-tooltip {
   @include iui-reset;
+  @include iui-reduced-motion;
   @include iui-font-family;
   display: block;
   text-align: center;

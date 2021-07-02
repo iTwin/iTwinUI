@@ -3,6 +3,7 @@
 @import '../style/index';
 
 @mixin iui-text-skeleton {
+  @include iui-reduced-motion;
   display: inline-block;
   user-select: none;
   color: transparent;
