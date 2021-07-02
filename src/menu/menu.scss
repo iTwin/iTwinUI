@@ -19,16 +19,14 @@
   margin: 0;
   padding: 0;
 
-  &.iui-header-menu {
-    svg.iui-header-menu-icon {
-      margin: 0 $iui-xs;
-    }
+  svg.iui-header-menu-icon {
+    margin: 0 $iui-xs;
+  }
 
-    div.iui-header-menu-icon {
-      width: $iui-icons-large;
-      height: $iui-icons-large;
-      border-radius: $iui-border-radius;
-    }
+  div.iui-header-menu-icon {
+    width: $iui-icons-large;
+    height: $iui-icons-large;
+    border-radius: $iui-border-radius;
   }
 }
 
