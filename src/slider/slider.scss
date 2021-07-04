@@ -42,79 +42,11 @@ $tick-height: ($iui-s + $iui-xxs);
     display: none;
   }
 
-  // hidden input[type=range] that is used to process events and hold value
-  .iui-slider {
-    appearance: none;
-    width: 100%;
-    border-radius: $track-height;
-    height: $track-height;
-    margin: 0;
-    margin-top: $iui-baseline;
-    pointer-events: all;
-    cursor: pointer;
-    background-color: transparent;
-    position: absolute;
-    top: 0;
-
-    &:active {
-      cursor: grabbing;
-    }
-
-    &.iui-slider-right {  // right slider sits on top of left slider.
-      position: absolute;
-      top: 0;
-    }
-
-    // #region Firefox
-    &::-moz-range-track,
-    &::-moz-range-progress {
-      width: 100%;
-      height: $track-height;
-    }
-
-    &::-moz-range-thumb {
-      pointer-events: all;
-      cursor: grab;
-      appearance: none;
-      margin: 0;
-      height: $thumb-height;
-      width: $thumb-height;
-      border-radius: 100%;
-      opacity: 0;
-
-      &:active {
-        cursor: grabbing;
-      }
-    }
-    // #endregion
-
-    // #region Chromium and Safari
-    &::-webkit-slider-runnable-track {
-      width: 100%;
-      height: $thumb-height;
-    }
-
-    &::-webkit-slider-thumb {
-      pointer-events: all;
-      cursor: grab;
-      appearance: none;
-      height: $thumb-height;
-      width: $thumb-height;
-      border-radius: 100%;
-
-      &:active {
-        cursor: grabbing;
-      }
-    }
-  }
-  // #endregion
-
   // container for components drawn over top of input control
   .iui-slider-display-container {
     top: 0;
     position: absolute;
-    margin: 0 ($thumb-height * 0.5);
-    width: calc(100% - #{$thumb-height});
+    width: 100%;
 
     .iui-track {
       pointer-events: none;  // let pointer event through to underlying range control
@@ -128,9 +60,10 @@ $tick-height: ($iui-s + $iui-xxs);
     }
 
     .iui-slider-thumb {
+      outline: none;
       display: block;
       position: absolute;
-      pointer-events: none;
+      pointer-events: all;
       height: $thumb-height;
       width: $thumb-height;
       border-radius: 100%;
@@ -145,13 +78,12 @@ $tick-height: ($iui-s + $iui-xxs);
   }
 
   &.iui-progress-slider {
-    .iui-slider:hover,
-    .iui-slider:focus-visible {
-      ~ .iui-slider-display-container .iui-slider-progress ~ .iui-tooltip {
+    .iui-slider-thumb:focus,
+    .iui-slider-thumb.iui-active {
+      ~ .iui-tooltip {
         position: absolute;
         display: block;
         margin-top: -$iui-xl;
-        left: 50%;
         transform: translateX(-50%);
       }
     }
@@ -163,7 +95,7 @@ $tick-height: ($iui-s + $iui-xxs);
         position: absolute;
         height: $track-height;
         border-radius: $track-height;
-        width: 10%;  // set via script
+        left: 0;
         top: 12px;
         z-index: 1;
         @include themed {
@@ -184,8 +116,6 @@ $tick-height: ($iui-s + $iui-xxs);
         position: absolute;
         height: $track-height;
         z-index: 1;
-        left: 25%;
-        right: 25%;
         bottom: 0;
         top: 12px;
         pointer-events: none;
@@ -193,27 +123,26 @@ $tick-height: ($iui-s + $iui-xxs);
           background-color: t(iui-color-foreground-primary);
         }
       }
+    }
 
-      .iui-slider-thumb {
-        &.iui-left {
-          transform: translate((-$thumb-height - 2) * 0.5, $track-height + 1); // 2 and 1 to adjust for border width
-        }
-
-        &.iui-right {
-          transform: translate(($thumb-height + 2) * 0.5, $track-height + 1); // 2 and 1 to adjust for border width
-        }
+    .iui-slider-thumb.iui-left:focus,
+    .iui-slider-thumb.iui-left.iui-active {
+      ~ .iui-tooltip.iui-left {
+        position: absolute;
+        display: block;
+        margin-top: -$iui-xl;
+        transform: translateX(-50%);
       }
     }
 
-    .iui-slider-left:hover ~ .iui-slider-display-container .iui-tooltip.iui-left,
-    .iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-tooltip.iui-left,
-    .iui-slider-right:hover ~ .iui-slider-display-container .iui-tooltip.iui-right,
-    .iui-slider-right:focus-visible ~ .iui-slider-display-container .iui-tooltip.iui-right {
-      position: absolute;
-      display: block;
-      margin-top: -$iui-xl;
-      left: 50%;
-      transform: translateX(-50%);
+    .iui-slider-thumb.iui-right:focus,
+    .iui-slider-thumb.iui-right.iui-active {
+      ~ .iui-tooltip.iui-right {
+        position: absolute;
+        display: block;
+        margin-top: -$iui-xl;
+        transform: translateX(-50%);
+      }
     }
   }
 
@@ -233,12 +162,12 @@ $tick-height: ($iui-s + $iui-xxs);
     &:focus-visible {
       outline: none;
     }
+  }
 
-    &.iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-left,
-    &.iui-slider-right:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-right {
-      @include themed {
-        border: 2px solid t(iui-color-foreground-primary);
-      }
+  //Focus for thumb
+  .iui-slider-thumb:focus {
+    @include themed {
+      border: 2px solid t(iui-color-foreground-primary);
     }
   }
 
@@ -258,13 +187,10 @@ $tick-height: ($iui-s + $iui-xxs);
       }
     }
 
-    //Focus for range
-    &.iui-range-slider .iui-slider {
-      &.iui-slider-left:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-left,
-      &.iui-slider-right:focus-visible ~ .iui-slider-display-container .iui-slider-thumb.iui-right {
-        @include themed {
-          border-color: t(iui-color-foreground-positive);
-        }
+    //Focus for thumb
+    .iui-slider-thumb {
+      @include themed {
+        border-color: t(iui-color-foreground-positive);
       }
     }
   }
@@ -273,12 +199,10 @@ $tick-height: ($iui-s + $iui-xxs);
 @mixin iui-slider-ticks {
   position: relative;
   padding-top: 16px;
-  width: calc(100% - #{$thumb-height});
+  width: 100%;
   display: flex;
   pointer-events: none;
   justify-content: space-between;
-  margin-left: $thumb-height*0.5;
-  margin-right: $thumb-height*0.5;
   user-select: none;
 
   .iui-slider-tick {

@@ -63,17 +63,18 @@
             </svg>
           </span>
           <div class="iui-slider-container iui-progress-slider">
-            <input
-              class="iui-slider"
-              type="range"
-              min="0"
-              max="10"
-              id="test-slider-1"
-            >
             <div class="iui-slider-display-container">
               <div class="iui-track"></div>
               <div class="iui-slider-progress"></div>
-              <div class="iui-slider-thumb"></div>
+              <div
+                class="iui-slider-thumb"
+                role="slider"
+                tabindex="0"
+                aria-label="Volume Setting"
+                aria-valuemin="0"
+                aria-valuenow="30"
+                aria-valuemax="100"
+              ></div>
               <output class="iui-tooltip">
                 50
               </output>
@@ -105,19 +106,17 @@
       >
         <span class="iui-left">0</span>
         <div class="iui-slider-container iui-progress-slider iui-positive">
-          <input
-            class="iui-slider"
-            type="range"
-            min="0"
-            max="100"
-            value="50"
-          >
           <div class="iui-slider-display-container">
             <div class="iui-track"></div>
             <div class="iui-slider-progress"></div>
             <div
               class="iui-slider-thumb"
-              id="test-slider-2"
+              role="slider"
+              tabindex="0"
+              aria-label="Percent Complete"
+              aria-valuemin="0"
+              aria-valuenow="60"
+              aria-valuemax="100"
             ></div>
             <output class="iui-tooltip">
               50
@@ -153,31 +152,35 @@
         <span class="iui-left">0</span>
         <div class="
             iui-slider-container iui-range-slider iui-positive">
-          <input
-            type="range"
-            class="iui-slider iui-slider-left"
-            min="0"
-            max="100"
-            value="20"
-          >
-          <input
-            type="range"
-            class="iui-slider iui-slider-right"
-            min="0"
-            max="100"
-            value="80"
-          >
           <div class="iui-slider-display-container">
+            <div class="iui-track"></div>
+            <div class="iui-slider-range"></div>
+            <div
+              class="iui-slider-thumb iui-left"
+              role="slider"
+              tabindex="0"
+              aria-label="Start Value"
+              aria-valuemin="0"
+              aria-valuenow="20"
+              aria-valuemax="79"
+              data-range-max="100"
+            ></div>
             <output class="iui-tooltip iui-left">
               20
             </output>
+            <div
+              class="iui-slider-thumb iui-right"
+              role="slider"
+              tabindex="0"
+              aria-label="End Value"
+              aria-valuemin="21"
+              aria-valuenow="80"
+              aria-valuemax="100"
+              data-range-min="0"
+            ></div>
             <output class="iui-tooltip iui-right">
               80
             </output>
-            <div class="iui-track"></div>
-            <div class="iui-slider-range"></div>
-            <div class="iui-slider-thumb iui-left"></div>
-            <div class="iui-slider-thumb iui-right"></div>
           </div>
         </div>
         <span class="iui-right">100</span>
@@ -193,31 +196,35 @@
         <span class="iui-left">0</span>
         <div class="
             iui-slider-container iui-range-slider">
-          <input
-            type="range"
-            class="iui-slider iui-slider-left"
-            min="0"
-            max="100"
-            value="20"
-          >
-          <input
-            type="range"
-            class="iui-slider iui-slider-right"
-            min="0"
-            max="100"
-            value="80"
-          >
           <div class="iui-slider-display-container">
+            <div class="iui-track"></div>
+            <div class="iui-slider-range"></div>
+            <div
+              class="iui-slider-thumb iui-left"
+              role="slider"
+              tabindex="0"
+              aria-label="Start Value"
+              aria-valuemin="0"
+              aria-valuenow="30"
+              aria-valuemax="89"
+              data-range-max="100"
+            ></div>
             <output class="iui-tooltip iui-left">
               20
             </output>
+            <div
+              class="iui-slider-thumb iui-right"
+              role="slider"
+              tabindex="0"
+              aria-label="End Value"
+              aria-valuemin="31"
+              aria-valuenow="90"
+              aria-valuemax="100"
+              data-range-min="0"
+            ></div>
             <output class="iui-tooltip iui-right">
               80
             </output>
-            <div class="iui-track"></div>
-            <div class="iui-slider-range"></div>
-            <div class="iui-slider-thumb iui-left"></div>
-            <div class="iui-slider-thumb iui-right"></div>
           </div>
           <div class="iui-slider-ticks">
             <!-- You could generate the ticks based on your min, max & step values. -->
@@ -239,111 +246,188 @@
     </section>
 
     <script>
-      const allRanges = document.querySelectorAll(".iui-slider-container.iui-range-slider");
-      allRanges.forEach(wrap => {
-        var inputLeft = wrap.querySelector(".iui-slider.iui-slider-left");
-        var inputRight = wrap.querySelector(".iui-slider.iui-slider-right");
-        var thumbLeft = wrap.querySelector(".iui-slider-thumb.iui-left");
-        var thumbRight = wrap.querySelector(".iui-slider-thumb.iui-right");
-        var range = wrap.querySelector(".iui-slider-range");
+      var allProgressSliderContainers = document.querySelectorAll(".iui-slider-container.iui-progress-slider");
 
-        function setLeftValue() {
-          var _this = inputLeft,
-            min = parseInt(_this.min),
-            max = parseInt(_this.max);
-
-          _this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
-
-          var percent = ((_this.value - min) / (max - min)) * 100;
-          thumbLeft.style.left = `${percent}%`;
-          range.style.left = `${percent}%`;
+      function setTooltip(percent, tooltip) {
+        if (tooltip) {
+          tooltip.style.left = `${percent}%`;
+          tooltip.innerHTML = `${percent}`;
         }
-        setLeftValue();
-
-        function setRightValue() {
-          var _this = inputRight,
-            min = parseInt(_this.min),
-            max = parseInt(_this.max);
-
-          _this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
-
-          var percent = 100 - (((_this.value - min) / (max - min)) * 100);
-
-          thumbRight.style.right = `${percent}%`;
-          range.style.right = `${percent}%`;
-        }
-        setRightValue();
-
-        inputLeft.addEventListener("input", setLeftValue);
-        inputRight.addEventListener("input", setRightValue);
-
-        inputLeft.addEventListener("mouseover", function () {
-          thumbLeft.classList.add("hover");
-        });
-        inputLeft.addEventListener("mouseout", function () {
-          thumbLeft.classList.remove("hover");
-        });
-        inputLeft.addEventListener("mousedown", function () {
-          thumbLeft.classList.add("active");
-        });
-        inputLeft.addEventListener("mouseup", function () {
-          thumbLeft.classList.remove("active");
-        });
-
-        inputRight.addEventListener("mouseover", function () {
-          thumbRight.classList.add("hover");
-        });
-        inputRight.addEventListener("mouseout", function () {
-          thumbRight.classList.remove("hover");
-        });
-        inputRight.addEventListener("mousedown", function () {
-          thumbRight.classList.add("active");
-        });
-        inputRight.addEventListener("mouseup", function () {
-          thumbRight.classList.remove("active");
-        });
-      });
-
-      const allProgressSliders = document.querySelectorAll(".iui-slider-container.iui-progress-slider");
-      allProgressSliders.forEach(wrap => {
-        const range = wrap.querySelector(".iui-slider");
-        const tooltip = wrap.querySelector(".iui-tooltip");
-        const progressFill = wrap.querySelector(".iui-slider-progress")
-        const thumb = wrap.querySelector(".iui-slider-thumb")
-        range.addEventListener("input", () => {
-          setTooltip(range, tooltip, progressFill, thumb);
-        });
-        setTooltip(range, tooltip, progressFill, thumb);
-      });
-
-      const allRangeSliders = document.querySelectorAll(".iui-slider-container.iui-range-slider");
-      allRangeSliders.forEach(wrap => {
-        const leftRange = wrap.querySelector(".iui-slider.iui-slider-left");
-        const leftTooltip = wrap.querySelector(".iui-tooltip.iui-left");
-        leftRange.addEventListener("input", () => {
-          setTooltip(leftRange, leftTooltip);
-        });
-        setTooltip(leftRange, leftTooltip);
-
-        const rightRange = wrap.querySelector(".iui-slider.iui-slider-right");
-        const rightTooltip = wrap.querySelector(".iui-tooltip.iui-right");
-        rightRange.addEventListener("input", () => {
-          setTooltip(rightRange, rightTooltip);
-        });
-        setTooltip(rightRange, rightTooltip);
-      });
-
-      function setTooltip(range, tooltip, progressFill, thumb) {
-        const val = range.value;
-        const min = range.min ? range.min : 0;
-        const max = range.max ? range.max : 100;
-        const newVal = Number(((val - min) * 100) / (max - min));
-        tooltip.innerHTML = val;
-
-        tooltip.style.left = `${newVal}%`;
-        thumb && (thumb.style.left = `${newVal}%`);
-        progressFill && (progressFill.style.width = `${newVal}%`);
       }
+
+      function getMinValueFromThumb(thumb) {
+        var minAtt = thumb.getAttribute("aria-valuemin");
+        var dataRangeMinAtt = thumb.getAttribute("data-range-min");
+        var min = parseInt(null !== dataRangeMinAtt ? dataRangeMinAtt : minAtt);
+        return min;
+      }
+
+      function getMaxValueFromThumb(thumb) {
+        var maxAtt = thumb.getAttribute("aria-valuemax");
+        var dataRangeMaxAtt = thumb.getAttribute("data-range-max");
+        var max = parseInt(null !== dataRangeMaxAtt ? dataRangeMaxAtt : maxAtt);
+        return max;
+      }
+
+      function getMaxLimitValueFromThumb(thumb) {
+        var maxAtt = thumb.getAttribute("aria-valuemax");
+        var max = parseInt(maxAtt);
+        return max;
+      }
+
+      function getMinLimitValueFromThumb(thumb) {
+        var minAtt = thumb.getAttribute("aria-valuemin");
+        var min = parseInt(minAtt);
+        return min;
+      }
+
+      function getPercentFromThumb(thumb) {
+        var valueAtt = thumb.getAttribute("aria-valuenow");
+        var value = parseInt(valueAtt);
+        var min = getMinValueFromThumb(thumb);
+        var max = getMaxValueFromThumb(thumb);
+        var percent = ((value - min) / (max - min)) * 100;
+        return percent;
+      }
+
+      function moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb) {
+        var min = getMinValueFromThumb(thumb);
+        var limitMin = getMinLimitValueFromThumb(thumb);
+        var max = getMaxValueFromThumb(thumb);
+        var limitMax = getMaxLimitValueFromThumb(thumb);
+        var rect = track.getBoundingClientRect()
+        var trackWidth = rect.width;
+        var diffX = event.pageX - rect.left;
+        if (diffX > rect.width)
+          diffX = rect.width;
+        if (diffX < 0)
+          diffX = 0;
+
+        var percent = parseInt(((max - min) * diffX) / trackWidth);
+        if (percent < limitMin)
+          percent = limitMin;
+        if (percent > limitMax)
+          percent = limitMax;
+
+        thumb.setAttribute("aria-valuenow", percent);
+        setTooltip(percent, toolTip)
+        if (mode === "progress") {
+          thumb.style.left = `${percent}%`;
+          var progressPercent = 100 - percent;
+          progress.style.right = `${progressPercent}%`;
+        } else if (mode === "range-left") {
+          otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
+          thumb.style.left = `${percent}%`;
+          progress.style.left = `${percent}%`;
+        } else if (mode === "range-right") {
+          otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
+          thumb.style.left = `${percent}%`;
+          var progressPercent = 100 - percent;
+          progress.style.right = `${progressPercent}%`;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      function getOtherRangeThumb(thumb) {
+        var parent = thumb.parentNode;
+        const allThumbs = parent.querySelectorAll(".iui-slider-thumb");
+        for (var i = 0; i < allThumbs.length; i++) {
+          if (allThumbs[i] !== thumb)
+            return allThumbs[i];
+        }
+      }
+
+      function getToolTip(thumb, mode) {
+        var parent = thumb.parentNode;
+        var selector = ".iui-tooltip";
+        if (mode === "range-left")
+          selector += ".iui-tooltip.iui-left";
+        else if (mode === "range-right")
+          selector += ".iui-tooltip.iui-right";
+        return parent.querySelector(selector);
+      }
+
+      function initializeThumbProcessing(thumb, sliderContainer, mode) {
+        var percent = getPercentFromThumb(thumb);
+        var track = sliderContainer.querySelector(".iui-track");
+        var progress, percent;
+        var toolTip = getToolTip(thumb, mode);
+
+        if (mode === "progress") {
+          thumb.style.left = `${percent}%`;
+          progress = sliderContainer.querySelector(".iui-slider-progress");
+          progressPercent = 100 - percent;
+          progress.style.right = `${progressPercent}%`;
+        } else if (mode === "range-left") {
+          percent = getPercentFromThumb(thumb);
+          thumb.style.left = `${percent}%`;
+          progress = sliderContainer.querySelector(".iui-slider-range");
+          progress.style.left = `${percent}%`;
+        } else if (mode === "range-right") {
+          percent = getPercentFromThumb(thumb);
+          thumb.style.left = `${percent}%`;
+          progress = sliderContainer.querySelector(".iui-slider-range");
+          progressPercent = 100 - percent;
+          progress.style.right = `${progressPercent}%`;
+        }
+
+        setTooltip(percent, toolTip)
+
+        thumb.addEventListener("mousedown", function () {
+          thumb.classList.add("iui-active");
+          var otherThumb = getOtherRangeThumb(thumb);
+          var ownerDoc = thumb.ownerDocument;
+          var handleMouseMove = function (event) {
+            moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb);
+          };
+
+          var handleMouseUp = function (event) {
+            ownerDoc.removeEventListener('mousemove', handleMouseMove);
+            ownerDoc.removeEventListener('mouseup', handleMouseUp);
+            thumb.classList.remove("iui-active");
+          };
+
+          // bind a mousemove event handler to move pointer
+          ownerDoc.addEventListener('mousemove', handleMouseMove);
+
+          // bind a mouseup event handler to stop tracking mouse movements
+          ownerDoc.addEventListener('mouseup', handleMouseUp);
+
+          event.preventDefault();
+          event.stopPropagation();
+
+          // Set focus to the clicked handle
+          thumb.focus();
+        });
+      }
+
+      function initializeAllProgressSliders() {
+        allProgressSliderContainers.forEach(progressSliderContainer => {
+          var thumb = progressSliderContainer.querySelector(".iui-slider-thumb");
+          initializeThumbProcessing(thumb, progressSliderContainer, "progress");
+        });
+      }
+      initializeAllProgressSliders();
+
+      const allRangeSliderContainers = document.querySelectorAll(".iui-slider-container.iui-range-slider");
+
+      function initializeAllRangeSliders() {
+        allRangeSliderContainers.forEach(rangeSliderContainer => {
+
+          const leftThumb = rangeSliderContainer.querySelector(".iui-slider-thumb.iui-left");
+          if (leftThumb) {
+            initializeThumbProcessing(leftThumb, rangeSliderContainer, "range-left");
+          }
+
+          const rightThumb = rangeSliderContainer.querySelector(".iui-slider-thumb.iui-right");
+          if (rightThumb) {
+            initializeThumbProcessing(rightThumb, rangeSliderContainer, "range-right");
+          }
+        });
+      }
+      initializeAllRangeSliders();
     </script>
   </body>
 </html>
