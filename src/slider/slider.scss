@@ -42,107 +42,64 @@ $tick-height: ($iui-s + $iui-xxs);
     display: none;
   }
 
-  // container for components drawn over top of input control
-  .iui-slider-display-container {
-    top: 0;
+  .iui-track {
+    pointer-events: none;  // let pointer event through to underlying range control
     position: absolute;
     width: 100%;
+    height: $track-height;
+    margin-top: 12px;
+    @include themed {
+      background-color: t(iui-color-background-4);
+    }
+  }
 
-    .iui-track {
-      pointer-events: none;  // let pointer event through to underlying range control
-      position: absolute;
-      width: 100%;
-      height: $track-height;
-      margin-top: 12px;
-      @include themed {
-        background-color: t(iui-color-background-4);
-      }
+  .iui-slider-thumb {
+    outline: none;
+    position: absolute;
+    pointer-events: all;
+    height: $thumb-height;
+    width: $thumb-height;
+    border-radius: 100%;
+    transform: translate((-$thumb-height - 2) * 0.5, $track-height + 1); // 2 and 1 to adjust for border width
+    z-index: 2;
+    transition: border $iui-speed-fast ease;
+    @include themed {
+      background: t(iui-color-background-1);
+      border: 1px solid t(iui-color-background-5);
     }
 
-    .iui-slider-thumb {
-      outline: none;
+    &:focus + .iui-tooltip,
+    &:hover + .iui-tooltip,
+    .iui-active + .iui-tooltip {
+      position: absolute;
       display: block;
-      position: absolute;
-      pointer-events: all;
-      height: $thumb-height;
-      width: $thumb-height;
-      border-radius: 100%;
-      transform: translate((-$thumb-height - 2) * 0.5, $track-height + 1); // 2 and 1 to adjust for border width
-      z-index: 2;
-      transition: border $iui-speed-fast ease;
-      @include themed {
-        background: t(iui-color-background-1);
-        border: 1px solid t(iui-color-background-5);
-      }
+      margin-top: -$iui-xl;
+      transform: translateX(-50%);
     }
   }
 
-  &.iui-progress-slider {
-    .iui-slider-thumb:focus,
-    .iui-slider-thumb.iui-active {
-      ~ .iui-tooltip {
-        position: absolute;
-        display: block;
-        margin-top: -$iui-xl;
-        transform: translateX(-50%);
-      }
-    }
-
-    .iui-slider-display-container {
-      .iui-slider-progress {
-        pointer-events: none;
-        display: block;
-        position: absolute;
-        height: $track-height;
-        border-radius: $track-height;
-        left: 0;
-        top: 12px;
-        z-index: 1;
-        @include themed {
-          background-color: t(iui-color-foreground-primary);
-        }
-      }
+  .iui-slider-progress {
+    pointer-events: none;
+    position: absolute;
+    height: $track-height;
+    border-radius: $track-height;
+    left: 0;
+    top: $iui-sm;
+    z-index: 1;
+    @include themed {
+      background-color: t(iui-color-foreground-primary);
     }
   }
 
-  &.iui-range-slider {
-    .iui-slider-left,
-    .iui-slider-right {
-      pointer-events: none;
-    }
-
-    .iui-slider-display-container {
-      .iui-slider-range {
-        position: absolute;
-        height: $track-height;
-        z-index: 1;
-        bottom: 0;
-        top: 12px;
-        pointer-events: none;
-        @include themed {
-          background-color: t(iui-color-foreground-primary);
-        }
-      }
-    }
-
-    .iui-slider-thumb.iui-left:focus,
-    .iui-slider-thumb.iui-left.iui-active {
-      ~ .iui-tooltip.iui-left {
-        position: absolute;
-        display: block;
-        margin-top: -$iui-xl;
-        transform: translateX(-50%);
-      }
-    }
-
-    .iui-slider-thumb.iui-right:focus,
-    .iui-slider-thumb.iui-right.iui-active {
-      ~ .iui-tooltip.iui-right {
-        position: absolute;
-        display: block;
-        margin-top: -$iui-xl;
-        transform: translateX(-50%);
-      }
+  .iui-slider-range {
+    position: absolute;
+    height: $track-height;
+    z-index: 1;
+    bottom: 0;
+    top: $iui-sm;
+    pointer-events: none;
+    @include themed {
+      background-color: t(iui-color-foreground-primary);
     }
   }
 
@@ -150,10 +107,10 @@ $tick-height: ($iui-s + $iui-xxs);
   &:not(.iui-range-slider) .iui-slider:focus-visible {
     outline: none;
 
-    + .iui-slider-display-container .iui-slider-thumb {
+    + .iui-slider-thumb {
       @include themed {
-        border: 2px solid t(iui-color-foreground-primary);
-      }
+        box-shadow: t(iui-focus-box-shadow);
+      };
     }
   }
 
@@ -165,33 +122,29 @@ $tick-height: ($iui-s + $iui-xxs);
   }
 
   //Focus for thumb
-  .iui-slider-thumb:focus {
-    @include themed {
-      border: 2px solid t(iui-color-foreground-primary);
-    }
+  .iui-slider-thumb {
+    @include iui-focus();
   }
 
   // Theme
   &.iui-positive {
-    .iui-slider-display-container .iui-slider-progress,
-    .iui-slider-display-container .iui-slider-range {
+    .iui-slider-progress,
+    .iui-slider-range {
       @include themed {
         background-color: t(iui-color-foreground-positive);
       }
     }
 
     //Focus for slider
-    &:not(.iui-range-slider) .iui-slider:focus-visible + .iui-slider-display-container .iui-slider-thumb {
+    &:not(.iui-range-slider) .iui-slider:focus-visible + .iui-slider-thumb {
       @include themed {
-        border-color: t(iui-color-foreground-positive);
+        box-shadow: t(iui-focus-positive-box-shadow);
       }
     }
 
     //Focus for thumb
     .iui-slider-thumb {
-      @include themed {
-        border-color: t(iui-color-foreground-positive);
-      }
+      @include iui-focus(iui-focus-positive-box-shadow);
     }
   }
 }
@@ -199,7 +152,6 @@ $tick-height: ($iui-s + $iui-xxs);
 @mixin iui-slider-ticks {
   position: relative;
   padding-top: 16px;
-  width: 100%;
   display: flex;
   pointer-events: none;
   justify-content: space-between;
