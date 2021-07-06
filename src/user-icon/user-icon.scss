@@ -129,6 +129,13 @@
       }
     }
   }
+
+  &.iui-user-icon-count > .iui-initials {
+    @include themed {
+      background-color: t(iui-color-background-3);
+      color: t(iui-text-color-muted);
+    }
+  }
 }
 
 @mixin iui-user-icon-list {
