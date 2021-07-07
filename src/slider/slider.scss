@@ -30,6 +30,10 @@ $tick-height: ($iui-s + $iui-xxs);
   span.iui-right {
     margin-left: $iui-s;
   }
+
+  &.iui-disabled {
+    @include iui-slider-disabled;
+  }
 }
 
 @mixin iui-slider-container {
@@ -171,3 +175,29 @@ $tick-height: ($iui-s + $iui-xxs);
   }
 }
 
+@mixin iui-slider-disabled {
+  .iui-slider-thumb {
+    @include themed {
+      background-color: t(iui-color-background-4);
+      border-color: t(iui-color-background-4);
+    }
+  }
+
+  .iui-slider-progress,
+  .iui-slider-range,
+  .iui-positive .iui-slider-progress,
+  .iui-positive .iui-slider-range {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    }
+  }
+
+  .iui-left,
+  .iui-right,
+  .iui-slider-tick {
+    user-select: none;
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
+  }
+}
