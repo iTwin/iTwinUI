@@ -152,7 +152,8 @@
     fill: t(iui-icons-color-actionable);
   }
 
-  + .iui-label {
+  + .iui-label,
+  + .iui-content {
     margin-left: $iui-s;
   }
 }
