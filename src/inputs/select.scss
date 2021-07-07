@@ -68,7 +68,7 @@ $iui-after-border: 5px solid;
       }
     }
 
-    &.iui-expanded {
+    &.iui-active {
       &::after {
         border-top: none;
         @include themed {
