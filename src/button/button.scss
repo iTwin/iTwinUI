@@ -52,12 +52,12 @@
   }
 
   &.iui-small {
-    padding: 0 ($iui-component-padding-horizontal * 0.5);
+    padding: 0 $iui-component-padding-horizontal-small;
     height: $iui-component-height-small;
   }
 
   &.iui-large {
-    padding: 0 ($iui-component-padding-horizontal * 2);
+    padding: 0 $iui-component-padding-horizontal-large;
     height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
   }
