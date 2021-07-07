@@ -8,15 +8,6 @@ module.exports = [
   scenario('Type Header', {
     selectors: ['#demo-header'],
   }),
-  scenario('Type Select', {
-    selectors: ['#demo-select'],
-  }),
-  scenario('Type Default Dropdown Button', {
-    selectors: ['#demo-button'],
-  }),
-  scenario('Type Borderless Dropdown Button', {
-    selectors: ['#demo-borderless-button'],
-  }),
 
   // Hover & focus states
   scenario('State hover & focus', {
