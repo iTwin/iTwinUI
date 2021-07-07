@@ -219,10 +219,6 @@
 
     > .iui-icon {
       flex-shrink: 0;
-
-      &:not(.iui-header-button-icon) {
-        transition: transform $iui-speed-fast ease;
-      }
     }
 
     svg.iui-header-button-icon {
