@@ -57,9 +57,9 @@
             </svg>
           </span>
           <div class="iui-slider-container iui-progress-slider">
-            <div class="iui-slider-track"></div>
+            <div class="iui-slider-rail"></div>
             <div
-              class="iui-slider-progress"
+              class="iui-slider-track"
               style="right: 50%;"
             ></div>
             <div
@@ -104,9 +104,9 @@
         <div class="iui-slider-component-container">
           <span class="iui-slider-min">0</span>
           <div class="iui-slider-container iui-progress-slider">
-            <div class="iui-slider-track"></div>
+            <div class="iui-slider-rail"></div>
             <div
-              class="iui-slider-progress"
+              class="iui-slider-track"
               style="right: 50%;"
             ></div>
             <div
@@ -154,9 +154,9 @@
         <div class="iui-slider-component-container iui-disabled">
           <span class="iui-slider-min">0</span>
           <div class="iui-slider-container iui-progress-slider">
-            <div class="iui-slider-track"></div>
+            <div class="iui-slider-rail"></div>
             <div
-              class="iui-slider-progress"
+              class="iui-slider-track"
               style="right: 50%;"
             ></div>
             <div
@@ -208,9 +208,9 @@
           <span class="iui-slider-min">0</span>
           <div class="
               iui-slider-container iui-range-slider">
-            <div class="iui-slider-track"></div>
+            <div class="iui-slider-rail"></div>
             <div
-              class="iui-slider-range"
+              class="iui-slider-track"
               style="left: 20%; right: 20%;"
             ></div>
             <div
@@ -262,9 +262,9 @@
           <span class="iui-slider-min">0</span>
           <div class="
             iui-slider-container iui-range-slider">
-            <div class="iui-slider-track"></div>
+            <div class="iui-slider-rail"></div>
             <div
-              class="iui-slider-range"
+              class="iui-slider-track"
               style="left: 20%; right: 20%;"
             ></div>
             <div
@@ -330,9 +330,9 @@
           <span class="iui-slider-min">0</span>
           <div class="
             iui-slider-container iui-range-slider">
-            <div class="iui-slider-track"></div>
+            <div class="iui-slider-rail"></div>
             <div
-              class="iui-slider-range"
+              class="iui-slider-track"
               style="left: 20%; right: 20%;"
             ></div>
             <div
@@ -501,16 +501,16 @@
 
         if (mode === "progress") {
           thumb.style.left = `${percent}%`;
-          progress = sliderContainer.querySelector(".iui-slider-progress");
+          progress = sliderContainer.querySelector(".iui-slider-track");
           progressPercent = 100 - percent;
           progress.style.right = `${progressPercent}%`;
         } else if (mode === "range-left") {
           thumb.style.left = `${percent}%`;
-          progress = sliderContainer.querySelector(".iui-slider-range");
+          progress = sliderContainer.querySelector(".iui-slider-track");
           progress.style.left = `${percent}%`;
         } else if (mode === "range-right") {
           thumb.style.left = `${percent}%`;
-          progress = sliderContainer.querySelector(".iui-slider-range");
+          progress = sliderContainer.querySelector(".iui-slider-track");
           progressPercent = 100 - percent;
           progress.style.right = `${progressPercent}%`;
         }
@@ -518,10 +518,12 @@
         setTooltip(percent, toolTip)
 
         thumb.addEventListener("mousedown", function () {
+          if (sliderContainer.parentElement.classList.contains('iui-disabled'))
+            return;
           thumb.classList.add("iui-active");
           var otherThumb = getOtherRangeThumb(thumb);
           var ownerDoc = thumb.ownerDocument;
-          var track = sliderContainer.querySelector(".iui-slider-track");
+          var track = sliderContainer.querySelector(".iui-slider-rail");
           var handleMouseMove = function (event) {
             moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb);
           };

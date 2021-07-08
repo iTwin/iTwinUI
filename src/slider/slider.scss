@@ -46,7 +46,7 @@ $tick-height: $iui-baseline; // 11px
     display: none;
   }
 
-  .iui-slider-track {
+  .iui-slider-rail {
     pointer-events: none;  // let pointer event through to underlying range control
     position: absolute;
     width: 100%;
@@ -65,7 +65,7 @@ $tick-height: $iui-baseline; // 11px
     width: $thumb-height;
     border-radius: 100%;
     top: $track-height + 1; // position center of thumb in center of track
-    transform: translateX((-$thumb-height - 2) * 0.5); // Adjust the left (set in code) by radius of thumb so thumb center is at value postion
+    transform: translateX((-$thumb-height - 2) * 0.5); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
     z-index: 2;
     transition: border $iui-speed-fast ease;
     cursor: grab;
@@ -88,7 +88,7 @@ $tick-height: $iui-baseline; // 11px
     }
   }
 
-  .iui-slider-progress {
+  .iui-slider-track {
     pointer-events: none;
     position: absolute;
     height: $track-height;
@@ -100,7 +100,7 @@ $tick-height: $iui-baseline; // 11px
     }
   }
 
-  .iui-slider-range {
+  .iui-slider-track {
     position: absolute;
     height: $track-height;
     z-index: 1;
@@ -169,8 +169,8 @@ $tick-height: $iui-baseline; // 11px
     }
   }
 
-  .iui-slider-progress,
-  .iui-slider-range {
+  .iui-slider-track,
+  .iui-slider-track {
     @include themed {
       background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     }
