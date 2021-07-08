@@ -8,7 +8,7 @@ $track-height: $iui-xs;  // 4px
 $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-component-container {
-  display: inline-flex;
+  display: flex;
 
   span.iui-left,
   span.iui-right {
@@ -39,7 +39,7 @@ $tick-height: $iui-baseline; // 11px
 @mixin iui-slider-container {
   position: relative;
   z-index: 1; // above ticks
-  width: 100%;
+  flex-grow: 1;
   pointer-events: none;
 
   .iui-tooltip {
