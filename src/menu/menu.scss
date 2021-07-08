@@ -44,7 +44,7 @@
     color: t(iui-text-color);
   }
 
-  .iui-menu-item-content,
+  .iui-content,
   .iui-menu-label,
   .iui-menu-description {
     white-space: nowrap;
@@ -52,7 +52,7 @@
     text-overflow: ellipsis;
   }
 
-  .iui-menu-item-content {
+  .iui-content {
     flex: 1 1 auto;
 
     + .iui-icon {
@@ -152,7 +152,7 @@
     fill: t(iui-icons-color-actionable);
   }
 
-  + [class^='iui-'][class$='-content'] {
+  + .iui-content {
     margin-left: $iui-s;
   }
 }
