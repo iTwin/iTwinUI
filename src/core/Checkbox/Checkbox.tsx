@@ -86,7 +86,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           ? false
           : inputElementRef.current.checked;
       }
-    }, [indeterminate]);
+    });
 
     return (
       <label

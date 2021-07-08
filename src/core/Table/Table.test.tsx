@@ -61,7 +61,7 @@ const mockedData = (count = 3) =>
   }));
 
 function renderComponent(
-  initialsProps?: Partial<TableProps>,
+  initialsProps?: Partial<TableProps<{ name: string; description: string }>>,
   onViewClick?: () => void,
   renderContainer?: HTMLElement,
 ) {
@@ -823,4 +823,87 @@ it('should expand correctly with a custom expander cell', async () => {
   getByText('Expanded component, name: Name2');
   getByText('Expanded component, name: Name3');
   expect(onExpandMock).toHaveBeenCalledTimes(4);
+});
+
+it('should disable row and handle expansion accordingly', () => {
+  const onExpand = jest.fn();
+  const { container } = renderComponent({
+    onExpand,
+    subComponent: (row) => (
+      <div>{`Expanded component, name: ${row.original.name}`}</div>
+    ),
+    isRowDisabled: (rowData) => rowData.name === 'Name2',
+  });
+
+  expect(screen.queryByText('Header name')).toBeFalsy();
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+  expect(rows[0].classList).not.toContain('iui-disabled');
+  expect(rows[1].classList).toContain('iui-disabled');
+  expect(rows[2].classList).not.toContain('iui-disabled');
+
+  const expansionCells = container.querySelectorAll(
+    '.iui-slot .iui-button',
+  ) as NodeListOf<HTMLButtonElement>;
+  expect(expansionCells.length).toBe(3);
+  expect(expansionCells[0].disabled).toBe(false);
+  expect(expansionCells[1].disabled).toBe(true);
+  expect(expansionCells[2].disabled).toBe(false);
+
+  fireEvent.click(expansionCells[1]);
+  expect(onExpand).not.toHaveBeenCalled();
+
+  fireEvent.click(expansionCells[0]);
+  expect(onExpand).toHaveBeenCalled();
+});
+
+it('should disable row and handle selection accordingly', () => {
+  const onSelect = jest.fn();
+  const { container } = renderComponent({
+    isSelectable: true,
+    onSelect,
+    isRowDisabled: (rowData) => rowData.name === 'Name2',
+  });
+
+  expect(screen.queryByText('Header name')).toBeFalsy();
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+  expect(rows[0].classList).not.toContain('iui-disabled');
+  expect(rows[1].classList).toContain('iui-disabled');
+  expect(rows[2].classList).not.toContain('iui-disabled');
+
+  const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
+  expect(checkboxCells.length).toBe(4);
+  expect(checkboxCells[0].classList).not.toContain('iui-disabled');
+  expect(checkboxCells[1].classList).not.toContain('iui-disabled');
+  expect(checkboxCells[2].classList).toContain('iui-disabled');
+  expect(checkboxCells[3].classList).not.toContain('iui-disabled');
+
+  // Select disabled row
+  fireEvent.click(checkboxCells[2]);
+  expect(onSelect).not.toHaveBeenCalled();
+
+  // Select first row
+  fireEvent.click(checkboxCells[1]);
+  expect(onSelect).toHaveBeenCalledWith([mockedData()[0]], expect.any(Object));
+  const headerCheckbox = checkboxCells[0].querySelector(
+    'input',
+  ) as HTMLInputElement;
+  expect(headerCheckbox.indeterminate).toBe(true);
+  expect(headerCheckbox.checked).toBe(false);
+
+  // Select all
+  fireEvent.click(checkboxCells[0]);
+  expect(onSelect).toHaveBeenCalledWith(
+    [mockedData()[0], mockedData()[2]],
+    expect.any(Object),
+  );
+  expect(headerCheckbox.indeterminate).toBe(false);
+  expect(headerCheckbox.checked).toBe(true);
+
+  // Deselect all
+  fireEvent.click(checkboxCells[0]);
+  expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
+  expect(headerCheckbox.indeterminate).toBe(false);
+  expect(headerCheckbox.checked).toBe(false);
 });

@@ -749,6 +749,100 @@ RowInViewport.argTypes = {
   data: { control: { disable: true } },
 };
 
+export const DisabledRows: Story<TableProps> = (args) => {
+  const { columns, data, ...rest } = args;
+
+  const isRowDisabled = useCallback(
+    (rowData: { name: string; description: string }) => {
+      return rowData.name === 'Name2';
+    },
+    [],
+  );
+
+  const tableColumns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+          },
+          {
+            id: 'description',
+            Header: 'Description',
+            accessor: 'description',
+            maxWidth: 200,
+          },
+        ],
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        // Manually handling disabled state in custom cells
+        Cell: (props: CellProps<{ name: string; description: string }>) => (
+          <>
+            {isRowDisabled(props.row.original) ? (
+              <>Click me!</>
+            ) : (
+              <a
+                className='iui-anchor'
+                onClick={action(props.row.original.name)}
+              >
+                Click me!
+              </a>
+            )}
+          </>
+        ),
+      },
+    ],
+    [isRowDisabled],
+  );
+
+  const tableData = useMemo(
+    () => [
+      { name: 'Name1', description: 'Description1' },
+      { name: 'Name2', description: 'Description2' },
+      { name: 'Name3', description: 'Description3' },
+    ],
+    [],
+  );
+
+  const expandedSubComponent = useCallback(
+    (row: Row) => (
+      <div style={{ padding: 16 }}>
+        <Leading>Extra information</Leading>
+        <pre>
+          <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
+        </pre>
+      </div>
+    ),
+    [],
+  );
+
+  return (
+    <Table
+      columns={columns || tableColumns}
+      data={data || tableData}
+      emptyTableContent='No data.'
+      subComponent={expandedSubComponent}
+      isRowDisabled={isRowDisabled}
+      {...rest}
+    />
+  );
+};
+
+DisabledRows.args = {
+  data: [
+    { name: 'Name1', description: 'Description1' },
+    { name: 'Name2', description: 'Description2' },
+    { name: 'Name3', description: 'Description3' },
+  ],
+  isSelectable: true,
+};
+
 export const Loading: Story<TableProps> = (args) => {
   const { columns, data, ...rest } = args;
   const tableColumns = useMemo(
