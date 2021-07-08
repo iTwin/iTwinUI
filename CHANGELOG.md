@@ -1,8 +1,8 @@
 # Changelog
 
-## Unreleased
+## [1.11.0]
 
-`Date`
+`2021-07-08`
 
 ### What's new
 
@@ -382,6 +382,7 @@
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
 
+[1.11.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.8.1...v1.9.0
 [1.8.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.8.0...v1.8.1
