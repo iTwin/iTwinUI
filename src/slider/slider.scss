@@ -46,7 +46,7 @@ $tick-height: $iui-baseline; // 11px
     display: none;
   }
 
-  .iui-track {
+  .iui-slider-track {
     pointer-events: none;  // let pointer event through to underlying range control
     position: absolute;
     width: 100%;
@@ -68,9 +68,14 @@ $tick-height: $iui-baseline; // 11px
     transform: translateX((-$thumb-height - 2) * 0.5); // Adjust the left (set in code) by radius of thumb so thumb center is at value postion
     z-index: 2;
     transition: border $iui-speed-fast ease;
+    cursor: grab;
     @include themed {
       background: t(iui-color-background-1);
       border: 1px solid t(iui-color-background-5);
+    }
+
+    &:active {
+      cursor: grabbing;
     }
 
     &:focus + .iui-tooltip,
