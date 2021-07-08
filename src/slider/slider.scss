@@ -39,8 +39,8 @@ $tick-height: $iui-baseline; // 11px
 @mixin iui-slider-container {
   position: relative;
   z-index: 1; // above ticks
-  pointer-events: none;
   flex-grow: 1;
+  pointer-events: none;
 
   .iui-tooltip {
     display: none;
@@ -64,7 +64,8 @@ $tick-height: $iui-baseline; // 11px
     height: $thumb-height;
     width: $thumb-height;
     border-radius: 100%;
-    transform: translate((-$thumb-height - 2) * 0.5, $track-height + 1); // 2 and 1 to adjust for border width
+    top: $track-height + 1; // position center of thumb in center of track
+    transform: translateX((-$thumb-height - 2) * 0.5); // Adjust the left (set in code) by radius of thumb so thumb center is at value postion
     z-index: 2;
     transition: border $iui-speed-fast ease;
     @include themed {
