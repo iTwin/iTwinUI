@@ -33,51 +33,50 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-const renderResizeObserver = (size = { width: 50, height: 50 }) => {
+const renderResizeObserver = ({
+  onResize = jest.fn(),
+  initialSize = { width: 50, height: 50 },
+} = {}) => {
+  const hook = renderHook(() => useResizeObserver(onResize));
   const element: HTMLDivElement = document.createElement('div');
   Object.defineProperties(element, {
-    getBoundingClientRect: { value: () => size },
+    getBoundingClientRect: { value: () => initialSize },
   });
-  const ref = { current: element };
+  act(() => {
+    hook.result.current[0](element);
+  });
 
-  return renderHook(() => useResizeObserver(ref));
+  return { hook, element };
 };
 
 it('should initialize ResizeObserver correctly', () => {
   const mockSize = { width: 100, height: 100 };
-  const { result } = renderResizeObserver(mockSize);
-  expect(result.current).toMatchObject(mockSize);
-  expect(observe).toHaveBeenCalled();
+  const { element } = renderResizeObserver({ initialSize: mockSize });
+  expect(observe).toHaveBeenCalledWith(element);
+  expect(element.getBoundingClientRect()).toMatchObject(mockSize);
 });
 
-it('should return updated size when element resizes', () => {
-  const { result } = renderResizeObserver();
-  expect(result.current).toMatchObject({ width: 50, height: 50 });
+it('should call onResize when element resizes', () => {
+  const onResizeMock = jest.fn();
+  renderResizeObserver({ onResize: onResizeMock });
+  expect(onResizeMock).not.toHaveBeenCalled();
 
   const newSize = { width: 101, height: 101 };
   act(() => triggerResize(newSize));
-  expect(result.current).toMatchObject(newSize);
+  expect(onResizeMock).toHaveBeenCalledWith(newSize);
 });
 
-it('should not observe if elementRef is null', () => {
-  renderHook(() => useResizeObserver({ current: null }));
+it('should not observe if element is null', () => {
+  const { result } = renderHook(() => useResizeObserver(jest.fn()));
+  act(() => result.current[0](null));
   expect(observe).not.toHaveBeenCalled();
 });
 
-it('should disconnect if elementRef becomes null later', () => {
-  const element: HTMLDivElement = document.createElement('div');
-  const { rerender } = renderHook((r) => useResizeObserver(r), {
-    initialProps: { current: element } as React.RefObject<HTMLDivElement>,
-  });
-  expect(observe).toHaveBeenCalledWith(element);
-
-  rerender({ current: null });
-  expect(disconnect).toHaveBeenCalled();
-});
-
-it('should disconnect before unmounting', () => {
-  const { unmount } = renderResizeObserver();
+it('should disconnect if element becomes null later', () => {
+  const { hook } = renderResizeObserver();
+  expect(observe).toHaveBeenCalled();
   expect(disconnect).not.toHaveBeenCalled();
-  unmount();
+
+  act(() => hook.result.current[0](null));
   expect(disconnect).toHaveBeenCalled();
 });

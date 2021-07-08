@@ -7,20 +7,6 @@ import React from 'react';
 
 import { HorizontalTabs, HorizontalTabsProps } from './HorizontalTabs';
 
-beforeAll(() => {
-  window.ResizeObserver = class ResizeObserver {
-    observe() {
-      // do nothing
-    }
-    unobserve() {
-      // do nothing
-    }
-    disconnect() {
-      // do nothing
-    }
-  };
-});
-
 const renderComponent = (
   initialProps?: Partial<HorizontalTabsProps>,
   initialChildren?: React.ReactNode,

@@ -7,6 +7,7 @@ import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/tabs.css';
 import { useResizeObserver } from '../utils/hooks/useResizeObserver';
+import { useMergedRefs } from '../utils/hooks/useMergedRefs';
 
 export type HorizontalTabsProps = {
   /**
@@ -82,7 +83,16 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
 
-  const tablistSize = useResizeObserver(tablistRef);
+  const [tabsWidth, setTabsWidth] = React.useState(
+    () => tablistRef.current?.getBoundingClientRect().width,
+  );
+  const updateTabsWidth = React.useCallback(
+    ({ width }) => setTabsWidth(width),
+    [],
+  );
+
+  const [tablistSizeRef] = useResizeObserver(updateTabsWidth);
+  const refs = useMergedRefs(tablistRef, tablistSizeRef);
 
   const [currentIndex, setCurrentIndex] = React.useState(getValidIndex());
   const [stripeStyle, setStripeStyle] = React.useState<React.CSSProperties>({});
@@ -101,7 +111,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
         left: (activeTab as HTMLElement)?.offsetLeft,
       });
     }
-  }, [currentIndex, type, tablistSize]);
+  }, [currentIndex, type, tabsWidth]);
 
   const onTabClick = (index: number) => {
     if (onTabSelected) {
@@ -123,7 +133,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
           tabsClassName,
         )}
         role='tablist'
-        ref={tablistRef}
+        ref={refs}
         {...rest}
       >
         {labels.map((label, index) => {
