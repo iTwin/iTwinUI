@@ -6,6 +6,7 @@
 
 ### What's new
 
+- **Improved row selection in `Table`.** Clicking on rows will now select them and fire the `onRowClick` callback.
 - **Allowing to disable specific rows in `Table`.** Provide `isRowDisabled` prop.
 
 ## [1.10.0]

@@ -211,6 +211,37 @@ it('should handle checkbox clicks', () => {
   expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
 });
 
+it('should handle row clicks', () => {
+  const onSelect = jest.fn();
+  const onRowClick = jest.fn();
+  const { container, getByText } = renderComponent({
+    isSelectable: true,
+    onSelect,
+    onRowClick,
+  });
+
+  expect(screen.queryByText('Header name')).toBeFalsy();
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  fireEvent.click(getByText(mockedData()[1].name));
+  expect(rows[1].classList).toContain('iui-selected');
+  expect(onSelect).toHaveBeenCalledTimes(1);
+  expect(onRowClick).toHaveBeenCalledTimes(1);
+
+  fireEvent.click(getByText(mockedData()[2].name));
+  expect(rows[1].classList).not.toContain('iui-selected');
+  expect(rows[2].classList).toContain('iui-selected');
+  expect(onSelect).toHaveBeenCalledTimes(2);
+  expect(onRowClick).toHaveBeenCalledTimes(2);
+
+  fireEvent.click(getByText(mockedData()[1].name), { ctrlKey: true });
+  expect(rows[1].classList).toContain('iui-selected');
+  expect(rows[2].classList).toContain('iui-selected');
+  expect(onSelect).toHaveBeenCalledTimes(3);
+  expect(onRowClick).toHaveBeenCalledTimes(3);
+});
+
 it('should not trigger onSelect when sorting and filtering', () => {
   const onSort = jest.fn();
   const onSelect = jest.fn();
@@ -859,9 +890,11 @@ it('should disable row and handle expansion accordingly', () => {
 
 it('should disable row and handle selection accordingly', () => {
   const onSelect = jest.fn();
+  const onRowClick = jest.fn();
   const { container } = renderComponent({
     isSelectable: true,
     onSelect,
+    onRowClick,
     isRowDisabled: (rowData) => rowData.name === 'Name2',
   });
 
@@ -882,6 +915,7 @@ it('should disable row and handle selection accordingly', () => {
   // Select disabled row
   fireEvent.click(checkboxCells[2]);
   expect(onSelect).not.toHaveBeenCalled();
+  expect(onRowClick).not.toHaveBeenCalled();
 
   // Select first row
   fireEvent.click(checkboxCells[1]);

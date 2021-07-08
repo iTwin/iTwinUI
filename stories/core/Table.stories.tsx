@@ -139,9 +139,6 @@ export const Basic: Story<TableProps> = (args) => {
 
 export const Selectable: Story<TableProps> = (args) => {
   const { columns, data, ...rest } = args;
-  const onClickHandler = (
-    props: CellProps<{ name: string; description: string }>,
-  ) => action(props.row.original.name)();
 
   const onSelect = useCallback(
     (rows, state) =>
@@ -150,6 +147,12 @@ export const Selectable: Story<TableProps> = (args) => {
           state,
         )}`,
       )(),
+    [],
+  );
+
+  const onRowClick = useCallback(
+    (event: React.MouseEvent, row: Row) =>
+      action(`Row clicked: ${JSON.stringify(row.original)}`)(),
     [],
   );
 
@@ -174,9 +177,14 @@ export const Selectable: Story<TableProps> = (args) => {
             Header: 'Click',
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
-              const onClick = () => onClickHandler(props);
               return (
-                <a className='iui-anchor' onClick={onClick}>
+                <a
+                  className='iui-anchor'
+                  onClick={(e) => {
+                    e.stopPropagation(); // prevent row selection when clicking on link
+                    action(props.row.original.name)();
+                  }}
+                >
                   Click me!
                 </a>
               );
@@ -204,6 +212,7 @@ export const Selectable: Story<TableProps> = (args) => {
       emptyTableContent='No data.'
       isSelectable={true}
       onSelect={onSelect}
+      onRowClick={onRowClick}
       {...rest}
     />
   );
@@ -752,6 +761,12 @@ RowInViewport.argTypes = {
 export const DisabledRows: Story<TableProps> = (args) => {
   const { columns, data, ...rest } = args;
 
+  const onRowClick = useCallback(
+    (event: React.MouseEvent, row: Row) =>
+      action(`Row clicked: ${JSON.stringify(row.original)}`)(),
+    [],
+  );
+
   const isRowDisabled = useCallback(
     (rowData: { name: string; description: string }) => {
       return rowData.name === 'Name2';
@@ -827,6 +842,7 @@ export const DisabledRows: Story<TableProps> = (args) => {
       columns={columns || tableColumns}
       data={data || tableData}
       emptyTableContent='No data.'
+      onRowClick={onRowClick}
       subComponent={expandedSubComponent}
       isRowDisabled={isRowDisabled}
       {...rest}
