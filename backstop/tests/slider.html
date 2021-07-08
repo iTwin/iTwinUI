@@ -57,7 +57,7 @@
             </svg>
           </span>
           <div class="iui-slider-container iui-progress-slider">
-            <div class="iui-track"></div>
+            <div class="iui-slider-track"></div>
             <div
               class="iui-slider-progress"
               style="right: 50%;"
@@ -103,8 +103,8 @@
 
         <div class="iui-slider-component-container">
           <span class="iui-slider-min">0</span>
-          <div class="iui-slider-container iui-progress-slider iui-positive">
-            <div class="iui-track"></div>
+          <div class="iui-slider-container iui-progress-slider">
+            <div class="iui-slider-track"></div>
             <div
               class="iui-slider-progress"
               style="right: 50%;"
@@ -153,8 +153,8 @@
 
         <div class="iui-slider-component-container iui-disabled">
           <span class="iui-slider-min">0</span>
-          <div class="iui-slider-container iui-progress-slider iui-positive">
-            <div class="iui-track"></div>
+          <div class="iui-slider-container iui-progress-slider">
+            <div class="iui-slider-track"></div>
             <div
               class="iui-slider-progress"
               style="right: 50%;"
@@ -207,8 +207,8 @@
         <div class="iui-slider-component-container">
           <span class="iui-slider-min">0</span>
           <div class="
-              iui-slider-container iui-range-slider iui-positive">
-            <div class="iui-track"></div>
+              iui-slider-container iui-range-slider">
+            <div class="iui-slider-track"></div>
             <div
               class="iui-slider-range"
               style="left: 20%; right: 20%;"
@@ -262,7 +262,7 @@
           <span class="iui-slider-min">0</span>
           <div class="
             iui-slider-container iui-range-slider">
-            <div class="iui-track"></div>
+            <div class="iui-slider-track"></div>
             <div
               class="iui-slider-range"
               style="left: 20%; right: 20%;"
@@ -330,7 +330,7 @@
           <span class="iui-slider-min">0</span>
           <div class="
             iui-slider-container iui-range-slider">
-            <div class="iui-track"></div>
+            <div class="iui-slider-track"></div>
             <div
               class="iui-slider-range"
               style="left: 20%; right: 20%;"
@@ -521,7 +521,7 @@
           thumb.classList.add("iui-active");
           var otherThumb = getOtherRangeThumb(thumb);
           var ownerDoc = thumb.ownerDocument;
-          var track = sliderContainer.querySelector(".iui-track");
+          var track = sliderContainer.querySelector(".iui-slider-track");
           var handleMouseMove = function (event) {
             moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb);
           };
