@@ -8,10 +8,10 @@ $track-height: $iui-xs;  // 4px
 $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-component-container {
-  display: inline-flex;
+  display: flex;
 
-  span.iui-left,
-  span.iui-right {
+  .iui-slider-min,
+  .iui-slider-max {
     @include iui-font-family;
     user-select: all;
     margin-top: $iui-xxs;
@@ -22,12 +22,12 @@ $tick-height: $iui-baseline; // 11px
     }
   }
 
-  span.iui-left {
+  .iui-slider-min {
     margin-right: $iui-s;
     text-align: right;
   }
 
-  span.iui-right {
+  .iui-slider-max {
     margin-left: $iui-s;
   }
 
@@ -39,8 +39,8 @@ $tick-height: $iui-baseline; // 11px
 @mixin iui-slider-container {
   position: relative;
   z-index: 1; // above ticks
-  width: 100%;
   pointer-events: none;
+  flex-grow: 1;
 
   .iui-tooltip {
     display: none;
@@ -192,8 +192,8 @@ $tick-height: $iui-baseline; // 11px
     }
   }
 
-  .iui-left,
-  .iui-right,
+  .iui-slider-min,
+  .iui-slider-max,
   .iui-slider-tick {
     user-select: none;
     @include themed {
