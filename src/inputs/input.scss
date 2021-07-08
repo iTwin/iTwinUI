@@ -3,6 +3,7 @@
 @import '../style/index';
 
 @mixin iui-input {
+  @include iui-reset;
   @include iui-font-family;
   width: 100%;
   font-size: $iui-font-size;
@@ -11,9 +12,11 @@
   border-radius: $iui-border-radius;
   appearance: none;
   box-sizing: border-box;
-  transition: border-color $iui-speed-fast ease-out;
   padding: $iui-component-padding-vertical $iui-component-padding-horizontal;
   min-height: $iui-component-height;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: border-color $iui-speed-fast ease-out;
+  }
   @include themed {
     color: t(iui-text-color);
     background-color: t(iui-color-background-1);
@@ -61,7 +64,9 @@
     @include themed {
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
     }
-    transition: border-color $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: border-color $iui-speed-fast ease-out;
+    }
   }
 
   &:focus {
