@@ -129,28 +129,6 @@ $tick-height: $iui-baseline; // 11px
   .iui-slider-thumb {
     @include iui-focus();
   }
-
-  // Theme
-  &.iui-positive {
-    .iui-slider-progress,
-    .iui-slider-range {
-      @include themed {
-        background-color: t(iui-color-foreground-positive);
-      }
-    }
-
-    //Focus for slider
-    &:not(.iui-range-slider) .iui-slider:focus-visible + .iui-slider-thumb {
-      @include themed {
-        box-shadow: t(iui-focus-positive-box-shadow);
-      }
-    }
-
-    //Focus for thumb
-    .iui-slider-thumb {
-      @include iui-focus(iui-focus-positive-box-shadow);
-    }
-  }
 }
 
 @mixin iui-slider-ticks {
@@ -177,6 +155,8 @@ $tick-height: $iui-baseline; // 11px
 }
 
 @mixin iui-slider-disabled {
+  cursor: not-allowed;
+
   .iui-slider-thumb {
     @include themed {
       background-color: t(iui-color-background-4);
@@ -185,9 +165,7 @@ $tick-height: $iui-baseline; // 11px
   }
 
   .iui-slider-progress,
-  .iui-slider-range,
-  .iui-positive .iui-slider-progress,
-  .iui-positive .iui-slider-range {
+  .iui-slider-range {
     @include themed {
       background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     }
