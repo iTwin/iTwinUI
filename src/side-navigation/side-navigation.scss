@@ -7,8 +7,10 @@
   display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;
-  transition: max-width $iui-speed-fast ease-out;
   height: 100%;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: max-width $iui-speed-fast ease-out;
+  }
   @include themed {
     background-color: t(iui-color-background-3);
     border-right: 1px solid t(iui-color-background-5);
@@ -151,7 +153,9 @@
 
       > .iui-icon {
         @include iui-icons-small;
-        transition: transform $iui-speed ease-out;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: transform $iui-speed ease-out;
+        }
       }
     }
   }

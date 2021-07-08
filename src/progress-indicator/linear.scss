@@ -5,7 +5,6 @@
 
 @mixin iui-progress-indicator-linear($height: 4px) {
   @include iui-reset;
-
   @include iui-font-family;
   text-align: left;
   display: block;
@@ -19,7 +18,7 @@
       background-color: t(iui-color-background-5);
     }
 
-    > * {
+    > .iui-fill {
       display: inline-block;
       height: 100%;
       vertical-align: top;
