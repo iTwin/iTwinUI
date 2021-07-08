@@ -18,7 +18,7 @@ $tick-height: $iui-baseline; // 11px
 
     .iui-icon {
       @include iui-icons-default;
-      margin-top: 4px;
+      margin-top: $iui-xs;
     }
   }
 
@@ -51,7 +51,7 @@ $tick-height: $iui-baseline; // 11px
     position: absolute;
     width: 100%;
     height: $track-height;
-    margin-top: 12px;
+    margin-top: $iui-sm;
     @include themed {
       background-color: t(iui-color-background-4);
     }

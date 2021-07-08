@@ -215,7 +215,7 @@
             ></div>
             <div
               style="left: 20%;"
-              class="iui-slider-thumb iui-slider-min"
+              class="iui-slider-thumb"
               role="slider"
               tabindex="0"
               aria-label="Start Value"
@@ -225,14 +225,14 @@
               data-range-max="100"
             ></div>
             <output
-              class="iui-tooltip iui-slider-min"
+              class="iui-tooltip"
               style="left: 20%;"
             >
               20
             </output>
             <div
               style="left: 80%;"
-              class="iui-slider-thumb iui-slider-max"
+              class="iui-slider-thumb"
               role="slider"
               tabindex="0"
               aria-label="End Value"
@@ -242,7 +242,7 @@
               data-range-min="0"
             ></div>
             <output
-              class="iui-tooltip iui-slider-max"
+              class="iui-tooltip"
               style="left: 80%;"
             >
               80
@@ -269,7 +269,7 @@
             ></div>
             <div
               style="left: 20%;"
-              class="iui-slider-thumb iui-slider-min"
+              class="iui-slider-thumb"
               role="slider"
               tabindex="0"
               aria-label="Start Value"
@@ -279,14 +279,14 @@
               data-range-max="100"
             ></div>
             <output
-              class="iui-tooltip iui-slider-min"
+              class="iui-tooltip"
               style="left: 20%;"
             >
               20
             </output>
             <div
               style="left: 80%;"
-              class="iui-slider-thumb iui-slider-max"
+              class="iui-slider-thumb"
               role="slider"
               tabindex="0"
               aria-label="End Value"
@@ -296,7 +296,7 @@
               data-range-min="0"
             ></div>
             <output
-              class="iui-tooltip iui-slider-max"
+              class="iui-tooltip"
               style="left: 80%;"
             >
               80
@@ -337,7 +337,7 @@
             ></div>
             <div
               style="left: 20%;"
-              class="iui-slider-thumb iui-slider-min"
+              class="iui-slider-thumb"
               role="slider"
               tabindex="0"
               aria-label="Start Value"
@@ -347,14 +347,14 @@
               data-range-max="100"
             ></div>
             <output
-              class="iui-tooltip iui-slider-min"
+              class="iui-tooltip"
               style="left: 20%;"
             >
               20
             </output>
             <div
               style="left: 80%;"
-              class="iui-slider-thumb iui-slider-max"
+              class="iui-slider-thumb"
               role="slider"
               tabindex="0"
               aria-label="End Value"
@@ -364,7 +364,7 @@
               data-range-min="0"
             ></div>
             <output
-              class="iui-tooltip iui-slider-max"
+              class="iui-tooltip"
               style="left: 80%;"
             >
               80
@@ -484,13 +484,14 @@
       }
 
       function getToolTip(thumb, mode) {
-        var parent = thumb.parentNode;
-        var selector = ".iui-tooltip";
+        const parent = thumb.parentNode;
+        const tooltips = parent.querySelectorAll(".iui-tooltip");
         if (mode === "range-left")
-          selector += ".iui-tooltip.iui-slider-min";
+          return tooltips[0];
         else if (mode === "range-right")
-          selector += ".iui-tooltip.iui-slider-max";
-        return parent.querySelector(selector);
+          return tooltips[1];
+
+        return tooltips[0];
       }
 
       function initializeThumbProcessing(thumb, sliderContainer, mode) {
@@ -556,13 +557,14 @@
       function initializeAllRangeSliders() {
         const allRangeSliderContainers = document.querySelectorAll(".iui-slider-container.iui-range-slider");
         allRangeSliderContainers.forEach(rangeSliderContainer => {
+          const thumbs = rangeSliderContainer.querySelectorAll(".iui-slider-thumb");
 
-          const leftThumb = rangeSliderContainer.querySelector(".iui-slider-thumb.iui-slider-min");
+          const leftThumb = thumbs[0];
           if (leftThumb) {
             initializeThumbProcessing(leftThumb, rangeSliderContainer, "range-left");
           }
 
-          const rightThumb = rangeSliderContainer.querySelector(".iui-slider-thumb.iui-slider-max");
+          const rightThumb = thumbs[1];
           if (rightThumb) {
             initializeThumbProcessing(rightThumb, rangeSliderContainer, "range-right");
           }
