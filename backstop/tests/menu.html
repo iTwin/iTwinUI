@@ -1956,16 +1956,16 @@
       </ul>
     </section>
     <script>
-      // Menu is placed differently based on the user screen, so need to set margin-left dynamically
-      const imodelButton = document.querySelector("#demo-header-imodel-button");
-      const imodelMenu = document.querySelector("#demo-header-imodel-menu");
-      // 12 - section padding
-      imodelMenu.style.marginLeft = imodelButton.offsetLeft - 12 + "px";
+      const sectionPadding = parseInt(getComputedStyle(document.querySelector('#demo-header')).paddingLeft);
 
-      const slimiModelButton = document.querySelector("#demo-header-slim-imodel-button");
-      const slimiModelMenu = document.querySelector("#demo-header-slim-imodel-menu");
-      // 12 - section padding
-      slimiModelMenu.style.marginLeft = slimiModelButton.offsetLeft - 12 + "px";
+      // Menu is placed differently based on the user screen, so need to set margin-left dynamically
+      const headerButton = document.querySelector("#demo-header-imodel-button");
+      const headerButtonMenu = document.querySelector("#demo-header-imodel-menu");
+      headerButtonMenu.style.marginLeft = `${headerButton.offsetLeft - sectionPadding}px`;
+
+      const slimHeaderButton = document.querySelector("#demo-header-slim-imodel-button");
+      const slimHeaderButtonMenu = document.querySelector("#demo-header-slim-imodel-menu");
+      slimHeaderButtonMenu.style.marginLeft = `${slimHeaderButton.offsetLeft - sectionPadding}px`;
     </script>
   </body>
 </html>
