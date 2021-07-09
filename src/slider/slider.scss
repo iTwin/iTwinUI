@@ -38,7 +38,6 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-container {
   position: relative;
-  z-index: 1; // above ticks
   flex-grow: 1;
   pointer-events: all;
   cursor: pointer;
@@ -59,7 +58,6 @@ $tick-height: $iui-baseline; // 11px
   }
 
   .iui-slider-thumb {
-    outline: none;
     position: absolute;
     pointer-events: all;
     height: $thumb-height;
@@ -67,8 +65,7 @@ $tick-height: $iui-baseline; // 11px
     border-radius: 100%;
     top: $track-height + 1; // position center of thumb in center of track
     transform: translateX((-$thumb-height - 2) * 0.5); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
-    z-index: 2;
-    transition: border $iui-speed-fast ease;
+    z-index: 1;
     cursor: grab;
     @include themed {
       background: t(iui-color-background-1);
@@ -97,24 +94,10 @@ $tick-height: $iui-baseline; // 11px
     height: $track-height;
     left: 0;
     top: $iui-sm;
-    z-index: 1;
     @include themed {
       background-color: t(iui-color-foreground-primary);
     }
   }
-
-  .iui-slider-track {
-    position: absolute;
-    height: $track-height;
-    z-index: 1;
-    bottom: 0;
-    top: $iui-sm;
-    pointer-events: none;
-    @include themed {
-      background-color: t(iui-color-foreground-primary);
-    }
-  }
-
 }
 
 @mixin iui-slider-ticks {
