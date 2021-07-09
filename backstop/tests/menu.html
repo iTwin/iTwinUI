@@ -37,6 +37,7 @@
     </style>
     <script src="../assets/theme.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Menu</h1>
@@ -1959,13 +1960,39 @@
       const sectionPadding = parseInt(getComputedStyle(document.querySelector('#demo-header')).paddingLeft);
 
       // Menu is placed differently based on the user screen, so need to set margin-left dynamically
-      const headerButton = document.querySelector("#demo-header-imodel-button");
-      const headerButtonMenu = document.querySelector("#demo-header-imodel-menu");
+      const headerButton = document.querySelector('#demo-header-imodel-button');
+      const headerButtonMenu = document.querySelector('#demo-header-imodel-menu');
       headerButtonMenu.style.marginLeft = `${headerButton.offsetLeft - sectionPadding}px`;
 
-      const slimHeaderButton = document.querySelector("#demo-header-slim-imodel-button");
-      const slimHeaderButtonMenu = document.querySelector("#demo-header-slim-imodel-menu");
+      const slimHeaderButton = document.querySelector('#demo-header-slim-imodel-button');
+      const slimHeaderButtonMenu = document.querySelector('#demo-header-slim-imodel-menu');
       slimHeaderButtonMenu.style.marginLeft = `${slimHeaderButton.offsetLeft - sectionPadding}px`;
+
+      // web component for checkmark.svg
+      customElements.define('svg-checkmark', class CheckmarkIcon extends HTMLElement {
+        connectedCallback() {
+          const innerHtml = `<svg class="iui-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" /></svg>`;
+          this.parentElement.insertAdjacentHTML('beforeend', innerHtml);
+          this.remove();
+        }
+      });
+
+      // Clicking on menu-item should toggle selection
+      document.querySelectorAll('.iui-menu-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          if (item.classList.contains('iui-active')) {
+            item.lastElementChild.remove();
+          } else {
+            const checkmarkSvg = document.createElement('svg-checkmark');
+            if (item.lastElementChild.classList.contains('iui-icon')) {
+              item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
+            } else {
+              item.appendChild(checkmarkSvg);
+            }
+          }
+          item.classList.toggle('iui-active');
+        });
+      });
     </script>
   </body>
 </html>
