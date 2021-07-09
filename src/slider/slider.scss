@@ -48,7 +48,6 @@ $tick-height: $iui-baseline; // 11px
   }
 
   .iui-slider-rail {
-    pointer-events: all;
     position: absolute;
     width: 100%;
     height: $track-height;
