@@ -42,10 +42,6 @@ $tick-height: $iui-baseline; // 11px
   pointer-events: all;
   cursor: pointer;
 
-  .iui-tooltip {
-    display: none;
-  }
-
   .iui-slider-rail {
     pointer-events: all;
     position: absolute;
@@ -77,15 +73,6 @@ $tick-height: $iui-baseline; // 11px
     }
 
     @include iui-focus();
-
-    &:focus + .iui-tooltip,
-    &:hover + .iui-tooltip,
-    .iui-active + .iui-tooltip {
-      position: absolute;
-      display: block;
-      margin-top: -$iui-xl;
-      transform: translateX(-50%);
-    }
   }
 
   .iui-slider-track {

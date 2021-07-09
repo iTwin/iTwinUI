@@ -28,6 +28,19 @@
       /* Gives left & right labels an equal width so the slider is centered. */
       .iui-slider-min,
       .iui-slider-max {width: 25px;}
+
+      .iui-tooltip {
+        display: none;
+      }
+
+      .iui-slider-container .iui-slider-thumb:focus + .iui-tooltip,
+      .iui-slider-container .iui-slider-thumb:hover + .iui-tooltip,
+      .iui-slider-container .iui-slider-thumb.iui-active + .iui-tooltip {
+        position: absolute;
+        display: block;
+        margin-top: -32px;
+        transform: translateX(-50%);
+      }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
