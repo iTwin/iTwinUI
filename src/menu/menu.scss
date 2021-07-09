@@ -18,6 +18,7 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  border: 1px solid transparent;
 
   svg.iui-header-menu-icon {
     margin: 0 $iui-xs;
@@ -39,9 +40,12 @@
   cursor: pointer;
   box-sizing: border-box;
   line-height: normal;
-  border: 1px solid transparent;
   @include themed {
     color: t(iui-text-color);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1px;
   }
 
   .iui-content,
@@ -79,13 +83,15 @@
         t(iui-color-foreground-primary-rgb),
         t(iui-opacity-6)
       );
+      outline: 1px solid rgba(
+        t(iui-color-foreground-primary-rgb),
+        t(iui-opacity-6));
     }
   }
 
   &:focus {
     @include themed {
       outline: 1px solid t(iui-color-foreground-primary);
-      outline-offset: -1px;
     }
   }
 
@@ -107,7 +113,7 @@
         t(iui-color-foreground-primary-rgb),
         t(iui-opacity-5)
       );
-      border: solid 1px t(iui-color-foreground-primary);
+      outline: solid 1px t(iui-color-foreground-primary);
     }
 
     > .iui-icon {
@@ -117,7 +123,8 @@
     }
 
     &:focus {
-      outline-offset: -$iui-xxs;
+      outline-width: $iui-xxs;
+      outline-offset: -1px;
     }
   }
 
