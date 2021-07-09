@@ -52,7 +52,7 @@ $tick-height: $iui-baseline; // 11px
     position: absolute;
     width: 100%;
     height: $track-height;
-    margin-top: $iui-sm;
+    top: $iui-sm;
     @include themed {
       background-color: t(iui-color-background-4);
     }
@@ -78,6 +78,8 @@ $tick-height: $iui-baseline; // 11px
     &:active {
       cursor: grabbing;
     }
+
+    @include iui-focus();
 
     &:focus + .iui-tooltip,
     &:hover + .iui-tooltip,
@@ -113,33 +115,11 @@ $tick-height: $iui-baseline; // 11px
     }
   }
 
-  //Focus for slider
-  &:not(.iui-range-slider) .iui-slider:focus-visible {
-    outline: none;
-
-    + .iui-slider-thumb {
-      @include themed {
-        box-shadow: t(iui-focus-box-shadow);
-      };
-    }
-  }
-
-  //Focus for range
-  &.iui-range-slider .iui-slider {
-    &:focus-visible {
-      outline: none;
-    }
-  }
-
-  //Focus for thumb
-  .iui-slider-thumb {
-    @include iui-focus();
-  }
 }
 
 @mixin iui-slider-ticks {
   position: relative;
-  padding-top: 16px;
+  padding-top: $iui-m;
   display: flex;
   pointer-events: none;
   justify-content: space-between;
@@ -169,9 +149,14 @@ $tick-height: $iui-baseline; // 11px
   }
 
   .iui-slider-thumb {
+    cursor: not-allowed;
     @include themed {
       background-color: t(iui-color-background-4);
       border-color: t(iui-color-background-4);
+    }
+
+    &:active {
+      cursor: not-allowed;
     }
   }
 
