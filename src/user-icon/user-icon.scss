@@ -139,9 +139,20 @@
     }
 
     &:focus {
+      outline: none;
+
       > .iui-stroke {
         @include themed {
           box-shadow: t(iui-focus-box-shadow);
+        }
+      }
+    }
+
+    &:focus:not(:focus-visible) {
+      > .iui-stroke {
+        @include themed {
+          box-shadow: inset 0 0 0 $iui-xxs
+            rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
         }
       }
     }
