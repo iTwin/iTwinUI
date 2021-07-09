@@ -3,6 +3,10 @@
 @import '../style/index';
 @import '../icon/index';
 
+$iui-button-padding: $iui-xs * 4;
+$iui-button-padding-small: $iui-xs * 2;
+$iui-button-padding-large: $iui-xs * 6;
+
 @mixin iui-button {
   @include iui-reset;
   @include iui-font-family;
@@ -46,7 +50,7 @@
 }
 
 @mixin iui-button-sizes {
-  padding: 0 $iui-component-padding-horizontal;
+  padding: 0 $iui-button-padding;
   height: $iui-component-height;
 
   > .iui-icon + .iui-label,
@@ -56,12 +60,12 @@
   }
 
   &.iui-small {
-    padding: 0 $iui-component-padding-horizontal-small;
+    padding: 0 $iui-button-padding-small;
     height: $iui-component-height-small;
   }
 
   &.iui-large {
-    padding: 0 $iui-component-padding-horizontal-large;
+    padding: 0 $iui-button-padding-large;
     height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
   }
