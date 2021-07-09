@@ -23,12 +23,12 @@ $tick-height: $iui-baseline; // 11px
   }
 
   .iui-slider-min {
-    margin-right: $iui-s;
+    margin-right: $iui-sm;
     text-align: right;
   }
 
   .iui-slider-max {
-    margin-left: $iui-s;
+    margin-left: $iui-sm;
   }
 
   &.iui-disabled {
@@ -38,7 +38,6 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-container {
   position: relative;
-  z-index: 1; // above ticks
   flex-grow: 1;
   pointer-events: all;
   cursor: pointer;
@@ -51,14 +50,13 @@ $tick-height: $iui-baseline; // 11px
     position: absolute;
     width: 100%;
     height: $track-height;
-    margin-top: $iui-sm;
+    top: $iui-sm;
     @include themed {
       background-color: t(iui-color-background-4);
     }
   }
 
   .iui-slider-thumb {
-    outline: none;
     position: absolute;
     pointer-events: all;
     height: $thumb-height;
@@ -66,8 +64,7 @@ $tick-height: $iui-baseline; // 11px
     border-radius: 100%;
     top: $track-height + 1; // position center of thumb in center of track
     transform: translateX((-$thumb-height - 2) * 0.5); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
-    z-index: 2;
-    transition: border $iui-speed-fast ease;
+    z-index: 1;
     cursor: grab;
     @include themed {
       background: t(iui-color-background-1);
@@ -77,6 +74,8 @@ $tick-height: $iui-baseline; // 11px
     &:active {
       cursor: grabbing;
     }
+
+    @include iui-focus();
 
     &:focus + .iui-tooltip,
     &:hover + .iui-tooltip,
@@ -94,51 +93,15 @@ $tick-height: $iui-baseline; // 11px
     height: $track-height;
     left: 0;
     top: $iui-sm;
-    z-index: 1;
     @include themed {
       background-color: t(iui-color-foreground-primary);
     }
-  }
-
-  .iui-slider-track {
-    position: absolute;
-    height: $track-height;
-    z-index: 1;
-    bottom: 0;
-    top: $iui-sm;
-    pointer-events: none;
-    @include themed {
-      background-color: t(iui-color-foreground-primary);
-    }
-  }
-
-  //Focus for slider
-  &:not(.iui-range-slider) .iui-slider:focus-visible {
-    outline: none;
-
-    + .iui-slider-thumb {
-      @include themed {
-        box-shadow: t(iui-focus-box-shadow);
-      };
-    }
-  }
-
-  //Focus for range
-  &.iui-range-slider .iui-slider {
-    &:focus-visible {
-      outline: none;
-    }
-  }
-
-  //Focus for thumb
-  .iui-slider-thumb {
-    @include iui-focus();
   }
 }
 
 @mixin iui-slider-ticks {
   position: relative;
-  padding-top: 16px;
+  padding-top: $iui-m;
   display: flex;
   pointer-events: none;
   justify-content: space-between;
@@ -168,9 +131,14 @@ $tick-height: $iui-baseline; // 11px
   }
 
   .iui-slider-thumb {
+    cursor: not-allowed;
     @include themed {
       background-color: t(iui-color-background-4);
       border-color: t(iui-color-background-4);
+    }
+
+    &:active {
+      cursor: not-allowed;
     }
   }
 
