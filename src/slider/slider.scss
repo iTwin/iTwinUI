@@ -40,14 +40,15 @@ $tick-height: $iui-baseline; // 11px
   position: relative;
   z-index: 1; // above ticks
   flex-grow: 1;
-  pointer-events: none;
+  pointer-events: all;
+  cursor: pointer;
 
   .iui-tooltip {
     display: none;
   }
 
   .iui-slider-rail {
-    pointer-events: none;  // let pointer event through to underlying range control
+    pointer-events: all;
     position: absolute;
     width: 100%;
     height: $track-height;
@@ -161,6 +162,11 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-disabled {
   cursor: not-allowed;
+
+  .iui-slider-container {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 
   .iui-slider-thumb {
     @include themed {
