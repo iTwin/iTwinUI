@@ -4,6 +4,24 @@
 @import '../style/index';
 @import '../text/mixins';
 
+@mixin iui-user-icon-margins {
+  .iui-user-icon:not(:first-child) {
+    margin-left: $iui-xs;
+
+    &.iui-small {
+      margin-left: $iui-xxs;
+    }
+
+    &.iui-large {
+      margin-left: $iui-s;
+    }
+
+    &.iui-x-large {
+      margin-left: $iui-sm;
+    }
+  }
+}
+
 @mixin iui-user-icon {
   @include iui-reset;
   @include iui-font-family;
@@ -157,23 +175,9 @@
   display: inline-flex;
   flex-wrap: wrap;
 
-  .iui-user-icon:not(:first-child) {
-    margin-left: $iui-xs;
+  @include iui-user-icon-margins;
 
-    &.iui-small {
-      margin-left: $iui-xxs;
-    }
-
-    &.iui-large {
-      margin-left: $iui-s;
-    }
-
-    &.iui-x-large {
-      margin-left: $iui-sm;
-    }
-  }
-
-  &.iui-user-icon-list-stacked {
+  &.iui-stacked {
     .iui-user-icon:not(:first-child) {
       margin-left: -$iui-xs;
 
@@ -210,21 +214,7 @@
       }
 
       &:hover {
-        .iui-user-icon:not(:first-child) {
-          margin-left: $iui-xs;
-
-          &.iui-small {
-            margin-left: $iui-xxs;
-          }
-
-          &.iui-large {
-            margin-left: $iui-s;
-          }
-
-          &.iui-x-large {
-            margin-left: $iui-sm;
-          }
-        }
+        @include iui-user-icon-margins;
       }
     }
   }
