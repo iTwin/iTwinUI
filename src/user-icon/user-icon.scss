@@ -139,11 +139,6 @@
     }
 
     &:focus {
-      @include themed {
-        box-shadow: t(iui-focus-box-shadow);
-        border-radius: 50%;
-      }
-
       > .iui-stroke {
         @include themed {
           box-shadow: t(iui-focus-box-shadow);
