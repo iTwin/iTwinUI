@@ -136,60 +136,91 @@
       color: t(iui-text-color-muted);
     }
   }
+
+  &.iui-user-icon-count:focus {
+    @include themed {
+      box-shadow: t(iui-focus-box-shadow);}
+    border-radius: 50%;
+
+    &.iui-user-icon > .iui-stroke {
+      @include themed {
+        box-shadow: t(iui-focus-box-shadow);}
+    }
+  }
 }
 
 @mixin iui-user-icon-list {
-  display: flex;
+  display: inline-flex;
+  flex-wrap: wrap;
 
   .iui-user-icon:not(:first-child) {
-    margin-left: -$iui-xs;
-
-    .iui-initials {
-      @include themed {
-        box-shadow: 0 0 0 $iui-xs t(iui-color-background-1);
-      }
-    }
-
+    margin-left: $iui-xs;
+   
     &.iui-small {
-      margin-left: -$iui-xxs;
-
-      .iui-initials {
-        @include themed {
-          box-shadow: 0 0 0 $iui-xxs t(iui-color-background-1);
-        }
-      }
+      margin-left: $iui-xxs;
     }
+ 
 
     &.iui-large {
-      margin-left: -$iui-s;
+      margin-left: $iui-s;
     }
 
     &.iui-x-large {
-      margin-left: -$iui-sm;
+      margin-left: $iui-sm;
     }
   }
 
-  &.iui-animated {
-    @media (prefers-reduced-motion: no-preference) {
-      .iui-user-icon {
-        transition: margin-left $iui-speed ease-out;
+  &.iui-user-icon-list-stacked {
+    .iui-user-icon:not(:first-child) {
+      margin-left: -$iui-xs;
+      
+      .iui-initials {
+        @include themed {
+          box-shadow: 0 0 0 $iui-xs t(iui-color-background-1);
+        }
+      }
+     
+      &.iui-small {
+        margin-left: -$iui-xxs;
+  
+        .iui-initials {
+          @include themed {
+            box-shadow: 0 0 0 $iui-xxs t(iui-color-background-1);
+          }
+        }
+      }
+  
+      &.iui-large {
+        margin-left: -$iui-s;
+      }
+  
+      &.iui-x-large {
+        margin-left: -$iui-sm;
       }
     }
-
-    &:hover {
-      .iui-user-icon:not(:first-child) {
-        margin-left: $iui-xs;
-    
-        &.iui-small {
-          margin-left: $iui-xxs;
+  
+    &.iui-animated {
+      @media (prefers-reduced-motion: no-preference) {
+        .iui-user-icon {
+          transition: margin-left $iui-speed ease-out;
         }
-    
-        &.iui-large {
-          margin-left: $iui-s;
-        }
-    
-        &.iui-x-large {
-          margin-left: $iui-sm;
+      }
+  
+      &:hover {
+        .iui-user-icon:not(:first-child) {
+          margin-left: $iui-xs;
+      
+          &.iui-small {
+            margin-left: $iui-xxs;
+          }
+      
+          &.iui-large {
+            margin-left: $iui-s;
+          }
+      
+          &.iui-x-large {
+            margin-left: $iui-sm;
+          }
         }
       }
     }
