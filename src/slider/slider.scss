@@ -23,12 +23,12 @@ $tick-height: $iui-baseline; // 11px
   }
 
   .iui-slider-min {
-    margin-right: $iui-s;
+    margin-right: $iui-sm;
     text-align: right;
   }
 
   .iui-slider-max {
-    margin-left: $iui-s;
+    margin-left: $iui-sm;
   }
 
   &.iui-disabled {
