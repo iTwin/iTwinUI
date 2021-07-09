@@ -12,6 +12,9 @@ module.exports = [
   scenario('Type list', {
     selectors: ['#demo-list'],
   }),
+  scenario('Type stacked', {
+    selectors: ['#demo-stacked'],
+  }),
   scenario('Type animated', {
     selectors: ['#demo-animated'],
   }),
