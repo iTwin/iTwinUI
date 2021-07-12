@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+`[date]`
+
+- **Added iui-stacked class for User Icon List** to allow unstacked lists
+- **Added focus styling to User Count Icon**
+
 ## [0.22.1]
 
 `2021-07-01`
