@@ -12,14 +12,18 @@ module.exports = [
   scenario('Type list', {
     selectors: ['#demo-list'],
   }),
+  scenario('Type stacked', {
+    selectors: ['#demo-stacked'],
+  }),
   scenario('Type animated', {
     selectors: ['#demo-animated'],
   }),
 
   // Hover states
   //// Animated
-  scenario('State hover animated', {
-    actions: [hover('#test-animated-1')],
-    selectors: ['#demo-animated-1'],
-  }),
+  // scenario('State hover animated', {
+  //   actions: [hover('#test-animated-1')],
+  //   selectors: ['#demo-animated-1'],
+  //   postInteractionWait: 1000,
+  // }),
 ];
