@@ -39,7 +39,6 @@ $tick-height: $iui-baseline; // 11px
 @mixin iui-slider-container {
   position: relative;
   flex-grow: 1;
-  pointer-events: all;
   cursor: pointer;
 
   .iui-slider-rail {
@@ -54,7 +53,6 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-thumb {
     position: absolute;
-    pointer-events: all;
     height: $thumb-height;
     width: $thumb-height;
     border-radius: 100%;
