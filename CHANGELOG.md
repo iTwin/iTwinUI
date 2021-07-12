@@ -1,11 +1,19 @@
 # Changelog
 
-## Unreleased
+## [0.23.0]
 
-`Date`
+`2021-07-12`
 
-- **Added `.iui-stacked` class for user-icon list** to allow unstacked lists.
-- **Added focus styling to user-icon-count**.
+### What's new
+
+- **Changed `.iui-body` to use `iui-color-background-2`** by default.
+- **Added `.iui-stacked` class to user-icon list**, allowing for unstacked lists.
+- **Added `.iui-user-icon-count` class** to have different styling from other user-icons in the list.
+
+### Fixes
+
+- **Updated font fallbacks for all components.**
+- **Updated all transitions to respect reduced-motion user preference.**
 
 ## [0.22.1]
 
@@ -336,6 +344,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.23.0]: https://github.com/iTwin/iTwinUI/compare/v0.22.1...v0.23.0
 [0.22.1]: https://github.com/iTwin/iTwinUI/compare/v0.22.0...v0.22.1
 [0.22.0]: https://github.com/iTwin/iTwinUI/compare/v0.21.0...v0.22.0
 [0.21.0]: https://github.com/iTwin/iTwinUI/compare/v0.20.3...v0.21.0
