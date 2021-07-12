@@ -131,6 +131,7 @@
     &,
     &:hover {
       cursor: not-allowed;
+      outline: none;
       @include themed {
         background-color: t(iui-color-background-1);
         color: t(iui-text-color-placeholder);
