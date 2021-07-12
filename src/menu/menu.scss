@@ -83,6 +83,9 @@
         t(iui-color-foreground-primary-rgb),
         t(iui-opacity-6)
       );
+      outline: 1px solid rgba(
+        t(iui-color-foreground-primary-rgb),
+        t(iui-opacity-6));
     }
   }
 
