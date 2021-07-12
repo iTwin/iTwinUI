@@ -77,15 +77,33 @@
     @include iui-menu-icon;
   }
 
+  &.iui-disabled {
+    cursor: not-allowed;
+    @include themed {
+      color: t(iui-text-color-placeholder);
+    }
+
+    > .iui-icon {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
+      }
+    }
+  }
+
   &:hover:not(.iui-disabled):not(.iui-active) {
     @include themed {
       background-color: rgba(
         t(iui-color-foreground-primary-rgb),
         t(iui-opacity-6)
       );
-      outline: 1px solid rgba(
-        t(iui-color-foreground-primary-rgb),
-        t(iui-opacity-6));
+    }
+
+    &:not(:focus) {
+      @include themed {
+        outline: 1px solid rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6));
+      }
     }
   }
 
@@ -95,7 +113,7 @@
     }
   }
 
-  &:focus:not(:focus-visible) {
+  &:focus:not(:focus-visible):not(.iui-active) {
     outline: none;
   }
 
@@ -126,18 +144,15 @@
       outline-width: $iui-xxs;
       outline-offset: -1px;
     }
-  }
 
-  &.iui-disabled {
-    cursor: not-allowed;
-    @include themed {
-      color: t(iui-text-color-placeholder);
+    &:focus:not(:focus-visible) {
+      outline-width: 1px;
+      outline-offset: 0;
     }
 
-    > .iui-icon {
-      @include themed {
-        fill: t(iui-icons-color-actionable-disabled);
-      }
+    &:focus-visible {
+      outline-width: $iui-xxs;
+      outline-offset: -1px;
     }
   }
 }
