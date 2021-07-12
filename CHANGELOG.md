@@ -6,8 +6,8 @@
 
 ### What's new
 
-- **Updated `.iui-body` to use `iui-color-background-2` by default.
-- **Added `.iui-stacked` class for user-icon list** to allow unstacked lists.
+- **Updated `.iui-body` to use `iui-color-background-2`** by default.
+- **Added `.iui-stacked` class to user-icon list**, allowing for unstacked lists.
 - **Added `.iui-user-icon-count` class** to have different styling than other user-icons in the list.
 - **Updated font fallbacks for all components.**
 - **Updated all transitions to respect reduced-motion user preference.**
