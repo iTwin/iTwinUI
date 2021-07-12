@@ -148,6 +148,10 @@
       }
     }
 
+    &:focus-visible {
+      outline: none;
+    }
+
     &:focus:not(:focus-visible) {
       > .iui-stroke {
         @include themed {
