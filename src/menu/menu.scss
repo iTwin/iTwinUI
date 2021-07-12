@@ -109,8 +109,7 @@
 
   &.iui-active {
     &,
-    &:hover,
-    &:focus {
+    &:hover {
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
@@ -124,6 +123,16 @@
       @include themed {
         fill: t(iui-icons-color-primary);
       }
+    }
+
+    &:focus {
+      outline-width: $iui-xxs;
+      outline-offset: -1px;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: solid 1px t(iui-color-foreground-primary);
+      outline-offset: 0;
     }
   }
 
