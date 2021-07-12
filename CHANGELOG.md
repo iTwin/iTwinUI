@@ -2,10 +2,10 @@
 
 ## Unreleased
 
-`[date]`
+`Date`
 
-- **Added iui-stacked class for User Icon List** to allow unstacked lists
-- **Added focus styling to User Count Icon**
+- **Added `.iui-stacked` class for user-icon list** to allow unstacked lists.
+- **Added focus styling to user-icon-count**.
 
 ## [0.22.1]
 
