@@ -62,11 +62,24 @@ $iui-button-padding-large: $iui-xs * 6;
   &.iui-small {
     padding: 0 $iui-button-padding-small;
     height: $iui-component-height-small;
+
+    > .iui-icon + .iui-label,
+    > .iui-label + .iui-icon,
+    > .iui-icon + .iui-icon {
+      margin-left: $iui-xs;
+    }
   }
 
   &.iui-large {
     padding: 0 $iui-button-padding-large;
     height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
+
+
+    > .iui-icon + .iui-label,
+    > .iui-label + .iui-icon,
+    > .iui-icon + .iui-icon {
+      margin-left: $iui-sm;
+    }
   }
 }
