@@ -9,7 +9,8 @@
   padding: $iui-baseline $iui-sm;
   border-radius: $iui-border-radius;
   @include themed {
-    border: 1px solid t(iui-color-background-3);
+    border: 1px solid t(iui-color-background-4);
+    background-color: t(iui-color-background-1);
   }
 
   legend {
@@ -18,7 +19,7 @@
     border-radius: $iui-border-radius;
     user-select: none;
     @include themed {
-      background-color: t(iui-color-background-3);
+      background-color: t(iui-color-background-4);
       color: t(iui-text-color);
     }
   }
