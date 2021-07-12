@@ -18,75 +18,134 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  border: 1px solid transparent;
 
-  > li {
-    display: flex;
-    align-items: center;
-    font-size: $iui-font-size;
-    padding: 0 $iui-sm;
-    min-height: $iui-component-height;
-    cursor: pointer;
+  svg.iui-header-menu-icon {
+    margin: 0 $iui-xs;
+  }
+
+  div.iui-header-menu-icon {
+    width: $iui-icons-large;
+    height: $iui-icons-large;
+    border-radius: $iui-border-radius;
+  }
+}
+
+@mixin iui-menu-item {
+  display: flex;
+  align-items: center;
+  font-size: $iui-font-size;
+  padding: 0 $iui-component-padding-horizontal;
+  height: $iui-component-height;
+  cursor: pointer;
+  box-sizing: border-box;
+  line-height: normal;
+  @include themed {
+    color: t(iui-text-color);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1px;
+  }
+
+  .iui-content,
+  .iui-menu-label,
+  .iui-menu-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .iui-content {
+    flex: 1 1 auto;
+
+    + .iui-icon {
+      margin-right: 0;
+      margin-left: $iui-s;
+    }
+  }
+
+  .iui-menu-description {
+    display: none;
+    font-size: $iui-font-size-small;
     @include themed {
-      color: t(iui-text-color);
+      opacity: t(iui-opacity-3);
     }
+  }
 
-    > .iui-icon {
-      @include iui-menu-icon;
+  > .iui-icon {
+    @include iui-menu-icon;
+  }
+
+  &:hover {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-primary-rgb),
+        t(iui-opacity-6)
+      );
+      outline: 1px solid rgba(
+        t(iui-color-foreground-primary-rgb),
+        t(iui-opacity-6));
     }
+  }
 
-    > .iui-content {
-      flex: 1 1 auto;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      height: $iui-line-height;
-
-      + .iui-icon {
-        margin-right: 0;
-        margin-left: $iui-s;
-      }
+  &:focus {
+    @include themed {
+      outline: 1px solid t(iui-color-foreground-primary);
     }
+  }
 
-    &:hover:not(.iui-disabled):not(.iui-active),
-    &:focus:not(.iui-disabled):not(.iui-active) {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
-      }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &.iui-large {
+    height: $iui-component-height-large;
+
+    .iui-menu-description {
+      display: block;
     }
+  }
 
-    &:focus {
-      outline: none;
-    }
-
-    &.iui-active {
-      box-sizing: border-box;
-      padding-top: $iui-component-padding-vertical;
-      padding-bottom: $iui-component-padding-vertical;
+  &.iui-active {
+    &,
+    &:hover {
       @include themed {
         background-color: rgba(
           t(iui-color-foreground-primary-rgb),
           t(iui-opacity-5)
         );
-        border: solid 1px t(iui-color-foreground-primary);
-      }
-
-      > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-primary);
-        }
+        outline: solid 1px t(iui-color-foreground-primary);
       }
     }
 
-    &.iui-disabled {
-      cursor: not-allowed;
+    > .iui-icon {
       @include themed {
-        background-color: t(iui-color-background-disabled);
-        color: t(iui-text-color-muted);
+        fill: t(iui-icons-color-primary);
       }
-  
+    }
+
+    &:focus {
+      outline-width: $iui-xxs;
+      outline-offset: -1px;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: solid 1px t(iui-color-foreground-primary);
+      outline-offset: 0;
+    }
+  }
+
+  &.iui-disabled {
+    &,
+    &:hover {
+      cursor: not-allowed;
+      outline: none;
+      @include themed {
+        background-color: t(iui-color-background-1);
+        color: t(iui-text-color-placeholder);
+      }
+
       > .iui-icon {
         @include themed {
           fill: t(iui-icons-color-actionable-disabled);
@@ -96,12 +155,24 @@
   }
 }
 
+@mixin iui-menu-divider {
+  height: 1px;
+  width: calc(100% - #{$iui-l});
+  margin: auto;
+  @include themed {
+    background-color: t(iui-color-background-4);
+  }
+}
+
 @mixin iui-menu-icon {
   width: $iui-icons-default;
   height: $iui-icons-default;
-  margin-right: $iui-s;
   flex: 0 0 auto;
   @include themed {
     fill: t(iui-icons-color-actionable);
+  }
+
+  + .iui-content {
+    margin-left: $iui-s;
   }
 }
