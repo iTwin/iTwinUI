@@ -99,7 +99,7 @@ $tick-height: $iui-baseline; // 11px
     justify-content: center;
     width: 1px;
     height: $tick-height;
-    line-height: $tick-height * 4.25;
+    line-height: $tick-height * 4;
     margin-bottom: $tick-height * 2;
     @include themed {
       background-color: t(iui-color-background-4);
