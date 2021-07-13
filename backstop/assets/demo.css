@@ -9,8 +9,8 @@ hr,
 p {
   margin: 0;
   padding: 0;
-  border: 0;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border: none;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
 }
 
@@ -32,22 +32,13 @@ h3 {
   font-size: 16px;
 }
 
+/* Light theme */
 hr {
   border-top: 1px solid #C7CCD1;
   margin: 11px 0;
 }
 
-.demo-striped-background {
-  background-color: #F8F9FB;
-  width: 100%;
-  margin: 0 -24px;
-}
-
 /* Dark theme */
-.iui-theme-dark body .demo-striped-background {
-  background-color: #4F5D65;
-}
-
 .iui-theme-dark body hr {
   border-color: #2D373C;
 }
