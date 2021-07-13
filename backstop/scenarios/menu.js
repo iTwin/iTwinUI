@@ -1,7 +1,7 @@
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Menu types
+  // Types
   scenario('Type default', {
     selectors: ['#demo-default'],
     viewports: [{ width: 800, height: 600 }],

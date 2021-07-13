@@ -1,7 +1,7 @@
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Slider types
+  // Types
   scenario('Type Default', {
     selectors: ['#demo-default'],
     viewports: [{ width: 800, height: 600 }],
