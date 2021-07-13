@@ -121,10 +121,6 @@ $tick-height: $iui-baseline; // 11px
       background-color: t(iui-color-background-4);
       border-color: t(iui-color-background-4);
     }
-
-    &:active {
-      cursor: not-allowed;
-    }
   }
 
   .iui-slider-track {
