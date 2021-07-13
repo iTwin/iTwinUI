@@ -24,12 +24,14 @@
   }
 
   &.iui-small {
-    padding: $iui-component-padding-vertical-small $iui-component-padding-horizontal-small;
+    padding-top: $iui-component-padding-vertical-small;
+    padding-bottom: $iui-component-padding-vertical-small;
     min-height: $iui-component-height-small;
   }
 
   &.iui-large {
-    padding: $iui-component-padding-vertical-large $iui-component-padding-horizontal-large;
+    padding-top: $iui-component-padding-vertical-large;
+    padding-bottom: $iui-component-padding-vertical-large;
     min-height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
   }
