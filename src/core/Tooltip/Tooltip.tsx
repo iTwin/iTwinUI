@@ -15,9 +15,10 @@ export type TooltipProps = {
    */
   content: React.ReactNode;
   /**
-   * Element to have tooltip on. Has to be valid JSX element.
+   * Element to have tooltip on. Has to be a valid JSX element and needs to forward its ref.
+   * If not specified, the `reference` prop should be used instead.
    */
-  children: JSX.Element;
+  children?: JSX.Element;
 } & Omit<PopoverProps, 'className'> &
   Omit<CommonProps, 'title'>;
 
@@ -26,6 +27,11 @@ export type TooltipProps = {
  * Uses the {@link Popover} component, which is a wrapper around [tippy.js](https://atomiks.github.io/tippyjs).
  * @example
  * <Tooltip content='tooltip text' placement='top'><div>Hover here</div></Tooltip>
+ * @example
+ * const buttonRef = React.useRef();
+ * ...
+ * <Button ref={buttonRef} />
+ * <Tooltip content='tooltip text' reference={buttonRef.current} />
  */
 export const Tooltip = (props: TooltipProps) => {
   const {
@@ -59,7 +65,7 @@ export const Tooltip = (props: TooltipProps) => {
       ref={ref}
       {...rest}
     >
-      {React.cloneElement(children, { title: undefined })}
+      {children && React.cloneElement(children, { title: undefined })}
     </Popover>
   );
 };
