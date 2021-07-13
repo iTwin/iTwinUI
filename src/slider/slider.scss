@@ -41,6 +41,10 @@ $tick-height: $iui-baseline; // 11px
   flex-grow: 1;
   cursor: pointer;
 
+  &.iui-grabbing {
+    cursor: grabbing;
+  }
+
   .iui-slider-rail {
     position: absolute;
     width: 100%;
@@ -68,7 +72,7 @@ $tick-height: $iui-baseline; // 11px
     &:active {
       cursor: grabbing;
     }
-
+    
     @include iui-focus();
   }
 

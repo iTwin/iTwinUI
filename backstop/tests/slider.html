@@ -531,6 +531,7 @@
           if (sliderContainer.parentElement.classList.contains('iui-disabled'))
             return;
           thumb.classList.add("iui-active");
+          sliderContainer.classList.add("iui-grabbing");
           var otherThumb = getOtherRangeThumb(thumb);
           var ownerDoc = thumb.ownerDocument;
           var track = sliderContainer.querySelector(".iui-slider-rail");
@@ -542,6 +543,7 @@
             ownerDoc.removeEventListener('mousemove', handleMouseMove);
             ownerDoc.removeEventListener('mouseup', handleMouseUp);
             thumb.classList.remove("iui-active");
+            sliderContainer.classList.remove("iui-grabbing");
           };
 
           // bind a mousemove event handler to move pointer
