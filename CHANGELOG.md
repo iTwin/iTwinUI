@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.24.0]
+
+`2021-07-13`
+
+### What's new
+
+- **Added new slider component.**
+- **Added new menu-item features**: sublabels, dividers, disabled items and multi-select.
+
 ## [0.23.0]
 
 `2021-07-12`
@@ -344,6 +353,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.24.0]: https://github.com/iTwin/iTwinUI/compare/v0.23.0...v0.24.0
 [0.23.0]: https://github.com/iTwin/iTwinUI/compare/v0.22.1...v0.23.0
 [0.22.1]: https://github.com/iTwin/iTwinUI/compare/v0.22.0...v0.22.1
 [0.22.0]: https://github.com/iTwin/iTwinUI/compare/v0.21.0...v0.22.0
