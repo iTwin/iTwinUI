@@ -148,22 +148,13 @@ parameters: {
 
 If you want to test your changes in a local project, you can go into the `lib/` folder (which gets created when running `yarn build` or `yarn build:watch`) and run `yarn link`. Then from your test project, run `yarn link @itwin/itwinui-react`.
 
-You might face an "invalid hook call" error if your test project is using a different version or instance of React. You can fix this by [linking React](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react) or by using [aliases](https://github.com/facebook/react/issues/13991#issuecomment-463486871) in your bundler. If it still doesn't work, you may consider using `yalc`.
+You might face an "invalid hook call" error if your test project is using a different version or instance of React. You can fix this by [linking React](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react) or by using [aliases](https://github.com/facebook/react/issues/13991#issuecomment-463486871) in your bundler. If it still doesn't work, you may consider using [`yalc`](https://github.com/wclr/yalc) instead.
 
-<details>
-<summary>Yalc instructions (untested)</summary>
-You may want to install `yalc`, `concurrently`, and `nodemon` or `chokidar-cli` globally to compile and push changes to another project linked to iTwinUI-react.
-Add these scripts to package.json:
-<pre>
-  "watch": "concurrently --kill-others \"yarn watch:tsx\" \"yarn watch:yalc:push\"",
-  "watch:tsx": "tsc --watch",
-  "watch:yalc:push": "delay 20 && cd lib && nodemon -e js,ts,tsx,d.ts -x \"yalc push\"",
-</pre>
-Chokidar version:
-<pre>
-  "watch:yalc:push": "delay 20 && cd lib && chokidar \"**/*.js\" \"**/*.ts\" \"**/*.tsx\" \"**/*.d.ts\" -c \"yalc push\"",
-</pre>
-</details>
+#### Yalc instructions
+
+Install yalc globally (`yarn global add yalc`) and run `yalc publish` from the `lib/` folder. Then from your test project, run `yalc add @itwin/itwinui-react`.
+
+Every time you rebuild iTwinUI-react, you will need to run `yalc push`. You might want to automate this with a custom script using `chokidar-cli` or `nodemon`.
 
 ### Changelog
 
