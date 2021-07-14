@@ -30,6 +30,11 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     height: $iui-icons-large;
     border-radius: $iui-border-radius;
   }
+
+  &.iui-scroll {
+    overflow-y: auto;
+    overflow-y: overlay;
+  }
 }
 
 @mixin iui-menu-item {
