@@ -14,14 +14,16 @@
 
   > .iui-header {
     @include iui-focus;
+    padding: $iui-baseline $iui-sm;
+    cursor: pointer;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background-color $iui-speed-fast ease-out,
+        border-color $iui-speed-fast ease-out;
+    }
     @include themed {
       border-bottom: 1px solid t(iui-color-background-4);
       background-color: t(iui-color-background-3);
     }
-    padding: $iui-baseline $iui-sm;
-    transition: background-color $iui-speed-fast ease-out,
-      border-color $iui-speed-fast ease-out;
-    cursor: pointer;
 
     > .iui-icon {
       float: left;
@@ -32,9 +34,10 @@
       line-height: 3 * $iui-baseline;
       text-align: center;
       font-size: $iui-font-size-subheading;
-      transition: transform $iui-speed-fast ease-out;
       vertical-align: middle;
-
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform $iui-speed-fast ease-out;
+      }
       @include themed {
         fill: t(iui-icons-color-actionable);
       }
@@ -48,7 +51,9 @@
       overflow: hidden;
       text-overflow: ellipsis;
       user-select: none;
-      transition: color $iui-speed-fast ease;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: color $iui-speed-fast ease;
+      }
     }
 
     > .iui-title {
@@ -76,12 +81,13 @@
   .iui-expandable-content {
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform $iui-speed-fast ease-in-out;
     overflow: hidden;
     padding: 0;
     opacity: 0;
     height: 0;
-
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform $iui-speed-fast ease-in-out;
+    }
     @include themed {
       border-bottom: 1px solid t(iui-color-background-4);
       border-right: 1px solid t(iui-color-background-4);
@@ -106,7 +112,9 @@
         @include themed {
           color: t(iui-color-foreground-body);
         }
-        transition: color $iui-speed-fast ease;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: color $iui-speed-fast ease;
+        }
       }
     }
   }

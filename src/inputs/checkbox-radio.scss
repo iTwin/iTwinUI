@@ -3,6 +3,7 @@
 @import '../style/index';
 
 @mixin iui-inputs-checkbox-radio {
+  @include iui-reset;
   @include iui-font-family;
   display: flex;
   align-items: center;
@@ -50,8 +51,9 @@
       > path,
       > circle {
         opacity: 0;
-        transition: opacity $iui-speed-fast ease;
-
+        @media (prefers-reduced-motion: no-preference) {
+          transition: opacity $iui-speed-fast ease;
+        }
         @include themed {
           fill: t(iui-icons-color-primary);
         }
@@ -85,7 +87,9 @@
     @include themed {
       border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
     }
-    transition: all $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: all $iui-speed-fast ease-out;
+    }
   }
 
   // Selected checkboxes & radios border opacity increase
@@ -102,7 +106,9 @@
   input:indeterminate ~ .iui-checkbox-checkmark > svg > path.iui-check-partial,
   input:checked ~ .iui-radio-dot > svg > circle {
     opacity: 1;
-    transition: opacity $iui-speed-fast ease;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: opacity $iui-speed-fast ease;
+    }
   }
 
   // Adds focus to enabled checkbox & radio

@@ -1,8 +1,62 @@
 # Changelog
 
+## [0.24.1]
+
+`2021-07-14`
+
+### Fixes
+
+- **Fixed select menu alignment and overflow.**
+- **Fixed table body overflow.**
+- **Fixed slider touch action.**
+
+## [0.24.0]
+
+`2021-07-13`
+
+### What's new
+
+- **Added new slider component.**
+- **Added new menu-item features**: sublabels, dividers, disabled items and multi-select.
+
+## [0.23.0]
+
+`2021-07-12`
+
+### What's new
+
+- **Changed `.iui-body` to use `iui-color-background-2`** by default.
+- **Added `.iui-stacked` class to user-icon list**, allowing for unstacked lists.
+- **Added `.iui-user-icon-count` class** to have different styling from other user-icons in the list.
+
+### Fixes
+
+- **Updated font fallbacks for all components.**
+- **Updated all transitions to respect reduced-motion user preference.**
+
+## [0.22.1]
+
+`2021-07-01`
+
+## Fixes
+
+- **Added back svg selector to tab icons** for backwards compatibility.
+
+## [0.22.0]
+
+`2021-06-28`
+
+### What's new
+
+- **Updated tabs styles to support sublabels, icons, and disabled tabs.**
+- **Added user-icon lists and svg support to user-icons.**
+- **Added transition to table expandable rows.**
+
 ## [0.21.0]
 
 `2021-06-21`
+
+### What's new
 
 - **Added new 'warning' category to toast-notification.**
 
@@ -309,6 +363,11 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.24.1]: https://github.com/iTwin/iTwinUI/compare/v0.24.0...v0.24.1
+[0.24.0]: https://github.com/iTwin/iTwinUI/compare/v0.23.0...v0.24.0
+[0.23.0]: https://github.com/iTwin/iTwinUI/compare/v0.22.1...v0.23.0
+[0.22.1]: https://github.com/iTwin/iTwinUI/compare/v0.22.0...v0.22.1
+[0.22.0]: https://github.com/iTwin/iTwinUI/compare/v0.21.0...v0.22.0
 [0.21.0]: https://github.com/iTwin/iTwinUI/compare/v0.20.3...v0.21.0
 [0.20.3]: https://github.com/iTwin/iTwinUI/compare/v0.20.2...v0.20.3
 [0.20.2]: https://github.com/iTwin/iTwinUI/compare/v0.20.1...v0.20.2

@@ -6,3 +6,11 @@
   @include iui-dropdown;
   @include iui-list-menu;
 }
+
+.iui-menu-item {
+  @include iui-menu-item;
+}
+
+.iui-menu-divider {
+  @include iui-menu-divider;
+}

@@ -20,19 +20,21 @@
     background-size: 200% 100%;
   }
 
-  animation: skeleton-shimmer $iui-speed-slow linear infinite;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: skeleton-shimmer $iui-speed-slow linear infinite;
 
-  @keyframes skeleton-shimmer {
-    0% {
-      background-position: 200% 50%;
-    }
+    @keyframes skeleton-shimmer {
+      0% {
+        background-position: 200% 50%;
+      }
 
-    50% {
-      background-position: 100% 50%;
-    }
+      50% {
+        background-position: 100% 50%;
+      }
 
-    100% {
-      background-position: 0% 50%;
+      100% {
+        background-position: 0% 50%;
+      }
     }
   }
 }

@@ -44,7 +44,7 @@ jobs:
 
       - name: Host test results on gh pages
         continue-on-error: true
-        if: github.event.pull_request.head.repo.full_name == github.repository && github.ref != 'refs/heads/main'
+        if: failure()
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
@@ -55,20 +55,18 @@ jobs:
           git-config-email: github-actions[bot]@users.noreply.github.com
 
       - name: Post gh pages link under Checks
-        if: github.event.pull_request.head.repo.full_name == github.repository && github.ref != 'refs/heads/main'
+        if: failure()
         uses: actions/github-script@v4
         with:
           script: |
-            github.checks.create({
+            github.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head_sha: '${{ github.event.pull_request.head.sha }}',
-              conclusion: '${{ job.status }}',
-              name: 'Test results',
-              output: {
-                "title": "Test results",
-                "summary": "See backstop html report at https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/"
-              }
+              sha: '${{ github.event.pull_request.head.sha }}',
+              state: '${{ job.status }}',
+              context: 'Test results',
+              description: 'Backstop html report',
+              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
             })
 
   deploy:
@@ -105,22 +103,22 @@ jobs:
               state: 'open'
             })).data.map(pr => pr.number).join('\n'))
 
-      - name: Host index.html on gh pages
+      - name: Host backstop folder on gh pages
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
           single-commit: true
-          folder: ${{ github.workspace }}/backstop/tests
-          clean-exclude: ${{ steps.open_prs.outputs.result }}
-          git-config-name: github-actions[bot]
-          git-config-email: github-actions[bot]@users.noreply.github.com
-
-      - name: Host assets on gh pages
-        uses: JamesIves/github-pages-deploy-action@4.1.3
-        with:
-          branch: gh-pages
-          folder: ${{ github.workspace }}/backstop/assets
-          target-folder: backstop/assets
+          folder: ${{ github.workspace }}/backstop/
+          target-folder: backstop
+          clean-exclude: |
+            index.html
+            *.ts
+            *.js
+            tests
+            scenarios
+            results
+            engine_scripts
+            ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
@@ -130,14 +128,5 @@ jobs:
           branch: gh-pages
           folder: ${{ github.workspace }}/lib/css
           target-folder: lib/css
-          git-config-name: github-actions[bot]
-          git-config-email: github-actions[bot]@users.noreply.github.com
-
-      - name: Host demo html on gh pages
-        uses: JamesIves/github-pages-deploy-action@4.1.3
-        with:
-          branch: gh-pages
-          folder: ${{ github.workspace }}/backstop/minified
-          target-folder: backstop/minified
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com

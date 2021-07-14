@@ -13,7 +13,6 @@
   user-select: none;
   cursor: pointer;
   position: relative;
-
   @include themed {
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
@@ -32,14 +31,15 @@
       height: $iui-baseline * 2 - $iui-xxs;
       width: ($iui-m * 2) + ($iui-xxs * 3);
       border-radius: $iui-baseline;
-
+      @media (prefers-reduced-motion: no-preference) {
+        transition: background-color $iui-speed-fast ease,
+          border-color $iui-speed-fast ease;
+      }
       @include themed {
         background-color: t(iui-color-background-1);
         border: 1px solid
           rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       }
-      transition: background-color $iui-speed-fast ease,
-        border-color $iui-speed-fast ease;
 
       > .iui-icon {
         opacity: 0;
@@ -48,8 +48,9 @@
         display: inline-block;
         position: relative;
         left: $iui-xs;
-        transition: opacity $iui-speed-fast ease;
-
+        @media (prefers-reduced-motion: no-preference) {
+          transition: opacity $iui-speed-fast ease;
+        }
         @include themed {
           fill: t(iui-color-foreground-accessory);
         }
@@ -63,13 +64,14 @@
         transform: translateY(-50%);
         right: $iui-m + $iui-xs;
         border-radius: 50%;
-
+        @media (prefers-reduced-motion: no-preference) {
+          transition: right $iui-speed-fast ease,
+            background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
+        }
         @include themed {
           background-color: t(iui-color-foreground-body);
           opacity: t(iui-opacity-2);
         }
-        transition: right $iui-speed-fast ease,
-          background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
       }
     }
 
