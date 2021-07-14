@@ -46,7 +46,7 @@
   }
 
   &:not(:last-child) {
-    margin-bottom: 1px;
+    margin-bottom: -1px;
   }
 
   .iui-content,
@@ -84,7 +84,7 @@
         t(iui-color-foreground-primary-rgb),
         t(iui-opacity-6)
       );
-      outline: 1px solid rgba(
+      outline: thin solid rgba(
         t(iui-color-foreground-primary-rgb),
         t(iui-opacity-6));
     }
@@ -92,7 +92,8 @@
 
   &:focus {
     @include themed {
-      outline: 1px solid t(iui-color-foreground-primary);
+      outline: thin solid t(iui-color-foreground-primary);
+      outline-offset: -1px;
     }
   }
 
@@ -117,6 +118,7 @@
           t(iui-opacity-5)
         );
         outline: solid 1px t(iui-color-foreground-primary);
+        outline-offset: -1px;
       }
     }
 
@@ -128,12 +130,12 @@
 
     &:focus {
       outline-width: $iui-xxs;
-      outline-offset: -1px;
+      outline-offset: -2px;
     }
 
     &:focus:not(:focus-visible) {
       outline: solid 1px t(iui-color-foreground-primary);
-      outline-offset: 0;
+      outline-offset: -1px;
     }
   }
 
