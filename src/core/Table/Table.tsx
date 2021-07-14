@@ -210,10 +210,9 @@ export const Table = <
 
   const defaultColumn = React.useMemo(
     () => ({
-      // Remove dynamic width values set by react-table
-      maxWidth: undefined,
-      minWidth: undefined,
-      width: undefined,
+      maxWidth: 0,
+      minWidth: 0,
+      width: 0,
     }),
     [],
   );
@@ -279,6 +278,8 @@ export const Table = <
         id: 'iui-table-checkbox-selector',
         disableResizing: true,
         disableGroupBy: true,
+        minWidth: 48,
+        width: 48,
         maxWidth: 48,
         columnClassName: 'iui-slot',
         cellClassName: 'iui-slot',

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### Fixes
+
+- **Fix Table rows rendering when selection is enabled and min width is set for columns**
+
 ## [1.11.0]
 
 `2021-07-08`
