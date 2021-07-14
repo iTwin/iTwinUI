@@ -21,7 +21,6 @@
   }
 
   > .iui-message > a {
-    @include iui-focus;
     @include iui-focus(iui-color-foreground-primary, 2px);
     @include themed {
       color: t(iui-color-foreground-primary);

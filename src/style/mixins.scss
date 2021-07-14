@@ -20,9 +20,9 @@
   }
 }
 
-@mixin iui-focus($color: iui-color-foreground-primary, $offset: -2px) {
+@mixin iui-focus($color: iui-color-foreground-primary, $offset: -1px, $thickness: 1px) {
   &:focus {
-    outline: 2px solid t($color);
+    outline: $thickness solid t($color);
     outline-offset: $offset;
   }
 
@@ -31,7 +31,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid t($color);
+    outline: $thickness solid t($color);
     outline-offset: $offset;
   }
 }

@@ -74,7 +74,7 @@ $tick-height: $iui-baseline; // 11px
       cursor: grabbing;
     }
     
-    @include iui-focus();
+    @include iui-focus($offset: 1px);
   }
 
   .iui-slider-track {
