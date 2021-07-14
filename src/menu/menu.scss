@@ -3,6 +3,8 @@
 @import '../style/index';
 @import '../icon/index';
 
+$iui-active-outline: thin solid t(iui-color-foreground-primary);
+
 @mixin iui-dropdown {
   @include iui-reset;
   @include iui-font-family;
@@ -18,7 +20,6 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  border: 1px solid transparent;
   box-sizing: border-box;
 
   svg.iui-header-menu-icon {
@@ -36,7 +37,7 @@
   display: flex;
   align-items: center;
   font-size: $iui-font-size;
-  padding: 0 $iui-component-padding-horizontal;
+  padding: 0 ($iui-component-padding-horizontal + 1px);
   height: $iui-component-height;
   cursor: pointer;
   box-sizing: border-box;
@@ -45,8 +46,8 @@
     color: t(iui-text-color);
   }
 
-  &:not(:last-child) {
-    margin-bottom: -1px;
+  + #{&} {
+    margin-top: -1px;
   }
 
   .iui-content,
@@ -92,7 +93,7 @@
 
   &:focus {
     @include themed {
-      outline: thin solid t(iui-color-foreground-primary);
+      outline: $iui-active-outline;
       outline-offset: -1px;
     }
   }
@@ -117,7 +118,7 @@
           t(iui-color-foreground-primary-rgb),
           t(iui-opacity-5)
         );
-        outline: solid 1px t(iui-color-foreground-primary);
+        outline: $iui-active-outline;
         outline-offset: -1px;
       }
     }
@@ -134,7 +135,7 @@
     }
 
     &:focus:not(:focus-visible) {
-      outline: solid 1px t(iui-color-foreground-primary);
+      outline: $iui-active-outline;
       outline-offset: -1px;
     }
   }
@@ -161,7 +162,7 @@
 @mixin iui-menu-divider {
   height: 1px;
   width: calc(100% - #{$iui-l});
-  margin: auto;
+  margin: 1px auto;
   @include themed {
     background-color: t(iui-color-background-4);
   }
