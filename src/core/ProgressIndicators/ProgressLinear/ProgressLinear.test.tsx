@@ -14,10 +14,9 @@ it('renders empty ProgressLinear', () => {
     '.iui-progress-indicator-linear',
   ) as HTMLElement;
   expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > div') as HTMLElement;
+  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
   expect(fill).toBeTruthy();
   expect(fill.style.width).toBe('0%');
-  expect(fill.classList.length).toBe(0);
   expect(container.querySelector('.iui-label')).toBeNull();
 });
 
@@ -28,17 +27,16 @@ it('renders filled ProgressLinear', () => {
     '.iui-progress-indicator-linear',
   ) as HTMLElement;
   expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > div') as HTMLElement;
+  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
   expect(fill).toBeTruthy();
   expect(fill.style.width).toBe('40%');
-  expect(fill.classList.length).toBe(0);
   expect(container.querySelector('.iui-label')).toBeNull();
 });
 
 it('renders filled ProgressLinear with min value', () => {
   const { container } = render(<ProgressLinear value={-12} />);
 
-  const fill = container.querySelector('.iui-track > div') as HTMLElement;
+  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
   expect(fill).toBeTruthy();
   expect(fill.style.width).toBe('0%');
 });
@@ -46,7 +44,7 @@ it('renders filled ProgressLinear with min value', () => {
 it('renders filled ProgressLinear with max value', () => {
   const { container } = render(<ProgressLinear value={300} />);
 
-  const fill = container.querySelector('.iui-track > div') as HTMLElement;
+  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
   expect(fill).toBeTruthy();
   expect(fill.style.width).toBe('100%');
 });
@@ -58,10 +56,10 @@ it('renders indeterminate ProgressLinear', () => {
     '.iui-progress-indicator-linear',
   ) as HTMLElement;
   expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > div') as HTMLElement;
+  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
   expect(fill).toBeTruthy();
   expect(fill.style.width).toBe('100%');
-  expect(fill.className).toBe('iui-indeterminate');
+  expect(fill.className).toContain('iui-indeterminate');
   expect(container.querySelector('.iui-label')).toBeNull();
 });
 
@@ -72,10 +70,10 @@ it('renders animated determinate ProgressLinear', () => {
     '.iui-progress-indicator-linear',
   ) as HTMLElement;
   expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > div') as HTMLElement;
+  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
   expect(fill).toBeTruthy();
   expect(fill.style.width).toBe('40%');
-  expect(fill.className).toBe('iui-determinate');
+  expect(fill.className).toContain('iui-determinate');
   expect(container.querySelector('.iui-label')).toBeNull();
 });
 
@@ -86,7 +84,7 @@ it('renders positive ProgressLinear', () => {
     '.iui-progress-indicator-linear.iui-positive',
   ) as HTMLElement;
   expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > div') as HTMLElement;
+  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
   expect(fill).toBeTruthy();
 });
 
@@ -99,7 +97,7 @@ it('renders negative ProgressLinear', () => {
     '.iui-progress-indicator-linear.iui-negative',
   ) as HTMLElement;
   expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > div') as HTMLElement;
+  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
   expect(fill).toBeTruthy();
   expect(fill.style.width).toBe('40%');
 });

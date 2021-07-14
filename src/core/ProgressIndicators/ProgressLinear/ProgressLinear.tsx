@@ -80,7 +80,7 @@ export const ProgressLinear = (props: ProgressLinearProps) => {
     >
       <div className='iui-track'>
         <div
-          className={cx({
+          className={cx('iui-fill', {
             'iui-determinate': !indeterminate && isAnimated,
             'iui-indeterminate': indeterminate,
           })}
