@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.24.1]
+
+`2021-07-14`
+
+### Fixes
+
+- **Fixed select menu alignment and overflow.**
+- **Fixed table body overflow.**
+- **Fixed slider touch action.**
+
 ## [0.24.0]
 
 `2021-07-13`
@@ -353,6 +363,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.24.1]: https://github.com/iTwin/iTwinUI/compare/v0.24.0...v0.24.1
 [0.24.0]: https://github.com/iTwin/iTwinUI/compare/v0.23.0...v0.24.0
 [0.23.0]: https://github.com/iTwin/iTwinUI/compare/v0.22.1...v0.23.0
 [0.22.1]: https://github.com/iTwin/iTwinUI/compare/v0.22.0...v0.22.1
