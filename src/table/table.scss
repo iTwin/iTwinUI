@@ -126,7 +126,7 @@
 @mixin iui-table-body {
   overflow-x: hidden;
   overflow-y: scroll;
-  overflow: overlay;
+  overflow-y: overlay;
 
   @include themed {
     background-color: t(iui-color-background-1);
