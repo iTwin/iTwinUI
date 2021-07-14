@@ -24,8 +24,11 @@
         padding: 11px 12px;
       }
 
+      #demo-scrollable {
+        height: 96px;
+      }
+
       #demo-header {
-        background-color: var(--iui-color-background-2);
         position: relative;
       }
 
@@ -68,6 +71,40 @@
       <br />
 
       <ul class="iui-menu">
+        <li
+          class="iui-menu-item iui-active"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 1</span>
+          <!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
+          <svg
+            class="iui-icon"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
+          </svg>
+        </li>
+        <li
+          class="iui-menu-item"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 3</span>
+        </li>
+      </ul>
+
+      <br />
+
+      <ul
+        class="iui-menu iui-scroll"
+        id="demo-scrollable"
+      >
         <li
           class="iui-menu-item iui-active"
           tabindex="0"
