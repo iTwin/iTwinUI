@@ -6,7 +6,7 @@
 
 ### Fixes
 
-- **Fixed select menu item and overflow.**
+- **Fixed select menu alignment and overflow.**
 - **Fixed table body overflow.**
 - **Fixed slider touch action.**
 
