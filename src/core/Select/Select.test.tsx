@@ -37,8 +37,8 @@ function assertMenu(
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual('listbox');
   expect(menu.style.maxHeight).toEqual(maxHeight);
-  expect(menu.style.overflowY).toEqual('auto');
-  const menuItems = menu.querySelectorAll('li');
+  expect(menu.classList).toContain('iui-scroll');
+  const menuItems = menu.querySelectorAll('.iui-menu-item');
   expect(menuItems.length).toBe(3);
   menuItems.forEach((item, index) => {
     expect(item.textContent).toContain(`Test${index}`);

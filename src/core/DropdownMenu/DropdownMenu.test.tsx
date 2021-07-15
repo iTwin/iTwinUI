@@ -11,7 +11,7 @@ import { MenuItem } from '../Menu';
 function assertBaseElement(menu: HTMLUListElement, role = 'menu') {
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual(role);
-  const menuItems = menu.querySelectorAll('li');
+  const menuItems = menu.querySelectorAll('.iui-menu-item');
   expect(menuItems.length).toBe(3);
   menuItems.forEach((item, index) => {
     expect(item.textContent).toContain(`Test${index}`);
@@ -61,7 +61,7 @@ it('should close menu after menu item click', () => {
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertBaseElement(menu);
 
-  const menuItem = menu.querySelector('li') as HTMLLIElement;
+  const menuItem = menu.querySelector('.iui-menu-item') as HTMLLIElement;
   expect(menuItem).toBeTruthy();
   fireEvent.click(menuItem);
 
