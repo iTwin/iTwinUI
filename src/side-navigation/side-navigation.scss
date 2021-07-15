@@ -81,14 +81,13 @@
     border-right: none;
     overflow: hidden;
     justify-content: flex-start;
-
-    // iPhone notch support
-    @supports(padding: unquote('max(0px)')) {
-      padding-left: unquote('max(24px, 24px + env(safe-area-inset-left))');
-    }
     
     &:not(.iui-expand) {
       height: $iui-baseline * 5;
+      // iPhone notch support
+      @supports(padding: unquote('max(0px)')) {
+        padding-left: unquote('max(24px, 24px + env(safe-area-inset-left))');
+      }
     }
 
     &,
