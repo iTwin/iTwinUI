@@ -22,17 +22,14 @@
 
 @mixin iui-focus($color: iui-color-foreground-primary, $offset: -1px, $thickness: 1px) {
   &:focus {
-    outline: $thickness solid t($color);
+    @include themed {
+      outline: $thickness solid t($color);
+    }
     outline-offset: $offset;
   }
 
   &:focus:not(:focus-visible) {
     outline: none;
-  }
-
-  &:focus-visible {
-    outline: $thickness solid t($color);
-    outline-offset: $offset;
   }
 }
 
