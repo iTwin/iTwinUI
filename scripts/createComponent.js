@@ -98,12 +98,14 @@ const componentFactory = (directory) => {
 const demoHtmlFactory = (directory) => {
   const template = `${copyrightBannerHtml}
 <!DOCTYPE html>
-<html id="theme">
+<html lang="en-US" id="theme">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${componentName} | iTwinUI</title>
     <link
       rel="icon"
-      href="../assets/favicon.ico"
+      href="../assets/favicon.svg"  type="image/svg+xml"
     />
     <link
       rel="stylesheet"
