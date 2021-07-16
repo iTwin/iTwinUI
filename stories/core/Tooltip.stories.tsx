@@ -10,25 +10,23 @@ import { CreeveyMeta } from 'creevey';
 export default {
   title: 'Core/Tooltip',
   component: Tooltip,
+  args: {
+    content: 'Here I am!',
+    children: (
+      <div
+        id='tooltip-target'
+        style={{
+          marginTop: 40,
+          marginLeft: 100,
+          width: 'fit-content',
+        }}
+      >
+        Please, try to hover me!
+      </div>
+    ),
+  },
   argTypes: {
-    content: {
-      defaultValue: 'Here I am!',
-    },
-    children: {
-      defaultValue: (
-        <div
-          id='tooltip-target'
-          style={{
-            marginTop: 40,
-            marginLeft: 100,
-            width: 'fit-content',
-          }}
-        >
-          Please, try to hover me!
-        </div>
-      ),
-      control: { disable: true },
-    },
+    children: { control: { disable: true } },
     visible: { control: { type: 'boolean' } },
     className: { control: { disable: true } },
     style: { control: { disable: true } },

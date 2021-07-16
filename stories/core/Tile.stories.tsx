@@ -8,19 +8,20 @@ import React from 'react';
 import {
   Badge,
   Button,
+  getUserColor,
   IconButton,
   MenuItem,
   Tag,
   TagContainer,
   Tile,
   TileProps,
+  UserIcon,
 } from '../../src/core';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
 import SvgImodelHollow from '@itwin/itwinui-icons-react/cjs/icons/ImodelHollow';
 import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import SvgTag from '@itwin/itwinui-icons-react/cjs/icons/Tag';
-import { LargeWithImageAndStatusOnline } from './UserIcons.stories';
 
 export default {
   component: Tile,
@@ -170,7 +171,7 @@ Condensed.args = {
   thumbnail: <SvgImodelHollow />,
 };
 
-export const UserIcon: Story<TileProps> = (props) => {
+export const WithUserIcon: Story<TileProps> = (props) => {
   const { name, description, badge, thumbnail, moreOptions, ...rest } = props;
   return (
     <Tile
@@ -183,16 +184,27 @@ export const UserIcon: Story<TileProps> = (props) => {
     />
   );
 };
-UserIcon.argTypes = {
+WithUserIcon.argTypes = {
   ...Basic.argTypes,
   thumbnail: { control: { disable: true } },
 };
-UserIcon.args = {
+WithUserIcon.args = {
   ...Basic.args,
   name: 'Some User',
   description: 'User description',
   metadata: undefined,
-  thumbnail: <LargeWithImageAndStatusOnline />,
+  thumbnail: (
+    <UserIcon
+      size='large'
+      status='online'
+      abbreviation='TR'
+      backgroundColor={getUserColor('Terry Rivers')}
+      image={
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
+      }
+      title='Terry Rivers'
+    />
+  ),
 };
 
 export const Folder: Story<TileProps> = (props) => {

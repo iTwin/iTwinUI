@@ -57,9 +57,6 @@ export const BottomFixed: Story<FooterProps> & CreeveyStory = ({
 
 BottomFixed.parameters = {
   docs: { inlineStories: false },
-};
-
-BottomFixed.parameters = {
   creevey: {
     captureElement: null,
   },

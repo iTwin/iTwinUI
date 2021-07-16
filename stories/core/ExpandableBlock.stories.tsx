@@ -53,9 +53,9 @@ export const Basic: Story<ExpandableBlockProps> = (args) => {
   );
 };
 
-Basic.argTypes = {
-  title: { defaultValue: 'Basic Block' },
-  isExpanded: { defaultValue: false },
+Basic.args = {
+  title: 'Basic Block',
+  isExpanded: false,
 };
 
 export const WithCaption: Story<ExpandableBlockProps> = (args) => {
@@ -66,10 +66,10 @@ export const WithCaption: Story<ExpandableBlockProps> = (args) => {
   );
 };
 
-WithCaption.argTypes = {
-  title: { defaultValue: 'Basic Block' },
-  isExpanded: { defaultValue: false },
-  caption: { defaultValue: 'basic caption' },
+WithCaption.args = {
+  title: 'Basic Block',
+  isExpanded: false,
+  caption: 'basic caption',
 };
 
 export const Accordion: Story<ExpandableBlockProps> = (args) => {
@@ -91,7 +91,7 @@ export const Accordion: Story<ExpandableBlockProps> = (args) => {
 
   return (
     <>
-      {[...new Array(3)].map((_, index) => (
+      {[...Array(3).fill(null)].map((_, index) => (
         <ExpandableBlock
           key={index}
           title={`Basic Block #${index + 1}`}

@@ -15,10 +15,12 @@ export default {
     errorType: {
       type: { required: true },
     },
-    primaryButtonLabel: { defaultValue: 'Close' },
-    secondaryButtonLabel: { defaultValue: 'Cancel' },
     primaryButtonHandle: { action: 'Primary button clicked' },
     secondaryButtonHandle: { action: 'Secondary button clicked' },
+  },
+  args: {
+    primaryButtonLabel: 'Close',
+    secondaryButtonLabel: 'Cancel',
   },
   parameters: {
     creevey: {

@@ -10,8 +10,8 @@ import { TextareaProps } from '../../src/core/Textarea/Textarea';
 export default {
   title: 'Input/Textarea',
   component: Textarea,
-  argTypes: {
-    placeholder: { defaultValue: 'This is a textarea', type: 'string' },
+  args: {
+    placeholder: 'This is a textarea',
   },
 } as Meta<TextareaProps>;
 
@@ -25,6 +25,6 @@ export const Disabled: Story<TextareaProps> = (args) => {
   );
 };
 
-Disabled.argTypes = {
-  disabled: { defaultValue: true, type: 'boolean' },
+Disabled.args = {
+  disabled: true,
 };

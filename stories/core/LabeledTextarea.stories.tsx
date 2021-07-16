@@ -11,22 +11,11 @@ import { LabeledTextareaProps } from '../../src/core/LabeledTextarea/LabeledText
 export default {
   title: 'Input/LabeledTextarea',
   component: LabeledTextarea,
-  argTypes: {
-    label: {
-      defaultValue: 'Textarea Label',
-    },
-    placeholder: {
-      defaultValue: 'This is a textarea',
-      type: 'string',
-    },
-    message: {
-      defaultValue: 'Display Message',
-    },
-    disabled: {
-      defaultValue: false,
-      type: 'boolean',
-    },
-    required: { type: 'boolean' },
+  args: {
+    placeholder: 'This is a textarea',
+    label: 'Textarea Label',
+    message: 'Display Message',
+    disabled: false,
   },
 } as Meta<LabeledTextareaProps>;
 
@@ -53,8 +42,8 @@ export const Disabled: Story<LabeledTextareaProps> = (args) => {
   );
 };
 
-Disabled.argTypes = {
-  disabled: { defaultValue: true },
+Disabled.args = {
+  disabled: true,
 };
 
 export const Positive: Story<LabeledTextareaProps> = (args) => {
@@ -69,10 +58,8 @@ export const Positive: Story<LabeledTextareaProps> = (args) => {
   );
 };
 
-Positive.argTypes = {
-  status: {
-    defaultValue: 'positive',
-  },
+Positive.args = {
+  status: 'positive',
 };
 
 export const Warning: Story<LabeledTextareaProps> = (args) => {
@@ -87,10 +74,8 @@ export const Warning: Story<LabeledTextareaProps> = (args) => {
   );
 };
 
-Warning.argTypes = {
-  status: {
-    defaultValue: 'warning',
-  },
+Warning.args = {
+  status: 'warning',
 };
 
 export const Negative: Story<LabeledTextareaProps> = (args) => {
@@ -105,10 +90,8 @@ export const Negative: Story<LabeledTextareaProps> = (args) => {
   );
 };
 
-Negative.argTypes = {
-  status: {
-    defaultValue: 'negative',
-  },
+Negative.args = {
+  status: 'negative',
 };
 
 export const WithCustomIcon: Story<LabeledTextareaProps> = (args) => {
@@ -134,7 +117,7 @@ export const Inline: Story<LabeledTextareaProps> = (args) => {
   );
 };
 
-Inline.argTypes = {
-  status: { defaultValue: 'negative' },
-  displayStyle: { defaultValue: 'inline' },
+Inline.args = {
+  status: 'negative',
+  displayStyle: 'inline',
 };

@@ -12,13 +12,15 @@ export default {
   title: 'Input/LabeledInput',
   component: LabeledInput,
   argTypes: {
-    label: { defaultValue: 'This is a label' },
     inputClassName: { control: { disable: true } },
     inputStyle: { control: { disable: true } },
     svgIcon: { control: { disable: true } },
-    placeholder: { defaultValue: 'Enter text here...', type: 'string' },
     disabled: { type: 'boolean' },
     required: { type: 'boolean' },
+  },
+  args: {
+    label: 'This is a label',
+    placeholder: 'Enter text here...',
   },
 } as Meta<LabeledInputProps>;
 
@@ -43,8 +45,8 @@ export const WithMessage: Story<LabeledInputProps> = (args) => {
   );
 };
 
-WithMessage.argTypes = {
-  message: { defaultValue: 'This is a message' },
+WithMessage.args = {
+  message: 'This is a message',
 };
 
 export const Disabled: Story<LabeledInputProps> = (args) => {
@@ -59,9 +61,9 @@ export const Disabled: Story<LabeledInputProps> = (args) => {
   );
 };
 
-Disabled.argTypes = {
-  message: { defaultValue: 'This is a message' },
-  disabled: { defaultValue: true },
+Disabled.args = {
+  message: 'This is a message',
+  disabled: true,
 };
 
 export const Positive: Story<LabeledInputProps> = (args) => {
@@ -76,9 +78,9 @@ export const Positive: Story<LabeledInputProps> = (args) => {
   );
 };
 
-Positive.argTypes = {
-  status: { defaultValue: 'positive' },
-  message: { defaultValue: 'This is a message' },
+Positive.args = {
+  status: 'positive',
+  message: 'This is a message',
 };
 
 export const Warning: Story<LabeledInputProps> = (args) => {
@@ -93,9 +95,9 @@ export const Warning: Story<LabeledInputProps> = (args) => {
   );
 };
 
-Warning.argTypes = {
-  status: { defaultValue: 'warning' },
-  message: { defaultValue: 'This is a message' },
+Warning.args = {
+  status: 'warning',
+  message: 'This is a message',
 };
 
 export const Negative: Story<LabeledInputProps> = (args) => {
@@ -110,9 +112,9 @@ export const Negative: Story<LabeledInputProps> = (args) => {
   );
 };
 
-Negative.argTypes = {
-  status: { defaultValue: 'negative' },
-  message: { defaultValue: 'This is a message' },
+Negative.args = {
+  status: 'negative',
+  message: 'This is a message',
 };
 
 export const WithCustomIcon: Story<LabeledInputProps> = (args) => {
@@ -139,7 +141,7 @@ export const Inline: Story<LabeledInputProps> = (args) => {
   );
 };
 
-Inline.argTypes = {
-  status: { defaultValue: 'negative' },
-  displayStyle: { defaultValue: 'inline' },
+Inline.args = {
+  status: 'negative',
+  displayStyle: 'inline',
 };

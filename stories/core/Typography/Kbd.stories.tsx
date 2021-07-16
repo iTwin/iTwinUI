@@ -13,10 +13,9 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     title: { control: { disable: true } },
-    children: {
-      defaultValue: 'A',
-      type: 'string',
-    },
+  },
+  args: {
+    children: 'A',
   },
 } as Meta<KbdProps>;
 
@@ -30,7 +29,7 @@ export const PredefinedKey: Story<KbdProps> = ({ children, ...rest }) => {
 
 PredefinedKey.argTypes = {
   children: {
-    defaultValue: KbdKeys.Enter,
     control: { type: 'select', options: KbdKeys },
   },
 };
+PredefinedKey.args = { children: KbdKeys.Enter };

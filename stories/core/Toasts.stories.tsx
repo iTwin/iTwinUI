@@ -5,70 +5,48 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { Button, toaster } from '../../src/core';
-import { ToastProps } from '../../src/core/Toast/Toast';
+import { Toast, ToastProps } from '../../src/core/Toast/Toast';
 import { CreeveyMeta } from 'creevey';
 
 export default {
+  subcomponents: { Toast },
   argTypes: {
     content: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: 'This is a toast message',
       description:
         'Content of the Toast message. Can be passed in as a string or a jsx element.',
-      type: { name: 'string', required: true },
+      type: { required: true },
     },
     type: {
       control: {
         options: ['persisting', 'temporary'],
         type: 'select',
       },
-      defaultValue: 'temporary',
       description:
         'Persisting or Temporary. Persisting Toasts will not be closed automatically, and will contain a close button. Temporary Toasts will automatically close after 7 seconds and will not contain a close button.',
-      table: {
-        defaultValue: { summary: 'temporary' },
-      },
-      type: { name: 'select', required: false },
     },
     duration: {
-      control: {
-        type: 'number',
-      },
-      defaultValue: 7000,
       description: 'Duration of the toast, in milliseconds.',
-      table: {
-        defaultValue: { summary: 7000 },
-      },
-      type: { name: 'number', required: false },
     },
     hasCloseButton: {
-      control: {
-        type: 'boolean',
-      },
-      defaultValue: true,
       description: 'Boolean indicating when the close button is visible.',
-      table: {
-        defaultValue: { summary: true },
-      },
-      type: { name: 'boolean', required: false },
     },
     link: {
-      control: {
-        type: 'object',
-      },
-      defaultValue: {
-        title: 'Link',
-        onClick: () => {
-          alert('Link was clicked!');
-        },
-      },
       description:
         'Object to display a link on the toast. Has two properties, one for the title of the link, and another for the onClick event.',
     },
     onRemove: {
       action: 'Toast removed!',
+    },
+  },
+  args: {
+    duration: 7000,
+    type: 'temporary',
+    hasCloseButton: true,
+    link: {
+      title: 'Link',
+      onClick: () => {
+        alert('Link was clicked!');
+      },
     },
   },
   parameters: {
@@ -130,10 +108,8 @@ export const Positive: Story<ToastProps> = ({
   );
 };
 
-Positive.argTypes = {
-  content: {
-    defaultValue: 'This is a positive toast message',
-  },
+Positive.args = {
+  content: 'This is a positive toast message',
 };
 
 export const Negative: Story<ToastProps> = ({
@@ -169,10 +145,8 @@ export const Negative: Story<ToastProps> = ({
   );
 };
 
-Negative.argTypes = {
-  content: {
-    defaultValue: 'This is a negative toast message',
-  },
+Negative.args = {
+  content: 'This is a negative toast message',
 };
 
 export const Informational: Story<ToastProps> = ({
@@ -208,10 +182,8 @@ export const Informational: Story<ToastProps> = ({
   );
 };
 
-Informational.argTypes = {
-  content: {
-    defaultValue: 'This is an informational toast message',
-  },
+Informational.args = {
+  content: 'This is an informational toast message',
 };
 
 export const Warning: Story<ToastProps> = ({ content, ...options }) => {
@@ -235,5 +207,5 @@ export const Warning: Story<ToastProps> = ({ content, ...options }) => {
 };
 
 Warning.args = {
-  content: 'This is an informational toast message',
+  content: 'This is a warning toast message',
 };

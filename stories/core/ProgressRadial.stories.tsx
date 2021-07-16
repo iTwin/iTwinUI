@@ -10,8 +10,8 @@ import { ProgressRadialProps } from '../../src/core/ProgressIndicators/ProgressR
 export default {
   title: 'ProgressIndicators/ProgressRadial',
   component: ProgressRadial,
-  argTypes: {
-    value: { defaultValue: 50 },
+  args: {
+    value: 50,
   },
 } as Meta<ProgressRadialProps>;
 
@@ -25,8 +25,8 @@ export const Indeterminate: Story<ProgressRadialProps> = (args) => {
   return <ProgressRadial indeterminate={indeterminate} {...rest} />;
 };
 
-Indeterminate.argTypes = {
-  indeterminate: { defaultValue: true },
+Indeterminate.args = {
+  indeterminate: true,
 };
 
 export const Positive: Story<ProgressRadialProps> = (args) => {
@@ -34,8 +34,8 @@ export const Positive: Story<ProgressRadialProps> = (args) => {
   return <ProgressRadial status={status} {...rest} />;
 };
 
-Positive.argTypes = {
-  status: { defaultValue: 'positive' },
+Positive.args = {
+  status: 'positive',
 };
 
 export const Negative: Story<ProgressRadialProps> = (args) => {
@@ -43,8 +43,8 @@ export const Negative: Story<ProgressRadialProps> = (args) => {
   return <ProgressRadial status={status} {...rest} />;
 };
 
-Negative.argTypes = {
-  status: { defaultValue: 'negative' },
+Negative.args = {
+  status: 'negative',
 };
 
 export const DeterminateWithContent: Story<ProgressRadialProps> = (args) => {
@@ -56,6 +56,6 @@ export const DeterminateWithContent: Story<ProgressRadialProps> = (args) => {
   );
 };
 
-DeterminateWithContent.argTypes = {
-  children: { defaultValue: '50', type: 'string' },
+DeterminateWithContent.args = {
+  children: '50',
 };

@@ -20,8 +20,8 @@ export const Determinate: Story<ProgressLinearProps> = (args) => {
   return <ProgressLinear value={value} {...rest} />;
 };
 
-Determinate.argTypes = {
-  value: { defaultValue: 50 },
+Determinate.args = {
+  value: 50,
 };
 
 export const DeterminateAnimated: Story<ProgressLinearProps> = (args) => {
@@ -29,9 +29,9 @@ export const DeterminateAnimated: Story<ProgressLinearProps> = (args) => {
   return <ProgressLinear value={value} isAnimated={isAnimated} {...rest} />;
 };
 
-DeterminateAnimated.argTypes = {
-  isAnimated: { defaultValue: true },
-  value: { defaultValue: 50 },
+DeterminateAnimated.args = {
+  isAnimated: true,
+  value: 50,
 };
 
 export const Indeterminate: Story<ProgressLinearProps> = (args) => {
@@ -39,8 +39,8 @@ export const Indeterminate: Story<ProgressLinearProps> = (args) => {
   return <ProgressLinear indeterminate={indeterminate} {...rest} />;
 };
 
-Indeterminate.argTypes = {
-  indeterminate: { defaultValue: true },
+Indeterminate.args = {
+  indeterminate: true,
 };
 
 export const LabeledCenter: Story<ProgressLinearProps> = (args) => {
@@ -48,9 +48,9 @@ export const LabeledCenter: Story<ProgressLinearProps> = (args) => {
   return <ProgressLinear value={value} labels={labels} {...rest} />;
 };
 
-LabeledCenter.argTypes = {
-  labels: { defaultValue: ['Centered Label'] },
-  value: { defaultValue: 50 },
+LabeledCenter.args = {
+  labels: ['Centered Label'],
+  value: 50,
 };
 
 export const LabeledLeftRight: Story<ProgressLinearProps> = (args) => {
@@ -58,9 +58,9 @@ export const LabeledLeftRight: Story<ProgressLinearProps> = (args) => {
   return <ProgressLinear value={value} labels={labels} {...rest} />;
 };
 
-LabeledLeftRight.argTypes = {
+LabeledLeftRight.args = {
   labels: ['Loading...', '50%'],
-  value: { defaultValue: 50 },
+  value: 50,
 };
 
 export const Positive: Story<ProgressLinearProps> = (args) => {
@@ -75,12 +75,10 @@ export const Positive: Story<ProgressLinearProps> = (args) => {
   );
 };
 
-Positive.argTypes = {
-  labels: {
-    defaultValue: ['Upload done!', <SvgStatusSuccessHollow />],
-  },
-  status: { defaultValue: 'positive' },
-  value: { defaultValue: 100 },
+Positive.args = {
+  labels: ['Upload done!', <SvgStatusSuccessHollow />],
+  status: 'positive',
+  value: 100,
 };
 
 export const Negative: Story<ProgressLinearProps> = (args) => {
@@ -95,10 +93,8 @@ export const Negative: Story<ProgressLinearProps> = (args) => {
   );
 };
 
-Negative.argTypes = {
-  labels: {
-    defaultValue: ['Upload failed', <SvgStatusErrorHollow />],
-  },
-  status: { defaultValue: 'negative' },
-  value: { defaultValue: 45 },
+Negative.args = {
+  labels: ['Upload failed', <SvgStatusErrorHollow />],
+  status: 'negative',
+  value: 45,
 };

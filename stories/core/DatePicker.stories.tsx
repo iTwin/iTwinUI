@@ -23,7 +23,9 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     date: { control: 'date' },
-    setFocus: { defaultValue: true },
+  },
+  args: {
+    setFocus: true,
   },
   parameters: {
     creevey: {

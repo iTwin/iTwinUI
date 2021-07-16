@@ -16,7 +16,9 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     title: { control: { disable: true } },
-    children: { defaultValue: 'push()', type: 'string' },
+  },
+  args: {
+    children: 'push()',
   },
 } as Meta<CodeProps>;
 

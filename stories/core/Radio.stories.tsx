@@ -20,8 +20,8 @@ export const Basic: Story<RadioProps> = (args) => {
   return <Radio label={label} {...rest} />;
 };
 
-Basic.argTypes = {
-  label: { defaultValue: 'Choose me!' },
+Basic.args = {
+  label: 'Choose me!',
 };
 
 export const Disabled: Story<RadioProps> = (args) => {
@@ -29,9 +29,9 @@ export const Disabled: Story<RadioProps> = (args) => {
   return <Radio disabled={disabled} label={label} {...rest} />;
 };
 
-Disabled.argTypes = {
-  label: { defaultValue: 'Cannot choose me!' },
-  disabled: { defaultValue: true, type: 'boolean' },
+Disabled.args = {
+  label: 'Cannot choose me!',
+  disabled: true,
 };
 
 export const Positive: Story<RadioProps> = (args) => {
@@ -39,9 +39,9 @@ export const Positive: Story<RadioProps> = (args) => {
   return <Radio status={status} label={label} {...rest} />;
 };
 
-Positive.argTypes = {
-  label: { defaultValue: 'Positive!' },
-  status: { defaultValue: 'positive' },
+Positive.args = {
+  label: 'Positive!',
+  status: 'positive',
 };
 
 export const Warning: Story<RadioProps> = (args) => {
@@ -49,9 +49,9 @@ export const Warning: Story<RadioProps> = (args) => {
   return <Radio status={status} label={label} {...rest} />;
 };
 
-Warning.argTypes = {
-  label: { defaultValue: 'Careful!' },
-  status: { defaultValue: 'warning' },
+Warning.args = {
+  label: 'Careful!',
+  status: 'warning',
 };
 
 export const Negative: Story<RadioProps> = (args) => {
@@ -59,7 +59,7 @@ export const Negative: Story<RadioProps> = (args) => {
   return <Radio status={status} label={label} {...rest} />;
 };
 
-Negative.argTypes = {
-  label: { defaultValue: 'Bad idea...' },
-  status: { defaultValue: 'negative' },
+Negative.args = {
+  label: 'Bad idea...',
+  status: 'negative',
 };

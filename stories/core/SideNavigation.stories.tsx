@@ -58,7 +58,7 @@ export const Basic: Story<SideNavigationProps> = (args) => {
 export const ActiveItem: Story<SideNavigationProps> = (args) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const mainItems = [...new Array(3)].map((_, index) => (
+  const mainItems = [...Array(3).fill(null)].map((_, index) => (
     <SidenavButton
       startIcon={<SvgPlaceholder />}
       key={index}

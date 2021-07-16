@@ -35,4 +35,8 @@ module.exports = {
     }
     return config;
   },
+  babel: async (options) => ({
+    ...options,
+    plugins: [['@babel/plugin-proposal-class-properties', { loose: true }]],
+  }),
 };

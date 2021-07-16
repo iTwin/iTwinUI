@@ -203,7 +203,7 @@ export const ManyItems: Story<SelectProps<number>> = (args) => {
       <Select<number>
         options={
           options ||
-          [...new Array(20)].map((_, index) => ({
+          [...Array(20).fill(null)].map((_, index) => ({
             label: `Item #${index}`,
             value: index,
           }))
@@ -219,10 +219,6 @@ export const ManyItems: Story<SelectProps<number>> = (args) => {
 
 ManyItems.args = {
   placeholder: 'Placeholder text',
-};
-
-ManyItems.argTypes = {
-  options: { control: { disable: true } },
 };
 
 export const Custom: Story<SelectProps<string>> = (args) => {
