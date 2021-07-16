@@ -29,6 +29,17 @@ export type SelectOption<T> = {
    */
   label: string;
   /**
+   * Sublabel of the item shown below the label.
+   */
+  sublabel?: React.ReactNode;
+  /**
+   * Modify height of the item.
+   * Use 'large' when any of the select options have `sublabel`.
+   *
+   * Defaults to 'large' if `sublabel` provided, otherwise 'default'.
+   */
+  size?: 'default' | 'large';
+  /**
    * Value of the item.
    */
   value: T;
@@ -236,15 +247,13 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         return React.cloneElement(menuItem, {
           key: `${option.label}-${index}`,
           isSelected,
-          disabled: option.disabled,
-          value: option.value,
           onClick: () => {
             !option.disabled && onChange?.(option.value);
             close();
           },
           ref: (el: HTMLElement) => isSelected && el?.scrollIntoView(),
-          icon: option.icon,
           role: 'option',
+          ...option,
           ...menuItem.props,
         });
       });

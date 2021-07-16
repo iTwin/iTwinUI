@@ -24,8 +24,9 @@ function assertBaseElement(
   expect(menuItem.classList.contains('iui-disabled')).toBe(disabled);
   expect(menuItem.textContent).toContain('Test item');
   const content = menuItem.querySelector('.iui-content') as HTMLElement;
-  expect(content).toBeTruthy();
-  expect(content.textContent).toContain('Test item');
+  const label = content.querySelector('.iui-menu-label') as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.textContent).toContain('Test item');
   expect(
     (menuItem.firstChild as HTMLElement).classList.contains('iui-icon'),
   ).toBe(hasIcon);
@@ -37,14 +38,14 @@ function assertBaseElement(
 it('should render content', () => {
   const { container } = render(<MenuItem>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem);
 });
 
 it('should render as selected', () => {
   const { container } = render(<MenuItem isSelected>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem, { isSelected: true });
 });
 
@@ -56,7 +57,7 @@ it('should render as disabled', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem, { disabled: true });
 
   fireEvent.click(menuItem);
@@ -68,7 +69,7 @@ it('should render with an icon', () => {
     <MenuItem icon={<SvgSmileyHappy />}>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem, { hasIcon: true });
 });
 
@@ -77,14 +78,14 @@ it('should render with a badge', () => {
     <MenuItem badge={<SvgSmileyHappy />}>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem, { hasBadge: true });
 });
 
 it('should render with custom role', () => {
   const { container } = render(<MenuItem role='option'>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem, { role: 'option' });
 });
 
@@ -96,7 +97,7 @@ it('should handle click', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem);
 
   fireEvent.click(menuItem);
@@ -111,7 +112,7 @@ it('should handle key press', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem);
 
   fireEvent.keyDown(menuItem, { key: 'Enter' });
@@ -127,7 +128,7 @@ it('should add custom className', () => {
     <MenuItem className='test-className'>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem);
   expect(menuItem.classList).toContain('test-className');
 });
@@ -137,7 +138,33 @@ it('should add custom style', () => {
     <MenuItem style={{ color: 'red' }}>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('li') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem);
   expect(menuItem.style.color).toEqual('red');
+});
+
+it('should render large size', () => {
+  const { container } = render(<MenuItem size='large'>Test item</MenuItem>);
+
+  const menuItem = container.querySelector(
+    '.iui-menu-item.iui-large',
+  ) as HTMLLIElement;
+  assertBaseElement(menuItem);
+});
+
+it('should render sublabel', () => {
+  const { container } = render(
+    <MenuItem sublabel='Test sublabel'>Test item</MenuItem>,
+  );
+
+  const menuItem = container.querySelector(
+    '.iui-menu-item.iui-large',
+  ) as HTMLLIElement;
+  assertBaseElement(menuItem);
+
+  const sublabel = menuItem.querySelector(
+    '.iui-content .iui-menu-description',
+  ) as HTMLElement;
+  expect(sublabel).toBeTruthy();
+  expect(sublabel.textContent).toEqual('Test sublabel');
 });

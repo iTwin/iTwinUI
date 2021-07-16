@@ -20,13 +20,22 @@ export type MenuItemProps = {
   /**
    * Value of the item.
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  value?: any;
+  value?: unknown;
   /**
    * Callback function that handles click and keyboard submit actions.
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onClick?: (value?: any) => void;
+  onClick?: (value?: unknown) => void;
+  /**
+   * Modify height of the item.
+   * Use 'large' when any of the sibling items have `sublabel`.
+   *
+   * Defaults to 'large' if `sublabel` provided, otherwise 'default'.
+   */
+  size?: 'default' | 'large';
+  /**
+   * Sub label shown below the main content of the item.
+   */
+  sublabel?: React.ReactNode;
   /**
    * SVG icon component shown on the left.
    */
@@ -57,6 +66,8 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
       disabled,
       value,
       onClick,
+      sublabel,
+      size = !!sublabel ? 'large' : 'default',
       icon,
       badge,
       className,
@@ -85,6 +96,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         className={cx(
           'iui-menu-item',
           {
+            'iui-large': size === 'large',
             'iui-active': isSelected,
             'iui-disabled': disabled,
           },
@@ -103,7 +115,10 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
           React.cloneElement(icon, {
             className: cx(icon.props.className, 'iui-icon'),
           })}
-        <span className='iui-content'>{children}</span>
+        <span className='iui-content'>
+          <div className='iui-menu-label'>{children}</div>
+          {sublabel && <div className='iui-menu-description'>{sublabel}</div>}
+        </span>
         {badge &&
           React.cloneElement(badge, {
             className: cx(badge.props.className, 'iui-icon'),

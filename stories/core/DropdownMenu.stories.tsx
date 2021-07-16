@@ -4,13 +4,20 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { DropdownMenuProps } from '../../src/core/DropdownMenu/DropdownMenu';
-import { DropdownMenu, IconButton, MenuItem } from '../../src/core';
 import { action } from '@storybook/addon-actions';
-import SvgClipboard from '@itwin/itwinui-icons-react/cjs/icons/Clipboard';
-import SvgCrop from '@itwin/itwinui-icons-react/cjs/icons/Crop';
-import SvgMore from '@itwin/itwinui-icons-react/cjs/icons/More';
-import SvgMove from '@itwin/itwinui-icons-react/cjs/icons/Move';
+import {
+  DropdownMenu,
+  DropdownMenuProps,
+  IconButton,
+  MenuItem,
+} from '../../src/core';
+import {
+  SvgClipboard,
+  SvgCrop,
+  SvgMore,
+  SvgMove,
+  SvgPlaceholder,
+} from '@itwin/itwinui-icons-react';
 import { CreeveyMeta } from 'creevey';
 
 export default {
@@ -20,6 +27,7 @@ export default {
   argTypes: {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
+    id: { control: { disable: true } },
   },
   parameters: {
     creevey: {
@@ -119,6 +127,49 @@ export const WithBadges: Story<DropdownMenuProps> = (args) => {
   ];
   return (
     <div style={{ minHeight: 150 }}>
+      <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+        <IconButton>
+          <SvgMore />
+        </IconButton>
+      </DropdownMenu>
+    </div>
+  );
+};
+
+export const WithSublabels: Story<DropdownMenuProps> = (args) => {
+  const { menuItems, ...rest } = args;
+  const onClick = (index: number, close: () => void) => () => {
+    action(`Item #${index} clicked!`)();
+    close();
+  };
+  const dropdownMenuItems = (close: () => void) => [
+    <MenuItem
+      key={1}
+      onClick={onClick(1, close)}
+      icon={<SvgPlaceholder />}
+      sublabel='Sublabel #1'
+    >
+      Item #1
+    </MenuItem>,
+    <MenuItem
+      key={2}
+      onClick={onClick(2, close)}
+      icon={<SvgPlaceholder />}
+      sublabel='Sublabel #2'
+    >
+      Item #2
+    </MenuItem>,
+    <MenuItem
+      key={3}
+      onClick={onClick(3, close)}
+      icon={<SvgPlaceholder />}
+      sublabel='Sublabel #3'
+    >
+      Item #3
+    </MenuItem>,
+  ];
+  return (
+    <div style={{ minHeight: 200 }}>
       <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
         <IconButton>
           <SvgMore />
