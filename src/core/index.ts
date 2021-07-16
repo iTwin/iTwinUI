@@ -161,6 +161,9 @@ export type {
 export { UserIcon } from './UserIcon';
 export type { UserIconProps, StatusTitles, UserIconStatus } from './UserIcon';
 
+export { UserIconGroup } from './UserIconGroup';
+export type { UserIconGroupProps } from './UserIconGroup';
+
 export { Wizard } from './Wizard';
 export type {
   WizardProps,
