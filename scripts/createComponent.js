@@ -105,7 +105,8 @@ const demoHtmlFactory = (directory) => {
     <title>${componentName} | iTwinUI</title>
     <link
       rel="icon"
-      href="../assets/favicon.svg"  type="image/svg+xml"
+      href="../assets/favicon.svg"
+      type="image/svg+xml"
     />
     <link
       rel="stylesheet"
