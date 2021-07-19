@@ -8,6 +8,7 @@
 
 - **Added `UserIconGroup` component** - stacked/non-stacked, animated lists with custom count icon behavior.
 - **Added new `sublabel` and `size` props to `MenuItem` and `SelectOption`.**
+- **Added sublabel and icon support to `HorizontalTabs` component.** Pass new `HorizontalTab` component to `labels` prop.
 
 ### Fixes
 

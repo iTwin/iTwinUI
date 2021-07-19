@@ -4,14 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import { useState } from '@storybook/addons';
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/';
 import React from 'react';
-import { HorizontalTabs } from '../../src/core';
-import { HorizontalTabsProps } from '../../src/core/HorizontalTabs/HorizontalTabs';
+import {
+  HorizontalTabs,
+  HorizontalTabsProps,
+  HorizontalTab,
+} from '../../src/core';
 
 export default {
   title: 'Core/HorizontalTabs',
   component: HorizontalTabs,
+  subcomponents: { HorizontalTab },
 } as Meta<HorizontalTabsProps>;
 
 const Template: Story<HorizontalTabsProps> = (args) => {
@@ -34,15 +38,21 @@ const Template: Story<HorizontalTabsProps> = (args) => {
 };
 
 export const DefaultTabs = Template.bind({});
-
 DefaultTabs.args = {
-  labels: ['Item1', 'Item2', 'Item3'],
+  labels: [
+    <HorizontalTab key={1} label='Item1' />,
+    <HorizontalTab key={2} label='Item2' />,
+    <HorizontalTab key={3} label='Item3' />,
+  ],
 };
 
 export const BorderlessTabs = Template.bind({});
-
 BorderlessTabs.args = {
-  labels: ['Item1', 'Item2', 'Item3'],
+  labels: [
+    <HorizontalTab key={1} label='Item1' />,
+    <HorizontalTab key={2} label='Item2' />,
+    <HorizontalTab key={3} label='Item3' />,
+  ],
   type: 'borderless',
 };
 
@@ -50,6 +60,22 @@ export const PillTabs = Template.bind({});
 PillTabs.args = {
   labels: Array(3)
     .fill(null)
-    .map((_, index) => <SvgStar key={index} aria-hidden />),
+    .map((_, index) => <HorizontalTab key={index} startIcon={<SvgStar />} />),
   type: 'pill',
+};
+
+export const SublabelsAndIcons = Template.bind({});
+SublabelsAndIcons.args = {
+  labels: Array(3)
+    .fill(null)
+    .map((_, index) => (
+      <HorizontalTab
+        key={index}
+        label={`Item${index}`}
+        sublabel={`Sublabel ${index}`}
+        startIcon={<SvgStar />}
+        disabled={index === 2}
+      />
+    )),
+  type: 'borderless',
 };

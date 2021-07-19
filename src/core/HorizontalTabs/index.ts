@@ -5,3 +5,6 @@
 export { HorizontalTabs } from './HorizontalTabs';
 export type { HorizontalTabsProps } from './HorizontalTabs';
 export default './HorizontalTabs';
+
+export { HorizontalTab } from './HorizontalTab';
+export type { HorizontalTabProps } from './HorizontalTab';
