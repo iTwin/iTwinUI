@@ -101,6 +101,9 @@ export type { SelectProps, SelectOption, ItemRendererProps } from './Select';
 export { SideNavigation, SidenavButton } from './SideNavigation';
 export type { SideNavigationProps, SidenavButtonProps } from './SideNavigation';
 
+export { Slider } from './Slider';
+export type { SliderProps } from './Slider';
+
 export { Table, tableFilters, FilterButtonBar } from './Table';
 export type {
   TableProps,

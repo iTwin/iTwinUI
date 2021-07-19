@@ -2,7 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { getContainer, getDocument, getUserColor, getWindow } from './common';
+import {
+  getBoundedValue,
+  getContainer,
+  getDocument,
+  getUserColor,
+  getWindow,
+} from './common';
 
 it('should return color for given user name', () => {
   expect(getUserColor('Terry Rivers')).toEqual('#6AB9EC');
@@ -42,4 +48,10 @@ it('should get window when it is defined', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   jest.spyOn(global as any, 'window', 'get').mockReturnValue(undefined);
   expect(getDocument()).toBeFalsy();
+});
+
+it('should get bounded values', () => {
+  expect(getBoundedValue(20, 0, 100)).toBe(20);
+  expect(getBoundedValue(20, 30, 100)).toBe(30);
+  expect(getBoundedValue(20, 0, 10)).toBe(10);
 });

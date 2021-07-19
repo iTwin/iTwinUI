@@ -82,3 +82,10 @@ export const getDocument = () => {
 export const getWindow = () => {
   return typeof window === 'undefined' ? undefined : window;
 };
+
+/**
+ * Return input value bounded by specified range.
+ */
+export const getBoundedValue = (val: number, min: number, max: number) => {
+  return Math.min(max, Math.max(min, val));
+};
