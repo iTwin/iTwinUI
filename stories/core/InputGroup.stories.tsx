@@ -19,6 +19,7 @@ export default {
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
+    id: { control: { disable: true } },
     svgIcon: { control: { disable: true } },
   },
 } as Meta<InputGroupProps>;

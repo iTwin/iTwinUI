@@ -24,6 +24,7 @@ export default {
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
+    id: { control: { disable: true } },
     items: { control: { disable: true } },
     secondaryItems: { control: { disable: true } },
   },

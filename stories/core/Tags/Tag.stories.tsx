@@ -12,6 +12,11 @@ export default {
   argTypes: {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
+    title: { control: { disable: true } },
+    id: { control: { disable: true } },
+  },
+  args: {
+    variant: 'default',
   },
 } as Meta<TagProps>;
 

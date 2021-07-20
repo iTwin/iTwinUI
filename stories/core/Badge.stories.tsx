@@ -11,6 +11,7 @@ export default {
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
+    id: { control: { disable: true } },
     backgroundColor: { control: 'color' },
   },
   title: 'Core/Badge',

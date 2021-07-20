@@ -18,6 +18,7 @@ export default {
   argTypes: {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
+    id: { control: { disable: true } },
     menuStyle: { control: { disable: true } },
     menuClassName: { control: { disable: true } },
   },
@@ -71,11 +72,11 @@ export const Basic: Story<SelectProps<number>> = (args) => {
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
+        {...rest}
         options={options}
         value={value}
         onChange={setValue}
         placeholder={placeholder}
-        {...rest}
       />
     </div>
   );
@@ -104,11 +105,11 @@ export const WithIcons: Story<SelectProps<string>> = (args) => {
   return (
     <div style={{ minHeight: 350 }}>
       <Select<string>
+        {...rest}
         options={options}
         value={value}
         onChange={setValue}
         placeholder={placeholder}
-        {...rest}
       />
     </div>
   );
@@ -201,6 +202,7 @@ export const ManyItems: Story<SelectProps<number>> = (args) => {
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
+        {...rest}
         options={
           options ||
           [...Array(20).fill(null)].map((_, index) => ({
@@ -211,7 +213,6 @@ export const ManyItems: Story<SelectProps<number>> = (args) => {
         value={value}
         onChange={setValue}
         placeholder={placeholder}
-        {...rest}
       />
     </div>
   );
@@ -240,12 +241,12 @@ export const Sublabels: Story<SelectProps<number>> = (args) => {
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
+        {...rest}
         options={options}
         value={value}
         onChange={setValue}
         placeholder={placeholder}
         size={size}
-        {...rest}
       />
     </div>
   );
@@ -277,6 +278,7 @@ export const Custom: Story<SelectProps<string>> = (args) => {
   return (
     <div style={{ minHeight: 350 }}>
       <Select<string>
+        {...rest}
         options={options}
         value={selectedValue}
         onChange={setSelectedValue}
@@ -287,7 +289,6 @@ export const Custom: Story<SelectProps<string>> = (args) => {
         selectedItemRenderer={(option) => (
           <span style={{ backgroundColor: option.value }}>{option.label}</span>
         )}
-        {...rest}
       />
     </div>
   );

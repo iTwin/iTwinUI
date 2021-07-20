@@ -12,6 +12,7 @@ export default {
   argTypes: {
     style: { table: { disable: true } },
     className: { table: { disable: true } },
+    id: { control: { disable: true } },
     children: { control: { disable: true } },
   },
 } as Meta<TagContainerProps>;

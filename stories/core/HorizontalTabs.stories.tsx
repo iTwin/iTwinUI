@@ -38,7 +38,7 @@ const Template: Story<HorizontalTabsProps> = (args) => {
     }
   };
   return (
-    <HorizontalTabs onTabSelected={setIndex} {...args}>
+    <HorizontalTabs {...args} onTabSelected={setIndex}>
       {getContent()}
     </HorizontalTabs>
   );
@@ -46,6 +46,7 @@ const Template: Story<HorizontalTabsProps> = (args) => {
 
 export const DefaultTabs = Template.bind({});
 DefaultTabs.args = {
+  type: 'default',
   labels: [
     <HorizontalTab key={1} label='Item1' />,
     <HorizontalTab key={2} label='Item2' />,

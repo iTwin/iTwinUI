@@ -12,6 +12,7 @@ export default {
   title: 'Core/ErrorPage',
   component: ErrorPage,
   argTypes: {
+    id: { control: { disable: true } },
     errorType: {
       type: { required: true },
     },

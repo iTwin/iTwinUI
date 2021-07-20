@@ -28,6 +28,10 @@ export default {
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
+    id: { control: { disable: true } },
+  },
+  args: {
+    variant: 'default',
   },
   title: 'Core/Tile',
 } as Meta<TileProps>;

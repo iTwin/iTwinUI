@@ -13,6 +13,12 @@ import { ProgressLinearProps } from '../../src/core/ProgressIndicators/ProgressL
 export default {
   title: 'ProgressIndicators/ProgressLinear',
   component: ProgressLinear,
+  argTypes: {
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+    title: { control: { disable: true } },
+    id: { control: { disable: true } },
+  },
 } as Meta<ProgressLinearProps>;
 
 export const Determinate: Story<ProgressLinearProps> = (args) => {

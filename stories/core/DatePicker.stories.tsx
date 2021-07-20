@@ -22,6 +22,7 @@ export default {
     onChange: { control: { disable: true } },
     className: { control: { disable: true } },
     style: { control: { disable: true } },
+    id: { control: { disable: true } },
     date: { control: 'date' },
   },
   args: {

@@ -30,6 +30,7 @@ export default {
     visible: { control: { type: 'boolean' } },
     className: { control: { disable: true } },
     style: { control: { disable: true } },
+    id: { control: { disable: true } },
   },
   parameters: {
     creevey: {

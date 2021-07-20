@@ -43,6 +43,7 @@ export default {
     children: { control: { disable: true } },
     style: { control: { disable: true } },
     className: { control: { disable: true } },
+    id: { control: { disable: true } },
   },
   parameters: {
     creevey: {
@@ -73,6 +74,7 @@ const buildMenu = (menu: string) => (close: () => void) => [
 export const Full: Story<HeaderProps> = (args) => {
   return (
     <Header
+      {...args}
       appLogo={
         <HeaderLogo
           logo={
@@ -150,7 +152,6 @@ export const Full: Story<HeaderProps> = (args) => {
         </DropdownMenu>
       }
       menuItems={buildMenu('More')}
-      {...args}
     />
   );
 };
@@ -158,6 +159,7 @@ export const Full: Story<HeaderProps> = (args) => {
 export const Basic: Story<HeaderProps> = (args) => {
   return (
     <Header
+      {...args}
       appLogo={
         <HeaderLogo
           logo={
@@ -210,7 +212,6 @@ export const Basic: Story<HeaderProps> = (args) => {
           title='Terry Rivers'
         />
       }
-      {...args}
     />
   );
 };
@@ -220,7 +221,8 @@ export const CenterContent: Story<HeaderProps> = (args) => {
     <>
       <style>
         {`.center-input { border-radius: 22px; width: 20vw; transition: all 0.2s ease }`}
-        {`.iui-slim .center-input { padding-top: 0; padding-bottom: 0; }`}
+        {`.iui-slim .iui-center { align-items: unset }`}
+        {`.iui-slim .center-input { min-height: unset }`}
         {`@media (max-width: 768px) { .center-input { display: none; } }`}
       </style>
       <Input className='center-input' placeholder='Search within Model B...' />
@@ -229,6 +231,7 @@ export const CenterContent: Story<HeaderProps> = (args) => {
 
   return (
     <Header
+      {...args}
       appLogo={<HeaderLogo logo={<SvgImodel />} />}
       breadcrumbs={
         <HeaderBreadcrumbs
@@ -270,7 +273,6 @@ export const CenterContent: Story<HeaderProps> = (args) => {
         />
       }
       menuItems={buildMenu('More')}
-      {...args}
     >
       {searchBar}
     </Header>

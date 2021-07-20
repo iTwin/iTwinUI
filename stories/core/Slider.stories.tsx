@@ -12,6 +12,15 @@ import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
 export default {
   title: 'Input/Slider',
   component: Slider,
+  argTypes: {
+    className: { control: { disable: true } },
+    style: { control: { disable: true } },
+    id: { control: { disable: true } },
+  },
+  args: {
+    thumbMode: 'inhibit-crossing',
+    trackDisplayMode: 'auto',
+  },
 } as Meta<SliderProps>;
 
 export const Basic: Story<SliderProps> = (args) => {

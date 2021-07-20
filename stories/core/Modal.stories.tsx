@@ -21,6 +21,7 @@ export default {
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
+    id: { control: { disable: true } },
     onClose: { control: { disable: true } },
     ownerDocument: { control: { disable: true } },
   },

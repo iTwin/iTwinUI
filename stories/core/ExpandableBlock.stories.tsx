@@ -19,6 +19,7 @@ export default {
     },
     style: { control: { disable: true } },
     className: { control: { disable: true } },
+    id: { control: { disable: true } },
   },
   args: {
     children: 'Content in block!',
