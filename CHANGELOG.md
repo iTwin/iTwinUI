@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.24.2]
+
+`2021-07-20`
+
+### Fixes
+
+- **Reduced specificity of slider classes.**
+- **Removed svg selector for tab icons.**
+
 ## [0.24.1]
 
 `2021-07-14`
@@ -363,6 +372,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.24.2]: https://github.com/iTwin/iTwinUI/compare/v0.24.1...v0.24.2
 [0.24.1]: https://github.com/iTwin/iTwinUI/compare/v0.24.0...v0.24.1
 [0.24.0]: https://github.com/iTwin/iTwinUI/compare/v0.23.0...v0.24.0
 [0.23.0]: https://github.com/iTwin/iTwinUI/compare/v0.22.1...v0.23.0
