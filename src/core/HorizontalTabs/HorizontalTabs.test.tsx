@@ -79,14 +79,14 @@ it('should set active tab', () => {
   expect(tabs[2].className).toContain('iui-tab iui-active');
 });
 
-it('should not fail with invalid active tab and set the first one', () => {
+it('should not fail with invalid active tab and set the closest one', () => {
   const { container } = renderComponent({ activeIndex: 100 });
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
-  expect(tabs[0].className).toContain('iui-tab iui-active');
+  expect(tabs[0].className).not.toContain('iui-tab iui-active');
   expect(tabs[1].className).not.toContain('iui-tab iui-active');
-  expect(tabs[2].className).not.toContain('iui-tab iui-active');
+  expect(tabs[2].className).toContain('iui-tab iui-active'); // 2 is closest to 100
 });
 
 it('should render strings in HorizontalTab child component', () => {
@@ -131,4 +131,88 @@ it('should add custom classnames', () => {
   expect(tabsContainer).toBeTruthy();
   const content = container.querySelector('div.customContentClassName');
   expect(content).toBeTruthy();
+});
+
+it('should handle keypresses', () => {
+  const mockOnTabSelected = jest.fn();
+  const { container } = renderComponent({ onTabSelected: mockOnTabSelected });
+
+  const tablist = container.querySelector('.iui-tabs') as HTMLElement;
+  const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
+
+  // alt key
+  fireEvent.keyDown(tablist, { key: 'ArrowRight', altKey: true });
+  expect(mockOnTabSelected).not.toHaveBeenCalled();
+
+  // 0 -> 1
+  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+  expect(mockOnTabSelected).toBeCalledWith(1);
+  expect(document.activeElement).toBe(tabs[1]);
+
+  // 1 -> 2
+  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+  expect(mockOnTabSelected).toBeCalledWith(2);
+  expect(document.activeElement).toBe(tabs[2]);
+
+  // 2 -> 0
+  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+  expect(mockOnTabSelected).toBeCalledWith(0);
+  expect(document.activeElement).toBe(tabs[0]);
+
+  // 0 -> 2
+  fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+  expect(mockOnTabSelected).toBeCalledWith(2);
+  expect(document.activeElement).toBe(tabs[2]);
+
+  // 2 -> 1
+  fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+  expect(mockOnTabSelected).toBeCalledWith(1);
+  expect(document.activeElement).toBe(tabs[1]);
+});
+
+it('should handle keypresses when focusActivationMode is manual', () => {
+  const mockOnTabSelected = jest.fn();
+  const { container } = renderComponent({
+    focusActivationMode: 'manual',
+    onTabSelected: mockOnTabSelected,
+  });
+
+  const tablist = container.querySelector('.iui-tabs') as HTMLElement;
+  const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
+
+  // 0 -> 1
+  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+  expect(mockOnTabSelected).not.toBeCalled();
+  expect(document.activeElement).toBe(tabs[1]);
+
+  // select 1
+  fireEvent.keyDown(tablist, { key: 'Enter' });
+  expect(mockOnTabSelected).toBeCalledWith(1);
+
+  // 1 -> 0
+  fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+  expect(mockOnTabSelected).not.toBeCalledWith(0);
+  expect(document.activeElement).toBe(tabs[0]);
+
+  // select 0
+  fireEvent.keyDown(tablist, { key: ' ' });
+  expect(mockOnTabSelected).toBeCalledWith(0);
+});
+
+it('should set focused index when tab is clicked', () => {
+  const mockOnTabSelected = jest.fn();
+  const { container } = renderComponent({ onTabSelected: mockOnTabSelected });
+
+  const tablist = container.querySelector('.iui-tabs') as HTMLElement;
+  const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
+
+  // click 1
+  fireEvent.click(tabs[1]);
+  expect(mockOnTabSelected).toBeCalledWith(1);
+  expect(document.activeElement).toBe(tabs[1]);
+
+  // 1 -> 2
+  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+  expect(mockOnTabSelected).toBeCalledWith(2);
+  expect(document.activeElement).toBe(tabs[2]);
 });

@@ -16,6 +16,13 @@ export default {
   title: 'Core/HorizontalTabs',
   component: HorizontalTabs,
   subcomponents: { HorizontalTab },
+  args: {
+    focusActivationMode: 'auto',
+    color: 'blue',
+  },
+  argTypes: {
+    children: { control: { disable: true } },
+  },
 } as Meta<HorizontalTabsProps>;
 
 const Template: Story<HorizontalTabsProps> = (args) => {

@@ -9,6 +9,7 @@ import '@itwin/itwinui-css/css/tabs.css';
 import { useResizeObserver } from '../utils/hooks/useResizeObserver';
 import { useMergedRefs } from '../utils/hooks/useMergedRefs';
 import { HorizontalTab } from './HorizontalTab';
+import { getBoundedValue } from '../utils/common';
 
 export type HorizontalTabsProps = {
   /**
@@ -24,6 +25,12 @@ export type HorizontalTabsProps = {
    * Index of the active tab.
    */
   activeIndex?: number;
+  /**
+   * Control whether focusing tabs (using arrow keys) should automatically select them.
+   * Use 'manual' if tab panel content is not preloaded.
+   * @default 'auto'
+   */
+  focusActivationMode?: 'auto' | 'manual';
   /**
    * Color of the bar on the active tab.
    * @default 'blue'
@@ -77,6 +84,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
     labels,
     activeIndex,
     onTabSelected,
+    focusActivationMode = 'auto',
     type = 'default',
     color = 'blue',
     tabsClassName,
@@ -86,18 +94,6 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
   } = props;
 
   useTheme();
-
-  const getValidIndex = React.useCallback((): number => {
-    let index = 0;
-    if (
-      activeIndex != null &&
-      activeIndex >= 0 &&
-      activeIndex < labels.length
-    ) {
-      index = activeIndex;
-    }
-    return index;
-  }, [activeIndex, labels.length]);
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
 
@@ -112,24 +108,35 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
   const [tablistSizeRef] = useResizeObserver(updateTabsWidth);
   const refs = useMergedRefs(tablistRef, tablistSizeRef);
 
-  const [currentIndex, setCurrentIndex] = React.useState(getValidIndex());
-  const [stripeStyle, setStripeStyle] = React.useState<React.CSSProperties>({});
-
+  const [currentActiveIndex, setCurrentActiveIndex] = React.useState(() =>
+    activeIndex != null
+      ? getBoundedValue(activeIndex, 0, labels.length - 1)
+      : 0,
+  );
   React.useLayoutEffect(() => {
-    if (activeIndex != null && currentIndex !== activeIndex) {
-      setCurrentIndex(getValidIndex());
+    if (activeIndex != null && currentActiveIndex !== activeIndex) {
+      setCurrentActiveIndex(getBoundedValue(activeIndex, 0, labels.length - 1));
     }
-  }, [activeIndex, currentIndex, getValidIndex]);
+  }, [activeIndex, currentActiveIndex, labels.length]);
 
+  const [stripeStyle, setStripeStyle] = React.useState<React.CSSProperties>({});
   React.useLayoutEffect(() => {
     if (type !== 'default') {
-      const activeTab = tablistRef.current?.children[currentIndex];
+      const activeTab = tablistRef.current?.children[currentActiveIndex];
       setStripeStyle({
         width: activeTab?.getBoundingClientRect().width,
         left: (activeTab as HTMLElement)?.offsetLeft,
       });
     }
-  }, [currentIndex, type, tabsWidth]);
+  }, [currentActiveIndex, type, tabsWidth]);
+
+  const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
+  React.useEffect(() => {
+    if (tablistRef.current && focusedIndex !== undefined) {
+      const tab = tablistRef.current.querySelectorAll('.iui-tab')[focusedIndex];
+      (tab as HTMLElement)?.focus();
+    }
+  }, [focusedIndex]);
 
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
   React.useLayoutEffect(() => {
@@ -143,7 +150,55 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
     if (onTabSelected) {
       onTabSelected(index);
     }
-    setCurrentIndex(index);
+    setCurrentActiveIndex(index);
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    // alt + left/right is used by browser / assistive technologies
+    if (event.altKey) {
+      return;
+    }
+
+    const isTabDisabled = (index: number) => {
+      const tab = labels[index];
+      return React.isValidElement(tab) && tab.props.disabled;
+    };
+
+    const focusTabAt = (index: number) => {
+      setFocusedIndex(index);
+      focusActivationMode === 'auto' && onTabClick(index);
+    };
+
+    let newIndex = focusedIndex ?? currentActiveIndex;
+    switch (event.key) {
+      case 'ArrowRight': {
+        do {
+          newIndex = (newIndex + 1 + labels.length) % labels.length;
+        } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
+        focusTabAt(newIndex);
+        event.preventDefault();
+        break;
+      }
+      case 'ArrowLeft': {
+        do {
+          newIndex = (newIndex - 1 + labels.length) % labels.length;
+        } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
+        focusTabAt(newIndex);
+        event.preventDefault();
+        break;
+      }
+      case 'Enter':
+      case ' ':
+      case 'Spacebar': {
+        event.preventDefault();
+        if (focusActivationMode === 'manual' && focusedIndex !== undefined) {
+          onTabClick(focusedIndex);
+        }
+        break;
+      }
+      default:
+        break;
+    }
   };
 
   return (
@@ -161,30 +216,36 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
         )}
         role='tablist'
         ref={refs}
+        onKeyDown={onKeyDown}
         {...rest}
       >
         {labels.map((label, index) => {
-          const onClick = () => onTabClick(index);
+          const onClick = () => {
+            setFocusedIndex(index);
+            onTabClick(index);
+          };
           return (
             <li key={index}>
-              {typeof label === 'string' ? (
+              {!React.isValidElement(label) ? (
                 <HorizontalTab
                   label={label}
                   className={cx({
-                    'iui-active': index === currentIndex,
+                    'iui-active': index === currentActiveIndex,
                   })}
+                  tabIndex={index === currentActiveIndex ? 0 : -1}
                   onClick={onClick}
-                  aria-selected={index === currentIndex}
+                  aria-selected={index === currentActiveIndex}
                 />
               ) : (
-                React.cloneElement(label as JSX.Element, {
-                  className: cx((label as JSX.Element).props.className, {
-                    'iui-active': index === currentIndex,
+                React.cloneElement(label, {
+                  className: cx(label.props.className, {
+                    'iui-active': index === currentActiveIndex,
                   }),
-                  'aria-selected': index === currentIndex,
+                  'aria-selected': index === currentActiveIndex,
+                  tabIndex: index === currentActiveIndex ? 0 : -1,
                   onClick: (args: unknown) => {
                     onClick();
-                    (label as JSX.Element).props.onClick?.(args);
+                    label.props.onClick?.(args);
                   },
                 })
               )}

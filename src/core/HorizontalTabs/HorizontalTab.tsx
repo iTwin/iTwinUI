@@ -6,7 +6,6 @@ import cx from 'classnames';
 import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/tabs.css';
-import { CommonProps } from '../utils/props';
 
 export type HorizontalTabProps = {
   /**
@@ -15,7 +14,6 @@ export type HorizontalTabProps = {
   label?: React.ReactNode;
   /**
    * Secondary label shown below the main label.
-   * Only shown if `size` of `HorizontalTabs` is set to large.
    */
   sublabel?: React.ReactNode;
   /**
@@ -30,11 +28,7 @@ export type HorizontalTabProps = {
    * Custom content appended to the tab.
    */
   children?: React.ReactNode;
-  /**
-   * Click event handler.
-   */
-  onClick?: () => void;
-} & CommonProps;
+} & React.HTMLAttributes<HTMLButtonElement>;
 
 /**
  * Individual tab component to be used in the `labels` prop of `HorizontalTabs`.
@@ -50,7 +44,12 @@ export const HorizontalTab = (props: HorizontalTabProps) => {
   useTheme();
 
   return (
-    <button className={cx('iui-tab', className)} role='tab' {...rest}>
+    <button
+      className={cx('iui-tab', className)}
+      role='tab'
+      tabIndex={-1}
+      {...rest}
+    >
       {startIcon &&
         React.cloneElement(startIcon, {
           className: 'iui-tab-icon',
