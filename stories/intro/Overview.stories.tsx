@@ -83,11 +83,9 @@ export const Overview: Story = () => {
           },
           ol: {
             component: (args) => <ol {...args} />,
-            props: { style: { margin: '16px' } },
           },
           ul: {
             component: (args) => <ul {...args} />,
-            props: { style: { margin: '16px' } },
           },
           hr: {
             component: (args) => <hr {...args} />,

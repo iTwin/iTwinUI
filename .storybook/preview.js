@@ -13,13 +13,26 @@ const channel = addons.getChannel();
 // switch body class for story along with interface theme
 channel.on('DARK_MODE', (isDark) => updateTheme(isDark));
 
+// get user's OS color scheme
+const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+
 addParameters({
   darkMode: {
     dark: { ...themes.dark, ...darkTheme },
     light: { ...themes.light, ...lightTheme },
   },
   docs: {
-    theme: { ...themes.light, ...lightTheme },
+    theme: prefersDark
+      ? { ...themes.dark, ...darkTheme }
+      : { ...themes.light, ...lightTheme },
+  },
+  backgrounds: {
+    grid: { disable: true },
+    default: 'background-2',
+    values: [
+      { name: 'background-1', value: 'var(--iui-color-background-1)' },
+      { name: 'background-2', value: 'var(--iui-color-background-2)' },
+    ],
   },
   options: { showPanel: true },
 });

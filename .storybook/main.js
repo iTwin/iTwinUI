@@ -11,9 +11,9 @@ module.exports = {
   ],
   addons: [
     {
-      name: '@storybook/addon-docs',
+      name: '@storybook/addon-essentials',
+      options: { measure: false, outline: false },
     },
-    '@storybook/addon-controls',
     'storybook-dark-mode/register',
     {
       name: '@storybook/addon-storysource',
@@ -26,7 +26,6 @@ module.exports = {
         },
       },
     },
-    '@storybook/addon-actions',
     'creevey',
   ],
   webpackFinal: async (config, { configType }) => {
