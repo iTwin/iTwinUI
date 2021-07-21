@@ -7,6 +7,17 @@ import cx from 'classnames';
 import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/menu.css';
+import SvgCaretRightSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretRightSmall';
+import { Popover } from '../utils/Popover';
+import { Menu } from './Menu';
+import { useMergedRefs } from '../utils/hooks/useMergedRefs';
+
+/**
+ * Context used to provide menu item ref to sub-menu items.
+ */
+const MenuItemContext = React.createContext<{
+  ref: React.RefObject<HTMLLIElement> | undefined;
+}>({ ref: undefined });
 
 export type MenuItemProps = {
   /**
@@ -50,6 +61,10 @@ export type MenuItemProps = {
    */
   role?: string;
   /**
+   * Items to be shown in the submenu when hovered over the item.
+   */
+  subMenuItems?: JSX.Element[];
+  /**
    * Content of the menu item.
    */
   children?: React.ReactNode;
@@ -73,25 +88,54 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
       className,
       style,
       role = 'menuitem',
+      subMenuItems = [],
       ...rest
     } = props;
 
     useTheme();
 
+    const menuItemRef = React.useRef<HTMLLIElement>(null);
+    const refs = useMergedRefs(menuItemRef, ref);
+
+    const { ref: parentMenuItemRef } = React.useContext(MenuItemContext);
+
+    const subMenuRef = React.useRef<HTMLUListElement>(null);
+
+    const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+
     const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+      if (event.altKey) {
+        return;
+      }
+
       switch (event.key) {
         case 'Enter':
         case ' ':
-        case 'Spacebar':
+        case 'Spacebar': {
           !disabled && onClick?.(value);
           event.preventDefault();
           break;
+        }
+        case 'ArrowRight': {
+          if (subMenuItems.length > 0) {
+            setIsSubmenuVisible(true);
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          break;
+        }
+        case 'ArrowLeft': {
+          parentMenuItemRef?.current?.focus();
+          event.stopPropagation();
+          event.preventDefault();
+          break;
+        }
         default:
           break;
       }
     };
 
-    return (
+    const listItem = (
       <li
         className={cx(
           'iui-menu-item',
@@ -103,12 +147,22 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
           className,
         )}
         onClick={() => !disabled && onClick?.(value)}
-        ref={ref}
+        ref={refs}
         style={style}
         role={role}
         tabIndex={disabled ? undefined : -1}
         aria-selected={isSelected}
+        aria-haspopup={subMenuItems.length > 0}
         onKeyDown={onKeyDown}
+        onMouseEnter={() => setIsSubmenuVisible(true)}
+        onMouseLeave={(e) => {
+          if (
+            !(e.relatedTarget instanceof Node) ||
+            !subMenuRef.current?.contains(e.relatedTarget as Node)
+          ) {
+            setIsSubmenuVisible(false);
+          }
+        }}
         {...rest}
       >
         {icon &&
@@ -119,11 +173,40 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
           <div className='iui-menu-label'>{children}</div>
           {sublabel && <div className='iui-menu-description'>{sublabel}</div>}
         </span>
+        {!badge && subMenuItems.length > 0 && (
+          <SvgCaretRightSmall className='iui-icon' />
+        )}
         {badge &&
           React.cloneElement(badge, {
             className: cx(badge.props.className, 'iui-icon'),
           })}
       </li>
+    );
+
+    return subMenuItems.length === 0 ? (
+      listItem
+    ) : (
+      <MenuItemContext.Provider value={{ ref: menuItemRef }}>
+        <Popover
+          placement='right-start'
+          visible={isSubmenuVisible}
+          content={
+            <div
+              onMouseLeave={() => setIsSubmenuVisible(false)}
+              onBlur={(e) => {
+                !!(e.relatedTarget instanceof Node) &&
+                  !subMenuRef.current?.contains(e.relatedTarget as Node) &&
+                  !subMenuRef.current?.isEqualNode(e.relatedTarget as Node) &&
+                  setIsSubmenuVisible(false);
+              }}
+            >
+              <Menu ref={subMenuRef}>{subMenuItems}</Menu>
+            </div>
+          }
+        >
+          {listItem}
+        </Popover>
+      </MenuItemContext.Provider>
     );
   },
 );

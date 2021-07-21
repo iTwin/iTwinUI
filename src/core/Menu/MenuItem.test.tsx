@@ -115,6 +115,9 @@ it('should handle key press', () => {
   const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
   assertBaseElement(menuItem);
 
+  fireEvent.keyDown(menuItem, { key: 'Enter', altKey: true });
+  expect(mockedOnClick).not.toHaveBeenCalled();
+
   fireEvent.keyDown(menuItem, { key: 'Enter' });
   expect(mockedOnClick).toHaveBeenNthCalledWith(1, 'test_value');
   fireEvent.keyDown(menuItem, { key: ' ' });
@@ -167,4 +170,102 @@ it('should render sublabel', () => {
   ) as HTMLElement;
   expect(sublabel).toBeTruthy();
   expect(sublabel.textContent).toEqual('Test sublabel');
+});
+
+it('should show sub menu on hover', () => {
+  const mockedSubSubOnClick = jest.fn();
+  const { container } = render(
+    <MenuItem
+      value='test_value'
+      subMenuItems={[
+        <MenuItem
+          key={1}
+          value='test_value_sub'
+          subMenuItems={[
+            <MenuItem
+              key={1}
+              onClick={mockedSubSubOnClick}
+              value='test_value_sub_sub'
+            >
+              Test sub sub
+            </MenuItem>,
+          ]}
+        >
+          Test sub
+        </MenuItem>,
+      ]}
+    >
+      Test item
+    </MenuItem>,
+  );
+
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  assertBaseElement(menuItem, { hasBadge: true });
+
+  // hover over menu item
+  fireEvent.mouseOver(menuItem);
+  const subMenu = container.querySelectorAll(
+    '[data-tippy-root] .iui-menu-item',
+  )[0] as HTMLLIElement;
+  expect(subMenu.textContent).toBe('Test sub');
+  expect(container.ownerDocument.activeElement).toEqual(subMenu);
+
+  // hover over sub menu item
+  fireEvent.mouseOver(subMenu);
+  const subSubMenu = container.querySelectorAll(
+    '[data-tippy-root] .iui-menu-item',
+  )[1] as HTMLLIElement;
+  expect(subSubMenu.textContent).toBe('Test sub sub');
+  expect(container.ownerDocument.activeElement).toEqual(subSubMenu);
+  fireEvent.click(subSubMenu);
+  expect(mockedSubSubOnClick).toHaveBeenCalled();
+
+  // leave sub menu item
+  fireEvent.mouseLeave(subMenu, { relatedTarget: menuItem });
+  const subSubTippyContainer = document.querySelectorAll(
+    '[data-tippy-root]',
+  )[1] as HTMLElement;
+  expect(subSubTippyContainer.style.visibility).toEqual('hidden');
+});
+
+it('should handle key press with sub menus', () => {
+  const mockedSubOnClick = jest.fn();
+  const { container } = render(
+    <MenuItem
+      value='test_value'
+      subMenuItems={[
+        <MenuItem key={1} onClick={mockedSubOnClick} value='test_value_sub'>
+          Test sub
+        </MenuItem>,
+      ]}
+    >
+      Test item
+    </MenuItem>,
+  );
+
+  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  assertBaseElement(menuItem, { hasBadge: true });
+
+  // go right to open sub menu
+  fireEvent.keyDown(menuItem, { key: 'ArrowRight' });
+  const subTippy = container.querySelector('[data-tippy-root]') as HTMLElement;
+  const subMenu = subTippy.querySelector('.iui-menu-item') as HTMLLIElement;
+  expect(subMenu.textContent).toBe('Test sub');
+  expect(container.ownerDocument.activeElement).toEqual(subMenu);
+
+  // go left to close sub menu
+  fireEvent.keyDown(subMenu, { key: 'ArrowLeft' });
+  expect(subTippy.style.visibility).toEqual('hidden');
+
+  // go right to open sub menu
+  fireEvent.keyDown(menuItem, { key: 'ArrowRight' });
+  expect(subTippy.style.visibility).toEqual('visible');
+
+  // click
+  fireEvent.keyDown(subMenu, { key: 'Enter' });
+  expect(mockedSubOnClick).toHaveBeenNthCalledWith(1, 'test_value_sub');
+  fireEvent.keyDown(subMenu, { key: ' ' });
+  expect(mockedSubOnClick).toHaveBeenNthCalledWith(2, 'test_value_sub');
+  fireEvent.keyDown(subMenu, { key: 'Spacebar' });
+  expect(mockedSubOnClick).toHaveBeenNthCalledWith(3, 'test_value_sub');
 });
