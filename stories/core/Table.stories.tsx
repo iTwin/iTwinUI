@@ -486,6 +486,25 @@ Filters.args = {
   ],
   emptyFilteredTableContent: 'No results found. Clear or try another filter.',
 };
+Filters.parameters = {
+  creevey: {
+    tests: {
+      async open() {
+        const filter = (
+          await this.browser.findElements({
+            css: '.iui-filter-button',
+          })
+        )[1];
+        await this.browser.actions().move({ origin: filter }).click().perform();
+        await this.expect(
+          await this.browser
+            .findElement({ css: '.iui-table' })
+            .takeScreenshot(),
+        ).to.matchImage('opened');
+      },
+    },
+  } as CreeveyStoryParams,
+};
 
 export const Expandable: Story<TableProps> = (args) => {
   const { columns, data, ...rest } = args;

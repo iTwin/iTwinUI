@@ -50,7 +50,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
       {column.canFilter && column.Filter && (
         <Popover
           content={column.render('Filter', { close, setFilter, clearFilter })}
-          placement='bottom'
+          placement='bottom-start'
           visible={isVisible}
           onClickOutside={close}
           appendTo={ownerDocument?.body}
