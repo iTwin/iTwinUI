@@ -6,69 +6,73 @@
 @mixin iui-breadcrumbs {
   @include iui-reset;
   @include iui-font-family;
-
-  &,
-  .iui-breadcrumbs-list,
-  .iui-breadcrumbs-item,
-  .iui-breadcrumbs-separator {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+}
   
-  .iui-breadcrumbs-list {
-    @include iui-reset;
-    list-style-type: none;
-    user-select: none;
+@mixin iui-breadcrumbs-list {
+  @include iui-reset;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  user-select: none;
+}
+
+@mixin iui-breadcrumbs-item {
+  display: flex;
+  align-items: center;
+
+  > .iui-anchor {
+    display: inline-block;
   }
 
-  .iui-breadcrumbs-item {
-    > .iui-anchor {
-      display: inline-block;
+  > .iui-anchor,
+  .iui-ellipsis {
+    margin: 0 $iui-sm;
+  }
+
+  > .iui-button {
+    margin: 0 $iui-xs;
+  }
+
+  > .iui-anchor,
+  > .iui-button > .iui-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: $iui-3xl * 2;
+  }
+
+  &:not(.iui-current) > .iui-button {
+    @include themed {
+      color: t(iui-color-foreground-primary);
     }
 
-    > .iui-anchor,
-    .iui-ellipsis {
-      margin: 0 $iui-sm;
-    }
-
-    > .iui-button {
-      margin: 0 $iui-xs;
-    }
-
-    > .iui-anchor,
-    > .iui-button > .iui-label {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      max-width: $iui-3xl * 2;
-    }
-
-    &:not(.iui-current) > .iui-button {
+    &:hover {
       @include themed {
-        color: t(iui-color-foreground-primary);
-      }
-
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-primary-overlay);
-        }
-      }
-    }
-
-    &.iui-current > span {
-      margin-left: $iui-sm;
-      user-select: all;
-    }
-
-    &:last-child {
-      > .iui-anchor,
-      > .iui-button {
-        margin-right: 0;
+        color: t(iui-color-foreground-primary-overlay);
       }
     }
   }
 
-  .iui-breadcrumbs-separator > svg {
+  &.iui-current > span {
+    margin-left: $iui-sm;
+    user-select: all;
+  }
+
+  &:last-child {
+    > .iui-anchor,
+    > .iui-button {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin iui-breadcrumbs-separator {
+  display: flex;
+  align-items: center;
+
+  svg {
     @include iui-icons-small;
   }
 }
