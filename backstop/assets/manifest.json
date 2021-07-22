@@ -6,5 +6,5 @@
       { "src": "backstop/assets/pwa-icon-512.png", "type": "image/png", "sizes": "512x512" }
   ],
   "start_url": "/iTwinUI",
-  "display": "minimal-ui",
+  "display": "minimal-ui"
 }
