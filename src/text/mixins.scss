@@ -8,6 +8,8 @@
 }
 
 @mixin iui-text($type: body) {
+  @include iui-reset;
+
   $sizes: (
     headline: $iui-font-size-headline,
     title: $iui-font-size-title,

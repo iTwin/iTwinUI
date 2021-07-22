@@ -1,8 +1,0 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-// See LICENSE.md in the project root for license terms and full copyright notice.
-@import './mixins';
-
-@mixin iui-text-subheading {
-  @include iui-text(subheading);
-  @include iui-text-block-spacing;
-}
