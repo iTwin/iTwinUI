@@ -58,7 +58,8 @@
 
   &:last-child {
     > .iui-anchor,
-    > .iui-button {
+    > .iui-button,
+    > span {
       margin-right: 0;
     }
   }
