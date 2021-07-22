@@ -104,7 +104,8 @@ const demoHtmlFactory = (directory) => {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${componentName} | iTwinUI</title>
     <meta name="description" content="An open-source design system that helps us build a unified web experience.">
-    <meta property="og:title" content="${componentName} | iTwinUI">
+    <meta property="og:site_name" content="iTwinUI">
+    <meta property="og:title" content="${componentName}">
     <meta property="og:description" content="An open-source design system that helps us build a unified web experience.">
     <meta property="og:image" content="https://itwin.github.io/iTwinUI/backstop/assets/logo.png">
     <meta property="og:image:alt" content="iTwinUI logo">
