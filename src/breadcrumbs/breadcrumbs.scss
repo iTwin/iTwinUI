@@ -27,6 +27,7 @@
   }
 
   > .iui-anchor,
+  > span,
   .iui-ellipsis {
     margin: 0 $iui-sm;
   }
@@ -53,11 +54,6 @@
         color: t(iui-color-foreground-primary-overlay);
       }
     }
-  }
-
-  &.iui-current > span {
-    margin-left: $iui-sm;
-    user-select: all;
   }
 
   &:last-child {
