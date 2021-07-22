@@ -2,7 +2,11 @@
 
 ## [0.24.3]
 
-- **Breadcrumbs can now use a simple span for the current item.**
+`2021-07-22`
+
+### Fixes
+
+- **Added ability to use a simple span for the current breadcrumb item.**
 - **Reduced specificity of breadcrumbs classes.**
 
 ## [0.24.2]
