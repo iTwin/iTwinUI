@@ -117,10 +117,6 @@ const demoHtmlFactory = (directory) => {
       href="../assets/favicon.svg"
     />
     <link
-      rel="alternate icon"
-      href="../assets/favicon.ico"
-    />
-    <link
       rel="mask-icon"
       href="../assets/favicon.svg"
       color="#008be1"
