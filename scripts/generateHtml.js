@@ -33,9 +33,9 @@ const metaContent = (fileName) => `
   <link rel="alternate icon" href="../assets/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="../assets/pwa-icon.png" />
   <link rel="manifest" href="../assets/itwinui.webmanifest">
-  <meta name="msapplication-TileColor" content="#FFFFFF">
-  <meta name="theme-color" content="#FFFFFF">
-  <meta name="theme-color" content="#5A6973" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#F8F9FB">
+  <meta name="theme-color" content="#4F5D65" media="(prefers-color-scheme: dark)">
 `;
 
 const run = async () => {
