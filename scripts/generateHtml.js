@@ -29,6 +29,9 @@ const metaContent = (fileName) => `
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:url" content="https://itwin.github.io/iTwinUI/backstop/minified/${fileName}">
+  <link rel="icon" href="../assets/favicon.svg" />
+  <link rel="mask-icon" href="../assets/favicon.svg" color="#008be1" />
+  <link rel="apple-touch-icon" href="../assets/pwa-icon.png" />
 `;
 
 const run = async () => {
