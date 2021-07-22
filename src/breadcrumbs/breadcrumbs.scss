@@ -55,12 +55,9 @@
       }
     }
 
-    &.iui-current {
-      > .iui-anchor {
-        @include themed {
-          color: t(iui-text-color);
-        }
-      }
+    &.iui-current > span {
+      margin-left: $iui-sm;
+      user-select: all;
     }
 
     &:last-child {
