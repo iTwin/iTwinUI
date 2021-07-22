@@ -29,9 +29,13 @@ const metaContent = (fileName) => `
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:url" content="https://itwin.github.io/iTwinUI/backstop/minified/${fileName}">
-  <link rel="icon" href="../assets/favicon.svg" />
-  <link rel="mask-icon" href="../assets/favicon.svg" color="#008be1" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="../assets/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="../assets/pwa-icon.png" />
+  <link rel="manifest" href="../assets/itwinui.webmanifest">
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#5A6973" media="(prefers-color-scheme: dark)">
 `;
 
 const run = async () => {
