@@ -38,7 +38,7 @@
     "build": "yarn clean && yarn build:scss && yarn build:css && yarn build:html && yarn copy-files",
     "build:scss": "cpx \"./src/**/*.scss\" ./lib/scss",
     "build:css": "node ./scripts/generateCss.js src lib/css && yarn postcss-processing && yarn lint:copyright --fix lib/css/*",
-    "build:html": "html-minifier --input-dir ./backstop/tests --output-dir ./backstop/minified --remove-comments --collapse-whitespace --collapse-inline-tag-whitespace && yarn print \"Finished minifying HTML files.\"",
+    "build:html": "node ./scripts/generateHtml.js backstop/tests backstop/minified",
     "build:watch": "yarn build && concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn build:watch:html\"",
     "build:watch:scss": "chokidar \"src/**/*\" -c \"yarn build:scss && yarn build:css\"",
     "build:watch:html": "chokidar \"backstop/tests/**/*\" -c \"yarn build:html\"",
