@@ -32,7 +32,7 @@ const metaContent = (fileName) => `
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="alternate icon" href="../assets/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="../assets/pwa-icon.png" />
-  <link rel="manifest" href="../assets/itwinui.webmanifest">
+  <link rel="manifest" href="../assets/manifest.json">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#F8F9FB">
   <meta name="theme-color" content="#4F5D65" media="(prefers-color-scheme: dark)">
