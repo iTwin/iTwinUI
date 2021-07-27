@@ -30,7 +30,10 @@
   }
 
   &:last-child {
-    margin-right: 0;
+    &,
+    > .iui-button {
+      margin-right: 0;
+    }
   }
 
   > *,
