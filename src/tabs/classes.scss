@@ -3,7 +3,18 @@
 @import './index';
 
 .iui-tabs-wrapper {
+  display: flex;
   position: relative;
+
+  // #region Horizontal tabs
+  &:not(.iui-vertical) {
+    flex-direction: column;
+  }
+
+  // #region Vertical tabs
+  &.iui-vertical {
+    flex-direction: row;
+  }
 }
 
 .iui-tabs {
@@ -27,5 +38,9 @@
 
   &.iui-not-animated {
     @include iui-tab-not-animated;
+  }
+
+  &.iui-vertical {
+    @include iui-tabs-vertical;
   }
 }

@@ -153,24 +153,57 @@
 
 @mixin iui-tab-animated {
   ~ .iui-tab-stripe {
-    height: $iui-xxs;
     position: absolute;
-    top: $iui-component-height - $iui-xxs;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
-    }
     @include themed {
       background-color: t(iui-color-foreground-primary);
     }
   }
 
-  &.iui-large ~ .iui-tab-stripe {
-    top: $iui-component-height-large - $iui-xxs;
+  // #region Horizontal tabs
+  &:not(.iui-vertical) {
+    ~ .iui-tab-stripe {
+      height: $iui-xxs;
+      top: $iui-component-height - $iui-xxs; // Why not bottom 0?
+      @media (prefers-reduced-motion: no-preference) {
+        transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
+      }
+    }
+
+    &.iui-large ~ .iui-tab-stripe {
+      top: $iui-component-height-large - $iui-xxs; // Also why not bottom 0?
+    }
   }
+  // #endregion
+
+  // #region Vertical tabs
+  &:not(.iui-vertical) {
+    ~ .iui-tab-stripe {
+      width: $iui-xxs;
+      right: 0;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: height $iui-speed-fast ease-out, top $iui-speed-fast ease-out;
+      }
+    }
+  }
+  // #endregion
 
   &.iui-green ~ .iui-tab-stripe {
     @include themed {
       background-color: t(iui-color-foreground-positive);
     }
+  }
+}
+
+@mixin iui-tabs-vertical {
+  display: inline-flex;
+  flex-direction: column;
+
+  li,
+  .iui-tab {
+    width: 100%;
+  }
+
+  ~ .iui-tabs-content {
+    flex-grow: 1;
   }
 }
