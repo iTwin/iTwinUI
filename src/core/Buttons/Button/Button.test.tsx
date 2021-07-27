@@ -139,3 +139,22 @@ it('should render with icon correctly', () => {
   const label = container.querySelector('.iui-icon + .iui-label')?.textContent;
   expect(label).toEqual('Click me!');
 });
+
+it('should render without label correctly', () => {
+  const { container } = render(
+    <Button startIcon={<SvgPlaceholder />} endIcon={<SvgPlaceholder />} />,
+  );
+
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
+  expect(button).toBeTruthy();
+  expect(button.textContent).toBeFalsy();
+  expect(button.querySelector('.iui-label')).toBeFalsy();
+
+  const {
+    container: { firstChild: placeholderIcon },
+  } = render(<SvgPlaceholder className='iui-icon' />);
+
+  button.querySelectorAll('.iui-icon').forEach((icon) => {
+    expect(icon).toEqual(placeholderIcon);
+  });
+});

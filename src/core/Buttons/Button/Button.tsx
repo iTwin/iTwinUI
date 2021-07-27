@@ -30,7 +30,7 @@ export type ButtonProps = {
   /**
    * Content of the button.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
@@ -78,7 +78,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             className: cx('iui-icon', startIcon.props.className),
           })}
 
-        <span className='iui-label'>{children}</span>
+        {children && <span className='iui-label'>{children}</span>}
 
         {endIcon &&
           React.cloneElement(endIcon, {

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### Fixes
+
+- **Made `Button` children optional** to allow using buttons with only icons.
+
 ## [1.12.0]
 
 `2021-07-20`
