@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.5]
+
+`2021-07-28`
+
+### Fixes
+
+- **Made breadcrumb-items look more consistent across different types.**
+
 ## [0.24.4]
 
 `2021-07-26`
