@@ -296,7 +296,19 @@ it('should process keystrokes when thumb has focus', () => {
   expect(thumb.getAttribute('aria-valuenow')).toEqual('45');
 
   act(() => {
+    fireEvent.keyDown(thumb, { key: 'ArrowDown' });
+  });
+  thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.getAttribute('aria-valuenow')).toEqual('40');
+
+  act(() => {
     fireEvent.keyDown(thumb, { key: 'ArrowRight' });
+  });
+  thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.getAttribute('aria-valuenow')).toEqual('45');
+
+  act(() => {
+    fireEvent.keyDown(thumb, { key: 'ArrowUp' });
   });
   thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.getAttribute('aria-valuenow')).toEqual('50');
@@ -312,7 +324,7 @@ it('should process keystrokes when thumb has focus', () => {
   });
   thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.getAttribute('aria-valuenow')).toEqual('100');
-  expect(handleOnChange).toHaveBeenCalledTimes(4);
+  expect(handleOnChange).toHaveBeenCalledTimes(6);
 });
 
 it('should limit keystrokes processing to adjacent points by default', () => {
@@ -593,6 +605,8 @@ it('should move closest thumb when pointer down on rail', () => {
 
 it('should activate thumb on pointerDown and move to closest step on move', () => {
   const handleOnUpdate = jest.fn();
+  const handleOnChange = jest.fn();
+
   const { container } = render(
     <Slider
       min={0}
@@ -601,6 +615,7 @@ it('should activate thumb on pointerDown and move to closest step on move', () =
       step={1}
       tickLabels={<span className='custom-tick-mark'>Custom</span>}
       onUpdate={handleOnUpdate}
+      onChange={handleOnChange}
     />,
   );
 
@@ -647,6 +662,8 @@ it('should activate thumb on pointerDown and move to closest step on move', () =
       clientX: 410,
     });
   });
+
+  expect(handleOnChange).toHaveBeenCalledTimes(1);
 
   const thumbs = container.querySelectorAll('.iui-slider-thumb');
   expect(thumbs.length).toBe(2);
