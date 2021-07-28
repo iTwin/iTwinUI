@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.5]
+
+`2021-07-28`
+
+### Fixes
+
+- **Made breadcrumb-items look more consistent across different types.**
+
 ## [0.24.4]
 
 `2021-07-26`
@@ -389,6 +397,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.24.5]: https://github.com/iTwin/iTwinUI/compare/v0.24.4...v0.24.5
 [0.24.4]: https://github.com/iTwin/iTwinUI/compare/v0.24.3...v0.24.4
 [0.24.3]: https://github.com/iTwin/iTwinUI/compare/v0.24.2...v0.24.3
 [0.24.2]: https://github.com/iTwin/iTwinUI/compare/v0.24.1...v0.24.2
