@@ -29,13 +29,6 @@
     margin: 0 (-$iui-s - 1);
   }
 
-  &:last-child {
-    &,
-    > .iui-button {
-      margin-right: 0;
-    }
-  }
-
   > *,
   .iui-label {
     overflow: hidden;
