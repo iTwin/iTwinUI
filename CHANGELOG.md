@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.6]
+
+`2021-07-28`
+
+### Fixes
+
+- **Breadcrumb-item automatically applies borderless styling to buttons.**
+
 ## [0.24.5]
 
 `2021-07-28`
@@ -397,6 +405,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.24.6]: https://github.com/iTwin/iTwinUI/compare/v0.24.5...v0.24.6
 [0.24.5]: https://github.com/iTwin/iTwinUI/compare/v0.24.4...v0.24.5
 [0.24.4]: https://github.com/iTwin/iTwinUI/compare/v0.24.3...v0.24.4
 [0.24.3]: https://github.com/iTwin/iTwinUI/compare/v0.24.2...v0.24.3
