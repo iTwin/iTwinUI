@@ -26,7 +26,7 @@
   margin: 0 $iui-sm;
 
   > .iui-button {
-    margin: 0 (-$iui-s);
+    margin: 0 (-$iui-s - 1);
   }
 
   &:last-child {
