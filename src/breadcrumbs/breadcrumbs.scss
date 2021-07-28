@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../button/borderless';
 
 @mixin iui-breadcrumbs {
   @include iui-reset;
@@ -25,7 +26,12 @@
   max-width: $iui-3xl * 2;
   margin: 0 $iui-sm;
 
-  > .iui-button {
+  a {
+    @include iui-anchor;
+  }
+
+  .iui-button {
+    @include iui-button-borderless;
     margin: 0 (-$iui-s - 1);
   }
 
@@ -46,10 +52,6 @@
         color: t(iui-color-foreground-primary-overlay);
       }
     }
-  }
-
-  a {
-    @include iui-anchor;
   }
 }
 
