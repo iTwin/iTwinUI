@@ -20,28 +20,20 @@
 
 @mixin iui-breadcrumbs-item {
   display: flex;
-  align-items: center;
-
-  > .iui-anchor {
-    display: inline-block;
-  }
-
-  > .iui-anchor,
-  > span,
-  .iui-ellipsis {
-    margin: 0 $iui-sm;
-  }
+  line-height: $iui-component-height;
+  height: $iui-component-height;
+  max-width: $iui-3xl * 2;
+  margin: 0 $iui-sm;
 
   > .iui-button {
-    margin: 0 $iui-xs;
+    margin: 0 (-$iui-s - 1);
   }
 
-  > .iui-anchor,
-  > .iui-button > .iui-label {
+  > *,
+  .iui-label {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: $iui-3xl * 2;
   }
 
   &:not(.iui-current) > .iui-button {
@@ -56,18 +48,13 @@
     }
   }
 
-  &:last-child {
-    > .iui-anchor,
-    > .iui-button,
-    > span {
-      margin-right: 0;
-    }
+  a {
+    @include iui-anchor;
   }
 }
 
 @mixin iui-breadcrumbs-separator {
   display: flex;
-  align-items: center;
 
   svg {
     @include iui-icons-small;
