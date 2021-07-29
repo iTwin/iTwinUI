@@ -207,6 +207,29 @@
     max-width: 25vw;
     overflow: hidden;
 
+    // Sizes
+    &.iui-button {
+      .iui-split-menu {
+        svg {
+          margin-left: $iui-xs;
+        }
+      }
+    }
+
+    &.iui-small {
+      .iui-split-menu + svg {
+        margin-left: $iui-xxs;
+      }
+    }
+
+    &.iui-large {
+      .iui-split-menu {
+        svg {
+          margin-left: $iui-s;
+        }
+      }
+    }
+
     > .iui-label {
       text-align: left;
       font-size: $iui-font-size;
@@ -269,69 +292,47 @@
         }
       }
     }
-  }
-}
 
-.iui-split-menu-header-button {
-  display: flex;
-  height: 100%;
-  padding: 0 !important;
+    .iui-split-menu {
+      display: inline-flex;
+      justify-content: center;
 
-  // Sizes
-  > .iui-button {
-    padding: $iui-xs;
-  }
-
-  > .iui-small {
-    padding: $iui-xxs;
-  }
-
-  > .iui-large {
-    padding: $iui-s;
-  }
-
-  .iui-button:first-child {
-    padding-right: 0 !important;
-  }
-
-  .iui-split-menu {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 0 !important;
-    padding-right: $iui-xs !important;
-
-    &.iui-active {
       svg {
-        fill: var(--iui-icons-color-primary);
+        width: 16px;
       }
-    }
 
-    svg {
-      border-radius: 50%;
-      padding: $iui-xs;
-    }
-
-    &:hover,
-    &:focus-visible {
-      svg {
-        @include themed {
-          background-color: rgba(
-            var(--iui-color-foreground-body-rgb),
-            var(--iui-opacity-5)
-          );
+      &.iui-active {
+        svg {
+          fill: var(--iui-icons-color-primary);
         }
       }
-    }
 
-    &.iui-active {
-      &:hover {
+      svg {
+        border-radius: 50%;
+        padding: $iui-xxs;
+      }
+
+      &:hover,
+      &:focus-visible {
         svg {
           @include themed {
             background-color: rgba(
-              t(iui-color-foreground-primary-rgb),
-              t(iui-opacity-5)
+              var(--iui-color-foreground-body-rgb),
+              var(--iui-opacity-5)
             );
+          }
+        }
+      }
+
+      &.iui-active {
+        &:hover {
+          svg {
+            @include themed {
+              background-color: rgba(
+                t(iui-color-foreground-primary-rgb),
+                t(iui-opacity-5)
+              );
+            }
           }
         }
       }

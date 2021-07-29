@@ -783,37 +783,35 @@
           <!-- Project Button -->
           <nav aria-label="breadcrumbs">
 
-            <span class='iui-button iui-borderless iui-header-button iui-split-menu-header-button'>
-              <button
-                class="iui-button iui-borderless iui-header-button iui-large"
-                type="button"
-                aria-label="Project picker"
-                aria-expanded="false"
-                id="test-button-5"
+            <button
+              class="iui-button iui-borderless iui-header-button iui-large"
+              type="button"
+              aria-label="Project picker"
+              aria-expanded="false"
+              id="test-button-5"
+            >
+              <div class="iui-icon iui-header-button-icon demo-picture"></div>
+              <span class="iui-label">
+                <div>Project Alpha</div>
+                <div class="iui-description">0x0123456789</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <span
+                class="iui-split-menu"
+                id='test-button-7'
+                tabindex="0"
               >
-                <div class="iui-icon iui-header-button-icon demo-picture"></div>
-                <span class="iui-label">
-                  <div>Project Alpha</div>
-                  <div class="iui-description">0x0123456789</div>
-                </span>
-                <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-
-                <span
-                  id='test-button-7'
-                  class="iui-button iui-borderless iui-header-button iui-large iui-split-menu"
+                <svg
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  class="iui-icon"
                 >
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    class="iui-icon"
-                  >
-                    <path
-                      d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </span>
+                  <path
+                    d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                  />
+                </svg>
+              </span>
+            </button>
 
             <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
             <svg
@@ -825,43 +823,44 @@
             </svg>
 
             <!-- IModel Button -->
-            <span class='iui-button iui-borderless iui-header-button iui-split-menu-header-button iui-active'>
-              <button
-                class="iui-button iui-borderless iui-header-button iui-active iui-large"
-                type="button"
-                aria-label="Model picker"
-                aria-expanded="false"
-                aria-current="location"
-              ><svg
-                  class="iui-icon iui-header-button-icon"
-                  aria-hidden="true"
+            <button
+              class="iui-button iui-borderless iui-active iui-large iui-header-button iui-active"
+              type="button"
+              aria-label="Model picker"
+              aria-expanded="false"
+              aria-current="location"
+            >
+              <!-- Use model.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon iui-header-button-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m14 11.126-6-2.954v-6.811l-.5-.246-.5.246v6.811l-6 2.954v.559l.565.278 5.935-2.922 5.935 2.922.565-.278z"
+                  opacity=".33"
+                />
+                <path
+                  d="m7.5 0-7.5 3.69232v8.61536l7.5 3.69232 7.5-3.69232v-8.61536zm5.93549 4.03674-5.93549 2.92226-5.93549-2.92232 5.93549-2.92206zm-12.43549 7.64862v-6.81121l6 2.95349v6.81158zm13 0-6 2.95386v-6.81164l6-2.9535z"
+                />
+              </svg>
+              <span class="iui-label">
+                <div>Model Beta</div>
+                <div class="iui-description">0x0123456789</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <span class="iui-split-menu iui-active">
+                <svg
                   viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  class="iui-icon"
                 >
                   <path
-                    d="m14 11.126-6-2.954v-6.811l-.5-.246-.5.246v6.811l-6 2.954v.559l.565.278 5.935-2.922 5.935 2.922.565-.278z"
-                    opacity=".33"
-                  />
-                  <path
-                    d="m7.5 0-7.5 3.69232v8.61536l7.5 3.69232 7.5-3.69232v-8.61536zm5.93549 4.03674-5.93549 2.92226-5.93549-2.92232 5.93549-2.92206zm-12.43549 7.64862v-6.81121l6 2.95349v6.81158zm13 0-6 2.95386v-6.81164l6-2.9535z"
+                    d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
                   />
                 </svg>
-                <span class="iui-label">
-                  <div>Model Beta</div>
-                  <div class="iui-description">0x0123456789</div>
-                </span>
-                <span class="iui-button iui-borderless iui-header-button iui-large iui-split-menu iui-active">
-                  <svg
-                    class="iui-icon iui-active"
-                    aria-hidden="true"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </span>
+              </span>
+            </button>
           </nav>
         </div>
 
@@ -967,30 +966,28 @@
 
           <!-- Project Button -->
           <nav aria-label="breadcrumbs">
-            <span class='iui-split-menu-header-button'>
-              <button
-                class="iui-button iui-borderless iui-header-button iui-large"
-                type="button"
-                aria-label="Project picker"
-                aria-expanded="false"
-              >
-                <span class="iui-label">
-                  <div class="iui-name">Project Alpha</div>
-                </span>
-                <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-                <span class="iui-button iui-borderless iui-header-button iui-large iui-split-menu">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    class="iui-icon"
-                  >
-                    <path
-                      d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </span>
+            <button
+              class="iui-button iui-borderless iui-header-button iui-large"
+              type="button"
+              aria-label="Project picker"
+              aria-expanded="false"
+            >
+              <span class="iui-label">
+                <div class="iui-name">Project Alpha</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <span class="iui-split-menu">
+                <svg
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  class="iui-icon"
+                >
+                  <path
+                    d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                  />
+                </svg>
+              </span>
+            </button>
 
             <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
             <svg
@@ -1002,31 +999,29 @@
             </svg>
 
             <!-- IModel Button -->
-            <span class="iui-split-menu-header-button">
-              <button
-                class="iui-button iui-borderless iui-active iui-large iui-header-button"
-                type="button"
-                aria-label="Model picker"
-                aria-expanded="false"
-                aria-current="location"
-              >
-                <span class="iui-label">
-                  <div class="iui-name">Model Beta</div>
-                </span>
-                <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-                <span class="iui-button iui-borderless iui-header-button iui-large iui-split-menu iui-active">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    class="iui-icon"
-                  >
-                    <path
-                      d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </span>
+            <button
+              class="iui-button iui-borderless iui-active iui-large iui-header-button"
+              type="button"
+              aria-label="Model picker"
+              aria-expanded="false"
+              aria-current="location"
+            >
+              <span class="iui-label">
+                <div class="iui-name">Model Beta</div>
+              </span>
+              <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
+              <span class="iui-split-menu">
+                <svg
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  class="iui-icon"
+                >
+                  <path
+                    d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+                  />
+                </svg>
+              </span>
+            </button>
           </nav>
         </div>
 
