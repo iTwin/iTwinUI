@@ -4,6 +4,10 @@
 
 `Date`
 
+### What's new
+
+- **Added new `Breadcrumbs` component.** Handles overflow based on available space and resizes.
+
 ### Fixes
 
 - **Made `Button` children optional** to allow using buttons with only icons.
