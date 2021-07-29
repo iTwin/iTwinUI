@@ -300,6 +300,9 @@
 
       svg {
         width: 16px;
+        @include themed {
+          fill: var(--iui-icons-color-actionable);
+        }
       }
 
       &.iui-active {
