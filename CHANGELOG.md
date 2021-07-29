@@ -1,12 +1,13 @@
 # Changelog
 
-## Unreleased
+## [1.13.1]
 
-`Date`
+`2021-07-29`
 
 ### Fixes
 
 - **Fixed `Table` bug when selecting filtered rows throws an exception.**
+- **Fixed `Table` empty state background color** through base CSS package.
 
 ## [1.13.0]
 
@@ -421,6 +422,7 @@
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
 
+[1.13.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.13.0...v1.13.1
 [1.13.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.10.0...v1.11.0
