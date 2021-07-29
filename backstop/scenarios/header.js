@@ -24,7 +24,11 @@ module.exports = [
 
   //// Split
   scenario('Type Default State hover & focus', {
-    actions: [hover('#test-button-5'), hover('#test-button-7')],
+    actions: [
+      hover('#test-button-5'),
+      hover('#test-button-6'),
+      focus('#test-button-6'),
+    ],
     selectors: ['#demo-split'],
   }),
 ];

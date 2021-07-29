@@ -296,6 +296,7 @@
     .iui-split-menu {
       display: inline-flex;
       justify-content: center;
+      @include iui-focus;
 
       svg {
         width: 16px;
