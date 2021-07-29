@@ -1,16 +1,18 @@
 # Changelog
 
-## Unreleased
+## [1.13.0]
 
-`Date`
+`2021-07-29`
 
 ### What's new
 
 - **Added new `Breadcrumbs` component.** Handles overflow based on available space and resizes.
+- **Added support for nested menus in `MenuItem`** through new `subMenuItems` prop.
 
 ### Fixes
 
 - **Made `Button` children optional** to allow using buttons with only icons.
+- **Fix `Slider` bug where onChange was not always called after pointerUp.**
 
 ## [1.12.0]
 
@@ -411,6 +413,7 @@
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
 
+[1.13.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.9.0...v1.10.0
