@@ -287,13 +287,11 @@ export const Table = <
           const disabled = instance.rows.every((row) =>
             isRowDisabled?.(row.original),
           );
-          const checked =
-            instance.isAllRowsSelected ||
-            instance.rows.every(
-              (row) =>
-                instance.state.selectedRowIds[row.id] ||
-                isRowDisabled?.(row.original),
-            );
+          const checked = instance.initialRows.every(
+            (row) =>
+              instance.state.selectedRowIds[row.id] ||
+              isRowDisabled?.(row.original),
+          );
           return (
             <Checkbox
               {...getToggleAllRowsSelectedProps()}
@@ -359,13 +357,10 @@ export const Table = <
 
     const selectedData: T[] = [];
     const newSelectedRowIds = {} as Record<string, boolean>;
-    Object.keys(newState.selectedRowIds).forEach((id) => {
-      if (
-        newState.selectedRowIds[id] &&
-        !isRowDisabled?.(instance.rowsById[id].original)
-      ) {
-        newSelectedRowIds[id] = true;
-        selectedData.push(instance.rowsById[id].original);
+    instance.initialRows.forEach((row) => {
+      if (newState.selectedRowIds[row.id] && !isRowDisabled?.(row.original)) {
+        newSelectedRowIds[row.id] = true;
+        selectedData.push(row.original);
       }
     });
     newState.selectedRowIds = newSelectedRowIds;

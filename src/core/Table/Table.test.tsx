@@ -96,6 +96,32 @@ function assertRowsData(
   }
 }
 
+const setFilter = (container: HTMLElement, value: string) => {
+  const filterIcon = container.querySelector(
+    '.iui-filter-button .iui-icon',
+  ) as HTMLElement;
+  expect(filterIcon).toBeTruthy();
+  fireEvent.click(filterIcon);
+
+  const filterInput = document.querySelector(
+    '.iui-column-filter input',
+  ) as HTMLInputElement;
+  expect(filterInput).toBeTruthy();
+
+  fireEvent.change(filterInput, { target: { value } });
+  screen.getByText('Filter').click();
+};
+
+const clearFilter = (container: HTMLElement) => {
+  const filterIcon = container.querySelector(
+    '.iui-filter-button .iui-icon',
+  ) as HTMLElement;
+  expect(filterIcon).toBeTruthy();
+  fireEvent.click(filterIcon);
+
+  screen.getByText('Clear').click();
+};
+
 beforeEach(() => {
   intersectionCallbacks.clear();
 });
@@ -278,19 +304,7 @@ it('should not trigger onSelect when sorting and filtering', () => {
   expect(onSort).toHaveBeenCalled();
   expect(onSelect).not.toHaveBeenCalled();
 
-  const filterIcon = container.querySelector(
-    '.iui-filter-button .iui-icon',
-  ) as HTMLElement;
-  expect(filterIcon).toBeTruthy();
-  fireEvent.click(filterIcon);
-
-  const filterInput = document.querySelector(
-    '.iui-column-filter input',
-  ) as HTMLInputElement;
-  expect(filterInput).toBeTruthy();
-
-  fireEvent.change(filterInput, { target: { value: '2' } });
-  screen.getByText('Filter').click();
+  setFilter(container, '2');
   expect(onFilter).toHaveBeenCalled();
   expect(onSelect).not.toHaveBeenCalled();
 });
@@ -473,19 +487,7 @@ it('should filter table', () => {
   let rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(3);
 
-  const filterIcon = container.querySelector(
-    '.iui-filter-button .iui-icon',
-  ) as HTMLElement;
-  expect(filterIcon).toBeTruthy();
-  fireEvent.click(filterIcon);
-
-  const filterInput = document.querySelector(
-    '.iui-column-filter input',
-  ) as HTMLInputElement;
-  expect(filterInput).toBeTruthy();
-
-  fireEvent.change(filterInput, { target: { value: '2' } });
-  screen.getByText('Filter').click();
+  setFilter(container, '2');
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy.style.visibility).toEqual('hidden');
@@ -575,19 +577,7 @@ it('should not filter table when manualFilters flag is on', () => {
   let rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(3);
 
-  const filterIcon = container.querySelector(
-    '.iui-filter-button .iui-icon',
-  ) as HTMLElement;
-  expect(filterIcon).toBeTruthy();
-  fireEvent.click(filterIcon);
-
-  const filterInput = document.querySelector(
-    '.iui-column-filter input',
-  ) as HTMLInputElement;
-  expect(filterInput).toBeTruthy();
-
-  fireEvent.change(filterInput, { target: { value: '2' } });
-  screen.getByText('Filter').click();
+  setFilter(container, '2');
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy.style.visibility).toEqual('hidden');
@@ -648,19 +638,7 @@ it('should show message when there is no data after filtering', () => {
   let rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(3);
 
-  const filterIcon = container.querySelector(
-    '.iui-filter-button .iui-icon',
-  ) as HTMLElement;
-  expect(filterIcon).toBeTruthy();
-  fireEvent.click(filterIcon);
-
-  const filterInput = document.querySelector(
-    '.iui-column-filter input',
-  ) as HTMLInputElement;
-  expect(filterInput).toBeTruthy();
-
-  fireEvent.change(filterInput, { target: { value: 'invalid value' } });
-  screen.getByText('Filter').click();
+  setFilter(container, 'invalid value');
 
   rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(0);
@@ -690,19 +668,7 @@ it('should not trigger sorting when filter is clicked', () => {
     onSort,
   });
 
-  const filterIcon = container.querySelector(
-    '.iui-filter-button .iui-icon',
-  ) as HTMLElement;
-  expect(filterIcon).toBeTruthy();
-  fireEvent.click(filterIcon);
-
-  const filterInput = document.querySelector(
-    '.iui-column-filter input',
-  ) as HTMLInputElement;
-  expect(filterInput).toBeTruthy();
-
-  fireEvent.change(filterInput, { target: { value: 'invalid value' } });
-  screen.getByText('Filter').click();
+  setFilter(container, '2');
 
   expect(onFilter).toHaveBeenCalled();
   expect(onSort).not.toHaveBeenCalled();
@@ -940,4 +906,67 @@ it('should disable row and handle selection accordingly', () => {
   expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
   expect(headerCheckbox.indeterminate).toBe(false);
   expect(headerCheckbox.checked).toBe(false);
+});
+
+it('should select and filter rows', () => {
+  const onSelect = jest.fn();
+  const mockedColumns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          Filter: tableFilters.TextFilter(),
+          fieldType: 'text',
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns: mockedColumns,
+    isSelectable: true,
+    onSelect,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  let checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
+  expect(checkboxCells.length).toBe(4);
+
+  // Select first row
+  fireEvent.click(checkboxCells[1]);
+  expect(onSelect).toHaveBeenCalledWith([mockedData()[0]], expect.any(Object));
+  const headerCheckbox = checkboxCells[0].querySelector(
+    'input',
+  ) as HTMLInputElement;
+  expect(headerCheckbox.indeterminate).toBe(true);
+
+  // Filter table
+  setFilter(container, '2');
+  expect(headerCheckbox.indeterminate).toBe(true);
+
+  checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
+  expect(checkboxCells.length).toBe(2);
+
+  // Select second row
+  fireEvent.click(checkboxCells[1]);
+  expect(onSelect).toHaveBeenCalledWith(
+    [mockedData()[0], mockedData()[1]],
+    expect.any(Object),
+  );
+  expect(headerCheckbox.indeterminate).toBe(true);
+
+  // Clear filter
+  clearFilter(container);
+  const checkboxInputs = container.querySelectorAll<HTMLInputElement>(
+    '.iui-slot .iui-checkbox input',
+  );
+  expect(checkboxInputs.length).toBe(4);
+  expect(checkboxInputs[0].indeterminate).toBe(true);
+  expect(checkboxInputs[1].checked).toBe(true);
+  expect(checkboxInputs[2].checked).toBe(true);
+  expect(checkboxInputs[3].checked).toBe(false);
 });

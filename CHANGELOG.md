@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### Fixes
+
+- **Fixed `Table` bug when selecting filtered rows throws an exception.**
+
 ## [1.13.0]
 
 `2021-07-29`

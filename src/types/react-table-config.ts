@@ -89,7 +89,9 @@ declare module 'react-table' {
       UsePaginationInstanceProps<D>,
       UseRowSelectInstanceProps<D>,
       UseRowStateInstanceProps<D>,
-      UseSortByInstanceProps<D> {}
+      UseSortByInstanceProps<D> {
+    initialRows: Row<D>[];
+  }
 
   export interface TableState<D extends object = {}>
     extends UseColumnOrderState<D>,
