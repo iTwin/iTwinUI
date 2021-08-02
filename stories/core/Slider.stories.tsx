@@ -47,9 +47,16 @@ export const MultiThumbsAllowCrossing: Story<SliderProps> = (args) => {
 
 MultiThumbsAllowCrossing.args = {
   thumbProps: (index: number) => {
+    const eventsIds = [
+      'building-south',
+      'building-north',
+      'building-west',
+      'building-east',
+    ];
     const color = 0 == index % 2 ? 'blue' : 'red';
     return {
       style: { backgroundColor: color },
+      id: `${eventsIds[index]}`,
     };
   },
   values: [20, 40, 60, 80],

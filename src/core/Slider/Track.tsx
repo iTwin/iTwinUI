@@ -45,12 +45,10 @@ export const Track = (props: TrackProps) => {
   const [currentValues, setCurrentValues] = React.useState(
     [...values].sort((a, b) => a - b),
   );
-  const segmentKeyRef = React.useRef(0);
 
   React.useEffect(() => {
     const newValues = [...values];
     newValues.sort((a, b) => a - b);
-    segmentKeyRef.current = segmentKeyRef.current++;
     setCurrentValues(newValues);
   }, [values]);
 
@@ -69,7 +67,7 @@ export const Track = (props: TrackProps) => {
             (100.0 * (segment.right - sliderMin)) / (sliderMax - sliderMin);
           rightPercent = 100.0 - rightPercent;
           return (
-            <React.Fragment key={`${segmentKeyRef.current}-${index}`}>
+            <React.Fragment key={index}>
               {shouldDisplaySegment(index, trackDisplayMode) ? (
                 <div
                   className='iui-slider-track'

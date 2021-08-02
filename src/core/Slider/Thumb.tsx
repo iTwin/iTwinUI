@@ -58,7 +58,7 @@ export type ThumbProps = {
   /**
    * Additional props for Thumb.
    */
-  thumbProps?: (index: number) => React.HTMLAttributes<HTMLDivElement>;
+  thumbProps?: React.HTMLAttributes<HTMLDivElement>;
 };
 
 /**
@@ -116,7 +116,7 @@ export const Thumb = (props: ThumbProps) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
   const leftPercent = (100.0 * (value - sliderMin)) / (sliderMax - sliderMin);
-  const { style, className, ...rest } = thumbProps?.(index) || {};
+  const { style, className, ...rest } = thumbProps || {};
 
   return (
     <Tooltip
