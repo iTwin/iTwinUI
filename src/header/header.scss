@@ -301,13 +301,13 @@
       svg {
         width: 16px;
         @include themed {
-          fill: var(--iui-icons-color-actionable);
+          fill: t(iui-icons-color-actionable);
         }
       }
 
       &.iui-active {
         svg {
-          fill: var(--iui-icons-color-primary);
+          fill: t(iui-icons-color-primary);
         }
       }
 
@@ -321,8 +321,8 @@
         svg {
           @include themed {
             background-color: rgba(
-              var(--iui-color-foreground-body-rgb),
-              var(--iui-opacity-5)
+              t(iui-color-foreground-body-rgb),
+              t(iui-opacity-5)
             );
           }
         }
