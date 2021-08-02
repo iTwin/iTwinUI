@@ -342,4 +342,103 @@
       }
     }
   }
+
+  .iui-button-split-menu {
+    height: 100%;
+    padding: 0 4px 0 12px;
+
+    svg {
+      fill: t(iui-icons-color-actionable);
+    }
+
+    &:hover {
+      background-color: rgba(
+        t(iui-color-foreground-body-rgb),
+        t(iui-opacity-6)
+      );
+      border-color: transparent;
+    }
+
+    .iui-button {
+      padding: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    .iui-split-menu {
+      padding: $iui-xxs;
+
+      svg {
+        border-radius: 50%;
+      }
+
+      &:hover {
+        svg {
+          background-color: rgba(
+            t(iui-color-foreground-body-rgb),
+            t(iui-opacity-6)
+          );
+          border-color: transparent;
+        }
+      }
+    }
+
+    &.iui-active {
+      .iui-label,
+      .iui-icon {
+        color: t(iui-color-foreground-primary);
+        fill: t(iui-icons-color-primary);
+      }
+
+      
+      
+      &,
+      &:hover {
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6)
+        );
+
+        svg.iui-header-button-icon {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-primary-rgb),
+              t(iui-opacity-6)
+            );
+          }
+        }
+      }
+
+      &:focus,
+      &:focus-visible {
+        @include themed {
+          box-shadow: t(iui-focus-box-shadow),
+            0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+        }
+      }
+
+      &,
+      &:focus:not(:focus-visible) {
+        @include themed {
+          box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+        }
+      }
+
+      .iui-split-menu:hover {
+        svg {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-primary-rgb),
+              t(iui-opacity-5)
+            );
+          }
+        }
+      }
+    }
+
+    
+    
+  }
 }
