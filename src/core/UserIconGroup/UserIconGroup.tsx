@@ -36,7 +36,7 @@ export type UserIconGroupProps = {
   /**
    * User Count Icon props.
    */
-  countIconProps?: React.HTMLAttributes<HTMLDivElement>;
+  countIconProps?: React.ComponentPropsWithRef<'div'>;
 } & Omit<CommonProps, 'title'>;
 /**
  * Group User Icons together.

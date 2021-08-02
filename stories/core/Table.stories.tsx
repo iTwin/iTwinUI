@@ -21,6 +21,7 @@ import {
   tableFilters,
   TableFilterValue,
   TableProps,
+  Tooltip,
 } from '../../src/core';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
@@ -1088,6 +1089,10 @@ ControlledState.args = { isSelectable: true };
 export const Full: Story<TableProps> = (args) => {
   const { columns, data, ...rest } = args;
 
+  const [hoveredRowIndex, setHoveredRowIndex] = useState(0);
+
+  const rowRefMap = React.useRef<Record<number, HTMLDivElement>>({});
+
   const isRowDisabled = useCallback(
     (rowData: { name: string; description: string }) => {
       return rowData.name === 'Name2';
@@ -1140,17 +1145,42 @@ export const Full: Story<TableProps> = (args) => {
     [],
   );
 
+  const rowProps = useCallback(
+    (row: Row<{ name: string; description: string }>) => {
+      return {
+        onMouseEnter: (e: React.MouseEvent) => {
+          action(`Hovered over ${row.original.name}`)(e);
+          setHoveredRowIndex(row.index);
+        },
+        ref: (el: HTMLDivElement | null) => {
+          if (el) {
+            rowRefMap.current[row.index] = el;
+          }
+        },
+      };
+    },
+    [],
+  );
+
   return (
-    <Table
-      columns={columns || tableColumns}
-      data={data || tableData}
-      emptyTableContent='No data.'
-      subComponent={expandedSubComponent}
-      isRowDisabled={isRowDisabled}
-      isSelectable
-      isSortable
-      {...rest}
-    />
+    <>
+      <Table
+        columns={columns || tableColumns}
+        data={data || tableData}
+        emptyTableContent='No data.'
+        subComponent={expandedSubComponent}
+        isRowDisabled={isRowDisabled}
+        rowProps={rowProps}
+        isSelectable
+        isSortable
+        {...rest}
+      />
+      <Tooltip
+        reference={rowRefMap.current[hoveredRowIndex]}
+        content={`Hovered over ${data[hoveredRowIndex].name}.`}
+        placement='bottom'
+      />
+    </>
   );
 };
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### What's new
+
+- **`Table` accepts custom row props** through `rowProps` prop.
+
 ## [1.13.1]
 
 `2021-07-29`

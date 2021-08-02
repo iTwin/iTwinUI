@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { Row, TableRowProps, TableState } from 'react-table';
+import { Row, TableState } from 'react-table';
 import { useIntersection } from '../utils/hooks/useIntersection';
 import { getCellStyle } from './utils';
 import { CSSTransition } from 'react-transition-group';
+import { useMergedRefs } from '../utils/hooks/useMergedRefs';
 
 /**
  * Memoization is needed to avoid unnecessary re-renders of all rows when additional data is added when lazy-loading.
@@ -17,7 +18,7 @@ import { CSSTransition } from 'react-transition-group';
  */
 const TableRow = <T extends Record<string, unknown>>(props: {
   row: Row<T>;
-  rowProps: TableRowProps;
+  rowProps?: (row: Row<T>) => React.ComponentPropsWithRef<'div'>;
   isLast: boolean;
   onRowInViewport: React.MutableRefObject<((rowData: T) => void) | undefined>;
   onBottomReached: React.MutableRefObject<(() => void) | undefined>;
@@ -25,6 +26,7 @@ const TableRow = <T extends Record<string, unknown>>(props: {
   state: TableState<T>; // Needed for explicitly checking selection changes
   onClick?: (event: React.MouseEvent, row: Row<T>) => void;
   subComponent?: (row: Row<T>) => React.ReactNode;
+  isDisabled: boolean;
 }) => {
   const {
     row,
@@ -35,6 +37,7 @@ const TableRow = <T extends Record<string, unknown>>(props: {
     intersectionMargin,
     onClick,
     subComponent,
+    isDisabled,
   } = props;
 
   const onIntersect = React.useCallback(() => {
@@ -48,12 +51,32 @@ const TableRow = <T extends Record<string, unknown>>(props: {
 
   const expandedHeight = React.useRef(0);
 
+  const userRowProps = rowProps?.(row);
+  const mergedProps = {
+    ...row.getRowProps(),
+    ...userRowProps,
+    ...{
+      className: cx(
+        'iui-row',
+        {
+          'iui-selected': row.isSelected,
+          'iui-row-expanded': row.isExpanded && subComponent,
+          'iui-disabled': isDisabled,
+        },
+        userRowProps?.className,
+      ),
+    },
+  };
+
+  const refs = useMergedRefs(rowRef, mergedProps.ref);
+
   return (
     <>
       <div
-        {...rowProps}
-        ref={rowRef}
+        {...mergedProps}
+        ref={refs}
         onClick={(event) => {
+          mergedProps?.onClick?.(event);
           onClick?.(event, row);
         }}
       >
@@ -116,5 +139,7 @@ export const TableRowMemoized = React.memo(
     prevProp.subComponent === nextProp.subComponent &&
     prevProp.row.cells.every(
       (cell, index) => nextProp.row.cells[index].column === cell.column,
-    ),
+    ) &&
+    prevProp.isDisabled === nextProp.isDisabled &&
+    prevProp.rowProps === nextProp.rowProps,
 ) as typeof TableRow;
