@@ -207,7 +207,6 @@
     max-width: 25vw;
     overflow: hidden;
 
-    // Sizes
     &.iui-button {
       .iui-split-menu {
         svg {
@@ -289,55 +288,6 @@
       &:focus:not(:focus-visible) {
         @include themed {
           box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-        }
-      }
-    }
-
-    .iui-split-menu {
-      display: inline-flex;
-      justify-content: center;
-      @include iui-focus;
-
-      svg {
-        width: 16px;
-        @include themed {
-          fill: t(iui-icons-color-actionable);
-        }
-      }
-
-      &.iui-active {
-        svg {
-          fill: t(iui-icons-color-primary);
-        }
-      }
-
-      svg {
-        border-radius: 50%;
-        padding: $iui-xxs;
-      }
-
-      &:hover,
-      &:focus-visible {
-        svg {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-body-rgb),
-              t(iui-opacity-5)
-            );
-          }
-        }
-      }
-
-      &.iui-active {
-        &:hover {
-          svg {
-            @include themed {
-              background-color: rgba(
-                t(iui-color-foreground-primary-rgb),
-                t(iui-opacity-5)
-              );
-            }
-          }
         }
       }
     }
