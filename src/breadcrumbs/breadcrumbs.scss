@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../button/borderless';
 
 @mixin iui-breadcrumbs {
   @include iui-reset;
@@ -20,28 +21,25 @@
 
 @mixin iui-breadcrumbs-item {
   display: flex;
-  align-items: center;
+  line-height: $iui-component-height;
+  height: $iui-component-height;
+  max-width: $iui-3xl * 2;
+  margin: 0 $iui-sm;
 
-  > .iui-anchor {
-    display: inline-block;
+  a {
+    @include iui-anchor;
   }
 
-  > .iui-anchor,
-  > span,
-  .iui-ellipsis {
-    margin: 0 $iui-sm;
+  .iui-button {
+    @include iui-button-borderless;
+    margin: 0 (-$iui-s - 1);
   }
 
-  > .iui-button {
-    margin: 0 $iui-xs;
-  }
-
-  > .iui-anchor,
-  > .iui-button > .iui-label {
+  > *,
+  .iui-label {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: $iui-3xl * 2;
   }
 
   &:not(.iui-current) > .iui-button {
@@ -55,19 +53,10 @@
       }
     }
   }
-
-  &:last-child {
-    > .iui-anchor,
-    > .iui-button,
-    > span {
-      margin-right: 0;
-    }
-  }
 }
 
 @mixin iui-breadcrumbs-separator {
   display: flex;
-  align-items: center;
 
   svg {
     @include iui-icons-small;
