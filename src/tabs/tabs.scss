@@ -31,8 +31,7 @@
         color: t(iui-color-foreground-primary);
       }
 
-      .iui-tab-icon,
-      > svg {
+      .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-primary);
         }
@@ -45,8 +44,7 @@
         color: t(iui-text-color-muted);
       }
 
-      .iui-tab-icon,
-      > svg {
+      .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-actionable-disabled);
         }
@@ -63,8 +61,7 @@
     }
   }
 
-  .iui-tab-icon,
-  .iui-tab > svg { // svg selector should be removed in the future
+  .iui-tab-icon {
     width: $iui-icons-default;
     height: $iui-icons-default;
     @media (prefers-reduced-motion: no-preference) {
