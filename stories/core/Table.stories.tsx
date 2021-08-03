@@ -1148,8 +1148,8 @@ export const Full: Story<TableProps> = (args) => {
   const rowProps = useCallback(
     (row: Row<{ name: string; description: string }>) => {
       return {
-        onMouseEnter: (e: React.MouseEvent) => {
-          action(`Hovered over ${row.original.name}`)(e);
+        onMouseEnter: () => {
+          action(`Hovered over ${row.original.name}`)();
           setHoveredRowIndex(row.index);
         },
         ref: (el: HTMLDivElement | null) => {
