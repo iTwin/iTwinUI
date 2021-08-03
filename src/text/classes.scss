@@ -34,3 +34,7 @@
 .iui-skeleton {
   @include iui-text-skeleton;
 }
+
+.iui-text-spacing {
+  @include iui-text-block-spacing;
+}
