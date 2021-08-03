@@ -13,3 +13,15 @@
 .iui-slider-ticks {
   @include iui-slider-ticks;
 }
+
+.iui-slider-rail {
+  @include iui-slider-rail;
+}
+
+.iui-slider-thumb {
+  @include iui-slider-thumb;
+}
+
+.iui-slider-track {
+  @include iui-slider-track;
+}
