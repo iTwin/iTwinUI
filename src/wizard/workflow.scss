@@ -20,12 +20,11 @@
 
       &.iui-current .iui-circle {
         border-radius: 0;
-
+        font-weight: $iui-font-weight-normal;
         @include themed {
           color: t(iui-color-foreground-accessory);
           border-color: t(iui-color-background-positive);
         }
-        font-weight: $iui-font-weight-normal;
       }
     }
 

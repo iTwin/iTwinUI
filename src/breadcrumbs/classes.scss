@@ -1,0 +1,19 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-breadcrumbs {
+  @include iui-breadcrumbs;
+}
+
+.iui-breadcrumbs-list {
+  @include iui-breadcrumbs-list;
+}
+
+.iui-breadcrumbs-item {
+  @include iui-breadcrumbs-item;
+}
+
+.iui-breadcrumbs-separator {
+  @include iui-breadcrumbs-separator;
+}

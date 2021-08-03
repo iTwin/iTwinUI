@@ -12,7 +12,7 @@
     justify-content: space-around;
     align-items: flex-start;
     width: 100%;
-    margin-bottom: $iui-baseline / 2;
+    margin-bottom: $iui-baseline * 0.5;
 
     .iui-wizard-step {
       flex: 1 1 0;

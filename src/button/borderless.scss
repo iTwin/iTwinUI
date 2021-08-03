@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../inputs/variables';
 @import './button';
 
 @mixin iui-button-borderless {
@@ -20,8 +19,8 @@
 
   // If icon is by itself, button takes 1:1 size ratio
   > .iui-icon:only-child {
-    margin-left: $iui-input-offset;
-    margin-right: $iui-input-offset;
+    margin-left: $iui-component-offset;
+    margin-right: $iui-component-offset;
   }
 
   &:enabled:hover,

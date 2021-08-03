@@ -50,11 +50,12 @@
 }
 
 @mixin iui-anchor {
+  @include iui-focus;
+  text-decoration: none;
+  cursor: pointer;
   @include themed {
     color: t(iui-color-foreground-primary);
   }
-  text-decoration: none;
-  cursor: pointer;
 
   &:hover {
     @include themed {
@@ -83,7 +84,7 @@
         t(iui-opacity-4)
       );
     }
-    border-radius: $iui-s / 2;
+    border-radius: $iui-s * 0.5;
 
     &:hover {
       @include themed {

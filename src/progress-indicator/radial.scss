@@ -3,9 +3,8 @@
 @import '../style/index';
 @import '../icon/variables';
 
-@mixin iui-progress-indicator-radial-ie() {
+@mixin iui-progress-indicator-radial-ie {
   @include iui-reset;
-
   @include iui-font-family;
   display: inline-block;
   position: relative;
@@ -45,11 +44,10 @@
   }
 }
 
-@mixin iui-progress-indicator-radial() {
+@mixin iui-progress-indicator-radial {
   position: relative;
   display: inline-block;
-  width: $iui-icons-xl;
-  height: $iui-icons-xl;
+  @include iui-progress-indicator-radial-size($size:$iui-icons-xl);
 
   > svg.iui-radial {
     height: 100%;
@@ -89,7 +87,6 @@
     img {
       width: $iui-icons-default;
       height: $iui-icons-default;
-
       @include themed {
         fill: t(iui-icons-color-actionable);
       }
@@ -169,13 +166,34 @@
     }
   }
 
+  &.iui-x-small {
+    @include iui-progress-indicator-radial-size($size:$iui-icons-default);
+
+    .iui-inner-content {
+      display: none;
+    }
+  }
+  
   &.iui-small {
-    width: $iui-icons-large;
-    height: $iui-icons-large;
+    @include iui-progress-indicator-radial-size($size:$iui-icons-large);
+  }
+
+  &.iui-large {
+    @include iui-progress-indicator-radial-size($size:$iui-icons-xxl);
+
+    .iui-inner-content {
+      font-size: $iui-font-size-leading;
+
+      svg,
+      img {
+        width: $iui-icons-large;
+        height: $iui-icons-large;
+      }
+    }
   }
 }
 
-@mixin iui-progress-indicator-radial-determinate() {
+@mixin iui-progress-indicator-radial-determinate {
   svg.iui-radial {
     transform: rotate(-90deg);
 
@@ -187,7 +205,7 @@
   }
 }
 
-@mixin iui-progress-indicator-radial-indeterminate() {
+@mixin iui-progress-indicator-radial-indeterminate {
   svg.iui-radial {
     animation: rotate-indeterminate 2s linear infinite;
 
@@ -217,4 +235,9 @@
       stroke-dashoffset: -88;
     }
   }
+}
+
+@mixin iui-progress-indicator-radial-size($size) {
+  width: $size;
+  height: $size;
 }

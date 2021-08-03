@@ -5,8 +5,8 @@
 
 /// Constants ------------------------------------------------------------------
 
-$iui-sans: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$iui-monospace: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+$iui-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+$iui-monospace: ui-monospace, Menlo, 'Segoe UI Mono', Consolas, 'Roboto Mono', 'Courier New', monospace;
 
 $iui-font-family: $iui-sans;
 

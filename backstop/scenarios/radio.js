@@ -9,6 +9,7 @@ module.exports = [
   }),
   scenario('label', {
     selectors: ['#demo-label'],
+    hideSelectors: ['h3'],
   }),
   scenario('tiles', {
     selectors: ['#demo-tiles'],

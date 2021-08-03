@@ -4,6 +4,7 @@
 
 @mixin iui-button-group {
   display: inline-flex;
+  align-items: center;
 
   > .iui-button {
     &:not(.iui-borderless) {
@@ -20,7 +21,7 @@
       border-bottom-right-radius: $iui-border-radius;
     }
 
-    &:not(:last-of-type) {
+    &:not(.iui-borderless):not(.iui-cta):not(.iui-high-visibility):not(:last-of-type) {
       border-right: none;
     }
 

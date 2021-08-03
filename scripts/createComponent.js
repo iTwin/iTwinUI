@@ -98,12 +98,14 @@ const componentFactory = (directory) => {
 const demoHtmlFactory = (directory) => {
   const template = `${copyrightBannerHtml}
 <!DOCTYPE html>
-<html id="theme">
+<html lang="en-US" id="theme">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${componentName} | iTwinUI</title>
     <link
       rel="stylesheet"
-      href="../../lib/css/${componentName}.css"
+      href="../../lib/css/all.css"
     />
     <link
       rel="stylesheet"
@@ -132,13 +134,13 @@ const demoHtmlFactory = (directory) => {
 /** Creates a .js file with a basic visual test scenario */
 const scenarioJsFactory = (directory) => {
   const template = `${copyrightBannerJs}
-  const { scenario } = require('../scenarioHelper');
+const { scenario } = require('../scenarioHelper');
 
-  module.exports = [
-    scenario('default', {
-      selectors: ['#demo-default'],
-    }),
-  ];
+module.exports = [
+  scenario('default', {
+    selectors: ['#demo-default'],
+  }),
+];
 `;
 
   return {

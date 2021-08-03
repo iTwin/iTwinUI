@@ -1,0 +1,145 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../icon/index';
+
+$thumb-height: $iui-m;  // 16px
+$track-height: $iui-xs;  // 4px
+$tick-height: $iui-baseline; // 11px
+
+@mixin iui-slider-component-container {
+  display: flex;
+
+  .iui-slider-min,
+  .iui-slider-max {
+    @include iui-font-family;
+    user-select: all;
+    margin-top: $iui-xxs;
+
+    > svg {
+      @include iui-icons-default;
+      margin-top: $iui-xs;
+    }
+  }
+
+  .iui-slider-min {
+    margin-right: $iui-sm;
+    text-align: right;
+  }
+
+  .iui-slider-max {
+    margin-left: $iui-sm;
+  }
+
+  &.iui-disabled {
+    @include iui-slider-disabled;
+  }
+}
+
+@mixin iui-slider-container {
+  position: relative;
+  flex-grow: 1;
+  cursor: pointer;
+  touch-action: pan-y;
+
+  &.iui-grabbing {
+    cursor: grabbing;
+  }
+}
+
+@mixin iui-slider-rail {
+  position: absolute;
+  width: 100%;
+  height: $track-height;
+  top: $iui-sm;
+  @include themed {
+    background-color: t(iui-color-background-4);
+  }
+}
+
+@mixin iui-slider-thumb {
+  position: absolute;
+  height: $thumb-height;
+  width: $thumb-height;
+  border-radius: 100%;
+  top: $track-height + 1; // position center of thumb in center of track
+  transform: translateX((-$thumb-height - 2) * 0.5); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
+  z-index: 1;
+  cursor: grab;
+  @include themed {
+    background: t(iui-color-background-1);
+    border: 1px solid t(iui-color-background-5);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  @include iui-focus();
+}
+
+@mixin iui-slider-track {
+  pointer-events: none;
+  position: absolute;
+  height: $track-height;
+  left: 0;
+  top: $iui-sm;
+  @include themed {
+    background-color: t(iui-color-foreground-primary);
+  }
+}
+
+@mixin iui-slider-ticks {
+  position: relative;
+  padding-top: $iui-m;
+  display: flex;
+  pointer-events: none;
+  justify-content: space-between;
+  user-select: none;
+
+  .iui-slider-tick {
+    position: relative;
+    display: flex;
+    pointer-events: none;
+    justify-content: center;
+    width: 1px;
+    height: $tick-height;
+    line-height: $tick-height * 4;
+    margin-bottom: $tick-height * 2;
+    @include themed {
+      background-color: t(iui-color-background-4);
+    }
+  }
+}
+
+@mixin iui-slider-disabled {
+  cursor: not-allowed;
+
+  .iui-slider-container {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .iui-slider-thumb {
+    cursor: not-allowed;
+    @include themed {
+      background-color: t(iui-color-background-4);
+      border-color: t(iui-color-background-4);
+    }
+  }
+
+  .iui-slider-track {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    }
+  }
+
+  .iui-slider-min,
+  .iui-slider-max,
+  .iui-slider-tick {
+    user-select: none;
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
+  }
+}

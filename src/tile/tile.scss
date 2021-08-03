@@ -38,7 +38,7 @@
       @include iui-button-borderless;
       position: absolute;
       border-radius: 50%;
-      top: round($iui-baseline / 2);
+      top: round($iui-baseline * 0.5);
     }
 
     > .iui-type-indicator {
@@ -51,7 +51,7 @@
 
     > .iui-badge-container {
       position: absolute;
-      bottom: round($iui-baseline / 2);
+      bottom: round($iui-baseline * 0.5);
       width: calc(100% - 2 * #{$iui-sm});
       height: auto;
       right: $iui-sm;
@@ -74,7 +74,9 @@
 
       &,
       > path {
-        transition: fill $iui-speed-fast ease;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: fill $iui-speed-fast ease;
+        }
         @include themed() {
           fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
           filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
@@ -92,7 +94,9 @@
     > .iui-picture {
       width: 100%;
       height: 100%;
-      transition: transform $iui-speed ease;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform $iui-speed ease;
+      }
       position: absolute;
       top: 0;
       left: 0;
@@ -147,7 +151,7 @@
       align-items: center;
       font-size: $iui-font-size-leading;
       user-select: all;
-      margin-bottom: $iui-baseline / 2;
+      margin-bottom: $iui-baseline * 0.5;
 
       @include themed() {
         color: t(iui-text-color);
@@ -208,7 +212,7 @@
 
     > .iui-more-options {
       position: absolute;
-      bottom: $iui-baseline / 2;
+      bottom: $iui-baseline * 0.5;
       right: $iui-s;
       visibility: hidden;
 
