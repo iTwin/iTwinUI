@@ -4,10 +4,10 @@
 
 .iui-wizard {
   @include iui-wizard;
-}
 
-.iui-wizard-long {
-  @include iui-wizard-long;
+  &.iui-long {
+    @include iui-wizard-long;
+  }
 }
 
 .iui-wizard-workflow {

@@ -27,7 +27,7 @@
         color: t(iui-color-background-positive);
       }
 
-      .iui-idk {
+      .iui-step-track {
         display: flex;
         align-items: center;
         width: 100%;
@@ -140,5 +140,9 @@
         background-color: transparent;
       }
     }
+  }
+
+  .iui-wizard-steps {
+    display: none;
   }
 }

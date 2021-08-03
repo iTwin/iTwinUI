@@ -3,8 +3,6 @@
 @import '../style/index';
 
 @mixin iui-wizard-long {
-  @include iui-wizard;
-
   > .iui-wizard-container .iui-wizard-step .iui-step-name {
     display: none;
   }

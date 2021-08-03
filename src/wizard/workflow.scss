@@ -7,7 +7,7 @@
 
   > .iui-wizard-container {
     .iui-wizard-step {
-      .iui-idk .iui-circle {
+      .iui-step-track .iui-circle {
         padding-left: $iui-m;
         padding-right: $iui-m;
         border-radius: $iui-sm;
@@ -28,7 +28,7 @@
       }
     }
 
-    .iui-wizard-step .iui-idk .iui-track {
+    .iui-wizard-step .iui-step-track .iui-track {
       @include themed {
         background-color: t(iui-color-foreground-positive);
       }
