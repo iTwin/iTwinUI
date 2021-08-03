@@ -6,7 +6,7 @@ Need a feature or found a bug? Please create an [issue](https://github.com/iTwin
 
 Have a question or suggestion? Please create a [discussion](https://github.com/iTwin/iTwinUI-react/discussions).
 
-Want to contribute by creating a pull request? Great! [Fork iTwinUI-react](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks) to get started.
+Want to contribute by creating a pull request? Great! [Fork iTwinUI-react](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) to get started.
 
 ---
 
@@ -14,7 +14,7 @@ Want to contribute by creating a pull request? Great! [Fork iTwinUI-react](https
 
 To clone and build iTwinUI-react, you'll need [Git](https://git-scm.com) and [Yarn 1](https://yarnpkg.com/getting-started/install) installed on your computer.
 
-1. [Create a local clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#step-2-create-a-local-clone-of-your-fork) of your forked repository. You can do this from the command line or using the Github Desktop app.
+1. [Create a local clone](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository) of your forked repository. You can do this from the command line or using the Github Desktop app.
 2. Go to the directory where you cloned iTwinUI-react. e.g. `cd iTwinUI-react`.
 3. Run `yarn install` from that directory.
 
@@ -123,7 +123,7 @@ it('should be visible', () => {
 
 ### Visual Testing
 
-We reuse our stories for visual tests (through [Creevey](https://github.com/wKich/creevey)). Start storybook and run `yarn creevey --ui` to open the test UI. You can run tests and approve images here.
+We reuse our stories for visual tests (through [Creevey](https://github.com/wKich/creevey)). Make sure you have [Docker](https://www.docker.com/get-started) installed and running, and then you can start storybook and run `yarn creevey --ui` in a new terminal. This should start the test UI at `localhost:3000` where you can run tests and approve images.
 
 By default, the stories will be rendered as-is, but interaction can be added using the `creevey` parameter of story, where you have access to a [Selenium WebDriver](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) instance.
 
