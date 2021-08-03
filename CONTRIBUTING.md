@@ -6,7 +6,7 @@ Need a feature or found a bug? Please create an [issue](https://github.com/iTwin
 
 Have a question or suggestion? Please create a [discussion](https://github.com/iTwin/iTwinUI/discussions).
 
-Want to contribute by creating a pull request? Great! [Fork iTwinUI](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks) to get started.
+Want to contribute by creating a pull request? Great! [Fork iTwinUI](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) to get started.
 
 ---
 
@@ -14,7 +14,7 @@ Want to contribute by creating a pull request? Great! [Fork iTwinUI](https://doc
 
 To clone and build iTwinUI, you'll need [Git](https://git-scm.com) and [Yarn 1](https://yarnpkg.com/getting-started/install) installed on your computer.
 
-1. [Create a local clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#step-2-create-a-local-clone-of-your-fork) of your forked repository. You can do this from the command line or using the Github Desktop app.
+1. [Create a local clone](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository) of your forked repository. You can do this from the command line or using the Github Desktop app.
 2. Go to the directory where you cloned iTwinUI. e.g. `cd iTwinUI`.
 3. Run `yarn install` from that directory.
 
