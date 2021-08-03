@@ -11,6 +11,7 @@
   margin: round($iui-baseline * 0.5) 0;
   border-radius: $iui-border-radius;
   background-color: var(--badge-color);
+  opacity: 0.6;
   text-transform: uppercase;
   user-select: none;
   max-width: 20ch;
@@ -20,5 +21,9 @@
 
   @include themed {
     color: t(iui-color-foreground-accessory);
+  }
+
+  &-text {
+    background: inherit;
   }
 }
