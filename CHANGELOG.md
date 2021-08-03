@@ -1,5 +1,46 @@
 # Changelog
 
+## [0.24.7]
+
+`2021-07-29`
+
+### Fixes
+
+- **Changed table empty state background to iui-color-background-1.**
+
+## [0.24.6]
+
+`2021-07-28`
+
+### Fixes
+
+- **Breadcrumb-item automatically applies borderless styling to buttons.**
+
+## [0.24.5]
+
+`2021-07-28`
+
+### Fixes
+
+- **Made breadcrumb-items look more consistent across different types.**
+
+## [0.24.4]
+
+`2021-07-26`
+
+### Fixes
+
+- **Badge can now use `--badge-color` property to set background-color.**
+
+## [0.24.3]
+
+`2021-07-22`
+
+### Fixes
+
+- **Added ability to use a simple span for the current breadcrumb item.**
+- **Reduced specificity of breadcrumbs classes.**
+
 ## [0.24.2]
 
 `2021-07-20`
@@ -372,6 +413,11 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.24.7]: https://github.com/iTwin/iTwinUI/compare/v0.24.6...v0.24.7
+[0.24.6]: https://github.com/iTwin/iTwinUI/compare/v0.24.5...v0.24.6
+[0.24.5]: https://github.com/iTwin/iTwinUI/compare/v0.24.4...v0.24.5
+[0.24.4]: https://github.com/iTwin/iTwinUI/compare/v0.24.3...v0.24.4
+[0.24.3]: https://github.com/iTwin/iTwinUI/compare/v0.24.2...v0.24.3
 [0.24.2]: https://github.com/iTwin/iTwinUI/compare/v0.24.1...v0.24.2
 [0.24.1]: https://github.com/iTwin/iTwinUI/compare/v0.24.0...v0.24.1
 [0.24.0]: https://github.com/iTwin/iTwinUI/compare/v0.23.0...v0.24.0
