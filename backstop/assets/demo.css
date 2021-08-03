@@ -1,12 +1,12 @@
 body,
-h1:not([class]),
-h2:not([class]),
-h3:not([class]),
-h4:not([class]),
-h5:not([class]),
-h6:not([class]),
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 hr,
-p:not([class]) {
+p {
   margin: 0;
   padding: 0;
   border: none;
@@ -18,17 +18,17 @@ body {
   padding: 24px;
 }
 
-h1:not([class]) {
+h1 {
   font-size: 32px;
   margin-bottom: 11px;
 }
 
-h2:not([class]) {
+h2 {
   font-size: 22px;
   margin-bottom: 11px;
 }
 
-h3:not([class]) {
+h3 {
   font-size: 16px;
 }
 
