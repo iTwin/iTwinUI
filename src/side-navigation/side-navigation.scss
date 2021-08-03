@@ -86,7 +86,7 @@
       height: $iui-baseline * 5;
       // iPhone notch support
       @supports(padding: unquote('max(0px)')) {
-        padding-left: unquote('max(24px, 24px + env(safe-area-inset-left))');
+        padding-left: unquote('max(#{$iui-icons-large}, #{$iui-icons-large} + env(safe-area-inset-left))');
       }
     }
 
