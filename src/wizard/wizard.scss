@@ -1,12 +1,14 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../text/index';
 
 @mixin iui-wizard {
   @include iui-reset;
   @include iui-font-family;
 
   > .iui-wizard-container {
+    @include iui-reset;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -19,10 +21,7 @@
       align-items: center;
       display: flex;
       flex-direction: column;
-      font-size: $iui-font-size-small;
-      font-weight: $iui-font-weight-normal;
-      line-height: $iui-line-height;
-      position: relative;
+      @include iui-text-small;
       @include themed {
         color: t(iui-color-background-positive);
       }
@@ -64,7 +63,6 @@
 
       .iui-step-name {
         text-align: center;
-        width: 100%;
         user-select: all;
         @include themed {
           color: t(iui-text-color-muted);
@@ -85,12 +83,6 @@
             color: t(iui-color-foreground-accessory);
             border-color: t(iui-color-background-positive);
             background-color: t(iui-color-background-positive);
-          }
-        }
-  
-        .iui-before {
-          @include themed {
-            background-color: t(iui-color-foreground-positive);
           }
         }
 
