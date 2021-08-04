@@ -41,8 +41,7 @@
       border-radius: 50%;
       top: round($iui-baseline * 0.5);
 
-      &:focus,
-      &:focus-visible {
+      &:focus {
         outline: 0;
       }
     }
