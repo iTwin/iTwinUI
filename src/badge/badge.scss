@@ -15,7 +15,7 @@ $iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-2--l
   @include iui-font-family;
   display: inline-block;
   font-size: $iui-font-size-small;
-  padding: 0 $iui-xs;
+  padding: 0 $iui-xs * 1.5;
   margin: round($iui-baseline * 0.5) 0;
   border-radius: $iui-border-radius;
   background-color: var(--badge-color, $iui-badge-background-default);
