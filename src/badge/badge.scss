@@ -8,7 +8,7 @@ $iui-badge-background-negative: $iui-color-foreground-negative--dark;
 $iui-badge-background-warning: $iui-color-foreground-warning--dark;
 $iui-badge-background-primary: $iui-color-foreground-primary--dark;
 
-$iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-2);
+$iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-2--light);
 
 @mixin iui-badge {
   @include iui-reset;
