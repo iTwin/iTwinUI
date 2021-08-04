@@ -3,7 +3,7 @@
 @import '../style/index';
 
 @mixin iui-wizard-long {
-  > .iui-wizard-container .iui-wizard-step .iui-step-name {
+  .iui-step-name {
     display: none;
   }
 
@@ -13,11 +13,11 @@
     text-align: center;
 
     .iui-steps-count {
+      user-select: none;
+      margin-right: $iui-s;
       @include themed {
         color: t(iui-text-color-muted);
       }
-      user-select: none;
-      margin-right: $iui-s;
     }
   }
 }

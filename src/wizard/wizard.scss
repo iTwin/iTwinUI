@@ -7,7 +7,7 @@
   @include iui-reset;
   @include iui-font-family;
 
-  > .iui-wizard-container {
+  .iui-wizard-container {
     @include iui-reset;
     display: flex;
     flex-direction: row;
@@ -15,122 +15,122 @@
     align-items: flex-start;
     width: 100%;
     margin-bottom: $iui-baseline * 0.5;
+  }
 
-    .iui-wizard-step {
-      flex: 1 1 0;
-      align-items: center;
+  .iui-wizard-step {
+    flex: 1 1 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    @include iui-text-small;
+    @include themed {
+      color: t(iui-color-background-positive);
+    }
+
+    .iui-step-track {
       display: flex;
-      flex-direction: column;
-      @include iui-text-small;
-      @include themed {
-        color: t(iui-color-background-positive);
+      align-items: center;
+      width: 100%;
+
+      .iui-track {
+        height: $iui-xxs;
+        flex: 1 2 auto;
+        @include themed {
+          background-color: t(iui-color-background-5);
+        }
       }
 
-      .iui-step-track {
-        display: flex;
+      .iui-circle {
         align-items: center;
-        width: 100%;
-
-        .iui-track {
-          height: $iui-xxs;
-          flex: 1 2 auto;
-          @include themed {
-            background-color: t(iui-color-background-5);
-          }
+        border-radius: 50%;
+        display: flex;
+        flex-shrink: 0;
+        width: $iui-l;
+        height: $iui-l;
+        justify-content: center;
+        overflow-wrap: break-word;
+        padding: 0;
+        position: relative;
+        text-align: center;
+        user-select: none;
+        transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out, color $iui-speed-fast ease-out;
+        @include themed {
+          border: 1px solid t(iui-color-background-5);
+          background-color: t(iui-color-background-1);
+          color: t(iui-text-color-muted);
         }
+      }
+    }
 
-        .iui-circle {
-          align-items: center;
-          border-radius: 50%;
-          display: flex;
-          flex-shrink: 0;
-          width: $iui-l;
-          height: $iui-l;
-          justify-content: center;
-          overflow-wrap: break-word;
-          padding: 0;
-          position: relative;
-          text-align: center;
-          user-select: none;
-          transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out, color $iui-speed-fast ease-out;
+    .iui-step-name {
+      text-align: center;
+      user-select: all;
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
+    }
+
+    &.iui-current {
+      .iui-step-name {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+        }
+        font-weight: $iui-font-weight-semibold;
+      }
+
+      .iui-circle {
+        font-weight: $iui-font-weight-semibold;
+        @include themed {
+          color: t(iui-color-foreground-accessory);
+          border-color: t(iui-color-background-positive);
+          background-color: t(iui-color-background-positive);
+        }
+      }
+
+      .iui-track:first-child {
+        @include themed {
+          background-color: t(iui-color-foreground-positive);
+        }
+      }
+    }
+
+    &.iui-completed {
+      &.iui-clickable .iui-circle {
+        @include iui-focus(iui-focus-positive-box-shadow);
+
+        &:hover {
+          cursor: pointer;
           @include themed {
-            border: 1px solid t(iui-color-background-5);
-            background-color: t(iui-color-background-1);
-            color: t(iui-text-color-muted);
+            background-color: t(iui-color-background-positive);
+            border-color: t(iui-color-background-positive);
+            color: t(iui-color-foreground-accessory);
           }
         }
       }
 
       .iui-step-name {
-        text-align: center;
-        user-select: all;
         @include themed {
-          color: t(iui-text-color-muted);
+          color: t(iui-color-foreground-positive);
         }
       }
 
-      &.iui-current {
-        .iui-step-name {
-          @include themed {
-            color: t(iui-color-foreground-positive);
-          }
-          font-weight: $iui-font-weight-semibold;
-        }
-  
-        .iui-circle {
-          font-weight: $iui-font-weight-semibold;
-          @include themed {
-            color: t(iui-color-foreground-accessory);
-            border-color: t(iui-color-background-positive);
-            background-color: t(iui-color-background-positive);
-          }
-        }
-
-        .iui-track:first-child {
-          @include themed {
-            background-color: t(iui-color-foreground-positive);
-          }
-        }
-      }
-  
-      &.iui-completed {
-        &.iui-clickable .iui-circle {
-          @include iui-focus(iui-focus-positive-box-shadow);
-
-          &:hover {
-            cursor: pointer;
-            @include themed {
-              background-color: t(iui-color-background-positive);
-              border-color: t(iui-color-background-positive);
-              color: t(iui-color-foreground-accessory);
-            }
-          }
-        }
-  
-        .iui-step-name {
-          @include themed {
-            color: t(iui-color-foreground-positive);
-          }
-        }
-  
-        .iui-circle {
-          @include themed {
-            color: t(iui-color-foreground-positive);
-            border-color: t(iui-color-foreground-positive);
-          }
-        }
-  
-        .iui-track {
-          @include themed {
-            background-color: t(iui-color-foreground-positive);
-          }
+      .iui-circle {
+        @include themed {
+          color: t(iui-color-foreground-positive);
+          border-color: t(iui-color-foreground-positive);
         }
       }
 
-      &:first-child .iui-track:first-child,
-      &:last-child .iui-track:last-child {
-        background-color: transparent;
+      .iui-track {
+        @include themed {
+          background-color: t(iui-color-foreground-positive);
+        }
       }
+    }
+
+    &:first-child .iui-track:first-child,
+    &:last-child .iui-track:last-child {
+      background-color: transparent;
     }
   }
 

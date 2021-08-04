@@ -5,34 +5,31 @@
 @mixin iui-wizard-workflow {
   @include iui-wizard;
 
-  > .iui-wizard-container {
-    .iui-wizard-step {
-      .iui-step-track .iui-circle {
-        padding-left: $iui-m;
-        padding-right: $iui-m;
-        border-radius: $iui-sm;
-        width: auto;
-        @include themed {
-          border-color: t(iui-color-foreground-positive);
-          color: t(iui-color-foreground-positive);
-        }
-      }
-
-      &.iui-current .iui-circle {
-        border-radius: 0;
-        font-weight: $iui-font-weight-normal;
-        @include themed {
-          color: t(iui-color-foreground-accessory);
-          border-color: t(iui-color-background-positive);
-        }
-      }
-    }
-
-    .iui-wizard-step .iui-step-track .iui-track {
+  .iui-wizard-step {
+    .iui-step-track .iui-circle {
+      padding-left: $iui-m;
+      padding-right: $iui-m;
+      border-radius: $iui-sm;
+      width: auto;
       @include themed {
-        background-color: t(iui-color-foreground-positive);
+        border-color: t(iui-color-foreground-positive);
+        color: t(iui-color-foreground-positive);
       }
     }
-    
+
+    &.iui-current .iui-circle {
+      border-radius: 0;
+      font-weight: $iui-font-weight-normal;
+      @include themed {
+        color: t(iui-color-foreground-accessory);
+        border-color: t(iui-color-background-positive);
+      }
+    }
+  }
+
+  .iui-wizard-step .iui-step-track .iui-track {
+    @include themed {
+      background-color: t(iui-color-foreground-positive);
+    }
   }
 }
