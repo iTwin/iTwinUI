@@ -178,8 +178,7 @@
       @include iui-focus;
       cursor: pointer;
   
-      &:hover,
-      &:focus-visible {
+      &:hover {
         @include themed {
           background-color: t(iui-color-background-1-overlay);
         }

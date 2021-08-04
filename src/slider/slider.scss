@@ -66,6 +66,7 @@ $tick-height: $iui-baseline; // 11px
   transform: translateX((-$thumb-height - 2) * 0.5); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
   z-index: 1;
   cursor: grab;
+  @include iui-focus-shadow;
   @include themed {
     background: t(iui-color-background-1);
     border: 1px solid t(iui-color-background-5);
@@ -74,8 +75,6 @@ $tick-height: $iui-baseline; // 11px
   &:active {
     cursor: grabbing;
   }
-
-  @include iui-focus();
 }
 
 @mixin iui-slider-track {

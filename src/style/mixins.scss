@@ -33,6 +33,28 @@
   }
 }
 
+@mixin iui-focus-shadow($box-shadow-value: iui-focus-box-shadow) {
+  &:focus {
+    outline: 0;
+
+    @include themed {
+      box-shadow: t($box-shadow-value);
+    }
+  }
+
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    outline: 0;
+
+    @include themed {
+      box-shadow: t($box-shadow-value);
+    }
+  }
+}
+
 @mixin iui-reset {
   margin: 0;
   padding: 0;

@@ -7,7 +7,7 @@
 @mixin iui-tag {
   @include iui-reset;
   @include iui-font-family;
-  @include iui-focus;
+  @include iui-focus-shadow;
   user-select: all;
   text-transform: lowercase;
   display: inline-flex;

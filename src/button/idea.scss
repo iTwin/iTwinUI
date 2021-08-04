@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @mixin iui-button-idea {
   @include iui-button-high-visibility;
-  @include iui-focus(iui-color-foreground-primary, 2px, 1px);
+  @include iui-focus-shadow;
   border-radius: $iui-line-height;
   box-shadow: $iui-elevation-24;
   position: fixed;

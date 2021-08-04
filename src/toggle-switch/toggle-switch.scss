@@ -164,19 +164,7 @@
     // Focus on non-disabled toggle switch
     &:enabled:focus ~ .iui-toggle {
       @include themed {
-        outline: 1px solid t(iui-color-foreground-primary);
-        outline-offset: 2px;
-      }
-    }
-
-    &:enabled:focus:not(:focus-visible) ~ .iui-toggle {
-      outline: none;
-    }
-
-    &:enabled:focus-visible ~ .iui-toggle {
-      @include themed {
-        outline: 1px solid t(iui-color-foreground-primary);
-        outline-offset: 2px;
+        box-shadow: t(iui-focus-box-shadow);
       }
     }
   }

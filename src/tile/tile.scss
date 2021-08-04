@@ -36,9 +36,15 @@
     > .iui-type-indicator,
     > .iui-quick-action {
       @include iui-button-borderless;
+      @include iui-focus-shadow;
       position: absolute;
       border-radius: 50%;
       top: round($iui-baseline * 0.5);
+
+      &:focus,
+      &:focus-visible {
+        outline: 0;
+      }
     }
 
     > .iui-type-indicator {

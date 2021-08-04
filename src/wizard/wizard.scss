@@ -130,7 +130,7 @@
     > .iui-wizards-step-completed {
       &.iui-clickable {
         > .iui-wizards-step-circle {
-          @include iui-focus(iui-color-foreground-positive, 2px);
+          @include iui-focus-shadow(iui-focus-positive-box-shadow);
           cursor: pointer;
           @media (prefers-reduced-motion: no-preference) {
             transition: background-color $iui-speed-fast ease-out;
