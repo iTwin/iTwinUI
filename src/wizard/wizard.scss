@@ -64,7 +64,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    @include iui-text-small;
+    @include iui-text(small);
     @include themed {
       color: t(iui-color-background-positive);
     }
