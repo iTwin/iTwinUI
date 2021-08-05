@@ -22,7 +22,7 @@
     }
   }
 
-  .iui-current .iui-wizard-circle {
+  .iui-wizard-step.iui-current .iui-wizard-circle {
     border-radius: 0;
     font-weight: $iui-font-weight-normal;
     @include themed {
