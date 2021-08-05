@@ -207,28 +207,6 @@
     max-width: 25vw;
     overflow: hidden;
 
-    &.iui-button {
-      .iui-split-menu {
-        svg {
-          margin-left: $iui-xs;
-        }
-      }
-    }
-
-    &.iui-small {
-      .iui-split-menu + svg {
-        margin-left: $iui-xxs;
-      }
-    }
-
-    &.iui-large {
-      .iui-split-menu {
-        svg {
-          margin-left: $iui-s;
-        }
-      }
-    }
-
     > .iui-label {
       text-align: left;
       font-size: $iui-font-size;
@@ -307,7 +285,7 @@
     &.iui-active {
       // Basic active styling - blue background and bottom border
       @include themed {
-        box-shadow: 0 2px 0 0 t(iui-color-foreground-primary);
+        box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
       }
 
       &,
