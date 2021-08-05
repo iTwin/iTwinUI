@@ -296,9 +296,47 @@
   .iui-button-split-menu {
     height: 100%;
     padding: 0 0 0 $iui-xs;
+    display: flex;
+    overflow: hidden;
+    max-width: 25vw;
 
     .iui-button {
       padding: 0 $iui-xs;
+    }
+
+    &.iui-active {
+      // Basic active styling - blue background and bottom border
+      @include themed {
+        box-shadow: 0 2px 0 0 t(iui-color-foreground-primary);
+      }
+
+      &,
+      &:hover {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-6)
+          );
+        }
+      }
+
+      // Removing button hovers and backgrounds and adding last child hover
+      .iui-button {
+        background-color: transparent !important;
+
+        &::after {
+          background-color: transparent;
+        }
+      }
+
+      .iui-button:last-child:hover {
+        @include themed {
+          background-color: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-6)
+          ) !important;
+        }
+      }
     }
   }
 }
