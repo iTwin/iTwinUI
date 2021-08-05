@@ -293,123 +293,12 @@
     }
   }
 
-  .iui-split-header-button {
-    @include iui-focus;
-
+  .iui-button-split-menu {
     height: 100%;
     padding: 0 0 0 $iui-xs;
-    display: flex;
-    overflow: hidden;
-    max-width: 25vw;
-
-    svg {
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
-    }
-
-    &:hover {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-body-rgb),
-          t(iui-opacity-6)
-        );
-        border-color: transparent;
-      }
-    }
 
     .iui-button {
       padding: 0 $iui-xs;
-
-      &:hover {
-        @include themed {
-          background-color: transparent;
-        }
-      }
-    }
-
-    // Additional hover for dropdown button
-    .iui-button:last-child {
-      &:hover {
-        @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-body-rgb),
-            t(iui-opacity-6)
-          );
-          border-color: transparent;
-        }
-      }
-    }
-
-    &.iui-active {
-      // Basic active styling - blue background and bottom border
-      @include themed {
-        box-shadow: 0 2px 0 0 t(iui-color-foreground-primary);
-      }
-
-      &:focus,
-      &:focus-visible {
-        @include themed {
-          box-shadow: t(iui-focus-box-shadow),
-            0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-        }
-      }
-
-      &,
-      &:focus:not(:focus-visible) {
-        @include themed {
-          box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-        }
-      }
-
-      // Removing active focus visible state
-      .iui-button {
-        :focus,
-        &:focus-visible {
-          @include themed {
-            background-color: transparent;
-          }
-        }
-      }
-
-      .iui-label,
-      .iui-icon {
-        @include themed {
-          color: t(iui-color-foreground-primary);
-          fill: t(iui-icons-color-primary);
-        }
-      }
-
-      &,
-      &:hover {
-        @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          );
-        }
-
-        svg.iui-header-button-icon {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-primary-rgb),
-              t(iui-opacity-6)
-            );
-          }
-        }
-      }
-
-      // Additional hover for dropdown button
-      .iui-button:last-child {
-        &:hover {
-          @include themed {
-            background-color: rgba(
-              t(iui-color-foreground-primary-rgb),
-              t(iui-opacity-5)
-            );
-          }
-        }
-      }
     }
   }
 }
