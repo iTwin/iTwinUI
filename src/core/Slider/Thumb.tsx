@@ -92,18 +92,21 @@ export const Thumb = (props: ThumbProps) => {
         case 'ArrowLeft':
         case 'ArrowDown':
           onThumbValueChanged(index, Math.max(value - step, minVal));
-          return;
+          break;
         case 'ArrowRight':
         case 'ArrowUp':
           onThumbValueChanged(index, Math.min(value + step, maxVal));
-          return;
+          break;
         case 'Home':
           onThumbValueChanged(index, minVal);
-          return;
+          break;
         case 'End':
           onThumbValueChanged(index, maxVal);
+          break;
+        default:
           return;
       }
+      event.preventDefault();
     },
     [disabled, onThumbValueChanged, index, value, step, minVal, maxVal],
   );
