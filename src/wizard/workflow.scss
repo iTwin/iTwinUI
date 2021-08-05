@@ -5,11 +5,17 @@
 @mixin iui-wizard-workflow {
   @include iui-wizard;
 
+  .iui-wizard-container {
+    align-items: center;
+  }
+
   .iui-wizard-step {
     .iui-step-track .iui-circle {
       padding-left: $iui-m;
       padding-right: $iui-m;
       border-radius: $iui-sm;
+      word-break: break-word;
+      height: 100%;
       width: auto;
       @include themed {
         border-color: t(iui-color-foreground-positive);
