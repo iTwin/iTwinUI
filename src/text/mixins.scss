@@ -8,6 +8,8 @@
 }
 
 @mixin iui-text($type: body) {
+  @include iui-reset;
+
   $sizes: (
     headline: $iui-font-size-headline,
     title: $iui-font-size-title,
@@ -15,7 +17,6 @@
     leading: $iui-font-size-leading,
     body: $iui-font-size,
     small: $iui-font-size-small,
-    caption: $iui-font-size-small,
   );
 
   $weights: (
@@ -25,7 +26,6 @@
     leading: $iui-font-weight-normal,
     body: $iui-font-weight-normal,
     small: $iui-font-weight-normal,
-    caption: $iui-font-weight-normal,
   );
   $line-heights: (
     headline: 2 * $iui-line-height,
@@ -34,7 +34,6 @@
     leading: $iui-line-height,
     body: $iui-line-height,
     small: $iui-line-height,
-    caption: $iui-line-height,
   );
   $type: if(map-has-key($sizes, $type), $type, body);
   font-size: map-get($sizes, $type);
