@@ -5,10 +5,11 @@
 
 /// Constants ------------------------------------------------------------------
 
-$iui-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+$iui-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+$iui-sans: 'Open Sans';
 $iui-monospace: ui-monospace, Menlo, 'Segoe UI Mono', Consolas, 'Roboto Mono', 'Courier New', monospace;
 
-$iui-font-family: $iui-sans;
+$iui-font-family: $iui-sans, $iui-sans-fallback;
 
 $iui-font-size: 14px;
 $iui-font-size-small: 12px;
@@ -36,7 +37,7 @@ $iui-font-loaded-class: null !default;
 
 @mixin iui-font-family {
   @if $iui-font-loaded-class {
-    font-family: sans-serif;
+    font-family: $iui-sans-fallback;
 
     &.#{ $iui-font-loaded-class } {
       font-family: $iui-font-family;
