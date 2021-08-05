@@ -3,7 +3,7 @@
 @import '../style/index';
 
 @mixin iui-wizard-long {
-  .iui-step-name {
+  .iui-wizard-step-name {
     display: none;
   }
 
@@ -11,13 +11,13 @@
     display: block;
     font-size: $iui-font-size-subheading;
     text-align: center;
+  }
 
-    .iui-steps-count {
-      user-select: none;
-      margin-right: $iui-s;
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+  .iui-steps-count {
+    user-select: none;
+    margin-right: $iui-s;
+    @include themed {
+      color: t(iui-text-color-muted);
     }
   }
 }
