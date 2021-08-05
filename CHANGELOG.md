@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.14.1]
+
+`2021-08-05`
+
+### Fixes
+
+- **Fixed a bug where Arrow keydown on `Slider` propagated to parent container's scrollbars.**
+
 ## [1.14.0]
 
 `2021-08-03`
@@ -435,6 +443,7 @@
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
 
+[1.14.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.14.0...v1.14.1
 [1.14.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.13.1...v1.14.0
 [1.13.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.13.0...v1.13.1
 [1.13.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.12.0...v1.13.0
