@@ -4,6 +4,6 @@
 
 @mixin iui-text-muted {
   @include themed {
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    color: t(iui-text-color-muted);
   }
 }
