@@ -41,10 +41,12 @@
       }
 
       .iui-circle {
+        align-items: center;
         border-radius: 50%;
+        display: flex;
         width: $iui-l;
         height: $iui-l;
-        line-height: $iui-l;
+        justify-content: center;
         overflow-wrap: break-word;
         padding: 0;
         position: relative;
