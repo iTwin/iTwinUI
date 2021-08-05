@@ -300,19 +300,24 @@
 
       // Removing button hovers and backgrounds and adding last child hover
       .iui-button {
-        background-color: transparent !important;
+        &.iui-borderless {
+          &,
+          &:hover {
+            background-color: transparent;
+          }
 
-        &::after {
-          background-color: transparent;
+          &::after {
+            background-color: transparent;
+          }
         }
-      }
 
-      .iui-button:last-child:hover {
-        @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          ) !important;
+        &:last-child:hover {
+          @include themed {
+            background-color: rgba(
+              t(iui-color-foreground-primary-rgb),
+              t(iui-opacity-6)
+            );
+          }
         }
       }
     }
