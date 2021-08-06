@@ -422,6 +422,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.25.0]: https://github.com/iTwin/iTwinUI/compare/v0.24.7...v0.25.0
 [0.24.7]: https://github.com/iTwin/iTwinUI/compare/v0.24.6...v0.24.7
 [0.24.6]: https://github.com/iTwin/iTwinUI/compare/v0.24.5...v0.24.6
 [0.24.5]: https://github.com/iTwin/iTwinUI/compare/v0.24.4...v0.24.5
