@@ -17,8 +17,14 @@ module.exports = [
   }),
 
   //// Slim
-  scenario('Type Default State hover & focus', {
+  scenario('Type Slim State hover & focus', {
     actions: [hover('#test-button-3'), focus('#test-button-4')],
     selectors: ['#demo-slim'],
+  }),
+
+  //// Split
+  scenario('Type Split State hover & focus', {
+    actions: [hover('#test-button-6'), focus('#test-button-6')],
+    selectors: ['#demo-split'],
   }),
 ];
