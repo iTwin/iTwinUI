@@ -271,9 +271,9 @@
     }
   }
 
-  .iui-button-split-menu {
+  .iui-header-split-button {
     height: 100%;
-    padding: 0 0 0 $iui-xs;
+    padding-left: $iui-xs;
     display: flex;
     overflow: hidden;
     max-width: 25vw;
@@ -307,7 +307,7 @@
           }
 
           &::after {
-            background-color: transparent;
+            display: none;
           }
         }
 
