@@ -12,9 +12,10 @@
   line-height: $iui-line-height;
 
   @include iui-scrollbar;
+  @include iui-font-family;
 
-  &.iui-set-fonts {
-    @include iui-font-family;
+  &.iui-no-webfonts {
+    font-family: $iui-sans-fallback;
   }
 }
 
