@@ -617,7 +617,7 @@ it('should not show filter icon when filter component is not set', () => {
   expect(filterIcon).toBeFalsy();
 });
 
-it('should show message when there is no data after filtering', () => {
+it('should show message and active filter icon when there is no data after filtering', () => {
   const mockedColumns = [
     {
       Header: 'Header name',
@@ -643,6 +643,60 @@ it('should show message when there is no data after filtering', () => {
   rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(0);
   screen.getByText('No results. Clear filter.');
+  const filterIcon = container.querySelector(
+    '.iui-filter-button.iui-active .iui-icon',
+  ) as HTMLElement;
+  expect(filterIcon).toBeTruthy();
+});
+
+it('should show message and active filter icon when there is no data after manual filtering', () => {
+  const mockedColumns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          Filter: tableFilters.TextFilter(),
+          fieldType: 'text',
+        },
+      ],
+    },
+  ];
+  const { container, rerender } = render(
+    <Table
+      data={mockedData()}
+      columns={mockedColumns}
+      emptyTableContent='Empty table'
+      emptyFilteredTableContent='No results. Clear filter.'
+      manualFilters={true}
+    />,
+  );
+
+  expect(screen.queryByText('Header name')).toBeFalsy();
+  let rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  setFilter(container, 'invalid value');
+
+  rerender(
+    <Table
+      data={[]}
+      columns={mockedColumns}
+      emptyTableContent='Empty table'
+      emptyFilteredTableContent='No results. Clear filter.'
+      manualFilters={true}
+    />,
+  );
+
+  rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(0);
+  screen.getByText('No results. Clear filter.');
+  const filterIcon = container.querySelector(
+    '.iui-filter-button.iui-active .iui-icon',
+  ) as HTMLElement;
+  expect(filterIcon).toBeTruthy();
 });
 
 it('should not trigger sorting when filter is clicked', () => {

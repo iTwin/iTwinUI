@@ -520,7 +520,7 @@ export const Table = <
                 return (
                   <div {...columnProps} key={columnProps.key} title={undefined}>
                     {column.render('Header')}
-                    {!isLoading && data.length != 0 && (
+                    {!isLoading && (data.length != 0 || areFiltersSet) && (
                       <FilterToggle
                         column={column}
                         ownerDocument={ownerDocument}

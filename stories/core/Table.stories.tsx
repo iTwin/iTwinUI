@@ -1192,4 +1192,5 @@ Full.args = {
   ],
   isSelectable: true,
   isSortable: true,
+  emptyFilteredTableContent: 'No results found. Clear or try another filter.',
 };

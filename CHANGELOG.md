@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### Fixes
+
+- **Fixed a `Table` bug where filter icon is hidden when `manualFilters` is on and no data is returned after filtering.**
+
 ## [1.14.1]
 
 `2021-08-05`
