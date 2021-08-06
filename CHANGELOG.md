@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.25.0]
+
+`2021-08-06`
+
+- **Added new header split button.**
+- **Added new badge background colors and updated styling.**
+- **Removed margin from typography classes.** Added new `.iui-text-spacing` modifier.
+- **Added iPhone notch support to header and sidenav.**
+
 ## [0.24.7]
 
 `2021-07-29`
