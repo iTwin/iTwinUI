@@ -1,21 +1,32 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 /// Data visualization colors:
+$iui-color-dataviz-skyblue: hsl(204, 77%, 67%);
+$iui-color-dataviz-celery: hsl(72, 51%, 56%);
+$iui-color-dataviz-froly: hsl(2, 90%, 70%);
+$iui-color-dataviz-steelblue: hsl(200, 41%, 46%);
+$iui-color-dataviz-sunglow: hsl(42, 100%, 60%);
+$iui-color-dataviz-seabuckthorn: hsl(29, 92%, 61%);
+$iui-color-dataviz-montecarlo: hsl(176, 43%, 62%);
+$iui-color-dataviz-poloblue: hsl(211, 44%, 67%);
+$iui-color-dataviz-bouquet: hsl(305, 19%, 55%);
+$iui-color-dataviz-ash: hsl(42, 15%, 75%);
+$iui-color-dataviz-oak: hsl(27, 32%, 49%);
 
-$iui-color-dataviz-skyblue: #6AB9EC;
-$iui-color-dataviz-celery: #B1C854;
-$iui-color-dataviz-froly: #F7706C;
-$iui-color-dataviz-steelblue: #4585A5;
-$iui-color-dataviz-sunglow: #FFC335;
-$iui-color-dataviz-seabuckthorn: #F7963E;
-$iui-color-dataviz-montecarlo: #73C7C1;
-$iui-color-dataviz-poloblue: #85A9CF;
-$iui-color-dataviz-bouquet: #A3779F;
-$iui-color-dataviz-ash: #C8C2B4;
-$iui-color-dataviz-oak: #A47854;
+/// Soft background colors generated from dataviz colors:
+$iui-color-background-skyblue: hsl(197, 71%, 83%);
+$iui-color-background-celery: hsl(72, 51%, 66%);
+$iui-color-background-froly: hsl(2, 90%, 83%);
+$iui-color-background-steelblue: hsl(207, 44%, 73%);
+$iui-color-background-sunglow: hsl(42, 100%, 70%);
+$iui-color-background-seabuckthorn: hsl(29, 92%, 71%);
+$iui-color-background-montecarlo: hsl(176, 43%, 72%);
+$iui-color-background-poloblue: hsl(211, 44%, 77%);
+$iui-color-background-bouquet: hsl(305, 19%, 75%);
+$iui-color-background-ash: hsl(42, 15%, 85%);
+$iui-color-background-oak: hsl(27, 32%, 72%);
 
 /// System provided colors:
-
 $iui-color-system-red: #F00;
 $iui-color-system-burgundi: #900;
 $iui-color-system-orange: #F90;
