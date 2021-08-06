@@ -11,8 +11,11 @@
   font-size: $iui-font-size;
   line-height: $iui-line-height;
 
-  @include iui-font-family;
   @include iui-scrollbar;
+
+  &.iui-set-fonts {
+    @include iui-font-family;
+  }
 }
 
 .iui-anchor {
