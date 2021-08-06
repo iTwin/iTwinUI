@@ -4,7 +4,6 @@
 
 @mixin iui-input {
   @include iui-reset;
-  @include iui-font-family;
   width: 100%;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;

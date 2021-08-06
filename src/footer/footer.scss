@@ -5,7 +5,6 @@
 @mixin iui-legal-footer {
   @include iui-reset;
 
-  @include iui-font-family;
   text-align: center;
   width: 100%;
   padding: $iui-baseline 0;

@@ -6,7 +6,6 @@
 
 @mixin iui-table {
   @include iui-reset;
-  @include iui-font-family;
   display: flex;
   flex-direction: column;
 

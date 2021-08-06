@@ -7,7 +7,6 @@ $iui-after-border: 5px solid;
 
 @mixin iui-select {
   @include iui-reset;
-  @include iui-font-family;
   display: flex;
   flex-direction: column;
   position: relative;

@@ -5,7 +5,6 @@
 
 @mixin iui-codeblock {
   @include iui-reset;
-  @include iui-font-family;
   margin: round($iui-baseline/2) 0;
 
   > .iui-title-bar {
