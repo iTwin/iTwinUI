@@ -45,7 +45,7 @@
       user-select: none;
     }
 
-    svg {
+    .iui-icon {
       width: $iui-icons-default;
       height: $iui-icons-default;
     }
@@ -64,7 +64,7 @@
         color: t(iui-color-foreground-positive);
       }
 
-      svg {
+      .iui-icon {
         @include themed {
           fill: t(iui-icons-color-positive);
         }
@@ -97,7 +97,7 @@
         color: t(iui-color-foreground-negative);
       }
 
-      svg {
+      .iui-icon {
         @include themed {
           fill: t(iui-icons-color-negative);
         }

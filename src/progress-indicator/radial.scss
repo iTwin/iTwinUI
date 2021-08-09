@@ -48,7 +48,7 @@
   display: inline-block;
   @include iui-progress-indicator-radial-size($size:$iui-icons-xl);
 
-  > svg.iui-radial {
+  > .iui-radial {
     height: 100%;
     width: 100%;
 
@@ -82,8 +82,7 @@
     user-select: none;
     overflow: hidden;
 
-    svg,
-    img {
+    .iui-icon {
       width: $iui-icons-default;
       height: $iui-icons-default;
       @include themed {
@@ -112,7 +111,7 @@
       }
     }
 
-    .iui-inner-content svg {
+    .iui-inner-content .iui-icon {
       @include themed {
         fill: t(iui-icons-color-positive);
       }
@@ -144,7 +143,7 @@
       }
     }
 
-    .iui-inner-content svg {
+    .iui-inner-content .iui-icon {
       @include themed {
         fill: t(iui-icons-color-negative);
       }
@@ -183,8 +182,7 @@
     .iui-inner-content {
       font-size: $iui-font-size-leading;
 
-      svg,
-      img {
+      .iui-icon {
         width: $iui-icons-large;
         height: $iui-icons-large;
       }

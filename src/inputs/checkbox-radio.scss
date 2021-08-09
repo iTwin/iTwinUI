@@ -43,7 +43,7 @@
       background-color: t(iui-color-background-1);
     }
 
-    > svg {
+    > .iui-icon {
       width: $iui-sm;
       height: $iui-sm;
 
@@ -63,7 +63,7 @@
   > .iui-label {
     margin-right: $iui-s;
 
-    svg {
+    .iui-icon {
       width: $iui-icons-default;
       height: $iui-icons-default;
       vertical-align: middle;
@@ -101,9 +101,9 @@
   }
 
   // Show check, partial, or dot depending on type
-  input:checked ~ .iui-checkbox-checkmark > svg > path.iui-check,
-  input:indeterminate ~ .iui-checkbox-checkmark > svg > path.iui-check-partial,
-  input:checked ~ .iui-radio-dot > svg > circle {
+  input:checked ~ .iui-checkbox-checkmark > .iui-icon > path.iui-check,
+  input:indeterminate ~ .iui-checkbox-checkmark > .iui-icon > path.iui-check-partial,
+  input:checked ~ .iui-radio-dot > .iui-icon > circle {
     opacity: 1;
     @media (prefers-reduced-motion: no-preference) {
       transition: opacity $iui-speed-fast ease;
@@ -141,8 +141,8 @@
   }
 
   // Styles disabled checks
-  input:disabled ~ .iui-checkbox-checkmark > svg > path,
-  input:disabled ~ .iui-radio-dot > svg > circle {
+  input:disabled ~ .iui-checkbox-checkmark > .iui-icon > path,
+  input:disabled ~ .iui-radio-dot > .iui-icon > circle {
     @include themed {
       fill: t(iui-icons-color-actionable-disabled);
     }
@@ -155,7 +155,7 @@
       color: t(iui-text-color-muted);
     }
 
-    > svg {
+    > .iui-icon {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
       }

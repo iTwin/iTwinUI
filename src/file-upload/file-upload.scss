@@ -39,7 +39,7 @@
       z-index: -1;
     }
 
-    > svg {
+    > .iui-icon {
       @include iui-icons-3xl;
       margin-top: $iui-baseline;
       margin-bottom: $iui-baseline;
@@ -79,8 +79,8 @@
     }
     visibility: visible;
 
-    > svg,
-    > svg > * {
+    > .iui-icon,
+    > .iui-icon > * {
       @include themed {
         fill: t(iui-icons-color-primary);
       }

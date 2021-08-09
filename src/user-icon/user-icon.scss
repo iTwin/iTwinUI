@@ -103,7 +103,7 @@
     &.iui-busy {
       box-shadow: none;
 
-      > svg {
+      > .iui-status-symbol {
         @include themed {
           fill: t(iui-color-foreground-accessory);
         }
