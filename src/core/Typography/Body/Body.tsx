@@ -37,6 +37,7 @@ export const Body = React.forwardRef<HTMLParagraphElement, BodyProps>(
         ref={ref}
         className={cx(
           'iui-text-block',
+          'iui-text-spacing',
           {
             'iui-text-muted': isMuted,
             'iui-skeleton': isSkeleton,

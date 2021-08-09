@@ -32,6 +32,7 @@ export const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
         ref={ref}
         className={cx(
           'iui-text-title',
+          'iui-text-spacing',
           { 'iui-text-muted': isMuted },
           className,
         )}

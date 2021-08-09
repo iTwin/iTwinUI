@@ -76,7 +76,7 @@ Basic.args = {
       </TagContainer>
     </>
   ),
-  badge: <Badge backgroundColor='steelblue'>Badge</Badge>,
+  badge: <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>,
   moreOptions: [
     <MenuItem key={1} onClick={action('clicked item 1')}>
       Item 1

@@ -12,22 +12,22 @@ describe('Body', () => {
     {
       testName: 'renders in its most basic state',
       props: {},
-      expectedClasses: 'iui-text-block',
+      expectedClasses: 'iui-text-block iui-text-spacing',
     },
     {
       testName: 'renders muted',
       props: { isMuted: true },
-      expectedClasses: 'iui-text-block iui-text-muted',
+      expectedClasses: 'iui-text-block iui-text-spacing iui-text-muted',
     },
     {
       testName: 'renders skeleton',
       props: { isSkeleton: true },
-      expectedClasses: 'iui-text-block iui-skeleton',
+      expectedClasses: 'iui-text-block iui-text-spacing iui-skeleton',
     },
     {
       testName: 'propagates className',
       props: { className: 'mockClassName' },
-      expectedClasses: 'iui-text-block mockClassName',
+      expectedClasses: 'iui-text-block iui-text-spacing mockClassName',
     },
   ].forEach(({ testName, props, expectedClasses }) => {
     it(testName, () => {

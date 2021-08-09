@@ -32,6 +32,7 @@ export const Leading = React.forwardRef<HTMLHeadingElement, LeadingProps>(
         ref={ref}
         className={cx(
           'iui-text-leading',
+          'iui-text-spacing',
           { 'iui-text-muted': isMuted },
           className,
         )}

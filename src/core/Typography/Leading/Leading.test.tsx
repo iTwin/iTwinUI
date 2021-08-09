@@ -12,17 +12,17 @@ describe('Leading', () => {
     {
       testName: 'renders in its most basic state',
       props: {},
-      expectedClasses: 'iui-text-leading',
+      expectedClasses: 'iui-text-leading iui-text-spacing',
     },
     {
       testName: 'renders muted',
       props: { isMuted: true },
-      expectedClasses: 'iui-text-leading iui-text-muted',
+      expectedClasses: 'iui-text-leading iui-text-spacing iui-text-muted',
     },
     {
       testName: 'propagates className',
       props: { className: 'mockClassName' },
-      expectedClasses: 'iui-text-leading mockClassName',
+      expectedClasses: 'iui-text-leading iui-text-spacing mockClassName',
     },
   ].forEach(({ testName, props, expectedClasses }) => {
     it(testName, () => {

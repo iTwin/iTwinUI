@@ -32,6 +32,7 @@ export const Headline = React.forwardRef<HTMLHeadingElement, HeadlineProps>(
         ref={ref}
         className={cx(
           'iui-text-headline',
+          'iui-text-spacing',
           { 'iui-text-muted': isMuted },
           className,
         )}

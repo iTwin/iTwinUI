@@ -12,17 +12,17 @@ describe('Subheading', () => {
     {
       testName: 'renders in its most basic state',
       props: {},
-      expectedClasses: 'iui-text-subheading',
+      expectedClasses: 'iui-text-subheading iui-text-spacing',
     },
     {
       testName: 'renders muted',
       props: { isMuted: true },
-      expectedClasses: 'iui-text-subheading iui-text-muted',
+      expectedClasses: 'iui-text-subheading iui-text-spacing iui-text-muted',
     },
     {
       testName: 'propagates className',
       props: { className: 'mockClassName' },
-      expectedClasses: 'iui-text-subheading mockClassName',
+      expectedClasses: 'iui-text-subheading iui-text-spacing mockClassName',
     },
   ].forEach(({ testName, props, expectedClasses }) => {
     it(testName, () => {

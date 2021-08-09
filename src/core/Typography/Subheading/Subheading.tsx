@@ -32,6 +32,7 @@ export const Subheading = React.forwardRef<HTMLHeadingElement, SubheadingProps>(
         ref={ref}
         className={cx(
           'iui-text-subheading',
+          'iui-text-spacing',
           { 'iui-text-muted': isMuted },
           className,
         )}

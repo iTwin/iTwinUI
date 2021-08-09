@@ -22,7 +22,7 @@ export const Basic: Story<BadgeProps> = ({ backgroundColor, children }) => {
 };
 
 Basic.args = {
-  backgroundColor: '#6AB9EC',
+  backgroundColor: 'hsl(197, 71%, 83%)',
   children: 'Label',
 };
 
@@ -39,7 +39,7 @@ export const LongLabel: Story<BadgeProps> = ({
 };
 
 LongLabel.args = {
-  backgroundColor: 'steelblue',
+  backgroundColor: 'hsl(197, 71%, 83%)',
   children: 'Long label that gets truncated',
   title: 'Long label that gets truncated',
 };
