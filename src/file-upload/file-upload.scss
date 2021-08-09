@@ -6,7 +6,6 @@
 
 @mixin iui-file-upload {
   @include iui-reset;
-  @include iui-font-family;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
   position: relative;

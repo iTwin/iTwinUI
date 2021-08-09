@@ -11,8 +11,12 @@
   font-size: $iui-font-size;
   line-height: $iui-line-height;
 
-  @include iui-font-family;
   @include iui-scrollbar;
+  @include iui-font-family;
+
+  &.iui-no-webfonts {
+    font-family: $iui-sans-fallback;
+  }
 }
 
 .iui-anchor {

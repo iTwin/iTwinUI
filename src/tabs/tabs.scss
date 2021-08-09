@@ -4,7 +4,6 @@
 
 @mixin iui-tabs {
   @include iui-reset;
-  @include iui-font-family;
   position: relative;
   display: flex;
   align-items: center;
@@ -13,7 +12,6 @@
 
   .iui-tab {
     @include iui-reset;
-    @include iui-font-family;
     position: relative;
     display: flex;
     align-items: center;

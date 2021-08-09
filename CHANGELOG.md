@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.25.0]
+
+`2021-08-06`
+
+- **Added new header split button.**
+- **Added new badge background colors and updated styling.**
+- **Removed margin from typography classes.** Added new `.iui-text-spacing` modifier.
+- **Added iPhone notch support to header and sidenav.**
+
 ## [0.24.7]
 
 `2021-07-29`
@@ -413,6 +422,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.25.0]: https://github.com/iTwin/iTwinUI/compare/v0.24.7...v0.25.0
 [0.24.7]: https://github.com/iTwin/iTwinUI/compare/v0.24.6...v0.24.7
 [0.24.6]: https://github.com/iTwin/iTwinUI/compare/v0.24.5...v0.24.6
 [0.24.5]: https://github.com/iTwin/iTwinUI/compare/v0.24.4...v0.24.5

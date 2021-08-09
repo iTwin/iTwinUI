@@ -7,7 +7,6 @@
 @mixin iui-location-marker {
   @include iui-reset;
 
-  @include iui-font-family;
   display: inline-block;
   user-select: none;
   position: relative;
