@@ -6,7 +6,6 @@
 
 @mixin iui-page-header {
   @include iui-reset;
-  @include iui-font-family;
   display: flex;
   justify-content: space-between;
   width: 100%;

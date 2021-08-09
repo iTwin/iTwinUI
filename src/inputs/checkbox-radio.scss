@@ -4,7 +4,6 @@
 
 @mixin iui-inputs-checkbox-radio {
   @include iui-reset;
-  @include iui-font-family;
   display: flex;
   align-items: center;
   font-size: $iui-font-size;

@@ -7,7 +7,6 @@
 
 @mixin iui-paginator {
   @include iui-reset;
-  @include iui-font-family;
   display: flex;
   flex: 1;
   justify-content: space-around;

@@ -12,7 +12,6 @@ $iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-3--l
 
 @mixin iui-badge {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-block;
   font-size: $iui-font-size-small;
   padding: 0 $iui-xs * 1.5;
