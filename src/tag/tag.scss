@@ -6,7 +6,6 @@
 
 @mixin iui-tag {
   @include iui-reset;
-  @include iui-font-family;
   @include iui-focus;
   user-select: all;
   text-transform: lowercase;

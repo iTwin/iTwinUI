@@ -5,8 +5,6 @@
 
 @mixin iui-non-ideal-state {
   @include iui-reset;
-
-  @include iui-font-family;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,11 +27,13 @@
   }
 
   > .iui-non-ideal-state-title {
-    @include iui-text-headline;
+    @include iui-text(headline);
+    @include iui-text-block-spacing;
   }
 
   > .iui-non-ideal-state-description {
-    @include iui-text-block;
+    @include iui-text(body);
+    @include iui-text-block-spacing;
   }
 
   > .iui-non-ideal-state-actions {

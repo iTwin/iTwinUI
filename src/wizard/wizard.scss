@@ -4,8 +4,7 @@
 
 @mixin iui-wizards {
   @include iui-reset;
-  @include iui-font-family;
-
+  
   > .iui-wizards-wrapper {
     display: flex;
     flex-direction: row;

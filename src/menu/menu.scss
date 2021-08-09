@@ -7,7 +7,6 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
 @mixin iui-dropdown {
   @include iui-reset;
-  @include iui-font-family;
   box-shadow: $iui-elevation-2;
   @include themed {
     background-color: t(iui-color-background-1);

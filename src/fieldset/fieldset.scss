@@ -5,7 +5,6 @@
 
 @mixin iui-fieldset {
   @include iui-reset;
-  @include iui-font-family;
   padding: $iui-baseline $iui-sm;
   border-radius: $iui-border-radius;
   @include themed {
