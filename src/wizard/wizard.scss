@@ -7,7 +7,7 @@
   @include iui-reset;
   @include iui-font-family;
 
-  .iui-wizard-container {
+  ol {
     @include iui-reset;
     display: flex;
     flex-direction: row;
@@ -16,22 +16,91 @@
     width: 100%;
     margin-bottom: $iui-baseline * 0.5;
   }
+}
 
-  .iui-wizard-step-name {
-    text-align: center;
-    user-select: all;
-    @include themed {
-      color: t(iui-text-color-muted);
+@mixin iui-wizard-step {
+  flex: 1 1 0;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  @include iui-text(small);
+  @include themed {
+    color: t(iui-color-background-positive);
+  }
+
+  &.iui-current {
+    .iui-wizard-step-name {
+      @include themed {
+        color: t(iui-color-foreground-positive);
+      }
+      font-weight: $iui-font-weight-semibold;
+    }
+
+    .iui-wizard-circle {
+      font-weight: $iui-font-weight-semibold;
+      @include themed {
+        color: t(iui-color-foreground-accessory);
+        border-color: t(iui-color-background-positive);
+        background-color: t(iui-color-background-positive);
+      }
+    }
+
+    .iui-wizard-track::before {
+      @include themed {
+        background-color: t(iui-color-foreground-positive);
+      }
     }
   }
 
-  .iui-wizard-step-track {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  &.iui-completed {
+    &.iui-clickable .iui-wizard-circle {
+      @include iui-focus(iui-focus-positive-box-shadow);
+
+      &:hover {
+        cursor: pointer;
+        @include themed {
+          background-color: t(iui-color-background-positive);
+          border-color: t(iui-color-background-positive);
+          color: t(iui-color-foreground-accessory);
+        }
+      }
+    }
+
+    .iui-wizard-step-name {
+      @include themed {
+        color: t(iui-color-foreground-positive);
+      }
+    }
+
+    .iui-wizard-circle {
+      @include themed {
+        color: t(iui-color-foreground-positive);
+        border-color: t(iui-color-foreground-positive);
+      }
+    }
+
+    .iui-wizard-track::before,
+    .iui-wizard-track::after {
+      @include themed {
+        background-color: t(iui-color-foreground-positive);
+      }
+    }
   }
 
-  .iui-wizard-track {
+  &:first-child .iui-wizard-track::before,
+  &:last-child .iui-wizard-track::after {
+    background-color: transparent;
+  }
+}
+
+@mixin iui-wizard-track {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
     height: $iui-xxs;
     flex: 1 2 auto;
     @include themed {
@@ -58,78 +127,12 @@
       color: t(iui-text-color-muted);
     }
   }
+}
 
-  .iui-wizard-step {
-    flex: 1 1 0;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    @include iui-text(small);
-    @include themed {
-      color: t(iui-color-background-positive);
-    }
-
-    &.iui-current {
-      .iui-wizard-step-name {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-        }
-        font-weight: $iui-font-weight-semibold;
-      }
-
-      .iui-wizard-circle {
-        font-weight: $iui-font-weight-semibold;
-        @include themed {
-          color: t(iui-color-foreground-accessory);
-          border-color: t(iui-color-background-positive);
-          background-color: t(iui-color-background-positive);
-        }
-      }
-
-      .iui-wizard-track:first-child {
-        @include themed {
-          background-color: t(iui-color-foreground-positive);
-        }
-      }
-    }
-
-    &.iui-completed {
-      &.iui-clickable .iui-wizard-circle {
-        @include iui-focus(iui-focus-positive-box-shadow);
-
-        &:hover {
-          cursor: pointer;
-          @include themed {
-            background-color: t(iui-color-background-positive);
-            border-color: t(iui-color-background-positive);
-            color: t(iui-color-foreground-accessory);
-          }
-        }
-      }
-
-      .iui-wizard-step-name {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-        }
-      }
-
-      .iui-wizard-circle {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-          border-color: t(iui-color-foreground-positive);
-        }
-      }
-
-      .iui-wizard-track {
-        @include themed {
-          background-color: t(iui-color-foreground-positive);
-        }
-      }
-    }
-
-    &:first-child .iui-wizard-track:first-child,
-    &:last-child .iui-wizard-track:last-child {
-      background-color: transparent;
-    }
+@mixin iui-wizard-step-name {
+  text-align: center;
+  user-select: all;
+  @include themed {
+    color: t(iui-text-color-muted);
   }
 }

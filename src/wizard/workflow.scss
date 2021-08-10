@@ -5,7 +5,7 @@
 @mixin iui-wizard-workflow {
   @include iui-wizard;
 
-  .iui-wizard-container {
+  ol {
     align-items: center;
   }
 
@@ -31,7 +31,8 @@
     }
   }
 
-  .iui-wizard-track {
+  .iui-wizard-track::before,
+  .iui-wizard-track::after {
     @include themed {
       background-color: t(iui-color-foreground-positive);
     }

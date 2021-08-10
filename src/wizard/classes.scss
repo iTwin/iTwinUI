@@ -8,8 +8,20 @@
   &.iui-long {
     @include iui-wizard-long;
   }
+
+  &.iui-workflow {
+    @include iui-wizard-workflow;
+  }
 }
 
-.iui-wizard-workflow {
-  @include iui-wizard-workflow;
+.iui-wizard-step {
+  @include iui-wizard-step;
+}
+
+.iui-wizard-track {
+  @include iui-wizard-track;
+}
+
+.iui-wizard-step-name {
+  @include iui-wizard-step-name;
 }
