@@ -31,8 +31,8 @@
     }
   }
 
-  .iui-wizard-track::before,
-  .iui-wizard-track::after {
+  .iui-wizard-track-content::before,
+  .iui-wizard-track-content::after {
     @include themed {
       background-color: t(iui-color-foreground-positive);
     }

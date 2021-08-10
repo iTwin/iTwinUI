@@ -45,7 +45,7 @@
       }
     }
 
-    .iui-wizard-track::before {
+    .iui-wizard-track-content::before {
       @include themed {
         background-color: t(iui-color-foreground-positive);
       }
@@ -79,21 +79,21 @@
       }
     }
 
-    .iui-wizard-track::before,
-    .iui-wizard-track::after {
+    .iui-wizard-track-content::before,
+    .iui-wizard-track-content::after {
       @include themed {
         background-color: t(iui-color-foreground-positive);
       }
     }
   }
 
-  &:first-child .iui-wizard-track::before,
-  &:last-child .iui-wizard-track::after {
+  &:first-child .iui-wizard-track-content::before,
+  &:last-child .iui-wizard-track-content::after {
     background-color: transparent;
   }
 }
 
-@mixin iui-wizard-track {
+@mixin iui-wizard-track-content {
   display: flex;
   align-items: center;
   width: 100%;
