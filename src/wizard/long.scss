@@ -3,7 +3,7 @@
 @import '../style/index';
 
 @mixin iui-wizard-long {
-  .iui-wizard-steps {
+  .iui-wizard-steps-label {
     display: block;
     font-size: $iui-font-size-subheading;
     text-align: center;

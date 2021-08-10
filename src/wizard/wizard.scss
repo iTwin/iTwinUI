@@ -5,7 +5,6 @@
 
 @mixin iui-wizard {
   @include iui-reset;
-  @include iui-font-family;
 
   ol {
     @include iui-reset;
