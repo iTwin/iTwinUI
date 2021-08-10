@@ -28,3 +28,6 @@ export type { CodeProps } from './Code';
 
 export { Kbd, KbdKeys } from './Kbd';
 export type { KbdProps } from './Kbd';
+
+export { Text } from './Text';
+export type { TextProps } from './Text';
