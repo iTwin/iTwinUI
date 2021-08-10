@@ -28,8 +28,7 @@
     }
   }
 
-  // #region Horizontal tabs
-  &:not(.iui-vertical) {
+  &.iui-horizontal {
     ~ .iui-tabs-content {
       margin-top: -$iui-xxs;
       @include themed {
@@ -37,9 +36,7 @@
       }
     }
   }
-  // #endregion
   
-  // #region Vertical tabs
   &.iui-vertical {
     ~ .iui-tabs-content {
       margin-left: -$iui-xxs;
@@ -50,7 +47,6 @@
       }
     }
   }
-  // #endregion
 
   &.iui-green .iui-active,
   &.iui-green .iui-tab:hover {

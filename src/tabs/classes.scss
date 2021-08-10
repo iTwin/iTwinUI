@@ -6,12 +6,10 @@
   display: flex;
   position: relative;
 
-  // #region Horizontal tabs
-  &:not(.iui-vertical) {
+  &.iui-horizontal {
     flex-direction: column;
   }
 
-  // #region Vertical tabs
   &.iui-vertical {
     flex-direction: row;
   }
