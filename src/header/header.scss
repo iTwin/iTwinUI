@@ -327,7 +327,6 @@
       }
     }
 
-    // Basic active styling - blue background and bottom border
     @include themed {
       box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
     }
@@ -342,7 +341,6 @@
       }
     }
 
-    // Removing button hovers and backgrounds and adding last child hover
     .iui-button {
       &.iui-borderless {
         &,
