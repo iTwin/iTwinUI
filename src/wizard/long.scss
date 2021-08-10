@@ -3,10 +3,6 @@
 @import '../style/index';
 
 @mixin iui-wizard-long {
-  .iui-wizard-step-name {
-    display: none;
-  }
-
   .iui-wizard-steps {
     display: block;
     font-size: $iui-font-size-subheading;
