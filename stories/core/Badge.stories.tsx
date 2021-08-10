@@ -5,6 +5,7 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Badge, BadgeProps } from '../../src/core';
+import { SoftBackgrounds } from '../../src/core/utils/common';
 
 export default {
   component: Badge,
@@ -12,7 +13,16 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     id: { control: { disable: true } },
-    backgroundColor: { control: 'color' },
+    title: { control: { disable: true } },
+    backgroundColor: {
+      options: [
+        'primary',
+        'positive',
+        'negative',
+        'warning',
+        ...Object.keys(SoftBackgrounds),
+      ],
+    },
   },
   title: 'Core/Badge',
 } as Meta<BadgeProps>;
@@ -22,7 +32,7 @@ export const Basic: Story<BadgeProps> = ({ backgroundColor, children }) => {
 };
 
 Basic.args = {
-  backgroundColor: 'hsl(197, 71%, 83%)',
+  backgroundColor: 'skyblue',
   children: 'Label',
 };
 
@@ -39,7 +49,22 @@ export const LongLabel: Story<BadgeProps> = ({
 };
 
 LongLabel.args = {
-  backgroundColor: 'hsl(197, 71%, 83%)',
+  backgroundColor: 'skyblue',
   children: 'Long label that gets truncated',
   title: 'Long label that gets truncated',
+};
+
+export const Statuses: Story<BadgeProps> = () => {
+  return (
+    <div style={{ display: 'flex', gap: 8 }}>
+      <Badge backgroundColor='positive'>Success</Badge>
+      <Badge backgroundColor='negative'>Error</Badge>
+      <Badge backgroundColor='primary'>Informational</Badge>
+      <Badge backgroundColor='warning'>Warning</Badge>
+    </div>
+  );
+};
+
+Statuses.parameters = {
+  controls: { hideNoControlsWarning: true },
 };
