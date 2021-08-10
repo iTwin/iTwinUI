@@ -6,37 +6,106 @@
   position: absolute;
   top: 0;
   right: 0;
-  min-width: 145px;
+  display: flex;
+  flex-direction: column;
+  width: $iui-3xl * 4;
+  min-width: $iui-3xl * 2;
   height: 100%;
   box-sizing: border-box;
+  box-shadow: -1px 0 14px rgba(0, 0, 0, 0.25);
   @include themed {
     background-color: t(iui-color-background-1);
-    border-left: 1px solid t(iui-color-background-5);
   }
 
-  .iui-header,
-  .iui-body {
+  > .iui-resizer {
+    height: 100%;
+    width: $iui-m;
+    position: absolute;
+    top: 0;
+    left: -17px; // Why?
+    transform: translateX(50%);
+    touch-action: none;
+    cursor: ew-resize;
+    z-index: 1000;
+
+    > .iui-resizer-bar {
+      height: 100%;
+      width: 1px;
+      margin: 0 auto;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+      }
+      @include themed {
+        background-color: t(iui-color-background-5);
+      }
+    }
+
+    &:hover > .iui-resizer-bar {
+      width: $iui-xs;
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
+      }
+    }
+  }
+
+  .iui-information-header,
+  .iui-information-body {
     padding-left: $iui-sm;
     padding-right: $iui-sm;
+    box-sizing: border-box;
   }
 
-  .iui-header {
+  .iui-information-header {
     width: 100%;
     height: $iui-baseline * 6;
     display: flex;
     align-items: center;
     @include themed {
       background-color: t(iui-color-background-3);
-      border-bottom: 1px solid t(iui-color-background-4);
     }
 
-    span {
+    .iui-selection-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+
+    .iui-selection {
       margin-right: auto;
     }
   }
 
-  .iui-body {
+  .iui-information-body {
     padding-top: $iui-baseline;
     padding-bottom: $iui-baseline;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: overlay;
+  }
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+
+    tr {
+      height: $iui-baseline * 3;
+
+      td {
+        vertical-align: middle;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:first-child {
+          text-align: right;
+          color: t(iui-text-color-muted);
+          padding-right: $iui-s;
+
+          &::after {
+            content: ':';
+          }
+        }
+      }
+    }
   }
 }
