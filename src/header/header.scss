@@ -13,7 +13,8 @@
   user-select: none;
   box-sizing: border-box;
   // iPhone notch support
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0
+    env(safe-area-inset-left);
   @media (prefers-reduced-motion: no-preference) {
     transition: height $iui-speed-fast ease-out;
   }
@@ -304,6 +305,28 @@
   }
 
   &.iui-active {
+    svg {
+      @include themed {
+        fill: t(iui-icons-color-primary);
+      }
+    }
+
+    svg.iui-header-button-icon {
+      @include themed {
+        fill: t(iui-icons-color-primary);
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6)
+        );
+      }
+    }
+
+    .iui-label {
+      @include themed {
+        color: t(iui-color-foreground-primary);
+      }
+    }
+
     // Basic active styling - blue background and bottom border
     @include themed {
       box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
