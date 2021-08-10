@@ -1,0 +1,42 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-information-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 145px;
+  height: 100%;
+  box-sizing: border-box;
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border-left: 1px solid t(iui-color-background-5);
+  }
+
+  .iui-header,
+  .iui-body {
+    padding-left: $iui-sm;
+    padding-right: $iui-sm;
+  }
+
+  .iui-header {
+    width: 100%;
+    height: $iui-baseline * 6;
+    display: flex;
+    align-items: center;
+    @include themed {
+      background-color: t(iui-color-background-3);
+      border-bottom: 1px solid t(iui-color-background-4);
+    }
+
+    span {
+      margin-right: auto;
+    }
+  }
+
+  .iui-body {
+    padding-top: $iui-baseline;
+    padding-bottom: $iui-baseline;
+  }
+}

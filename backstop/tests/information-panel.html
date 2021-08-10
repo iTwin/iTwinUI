@@ -1,0 +1,80 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Information panel | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <style>
+      #demo-table {
+        position: relative;
+        background-color: #0F0;
+        width: 900px;
+        height: 700px;
+      }
+    </style>
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Information panel</h1>
+    <hr />
+
+    <section id="demo-default">
+
+      <div id="demo-table">
+        This is a table.
+        <div class="iui-information-panel">
+          <div class="iui-header">
+            <span class="iui-text-subheading">Element name</span>
+            <button class="iui-button iui-borderless">
+              <!-- Use edit.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m8.8 2.8 4.4 4.4-8.8 8.8h-4.4v-4.4zm-5 11.8 1-1-2.5-2.5-1 1v1.1h1.4v1.4zm5.6-9.8c0-.2-.1-.2-.2-.2s-.1 0-.2.1l-5.7 5.7s-.1.1-.1.2c0 .2.1.2.2.2s.1 0 .2-.1l5.7-5.7s.1-.1.1-.2m6.6-1c0 .4-.1.7-.4 1l-1.8 1.8-4.3-4.5 1.8-1.7c.3-.3.6-.4 1-.4s.7.1 1 .4l2.5 2.5c.1.2.2.6.2.9"
+                />
+              </svg>
+            </button>
+            <button class="iui-button iui-borderless">
+              <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
+              <svg
+                class="iui-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="iui-body">
+            Hello world
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
