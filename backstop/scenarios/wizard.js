@@ -23,7 +23,7 @@ module.exports = [
   }),
 
   // Focus states
-  scenario('Long wizard focus on complete', {
+  scenario('State long focus on complete', {
     actions: [
       focus('#demo-long .iui-completed:first-child .iui-wizard-circle'),
     ],
