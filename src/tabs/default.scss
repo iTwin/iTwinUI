@@ -14,8 +14,6 @@
     }
 
     &::after {
-      content: '';
-      position: absolute;
       top: 0;
       left: 0;
       @include themed {
@@ -42,8 +40,7 @@
     }
   }
 
-  // #region Horizontal tabs
-  &:not(.iui-vertical) {
+  @at-root .iui-horizontal {
     .iui-tab {
       &::after {
         width: 100%;
@@ -66,14 +63,12 @@
       border-left: none;
     }
 
-    ~ .iui-tabs-content {
+    .iui-default ~ .iui-tabs-content {
       margin-top: -1px;
     }
   }
-  // #endregion
   
-  // #region Vertical tabs
-  &.iui-vertical {
+  @at-root .iui-vertical {
     .iui-tab {
       &::after {
         width: 0;
@@ -96,11 +91,10 @@
       border-top: none;
     }
 
-    ~ .iui-tabs-content {
+    .iui-default ~ .iui-tabs-content {
       margin-left: -1px;
     }
   }
-  // #endregion
 
   &.iui-large {
     .iui-tab {

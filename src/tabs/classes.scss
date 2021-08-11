@@ -7,11 +7,19 @@
   position: relative;
 
   &.iui-horizontal {
-    flex-direction: column;
+    @include iui-tabs-horizontal;
   }
 
   &.iui-vertical {
-    flex-direction: row;
+    @include iui-tabs-vertical;
+  }
+
+  &.iui-animated {
+    @include iui-tab-animated;
+  }
+
+  &.iui-not-animated {
+    @include iui-tab-not-animated;
   }
 }
 
@@ -28,17 +36,5 @@
   
   &.iui-pill {
     @include iui-tabs-pill;
-  }
-
-  &.iui-animated {
-    @include iui-tab-animated;
-  }
-
-  &.iui-not-animated {
-    @include iui-tab-not-animated;
-  }
-
-  &.iui-vertical {
-    @include iui-tabs-vertical;
   }
 }
