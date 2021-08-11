@@ -7,24 +7,29 @@
     align-items: center;
   }
 
-  .iui-wizard-circle {
-    padding-left: $iui-m;
-    padding-right: $iui-m;
-    border-radius: $iui-sm;
-    height: 100%;
-    width: auto;
-    @include themed {
-      border-color: t(iui-color-foreground-positive);
-      color: t(iui-color-foreground-positive);
+  .iui-wizard-step {
+    .iui-wizard-circle {
+      padding-left: $iui-m;
+      padding-right: $iui-m;
+      height: 100%;
+      width: auto;
+      border-radius: 0;
+      font-weight: $iui-font-weight-normal;
+      @include themed {
+        background-color: t(iui-color-background-positive);
+        border-color: t(iui-color-background-positive);
+        color: t(iui-color-foreground-accessory);
+      }
     }
-  }
 
-  .iui-wizard-step.iui-current .iui-wizard-circle {
-    border-radius: 0;
-    font-weight: $iui-font-weight-normal;
-    @include themed {
-      color: t(iui-color-foreground-accessory);
-      border-color: t(iui-color-background-positive);
+    &:first-child .iui-wizard-circle,
+    &:last-child .iui-wizard-circle {
+      border-radius: $iui-sm;
+      @include themed {
+        background-color: t(iui-color-background-1);
+        border-color: t(iui-color-foreground-positive);
+        color: t(iui-color-foreground-positive);
+      }
     }
   }
 

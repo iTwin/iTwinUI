@@ -26,86 +26,7 @@
     color: t(iui-color-background-positive);
   }
 
-  &.iui-current {
-    .iui-wizard-step-name {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
-      font-weight: $iui-font-weight-semibold;
-    }
-
-    .iui-wizard-circle {
-      font-weight: $iui-font-weight-semibold;
-      @include themed {
-        color: t(iui-color-foreground-accessory);
-        border-color: t(iui-color-background-positive);
-        background-color: t(iui-color-background-positive);
-      }
-    }
-
-    .iui-wizard-track-content::before {
-      @include themed {
-        background-color: t(iui-color-foreground-positive);
-      }
-    }
-  }
-
-  &.iui-completed {
-    &.iui-clickable .iui-wizard-circle {
-      @include iui-focus(iui-focus-positive-box-shadow);
-
-      &:hover {
-        cursor: pointer;
-        @include themed {
-          background-color: t(iui-color-background-positive);
-          border-color: t(iui-color-background-positive);
-          color: t(iui-color-foreground-accessory);
-        }
-      }
-    }
-
-    .iui-wizard-step-name {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
-    }
-
-    .iui-wizard-circle {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-        border-color: t(iui-color-foreground-positive);
-      }
-    }
-
-    .iui-wizard-track-content::before,
-    .iui-wizard-track-content::after {
-      @include themed {
-        background-color: t(iui-color-foreground-positive);
-      }
-    }
-  }
-
-  &:first-child .iui-wizard-track-content::before,
-  &:last-child .iui-wizard-track-content::after {
-    background-color: transparent;
-  }
-}
-
-@mixin iui-wizard-track-content {
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    height: $iui-xxs;
-    flex: 1 2 auto;
-    @include themed {
-      background-color: t(iui-color-background-5);
-    }
-  }
-
+  // Completed steps
   .iui-wizard-circle {
     align-items: center;
     border-radius: 50%;
@@ -120,9 +41,98 @@
     user-select: none;
     transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out, color $iui-speed-fast ease-out;
     @include themed {
-      border: 1px solid t(iui-color-background-5);
+      border: 1px solid t(iui-color-foreground-positive);
       background-color: t(iui-color-background-1);
-      color: t(iui-text-color-muted);
+      color: t(iui-color-foreground-positive);
+    }
+  }
+
+  // Current step
+  &.iui-current {
+    font-weight: $iui-font-weight-semibold;
+    
+    .iui-wizard-step-name {
+      @include themed {
+        color: t(iui-color-foreground-positive);
+      }
+    }
+
+    .iui-wizard-circle {
+      @include themed {
+        color: t(iui-color-foreground-accessory);
+        border-color: t(iui-color-background-positive);
+        background-color: t(iui-color-background-positive);
+      }
+    }
+
+    .iui-wizard-track-content::after {
+      @include themed {
+        background-color: t(iui-color-background-5);
+      }
+    }
+  }
+
+  // Future steps
+  &.iui-current ~ .iui-wizard-step {
+    .iui-wizard-circle {
+      @include themed {
+        border: 1px solid t(iui-color-background-5);
+        background-color: t(iui-color-background-1);
+        color: t(iui-text-color-muted);
+      }
+    }
+
+    .iui-wizard-step-name {
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
+    }
+
+    .iui-wizard-track-content::before,
+    .iui-wizard-track-content::after {
+      @include themed {
+        background-color: t(iui-color-background-5);
+      }
+    }
+  }
+
+  // Clickable steps
+  &.iui-clickable {
+    .iui-wizard-circle {
+      @include iui-focus(iui-focus-positive-box-shadow);
+      cursor: pointer;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: background-color $iui-speed-fast ease-out;
+      }
+
+      &:hover {
+        @include themed {
+          color: t(iui-color-foreground-accessory);
+          border: 1px solid t(iui-color-background-positive);
+          background-color: t(iui-color-background-positive);
+        }
+      }
+    }
+  }
+
+  &:first-child .iui-wizard-track-content::before,
+  &:last-child .iui-wizard-track-content::after {
+    background-color: transparent !important;
+  }
+}
+
+@mixin iui-wizard-track-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    height: $iui-xxs;
+    flex: 1 2 auto;
+    @include themed {
+      background-color: t(iui-color-foreground-positive);
     }
   }
 }
@@ -131,6 +141,6 @@
   text-align: center;
   user-select: all;
   @include themed {
-    color: t(iui-text-color-muted);
+    color: t(iui-color-foreground-positive);
   }
 }
