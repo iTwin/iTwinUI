@@ -243,32 +243,7 @@
   }
 
   &.iui-active {
-    &,
-    &:hover {
-      svg.iui-header-button-icon {
-        @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          );
-        }
-      }
-    }
-
-    &:focus,
-    &:focus-visible {
-      @include themed {
-        box-shadow: t(iui-focus-box-shadow),
-          0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-      }
-    }
-
-    &,
-    &:focus:not(:focus-visible) {
-      @include themed {
-        box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-      }
-    }
+    @include iui-header-button-active;
   }
 
   @at-root {
@@ -292,6 +267,55 @@
   }
 }
 
+@mixin iui-header-button-active {
+  svg {
+    @include themed {
+      fill: t(iui-icons-color-primary);
+    }
+  }
+
+  &,
+  &:hover {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-primary-rgb),
+        t(iui-opacity-6)
+      );
+    }
+
+    svg.iui-header-button-icon {
+      @include themed {
+        fill: t(iui-icons-color-primary);
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6)
+        );
+      }
+    }
+  }
+
+  .iui-label {
+    @include themed {
+      color: t(iui-color-foreground-primary);
+    }
+  }
+
+  &:focus,
+  &:focus-visible {
+    @include themed {
+      box-shadow: t(iui-focus-box-shadow),
+        0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+    }
+  }
+
+  &,
+  &:focus:not(:focus-visible) {
+    @include themed {
+      box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+    }
+  }
+}
+
 @mixin iui-header-split-button {
   height: 100%;
   padding-left: $iui-s;
@@ -305,43 +329,7 @@
   }
 
   &.iui-active {
-    // Icons and images active state colors
-    svg {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-      }
-    }
-
-    svg.iui-header-button-icon {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
-      }
-    }
-
-    .iui-label {
-      @include themed {
-        color: t(iui-color-foreground-primary);
-      }
-    }
-
-    // Basic active styling - blue background and bottom border
-    @include themed {
-      box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-    }
-
-    &,
-    &:hover {
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
-      }
-    }
+    @include iui-header-button-active;
 
     // Removing button hovers and backgrounds and adding last child hover
     .iui-button {
