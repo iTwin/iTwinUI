@@ -6,10 +6,9 @@
 @mixin iui-wizard {
   @include iui-reset;
 
-  ol {
+  > ol {
     @include iui-reset;
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
     width: 100%;
@@ -18,7 +17,7 @@
 }
 
 @mixin iui-wizard-step {
-  flex: 1 1 0;
+  flex: 1;
   align-items: center;
   display: flex;
   flex-direction: column;
