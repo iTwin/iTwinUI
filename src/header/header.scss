@@ -268,6 +268,7 @@
 }
 
 @mixin iui-header-button-active {
+  // Blue icons
   svg {
     @include themed {
       fill: t(iui-icons-color-primary);
@@ -276,7 +277,9 @@
 
   &,
   &:hover {
+    // Blue background and darker blue bottom line
     @include themed {
+      box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
       background-color: rgba(
         t(iui-color-foreground-primary-rgb),
         t(iui-opacity-6)
@@ -294,21 +297,21 @@
     }
   }
 
+  // Blue text
   .iui-label {
     @include themed {
       color: t(iui-color-foreground-primary);
     }
   }
 
-  &:focus,
-  &:focus-visible {
+  // Focus styling - blue outline
+  &:focus {
     @include themed {
       box-shadow: t(iui-focus-box-shadow),
         0 $iui-xxs 0 0 t(iui-color-foreground-primary);
     }
   }
 
-  &,
   &:focus:not(:focus-visible) {
     @include themed {
       box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
