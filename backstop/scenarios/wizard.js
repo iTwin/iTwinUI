@@ -17,7 +17,7 @@ module.exports = [
 
   // Hover states
   scenario('State default hover on complete', {
-    actions: [hover('#demo-default .iui-completed:first-child')],
+    actions: [hover('#demo-default .iui-clickable:first-child')],
     selectors: ['#demo-default'],
     viewports: [{ width: 800, height: 600 }],
   }),
@@ -25,7 +25,7 @@ module.exports = [
   // Focus states
   scenario('State long focus on complete', {
     actions: [
-      focus('#demo-long .iui-completed:first-child .iui-wizard-circle'),
+      focus('#demo-long .iui-clickable:first-child .iui-wizard-circle'),
     ],
     selectors: ['#demo-long'],
     viewports: [{ width: 800, height: 600 }],
