@@ -1639,6 +1639,7 @@
           if (isVertical) {
             stripe.style.top = `${activeEl.offsetTop}px`;
             stripe.style.height = `${activeEl.getBoundingClientRect().height}px`;
+            stripe.style.left = `${activeEl.getBoundingClientRect().width - 2}px`
           } else {
             stripe.style.left = `${activeEl.offsetLeft}px`;
             stripe.style.width = `${activeEl.getBoundingClientRect().width}px`;
