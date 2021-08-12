@@ -7,7 +7,7 @@ on:
 
 jobs:
   check-pr-title:
-    name: Title follows conventional commit
+    name: Title follows conventional commits
     runs-on: ubuntu-latest
     steps:
       - name: Check PR title
