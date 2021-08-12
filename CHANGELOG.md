@@ -8,7 +8,7 @@
 
 ### Fixes
 
-- **Fixed Split Header button active state styling** to require less class names.
+- **Fixed Split Header button active and disabled state styling**.
 
 ## [0.25.0]
 
