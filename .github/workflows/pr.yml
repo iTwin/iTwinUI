@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-pr-title:
+    name: PR title follows conventional commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const pr = await github.repos.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: ${{ github.event.number }}
+            });
+            console.log(pr);
