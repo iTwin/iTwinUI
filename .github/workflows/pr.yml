@@ -2,6 +2,7 @@ name: CI
 
 on:
   pull_request:
+    types: [opened, reopened, edited, synchronize]
     branches: [main]
 
 jobs:
@@ -19,5 +20,6 @@ jobs:
               pull_number: ${{ github.event.number }}
             });
             if (!/^(.+)(?:(([^)s]+)))?: (.+)/.test(title)) {
+              console.error('PR title should follow conventional commit spec (https://www.conventionalcommits.org)');
               process.exit(1);
             }
