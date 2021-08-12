@@ -13,9 +13,11 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const pr = await github.pulls.get({
+            const { data: { title } } = await github.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: ${{ github.event.number }}
             });
-            console.log(pr);
+            if (!/^(.+)(?:(([^)s]+)))?: (.+)/.test(title)) {
+              process.exit(1);
+            }
