@@ -134,6 +134,6 @@ To enable us to quickly review and accept your pull requests, always create one 
   - `.js` file has scenarios covering these cases.
   - All existing and new tests should pass.
 
-After verifying that your changes are ready, you can [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that the name of your pull request follows the [Conventional Commits spec](https://www.conventionalcommits.org/), and that you have a proper description with screenshots and a [closing keyword]*https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests).
+After verifying that your changes are ready, you can [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that the name of your pull request follows the [Conventional Commits spec](https://www.conventionalcommits.org/), and that you have a proper description with screenshots and a [closing keyword](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests).
 
 If your pull request changes an existing component, we ask that the description distinctly lists all visual changes that have occurred. These notes are used by the Visual Design team to update specifications and images within documentation.
