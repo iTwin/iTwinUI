@@ -339,7 +339,7 @@
       );
     }
 
-    svg.iui-header-button-icon {
+    .iui-header-button-icon {
       @include themed {
         fill: t(iui-icons-color-primary);
         background-color: rgba(
@@ -392,10 +392,10 @@
       }
     }
 
-    svg.iui-header-button-icon {
+    .iui-header-button-icon {
       @include themed {
-        fill: t(iui-icons-color-actionable-disabled);
         background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+        filter: grayscale(1);
       }
     }
   }
