@@ -233,7 +233,7 @@
     flex-shrink: 0;
   }
 
-  svg.iui-header-button-icon {
+  .iui-header-button-icon {
     padding: $iui-xs;
     @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
     @include themed {
@@ -246,11 +246,19 @@
     @include iui-header-button-active;
   }
 
+  &:disabled {
+    .iui-header-button-icon {
+      @include themed {
+        filter: grayscale(1) opacity(0.7);
+      }
+    }
+  }
+
   @at-root {
     .iui-page-header.iui-slim {
       > .iui-left {
         .iui-button {
-          svg.iui-header-button-icon.iui-header-button-icon {
+          .iui-header-button-icon.iui-header-button-icon {
             width: $iui-icons-small;
             height: $iui-icons-small;
             padding: $iui-xxs;
@@ -394,6 +402,7 @@
 
     .iui-header-button-icon {
       @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
         background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
         filter: grayscale(1);
       }
