@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render, act, waitFor } from '@testing-library/react';
+import { fireEvent, render, act } from '@testing-library/react';
 import React from 'react';
 import { Wizard } from './Wizard';
 
@@ -209,7 +209,7 @@ describe('<Wizard />', () => {
     expect(queryByText('3')).toBeNull();
   });
 
-  it('Wizard displays tooltip upon hovering step', async () => {
+  it('Wizard displays tooltip upon hovering step', () => {
     jest.useFakeTimers();
 
     const wizard = (
@@ -241,15 +241,16 @@ describe('<Wizard />', () => {
     expect(container.querySelector('.iui-tooltip')).not.toBeNull();
     getByText('Step one tooltip');
 
-    await act(async () => {
+    act(() => {
       fireEvent.mouseLeave(getByText('Step One'), { bubbles: true });
-      await waitFor(() => expect(queryByText('Step one tooltip')).toBeNull());
     });
+    jest.runAllTimers();
+    expect(queryByText('Step one tooltip')).not.toBeVisible();
 
     act(() => {
       fireEvent.mouseEnter(getByText('Step Three'), { bubbles: true });
     });
-    expect(container.querySelector('.iui-tooltip')).toBeNull();
+    expect(container.querySelector('.iui-tooltip')).not.toBeVisible();
 
     jest.useRealTimers();
   });

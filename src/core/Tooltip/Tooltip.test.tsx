@@ -2,12 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 
 import { Tooltip } from './Tooltip';
 
-it('should toggle the visibility of tooltip (hover)', async () => {
+it('should toggle the visibility of tooltip on hover', () => {
   jest.useFakeTimers();
   const { getByText, queryByText } = render(
     <Tooltip content='some text'>
@@ -22,7 +22,7 @@ it('should toggle the visibility of tooltip (hover)', async () => {
 
   fireEvent.mouseLeave(getByText('Hover Here'));
   jest.runAllTimers();
-  await waitFor(() => expect(queryByText('some text')).toBeNull());
+  expect(queryByText('some text')).not.toBeVisible();
 
   jest.useRealTimers();
 });

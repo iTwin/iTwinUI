@@ -131,7 +131,7 @@ it('should set focus on select', () => {
     '.iui-select-button',
   ) as HTMLElement;
   expect(selectButton).toBeTruthy();
-  expect(document.activeElement).toEqual(selectButton);
+  expect(selectButton).toHaveFocus();
   expect(selectButton.getAttribute('tabIndex')).toBe('0');
 });
 
@@ -202,14 +202,14 @@ it('should respect visible prop', () => {
   expect(select).toBeTruthy();
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  expect(tippy.style.visibility).toEqual('visible');
+  expect(tippy).toBeVisible();
   assertMenu(document.querySelector('.iui-menu') as HTMLUListElement);
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  expect(tippy.style.visibility).toEqual('hidden');
+  expect(tippy).not.toBeVisible();
 
   rerender(<Select options={options} popoverProps={{ visible: true }} />);
-  expect(tippy.style.visibility).toEqual('visible');
+  expect(tippy).toBeVisible();
 });
 
 it.each(['Enter', ' ', 'Spacebar'])(
@@ -268,7 +268,7 @@ it('should show menu with disabled item', () => {
 });
 
 it('should show selected item in menu', () => {
-  const scrollSpy = spyOn(window.HTMLElement.prototype, 'scrollIntoView');
+  const scrollSpy = jest.spyOn(window.HTMLElement.prototype, 'scrollIntoView');
   const { container } = renderComponent({
     value: 1,
     options: [...new Array(3)].map((_, index) => ({
