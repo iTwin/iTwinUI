@@ -13,7 +13,7 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const pr = await github.repos.pulls.get({
+            const pr = await github.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: ${{ github.event.number }}
