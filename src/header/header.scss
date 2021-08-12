@@ -208,8 +208,6 @@
   overflow: hidden;
   padding-right: $iui-s;
 
-  
-
   > .iui-label {
     text-align: left;
     font-size: $iui-font-size;
@@ -381,19 +379,19 @@
       box-shadow: 0 $iui-xxs 0 0
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     }
-  
+
     .iui-label {
       @include themed {
         color: t(iui-icons-color-actionable-disabled);
       }
     }
-  
+
     .iui-icon {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
       }
     }
-  
+
     svg.iui-header-button-icon {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
