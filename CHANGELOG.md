@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### What's new
+
+### Fixes
+
+- **Fixed Split Header button active and disabled state styling**.
+
 ## [0.25.0]
 
 `2021-08-06`
