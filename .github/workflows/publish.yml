@@ -26,3 +26,25 @@ jobs:
         working-directory: './lib'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
+
+  fix-title:
+    name: Edit release title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update release title to match tag name
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const { data: release } = await github.repos.getReleaseByTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: ${{ github.ref }}
+            });
+            if (release.name !== release.tag_name) {
+              await github.repos.updateRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                id: release.id,
+                name: release.tag_name
+              });
+            }
