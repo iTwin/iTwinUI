@@ -1,0 +1,16 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release-please:
+    name: Create release PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          package-name: release-please-action
