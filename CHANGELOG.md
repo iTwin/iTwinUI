@@ -1,14 +1,13 @@
 # Changelog
 
-## Unreleased
+## [0.25.1]
 
-`Date`
-
-### What's new
+`2021-08-13`
 
 ### Fixes
 
-- **Fixed Split Header button active and disabled state styling**.
+- **Fixed Split Header button active and disabled state styling.**
+- **Remove iui-font-family from all components.**
 
 ## [0.25.0]
 
@@ -432,6 +431,7 @@
 
 - **Global style resets have 0 specificity now.**
 
+[0.25.1]: https://github.com/iTwin/iTwinUI/compare/v0.25.0...v0.25.1
 [0.25.0]: https://github.com/iTwin/iTwinUI/compare/v0.24.7...v0.25.0
 [0.24.7]: https://github.com/iTwin/iTwinUI/compare/v0.24.6...v0.24.7
 [0.24.6]: https://github.com/iTwin/iTwinUI/compare/v0.24.5...v0.24.6
