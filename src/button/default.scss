@@ -49,29 +49,25 @@
     &:enabled,
     &:enabled:hover,
     &:enabled:active {
-      @include iui-button-active;
-    }
-  }
-}
+      @include themed {
+        background: linear-gradient(
+          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+        ),
+          linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+      }
 
-@mixin iui-button-active {
-  @include themed {
-    background: linear-gradient(
-      rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-      rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-    ),
-      linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-  }
+      > .iui-label {
+        @include themed {
+          color: t(iui-color-foreground-primary);
+        }
+      }
 
-  > .iui-label {
-    @include themed {
-      color: t(iui-color-foreground-primary);
-    }
-  }
-
-  > .iui-icon {
-    @include themed {
-      fill: t(iui-icons-color-primary);
+      > .iui-icon {
+        @include themed {
+          fill: t(iui-icons-color-primary);
+        }
+      }
     }
   }
 }
