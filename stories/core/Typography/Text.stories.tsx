@@ -23,7 +23,7 @@ export default {
     title: { control: { disable: true } },
   },
   parameters: {
-    creevey: { skip: ['Skeleteon'] },
+    creevey: { skip: { stories: ['Skeleton'] } },
   },
 } as Meta<TextProps> & CreeveyMeta;
 

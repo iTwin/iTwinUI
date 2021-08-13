@@ -8,6 +8,7 @@ import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
 import { action } from '@storybook/addon-actions';
 import { useEffect, useState } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react';
+import { CreeveyStoryParams } from 'creevey';
 import React from 'react';
 import { Checkbox, Radio, ToggleSwitch } from '../../src/core';
 import { InputGroup } from '../../src/core/InputGroup';
@@ -59,6 +60,9 @@ export const RadioGroup: Story<InputGroupProps> = (args) => {
 RadioGroup.args = {
   label: 'Radio group',
   message: 'Tell me how happy you are',
+};
+RadioGroup.parameters = {
+  creevey: { delay: 200 } as CreeveyStoryParams,
 };
 
 export const CheckboxGroup: Story<InputGroupProps> = (args) => {

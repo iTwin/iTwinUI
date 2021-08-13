@@ -256,7 +256,7 @@ Submenu.parameters = {
         const menuItem = await this.browser.findElement({
           css: '.iui-menu-item:last-child',
         });
-        this.browser.actions().move({ origin: menuItem }).perform();
+        await this.browser.actions().move({ origin: menuItem }).perform();
         const hovered = await this.takeScreenshot();
 
         await this.expect({ closed, opened, hovered }).to.matchImages();

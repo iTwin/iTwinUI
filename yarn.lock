@@ -6191,10 +6191,10 @@ create-react-context@0.3.0:
     gud "^1.0.0"
     warning "^4.0.3"
 
-creevey@^0.7.31:
-  version "0.7.31"
-  resolved "https://registry.yarnpkg.com/creevey/-/creevey-0.7.31.tgz#6c240a1ac0fdde0c95b725528f0d64cd40635cfe"
-  integrity sha512-epNEPcVFT2DJfX6I25zIU5gEQ4fK7oAelDERFszW0PTjE2snnFUhr9pbWJN/UyVdr5LoeqbrEiziUVMdVnhJJw==
+creevey@^0.7.36:
+  version "0.7.36"
+  resolved "https://registry.yarnpkg.com/creevey/-/creevey-0.7.36.tgz#b30c0b9bc246433e5d4115f31352f96405a0decb"
+  integrity sha512-f7wnqcPGF6pxqzhqaaoIjcKkYRaVurcbDN++UeSiq/C58aN6fRo0jewWpDT80F266UDu4MUc2Wx8AgT5GXcQ4Q==
   dependencies:
     "@babel/code-frame" "^7.12.13"
     "@babel/generator" "^7.13.9"
@@ -6227,6 +6227,8 @@ creevey@^0.7.31:
     koa-static "^5.0.0"
     loader-utils "^2.0.0"
     lodash "^4.17.21"
+    loglevel "^1.7.1"
+    loglevel-plugin-prefix "^0.8.4"
     micromatch "^4.0.4"
     minimist "^1.2.5"
     mocha "~9.0.1"
@@ -9940,6 +9942,16 @@ log-symbols@4.1.0, log-symbols@^4.1.0:
   dependencies:
     chalk "^4.1.0"
     is-unicode-supported "^0.1.0"
+
+loglevel-plugin-prefix@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/loglevel-plugin-prefix/-/loglevel-plugin-prefix-0.8.4.tgz#2fe0e05f1a820317d98d8c123e634c1bd84ff644"
+  integrity sha512-WpG9CcFAOjz/FtNht+QJeGpvVl/cdR6P0z6OcXSkr8wFJOsV2GRj2j10JLfjuA4aYkcKCNIEqRGCyTife9R8/g==
+
+loglevel@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.1.tgz#005fde2f5e6e47068f935ff28573e125ef72f197"
+  integrity sha512-Hesni4s5UkWkwCGJMQGAh71PaLUmKFM60dHvq0zi/vDhhrzuk+4GgNbTXJ12YYQJn6ZKBDNIjYcuQGKudvqrIw==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
