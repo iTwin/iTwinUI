@@ -15,6 +15,7 @@
       width: auto;
       border-radius: 0;
       font-weight: $iui-font-weight-normal;
+      text-align: center;
       @include themed {
         background-color: t(iui-color-background-positive);
         border-color: t(iui-color-background-positive);

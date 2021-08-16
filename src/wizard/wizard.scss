@@ -70,7 +70,7 @@
   }
 
   // Future steps
-  &.iui-current ~ .iui-wizard-step {
+  &.iui-current ~ & {
     .iui-wizard-circle {
       @include themed {
         border: 1px solid t(iui-color-background-5);
