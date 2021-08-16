@@ -35,9 +35,6 @@
     height: $iui-l;
     justify-content: center;
     overflow-wrap: break-word;
-    padding: 0;
-    position: relative;
-    text-align: center;
     user-select: none;
     transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out, color $iui-speed-fast ease-out;
     @include themed {
