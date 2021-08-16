@@ -14,3 +14,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
           package-name: release-please-action
+          changelog-types: '[{"type":"feat","section":"What''s new"},{"type":"fix","section":"Fixes"}]'

@@ -175,7 +175,7 @@
     height: 100%;
 
     &[role='button'] {
-      @include iui-focus;
+      @include iui-header-button-focus;
       cursor: pointer;
 
       &:hover,
@@ -203,10 +203,27 @@
   }
 }
 
+@mixin iui-header-button-focus {
+  &:focus {
+    box-shadow: none;
+    outline-offset: -1px;
+
+    @include themed {
+      outline: 1px solid t(iui-color-foreground-primary);
+    }
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: 0;
+  }
+}
+
 @mixin iui-header-button {
   max-width: 25vw;
   overflow: hidden;
   padding-right: $iui-s;
+
+  @include iui-header-button-focus;
 
   > .iui-label {
     text-align: left;
