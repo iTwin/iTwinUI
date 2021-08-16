@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.25.2](https://www.github.com/iTwin/iTwinUI/compare/v0.25.1...v0.25.2) (2021-08-16)
+
+
+### Fixes
+
+* Use outline instead of box-shadow for header-button focus ([#240](https://www.github.com/iTwin/iTwinUI/issues/240)) ([8021f75](https://www.github.com/iTwin/iTwinUI/commit/8021f75f182963bbd141456d2e3d257bb42ed808))
+
 ### [0.25.1] (2021-08-13)
 
 ### Fixes
