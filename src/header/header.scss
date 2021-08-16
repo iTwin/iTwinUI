@@ -175,7 +175,7 @@
     height: 100%;
 
     &[role='button'] {
-      @include iui-focus;
+      @include iui-header-button-focus;
       cursor: pointer;
 
       &:hover,
