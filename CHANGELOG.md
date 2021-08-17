@@ -7,6 +7,7 @@
 ### What's new
 
 - **Added new `Fieldset` component** for grouping inputs.
+- **Added split variant to `HeaderButton`.** Used when both `onClick` and `menuItems` props are specified.
 
 ### Fixes
 

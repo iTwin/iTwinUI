@@ -96,6 +96,7 @@ export const Full: Story<HeaderProps> = (args) => {
           items={[
             <HeaderButton
               key='project'
+              onClick={() => action('Clicked on the Project')()}
               menuItems={buildMenu('Project')}
               name='Project A (Super Size Edition)'
               description='YJC-2249'
@@ -103,6 +104,7 @@ export const Full: Story<HeaderProps> = (args) => {
             />,
             <HeaderButton
               key='iModel'
+              onClick={() => action('Clicked on the iModel')()}
               menuItems={buildMenu('iModel')}
               name='iModel B'
               startIcon={
@@ -182,6 +184,7 @@ export const Basic: Story<HeaderProps> = (args) => {
               description='YJC-2249'
               startIcon={<SvgNetwork />}
               onClick={() => action('Clicked on the Project')()}
+              menuItems={buildMenu('Project')}
             />,
             <HeaderButton
               key='iModel'
@@ -197,7 +200,7 @@ export const Basic: Story<HeaderProps> = (args) => {
             <HeaderButton
               key='version'
               name='Version C'
-              onClick={() => action('Clicked on the Version')()}
+              menuItems={buildMenu('Version')}
               startIcon={<SvgVersion />}
               isActive={true}
             />,
@@ -242,6 +245,7 @@ export const CenterContent: Story<HeaderProps> = (args) => {
               description='YJC-2249'
               startIcon={<SvgNetwork />}
               onClick={() => action('Clicked on the Project')()}
+              menuItems={buildMenu('Project')}
             />,
             <HeaderButton
               key='iModel'

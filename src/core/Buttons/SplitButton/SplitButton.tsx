@@ -18,7 +18,7 @@ export type SplitButtonProps = {
   /**
    * Callback fired on clicking the primary button.
    */
-  onClick: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
   /**
    * Items in the dropdown menu.
    * Pass a function that takes the `close` argument (to close the menu),
@@ -30,16 +30,12 @@ export type SplitButtonProps = {
    * @default 'bottom-end'
    */
   menuPlacement?: Placement;
-  /*
-   * Style of the button.
-   * @default 'default'
-   */
-  styleType?: 'cta' | 'high-visibility' | 'default';
+
   /**
    * Content of primary button.
    */
   children: React.ReactNode;
-} & Omit<ButtonProps, 'styleType' | 'onClick'>;
+} & Omit<ButtonProps, 'onClick'>;
 
 /**
  * Split button component with a DropdownMenu.
@@ -80,7 +76,9 @@ export const SplitButton = (props: SplitButtonProps) => {
 
   return (
     <span
-      className={cx(className, 'iui-button-split-menu')}
+      className={cx(className, 'iui-button-split-menu', {
+        'iui-disabled': props.disabled,
+      })}
       style={style}
       title={title}
       ref={ref}
@@ -95,7 +93,7 @@ export const SplitButton = (props: SplitButtonProps) => {
         onShow={React.useCallback(() => setIsMenuOpen(true), [])}
         onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
-        <IconButton styleType={styleType} size={size}>
+        <IconButton styleType={styleType} size={size} disabled={props.disabled}>
           {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
         </IconButton>
       </DropdownMenu>

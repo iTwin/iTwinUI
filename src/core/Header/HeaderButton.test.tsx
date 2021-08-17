@@ -16,7 +16,7 @@ it('should render in its most basic state', () => {
   expect(container.querySelector('.iui-label > :first-child')).toBeTruthy();
 });
 
-it('render default button correctly', () => {
+it('should render default button correctly', () => {
   const { container } = render(<HeaderButton name={'MockName'} />);
 
   const root = container.querySelector(
@@ -29,7 +29,7 @@ it('render default button correctly', () => {
   expect(name?.textContent).toEqual('MockName');
 });
 
-it('render description correctly', () => {
+it('should render description correctly', () => {
   const { container } = render(
     <HeaderButton name={'MockName'} description={'MockDescription'} />,
   );
@@ -45,7 +45,7 @@ it('render description correctly', () => {
   expect(description?.textContent).toEqual('MockDescription');
 });
 
-it('render isActive correctly', () => {
+it('should render isActive correctly', () => {
   const { container } = render(
     <HeaderButton name={'MockName'} isActive={true} />,
   );
@@ -55,7 +55,56 @@ it('render isActive correctly', () => {
   expect(activeButton?.getAttribute('aria-current')).toEqual('location');
 });
 
-it('render startIcon correctly', () => {
+it('should render split button correctly', () => {
+  const itemOneOnClick = jest.fn();
+  const buttonOnClick = jest.fn();
+
+  const { container } = render(
+    <HeaderButton
+      name={'MockName'}
+      onClick={buttonOnClick}
+      menuItems={(close) => [
+        <MenuItem
+          key={0}
+          onClick={() => {
+            itemOneOnClick();
+            close();
+          }}
+        >
+          Test0
+        </MenuItem>,
+        <MenuItem key={1} onClick={close}>
+          Test1
+        </MenuItem>,
+        <MenuItem key={2} onClick={close}>
+          Test2
+        </MenuItem>,
+      ]}
+    />,
+  );
+
+  const splitButton = container.querySelector(
+    '.iui-header-split-button',
+  ) as HTMLButtonElement;
+  expect(splitButton).toBeTruthy();
+
+  const innerButtons = splitButton.querySelectorAll('.iui-borderless');
+  expect(innerButtons.length).toBe(2);
+
+  (innerButtons[0] as HTMLButtonElement).click();
+  expect(buttonOnClick).toBeCalled();
+
+  (innerButtons[1] as HTMLButtonElement).click();
+  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  expect(menu).toBeTruthy();
+  expect(document.querySelectorAll('li')).toHaveLength(3);
+  const menuItem = menu.querySelector('li') as HTMLLIElement;
+  expect(menuItem).toBeTruthy();
+  menuItem.click();
+  expect(itemOneOnClick).toBeCalled();
+});
+
+it('should render startIcon correctly', () => {
   const { container } = render(
     <HeaderButton name={'MockName'} startIcon={<SvgPlaceholder />} />,
   );
@@ -68,7 +117,7 @@ it('render startIcon correctly', () => {
   );
 });
 
-it('render menuItems correctly', () => {
+it('should render menuItems correctly', () => {
   // Summarized, as this is based on Dropdown button, which is tested independently.
   const itemOneOnClick = jest.fn();
   const { container } = render(

@@ -10,6 +10,8 @@ import {
   ButtonProps,
   DropdownButton,
   DropdownButtonProps,
+  SplitButton,
+  SplitButtonProps,
 } from '../Buttons';
 
 import { useTheme } from '../utils/hooks/useTheme';
@@ -34,6 +36,18 @@ export type HeaderButtonProps = {
   'children' | 'styleType'
 >;
 
+const isSplitButton = (
+  props: Partial<SplitButtonProps>,
+): props is SplitButtonProps => {
+  return !!props.menuItems && !!props.onClick;
+};
+
+const isDropdownButton = (
+  props: Partial<DropdownButtonProps>,
+): props is DropdownButtonProps => {
+  return !!props.menuItems;
+};
+
 /**
  * Header button that handles slim state of the `Header` it's in.
  * When in slim mode, will only display the name and reduce icon size.
@@ -49,7 +63,6 @@ export const HeaderButton = (props: HeaderButtonProps) => {
     name,
     description,
     isActive = false,
-    menuItems,
     className,
     startIcon,
     ...rest
@@ -57,7 +70,10 @@ export const HeaderButton = (props: HeaderButtonProps) => {
 
   useTheme();
 
-  const buttonProps: ButtonProps & { styleType: 'borderless' } = {
+  const buttonProps: ButtonProps & {
+    styleType: 'borderless';
+    menuItems?: (close: () => void) => JSX.Element[];
+  } = {
     startIcon: React.isValidElement(startIcon)
       ? React.cloneElement(startIcon as JSX.Element, {
           className: cx(
@@ -67,7 +83,14 @@ export const HeaderButton = (props: HeaderButtonProps) => {
         })
       : undefined,
     styleType: 'borderless',
-    className: cx('iui-header-button', { 'iui-active': isActive }, className),
+    className: cx(
+      {
+        'iui-header-button': !isSplitButton(props),
+        'iui-header-split-button': isSplitButton(props),
+        'iui-active': isActive,
+      },
+      className,
+    ),
     'aria-current': isActive ? 'location' : undefined,
     children: (
       <>
@@ -78,11 +101,13 @@ export const HeaderButton = (props: HeaderButtonProps) => {
     ...rest,
   };
 
-  return menuItems ? (
-    <DropdownButton {...buttonProps} menuItems={menuItems} />
-  ) : (
-    <Button {...buttonProps} />
-  );
+  if (isSplitButton(buttonProps)) {
+    return <SplitButton {...buttonProps} />;
+  }
+  if (isDropdownButton(buttonProps)) {
+    return <DropdownButton {...buttonProps} />;
+  }
+  return <Button {...buttonProps} />;
 };
 
 export default HeaderButton;
