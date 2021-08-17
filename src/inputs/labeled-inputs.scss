@@ -61,8 +61,8 @@
       color: t(iui-text-color-muted);
     }
 
-    > .iui-icon,
-    :not(.iui-button) .iui-icon {
+    > svg,
+    :not(.iui-button) svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
       margin-right: $iui-xs;
@@ -176,8 +176,7 @@
       color: t($foregroundColor);
     }
 
-    .iui-icon,
-    .iui-icon > * {
+    svg {
       @include themed {
         fill: t($foregroundColor);
       }
