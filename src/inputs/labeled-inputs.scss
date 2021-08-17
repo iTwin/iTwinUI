@@ -61,8 +61,7 @@
       color: t(iui-text-color-muted);
     }
 
-    > svg,
-    :not(.iui-button) svg {
+    .iui-message-status-icon {
       width: $iui-icons-default;
       height: $iui-icons-default;
       margin-right: $iui-xs;
@@ -109,8 +108,7 @@
     > .iui-message {
       margin: 0;
 
-      > .iui-icon,
-      :not(.iui-button) .iui-icon {
+      .iui-message-status-icon {
         margin-right: 0;
       }
     }
@@ -125,8 +123,7 @@
         right: 0;
         transform: translateY(-50%);
 
-        > .iui-icon,
-        :not(.iui-button) .iui-icon {
+        .iui-message-status-icon {
           margin-right: $iui-sm;
         }
       }
@@ -176,7 +173,7 @@
       color: t($foregroundColor);
     }
 
-    svg {
+    .iui-message-status-icon {
       @include themed {
         fill: t($foregroundColor);
       }

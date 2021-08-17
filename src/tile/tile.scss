@@ -63,11 +63,11 @@
       }
     }
 
-    > .iui-icon {
+    .iui-placeholder-icon {
       @include iui-icons-3xl;
     }
 
-    > .iui-picture ~ .iui-play-icon {
+    > .iui-picture ~ .iui-placeholder-icon {
       z-index: 1;
       cursor: pointer;
 
@@ -156,7 +156,7 @@
         color: t(iui-text-color);
       }
 
-      > .iui-icon {
+      .iui-tile-status-icon {
         @include iui-icons-default;
         margin-right: $iui-s;
         flex-shrink: 0;
@@ -196,7 +196,7 @@
         color: t(iui-text-color-muted);
       }
 
-      > .iui-icon {
+      .iui-metadata-icon {
         @include iui-icons-default;
         margin-right: $iui-s;
         flex-shrink: 0;

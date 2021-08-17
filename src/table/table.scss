@@ -400,7 +400,7 @@
     align-items: center;
     justify-content: center;
 
-    > .iui-icon {
+    svg:not(.iui-radial) {
       width: $iui-icons-default;
       height: $iui-icons-default;
     }
