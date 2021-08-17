@@ -120,10 +120,7 @@
 }
 
 @mixin iui-tabs-vertical {
-  flex-direction: row;
-
   .iui-tabs {
-    display: inline-flex;
     flex-direction: column;
 
     li,
