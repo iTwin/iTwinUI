@@ -57,7 +57,7 @@
 @mixin iui-breadcrumbs-separator {
   display: flex;
 
-  .iui-icon {
+  svg {
     @include iui-icons-small;
   }
 }
