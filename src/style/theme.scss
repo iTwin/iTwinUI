@@ -424,8 +424,8 @@ $fallback: null;
 //
 //  Usage example:
 //  @include themed {
-//    color: rgba(t(iui-color-background-1-rgb), 0.5);
-//    background-color: t(iui-color-background-2) !important;
+//    color: rgba(t(iui-color-background-1-rgb), t(iui-opacity-4));
+//    background-color: t(iui-color-background-2);
 //  }
 @mixin themed($property: null, $var: null) {
   $fallback: true !global;

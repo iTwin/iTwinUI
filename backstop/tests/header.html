@@ -752,7 +752,21 @@
 
     <hr />
 
-    <h2>Split Menu Buttons</h2>
+    <h2>
+      Split Menu Buttons
+      <label
+        id="disabled-toggle"
+        class="iui-toggle-switch"
+        style="display: inline-flex; vertical-align: middle; margin-left: 1em;"
+      >
+        <input type="checkbox" />
+        <span class="iui-toggle">
+          <span class="iui-handle"></span>
+        </span>
+        <span class="iui-label">Disabled</span>
+      </label>
+    </h2>
+
     <section id="demo-split">
 
       <header class="iui-page-header iui-slim">
@@ -825,7 +839,7 @@
             <!-- IModel Button -->
             <span class="iui-button-split-menu iui-header-split-button iui-active">
               <button
-                class="iui-button iui-borderless iui-active iui-large"
+                class="iui-button iui-borderless iui-large"
                 type="button"
                 aria-label="Model picker"
                 aria-expanded="false"
@@ -851,7 +865,7 @@
                 </span>
                 <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
               </button>
-              <button class="iui-button iui-borderless iui-active iui-large">
+              <button class="iui-button iui-borderless iui-large">
                 <svg
                   viewBox="0 0 16 16"
                   aria-hidden="true"
@@ -1010,7 +1024,7 @@
             <!-- IModel Button -->
             <span class="iui-button-split-menu iui-header-split-button iui-active">
               <button
-                class="iui-button iui-borderless iui-active iui-large iui-header-button"
+                class="iui-button iui-borderless iui-large iui-header-button"
                 type="button"
                 aria-label="Model picker"
                 aria-expanded="false"
@@ -1036,7 +1050,7 @@
                 </span>
               </button>
               <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-              <button class="iui-button iui-borderless iui-active iui-large iui-header-button">
+              <button class="iui-button iui-borderless iui-large iui-header-button">
                 <svg
                   viewBox="0 0 16 16"
                   aria-hidden="true"
@@ -1353,8 +1367,14 @@
   </body>
 
   <script>
-    const toggleSwitch = document.querySelector('#demo-slim-toggle input[type=checkbox]');
-    toggleSwitch.addEventListener('change', (e) => {
+    document.querySelector('#disabled-toggle input[type=checkbox]').addEventListener('change', (e) => {
+      document.querySelectorAll('#demo-split .iui-header-split-button').forEach((splitButton) => {
+        splitButton.classList.toggle('iui-disabled');
+        splitButton.querySelectorAll('button').forEach((button) => button.toggleAttribute('disabled'));
+      });
+    })
+
+    document.querySelector('#demo-slim-toggle input[type=checkbox]').addEventListener('change', (e) => {
       document.querySelector('#demo-slim-toggle .iui-page-header').classList.toggle('iui-slim');
     });
   </script>

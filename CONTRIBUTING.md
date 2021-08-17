@@ -66,6 +66,8 @@ We provide a script that can automatically create all the necessary files for yo
 
 - Add all your component styles in `src/[component-name]/[component-name].scss` file.
   - Break variables and mixins into separate files where possible.
+  - Use existing Sass variables for spacing (margin, padding, sizing, etc).
+  - Use [`themed`](https://github.com/iTwin/iTwinUI/blob/main/src/style/theme.scss#L430) mixin wherever color is involved.
 - Define classes for your mixin in `src/[component-name]/classes.scss` file.
   - *Running the `createComponent` command will do this for you.*
 - Make sure your component index and classes are imported in `src/index.scss` and `src/classes.scss`.
@@ -118,22 +120,6 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
     ```
   - More information about options can be found in [BackstopJS GitHub](https://github.com/garris/BackstopJS#advanced-scenarios).
 
-### Changelog
-
-The `CHANGELOG.md` file must be updated for any new components or changes that you add. At the top of the file, create an "unreleased" section with a placeholder date (if not already present).
-
-<details>
-<summary>Example</summary>
-
-```
-## Unreleased
-
-`Date`
-
-### What's new
-```
-</details>
-
 ---
 
 ## Committing your work
@@ -149,8 +135,7 @@ To enable us to quickly review and accept your pull requests, always create one 
   - `.html` file has all possible states of the component.
   - `.js` file has scenarios covering these cases.
   - All existing and new tests should pass.
-- Updated changelog.
 
-After verifying that your changes are ready, you can [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that an issue is linked to the pull request and that you have a proper description with screenshots.
+After verifying that your changes are ready, you can [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that the name of your pull request follows the [Conventional Commits spec](https://www.conventionalcommits.org/), and that you have a proper description with screenshots and a [closing keyword](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests).
 
 If your pull request changes an existing component, we ask that the description distinctly lists all visual changes that have occurred. These notes are used by the Visual Design team to update specifications and images within documentation.
