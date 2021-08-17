@@ -1,11 +1,13 @@
 # Changelog
 
-## Unreleased
+## [1.15.0]
 
-`Date`
+`2021-08-17`
 
 ### What's new
 
+- **Updated `Badge` styling** and added preset colors to `backgroundColor` prop.
+- **Added new polymorphic `Text` component.**
 - **Added new `Fieldset` component** for grouping inputs.
 - **Added new `density` prop to `Table`** to reduce row height for a condensed or extra-condensed table.
 - **Added split variant to `HeaderButton`.** Used when both `onClick` and `menuItems` props are specified.
@@ -457,6 +459,7 @@
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
 
+[1.15.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.14.1...v1.15.0
 [1.14.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.14.0...v1.14.1
 [1.14.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.13.1...v1.14.0
 [1.13.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.13.0...v1.13.1
