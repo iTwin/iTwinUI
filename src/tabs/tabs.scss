@@ -138,20 +138,14 @@
 }
 
 @mixin iui-tab-not-animated {
-  .iui-tab {
+  .iui-tab::after {
+    content: '';
+    position: absolute;
     @media (prefers-reduced-motion: no-preference) {
-      transition: box-shadow $iui-speed-fast ease-out;
+      transition: width $iui-speed-fast ease, height $iui-speed-fast ease;
     }
-    
-    &::after {
-      content: '';
-      position: absolute;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
-      }
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-      }
+    @include themed {
+      background-color: t(iui-color-foreground-primary);
     }
   }
 
