@@ -26,7 +26,11 @@ export const Basic: Story<FieldsetProps> = (args) => {
   const [value, setValue] = useState<number | undefined>(undefined);
 
   return (
-    <Fieldset legend='General Settings' {...args}>
+    <Fieldset
+      legend='General Settings'
+      style={{ display: 'flex', flexDirection: 'column', gap: 11 }}
+      {...args}
+    >
       <LabeledSelect
         label='Resolution'
         options={[
