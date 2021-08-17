@@ -7,6 +7,7 @@
 ### What's new
 
 - **Added new `Fieldset` component** for grouping inputs.
+- **Added new `density` prop to `Table`** to reduce row height for a condensed or extra-condensed table.
 - **Added split variant to `HeaderButton`.** Used when both `onClick` and `menuItems` props are specified.
 
 ### Fixes
