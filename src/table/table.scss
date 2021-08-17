@@ -285,7 +285,7 @@
       }
 
       img,
-      .iui-icon,
+      svg:not(.iui-radial),
       .iui-user-icon {
         filter: $iui-icons-color-multicolor-disabled;
       }
@@ -367,7 +367,7 @@
     }
   }
 
-  .iui-cell-end-icon > .iui-icon {
+  .iui-cell-end-icon svg {
     @include themed {
       fill: t(iui-icons-color-#{$status});
     }

@@ -15,7 +15,7 @@ $tick-height: $iui-baseline; // 11px
     user-select: all;
     margin-top: $iui-xxs;
 
-    > .iui-icon {
+    svg {
       @include iui-icons-default;
       margin-top: $iui-xs;
     }
