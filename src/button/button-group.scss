@@ -3,7 +3,7 @@
 @import '../style/index';
 
 @mixin iui-button-group {
-  display: inline-flex;
+  display: flex;
   align-items: center;
 
   > .iui-button {
