@@ -5,6 +5,8 @@
 @mixin iui-button-split-menu {
   @include iui-button-group;
 
+  display: inline-flex;
+
   &:hover {
     @include themed {
       background-color: rgba(
