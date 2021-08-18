@@ -34,47 +34,21 @@
   }
 
   @at-root {
-    .iui-horizontal & {
-      .iui-tab {
-        &::after {
-          width: 100%;
-          height: 0;
-        }
-
-        &.iui-active::after {
-          height: $iui-xxs;
-        }
-      }
-
-      ~ .iui-tabs-content {
-        margin-top: -$iui-xxs;
-        @include themed {
-          border-top: $iui-xxs solid t(iui-color-background-4);
-        }
+    .iui-horizontal & ~ .iui-tabs-content {
+      margin-top: -$iui-xxs;
+      @include themed {
+        border-top: $iui-xxs solid t(iui-color-background-4);
       }
     }
   }
 
   @at-root {
-    .iui-vertical & {
-      .iui-tab {
-        &::after {
-          width: 0;
-          height: 100%;
-        }
-
-        &.iui-active::after {
-          width: $iui-xxs;
-        }
-      }
-
-      ~ .iui-tabs-content {
-        margin-left: -$iui-xxs;
-        padding-left: $iui-sm;
-        padding-right: $iui-sm;
-        @include themed {
-          border-left: $iui-xxs solid t(iui-color-background-4);
-        }
+    .iui-vertical & ~ .iui-tabs-content {
+      margin-left: -$iui-xxs;
+      padding-left: $iui-sm;
+      padding-right: $iui-sm;
+      @include themed {
+        border-left: $iui-xxs solid t(iui-color-background-4);
       }
     }
   }

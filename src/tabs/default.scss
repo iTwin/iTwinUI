@@ -5,7 +5,7 @@
 
 @mixin iui-tabs-default {
   @include iui-tab-not-animated;
-  
+
   .iui-tab {
     height: $iui-component-height;
     padding: 0 $iui-m;
@@ -18,9 +18,6 @@
     &::after {
       top: 0;
       left: 0;
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-      }
     }
 
     &:hover {
@@ -44,19 +41,8 @@
 
   @at-root {
     .iui-horizontal & {
-      .iui-tab {
-        &::after {
-          width: 100%;
-          height: 0;
-        }
-
-        &.iui-active {
-          border-bottom-color: transparent;
-
-          &::after {
-            height: $iui-xxs;
-          }
-        }
+      .iui-tab.iui-active {
+        border-bottom-color: transparent;
       }
 
       :not(:first-child) .iui-tab {
@@ -71,19 +57,8 @@
 
   @at-root {
     .iui-vertical & {
-      .iui-tab {
-        &::after {
-          width: 0;
-          height: 100%;
-        }
-
-        &.iui-active {
-          border-right-color: transparent;
-
-          &::after {
-            width: $iui-xxs;
-          }
-        }
+      .iui-tab.iui-active {
+        border-right-color: transparent;
       }
 
       :not(:first-child) .iui-tab {
