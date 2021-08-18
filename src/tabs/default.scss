@@ -4,6 +4,8 @@
 @import './tabs';
 
 @mixin iui-tabs-default {
+  @include iui-tab-not-animated;
+  
   .iui-tab {
     height: $iui-component-height;
     padding: 0 $iui-m;

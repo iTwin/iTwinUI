@@ -13,14 +13,6 @@
   &.iui-vertical {
     @include iui-tabs-vertical;
   }
-
-  &.iui-animated {
-    @include iui-tab-animated;
-  }
-
-  &.iui-not-animated {
-    @include iui-tab-not-animated;
-  }
 }
 
 .iui-tabs {
@@ -36,5 +28,13 @@
 
   &.iui-pill {
     @include iui-tabs-pill;
+  }
+
+  &.iui-animated {
+    @include iui-tab-animated;
+  }
+
+  &.iui-not-animated {
+    @include iui-tab-not-animated;
   }
 }
