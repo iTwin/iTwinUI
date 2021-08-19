@@ -2,14 +2,26 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-wizards {
-  @include iui-wizards;
+.iui-wizard {
+  @include iui-wizard;
+
+  &.iui-long {
+    @include iui-wizard-long;
+  }
+
+  &.iui-workflow {
+    @include iui-wizard-workflow;
+  }
 }
 
-.iui-wizards-long {
-  @include iui-wizards-long;
+.iui-wizard-step {
+  @include iui-wizard-step;
 }
 
-.iui-wizards-workflow {
-  @include iui-wizards-workflow;
+.iui-wizard-track-content {
+  @include iui-wizard-track-content;
+}
+
+.iui-wizard-step-name {
+  @include iui-wizard-step-name;
 }

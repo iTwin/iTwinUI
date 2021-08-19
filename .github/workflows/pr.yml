@@ -1,0 +1,25 @@
+name: PR
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+    branches: [main]
+
+jobs:
+  check-pr-title:
+    name: Title follows conventional commits
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const { data: { title } } = await github.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: ${{ github.event.number }}
+            });
+            if (!/^(.+)(?:(([^)s]+)))?: (.+)/.test(title)) {
+              console.error('PR title should follow the conventional commits spec: https://www.conventionalcommits.org');
+              process.exit(1);
+            }

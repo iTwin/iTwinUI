@@ -7,6 +7,7 @@ module.exports = [
   }),
   scenario('Type Header', {
     selectors: ['#demo-header'],
+    misMatchThreshold: 0.01,
   }),
 
   // Hover & focus states

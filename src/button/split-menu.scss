@@ -44,4 +44,10 @@
       );
     }
   }
+
+  &.iui-disabled {
+    @include themed {
+      background-color: transparent;
+    }
+  }
 }
