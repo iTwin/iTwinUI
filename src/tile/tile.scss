@@ -64,6 +64,7 @@
     }
 
     .iui-placeholder-icon {
+      display: inline-block;
       @include iui-icons-3xl;
     }
 
@@ -158,6 +159,7 @@
 
       .iui-tile-status-icon {
         @include iui-icons-default;
+        display: inline-block;
         margin-right: $iui-s;
         flex-shrink: 0;
       }
@@ -198,6 +200,7 @@
 
       .iui-metadata-icon {
         @include iui-icons-default;
+        display: inline-block;
         margin-right: $iui-s;
         flex-shrink: 0;
       }

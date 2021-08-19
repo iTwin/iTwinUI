@@ -64,6 +64,7 @@
     .iui-message-status-icon {
       width: $iui-icons-default;
       height: $iui-icons-default;
+      display: inline-block;
       margin-right: $iui-xs;
       @include themed {
         fill: t(iui-icons-color);

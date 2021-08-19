@@ -102,6 +102,7 @@
   // Sort icon
   .iui-sort {
     visibility: hidden;
+    display: inline-block;
     @include themed {
       fill: t(iui-icons-color);
     }
@@ -165,8 +166,9 @@
       visibility: visible;
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      .iui-row-expander > .iui-icon {
+    .iui-row-expander > .iui-icon {
+      display: inline-block;
+      @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
     }
