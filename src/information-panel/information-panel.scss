@@ -132,5 +132,9 @@
       align-items: center;
       gap: 8px;
     }
+
+    label {
+      cursor: pointer;
+    }
   }
 }
