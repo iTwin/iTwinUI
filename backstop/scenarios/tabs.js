@@ -6,8 +6,16 @@ module.exports = [
     selectors: ['#demo-default'],
     viewports: [{ width: 800, height: 600 }],
   }),
+  scenario('Type default vertical', {
+    selectors: ['#demo-default-vertical'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
   scenario('Type borderless', {
     selectors: ['#demo-borderless'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
+  scenario('Type borderless vertical', {
+    selectors: ['#demo-borderless-vertical'],
     viewports: [{ width: 800, height: 600 }],
   }),
   scenario('Type pill', {

@@ -31,6 +31,11 @@
     justify-content: center;
     border-radius: $iui-border-radius;
 
+    &::after {
+      bottom: 0;
+      left: 0;
+    }
+
     &:hover {
       @include themed {
         background-color: rgba(
