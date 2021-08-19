@@ -3,7 +3,16 @@
 @import './index';
 
 .iui-tabs-wrapper {
+  display: flex;
   position: relative;
+
+  &.iui-horizontal {
+    @include iui-tabs-horizontal;
+  }
+
+  &.iui-vertical {
+    @include iui-tabs-vertical;
+  }
 }
 
 .iui-tabs {
@@ -16,7 +25,7 @@
   &.iui-borderless {
     @include iui-tabs-borderless;
   }
-  
+
   &.iui-pill {
     @include iui-tabs-pill;
   }
