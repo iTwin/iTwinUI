@@ -65,6 +65,7 @@ export const HeaderButton = (props: HeaderButtonProps) => {
     isActive = false,
     className,
     startIcon,
+    menuItems,
     ...rest
   } = props;
 
@@ -98,6 +99,7 @@ export const HeaderButton = (props: HeaderButtonProps) => {
         {description && <div className='iui-description'>{description}</div>}
       </>
     ),
+    ...(!!menuItems && { menuItems }),
     ...rest,
   };
 
