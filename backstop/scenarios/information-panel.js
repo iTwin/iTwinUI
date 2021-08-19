@@ -5,7 +5,8 @@
 const { scenario } = require('../scenarioHelper');
 
 module.exports = [
-  scenario('default', {
-    selectors: ['#demo-default'],
+  // Information panel types
+  scenario('Type default', {
+    selectors: ['#demo-edit'],
   }),
 ];
