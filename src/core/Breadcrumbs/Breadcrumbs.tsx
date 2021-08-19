@@ -8,8 +8,8 @@ import { useTheme } from '../utils/hooks/useTheme';
 import { CommonProps } from '../utils/props';
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import '@itwin/itwinui-css/css/breadcrumbs.css';
-import { useResizeObserver } from '../utils/hooks/useResizeObserver';
 import { useMergedRefs } from '../utils/hooks/useMergedRefs';
+import { useOverflow } from '../utils/hooks/useOverflow';
 
 export type BreadcrumbsProps = {
   /**
@@ -62,48 +62,8 @@ export const Breadcrumbs = React.forwardRef(
 
     useTheme();
 
-    const breadcrumbsRef = React.useRef<HTMLElement>(null);
-
-    const [visibleCount, setVisibleCount] = React.useState(items.length);
-    const overflowBreakpoints = React.useRef<number[]>([]);
-
-    React.useLayoutEffect(() => {
-      setVisibleCount(items.length);
-      overflowBreakpoints.current = [];
-    }, [items]);
-
-    const [breadcrumbsWidth, setBreadcrumbsWith] = React.useState<number>(0);
-    const updateBreadcrumbsWidth = React.useCallback(
-      ({ width }) => setBreadcrumbsWith(width),
-      [],
-    );
-    const [resizeRef] = useResizeObserver(updateBreadcrumbsWidth);
-    const refs = useMergedRefs(breadcrumbsRef, resizeRef, ref);
-
-    React.useLayoutEffect(() => {
-      if (!breadcrumbsRef.current) {
-        return;
-      }
-
-      // hide items when there's no space available
-      if (
-        breadcrumbsRef.current.offsetWidth <
-          breadcrumbsRef.current.scrollWidth &&
-        visibleCount > 1
-      ) {
-        setVisibleCount((count) => count - 1);
-        overflowBreakpoints.current.push(breadcrumbsRef.current.offsetWidth);
-      }
-      // restore items when there's enough space again
-      else if (
-        overflowBreakpoints.current.length > 0 &&
-        breadcrumbsRef.current.offsetWidth >
-          overflowBreakpoints.current[overflowBreakpoints.current.length - 1]
-      ) {
-        setVisibleCount((count) => count + 1);
-        overflowBreakpoints.current.pop();
-      }
-    }, [breadcrumbsWidth, visibleCount]);
+    const [overflowRef, visibleCount] = useOverflow(items);
+    const refs = useMergedRefs(overflowRef, ref);
 
     const Separator = () => (
       <li className='iui-breadcrumbs-separator' aria-hidden>
