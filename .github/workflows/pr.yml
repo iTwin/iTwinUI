@@ -20,6 +20,6 @@ jobs:
               pull_number: ${{ github.event.number }}
             });
             if (!/^(.+)(?:(([^)s]+)))?: (.+)/.test(title)) {
-              console.error('PR title should follow the conventional commits spec (https://www.conventionalcommits.org).');
+              console.error('PR title should follow the conventional commits spec: https://www.conventionalcommits.org');
               process.exit(1);
             }
