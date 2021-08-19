@@ -1,0 +1,47 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-color-picker {
+  width: 250px;
+  border-radius: 6px;
+  box-shadow: $iui-elevation-2;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 10px;
+  padding-top: 10px;
+  @include themed {  background: rgb(255, 255, 255);}
+
+
+  .iui-color-option {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &.iui-light {
+      box-shadow: $iui-elevation-2;
+    }
+
+    &.iui-active {
+      @include themed {
+        box-shadow: 0 0 0 2pt rgb(100, 149, 237);
+      }
+    }
+
+    &:hover { 
+      @include themed {
+        box-shadow: 0 0 0 2pt rgb(170, 170, 170);
+      }
+    }
+
+    &:focus,
+    &:focus-visible {
+      @include themed {
+        box-shadow: 0 0 2pt 2pt rgb(170, 170, 170);
+      }
+    }
+  }
+};
