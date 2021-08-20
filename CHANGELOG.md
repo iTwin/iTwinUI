@@ -2,7 +2,6 @@
 
 ### [0.26.1](https://www.github.com/iTwin/iTwinUI/compare/v0.26.0...v0.26.1) (2021-08-20)
 
-
 ### Fixes
 
 * **Wizard:** allow placing tooltip inside wizard wrapper ([#257](https://www.github.com/iTwin/iTwinUI/issues/257)) ([8aa853d](https://www.github.com/iTwin/iTwinUI/commit/8aa853d4d60659d019338a7249f2c50c9a5bf17e))
