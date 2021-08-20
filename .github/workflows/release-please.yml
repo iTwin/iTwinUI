@@ -61,7 +61,7 @@ jobs:
               await github.repos.updateRelease({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                id: release.id,
+                release_id: release.id,
                 name: release.tag_name
               });
             }
