@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.26.0](https://www.github.com/iTwin/iTwinUI/compare/v0.25.2...v0.26.0) (2021-08-20)
+
+
+### Fixes
+
+* Workflow diagram uses correct styling for intermediate steps ([935d79d](https://www.github.com/iTwin/iTwinUI/commit/935d79d83a8d5e594bc51a9af912fe4394378260))
+
+
+### What's new
+
+* **Icons:** size variables are now exported ([#254](https://www.github.com/iTwin/iTwinUI/issues/254)) ([6d25526](https://www.github.com/iTwin/iTwinUI/commit/6d25526341c59b17b12d0a0d3ea63827d62b75ec))
+* **Tabs:** Add vertical modifier to default and borderless tabs ([#233](https://www.github.com/iTwin/iTwinUI/issues/233)) ([5b9c5f4](https://www.github.com/iTwin/iTwinUI/commit/5b9c5f42dcf42cc449a191459e8824b3de89953f))
+* Updated wizard styles and classnames ([935d79d](https://www.github.com/iTwin/iTwinUI/commit/935d79d83a8d5e594bc51a9af912fe4394378260))
+
 ### [0.25.2](https://www.github.com/iTwin/iTwinUI/compare/v0.25.1...v0.25.2) (2021-08-16)
 
 
