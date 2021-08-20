@@ -23,3 +23,4 @@ jobs:
               console.error('PR title should follow the conventional commits spec: https://www.conventionalcommits.org');
               process.exit(1);
             }
+            console.log(await github.repos.getLatestRelease({ ...context.repo });
