@@ -14,8 +14,6 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const { data: release } = await github.repos.getLatestRelease({ ...context.repo });
-            console.log(release.tag_name, release.name);
             const { data: { title } } = await github.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
