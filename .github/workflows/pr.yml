@@ -14,6 +14,7 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
+            console.log(await github.repos.getLatestRelease({ ...context.repo }));
             const { data: { title } } = await github.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -23,4 +24,3 @@ jobs:
               console.error('PR title should follow the conventional commits spec: https://www.conventionalcommits.org');
               process.exit(1);
             }
-            console.log(await github.repos.getLatestRelease({ ...context.repo });
