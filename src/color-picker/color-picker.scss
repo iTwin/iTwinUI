@@ -1,47 +1,43 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../menu/index';
 
 @mixin iui-color-picker {
-  width: 250px;
-  border-radius: 6px;
-  box-shadow: $iui-elevation-2;
+  @include iui-dropdown;
+  width: $iui-baseline * 27;
+  border-radius: $iui-border-radius;
   display: flex;
   flex-wrap: wrap;
-  padding-left: 10px;
-  padding-top: 10px;
-  @include themed {  background: rgb(255, 255, 255);}
+  padding-left: $iui-sm;
+  padding-top: $iui-sm;
+}
 
+@mixin iui-color-option {
+  @include iui-focus;
+  height: $iui-l;
+  width: $iui-l;
+  margin-right: $iui-sm;
+  margin-bottom: $iui-sm;
+  cursor: pointer;
+  border-radius: $iui-border-radius;
+  background-color: var(--option-color);
 
-  .iui-color-option {
-    height: 20px;
-    width: 20px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    border-radius: 4px;
+  @include themed {
+    box-shadow: inset 0 0 0 $iui-xxs
+      rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+  }
 
-    &.iui-light {
-      box-shadow: $iui-elevation-2;
-    }
-
-    &.iui-active {
-      @include themed {
-        box-shadow: 0 0 0 2pt rgb(100, 149, 237);
-      }
-    }
-
-    &:hover { 
-      @include themed {
-        box-shadow: 0 0 0 2pt rgb(170, 170, 170);
-      }
-    }
-
-    &:focus,
-    &:focus-visible {
-      @include themed {
-        box-shadow: 0 0 2pt 2pt rgb(170, 170, 170);
-      }
+  &.iui-active {
+    @include themed {
+      box-shadow: 0 0 0 $iui-xxs t(iui-color-foreground-primary);
     }
   }
-};
+
+  &:hover {
+    @include themed {
+      box-shadow: 0 0 0 $iui-xxs
+        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+    }
+  }
+} ;
