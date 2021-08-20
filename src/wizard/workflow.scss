@@ -23,8 +23,8 @@
       }
     }
 
-    &:first-child .iui-wizard-circle,
-    &:last-child .iui-wizard-circle {
+    &:first-of-type .iui-wizard-circle,
+    &:last-of-type .iui-wizard-circle {
       border-radius: $iui-sm;
       @include themed {
         background-color: t(iui-color-background-1);
