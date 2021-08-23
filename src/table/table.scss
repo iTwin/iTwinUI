@@ -193,24 +193,7 @@
 
     &.iui-expanded-content {
       overflow: hidden;
-
-      &.iui-enter {
-        opacity: 0;
-      }
-
-      &.iui-enter-active {
-        opacity: 1;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
-        }
-      }
-
-      &.iui-exit-active {
-        opacity: 0;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
-        }
-      }
+      @include iui-transition-group;
     }    
 
     // #region Selection
