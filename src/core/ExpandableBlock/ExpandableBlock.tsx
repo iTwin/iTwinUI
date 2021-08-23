@@ -6,6 +6,7 @@ import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps } from '../utils/props';
+import { CSSTransition } from 'react-transition-group';
 
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/expandable-block.css';
@@ -56,10 +57,11 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
   useTheme();
 
   const [expanded, setExpanded] = React.useState(isExpanded);
-
   React.useEffect(() => {
     setExpanded(isExpanded);
   }, [isExpanded]);
+
+  const expandedHeight = React.useRef(0);
 
   const handleToggle = () => {
     setExpanded(!expanded);
@@ -98,7 +100,31 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         <div className='iui-title'>{title}</div>
         {caption && <div className='iui-caption'>{caption}</div>}
       </div>
-      <div className='iui-expandable-content'>{children}</div>
+
+      <CSSTransition
+        in={expanded}
+        timeout={200}
+        unmountOnExit={true}
+        onEnter={(node) => (node.style.height = `0px`)}
+        onEntering={(node) =>
+          (node.style.height = `${expandedHeight.current}px`)
+        }
+        onEntered={(node) => (node.style.height = 'auto')}
+        onExit={(node) => (node.style.height = `${expandedHeight.current}px`)}
+        onExiting={(node) => (node.style.height = `0px`)}
+        classNames='iui'
+      >
+        <div
+          className='iui-expandable-content'
+          ref={(ref) => {
+            if (ref) {
+              expandedHeight.current = ref.offsetHeight;
+            }
+          }}
+        >
+          <div>{children}</div>
+        </div>
+      </CSSTransition>
     </div>
   );
 };
