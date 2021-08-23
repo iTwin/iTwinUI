@@ -26,7 +26,7 @@
     <script>
       customElements.define('expandable-content', class extends HTMLElement {
         connectedCallback() {
-          const innerHTML = `<div class="iui-expandable-content"><div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div></div>`;
+          const innerHTML = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`;
           this.parentElement.insertAdjacentHTML('beforeend', innerHTML);
           this.remove();
         }
@@ -84,7 +84,11 @@
           Expandable block title
         </div>
       </div>
-      <expandable-content></expandable-content>
+      <div class="iui-expandable-content">
+        <div>
+          <expandable-content></expandable-content>
+        </div>
+      </div>
     </div>
 
     <hr />
@@ -146,7 +150,11 @@
           Expanded block caption
         </div>
       </div>
-      <expandable-content></expandable-content>
+      <div class="iui-expandable-content">
+        <div>
+          <expandable-content></expandable-content>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -156,7 +164,7 @@
           if (el.nextElementSibling?.classList.contains('iui-expandable-content')) {
             el.nextElementSibling.remove();
           } else {
-            el.insertAdjacentHTML('afterend', '<expandable-content></expandable-content>')
+            el.insertAdjacentHTML('afterend', '<div class="iui-expandable-content"><div><expandable-content></expandable-content></div></div>')
           }
         });
       });

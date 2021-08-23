@@ -91,24 +91,7 @@
       padding: $iui-baseline $iui-sm;
     }
 
-    // #region react-transition-group classes
-    &.iui-enter,
-    &.iui-exit-active {
-      opacity: 0;
-    }
-
-    &.iui-exit,
-    &.iui-enter-active {
-      opacity: 1;
-    }
-
-    &.iui-enter-active,
-    &.iui-exit-active {
-      @media (prefers-reduced-motion: no-preference) {
-        transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
-      }
-    }
-    // #endregion
+    @include iui-transition-group;
   }
 
   &:hover {
