@@ -122,8 +122,9 @@ it('should render disabled select', () => {
   expect(document.querySelector('.iui-menu')).toBeNull();
 });
 
-it('should set focus on select', () => {
-  const { container } = renderComponent({ setFocus: true });
+it('should set focus on select and call onBlur', () => {
+  const onBlur = jest.fn();
+  const { container } = renderComponent({ setFocus: true, onBlur });
 
   const select = container.querySelector('.iui-select') as HTMLElement;
   assertSelect(select);
@@ -133,6 +134,11 @@ it('should set focus on select', () => {
   expect(selectButton).toBeTruthy();
   expect(selectButton).toHaveFocus();
   expect(selectButton.getAttribute('tabIndex')).toBe('0');
+  expect(onBlur).not.toHaveBeenCalled();
+
+  fireEvent.click(selectButton);
+  expect(selectButton).not.toHaveFocus();
+  expect(onBlur).toHaveBeenCalled();
 });
 
 it('should render select with custom className', () => {
@@ -411,4 +417,23 @@ it('should render sublabel', () => {
     expect(sublabel).toBeTruthy();
     expect(sublabel.textContent).toEqual(`Sublabel ${index}`);
   });
+});
+
+it('should pass custom props to menu item', () => {
+  const { container } = renderComponent({
+    options: [
+      {
+        label: `Test`,
+        value: 1,
+        className: 'test-class',
+        'data-value': 'Test one',
+      },
+    ],
+  });
+
+  fireEvent.click(container.querySelector('.iui-select-button') as HTMLElement);
+  const menuItem = container.querySelector(
+    '.iui-menu-item.test-class',
+  ) as HTMLElement;
+  expect(menuItem.getAttribute('data-value')).toBe('Test one');
 });

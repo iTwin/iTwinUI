@@ -51,7 +51,11 @@ export type SelectOption<T> = {
    * Item is disabled.
    */
   disabled?: boolean;
-};
+  /**
+   * Any other props.
+   */
+  [key: string]: unknown;
+} & CommonProps;
 
 export type SelectProps<T> = {
   /**
@@ -109,7 +113,10 @@ export type SelectProps<T> = {
    */
   popoverProps?: Omit<PopoverProps, 'onShow' | 'onHide' | 'disabled'>;
 } & Pick<PopoverProps, 'onShow' | 'onHide'> &
-  CommonProps;
+  Omit<
+    React.ComponentPropsWithoutRef<'div'>,
+    'size' | 'disabled' | 'placeholder' | 'onChange'
+  >;
 
 /**
  * Select component to select value from options.
