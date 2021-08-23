@@ -61,9 +61,8 @@ import {
 declare module 'react-table' {
   export type FieldType = 'text' | 'number' | 'date' | string;
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration
-  export interface TableOptions<
-    D extends object = {}
-  > extends UseTableOptions<D>,
+  export interface TableOptions<D extends object = {}>
+    extends Omit<UseTableOptions<D>, 'data'>,
       UseRowSelectOptions<D>,
       UseExpandedOptions<D>,
       UseFiltersOptions<D>,
@@ -72,7 +71,16 @@ declare module 'react-table' {
       // UsePaginationOptions<D>,
       // UseResizeColumnsOptions<D>,
       // UseRowStateOptions<D>,
-      UseSortByOptions<D> {}
+      UseSortByOptions<D> {
+    /**
+     * Table data list.
+     * Must be memoized.
+     *
+     * Supports expandable sub-rows using the `subRows` field in data entries.
+     * If some rows don't have sub-data, it is recommended to pass an empty array to `subRows` for consistent spacing.
+     */
+    data: D[];
+  }
 
   export interface Hooks<D extends object = {}>
     extends UseExpandedHooks<D>,
@@ -149,5 +157,7 @@ declare module 'react-table' {
     extends UseExpandedRowProps<D>,
       UseGroupByRowProps<D>,
       UseRowSelectRowProps<D>,
-      UseRowStateRowProps<D> {}
+      UseRowStateRowProps<D> {
+    initialSubRows: Row<D>[];
+  }
 }

@@ -30,12 +30,18 @@ import { getCellStyle } from './utils';
 import { TableRowMemoized } from './TableRowMemoized';
 import { FilterToggle, TableFilterValue } from './filters';
 import { customFilterFunctions } from './filters/customFilterFunctions';
-import { useExpanderCell, useSelectionCell } from './hooks';
+import {
+  useExpanderCell,
+  useSelectionCell,
+  useSubRowFiltering,
+  useSubRowSelection,
+} from './hooks';
 import {
   onExpandHandler,
   onFilterHandler,
   onSelectHandler,
 } from './actionHandlers';
+import { onSingleSelectHandler } from './actionHandlers/selectHandler';
 
 const singleRowSelectedAction = 'singleRowSelected';
 
@@ -189,6 +195,7 @@ export const Table = <
   props: TableProps<T>,
 ): JSX.Element => {
   const {
+    data,
     columns,
     isLoading = false,
     emptyTableContent,
@@ -213,6 +220,8 @@ export const Table = <
     isRowDisabled,
     rowProps,
     density = 'default',
+    selectSubRows = true,
+    getSubRows,
     ...rest
   } = props;
 
@@ -256,10 +265,14 @@ export const Table = <
           onExpandHandler(newState, instance, onExpand);
           break;
         case singleRowSelectedAction: {
-          newState = {
-            ...newState,
-            selectedRowIds: { [action.id]: true } as Record<string, boolean>,
-          };
+          newState = onSingleSelectHandler(
+            newState,
+            action,
+            instance,
+            onSelect,
+            isRowDisabled,
+          );
+          break;
         }
         case TableActions.toggleRowSelected:
         case TableActions.toggleAllRowsSelected:
@@ -277,6 +290,17 @@ export const Table = <
     [isRowDisabled, onExpand, onFilter, onSelect, onSort, stateReducer],
   );
 
+  const filterTypes = React.useMemo(
+    () => ({ ...customFilterFunctions, ...filterFunctions }),
+    [filterFunctions],
+  );
+
+  const hasAnySubRows = React.useMemo(() => {
+    return data.some((item, index) =>
+      getSubRows ? getSubRows(item, index) : item.subRows,
+    );
+  }, [data, getSubRows]);
+
   const instance = useTable<T>(
     {
       ...props,
@@ -284,13 +308,18 @@ export const Table = <
       defaultColumn,
       disableSortBy: !isSortable,
       stateReducer: tableStateReducer,
-      filterTypes: { ...customFilterFunctions, ...filterFunctions },
+      filterTypes,
+      selectSubRows,
+      data,
+      getSubRows,
     },
     useFlexLayout,
     useFilters,
+    useSubRowFiltering(hasAnySubRows),
     useSortBy,
     useExpanded,
     useRowSelect,
+    useSubRowSelection,
     useExpanderCell(subComponent, expanderCell, isRowDisabled),
     useSelectionCell(isSelectable, isRowDisabled),
   );
@@ -301,7 +330,6 @@ export const Table = <
     headerGroups,
     getTableBodyProps,
     prepareRow,
-    data,
     state,
     allColumns,
     filteredFlatRows,
@@ -418,6 +446,9 @@ export const Table = <
                 onClick={onRowClickHandler}
                 subComponent={subComponent}
                 isDisabled={!!isRowDisabled?.(row.original)}
+                tableHasSubRows={hasAnySubRows}
+                tableInstance={instance}
+                expanderCell={expanderCell}
               />
             );
           })}

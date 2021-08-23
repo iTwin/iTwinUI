@@ -4,11 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { Row, TableState } from 'react-table';
+import { CellProps, Row, TableInstance, TableState } from 'react-table';
 import { useIntersection } from '../utils/hooks/useIntersection';
 import { getCellStyle } from './utils';
 import { CSSTransition } from 'react-transition-group';
 import { useMergedRefs } from '../utils/hooks/useMergedRefs';
+import { SELECTION_CELL_ID } from './hooks';
+import SubRowExpander from './SubRowExpander';
 
 /**
  * Memoization is needed to avoid unnecessary re-renders of all rows when additional data is added when lazy-loading.
@@ -23,10 +25,13 @@ const TableRow = <T extends Record<string, unknown>>(props: {
   onRowInViewport: React.MutableRefObject<((rowData: T) => void) | undefined>;
   onBottomReached: React.MutableRefObject<(() => void) | undefined>;
   intersectionMargin: number;
-  state: TableState<T>; // Needed for explicitly checking selection changes
+  state: TableState<T>; // Needed for explicitly checking selection and expansion changes
   onClick?: (event: React.MouseEvent, row: Row<T>) => void;
   subComponent?: (row: Row<T>) => React.ReactNode;
   isDisabled: boolean;
+  tableHasSubRows: boolean;
+  tableInstance: TableInstance<T>;
+  expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
 }) => {
   const {
     row,
@@ -38,6 +43,9 @@ const TableRow = <T extends Record<string, unknown>>(props: {
     onClick,
     subComponent,
     isDisabled,
+    tableHasSubRows,
+    tableInstance,
+    expanderCell,
   } = props;
 
   const onIntersect = React.useCallback(() => {
@@ -70,6 +78,19 @@ const TableRow = <T extends Record<string, unknown>>(props: {
 
   const refs = useMergedRefs(rowRef, mergedProps.ref);
 
+  const subRowExpanderCellIndex = row.cells.findIndex(
+    (c) => c.column.id !== SELECTION_CELL_ID,
+  );
+
+  const getSubRowStyle = (index: number): React.CSSProperties | undefined => {
+    if (!tableHasSubRows || index !== subRowExpanderCellIndex) {
+      return undefined;
+    }
+    // If it doesn't have sub-rows then shift by another level to align with expandable rows on the same depth
+    // 16 = initial_cell_padding, 35 = 27 + 8 = expander_width + margin
+    return { paddingLeft: 16 + (row.depth + (row.canExpand ? 0 : 1)) * 35 };
+  };
+
   return (
     <>
       <div
@@ -80,13 +101,26 @@ const TableRow = <T extends Record<string, unknown>>(props: {
           onClick?.(event, row);
         }}
       >
-        {row.cells.map((cell) => {
+        {row.cells.map((cell, index) => {
           const cellProps = cell.getCellProps({
             className: cx('iui-cell', cell.column.cellClassName),
-            style: getCellStyle(cell.column),
+            style: {
+              ...getCellStyle(cell.column),
+              ...getSubRowStyle(index),
+            },
           });
           return (
             <div {...cellProps} key={cellProps.key}>
+              {tableHasSubRows &&
+                index === subRowExpanderCellIndex &&
+                cell.row.canExpand && (
+                  <SubRowExpander
+                    cell={cell}
+                    isDisabled={isDisabled}
+                    tableInstance={tableInstance}
+                    expanderCell={expanderCell}
+                  />
+                )}
               {cell.render('Cell')}
             </div>
           );
@@ -124,6 +158,18 @@ const TableRow = <T extends Record<string, unknown>>(props: {
   );
 };
 
+const hasAnySelectedSubRow = <T extends Record<string, unknown>>(
+  row: Row<T>,
+  selectedRowIds?: Record<string, boolean>,
+): boolean => {
+  if (selectedRowIds?.[row.id]) {
+    return true;
+  }
+  return row.subRows.some((subRow) =>
+    hasAnySelectedSubRow(subRow, selectedRowIds),
+  );
+};
+
 export const TableRowMemoized = React.memo(
   TableRow,
   (prevProp, nextProp) =>
@@ -134,6 +180,13 @@ export const TableRowMemoized = React.memo(
     prevProp.row.original === nextProp.row.original &&
     prevProp.state.selectedRowIds?.[prevProp.row.id] ===
       nextProp.state.selectedRowIds?.[nextProp.row.id] &&
+    // Check if sub-rows selection has changed and whether to show indeterminate state or not
+    prevProp.row.subRows.some((subRow) =>
+      hasAnySelectedSubRow(subRow, prevProp.state.selectedRowIds),
+    ) ===
+      nextProp.row.subRows.some((subRow) =>
+        hasAnySelectedSubRow(subRow, nextProp.state.selectedRowIds),
+      ) &&
     prevProp.state.expanded?.[prevProp.row.id] ===
       nextProp.state.expanded?.[nextProp.row.id] &&
     prevProp.subComponent === nextProp.subComponent &&
@@ -141,5 +194,7 @@ export const TableRowMemoized = React.memo(
       (cell, index) => nextProp.row.cells[index].column === cell.column,
     ) &&
     prevProp.isDisabled === nextProp.isDisabled &&
-    prevProp.rowProps === nextProp.rowProps,
+    prevProp.rowProps === nextProp.rowProps &&
+    prevProp.expanderCell === nextProp.expanderCell &&
+    prevProp.tableHasSubRows === nextProp.tableHasSubRows,
 ) as typeof TableRow;

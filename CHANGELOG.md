@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+`Date`
+
+### What's new
+
+- **Added sub-rows support to `Table`.** Use the `subRows` field in your `data` entries.
+
 ## [1.15.0]
 
 `2021-08-17`

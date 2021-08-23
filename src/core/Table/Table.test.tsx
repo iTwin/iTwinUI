@@ -53,15 +53,56 @@ const columns = (onViewClick: () => void = jest.fn()) => [
     ],
   },
 ];
+type TestDataType = {
+  name: string;
+  description: string;
+  subRows?: TestDataType[];
+};
 
-const mockedData = (count = 3) =>
+const mockedData = (count = 3): TestDataType[] =>
   [...new Array(count)].map((_, index) => ({
     name: `Name${index + 1}`,
     description: `Description${index + 1}`,
   }));
 
+const mockedSubRowsData = () => [
+  {
+    name: 'Row 1',
+    description: 'Description 1',
+    subRows: [
+      { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
+      {
+        name: 'Row 1.2',
+        description: 'Description 1.2',
+        subRows: [
+          {
+            name: 'Row 1.2.1',
+            description: 'Description 1.2.1',
+            subRows: [],
+          },
+          {
+            name: 'Row 1.2.2',
+            description: 'Description 1.2.2',
+            subRows: [],
+          },
+        ],
+      },
+      { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
+    ],
+  },
+  {
+    name: 'Row 2',
+    description: 'Description 2',
+    subRows: [
+      { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
+      { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
+    ],
+  },
+  { name: 'Row 3', description: 'Description 3', subRows: [] },
+];
+
 function renderComponent(
-  initialsProps?: Partial<TableProps<{ name: string; description: string }>>,
+  initialsProps?: Partial<TableProps<TestDataType>>,
   onViewClick?: () => void,
   renderContainer?: HTMLElement,
 ) {
@@ -79,11 +120,22 @@ function renderComponent(
   );
 }
 
-function assertRowsData(
-  rows: NodeListOf<Element>,
-  data: { name: string; description: string }[] = mockedData(),
-) {
-  expect(rows.length).toBe(3);
+const flattenData = (data: TestDataType[]) => {
+  const flatData: TestDataType[] = [];
+
+  const handleItem = (item: TestDataType) => {
+    flatData.push(item);
+    if (item.subRows?.length) {
+      item.subRows.forEach((subRow) => handleItem(subRow));
+    }
+  };
+  data.forEach((item) => handleItem(item));
+
+  return flatData;
+};
+
+function assertRowsData(rows: NodeListOf<Element>, data = mockedData()) {
+  expect(rows.length).toBe(data.length);
   for (let i = 0; i < rows.length; i++) {
     const row = rows.item(i);
     const { name, description } = data[i];
@@ -120,6 +172,17 @@ const clearFilter = (container: HTMLElement) => {
   fireEvent.click(filterIcon);
 
   screen.getByText('Clear').click();
+};
+
+const expandAll = (container: HTMLElement, oldExpanders: Element[] = []) => {
+  const allExpanders = Array.from(
+    container.querySelectorAll('.iui-row-expander'),
+  );
+  const newExpanders = allExpanders.filter((e) => !oldExpanders.includes(e));
+  newExpanders.forEach((button) => fireEvent.click(button));
+  if (newExpanders.length) {
+    expandAll(container, allExpanders);
+  }
 };
 
 beforeEach(() => {
@@ -840,7 +903,7 @@ it('should expand correctly with a custom expander cell', async () => {
       <div>{`Expanded component, name: ${row.original.name}`}</div>
     ),
     onExpand: onExpandMock,
-    expanderCell: (props: CellProps<{ name: string; description: string }>) => {
+    expanderCell: (props: CellProps<TestDataType>) => {
       return (
         <button
           onClick={() => {
@@ -1031,7 +1094,7 @@ it('should pass custom props to row', () => {
   const onRef = (ref: HTMLInputElement) => {
     element = ref;
   };
-  const rowProps = (row: Row<{ name: string; description: string }>) => {
+  const rowProps = (row: Row<TestDataType>) => {
     return { onMouseEnter: () => onMouseEnter(row.original), ref: onRef };
   };
   const { container } = renderComponent({ rowProps });
@@ -1053,3 +1116,373 @@ it.each(['condensed', 'extra-condensed'] as const)(
     expect(container.querySelector(`.iui-table.iui-${density}`)).toBeTruthy();
   },
 );
+
+it('should render sub-rows and handle expansions', () => {
+  const onExpand = jest.fn();
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({ data, onExpand });
+
+  let rows = container.querySelectorAll('.iui-table-body .iui-row');
+  assertRowsData(rows, data);
+
+  expandAll(container);
+
+  rows = container.querySelectorAll('.iui-table-body .iui-row');
+  assertRowsData(rows, flattenData(data));
+
+  expect(onExpand).toHaveBeenNthCalledWith(1, [data[0]], expect.any(Object));
+  expect(onExpand).toHaveBeenNthCalledWith(
+    2,
+    [data[0], data[1]],
+    expect.any(Object),
+  );
+  expect(onExpand).toHaveBeenNthCalledWith(
+    3,
+    [data[0], data[0].subRows[1], data[1]],
+    expect.any(Object),
+  );
+});
+
+it('should render filtered sub-rows', () => {
+  const data = mockedSubRowsData();
+  const columns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          Filter: tableFilters.TextFilter(),
+        },
+        {
+          id: 'description',
+          Header: 'description',
+          accessor: 'description',
+        },
+        {
+          id: 'view',
+          Header: 'view',
+          Cell: () => {
+            return <span>View</span>;
+          },
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({ data, columns });
+
+  expandAll(container);
+
+  let rows = container.querySelectorAll('.iui-table-body .iui-row');
+  assertRowsData(rows, flattenData(data));
+
+  setFilter(container, '2');
+  rows = container.querySelectorAll('.iui-table-body .iui-row');
+  assertRowsData(rows, [
+    { name: 'Row 1', description: 'Description 1' },
+    { name: 'Row 1.2', description: 'Description 1.2' },
+    { name: 'Row 1.2.1', description: 'Description 1.2.1' },
+    { name: 'Row 1.2.2', description: 'Description 1.2.2' },
+    { name: 'Row 2', description: 'Description 2' },
+    { name: 'Row 2.1', description: 'Description 2.1' },
+    { name: 'Row 2.2', description: 'Description 2.2' },
+  ]);
+
+  clearFilter(container);
+  rows = container.querySelectorAll('.iui-table-body .iui-row');
+  assertRowsData(rows, flattenData(data));
+});
+
+it('should handle sub-rows selection', () => {
+  const onSelect = jest.fn();
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    onSelect,
+    isSelectable: true,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(3);
+  checkboxes[0].click();
+
+  expandAll(container);
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(10);
+  Array.from(checkboxes).forEach((checkbox, index) =>
+    expect(!!checkbox.checked).toBe(index < 6),
+  );
+
+  expect(onSelect).toHaveBeenCalledWith(
+    flattenData([data[0]]),
+    expect.any(Object),
+  );
+});
+
+it('should show indeterminate checkbox when some sub-rows are selected', () => {
+  const onSelect = jest.fn();
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    onSelect,
+    isSelectable: true,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  expandAll(container);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(10);
+  // Click row 1.2 checkbox
+  checkboxes[2].click();
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(10);
+  expect(checkboxes[0].indeterminate).toBe(true);
+  Array.from(checkboxes).forEach((checkbox, index) =>
+    expect(!!checkbox.checked).toBe(index > 1 && index < 5),
+  );
+
+  expect(onSelect).toHaveBeenCalledWith(
+    [data[0].subRows[1], ...data[0].subRows[1].subRows],
+    expect.any(Object),
+  );
+});
+
+it('should show indeterminate checkbox when a sub-row of a sub-row is selected', () => {
+  const onSelect = jest.fn();
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    onSelect,
+    isSelectable: true,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  expandAll(container);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(10);
+  // Click row 1.2.1 checkbox
+  checkboxes[3].click();
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(10);
+  // Row 1
+  expect(checkboxes[0].indeterminate).toBe(true);
+  // Row 1.2
+  expect(checkboxes[2].indeterminate).toBe(true);
+  Array.from(checkboxes).forEach((checkbox, index) =>
+    expect(!!checkbox.checked).toBe(index === 3),
+  );
+
+  expect(onSelect).toHaveBeenCalledWith(
+    [data[0].subRows[1].subRows[0]],
+    expect.any(Object),
+  );
+});
+
+it('should show indeterminate checkbox when sub-row selected after filtering', () => {
+  const onSelect = jest.fn();
+  const data = mockedSubRowsData();
+  const columns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          Filter: tableFilters.TextFilter(),
+        },
+        {
+          id: 'description',
+          Header: 'description',
+          accessor: 'description',
+        },
+        {
+          id: 'view',
+          Header: 'view',
+          Cell: () => {
+            return <span>View</span>;
+          },
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    data,
+    columns,
+    onSelect,
+    isSelectable: true,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  setFilter(container, '2');
+  expandAll(container);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(7);
+  // Click row 1.2 checkbox
+  checkboxes[1].click();
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(7);
+  expect(checkboxes[0].indeterminate).toBe(true);
+  Array.from(checkboxes).forEach((checkbox, index) =>
+    expect(!!checkbox.checked).toBe(index > 0 && index < 4),
+  );
+
+  expect(onSelect).toHaveBeenCalledWith(
+    [data[0].subRows[1], ...data[0].subRows[1].subRows],
+    expect.any(Object),
+  );
+});
+
+it('should show indeterminate checkbox when clicking on a row itself after filtering', () => {
+  const onSelect = jest.fn();
+  const data = mockedSubRowsData();
+  const columns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          Filter: tableFilters.TextFilter(),
+        },
+        {
+          id: 'description',
+          Header: 'description',
+          accessor: 'description',
+        },
+        {
+          id: 'view',
+          Header: 'view',
+          Cell: () => {
+            return <span>View</span>;
+          },
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    data,
+    columns,
+    onSelect,
+    isSelectable: true,
+  });
+
+  let rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  setFilter(container, '2');
+  expandAll(container);
+
+  rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(7);
+  // Click row 1
+  fireEvent.click(rows[0]);
+
+  const checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(7);
+  expect(checkboxes[0].indeterminate).toBe(true);
+  Array.from(checkboxes).forEach((checkbox, index) =>
+    expect(!!checkbox.checked).toBe(index > 0 && index < 4),
+  );
+
+  expect(onSelect).toHaveBeenCalledWith(
+    [data[0].subRows[1], ...data[0].subRows[1].subRows],
+    expect.any(Object),
+  );
+});
+
+it('should only select one row even if it has sub-rows when selectSubRows is false', () => {
+  const onSelect = jest.fn();
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    onSelect,
+    isSelectable: true,
+    selectSubRows: false,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  let checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(3);
+  checkboxes[0].click();
+
+  expandAll(container);
+
+  checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox input',
+  );
+  expect(checkboxes.length).toBe(10);
+  Array.from(checkboxes).forEach((checkbox, index) =>
+    expect(!!checkbox.checked).toBe(index < 1),
+  );
+
+  expect(onSelect).toHaveBeenCalledWith([data[0]], expect.any(Object));
+});
+
+it('should render sub-rows with custom expander', () => {
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    expanderCell: (props: CellProps<TestDataType>) => {
+      return (
+        <button
+          onClick={() => {
+            props.row.toggleRowExpanded();
+          }}
+        >
+          Expand {props.row.original.name}
+        </button>
+      );
+    },
+  });
+
+  let rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  fireEvent.click(screen.getByText('Expand Row 1'));
+  fireEvent.click(screen.getByText('Expand Row 1.2'));
+  fireEvent.click(screen.getByText('Expand Row 2'));
+
+  rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(10);
+});
