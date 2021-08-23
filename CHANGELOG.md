@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.27.1](https://www.github.com/iTwin/iTwinUI/compare/v0.27.0...v0.27.1) (2021-08-23)
+
+
+### Fixes
+
+* **Tabs:** vertical tabs shouldn't wrap ([#262](https://www.github.com/iTwin/iTwinUI/issues/262)) ([2e0ca7f](https://www.github.com/iTwin/iTwinUI/commit/2e0ca7f07ef7c38a1280a3c0fe9ff62ac043eb4a))
+
 ## [0.27.0](https://www.github.com/iTwin/iTwinUI/compare/v0.26.1...v0.27.0) (2021-08-23)
 
 ### What's new
