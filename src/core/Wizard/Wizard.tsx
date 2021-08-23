@@ -29,7 +29,7 @@ export type WizardProps = {
   /**
    * Current step index, 0 - based.
    */
-  currentStep: number;
+  currentStep?: number;
   /**
    * An array of step objects.
    */
@@ -79,7 +79,7 @@ export const Wizard = (props: WizardProps) => {
   } = props;
 
   const boundedCurrentStep = Math.min(
-    Math.max(0, currentStep),
+    Math.max(0, currentStep ?? 0),
     steps.length - 1,
   );
 
@@ -88,14 +88,13 @@ export const Wizard = (props: WizardProps) => {
   return (
     <>
       <div
-        className={cx({
-          'iui-wizards': type === 'default',
-          'iui-wizards-long': type === 'long',
-          'iui-wizards-workflow': type === 'workflow',
+        className={cx('iui-wizard', {
+          'iui-long': type === 'long',
+          'iui-workflow': type === 'workflow',
         })}
         {...rest}
       >
-        <div className='iui-wizards-wrapper'>
+        <ol>
           {steps.map((s, index) => (
             <Step
               key={index}
@@ -108,17 +107,17 @@ export const Wizard = (props: WizardProps) => {
               description={s.description}
             />
           ))}
-        </div>
+        </ol>
         {type === 'long' && (
-          <p className='iui-wizards-steps'>
-            <span className='iui-wizards-steps-count'>
+          <div className='iui-wizard-steps-label'>
+            <span className='iui-steps-count'>
               {localization.stepsCountLabel(
                 boundedCurrentStep + 1,
                 steps.length,
               )}
             </span>
             {steps[boundedCurrentStep].name}
-          </p>
+          </div>
         )}
       </div>
     </>

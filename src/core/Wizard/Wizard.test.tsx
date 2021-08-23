@@ -7,7 +7,7 @@ import React from 'react';
 import { Wizard } from './Wizard';
 
 describe('<Wizard />', () => {
-  it('default wizard renders all step names and numbers', () => {
+  it('should render all step names and numbers in default wizard', () => {
     const wizard = (
       <Wizard
         currentStep={0}
@@ -36,7 +36,7 @@ describe('<Wizard />', () => {
     getByText('Step Three');
   });
 
-  it('sets the active step to the step provided and raises onClick event on completed steps', () => {
+  it('should set the active step to the step provided and raises onClick event on completed steps', () => {
     const mockedOnClick = jest.fn();
     const wizard = (
       <Wizard
@@ -58,9 +58,7 @@ describe('<Wizard />', () => {
 
     const { getByText } = render(wizard);
     const secondStep = getByText('Step Two');
-    expect(secondStep.parentElement?.className).toContain(
-      'iui-wizards-step-current',
-    );
+    expect(secondStep.parentElement?.className).toContain('iui-current');
     const firstStep = getByText('Step One');
     firstStep.click();
     expect(mockedOnClick).toHaveBeenCalledWith(0);
@@ -68,7 +66,7 @@ describe('<Wizard />', () => {
     expect(mockedOnClick).toHaveBeenCalledTimes(1);
   });
 
-  it('sets the active step to the first step if step is less than 0', () => {
+  it('should set the active step to the first step if step is less than 0', () => {
     const wizard = (
       <Wizard
         currentStep={-2}
@@ -88,12 +86,10 @@ describe('<Wizard />', () => {
 
     const { getByText } = render(wizard);
     const firstStep = getByText('Step One') as HTMLSpanElement;
-    expect(firstStep.parentElement?.className).toContain(
-      'iui-wizards-step-current',
-    );
+    expect(firstStep.parentElement?.className).toContain('iui-current');
   });
 
-  it('sets the active step to the last step if the step is greater than number of steps', () => {
+  it('should set the active step to the last step if the step is greater than number of steps', () => {
     const wizard = (
       <Wizard
         currentStep={42}
@@ -113,12 +109,10 @@ describe('<Wizard />', () => {
 
     const { getByText } = render(wizard);
     const thirdStep = getByText('Step Three') as HTMLSpanElement;
-    expect(thirdStep.parentElement?.className).toContain(
-      'iui-wizards-step-current',
-    );
+    expect(thirdStep.parentElement?.className).toContain('iui-current');
   });
 
-  it('long wizard only displays summary of current step name', () => {
+  it('should only display summary of current step name in long wizard', () => {
     const wizard = (
       <Wizard
         currentStep={2}
@@ -139,8 +133,8 @@ describe('<Wizard />', () => {
 
     const { getByText, queryByText } = render(wizard);
 
-    getByText('Step 3 of 3:');
-    getByText('Step Three');
+    expect(getByText('Step 3 of 3:')).toHaveClass('iui-steps-count');
+    expect(getByText('Step Three')).toHaveClass('iui-wizard-steps-label');
 
     getByText('1');
     getByText('2');
@@ -150,7 +144,7 @@ describe('<Wizard />', () => {
     expect(queryByText('Step Two')).toBeNull();
   });
 
-  it('long wizard displays localized string', () => {
+  it('should display localized string in long wizard', () => {
     const wizard = (
       <Wizard
         currentStep={1}
@@ -179,7 +173,7 @@ describe('<Wizard />', () => {
     getByText('Step Two');
   });
 
-  it('workflow wizard displays all step names but no numbers', () => {
+  it('should display all step names but no numbers in workflow diagram', () => {
     const wizard = (
       <Wizard
         currentStep={2}
@@ -209,7 +203,7 @@ describe('<Wizard />', () => {
     expect(queryByText('3')).toBeNull();
   });
 
-  it('Wizard displays tooltip upon hovering step', () => {
+  it('should display tooltip upon hovering step if description provided', () => {
     jest.useFakeTimers();
 
     const wizard = (

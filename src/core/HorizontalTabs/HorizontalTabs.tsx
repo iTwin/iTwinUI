@@ -126,6 +126,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
       setStripeStyle({
         width: activeTab?.getBoundingClientRect().width,
         left: (activeTab as HTMLElement)?.offsetLeft,
+        top: (activeTab as HTMLElement)?.getBoundingClientRect().height - 2,
       });
     }
   }, [currentActiveIndex, type, tabsWidth]);
@@ -202,7 +203,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
   };
 
   return (
-    <div className='iui-tabs-wrapper'>
+    <div className={cx('iui-tabs-wrapper', 'iui-horizontal')}>
       <ul
         className={cx(
           'iui-tabs',

@@ -93,9 +93,10 @@ Long.args = {
 
 export const WorkflowDiagram: Story<WizardProps> = (args) => {
   const {
-    currentStep = 1,
     steps = [
       { name: 'Start' },
+      { name: 'Set parameters' },
+      { name: 'Invite collaborators' },
       { name: 'Review & Approve' },
       { name: 'Complete' },
     ],
@@ -106,20 +107,15 @@ export const WorkflowDiagram: Story<WizardProps> = (args) => {
     action(`Clicked index: ${index}`)();
   };
   return (
-    <Wizard
-      type={type}
-      currentStep={currentStep}
-      steps={steps}
-      onStepClick={onStepClick}
-      {...rest}
-    />
+    <Wizard type={type} steps={steps} onStepClick={onStepClick} {...rest} />
   );
 };
 
 WorkflowDiagram.args = {
-  currentStep: 1,
   steps: [
     { name: 'Start' },
+    { name: 'Set parameters' },
+    { name: 'Invite collaborators' },
     { name: 'Review & Approve' },
     { name: 'Complete' },
   ],
