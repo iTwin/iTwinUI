@@ -87,11 +87,12 @@
       border-left: 1px solid t(iui-color-background-4);
     }
 
+    @include iui-transition-group;
+
+    // padding should be in a separate div because otherwise it messes up height transition
     > div {
       padding: $iui-baseline $iui-sm;
     }
-
-    @include iui-transition-group;
   }
 
   &:hover {
