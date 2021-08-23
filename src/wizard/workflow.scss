@@ -2,49 +2,42 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-wizards-workflow {
-  @include iui-wizards;
-
-  > .iui-wizards-wrapper {
+@mixin iui-wizard-workflow {
+  > ol {
     align-items: center;
+  }
 
-    > .iui-wizards-step {
+  .iui-wizard-step {
+    .iui-wizard-circle {
+      padding-left: $iui-m;
+      padding-right: $iui-m;
+      height: 100%;
       width: auto;
-
-      > .iui-wizards-step-circle {
-        padding-left: $iui-m;
-        padding-right: $iui-m;
-        border-radius: $iui-sm;
-        width: auto;
-        height: auto;
-        min-height: $iui-l;
-        @include themed {
-          border-color: t(iui-color-foreground-positive);
-          color: t(iui-color-foreground-positive);
-        }
-      }
-
-      &.iui-wizards-step-current > .iui-wizards-step-circle {
-        border-radius: 0;
-        font-weight: $iui-font-weight-normal;
-        @include themed {
-          color: t(iui-color-foreground-accessory);
-          border-color: t(iui-color-background-positive);
-        }
+      border-radius: 0;
+      font-weight: $iui-font-weight-normal;
+      text-align: center;
+      @include themed {
+        background-color: t(iui-color-background-positive);
+        border-color: t(iui-color-background-positive);
+        color: t(iui-color-foreground-accessory);
       }
     }
 
-    > .iui-wizards-step-track,
-    > .iui-wizards-step > .iui-wizards-step-track {
-      &.iui-wizards-step-track-before,
-      &.iui-wizards-step-track-after,
-      &.iui-wizards-step-track-main {
-        top: 0;
-
-        @include themed {
-          background-color: t(iui-color-foreground-positive);
-        }
+    &:first-of-type .iui-wizard-circle,
+    &:last-of-type .iui-wizard-circle {
+      border-radius: $iui-sm;
+      @include themed {
+        background-color: t(iui-color-background-1);
+        border-color: t(iui-color-foreground-positive);
+        color: t(iui-color-foreground-positive);
       }
+    }
+  }
+
+  .iui-wizard-track-content::before,
+  .iui-wizard-track-content::after {
+    @include themed {
+      background-color: t(iui-color-foreground-positive);
     }
   }
 }
