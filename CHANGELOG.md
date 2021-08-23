@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.27.0](https://www.github.com/iTwin/iTwinUI/compare/v0.26.1...v0.27.0) (2021-08-23)
+
+
+### What's new
+
+* **ExpandableBlock:** update animation to use transition-group ([#259](https://www.github.com/iTwin/iTwinUI/issues/259)) ([163e9d2](https://www.github.com/iTwin/iTwinUI/commit/163e9d2fb0a34f15f51dbb4983b772d33d6dafa9))
+
 ### [0.26.1](https://www.github.com/iTwin/iTwinUI/compare/v0.26.0...v0.26.1) (2021-08-20)
 
 ### Fixes
