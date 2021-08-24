@@ -4,7 +4,6 @@
 @import '../icon/index';
 
 @mixin iui-radio-tile {
-  @include iui-font-family;
   display: inline-flex;
   width: fit-content;
   user-select: none;

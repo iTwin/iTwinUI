@@ -4,7 +4,6 @@
 @import '../icon/index';
 
 @mixin iui-input-container {
-  @include iui-font-family;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

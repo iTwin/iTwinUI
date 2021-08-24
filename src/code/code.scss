@@ -4,7 +4,6 @@
 
 @mixin iui-code {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-block;
   font-family: $iui-monospace;
   font-size: $iui-font-size-small;

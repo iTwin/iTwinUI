@@ -6,7 +6,6 @@
 
 @mixin iui-tile {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-flex;
   flex-direction: column;
   width: $iui-3xl * 3;
@@ -234,7 +233,6 @@
     white-space: nowrap;
 
     > .iui-button {
-      @include iui-font-family;
       font-size: $iui-font-size;
       flex: 1;
       height: auto;

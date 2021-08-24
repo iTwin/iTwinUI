@@ -1,11 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/variables';
 
 @mixin iui-progress-indicator-radial-ie {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-block;
   position: relative;
   box-sizing: border-box;

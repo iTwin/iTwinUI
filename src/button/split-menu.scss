@@ -5,6 +5,21 @@
 @mixin iui-button-split-menu {
   @include iui-button-group;
 
+  &:hover {
+    @include themed {
+      background-color: rgba(
+        t(iui-color-foreground-body-rgb),
+        t(iui-opacity-6)
+      );
+    }
+  }
+
+  .iui-button:first-child {
+    &.iui-borderless:hover {
+      background-color: transparent;
+    }
+  }
+
   // Sizes
   > .iui-button + .iui-button {
     padding: $iui-xs;
@@ -27,6 +42,12 @@
         t(iui-color-foreground-accessory-rgb),
         t(iui-opacity-4)
       );
+    }
+  }
+
+  &.iui-disabled {
+    @include themed {
+      background-color: transparent;
     }
   }
 }

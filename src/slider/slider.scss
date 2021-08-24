@@ -12,7 +12,6 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-min,
   .iui-slider-max {
-    @include iui-font-family;
     user-select: all;
     margin-top: $iui-xxs;
 

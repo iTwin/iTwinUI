@@ -5,7 +5,6 @@
 
 @mixin iui-time-picker {
   @include iui-reset;
-  @include iui-font-family;
   user-select: none;
   text-align: center;
   height: $iui-baseline * 26;

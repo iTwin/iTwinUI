@@ -6,7 +6,6 @@
 
 @mixin iui-expandable-block {
   @include iui-reset;
-  @include iui-font-family;
   box-sizing: border-box;
   @include themed {
     background-color: t(iui-color-background-1);
@@ -17,8 +16,7 @@
     padding: $iui-baseline $iui-sm;
     cursor: pointer;
     @media (prefers-reduced-motion: no-preference) {
-      transition: background-color $iui-speed-fast ease-out,
-        border-color $iui-speed-fast ease-out;
+      transition: background-color $iui-speed-fast ease-out;
     }
     @include themed {
       border-bottom: 1px solid t(iui-color-background-4);
@@ -72,6 +70,8 @@
         color: t(iui-text-color-muted);
       }
     }
+
+    @include iui-focus;
   }
 
   &.iui-with-caption > .iui-header > .iui-icon {
@@ -79,19 +79,20 @@
   }
 
   .iui-expandable-content {
-    transform: scaleY(0);
-    transform-origin: top;
     overflow: hidden;
-    padding: 0;
-    opacity: 0;
-    height: 0;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: transform $iui-speed-fast ease-in-out;
-    }
+    box-sizing: border-box;
+
     @include themed {
       border-bottom: 1px solid t(iui-color-background-4);
       border-right: 1px solid t(iui-color-background-4);
       border-left: 1px solid t(iui-color-background-4);
+    }
+
+    @include iui-transition-group;
+
+    // padding should be in a separate div because otherwise it messes up height transition
+    > div {
+      padding: $iui-baseline $iui-sm;
     }
   }
 
@@ -144,13 +145,6 @@
         top: -1px;
         position: relative;
       }
-    }
-
-    > .iui-expandable-content {
-      transform: scaleY(1);
-      opacity: 1;
-      height: auto;
-      padding: $iui-baseline $iui-sm;
     }
   }
 }

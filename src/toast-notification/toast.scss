@@ -5,7 +5,6 @@
 
 @mixin iui-toast {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
