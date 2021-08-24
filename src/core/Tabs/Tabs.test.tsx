@@ -5,7 +5,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { Tab } from './Tab';
-import { Tabs, TabsProps } from './Tabs';
+import { Tabs, VerticalTabs, TabsProps } from './Tabs';
 
 const renderComponent = (
   initialProps?: Partial<TabsProps>,
@@ -54,13 +54,24 @@ it('should render pill tabs', () => {
 });
 
 it('should render vertical tabs', () => {
-  const { container } = renderComponent({ orientation: 'vertical' });
+  const { container, queryByText } = render(
+    <VerticalTabs
+      labels={[
+        <Tab key={1} label='Label 1' />,
+        <Tab key={2} label='Label 2' />,
+        <Tab key={3} label='Label 3' />,
+      ]}
+    >
+      Test content
+    </VerticalTabs>,
+  );
 
   expect(
     container.querySelector('.iui-tabs-wrapper.iui-vertical'),
   ).toBeTruthy();
   expect(container.querySelector('.iui-tabs')).toBeTruthy();
   expect(container.querySelector('.iui-tab')).toBeTruthy();
+  expect(queryByText('Test content')).toHaveClass('iui-tabs-content');
 });
 
 it('should render green tabs', () => {

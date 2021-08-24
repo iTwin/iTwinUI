@@ -26,7 +26,7 @@ export default {
   argTypes: {
     children: { control: { disable: true } },
     style: { control: { disable: true } },
-    orientation: { control: { disable: true } },
+    orientation: { table: { disable: true } },
   },
 } as Meta<TabsProps>;
 
@@ -120,6 +120,6 @@ Vertical.args = {
         startIcon={<SvgStar />}
       />
     )),
-  orientation: 'vertical',
   type: 'borderless',
 };
+Vertical.argTypes = { type: { options: ['default', 'borderless'] } };
