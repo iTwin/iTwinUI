@@ -2,9 +2,12 @@ name: Publish storybook
 
 on:
   workflow_dispatch:
+  pull_request:
+    types: [labeled]
 
 jobs:
-  build:
+  publish-storybook:
+    if: "${{ github.event.name === 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'autorelease: tagged') }}"
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +20,7 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - run: yarn build-storybook
-          
+
       - name: Publish storybook
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
