@@ -6,10 +6,10 @@ import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import { render } from '@testing-library/react';
 import React from 'react';
 
-import { HorizontalTab } from './HorizontalTab';
+import { Tab } from './Tab';
 
 it('should render in its most basic state', () => {
-  const { container } = render(<HorizontalTab label='Tab label' />);
+  const { container } = render(<Tab label='Tab label' />);
   expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
   const label = container.querySelector('.iui-tab-label > div') as HTMLElement;
@@ -18,9 +18,7 @@ it('should render in its most basic state', () => {
 });
 
 it('should render with sublabel', () => {
-  const { container } = render(
-    <HorizontalTab label='Tab label' sublabel='Sub-label' />,
-  );
+  const { container } = render(<Tab label='Tab label' sublabel='Sub-label' />);
   expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
   const label = container.querySelector('.iui-tab-label') as HTMLElement;
@@ -33,7 +31,7 @@ it('should render with sublabel', () => {
 
 it('should render with icon', () => {
   const { container } = render(
-    <HorizontalTab label='Tab label' startIcon={<SvgPlaceholder />} />,
+    <Tab label='Tab label' startIcon={<SvgPlaceholder />} />,
   );
   expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
@@ -48,7 +46,7 @@ it('should render with icon', () => {
 });
 
 it('should render in disabled state', () => {
-  const { container } = render(<HorizontalTab label='Tab label' disabled />);
+  const { container } = render(<Tab label='Tab label' disabled />);
 
   const tab = container.querySelector('button.iui-tab') as HTMLButtonElement;
   expect(tab).toBeTruthy();
@@ -61,7 +59,7 @@ it('should render in disabled state', () => {
 
 it('should render custom children', () => {
   const { container } = render(
-    <HorizontalTab className='custom-class'>custom children</HorizontalTab>,
+    <Tab className='custom-class'>custom children</Tab>,
   );
 
   expect(container.querySelector('button.iui-tab.custom-class')).toBeTruthy();

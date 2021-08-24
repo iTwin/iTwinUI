@@ -7,7 +7,7 @@ import React from 'react';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/tabs.css';
 
-export type HorizontalTabProps = {
+export type TabProps = {
   /**
    * The main label shown in the tab.
    */
@@ -31,14 +31,19 @@ export type HorizontalTabProps = {
 } & React.HTMLAttributes<HTMLButtonElement>;
 
 /**
- * Individual tab component to be used in the `labels` prop of `HorizontalTabs`.
+ * @deprecated Use `TabProps` instead.
+ */
+export type HorizontalTabProps = TabProps;
+
+/**
+ * Individual tab component to be used in the `labels` prop of `Tabs`.
  * @example
  * const tabs = [
- *   <HorizontalTab label='Label 1' sublabel='Description 1' />,
- *   <HorizontalTab label='Label 2' startIcon={<SvgPlaceholder />} />,
+ *   <Tab label='Label 1' sublabel='Description 1' />,
+ *   <Tab label='Label 2' startIcon={<SvgPlaceholder />} />,
  * ];
  */
-export const HorizontalTab = (props: HorizontalTabProps) => {
+export const Tab = (props: TabProps) => {
   const { label, sublabel, startIcon, children, className, ...rest } = props;
 
   useTheme();
@@ -66,4 +71,9 @@ export const HorizontalTab = (props: HorizontalTabProps) => {
   );
 };
 
-export default HorizontalTabProps;
+/**
+ * @deprecated Use `Tab` instead.
+ */
+export const HorizontalTab = Tab;
+
+export default TabProps;

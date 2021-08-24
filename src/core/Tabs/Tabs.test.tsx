@@ -4,29 +4,31 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { HorizontalTab } from './HorizontalTab';
-import { HorizontalTabs, HorizontalTabsProps } from './HorizontalTabs';
+import { Tab } from './Tab';
+import { Tabs, TabsProps } from './Tabs';
 
 const renderComponent = (
-  initialProps?: Partial<HorizontalTabsProps>,
+  initialProps?: Partial<TabsProps>,
   initialChildren?: React.ReactNode,
 ) => {
-  const defaultProps: HorizontalTabsProps = {
+  const defaultProps: TabsProps = {
     labels: [
-      <HorizontalTab key={1} label='Label 1' />,
-      <HorizontalTab key={2} label='Label 2' />,
-      <HorizontalTab key={3} label='Label 3' />,
+      <Tab key={1} label='Label 1' />,
+      <Tab key={2} label='Label 2' />,
+      <Tab key={3} label='Label 3' />,
     ],
   };
   const props = { ...defaultProps, ...initialProps };
   const children = initialChildren ?? 'Test content';
-  return render(<HorizontalTabs {...props}>{children}</HorizontalTabs>);
+  return render(<Tabs {...props}>{children}</Tabs>);
 };
 
 it('should render tabs', () => {
   const { container } = renderComponent();
 
-  expect(container.querySelector('.iui-tabs-wrapper')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-tabs-wrapper.iui-horizontal'),
+  ).toBeTruthy();
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
@@ -49,6 +51,16 @@ it('should render pill tabs', () => {
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
   expect(tabContainer.className).toContain('iui-tabs iui-pill');
+});
+
+it('should render vertical tabs', () => {
+  const { container } = renderComponent({ orientation: 'vertical' });
+
+  expect(
+    container.querySelector('.iui-tabs-wrapper.iui-vertical'),
+  ).toBeTruthy();
+  expect(container.querySelector('.iui-tabs')).toBeTruthy();
+  expect(container.querySelector('.iui-tab')).toBeTruthy();
 });
 
 it('should render green tabs', () => {
@@ -106,9 +118,9 @@ it('should render strings in HorizontalTab child component', () => {
 it('should add .iui-large if HorizontalTab has sublabel', () => {
   const { container } = renderComponent({
     labels: [
-      <HorizontalTab key={0} label='item0' sublabel='Sublabel0' />,
-      <HorizontalTab key={1} label='item1' sublabel='Sublabel1' />,
-      <HorizontalTab key={2} label='item2' sublabel='Sublabel2' />,
+      <Tab key={0} label='item0' sublabel='Sublabel0' />,
+      <Tab key={1} label='item1' sublabel='Sublabel1' />,
+      <Tab key={2} label='item2' sublabel='Sublabel2' />,
     ],
   });
   expect(container.querySelector('.iui-tabs.iui-large')).toBeTruthy();
@@ -133,42 +145,51 @@ it('should add custom classnames', () => {
   expect(content).toBeTruthy();
 });
 
-it('should handle keypresses', () => {
-  const mockOnTabSelected = jest.fn();
-  const { container } = renderComponent({ onTabSelected: mockOnTabSelected });
+it.each(['horizontal', 'vertical'] as const)(
+  'should handle keypresses',
+  (orientation) => {
+    const mockOnTabSelected = jest.fn();
+    const { container } = renderComponent({
+      onTabSelected: mockOnTabSelected,
+      orientation: orientation,
+    });
 
-  const tablist = container.querySelector('.iui-tabs') as HTMLElement;
-  const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
+    const nextTabKey = orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight';
+    const previousTabKey = orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft';
 
-  // alt key
-  fireEvent.keyDown(tablist, { key: 'ArrowRight', altKey: true });
-  expect(mockOnTabSelected).not.toHaveBeenCalled();
+    const tablist = container.querySelector('.iui-tabs') as HTMLElement;
+    const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
 
-  // 0 -> 1
-  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-  expect(mockOnTabSelected).toBeCalledWith(1);
-  expect(document.activeElement).toBe(tabs[1]);
+    // alt key
+    fireEvent.keyDown(tablist, { key: nextTabKey, altKey: true });
+    expect(mockOnTabSelected).not.toHaveBeenCalled();
 
-  // 1 -> 2
-  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-  expect(mockOnTabSelected).toBeCalledWith(2);
-  expect(document.activeElement).toBe(tabs[2]);
+    // 0 -> 1
+    fireEvent.keyDown(tablist, { key: nextTabKey });
+    expect(mockOnTabSelected).toBeCalledWith(1);
+    expect(document.activeElement).toBe(tabs[1]);
 
-  // 2 -> 0
-  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-  expect(mockOnTabSelected).toBeCalledWith(0);
-  expect(document.activeElement).toBe(tabs[0]);
+    // 1 -> 2
+    fireEvent.keyDown(tablist, { key: nextTabKey });
+    expect(mockOnTabSelected).toBeCalledWith(2);
+    expect(document.activeElement).toBe(tabs[2]);
 
-  // 0 -> 2
-  fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
-  expect(mockOnTabSelected).toBeCalledWith(2);
-  expect(document.activeElement).toBe(tabs[2]);
+    // 2 -> 0
+    fireEvent.keyDown(tablist, { key: nextTabKey });
+    expect(mockOnTabSelected).toBeCalledWith(0);
+    expect(document.activeElement).toBe(tabs[0]);
 
-  // 2 -> 1
-  fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
-  expect(mockOnTabSelected).toBeCalledWith(1);
-  expect(document.activeElement).toBe(tabs[1]);
-});
+    // 0 -> 2
+    fireEvent.keyDown(tablist, { key: previousTabKey });
+    expect(mockOnTabSelected).toBeCalledWith(2);
+    expect(document.activeElement).toBe(tabs[2]);
+
+    // 2 -> 1
+    fireEvent.keyDown(tablist, { key: previousTabKey });
+    expect(mockOnTabSelected).toBeCalledWith(1);
+    expect(document.activeElement).toBe(tabs[1]);
+  },
+);
 
 it('should handle keypresses when focusActivationMode is manual', () => {
   const mockOnTabSelected = jest.fn();

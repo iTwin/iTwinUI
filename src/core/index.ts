@@ -65,8 +65,13 @@ export type {
   HeaderLogoProps,
 } from './Header';
 
-export { HorizontalTabs, HorizontalTab } from './HorizontalTabs';
-export type { HorizontalTabsProps, HorizontalTabProps } from './HorizontalTabs';
+export { VerticalTabs, Tab, HorizontalTabs, HorizontalTab } from './Tabs';
+export type {
+  VerticalTabsProps,
+  TabProps,
+  HorizontalTabsProps,
+  HorizontalTabProps,
+} from './Tabs';
 
 export { Input } from './Input';
 export type { InputProps } from './Input';

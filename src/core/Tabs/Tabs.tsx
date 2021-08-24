@@ -8,13 +8,13 @@ import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/tabs.css';
 import { useResizeObserver } from '../utils/hooks/useResizeObserver';
 import { useMergedRefs } from '../utils/hooks/useMergedRefs';
-import { HorizontalTab } from './HorizontalTab';
+import { Tab } from './Tab';
 import { getBoundedValue } from '../utils/common';
 
-export type HorizontalTabsProps = {
+export type TabsProps = {
   /**
    * Elements shown for each tab.
-   * Recommended to pass an array of `HorizontalTab` components.
+   * Recommended to pass an array of `Tab` components.
    */
   labels: React.ReactNodeArray;
   /**
@@ -42,6 +42,11 @@ export type HorizontalTabsProps = {
    */
   type?: 'default' | 'borderless' | 'pill';
   /**
+   * Orientation of the tabs.
+   * @default 'horizontal'
+   */
+  orientation?: 'horizontal' | 'vertical';
+  /**
    * Custom CSS class name for tabs.
    */
   tabsClassName?: string;
@@ -55,31 +60,39 @@ export type HorizontalTabsProps = {
   children?: React.ReactNode;
 };
 
+export type HorizontalTabsProps = Omit<TabsProps, 'orientation'> & {
+  orientation: 'horizontal';
+};
+export type VerticalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
+  orientation: 'vertical';
+  type: 'default' | 'borderless';
+};
+
 /**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
  * @example
  * const tabs = [
- *   <HorizontalTab label='Label 1' />,
- *   <HorizontalTab label='Label 2' />,
- *   <HorizontalTab label='Label 3' />,
+ *   <Tab label='Label 1' />,
+ *   <Tab label='Label 2' />,
+ *   <Tab label='Label 3' />,
  * ];
- * <HorizontalTabs labels={tabs} />
+ * <Tabs labels={tabs} />
  *
  * @example
  * const tabsWithSublabels = [
- *   <HorizontalTab label='Label 1' sublabel='First tab' />,
- *   <HorizontalTab label='Label 2' sublabel='Active tab' />,
+ *   <Tab label='Label 1' sublabel='First tab' />,
+ *   <Tab label='Label 2' sublabel='Active tab' />,
  * ];
- * <HorizontalTabs labels={tabsWithSublabels} activeIndex={1} />
+ * <Tabs labels={tabsWithSublabels} activeIndex={1} />
  *
  * @example
  * const tabsWithIcons = [
- *   <HorizontalTab label='Label 1' icon={<SvgPlaceholder />} />,
- *   <HorizontalTab label='Label 2' icon={<SvgPlaceholder />} />,
+ *   <Tab label='Label 1' icon={<SvgPlaceholder />} />,
+ *   <Tab label='Label 2' icon={<SvgPlaceholder />} />,
  * ];
- * <HorizontalTabs labels={tabsWithIcons} type='pill' />
+ * <Tabs labels={tabsWithIcons} type='pill' />
  */
-export const HorizontalTabs = (props: HorizontalTabsProps) => {
+export const Tabs = (props: TabsProps) => {
   const {
     labels,
     activeIndex,
@@ -87,6 +100,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
     focusActivationMode = 'auto',
     type = 'default',
     color = 'blue',
+    orientation = 'horizontal',
     tabsClassName,
     contentClassName,
     children,
@@ -122,14 +136,25 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
   const [stripeStyle, setStripeStyle] = React.useState<React.CSSProperties>({});
   React.useLayoutEffect(() => {
     if (type !== 'default') {
-      const activeTab = tablistRef.current?.children[currentActiveIndex];
+      const activeTab = tablistRef.current?.children[
+        currentActiveIndex
+      ] as HTMLElement;
+      const activeTabRect = activeTab?.getBoundingClientRect();
+
       setStripeStyle({
-        width: activeTab?.getBoundingClientRect().width,
-        left: (activeTab as HTMLElement)?.offsetLeft,
-        top: (activeTab as HTMLElement)?.getBoundingClientRect().height - 2,
+        width: orientation === 'horizontal' ? activeTabRect?.width : undefined,
+        height: orientation === 'vertical' ? activeTabRect?.height : undefined,
+        left:
+          orientation === 'horizontal'
+            ? activeTab?.offsetLeft
+            : activeTabRect?.width - 2,
+        top:
+          orientation === 'horizontal'
+            ? activeTabRect?.height - 2
+            : activeTab?.offsetTop,
       });
     }
-  }, [currentActiveIndex, type, tabsWidth]);
+  }, [currentActiveIndex, type, orientation, tabsWidth]);
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
@@ -155,7 +180,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
-    // alt + left/right is used by browser / assistive technologies
+    // alt + arrow keys are used by browser / assistive technologies
     if (event.altKey) {
       return;
     }
@@ -165,27 +190,44 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
       return React.isValidElement(tab) && tab.props.disabled;
     };
 
-    const focusTabAt = (index: number) => {
-      setFocusedIndex(index);
-      focusActivationMode === 'auto' && onTabClick(index);
+    let newIndex = focusedIndex ?? currentActiveIndex;
+
+    /** focus next tab if delta is +1, previous tab if -1 */
+    const focusTab = (delta = +1) => {
+      do {
+        newIndex = (newIndex + delta + labels.length) % labels.length;
+      } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
+      setFocusedIndex(newIndex);
+      focusActivationMode === 'auto' && onTabClick(newIndex);
     };
 
-    let newIndex = focusedIndex ?? currentActiveIndex;
     switch (event.key) {
+      case 'ArrowDown': {
+        if (orientation === 'vertical') {
+          focusTab(+1);
+          event.preventDefault();
+        }
+        break;
+      }
       case 'ArrowRight': {
-        do {
-          newIndex = (newIndex + 1 + labels.length) % labels.length;
-        } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
-        focusTabAt(newIndex);
-        event.preventDefault();
+        if (orientation === 'horizontal') {
+          focusTab(+1);
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowUp': {
+        if (orientation === 'vertical') {
+          focusTab(-1);
+          event.preventDefault();
+        }
         break;
       }
       case 'ArrowLeft': {
-        do {
-          newIndex = (newIndex - 1 + labels.length) % labels.length;
-        } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
-        focusTabAt(newIndex);
-        event.preventDefault();
+        if (orientation === 'horizontal') {
+          focusTab(-1);
+          event.preventDefault();
+        }
         break;
       }
       case 'Enter':
@@ -203,7 +245,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
   };
 
   return (
-    <div className={cx('iui-tabs-wrapper', 'iui-horizontal')}>
+    <div className={cx('iui-tabs-wrapper', `iui-${orientation}`)}>
       <ul
         className={cx(
           'iui-tabs',
@@ -228,7 +270,7 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
           return (
             <li key={index}>
               {!React.isValidElement(label) ? (
-                <HorizontalTab
+                <Tab
                   label={label}
                   className={cx({
                     'iui-active': index === currentActiveIndex,
@@ -269,4 +311,9 @@ export const HorizontalTabs = (props: HorizontalTabsProps) => {
   );
 };
 
-export default HorizontalTabs;
+export const HorizontalTabs = (props: HorizontalTabsProps) => (
+  <Tabs {...props} />
+);
+export const VerticalTabs = (props: VerticalTabsProps) => <Tabs {...props} />;
+
+export default Tabs;
