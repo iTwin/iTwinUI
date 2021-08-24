@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish-storybook:
-    if: "${{ github.event.name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'autorelease: tagged') }}"
+    if: "${{ github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'autorelease: tagged') }}"
     runs-on: ubuntu-latest
 
     steps:
