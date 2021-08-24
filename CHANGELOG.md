@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.16.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.16.0...v1.16.1) (2021-08-24)
+
+### Fixes
+
+* **Fixed a bug in `VerticalTabs` where it was not rendered correctly.** ([#283](https://www.github.com/iTwin/iTwinUI-react/issues/283)) ([325d51d](https://www.github.com/iTwin/iTwinUI-react/commit/325d51d09101d7c7091009eda4be381d76d24fe8))
+
 ## [1.16.0]
 
 `2021-08-24`
