@@ -24,9 +24,7 @@ module.exports = [
 
   // Focus states
   scenario('State long focus on complete', {
-    actions: [
-      focus('#demo-long .iui-clickable:first-child .iui-wizard-circle'),
-    ],
+    actions: [focus('#demo-long .iui-clickable:first-child')],
     selectors: ['#demo-long'],
     viewports: [{ width: 800, height: 600 }],
   }),
