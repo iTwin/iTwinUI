@@ -111,6 +111,8 @@
     }
 
     &:focus {
+      outline: 0;
+
       .iui-wizard-circle {
         outline: 0;
         @include themed {
