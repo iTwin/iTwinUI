@@ -10,7 +10,7 @@
 @mixin iui-information-panel {
   position: absolute;
   top: 0;
-  right: ($iui-3xl * 4) * -1; // Width set negative
+  right: ($iui-3xl * 4) * -1; // Default width set negative so the panel hides off screen.
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -20,17 +20,13 @@
   box-sizing: border-box;
   box-shadow: -1px 0 14px rgba(0, 0, 0, 0.25);
   transition: right $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
-  z-index: 2; // Needs to be higher than table's resizers.
+  z-index: 2; // Needs to be higher than table's column resizers.
   @include themed {
     background-color: t(iui-color-background-1);
   }
 
-  &.iui-information-panel-visible {
-    right: 0;
-    opacity: 1;
-  }
-
   > .iui-resizer {
+    display: none;
     height: 100%;
     width: $iui-m;
     position: absolute;
@@ -58,6 +54,15 @@
       @include themed {
         background-color: t(iui-color-foreground-primary);
       }
+    }
+  }
+
+  &.iui-information-panel-visible {
+    right: 0;
+    opacity: 1;
+
+    > .iui-resizer {
+      display: block;
     }
   }
 
@@ -97,7 +102,7 @@
 
     > hr {
       @include themed {
-        border-top: 1px solid t(iui-color-background-4);
+        border-color: t(iui-color-background-4);
       }
     }
   }
@@ -130,7 +135,7 @@
     .iui-information-table-center {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: $iui-s;
     }
 
     label {
