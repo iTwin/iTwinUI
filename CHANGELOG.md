@@ -2,7 +2,6 @@
 
 ### [0.27.2](https://www.github.com/iTwin/iTwinUI/compare/v0.27.1...v0.27.2) (2021-08-24)
 
-
 ### Fixes
 
 * **Wizard:** focus is now applied on step, not circle ([#265](https://www.github.com/iTwin/iTwinUI/issues/265)) ([5126a40](https://www.github.com/iTwin/iTwinUI/commit/5126a40b482871196a8cff3f2cab4fe91ae2f460))
