@@ -1,12 +1,22 @@
 # Changelog
 
-## Unreleased
+## [1.16.0]
 
-`Date`
+`2021-08-24`
 
 ### What's new
 
 - **Added sub-rows support to `Table`.** Use the `subRows` field in your `data` entries.
+- **Added responsive overflow handling to `ButtonGroup`** through `overflowButton` prop.
+- **Added new animation style to `ExpandableBlock`.**
+- **Added ability to pass native HTML attributes in `Select`** and arbitrary props in `SelectOption`.
+- **Added new `VerticalTabs` component**, similar to `HorizontalTabs`.
+  - Renamed `HorizontalTab` component to `Tab`, for use in both `HorizontalTabs` and `VerticalTabs`.
+
+### Fixes
+
+- **Fixed workflow `Wizard` styling and behavior** to ignore current and clickable steps.
+- **Fixed a bug in `HeaderButton`** where `menuItems` would throw error when `undefined`.
 
 ## [1.15.0]
 
@@ -467,6 +477,7 @@
 - **New ThemeProvider component added.** It allows to switch between light and dark themes.
 - **iTwinUI-React is generated to `CommonJS` and `ES` modules.** Usage of `ES` modules allows bundlers to tree-shake unused code resulting in smaller bundle sizes.
 
+[1.16.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.14.1...v1.15.0
 [1.14.1]: https://github.com/iTwin/iTwinUI-react/compare/v1.14.0...v1.14.1
 [1.14.0]: https://github.com/iTwin/iTwinUI-react/compare/v1.13.1...v1.14.0
