@@ -42,33 +42,27 @@ module.exports = [
     selectors: ['#demo-warning'],
   }),
   scenario('Top start placement', {
-    clickSelector: [click('#top-start-option')],
+    actions: [click('#top-start-option')],
     selectors: ['document'],
-    postInteractionWait: 200,
   }),
   scenario('Top placement', {
-    clickSelector: [click('#top-option')],
+    actions: [click('#top-option')],
     selectors: ['document'],
-    postInteractionWait: 200,
   }),
   scenario('Top end placement', {
-    clickSelector: [click('#top-end-option')],
+    actions: [click('#top-end-option')],
     selectors: ['document'],
-    postInteractionWait: 200,
   }),
   scenario('Bottom start placement', {
     actions: [click('#bottom-start-option')],
     selectors: ['document'],
-    postInteractionWait: 200,
   }),
   scenario('Bottom placement', {
     actions: [click('#bottom-option')],
     selectors: ['document'],
-    postInteractionWait: 200,
   }),
   scenario('Bottom end placement', {
     actions: [click('#bottom-end-option')],
     selectors: ['document'],
-    postInteractionWait: 200,
   }),
 ];
