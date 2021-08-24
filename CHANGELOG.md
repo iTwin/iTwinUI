@@ -6,9 +6,7 @@
 
 * **Fixed a bug in `VerticalTabs` where it was not rendered correctly.** ([#283](https://www.github.com/iTwin/iTwinUI-react/issues/283)) ([325d51d](https://www.github.com/iTwin/iTwinUI-react/commit/325d51d09101d7c7091009eda4be381d76d24fe8))
 
-## [1.16.0]
-
-`2021-08-24`
+## [1.16.0] (2021-08-24)
 
 ### What's new
 
@@ -24,9 +22,7 @@
 - **Fixed workflow `Wizard` styling and behavior** to ignore current and clickable steps.
 - **Fixed a bug in `HeaderButton`** where `menuItems` would throw error when `undefined`.
 
-## [1.15.0]
-
-`2021-08-17`
+## [1.15.0] (2021-08-17)
 
 ### What's new
 
@@ -40,17 +36,13 @@
 
 - **Fixed a `Table` bug where filter icon is hidden when `manualFilters` is on and no data is returned after filtering.**
 
-## [1.14.1]
-
-`2021-08-05`
+### [1.14.1] (2021-08-05)
 
 ### Fixes
 
 - **Fixed a bug where Arrow keydown on `Slider` propagated to parent container's scrollbars.**
 
-## [1.14.0]
-
-`2021-08-03`
+## [1.14.0] (2021-08-03)
 
 ### What's new
 
@@ -61,18 +53,14 @@
 - **Fixed a bug in `Slider` where thumb focus was lost on keyboard navigation.**
 - **Fixed `UserIconGroup` prop type for `countIconProps`** to support refs.
 
-## [1.13.1]
-
-`2021-07-29`
+### [1.13.1] (2021-07-29)
 
 ### Fixes
 
 - **Fixed `Table` bug when selecting filtered rows throws an exception.**
 - **Fixed `Table` empty state background color** through base CSS package.
 
-## [1.13.0]
-
-`2021-07-29`
+## [1.13.0] (2021-07-29)
 
 ### What's new
 
@@ -84,9 +72,7 @@
 - **Made `Button` children optional** to allow using buttons with only icons.
 - **Fix `Slider` bug where onChange was not always called after pointerUp.**
 
-## [1.12.0]
-
-`2021-07-20`
+## [1.12.0] (2021-07-20)
 
 ### What's new
 
@@ -101,18 +87,14 @@
 
 - **Fixed `Table` overflow when selection is enabled and min width is set for columns.**
 
-## [1.11.0]
-
-`2021-07-08`
+## [1.11.0] (2021-07-08)
 
 ### What's new
 
 - **Improved row selection in `Table`.** Clicking on rows will now select them and fire the `onRowClick` callback.
 - **Allowing to disable specific rows in `Table`.** Provide `isRowDisabled` prop.
 
-## [1.10.0]
-
-`2021-07-01`
+## [1.10.0] (2021-07-01)
 
 ### What's new
 
@@ -121,9 +103,7 @@
 - **Updated styling for `HorizontalTabs`** through base CSS package.
 - **Improved `Table` documentation.**
 
-## [1.9.0]
-
-`2021-06-21`
+## [1.9.0] (2021-06-21)
 
 ### What's new
 
@@ -134,17 +114,13 @@
 
 - **Added missing `id` prop in some components.**
 
-## [1.8.1]
-
-`2021-06-17`
+### [1.8.1] (2021-06-17)
 
 ### Fixes
 
 - **Fixed a bug when `Table` sorting or filtering triggered `onSelect`.**
 
-## [1.8.0]
-
-`2021-06-15`
+## [1.8.0] (2021-06-15)
 
 ### What's new
 
@@ -155,26 +131,20 @@
 
 - **Fixed `ProgressRadial` not using `className` prop correctly.**
 
-## [1.7.2]
-
-`2021-06-09`
+### [1.7.2] (2021-06-09)
 
 ### Fixes
 
 - **Fixed `DropdownMenu` not closing when tabbing out.**
   - Also fixed in derived components: `DropdownButton`, `SplitButton`, and `Select`.
 
-## [1.7.1]
-
-`2021-06-08`
+### [1.7.1] (2021-06-08)
 
 ### Fixes
 
 - **Replaced all `document` and `window` with get functions to support SSR.**
 
-## [1.7.0]
-
-`2021-06-07`
+## [1.7.0] (2021-06-07)
 
 ### What's new
 
@@ -187,17 +157,13 @@
 - **Fixed when `Table` columns change doesn't cause rows to re-render.**
 - **Fixed `SidenavButton` styling issues** through base CSS package.
 
-## [1.6.1]
-
-`2021-06-03`
+### [1.6.1] (2021-06-03)
 
 ### Fixes
 
 - **Fixed `ExpandableBlock` breaking some components when used together**, through base CSS package.
 
-## [1.6.0]
-
-`2021-05-31`
+## [1.6.0] (2021-05-31)
 
 ### What's new
 
@@ -211,9 +177,7 @@
 - **Moved `Select` dropdown element inside the main select container.**
 - **Fixed `Wizard` resizing and `UserIcon` size issues** through base CSS package.
 
-## [1.5.0]
-
-`2021-05-20`
+## [1.5.0] (2021-05-20)
 
 ### What's new
 
@@ -227,25 +191,19 @@
 
 - **Fixed `Table` bug where filter actions would also trigger sorting.**
 
-## [1.4.1]
-
-`2021-05-17`
+### [1.4.1] (2021-05-17)
 
 ### Fixes
 
 - **`toaster` now creates container element only when used.**
 
-## [1.4.0]
-
-`2021-05-12`
+## [1.4.0] (2021-05-12)
 
 ### What's new
 
 - **Added filtering to `Table`.** Use `Filter` and `filter` fields in columns. All filters can be found in `tableFilters` object.
 
-## [1.3.0]
-
-`2021-05-11`
+## [1.3.0] (2021-05-11)
 
 ### What's new
 
@@ -257,9 +215,7 @@
 - **Fixed `Table` bug when change of `onSelection` handler would cause infinite rerendering loop.**
 - **Bumped @itwin/itwinui-icons-react to 1.1.1** which fixes relative path exports.
 
-## [1.2.0]
-
-`2021-04-29`
+## [1.2.0] (2021-04-29)
 
 ### What's new
 
@@ -271,9 +227,7 @@
 - **Fixed image sizing issues in `ErrorPage`**.
 - **Fixed tooltip text blurring issues** through base CSS package.
 
-## [1.1.0]
-
-`2021-04-21`
+## [1.1.0] (2021-04-21)
 
 ### What's new
 
@@ -284,9 +238,7 @@
 
 - **Fixed minor bugs in `Tile` and `Footer`** through base CSS package.
 
-## 1.0.0
-
-`2021-04-15`
+## 1.0.0 (2021-04-15)
 
 ### What's new
 
@@ -301,25 +253,19 @@
 
 - **Fixed several icon issues.**
 
-## 0.6.2
-
-`2021-04-12`
+### 0.6.2 (2021-04-12)
 
 ### What's new
 
 - **`iui-body` class is added to body.** Global overrides were removed.
 
-## 0.6.1
-
-`2021-04-08`
+### 0.6.1 (2021-04-08)
 
 ### Fixes
 
 - **`Footer` got back separators.**
 
-## 0.6.0
-
-`2021-04-05`
+## 0.6.0 (2021-04-05)
 
 ### What's new
 
@@ -333,9 +279,7 @@
 - **`Footer` no longer has `fixed` position** in base iTwinUI CSS, allowing for manually positioning it.
 - **Some global style resets have been removed** in base iTwinUI CSS to prevent conflicts.
 
-## 0.5.1
-
-`2021-03-23`
+### 0.5.1 (2021-03-23)
 
 ### What's new
 
@@ -348,9 +292,7 @@
 - **Fixed spacing in InputGroup** through base iTwinUI CSS package.
 - **Fixed positioning of input elements** through base iTwinUI CSS package.
 
-## 0.5.0
-
-`2021-03-18`
+## 0.5.0 (2021-03-18)
 
 ### What's new
 
@@ -365,17 +307,13 @@
 - **Fixed tooltip interactions with mouse.**
 - **Fixed margin issues in various components** through base iTwinUI CSS package.
 
-## 0.4.1
-
-`2021-03-09`
+### 0.4.1 (2021-03-09)
 
 ### Fixes
 
 - **Fixed `Popover` overriding child's onClick.**
 
-## 0.4.0
-
-`2021-03-02`
+## 0.4.0 (2021-03-02)
 
 ### What's new
 
@@ -388,9 +326,7 @@
 - **Fixed margins in various components** through base iTwinUI CSS package.
 - **Removed duplicate `title` prop from some components.**
 
-## 0.3.0
-
-`2021-02-22`
+## 0.3.0 (2021-02-22)
 
 ### What's new
 
@@ -402,18 +338,14 @@
 - **`positioner` class renamed to `iui-positioner`**
 - **React.FC removed, so children is required for some components.**
 
-## 0.2.1
-
-`2021-02-12`
+### 0.2.1 (2021-02-12)
 
 ### Fixes
 
 - **Tooltips show properly when used in modals.**
 - **Components do not blink on init, if OS theme is dark.**
 
-## 0.2.0
-
-`2021-02-11`
+## 0.2.0 (2021-02-11)
 
 ### What's new
 
@@ -428,9 +360,7 @@
 
 - **Components are themed in Storybook Docs tab.**
 
-## 0.1.0
-
-`2021-02-03`
+## 0.1.0 (2021-02-03)
 
 ## What has changed from the latest bwc-react package:
 
