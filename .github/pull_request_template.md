@@ -11,6 +11,4 @@ Closes # <!-- Add issue number -->
 - [ ] Verify that all existing tests pass
 - [ ] Add component features demo in Storybook (different stories)
 - [ ] Approve test images for new stories
-- [ ] Add an entry to the changelog for any new components and changes
 - [ ] Add screenshots of the key elements of the component
-- [ ] Add any additional comments describing the features you've implemented

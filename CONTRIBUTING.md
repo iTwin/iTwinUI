@@ -123,7 +123,11 @@ it('should be visible', () => {
 
 ### Visual Testing
 
-We reuse our stories for visual tests (through [Creevey](https://github.com/wKich/creevey)). Make sure you have [Docker](https://www.docker.com/get-started) installed and running, and then you can start storybook and run `yarn creevey --ui` in a new terminal. This should start the test UI at `localhost:3000` where you can run tests and approve images.
+We reuse our stories for visual tests (through [Creevey](https://github.com/wKich/creevey)). To run visual tests:
+1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
+2. Start storybook using `yarn storybook`.
+3. Run `yarn creevey --ui` in a new terminal.
+4. Open the test UI at `localhost:3000` in your browser. Here you can run tests and approve images.
 
 By default, the stories will be rendered as-is, but interaction can be added using the `creevey` parameter of story, where you have access to a [Selenium WebDriver](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) instance.
 
@@ -156,22 +160,6 @@ Install yalc globally (`yarn global add yalc`) and run `yalc publish` from the `
 
 Every time you rebuild iTwinUI-react, you will need to run `yalc push`. You might want to automate this with a custom script using `chokidar-cli` or `nodemon`.
 
-### Changelog
-
-The `CHANGELOG.md` file must be updated for any new components or changes that you add. At the top of the file, create an "unreleased" section with a placeholder date (if not already present).
-
-<details>
-<summary>Example</summary>
-
-```
-## Unreleased
-
-`Date`
-
-### What's new
-```
-</details>
-
 ---
 
 ## Pull Requests
@@ -189,8 +177,7 @@ To enable us to quickly review and accept your pull requests, always create one 
 - Tests added for all new code.
   - All existing and new tests should pass.
 - Stories added to demonstrate new features.
-- Updated changelog.
 
-Verify that your changes are ready, then [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that an issue is linked to the pull request and that you have a proper description with screenshots.
+Verify that your changes are ready, then [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that the name of your pull request follows the [Conventional Commits spec](https://www.conventionalcommits.org/), and that you have a proper description with screenshots and a [closing keyword](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests).
 
 Your pull request will be reviewed by one or more maintainers who might leave some comments/suggestions to help improve the quality and consistency of your code. Once approved, your changes will be accepted into the repository.
