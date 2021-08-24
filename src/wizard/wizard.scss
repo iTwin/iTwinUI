@@ -86,7 +86,7 @@
     }
 
     .iui-wizard-track-content::before,
-    &:not(:last-child) .iui-wizard-track-content::after {
+    &:not(:last-of-type) .iui-wizard-track-content::after {
       @include themed {
         background-color: t(iui-color-background-5);
       }
@@ -112,8 +112,8 @@
     }
   }
 
-  &:first-child .iui-wizard-track-content::before,
-  &:last-child .iui-wizard-track-content::after {
+  &:first-of-type .iui-wizard-track-content::before,
+  &:last-of-type .iui-wizard-track-content::after {
     background-color: transparent;
   }
 }
