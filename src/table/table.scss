@@ -325,6 +325,7 @@
   padding-left: $iui-m;
   flex-basis: $iui-xxl;
   position: relative;
+  word-break: break-word;
 
   &.iui-slot {
     width: $iui-l * 2;
