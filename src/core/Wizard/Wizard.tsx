@@ -55,11 +55,11 @@ const defaultWizardLocalization: WizardLocalization = {
 };
 
 /**
- * A Wizard.
- * Give it some steps.
- * Tell it what step to display.
- * Set the type if you'd like.
- * That's about it.
+ * A wizard displays progress through a sequence of logical and numbered steps.
+ * It may also be used for navigation.
+ *
+ * The `type` can be set to 'long' to show labels under steps.
+ *
  * @example
  * <Wizard
  *  steps=[{name: "Step One"}, {name: "Step Two"}, {name: "Step Three"}]
@@ -67,31 +67,31 @@ const defaultWizardLocalization: WizardLocalization = {
  *  type='long'
  *  />
  */
+export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
+  (props, ref) => {
+    const {
+      currentStep,
+      steps,
+      type = 'default',
+      localization = defaultWizardLocalization,
+      onStepClick,
+      ...rest
+    } = props;
 
-export const Wizard = (props: WizardProps) => {
-  const {
-    currentStep,
-    steps,
-    type = 'default',
-    localization = defaultWizardLocalization,
-    onStepClick,
-    ...rest
-  } = props;
+    const boundedCurrentStep = Math.min(
+      Math.max(0, currentStep ?? 0),
+      steps.length - 1,
+    );
 
-  const boundedCurrentStep = Math.min(
-    Math.max(0, currentStep ?? 0),
-    steps.length - 1,
-  );
+    useTheme();
 
-  useTheme();
-
-  return (
-    <>
+    return (
       <div
         className={cx('iui-wizard', {
           'iui-long': type === 'long',
           'iui-workflow': type === 'workflow',
         })}
+        ref={ref}
         {...rest}
       >
         <ol>
@@ -120,8 +120,8 @@ export const Wizard = (props: WizardProps) => {
           </div>
         )}
       </div>
-    </>
-  );
-};
+    );
+  },
+);
 
 export default Wizard;

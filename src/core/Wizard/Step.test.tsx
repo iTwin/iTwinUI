@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { Step } from './Step';
 
@@ -29,7 +29,19 @@ describe('Wizard step (default)', () => {
     expect(stepContainer).toBeTruthy();
     expect(stepContainer.className).toContain('iui-clickable');
     stepContainer.click();
-    expect(mockedClick).toHaveBeenCalled();
+    expect(mockedClick).toHaveBeenCalledTimes(1);
+
+    // Handles keypresses
+    fireEvent.keyDown(stepContainer, { key: 'Enter' });
+    expect(mockedClick).toHaveBeenCalledTimes(2);
+    fireEvent.keyDown(stepContainer, { key: 'Space' });
+    expect(mockedClick).toHaveBeenCalledTimes(3);
+    fireEvent.keyDown(stepContainer, { key: 'Esc' });
+    expect(mockedClick).toHaveBeenCalledTimes(3);
+
+    // Correct tabindex
+    expect(stepContainer).toHaveAttribute('tabindex', '0');
+
     // Correct title
     const title = getByText('First step');
     expect(title.className).toBe('iui-wizard-step-name');
@@ -61,8 +73,15 @@ describe('Wizard step (default)', () => {
     ) as HTMLElement;
     expect(stepContainer).toBeTruthy();
     expect(stepContainer.className).not.toContain('iui-clickable');
+
+    // Ignores clicks and keypresses
     stepContainer.click();
     expect(mockedClick).not.toHaveBeenCalled();
+    fireEvent.keyDown(stepContainer, { key: 'Enter' });
+    expect(mockedClick).not.toHaveBeenCalled();
+    // No tabindex
+    expect(stepContainer).not.toHaveAttribute('tabindex');
+
     // Correct title
     const title = getByText('Second step');
     expect(title.className).toBe('iui-wizard-step-name');
@@ -74,6 +93,7 @@ describe('Wizard step (default)', () => {
   });
 
   it('should render step correctly (current)', () => {
+    const mockedClick = jest.fn();
     const step = (
       <Step
         title='Current step'
@@ -92,6 +112,15 @@ describe('Wizard step (default)', () => {
     ) as HTMLElement;
     expect(stepContainer).toBeTruthy();
     expect(stepContainer.className).not.toContain('iui-clickable');
+
+    // Ignores clicks and keypresses
+    stepContainer.click();
+    expect(mockedClick).not.toHaveBeenCalled();
+    fireEvent.keyDown(stepContainer, { key: 'Enter' });
+    expect(mockedClick).not.toHaveBeenCalled();
+    // No tabindex
+    expect(stepContainer).not.toHaveAttribute('tabindex');
+
     // Correct title
     const title = getByText('Current step');
     expect(title.className).toBe('iui-wizard-step-name');
@@ -135,6 +164,7 @@ describe('Wizard step (default)', () => {
 
 describe.each(['long', 'workflow'] as const)('Wizard step (%s)', (type) => {
   it('should render correctly', () => {
+    const mockedClick = jest.fn();
     const step = (
       <Step
         title='Second step'
@@ -142,13 +172,27 @@ describe.each(['long', 'workflow'] as const)('Wizard step (%s)', (type) => {
         currentStepNumber={0}
         totalSteps={3}
         type={type}
+        onClick={mockedClick}
       />
     );
 
     const { container } = render(step);
 
     // Renders step
-    expect(container.querySelector('.iui-wizard-step')).toBeTruthy();
+    const stepContainer = container.querySelector(
+      '.iui-wizard-step',
+    ) as HTMLElement;
+    expect(stepContainer).toBeTruthy();
+
+    // Ignores clicks and keypresses
+    stepContainer.click();
+    expect(mockedClick).not.toHaveBeenCalled();
+    fireEvent.keyDown(stepContainer, { key: 'Enter' });
+    expect(mockedClick).not.toHaveBeenCalled();
+
+    // No tabindex
+    expect(stepContainer).not.toHaveAttribute('tabindex');
+
     // No title
     expect(container.querySelector('.iui-wizard-step-name')).toBeFalsy();
     // Circle
