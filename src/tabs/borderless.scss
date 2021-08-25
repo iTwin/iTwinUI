@@ -9,6 +9,11 @@
     padding: 0 ($iui-component-padding-horizontal * 2);
     background-color: transparent;
 
+    &::after {
+      bottom: 0;
+      right: 0;
+    }
+
     &:hover {
       @include themed {
         background-color: rgba(
@@ -24,6 +29,26 @@
           t(iui-color-foreground-primary-rgb),
           t(iui-opacity-6)
         );
+      }
+    }
+  }
+
+  @at-root {
+    .iui-horizontal & ~ .iui-tabs-content {
+      margin-top: -$iui-xxs;
+      @include themed {
+        border-top: $iui-xxs solid t(iui-color-background-4);
+      }
+    }
+  }
+
+  @at-root {
+    .iui-vertical & ~ .iui-tabs-content {
+      margin-left: -$iui-xxs;
+      padding-left: $iui-sm;
+      padding-right: $iui-sm;
+      @include themed {
+        border-left: $iui-xxs solid t(iui-color-background-4);
       }
     }
   }
@@ -51,13 +76,6 @@
   .iui-tab[disabled]:hover {
     @include themed {
       background-color: transparent;
-    }
-  }
-
-  ~ .iui-tabs-content {
-    margin-top: -$iui-xxs;
-    @include themed {
-      border-top: $iui-xxs solid t(iui-color-background-4);
     }
   }
 }
