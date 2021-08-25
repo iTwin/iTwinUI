@@ -20,12 +20,13 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   margin: 0;
   padding: 0;
 
-  svg.iui-header-menu-icon {
+  .iui-header-menu-icon {
     margin: 0 $iui-xs;
-    display: inline-block;
+    display: inline-flex;
   }
 
   div.iui-header-menu-icon {
+    margin: 0;
     width: $iui-icons-large;
     height: $iui-icons-large;
     border-radius: $iui-border-radius;
