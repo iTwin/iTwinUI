@@ -20,6 +20,7 @@
     padding: $iui-baseline $iui-sm;
     cursor: pointer;
     box-sizing: border-box;
+    user-select: none;
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color $iui-speed-fast ease-out,
         border-color $iui-speed-fast ease-out;
@@ -30,12 +31,15 @@
       background-color: t(iui-color-background-3);
     }
 
-    > .iui-icon {
+    > .iui-icon,
+    > .iui-status-icon {
       display: block;
       flex-shrink: 0;
       width: $iui-icons-default;
       height: $iui-icons-default;
-      margin-right: $iui-sm;
+    }
+
+    > .iui-icon {
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
@@ -44,22 +48,34 @@
       }
     }
 
-    .iui-title {
-      @include no-link;
+    > .iui-status-icon {
+      margin-left: $iui-sm;
+      @include iui-icons-color();
+    }
+
+    .iui-expandable-block-label {
       display: flex;
       flex-direction: column;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      user-select: none;
-      font-size: $iui-font-size-leading;
-      margin: 0;
+      flex: 1;
+      width: 1px;
+      margin-left: $iui-sm;
       @media (prefers-reduced-motion: no-preference) {
         transition: color $iui-speed-fast ease;
       }
       @include themed {
         color: t(iui-text-color);
       }
+    }
+
+    .iui-title,
+    .iui-caption {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .iui-title {
+      font-size: $iui-font-size-leading;
     }
 
     .iui-caption {
