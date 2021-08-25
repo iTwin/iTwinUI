@@ -23,10 +23,29 @@
       href="../assets/demo.css"
     />
     <style>
-      .iui-toast-wrapper {
-        margin-top: 90px;
-        padding-top: 20px;
-      }
+  html {
+    color-scheme: light dark;
+  }
+
+  html.iui-theme-dark {
+    color-scheme: dark;
+  }
+
+  .iui-toast-wrapper {
+    margin-top: 120px;
+    padding-top: 20px;
+  }
+
+  .placement-control {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .placement-choice {
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+  }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
@@ -37,10 +56,10 @@
     <theme-button></theme-button>
     <h1>Toast notification</h1>
     <hr />
-    <div class="iui-input-container iui-inline">
-      <div class="iui-label iui-required">Toast notifications placement</div>
+    <div class="placement-control">
+      <h3>Toast notifications placement:</h3>
       <label
-        style='margin: 0 8px;'
+        class="placement-choice"
         id='top-start-option'
       >
         <input
@@ -48,11 +67,11 @@
           name="radio-demo-6"
           value="top-start"
         />
-        <span class="iui-label">Top Start</span>
+        <span>Top Start</span>
       </label>
       <label
         id='top-option'
-        style='margin: 0 8px;'
+        class="placement-choice"
       >
         <input
           type="radio"
@@ -61,51 +80,51 @@
           checked
         />
         </span>
-        <span class="iui-label">Top</span>
+        <span>Top</span>
       </label>
       <label
         id='top-end-option'
-        style='margin: 0 8px;'
+        class="placement-choice"
       >
         <input
           type="radio"
           name="radio-demo-6"
           value="top-end"
         />
-        <span class="iui-label">Top End</span>
+        <span>Top End</span>
       </label>
       <label
         id='bottom-start-option'
-        style='margin: 0 8px;'
+        class="placement-choice"
       >
         <input
           type="radio"
           name="radio-demo-6"
           value="bottom-start"
         />
-        <span class="iui-label">Bottom Start</span>
+        <span>Bottom Start</span>
       </label>
       <label
         id='bottom-option'
-        style='margin: 0 8px;'
+        class="placement-choice"
       >
         <input
           type="radio"
           name="radio-demo-6"
           value="bottom"
         />
-        <span class="iui-label">Bottom</span>
+        <span>Bottom</span>
       </label>
       <label
         id='bottom-end-option'
-        style='margin: 0 8px;'
+        class="placement-choice"
       >
         <input
           type="radio"
           name="radio-demo-6"
           value="bottom-end"
         />
-        <span class="iui-label">Bottom End</span>
+        <span>Bottom End</span>
       </label>
     </div>
 
