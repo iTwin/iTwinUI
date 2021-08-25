@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.16.2](https://www.github.com/iTwin/iTwinUI-react/compare/v1.16.1...v1.16.2) (2021-08-25)
+
+### Fixes
+
+* **Table:** Fixed failing user tests by copying filter functions from `react-table` ([#292](https://www.github.com/iTwin/iTwinUI-react/issues/292)) ([53ace9e](https://www.github.com/iTwin/iTwinUI-react/commit/53ace9e0c1beacd4dfc0deb151f93a0bd4f659a3))
+
 ### [1.16.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.16.0...v1.16.1) (2021-08-24)
 
 ### Fixes
