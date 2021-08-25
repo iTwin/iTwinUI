@@ -155,7 +155,7 @@
       color: t(iui-text-color-muted);
     }
 
-    > svg {
+    svg {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
       }
