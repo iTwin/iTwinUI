@@ -102,7 +102,7 @@
   // Sort icon
   .iui-sort {
     visibility: hidden;
-    display: inline-block;
+    display: flex;
     @include themed {
       fill: t(iui-icons-color);
     }
@@ -403,6 +403,7 @@
     justify-content: center;
 
     svg:not(.iui-radial) {
+      display: flex;
       width: $iui-icons-default;
       height: $iui-icons-default;
     }
