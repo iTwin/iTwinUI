@@ -1,5 +1,17 @@
 # Changelog
 
+### [0.27.3](https://www.github.com/iTwin/iTwinUI/compare/v0.27.2...v0.27.3) (2021-08-25)
+
+### Fixes
+
+* **Table:** Handling very long strings without spaces ([#268](https://www.github.com/iTwin/iTwinUI/issues/268)) ([b6870d1](https://www.github.com/iTwin/iTwinUI/commit/b6870d159da46fba84de6627b1ff7df421f679b3))
+
+### [0.27.2](https://www.github.com/iTwin/iTwinUI/compare/v0.27.1...v0.27.2) (2021-08-24)
+
+### Fixes
+
+* **Wizard:** focus is now applied on step, not circle ([#265](https://www.github.com/iTwin/iTwinUI/issues/265)) ([5126a40](https://www.github.com/iTwin/iTwinUI/commit/5126a40b482871196a8cff3f2cab4fe91ae2f460))
+
 ### [0.27.1](https://www.github.com/iTwin/iTwinUI/compare/v0.27.0...v0.27.1) (2021-08-23)
 
 ### Fixes

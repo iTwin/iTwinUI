@@ -47,7 +47,7 @@
   // Current step
   &.iui-current {
     font-weight: $iui-font-weight-semibold;
-    
+
     .iui-wizard-step-name {
       @include themed {
         color: t(iui-color-foreground-positive);
@@ -96,7 +96,6 @@
   // Clickable steps
   &.iui-clickable {
     .iui-wizard-circle {
-      @include iui-focus(iui-focus-positive-box-shadow);
       cursor: pointer;
       @media (prefers-reduced-motion: no-preference) {
         transition: background-color $iui-speed-fast ease-out;
@@ -108,6 +107,23 @@
           border: 1px solid t(iui-color-background-positive);
           background-color: t(iui-color-background-positive);
         }
+      }
+    }
+
+    &:focus {
+      outline: 0;
+
+      .iui-wizard-circle {
+        outline: 0;
+        @include themed {
+          box-shadow: t(iui-focus-positive-box-shadow);
+        }
+      }
+    }
+
+    &:focus:not(:focus-visible) {
+      .iui-wizard-circle {
+        box-shadow: none;
       }
     }
   }
