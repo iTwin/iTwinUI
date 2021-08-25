@@ -4,9 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Hooks, IdType, Row, TableInstance } from 'react-table';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import * as defaultFilterTypes from 'react-table/src/filterTypes.js';
+import { defaultFilterFunctions } from '../filters/defaultFilterFunctions';
 
 export const useSubRowFiltering = <T extends Record<string, unknown>>(
   hasAnySubRows: boolean,
@@ -57,7 +55,17 @@ const useInstance = <T extends Record<string, unknown>>(
         return;
       }
 
-      const filterTypes = { ...defaultFilterTypes, ...instance.filterTypes };
+      const filterTypes: Record<
+        string,
+        (
+          rows: Row<T>[],
+          columnIds: IdType<T>[],
+          filterValue: unknown,
+        ) => Row<T>[]
+      > = {
+        ...defaultFilterFunctions,
+        ...instance.filterTypes,
+      };
       const filterFn =
         typeof column.filter === 'function'
           ? column.filter
