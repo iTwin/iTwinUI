@@ -24,6 +24,7 @@ export default {
     label: 'This is a label',
     message: 'This is a message',
     placeholder: 'Placeholder text',
+    displayStyle: 'default',
     options: [
       { value: 1, label: 'Item #1' },
       { value: 2, label: 'Item #2' },
@@ -35,6 +36,9 @@ export default {
     className: { control: { disable: true } },
     selectStyle: { control: { disable: true } },
     selectClassName: { control: { disable: true } },
+    menuStyle: { control: { disable: true } },
+    menuClassName: { control: { disable: true } },
+    svgIcon: { control: { disable: true } },
   },
 } as Meta<LabeledSelectProps<unknown>>;
 

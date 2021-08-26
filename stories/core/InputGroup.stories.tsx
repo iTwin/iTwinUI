@@ -16,11 +16,15 @@ import { InputGroupProps } from '../../src/core/InputGroup/InputGroup';
 export default {
   title: 'Input/InputGroup',
   component: InputGroup,
+  args: {
+    displayStyle: 'default',
+  },
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     id: { control: { disable: true } },
     svgIcon: { control: { disable: true } },
+    children: { control: { disable: true } },
   },
 } as Meta<InputGroupProps>;
 

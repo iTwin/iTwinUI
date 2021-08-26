@@ -77,7 +77,8 @@ export const InputGroup = (props: InputGroupProps) => {
     ...rest
   } = props;
   useTheme();
-  const icon = status ? StatusIconMap[status]() : svgIcon;
+
+  const icon = svgIcon ?? (status && StatusIconMap[status]());
 
   return (
     <div

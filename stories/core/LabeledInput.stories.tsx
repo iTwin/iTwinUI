@@ -15,12 +15,13 @@ export default {
     inputClassName: { control: { disable: true } },
     inputStyle: { control: { disable: true } },
     svgIcon: { control: { disable: true } },
-    disabled: { type: 'boolean' },
     required: { type: 'boolean' },
   },
   args: {
     label: 'This is a label',
     placeholder: 'Enter text here...',
+    displayStyle: 'default',
+    disabled: false,
   },
 } as Meta<LabeledInputProps>;
 

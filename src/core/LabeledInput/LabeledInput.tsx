@@ -70,7 +70,7 @@ export const LabeledInput = React.forwardRef<
 
   useTheme();
 
-  const icon = status ? StatusIconMap[status]() : svgIcon;
+  const icon = svgIcon ?? (status && StatusIconMap[status]());
 
   return (
     <label

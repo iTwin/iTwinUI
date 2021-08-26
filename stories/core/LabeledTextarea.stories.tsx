@@ -11,10 +11,16 @@ import { LabeledTextareaProps } from '../../src/core/LabeledTextarea/LabeledText
 export default {
   title: 'Input/LabeledTextarea',
   component: LabeledTextarea,
+  argTypes: {
+    textareaClassName: { control: { disable: true } },
+    textareaStyle: { control: { disable: true } },
+    svgIcon: { control: { disable: true } },
+  },
   args: {
     placeholder: 'This is a textarea',
     label: 'Textarea Label',
     message: 'Display Message',
+    displayStyle: 'default',
     disabled: false,
   },
 } as Meta<LabeledTextareaProps>;
