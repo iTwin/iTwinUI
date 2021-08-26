@@ -14,10 +14,6 @@
   @include iui-color-swatch;
 }
 
-.iui-saved-colors {
-  @include iui-saved-colors;
-}
-
 .iui-color-selection-wrapper {
   @include iui-color-selection-wrapper;
 }
@@ -28,10 +24,6 @@
 
 .iui-color-slider {
   @include iui-color-slider;
-}
-
-.iui-color-dot-wrapper {
-  @include iui-color-dot-wrapper;
 }
 
 .iui-color-dot {

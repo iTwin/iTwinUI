@@ -12,13 +12,13 @@
   box-sizing: border-box;
   border-radius: $iui-border-radius;
   display: flex;
-  flex-wrap: wrap;
   padding: $iui-baseline $iui-sm;
   user-select: none;
-  overflow: scroll;
+  overflow-y: auto;
 
   &.iui-advanced {
     max-width: ($iui-l * 7) + ($iui-xxs * 7) + ($iui-s * 6) + ($iui-sm * 2) + ($iui-s);
+    flex-wrap: wrap;
   }
 }
 
@@ -50,6 +50,7 @@
   }
 
   &.iui-add-color-button {
+    @include iui-focus;
     box-shadow: none;
     display: flex;
     align-items: center;
@@ -83,11 +84,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: $iui-s;
-  position: relative;
-}
-
-@mixin iui-saved-colors {
-  width: 100%;
 }
 
 @mixin iui-color-selection-wrapper {
@@ -127,13 +123,10 @@
   }
 }
 
-@mixin iui-color-dot-wrapper {
+@mixin iui-color-dot {
   position: absolute;
   top: var(--top, 0%);
   left: var(--left, 0%);
-}
-
-@mixin iui-color-dot {
   @include iui-focus;
   width: $iui-m;
   height: $iui-m;
@@ -162,5 +155,5 @@
       box-shadow: 0 0 0 $iui-xxs
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
     }
-  }
+  }  
 }
