@@ -2,6 +2,15 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+.iui-icons-default,
+.iui-icons-small,
+.iui-icons-large,
+.iui-icons-xl,
+.iui-icons-xxl,
+.iui-icons-3xl {
+  display: inline-flex;
+}
+
 .iui-icons-default {
   @include iui-icons-default;
 }
