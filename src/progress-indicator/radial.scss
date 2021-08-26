@@ -49,8 +49,6 @@
   @include iui-progress-indicator-radial-size($size:$iui-icons-xl);
 
   > .iui-radial {
-    display: flex;
-    align-items: center;
     height: 100%;
     width: 100%;
 

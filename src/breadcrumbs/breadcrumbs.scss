@@ -58,7 +58,7 @@
   display: flex;
 
   svg {
-    display: flex;
     @include iui-icons-small;
+    display: flex;
   }
 }

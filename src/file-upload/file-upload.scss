@@ -80,8 +80,7 @@
     }
     visibility: visible;
 
-    .iui-file-upload-icon &,
-    .iui-file-upload-icon path {
+    .iui-file-upload-icon {
       @include themed {
         fill: t(iui-icons-color-primary);
       }
