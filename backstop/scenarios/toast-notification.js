@@ -43,26 +43,26 @@ module.exports = [
   }),
   scenario('Top start placement', {
     actions: [click('#top-start-option')],
-    selectors: ['document'],
+    selectors: ['#toast-notifications-test'],
   }),
   scenario('Top placement', {
     actions: [click('#top-option')],
-    selectors: ['document'],
+    selectors: ['#toast-notifications-test'],
   }),
   scenario('Top end placement', {
     actions: [click('#top-end-option')],
-    selectors: ['document'],
+    selectors: ['#toast-notifications-test'],
   }),
   scenario('Bottom start placement', {
     actions: [click('#bottom-start-option')],
-    selectors: ['document'],
+    selectors: ['#toast-notifications-test'],
   }),
   scenario('Bottom placement', {
     actions: [click('#bottom-option')],
-    selectors: ['document'],
+    selectors: ['#toast-notifications-test'],
   }),
   scenario('Bottom end placement', {
     actions: [click('#bottom-end-option')],
-    selectors: ['document'],
+    selectors: ['#toast-notifications-test'],
   }),
 ];
