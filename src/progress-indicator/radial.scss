@@ -49,6 +49,8 @@
   @include iui-progress-indicator-radial-size($size:$iui-icons-xl);
 
   > .iui-radial {
+    display: flex;
+    align-items: center;
     height: 100%;
     width: 100%;
 
@@ -70,19 +72,21 @@
   }
 
   .iui-inner-content {
-    position: absolute;
     display: flex;
-    width: calc(100% - #{$iui-s});
-    height: calc(100% - #{$iui-s});
-    left: $iui-xs;
-    top: $iui-xs;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    width: calc(100% - #{$iui-s});
+    height: calc(100% - #{$iui-s});
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: $iui-font-size-small;
     user-select: none;
     overflow: hidden;
 
     svg {
+      display: flex;
       width: $iui-icons-default;
       height: $iui-icons-default;
       @include themed {
