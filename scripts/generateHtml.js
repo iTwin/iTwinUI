@@ -35,6 +35,9 @@ const metaContent = (fileName) => `
   <link rel="manifest" href="../assets/manifest.json">
 `;
 
+/** skypack production optimized url for itwinui-icons-elements */
+const pinnedIconElementsUrl = `https://cdn.skypack.dev/pin/@itwin/itwinui-icons-elements@v0.1.0-58txt5yGsgoI5tjaWCdn/mode=imports/optimized/@itwin/itwinui-icons-elements`;
+
 const run = async () => {
   const files = await fs.promises.readdir(inDir, { withFileTypes: true });
   for (const file of files) {
@@ -46,6 +49,12 @@ const run = async () => {
     htmlContent = htmlContent.replace(
       '</title>',
       `</title>${metaContent(file.name)}`
+    );
+
+    // replace icons-elements lookup url with pinned url
+    htmlContent = htmlContent.replace(
+      /"https:\/\/cdn.skypack.dev\/@itwin\/itwinui-icons-elements\/(.*)"/g,
+      `"${pinnedIconElementsUrl}/\$1.js"`
     );
 
     // run minifier
