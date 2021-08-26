@@ -5,31 +5,35 @@
 
 @mixin iui-color-picker {
   @include iui-dropdown;
-  width: $iui-baseline * 27;
+  max-width: ($iui-l * 10) + ($iui-xxs * 10) + ($iui-s * 9) + ($iui-sm * 2) + ($iui-s);
+  // max-width: (10 swatches per row) + (border) + (gaps) + (container padding) + (scrollbar)
+  max-height: ($iui-l * 10) + ($iui-xxs * 10) + ($iui-s * 9) + ($iui-baseline * 2);
+  // max-height: (10 rows) + (border) + (gaps) + (container padding)
+  box-sizing: border-box;
   border-radius: $iui-border-radius;
   display: flex;
   flex-wrap: wrap;
-  padding-left: $iui-sm;
-  padding-top: $iui-sm;
+  padding: $iui-baseline $iui-sm;
+  user-select: none;
+  overflow: scroll;
 
   &.iui-advanced {
-    width: $iui-baseline * 24;
+    max-width: ($iui-l * 7) + ($iui-xxs * 7) + ($iui-s * 6) + ($iui-sm * 2) + ($iui-s);
   }
 }
 
-@mixin iui-color-option {
+@mixin iui-color-swatch {
   @include iui-focus;
   height: $iui-l;
   width: $iui-l;
-  margin-right: $iui-sm;
-  margin-bottom: $iui-sm;
   cursor: pointer;
   border-radius: $iui-border-radius;
-  background-color: var(--option-color);
+  background-color: var(--swatch-color);
 
   @include themed {
     box-shadow: inset 0 0 0 $iui-xxs
-      rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+      rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+    border: 1px solid t(iui-color-background-1);
   }
 
   &.iui-active {
@@ -47,33 +51,56 @@
 
   &.iui-add-color-button {
     box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+      @include themed {
+        fill: t(iui-icons-color-actionable);
+      }
+    }
+
+    &:hover {
+      @include themed {
+        background-color: t(iui-color-background-1-overlay);
+        border-color: t(iui-color-background-1-overlay);
+      }
+
+      svg {
+        @include themed {
+          fill: t(iui-icons-color-actionable-hover);
+        }
+      }
+    }
   }
 }
 
 @mixin iui-color-palette {
-  width: auto;
+  //Contains the color swatches
   display: flex;
   flex-wrap: wrap;
+  gap: $iui-s;
+  position: relative;
 }
 
 @mixin iui-saved-colors {
-  margin-left: $iui-sm;
+  width: 100%;
 }
 
-@mixin iui-color-selector {
-  padding-left: $iui-sm;
-  padding-top: $iui-sm;
+@mixin iui-color-selection-wrapper {
   display: flex;
   flex-wrap: wrap;
-  height: $iui-baseline * 16;
-
+  margin-bottom: $iui-baseline;
 }
 
 @mixin iui-color-field {
   position: relative;
   cursor: crosshair;
-  width: $iui-baseline * 19;
-  height: auto;
+  width: 210px;
+  height: 210px;
 
   @include themed {
     background-image: linear-gradient(0deg, rgb(0, 0, 0), transparent),
@@ -81,16 +108,10 @@
   }
 }
 
-@mixin iui-color-slider-wrapper {
+@mixin iui-color-slider {
   margin-left: $iui-sm;
   position: relative;
   width: $iui-s;
-  height: auto;
-}
-
-@mixin iui-color-slider {
-  inset: 0;
-  position: absolute;
   border-radius: $iui-border-radius;
 
   @include themed {
@@ -106,18 +127,18 @@
   }
 }
 
-@mixin iui-color-selection-wrapper {
+@mixin iui-color-dot-wrapper {
   position: absolute;
   top: var(--top, 0%);
   left: var(--left, 0%);
 }
 
-@mixin iui-color-selection {
+@mixin iui-color-dot {
   @include iui-focus;
-  width: $iui-s + 2;
-  height: $iui-s + 2;
+  width: $iui-m;
+  height: $iui-m;
   border-radius: 50%;
-  transform: translate(-3px, -3px);
+  transform: translate(-8px, -8px);
   @include themed {
     box-shadow: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-1)) 0
       0 0 $iui-xxs - 1,
@@ -128,7 +149,8 @@
 
   &.iui-white {
     @include iui-focus;
-    transform: translate(-1px, -9px);
+    transform: translate(-4px, -9px);
+    cursor: grab;
     @include themed {
       box-shadow: rgba(0, 0, 0, 0.37) 0 1px 4px 0;
       background-color: #FFF;
@@ -141,4 +163,4 @@
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
     }
   }
-} ;
+}
