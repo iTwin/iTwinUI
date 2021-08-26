@@ -73,7 +73,7 @@
       cursor: pointer;
 
       &,
-      > path {
+      path {
         @media (prefers-reduced-motion: no-preference) {
           transition: fill $iui-speed-fast ease;
         }
@@ -84,7 +84,7 @@
       }
 
       &:hover,
-      &:hover > path {
+      &:hover path {
         @include themed() {
           fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
         }
