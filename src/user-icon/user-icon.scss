@@ -53,10 +53,10 @@
   }
 
   > .iui-icon {
+    display: flex;
     width: 50%;
     height: 50%;
     position: absolute;
-    display: inline-block;
     @include themed {
       fill: t(iui-color-foreground-accessory);
     }
@@ -92,12 +92,12 @@
     }
 
     > .iui-status-symbol {
+      width: calc(100% / 1.5);
+      height: calc(100% / 1.5);
+      display: flex;
       @include themed {
         fill: t(iui-icons-color);
       }
-      width: calc(100% / 1.5);
-      height: calc(100% / 1.5);
-      display: inline-block;
     }
 
     &.iui-online,

@@ -71,20 +71,15 @@
     > .iui-picture ~ .iui-placeholder-icon {
       z-index: 1;
       cursor: pointer;
-
-      &,
-      > path {
-        @media (prefers-reduced-motion: no-preference) {
-          transition: fill $iui-speed-fast ease;
-        }
-        @include themed() {
-          fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
-          filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
-        }
+      @media (prefers-reduced-motion: no-preference) {
+        transition: fill $iui-speed-fast ease;
+      }
+      @include themed() {
+        fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
+        filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
       }
 
-      &:hover,
-      &:hover > path {
+      &:hover {
         @include themed() {
           fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
         }
