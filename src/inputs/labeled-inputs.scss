@@ -105,7 +105,7 @@
     > .iui-message {
       margin: 0;
 
-      svg {
+      svg:not(.iui-icon) {
         margin-right: 0;
       }
     }
@@ -120,7 +120,7 @@
         right: 0;
         transform: translateY(-50%);
 
-        svg {
+        svg:not(.iui-icon) {
           margin-right: $iui-sm;
         }
       }
