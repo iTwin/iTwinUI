@@ -18,7 +18,10 @@
   }
 
   &.iui-disabled {
-    cursor: not-allowed;
+    &,
+    label {
+      cursor: not-allowed;
+    }
   }
 
   // Appropriate spacing even if no text label is given
@@ -41,53 +44,17 @@
     > .iui-textarea {
       padding-right: $iui-icons-default + $iui-l;
 
-      + .iui-message {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-
-        svg {
-          margin-right: $iui-sm;
-        }
-      }
-
       &:last-child {
         padding-right: $iui-sm;
       }
     }
   }
-
-  // #region Statuses
-  &.iui-positive {
-    @include iui-inputs-status(
-      iui-color-foreground-positive,
-      iui-color-foreground-positive-overlay,
-      iui-color-foreground-positive-rgb
-    );
-  }
-
-  &.iui-warning {
-    @include iui-inputs-status(
-      iui-color-foreground-warning,
-      iui-color-foreground-warning-overlay,
-      iui-color-foreground-warning-rgb
-    );
-  }
-
-  &.iui-negative {
-    @include iui-inputs-status(
-      iui-color-foreground-negative,
-      iui-color-foreground-negative-overlay,
-      iui-color-foreground-negative-rgb
-    );
-  }
-  // #endregion
 }
 
 /// Text label for an input.
 /// Supports .iui-required modifier to show red asterisk.
-@mixin iui-input-label {
+/// @arg $displayStyle - default (block) or inline
+@mixin iui-input-label($displayStyle: default) {
   margin-bottom: $iui-component-offset;
   font-weight: $iui-font-weight-semibold;
 
@@ -100,36 +67,25 @@
       }
     }
   }
-}
 
-/// Modifier mixin on iui-input-label to show inline label.
-@mixin iui-input-label-inline {
-  flex-shrink: 0;
-  margin: 0 ($iui-m + 2) 0 0;
-
-  &.iui-required {
-    margin-right: $iui-s;
+  @if $displayStyle == inline {
+    flex-shrink: 0;
+    margin: 0 ($iui-m + 2) 0 0;
+  
+    &.iui-required {
+      margin-right: $iui-s;
+    }
   }
 }
 
 /// Message shown below input
-@mixin iui-input-status-message($displayStyle: default) {
+@mixin iui-input-message {
   display: flex;
   align-items: center;
   font-size: $iui-font-size-small;
   margin-top: $iui-component-offset;
   @include themed {
     color: t(iui-text-color-muted);
-  }
-
-  svg,
-  :not(.iui-button) svg {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    margin-right: $iui-xs;
-    @include themed {
-      fill: t(iui-icons-color);
-    }
   }
 
   > .iui-borderless {
@@ -142,46 +98,61 @@
   }
 }
 
-/// Modifier mixin on iui-input-status-message to hide message.
-@mixin iui-input-status-message-inline {
-  margin: 0;
+/// Container for grouping an input with a label and status message.
+/// @arg $displayStyle - default (block) or inline
+@mixin iui-input-icon($displayStyle: default) {
+  width: $iui-icons-default;
+  height: $iui-icons-default;
+  margin-right: $iui-xs;
+  @include themed {
+    fill: t(iui-icons-color);
+  }
 
-  svg,
-  :not(.iui-button) svg {
-    margin-right: 0;
+  @if $displayStyle == inline {
+    position: absolute;
+    right: 0;
+    margin-right: $iui-sm;
+    top: 50%;
+    transform: translateY(-50%);
+  } @else {
+    margin-right: $iui-xs;
   }
 }
 
-@mixin iui-inputs-status($foregroundColor, $foregroundOverlay, $foregroundRgb) {
+/// Mixin for applying status colors to input container.
+/// @arg status - must be one of: positive, negative, warning
+/// @arg iconClass - classname to apply status fill on. Defaults to .iui-input-icon
+/// @arg textClass - classname to apply text color on. Defaults to .iui-message
+@mixin iui-input-status($status, $iconClass: '.iui-input-icon', $textClass: '.iui-message') {
   *::selection {
     @include themed {
-      background-color: rgba(t($foregroundRgb), t(iui-opacity-4));
+      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
     }
   }
 
-  > .iui-message {
+  #{$iconClass} {
     @include themed {
-      color: t($foregroundColor);
+      fill: t(iui-color-foreground-#{$status});
     }
+  }
 
-    svg {
-      @include themed {
-        fill: t($foregroundColor);
-      }
+  > #{$textClass} {
+    @include themed {
+      color: t(iui-color-foreground-#{$status});
     }
 
     a {
       text-decoration: underline;
 
       @include themed {
-        color: t($foregroundColor);
+        color: t(iui-color-foreground-#{$status});
       }
 
       &:hover {
         text-decoration: none;
 
         @include themed {
-          color: t($foregroundOverlay);
+          color: t(iui-color-foreground-#{$status}-overlay);
         }
       }
     }
@@ -203,13 +174,13 @@
     }
 
     @include themed {
-      border-bottom: 2px solid t($foregroundColor);
+      border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
     }
 
     &:focus {
       @include themed {
-        border-bottom: 2px solid t($foregroundColor);
-        box-shadow: rgba(t($foregroundRgb), t(iui-opacity-5)) 0 0 0 2px;
+        border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
+        box-shadow: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-5)) 0 0 0 $iui-xxs;
       }
     }
   }

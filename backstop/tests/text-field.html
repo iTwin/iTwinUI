@@ -30,6 +30,22 @@
         gap: 11px;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -95,13 +111,10 @@
           class="iui-input"
         />
         <div class="iui-message">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-status-success
+            class="iui-input-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
+          ></svg-status-success>
           Positive message.
         </div>
       </label>
@@ -113,15 +126,10 @@
           class="iui-input"
         />
         <div class="iui-message">
-          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-status-warning
+            class="iui-input-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-            />
-          </svg>
+          ></svg-status-warning>
           Warning message.
         </div>
       </label>
@@ -133,13 +141,10 @@
           class="iui-input"
         />
         <div class="iui-message">
-          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-status-error
+            class="iui-input-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-          </svg>
+          ></svg-status-error>
           Negative message.
         </div>
       </label>
@@ -192,13 +197,10 @@
           class="iui-input"
         />
         <div class="iui-message">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-status-success
+            class="iui-input-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
+          ></svg-status-success>
         </div>
       </label>
 
@@ -209,15 +211,10 @@
           class="iui-input"
         />
         <div class="iui-message">
-          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-status-warning
+            class="iui-input-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-            />
-          </svg>
+          ></svg-status-warning>
         </div>
       </label>
 
@@ -228,13 +225,10 @@
           class="iui-input"
         />
         <div class="iui-message">
-          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-status-error
+            class="iui-input-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-          </svg>
+          ></svg-status-error>
         </div>
       </label>
 
@@ -249,39 +243,12 @@
             class="iui-button iui-borderless"
             aria-label="Clear"
           >
-            <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-close-small
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
-            </svg>
+            ></svg-close-small>
           </button>
         </div>
-      </label>
-
-      <label class="iui-input-container iui-inline">
-        <div class="iui-label">Input label</div>
-        <input
-          value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          class="iui-input"
-        />
-        <button
-          class="iui-button iui-combo-button"
-          aria-label="Clear"
-        >
-          <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
-          </svg>
-        </button>
       </label>
     </section>
 
@@ -325,13 +292,10 @@
           class="iui-input"
         />
         <div class="iui-message">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-status-success
+            class="iui-input-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
+          ></svg-status-success>
         </div>
       </label>
 
@@ -341,15 +305,10 @@
           class="iui-input"
         />
         <div class="iui-message">
-          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-status-warning
+            class="iui-input-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-            />
-          </svg>
+          ></svg-status-warning>
         </div>
       </label>
 
@@ -359,13 +318,10 @@
           class="iui-input"
         />
         <div class="iui-message">
-          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-status-error
+            class="iui-input-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-          </svg>
+          ></svg-status-error>
         </div>
       </label>
 
