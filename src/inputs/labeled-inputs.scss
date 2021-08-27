@@ -52,7 +52,8 @@
       color: t(iui-text-color-muted);
     }
 
-    svg {
+    > svg,
+    :not(.iui-button) svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
       margin-right: $iui-xs;
@@ -64,12 +65,6 @@
     > .iui-borderless {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
-
-      svg {
-        @include themed {
-          fill: t(iui-icons-color-actionable);
-        }
-      }
     }
 
     a {
@@ -105,7 +100,8 @@
     > .iui-message {
       margin: 0;
 
-      svg:not(.iui-icon) {
+      > svg,
+      :not(.iui-button) svg {
         margin-right: 0;
       }
     }
@@ -120,7 +116,8 @@
         right: 0;
         transform: translateY(-50%);
 
-        svg:not(.iui-icon) {
+        > svg,
+        :not(.iui-button) svg {
           margin-right: $iui-sm;
         }
       }
@@ -170,7 +167,8 @@
       color: t($foregroundColor);
     }
 
-    svg {
+    svg,
+    svg > * {
       @include themed {
         fill: t($foregroundColor);
       }
