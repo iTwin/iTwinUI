@@ -91,12 +91,12 @@
     }
 
     > .iui-status-symbol {
-      width: calc(100% / 1.5);
-      height: calc(100% / 1.5);
       display: flex;
       @include themed {
         fill: t(iui-icons-color);
       }
+      width: calc(100% / 1.5);
+      height: calc(100% / 1.5);
     }
 
     &.iui-online,

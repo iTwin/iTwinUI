@@ -173,7 +173,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 @mixin iui-menu-icon {
   width: $iui-icons-default;
   height: $iui-icons-default;
-  display: inline-block;
+  display: flex;
   flex: 0 0 auto;
   @include themed {
     fill: t(iui-icons-color-actionable);

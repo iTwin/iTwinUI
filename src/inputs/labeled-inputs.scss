@@ -61,10 +61,11 @@
       color: t(iui-text-color-muted);
     }
 
-    .iui-message-status-icon {
+    svg,
+    :not(.iui-button) svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
-      display: inline-block;
+      display: flex;
       margin-right: $iui-xs;
       @include themed {
         fill: t(iui-icons-color);
@@ -109,7 +110,8 @@
     > .iui-message {
       margin: 0;
 
-      .iui-message-status-icon {
+      svg,
+      :not(.iui-button) svg {
         margin-right: 0;
       }
     }
@@ -124,7 +126,8 @@
         right: 0;
         transform: translateY(-50%);
 
-        .iui-message-status-icon {
+        svg,
+        :not(.iui-button) svg {
           margin-right: $iui-sm;
         }
       }
@@ -174,7 +177,8 @@
       color: t($foregroundColor);
     }
 
-    .iui-message-status-icon {
+    svg,
+    :not(.iui-button) svg {
       @include themed {
         fill: t($foregroundColor);
       }

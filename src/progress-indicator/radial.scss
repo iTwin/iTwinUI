@@ -69,20 +69,21 @@
   }
 
   .iui-inner-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: absolute;
+    display: flex;
     width: calc(100% - #{$iui-s});
     height: calc(100% - #{$iui-s});
-    top: 50%;
     left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
     font-size: $iui-font-size-small;
     user-select: none;
     overflow: hidden;
 
-    svg {
+    svg,
+    img {
       display: flex;
       width: $iui-icons-default;
       height: $iui-icons-default;
@@ -183,7 +184,8 @@
     .iui-inner-content {
       font-size: $iui-font-size-leading;
 
-      svg {
+      svg,
+      img {
         width: $iui-icons-large;
         height: $iui-icons-large;
       }
