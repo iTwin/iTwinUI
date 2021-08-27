@@ -4,6 +4,24 @@
 
 .iui-input-container {
   @include iui-input-container;
+
+  > .iui-label {
+    @include iui-input-label;
+  }
+
+  .iui-message {
+    @include iui-input-status-message;
+  }
+
+  &.iui-inline {
+    > .iui-label {
+      @include iui-input-label-inline;
+    }
+
+    .iui-message {
+      @include iui-input-status-message-inline;
+    }
+  }
 }
 
 .iui-input {
@@ -29,4 +47,3 @@
 .iui-radio-tile-container {
   @include iui-radio-tile;
 }
-
