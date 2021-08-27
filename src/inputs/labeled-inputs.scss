@@ -16,10 +16,13 @@
   @at-root {
     label#{&} {
       cursor: pointer;
+    }
+  }
 
-      &.iui-disabled {
-        cursor: not-allowed;
-      }
+  &.iui-disabled {
+    &,
+    label {
+      cursor: not-allowed;
     }
   }
 
@@ -78,10 +81,6 @@
   > .iui-checkbox,
   > .iui-radio {
     min-height: $iui-line-height;
-  }
-
-  &.iui-disabled > label {
-    cursor: not-allowed;
   }
 
   &.iui-inline {
