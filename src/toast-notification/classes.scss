@@ -20,6 +20,14 @@
     min-width: 400px;
     max-width: 640px;
     margin-top: $iui-line-height;
+
+    &.iui-placement-bottom,
+    &.iui-placement-bottom-start,
+    &.iui-placement-bottom-end {
+      margin-top: 0;
+      margin-bottom: $iui-line-height;
+    }
+
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -89,18 +97,30 @@
     bottom: 0;
     left: 0;
     right: 0;
+
+    .iui-toast {
+      margin: $iui-baseline $iui-m 0 $iui-m;
+    }
   }
 
   &.iui-placement-bottom-start {
     left: 0;
     bottom: 0;
     align-items: flex-start;
+
+    .iui-toast {
+      margin: $iui-baseline $iui-m 0 $iui-m;
+    }
   }
 
   &.iui-placement-bottom-end {
     right: 0;
     bottom: 0;
     align-items: flex-end;
+
+    .iui-toast {
+      margin: $iui-baseline $iui-m 0 $iui-m;
+    }
   }
 }
 
