@@ -120,22 +120,22 @@
 
 /// Mixin for applying status colors to input container.
 /// @arg status - must be one of: positive, negative, warning
-/// @arg iconClass - classname to apply status fill on. Defaults to .iui-input-icon
-/// @arg textClass - classname to apply text color on. Defaults to .iui-message
-@mixin iui-input-status($status, $iconClass: '.iui-input-icon', $textClass: '.iui-message') {
+/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon
+/// @arg textSelector - selector to apply text color on. Defaults to .iui-message
+@mixin iui-input-status($status, $iconSelector: '.iui-input-icon', $textSelector: '.iui-message') {
   *::selection {
     @include themed {
       background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
     }
   }
 
-  #{$iconClass} {
+  #{$iconSelector} {
     @include themed {
       fill: t(iui-color-foreground-#{$status});
     }
   }
 
-  > #{$textClass} {
+  > #{$textSelector} {
     @include themed {
       color: t(iui-color-foreground-#{$status});
     }
