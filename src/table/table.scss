@@ -102,7 +102,6 @@
   // Sort icon
   .iui-sort {
     visibility: hidden;
-    display: flex;
     @include themed {
       fill: t(iui-icons-color);
     }
@@ -167,7 +166,6 @@
     }
 
     .iui-row-expander > .iui-icon {
-      display: inline-block;
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
