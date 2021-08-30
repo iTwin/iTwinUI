@@ -165,8 +165,8 @@
       visibility: visible;
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      .iui-row-expander > .iui-icon {
+    .iui-row-expander > .iui-icon {
+      @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
     }
@@ -351,7 +351,7 @@
     }
   }
 
-  .iui-cell-end-icon > svg {
+  .iui-cell-end-icon svg {
     @include themed {
       fill: t(iui-icons-color-#{$status});
     }
@@ -384,7 +384,8 @@
     align-items: center;
     justify-content: center;
 
-    > svg {
+    svg:not(.iui-radial) {
+      display: flex; // needed for vertical alignment of webcomponents
       width: $iui-icons-default;
       height: $iui-icons-default;
     }
