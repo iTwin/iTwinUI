@@ -34,7 +34,6 @@
     > .iui-icon {
       height: $iui-icons-default;
       width: $iui-icons-default;
-      display: inline-block;
       @include themed {
         fill: t(iui-color-foreground-accessory);
       }
