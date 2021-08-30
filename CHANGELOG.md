@@ -1,7 +1,54 @@
 # Changelog
 
-### [0.25.2](https://www.github.com/iTwin/iTwinUI/compare/v0.25.1...v0.25.2) (2021-08-16)
+## [0.28.0](https://www.github.com/iTwin/iTwinUI/compare/v0.27.3...v0.28.0) (2021-08-30)
 
+### What's new
+
+* **Toaster:** Added placement classes ([#261](https://www.github.com/iTwin/iTwinUI/issues/261)) ([44116c7](https://www.github.com/iTwin/iTwinUI/commit/44116c77af75eea4193c86b3110bf36e767c8aec))
+
+### [0.27.3](https://www.github.com/iTwin/iTwinUI/compare/v0.27.2...v0.27.3) (2021-08-25)
+
+### Fixes
+
+* **Table:** Handling very long strings without spaces ([#268](https://www.github.com/iTwin/iTwinUI/issues/268)) ([b6870d1](https://www.github.com/iTwin/iTwinUI/commit/b6870d159da46fba84de6627b1ff7df421f679b3))
+
+### [0.27.2](https://www.github.com/iTwin/iTwinUI/compare/v0.27.1...v0.27.2) (2021-08-24)
+
+### Fixes
+
+* **Wizard:** focus is now applied on step, not circle ([#265](https://www.github.com/iTwin/iTwinUI/issues/265)) ([5126a40](https://www.github.com/iTwin/iTwinUI/commit/5126a40b482871196a8cff3f2cab4fe91ae2f460))
+
+### [0.27.1](https://www.github.com/iTwin/iTwinUI/compare/v0.27.0...v0.27.1) (2021-08-23)
+
+### Fixes
+
+* **Tabs:** vertical tabs shouldn't wrap ([#262](https://www.github.com/iTwin/iTwinUI/issues/262)) ([2e0ca7f](https://www.github.com/iTwin/iTwinUI/commit/2e0ca7f07ef7c38a1280a3c0fe9ff62ac043eb4a))
+
+## [0.27.0](https://www.github.com/iTwin/iTwinUI/compare/v0.26.1...v0.27.0) (2021-08-23)
+
+### What's new
+
+* **ExpandableBlock:** update animation to use react-transition-group ([#259](https://www.github.com/iTwin/iTwinUI/issues/259)) ([163e9d2](https://www.github.com/iTwin/iTwinUI/commit/163e9d2fb0a34f15f51dbb4983b772d33d6dafa9))
+
+### [0.26.1](https://www.github.com/iTwin/iTwinUI/compare/v0.26.0...v0.26.1) (2021-08-20)
+
+### Fixes
+
+* **Wizard:** allow placing tooltip inside wizard wrapper ([#257](https://www.github.com/iTwin/iTwinUI/issues/257)) ([8aa853d](https://www.github.com/iTwin/iTwinUI/commit/8aa853d4d60659d019338a7249f2c50c9a5bf17e))
+
+## [0.26.0](https://www.github.com/iTwin/iTwinUI/compare/v0.25.2...v0.26.0) (2021-08-20)
+
+### What's new
+
+* **Icons:** size variables are now exported ([#254](https://www.github.com/iTwin/iTwinUI/issues/254)) ([6d25526](https://www.github.com/iTwin/iTwinUI/commit/6d25526341c59b17b12d0a0d3ea63827d62b75ec))
+* **Tabs:** Add vertical modifier to default and borderless tabs ([#233](https://www.github.com/iTwin/iTwinUI/issues/233)) ([5b9c5f4](https://www.github.com/iTwin/iTwinUI/commit/5b9c5f42dcf42cc449a191459e8824b3de89953f))
+* **Wizard:** Updated styles and classnames ([#109](https://github.com/iTwin/iTwinUI/pull/109)) ([935d79d](https://www.github.com/iTwin/iTwinUI/commit/935d79d83a8d5e594bc51a9af912fe4394378260))
+
+### Fixes
+
+* **Wizard:** Workflow diagram uses correct styling for intermediate steps ([935d79d](https://www.github.com/iTwin/iTwinUI/commit/935d79d83a8d5e594bc51a9af912fe4394378260))
+
+### [0.25.2](https://www.github.com/iTwin/iTwinUI/compare/v0.25.1...v0.25.2) (2021-08-16)
 
 ### Fixes
 

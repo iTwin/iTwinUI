@@ -39,7 +39,8 @@
       z-index: -1;
     }
 
-    > .iui-file-upload-icon {
+    > svg,
+    .iui-template-icon {
       @include iui-icons-3xl;
       display: inline-block;
       margin-top: $iui-baseline;
@@ -80,8 +81,8 @@
     }
     visibility: visible;
 
-    > .iui-file-upload-icon,
-    > .iui-file-upload-icon > * {
+    > svg,
+    .iui-template-icon {
       @include themed {
         fill: t(iui-icons-color-primary);
       }

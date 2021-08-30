@@ -16,20 +16,9 @@
   }
 
   > .iui-icon {
-    display: inline-block;
+    @include iui-icons-default;
     flex-shrink: 0;
     margin-left: $iui-m;
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    @include themed {
-      fill: t(iui-icons-color);
-    }
-
-    > * {
-      @include themed {
-        fill: t(iui-icons-color);
-      }
-    }
   }
 
   > .iui-message {

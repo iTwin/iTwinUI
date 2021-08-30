@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../icon/variables';
 @import '../style/index';
 @import '../text/mixins';
 
@@ -53,6 +52,7 @@
   }
 
   > .iui-icon {
+    display: inline-flex;
     width: 50%;
     height: 50%;
     position: absolute;
@@ -92,6 +92,7 @@
     }
 
     > .iui-status-symbol {
+      display: inline-flex;
       @include themed {
         fill: t(iui-icons-color);
       }

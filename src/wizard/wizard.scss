@@ -47,7 +47,7 @@
   // Current step
   &.iui-current {
     font-weight: $iui-font-weight-semibold;
-    
+
     .iui-wizard-step-name {
       @include themed {
         color: t(iui-color-foreground-positive);
@@ -86,7 +86,7 @@
     }
 
     .iui-wizard-track-content::before,
-    &:not(:last-child) .iui-wizard-track-content::after {
+    &:not(:last-of-type) .iui-wizard-track-content::after {
       @include themed {
         background-color: t(iui-color-background-5);
       }
@@ -96,7 +96,6 @@
   // Clickable steps
   &.iui-clickable {
     .iui-wizard-circle {
-      @include iui-focus(iui-focus-positive-box-shadow);
       cursor: pointer;
       @media (prefers-reduced-motion: no-preference) {
         transition: background-color $iui-speed-fast ease-out;
@@ -110,10 +109,27 @@
         }
       }
     }
+
+    &:focus {
+      outline: 0;
+
+      .iui-wizard-circle {
+        outline: 0;
+        @include themed {
+          box-shadow: t(iui-focus-positive-box-shadow);
+        }
+      }
+    }
+
+    &:focus:not(:focus-visible) {
+      .iui-wizard-circle {
+        box-shadow: none;
+      }
+    }
   }
 
-  &:first-child .iui-wizard-track-content::before,
-  &:last-child .iui-wizard-track-content::after {
+  &:first-of-type .iui-wizard-track-content::before,
+  &:last-of-type .iui-wizard-track-content::after {
     background-color: transparent;
   }
 }

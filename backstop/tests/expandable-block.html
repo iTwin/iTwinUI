@@ -31,6 +31,15 @@
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
     ></script>
     <script src="../assets/theme.js"></script>
+    <script>
+      customElements.define('expandable-content', class extends HTMLElement {
+        connectedCallback() {
+          const innerHTML = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`;
+          this.parentElement.insertAdjacentHTML('beforeend', innerHTML);
+          this.remove();
+        }
+      })
+    </script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>
@@ -166,9 +175,14 @@
 
     <script>
       document.querySelectorAll('.iui-header').forEach((el) => {
-        el.addEventListener('click', (event) =>
-          event.currentTarget.parentElement.classList.toggle('iui-expanded'),
-        );
+        el.addEventListener('click', (event) => {
+          event.currentTarget.parentElement.classList.toggle('iui-expanded');
+          if (el.nextElementSibling?.classList.contains('iui-expandable-content')) {
+            el.nextElementSibling.remove();
+          } else {
+            el.insertAdjacentHTML('afterend', '<div class="iui-expandable-content"><div><expandable-content></expandable-content></div></div>')
+          }
+        });
       });
     </script>
   </body>
