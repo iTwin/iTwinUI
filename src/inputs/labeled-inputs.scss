@@ -61,7 +61,6 @@
   &.iui-required {
     &::after {
       content: ' *';
-      margin-right: 0;
       @include themed {
         color: t(iui-color-foreground-negative);
       }
