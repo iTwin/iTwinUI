@@ -22,7 +22,6 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
   .iui-header-menu-icon {
     margin: 0 $iui-xs;
-    display: inline-flex;
   }
 
   div.iui-header-menu-icon {
@@ -173,7 +172,6 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 @mixin iui-menu-icon {
   width: $iui-icons-default;
   height: $iui-icons-default;
-  display: flex;
   flex: 0 0 auto;
   @include themed {
     fill: t(iui-icons-color-actionable);
