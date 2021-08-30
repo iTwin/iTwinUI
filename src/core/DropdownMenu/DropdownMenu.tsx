@@ -107,8 +107,10 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
       {...rest}
     >
       {React.cloneElement(children as JSX.Element, {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref: mergeRefs(targetRef, (props.children as any).ref),
+        ref: mergeRefs(
+          targetRef,
+          (props.children as React.FunctionComponentElement<HTMLElement>).ref,
+        ),
         onClick: (args: unknown) => {
           trigger === undefined && (isVisible ? close() : open());
           (children as JSX.Element).props.onClick?.(args);

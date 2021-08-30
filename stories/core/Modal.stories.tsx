@@ -60,7 +60,7 @@ export const Basic: Story<ModalProps> = ({
   };
 
   const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose')(event);
+    action('onClose', { depth: 1 })(event);
     closeModal();
   };
 
@@ -87,7 +87,7 @@ export const Basic: Story<ModalProps> = ({
         isOpen={isModalOpen}
         title={title}
         onClose={onClose}
-        onKeyDown={action('onKeyDown')}
+        onKeyDown={action('onKeyDown', { depth: 1 })}
         {...rest}
       >
         <div>

@@ -88,14 +88,19 @@ it('should not close on overlay mouse down when closeOnExternalClick is false', 
   assertBaseElement(overlay);
 });
 
-it('should close on Esc click', () => {
+it('should close on Esc click and move focus back', () => {
+  const { container } = render(<button>button</button>);
+  const button = container.querySelector('button') as HTMLElement;
+  button.focus();
+  expect(document.activeElement).toEqual(button);
   const onClose = jest.fn();
-  renderComponent({ onClose });
+  const { rerender } = renderComponent({ onClose });
 
   let overlay = document.querySelector(
     '.iui-modal.iui-modal-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
+  expect(document.activeElement).toEqual(overlay);
 
   fireEvent.keyDown(overlay, { key: 'Escape' });
   expect(onClose).toHaveBeenCalled();
@@ -104,6 +109,12 @@ it('should close on Esc click', () => {
     '.iui-modal.iui-modal-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
+  rerender(
+    <Modal isOpen={false} title='Modal Title'>
+      Body
+    </Modal>,
+  );
+  expect(document.activeElement).toEqual(button);
 });
 
 it('should not close on Esc click when closeOnEsc is false', () => {
