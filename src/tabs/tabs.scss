@@ -61,7 +61,6 @@
   .iui-tab-icon {
     width: $iui-icons-default;
     height: $iui-icons-default;
-    display: inline-block;
     @media (prefers-reduced-motion: no-preference) {
       transition: fill $iui-speed-fast ease-out;
     }
