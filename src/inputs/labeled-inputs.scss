@@ -52,10 +52,10 @@
       color: t(iui-text-color-muted);
     }
 
-    > svg,
-    :not(.iui-button) svg {
+    svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
+      display: flex; // needed for vertical alignment of webcomponents
       margin-right: $iui-xs;
       @include themed {
         fill: t(iui-icons-color);
@@ -65,6 +65,12 @@
     > .iui-borderless {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
+
+      svg {
+        @include themed {
+          fill: t(iui-icons-color-actionable);
+        }
+      }
     }
 
     a {
@@ -100,8 +106,7 @@
     > .iui-message {
       margin: 0;
 
-      > svg,
-      :not(.iui-button) svg {
+      svg:not(.iui-icon) {
         margin-right: 0;
       }
     }
@@ -116,8 +121,7 @@
         right: 0;
         transform: translateY(-50%);
 
-        > svg,
-        :not(.iui-button) svg {
+        svg:not(.iui-icon) {
           margin-right: $iui-sm;
         }
       }
@@ -167,8 +171,7 @@
       color: t($foregroundColor);
     }
 
-    svg,
-    svg > * {
+    svg {
       @include themed {
         fill: t($foregroundColor);
       }

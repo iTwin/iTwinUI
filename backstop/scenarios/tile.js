@@ -99,7 +99,7 @@ module.exports = [
 
   //// Play Icon focus
   scenario('State Play Icon focus with thumbnail', {
-    actions: [focus('#test-tile-3 .iui-play-icon')],
+    actions: [focus('#test-tile-3 .iui-thumbnail-icon')],
     selectors: ['#test-tile-3'],
   }),
 
