@@ -45,6 +45,7 @@
     }
 
     svg {
+      display: flex; // needed for vertical alignment of webcomponents
       width: $iui-icons-default;
       height: $iui-icons-default;
     }

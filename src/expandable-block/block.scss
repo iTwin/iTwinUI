@@ -23,6 +23,7 @@
     }
 
     > .iui-icon {
+      display: inline-flex;
       float: left;
       width: $iui-icons-default;
       height: $iui-icons-default;
