@@ -70,7 +70,7 @@
   @if $displayStyle == inline {
     flex-shrink: 0;
     margin: 0 $iui-m 0 0;
-  
+
     &.iui-required {
       margin-right: $iui-xs * 1.5;
     }
