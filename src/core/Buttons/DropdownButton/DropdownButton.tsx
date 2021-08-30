@@ -10,6 +10,7 @@ import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSma
 import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
 
 import { useTheme } from '../../utils/hooks/useTheme';
+import { useMergedRefs } from '../../utils/hooks/useMergedRefs';
 import '@itwin/itwinui-css/css/button.css';
 
 export type DropdownButtonProps = {
@@ -36,7 +37,10 @@ export type DropdownButtonProps = {
  * ];
  * <DropdownButton menuItems={menuItems}>Default</DropdownButton>
  */
-export const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
+export const DropdownButton = React.forwardRef<
+  HTMLButtonElement,
+  DropdownButtonProps
+>((props, ref) => {
   const { menuItems, className, size, styleType, children, ...rest } = props;
 
   useTheme();
@@ -44,11 +48,13 @@ export const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const [menuWidth, setMenuWidth] = React.useState(0);
-  const ref = React.useRef<HTMLButtonElement>(null);
+
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const refs = useMergedRefs(ref, buttonRef);
 
   React.useEffect(() => {
-    if (ref.current) {
-      setMenuWidth(ref.current.offsetWidth);
+    if (buttonRef.current) {
+      setMenuWidth(buttonRef.current.offsetWidth);
     }
   }, [children, size, styleType]);
 
@@ -70,7 +76,7 @@ export const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
             <SvgCaretDownSmall aria-hidden />
           )
         }
-        ref={ref}
+        ref={refs}
         aria-label='Dropdown'
         {...rest}
       >
@@ -78,6 +84,6 @@ export const DropdownButton: React.FC<DropdownButtonProps> = (props) => {
       </Button>
     </DropdownMenu>
   );
-};
+});
 
 export default DropdownButton;
