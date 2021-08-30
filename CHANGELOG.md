@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.28.1](https://www.github.com/iTwin/iTwinUI/compare/v0.28.0...v0.28.1) (2021-08-30)
+
+
+### Fixes
+
+* Add support for svg web components ([#232](https://www.github.com/iTwin/iTwinUI/issues/232)) ([1c04f55](https://www.github.com/iTwin/iTwinUI/commit/1c04f551f06f75bb372cdb0887c6484b7c18c251))
+
 ## [0.28.0](https://www.github.com/iTwin/iTwinUI/compare/v0.27.3...v0.28.0) (2021-08-30)
 
 ### What's new
