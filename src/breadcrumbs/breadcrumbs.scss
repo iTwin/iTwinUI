@@ -59,6 +59,6 @@
 
   svg {
     @include iui-icons-small;
-    display: flex;
+    display: flex; // needed for vertical alignment of webcomponents
   }
 }

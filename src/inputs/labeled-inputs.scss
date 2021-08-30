@@ -64,7 +64,7 @@
     svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
-      display: flex;
+      display: flex; // needed for vertical alignment of webcomponents
       margin-right: $iui-xs;
       @include themed {
         fill: t(iui-icons-color);
