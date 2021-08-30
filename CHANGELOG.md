@@ -1,16 +1,10 @@
 # Changelog
 
-## [0.28.0](https://www.github.com/iTwin/iTwinUI/compare/v0.27.3...v0.28.0) (2021-08-27)
-
+## [0.28.0](https://www.github.com/iTwin/iTwinUI/compare/v0.27.3...v0.28.0) (2021-08-30)
 
 ### What's new
 
-* Add Toaster placement classes ([#261](https://www.github.com/iTwin/iTwinUI/issues/261)) ([44116c7](https://www.github.com/iTwin/iTwinUI/commit/44116c77af75eea4193c86b3110bf36e767c8aec))
-
-
-### Fixes
-
-* Toaster margin fixes ([#275](https://www.github.com/iTwin/iTwinUI/issues/275)) ([cb3631c](https://www.github.com/iTwin/iTwinUI/commit/cb3631c27749b2d6d4d54b126989e808599cffd7))
+* **Toaster:** Added placement classes ([#261](https://www.github.com/iTwin/iTwinUI/issues/261)) ([44116c7](https://www.github.com/iTwin/iTwinUI/commit/44116c77af75eea4193c86b3110bf36e767c8aec))
 
 ### [0.27.3](https://www.github.com/iTwin/iTwinUI/compare/v0.27.2...v0.27.3) (2021-08-25)
 
