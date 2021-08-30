@@ -39,7 +39,7 @@
       z-index: -1;
     }
 
-    svg {
+    > svg {
       @include iui-icons-3xl;
       display: flex;
       margin-top: $iui-baseline;
@@ -80,7 +80,7 @@
     }
     visibility: visible;
 
-    svg {
+    > svg {
       @include themed {
         fill: t(iui-icons-color-primary);
       }
