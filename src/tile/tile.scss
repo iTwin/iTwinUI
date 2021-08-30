@@ -191,6 +191,7 @@
         color: t(iui-text-color-muted);
       }
 
+      > svg,
       .iui-metadata-icon {
         @include iui-icons-default;
         margin-right: $iui-s;
