@@ -33,7 +33,6 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 
   > .iui-icon:not(.iui-user-icon) {
-    display: inline-block;
     width: $iui-icons-default;
     height: $iui-icons-default;
     @media (prefers-reduced-motion: no-preference) {

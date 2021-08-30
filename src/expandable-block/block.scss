@@ -49,7 +49,7 @@
 
     > .iui-status-icon {
       margin-left: $iui-sm;
-      @include iui-icons-color();
+      @include iui-icons-color;
     }
 
     .iui-expandable-block-label {

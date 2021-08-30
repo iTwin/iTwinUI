@@ -153,7 +153,6 @@
 
       .iui-tile-status-icon {
         @include iui-icons-default;
-        display: inline-block;
         margin-right: $iui-s;
         flex-shrink: 0;
       }
@@ -195,7 +194,6 @@
       > svg,
       .iui-metadata-icon {
         @include iui-icons-default;
-        display: inline-block;
         margin-right: $iui-s;
         flex-shrink: 0;
       }

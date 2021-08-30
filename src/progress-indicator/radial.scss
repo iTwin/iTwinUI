@@ -184,7 +184,8 @@
     .iui-inner-content {
       font-size: $iui-font-size-leading;
 
-      svg {
+      svg,
+      img {
         width: $iui-icons-large;
         height: $iui-icons-large;
       }
