@@ -14,6 +14,10 @@
   @include iui-color-swatch;
 }
 
+.iui-saved-colors {
+  @include iui-saved-colors;
+}
+
 .iui-color-selection-wrapper {
   @include iui-color-selection-wrapper;
 }
