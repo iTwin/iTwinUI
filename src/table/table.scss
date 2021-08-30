@@ -194,7 +194,7 @@
     &.iui-expanded-content {
       overflow: hidden;
       @include iui-transition-group;
-    }    
+    }
 
     // #region Selection
     &:not(.iui-selected) + .iui-selected,
