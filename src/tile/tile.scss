@@ -63,11 +63,11 @@
       }
     }
 
-    .iui-placeholder-icon {
+    .iui-thumbnail-icon {
       @include iui-icons-3xl;
     }
 
-    > .iui-picture ~ .iui-placeholder-icon {
+    > .iui-picture ~ .iui-thumbnail-icon {
       z-index: 1;
       cursor: pointer;
       @media (prefers-reduced-motion: no-preference) {
