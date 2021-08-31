@@ -100,22 +100,27 @@
   }
 }
 
-/// Container for grouping an input with a label and status message.
+/// Icon to be shown below or inside the input.
 /// @arg $displayStyle - default (block) or inline
+/// Use default to place icon inside message; use inline to place at the end of input.
 @mixin iui-input-icon($displayStyle: default) {
   width: $iui-icons-default;
   height: $iui-icons-default;
-  margin-right: $iui-xs;
   @include themed {
     fill: t(iui-icons-color);
   }
 
   @if $displayStyle == inline {
     position: absolute;
-    right: 0;
-    margin-right: $iui-sm;
+    right: $iui-sm;
     top: 50%;
     transform: translateY(-50%);
+
+    &.iui-button {
+      height: 100%;
+      width: fit-content;
+      right: 0;
+    }
   } @else {
     margin-right: $iui-xs;
   }
