@@ -91,4 +91,34 @@ it('should add toasts and remove all', () => {
   toaster.closeAll();
   assertRemovedToast(toaster['toasts'][1], 'informational', 'mockContent', 1);
   assertRemovedToast(toaster['toasts'][0], 'positive', 'mockContent', 2);
+
+  expect(
+    document.querySelector('.iui-toast-wrapper.iui-placement-top'),
+  ).toBeTruthy();
+});
+
+it('should change order to bottom to top', () => {
+  toaster.setSettings({ placement: 'top', order: 'ascending' });
+  toaster.informational('mockContent', mockedOptions());
+  assertAddedToast(toaster['toasts'][0], 'informational', 'mockContent', 1);
+
+  toaster.positive('mockContent', mockedOptions());
+  assertAddedToast(toaster['toasts'][1], 'positive', 'mockContent', 2);
+});
+
+it.each([
+  'top-start',
+  'top',
+  'top-end',
+  'bottom-start',
+  'bottom',
+  'bottom-end',
+] as const)('should change placement to %s', (placement) => {
+  toaster.setSettings({
+    placement: placement,
+  });
+  toaster.informational('mockContent', mockedOptions());
+  expect(document.querySelector('.iui-toast-wrapper')).toHaveClass(
+    `iui-placement-${placement}`,
+  );
 });

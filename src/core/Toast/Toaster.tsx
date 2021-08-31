@@ -10,6 +10,28 @@ import { ToastWrapper } from './ToastWrapper';
 
 const TOASTS_CONTAINER_ID = 'iui-toasts-container';
 
+export type ToasterSettings = {
+  /**
+   * Order of toasts.
+   * When set to 'descending', most recent toasts are on top. When set to 'ascending', most recent toasts are on bottom.
+
+   * When `placement` is set to a top value, order defaults to 'descending', otherwise 'ascending'.
+   */
+  order?: 'descending' | 'ascending';
+  /**
+   * Placement of toasts.
+   * Changes placement of toasts. Start indicates left side of viewport. End - right side of viewport.
+   * @default 'top'
+   */
+  placement?:
+    | 'top'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom'
+    | 'bottom-start'
+    | 'bottom-end';
+};
+
 export type ToastOptions = Omit<
   ToastProps,
   'category' | 'isVisible' | 'id' | 'content'
@@ -18,48 +40,61 @@ export type ToastOptions = Omit<
 export default class Toaster {
   private toasts: ToastProps[] = [];
   private lastId = 0;
+  private settings: ToasterSettings = {
+    order: 'descending',
+    placement: 'top',
+  };
 
-  public positive(content: React.ReactNode, settings?: ToastOptions): void {
-    this.createToast(content, 'positive', settings);
+  /**
+   * Set global Toaster settings for toasts order and placement.
+   * Settings will be applied to new toasts on the page.
+   */
+  public setSettings(newSettings: ToasterSettings) {
+    newSettings.placement ??= this.settings.placement;
+    newSettings.order ??= newSettings.placement?.startsWith('bottom')
+      ? 'ascending'
+      : 'descending';
+    this.settings = newSettings;
   }
 
-  public informational(
-    content: React.ReactNode,
-    settings?: ToastOptions,
-  ): void {
-    this.createToast(content, 'informational', settings);
+  public positive(content: React.ReactNode, options?: ToastOptions): void {
+    this.createToast(content, 'positive', options);
   }
 
-  public negative(content: React.ReactNode, settings?: ToastOptions): void {
-    this.createToast(content, 'negative', settings);
+  public informational(content: React.ReactNode, options?: ToastOptions): void {
+    this.createToast(content, 'informational', options);
   }
 
-  public warning(content: React.ReactNode, settings?: ToastOptions): void {
-    this.createToast(content, 'warning', settings);
+  public negative(content: React.ReactNode, options?: ToastOptions): void {
+    this.createToast(content, 'negative', options);
+  }
+
+  public warning(content: React.ReactNode, options?: ToastOptions): void {
+    this.createToast(content, 'warning', options);
   }
 
   private createToast(
     content: React.ReactNode,
     category: ToastCategory,
-    settings?: ToastOptions,
+    options?: ToastOptions,
   ) {
     ++this.lastId;
     const currentId = this.lastId;
     this.toasts = [
+      ...(this.settings.order === 'ascending' ? this.toasts : []),
       {
-        ...settings,
+        ...options,
         content,
         category,
         onRemove: () => {
           this.removeToast(currentId);
-          settings?.onRemove?.();
+          options?.onRemove?.();
         },
         id: currentId,
         isVisible: true,
       },
-      ...this.toasts,
+      ...(this.settings.order === 'descending' ? this.toasts : []),
     ];
-
     this.updateView();
   }
 
@@ -74,7 +109,10 @@ export default class Toaster {
       return;
     }
 
-    ReactDOM.render(<ToastWrapper toasts={this.toasts} />, container);
+    ReactDOM.render(
+      <ToastWrapper toasts={this.toasts} placement={this.settings.placement} />,
+      container,
+    );
   }
 
   public closeAll(): void {

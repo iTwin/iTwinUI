@@ -4,17 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 import '@itwin/itwinui-css/css/toast-notification.css';
 import React from 'react';
+import cx from 'classnames';
 import Toast, { ToastProps } from './Toast';
+import { ToasterSettings } from './Toaster';
 
 type ToastWrapperProps = {
   toasts: ToastProps[];
-};
+} & Pick<ToasterSettings, 'placement'>;
 
 export const ToastWrapper = (props: ToastWrapperProps) => {
-  const { toasts } = props;
+  const { toasts, placement = 'top' } = props;
 
   return (
-    <span className='iui-toast-wrapper'>
+    <span className={cx(`iui-toast-wrapper`, `iui-placement-${placement}`)}>
       {toasts.map((toastProps) => {
         return <Toast key={toastProps.id} {...toastProps} />;
       })}
