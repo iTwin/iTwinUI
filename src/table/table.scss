@@ -332,6 +332,23 @@
   &.iui-negative {
     @include iui-table-cell-status($status: negative);
   }
+
+  &[contenteditable] {
+    outline-offset: -1px;
+
+    &:focus,
+    &:hover {
+      @include themed {
+        outline: 1px solid t(iui-color-foreground-primary);
+      }
+    }
+
+    &:focus {
+      @include themed {
+        background-color: t(iui-color-background-1);
+      }
+    }
+  }
 }
 
 @mixin iui-table-row-status($status) {
