@@ -52,6 +52,7 @@
   }
 
   > .iui-icon {
+    display: inline-flex;
     width: 50%;
     height: 50%;
     position: absolute;
@@ -90,6 +91,7 @@
     }
 
     > .iui-status-symbol {
+      display: inline-flex;
       @include themed {
         fill: t(iui-icons-color);
       }
@@ -102,7 +104,7 @@
     &.iui-busy {
       box-shadow: none;
 
-      > svg {
+      > .iui-status-symbol {
         @include themed {
           fill: t(iui-color-foreground-accessory);
         }
