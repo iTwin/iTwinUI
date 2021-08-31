@@ -33,11 +33,11 @@ export type HeaderButtonProps = {
   isActive?: boolean;
 } & Omit<
   Partial<DropdownButtonProps> & Partial<ButtonProps>,
-  'children' | 'styleType'
+  'children' | 'styleType' | 'name'
 >;
 
 const isSplitButton = (
-  props: Partial<SplitButtonProps>,
+  props: Omit<Partial<SplitButtonProps>, 'name'>,
 ): props is SplitButtonProps => {
   return !!props.menuItems && !!props.onClick;
 };
@@ -71,7 +71,7 @@ export const HeaderButton = (props: HeaderButtonProps) => {
 
   useTheme();
 
-  const buttonProps: ButtonProps & {
+  const buttonProps: Omit<ButtonProps, 'name'> & {
     styleType: 'borderless';
     menuItems?: (close: () => void) => JSX.Element[];
   } = {

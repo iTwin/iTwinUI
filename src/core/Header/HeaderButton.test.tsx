@@ -12,26 +12,26 @@ import HeaderButton from './HeaderButton';
 import { MenuItem } from '../Menu';
 
 it('should render in its most basic state', () => {
-  const { container } = render(<HeaderButton name={'MockName'} />);
+  const { container } = render(<HeaderButton name='MockName' />);
   expect(container.querySelector('.iui-label > :first-child')).toBeTruthy();
 });
 
 it('should render default button correctly', () => {
-  const { container } = render(<HeaderButton name={'MockName'} />);
+  const { container } = render(<HeaderButton name={<div>MockName</div>} />);
 
   const root = container.querySelector(
     '.iui-header-button:not(.iui-dropdown).iui-borderless',
   );
   expect(root).toBeTruthy();
 
-  const name = container.querySelector('.iui-label > :only-child');
+  const name = container.querySelector('.iui-label > div:only-child');
   expect(name).toBeTruthy();
   expect(name?.textContent).toEqual('MockName');
 });
 
 it('should render description correctly', () => {
   const { container } = render(
-    <HeaderButton name={'MockName'} description={'MockDescription'} />,
+    <HeaderButton name='MockName' description='MockDescription' />,
   );
 
   const name = container.querySelector('.iui-label > :first-child');
@@ -47,7 +47,7 @@ it('should render description correctly', () => {
 
 it('should render isActive correctly', () => {
   const { container } = render(
-    <HeaderButton name={'MockName'} isActive={true} />,
+    <HeaderButton name='MockName' isActive={true} />,
   );
 
   const activeButton = container.querySelector('.iui-header-button.iui-active');
@@ -61,7 +61,7 @@ it('should render split button correctly', () => {
 
   const { container } = render(
     <HeaderButton
-      name={'MockName'}
+      name='MockName'
       onClick={buttonOnClick}
       menuItems={(close) => [
         <MenuItem
@@ -106,7 +106,7 @@ it('should render split button correctly', () => {
 
 it('should render startIcon correctly', () => {
   const { container } = render(
-    <HeaderButton name={'MockName'} startIcon={<SvgPlaceholder />} />,
+    <HeaderButton name='MockName' startIcon={<SvgPlaceholder />} />,
   );
 
   const {
@@ -122,7 +122,7 @@ it('should render menuItems correctly', () => {
   const itemOneOnClick = jest.fn();
   const { container } = render(
     <HeaderButton
-      name={'MockName'}
+      name='MockName'
       startIcon={<SvgPlaceholder />}
       menuItems={(close) => [
         <MenuItem
