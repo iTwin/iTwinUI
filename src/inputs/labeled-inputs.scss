@@ -16,11 +16,14 @@
   @at-root {
     label#{&} {
       cursor: pointer;
+
+      &.iui-disabled {
+        cursor: not-allowed;
+      }
     }
   }
 
   &.iui-disabled {
-    &,
     label {
       cursor: not-allowed;
     }
