@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.17.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.16.2...v1.17.0) (2021-08-31)
+
+### What's new
+
+* **Toaster:** Add settings to customize placement and order ([#276](https://www.github.com/iTwin/iTwinUI-react/issues/276)) ([5101330](https://www.github.com/iTwin/iTwinUI-react/commit/510133015231876c2dc05421bd52b7deaacb6877))
+* **Modal:** Focus is now trapped inside modal ([#282](https://www.github.com/iTwin/iTwinUI-react/issues/282)) ([95ea900](https://www.github.com/iTwin/iTwinUI-react/commit/95ea900adfb1bb626597ddcfbcc395f5412a60a4))
+* **Wizard:** Improve accessibility and forward ref ([#290](https://www.github.com/iTwin/iTwinUI-react/issues/290)) ([69cfa62](https://www.github.com/iTwin/iTwinUI-react/commit/69cfa62aafdf9ddfa1658c1fa50556364db8eec6))
+
+### Fixes
+
+* `svgIcon` prop can now override status icon in all input groups and labeled inputs ([#295](https://www.github.com/iTwin/iTwinUI-react/issues/295)) ([4eac51e](https://www.github.com/iTwin/iTwinUI-react/commit/4eac51e41d300b42f8f74d1f218acba1e607039e))
+* **DropdownButton:** Forward ref to allow popovers ([#297](https://www.github.com/iTwin/iTwinUI-react/issues/297)) ([d4aa6a3](https://www.github.com/iTwin/iTwinUI-react/commit/d4aa6a3dcaf0f3896fa0e77c63af2da343f20542))
+* **HeaderButton:** Removed native `name` prop to allow ReactNode ([#301](https://www.github.com/iTwin/iTwinUI-react/issues/301)) ([4001d6d](https://www.github.com/iTwin/iTwinUI-react/commit/4001d6da33e26b4ebf5403e1121edf72abc26c7c))
+
 ### [1.16.2](https://www.github.com/iTwin/iTwinUI-react/compare/v1.16.1...v1.16.2) (2021-08-25)
 
 ### Fixes
