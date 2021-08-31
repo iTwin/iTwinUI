@@ -81,7 +81,7 @@
     border-right: none;
     overflow: hidden;
     justify-content: flex-start;
-    
+
     &:not(.iui-expand) {
       height: $iui-baseline * 5;
       // iPhone notch support
