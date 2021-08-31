@@ -5,16 +5,16 @@
 @import '../button/borderless';
 
 $iui-color-field-size: $iui-baseline * 19;
-$iui-color-swatch-box-shadow: inset 0 0 0 $iui-xxs
+$iui-color-swatch-box-shadow: inset 0 0 0 $iui-xxs - 1 
   rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
 $iui-color-swatch-border-radius: 5px;
 
 @mixin iui-color-picker {
   @include iui-dropdown;
-  max-width: ($iui-l * 10) + ($iui-xxs * 10) + ($iui-s * 9) + ($iui-sm * 2);
-  // max-width: (10 swatches per row) + (border) + (gaps) + (container padding)
-  max-height: ($iui-l * 10) + ($iui-xxs * 10) + ($iui-s * 9) + ($iui-baseline * 2);
-  // max-height: (10 rows) + (border) + (gaps) + (container padding)
+  max-width: ($iui-l * 10) + ($iui-s * 9) + ($iui-sm * 2);
+  // max-width: (10 swatches per row) + (gaps) + (container padding)
+  max-height: ($iui-l * 10) + ($iui-s * 9) + ($iui-baseline * 2);
+  // max-height: (10 rows) + (gaps) + (container padding)
   box-sizing: border-box;
   border-radius: $iui-border-radius;
   display: flex;
@@ -26,7 +26,7 @@ $iui-color-swatch-border-radius: 5px;
   }
 
   &.iui-advanced {
-    max-width: ($iui-color-field-size) + ($iui-sm) + +($iui-s) + ($iui-s) + ($iui-sm * 2);
+    max-width: ($iui-color-field-size) + ($iui-sm) + ($iui-s) + ($iui-s) + ($iui-sm * 2);
     // max-width: (color field width) + (color slider margins) + (color slider width) + (container padding);
     flex-wrap: wrap;
   }
@@ -48,19 +48,18 @@ $iui-color-swatch-border-radius: 5px;
 
   @include themed {
     box-shadow: $iui-color-swatch-box-shadow;
-    border: 1px solid t(iui-color-background-1);
   }
 
   &.iui-active {
     @include themed {
-      box-shadow: 0 0 0 $iui-xxs t(iui-color-foreground-primary),
+      box-shadow: 0 0 0 $iui-xxs + 1 t(iui-color-foreground-primary),
         $iui-color-swatch-box-shadow;
     }
   }
 
   &:hover {
     @include themed {
-      box-shadow: 0 0 0 $iui-xxs
+      box-shadow: 0 0 0 $iui-xxs + 1
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5)),
         $iui-color-swatch-box-shadow;
     }
@@ -69,7 +68,7 @@ $iui-color-swatch-border-radius: 5px;
   &:focus {
     outline: none;
     @include themed {
-      box-shadow: 0 0 0 $iui-xxs
+      box-shadow: 0 0 0 $iui-xxs + 1
         rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5)),
         $iui-color-swatch-box-shadow;
     }
@@ -87,8 +86,10 @@ $iui-color-swatch-border-radius: 5px;
 
 @mixin iui-saved-colors {
   width: 100%;
-  margin-bottom: $iui-xxs;
+  margin-bottom: $iui-baseline * 0.5;
   margin-top: $iui-baseline;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @mixin iui-color-selection-wrapper {
@@ -158,7 +159,7 @@ $iui-color-swatch-border-radius: 5px;
 
   &:hover {
     @include themed {
-      box-shadow: 0 0 0 $iui-xxs
+      box-shadow: 0 0 0 $iui-xxs + 1
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
     }
   }
@@ -166,8 +167,15 @@ $iui-color-swatch-border-radius: 5px;
   &:focus {
     @include themed {
       outline: 0;
-      box-shadow: 0 0 0 $iui-xxs
-        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      box-shadow: 0 0 0 $iui-xxs + 1
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
     }
   }
+}
+
+@mixin iui-color-palette-button {
+  max-height: $iui-l;
+  height: $iui-l;
+  width: $iui-l;
+  padding: 0;
 }
