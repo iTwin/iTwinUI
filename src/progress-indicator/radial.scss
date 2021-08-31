@@ -173,7 +173,7 @@
       display: none;
     }
   }
-  
+
   &.iui-small {
     @include iui-progress-indicator-radial-size($size:$iui-icons-large);
   }
