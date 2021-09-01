@@ -2,12 +2,10 @@
 
 ## [0.29.0](https://www.github.com/iTwin/iTwinUI/compare/v0.28.0...v0.29.0) (2021-09-01)
 
-
 ### What's new
 
 * **ExpandableBlock:** Add support for status icon ([21c5d88](https://www.github.com/iTwin/iTwinUI/commit/21c5d886609d3c4cf8648ff909558d2f121fdc6d))
 * **Table:** Editable cell styling ([#277](https://www.github.com/iTwin/iTwinUI/issues/277)) ([50474bd](https://www.github.com/iTwin/iTwinUI/commit/50474bdb2539e61c86d215041e674c0922f89530))
-
 
 ### Fixes
 
