@@ -46,6 +46,10 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/info-circular"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -110,11 +114,11 @@
           placeholder="Placeholder…"
           class="iui-input"
         />
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
         <div class="iui-message">
-          <svg-status-success
-            class="iui-input-icon"
-            aria-hidden="true"
-          ></svg-status-success>
           Positive message.
         </div>
       </label>
@@ -125,11 +129,11 @@
           placeholder="Placeholder…"
           class="iui-input"
         />
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
         <div class="iui-message">
-          <svg-status-warning
-            class="iui-input-icon"
-            aria-hidden="true"
-          ></svg-status-warning>
           Warning message.
         </div>
       </label>
@@ -140,11 +144,11 @@
           placeholder="Placeholder…"
           class="iui-input"
         />
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
         <div class="iui-message">
-          <svg-status-error
-            class="iui-input-icon"
-            aria-hidden="true"
-          ></svg-status-error>
           Negative message.
         </div>
       </label>
@@ -241,6 +245,22 @@
             aria-hidden="true"
           ></svg-close-small>
         </button>
+      </label>
+
+
+      <label class="iui-input-container iui-inline">
+        <div class="iui-label">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-info-circular
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-info-circular>
+        <div class="iui-message">
+          Informational message.
+        </div>
       </label>
     </section>
 

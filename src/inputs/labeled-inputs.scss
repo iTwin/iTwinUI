@@ -6,12 +6,22 @@
 /// Container for grouping inputs with a label, an icon and a status message.
 @mixin iui-input-container {
   @include iui-reset;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  display: grid;
+  grid-template: 'label label' 'inputs inputs' 'icon message' / auto 1fr;
+  grid-row-gap: $iui-component-offset;
+  align-items: center;
+
+  .iui-input,
+  .iui-textarea,
+  // .iui-checkbox,
+  // .iui-radio,
+  .iui-select {
+    grid-area: inputs;
+  }
+
+  // #region Cursors
   cursor: default;
 
-  // Pointer cursor used if this class is applied to a label element
   @at-root {
     label#{&} {
       cursor: pointer;
@@ -27,6 +37,7 @@
       cursor: not-allowed;
     }
   }
+  // #endregion
 
   // Appropriate spacing even if no text label is given
   > .iui-checkbox,
@@ -35,8 +46,8 @@
   }
 
   &.iui-inline {
-    flex-direction: row;
-    align-items: center;
+    grid-template: 'label inputs icon' '. message .' / auto 1fr auto;
+    grid-row-gap: 0;
 
     > .iui-checkbox:not(:last-child),
     > .iui-radio:not(:last-child),
@@ -59,8 +70,8 @@
 /// Supports .iui-required modifier to show red asterisk.
 /// @arg $displayStyle - default (block) or inline
 @mixin iui-input-label($displayStyle: default) {
-  margin-bottom: $iui-component-offset;
   font-weight: $iui-font-weight-semibold;
+  grid-area: label;
 
   &.iui-required {
     &::after {
@@ -83,10 +94,8 @@
 
 /// Message shown below input
 @mixin iui-input-message {
-  display: flex;
-  align-items: center;
   font-size: $iui-font-size-small;
-  margin-top: $iui-component-offset;
+  grid-area: message;
   @include themed {
     color: t(iui-text-color-muted);
   }
@@ -98,9 +107,9 @@
 
 /// Icon to be shown near or inside the input.
 /// @arg $displayStyle - default (block) or inline
-/// Use default to place icon at a block level (e.g. inside message).
-/// Use inline to absolutely position icon (e.g. at the end of input).
+/// Use inline to absolutely position icon at the end of an input.
 @mixin iui-input-icon($displayStyle: default) {
+  grid-area: icon;
   width: $iui-icons-default;
   height: $iui-icons-default;
   @include themed {
@@ -108,20 +117,18 @@
   }
 
   @if $displayStyle == inline {
-    position: absolute;
-    right: $iui-sm;
-    top: 50%;
-    transform: translateY(-50%);
+    grid-area: inputs;
+    justify-self: end;
+    margin-right: $iui-sm;
+    position: relative;
 
     &.iui-button {
       height: 100%;
       width: fit-content;
-      right: 0;
+      margin-right: 0;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
-  } @else {
-    margin-right: $iui-xs;
   }
 }
 

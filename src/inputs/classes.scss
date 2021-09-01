@@ -17,6 +17,10 @@
     .iui-input-icon {
       @include iui-input-icon;
     }
+
+    .iui-input-icon + .iui-message {
+      margin-left: $iui-xs;
+    }
   }
 
   &.iui-inline {
