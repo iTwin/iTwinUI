@@ -1,5 +1,11 @@
 # Changelog
 
+### [0.29.1](https://www.github.com/iTwin/iTwinUI/compare/v0.29.0...v0.29.1) (2021-09-01)
+
+### Fixes
+
+* **Checkbox:** loading checkmark is now styled correctly ([#283](https://www.github.com/iTwin/iTwinUI/issues/283)) ([4033044](https://www.github.com/iTwin/iTwinUI/commit/403304423521806870f06cbb69bac753d1ab6d88))
+
 ## [0.29.0](https://www.github.com/iTwin/iTwinUI/compare/v0.28.0...v0.29.0) (2021-09-01)
 
 ### What's new
