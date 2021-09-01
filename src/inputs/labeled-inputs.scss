@@ -3,7 +3,7 @@
 @import '../style/index';
 @import '../icon/index';
 
-/// Container for grouping an input with a label and status message.
+/// Container for grouping inputs with a label, an icon and a status message.
 @mixin iui-input-container {
   @include iui-reset;
   display: flex;
@@ -11,6 +11,7 @@
   position: relative;
   cursor: default;
 
+  // Pointer cursor used if this class is applied to a label element
   @at-root {
     label#{&} {
       cursor: pointer;
@@ -90,19 +91,15 @@
     color: t(iui-text-color-muted);
   }
 
-  > .iui-borderless {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
   a {
     user-select: none;
   }
 }
 
-/// Icon to be shown below or inside the input.
+/// Icon to be shown near or inside the input.
 /// @arg $displayStyle - default (block) or inline
-/// Use default to place icon inside message; use inline to place at the end of input.
+/// Use default to place icon at a block level (e.g. inside message).
+/// Use inline to absolutely position icon (e.g. at the end of input).
 @mixin iui-input-icon($displayStyle: default) {
   width: $iui-icons-default;
   height: $iui-icons-default;
@@ -120,6 +117,8 @@
       height: 100%;
       width: fit-content;
       right: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   } @else {
     margin-right: $iui-xs;
@@ -143,7 +142,7 @@
     }
   }
 
-  > #{$textSelector} {
+  #{$textSelector} {
     @include themed {
       color: t(iui-color-foreground-#{$status});
     }
