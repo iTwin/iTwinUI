@@ -43,7 +43,7 @@
       background-color: t(iui-color-background-1);
     }
 
-    svg {
+    svg:not(.iui-radial) {
       width: $iui-sm;
       height: $iui-sm;
 
