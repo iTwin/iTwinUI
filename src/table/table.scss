@@ -191,9 +191,10 @@
       }
     }
 
+    @include iui-transition-group;
+
     &.iui-expanded-content {
       overflow: hidden;
-      @include iui-transition-group;
     }
 
     // #region Selection
