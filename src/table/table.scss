@@ -142,6 +142,8 @@
       border-bottom-color: t(iui-color-background-4);
     }
 
+    @include iui-transition-group;
+
     > .iui-slot > .iui-more-options {
       visibility: hidden;
     }
@@ -190,8 +192,6 @@
         }
       }
     }
-
-    @include iui-transition-group;
 
     &.iui-expanded-content {
       overflow: hidden;
