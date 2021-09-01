@@ -5,9 +5,12 @@
 @import '../button/borderless';
 
 $iui-color-field-size: $iui-baseline * 19;
-$iui-color-swatch-box-shadow: inset 0 0 0 $iui-xxs - 1 
+$iui-color-swatch-box-shadow: inset 0 0 0 1px
   rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
 $iui-color-swatch-border-radius: 5px;
+$iui-active-box-shadow: 0 0 0 $iui-xxs
+  rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)),
+  $iui-color-swatch-box-shadow;
 
 @mixin iui-color-picker {
   @include iui-dropdown;
@@ -28,7 +31,7 @@ $iui-color-swatch-border-radius: 5px;
   &.iui-advanced {
     max-width: ($iui-color-field-size) + ($iui-sm) + ($iui-s) + ($iui-s) + ($iui-sm * 2);
     // max-width: (color field width) + (color slider margins) + (color slider width) + (container padding);
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 }
 
@@ -52,12 +55,11 @@ $iui-color-swatch-border-radius: 5px;
 
   &.iui-active {
     @include themed {
-      box-shadow: 0 0 0 $iui-xxs + 1 t(iui-color-foreground-primary),
-        $iui-color-swatch-box-shadow;
+      box-shadow: $iui-active-box-shadow;
     }
   }
 
-  &:hover {
+  &:hover:not(.iui-active) {
     @include themed {
       box-shadow: 0 0 0 $iui-xxs + 1
         rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5)),
@@ -65,12 +67,29 @@ $iui-color-swatch-border-radius: 5px;
     }
   }
 
+  &:hover {
+    @include themed {
+      box-shadow: 0 0 0 $iui-xs
+        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5)),
+        $iui-active-box-shadow;
+    }
+  }
+
+  &:focus:not(.iui-active) {
+    outline: none;
+    @include themed {
+      box-shadow: 0 0 1px $iui-xxs + 1
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4)),
+        $iui-color-swatch-box-shadow;
+    }
+  }
+
   &:focus {
     outline: none;
     @include themed {
-      box-shadow: 0 0 0 $iui-xxs + 1
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5)),
-        $iui-color-swatch-box-shadow;
+      box-shadow: 0 0 1px $iui-xs
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4)),
+        $iui-active-box-shadow;
     }
   }
 }
@@ -84,10 +103,12 @@ $iui-color-swatch-border-radius: 5px;
   }
 }
 
-@mixin iui-saved-colors {
-  width: 100%;
-  margin-bottom: $iui-baseline * 0.5;
+@mixin iui-saved-colors-wrapper {
   margin-top: $iui-baseline;
+}
+
+@mixin iui-saved-colors {
+  margin-bottom: $iui-baseline * 0.5;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -135,7 +156,7 @@ $iui-color-swatch-border-radius: 5px;
   width: $iui-m;
   height: $iui-m;
   border-radius: 50%;
-  transform: translate(-8px, -8px);
+  transform: translate($iui-s * -1, $iui-s * -1);
   cursor: grab;
   @include themed {
     box-shadow: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-1)) 0
