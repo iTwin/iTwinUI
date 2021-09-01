@@ -1,5 +1,23 @@
 # Changelog
 
+### [0.29.1](https://www.github.com/iTwin/iTwinUI/compare/v0.29.0...v0.29.1) (2021-09-01)
+
+### Fixes
+
+* **Checkbox:** loading checkmark is now styled correctly ([#283](https://www.github.com/iTwin/iTwinUI/issues/283)) ([4033044](https://www.github.com/iTwin/iTwinUI/commit/403304423521806870f06cbb69bac753d1ab6d88))
+
+## [0.29.0](https://www.github.com/iTwin/iTwinUI/compare/v0.28.0...v0.29.0) (2021-09-01)
+
+### What's new
+
+* **ExpandableBlock:** Add support for status icon ([21c5d88](https://www.github.com/iTwin/iTwinUI/commit/21c5d886609d3c4cf8648ff909558d2f121fdc6d))
+* **Table:** Editable cell styling ([#277](https://www.github.com/iTwin/iTwinUI/issues/277)) ([50474bd](https://www.github.com/iTwin/iTwinUI/commit/50474bdb2539e61c86d215041e674c0922f89530))
+
+### Fixes
+
+* Add support for svg web components ([#232](https://www.github.com/iTwin/iTwinUI/issues/232)) ([1c04f55](https://www.github.com/iTwin/iTwinUI/commit/1c04f551f06f75bb372cdb0887c6484b7c18c251))
+* **InputGroup:** Remove unused styles and align labels ([#276](https://www.github.com/iTwin/iTwinUI/issues/276)) ([a8e63b5](https://www.github.com/iTwin/iTwinUI/commit/a8e63b5e61812e6d2c63d2d5c78f1f9293dbed38))
+
 ## [0.28.0](https://www.github.com/iTwin/iTwinUI/compare/v0.27.3...v0.28.0) (2021-08-30)
 
 ### What's new
