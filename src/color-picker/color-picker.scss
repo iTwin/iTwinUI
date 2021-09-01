@@ -5,12 +5,12 @@
 @import '../button/borderless';
 
 $iui-color-field-size: $iui-baseline * 19;
-$iui-color-swatch-box-shadow: inset 0 0 0 1px
-  rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+$iui-color-swatch-box-shadow: inset 0 0 0 1px rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
 $iui-color-swatch-border-radius: 5px;
-$iui-active-box-shadow: 0 0 0 $iui-xxs
-  rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)),
+$iui-active-box-shadow: 0 0 0 $iui-xxs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)),
   $iui-color-swatch-box-shadow;
+$iui-hover-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+$iui-focus-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
 
 @mixin iui-color-picker {
   @include iui-dropdown;
@@ -61,35 +61,27 @@ $iui-active-box-shadow: 0 0 0 $iui-xxs
 
   &:hover:not(.iui-active) {
     @include themed {
-      box-shadow: 0 0 0 $iui-xxs + 1
-        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5)),
-        $iui-color-swatch-box-shadow;
+      box-shadow: 0 0 0 $iui-xs - 1 $iui-hover-color, $iui-color-swatch-box-shadow;
     }
   }
 
   &:hover {
     @include themed {
-      box-shadow: 0 0 0 $iui-xs
-        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5)),
-        $iui-active-box-shadow;
+      box-shadow: 0 0 0 $iui-xs $iui-hover-color, $iui-active-box-shadow;
     }
   }
 
   &:focus:not(.iui-active) {
     outline: none;
     @include themed {
-      box-shadow: 0 0 1px $iui-xxs + 1
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4)),
-        $iui-color-swatch-box-shadow;
+      box-shadow: 0 0 1px $iui-xs - 1 $iui-focus-color, $iui-color-swatch-box-shadow;
     }
   }
 
   &:focus {
     outline: none;
     @include themed {
-      box-shadow: 0 0 1px $iui-xs
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4)),
-        $iui-active-box-shadow;
+      box-shadow: 0 0 1px $iui-xs $iui-focus-color, $iui-active-box-shadow;
     }
   }
 }
@@ -100,6 +92,12 @@ $iui-active-box-shadow: 0 0 0 $iui-xxs
   flex-wrap: wrap;
   @supports (gap: $iui-s) {
     gap: $iui-s;
+  }
+
+  button.iui-button.iui-borderless {
+    height: $iui-l;
+    width: $iui-l;
+    padding: 0;
   }
 }
 
@@ -156,13 +154,11 @@ $iui-active-box-shadow: 0 0 0 $iui-xxs
   width: $iui-m;
   height: $iui-m;
   border-radius: 50%;
-  transform: translate($iui-s * -1, $iui-s * -1);
+  transform: translate(-$iui-s, -$iui-s);
   cursor: grab;
   @include themed {
-    box-shadow: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-1)) 0
-      0 0 $iui-xxs - 1,
-      inset 0 0 0 $iui-xxs - 1
-      rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-6));
+    box-shadow: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-1)) 0 0 0 $iui-xxs - 1,
+      inset 0 0 0 $iui-xxs - 1 rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-6));
     background-color: var(--selected-color);
   }
 
@@ -180,23 +176,14 @@ $iui-active-box-shadow: 0 0 0 $iui-xxs
 
   &:hover {
     @include themed {
-      box-shadow: 0 0 0 $iui-xxs + 1
-        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      box-shadow: 0 0 0 $iui-xs - 1 $iui-hover-color;
     }
   }
 
   &:focus {
     @include themed {
       outline: 0;
-      box-shadow: 0 0 0 $iui-xxs + 1
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+      box-shadow: 0 0 0 $iui-xs - 1 $iui-focus-color;
     }
   }
-}
-
-@mixin iui-color-palette-button {
-  max-height: $iui-l;
-  height: $iui-l;
-  width: $iui-l;
-  padding: 0;
 }

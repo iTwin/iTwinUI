@@ -23,6 +23,10 @@
       href="../assets/demo.css"
     />
     <script src="../assets/theme.js"></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/add-circular"
+    ></script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>
@@ -220,15 +224,11 @@
         <div class="iui-saved-colors-wrapper">
           <div class="iui-saved-colors">Saved Colors</div>
           <div class="iui-color-palette">
-            <button class="iui-button iui-borderless iui-small iui-color-palette-button">
-              <!-- Use add-circular.svg from @itwin/itwinui-icons package. -->
-              <svg
+            <button class="iui-button iui-borderless">
+              <svg-add-circular
                 class="iui-icon"
                 aria-hidden="true"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M13,9H9v4H7V9H3V7h4V3h2v4h4V9z" />
-              </svg>
+              ></svg-add-circular>
             </button>
             <span
               style="--swatch-color: hsl(0, 100%, 40%);"
