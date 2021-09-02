@@ -5,31 +5,28 @@
 .iui-input-container {
   @include iui-input-container;
 
+  > .iui-label {
+    @include iui-input-label;
+  }
+
+  .iui-input-icon {
+    @include iui-input-icon;
+  }
+
   .iui-message {
     @include iui-input-message;
   }
 
-  &:not(.iui-inline) {
+  &.iui-inline {
     > .iui-label {
-      @include iui-input-label;
-    }
-
-    .iui-input-icon {
-      @include iui-input-icon;
-    }
-
-    .iui-input-icon + .iui-message {
-      margin-left: $iui-xs;
+      @include iui-input-label-inline;
     }
   }
 
-  &.iui-inline {
-    > .iui-label {
-      @include iui-input-label(inline);
-    }
-
+  &.iui-inline,
+  &.iui-inline-icon {
     .iui-input-icon {
-      @include iui-input-icon(inline);
+      @include iui-input-icon-inline;
     }
   }
 

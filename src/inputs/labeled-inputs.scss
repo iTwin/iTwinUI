@@ -9,7 +9,6 @@
   display: grid;
   grid-template: 'label label' 'inputs inputs' 'icon message' / auto 1fr;
   grid-row-gap: $iui-component-offset;
-  align-items: center;
 
   .iui-input,
   .iui-textarea,
@@ -46,7 +45,7 @@
   }
 
   &.iui-inline {
-    grid-template: 'label inputs icon' '. message .' / auto 1fr auto;
+    grid-template: 'label inputs' '. message' / auto 1fr;
     grid-row-gap: 0;
 
     > .iui-checkbox:not(:last-child),
@@ -68,10 +67,10 @@
 
 /// Text label for an input.
 /// Supports .iui-required modifier to show red asterisk.
-/// @arg $displayStyle - default (block) or inline
 @mixin iui-input-label($displayStyle: default) {
   font-weight: $iui-font-weight-semibold;
   grid-area: label;
+  align-self: center;
 
   &.iui-required {
     &::after {
@@ -81,14 +80,14 @@
       }
     }
   }
+}
 
-  @if $displayStyle == inline {
-    flex-shrink: 0;
-    margin: 0 $iui-m 0 0;
+/// Modifier on iui-input-label to place it inline.
+@mixin iui-input-label-inline {
+  margin: 0 $iui-m 0 0;
 
-    &.iui-required {
-      margin-right: $iui-xs * 1.5;
-    }
+  &.iui-required {
+    margin-right: $iui-xs * 1.5;
   }
 }
 
@@ -105,30 +104,38 @@
   }
 }
 
-/// Icon to be shown near or inside the input.
-/// @arg $displayStyle - default (block) or inline
-/// Use inline to absolutely position icon at the end of an input.
-@mixin iui-input-icon($displayStyle: default) {
+/// Icon to be shown near an input.
+@mixin iui-input-icon {
+  display: flex;
   grid-area: icon;
   width: $iui-icons-default;
   height: $iui-icons-default;
+  margin-right: $iui-xs;
+  align-self: center;
   @include themed {
     fill: t(iui-icons-color);
   }
+}
 
-  @if $displayStyle == inline {
-    grid-area: inputs;
-    justify-self: end;
-    margin-right: $iui-sm;
-    position: relative;
+/// Modifier on iui-input-icon to place it at the end of input.
+@mixin iui-input-icon-inline {
+  // stylelint-disable -- fix position in IE 
+  -ms-grid-row: 3; 
+  -ms-grid-column: 2; 
+  -ms-grid-column-align: end;
+  // stylelint-enable
 
-    &.iui-button {
-      height: 100%;
-      width: fit-content;
-      margin-right: 0;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
+  grid-area: inputs;
+  justify-self: end;
+  margin-right: $iui-sm;
+  position: relative;
+
+  &.iui-button {
+    height: 100%;
+    width: fit-content;
+    margin-right: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
 
