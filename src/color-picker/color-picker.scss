@@ -150,7 +150,6 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
 }
 
 @mixin iui-color-dot {
-  @include iui-focus;
   position: absolute;
   top: var(--top, 0%);
   left: var(--left, 0%);
@@ -170,7 +169,6 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   }
 
   &.iui-white {
-    @include iui-focus;
     transform: translate(-4px, -9px);
     @include themed {
       box-shadow: $iui-elevation-2;
@@ -181,6 +179,13 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   &:hover {
     @include themed {
       box-shadow: $iui-hover-box-shadow;
+    }
+  }
+
+  &:focus {
+    outline: 0;
+    @include themed {
+      box-shadow: $iui-focus-box-shadow;
     }
   }
 }
