@@ -61,27 +61,27 @@ $iui-focus-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
 
   &:hover:not(.iui-active) {
     @include themed {
-      box-shadow: 0 0 0 $iui-xs - 1 $iui-hover-color, $iui-color-swatch-box-shadow;
+      box-shadow: 0 0 0 $iui-xxs $iui-hover-color, $iui-color-swatch-box-shadow;
     }
   }
 
   &:hover {
     @include themed {
-      box-shadow: 0 0 0 $iui-xs $iui-hover-color, $iui-active-box-shadow;
+      box-shadow: 0 0 0 $iui-xxs + 1 $iui-hover-color, $iui-active-box-shadow;
     }
   }
 
   &:focus:not(.iui-active) {
     outline: none;
     @include themed {
-      box-shadow: 0 0 1px $iui-xs - 1 $iui-focus-color, $iui-color-swatch-box-shadow;
+      box-shadow: 0 0 1px $iui-xxs $iui-focus-color, $iui-color-swatch-box-shadow;
     }
   }
 
   &:focus {
     outline: none;
     @include themed {
-      box-shadow: 0 0 1px $iui-xs $iui-focus-color, $iui-active-box-shadow;
+      box-shadow: 0 0 1px $iui-xxs + 1 $iui-focus-color, $iui-active-box-shadow;
     }
   }
 }
@@ -176,14 +176,14 @@ $iui-focus-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
 
   &:hover {
     @include themed {
-      box-shadow: 0 0 0 $iui-xs - 1 $iui-hover-color;
+      box-shadow: 0 0 0 $iui-xxs $iui-hover-color;
     }
   }
 
   &:focus {
     @include themed {
       outline: 0;
-      box-shadow: 0 0 0 $iui-xs - 1 $iui-focus-color;
+      box-shadow: 0 0 0 $iui-xxs $iui-focus-color;
     }
   }
 }
