@@ -107,14 +107,12 @@ $iui-focus-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
   }
 }
 
-@mixin iui-saved-colors-wrapper {
-  margin-top: $iui-baseline;
-}
-
 @mixin iui-saved-colors {
+  margin-top: $iui-baseline;
   margin-bottom: $iui-baseline * 0.5;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex-shrink: 0;
 }
 
 @mixin iui-color-selection-wrapper {
