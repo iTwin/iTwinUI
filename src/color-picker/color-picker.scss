@@ -86,7 +86,6 @@ $iui-focus-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
   }
 
   &:focus:not(:focus-visible) {
-    outline: none;
     @include themed {
       box-shadow: $iui-active-box-shadow;
     }
