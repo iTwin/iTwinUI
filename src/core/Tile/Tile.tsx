@@ -157,6 +157,10 @@ export const Tile = (props: TileProps) => {
           React.cloneElement(thumbnail as JSX.Element, {
             className: 'iui-picture',
           })
+        ) : React.isValidElement(thumbnail) ? (
+          React.cloneElement(thumbnail, {
+            className: cx('iui-thumbnail-icon', thumbnail.props.className),
+          })
         ) : (
           thumbnail
         )}
@@ -177,9 +181,17 @@ export const Tile = (props: TileProps) => {
       <div className='iui-content'>
         <div className='iui-name'>
           {isSelected && (
-            <SvgCheckmark className='iui-informational' aria-hidden />
+            <SvgCheckmark
+              className={cx('iui-tile-status-icon', 'iui-informational')}
+              aria-hidden
+            />
           )}
-          {isNew && <SvgNew className='iui-positive' aria-hidden />}
+          {isNew && (
+            <SvgNew
+              className={cx('iui-tile-status-icon', 'iui-positive')}
+              aria-hidden
+            />
+          )}
           <span className='iui-name-label'>{name}</span>
         </div>
 

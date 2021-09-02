@@ -97,8 +97,10 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         onKeyDown={onKeyDown}
       >
         <SvgChevronRight className='iui-icon' aria-hidden />
-        <div className='iui-title'>{title}</div>
-        {caption && <div className='iui-caption'>{caption}</div>}
+        <div className='iui-expandable-block-label'>
+          <div className='iui-title'>{title}</div>
+          {caption && <div className='iui-caption'>{caption}</div>}
+        </div>
       </div>
 
       <CSSTransition
