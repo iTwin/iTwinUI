@@ -12,10 +12,14 @@
 
   .iui-input,
   .iui-textarea,
-  // .iui-checkbox,
-  // .iui-radio,
+  .iui-input-group,
   .iui-select {
     grid-area: inputs;
+  }
+
+  .iui-input-group {
+    display: flex;
+    flex-direction: column;
   }
 
   // #region Cursors
@@ -45,13 +49,26 @@
   }
 
   &.iui-inline {
-    grid-template: 'label inputs' '. message' / auto 1fr;
+    grid-template: 'label inputs icon' '. message .' / auto 1fr;
     grid-row-gap: 0;
 
-    > .iui-checkbox:not(:last-child),
-    > .iui-radio:not(:last-child),
-    > .iui-toggle-switch:not(:last-child) {
-      margin-right: $iui-m;
+    > .iui-input-group {
+      flex-direction: row;
+      gap: $iui-m;
+
+      > .iui-checkbox,
+      > .iui-radio,
+      > .iui-toggle-switch {
+        margin-right: $iui-m;
+
+        @supports (gap: $iui-m) {
+          margin-right: 0;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: $iui-m;
+      }
     }
 
     > .iui-input,
@@ -119,9 +136,9 @@
 
 /// Modifier on iui-input-icon to place it at the end of input.
 @mixin iui-input-icon-inline {
-  // stylelint-disable -- fix position in IE 
-  -ms-grid-row: 3; 
-  -ms-grid-column: 2; 
+  // stylelint-disable -- fix position in IE
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
   -ms-grid-column-align: end;
   // stylelint-enable
 
