@@ -131,10 +131,13 @@
   grid-area: icon;
   width: $iui-icons-default;
   height: $iui-icons-default;
-  margin-right: $iui-xs;
   align-self: center;
   @include themed {
     fill: t(iui-icons-color);
+  }
+
+  &:not(:last-child) {
+    margin-right: $iui-xs;
   }
 }
 
