@@ -42,36 +42,41 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   background-color: var(--swatch-color);
   margin-bottom: $iui-xs;
   margin-right: $iui-xs;
-  box-shadow: $iui-inset-box-shadow;
 
   @supports (gap: $iui-s) {
     margin-bottom: 0;
     margin-right: 0;
   }
 
-  &.iui-active {
-    box-shadow: $iui-active-box-shadow, $iui-inset-box-shadow;
+  @include themed {
+    box-shadow: $iui-inset-box-shadow;
 
     &:hover {
-      box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow, $iui-active-box-shadow;
+      box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow;
     }
 
     &:focus {
-      box-shadow: $iui-focus-box-shadow, $iui-inset-box-shadow, $iui-active-box-shadow;
-    }
-
-    &:focus:not(:focus-visible) {
-      box-shadow: $iui-inset-box-shadow, $iui-active-box-shadow;
+      outline: 0;
+      box-shadow: $iui-focus-box-shadow, $iui-inset-box-shadow;
     }
   }
 
-  &:hover {
-    box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow;
-  }
+  &.iui-active {
+    @include themed {
+      box-shadow: $iui-active-box-shadow, $iui-inset-box-shadow;
 
-  &:focus {
-    outline: 0;
-    box-shadow: $iui-focus-box-shadow, $iui-inset-box-shadow;
+      &:hover {
+        box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow, $iui-active-box-shadow;
+      }
+
+      &:focus {
+        box-shadow: $iui-focus-box-shadow, $iui-inset-box-shadow, $iui-active-box-shadow;
+      }
+
+      &:focus:not(:focus-visible) {
+        box-shadow: $iui-inset-box-shadow, $iui-active-box-shadow;
+      }
+    }
   }
 }
 
