@@ -17,7 +17,7 @@
     @include iui-input-message;
   }
 
-  &.iui-inline {
+  &.iui-inline-label {
     > .iui-label {
       @include iui-input-label-inline;
     }

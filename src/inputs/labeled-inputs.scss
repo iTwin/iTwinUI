@@ -4,22 +4,22 @@
 @import '../icon/index';
 
 /// Container for grouping inputs with a label, an icon and a status message.
+/// Supported modifiers: .iui-inline-label, .iui-inline-icon and .iui-with-message
 @mixin iui-input-container {
   @include iui-reset;
   display: grid;
-  grid-template: 'label label' 'inputs inputs' 'icon message' / auto 1fr;
+  grid-template: 'label label' 'inputs inputs' / auto 1fr;
   grid-row-gap: $iui-component-offset;
+
+  &.iui-with-message {
+    grid-template: 'label label' 'inputs inputs' 'icon message' / auto 1fr;
+  }
 
   .iui-input,
   .iui-textarea,
   .iui-input-group,
   .iui-select {
     grid-area: inputs;
-  }
-
-  .iui-input-group {
-    display: flex;
-    flex-direction: column;
   }
 
   // #region Cursors
@@ -48,12 +48,16 @@
     min-height: $iui-line-height;
   }
 
-  &.iui-inline {
-    grid-template: 'label inputs icon' '. message .' / auto 1fr;
+  &.iui-inline-label {
+    grid-template: 'label inputs icon' / auto 1fr auto;
     grid-row-gap: 0;
 
+    &.iui-with-message {
+      grid-template: 'label inputs icon' '. message .' / auto 1fr auto;
+    }
+
     > .iui-input-group {
-      flex-direction: row;
+      display: flex;
       gap: $iui-m;
 
       > .iui-checkbox,
