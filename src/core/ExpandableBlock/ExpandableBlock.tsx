@@ -10,6 +10,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/expandable-block.css';
+import { StatusIconMap } from '../utils/common';
 
 export type ExpandableBlockProps = {
   /**
@@ -20,6 +21,16 @@ export type ExpandableBlockProps = {
    * Small note displayed above title, regardless of state.
    */
   caption?: React.ReactNode;
+  /**
+   * Status of the block.
+   * When set, a colored status icon is shown at the end of the main text.
+   */
+  status?: 'positive' | 'negative' | 'warning' | 'informational';
+  /**
+   * Svg icon displayed at the end of the main text.
+   * Will override status icon if specified.
+   */
+  endIcon?: JSX.Element;
   /**
    * Whether or not to show the block's content.
    * @default false
@@ -41,6 +52,8 @@ export type ExpandableBlockProps = {
  * <ExpandableBlock title='Basic Block'>Content in block!</ExpandableBlock>
  * <ExpandableBlock title='Basic Block' caption='basic caption'>Content in block!</ExpandableBlock>
  * <ExpandableBlock title='Default Expanded Block' caption='basic caption' isExpanded={true}>Content in block!</ExpandableBlock>
+ * <ExpandableBlock title='Positive status' status='positive'>Content</ExpandableBlock>
+ * <ExpandableBlock title='Block with icon' endIcon={<SvgPlaceholder />}>Content</ExpandableBlock>
  */
 export const ExpandableBlock = (props: ExpandableBlockProps) => {
   const {
@@ -51,10 +64,14 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
     onToggle,
     style,
     isExpanded = false,
+    endIcon,
+    status,
     ...rest
   } = props;
 
   useTheme();
+
+  const icon = endIcon ?? (status && StatusIconMap[status]());
 
   const [expanded, setExpanded] = React.useState(isExpanded);
   React.useEffect(() => {
@@ -97,10 +114,18 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         onKeyDown={onKeyDown}
       >
         <SvgChevronRight className='iui-icon' aria-hidden />
-        <div className='iui-expandable-block-label'>
+        <span className='iui-expandable-block-label'>
           <div className='iui-title'>{title}</div>
           {caption && <div className='iui-caption'>{caption}</div>}
-        </div>
+        </span>
+        {icon &&
+          React.cloneElement(icon, {
+            className: cx(
+              'iui-status-icon',
+              { [`iui-${status}`]: !!status },
+              icon.props.className,
+            ),
+          })}
       </div>
 
       <CSSTransition

@@ -4,6 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
+import { StatusIconMap } from '../utils/common';
+import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 import { ExpandableBlock } from './ExpandableBlock';
 
@@ -17,8 +19,9 @@ it('should render correctly in its most basic state', () => {
   ) as HTMLElement;
   expect(expandableBlock).toBeTruthy();
   expect(expandableBlock.classList).not.toContain('iui-with-caption');
-  const title = container.querySelector('.iui-title') as HTMLElement;
-  expect(title.textContent).toEqual('test title');
+  expect(
+    container.querySelector('.iui-expandable-block-label .iui-title'),
+  ).toHaveTextContent('test title');
 });
 
 it('should render with caption', () => {
@@ -32,12 +35,12 @@ it('should render with caption', () => {
     '.iui-expandable-block.iui-with-caption',
   );
   expect(expandableBlock).toBeTruthy();
-  const title = container.querySelector('.iui-title') as HTMLElement;
-  expect(title).toBeTruthy();
-  expect(title.textContent).toEqual('test title');
-  const caption = container.querySelector('.iui-caption') as HTMLElement;
-  expect(caption).toBeTruthy();
-  expect(caption.textContent).toEqual('test caption');
+  expect(
+    container.querySelector('.iui-expandable-block-label .iui-title'),
+  ).toHaveTextContent('test title');
+  expect(
+    container.querySelector('.iui-expandable-block-label .iui-caption'),
+  ).toHaveTextContent('test caption');
 });
 
 it('should render content when expanded', () => {
@@ -114,4 +117,39 @@ it('should trigger onToggle when clicked with Enter or Spacebar', () => {
     charCode: 32,
   });
   expect(onToggleMock).toHaveBeenCalledTimes(3);
+});
+
+it.each(['positive', 'negative', 'warning', 'informational'] as const)(
+  'should set %s status',
+  (status) => {
+    const { container, queryByText } = render(
+      <ExpandableBlock title='test title' status={status}>
+        content
+      </ExpandableBlock>,
+    );
+    expect(container.querySelector('.iui-expandable-block')).toBeTruthy();
+    expect(queryByText('test title')).toHaveClass('iui-title');
+
+    const {
+      container: { firstChild: statusIcon },
+    } = render(
+      StatusIconMap[status]({ className: `iui-status-icon iui-${status}` }),
+    );
+    expect(container.querySelector('.iui-status-icon')).toEqual(statusIcon);
+  },
+);
+
+it('should render with custom endIcon', () => {
+  const { container, queryByText } = render(
+    <ExpandableBlock title='test title' endIcon={<SvgPlaceholder />}>
+      content
+    </ExpandableBlock>,
+  );
+  expect(container.querySelector('.iui-expandable-block')).toBeTruthy();
+  expect(queryByText('test title')).toHaveClass('iui-title');
+
+  const {
+    container: { firstChild: placeholderIcon },
+  } = render(<SvgPlaceholder className='iui-status-icon' />);
+  expect(container.querySelector('.iui-status-icon')).toEqual(placeholderIcon);
 });

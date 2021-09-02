@@ -20,6 +20,7 @@ export default {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
     id: { control: { disable: true } },
+    endIcon: { control: { disable: true } },
   },
   args: {
     children: 'Content in block!',
@@ -111,4 +112,18 @@ Accordion.argTypes = {
   title: { control: { disable: true } },
   isExpanded: { control: { disable: true } },
   onToggle: { control: { disable: true } },
+};
+
+export const StatusIcon: Story<ExpandableBlockProps> = (args) => {
+  return (
+    <ExpandableBlock title='Basic Block' status='positive' {...args}>
+      {args.children}
+    </ExpandableBlock>
+  );
+};
+
+StatusIcon.args = {
+  title: 'Basic Block With Status',
+  isExpanded: false,
+  status: 'positive',
 };
