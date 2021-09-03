@@ -48,8 +48,8 @@
   // #endregion
 
   // Appropriate spacing even if no text label is given
-  > .iui-checkbox,
-  > .iui-radio {
+  .iui-checkbox,
+  .iui-radio {
     min-height: $iui-line-height;
   }
 
