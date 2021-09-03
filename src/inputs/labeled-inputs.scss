@@ -95,7 +95,7 @@
 
 /// Text label for an input.
 /// Supports .iui-required modifier to show red asterisk.
-@mixin iui-input-label($displayStyle: default) {
+@mixin iui-input-label {
   font-weight: $iui-font-weight-semibold;
   grid-area: label;
   align-self: center;
