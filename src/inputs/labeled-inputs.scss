@@ -8,11 +8,16 @@
 @mixin iui-input-container {
   @include iui-reset;
   display: grid;
-  grid-template: 'label label' 'inputs inputs' / auto 1fr;
+  grid-template:
+    'label label'
+    'inputs inputs' / auto 1fr;
   grid-row-gap: $iui-component-offset;
 
   &.iui-with-message {
-    grid-template: 'label label' 'inputs inputs' 'icon message' / auto 1fr;
+    grid-template:
+      'label label'
+      'inputs inputs'
+      'icon message' / auto 1fr;
   }
 
   .iui-input,
@@ -53,7 +58,9 @@
     grid-row-gap: 0;
 
     &.iui-with-message {
-      grid-template: 'label inputs icon' '. message .' / auto 1fr auto;
+      grid-template:
+        'label inputs inputs'
+        '. icon message' / auto auto 1fr;
     }
 
     > .iui-input-group {
