@@ -1,0 +1,35 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-color-picker {
+  @include iui-color-picker;
+}
+
+.iui-color-palette {
+  @include iui-color-palette;
+}
+
+.iui-color-swatch {
+  @include iui-color-swatch;
+}
+
+.iui-saved-colors {
+  @include iui-saved-colors;
+}
+
+.iui-color-selection-wrapper {
+  @include iui-color-selection-wrapper;
+}
+
+.iui-color-field {
+  @include iui-color-field;
+}
+
+.iui-color-slider {
+  @include iui-color-slider;
+}
+
+.iui-color-dot {
+  @include iui-color-dot;
+}
