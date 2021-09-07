@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.0](https://www.github.com/iTwin/iTwinUI/compare/v0.29.1...v0.30.0) (2021-09-07)
+
+
+### What's new
+
+* Add Color Picker ([#253](https://www.github.com/iTwin/iTwinUI/issues/253)) ([a6e2e45](https://www.github.com/iTwin/iTwinUI/commit/a6e2e459532daa4f2019a1e20c6e77451c268340))
+
 ### [0.29.1](https://www.github.com/iTwin/iTwinUI/compare/v0.29.0...v0.29.1) (2021-09-01)
 
 ### Fixes
