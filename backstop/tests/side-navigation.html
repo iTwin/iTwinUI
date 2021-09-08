@@ -43,6 +43,34 @@
         display: none !important;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/home"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/document"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/map"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/archive"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/calendar"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/setup"
+    ></script>
     <script src="../assets/theme.js"></script>
     <script>
       function handleHidePanel() {
@@ -87,16 +115,10 @@
                 aria-label="Home"
                 aria-controls="home-tab"
               >
-                <!-- Use home.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-home
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="m2 14.6s0 .4.3.4h4.7v-4h2v4h4.5c.5 0 .5-.4.5-.4v-6.1l-6-4.5-6 4.5zm12-9.3v-3.3h-2v1.8l-4-2.8-8 5.7 1 1.3 7-5 7 5 1-1.3z"
-                  />
-                </svg>
+                ></svg-home>
                 <span class="iui-label">Home</span>
               </button>
               <span class="iui-tooltip">Home</span>
@@ -108,14 +130,10 @@
                 aria-label="Documents"
                 aria-controls="documents-tab"
               >
-                <!-- Use document.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-document
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m10 0h-8v16h12v-12h-4zm1 0v3h3z" />
-                </svg>
+                ></svg-document>
                 <span class="iui-label">Documents</span>
               </button>
               <span class="iui-tooltip">Documents</span>
@@ -127,16 +145,10 @@
                 aria-label="Map"
                 aria-controls="map-tab"
               >
-                <!-- Use map.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-map
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="m11.2 11.4-1.5 4.6h6.3v-3.2zm.5-1.6 4.3 1.3v-11.1h-1.2zm-6.7-5.6a1.7 1.7 0 1 1 -1.7 1.7 1.7 1.7 0 0 1 1.7-1.7zm-5-4.2v16h8l5.1-16zm6.8 9.5c-.7 1.2-1.8 2.9-1.8 2.9a28.86638 28.86638 0 0 1 -1.8-2.9 7.88933 7.88933 0 0 1 -1.4-3.6 3.15907 3.15907 0 0 1 3.2-3.2 3.15907 3.15907 0 0 1 3.2 3.2 7.88933 7.88933 0 0 1 -1.4 3.6"
-                  />
-                </svg>
+                ></svg-map>
                 <span class="iui-label">Map</span>
               </button>
               <span class="iui-tooltip">Map</span>
@@ -149,14 +161,10 @@
                 aria-controls="archives-tab"
                 disabled
               >
-                <!-- Use archive.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-archive
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m11 7v2h-6v-2h-5v7h16v-7zm-5 0h4v1h-4m5-8v2h-6v-2h-5v6h16v-6zm-5 0h4v1h-4" />
-                </svg>
+                ></svg-archive>
                 <span class="iui-label">Archives</span>
               </button>
               <span class="iui-tooltip">Archives</span>
@@ -169,16 +177,10 @@
                 aria-controls="calendar-tab"
                 id="test-tab-1"
               >
-                <!-- Use calendar.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-calendar
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="M13,13H9V10h4ZM16,3V15a1,1,0,0,1-1,1H1a1,1,0,0,1-1-1V3A1,1,0,0,1,1,2H3V0H4V2h8V0h1V2h2A1,1,0,0,1,16,3ZM15,6H1v9H15Z"
-                  />
-                </svg>
+                ></svg-calendar>
                 <span class="iui-label">Calendar</span>
               </button>
               <span class="iui-tooltip">Calendar</span>
@@ -193,16 +195,10 @@
                 aria-controls="administration-tab"
                 id="test-tab-2"
               >
-                <!-- Use setup.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-setup
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="m14.9 3.6 1.1-2.9-.7-.7-2.8 1.1-.5 1.5-5.6 5.6a1.65413 1.65413 0 0 0 -2 .3l-3.9 3.9a1.63393 1.63393 0 0 0 0 2.4l.7.7a1.63393 1.63393 0 0 0 2.4 0l3.9-3.9a1.84256 1.84256 0 0 0 .3-2l5.6-5.6m-9.9 3.9.2-.2a2.93516 2.93516 0 0 1 1.9-.7 1.26834 1.26834 0 0 1 .6.1l1.6-1.6a4.09721 4.09721 0 0 0 -2.2-5.2 4.29961 4.29961 0 0 0 -2.5-.2l2.9 2.9-3 3-2.9-2.9a4.00641 4.00641 0 0 0 2.9 4.8zm7 .4-1.6 1.6a2.85417 2.85417 0 0 1 0 1.3l4.5 4.5a1.39083 1.39083 0 0 0 1.9 0l.4-.4a1.39083 1.39083 0 0 0 0-1.9"
-                  />
-                </svg>
+                ></svg-setup>
                 <span class="iui-label">Administration</span>
               </button>
               <span
@@ -235,24 +231,24 @@
           <div class="iui-side-navigation-title">Home</div>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.</p>
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.</p>
         </div>
       </div>
     </section>

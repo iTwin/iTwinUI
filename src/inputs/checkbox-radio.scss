@@ -43,7 +43,7 @@
       background-color: t(iui-color-background-1);
     }
 
-    > svg {
+    svg:not(.iui-radial) {
       width: $iui-sm;
       height: $iui-sm;
 
@@ -155,7 +155,7 @@
       color: t(iui-text-color-muted);
     }
 
-    > svg {
+    svg {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
       }

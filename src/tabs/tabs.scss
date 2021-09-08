@@ -95,8 +95,7 @@
         color: t(iui-color-foreground-positive);
       }
 
-      .iui-tab-icon,
-      > svg {
+      .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-positive);
         }
