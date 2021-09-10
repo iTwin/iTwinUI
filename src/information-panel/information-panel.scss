@@ -76,18 +76,34 @@
     height: $iui-baseline * 6;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     @include themed {
       background-color: t(iui-color-background-3);
     }
 
-    .iui-selection-icon {
-      width: $iui-l;
-      height: $iui-l;
-      margin-right: $iui-s;
+    .iui-header-label {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        user-select: all;
+      }
+
+      svg {
+        display: flex;
+        width: $iui-icons-large;
+        height: $iui-icons-large;
+        margin-right: $iui-s;
+      }
     }
 
-    .iui-selection {
-      margin-right: auto;
+    .iui-header-buttons {
+      flex-shrink: 0;
+      margin-left: $iui-s;
     }
   }
 
