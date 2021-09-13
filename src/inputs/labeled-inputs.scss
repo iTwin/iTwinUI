@@ -25,6 +25,11 @@
   .iui-input-group,
   .iui-select {
     grid-area: inputs;
+    // stylelint-disable -- fix position in IE
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+  // stylelint-enable
   }
 
   // #region Cursors
@@ -55,12 +60,42 @@
 
   &.iui-inline-label {
     grid-template: 'label inputs icon' / auto 1fr auto;
+    // stylelint-disable -- on IE input takes whole width
+    -ms-grid-rows: auto;
+    -ms-grid-columns: auto min-content auto;
+    // stylelint-enable
     grid-row-gap: 0;
+
+    .iui-input,
+    .iui-textarea,
+    .iui-input-group,
+    .iui-select {
+      // stylelint-disable -- fix position in IE
+      -ms-grid-row: 1;
+      -ms-grid-column: 2;
+      // stylelint-enable
+    }
+
+    .iui-input-icon {
+      // stylelint-disable -- fix position in IE
+      -ms-grid-row: 1;
+      -ms-grid-column: 3;
+      // stylelint-enable
+    }
 
     &.iui-with-message {
       grid-template:
         'label inputs inputs'
         '. icon message' / auto auto 1fr;
+
+      .iui-input,
+      .iui-textarea,
+      .iui-input-group,
+      .iui-select {
+        // stylelint-disable -- fix position in IE
+        -ms-grid-column-span: 2;
+        // stylelint-enable
+      }
     }
 
     > .iui-input-group {
@@ -99,6 +134,10 @@
   font-weight: $iui-font-weight-semibold;
   grid-area: label;
   align-self: center;
+  // stylelint-disable -- fix position in IE
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  // stylelint-enable
 
   &.iui-required {
     &::after {
@@ -113,6 +152,11 @@
 /// Modifier on iui-input-label to place it inline.
 @mixin iui-input-label-inline {
   margin: 0 $iui-m 0 0;
+  // stylelint-disable -- fix position in IE
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  // stylelint-enable
 
   &.iui-required {
     margin-right: $iui-xs * 1.5;
@@ -151,8 +195,8 @@
 /// Modifier on iui-input-icon to place it at the end of input.
 @mixin iui-input-icon-inline {
   // stylelint-disable -- fix position in IE
-  -ms-grid-row: 3;
-  -ms-grid-column: 2;
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
   -ms-grid-column-align: end;
   // stylelint-enable
 
