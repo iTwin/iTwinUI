@@ -60,7 +60,7 @@ $iui-after-border: 5px solid;
       @include themed {
         border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
       }
-  
+
       &::after {
         border-bottom: none;
         @include themed {
@@ -90,7 +90,7 @@ $iui-after-border: 5px solid;
         background-color: t(iui-color-background-disabled);
         border-color: t(iui-color-background-disabled);
       }
-      
+
       &::after {
         @include themed {
           border-top: $iui-after-border t(iui-icons-color-actionable-disabled);

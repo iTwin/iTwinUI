@@ -4,14 +4,11 @@
 @import '../icon/index';
 
 @mixin iui-input-container {
+  @include iui-reset;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   position: relative;
-  padding: 0;
-  margin: 0;
   text-align: left;
-  font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
   cursor: default;
 
@@ -26,19 +23,15 @@
     }
   }
 
-  > .iui-label {
-    padding: 0;
-    margin-bottom: $iui-component-offset;
-    border: none;
-    display: block;
-    width: fit-content;
-    font-size: $iui-font-size;
-    font-weight: $iui-font-weight-semibold;
-    line-height: $iui-line-height;
-    text-align: left;
-    @include themed {
-      color: t(iui-text-color);
+  &.iui-disabled {
+    label {
+      cursor: not-allowed;
     }
+  }
+
+  > .iui-label {
+    margin-bottom: $iui-component-offset;
+    font-weight: $iui-font-weight-semibold;
 
     &.iui-required {
       &::after {
@@ -93,17 +86,17 @@
     min-height: $iui-line-height;
   }
 
-  &.iui-disabled > label {
-    cursor: not-allowed;
-  }
-
   &.iui-inline {
     flex-direction: row;
     align-items: center;
 
     > .iui-label {
       flex-shrink: 0;
-      margin: 0 $iui-sm 0 0;
+      margin: 0 $iui-m 0 0;
+
+      &.iui-required {
+        margin-right: $iui-xs * 1.5;
+      }
     }
 
     > .iui-checkbox:not(:last-child),
@@ -219,7 +212,7 @@
     }
 
     @include themed {
-      border-bottom: 2px solid t($foregroundColor) !important;
+      border-bottom: 2px solid t($foregroundColor);
     }
 
     &:focus {
