@@ -5,7 +5,7 @@
 @import '../text/index';
 
 @mixin iui-side-navigation {
-  display: flex;
+  display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;
   height: 100%;
