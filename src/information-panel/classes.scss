@@ -8,4 +8,12 @@
 
 .iui-information-panel {
   @include iui-information-panel;
+
+  &.iui-right {
+    @include iui-information-panel-right;
+  }
+
+  &.iui-bottom {
+    @include iui-information-panel-bottom;
+  }
 }

@@ -9,17 +9,10 @@
 
 @mixin iui-information-panel {
   position: absolute;
-  top: 0;
-  right: ($iui-3xl * 4) * -1; // Default width set negative so the panel hides off screen.
   opacity: 0;
   display: flex;
   flex-direction: column;
-  width: $iui-3xl * 4;
-  min-width: $iui-3xl * 2;
-  height: 100%;
   box-sizing: border-box;
-  box-shadow: -1px 0 14px rgba(0, 0, 0, 0.25);
-  transition: right $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
   z-index: 2; // Needs to be higher than table's column resizers.
   @include themed {
     background-color: t(iui-color-background-1);
@@ -27,29 +20,17 @@
 
   > .iui-resizer {
     display: none;
-    height: 100%;
-    width: $iui-m;
     position: absolute;
-    top: 0;
-    left: ($iui-m * 0.5) * -1;
     touch-action: none;
-    cursor: ew-resize;
     z-index: 1000;
 
     > .iui-resizer-bar {
-      height: 100%;
-      width: 1px;
-      margin: 0 auto;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
-      }
       @include themed {
         background-color: t(iui-color-background-5);
       }
     }
 
     &:hover > .iui-resizer-bar {
-      width: $iui-xs;
       @include themed {
         background-color: t(iui-color-foreground-primary);
       }
@@ -57,11 +38,10 @@
   }
 
   &.iui-information-panel-visible {
-    right: 0;
     opacity: 1;
 
     > .iui-resizer {
-      display: block;
+      display: flex;
     }
   }
 
@@ -98,6 +78,9 @@
         width: $iui-icons-large;
         height: $iui-icons-large;
         margin-right: $iui-s;
+        @include themed {
+          fill: t(iui-icons-color);
+        }
       }
     }
 
@@ -120,40 +103,87 @@
       }
     }
   }
+}
 
-  .iui-information-table {
-    table-layout: fixed;
-    width: 100%;
+@mixin iui-information-panel-vertical {
+  top: 0;
+  width: $iui-3xl * 4;
+  min-width: $iui-3xl * 2;
+  height: 100%;
 
-    tr {
-      height: $iui-baseline * 3;
+  > .iui-resizer {
+    height: 100%;
+    width: $iui-m;
+    top: 0;
+    cursor: ew-resize;
+    justify-content: center;
 
-      td {
-        vertical-align: middle;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        &:first-child {
-          text-align: right;
-          color: t(iui-text-color-muted);
-          padding-right: $iui-s;
-
-          &::after {
-            content: ':';
-          }
-        }
+    > .iui-resizer-bar {
+      height: 100%;
+      width: 1px;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
       }
     }
 
-    .iui-information-table-center {
-      display: flex;
-      align-items: center;
-      gap: $iui-s;
+    &:hover > .iui-resizer-bar {
+      width: $iui-xs;
+    }
+  }
+}
+@mixin iui-information-panel-horizontal {
+  left: 0;
+  height: $iui-3xl * 4;
+  min-height: $iui-3xl * 2;
+  width: 100%;
+
+  > .iui-resizer {
+    width: 100%;
+    height: $iui-m;
+    left: 0;
+    cursor: ns-resize;
+    align-items: center;
+
+    > .iui-resizer-bar {
+      width: 100%;
+      height: 1px;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: background-color $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+      }
     }
 
-    label {
-      cursor: pointer;
+    &:hover > .iui-resizer-bar {
+      height: $iui-xs;
     }
+  }
+}
+
+@mixin iui-information-panel-right {
+  @include iui-information-panel-vertical;
+  right: ($iui-3xl * 4) * -1; // Default width set negative so the panel hides off screen.
+  box-shadow: -1px 0 14px rgba(0, 0, 0, 0.25);
+  transition: right $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
+
+  > .iui-resizer {
+    left: ($iui-m * 0.5) * -1;
+  }
+
+  &.iui-information-panel-visible {
+    right: 0;
+  }
+}
+
+@mixin iui-information-panel-bottom {
+  @include iui-information-panel-horizontal;
+  bottom: ($iui-3xl * 4) * -1; // Default width set negative so the panel hides off screen.
+  box-shadow: 0 -1px 14px rgba(0, 0, 0, 0.25);
+  transition: bottom $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
+
+  > .iui-resizer {
+    top: ($iui-m * 0.5) * -1;
+  }
+
+  &.iui-information-panel-visible {
+    bottom: 0;
   }
 }

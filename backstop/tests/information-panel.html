@@ -48,6 +48,10 @@
     ></script>
     <script
       type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more-vertical"
+    ></script>
+    <script
+      type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/list"
     ></script>
     <script
@@ -73,6 +77,10 @@
     <script
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/edit"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/item"
     ></script>
     <script
       type="module"
@@ -123,6 +131,47 @@
         align-items: center;
         gap: 8px;
         margin-bottom: 11px;
+      }
+
+      .demo-screenshot {
+        background-color: var(--iui-color-background-5);
+        width: 100%;
+        height: 768px;
+      }
+
+      .demo-information-table {
+        table-layout: fixed;
+        width: 100%;
+      }
+
+      tr {
+        height: 33px;
+      }
+
+      td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      td:first-child {
+        text-align: right;
+        color: var(--iui-text-color-muted);
+        padding-right: 8px;
+      }
+
+      td:first-child::after {
+        content: ':';
+      }
+
+      .demo-information-table-center {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      label {
+        cursor: pointer;
       }
     </style>
     <script src="../assets/theme.js"></script>
@@ -643,8 +692,8 @@
         </div>
 
         <div
-          class="iui-information-panel"
-          id="myInfoPanel"
+          class="iui-information-panel iui-right"
+          id="myOpeningInfoPanel"
         >
           <div class="iui-resizer">
             <div class="iui-resizer-bar"></div>
@@ -657,13 +706,16 @@
             </span>
 
             <div class="iui-header-buttons">
-              <button class="iui-button iui-borderless iui-active">
+              <button class="iui-button iui-borderless">
                 <svg-edit
                   class="iui-icon"
                   aria-hidden="true"
                 ></svg-edit>
               </button>
-              <button class="iui-button iui-borderless">
+              <button
+                class="iui-button iui-borderless"
+                onclick="openInfoPanel()"
+              >
                 <svg-close-small
                   class="iui-icon"
                   aria-hidden="true"
@@ -674,7 +726,7 @@
 
           <div class="iui-information-body">
 
-            <table class="iui-information-table">
+            <table class="demo-information-table">
               <tr>
                 <td>Kind</td>
                 <td>MP3 audio</td>
@@ -694,7 +746,7 @@
               <tr>
                 <td>Owner</td>
                 <td>
-                  <div class="iui-information-table-center">
+                  <div class="demo-information-table-center">
                     <user-icon
                       size="small"
                       type="2"
@@ -711,7 +763,7 @@
               <tr>
                 <td>Modified by</td>
                 <td>
-                  <div class="iui-information-table-center">
+                  <div class="demo-information-table-center">
                     <user-icon
                       size="small"
                       type="1"
@@ -727,7 +779,7 @@
             <hr />
 
             <div class="iui-text-leading">Attributes</div>
-            <table class="iui-information-table">
+            <table class="demo-information-table">
               <tr>
                 <td>Title</td>
                 <td>Beta (Gold Master)</td>
@@ -1184,7 +1236,7 @@
           </div>
         </div>
 
-        <div class="iui-information-panel iui-information-panel-visible">
+        <div class="iui-information-panel iui-right iui-information-panel-visible">
           <div class="iui-resizer">
             <div class="iui-resizer-bar"></div>
           </div>
@@ -1213,7 +1265,7 @@
 
           <div class="iui-information-body">
 
-            <table class="iui-information-table">
+            <table class="demo-information-table">
               <tr>
                 <td>Kind</td>
                 <td>MP3 audio</td>
@@ -1233,7 +1285,7 @@
               <tr>
                 <td>Owner</td>
                 <td>
-                  <div class="iui-information-table-center">
+                  <div class="demo-information-table-center">
                     <user-icon
                       size="small"
                       type="2"
@@ -1250,7 +1302,7 @@
               <tr>
                 <td>Modified by</td>
                 <td>
-                  <div class="iui-information-table-center">
+                  <div class="demo-information-table-center">
                     <user-icon
                       size="small"
                       type="1"
@@ -1266,7 +1318,7 @@
             <hr />
 
             <div class="iui-text-leading">Attributes</div>
-            <table class="iui-information-table">
+            <table class="demo-information-table">
               <tr>
                 <td><label for="title">Title</label></td>
                 <td>
@@ -1338,13 +1390,226 @@
 
     </section>
 
+    <br /><br />
+
+    <section id="demo-docked-bottom">
+
+      <div class="iui-information-panel-wrapper">
+
+        <div class="demo-screenshot"></div>
+
+        <div
+          class="iui-information-panel iui-right iui-information-panel-visible"
+          id="myOrientingInfoPanel"
+        >
+          <div class="iui-resizer">
+            <div class="iui-resizer-bar"></div>
+          </div>
+
+          <div class="iui-information-header">
+            <span class="iui-header-label">
+              <svg-item aria-hidden="true"></svg-item>
+              <span class="iui-text-subheading">P101 Pump Item</span>
+            </span>
+
+            <div class="iui-header-buttons">
+              <button
+                class="iui-button iui-borderless"
+                id="myDockBottom"
+                onclick="switchInfoPanelOrientation();showDockButtons();"
+              >
+                <!-- Docked bottom -->
+                <svg
+                  class="iui-icon"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />
+                </svg>
+              </button>
+              <button
+                class="iui-button iui-borderless"
+                id="myDockRight"
+                style="display: none;"
+                onclick="switchInfoPanelOrientation();showDockButtons();"
+              >
+                <!-- Docked right -->
+                <svg
+                  class="iui-icon"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="m0 2v12h16v-12zm11 11h-10v-10h10z" />
+                </svg>
+              </button>
+              <button class="iui-button iui-borderless">
+                <svg-close-small
+                  class="iui-icon"
+                  aria-hidden="true"
+                ></svg-close-small>
+              </button>
+            </div>
+          </div>
+
+          <div class="iui-information-body">
+
+            <div
+              class="iui-tabs-wrapper iui-horizontal"
+              id="demo-pill-2"
+            >
+              <ul
+                class="iui-tabs iui-pill iui-not-animated"
+                role="tablist"
+                aria-label="Tab group name"
+              >
+                <li>
+                  <button
+                    class="iui-tab iui-active"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="active-tab"
+                  >
+                    <span class="iui-tab-label">Properties</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="iui-tab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="documents-tab"
+                    id="test-tab-5"
+                  >
+                    <span class="iui-tab-label">Documents</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="iui-tab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="projects-tab"
+                    id="test-tab-6"
+                  >
+                    <span class="iui-tab-label">Projects</span>
+                  </button>
+                </li>
+              </ul>
+              <div class="iui-tab-stripe"></div>
+              <div
+                class="iui-tabs-content"
+                role="tabpanel"
+                id="active-tab"
+                aria-labelledby="active"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                est laborum.
+              </div>
+              <div
+                class="iui-tabs-content"
+                role="tabpanel"
+                id="documents-tab"
+                aria-labelledby="documents"
+                hidden
+              >
+                This is the documents tab's content.
+              </div>
+              <div
+                class="iui-tabs-content"
+                role="tabpanel"
+                id="projects-tab"
+                aria-labelledby="projects"
+                hidden
+              >
+                This is the projects tab's content.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Show / hide the info panel -->
     <script>
       function openInfoPanel() {
-        var element = document.getElementById('myInfoPanel');
+        var element = document.getElementById('myOpeningInfoPanel');
         element.classList.toggle('iui-information-panel-visible');
         var button = document.getElementById('myButton');
         button.classList.toggle('iui-active');
       }
+    </script>
+
+    <!-- Switch docking orientation -->
+    <script>
+      function switchInfoPanelOrientation() {
+        var element = document.getElementById('myOrientingInfoPanel');
+        element.classList.toggle('iui-bottom');
+        element.classList.toggle('iui-right');
+      }
+    </script>
+
+    <!-- Switch docking icon based on orientation -->
+    <script>
+      function showDockButtons() {
+        var x = document.getElementById("myDockBottom");
+        if (x.style.display === "none") {
+          x.style.display = "inline-flex";
+        } else {
+          x.style.display = "none";
+        }
+        var y = document.getElementById("myDockRight");
+        if (y.style.display === "none") {
+          y.style.display = "inline-flex";
+        } else {
+          y.style.display = "none";
+        }
+      }
+    </script>
+
+    <!-- Tabs -->
+    <script>
+      document.querySelectorAll('.iui-tabs').forEach((tabs) => {
+        const wrapper = tabs.parentElement;
+        const isVertical = wrapper.classList.contains('iui-vertical');
+        const activeTab = tabs.querySelector('.iui-active');
+        const stripe = wrapper.querySelector('.iui-tab-stripe');
+        const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
+        const setStripe = (activeEl) => {
+          if (isVertical) {
+            stripe.style.top = `${activeEl.offsetTop}px`;
+            stripe.style.height = `${activeEl.getBoundingClientRect().height}px`;
+            stripe.style.left = `${activeEl.getBoundingClientRect().width - 2}px`;
+          } else {
+            stripe.style.top = `${activeEl.getBoundingClientRect().height - 2}px`;
+            stripe.style.left = `${activeEl.offsetLeft}px`;
+            stripe.style.width = `${activeEl.getBoundingClientRect().width}px`;
+          }
+        }
+        stripe && setStripe(activeTab);
+
+        [...tabs.children].forEach(({ firstElementChild: tab }) => {
+          tab.addEventListener('click', () => {
+            tabs.querySelector('.iui-active')?.classList.remove('iui-active');
+            tab.classList.add('iui-active');
+            tabpanels.forEach((panel) => {
+              if (panel.id === tab.getAttribute('aria-controls')) {
+                panel.removeAttribute('hidden');
+              } else {
+                panel.hidden = 'true';
+              }
+            });
+            stripe && setStripe(tab); // needs to be set in react for animation
+          });
+        });
+      });
     </script>
 
   </body>
