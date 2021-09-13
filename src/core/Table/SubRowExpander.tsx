@@ -4,28 +4,25 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
-import { Cell, CellProps, TableInstance } from 'react-table';
+import { Cell, CellProps } from 'react-table';
 import { IconButton } from '../Buttons';
 
 export type SubRowExpanderProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;
   expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
   isDisabled: boolean;
-  tableInstance: TableInstance<T>;
+  cellProps: CellProps<T>;
 };
 
-const SubRowExpander = <T extends Record<string, unknown>>(
+export const SubRowExpander = <T extends Record<string, unknown>>(
   props: SubRowExpanderProps<T>,
 ) => {
-  const { cell, isDisabled, tableInstance, expanderCell } = props;
+  const { cell, isDisabled, cellProps, expanderCell } = props;
 
   return (
     <>
       {expanderCell ? (
-        expanderCell({
-          ...tableInstance,
-          ...{ cell, row: cell.row, value: cell.value, column: cell.column },
-        })
+        expanderCell(cellProps)
       ) : (
         <IconButton
           style={{ marginRight: 8 }}

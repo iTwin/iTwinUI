@@ -6,11 +6,9 @@ import React from 'react';
 import cx from 'classnames';
 import { CellProps, Row, TableInstance, TableState } from 'react-table';
 import { useIntersection } from '../utils/hooks/useIntersection';
-import { getCellStyle } from './utils';
 import { CSSTransition } from 'react-transition-group';
 import { useMergedRefs } from '../utils/hooks/useMergedRefs';
-import { SELECTION_CELL_ID } from './hooks';
-import SubRowExpander from './SubRowExpander';
+import { TableCell } from './TableCell';
 
 /**
  * Memoization is needed to avoid unnecessary re-renders of all rows when additional data is added when lazy-loading.
@@ -78,19 +76,6 @@ const TableRow = <T extends Record<string, unknown>>(props: {
 
   const refs = useMergedRefs(rowRef, mergedProps.ref);
 
-  const subRowExpanderCellIndex = row.cells.findIndex(
-    (c) => c.column.id !== SELECTION_CELL_ID,
-  );
-
-  const getSubRowStyle = (index: number): React.CSSProperties | undefined => {
-    if (!tableHasSubRows || index !== subRowExpanderCellIndex) {
-      return undefined;
-    }
-    // If it doesn't have sub-rows then shift by another level to align with expandable rows on the same depth
-    // 16 = initial_cell_padding, 35 = 27 + 8 = expander_width + margin
-    return { paddingLeft: 16 + (row.depth + (row.canExpand ? 0 : 1)) * 35 };
-  };
-
   return (
     <>
       <div
@@ -102,27 +87,16 @@ const TableRow = <T extends Record<string, unknown>>(props: {
         }}
       >
         {row.cells.map((cell, index) => {
-          const cellProps = cell.getCellProps({
-            className: cx('iui-cell', cell.column.cellClassName),
-            style: {
-              ...getCellStyle(cell.column),
-              ...getSubRowStyle(index),
-            },
-          });
           return (
-            <div {...cellProps} key={cellProps.key}>
-              {tableHasSubRows &&
-                index === subRowExpanderCellIndex &&
-                cell.row.canExpand && (
-                  <SubRowExpander
-                    cell={cell}
-                    isDisabled={isDisabled}
-                    tableInstance={tableInstance}
-                    expanderCell={expanderCell}
-                  />
-                )}
-              {cell.render('Cell')}
-            </div>
+            <TableCell
+              key={cell.getCellProps().key}
+              cell={cell}
+              cellIndex={index}
+              isDisabled={isDisabled}
+              tableHasSubRows={tableHasSubRows}
+              tableInstance={tableInstance}
+              expanderCell={expanderCell}
+            />
           );
         })}
       </div>

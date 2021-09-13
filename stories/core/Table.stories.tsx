@@ -7,6 +7,7 @@ import {
   actions,
   ActionType,
   CellProps,
+  CellRendererProps,
   Column,
   Row,
   TableInstance,
@@ -22,6 +23,8 @@ import {
   TableFilterValue,
   TableProps,
   Tooltip,
+  DefaultCell,
+  EditableCell,
 } from '../../src/core';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
@@ -1324,3 +1327,120 @@ Full.args = {
 
 export const Condensed: Story<TableProps> = Basic.bind({});
 Condensed.args = { density: 'condensed' };
+
+export const Editable: Story<TableProps> = (args) => {
+  const { ...rest } = args;
+
+  type TableStoryDataType = {
+    name: string;
+    description: string;
+  };
+
+  const [data, setData] = React.useState(() => [
+    { name: 'Name1', description: 'Description1' },
+    { name: 'Name2', description: 'Description2' },
+    { name: 'Name3', description: 'Fetching...' },
+  ]);
+
+  const isRowDisabled = useCallback((rowData: TableStoryDataType) => {
+    return rowData.name === 'Name2';
+  }, []);
+
+  const onCellEdit = useCallback(
+    (columnId: string, value: string, rowData: TableStoryDataType) => {
+      action('onCellEdit')({ columnId, value, rowData });
+      setData((oldData) => {
+        const newData = [...oldData];
+        const index = oldData.indexOf(rowData);
+        const newObject = { ...newData[index] };
+        newObject[columnId as keyof TableStoryDataType] = value;
+        newData[index] = newObject;
+        return newData;
+      });
+    },
+    [],
+  );
+
+  const cellRenderer = useCallback(
+    (props: CellRendererProps<TableStoryDataType>) => (
+      <>
+        {!isRowDisabled(props.cellProps.row.original) &&
+        props.cellProps.value !== 'Fetching...' ? (
+          <EditableCell {...props} onCellEdit={onCellEdit} />
+        ) : (
+          <DefaultCell {...props} />
+        )}
+      </>
+    ),
+    [isRowDisabled, onCellEdit],
+  );
+
+  const columns = React.useMemo(
+    (): Column<TableStoryDataType>[] => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            cellRenderer,
+            Filter: tableFilters.TextFilter(),
+          },
+          {
+            id: 'description',
+            Header: 'Description',
+            accessor: 'description',
+            cellRenderer,
+            Filter: tableFilters.TextFilter(),
+          },
+        ],
+      },
+    ],
+    [cellRenderer],
+  );
+
+  return (
+    <Table
+      emptyTableContent='No data.'
+      {...rest}
+      columns={columns}
+      data={data}
+      isRowDisabled={isRowDisabled}
+      isSortable
+      // These flags prevent filters and sorting from resetting
+      autoResetFilters={false}
+      autoResetSortBy={false}
+    />
+  );
+};
+
+Editable.argTypes = {
+  data: { control: { disable: true } },
+};
+
+Editable.parameters = {
+  creevey: {
+    tests: {
+      async focusAndHover() {
+        const editableCells = await this.browser.findElements({
+          css: '.iui-cell[contenteditable]',
+        });
+        await this.browser
+          .actions()
+          .click(editableCells[0])
+          .sendKeys('test')
+          .perform();
+        await this.browser
+          .actions()
+          .move({ origin: editableCells[2] })
+          .perform();
+        await this.expect(
+          await this.browser
+            .findElement({ css: '.iui-table' })
+            .takeScreenshot(),
+        ).to.matchImage();
+      },
+    },
+  } as CreeveyStoryParams,
+};

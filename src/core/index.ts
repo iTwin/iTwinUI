@@ -115,13 +115,21 @@ export type { SideNavigationProps, SidenavButtonProps } from './SideNavigation';
 export { Slider } from './Slider';
 export type { SliderProps } from './Slider';
 
-export { Table, tableFilters, FilterButtonBar } from './Table';
+export {
+  Table,
+  tableFilters,
+  FilterButtonBar,
+  DefaultCell,
+  EditableCell,
+} from './Table';
 export type {
   TableProps,
   TableFilterProps,
   TableFilterValue,
   DateRangeFilterOptions,
   FilterButtonBarProps,
+  DefaultCellProps,
+  EditableCellProps,
 } from './Table';
 
 export { Tag, TagContainer } from './Tag';

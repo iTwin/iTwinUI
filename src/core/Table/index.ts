@@ -15,4 +15,7 @@ export type {
   TableFilterValue,
 } from './filters';
 
+export { DefaultCell, EditableCell } from './cells';
+export type { DefaultCellProps, EditableCellProps } from './cells';
+
 export default './Table';
