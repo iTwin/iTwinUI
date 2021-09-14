@@ -47,8 +47,7 @@
 
   .iui-information-header,
   .iui-information-body {
-    padding-left: $iui-sm;
-    padding-right: $iui-sm;
+    padding: 0 $iui-sm;
     box-sizing: border-box;
   }
 
@@ -66,7 +65,7 @@
       align-items: center;
       overflow: hidden;
 
-      span {
+      > * {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -91,8 +90,7 @@
   }
 
   .iui-information-body {
-    padding-top: $iui-baseline;
-    padding-bottom: $iui-baseline;
+    padding: $iui-baseline 0;
     height: 100%;
     overflow-x: hidden;
     overflow-y: overlay;
