@@ -185,11 +185,13 @@
   }
 
   // #region Animating expanding / collapsing of the submenu
+  display: none;
   visibility: hidden;
   opacity: 0;
   width: 0;
 
   &.iui-side-navigation-submenu-visible {
+    display: block;
     visibility: visible;
     min-width: $iui-3xl * 2;
     width: $iui-3xl * 4;
@@ -199,12 +201,14 @@
 
   &.iui-enter,
   &.iui-exit-active {
+    display: block;
     opacity: 0;
     width: 0;
   }
 
   &.iui-exit,
   &.iui-enter-active {
+    display: block;
     opacity: 1;
     width: $iui-3xl * 4;
   }
