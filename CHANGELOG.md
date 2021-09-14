@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.18.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.17.0...v1.18.0) (2021-09-13)
+
+### What's new
+
+* **ExpandableBlock:** Add new `status` and `endIcon` props ([#303](https://www.github.com/iTwin/iTwinUI-react/issues/303)) ([3285db2](https://www.github.com/iTwin/iTwinUI-react/commit/3285db20efd9bda9d7b86ff3dbaea15759bc65f6))
+* **Table:** Editable cell. Pass `EditableCell` component to column `cellRenderer` property. ([#307](https://www.github.com/iTwin/iTwinUI-react/issues/307)) ([0457702](https://www.github.com/iTwin/iTwinUI-react/commit/0457702e476a0770f9e114e60b024df3c1092342))
+
+### Fixes
+
+* **Tooltip:** Fixed `Tooltip` content clipping when it is next to the viewport edge ([#314](https://www.github.com/iTwin/iTwinUI-react/issues/314)) ([5661310](https://www.github.com/iTwin/iTwinUI-react/commit/56613109ae483b1f610ddfb75c9e062072247c8b))
+
 ## [1.17.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.16.2...v1.17.0) (2021-08-31)
 
 ### What's new
