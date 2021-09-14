@@ -13,6 +13,18 @@
     'inputs inputs' / auto 1fr;
   grid-row-gap: $iui-component-offset;
 
+  // stylelint-disable -- fix position in IE
+  -ms-grid-rows: auto auto;
+  -ms-grid-columns: auto 1fr;
+  // stylelint-enable
+
+  &.iui-inline-icon:not(.iui-inline-label) .iui-input-icon {
+    // stylelint-disable -- fix position in IE
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    // stylelint-enable
+  }
+
   &.iui-with-message {
     grid-template:
       'label label'
@@ -62,7 +74,7 @@
     grid-template: 'label inputs icon' / auto 1fr auto;
     // stylelint-disable -- on IE input takes whole width
     -ms-grid-rows: auto;
-    -ms-grid-columns: auto min-content auto;
+    -ms-grid-columns: auto minmax(min-content, 1fr) auto;
     // stylelint-enable
     grid-row-gap: 0;
 
@@ -88,12 +100,17 @@
         'label inputs inputs'
         '. icon message' / auto auto 1fr;
 
-      .iui-input,
-      .iui-textarea,
-      .iui-input-group,
-      .iui-select {
+      &:not(.iui-inline-icon) .iui-input-icon {
         // stylelint-disable -- fix position in IE
-        -ms-grid-column-span: 2;
+        -ms-grid-row: 2;
+        -ms-grid-column: 2;
+        // stylelint-enable
+      }
+
+      .iui-message {
+        // stylelint-disable -- fix position in IE
+        -ms-grid-row: 2;
+        -ms-grid-column: 3;
         // stylelint-enable
       }
     }
@@ -134,10 +151,6 @@
   font-weight: $iui-font-weight-semibold;
   grid-area: label;
   align-self: center;
-  // stylelint-disable -- fix position in IE
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  // stylelint-enable
 
   &.iui-required {
     &::after {
@@ -153,8 +166,6 @@
 @mixin iui-input-label-inline {
   margin: 0 $iui-m 0 0;
   // stylelint-disable -- fix position in IE
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   // stylelint-enable
 
@@ -197,7 +208,6 @@
   // stylelint-disable -- fix position in IE
   -ms-grid-row: 1;
   -ms-grid-column: 3;
-  -ms-grid-column-align: end;
   // stylelint-enable
 
   grid-area: inputs;
