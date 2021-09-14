@@ -72,11 +72,16 @@
 
   &.iui-inline-label {
     grid-template: 'label inputs icon' / auto 1fr auto;
-    // stylelint-disable -- on IE input takes whole width
-    -ms-grid-rows: auto;
-    -ms-grid-columns: auto minmax(min-content, 1fr) auto;
-    // stylelint-enable
     grid-row-gap: 0;
+
+    // IE fix icon position for inline checkboxes/radios group
+    @at-root {
+      div#{&} {
+        // stylelint-disable -- fix position in IE
+        -ms-grid-columns: auto min-content auto;
+        // stylelint-enable
+      }
+    }
 
     .iui-input,
     .iui-textarea,
