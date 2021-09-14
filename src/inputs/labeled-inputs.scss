@@ -11,7 +11,6 @@
   grid-template:
     'label label'
     'inputs inputs' / auto 1fr;
-  grid-row-gap: $iui-component-offset;
 
   // stylelint-disable -- fix position in IE
   -ms-grid-rows: auto auto;
@@ -30,6 +29,11 @@
       'label label'
       'inputs inputs'
       'icon message' / auto 1fr;
+
+    // add margin to the icon if it is below input
+    &:not(.iui-inline-icon) .iui-input-icon {
+      margin-top: $iui-component-offset;
+    }
   }
 
   .iui-input,
@@ -72,7 +76,6 @@
 
   &.iui-inline-label {
     grid-template: 'label inputs icon' / auto 1fr auto;
-    grid-row-gap: 0;
 
     // IE fix icon position for inline checkboxes/radios group
     @at-root {
@@ -156,6 +159,7 @@
   font-weight: $iui-font-weight-semibold;
   grid-area: label;
   align-self: center;
+  margin-bottom: $iui-component-offset;
 
   &.iui-required {
     &::after {
@@ -183,6 +187,7 @@
 @mixin iui-input-message {
   font-size: $iui-font-size-small;
   grid-area: message;
+  margin-top: $iui-component-offset;
   @include themed {
     color: t(iui-text-color-muted);
   }
@@ -217,7 +222,7 @@
 
   grid-area: inputs;
   justify-self: end;
-  margin-right: $iui-sm;
+  margin: 0 $iui-sm 0 0;
   position: relative;
 
   &.iui-button {
@@ -268,9 +273,7 @@
     }
   }
 
-  > input,
   > .iui-input,
-  > textarea,
   > .iui-textarea,
   > .iui-select > .iui-select-button {
     padding-bottom: $iui-component-padding-vertical - 1px;
