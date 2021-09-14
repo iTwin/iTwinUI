@@ -174,11 +174,8 @@
 
 @mixin iui-side-navigation-submenu {
   height: 100%;
-  min-width: $iui-3xl * 2;
-  width: $iui-3xl * 4;
-  max-width: 50vw;
   box-sizing: border-box;
-  padding: $iui-baseline $iui-sm;
+  padding: 0 $iui-sm;
   overflow-x: hidden;
   overflow-y: overlay;
   resize: horizontal;
@@ -187,10 +184,71 @@
     border-right: 1px solid t(iui-color-background-5);
   }
 
-  .iui-side-navigation-title {
-    @include iui-text(title);
+  // #region Animating expanding / collapsing of the submenu
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+
+  &.iui-side-navigation-submenu-visible {
+    visibility: visible;
+    min-width: $iui-3xl * 2;
+    width: $iui-3xl * 4;
+    max-width: 50vw; // 50% screen width minus width of the side navigation. Would like to use a variable here.
+    opacity: 1;
+  }
+
+  &.iui-enter,
+  &.iui-exit-active {
+    opacity: 0;
+    width: 0;
+  }
+
+  &.iui-exit,
+  &.iui-enter-active {
+    opacity: 1;
+    width: $iui-3xl * 4;
+  }
+
+  &.iui-enter-active,
+  &.iui-exit-active {
+    @media (prefers-reduced-motion: no-preference) {
+      transition: visibility 0s linear $iui-speed-fast, opacity $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+    }
+  }
+  // #endregion
+
+  .iui-submenu-header {
+    height: $iui-baseline * 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .iui-header-label {
+      @include iui-text(title);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+
+      button {
+        flex-shrink: 0;
+      }
+
+      > * {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        user-select: none;
+      }
+
+      .iui-header-buttons {
+        flex-shrink: 0;
+        margin-left: $iui-s;
+      }
+    }
+  }
+
+  .iui-submenu-body {
     margin-bottom: $iui-baseline;
-    user-select: none;
   }
 }
 
@@ -199,7 +257,7 @@
   position: relative;
   height: 100%;
 
-  .iui-expanded ~ .iui-side-navigation-submenu .iui-side-navigation-title {
-    display: none;
-  }
+  // .iui-expanded ~ .iui-side-navigation-submenu .iui-header-label {
+  //   display: none;
+  // }
 }

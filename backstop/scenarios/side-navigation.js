@@ -9,6 +9,10 @@ module.exports = [
     actions: [click('#test-expand')],
     selectors: ['#demo-side-navigation'],
   }),
+  scenario('Type submenu', {
+    actions: [click('#myDocumentsButton')],
+    selectors: ['#demo-side-navigation'],
+  }),
 
   // Hover & focus states
   scenario('State collapsed hover and focus', {
@@ -16,11 +20,7 @@ module.exports = [
     selectors: ['#demo-side-navigation'],
   }),
   scenario('State expanded hover and focus', {
-    actions: [
-      click('#test-expand'),
-      hover('#test-tab-2'),
-      focus('#test-tab-1'),
-    ],
+    actions: [click('#test-expand'), hover('#test-tab-2'), focus('#test-tab-1')],
     selectors: ['#demo-side-navigation'],
   }),
 ];
