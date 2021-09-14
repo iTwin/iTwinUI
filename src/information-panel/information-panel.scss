@@ -47,7 +47,8 @@
 
   .iui-information-header,
   .iui-information-body {
-    padding: 0 $iui-sm;
+    padding-left: $iui-sm;
+    padding-right: $iui-sm;
     box-sizing: border-box;
   }
 
@@ -90,7 +91,8 @@
   }
 
   .iui-information-body {
-    padding: $iui-baseline 0;
+    padding-top: $iui-baseline;
+    padding-bottom: $iui-baseline;
     height: 100%;
     overflow-x: hidden;
     overflow-y: overlay;
