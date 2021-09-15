@@ -12,11 +12,6 @@
     'label label'
     'inputs inputs' / auto 1fr;
 
-  // stylelint-disable -- fix position in IE
-  -ms-grid-rows: auto auto;
-  -ms-grid-columns: auto 1fr;
-  // stylelint-enable
-
   &.iui-inline-icon:not(.iui-inline-label) .iui-input-icon {
     // stylelint-disable -- fix position in IE
     -ms-grid-row: 2;
