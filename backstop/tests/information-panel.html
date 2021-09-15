@@ -1,0 +1,1616 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Information panel | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/add"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/download"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/arrow-right"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/delete"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/rename"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more-vertical"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/list"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/thumbnails"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/info"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/sort-down"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/filter-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/column-manager"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/edit"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/item"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
+    ></script>
+    <script>
+      customElements.define('svg-filetype-imodel', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#5ebb47" /><path d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#448136" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-filetype-audio', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#66c6ff" /><path d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#478ab2" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-filetype-pdf', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#dd3e39" /><path d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#992d2b" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-filetype-image', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#7956a3" /><path d="m3 5v8h10v-8zm9 7h-8v-6h8zm-1-1h-6l2-2 .8.8 1.2-1.8zm-4-3a1 1 0 1 1 -1-1 1 1 0 0 1 1 1z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#543d70" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-filetype-vector', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#d16c00" /><path d="m11.9665 9.6309a3.95941 3.95941 0 0 0 -1.3446-2.6309h1.3781v-1h-2.5921a1.4911 1.4911 0 0 0 -2.8158 0h-2.5921v1h1.3781a3.95941 3.95941 0 0 0 -1.3446 2.6309.99.99 0 0 0 -.5335.8691 1 1 0 0 0 2 0 .98412.98412 0 0 0 -.4709-.8268 2.98911 2.98911 0 0 1 1.7037-2.3788 1.49069 1.49069 0 0 0 2.5344 0 2.98911 2.98911 0 0 1 1.7037 2.3788.98412.98412 0 0 0 -.4709.8268 1 1 0 0 0 2 0 .99.99 0 0 0 -.5335-.8691zm-3.9665-2.6309a.5.5 0 1 1 .5-.5.5.5 0 0 1 -.5.5z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#924b00" /></svg>`;
+        }
+      });
+    </script>
+    <style>
+      .iui-information-panel-wrapper {
+        width: 1024px;
+      }
+
+      .demo-button-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 11px;
+      }
+
+      .demo-screenshot {
+        background-color: var(--iui-color-background-5);
+        width: 100%;
+        height: 768px;
+      }
+
+      .demo-information-table {
+        table-layout: fixed;
+        width: 100%;
+      }
+
+      tr {
+        height: 33px;
+      }
+
+      td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      td:first-child {
+        text-align: right;
+        color: var(--iui-text-color-muted);
+        padding-right: 8px;
+      }
+
+      td:first-child::after {
+        content: ':';
+      }
+
+      .demo-information-table-center {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      label {
+        cursor: pointer;
+      }
+    </style>
+    <script src="../assets/theme.js"></script>
+    <script src="../assets/userIcon.js"></script>
+  </head>
+
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Information panel</h1>
+    <hr />
+
+    <section id="demo-default">
+
+      <div class="demo-button-bar">
+        <button class="iui-button iui-high-visibility">
+          <svg-add
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-add>
+          <span class="iui-label">New</span>
+        </button>
+
+        <span
+          class="iui-button-group"
+          style="margin-right: auto;"
+        >
+          <button
+            title="Download"
+            class="iui-button"
+          >
+            <svg-download
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-download>
+          </button>
+          <button
+            title="Move"
+            class="iui-button"
+          >
+            <svg-arrow-right
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-arrow-right>
+          </button>
+          <button
+            title="Delete"
+            class="iui-button"
+            disabled
+          >
+            <svg-delete
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-delete>
+          </button>
+          <button
+            title="Rename"
+            class="iui-button"
+          >
+            <svg-rename
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-rename>
+          </button>
+          <button
+            title="More options&mldr;"
+            class="iui-button"
+          >
+            <svg-more
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-more>
+          </button>
+        </span>
+
+        <span class="iui-button-group">
+          <button
+            title="List view"
+            class="iui-button iui-active"
+          >
+            <svg-list
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-list>
+          </button>
+          <button
+            title="Tile view"
+            class="iui-button"
+          >
+            <svg-thumbnails
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-thumbnails>
+          </button>
+        </span>
+
+        <button
+          title="View info"
+          class="iui-button"
+          id="myButton"
+          onclick="openInfoPanel()"
+        >
+          <svg-info
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-info>
+        </button>
+      </div>
+
+      <div class="iui-information-panel-wrapper">
+
+        <div class="iui-table">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="select-all-checkboxes"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check-partial"
+                        d="m1 6.5h14v3h-14z"
+                      />
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div
+                class="iui-cell iui-actionable iui-sorted"
+                tabindex="0"
+              >
+                Name
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
+              </div>
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
+              >
+                Modified
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
+              </div>
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
+              >
+                Modified by
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Modify filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
+              </div>
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
+              >
+                Size
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+              </div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="iui-table-body">
+
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
+                </div>
+                alpha.dgn
+              </div>
+              <div class="iui-cell">Jan 13, 2021 12:26 PM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="2"
+                  >
+                  </user-icon>
+                </div>
+                Terry Rivers
+              </div>
+              <div class="iui-cell demo-right-align">20 MB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+
+            <div class="iui-row iui-selected">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                    checked
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-audio aria-hidden="true"></svg-filetype-audio>
+                </div>
+                beta.mp3
+              </div>
+              <div class="iui-cell">Aug 10, 2021 2:26 PM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="1"
+                  >
+                  </user-icon>
+                </div>
+                Robin Mercer
+              </div>
+              <div class="iui-cell demo-right-align">10 MB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
+                </div>
+                charlie.pdf
+              </div>
+              <div class="iui-cell">Mar 1, 2020 8:00 PM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="2"
+                  >
+                  </user-icon>
+                </div>
+                Terry Rivers
+              </div>
+              <div class="iui-cell demo-right-align">10 MB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-image aria-hidden="true"></svg-filetype-image>
+                </div>
+                delta.jpg
+              </div>
+              <div class="iui-cell">Sep 7, 2015 11:30 AM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="2"
+                  >
+                  </user-icon>
+                </div>
+                Terry Rivers
+              </div>
+              <div class="iui-cell demo-right-align">963 MB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
+                </div>
+                echo.svg
+              </div>
+              <div class="iui-cell">Apr 14, 2019 11:59 PM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="2"
+                  >
+                  </user-icon>
+                </div>
+                Terry Rivers
+              </div>
+              <div class="iui-cell demo-right-align">64 KB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="iui-information-panel iui-right"
+          id="myOpeningInfoPanel"
+        >
+          <div class="iui-resizer">
+            <div class="iui-resizer-bar"></div>
+          </div>
+
+          <div class="iui-information-header">
+            <span class="iui-information-header-label">
+              <svg-filetype-audio aria-hidden="true"></svg-filetype-audio>
+              <span class="iui-text-subheading">beta.mp3</span>
+            </span>
+
+            <div class="iui-information-header-actions">
+              <button class="iui-button iui-borderless">
+                <svg-edit
+                  class="iui-icon"
+                  aria-hidden="true"
+                ></svg-edit>
+              </button>
+              <button
+                class="iui-button iui-borderless"
+                onclick="openInfoPanel()"
+              >
+                <svg-close-small
+                  class="iui-icon"
+                  aria-hidden="true"
+                ></svg-close-small>
+              </button>
+            </div>
+          </div>
+
+          <div class="iui-information-body">
+
+            <table class="demo-information-table">
+              <tr>
+                <td>Kind</td>
+                <td>MP3 audio</td>
+              </tr>
+              <tr>
+                <td>Size</td>
+                <td>9.7 MB</td>
+              </tr>
+              <tr>
+                <td>Where</td>
+                <td>/Shared/Music/</td>
+              </tr>
+              <tr>
+                <td>Date created</td>
+                <td>Aug 10, 2021 2:26 PM</td>
+              </tr>
+              <tr>
+                <td>Owner</td>
+                <td>
+                  <div class="demo-information-table-center">
+                    <user-icon
+                      size="small"
+                      type="2"
+                    >
+                    </user-icon>
+                    Terry Rivers
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Last modified</td>
+                <td>Aug 10, 2021 3:26 PM</td>
+              </tr>
+              <tr>
+                <td>Modified by</td>
+                <td>
+                  <div class="demo-information-table-center">
+                    <user-icon
+                      size="small"
+                      type="1"
+                    >
+                    </user-icon>
+                    Robin Mercer
+                  </div>
+                </td>
+              </tr>
+
+            </table>
+
+            <hr />
+
+            <div class="iui-text-leading">Attributes</div>
+            <table class="demo-information-table">
+              <tr>
+                <td>Title</td>
+                <td>Beta (Gold Master)</td>
+              </tr>
+              <tr>
+                <td>Duration</td>
+                <td>03:36</td>
+              </tr>
+              <tr>
+                <td>Authors</td>
+                <td>DJ Terry</td>
+              </tr>
+              <tr>
+                <td>Audio channels</td>
+                <td>Stereo</td>
+              </tr>
+              <tr>
+                <td>Sample rate</td>
+                <td>44.1 kHz</td>
+              </tr>
+              <tr>
+                <td>Album</td>
+                <td>DJ Terry's Fire Mixtape</td>
+              </tr>
+              <tr>
+                <td>Musical genre</td>
+                <td>Dubstep</td>
+              </tr>
+              <tr>
+                <td>Year recorded</td>
+                <td>2021</td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <br /><br />
+
+    <section id="demo-edit">
+
+      <div class="iui-information-panel-wrapper">
+
+        <div class="iui-table">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="select-all-checkboxes"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check-partial"
+                        d="m1 6.5h14v3h-14z"
+                      />
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div
+                class="iui-cell iui-actionable iui-sorted"
+                tabindex="0"
+              >
+                Name
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
+              </div>
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
+              >
+                Modified
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
+              </div>
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
+              >
+                Modified by
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Modify filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
+              </div>
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
+              >
+                Size
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+              </div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="iui-table-body">
+
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
+                </div>
+                alpha.dgn
+              </div>
+              <div class="iui-cell">Jan 13, 2021 12:26 PM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="2"
+                  >
+                  </user-icon>
+                </div>
+                Terry Rivers
+              </div>
+              <div class="iui-cell demo-right-align">20 MB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+
+            <div class="iui-row iui-selected">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                    checked
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-audio aria-hidden="true"></svg-filetype-audio>
+                </div>
+                beta ipsum dolor sit amet.mp3
+              </div>
+              <div class="iui-cell">Aug 10, 2021 2:26 PM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="1"
+                  >
+                  </user-icon>
+                </div>
+                Robin Mercer
+              </div>
+              <div class="iui-cell demo-right-align">10 MB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
+                </div>
+                charlie.pdf
+              </div>
+              <div class="iui-cell">Mar 1, 2020 8:00 PM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="2"
+                  >
+                  </user-icon>
+                </div>
+                Terry Rivers
+              </div>
+              <div class="iui-cell demo-right-align">10 MB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-image aria-hidden="true"></svg-filetype-image>
+                </div>
+                delta.jpg
+              </div>
+              <div class="iui-cell">Sep 7, 2015 11:30 AM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="2"
+                  >
+                  </user-icon>
+                </div>
+                Terry Rivers
+              </div>
+              <div class="iui-cell demo-right-align">963 MB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <label class="iui-checkbox">
+                  <input
+                    type="checkbox"
+                    id="active-row"
+                  />
+                  <span class="iui-checkbox-checkmark">
+                    <svg
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        class="iui-check"
+                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="iui-cell iui-main-column">
+                <div class="iui-cell-start-icon">
+                  <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
+                </div>
+                echo.svg
+              </div>
+              <div class="iui-cell">Apr 14, 2019 11:59 PM</div>
+              <div class="iui-cell">
+                <div class="iui-cell-start-icon">
+                  <user-icon
+                    size="small"
+                    type="2"
+                  >
+                  </user-icon>
+                </div>
+                Terry Rivers
+              </div>
+              <div class="iui-cell demo-right-align">64 KB</div>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="iui-information-panel iui-right iui-information-panel-visible">
+          <div class="iui-resizer">
+            <div class="iui-resizer-bar"></div>
+          </div>
+
+          <div class="iui-information-header">
+            <span class="iui-information-header-label">
+              <svg-filetype-audio aria-hidden="true"></svg-filetype-audio>
+              <span class="iui-text-subheading">beta ipsum dolor sit amet.mp3</span>
+            </span>
+
+            <div class="iui-information-header-actions">
+              <button class="iui-button iui-borderless iui-active">
+                <svg-edit
+                  class="iui-icon"
+                  aria-hidden="true"
+                ></svg-edit>
+              </button>
+              <button class="iui-button iui-borderless">
+                <svg-close-small
+                  class="iui-icon"
+                  aria-hidden="true"
+                ></svg-close-small>
+              </button>
+            </div>
+          </div>
+
+          <div class="iui-information-body">
+
+            <table class="demo-information-table">
+              <tr>
+                <td>Kind</td>
+                <td>MP3 audio</td>
+              </tr>
+              <tr>
+                <td>Size</td>
+                <td>9.7 MB</td>
+              </tr>
+              <tr>
+                <td>Where</td>
+                <td>/Shared/Music/</td>
+              </tr>
+              <tr>
+                <td>Date created</td>
+                <td>Aug 10, 2021 2:26 PM</td>
+              </tr>
+              <tr>
+                <td>Owner</td>
+                <td>
+                  <div class="demo-information-table-center">
+                    <user-icon
+                      size="small"
+                      type="2"
+                    >
+                    </user-icon>
+                    Terry Rivers
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Last modified</td>
+                <td>Aug 10, 2021 3:26 PM</td>
+              </tr>
+              <tr>
+                <td>Modified by</td>
+                <td>
+                  <div class="demo-information-table-center">
+                    <user-icon
+                      size="small"
+                      type="1"
+                    >
+                    </user-icon>
+                    Robin Mercer
+                  </div>
+                </td>
+              </tr>
+
+            </table>
+
+            <hr />
+
+            <div class="iui-text-leading">Attributes</div>
+            <table class="demo-information-table">
+              <tr>
+                <td><label for="title">Title</label></td>
+                <td>
+                  <input
+                    id="title"
+                    value="Beta (Gold Master)"
+                    class="iui-input iui-small"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Duration</td>
+                <td>03:36</td>
+              </tr>
+              <tr>
+                <td><label for="authors">Authors</label></td>
+                <td>
+                  <input
+                    id="authors"
+                    value="DJ Terry"
+                    class="iui-input iui-small"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Audio channels</td>
+                <td>Stereo</td>
+              </tr>
+              <tr>
+                <td>Sample rate</td>
+                <td>44.1 kHz</td>
+              </tr>
+              <tr>
+                <td><label for="album">Album</label></td>
+                <td>
+                  <input
+                    id="album"
+                    value="DJ Terry's Fire Mixtape"
+                    class="iui-input iui-small"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><label for="genre">Musical genre</label></td>
+                <td>
+                  <input
+                    id="genre"
+                    value="Dubstep"
+                    class="iui-input iui-small"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><label for="year">Year recorded</label></td>
+                <td>
+                  <input
+                    id="year"
+                    value="2021"
+                    class="iui-input iui-small"
+                  />
+                </td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <br /><br />
+
+    <section id="demo-docked-bottom">
+
+      <div class="iui-information-panel-wrapper">
+
+        <div class="demo-screenshot"></div>
+
+        <div
+          class="iui-information-panel iui-right iui-information-panel-visible"
+          id="myOrientingInfoPanel"
+        >
+          <div class="iui-resizer">
+            <div class="iui-resizer-bar"></div>
+          </div>
+
+          <div class="iui-information-header">
+            <span class="iui-information-header-label">
+              <svg-item aria-hidden="true"></svg-item>
+              <span class="iui-text-subheading">P101 Pump Item</span>
+            </span>
+
+            <div class="iui-information-header-actions">
+              <button
+                class="iui-button iui-borderless"
+                id="myDockBottom"
+                onclick="switchInfoPanelOrientation();showDockButtons();"
+              >
+                <!-- Docked bottom -->
+                <svg
+                  class="iui-icon"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />
+                </svg>
+              </button>
+              <button
+                class="iui-button iui-borderless"
+                id="myDockRight"
+                style="display: none;"
+                onclick="switchInfoPanelOrientation();showDockButtons();"
+              >
+                <!-- Docked right -->
+                <svg
+                  class="iui-icon"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="m0 2v12h16v-12zm11 11h-10v-10h10z" />
+                </svg>
+              </button>
+              <button class="iui-button iui-borderless">
+                <svg-close-small
+                  class="iui-icon"
+                  aria-hidden="true"
+                ></svg-close-small>
+              </button>
+            </div>
+          </div>
+
+          <div class="iui-information-body">
+
+            <div
+              class="iui-tabs-wrapper iui-horizontal"
+              id="demo-pill-2"
+            >
+              <ul
+                class="iui-tabs iui-pill iui-not-animated"
+                role="tablist"
+                aria-label="Tab group name"
+              >
+                <li>
+                  <button
+                    class="iui-tab iui-active"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="active-tab"
+                  >
+                    <span class="iui-tab-label">Properties</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="iui-tab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="documents-tab"
+                    id="test-tab-5"
+                  >
+                    <span class="iui-tab-label">Documents</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="iui-tab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="projects-tab"
+                    id="test-tab-6"
+                  >
+                    <span class="iui-tab-label">Projects</span>
+                  </button>
+                </li>
+              </ul>
+              <div class="iui-tab-stripe"></div>
+              <div
+                class="iui-tabs-content"
+                role="tabpanel"
+                id="active-tab"
+                aria-labelledby="active"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                est laborum.
+              </div>
+              <div
+                class="iui-tabs-content"
+                role="tabpanel"
+                id="documents-tab"
+                aria-labelledby="documents"
+                hidden
+              >
+                This is the documents tab's content.
+              </div>
+              <div
+                class="iui-tabs-content"
+                role="tabpanel"
+                id="projects-tab"
+                aria-labelledby="projects"
+                hidden
+              >
+                This is the projects tab's content.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Show / hide the info panel -->
+    <script>
+      function openInfoPanel() {
+        var element = document.getElementById('myOpeningInfoPanel');
+        element.classList.toggle('iui-information-panel-visible');
+        var button = document.getElementById('myButton');
+        button.classList.toggle('iui-active');
+      }
+    </script>
+
+    <!-- Switch docking orientation -->
+    <script>
+      function switchInfoPanelOrientation() {
+        var element = document.getElementById('myOrientingInfoPanel');
+        element.classList.toggle('iui-bottom');
+        element.classList.toggle('iui-right');
+      }
+    </script>
+
+    <!-- Switch docking icon based on orientation -->
+    <script>
+      function showDockButtons() {
+        var x = document.getElementById("myDockBottom");
+        if (x.style.display === "none") {
+          x.style.display = "inline-flex";
+        } else {
+          x.style.display = "none";
+        }
+        var y = document.getElementById("myDockRight");
+        if (y.style.display === "none") {
+          y.style.display = "inline-flex";
+        } else {
+          y.style.display = "none";
+        }
+      }
+    </script>
+
+    <!-- Tabs -->
+    <script>
+      document.querySelectorAll('.iui-tabs').forEach((tabs) => {
+        const wrapper = tabs.parentElement;
+        const isVertical = wrapper.classList.contains('iui-vertical');
+        const activeTab = tabs.querySelector('.iui-active');
+        const stripe = wrapper.querySelector('.iui-tab-stripe');
+        const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
+        const setStripe = (activeEl) => {
+          if (isVertical) {
+            stripe.style.top = `${activeEl.offsetTop}px`;
+            stripe.style.height = `${activeEl.getBoundingClientRect().height}px`;
+            stripe.style.left = `${activeEl.getBoundingClientRect().width - 2}px`;
+          } else {
+            stripe.style.top = `${activeEl.getBoundingClientRect().height - 2}px`;
+            stripe.style.left = `${activeEl.offsetLeft}px`;
+            stripe.style.width = `${activeEl.getBoundingClientRect().width}px`;
+          }
+        }
+        stripe && setStripe(activeTab);
+
+        [...tabs.children].forEach(({ firstElementChild: tab }) => {
+          tab.addEventListener('click', () => {
+            tabs.querySelector('.iui-active')?.classList.remove('iui-active');
+            tab.classList.add('iui-active');
+            tabpanels.forEach((panel) => {
+              if (panel.id === tab.getAttribute('aria-controls')) {
+                panel.removeAttribute('hidden');
+              } else {
+                panel.hidden = 'true';
+              }
+            });
+            stripe && setStripe(tab); // needs to be set in react for animation
+          });
+        });
+      });
+    </script>
+
+  </body>
+</html>

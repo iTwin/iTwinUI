@@ -12,6 +12,7 @@
       "border-bottom": ["/^0/"],
       "border-left": ["/^0/"]
     },
+    "no-eol-whitespace": true,
     "function-parentheses-space-inside": "never-single-line",
     "max-nesting-depth": 6,
     "order/order": null,

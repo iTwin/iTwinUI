@@ -165,8 +165,8 @@
       visibility: visible;
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      .iui-row-expander > .iui-icon {
+    .iui-row-expander > .iui-icon {
+      @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
     }
@@ -194,7 +194,7 @@
     &.iui-expanded-content {
       overflow: hidden;
       @include iui-transition-group;
-    }    
+    }
 
     // #region Selection
     &:not(.iui-selected) + .iui-selected,
@@ -308,6 +308,7 @@
   padding-left: $iui-m;
   flex-basis: $iui-xxl;
   position: relative;
+  word-break: break-word;
 
   &.iui-slot {
     width: $iui-l * 2;
@@ -331,6 +332,23 @@
   &.iui-negative {
     @include iui-table-cell-status($status: negative);
   }
+
+  &[contenteditable] {
+    outline-offset: -1px;
+
+    &:focus,
+    &:hover {
+      @include themed {
+        outline: 1px solid t(iui-color-foreground-primary);
+      }
+    }
+
+    &:focus {
+      @include themed {
+        background-color: t(iui-color-background-1);
+      }
+    }
+  }
 }
 
 @mixin iui-table-row-status($status) {
@@ -350,7 +368,7 @@
     }
   }
 
-  .iui-cell-end-icon > svg {
+  .iui-cell-end-icon svg {
     @include themed {
       fill: t(iui-icons-color-#{$status});
     }
@@ -383,7 +401,8 @@
     align-items: center;
     justify-content: center;
 
-    > svg {
+    svg:not(.iui-radial) {
+      display: flex; // needed for vertical alignment of webcomponents
       width: $iui-icons-default;
       height: $iui-icons-default;
     }

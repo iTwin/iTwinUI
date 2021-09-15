@@ -25,7 +25,7 @@
       @include themed {
         color: t(iui-color-foreground-negative);
       }
-  
+
       &:hover {
         @include themed {
           color: t(iui-color-foreground-negative-overlay);

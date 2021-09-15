@@ -68,27 +68,22 @@
       }
     }
 
-    > svg {
+    .iui-thumbnail-icon {
       @include iui-icons-3xl;
     }
 
-    > .iui-play-icon {
+    > .iui-picture ~ .iui-thumbnail-icon {
       z-index: 1;
       cursor: pointer;
-
-      &,
-      > path {
-        @media (prefers-reduced-motion: no-preference) {
-          transition: fill $iui-speed-fast ease;
-        }
-        @include themed() {
-          fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
-          filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
-        }
+      @media (prefers-reduced-motion: no-preference) {
+        transition: fill $iui-speed-fast ease;
+      }
+      @include themed() {
+        fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
+        filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
       }
 
-      &:hover,
-      &:hover > path {
+      &:hover {
         @include themed() {
           fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
         }
@@ -132,7 +127,7 @@
           background-color: rgba(0, 0, 0, t(iui-opacity-4));
         }
 
-        > svg {
+        > .iui-icon {
           @include themed() {
             fill: t(iui-color-foreground-accessory);
           }
@@ -161,7 +156,7 @@
         color: t(iui-text-color);
       }
 
-      > svg {
+      .iui-tile-status-icon {
         @include iui-icons-default;
         margin-right: $iui-s;
         flex-shrink: 0;
@@ -201,13 +196,14 @@
         color: t(iui-text-color-muted);
       }
 
-      > svg {
+      > svg,
+      .iui-metadata-icon {
         @include iui-icons-default;
         margin-right: $iui-s;
         flex-shrink: 0;
       }
 
-      > *:not(svg) {
+      > * {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
