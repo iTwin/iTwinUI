@@ -57,36 +57,17 @@
       }
     }
 
-    @keyframes closeToAnchorAnimation {
-      from {
-        transform: scale(1);
-
-        @include themed {
-          opacity: t(iui-opacity-1);
-        }
-      }
-
-      to {
-        transform: scale(0.9) translate(var(--translateOutByX), var(--translateOutByY));
-        opacity: 0;
-      }
-    }
-
     .iui-toast-all {
       transition: all 240ms cubic-bezier(0, 0, 0.2, 1);
     }
 
-    .iui-toast-entering,
-    .iui-toast-entered {
+    .iui-toast-enter ,
+    .iui-toast-enter-active {
       animation: openAnimation 240ms cubic-bezier(0.175, 0.885, 0.32, 1.175) both;
     }
 
-    .iui-toast-exiting {
+    .iui-toast-exit {
       animation: closeAnimation 120ms cubic-bezier(0.4, 0, 1, 1) both;
-    }
-
-    .iui-toast-transition-to-exiting {
-      animation: closeToAnchorAnimation 400ms cubic-bezier(0.4, 0, 1, 1) both;
     }
   }
 
