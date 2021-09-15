@@ -67,8 +67,7 @@
       }
 
       to {
-        transform: scale(0.9) 
-          translate(var(--animateOutToX), var(--animateOutToY));
+        transform: scale(0.9) translate(var(--translateOutByX), var(--translateOutByY));
         opacity: 0;
       }
     }
