@@ -3,14 +3,18 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <meta charset="utf-8" />
     <title>Table | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -28,6 +32,98 @@
         justify-content: flex-end;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/filter"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/filter-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/sort-down"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/column-manager"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-left"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
+    ></script>
+
+    <script>
+      customElements.define('svg-folder', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z" fill="#e7b93a" /><path d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z" fill="#f6d97a" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-filetype-imodel', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#5ebb47" /><path d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#448136" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-filetype-audio', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#66c6ff" /><path d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#478ab2" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-filetype-pdf', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#dd3e39" /><path d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#992d2b" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-filetype-image', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#7956a3" /><path d="m3 5v8h10v-8zm9 7h-8v-6h8zm-1-1h-6l2-2 .8.8 1.2-1.8zm-4-3a1 1 0 1 1 -1-1 1 1 0 0 1 1 1z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#543d70" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-filetype-vector', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#d16c00" /><path d="m11.9665 9.6309a3.95941 3.95941 0 0 0 -1.3446-2.6309h1.3781v-1h-2.5921a1.4911 1.4911 0 0 0 -2.8158 0h-2.5921v1h1.3781a3.95941 3.95941 0 0 0 -1.3446 2.6309.99.99 0 0 0 -.5335.8691 1 1 0 0 0 2 0 .98412.98412 0 0 0 -.4709-.8268 2.98911 2.98911 0 0 1 1.7037-2.3788 1.49069 1.49069 0 0 0 2.5344 0 2.98911 2.98911 0 0 1 1.7037 2.3788.98412.98412 0 0 0 -.4709.8268 1 1 0 0 0 2 0 .99.99 0 0 0 -.5335-.8691zm-3.9665-2.6309a.5.5 0 1 1 .5-.5.5.5 0 0 1 -.5.5z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#924b00" /></svg>`;
+        }
+      });
+    </script>
+
     <script src="../assets/theme.js"></script>
     <script src="../assets/userIcon.js"></script>
   </head>
@@ -77,25 +173,17 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -111,25 +199,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -145,24 +224,16 @@
                 aria-label="Modify filter"
                 type="button"
               >
-                <!-- Use filter.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m0 0v2l6 5v9l4-3v-6l6-5v-2z" />
-                </svg>
+                ></svg-filter>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -178,25 +249,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
             </div>
             <div class="iui-cell iui-slot">
@@ -205,14 +267,10 @@
                 aria-label="Modify columns"
                 type="button"
               >
-                <!-- Use column-manager.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-column-manager
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
-                </svg>
+                ></svg-column-manager>
               </button>
             </div>
           </div>
@@ -240,24 +298,14 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use folder.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
-                    fill="#e7b93a"
-                  />
-                  <path
-                    d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
-                    fill="#f6d97a"
-                  />
-                </svg>
+                <svg-folder aria-hidden="true"></svg-folder>
               </div>
-              Folder name 1
+              My Folder With A Really Long Name That Will Be Split Into Multiple Lines After So Long
             </div>
             <div
               class="iui-cell"
@@ -282,16 +330,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -318,22 +360,12 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use folder.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
-                    fill="#e7b93a"
-                  />
-                  <path
-                    d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
-                    fill="#f6d97a"
-                  />
-                </svg>
+                <svg-folder aria-hidden="true"></svg-folder>
               </div>
               Folder name 2
             </div>
@@ -360,16 +392,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -396,22 +422,12 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use folder.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
-                    fill="#e7b93a"
-                  />
-                  <path
-                    d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
-                    fill="#f6d97a"
-                  />
-                </svg>
+                <svg-folder aria-hidden="true"></svg-folder>
               </div>
               Folder name 3
             </div>
@@ -438,16 +454,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -476,24 +486,7 @@
             </div>
             <div class="iui-cell iui-main-column">
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-imodel.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#5ebb47"
-                  />
-                  <path
-                    d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m11 0 3 3h-3z"
-                    fill="#448136"
-                  />
-                </svg>
+                <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
               </div>
               alpha.dgn
               <div class="iui-cell-end-icon">
@@ -540,16 +533,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -575,26 +562,12 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-audio.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#66c6ff"
-                  />
-                  <path
-                    d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m14 3h-3v-3z"
-                    fill="#478ab2"
-                  />
-                </svg>
+                <svg-filetype-audio aria-hidden="true"></svg-filetype-audio>
               </div>
               beta.mp3
             </div>
@@ -621,16 +594,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -656,38 +623,19 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-pdf.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#dd3e39"
-                  />
-                  <path
-                    d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m11 0 3 3h-3z"
-                    fill="#992d2b"
-                  />
-                </svg>
+                <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
               </div>
               charlie.pdf
               <div class="iui-cell-end-icon">
-                <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-status-success
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-                </svg>
+                ></svg-status-success>
               </div>
             </div>
             <div
@@ -713,16 +661,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -748,39 +690,19 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-image.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#7956a3"
-                  />
-                  <path
-                    d="m3 5v8h10v-8zm9 7h-8v-6h8zm-1-1h-6l2-2 .8.8 1.2-1.8zm-4-3a1 1 0 1 1 -1-1 1 1 0 0 1 1 1z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m11 0 3 3h-3z"
-                    fill="#543d70"
-                  />
-                </svg>
+                <svg-filetype-image aria-hidden="true"></svg-filetype-image>
               </div>
               delta.jpg
               <div class="iui-cell-end-icon">
-                <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-status-warning
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-                  />
-                </svg>
+                ></svg-status-warning>
               </div>
             </div>
             <div
@@ -806,16 +728,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -841,37 +757,19 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-pdf.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#d16c00"
-                  />
-                  <path
-                    d="m11.9665 9.6309a3.95941 3.95941 0 0 0 -1.3446-2.6309h1.3781v-1h-2.5921a1.4911 1.4911 0 0 0 -2.8158 0h-2.5921v1h1.3781a3.95941 3.95941 0 0 0 -1.3446 2.6309.99.99 0 0 0 -.5335.8691 1 1 0 0 0 2 0 .98412.98412 0 0 0 -.4709-.8268 2.98911 2.98911 0 0 1 1.7037-2.3788 1.49069 1.49069 0 0 0 2.5344 0 2.98911 2.98911 0 0 1 1.7037 2.3788.98412.98412 0 0 0 -.4709.8268 1 1 0 0 0 2 0 .99.99 0 0 0 -.5335-.8691zm-3.9665-2.6309a.5.5 0 1 1 .5-.5.5.5 0 0 1 -.5.5z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m14 3h-3v-3z"
-                    fill="#924b00"
-                  />
-                </svg>
+                <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
               </div>
-              echo.svg
+              MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.dgn
               <div class="iui-cell-end-icon">
-                <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-status-error
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-                </svg>
+                ></svg-status-error>
               </div>
             </div>
             <div
@@ -897,16 +795,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -952,25 +844,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -986,25 +869,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -1020,24 +894,16 @@
                 aria-label="Modify filter"
                 type="button"
               >
-                <!-- Use filter.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m0 0v2l6 5v9l4-3v-6l6-5v-2z" />
-                </svg>
+                ></svg-filter>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -1053,25 +919,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
             </div>
             <div class="iui-cell iui-slot">
@@ -1080,14 +937,10 @@
                 aria-label="Modify columns"
                 type="button"
               >
-                <!-- Use column-manager.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-column-manager
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
-                </svg>
+                ></svg-column-manager>
               </button>
             </div>
           </div>
@@ -1115,24 +968,14 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use folder.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
-                    fill="#e7b93a"
-                  />
-                  <path
-                    d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
-                    fill="#f6d97a"
-                  />
-                </svg>
+                <svg-folder aria-hidden="true"></svg-folder>
               </div>
-              Folder name 1
+              My Folder With A Really Long Name That Will Be Split Into Multiple Lines After So Long
             </div>
             <div
               class="iui-cell"
@@ -1157,16 +1000,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -1193,22 +1030,12 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use folder.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
-                    fill="#e7b93a"
-                  />
-                  <path
-                    d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
-                    fill="#f6d97a"
-                  />
-                </svg>
+                <svg-folder aria-hidden="true"></svg-folder>
               </div>
               Folder name 2
             </div>
@@ -1235,16 +1062,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -1271,22 +1092,12 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use folder.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
-                    fill="#e7b93a"
-                  />
-                  <path
-                    d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
-                    fill="#f6d97a"
-                  />
-                </svg>
+                <svg-folder aria-hidden="true"></svg-folder>
               </div>
               Folder name 3
             </div>
@@ -1313,16 +1124,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -1351,24 +1156,7 @@
             </div>
             <div class="iui-cell iui-main-column">
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-imodel.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#5ebb47"
-                  />
-                  <path
-                    d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m11 0 3 3h-3z"
-                    fill="#448136"
-                  />
-                </svg>
+                <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
               </div>
               alpha.dgn
               <div class="iui-cell-end-icon">
@@ -1415,16 +1203,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -1450,26 +1232,12 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-audio.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#66c6ff"
-                  />
-                  <path
-                    d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m14 3h-3v-3z"
-                    fill="#478ab2"
-                  />
-                </svg>
+                <svg-filetype-audio aria-hidden="true"></svg-filetype-audio>
               </div>
               beta.mp3
             </div>
@@ -1496,16 +1264,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -1531,38 +1293,19 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-pdf.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#dd3e39"
-                  />
-                  <path
-                    d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m11 0 3 3h-3z"
-                    fill="#992d2b"
-                  />
-                </svg>
+                <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
               </div>
               charlie.pdf
               <div class="iui-cell-end-icon">
-                <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-status-success
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-                </svg>
+                ></svg-status-success>
               </div>
             </div>
             <div
@@ -1588,16 +1331,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -1623,39 +1360,19 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-image.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#7956a3"
-                  />
-                  <path
-                    d="m3 5v8h10v-8zm9 7h-8v-6h8zm-1-1h-6l2-2 .8.8 1.2-1.8zm-4-3a1 1 0 1 1 -1-1 1 1 0 0 1 1 1z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m11 0 3 3h-3z"
-                    fill="#543d70"
-                  />
-                </svg>
+                <svg-filetype-image aria-hidden="true"></svg-filetype-image>
               </div>
               delta.jpg
               <div class="iui-cell-end-icon">
-                <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-status-warning
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-                  />
-                </svg>
+                ></svg-status-warning>
               </div>
             </div>
             <div
@@ -1681,16 +1398,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -1716,37 +1427,19 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-pdf.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#d16c00"
-                  />
-                  <path
-                    d="m11.9665 9.6309a3.95941 3.95941 0 0 0 -1.3446-2.6309h1.3781v-1h-2.5921a1.4911 1.4911 0 0 0 -2.8158 0h-2.5921v1h1.3781a3.95941 3.95941 0 0 0 -1.3446 2.6309.99.99 0 0 0 -.5335.8691 1 1 0 0 0 2 0 .98412.98412 0 0 0 -.4709-.8268 2.98911 2.98911 0 0 1 1.7037-2.3788 1.49069 1.49069 0 0 0 2.5344 0 2.98911 2.98911 0 0 1 1.7037 2.3788.98412.98412 0 0 0 -.4709.8268 1 1 0 0 0 2 0 .99.99 0 0 0 -.5335-.8691zm-3.9665-2.6309a.5.5 0 1 1 .5-.5.5.5 0 0 1 -.5.5z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m14 3h-3v-3z"
-                    fill="#924b00"
-                  />
-                </svg>
+                <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
               </div>
-              echo.svg
+              MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.dgn
               <div class="iui-cell-end-icon">
-                <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-status-error
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-                </svg>
+                ></svg-status-error>
               </div>
             </div>
             <div
@@ -1772,16 +1465,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -1827,25 +1514,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -1861,25 +1539,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -1895,24 +1564,16 @@
                 aria-label="Modify filter"
                 type="button"
               >
-                <!-- Use filter.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m0 0v2l6 5v9l4-3v-6l6-5v-2z" />
-                </svg>
+                ></svg-filter>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -1928,25 +1589,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
             </div>
             <div class="iui-cell iui-slot">
@@ -1955,14 +1607,10 @@
                 aria-label="Modify columns"
                 type="button"
               >
-                <!-- Use column-manager.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-column-manager
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
-                </svg>
+                ></svg-column-manager>
               </button>
             </div>
           </div>
@@ -1990,24 +1638,14 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use folder.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
-                    fill="#e7b93a"
-                  />
-                  <path
-                    d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
-                    fill="#f6d97a"
-                  />
-                </svg>
+                <svg-folder aria-hidden="true"></svg-folder>
               </div>
-              Folder name 1
+              My Folder With A Really Long Name That Will Be Split Into Multiple Lines After So Long
             </div>
             <div
               class="iui-cell"
@@ -2032,16 +1670,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -2068,22 +1700,12 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use folder.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
-                    fill="#e7b93a"
-                  />
-                  <path
-                    d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
-                    fill="#f6d97a"
-                  />
-                </svg>
+                <svg-folder aria-hidden="true"></svg-folder>
               </div>
               Folder name 2
             </div>
@@ -2110,16 +1732,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -2146,22 +1762,12 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use folder.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z"
-                    fill="#e7b93a"
-                  />
-                  <path
-                    d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z"
-                    fill="#f6d97a"
-                  />
-                </svg>
+                <svg-folder aria-hidden="true"></svg-folder>
               </div>
               Folder name 3
             </div>
@@ -2188,16 +1794,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -2226,24 +1826,7 @@
             </div>
             <div class="iui-cell iui-main-column">
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-imodel.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#5ebb47"
-                  />
-                  <path
-                    d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m11 0 3 3h-3z"
-                    fill="#448136"
-                  />
-                </svg>
+                <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
               </div>
               alpha.dgn
               <div class="iui-cell-end-icon">
@@ -2290,16 +1873,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -2325,26 +1902,12 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-audio.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#66c6ff"
-                  />
-                  <path
-                    d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m14 3h-3v-3z"
-                    fill="#478ab2"
-                  />
-                </svg>
+                <svg-filetype-audio aria-hidden="true"></svg-filetype-audio>
               </div>
               beta.mp3
             </div>
@@ -2371,16 +1934,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -2406,38 +1963,19 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-pdf.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#dd3e39"
-                  />
-                  <path
-                    d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m11 0 3 3h-3z"
-                    fill="#992d2b"
-                  />
-                </svg>
+                <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
               </div>
               charlie.pdf
               <div class="iui-cell-end-icon">
-                <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-status-success
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-                </svg>
+                ></svg-status-success>
               </div>
             </div>
             <div
@@ -2463,16 +2001,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -2498,39 +2030,19 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-image.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#7956a3"
-                  />
-                  <path
-                    d="m3 5v8h10v-8zm9 7h-8v-6h8zm-1-1h-6l2-2 .8.8 1.2-1.8zm-4-3a1 1 0 1 1 -1-1 1 1 0 0 1 1 1z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m11 0 3 3h-3z"
-                    fill="#543d70"
-                  />
-                </svg>
+                <svg-filetype-image aria-hidden="true"></svg-filetype-image>
               </div>
               delta.jpg
               <div class="iui-cell-end-icon">
-                <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-status-warning
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path
-                    d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-                  />
-                </svg>
+                ></svg-status-warning>
               </div>
             </div>
             <div
@@ -2556,16 +2068,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -2591,37 +2097,19 @@
                 </span>
               </label>
             </div>
-            <div class="iui-cell iui-main-column">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >
               <div class="iui-cell-start-icon">
-                <!-- Use filetype-pdf.svg from @itwin/itwinui-icons-color package. -->
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="m11 3v-3h-9v16h12v-13z"
-                    fill="#d16c00"
-                  />
-                  <path
-                    d="m11.9665 9.6309a3.95941 3.95941 0 0 0 -1.3446-2.6309h1.3781v-1h-2.5921a1.4911 1.4911 0 0 0 -2.8158 0h-2.5921v1h1.3781a3.95941 3.95941 0 0 0 -1.3446 2.6309.99.99 0 0 0 -.5335.8691 1 1 0 0 0 2 0 .98412.98412 0 0 0 -.4709-.8268 2.98911 2.98911 0 0 1 1.7037-2.3788 1.49069 1.49069 0 0 0 2.5344 0 2.98911 2.98911 0 0 1 1.7037 2.3788.98412.98412 0 0 0 -.4709.8268 1 1 0 0 0 2 0 .99.99 0 0 0 -.5335-.8691zm-3.9665-2.6309a.5.5 0 1 1 .5-.5.5.5 0 0 1 -.5.5z"
-                    fill="#fff"
-                  />
-                  <path
-                    d="m14 3h-3v-3z"
-                    fill="#924b00"
-                  />
-                </svg>
+                <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
               </div>
-              echo.svg
+              MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.dgn
               <div class="iui-cell-end-icon">
-                <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-status-error
                   class="iui-icon"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-                </svg>
+                ></svg-status-error>
               </div>
             </div>
             <div
@@ -2647,16 +2135,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -2684,25 +2166,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -2715,25 +2188,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
             </div>
           </div>
@@ -2741,53 +2205,113 @@
 
         <div class="iui-table-body">
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Alpha</div>
-            <div class="iui-cell">$5.00</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Alpha</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$5.00</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Beta</div>
-            <div class="iui-cell">$12.00</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Beta</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$12.00</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Charlie</div>
-            <div class="iui-cell">$0.86</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Charlie</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$0.86</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Delta</div>
-            <div class="iui-cell">$2.50</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Delta</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$2.50</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Echo</div>
-            <div class="iui-cell">$1.95</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Echo</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$1.95</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Foxtrot</div>
-            <div class="iui-cell">$1.99</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Foxtrot</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$1.99</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Golf</div>
-            <div class="iui-cell">$19.95</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Golf</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$19.95</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Hotel</div>
-            <div class="iui-cell">$4.75</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Hotel</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$4.75</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">India</div>
-            <div class="iui-cell">$22.95</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >India</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$22.95</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Juliet</div>
-            <div class="iui-cell">$16.54</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Juliet</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$16.54</div>
           </div>
         </div>
 
@@ -2802,14 +2326,10 @@
             type="button"
             disabled
           >
-            <!-- Use chevron-left.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-chevron-left
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path d="m11.3 0 1.4 1.4-6.6 6.6 6.6 6.6-1.4 1.4-8-8z" />
-            </svg>
+            ></svg-chevron-left>
           </button>
 
           <span class="iui-button-group">
@@ -2885,30 +2405,20 @@
             aria-label="Next page"
             type="button"
           >
-            <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-chevron-right
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-            </svg>
+            ></svg-chevron-right>
           </button>
         </div>
 
         <div class="iui-right">
           <button class="iui-button iui-borderless iui-dropdown">
             <span class="iui-label">1-10 of 300</span>
-            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-caret-down-small
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-              ></path>
-            </svg>
+            ></svg-caret-down-small>
           </button>
         </div>
       </div>
@@ -2928,25 +2438,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -2959,25 +2460,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
             </div>
           </div>
@@ -2985,53 +2477,113 @@
 
         <div class="iui-table-body">
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Alpha</div>
-            <div class="iui-cell">$5.00</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Alpha</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$5.00</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Beta</div>
-            <div class="iui-cell">$12.00</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Beta</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$12.00</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Charlie</div>
-            <div class="iui-cell">$0.86</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Charlie</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$0.86</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Delta</div>
-            <div class="iui-cell">$2.50</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Delta</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$2.50</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Echo</div>
-            <div class="iui-cell">$1.95</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Echo</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$1.95</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Foxtrot</div>
-            <div class="iui-cell">$1.99</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Foxtrot</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$1.99</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Golf</div>
-            <div class="iui-cell">$19.95</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Golf</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$19.95</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Hotel</div>
-            <div class="iui-cell">$4.75</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Hotel</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$4.75</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">India</div>
-            <div class="iui-cell">$22.95</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >India</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$22.95</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Juliet</div>
-            <div class="iui-cell">$16.54</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Juliet</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$16.54</div>
           </div>
         </div>
       </div>
@@ -3044,14 +2596,10 @@
             aria-label="Previous page"
             type="button"
           >
-            <!-- Use chevron-left.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-chevron-left
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path d="m11.3 0 1.4 1.4-6.6 6.6 6.6 6.6-1.4 1.4-8-8z" />
-            </svg>
+            ></svg-chevron-left>
           </button>
 
           <span class="iui-button-group">
@@ -3121,30 +2669,20 @@
             aria-label="Next page"
             type="button"
           >
-            <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-chevron-right
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-            </svg>
+            ></svg-chevron-right>
           </button>
         </div>
 
         <div class="iui-right">
           <button class="iui-button iui-borderless iui-small iui-dropdown">
             <span class="iui-label">150-160 of 300</span>
-            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-caret-down-small
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-              ></path>
-            </svg>
+            ></svg-caret-down-small>
           </button>
         </div>
       </div>
@@ -3165,25 +2703,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -3196,25 +2725,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
             </div>
           </div>
@@ -3222,53 +2742,113 @@
 
         <div class="iui-table-body">
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Alpha</div>
-            <div class="iui-cell">$5.00</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Alpha</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$5.00</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Beta</div>
-            <div class="iui-cell">$12.00</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Beta</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$12.00</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Charlie</div>
-            <div class="iui-cell">$0.86</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Charlie</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$0.86</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Delta</div>
-            <div class="iui-cell">$2.50</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Delta</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$2.50</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Echo</div>
-            <div class="iui-cell">$1.95</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Echo</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$1.95</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Foxtrot</div>
-            <div class="iui-cell">$1.99</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Foxtrot</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$1.99</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Golf</div>
-            <div class="iui-cell">$19.95</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Golf</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$19.95</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Hotel</div>
-            <div class="iui-cell">$4.75</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Hotel</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$4.75</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">India</div>
-            <div class="iui-cell">$22.95</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >India</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$22.95</div>
           </div>
 
           <div class="iui-row">
-            <div class="iui-cell iui-main-column">Juliet</div>
-            <div class="iui-cell">$16.54</div>
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Juliet</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$16.54</div>
           </div>
         </div>
       </div>
@@ -3282,14 +2862,10 @@
             type="button"
             disabled
           >
-            <!-- Use chevron-left.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-chevron-left
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path d="m11.3 0 1.4 1.4-6.6 6.6 6.6 6.6-1.4 1.4-8-8z" />
-            </svg>
+            ></svg-chevron-left>
           </button>
 
           <span class="iui-button-group">
@@ -3381,30 +2957,20 @@
             aria-label="Next page"
             type="button"
           >
-            <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-chevron-right
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-            </svg>
+            ></svg-chevron-right>
           </button>
         </div>
 
         <div class="iui-right">
           <button class="iui-button iui-borderless iui-small iui-dropdown">
             <span class="iui-label">1-10&mldr;</span>
-            <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-caret-down-small
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-              ></path>
-            </svg>
+            ></svg-caret-down-small>
           </button>
         </div>
       </div>
@@ -3451,25 +3017,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -3482,25 +3039,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
             </div>
             <div class="iui-cell iui-slot">
@@ -3509,14 +3057,10 @@
                 aria-label="Modify columns"
                 type="button"
               >
-                <!-- Use column-manager.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-column-manager
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
-                </svg>
+                ></svg-column-manager>
               </button>
             </div>
           </div>
@@ -3554,14 +3098,10 @@
                 type="button"
                 aria-label="Expand row"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  viewBox="0 0 16 16"
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                >
-                  <path d="m4.7 0l-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-cell iui-main-column">Alpha</div>
@@ -3572,16 +3112,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -3617,14 +3151,10 @@
                 type="button"
                 aria-label="Expand row"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  viewBox="0 0 16 16"
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                >
-                  <path d="m4.7 0l-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-cell iui-main-column">Beta</div>
@@ -3635,16 +3165,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -3684,14 +3208,10 @@
                 type="button"
                 aria-label="Expand row"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  viewBox="0 0 16 16"
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                >
-                  <path d="m4.7 0l-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-cell iui-main-column">Charlie</div>
@@ -3702,16 +3222,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -3751,14 +3265,10 @@
                 type="button"
                 aria-label="Expand row"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  viewBox="0 0 16 16"
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                >
-                  <path d="m4.7 0l-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-cell iui-main-column">
@@ -3794,16 +3304,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -3842,14 +3346,10 @@
                 type="button"
                 aria-label="Expand row"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  viewBox="0 0 16 16"
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                >
-                  <path d="m4.7 0l-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-cell iui-main-column">Echo</div>
@@ -3860,16 +3360,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -3908,14 +3402,10 @@
                 type="button"
                 aria-label="Expand row"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  viewBox="0 0 16 16"
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                >
-                  <path d="m4.7 0l-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-cell iui-main-column">
@@ -3938,16 +3428,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -3986,14 +3470,10 @@
                 type="button"
                 aria-label="Expand row"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  viewBox="0 0 16 16"
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                >
-                  <path d="m4.7 0l-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-cell iui-main-column">
@@ -4017,16 +3497,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -4065,14 +3539,10 @@
                 type="button"
                 aria-label="Expand row"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
-                  viewBox="0 0 16 16"
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                >
-                  <path d="m4.7 0l-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-cell iui-main-column">
@@ -4094,16 +3564,10 @@
                 aria-label="More options"
                 type="button"
               >
-                <!-- Use more.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-more
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-                  />
-                </svg>
+                ></svg-more>
               </button>
             </div>
           </div>
@@ -4157,25 +3621,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -4191,25 +3646,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -4225,25 +3671,16 @@
                 aria-label="Modify filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -4259,25 +3696,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
             </div>
             <div class="iui-cell iui-slot">
@@ -4286,14 +3714,10 @@
                 aria-label="Modify columns"
                 type="button"
               >
-                <!-- Use column-manager.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-column-manager
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
-                </svg>
+                ></svg-column-manager>
               </button>
             </div>
           </div>
@@ -4373,28 +3797,19 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
                 <div class="iui-resizer">
                   <div class="iui-resizer-bar"></div>
                 </div>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -4411,25 +3826,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -4446,25 +3852,16 @@
                 aria-label="Modify filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
@@ -4481,25 +3878,16 @@
                 aria-label="Apply filter"
                 type="button"
               >
-                <!-- Use filter-hollow.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-filter-hollow
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="m15 1v.5l-5.6 4.7-.4.3v.5 5.5l-2 1.5v-7-.5l-.4-.3-5.6-4.7v-.5zm1-1h-16v2l6 5v9l4-3v-6l6-5z" />
-                </svg>
+                ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
-                <!-- Use sort-down.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-sort-down
                   class="iui-icon iui-sort"
-                  viewBox="0 0 16 16"
                   aria-hidden="true"
-                >
-                  <path d="m7 0v12.7l-3.8-3.7-1.2 1.2 6 5.8 1.2-1.2 4.8-4.6-1.2-1.2-3.8 3.7v-12.7z" />
-                </svg>
+                ></svg-sort-down>
               </div>
             </div>
             <div class="iui-cell iui-slot">
@@ -4508,14 +3896,10 @@
                 aria-label="Modify columns"
                 type="button"
               >
-                <!-- Use column-manager.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-column-manager
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2" />
-                </svg>
+                ></svg-column-manager>
               </button>
             </div>
           </div>

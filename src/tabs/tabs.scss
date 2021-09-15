@@ -4,16 +4,13 @@
 
 @mixin iui-tabs {
   @include iui-reset;
-  @include iui-font-family;
   position: relative;
-  display: flex;
   align-items: center;
   list-style: none;
   user-select: none;
 
   .iui-tab {
     @include iui-reset;
-    @include iui-font-family;
     position: relative;
     display: flex;
     align-items: center;
@@ -31,8 +28,7 @@
         color: t(iui-color-foreground-primary);
       }
 
-      .iui-tab-icon,
-      > svg {
+      .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-primary);
         }
@@ -45,8 +41,7 @@
         color: t(iui-text-color-muted);
       }
 
-      .iui-tab-icon,
-      > svg {
+      .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-actionable-disabled);
         }
@@ -57,14 +52,13 @@
       outline: 1px solid t(iui-color-foreground-primary);
       outline-offset: -1px;
     }
-  
+
     &:focus:not(:focus-visible) {
       outline: none;
     }
   }
 
-  .iui-tab-icon,
-  .iui-tab > svg { // svg selector should be removed in the future
+  .iui-tab-icon {
     width: $iui-icons-default;
     height: $iui-icons-default;
     @media (prefers-reduced-motion: no-preference) {
@@ -101,8 +95,7 @@
         color: t(iui-color-foreground-positive);
       }
 
-      .iui-tab-icon,
-      > svg {
+      .iui-tab-icon {
         @include themed {
           fill: t(iui-icons-color-positive);
         }
@@ -117,29 +110,64 @@
   }
 }
 
-@mixin iui-tab-not-animated {
+@mixin iui-tabs-horizontal {
+  flex-direction: column;
+
+  .iui-tabs {
+    display: flex;
+  }
+
   .iui-tab {
-    @media (prefers-reduced-motion: no-preference) {
-      transition: box-shadow $iui-speed-fast ease-out;
-    }
-    
     &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
       width: 100%;
       height: 0;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: height $iui-speed-fast ease-out;
-      }
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-      }
     }
 
     &.iui-active::after {
       height: $iui-xxs;
+    }
+  }
+}
+
+@mixin iui-tabs-vertical {
+  .iui-tabs {
+    flex-direction: column;
+
+    li,
+    .iui-tab {
+      width: 100%;
+      white-space: nowrap;
+    }
+
+    ~ .iui-tabs-content {
+      flex-grow: 1;
+    }
+  }
+
+  .iui-tab {
+    &::after {
+      width: 0;
+      height: 100%;
+    }
+
+    &.iui-active::after {
+      width: $iui-xxs;
+    }
+  }
+}
+
+@mixin iui-tab-not-animated {
+  .iui-tab::after {
+    content: '';
+    position: absolute;
+    @include themed {
+      background-color: t(iui-color-foreground-primary);
+    }
+  }
+
+  .iui-active::after {
+    @media (prefers-reduced-motion: no-preference) {
+      transition: width $iui-speed-fast ease, height $iui-speed-fast ease;
     }
   }
 
@@ -149,31 +177,40 @@
     }
   }
 
-  .iui-tab-stripe {
+  ~ .iui-tab-stripe {
     display: none;
   }
 }
 
 @mixin iui-tab-animated {
   ~ .iui-tab-stripe {
-    height: $iui-xxs;
     position: absolute;
-    top: $iui-component-height - $iui-xxs;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
-    }
     @include themed {
       background-color: t(iui-color-foreground-primary);
     }
   }
 
-  &.iui-large ~ .iui-tab-stripe {
-    top: $iui-component-height-large - $iui-xxs;
-  }
-
   &.iui-green ~ .iui-tab-stripe {
     @include themed {
       background-color: t(iui-color-foreground-positive);
+    }
+  }
+
+  @at-root {
+    .iui-horizontal & ~ .iui-tab-stripe {
+      height: $iui-xxs;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
+      }
+    }
+  }
+
+  @at-root {
+    .iui-vertical & ~ .iui-tab-stripe {
+      width: $iui-xxs;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: top $iui-speed-fast ease-out;
+      }
     }
   }
 }

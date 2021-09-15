@@ -1,11 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/variables';
 
 @mixin iui-progress-indicator-linear($height: 4px) {
   @include iui-reset;
-  @include iui-font-family;
   text-align: left;
   display: block;
 
@@ -47,6 +45,7 @@
     }
 
     svg {
+      display: flex; // needed for vertical alignment of webcomponents
       width: $iui-icons-default;
       height: $iui-icons-default;
     }

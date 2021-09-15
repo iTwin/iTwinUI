@@ -4,7 +4,6 @@
 
 @mixin iui-inputs-checkbox-radio {
   @include iui-reset;
-  @include iui-font-family;
   display: flex;
   align-items: center;
   font-size: $iui-font-size;
@@ -44,7 +43,7 @@
       background-color: t(iui-color-background-1);
     }
 
-    > svg {
+    svg:not(.iui-radial) {
       width: $iui-sm;
       height: $iui-sm;
 
@@ -156,7 +155,7 @@
       color: t(iui-text-color-muted);
     }
 
-    > svg {
+    svg {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
       }

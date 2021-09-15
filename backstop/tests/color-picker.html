@@ -1,0 +1,278 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Color Picker | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script src="../assets/theme.js"></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/add-circular"
+    ></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Color Picker</h1>
+    <hr />
+
+    <h2>Basic</h2>
+    <section id="demo-basic">
+      <div class="iui-color-picker">
+        <div class="iui-color-palette">
+          <span
+            style="--swatch-color: hsl(0, 0%, 100%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(204, 12%, 40%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 99%, 5%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 100%, 13%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 99%, 20%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(203, 100%, 28%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 100%, 36%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 100%, 44%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 100%, 59%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+
+          <span
+            style="--swatch-color: hsl(202, 100%, 67%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 100%, 74%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 99%, 82%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 100%, 90%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(200, 85%, 94%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(90, 100%, 0%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(95, 70%, 8%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(95, 72%, 15%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+
+          <span
+            style="--swatch-color: hsl(95, 71%, 23%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(95, 72%, 30%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(95, 71%, 38%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(95, 71%, 42%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(95, 71%, 46%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(95, 72%, 61%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(95, 71%, 73%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(94, 71%, 84%);"
+            class="iui-color-swatch"
+            tabindex="0"
+            id="test-color-swatch"
+          ></span>
+
+          <span
+            style="--swatch-color: hsl(94, 43%, 93%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(209, 11%, 64%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(0, 100%, 40%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(23, 100%, 50%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(42, 99%, 60%);"
+            class="iui-color-swatch  iui-active"
+            tabindex="0"
+          ></span>
+        </div>
+      </div>
+    </section>
+
+    <br />
+
+    <h2>Advanced</h2>
+    <section id="demo-advanced">
+      <div class="iui-color-picker iui-advanced">
+        <div class="iui-color-selection-wrapper">
+          <div
+            class="iui-color-field"
+            style="--color: #FFC335;"
+          >
+            <div
+              class="iui-color-dot"
+              style="--left: 79.2157%; --top: 2%; --selected-color: rgb(255, 195, 53);"
+              tabindex="0"
+              id="test-color-dot"
+            ></div>
+          </div>
+          <div class="iui-color-slider">
+            <div
+              class="iui-color-dot iui-white"
+              style="--top: 14%;"
+              tabindex="0"
+            ></div>
+          </div>
+        </div>
+
+        <div class="iui-saved-colors">Saved Colors</div>
+        <div class="iui-color-palette">
+          <button class="iui-button iui-borderless">
+            <svg-add-circular
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-add-circular>
+          </button>
+          <span
+            style="--swatch-color: hsl(0, 100%, 40%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(23, 100%, 50%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(42, 99%, 60%);"
+            class="iui-color-swatch  iui-active"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(95, 71%, 42%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+          <span
+            style="--swatch-color: hsl(202, 100%, 59%);"
+            class="iui-color-swatch"
+            tabindex="0"
+          ></span>
+        </div>
+      </div>
+    </section>
+    <script>
+      // Clicking on color should toggle active
+      document.querySelectorAll('.iui-color-picker').forEach((colorPicker) => {
+        //Foreach color picker, go through its colors
+        colorPicker.querySelectorAll('.iui-color-swatch').forEach((item) => {
+          item.addEventListener('click', () => {
+            //Remove the current active color
+            colorPicker.querySelectorAll('.iui-color-swatch').forEach((activeItem) => {
+              if (activeItem.classList.contains('iui-active'))
+                activeItem.classList.toggle('iui-active');
+            });
+            item.classList.toggle('iui-active');
+          });
+        });
+      });
+    </script>
+    </div>
+  </body>
+</html>

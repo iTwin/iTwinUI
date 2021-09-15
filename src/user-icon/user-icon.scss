@@ -1,12 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../icon/variables';
 @import '../style/index';
 @import '../text/mixins';
 
 @mixin iui-user-icon {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -54,6 +52,7 @@
   }
 
   > .iui-icon {
+    display: inline-flex;
     width: 50%;
     height: 50%;
     position: absolute;
@@ -92,6 +91,7 @@
     }
 
     > .iui-status-symbol {
+      display: inline-flex;
       @include themed {
         fill: t(iui-icons-color);
       }
@@ -104,7 +104,7 @@
     &.iui-busy {
       box-shadow: none;
 
-      > svg {
+      > .iui-status-symbol {
         @include themed {
           fill: t(iui-color-foreground-accessory);
         }

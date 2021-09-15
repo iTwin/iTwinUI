@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Wizard | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -29,175 +33,167 @@
     <theme-button></theme-button>
     <h1>Wizard</h1>
     <hr />
-    <h2 id="default">Default</h2>
 
+    <h2>Default</h2>
     <section id="demo-default">
-      <div class="iui-wizards">
-        <div class="iui-wizards-wrapper">
-          <span class="iui-wizards-step iui-wizards-step-completed iui-clickable">
-            <span class="iui-wizards-step-title">First step</span>
-            <span class="iui-wizards-step-track iui-wizards-step-track-after"></span>
-            <span
-              class="iui-wizards-step-circle"
-              tabindex="0"
-            >1</span>
-          </span>
 
-          <span class="iui-wizards-step-track iui-wizards-step-track-main iui-wizards-step-track-filled"></span>
+      <div class="iui-wizard">
+        <ol aria-label="Progress">
+          <li
+            class="iui-wizard-step iui-clickable"
+            tabindex="0"
+          >
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">1</span>
+            </div>
+            <div class="iui-wizard-step-name">First step</div>
+          </li>
 
-          <span class="iui-wizards-step iui-wizards-step-completed iui-clickable">
-            <span class="iui-wizards-step-track iui-wizards-step-track-before"></span>
-            <span class="iui-wizards-step-title">Completed step</span>
-            <span class="iui-wizards-step-track iui-wizards-step-track-after"></span>
-            <span
-              class="iui-wizards-step-circle"
-              tabindex="0"
-            >
-              <span>2</span>
-            </span>
-          </span>
+          <li
+            class="iui-wizard-step iui-clickable"
+            tabindex="0"
+          >
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">2</span>
+            </div>
+            <div class="iui-wizard-step-name">Completed step</div>
+          </li>
 
-          <span class="iui-wizards-step-track iui-wizards-step-track-main iui-wizards-step-track-filled"></span>
+          <li
+            class="iui-wizard-step iui-current"
+            aria-current="step"
+          >
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">3</span>
+            </div>
+            <div class="iui-wizard-step-name">Current step</div>
+          </li>
 
-          <span class="iui-wizards-step iui-wizards-step-current">
-            <span class="iui-wizards-step-track iui-wizards-step-track-before"></span>
-            <span class="iui-wizards-step-title">Current step</span>
-            <span class="iui-wizards-step-track iui-wizards-step-track-after"></span>
-            <span class="iui-wizards-step-circle">
-              <span>3</span>
-            </span>
-          </span>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">4</span>
+            </div>
+            <div class="iui-wizard-step-name">Next step</div>
+          </li>
 
-          <span class="iui-wizards-step-track iui-wizards-step-track-main"></span>
-
-          <span class="iui-wizards-step">
-            <span class="iui-wizards-step-track iui-wizards-step-track-before"></span>
-            <span class="iui-wizards-step-title">Next step</span>
-            <span class="iui-wizards-step-track iui-wizards-step-track-after"></span>
-            <span class="iui-wizards-step-circle">
-              <span>4</span>
-            </span>
-          </span>
-
-          <span class="iui-wizards-step-track iui-wizards-step-track-main"></span>
-
-          <span class="iui-wizards-step">
-            <span class="iui-wizards-step-track iui-wizards-step-track-before"></span>
-            <span class="iui-wizards-step-title">Last step</span>
-            <span class="iui-wizards-step-circle">
-              <span>5</span>
-            </span>
-          </span>
-        </div>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">5</span>
+            </div>
+            <div class="iui-wizard-step-name">Last step</div>
+          </li>
+        </ol>
       </div>
+
     </section>
 
     <hr />
-    <h2 id="long">Long</h2>
 
+    <h2>Long</h2>
     <section id="demo-long">
-      <div class="iui-wizards-long">
-        <div class="iui-wizards-wrapper">
-          <span class="iui-wizards-step iui-wizards-step-completed iui-clickable">
-            <span class="iui-wizards-step-title">First step</span>
-            <span
-              class="iui-wizards-step-circle"
-              tabindex="0"
-            >1</span>
-          </span>
 
-          <span class="iui-wizards-step-track iui-wizards-step-track-main iui-wizards-step-track-filled"></span>
+      <div class="iui-wizard iui-long">
+        <ol aria-label="Progress">
+          <li
+            class="iui-wizard-step iui-clickable"
+            tabindex="0"
+          >
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">1</span>
+            </div>
+          </li>
 
-          <span class="iui-wizards-step iui-wizards-step-completed iui-clickable">
-            <span class="iui-wizards-step-title">Completed step</span>
-            <span
-              class="iui-wizards-step-circle"
-              tabindex="0"
-            >
-              <span>2</span>
-            </span>
-          </span>
+          <li
+            class="iui-wizard-step iui-clickable"
+            tabindex="0"
+          >
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">2</span>
+            </div>
+          </li>
 
-          <span class="iui-wizards-step-track iui-wizards-step-track-main iui-wizards-step-track-filled"></span>
+          <li
+            class="iui-wizard-step iui-current"
+            aria-current="step"
+          >
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">3</span>
+            </div>
+          </li>
 
-          <span class="iui-wizards-step iui-wizards-step-current">
-            <span class="iui-wizards-step-title">Current step</span>
-            <span class="iui-wizards-step-circle">
-              <span>3</span>
-            </span>
-          </span>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">4</span>
+            </div>
+          </li>
 
-          <span class="iui-wizards-step-track iui-wizards-step-track-main"></span>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">5</span>
+            </div>
+          </li>
 
-          <span class="iui-wizards-step">
-            <span class="iui-wizards-step-title">Next step</span>
-            <span class="iui-wizards-step-circle">
-              <span>4</span>
-            </span>
-          </span>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">6</span>
+            </div>
+          </li>
 
-          <span class="iui-wizards-step-track iui-wizards-step-track-main"></span>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">7</span>
+            </div>
+          </li>
+        </ol>
 
-          <span class="iui-wizards-step">
-            <span class="iui-wizards-step-title">Another step</span>
-            <span class="iui-wizards-step-circle">
-              <span>5</span>
-            </span>
-          </span>
-
-          <span class="iui-wizards-step-track iui-wizards-step-track-main"></span>
-
-          <span class="iui-wizards-step">
-            <span class="iui-wizards-step-title">Yet another step</span>
-            <span class="iui-wizards-step-circle">
-              <span>6</span>
-            </span>
-          </span>
-
-          <span class="iui-wizards-step-track iui-wizards-step-track-main"></span>
-
-          <span class="iui-wizards-step">
-            <span class="iui-wizards-step-title">Last step</span>
-            <span class="iui-wizards-step-circle">
-              <span>7</span>
-            </span>
-          </span>
-        </div>
-
-        <p class="iui-wizards-steps">
-          <span class="iui-wizards-steps-count">Step 3 of 7:</span>
+        <div class="iui-wizard-steps-label">
+          <span class="iui-steps-count">Step 3 of 7:</span>
           Name of current step
-        </p>
+        </div>
       </div>
+
     </section>
 
     <hr />
-    <h2 id="workflow">Workflow diagram</h2>
 
+    <h2>Workflow diagram</h2>
     <section id="demo-workflow">
-      <div class="iui-wizards-workflow">
-        <div class="iui-wizards-wrapper">
-          <span class="iui-wizards-step">
-            <span class="iui-wizards-step-circle">Start</span>
-          </span>
 
-          <span class="iui-wizards-step-track iui-wizards-step-track-main"></span>
+      <div class="iui-wizard iui-workflow">
+        <ol>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">Start</span>
+            </div>
+          </li>
 
-          <span class="iui-wizards-step iui-wizards-step-current">
-            <span class="iui-wizards-step-circle">
-              <span>Review & approve</span>
-            </span>
-          </span>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">Set parameters</span>
+            </div>
+          </li>
 
-          <span class="iui-wizards-step-track iui-wizards-step-track-main"></span>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">Invite collaborators</span>
+            </div>
+          </li>
 
-          <span class="iui-wizards-step">
-            <span class="iui-wizards-step-circle">
-              <span>Complete</span>
-            </span>
-          </span>
-        </div>
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">Review & approve</span>
+            </div>
+          </li>
+
+          <li class="iui-wizard-step">
+            <div class="iui-wizard-track-content">
+              <span class="iui-wizard-circle">Complete</span>
+            </div>
+          </li>
+        </ol>
       </div>
+
+
     </section>
   </body>
 </html>

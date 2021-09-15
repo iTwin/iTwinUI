@@ -1,11 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/variables';
 
 @mixin iui-progress-indicator-radial-ie {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-block;
   position: relative;
   box-sizing: border-box;
@@ -49,7 +47,7 @@
   display: inline-block;
   @include iui-progress-indicator-radial-size($size:$iui-icons-xl);
 
-  > svg.iui-radial {
+  > .iui-radial {
     height: 100%;
     width: 100%;
 
@@ -75,8 +73,9 @@
     display: flex;
     width: calc(100% - #{$iui-s});
     height: calc(100% - #{$iui-s});
-    left: $iui-xs;
-    top: $iui-xs;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;
     font-size: $iui-font-size-small;
@@ -85,6 +84,7 @@
 
     svg,
     img {
+      display: flex;
       width: $iui-icons-default;
       height: $iui-icons-default;
       @include themed {
@@ -173,7 +173,7 @@
       display: none;
     }
   }
-  
+
   &.iui-small {
     @include iui-progress-indicator-radial-size($size:$iui-icons-large);
   }

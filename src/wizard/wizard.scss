@@ -1,169 +1,159 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../text/index';
 
-@mixin iui-wizards {
+@mixin iui-wizard {
   @include iui-reset;
-  @include iui-font-family;
 
-  > .iui-wizards-wrapper {
+  > ol {
+    @include iui-reset;
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
     width: 100%;
     margin-bottom: $iui-baseline * 0.5;
+  }
+}
 
-    > .iui-wizards-step {
-      align-items: center;
-      display: flex;
-      flex-direction: column-reverse;
-      font-size: $iui-font-size-small;
-      font-weight: $iui-font-weight-normal;
-      line-height: $iui-line-height;
-      position: relative;
-      width: 20%;
+@mixin iui-wizard-step {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  @include iui-text(small);
+  @include themed {
+    color: t(iui-color-background-positive);
+  }
 
+  // Completed steps
+  .iui-wizard-circle {
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    width: $iui-l;
+    height: $iui-l;
+    justify-content: center;
+    overflow-wrap: break-word;
+    user-select: none;
+    transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out, color $iui-speed-fast ease-out;
+    @include themed {
+      border: 1px solid t(iui-color-foreground-positive);
+      background-color: t(iui-color-background-1);
+      color: t(iui-color-foreground-positive);
+    }
+  }
+
+  // Current step
+  &.iui-current {
+    font-weight: $iui-font-weight-semibold;
+
+    .iui-wizard-step-name {
       @include themed {
-        color: t(iui-color-background-positive);
+        color: t(iui-color-foreground-positive);
+      }
+    }
+
+    .iui-wizard-circle {
+      @include themed {
+        color: t(iui-color-foreground-accessory);
+        border-color: t(iui-color-background-positive);
+        background-color: t(iui-color-background-positive);
+      }
+    }
+
+    .iui-wizard-track-content::after {
+      @include themed {
+        background-color: t(iui-color-background-5);
+      }
+    }
+  }
+
+  // Future steps
+  &.iui-current ~ & {
+    .iui-wizard-circle {
+      @include themed {
+        border: 1px solid t(iui-color-background-5);
+        background-color: t(iui-color-background-1);
+        color: t(iui-text-color-muted);
+      }
+    }
+
+    .iui-wizard-step-name {
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
+    }
+
+    .iui-wizard-track-content::before,
+    &:not(:last-of-type) .iui-wizard-track-content::after {
+      @include themed {
+        background-color: t(iui-color-background-5);
+      }
+    }
+  }
+
+  // Clickable steps
+  &.iui-clickable {
+    .iui-wizard-circle {
+      cursor: pointer;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: background-color $iui-speed-fast ease-out;
       }
 
       &:hover {
-        text-decoration: none;
-      }
-
-      > .iui-wizards-step-title {
-        text-align: center;
-        @include themed {
-          color: t(iui-text-color-muted);
-        }
-      }
-
-      > .iui-wizards-step-circle {
-        align-items: center;
-        border-radius: 50%;
-        display: flex;
-        height: $iui-l;
-        width: $iui-l;
-        justify-content: center;
-        overflow-wrap: break-word;
-        padding: 0;
-        position: relative;
-        text-align: center;
-        z-index: 1;
-        user-select: none;
-        @include themed {
-          border: 1px solid t(iui-color-background-5);
-          background-color: t(iui-color-background-1);
-          color: t(iui-text-color-muted);
-        }
-      }
-    }
-
-    > .iui-wizards-step-track,
-    > .iui-wizards-step > .iui-wizards-step-track {
-      height: $iui-xxs;
-      position: absolute;
-      top: $iui-l * 0.5;
-      z-index: 0;
-
-      &.iui-wizards-step-track-before,
-      &.iui-wizards-step-track-after,
-      &.iui-wizards-step-track-main {
-        @include themed {
-          background-color: t(iui-color-background-5);
-        }
-      }
-
-      &.iui-wizards-step-track-before,
-      &.iui-wizards-step-track-after {
-        width: 50%;
-      }
-
-      &.iui-wizards-step-track-before {
-        left: 0;
-      }
-
-      &.iui-wizards-step-track-after {
-        right: 0;
-      }
-
-      &.iui-wizards-step-track-main {
-        display: block;
-        flex-basis: fill;
-        flex-grow: 1;
-        overflow: visible;
-        position: relative;
-      }
-
-      &.iui-wizards-step-track-filled {
-        @include themed {
-          background-color: t(iui-color-foreground-positive) !important;
-        }
-      }
-    }
-
-    > .iui-wizards-step-current {
-      > .iui-wizards-step-title {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-        }
-        font-weight: $iui-font-weight-semibold;
-      }
-
-      > .iui-wizards-step-circle {
         @include themed {
           color: t(iui-color-foreground-accessory);
           border: 1px solid t(iui-color-background-positive);
           background-color: t(iui-color-background-positive);
         }
-        font-weight: $iui-font-weight-semibold;
       }
+    }
 
-      > .iui-wizards-step-track-before {
+    &:focus {
+      outline: 0;
+
+      .iui-wizard-circle {
+        outline: 0;
         @include themed {
-          background-color: t(iui-color-foreground-positive) !important;
+          box-shadow: t(iui-focus-positive-box-shadow);
         }
       }
     }
 
-    > .iui-wizards-step-completed {
-      &.iui-clickable {
-        > .iui-wizards-step-circle {
-          @include iui-focus(iui-focus-positive-box-shadow);
-          cursor: pointer;
-          @media (prefers-reduced-motion: no-preference) {
-            transition: background-color $iui-speed-fast ease-out;
-          }
-
-          &:hover {
-            @include themed {
-              color: t(iui-color-foreground-accessory);
-              border: 1px solid t(iui-color-background-positive);
-              background-color: t(iui-color-background-positive);
-            }
-          }
-        }
-      }
-
-      > .iui-wizards-step-title {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-        }
-      }
-
-      > .iui-wizards-step-circle {
-        @include themed {
-          color: t(iui-color-foreground-positive);
-          border: 1px solid t(iui-color-foreground-positive);
-        }
-      }
-
-      > .iui-wizards-step-track {
-        @include themed {
-          background-color: t(iui-color-foreground-positive) !important;
-        }
+    &:focus:not(:focus-visible) {
+      .iui-wizard-circle {
+        box-shadow: none;
       }
     }
+  }
+
+  &:first-of-type .iui-wizard-track-content::before,
+  &:last-of-type .iui-wizard-track-content::after {
+    background-color: transparent;
+  }
+}
+
+@mixin iui-wizard-track-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    height: $iui-xxs;
+    flex: 1 2 auto;
+    @include themed {
+      background-color: t(iui-color-foreground-positive);
+    }
+  }
+}
+
+@mixin iui-wizard-step-name {
+  text-align: center;
+  user-select: all;
+  @include themed {
+    color: t(iui-color-foreground-positive);
   }
 }

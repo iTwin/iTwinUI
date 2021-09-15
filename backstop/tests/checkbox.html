@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Checkbox | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -25,6 +29,34 @@
         gap: 11px;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-happy-very"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-happy"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-sad"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-sad-very"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
 
@@ -35,634 +67,615 @@
 
     <h2>Default</h2>
     <section id="demo-default">
-      <div class="iui-input-container">
+      <div class="iui-input-container iui-with-message">
         <div class="iui-label iui-required">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input type="checkbox" />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input type="checkbox" />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
         <div class="iui-message">Help message.</div>
       </div>
 
-      <div class="iui-input-container iui-disabled">
+      <div class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
         <div class="iui-message">Help message.</div>
       </div>
 
-      <div class="iui-input-container iui-positive">
+      <div class="iui-input-container iui-with-message iui-positive">
         <div class="iui-label">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input type="checkbox" />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input type="checkbox" />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
         <div class="iui-message">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
           Positive message.
         </div>
       </div>
 
-      <div class="iui-input-container iui-warning">
+      <div class="iui-input-container iui-with-message iui-warning">
         <div class="iui-label">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input type="checkbox" />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
-        <div class="iui-message">
-          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
             />
-          </svg>
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input type="checkbox" />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
+        <div class="iui-message">
           Warning message.
         </div>
       </div>
 
-      <div class="iui-input-container iui-negative">
+      <div class="iui-input-container iui-with-message iui-negative">
         <div class="iui-label">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input type="checkbox" />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input type="checkbox" />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
         <div class="iui-message">
-          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-          </svg>
           Negative message.
         </div>
       </div>
 
-      <div class="iui-input-container">
+      <div class="iui-input-container iui-with-message">
         <div class="iui-label">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">
-            <!-- Use smiley-happy-very.svg from @itwin/itwinui-icons package. -->
-            <svg viewBox="0 0 16 16">
-              <path
-                d="m8 0a8 8 0 1 0 8 8 7.9978 7.9978 0 0 0 -8-8zm3 5a1.1465 1.1465 0 0 1 1 1.25 1.1465 1.1465 0 0 1 -1 1.25 1.1465 1.1465 0 0 1 -1-1.25 1.1465 1.1465 0 0 1 1-1.25zm-6 0a1.1465 1.1465 0 0 1 1 1.25 1.1465 1.1465 0 0 1 -1 1.25 1.1465 1.1465 0 0 1 -1-1.25 1.1465 1.1465 0 0 1 1-1.25zm3 8.5a4.77362 4.77362 0 0 1 -5-4.5.5.5 0 0 1 1 0 3.77239 3.77239 0 0 0 4 3.5 3.77239 3.77239 0 0 0 4-3.5.5.5 0 0 1 1 0 4.77362 4.77362 0 0 1 -5 4.5z"
-              />
-            </svg>
-          </span>
-        </label>
-        <label class="iui-checkbox">
-          <input type="checkbox" />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">
-            <!-- Use smiley-happy.svg from @itwin/itwinui-icons package. -->
-            <svg viewBox="0 0 16 16">
-              <path
-                d="m8 12.5a5.1892 5.1892 0 0 1 -3.8716-1.666.49964.49964 0 1 1 .7432-.668 4.19111 4.19111 0 0 0 3.1284 1.334 4.19111 4.19111 0 0 0 3.1284-1.334.49964.49964 0 1 1 .7432.668 5.1892 5.1892 0 0 1 -3.8716 1.666zm3-7.5a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm-6 0a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm3-5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8z"
-              />
-            </svg>
-          </span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">
-            <!-- Use smiley-sad.svg from @itwin/itwinui-icons package. -->
-            <svg viewBox="0 0 16 16">
-              <path
-                d="m11.5 12.5a.4978.4978 0 0 1 -.3721-.166 4.18825 4.18825 0 0 0 -3.1279-1.334 4.18825 4.18825 0 0 0 -3.1279 1.334.5.5 0 1 1 -.7479-.6639l.0037-.0042a5.18983 5.18983 0 0 1 3.8721-1.6659 5.18955 5.18955 0 0 1 3.8721 1.666.5.5 0 0 1 -.3721.834zm-.5-7.5a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm-6 0a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm3-5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8z"
-              />
-            </svg>
-          </span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">
-            <!-- Use smiley-sad-very.svg from @itwin/itwinui-icons package. -->
-            <svg viewBox="0 0 16 16">
-              <path
-                d="m8 0a8 8 0 1 0 8 8 7.9978 7.9978 0 0 0 -8-8zm2.46 5.23 1.5.75a2.51225 2.51225 0 0 1 .04.27 1.1465 1.1465 0 0 1 -1 1.25 1.1465 1.1465 0 0 1 -1-1.25 1.2907 1.2907 0 0 1 .46-1.02zm-6.42.75 1.5-.75a1.2907 1.2907 0 0 1 .46 1.02 1.1465 1.1465 0 0 1 -1 1.25 1.1465 1.1465 0 0 1 -1-1.25 2.51225 2.51225 0 0 1 .04-.27zm8.4 6.49a.45292.45292 0 0 1 -.16.03.50833.50833 0 0 1 -.48-.34 3.934 3.934 0 0 0 -3.8-2.66 3.934 3.934 0 0 0 -3.8 2.66.4953.4953 0 0 1 -.63.31.48522.48522 0 0 1 -.32-.63 4.94692 4.94692 0 0 1 4.75-3.34h.07a4.94288 4.94288 0 0 1 4.68 3.34.4875.4875 0 0 1 -.31.63z"
-              />
-            </svg>
-          </span>
-        </label>
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">
+              <svg-smiley-happy-very aria-hidden="true"></svg-smiley-happy-very>
+            </span>
+          </label>
+          <label class="iui-checkbox">
+            <input type="checkbox" />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">
+              <svg-smiley-happy aria-hidden="true"></svg-smiley-happy>
+            </span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">
+              <svg-smiley-sad aria-hidden="true"></svg-smiley-sad>
+            </span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">
+              <svg-smiley-sad-very aria-hidden="true"></svg-smiley-sad-very>
+            </span>
+          </label>
+        </div>
         <div class="iui-message">Help message.</div>
       </div>
 
@@ -672,507 +685,500 @@
 
     <h2>Inline</h2>
     <section id="demo-inline">
-      <div class="iui-input-container iui-inline">
+      <div class="iui-input-container iui-inline-label">
         <div class="iui-label iui-required">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input type="checkbox" />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
-      </div>
-
-      <div class="iui-input-container iui-inline iui-disabled">
-        <div class="iui-label">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
-      </div>
-
-      <div class="iui-input-container iui-inline iui-positive">
-        <div class="iui-label">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input type="checkbox" />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
-        <div class="iui-message">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
-        </div>
-      </div>
-
-      <div class="iui-input-container iui-inline iui-warning">
-        <div class="iui-label">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input type="checkbox" />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
-        <div class="iui-message">
-          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
             />
-          </svg>
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input type="checkbox" />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
         </div>
       </div>
 
-      <div class="iui-input-container iui-inline iui-negative">
+      <div class="iui-input-container iui-inline-label iui-disabled">
         <div class="iui-label">Checkbox group label</div>
-        <label class="iui-checkbox">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-checkbox">
-          <input type="checkbox" />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-checkbox iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-              <path
-                class="iui-check-partial"
-                d="m1 6.5h14v3h-14z"
-              />
-            </svg>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
-        <div class="iui-message">
-          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-          </svg>
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
         </div>
+      </div>
+
+      <div class="iui-input-container iui-inline-label iui-positive">
+        <div class="iui-label">Checkbox group label</div>
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input type="checkbox" />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
+      </div>
+
+      <div class="iui-input-container iui-inline-label iui-warning">
+        <div class="iui-label">Checkbox group label</div>
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input type="checkbox" />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
+      </div>
+
+      <div class="iui-input-container iui-inline-label iui-negative">
+        <div class="iui-label">Checkbox group label</div>
+        <div class="iui-input-group">
+          <label class="iui-checkbox">
+            <input
+              type="checkbox"
+              checked
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-checkbox">
+            <input type="checkbox" />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-checkbox iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-checkbox-checkmark">
+              <svg
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  class="iui-check"
+                  d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
+                />
+                <path
+                  class="iui-check-partial"
+                  d="m1 6.5h14v3h-14z"
+                />
+              </svg>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
       </div>
     </section>
 
@@ -1187,8 +1193,7 @@
           width: fit-content;
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-        "
+          align-items: flex-start;"
       >
         <label class="iui-checkbox">
           <input
@@ -1416,8 +1421,7 @@
           width: fit-content;
           display: flex;
           flex-direction: column;
-          align-items: flex-end;
-        "
+          align-items: flex-end;"
       >
         <label class="iui-checkbox">
           <input

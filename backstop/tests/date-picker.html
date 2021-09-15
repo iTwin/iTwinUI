@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
-    <title>Date Picker | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Date picker | iTwinUI</title>
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -18,6 +22,22 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-left"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-left-double"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right-double"
+    ></script>
     <script src="../assets/theme.js"></script>
     <style>
       section {padding: 12px;}
@@ -44,14 +64,10 @@
                 role="month-previous"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-left.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-left
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.3 0l1.4 1.4L6.1 8l6.6 6.6-1.4 1.4-8-8z" />
-                </svg>
+                ></svg-chevron-left>
               </button>
 
               <span aria-live="polite"><span class="iui-month">August</span>&nbsp;2020</span>
@@ -62,14 +78,10 @@
                 role="month-next"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-weekdays">
@@ -528,14 +540,10 @@
                 role="year-previous"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-left-double.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-left-double
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m14.6 0 1.4 1.4-6.6 6.6 6.6 6.6-1.4 1.4-8-8zm-6.6 0 1.4 1.4-6.6 6.6 6.6 6.6-1.4 1.4-8-8z" />
-                </svg>
+                ></svg-chevron-left-double>
               </button>
               <button
                 aria-label="Previous month"
@@ -543,14 +551,10 @@
                 role="month-previous"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-left.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-left
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.3 0l1.4 1.4L6.1 8l6.6 6.6-1.4 1.4-8-8z" />
-                </svg>
+                ></svg-chevron-left>
               </button>
 
               <span aria-live="polite"><span class="iui-month">August</span>&nbsp;2020</span>
@@ -561,14 +565,10 @@
                 role="month-next"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
               <button
                 aria-label="Next year"
@@ -576,14 +576,10 @@
                 role="year-next"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-right-double.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-right-double
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m1.4 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8zm6.6 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
-                </svg>
+                ></svg-chevron-right-double>
               </button>
             </div>
             <div class="iui-weekdays">
@@ -1042,14 +1038,10 @@
                 role="month-previous"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-left.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-left
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.3 0l1.4 1.4L6.1 8l6.6 6.6-1.4 1.4-8-8z" />
-                </svg>
+                ></svg-chevron-left>
               </button>
 
               <span aria-live="polite"><span class="iui-month">August</span>&nbsp;2020</span>
@@ -1060,14 +1052,10 @@
                 role="month-next"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-weekdays">
@@ -1596,14 +1584,10 @@
                 role="month-previous"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-left.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-left
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.3 0l1.4 1.4L6.1 8l6.6 6.6-1.4 1.4-8-8z" />
-                </svg>
+                ></svg-chevron-left>
               </button>
 
               <span aria-live="polite"><span class="iui-month">August</span>&nbsp;2020</span>
@@ -1614,14 +1598,10 @@
                 role="month-next"
                 class="iui-button iui-borderless"
               >
-                <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
-                <svg
+                <svg-chevron-right
                   class="iui-icon"
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M4.7 0L3.3 1.4 9.9 8l-6.6 6.6L4.7 16l8-8z" />
-                </svg>
+                ></svg-chevron-right>
               </button>
             </div>
             <div class="iui-weekdays">

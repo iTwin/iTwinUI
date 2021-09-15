@@ -58,6 +58,12 @@
   &.iui-collapsed {
     min-width: $iui-icons-large * 3;
     max-width: $iui-icons-large * 3;
+
+    // iPhone notch support
+    @supports(min-width: unquote('max(0px)')) {
+      min-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
+      max-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
+    }
   }
 
   &.iui-expanded,
@@ -75,9 +81,13 @@
     border-right: none;
     overflow: hidden;
     justify-content: flex-start;
-    
+
     &:not(.iui-expand) {
       height: $iui-baseline * 5;
+      // iPhone notch support
+      @supports(padding: unquote('max(0px)')) {
+        padding-left: unquote('max(#{$iui-icons-large}, #{$iui-icons-large} + env(safe-area-inset-left))');
+      }
     }
 
     &,

@@ -25,14 +25,14 @@
       @include themed {
         color: t(iui-color-foreground-positive);
       }
-  
+
       &:hover {
         @include themed {
           color: t(iui-color-foreground-positive-overlay);
         }
       }
     }
-    
+
     &::selection {
       @include themed {
         background-color: rgba(

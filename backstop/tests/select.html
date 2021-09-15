@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Select | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -29,11 +33,27 @@
       #demo-default-opened {
         height: 420px;
       }
-      
+
       #demo-default-singular-opened {
         height: 210px;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/placeholder"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
 
@@ -45,7 +65,7 @@
     <section id="demo-default">
 
       <section id="demo-default-singular">
-        <label class="iui-input-container">
+        <label class="iui-input-container iui-with-message">
           <div class="iui-label iui-required">Select label</div>
           <div class="iui-select">
             <div
@@ -60,7 +80,7 @@
         </label>
       </section>
 
-      <label class="iui-input-container">
+      <label class="iui-input-container iui-with-message">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
@@ -73,23 +93,17 @@
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container">
+      <label class="iui-input-container iui-with-message">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
             tabindex="0"
             class="iui-select-button"
           >
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-placeholder
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
+            ></svg-placeholder>
             <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -100,7 +114,7 @@
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container iui-disabled">
+      <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div class="iui-select-button iui-placeholder iui-disabled">
@@ -110,7 +124,7 @@
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container iui-disabled">
+      <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div class="iui-select-button iui-disabled">
@@ -124,7 +138,7 @@
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container iui-positive">
+      <label class="iui-input-container iui-with-message iui-positive">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
@@ -134,19 +148,16 @@
             <span class="iui-content">Placeholder…</span>
           </div>
         </div>
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
         <div class="iui-message">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
           Positive message.
         </div>
       </label>
 
-      <label class="iui-input-container iui-warning">
+      <label class="iui-input-container iui-with-message iui-warning">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
@@ -156,21 +167,16 @@
             <span class="iui-content">Placeholder…</span>
           </div>
         </div>
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
         <div class="iui-message">
-          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-            />
-          </svg>
           Warning message.
         </div>
       </label>
 
-      <label class="iui-input-container iui-negative">
+      <label class="iui-input-container iui-with-message iui-negative">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
@@ -180,14 +186,11 @@
             <span class="iui-content">Placeholder…</span>
           </div>
         </div>
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
         <div class="iui-message">
-          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-          </svg>
           Negative message.
         </div>
       </label>

@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Column filter | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -23,6 +27,10 @@
         padding: 16px;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/calendar"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -62,53 +70,37 @@
     <h2>Date filter</h2>
     <section id="demo-date">
       <div class="iui-column-filter">
-        <label class="iui-input-container iui-inline">
+        <label class="iui-input-container iui-inline-label iui-inline-icon">
           <div class="iui-label">From</div>
           <input
             class="iui-input"
             value="Feb 6, 2020"
           />
-          <div class="iui-message">
-            <button
-              class="iui-button iui-borderless"
-              aria-label="Choose date"
-            >
-              <!-- Use calendar.svg from @itwin/itwinui-icons package. -->
-              <svg
-                class="iui-icon"
-                aria-hidden="true"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M13,13H9V10h4ZM16,3V15a1,1,0,0,1-1,1H1a1,1,0,0,1-1-1V3A1,1,0,0,1,1,2H3V0H4V2h8V0h1V2h2A1,1,0,0,1,16,3ZM15,6H1v9H15Z"
-                />
-              </svg>
-            </button>
-          </div>
+          <button
+            class="iui-button iui-borderless iui-input-icon"
+            aria-label="Choose date"
+          >
+            <svg-calendar
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-calendar>
+          </button>
         </label>
-        <label class="iui-input-container iui-inline">
+        <label class="iui-input-container iui-inline-label iui-inline-icon">
           <div class="iui-label">To</div>
           <input
             class="iui-input"
             value="Feb 6, 2020"
           />
-          <div class="iui-message">
-            <button
-              class="iui-button iui-borderless"
-              aria-label="Choose date"
-            >
-              <!-- Use calendar.svg from @itwin/itwinui-icons package. -->
-              <svg
-                class="iui-icon"
-                aria-hidden="true"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M13,13H9V10h4ZM16,3V15a1,1,0,0,1-1,1H1a1,1,0,0,1-1-1V3A1,1,0,0,1,1,2H3V0H4V2h8V0h1V2h2A1,1,0,0,1,16,3ZM15,6H1v9H15Z"
-                />
-              </svg>
-            </button>
-          </div>
+          <button
+            class="iui-button iui-borderless iui-input-icon"
+            aria-label="Choose date"
+          >
+            <svg-calendar
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-calendar>
+          </button>
         </label>
 
         <div class="iui-button-bar">
@@ -134,53 +126,37 @@
       <br /><br />
 
       <div class="iui-column-filter">
-        <label class="iui-input-container iui-inline">
+        <label class="iui-input-container iui-inline-label iui-inline-icon">
           <div class="iui-label">From</div>
           <input
             class="iui-input"
             value="Feb 6, 2020 9:00 AM"
           />
-          <div class="iui-message">
-            <button
-              class="iui-button iui-borderless"
-              aria-label="Choose date"
-            >
-              <!-- Use calendar.svg from @itwin/itwinui-icons package. -->
-              <svg
-                class="iui-icon"
-                aria-hidden="true"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M13,13H9V10h4ZM16,3V15a1,1,0,0,1-1,1H1a1,1,0,0,1-1-1V3A1,1,0,0,1,1,2H3V0H4V2h8V0h1V2h2A1,1,0,0,1,16,3ZM15,6H1v9H15Z"
-                />
-              </svg>
-            </button>
-          </div>
+          <button
+            class="iui-button iui-borderless iui-input-icon"
+            aria-label="Choose date"
+          >
+            <svg-calendar
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-calendar>
+          </button>
         </label>
-        <label class="iui-input-container iui-inline">
+        <label class="iui-input-container iui-inline-label iui-inline-icon">
           <div class="iui-label">To</div>
           <input
             class="iui-input"
             value="Feb 6, 2020 12:00 PM"
           />
-          <div class="iui-message">
-            <button
-              class="iui-button iui-borderless"
-              aria-label="Choose date"
-            >
-              <!-- Use calendar.svg from @itwin/itwinui-icons package. -->
-              <svg
-                class="iui-icon"
-                aria-hidden="true"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M13,13H9V10h4ZM16,3V15a1,1,0,0,1-1,1H1a1,1,0,0,1-1-1V3A1,1,0,0,1,1,2H3V0H4V2h8V0h1V2h2A1,1,0,0,1,16,3ZM15,6H1v9H15Z"
-                />
-              </svg>
-            </button>
-          </div>
+          <button
+            class="iui-button iui-borderless iui-input-icon"
+            aria-label="Choose date"
+          >
+            <svg-calendar
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-calendar>
+          </button>
         </label>
 
         <div class="iui-button-bar">

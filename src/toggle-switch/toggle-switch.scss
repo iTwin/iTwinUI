@@ -4,7 +4,6 @@
 
 @mixin iui-toggle-switch {
   @include iui-reset;
-  @include iui-font-family;
   display: flex;
   align-items: center;
   font-size: $iui-font-size;

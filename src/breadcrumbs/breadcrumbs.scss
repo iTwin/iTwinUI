@@ -2,76 +2,63 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../button/borderless';
 
 @mixin iui-breadcrumbs {
   @include iui-reset;
-  @include iui-font-family;
+  display: flex;
+  align-items: center;
+}
 
-  &,
-  .iui-breadcrumbs-list,
-  .iui-breadcrumbs-item,
-  .iui-breadcrumbs-separator {
-    display: flex;
-    align-items: center;
+@mixin iui-breadcrumbs-list {
+  @include iui-reset;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  user-select: none;
+}
+
+@mixin iui-breadcrumbs-item {
+  display: flex;
+  line-height: $iui-component-height;
+  height: $iui-component-height;
+  max-width: $iui-3xl * 2;
+  margin: 0 $iui-sm;
+
+  a {
+    @include iui-anchor;
   }
-  
-  .iui-breadcrumbs-list {
-    @include iui-reset;
-    list-style-type: none;
-    user-select: none;
+
+  .iui-button {
+    @include iui-button-borderless;
+    margin: 0 (-$iui-s - 1);
   }
 
-  .iui-breadcrumbs-item {
-    > .iui-anchor {
-      display: inline-block;
+  > *,
+  .iui-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &:not(.iui-current) > .iui-button {
+    @include themed {
+      color: t(iui-color-foreground-primary);
     }
 
-    > .iui-anchor,
-    .iui-ellipsis {
-      margin: 0 $iui-sm;
-    }
-
-    > .iui-button {
-      margin: 0 $iui-xs;
-    }
-
-    > .iui-anchor,
-    > .iui-button > .iui-label {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      max-width: $iui-3xl * 2;
-    }
-
-    &:not(.iui-current) > .iui-button {
+    &:hover {
       @include themed {
-        color: t(iui-color-foreground-primary);
-      }
-
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-primary-overlay);
-        }
-      }
-    }
-
-    &.iui-current {
-      > .iui-anchor {
-        @include themed {
-          color: t(iui-text-color);
-        }
-      }
-    }
-
-    &:last-child {
-      > .iui-anchor,
-      > .iui-button {
-        margin-right: 0;
+        color: t(iui-color-foreground-primary-overlay);
       }
     }
   }
+}
 
-  .iui-breadcrumbs-separator > svg {
+@mixin iui-breadcrumbs-separator {
+  display: flex;
+
+  svg {
     @include iui-icons-small;
+    display: flex; // needed for vertical alignment of webcomponents
   }
 }

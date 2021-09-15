@@ -2,22 +2,28 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
+$iui-badge-background-default: $iui-color-background-5--light;
+$iui-badge-background-positive: $iui-color-foreground-positive--dark;
+$iui-badge-background-negative: $iui-color-foreground-negative--dark;
+$iui-badge-background-warning: $iui-color-foreground-warning--dark;
+$iui-badge-background-primary: $iui-color-foreground-primary--dark;
+
+$iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-3--light);
+
 @mixin iui-badge {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-block;
   font-size: $iui-font-size-small;
-  padding: 0 $iui-xs;
+  padding: 0 $iui-xs * 1.5;
   margin: round($iui-baseline * 0.5) 0;
   border-radius: $iui-border-radius;
+  background-color: var(--badge-color, $iui-badge-background-default);
+  color: var(--badge-text-color, $iui-badge-text-color);
   text-transform: uppercase;
   user-select: none;
   max-width: 20ch;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  @include themed {
-    color: t(iui-color-foreground-accessory);
-  }
+  font-weight: $iui-font-weight-semibold;
 }

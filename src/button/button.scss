@@ -9,7 +9,6 @@ $iui-button-padding-large: $iui-xs * 6;
 
 @mixin iui-button {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-flex;
   align-items: center;
   vertical-align: middle;

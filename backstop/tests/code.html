@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Code | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -22,6 +26,10 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/copy"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -42,16 +50,10 @@
             aria-label="Copy"
             type="button"
           >
-            <!-- Use copy.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-copy
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m5 10h-2a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v2h1v-2a2 2 0 0 0 -2-2h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h2zm8-4a1 1 0 0 1 1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1zm0-1h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-7a2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-copy>
             Copy
           </button>
         </div>

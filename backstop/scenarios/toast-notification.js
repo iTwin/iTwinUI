@@ -1,4 +1,4 @@
-const { scenario, hover, focus } = require('../scenarioHelper');
+const { scenario, hover, focus, click } = require('../scenarioHelper');
 
 module.exports = [
   // Toast types
@@ -40,5 +40,29 @@ module.exports = [
   scenario('State focus link in warning', {
     actions: [focus('#demo-warning a')],
     selectors: ['#demo-warning'],
+  }),
+  scenario('Top start placement', {
+    actions: [click('#top-start-option')],
+    selectors: ['#toast-notifications-test'],
+  }),
+  scenario('Top placement', {
+    actions: [click('#top-option')],
+    selectors: ['#toast-notifications-test'],
+  }),
+  scenario('Top end placement', {
+    actions: [click('#top-end-option')],
+    selectors: ['#toast-notifications-test'],
+  }),
+  scenario('Bottom start placement', {
+    actions: [click('#bottom-start-option')],
+    selectors: ['#toast-notifications-test'],
+  }),
+  scenario('Bottom placement', {
+    actions: [click('#bottom-option')],
+    selectors: ['#toast-notifications-test'],
+  }),
+  scenario('Bottom end placement', {
+    actions: [click('#bottom-end-option')],
+    selectors: ['#toast-notifications-test'],
   }),
 ];

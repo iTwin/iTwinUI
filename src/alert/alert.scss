@@ -6,7 +6,6 @@
 
 @mixin iui-alert {
   @include iui-reset;
-  @include iui-font-family;
   border-radius: $iui-border-radius;
   box-sizing: border-box;
   display: flex;
@@ -17,20 +16,9 @@
   }
 
   > .iui-icon {
-    display: inline-flex;
+    @include iui-icons-default;
     flex-shrink: 0;
     margin-left: $iui-m;
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    @include themed {
-      fill: t(iui-icons-color);
-    }
-
-    > * {
-      @include themed {
-        fill: t(iui-icons-color);
-      }
-    }
   }
 
   > .iui-message {
@@ -41,7 +29,7 @@
       text-decoration: underline;
       user-select: none;
       white-space: nowrap;
-  
+
       &:hover {
         text-decoration: none;
       }

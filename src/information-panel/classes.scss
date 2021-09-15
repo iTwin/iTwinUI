@@ -1,0 +1,19 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-information-panel-wrapper {
+  @include iui-information-panel-wrapper;
+}
+
+.iui-information-panel {
+  @include iui-information-panel;
+
+  &.iui-right {
+    @include iui-information-panel-right;
+  }
+
+  &.iui-bottom {
+    @include iui-information-panel-bottom;
+  }
+}
