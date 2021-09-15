@@ -173,6 +173,10 @@
 }
 
 @mixin iui-side-navigation-submenu {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
   height: 100%;
   box-sizing: border-box;
   padding: 0 $iui-sm;
@@ -184,12 +188,6 @@
     border-right: 1px solid t(iui-color-background-5);
   }
 
-  // #region Animating expanding / collapsing of the submenu
-  display: none;
-  visibility: hidden;
-  opacity: 0;
-  width: 0;
-
   &.iui-side-navigation-submenu-visible {
     display: block;
     visibility: visible;
@@ -199,27 +197,7 @@
     opacity: 1;
   }
 
-  &.iui-enter,
-  &.iui-exit-active {
-    display: block;
-    opacity: 0;
-    width: 0;
-  }
-
-  &.iui-exit,
-  &.iui-enter-active {
-    display: block;
-    opacity: 1;
-    width: $iui-3xl * 4;
-  }
-
-  &.iui-enter-active,
-  &.iui-exit-active {
-    @media (prefers-reduced-motion: no-preference) {
-      transition: visibility 0s linear $iui-speed-fast, opacity $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
-    }
-  }
-  // #endregion
+  @include iui-transition-group;
 
   .iui-submenu-header {
     height: $iui-baseline * 5;
