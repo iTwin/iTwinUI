@@ -4,6 +4,36 @@
 
 .iui-input-container {
   @include iui-input-container;
+
+  > .iui-label {
+    @include iui-input-label;
+  }
+
+  .iui-input-icon {
+    @include iui-input-icon;
+  }
+
+  .iui-message {
+    @include iui-input-message;
+  }
+
+  &.iui-inline-label {
+    > .iui-label {
+      @include iui-input-label-inline;
+    }
+  }
+
+  &.iui-inline-icon {
+    .iui-input-icon {
+      @include iui-input-icon-inline;
+    }
+  }
+
+  @each $status in positive, negative, warning {
+    &.iui-#{$status} {
+      @include iui-input-status($status: $status);
+    }
+  }
 }
 
 .iui-input {
@@ -29,4 +59,3 @@
 .iui-radio-tile-container {
   @include iui-radio-tile;
 }
-
