@@ -65,7 +65,7 @@
     <section id="demo-default">
 
       <section id="demo-default-singular">
-        <label class="iui-input-container">
+        <label class="iui-input-container iui-with-message">
           <div class="iui-label iui-required">Select label</div>
           <div class="iui-select">
             <div
@@ -80,7 +80,7 @@
         </label>
       </section>
 
-      <label class="iui-input-container">
+      <label class="iui-input-container iui-with-message">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
@@ -93,7 +93,7 @@
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container">
+      <label class="iui-input-container iui-with-message">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
@@ -114,7 +114,7 @@
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container iui-disabled">
+      <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div class="iui-select-button iui-placeholder iui-disabled">
@@ -124,7 +124,7 @@
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container iui-disabled">
+      <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div class="iui-select-button iui-disabled">
@@ -138,7 +138,7 @@
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container iui-positive">
+      <label class="iui-input-container iui-with-message iui-positive">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
@@ -148,13 +148,16 @@
             <span class="iui-content">Placeholder…</span>
           </div>
         </div>
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
         <div class="iui-message">
-          <svg-status-success aria-hidden="true"></svg-status-success>
           Positive message.
         </div>
       </label>
 
-      <label class="iui-input-container iui-warning">
+      <label class="iui-input-container iui-with-message iui-warning">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
@@ -164,13 +167,16 @@
             <span class="iui-content">Placeholder…</span>
           </div>
         </div>
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
         <div class="iui-message">
-          <svg-status-warning aria-hidden="true"></svg-status-warning>
           Warning message.
         </div>
       </label>
 
-      <label class="iui-input-container iui-negative">
+      <label class="iui-input-container iui-with-message iui-negative">
         <div class="iui-label">Select label</div>
         <div class="iui-select">
           <div
@@ -180,8 +186,11 @@
             <span class="iui-content">Placeholder…</span>
           </div>
         </div>
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
         <div class="iui-message">
-          <svg-status-error aria-hidden="true"></svg-status-error>
           Negative message.
         </div>
       </label>
