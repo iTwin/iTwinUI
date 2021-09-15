@@ -102,6 +102,34 @@
         border-color: t(iui-color-background-4);
       }
     }
+
+    .iui-input-container {
+      margin-bottom: $iui-baseline;
+
+      .iui-label {
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
+      }
+    }
+
+    div.iui-input-container {
+      .iui-label {
+        cursor: text;
+        font-weight: $iui-font-weight-normal;
+      }
+
+      input {
+        border: none;
+        background-color: transparent;
+        padding-left: 0;
+        padding-right: 0;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
   }
 }
 
