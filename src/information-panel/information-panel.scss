@@ -175,7 +175,7 @@
 
 @mixin iui-information-panel-bottom {
   @include iui-information-panel-horizontal;
-  bottom: ($iui-3xl * 4) * -1; // Default width set negative so the panel hides off screen.
+  bottom: ($iui-3xl * 4) * -1; // Default height set negative so the panel hides off screen.
   box-shadow: 0 -1px 14px rgba(0, 0, 0, 0.25);
   transition: bottom $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
 
