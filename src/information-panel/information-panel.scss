@@ -61,7 +61,7 @@
       background-color: t(iui-color-background-3);
     }
 
-    .iui-header-label {
+    .iui-information-header-label {
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -84,7 +84,7 @@
       }
     }
 
-    .iui-header-buttons {
+    .iui-information-header-actions {
       flex-shrink: 0;
       margin-left: $iui-s;
     }
