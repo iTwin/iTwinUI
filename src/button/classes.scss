@@ -20,26 +20,26 @@
 
   &.iui-borderless {
     @include iui-button-borderless;
-
-    &.iui-notification-primary {
-      @include iui-button-notification;
-    }
-
-    &.iui-notification-positive {
-      @include iui-button-notification($status: positive);
-    }
-
-    &.iui-notification-warning {
-      @include iui-button-notification($status: warning);
-    }
-
-    &.iui-notification-negative {
-      @include iui-button-notification($status: negative);
-    }
   }
 
   &[disabled] {
     @include iui-button-disabled;
+  }
+
+  &.iui-notification-primary {
+    @include iui-button-notification;
+  }
+
+  &.iui-notification-positive {
+    @include iui-button-notification($status: positive);
+  }
+
+  &.iui-notification-warning {
+    @include iui-button-notification($status: warning);
+  }
+
+  &.iui-notification-negative {
+    @include iui-button-notification($status: negative);
   }
 }
 
