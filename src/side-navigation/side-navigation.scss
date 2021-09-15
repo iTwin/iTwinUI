@@ -205,7 +205,7 @@
     align-items: center;
     justify-content: space-between;
 
-    .iui-header-label {
+    .iui-submenu-header-label {
       @include iui-text(title);
       display: flex;
       align-items: center;
@@ -222,7 +222,7 @@
         user-select: none;
       }
 
-      .iui-header-buttons {
+      .iui-submenu-header-actions {
         flex-shrink: 0;
         margin-left: $iui-s;
       }
