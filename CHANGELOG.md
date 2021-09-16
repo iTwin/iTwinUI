@@ -2,11 +2,10 @@
 
 ## [0.31.0](https://www.github.com/iTwin/iTwinUI/compare/v0.30.0...v0.31.0) (2021-09-15)
 
-
 ### What's new
 
 * **InformationPanel:** Add Information Panel ([#251](https://www.github.com/iTwin/iTwinUI/issues/251)) ([8f4bfc6](https://www.github.com/iTwin/iTwinUI/commit/8f4bfc6066f666293b37c284a48b5be207329720))
-* **labeled-inputs:** Add new layout options using grid ([#287](https://www.github.com/iTwin/iTwinUI/issues/287)) ([a3405f2](https://www.github.com/iTwin/iTwinUI/commit/a3405f2d6fa97baf8d4062c2500d5d3edba33cac))
+* **Inputs:** Inputs now use grid display for better layouts, some of the classes and html structure have been changed ([#287](https://www.github.com/iTwin/iTwinUI/issues/287)) ([a3405f2](https://www.github.com/iTwin/iTwinUI/commit/a3405f2d6fa97baf8d4062c2500d5d3edba33cac))
 
 ## [0.30.0](https://www.github.com/iTwin/iTwinUI/compare/v0.29.1...v0.30.0) (2021-09-07)
 
