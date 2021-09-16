@@ -15,6 +15,17 @@
       background-color: t(iui-color-foreground-#{$status});
       border: 2px solid t(iui-color-background-1);
     }
+    @media (prefers-reduced-motion: no-preference) {
+      transition: border-color $iui-speed-fast ease-out;
+    }
+  }
+
+  &:enabled:hover::before,
+  &:enabled:active::before,
+  &:focus-visible::before {
+    @include themed {
+      border-color: t(iui-color-background-1-overlay);
+    }
   }
 
   &.iui-urgent::before {
