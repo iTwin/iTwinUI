@@ -19,12 +19,12 @@
 
   &.iui-urgent::before {
     @media (prefers-reduced-motion: no-preference) {
-      animation: pulse 2s infinite;
+      animation: pulse-#{$status} 2s infinite;
     }
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    @keyframes pulse {
+    @keyframes pulse-#{$status} {
       0% {
         @include themed {
           box-shadow: 0 0 0 0 rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-1));
