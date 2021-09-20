@@ -16,7 +16,7 @@
       border: 2px solid t(iui-color-background-1);
     }
     @media (prefers-reduced-motion: no-preference) {
-      transition: border-color $iui-speed-fast ease-out;
+      transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
     }
   }
 
