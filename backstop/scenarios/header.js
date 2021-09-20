@@ -4,11 +4,9 @@ module.exports = [
   // Header types
   scenario('Type Default', {
     selectors: ['#demo-default'],
-    hideSelectors: ['.iui-urgent::before'],
   }),
   scenario('Type Slim', {
     selectors: ['#demo-slim'],
-    hideSelectors: ['.iui-urgent::before'],
     misMatchThreshold: 0.02,
   }),
   scenario('Type Slim', {
@@ -21,7 +19,6 @@ module.exports = [
   scenario('Type Default State hover & focus', {
     actions: [hover('#test-button-1'), focus('#test-button-2')],
     selectors: ['#demo-default'],
-    hideSelectors: ['.iui-urgent::before'],
     misMatchThreshold: 0.02,
   }),
 
@@ -29,7 +26,6 @@ module.exports = [
   scenario('Type Slim State hover & focus', {
     actions: [hover('#test-button-3'), focus('#test-button-4')],
     selectors: ['#demo-slim'],
-    hideSelectors: ['.iui-urgent::before'],
     misMatchThreshold: 0.02,
   }),
 
