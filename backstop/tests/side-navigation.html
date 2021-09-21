@@ -80,20 +80,6 @@
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/settings"
     ></script>
     <script src="../assets/theme.js"></script>
-    <script>
-      function handleHidePanel() {
-        const administration = document.getElementById(
-          'demo-sidenav-container',
-        )
-        if (administration.classList.contains('iui-expanded')) {
-          administration.classList.remove('iui-expanded');
-          administration.classList.add('iui-collapsed');
-        } else {
-          administration.classList.add('iui-expanded');
-          administration.classList.remove('iui-collapsed');
-        }
-      }
-    </script>
   </head>
 
   <body class="iui-body">
@@ -114,7 +100,7 @@
           class="iui-button iui-expand iui-sidenav-button"
           role="button"
           aria-label="Expand menu"
-          onclick="handleHidePanel()"
+          onclick="togglePanelExpansion(this)"
           id="test-expand"
         >
           <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
@@ -371,7 +357,7 @@
             class="iui-button iui-expand iui-sidenav-button"
             role="button"
             aria-label="Expand menu"
-            onclick="handleHidePanel()"
+            onclick="togglePanelExpansion(this)"
             id="test-expand-2"
           >
             <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
@@ -509,14 +495,22 @@
     <script>
       const tooltips = document.querySelectorAll('.iui-top .iui-tooltip');
       tooltips.forEach((tooltip, index) => {
-        tooltip.style.marginTop = `${14 + index * 55}px`;
+        tooltip.style.top = `${tooltip.previousElementSibling.offsetTop}px`;
       })
+    </script>
+
+    <!-- Expand/collapse panel -->
+    <script>
+      function togglePanelExpansion(el) {
+        el.parentElement.classList.toggle('iui-expanded');
+        el.parentElement.classList.toggle('iui-collapsed');
+      }
     </script>
 
     <!-- Show / hide the sub-menu -->
     <script>
       function toggleActiveState(el) {
-        document.querySelectorAll('.iui-sidenav-button').forEach(button => {
+        el.parentElement.querySelectorAll('.iui-sidenav-button').forEach(button => {
           button.classList.remove('iui-active');
         })
         el.classList.add('iui-active');
