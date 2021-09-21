@@ -113,7 +113,8 @@
     "css-what": "^5.0.1",
     "immer": "^9.0.6",
     "set-value": "^4.1.0",
-    "prismjs": "^1.25.0"
+    "prismjs": "^1.25.0",
+    "nth-check": "^2.0.1"
   },
   "husky": {
     "hooks": {
