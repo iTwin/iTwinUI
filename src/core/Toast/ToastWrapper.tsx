@@ -14,11 +14,18 @@ type ToastWrapperProps = {
 
 export const ToastWrapper = (props: ToastWrapperProps) => {
   const { toasts, placement = 'top' } = props;
+  const placementPosition = placement.startsWith('top') ? 'top' : 'bottom';
 
   return (
     <span className={cx(`iui-toast-wrapper`, `iui-placement-${placement}`)}>
       {toasts.map((toastProps) => {
-        return <Toast key={toastProps.id} {...toastProps} />;
+        return (
+          <Toast
+            key={toastProps.id}
+            placementPosition={placementPosition}
+            {...toastProps}
+          />
+        );
       })}
     </span>
   );

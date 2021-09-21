@@ -61,6 +61,14 @@ export type ToastProps = {
    * Function called when the toast is all the way closed.
    */
   onRemove?: () => void;
+  /**
+   * Element to which the toast will animate out to.
+   */
+  animateOutTo?: HTMLElement | null;
+  /**
+   * Parent toaster placement position for smoother animation.
+   */
+  placementPosition?: 'top' | 'bottom';
 };
 
 /**
@@ -81,14 +89,24 @@ export const Toast = (props: ToastProps) => {
     duration = 7000,
     hasCloseButton,
     onRemove,
+    animateOutTo,
+    placementPosition,
   } = props;
 
   useTheme();
-
   const closeTimeout = React.useRef(0);
 
   const [visible, setVisible] = React.useState(isVisible);
   const [height, setHeight] = React.useState(0);
+  const thisElement = React.useRef<HTMLDivElement>(null);
+  const [margin, setMargin] = React.useState(0);
+
+  const marginStyle = () => {
+    if (placementPosition === 'top') {
+      return { marginBottom: margin };
+    }
+    return { marginTop: margin };
+  };
 
   React.useEffect(() => {
     if (type === 'temporary') {
@@ -105,8 +123,18 @@ export const Toast = (props: ToastProps) => {
     setVisible(isVisible);
   }, [isVisible]);
 
+  React.useEffect(() => {
+    // if we don't have animateOutTo point and not isVisible, set negative margin to move other toasts up.
+    // Close all and close on toasts with no anchor.
+    if (!isVisible && !animateOutTo) {
+      setMargin(-height);
+    }
+  }, [isVisible, animateOutTo, setMargin, height]);
+
   const close = () => {
     clearCloseTimeout();
+    // move element up when this element is closed.
+    setMargin(-height);
     setVisible(false);
   };
 
@@ -132,20 +160,50 @@ export const Toast = (props: ToastProps) => {
     }
   };
 
+  const calculateOutAnimation = (node: HTMLElement) => {
+    // calculation translate x and y pixels.
+    let translateX = 0;
+    let translateY = 0;
+    if (animateOutTo && node) {
+      const { x: startX, y: startY } = node.getBoundingClientRect(); // current element
+      const { x: endX, y: endY } = animateOutTo.getBoundingClientRect(); // anchor point
+      translateX = endX - startX;
+      translateY = endY - startY;
+    }
+    return { translateX, translateY };
+  };
+
   return (
     <Transition
-      timeout={{ enter: 240, exit: 120 }}
+      timeout={{ enter: 240, exit: animateOutTo ? 400 : 120 }}
       in={visible}
       appear={true}
       unmountOnExit={true}
+      onEnter={(node) => {
+        node.style.transform = 'translateY(15%)';
+        node.style.transitionTimingFunction = 'ease';
+      }}
+      onEntered={(node) => {
+        node.style.transform = 'translateY(0)';
+      }}
+      onExiting={(node) => {
+        const { translateX, translateY } = calculateOutAnimation(node);
+        node.style.transform = animateOutTo
+          ? `scale(0.9) translate(${translateX}px,${translateY}px)`
+          : `scale(0.9)`;
+        node.style.opacity = '0';
+        node.style.transitionDuration = animateOutTo ? '400ms' : '120ms';
+        node.style.transitionTimingFunction = 'cubic-bezier(0.4, 0, 1, 1)';
+      }}
       onExited={onRemove}
     >
-      {(state) => (
+      {
         <div
-          className={cx('iui-toast-all', `iui-toast-${state}`)}
+          ref={thisElement}
+          className='iui-toast-all'
           style={{
             height,
-            marginBottom: visible ? '0' : -height,
+            ...marginStyle(),
           }}
         >
           <div ref={onRef}>
@@ -159,7 +217,7 @@ export const Toast = (props: ToastProps) => {
             />
           </div>
         </div>
-      )}
+      }
     </Transition>
   );
 };

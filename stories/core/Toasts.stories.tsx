@@ -294,3 +294,52 @@ PositionChanged.args = {
   content: 'This is a toast message',
   placement: 'bottom-end',
 };
+
+export const AnchorToButton: Story<ToastProps & ToasterSettings> = ({
+  content,
+  duration,
+  hasCloseButton,
+  link,
+  type,
+  onRemove,
+  placement,
+  order,
+}) => {
+  const buttonRef = React.useRef(null);
+  const displayPositiveToast = () => {
+    toaster.setSettings({
+      placement: placement ?? 'top',
+      order: order ?? 'descending',
+    });
+    toaster.positive(content, {
+      duration,
+      hasCloseButton,
+      link,
+      type,
+      onRemove,
+      animateOutTo: buttonRef.current,
+    });
+  };
+
+  return (
+    <>
+      <Button
+        ref={buttonRef}
+        styleType='high-visibility'
+        onClick={displayPositiveToast}
+      >
+        Positive
+      </Button>
+      <Button
+        style={{ display: 'block', marginTop: 16 }}
+        onClick={() => toaster.closeAll()}
+      >
+        Close All
+      </Button>
+    </>
+  );
+};
+
+AnchorToButton.args = {
+  content: 'This is a positive toast message',
+};
