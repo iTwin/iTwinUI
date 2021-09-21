@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.32.0](https://www.github.com/iTwin/iTwinUI/compare/v0.31.0...v0.32.0) (2021-09-21)
+
+
+### Fixes
+
+* **Inputs:** Inline icon padding fixed in inputs [#297](https://www.github.com/iTwin/iTwinUI/issues/297) ([78b8d83](https://www.github.com/iTwin/iTwinUI/commit/78b8d8367d65ab837980e702901bcb37d0fc807e))
+
+
+### What's new
+
+* Remove Toast animation classes and keyframes ([#289](https://www.github.com/iTwin/iTwinUI/issues/289)) ([ce5d175](https://www.github.com/iTwin/iTwinUI/commit/ce5d1753f2c31ce610096fc98552453a2c6cb611))
+
 ## [0.31.0](https://www.github.com/iTwin/iTwinUI/compare/v0.30.0...v0.31.0) (2021-09-15)
 
 ### What's new
