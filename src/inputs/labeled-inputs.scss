@@ -19,6 +19,17 @@
     // stylelint-enable
   }
 
+  &.iui-inline-icon {
+    > .iui-input,
+    > .iui-textarea {
+      padding-right: $iui-icons-default + $iui-l;
+
+      &:last-child {
+        padding-right: $iui-sm;
+      }
+    }
+  }
+
   &.iui-with-message {
     grid-template:
       'label label'
@@ -134,15 +145,6 @@
 
       &:not(:last-child) {
         margin-right: $iui-m;
-      }
-    }
-
-    > .iui-input,
-    > .iui-textarea {
-      padding-right: $iui-icons-default + $iui-l;
-
-      &:last-child {
-        padding-right: $iui-sm;
       }
     }
   }
