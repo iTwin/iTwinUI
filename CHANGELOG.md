@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.31.1](https://www.github.com/iTwin/iTwinUI/compare/v0.31.0...v0.31.1) (2021-09-21)
+
+
+### Fixes
+
+* **Inputs:** Inline icon padding fixed in inputs [#297](https://www.github.com/iTwin/iTwinUI/issues/297) ([78b8d83](https://www.github.com/iTwin/iTwinUI/commit/78b8d8367d65ab837980e702901bcb37d0fc807e))
+
 ## [0.31.0](https://www.github.com/iTwin/iTwinUI/compare/v0.30.0...v0.31.0) (2021-09-15)
 
 ### What's new
