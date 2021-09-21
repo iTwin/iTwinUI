@@ -11,7 +11,7 @@ module.exports = [
   }),
   scenario('Type submenu', {
     actions: [click('#myDocumentsButton'), hover('body')],
-    selectors: ['#demo-side-navigation'],
+    selectors: ['#demo-side-navigation-submenu'],
   }),
 
   // Hover & focus states

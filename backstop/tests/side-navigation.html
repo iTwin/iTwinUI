@@ -102,7 +102,152 @@
 
     <hr />
 
+    <h2>Default</h2>
     <section id="demo-side-navigation">
+
+      <div
+        class="iui-side-navigation iui-collapsed"
+        id="demo-sidenav-container"
+      >
+        <!-- Expand arrow -->
+        <button
+          class="iui-button iui-expand iui-sidenav-button"
+          role="button"
+          aria-label="Expand menu"
+          onclick="handleHidePanel()"
+          id="test-expand"
+        >
+          <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
+          <svg
+            class="iui-icon"
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+          >
+            <path d="m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z" />
+          </svg>
+        </button>
+
+        <!-- Rest of the tabs -->
+        <div
+          class="iui-sidenav-content"
+          role="tablist"
+          aria-label="Applications"
+        >
+          <div class="iui-top">
+            <button
+              class="iui-button iui-large iui-active iui-sidenav-button"
+              role="tab"
+              aria-selected="true"
+              aria-label="Home"
+              aria-controls="home-tab"
+              onclick="toggleActiveState(this)"
+            >
+              <svg-home
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-home>
+              <span class="iui-label">Home</span>
+            </button>
+            <span class="iui-tooltip">Home</span>
+
+            <button
+              class="iui-button iui-large iui-sidenav-button"
+              role="tab"
+              aria-selected="false"
+              aria-label="Documents"
+              aria-controls="documents-tab"
+              onclick="toggleActiveState(this)"
+            >
+              <svg-document
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-document>
+              <span class="iui-label">Documents</span>
+            </button>
+            <span class="iui-tooltip">Documents</span>
+
+            <button
+              class="iui-button iui-large iui-sidenav-button"
+              role="tab"
+              aria-selected="false"
+              aria-label="Map"
+              aria-controls="map-tab"
+              onclick="toggleActiveState(this)"
+            >
+              <svg-map
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-map>
+              <span class="iui-label">Map</span>
+            </button>
+            <span class="iui-tooltip">Map</span>
+
+            <button
+              class="iui-button iui-large iui-sidenav-button"
+              role="tab"
+              aria-selected="false"
+              aria-label="Archives"
+              aria-controls="archives-tab"
+              disabled
+              onclick="toggleActiveState(this)"
+            >
+              <svg-archive
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-archive>
+              <span class="iui-label">Archives</span>
+            </button>
+            <span class="iui-tooltip">Archives</span>
+
+            <button
+              class="iui-button iui-large iui-sidenav-button"
+              role="tab"
+              aria-selected="false"
+              aria-label="Calendar"
+              aria-controls="calendar-tab"
+              id="test-tab-1"
+              onclick="toggleActiveState(this)"
+            >
+              <svg-calendar
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-calendar>
+              <span class="iui-label">Calendar</span>
+            </button>
+            <span class="iui-tooltip">Calendar</span>
+          </div>
+
+          <div class="iui-bottom">
+            <button
+              class="iui-button iui-large iui-sidenav-button"
+              role="tab"
+              aria-selected="false"
+              aria-label="Administration"
+              aria-controls="administration-tab"
+              id="test-tab-2"
+              onclick="toggleActiveState(this)"
+            >
+              <svg-setup
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-setup>
+              <span class="iui-label">Administration</span>
+            </button>
+            <span
+              class="iui-tooltip"
+              style="margin-bottom: 10px;"
+            >Administration</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <br /><br />
+
+    <h3>With submenu</h3>
+    <p class="iui-text-small iui-text-muted">Click on the documents button to activate submenu.</p>
+    <section id="demo-side-navigation-submenu">
 
       <div class="iui-side-navigation-wrapper">
         <div
@@ -188,7 +333,6 @@
                 aria-selected="false"
                 aria-label="Calendar"
                 aria-controls="calendar-tab"
-                id="test-tab-1"
                 onclick="toggleActiveState(this)"
               >
                 <svg-calendar
@@ -207,7 +351,6 @@
                 aria-selected="false"
                 aria-label="Administration"
                 aria-controls="administration-tab"
-                id="test-tab-2"
                 onclick="toggleActiveState(this)"
               >
                 <svg-setup
@@ -229,7 +372,7 @@
             role="button"
             aria-label="Expand menu"
             onclick="handleHidePanel()"
-            id="test-expand"
+            id="test-expand-2"
           >
             <!-- Use chevron-right.svg from @itwin/itwinui-icons package. -->
             <svg
