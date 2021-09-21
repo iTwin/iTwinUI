@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import cx from 'classnames';
 import React from 'react';
 import { Input, InputProps } from '../Input/Input';
 import { StatusIconMap } from '../utils/common';
 import { useTheme } from '../utils/hooks/useTheme';
+import { InputContainer } from '../utils/InputContainer';
 import '@itwin/itwinui-css/css/inputs.css';
 
 export type LabeledInputProps = {
@@ -23,7 +23,7 @@ export type LabeledInputProps = {
    */
   status?: 'positive' | 'warning' | 'negative';
   /**
-   * Custom svg icon. If input has status, default status icon is used instead.
+   * Custom svg icon. Will override status icon if specified.
    */
   svgIcon?: JSX.Element;
   /**
@@ -35,10 +35,22 @@ export type LabeledInputProps = {
    */
   inputStyle?: React.CSSProperties;
   /**
-   * You can choose between default and inline.
+   * Set display style of label.
+   * Supported values:
+   * - 'default' - label appears above input.
+   * - 'inline' - appears in the same line as input.
    * @default 'default'
    */
   displayStyle?: 'default' | 'inline';
+  /**
+   * Set display style of icon.
+   * Supported values:
+   * - 'block' - icon appears below input.
+   * - 'inline' - icon appears inside input (at the end).
+   *
+   * Defaults to 'block' if `displayStyle` is `default`, else 'inline'.
+   */
+  iconDisplayStyle?: 'block' | 'inline';
 } & InputProps;
 
 /**
@@ -64,6 +76,7 @@ export const LabeledInput = React.forwardRef<
     inputClassName,
     inputStyle,
     displayStyle = 'default',
+    iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
     required = false,
     ...rest
   } = props;
@@ -73,27 +86,19 @@ export const LabeledInput = React.forwardRef<
   const icon = svgIcon ?? (status && StatusIconMap[status]());
 
   return (
-    <label
-      className={cx(
-        'iui-input-container',
-        {
-          'iui-disabled': disabled,
-          [`iui-${status}`]: !!status,
-          [`iui-${displayStyle}`]: displayStyle !== 'default',
-        },
-        className,
-      )}
+    <InputContainer
+      as='label'
+      label={label}
+      disabled={disabled}
+      required={required}
+      status={status}
+      message={message}
+      icon={icon}
+      isLabelInline={displayStyle === 'inline'}
+      isIconInline={iconDisplayStyle === 'inline'}
+      className={className}
       style={style}
     >
-      {label && (
-        <div
-          className={cx('iui-label', {
-            'iui-required': required,
-          })}
-        >
-          {label}
-        </div>
-      )}
       <Input
         disabled={disabled}
         className={inputClassName}
@@ -102,13 +107,7 @@ export const LabeledInput = React.forwardRef<
         ref={ref}
         {...rest}
       />
-      {(message || icon) && (
-        <div className='iui-message'>
-          {icon}
-          {displayStyle === 'default' && message}
-        </div>
-      )}
-    </label>
+    </InputContainer>
   );
 });
 

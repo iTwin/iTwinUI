@@ -53,20 +53,21 @@ it('should render message', () => {
   expect(message.textContent).toBe('Message');
 });
 
-it.each(['positive', 'warning', 'negative'] as Array<
-  'positive' | 'warning' | 'negative'
->)('should render %s status', (status) => {
-  const { container } = renderComponent({ status });
+it.each(['positive', 'warning', 'negative'] as const)(
+  'should render %s status',
+  (status) => {
+    const { container } = renderComponent({ status });
 
-  const inputContainer = container.querySelector(
-    '.iui-input-container',
-  ) as HTMLElement;
-  assertBaseElement(inputContainer);
-  expect(
-    container.querySelector(`.iui-input-container.iui-${status}`),
-  ).toBeTruthy();
-  expect(container.querySelector('.iui-message > svg')).toBeTruthy();
-});
+    const inputContainer = container.querySelector(
+      '.iui-input-container',
+    ) as HTMLElement;
+    assertBaseElement(inputContainer);
+    expect(
+      container.querySelector(`.iui-input-container.iui-${status}`),
+    ).toBeTruthy();
+    expect(container.querySelector('.iui-input-icon')).toBeTruthy();
+  },
+);
 
 it('should render with custom icon', () => {
   const { container } = renderComponent({
@@ -77,7 +78,7 @@ it('should render with custom icon', () => {
     '.iui-input-container',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
-  expect(inputContainer.querySelector('.iui-message .my-icon')).toBeTruthy();
+  expect(inputContainer.querySelector('.iui-input-icon.my-icon')).toBeTruthy();
 });
 
 it('should render inline style', () => {
@@ -86,7 +87,7 @@ it('should render inline style', () => {
   });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container.iui-inline',
+    '.iui-input-container.iui-inline-label',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
   expect(inputContainer.querySelector('.iui-message')).toBeFalsy();

@@ -3,12 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import cx from 'classnames';
 
 import { Select } from '../Select';
 import { SelectProps } from '../Select/Select';
 import { StatusIconMap } from '../utils/common';
 import { useTheme } from '../utils/hooks/useTheme';
+import { LabeledInputProps } from '../LabeledInput';
+import { InputContainer } from '../utils/InputContainer';
 import '@itwin/itwinui-css/css/inputs.css';
 
 export type LabeledSelectProps<T> = {
@@ -17,7 +18,7 @@ export type LabeledSelectProps<T> = {
    */
   label?: React.ReactNode;
   /**
-   * Message below the select.
+   * Message below the select. Does not apply to 'inline' select.
    */
   message?: React.ReactNode;
   /**
@@ -26,7 +27,7 @@ export type LabeledSelectProps<T> = {
    */
   status?: 'positive' | 'warning' | 'negative';
   /**
-   * Custom svg icon. If select has status, default status icon is used instead.
+   * Custom svg icon. Will override status icon if specified.
    */
   svgIcon?: JSX.Element;
   /**
@@ -38,16 +39,12 @@ export type LabeledSelectProps<T> = {
    */
   selectStyle?: React.CSSProperties;
   /**
-   * You can choose between default and inline.
-   * @default 'default'
-   */
-  displayStyle?: 'default' | 'inline';
-  /**
    * If true, shows a red asterisk but does not prevent form submission.
    * @default false
    */
   required?: boolean;
-} & SelectProps<T>;
+} & Pick<LabeledInputProps, 'displayStyle'> &
+  SelectProps<T>;
 
 /**
  * Labeled select component to select value from options.
@@ -105,40 +102,28 @@ export const LabeledSelect = <T,>(
   const icon = svgIcon ?? (status && StatusIconMap[status]());
 
   return (
-    <div
-      className={cx(
-        'iui-input-container',
-        {
-          'iui-disabled': disabled,
-          [`iui-${status}`]: !!status,
-          [`iui-${displayStyle}`]: displayStyle !== 'default',
-        },
-        className,
-      )}
+    <InputContainer
+      label={label}
+      disabled={disabled}
+      required={required}
+      status={status}
+      message={message}
+      icon={
+        displayStyle === 'default' && icon
+          ? React.cloneElement(icon, { 'aria-hidden': true })
+          : undefined
+      }
+      isLabelInline={displayStyle === 'inline'}
+      className={className}
       style={style}
     >
-      {label && (
-        <div
-          className={cx('iui-label', {
-            'iui-required': required,
-          })}
-        >
-          {label}
-        </div>
-      )}
       <Select
         disabled={disabled}
         className={selectClassName}
         style={selectStyle}
         {...rest}
       />
-      {displayStyle === 'default' && (message || icon) && (
-        <div className='iui-message'>
-          {icon}
-          {message}
-        </div>
-      )}
-    </div>
+    </InputContainer>
   );
 };
 

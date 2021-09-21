@@ -120,10 +120,10 @@ it('should render inline input', () => {
   );
   getByText('some label');
   expect(
-    container.querySelector('.iui-input-container.iui-inline'),
+    container.querySelector('.iui-input-container.iui-inline-label'),
   ).toBeTruthy();
   expect(queryByText('My message')).toBeNull();
-  expect(container.querySelector('.iui-message svg')).toBeTruthy();
+  expect(container.querySelector('.iui-input-icon')).toBeTruthy();
 });
 
 it('should take custom icon', () => {
@@ -136,7 +136,24 @@ it('should take custom icon', () => {
   );
   getByText('some label');
   expect(
-    container.querySelector('.iui-input-container.iui-inline'),
+    container.querySelector('.iui-input-container.iui-inline-label'),
   ).toBeTruthy();
-  expect(container.querySelector('.iui-message .my-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-input-icon.my-icon')).toBeTruthy();
+});
+
+it('should render inline icon', () => {
+  const { container, queryByText } = render(
+    <LabeledTextarea
+      label='some label'
+      iconDisplayStyle='inline'
+      svgIcon={<svg className='my-icon' />}
+      message='My message'
+    />,
+  );
+  const inputContainer = container.querySelector('.iui-input-container');
+  expect(inputContainer).toHaveClass('iui-inline-icon', 'iui-with-message');
+  expect(inputContainer).not.toHaveClass('iui-inline-label');
+  expect(queryByText('some label')).toHaveClass('iui-label');
+  expect(queryByText('My message')).toHaveClass('iui-message');
+  expect(container.querySelector('.iui-input-icon.my-icon')).toBeTruthy();
 });

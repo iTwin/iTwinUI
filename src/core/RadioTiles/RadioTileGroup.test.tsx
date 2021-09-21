@@ -16,7 +16,9 @@ it('should render without label', () => {
     </RadioTileGroup>,
   );
   expect(
-    container.querySelector('.iui-input-container > .iui-radio-tile-container'),
+    container.querySelector(
+      '.iui-input-container > .iui-input-group > .iui-radio-tile-container',
+    ),
   ).toBeTruthy();
   expect(
     container.querySelector('.iui-input-container > .iui-label'),
@@ -31,7 +33,9 @@ it('should render with label', () => {
     </RadioTileGroup>,
   );
   expect(
-    container.querySelector('.iui-input-container > .iui-radio-tile-container'),
+    container.querySelector(
+      '.iui-input-container > .iui-input-group > .iui-radio-tile-container',
+    ),
   ).toBeTruthy();
   const label = container.querySelector(
     '.iui-input-container > .iui-label',

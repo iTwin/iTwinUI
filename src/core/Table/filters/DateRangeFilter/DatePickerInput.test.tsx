@@ -20,12 +20,12 @@ it('should render correctly', () => {
   const { container } = renderComponent();
 
   const labeledInput = container.querySelector(
-    '.iui-input-container.iui-inline',
+    '.iui-input-container.iui-inline-label',
   );
   expect(labeledInput).toBeTruthy();
 
   const iconButton = container.querySelector(
-    '.iui-message .iui-button.iui-borderless',
+    '.iui-input-icon.iui-button.iui-borderless',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
 
@@ -89,7 +89,7 @@ it('should call onChange when selected day from calendar', () => {
   });
 
   const iconButton = container.querySelector(
-    '.iui-message .iui-button.iui-borderless',
+    '.iui-input-icon.iui-button.iui-borderless',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
   iconButton.click();
@@ -111,7 +111,7 @@ it('should call onChange with undefined when input field is cleared', () => {
   });
 
   const iconButton = container.querySelector(
-    '.iui-message .iui-button.iui-borderless',
+    '.iui-input-icon.iui-button.iui-borderless',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
   iconButton.click();

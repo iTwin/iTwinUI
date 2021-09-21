@@ -84,7 +84,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             <circle cx='8' cy='8' r='6' />
           </svg>
         </span>
-        {label && <div className='iui-label'>{label}</div>}
+        {label && <span className='iui-label'>{label}</span>}
       </label>
     );
   },

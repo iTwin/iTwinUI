@@ -119,7 +119,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             </svg>
           )}
         </span>
-        {label && <div className='iui-label'>{label}</div>}
+        {label && <span className='iui-label'>{label}</span>}
       </label>
     );
   },

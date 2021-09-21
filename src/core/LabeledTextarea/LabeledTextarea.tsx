@@ -2,12 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import cx from 'classnames';
 import React from 'react';
 import { StatusIconMap } from '../utils/common';
 import { Textarea } from '../Textarea';
 import { TextareaProps } from '../Textarea/Textarea';
 import { useTheme } from '../utils/hooks/useTheme';
+import { LabeledInputProps } from '../LabeledInput';
+import { InputContainer } from '../utils/InputContainer';
 import '@itwin/itwinui-css/css/inputs.css';
 
 export type LabeledTextareaProps = {
@@ -16,7 +17,7 @@ export type LabeledTextareaProps = {
    */
   label: React.ReactNode;
   /**
-   * Message below the textarea.
+   * Message below the textarea. Does not apply to 'inline' textarea.
    */
   message?: React.ReactNode;
   /**
@@ -31,16 +32,8 @@ export type LabeledTextareaProps = {
    * Custom style for textarea.
    */
   textareaStyle?: React.CSSProperties;
-  /**
-   * You can choose between default and inline.
-   * @default 'default'
-   */
-  displayStyle?: 'default' | 'inline';
-  /**
-   * Custom icon. If textarea has status, default status icon is used instead.
-   */
-  svgIcon?: JSX.Element;
-} & TextareaProps;
+} & Pick<LabeledInputProps, 'svgIcon' | 'displayStyle' | 'iconDisplayStyle'> &
+  TextareaProps;
 
 /**
  * Textarea wrapper that allows for additional styling and labelling
@@ -77,6 +70,7 @@ export const LabeledTextarea = React.forwardRef<
     textareaClassName,
     textareaStyle,
     displayStyle = 'default',
+    iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
     svgIcon,
     required = false,
     ...textareaProps
@@ -87,27 +81,19 @@ export const LabeledTextarea = React.forwardRef<
   const icon = svgIcon ?? (status && StatusIconMap[status]());
 
   return (
-    <label
-      className={cx(
-        'iui-input-container',
-        {
-          'iui-disabled': disabled,
-          [`iui-${status}`]: !!status,
-          [`iui-${displayStyle}`]: displayStyle !== 'default',
-        },
-        className,
-      )}
+    <InputContainer
+      as='label'
+      label={label}
+      disabled={disabled}
+      required={required}
+      status={status}
+      message={message}
+      icon={icon}
+      isLabelInline={displayStyle === 'inline'}
+      isIconInline={iconDisplayStyle === 'inline'}
+      className={className}
       style={style}
     >
-      {label && (
-        <div
-          className={cx('iui-label', {
-            'iui-required': required,
-          })}
-        >
-          {label}
-        </div>
-      )}
       <Textarea
         disabled={disabled}
         className={textareaClassName}
@@ -116,13 +102,7 @@ export const LabeledTextarea = React.forwardRef<
         {...textareaProps}
         ref={ref}
       />
-      {(message || icon) && (
-        <div className='iui-message'>
-          {icon}
-          {displayStyle === 'default' && message}
-        </div>
-      )}
-    </label>
+    </InputContainer>
   );
 });
 

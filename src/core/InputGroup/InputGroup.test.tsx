@@ -74,62 +74,27 @@ it('should render message', () => {
   expect(container.querySelectorAll('input').length).toBe(3);
 });
 
-it('should render positive component', () => {
-  const { container, getByText } = render(
-    <InputGroup
-      label='some label'
-      message={<div className='my-message'>Message</div>}
-      status='positive'
-    >
-      <Radio />
-      <Radio />
-      <Radio />
-    </InputGroup>,
-  );
-  expect(
-    container.querySelector('.iui-input-container.iui-positive'),
-  ).toBeTruthy();
-  getByText('some label');
-  expect(container.querySelector('.iui-message > svg')).toBeTruthy();
-});
-
-it('should render warning component', () => {
-  const { container, getByText } = render(
-    <InputGroup
-      label='some label'
-      message={<div className='my-message'>Message</div>}
-      status='warning'
-    >
-      <Radio />
-      <Radio />
-      <Radio />
-    </InputGroup>,
-  );
-  expect(
-    container.querySelector('.iui-input-container.iui-warning'),
-  ).toBeTruthy();
-  getByText('some label');
-  expect(container.querySelector('.iui-message > svg')).toBeTruthy();
-});
-
-it('should render negative component', () => {
-  const { container, getByText } = render(
-    <InputGroup
-      label='some label'
-      message={<div className='my-message'>Message</div>}
-      status='negative'
-    >
-      <Checkbox />
-      <Checkbox />
-      <Checkbox />
-    </InputGroup>,
-  );
-  expect(
-    container.querySelector('.iui-input-container.iui-negative'),
-  ).toBeTruthy();
-  getByText('some label');
-  expect(container.querySelector('.iui-message > svg')).toBeTruthy();
-});
+it.each(['positive', 'negative', 'warning'] as const)(
+  'should render %s component',
+  (status) => {
+    const { container, getByText } = render(
+      <InputGroup
+        label='some label'
+        message={<div className='my-message'>Message</div>}
+        status={status}
+      >
+        <Radio />
+        <Radio />
+        <Radio />
+      </InputGroup>,
+    );
+    expect(
+      container.querySelector(`.iui-input-container.iui-${status}`),
+    ).toBeTruthy();
+    getByText('some label');
+    expect(container.querySelector('.iui-input-icon')).toBeTruthy();
+  },
+);
 
 it('should take class and style on container', () => {
   const { container, getByText } = render(
@@ -161,11 +126,11 @@ it('should render inline group', () => {
     </InputGroup>,
   );
   expect(
-    container.querySelector('.iui-input-container.iui-inline'),
+    container.querySelector('.iui-input-container.iui-inline-label'),
   ).toBeTruthy();
   getByText('some group label');
   expect(queryByText('My message')).toBeNull();
-  expect(container.querySelector('.iui-message svg')).toBeTruthy();
+  expect(container.querySelector('.iui-input-icon')).toBeTruthy();
 });
 
 it('should take custom icon', () => {
@@ -181,8 +146,8 @@ it('should take custom icon', () => {
     </InputGroup>,
   );
   expect(
-    container.querySelector('.iui-input-container.iui-inline'),
+    container.querySelector('.iui-input-container.iui-inline-label'),
   ).toBeTruthy();
   getByText('some group label');
-  expect(container.querySelector('.iui-message .my-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-input-icon.my-icon')).toBeTruthy();
 });

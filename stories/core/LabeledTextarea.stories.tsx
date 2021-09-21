@@ -126,4 +126,5 @@ export const Inline: Story<LabeledTextareaProps> = (args) => {
 Inline.args = {
   status: 'negative',
   displayStyle: 'inline',
+  message: undefined,
 };
