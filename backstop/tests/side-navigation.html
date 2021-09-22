@@ -42,15 +42,6 @@
       .iui-expanded .iui-tooltip {
         display: none !important;
       }
-
-      .iui-side-navigation-submenu-visible {
-        display: block;
-        visibility: visible;
-        min-width: 192px;
-        width: 384px;
-        max-width: 50vw;
-        opacity: 1;
-      }
     </style>
     <script
       type="module"
@@ -240,8 +231,7 @@
 
     <br /><br />
 
-    <h3>With submenu</h3>
-    <p class="iui-text-small iui-text-muted">Click on the documents button to activate submenu.</p>
+    <h3>With submenu open</h3>
     <section id="demo-side-navigation-submenu">
 
       <div class="iui-side-navigation-wrapper">
@@ -257,12 +247,11 @@
           >
             <div class="iui-top">
               <button
-                class="iui-button iui-large iui-active iui-sidenav-button"
+                class="iui-button iui-large iui-sidenav-button"
                 role="tab"
-                aria-selected="true"
+                aria-selected="false"
                 aria-label="Home"
                 aria-controls="home-tab"
-                onclick="toggleActiveState(this)"
               >
                 <svg-home
                   class="iui-icon"
@@ -273,13 +262,11 @@
               <span class="iui-tooltip">Home</span>
 
               <button
-                class="iui-button iui-large iui-sidenav-button"
+                class="iui-button iui-large iui-active iui-sidenav-button"
                 role="tab"
-                aria-selected="false"
+                aria-selected="true"
                 aria-label="Documents"
                 aria-controls="documents-tab"
-                id="myDocumentsButton"
-                onclick="toggleActiveState(this)"
               >
                 <svg-document
                   class="iui-icon"
@@ -295,7 +282,6 @@
                 aria-selected="false"
                 aria-label="Map"
                 aria-controls="map-tab"
-                onclick="toggleActiveState(this)"
               >
                 <svg-map
                   class="iui-icon"
@@ -312,7 +298,6 @@
                 aria-label="Archives"
                 aria-controls="archives-tab"
                 disabled
-                onclick="toggleActiveState(this)"
               >
                 <svg-archive
                   class="iui-icon"
@@ -328,7 +313,6 @@
                 aria-selected="false"
                 aria-label="Calendar"
                 aria-controls="calendar-tab"
-                onclick="toggleActiveState(this)"
               >
                 <svg-calendar
                   class="iui-icon"
@@ -346,7 +330,6 @@
                 aria-selected="false"
                 aria-label="Administration"
                 aria-controls="administration-tab"
-                onclick="toggleActiveState(this)"
               >
                 <svg-setup
                   class="iui-icon"
@@ -380,10 +363,7 @@
           </button>
         </div>
 
-        <div
-          class="iui-side-navigation-submenu"
-          id="myOpeningSubMenu"
-        >
+        <div class="iui-side-navigation-submenu">
           <div class="iui-side-navigation-submenu-header">
             <div class="iui-side-navigation-submenu-header-label">
               <button class="iui-button iui-borderless">
@@ -513,23 +493,6 @@
       function togglePanelExpansion(el) {
         el.parentElement.classList.toggle('iui-expanded');
         el.parentElement.classList.toggle('iui-collapsed');
-      }
-    </script>
-
-    <!-- Show / hide the sub-menu -->
-    <script>
-      function toggleActiveState(el) {
-        el.parentElement.querySelectorAll('.iui-sidenav-button').forEach(button => {
-          button.classList.remove('iui-active');
-        })
-        el.classList.add('iui-active');
-
-        const subMenu = document.getElementById('myOpeningSubMenu');
-        if (el.id === 'myDocumentsButton') {
-          subMenu.classList.toggle('iui-side-navigation-submenu-visible');
-        } else {
-          subMenu.classList.remove('iui-side-navigation-submenu-visible');
-        }
       }
     </script>
 

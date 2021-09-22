@@ -10,7 +10,6 @@ module.exports = [
     selectors: ['#demo-side-navigation'],
   }),
   scenario('Type submenu', {
-    actions: [click('#myDocumentsButton'), hover('body')],
     selectors: ['#demo-side-navigation-submenu'],
   }),
 
