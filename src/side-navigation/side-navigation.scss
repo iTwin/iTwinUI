@@ -189,15 +189,6 @@
     border-right: 1px solid t(iui-color-background-5);
   }
 
-  &.iui-side-navigation-submenu-visible {
-    display: block;
-    visibility: visible;
-    min-width: $iui-3xl * 2;
-    width: $iui-3xl * 4;
-    max-width: 50vw;
-    opacity: 1;
-  }
-
   @include iui-transition-group;
 
   &-header {
