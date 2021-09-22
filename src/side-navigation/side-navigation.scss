@@ -182,6 +182,7 @@
   padding: 0 $iui-sm;
   overflow-x: hidden;
   overflow-y: auto;
+  overflow-y: overlay;
   resize: horizontal;
   @include themed {
     background-color: t(iui-color-background-1);
