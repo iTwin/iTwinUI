@@ -488,10 +488,10 @@
       }
     </script>
 
-    <!-- Show / hide the sub-menu -->
+    <!-- Toggle active state -->
     <script>
       function toggleActiveState(el) {
-        el.parentElement.querySelectorAll('.iui-sidenav-button').forEach(button => {
+        el.parentElement.parentElement.querySelectorAll('.iui-sidenav-button').forEach(button => {
           button.classList.remove('iui-active');
         })
         el.classList.add('iui-active');
