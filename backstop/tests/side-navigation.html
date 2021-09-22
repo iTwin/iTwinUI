@@ -488,5 +488,15 @@
       }
     </script>
 
+    <!-- Show / hide the sub-menu -->
+    <script>
+      function toggleActiveState(el) {
+        el.parentElement.querySelectorAll('.iui-sidenav-button').forEach(button => {
+          button.classList.remove('iui-active');
+        })
+        el.classList.add('iui-active');
+      }
+    </script>
+
   </body>
 </html>
