@@ -199,13 +199,13 @@
 
   @include iui-transition-group;
 
-  .iui-submenu-header {
+  &-header {
     height: $iui-baseline * 5;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    .iui-submenu-header-label {
+    &-label {
       @include iui-text(title);
       display: flex;
       align-items: center;
@@ -222,14 +222,14 @@
         user-select: none;
       }
 
-      .iui-submenu-header-actions {
+      &-actions {
         flex-shrink: 0;
         margin-left: $iui-s;
       }
     }
   }
 
-  .iui-submenu-body {
+  &-body {
     margin-bottom: $iui-baseline;
   }
 }
