@@ -181,7 +181,7 @@
   box-sizing: border-box;
   padding: 0 $iui-sm;
   overflow-x: hidden;
-  overflow-y: overlay;
+  overflow-y: auto;
   resize: horizontal;
   @include themed {
     background-color: t(iui-color-background-1);
