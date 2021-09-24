@@ -7,6 +7,7 @@ import {
   getContainer,
   getDocument,
   getFocusableElements,
+  getTabbableElements,
   getUserColor,
   getWindow,
 } from './common';
@@ -69,20 +70,65 @@ describe('getBoundedValue', () => {
   });
 });
 
-describe('getFocusableElements', () => {
-  it('should get focusable elements', () => {
+describe('getTabbableElements', () => {
+  it('should get tabbable elements', () => {
     const container = document.createElement('div');
+
     container.append(document.createElement('button'));
-    const focusableDiv = document.createElement('div');
-    focusableDiv.setAttribute('tabindex', '0');
-    focusableDiv.append(document.createElement('textarea'));
-    container.append(focusableDiv);
+
+    const tabbableDiv = document.createElement('div');
+    tabbableDiv.setAttribute('tabindex', '0');
+    tabbableDiv.append(document.createElement('textarea'));
+    container.append(tabbableDiv);
+
     const disabledSelect = document.createElement('select');
     disabledSelect.disabled = true;
     container.append(disabledSelect);
+
     container.append(document.createElement('input'));
 
-    expect(getFocusableElements(container).length).toBe(4);
+    const disabledDiv = document.createElement('div');
+    disabledDiv.setAttribute('tabindex', '0');
+    disabledDiv.className = 'iui-disabled';
+    container.append(disabledDiv);
+
+    expect(getTabbableElements(container).length).toBe(4);
+  });
+
+  it('should return empty array of tabbable elements', () => {
+    expect(getTabbableElements(undefined).length).toBe(0);
+    expect(getTabbableElements(null).length).toBe(0);
+    expect(getTabbableElements(document.createElement('div')).length).toBe(0);
+  });
+});
+
+describe('getFocusableElements', () => {
+  it('should get focusable elements', () => {
+    const container = document.createElement('div');
+
+    container.append(document.createElement('button'));
+
+    const tabbableDiv = document.createElement('div');
+    tabbableDiv.setAttribute('tabindex', '0');
+    tabbableDiv.append(document.createElement('textarea'));
+    container.append(tabbableDiv);
+
+    const disabledSelect = document.createElement('select');
+    disabledSelect.disabled = true;
+    container.append(disabledSelect);
+
+    container.append(document.createElement('input'));
+
+    const disabledDiv = document.createElement('div');
+    disabledDiv.setAttribute('tabindex', '0');
+    disabledDiv.className = 'iui-disabled';
+    container.append(disabledDiv);
+
+    const focusableSpan = document.createElement('span');
+    focusableSpan.setAttribute('tabindex', '-1');
+    container.append(focusableSpan);
+
+    expect(getFocusableElements(container).length).toBe(5);
   });
 
   it('should return empty array of focusable elements', () => {

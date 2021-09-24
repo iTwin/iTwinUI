@@ -2,10 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { Menu } from './Menu';
-export type { MenuProps } from './Menu';
+import React from 'react';
+import { useTheme } from '../utils/hooks/useTheme';
+import '@itwin/itwinui-css/css/menu.css';
 
-export { MenuItem } from './MenuItem';
-export type { MenuItemProps } from './MenuItem';
+export const MenuDivider = () => {
+  useTheme();
+  return <li role='separator' className='iui-menu-divider' />;
+};
 
-export { MenuDivider } from './MenuDivider';
+export default MenuDivider;

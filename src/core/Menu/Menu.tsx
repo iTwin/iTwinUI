@@ -8,6 +8,7 @@ import { CommonProps } from '../utils/props';
 import { useTheme } from '../utils/hooks/useTheme';
 import '@itwin/itwinui-css/css/menu.css';
 import { useMergedRefs } from '../utils/hooks/useMergedRefs';
+import { getFocusableElements } from '../utils/common';
 
 export type MenuProps = {
   /**
@@ -17,6 +18,9 @@ export type MenuProps = {
   role?: string;
   /**
    * Menu items. Recommended to use `MenuItem` components.
+   *
+   * If you have custom actionable items, they should have `tabIndex={-1}` for better keyboard navigation support
+   * and selected item should have `aria-selected={true}`.
    */
   children: React.ReactNode;
 } & Omit<CommonProps, 'title'>;
@@ -30,54 +34,43 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
 
     useTheme();
 
-    const [focusedIndex, setFocusedIndex] = React.useState<number>();
+    const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
     const menuRef = React.useRef<HTMLUListElement>(null);
     const refs = useMergedRefs(menuRef, ref);
 
     React.useEffect(() => {
-      const items = menuRef.current?.children;
+      const items = getFocusableElements(menuRef.current);
       if (focusedIndex != null) {
         (items?.[focusedIndex] as HTMLLIElement)?.focus();
         return;
       }
 
-      const childrenArray = React.Children.toArray(children);
-      const selectedIndex = childrenArray.findIndex(
-        (child: JSX.Element) => child.props.isSelected,
+      const selectedIndex = items.findIndex(
+        (el) => el.getAttribute('aria-selected') === 'true',
       );
-      const firstEnabledIndex = childrenArray.findIndex(
-        (child: JSX.Element) => !child.props.disabled,
-      );
-      setFocusedIndex(selectedIndex > -1 ? selectedIndex : firstEnabledIndex);
-    }, [children, focusedIndex]);
+      setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
+    }, [focusedIndex]);
+
+    React.useEffect(() => {
+      setFocusedIndex(null);
+    }, [children]);
 
     const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
-      const items = menuRef.current?.children;
+      const items = getFocusableElements(menuRef.current);
       if (!items?.length) {
         return;
       }
 
       const currentIndex = focusedIndex ?? 0;
-      const isItemDisabled = (index: number) =>
-        items[index].classList.contains('iui-disabled');
-
       switch (event.key) {
         case 'ArrowDown': {
-          let newIndex = Math.min(currentIndex + 1, items.length - 1);
-          while (newIndex < items.length - 1 && isItemDisabled(newIndex)) {
-            newIndex++;
-          }
-          !isItemDisabled(newIndex) && setFocusedIndex(newIndex);
+          setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
           event.preventDefault();
           event.stopPropagation();
           break;
         }
         case 'ArrowUp': {
-          let newIndex = Math.max(currentIndex - 1, 0);
-          while (newIndex > 0 && isItemDisabled(newIndex)) {
-            newIndex--;
-          }
-          !isItemDisabled(newIndex) && setFocusedIndex(newIndex);
+          setFocusedIndex(Math.max(currentIndex - 1, 0));
           event.preventDefault();
           event.stopPropagation();
           break;

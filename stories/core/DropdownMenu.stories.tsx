@@ -9,6 +9,7 @@ import {
   DropdownMenu,
   DropdownMenuProps,
   IconButton,
+  MenuDivider,
   MenuItem,
 } from '../../src/core';
 import {
@@ -44,6 +45,11 @@ export default {
         },
       },
     },
+    docs: {
+      source: {
+        excludeDecorators: true,
+      },
+    },
   },
 } as Meta<DropdownMenuProps> & CreeveyMeta;
 
@@ -65,16 +71,16 @@ export const Basic: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    // Body height is the same as Select component height therefore clicking outside would not close dropdown.
-    <div style={{ minHeight: 150 }}>
-      <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
-        <IconButton>
-          <SvgMore />
-        </IconButton>
-      </DropdownMenu>
-    </div>
+    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+      <IconButton>
+        <SvgMore />
+      </IconButton>
+    </DropdownMenu>
   );
 };
+
+// Body height is the same as Select component height therefore clicking outside would not close dropdown.
+Basic.decorators = [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>];
 
 export const WithIcons: Story<DropdownMenuProps> = (args) => {
   const { menuItems, ...rest } = args;
@@ -94,15 +100,17 @@ export const WithIcons: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    <div style={{ minHeight: 150 }}>
-      <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
-        <IconButton>
-          <SvgMore />
-        </IconButton>
-      </DropdownMenu>
-    </div>
+    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+      <IconButton>
+        <SvgMore />
+      </IconButton>
+    </DropdownMenu>
   );
 };
+
+WithIcons.decorators = [
+  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
+];
 
 export const WithBadges: Story<DropdownMenuProps> = (args) => {
   const { menuItems, ...rest } = args;
@@ -126,15 +134,17 @@ export const WithBadges: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    <div style={{ minHeight: 150 }}>
-      <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
-        <IconButton>
-          <SvgMore />
-        </IconButton>
-      </DropdownMenu>
-    </div>
+    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+      <IconButton>
+        <SvgMore />
+      </IconButton>
+    </DropdownMenu>
   );
 };
+
+WithBadges.decorators = [
+  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
+];
 
 export const WithSublabels: Story<DropdownMenuProps> = (args) => {
   const { menuItems, ...rest } = args;
@@ -178,6 +188,10 @@ export const WithSublabels: Story<DropdownMenuProps> = (args) => {
     </div>
   );
 };
+
+WithSublabels.decorators = [
+  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
+];
 
 export const Submenu: Story<DropdownMenuProps> = (args) => {
   const { menuItems, ...rest } = args;
@@ -230,13 +244,11 @@ export const Submenu: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    <div style={{ minHeight: 150 }}>
-      <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
-        <IconButton>
-          <SvgMore />
-        </IconButton>
-      </DropdownMenu>
-    </div>
+    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+      <IconButton>
+        <SvgMore />
+      </IconButton>
+    </DropdownMenu>
   );
 };
 
@@ -264,3 +276,41 @@ Submenu.parameters = {
     },
   } as CreeveyStoryParams,
 };
+
+Submenu.decorators = [
+  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
+];
+
+export const WithSeparator: Story<DropdownMenuProps> = (args) => {
+  const { menuItems, ...rest } = args;
+  const onClick = (index: number, close: () => void) => () => {
+    action(`Item #${index} clicked!`)();
+    close();
+  };
+  const dropdownMenuItems = (close: () => void) => [
+    <MenuItem key={1} onClick={onClick(1, close)}>
+      Item #1
+    </MenuItem>,
+    <MenuItem key={2} onClick={onClick(2, close)}>
+      Item #2
+    </MenuItem>,
+    <MenuDivider key={3} />,
+    <MenuItem key={4} onClick={onClick(3, close)} disabled>
+      Item #3
+    </MenuItem>,
+    <MenuItem key={5} onClick={onClick(4, close)}>
+      Item #4
+    </MenuItem>,
+  ];
+  return (
+    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+      <IconButton>
+        <SvgMore />
+      </IconButton>
+    </DropdownMenu>
+  );
+};
+
+WithSeparator.decorators = [
+  (Story) => <div style={{ minHeight: 200 }}>{Story()}</div>,
+];

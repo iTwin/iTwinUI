@@ -88,7 +88,7 @@ export type { LabeledSelectProps } from './LabeledSelect';
 export { LabeledTextarea } from './LabeledTextarea';
 export type { LabeledTextareaProps } from './LabeledTextarea';
 
-export { Menu, MenuItem } from './Menu';
+export { Menu, MenuItem, MenuDivider } from './Menu';
 export type { MenuProps, MenuItemProps } from './Menu';
 
 export { Modal, ModalButtonBar } from './Modal';

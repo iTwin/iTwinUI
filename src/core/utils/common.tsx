@@ -111,6 +111,27 @@ export const getBoundedValue = (val: number, min: number, max: number) => {
   return Math.min(max, Math.max(min, val));
 };
 
+const tabbableElementsSelector =
+  'a[href], button, input, textarea, select, details, audio[controls], video[controls], [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex="-1"])';
+
+/**
+ * Return array of tabbable elements in the container.
+ */
+export const getTabbableElements = (
+  container: HTMLElement | undefined | null,
+) => {
+  if (!container) {
+    return [];
+  }
+
+  const elements = container.querySelectorAll(tabbableElementsSelector);
+
+  return Array.from(elements).filter(
+    (el) =>
+      !el.hasAttribute('disabled') && !el.classList.contains('iui-disabled'),
+  );
+};
+
 /**
  * Return array of focusable elements in the container.
  */
@@ -122,8 +143,11 @@ export const getFocusableElements = (
   }
 
   const elements = container.querySelectorAll(
-    'a[href], button, input, textarea, select, details, audio[controls], video[controls], [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex="-1"])',
+    `${tabbableElementsSelector}, [tabindex="-1"]`,
   );
 
-  return Array.from(elements).filter((el) => !el.hasAttribute('disabled'));
+  return Array.from(elements).filter(
+    (el) =>
+      !el.hasAttribute('disabled') && !el.classList.contains('iui-disabled'),
+  );
 };

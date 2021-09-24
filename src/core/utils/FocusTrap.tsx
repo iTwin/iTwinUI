@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { getFocusableElements } from './common';
+import { getTabbableElements } from './common';
 import { mergeRefs } from './hooks/useMergedRefs';
 
 export type FocusTrapProps = {
@@ -22,7 +22,7 @@ export const FocusTrap = (props: FocusTrapProps) => {
   const childRef = React.useRef<HTMLElement>();
 
   const getFirstLastFocusables = () => {
-    const elements = getFocusableElements(childRef.current);
+    const elements = getTabbableElements(childRef.current);
     const firstElement = elements[0];
     const lastElement = elements[(elements.length || 1) - 1];
     return [firstElement, lastElement] as const;
