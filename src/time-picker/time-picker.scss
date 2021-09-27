@@ -67,3 +67,8 @@
     }
   }
 }
+
+@mixin iui-time-picker-period {
+  display: flex;
+  align-items: center;
+}

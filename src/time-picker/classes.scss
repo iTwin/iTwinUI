@@ -6,12 +6,11 @@
   @include iui-time-picker;
 }
 
-.iui-time,
-.iui-period {
+.iui-time {
   @include iui-time-picker-list;
 }
 
 .iui-period {
-  display: flex;
-  align-items: center;
+  @include iui-time-picker-list;
+  @include iui-time-picker-period;
 }
