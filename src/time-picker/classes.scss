@@ -5,3 +5,13 @@
 .iui-time-picker {
   @include iui-time-picker;
 }
+
+.iui-time,
+.iui-period {
+  @include iui-time-picker-item;
+}
+
+.iui-period {
+  display: flex;
+  align-items: center;
+}
