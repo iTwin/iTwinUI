@@ -1408,6 +1408,7 @@ export const Editable: Story<TableProps> = (args) => {
       data={data}
       isRowDisabled={isRowDisabled}
       isSortable
+      isSelectable
       // These flags prevent filters and sorting from resetting
       autoResetFilters={false}
       autoResetSortBy={false}

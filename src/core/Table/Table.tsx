@@ -145,6 +145,11 @@ export type TableProps<
    * @default 'default'
    */
   density?: 'default' | 'condensed' | 'extra-condensed';
+  /**
+   * Flag whether to select a row when clicked anywhere inside of it.
+   * @default true
+   */
+  selectRowOnClick?: boolean;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -222,6 +227,7 @@ export const Table = <
     density = 'default',
     selectSubRows = true,
     getSubRows,
+    selectRowOnClick = true,
     ...rest
   } = props;
 
@@ -351,7 +357,7 @@ export const Table = <
   const onRowClickHandler = React.useCallback(
     (event: React.MouseEvent, row: Row<T>) => {
       const isDisabled = isRowDisabled?.(row.original);
-      if (isSelectable && !isDisabled) {
+      if (isSelectable && !isDisabled && selectRowOnClick) {
         if (!row.isSelected && !event.ctrlKey) {
           dispatch({
             type: singleRowSelectedAction,
@@ -361,9 +367,11 @@ export const Table = <
           row.toggleRowSelected(!row.isSelected);
         }
       }
-      !isDisabled && onRowClick?.(event, row);
+      if (!isDisabled) {
+        onRowClick?.(event, row);
+      }
     },
-    [dispatch, isSelectable, onRowClick, isRowDisabled],
+    [isRowDisabled, isSelectable, selectRowOnClick, dispatch, onRowClick],
   );
 
   return (

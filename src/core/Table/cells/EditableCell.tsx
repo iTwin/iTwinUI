@@ -94,6 +94,10 @@ export const EditableCell = <T extends Record<string, unknown>>(
         e.preventDefault();
         props.onDrop?.(e);
       }}
+      onClick={(e) => {
+        e.stopPropagation();
+        props.onClick?.(e);
+      }}
     >
       {children}
     </div>
