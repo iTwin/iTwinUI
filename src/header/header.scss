@@ -77,14 +77,6 @@
     border-radius: 0;
   }
 
-  .iui-notification-primary::before,
-  .iui-notification-positive::before,
-  .iui-notification-warning::before,
-  .iui-notification-negative::before {
-    top: 7%;
-    right: $iui-xs;
-  }
-
   .iui-divider {
     width: 1px;
     height: $iui-baseline * 2;

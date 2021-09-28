@@ -170,14 +170,6 @@
       }
     }
   }
-
-  .iui-notification-primary::before,
-  .iui-notification-positive::before,
-  .iui-notification-warning::before,
-  .iui-notification-negative::before {
-    top: $iui-baseline - $iui-xxs;
-    left: ($iui-l * 2) - $iui-xs - $iui-xxs;
-  }
 }
 
 @mixin iui-side-navigation-submenu {
