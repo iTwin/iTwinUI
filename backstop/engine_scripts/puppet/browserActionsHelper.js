@@ -4,7 +4,7 @@ async function performAction(page, action) {
   switch (action.type) {
     case ScenarioActions.Click: {
       await page.waitForSelector(action.value);
-      await page.click(action.value);
+      await page.evaluate((selector) => document.querySelector(selector).click(), action.value);
       break;
     }
     case ScenarioActions.Hover: {
@@ -14,7 +14,7 @@ async function performAction(page, action) {
     }
     case ScenarioActions.Focus: {
       await page.waitForSelector(action.value);
-      await page.focus(action.value);
+      await page.evaluate((selector) => document.querySelector(selector).focus(), action.value);
       break;
     }
     case ScenarioActions.KeyPress: {

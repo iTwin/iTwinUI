@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.32.0](https://www.github.com/iTwin/iTwinUI/compare/v0.31.0...v0.32.0) (2021-09-21)
+
+### What's new
+
+* **Toasts:** Removed Toast animation classes and keyframes ([#289](https://www.github.com/iTwin/iTwinUI/issues/289)) ([ce5d175](https://www.github.com/iTwin/iTwinUI/commit/ce5d1753f2c31ce610096fc98552453a2c6cb611))
+
+### Fixes
+
+* **Inputs:** Inline icon padding fix [#297](https://www.github.com/iTwin/iTwinUI/issues/297) ([78b8d83](https://www.github.com/iTwin/iTwinUI/commit/78b8d8367d65ab837980e702901bcb37d0fc807e))
+
+## [0.31.0](https://www.github.com/iTwin/iTwinUI/compare/v0.30.0...v0.31.0) (2021-09-15)
+
+### What's new
+
+* **InformationPanel:** Add Information Panel ([#251](https://www.github.com/iTwin/iTwinUI/issues/251)) ([8f4bfc6](https://www.github.com/iTwin/iTwinUI/commit/8f4bfc6066f666293b37c284a48b5be207329720))
+* **Inputs:** Inputs now use grid display for better layouts, some of the classes and HTML structure have been changed ([#287](https://www.github.com/iTwin/iTwinUI/issues/287)) ([a3405f2](https://www.github.com/iTwin/iTwinUI/commit/a3405f2d6fa97baf8d4062c2500d5d3edba33cac))
+
 ## [0.30.0](https://www.github.com/iTwin/iTwinUI/compare/v0.29.1...v0.30.0) (2021-09-07)
 
 ### What's new

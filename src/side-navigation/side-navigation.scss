@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../text/index';
 
 @mixin iui-side-navigation {
   display: inline-flex;
@@ -141,4 +142,58 @@
       }
     }
   }
+}
+
+@mixin iui-side-navigation-submenu {
+  min-width: $iui-3xl * 2;
+  width: $iui-3xl * 4;
+  max-width: 50vw;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 $iui-sm $iui-baseline;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-y: overlay;
+  resize: horizontal;
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border-right: 1px solid t(iui-color-background-5);
+  }
+
+  @include iui-transition-group;
+
+  &-header {
+    height: $iui-baseline * 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-label {
+      @include iui-text(title);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+
+      .iui-button {
+        flex-shrink: 0;
+      }
+
+      > * {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &-actions {
+        flex-shrink: 0;
+        margin-left: $iui-s;
+      }
+    }
+  }
+}
+
+@mixin iui-side-navigation-wrapper {
+  display: flex;
+  position: relative;
+  height: 100%;
 }

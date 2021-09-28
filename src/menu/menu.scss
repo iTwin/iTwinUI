@@ -92,7 +92,8 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     }
   }
 
-  &:focus {
+  &:focus,
+  &.iui-focused {
     @include themed {
       outline: $iui-active-outline;
       outline-offset: -1px;
@@ -130,7 +131,8 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
       }
     }
 
-    &:focus {
+    &:focus,
+    &.iui-focused {
       outline-width: $iui-xxs;
       outline-offset: -2px;
     }
