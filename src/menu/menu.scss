@@ -162,6 +162,10 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   }
 }
 
+@mixin iui-menu-content {
+  padding: $iui-baseline ($iui-component-padding-horizontal + 1px);
+}
+
 @mixin iui-menu-divider {
   height: 1px;
   width: calc(100% - #{$iui-l});
