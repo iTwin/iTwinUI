@@ -73,11 +73,12 @@
         user-select: all;
       }
 
-      svg {
+      &-icon {
         display: flex;
         width: $iui-icons-large;
         height: $iui-icons-large;
         margin-right: $iui-s;
+        flex-shrink: 0;
         @include themed {
           fill: t(iui-icons-color);
         }
@@ -109,6 +110,20 @@
       .iui-label {
         @include themed {
           color: t(iui-text-color-muted);
+        }
+      }
+    }
+
+    .iui-input-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      &.iui-inline {
+        align-items: flex-end;
+
+        input,
+        .iui-select-button {
+          width: 240px; // This value should change with the width of the info panel.
         }
       }
     }
