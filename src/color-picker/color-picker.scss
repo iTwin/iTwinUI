@@ -19,7 +19,7 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   // max-height: (10 rows) + (gaps) + (container padding)
   box-sizing: border-box;
   border-radius: $iui-border-radius;
-  display: flex;
+  display: inline-flex;
   padding: $iui-baseline $iui-sm;
   user-select: none;
   overflow-y: auto;
