@@ -26,7 +26,7 @@ module.exports = [
   scenario('Type Slim State hover & focus', {
     actions: [hover('#test-button-3'), focus('#test-button-4')],
     selectors: ['#demo-slim'],
-    misMatchThreshold: 0.02,
+    misMatchThreshold: 0.05,
   }),
 
   //// Split
