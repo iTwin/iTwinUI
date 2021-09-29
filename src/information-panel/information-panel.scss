@@ -2,6 +2,9 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
+$input-label-width: 116px;
+$input-width: calc(100% - #{$input-label-width});
+
 @mixin iui-information-panel-wrapper {
   position: relative;
   overflow: hidden;
@@ -118,23 +121,41 @@
       display: flex;
       flex-direction: column;
 
-      &.iui-inline {
-        align-items: flex-end;
+      .iui-input-container {
+        margin-bottom: 0;
 
-        input,
-        .iui-select-button {
-          width: 240px; // This value should change with the width of the info panel.
+        ~ .iui-input,
+        ~ .iui-select {
+          margin-bottom: $iui-baseline;
+        }
+      }
+
+      &.iui-inline {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .iui-input-container {
+          flex: $input-label-width;
+          text-align: right;
+          padding-right: $iui-m;
+          box-sizing: border-box;
+        }
+
+        .iui-input,
+        .iui-select {
+          flex: $input-width;
         }
       }
     }
 
+    // Read-only inputs
     div.iui-input-container {
       .iui-label {
         cursor: text;
         font-weight: $iui-font-weight-normal;
       }
 
-      input {
+      ~ input {
         border: none;
         background-color: transparent;
         padding-left: 0;
