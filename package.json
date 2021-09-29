@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.30.0",
+  "version": "0.32.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -79,6 +79,7 @@
     "jimp": ">=0.16.1",
     "trim-newlines": "^3.0.1",
     "glob-parent": "^5.1.2",
-    "jpeg-js": "^0.4.3"
+    "jpeg-js": "^0.4.3",
+    "set-value": "^4.1.0"
   }
 }
