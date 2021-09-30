@@ -199,15 +199,11 @@
 @mixin iui-input-icon {
   display: flex;
   grid-area: icon;
+  width: $iui-icons-default;
+  height: $iui-icons-default;
   align-self: center;
-
-  &,
-  svg {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    @include themed {
-      fill: t(iui-icons-color);
-    }
+  @include themed {
+    fill: t(iui-icons-color);
   }
 
   &:not(:last-child) {
@@ -246,15 +242,18 @@
 
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
-    // #region Transition for arrow icon (e.g. svg-caret-down), used in combobox
     svg {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+      @include themed {
+        fill: t(iui-icons-color);
+      }
       transition: transform $iui-speed-fast ease-out;
     }
 
     &.iui-open svg {
-      transform: rotate(180deg);
+      transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
     }
-    // #endregion
   }
 }
 
