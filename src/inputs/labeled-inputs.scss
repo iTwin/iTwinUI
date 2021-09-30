@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../style/ripple';
 
 /// Container for grouping inputs with a label, an icon and a status message.
 /// Supported modifiers: .iui-inline-label, .iui-inline-icon and .iui-with-message
@@ -51,7 +52,7 @@
     -ms-grid-row: 2;
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
-  // stylelint-enable
+    // stylelint-enable
   }
 
   // #region Cursors
@@ -198,11 +199,15 @@
 @mixin iui-input-icon {
   display: flex;
   grid-area: icon;
-  width: $iui-icons-default;
-  height: $iui-icons-default;
   align-self: center;
-  @include themed {
-    fill: t(iui-icons-color);
+
+  &,
+  svg {
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    @include themed {
+      fill: t(iui-icons-color);
+    }
   }
 
   &:not(:last-child) {
@@ -228,6 +233,28 @@
     margin-right: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  &.iui-actionable {
+    align-items: center;
+    height: 90%;
+    width: fit-content;
+    margin-right: 1px;
+    padding: 0 $iui-sm;
+    cursor: pointer;
+    border-radius: 50%;
+
+    @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
+
+    // #region Transition for arrow icon (e.g. svg-caret-down), used in combobox
+    svg {
+      transition: transform $iui-speed-fast ease-out;
+    }
+
+    &.iui-open svg {
+      transform: rotate(180deg);
+    }
+    // #endregion
   }
 }
 
