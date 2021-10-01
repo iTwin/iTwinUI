@@ -4,7 +4,7 @@
 
 @mixin iui-ripple($hoverColor, $rippleColor) {
   background-position: center;
-  transition: background $iui-speed;
+  transition: background $iui-speed ease-out;
 
   &:hover {
     background: $hoverColor radial-gradient(circle, transparent 1%, #{$hoverColor} 1%) center/15000%;
