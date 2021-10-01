@@ -89,9 +89,8 @@
           @include iui-focus;
           cursor: pointer;
           display: inline-block;
-          width: $iui-l;
-          line-height: $iui-l;
-          margin: 0 $iui-xs;
+          width: $iui-baseline * 3;
+          line-height: $iui-baseline * 3;
 
           &:hover:not(.iui-selected) {
             border-radius: $iui-border-radius;
