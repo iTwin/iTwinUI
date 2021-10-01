@@ -4,9 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { CommonProps } from '../utils/props';
-import { useTheme } from '../utils/hooks/useTheme';
-import { useOverflow } from '../utils/hooks/useOverflow';
+import { CommonProps, useTheme, useOverflow } from '../utils';
 import '@itwin/itwinui-css/css/button.css';
 
 export type ButtonGroupProps = {

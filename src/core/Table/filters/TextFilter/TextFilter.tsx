@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import '@itwin/itwinui-css/css/table.css';
-import { useTheme } from '../../../utils/hooks/useTheme';
+import { useTheme } from '../../../utils';
 import { Input } from '../../../Input';
 import {
   FilterButtonBar,

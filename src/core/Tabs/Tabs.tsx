@@ -4,12 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import React from 'react';
-import { useTheme } from '../utils/hooks/useTheme';
+import {
+  useTheme,
+  useResizeObserver,
+  useMergedRefs,
+  getBoundedValue,
+} from '../utils';
 import '@itwin/itwinui-css/css/tabs.css';
-import { useResizeObserver } from '../utils/hooks/useResizeObserver';
-import { useMergedRefs } from '../utils/hooks/useMergedRefs';
 import { Tab } from './Tab';
-import { getBoundedValue } from '../utils/common';
 
 export type TabsProps = {
   /**

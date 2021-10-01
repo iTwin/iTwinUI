@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { StatusIconMap } from '../utils/common';
+import { StatusIconMap } from '../utils';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 import { ExpandableBlock } from './ExpandableBlock';

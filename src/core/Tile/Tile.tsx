@@ -7,10 +7,9 @@ import cx from 'classnames';
 import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
 import SvgMore from '@itwin/itwinui-icons-react/cjs/icons/More';
 import SvgNew from '@itwin/itwinui-icons-react/cjs/icons/New';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme, CommonProps } from '../utils';
 import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu';
-import { CommonProps } from '../utils/props';
 import { IconButton } from '../Buttons';
 
 export type TileProps = {

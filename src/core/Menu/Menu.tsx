@@ -4,11 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { CommonProps } from '../utils/props';
-import { useTheme } from '../utils/hooks/useTheme';
+import {
+  CommonProps,
+  useTheme,
+  useMergedRefs,
+  getFocusableElements,
+} from '../utils';
 import '@itwin/itwinui-css/css/menu.css';
-import { useMergedRefs } from '../utils/hooks/useMergedRefs';
-import { getFocusableElements } from '../utils/common';
 
 export type MenuProps = {
   /**

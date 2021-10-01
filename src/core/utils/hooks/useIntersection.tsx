@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { getWindow } from '../common';
+import { getWindow } from '../functions/dom';
 
 /**
  * Hook that uses `IntersectionObserver` to trigger `onIntersect` callback when element is in viewport.

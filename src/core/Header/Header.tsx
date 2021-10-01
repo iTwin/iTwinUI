@@ -8,10 +8,9 @@ import cx from 'classnames';
 import React from 'react';
 import { IconButton } from '../Buttons';
 
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme, CommonProps } from '../utils';
 import '@itwin/itwinui-css/css/header.css';
 import { DropdownMenu } from '../DropdownMenu';
-import { CommonProps } from '../utils/props';
 
 export type HeaderTranslations = {
   /**

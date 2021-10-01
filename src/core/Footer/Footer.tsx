@@ -4,9 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme, StylingProps } from '../utils';
 import '@itwin/itwinui-css/css/footer.css';
-import { StylingProps } from '../utils/props';
 
 export type TitleTranslations = {
   termsOfService: string;

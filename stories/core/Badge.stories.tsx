@@ -5,7 +5,7 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Badge, BadgeProps } from '../../src/core';
-import { SoftBackgrounds } from '../../src/core/utils/common';
+import { SoftBackgrounds } from '../../src/core/utils';
 
 export default {
   component: Badge,

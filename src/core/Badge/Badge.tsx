@@ -4,10 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { CommonProps } from '../utils/props';
-import { useTheme } from '../utils/hooks/useTheme';
+import {
+  CommonProps,
+  useTheme,
+  getWindow,
+  isSoftBackground,
+  SoftBackgrounds,
+} from '../utils';
 import '@itwin/itwinui-css/css/badge.css';
-import { getWindow, isSoftBackground, SoftBackgrounds } from '../utils/common';
 
 /**
  * Helper function that returns one of the preset badge color values.

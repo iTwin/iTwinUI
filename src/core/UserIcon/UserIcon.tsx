@@ -7,8 +7,7 @@ import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
 import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
 import cx from 'classnames';
 import React from 'react';
-import { CommonProps } from '../utils/props';
-import { useTheme } from '../utils/hooks/useTheme';
+import { CommonProps, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/user-icon.css';
 
 export type UserIconStatus = 'online' | 'busy' | 'away' | 'offline';

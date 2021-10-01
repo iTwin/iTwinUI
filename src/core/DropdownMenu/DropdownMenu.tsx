@@ -3,11 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { useTheme } from '../utils/hooks/useTheme';
+import {
+  useTheme,
+  CommonProps,
+  Popover,
+  PopoverProps,
+  PopoverInstance,
+  mergeRefs,
+} from '../utils';
 import { Menu } from '../Menu';
-import { CommonProps } from '../utils/props';
-import { Popover, PopoverProps, PopoverInstance } from '../utils/Popover';
-import { mergeRefs } from '../utils/hooks/useMergedRefs';
 
 export type DropdownMenuProps = {
   /**

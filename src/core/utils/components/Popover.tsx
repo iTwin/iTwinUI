@@ -6,7 +6,7 @@
 import React from 'react';
 import Tippy, { TippyProps } from '@tippyjs/react';
 import { Placement, Instance } from 'tippy.js';
-import { useMergedRefs } from './hooks/useMergedRefs';
+import { useMergedRefs } from '../hooks/useMergedRefs';
 export type PopoverInstance = Instance;
 
 export type PopoverProps = {

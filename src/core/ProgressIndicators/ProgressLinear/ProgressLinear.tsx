@@ -5,8 +5,7 @@
 import React from 'react';
 
 import cx from 'classnames';
-import { CommonProps } from '../../utils/props';
-import { useTheme } from '../../utils/hooks/useTheme';
+import { CommonProps, useTheme } from '../../utils';
 import '@itwin/itwinui-css/css/progress-indicator.css';
 
 export type ProgressLinearProps = {

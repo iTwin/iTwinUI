@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { getTabbableElements } from './common';
-import { mergeRefs } from './hooks/useMergedRefs';
+import { getTabbableElements } from '../functions/focusable';
+import { mergeRefs } from '../hooks/useMergedRefs';
 
 export type FocusTrapProps = {
   /**

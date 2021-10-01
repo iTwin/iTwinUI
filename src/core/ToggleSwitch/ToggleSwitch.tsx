@@ -4,8 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { useMergedRefs } from '../utils/hooks/useMergedRefs';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useMergedRefs, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/toggle-switch.css';
 
 export type ToggleSwitchProps = {

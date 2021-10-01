@@ -5,12 +5,10 @@
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import cx from 'classnames';
 import React from 'react';
-import { CommonProps } from '../utils/props';
 import { CSSTransition } from 'react-transition-group';
 
-import { useTheme } from '../utils/hooks/useTheme';
+import { CommonProps, useTheme, StatusIconMap } from '../utils';
 import '@itwin/itwinui-css/css/expandable-block.css';
-import { StatusIconMap } from '../utils/common';
 
 export type ExpandableBlockProps = {
   /**

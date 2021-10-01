@@ -5,7 +5,7 @@
 import React from 'react';
 import { InputGroup } from '../InputGroup';
 import '@itwin/itwinui-css/css/inputs.css';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme } from '../utils';
 
 export type RadioTileGroupProps = {
   /**

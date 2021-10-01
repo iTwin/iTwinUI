@@ -6,11 +6,9 @@ import React from 'react';
 import { Transition } from 'react-transition-group';
 import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
 import cx from 'classnames';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme, getWindow, StatusIconMap, CommonProps } from '../utils';
 import '@itwin/itwinui-css/css/toast-notification.css';
 import { IconButton } from '../Buttons';
-import { getWindow, StatusIconMap } from '../utils/common';
-import { CommonProps } from '../utils/props';
 
 export type ToastCategory =
   | 'informational'

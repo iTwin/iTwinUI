@@ -4,12 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/hooks/useTheme';
-import { CommonProps } from '../utils/props';
+import { useTheme, CommonProps, useMergedRefs, useOverflow } from '../utils';
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import '@itwin/itwinui-css/css/breadcrumbs.css';
-import { useMergedRefs } from '../utils/hooks/useMergedRefs';
-import { useOverflow } from '../utils/hooks/useOverflow';
 
 export type BreadcrumbsProps = {
   /**

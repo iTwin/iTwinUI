@@ -5,9 +5,8 @@
 import React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/table.css';
-import { useTheme } from '../../utils/hooks/useTheme';
+import { useTheme, CommonProps } from '../../utils';
 import { Button } from '../../Buttons';
-import { CommonProps } from '../../utils/props';
 
 export type FilterButtonBarTranslation = {
   filter: string;

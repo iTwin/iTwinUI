@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getContainer } from '../utils/common';
+import { getContainer } from '../utils';
 import { ToastCategory, ToastProps } from './Toast';
 import { ToastWrapper } from './ToastWrapper';
 

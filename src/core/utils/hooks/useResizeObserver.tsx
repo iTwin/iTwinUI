@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { getWindow } from '../common';
+import { getWindow } from '../functions/dom';
 
 /**
  * Hook that uses `ResizeObserver` to access an element's size every time it updates.

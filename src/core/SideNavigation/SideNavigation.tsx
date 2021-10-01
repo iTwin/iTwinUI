@@ -4,8 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/hooks/useTheme';
-import { CommonProps } from '../utils/props';
+import { useTheme, CommonProps } from '../utils';
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import { IconButton } from '../Buttons';
 import { Tooltip } from '../Tooltip';

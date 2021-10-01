@@ -3,12 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { StatusIconMap } from '../utils/common';
+import { StatusIconMap, useTheme, InputContainer } from '../utils';
 import { Textarea } from '../Textarea';
 import { TextareaProps } from '../Textarea/Textarea';
-import { useTheme } from '../utils/hooks/useTheme';
 import { LabeledInputProps } from '../LabeledInput';
-import { InputContainer } from '../utils/InputContainer';
 import '@itwin/itwinui-css/css/inputs.css';
 
 export type LabeledTextareaProps = {

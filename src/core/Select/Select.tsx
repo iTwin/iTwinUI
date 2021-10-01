@@ -5,11 +5,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { DropdownMenu } from '../DropdownMenu';
-import MenuItem from '../Menu/MenuItem';
-import { PopoverProps, PopoverInstance } from '../utils/Popover';
-
-import { CommonProps } from '../utils/props';
-import { useTheme } from '../utils/hooks/useTheme';
+import { MenuItem } from '../Menu/MenuItem';
+import { PopoverProps, PopoverInstance, CommonProps, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/inputs.css';
 
 export type ItemRendererProps = {

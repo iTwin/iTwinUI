@@ -21,9 +21,8 @@ import {
   useExpanded,
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme, CommonProps } from '../utils';
 import '@itwin/itwinui-css/css/table.css';
-import { CommonProps } from '../utils/props';
 import SvgSortDown from '@itwin/itwinui-icons-react/cjs/icons/SortDown';
 import SvgSortUp from '@itwin/itwinui-icons-react/cjs/icons/SortUp';
 import { getCellStyle } from './utils';

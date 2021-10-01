@@ -5,9 +5,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { CellProps, Row, TableInstance, TableState } from 'react-table';
-import { useIntersection } from '../utils/hooks/useIntersection';
+import { useIntersection, useMergedRefs } from '../utils';
 import { CSSTransition } from 'react-transition-group';
-import { useMergedRefs } from '../utils/hooks/useMergedRefs';
 import { TableCell } from './TableCell';
 
 /**

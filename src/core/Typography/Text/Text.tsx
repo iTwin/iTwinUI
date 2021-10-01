@@ -4,8 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import React from 'react';
-import { useTheme } from '../../utils/hooks/useTheme';
-import { CommonProps } from '../../utils/props';
+import { useTheme, CommonProps } from '../../utils';
 import '@itwin/itwinui-css/css/text.css';
 
 type TextOwnProps<T extends React.ElementType | React.ComponentType = 'div'> = {

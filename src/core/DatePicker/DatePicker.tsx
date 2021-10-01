@@ -6,7 +6,7 @@ import SvgChevronLeft from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeft';
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import cx from 'classnames';
 import React from 'react';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme } from '../utils';
 import '@itwin/itwinui-css/css/date-picker.css';
 import { IconButton } from '../Buttons/IconButton';
 import { TimePicker, TimePickerProps } from '../TimePicker';

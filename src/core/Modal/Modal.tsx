@@ -6,12 +6,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import cx from 'classnames';
 import SvgClose from '@itwin/itwinui-icons-react/cjs/icons/Close';
-import { CommonProps } from '../utils/props';
-import { useTheme } from '../utils/hooks/useTheme';
+import {
+  CommonProps,
+  useTheme,
+  getContainer,
+  getDocument,
+  FocusTrap,
+} from '../utils';
 import '@itwin/itwinui-css/css/modal.css';
 import { IconButton } from '../Buttons/IconButton';
-import { getContainer, getDocument } from '../utils/common';
-import FocusTrap from '../utils/FocusTrap';
 
 export type ModalProps = {
   /**

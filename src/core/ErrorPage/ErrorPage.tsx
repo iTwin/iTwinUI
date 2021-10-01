@@ -11,7 +11,7 @@ import Svg503 from '@itwin/itwinui-illustrations-react/cjs/illustrations/503';
 import SvgError from '@itwin/itwinui-illustrations-react/cjs/illustrations/Error';
 import React from 'react';
 import { Button } from '../Buttons/Button';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme } from '../utils';
 import '@itwin/itwinui-css/css/non-ideal-state.css';
 
 export type ErrorPageType =

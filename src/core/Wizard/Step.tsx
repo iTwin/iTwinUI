@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import React from 'react';
 import { Tooltip } from '../Tooltip';
-import { StylingProps } from '../utils/props';
+import { StylingProps } from '../utils';
 import { WizardType } from './Wizard';
 
 export type StepProps = {

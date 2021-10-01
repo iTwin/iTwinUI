@@ -3,10 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { StatusIconMap } from '../utils/common';
-import { useTheme } from '../utils/hooks/useTheme';
-import { CommonProps } from '../utils/props';
-import { InputContainer } from '../utils/InputContainer';
+import { StatusIconMap, useTheme, CommonProps, InputContainer } from '../utils';
 import '@itwin/itwinui-css/css/inputs.css';
 
 export type InputGroupProps = {

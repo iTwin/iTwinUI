@@ -9,8 +9,7 @@ import { DropdownMenu } from '../../DropdownMenu';
 import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
 import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
 
-import { useTheme } from '../../utils/hooks/useTheme';
-import { useMergedRefs } from '../../utils/hooks/useMergedRefs';
+import { useTheme, useMergedRefs } from '../../utils';
 import '@itwin/itwinui-css/css/button.css';
 
 export type DropdownButtonProps = {

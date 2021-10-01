@@ -6,7 +6,7 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme } from '../utils';
 import { Button, ButtonProps } from '../Buttons';
 import '@itwin/itwinui-css/css/side-navigation.css';
 

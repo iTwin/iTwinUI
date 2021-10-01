@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { ThemeOptions, ThemeType, useTheme } from '../utils/hooks/useTheme';
+import { ThemeOptions, ThemeType, useTheme } from '../utils';
 
 export type ThemeProviderProps = {
   /**

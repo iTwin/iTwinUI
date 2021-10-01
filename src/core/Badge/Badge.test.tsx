@@ -6,7 +6,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { Badge } from './Badge';
-import { SoftBackgrounds } from '../utils/common';
+import { SoftBackgrounds } from '../utils';
 
 beforeAll(() => {
   window.CSS = { supports: () => true, escape: (i) => i };

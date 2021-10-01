@@ -4,9 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import React from 'react';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme, ClassNameProps, StylingProps } from '../utils';
 import '@itwin/itwinui-css/css/time-picker.css';
-import { ClassNameProps, StylingProps } from '../utils/props';
 
 const isSameHour = (
   date1: Date,

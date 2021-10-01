@@ -6,7 +6,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import { ButtonProps } from '../Button';
-import { useTheme } from '../../utils/hooks/useTheme';
+import { useTheme } from '../../utils';
 import '@itwin/itwinui-css/css/button.css';
 
 export type IconButtonProps = {

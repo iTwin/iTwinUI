@@ -11,7 +11,7 @@ import { Placement } from 'tippy.js';
 import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
 import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
 
-import { useTheme } from '../../utils/hooks/useTheme';
+import { useTheme } from '../../utils';
 import '@itwin/itwinui-css/css/button.css';
 
 export type SplitButtonProps = {

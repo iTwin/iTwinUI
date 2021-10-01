@@ -14,7 +14,7 @@ import {
   SplitButtonProps,
 } from '../Buttons';
 
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme } from '../utils';
 import '@itwin/itwinui-css/css/header.css';
 
 export type HeaderButtonProps = {

@@ -6,10 +6,8 @@ import React from 'react';
 
 import { Select } from '../Select';
 import { SelectProps } from '../Select/Select';
-import { StatusIconMap } from '../utils/common';
-import { useTheme } from '../utils/hooks/useTheme';
+import { StatusIconMap, useTheme, InputContainer } from '../utils';
 import { LabeledInputProps } from '../LabeledInput';
-import { InputContainer } from '../utils/InputContainer';
 import '@itwin/itwinui-css/css/inputs.css';
 
 export type LabeledSelectProps<T> = {

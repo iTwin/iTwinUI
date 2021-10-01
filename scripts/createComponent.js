@@ -59,7 +59,7 @@ const componentFactory = (directory, name) => {
     path: `${directory}/${name}.tsx`,
     template: `${copyrightHeader}
 import React from 'react';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme } from '../utils';
 
 export type ${name}Props = {};
 

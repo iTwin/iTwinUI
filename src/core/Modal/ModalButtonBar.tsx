@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme } from '../utils';
 import '@itwin/itwinui-css/css/modal.css';
 
 export type ModalButtonBarProps = {

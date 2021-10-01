@@ -5,8 +5,8 @@
 import React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/table.css';
-import { useTheme } from '../../utils/hooks/useTheme';
-import { CommonProps } from '../../utils/props';
+import { useTheme } from '../../utils';
+import { CommonProps } from '../../utils';
 
 export type BaseFilterProps = {
   /**

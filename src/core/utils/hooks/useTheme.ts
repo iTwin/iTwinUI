@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import '@itwin/itwinui-css/css/global.css';
-import { getDocument, getWindow } from '../common';
+import { getDocument, getWindow } from '../functions/dom';
 
 export type ThemeOptions = {
   /**

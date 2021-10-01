@@ -6,9 +6,8 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { useTheme } from '../utils/hooks/useTheme';
+import { useTheme, CommonProps } from '../utils';
 import '@itwin/itwinui-css/css/header.css';
-import { CommonProps } from '../utils/props';
 
 export type HeaderLogoProps = {
   /**

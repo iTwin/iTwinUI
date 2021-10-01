@@ -5,8 +5,7 @@
 import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
 import cx from 'classnames';
 import React from 'react';
-import { useMergedRefs } from '../utils/hooks/useMergedRefs';
-import { useTheme } from '../utils/hooks/useTheme';
+import { useMergedRefs, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/inputs.css';
 
 export type RadioTileProps = {

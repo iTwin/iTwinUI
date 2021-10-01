@@ -3,9 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { useTheme } from '../utils/hooks/useTheme';
 import cx from 'classnames';
-import { CommonProps } from '../utils/props';
+import { useTheme, CommonProps } from '../utils';
 import '@itwin/itwinui-css/css/user-icon.css';
 
 export type UserIconGroupProps = {
