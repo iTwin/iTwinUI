@@ -24,7 +24,7 @@
     />
     <style>
       section[id^='demo'] {
-        width: 50%;
+        width: auto;
         padding: 11px 12px;
       }
 
@@ -81,9 +81,13 @@
     <h2>Default</h2>
     <section id="demo-default">
 
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
           id="test-menu-1"
         >
@@ -91,6 +95,7 @@
         </li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">Option 2</span>
@@ -102,9 +107,14 @@
 
       <br />
 
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <span class="iui-content">Option 1</span>
@@ -115,12 +125,14 @@
         </li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">Option 2</span>
         </li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">Option 3</span>
@@ -135,6 +147,8 @@
       >
         <li
           class="iui-menu-item iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <span class="iui-content">Option 1</span>
@@ -145,12 +159,14 @@
         </li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">Option 2</span>
         </li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">Option 3</span>
@@ -159,9 +175,13 @@
 
       <br />
 
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
           id="test-menu-2"
         >
@@ -173,6 +193,7 @@
         </li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -192,9 +213,14 @@
 
       <br />
 
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-placeholder
@@ -215,6 +241,7 @@
         </li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -229,6 +256,7 @@
         </li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -245,9 +273,14 @@
 
       <br />
 
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-placeholder
@@ -265,6 +298,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -282,6 +316,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -308,15 +343,77 @@
         </li>
         <li
           class="iui-menu-divider"
-          aria-hidden="true"
+          role="separator"
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
             <div class="iui-menu-label">My projects</div>
           </span>
+        </li>
+      </ul>
+
+      <br />
+
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
+        <li
+          class="iui-menu-content"
+          role="presentation"
+        >
+          <div class="iui-text-leading">Terry Rivers</div>
+          <div
+            class="iui-text-muted"
+            style="margin-bottom: 8px;"
+          >terry.rivers@email.com</div>
+          <label class="iui-input-container">
+            <div class="iui-select">
+              <div
+                tabindex="0"
+                class="iui-select-button"
+              >
+                <span class="iui-content">Administrator</span>
+              </div>
+            </div>
+          </label>
+
+        </li>
+        <li
+          class="iui-menu-divider"
+          role="separator"
+        ></li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">View profile</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Sign out</span>
+        </li>
+      </ul>
+
+      <br />
+
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
+        <li
+          class="iui-menu-content"
+          role="presentation"
+        >
+          <div class="iui-text-muted">No results, try refining your search&mldr;</div>
         </li>
       </ul>
 
@@ -335,7 +432,6 @@
             class="iui-header-logo"
             role="button"
             aria-label="App name"
-            aria-expanded="false"
             tabindex="0"
           >
             <svg-imodel-hollow
@@ -354,6 +450,7 @@
               type="button"
               aria-label="Project picker"
               aria-expanded="false"
+              aria-haspopup="true"
               id="test-button-1"
             >
               <div class="iui-icon iui-header-button-icon demo-picture"></div>
@@ -377,7 +474,8 @@
               class="iui-button iui-borderless iui-active iui-large iui-header-button"
               type="button"
               aria-label="Model picker"
-              aria-expanded="false"
+              aria-expanded="true"
+              aria-haspopup="true"
               aria-current="location"
               id="demo-header-imodel-button"
             >
@@ -404,6 +502,7 @@
       >
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -417,6 +516,8 @@
         </li>
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-model
@@ -434,6 +535,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <div class="iui-icon iui-header-menu-icon demo-picture"></div>
@@ -444,10 +546,11 @@
         </li>
         <li
           class="iui-menu-divider"
-          aria-hidden="true"
+          role="separator"
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -465,7 +568,6 @@
             class="iui-header-logo"
             role="button"
             aria-label="App name"
-            aria-expanded="false"
             tabindex="0"
           >
             <svg-imodel-hollow
@@ -484,6 +586,7 @@
               type="button"
               aria-label="Project picker"
               aria-expanded="false"
+              aria-haspopup="true"
               id="test-button-1"
             >
               <div class="iui-icon iui-header-button-icon demo-picture"></div>
@@ -507,7 +610,8 @@
               class="iui-button iui-borderless iui-active iui-large iui-header-button"
               type="button"
               aria-label="Model picker"
-              aria-expanded="false"
+              aria-expanded="true"
+              aria-haspopup="true"
               aria-current="location"
               id="demo-header-slim-imodel-button"
             >
@@ -534,6 +638,7 @@
       >
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -547,6 +652,8 @@
         </li>
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-model
@@ -564,6 +671,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <div class="iui-icon iui-header-menu-icon demo-picture"></div>
@@ -574,10 +682,11 @@
         </li>
         <li
           class="iui-menu-divider"
-          aria-hidden="true"
+          role="separator"
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -605,9 +714,13 @@
             ></svg-placeholder>
             <span class="iui-content">Alpha</span>
           </div>
-          <ul class="iui-menu">
+          <ul
+            class="iui-menu"
+            role="menu"
+          >
             <li
               class="iui-menu-item iui-large iui-active"
+              aria-checked="true"
               tabindex="0"
             >
               <svg-placeholder
@@ -672,7 +785,7 @@
             </li>
             <li
               class="iui-menu-divider"
-              aria-hidden="true"
+              role="separator"
             ></li>
             <li
               class="iui-menu-item"
@@ -700,9 +813,13 @@
             ></svg-placeholder>
             <span class="iui-content">Alpha</span>
           </div>
-          <ul class="iui-menu">
+          <ul
+            class="iui-menu"
+            role="menu"
+          >
             <li
               class="iui-menu-item iui-large iui-active"
+              aria-checked="true"
               tabindex="0"
             >
               <svg-placeholder
@@ -767,7 +884,7 @@
             </li>
             <li
               class="iui-menu-divider"
-              aria-hidden="true"
+              role="separator"
             ></li>
             <li
               class="iui-menu-item"
@@ -795,9 +912,13 @@
             ></svg-placeholder>
             <span class="iui-content">Alpha</span>
           </div>
-          <ul class="iui-menu">
+          <ul
+            class="iui-menu"
+            role="menu"
+          >
             <li
               class="iui-menu-item iui-large iui-active"
+              aria-checked="true"
               tabindex="0"
             >
               <svg-placeholder
@@ -862,7 +983,7 @@
             </li>
             <li
               class="iui-menu-divider"
-              aria-hidden="true"
+              role="separator"
             ></li>
             <li
               class="iui-menu-item"
@@ -893,9 +1014,14 @@
           aria-hidden="true"
         ></svg-caret-down-small>
       </button>
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-placeholder
@@ -913,6 +1039,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -930,6 +1057,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -960,10 +1088,11 @@
         </li>
         <li
           class="iui-menu-divider"
-          aria-hidden="true"
+          role="separator"
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -984,9 +1113,14 @@
           aria-hidden="true"
         ></svg-caret-down-small>
       </button>
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-placeholder
@@ -1004,6 +1138,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1021,6 +1156,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1051,10 +1187,11 @@
         </li>
         <li
           class="iui-menu-divider"
-          aria-hidden="true"
+          role="separator"
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -1075,9 +1212,14 @@
           aria-hidden="true"
         ></svg-caret-down-small>
       </button>
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-placeholder
@@ -1095,6 +1237,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1112,6 +1255,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1142,10 +1286,11 @@
         </li>
         <li
           class="iui-menu-divider"
-          aria-hidden="true"
+          role="separator"
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -1170,9 +1315,14 @@
           aria-hidden="true"
         ></svg-caret-down-small>
       </button>
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-placeholder
@@ -1190,6 +1340,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1207,6 +1358,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1237,10 +1389,11 @@
         </li>
         <li
           class="iui-menu-divider"
-          aria-hidden="true"
+          role="separator"
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -1261,9 +1414,14 @@
           aria-hidden="true"
         ></svg-caret-down-small>
       </button>
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-placeholder
@@ -1281,6 +1439,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1298,6 +1457,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1328,10 +1488,11 @@
         </li>
         <li
           class="iui-menu-divider"
-          aria-hidden="true"
+          role="separator"
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -1352,9 +1513,14 @@
           aria-hidden="true"
         ></svg-caret-down-small>
       </button>
-      <ul class="iui-menu">
+      <ul
+        class="iui-menu"
+        role="menu"
+      >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
+          aria-checked="true"
           tabindex="0"
         >
           <svg-placeholder
@@ -1372,6 +1538,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1389,6 +1556,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1419,10 +1587,11 @@
         </li>
         <li
           class="iui-menu-divider"
-          aria-hidden="true"
+          role="separator"
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
