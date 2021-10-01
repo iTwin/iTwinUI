@@ -233,11 +233,10 @@
 
   &.iui-actionable {
     align-items: center;
-    height: 90%;
+    height: calc(100% - 2px);
     margin-right: 1px;
     padding: 0 $iui-sm;
     cursor: pointer;
-    border-radius: 50%;
 
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
