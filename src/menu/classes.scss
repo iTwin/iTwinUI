@@ -11,6 +11,10 @@
   @include iui-menu-item;
 }
 
+.iui-menu-content {
+  @include iui-menu-content;
+}
+
 .iui-menu-divider {
   @include iui-menu-divider;
 }
