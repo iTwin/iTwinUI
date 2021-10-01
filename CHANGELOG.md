@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.33.0](https://www.github.com/iTwin/iTwinUI/compare/v0.32.0...v0.33.0) (2021-10-01)
+
+
+### Fixes
+
+* Color Picker inline-flex fix ([#310](https://www.github.com/iTwin/iTwinUI/issues/310)) ([f099653](https://www.github.com/iTwin/iTwinUI/commit/f099653a57229fa39bb0dfb7e154676dbef0f20e))
+
+
+### What's new
+
+* **DatePicker, TimePicker:** Align height of date & time picker items. ([#309](https://www.github.com/iTwin/iTwinUI/issues/309)) ([eb93f97](https://www.github.com/iTwin/iTwinUI/commit/eb93f9776680c5978ef525b6bfcfaa952d1ca694))
+* **labeled-inputs:** Add arrow icon with ripple effect ([#313](https://www.github.com/iTwin/iTwinUI/issues/313)) ([84d6cd3](https://www.github.com/iTwin/iTwinUI/commit/84d6cd3df47b71017ade9452532fa508281be3e4))
+* **Menu:** Add non-selectable menu item ([#312](https://www.github.com/iTwin/iTwinUI/issues/312)) ([49e79f1](https://www.github.com/iTwin/iTwinUI/commit/49e79f126cd98764d8f15a7cec976d6ebe30a667))
+* **MenuItem:** Add `iui-focused` class to emulate focus styling ([#307](https://www.github.com/iTwin/iTwinUI/issues/307)) ([816ef27](https://www.github.com/iTwin/iTwinUI/commit/816ef27573f5dc2818bad6bfe3f750e2c6fdbe83))
+* **NotificationMarker:** Add notification marker ([#293](https://www.github.com/iTwin/iTwinUI/issues/293)) ([4297e43](https://www.github.com/iTwin/iTwinUI/commit/4297e43bb238448ed8c7d09c740e81aef76ba50c))
+* **SideNavigation:** Add submenu ([#264](https://www.github.com/iTwin/iTwinUI/issues/264)) ([1b554f3](https://www.github.com/iTwin/iTwinUI/commit/1b554f3b37e70b1f4ae2a81e0abcf64c48c9212f))
+
 ## [0.32.0](https://www.github.com/iTwin/iTwinUI/compare/v0.31.0...v0.32.0) (2021-09-21)
 
 ### What's new
