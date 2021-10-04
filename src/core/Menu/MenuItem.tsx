@@ -147,7 +147,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         ref={refs}
         style={style}
         role={role}
-        tabIndex={disabled ? undefined : -1}
+        tabIndex={disabled || role === 'presentation' ? undefined : -1}
         aria-selected={isSelected}
         aria-haspopup={subMenuItems.length > 0}
         aria-disabled={disabled}

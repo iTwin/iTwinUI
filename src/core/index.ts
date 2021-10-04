@@ -32,6 +32,9 @@ export type { ButtonGroupProps } from './ButtonGroup';
 export { Checkbox } from './Checkbox';
 export type { CheckboxProps } from './Checkbox';
 
+export { ComboBox } from './ComboBox';
+export type { ComboBoxProps } from './ComboBox';
+
 export { DatePicker, generateLocalizedStrings } from './DatePicker';
 export type { DatePickerProps } from './DatePicker';
 

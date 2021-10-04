@@ -25,6 +25,11 @@ export type MenuProps = {
    * and selected item should have `aria-selected={true}`.
    */
   children: React.ReactNode;
+  /**
+   * If true, the first selected or enabled menu item will be focused automatically.
+   * @default true
+   */
+  setFocus?: boolean;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -32,7 +37,14 @@ export type MenuProps = {
  */
 export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
   (props, ref) => {
-    const { children, role = 'menu', className, style, ...rest } = props;
+    const {
+      children,
+      role = 'menu',
+      setFocus = true,
+      className,
+      style,
+      ...rest
+    } = props;
 
     useTheme();
 
@@ -50,8 +62,10 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
       const selectedIndex = items.findIndex(
         (el) => el.getAttribute('aria-selected') === 'true',
       );
-      setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
-    }, [focusedIndex]);
+      if (setFocus) {
+        setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
+      }
+    }, [setFocus, focusedIndex]);
 
     React.useEffect(() => {
       setFocusedIndex(null);
