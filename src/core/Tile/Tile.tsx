@@ -50,7 +50,7 @@ export type TileProps = {
    *  thumbnail={<SvgImodelHollow />}
    * />
    */
-  thumbnail: string | React.ReactNode;
+  thumbnail?: string | React.ReactNode;
   /**
    * `Badge` shown on the bottom right of thumbnail.
    */
@@ -146,36 +146,38 @@ export const Tile = (props: TileProps) => {
       )}
       {...rest}
     >
-      <div className='iui-thumbnail'>
-        {typeof thumbnail === 'string' ? (
-          <div
-            className='iui-picture'
-            style={{ backgroundImage: `url(${thumbnail})` }}
-          />
-        ) : thumbnail && (thumbnail as JSX.Element).type === 'img' ? (
-          React.cloneElement(thumbnail as JSX.Element, {
-            className: 'iui-picture',
-          })
-        ) : React.isValidElement(thumbnail) ? (
-          React.cloneElement(thumbnail, {
-            className: cx('iui-thumbnail-icon', thumbnail.props.className),
-          })
-        ) : (
-          thumbnail
-        )}
+      {thumbnail && (
+        <div className='iui-thumbnail'>
+          {typeof thumbnail === 'string' ? (
+            <div
+              className='iui-picture'
+              style={{ backgroundImage: `url(${thumbnail})` }}
+            />
+          ) : thumbnail && (thumbnail as JSX.Element).type === 'img' ? (
+            React.cloneElement(thumbnail as JSX.Element, {
+              className: 'iui-picture',
+            })
+          ) : React.isValidElement(thumbnail) ? (
+            React.cloneElement(thumbnail, {
+              className: cx('iui-thumbnail-icon', thumbnail.props.className),
+            })
+          ) : (
+            thumbnail
+          )}
 
-        {leftIcon &&
-          React.cloneElement(leftIcon as React.ReactElement, {
-            className: 'iui-small iui-type-indicator',
-          })}
+          {leftIcon &&
+            React.cloneElement(leftIcon as React.ReactElement, {
+              className: 'iui-small iui-type-indicator',
+            })}
 
-        {rightIcon &&
-          React.cloneElement(rightIcon as React.ReactElement, {
-            className: 'iui-small iui-quick-action',
-          })}
+          {rightIcon &&
+            React.cloneElement(rightIcon as React.ReactElement, {
+              className: 'iui-small iui-quick-action',
+            })}
 
-        {badge && <div className='iui-badge-container'>{badge}</div>}
-      </div>
+          {badge && <div className='iui-badge-container'>{badge}</div>}
+        </div>
+      )}
 
       <div className='iui-content'>
         <div className='iui-name'>

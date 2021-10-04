@@ -12,12 +12,10 @@ import { MenuItem } from '../Menu';
 import SvgPlaceholder from '@itwin/itwinui-icons-react/cjs/icons/Placeholder';
 
 it('should render in its most basic state', () => {
-  const { container } = render(
-    <Tile name='test-name' thumbnail={<SvgPlaceholder />} />,
-  );
+  const { container } = render(<Tile name='test-name' />);
   expect(container.querySelector('.iui-tile')).toBeTruthy();
 
-  expect(container.querySelector('.iui-thumbnail')).toBeTruthy();
+  expect(container.querySelector('.iui-thumbnail')).toBeFalsy();
   expect(container.querySelector('.iui-content')).toBeTruthy();
 
   const label = container.querySelector('.iui-name-label') as HTMLSpanElement;
@@ -25,14 +23,10 @@ it('should render in its most basic state', () => {
 });
 
 it('should render new and selected states', () => {
-  const { container } = render(
-    <Tile isSelected name='test-name' thumbnail={<SvgPlaceholder />} />,
-  );
+  const { container } = render(<Tile isSelected name='test-name' />);
   expect(container.querySelector('.iui-tile.iui-selected')).toBeTruthy();
 
-  const { container: container2 } = render(
-    <Tile isNew name='test-name' thumbnail={<SvgPlaceholder />} />,
-  );
+  const { container: container2 } = render(<Tile isNew name='test-name' />);
   expect(container2.querySelector('.iui-tile.iui-new')).toBeTruthy();
 });
 
@@ -61,6 +55,7 @@ it('should render main text content correctly', () => {
 
 it('should render thumbnail correctly (url)', () => {
   const { container } = render(<Tile name='test-name' thumbnail='image.png' />);
+  expect(container.querySelector('.iui-thumbnail')).toBeTruthy();
   const picture = container.querySelector('.iui-picture') as HTMLDivElement;
   expect(picture).toBeTruthy();
   expect(picture.style.backgroundImage).toBe('url(image.png)');
@@ -70,6 +65,7 @@ it('should render thumbnail correctly (<img>)', () => {
   const { container } = render(
     <Tile name='test-name' thumbnail={<img src='image.png' />} />,
   );
+  expect(container.querySelector('.iui-thumbnail')).toBeTruthy();
   const img = container.querySelector('.iui-picture') as HTMLImageElement;
   expect(img).toBeTruthy();
   expect(img.src).toContain('image.png');
@@ -82,6 +78,7 @@ it('should render thumbnail correctly (svg)', () => {
   const { container: placeholderIcon } = render(
     <SvgPlaceholder className='iui-thumbnail-icon' />,
   );
+  expect(container.querySelector('.iui-thumbnail')).toBeTruthy();
   const svg = container.querySelector('svg') as SVGSVGElement;
   expect(svg).toBeTruthy();
   expect(svg).toEqual(placeholderIcon.firstChild);
