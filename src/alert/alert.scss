@@ -15,28 +15,29 @@
     color: t(iui-text-color);
   }
 
-  > .iui-icon {
+  &-icon {
     @include iui-icons-default;
     flex-shrink: 0;
     margin-left: $iui-m;
   }
 
-  > .iui-message {
+  &-message {
     margin: $iui-baseline $iui-m;
+  }
 
-    > a {
-      margin-left: $iui-s;
-      text-decoration: underline;
-      user-select: none;
-      white-space: nowrap;
+  &-link {
+    cursor: pointer;
+    margin-left: $iui-s;
+    text-decoration: underline;
+    user-select: none;
+    white-space: nowrap;
 
-      &:hover {
-        text-decoration: none;
-      }
+    &:hover {
+      text-decoration: none;
     }
   }
 
-  > .iui-button {
+  .iui-button {
     margin-left: auto;
     margin-right: $iui-s;
   }
@@ -47,5 +48,50 @@
     top: 0;
     left: 0;
     width: 100vw;
+  }
+}
+
+/// Modifier mixin to categorize the alert
+/// @arg $statusColor Can be one of: positive, negative, warning, primary
+/// @arg $rootSelector Selector of the root alert element. Defaults to .iui-alert
+@mixin iui-alert-category($statusColor, $rootSelector: '.iui-alert') {
+  @include themed {
+    background: linear-gradient(
+      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6)),
+      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6))
+    ),
+      linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+    border-color: t(iui-color-foreground-#{$statusColor});
+  }
+
+  #{$rootSelector}-icon {
+    @include themed {
+      fill: t(iui-icons-color-#{$statusColor});
+    }
+  }
+
+  #{$rootSelector}-message {
+    &::selection {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-4));
+      }
+    }
+  }
+
+  #{$rootSelector}-link {
+    @include themed {
+      color: t(iui-color-foreground-#{$statusColor});
+    }
+
+    &:hover {
+      @include themed {
+        color: t(iui-color-foreground-#{$statusColor}-overlay);
+      }
+    }
+  }
+
+  #{$rootSelector}-link,
+  > .iui-button {
+    @include iui-focus(iui-focus-#{$statusColor}-box-shadow);
   }
 }
