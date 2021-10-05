@@ -92,6 +92,6 @@
 
   #{$rootSelector}-link,
   > .iui-button {
-    @include iui-focus(iui-focus-#{$statusColor}-box-shadow);
+    @include iui-focus(if($statusColor == primary, iui-focus-box-shadow, iui-focus-#{$statusColor}-box-shadow));
   }
 }
