@@ -10,7 +10,7 @@
   user-select: none;
   // Create stacking context
   position: relative;
-  z-index: 1;
+  z-index: 0;
 
   > label {
     cursor: pointer;
