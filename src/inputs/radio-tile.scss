@@ -5,13 +5,12 @@
 
 @mixin iui-radio-tile {
   display: inline-flex;
+  flex-wrap: wrap;
   width: fit-content;
   user-select: none;
   position: relative;
-
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
+  // Create stacking context
+  z-index: 1;
 
   > label {
     cursor: pointer;
@@ -39,6 +38,7 @@
       @include themed {
         border: 1px solid
           rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        background-color: t(iui-color-background-1);
       }
 
       > .iui-icon {
