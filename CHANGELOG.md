@@ -1,5 +1,11 @@
 # Changelog
 
+### [0.33.1](https://www.github.com/iTwin/iTwinUI/compare/v0.33.0...v0.33.1) (2021-10-06)
+
+### Fixes
+
+* **RadioTiles:** Added stacking context and wrap ([#321](https://www.github.com/iTwin/iTwinUI/issues/321)) ([058776e](https://www.github.com/iTwin/iTwinUI/commit/058776ea3d0d8b35bd595c111a80e5fc4bd72a3a))
+
 ## [0.33.0](https://www.github.com/iTwin/iTwinUI/compare/v0.32.0...v0.33.0) (2021-10-01)
 
 ### What's new
