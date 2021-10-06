@@ -8,8 +8,8 @@
   flex-wrap: wrap;
   width: fit-content;
   user-select: none;
-  position: relative;
   // Create stacking context
+  position: relative;
   z-index: 1;
 
   > label {
