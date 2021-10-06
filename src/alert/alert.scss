@@ -13,6 +13,7 @@
   @include themed {
     border: 1px solid t(iui-color-background-5);
     color: t(iui-text-color);
+    background-color: t(iui-color-background-1);
   }
 
   &-icon {
@@ -37,7 +38,7 @@
     }
   }
 
-  .iui-button {
+  > .iui-button {
     margin-left: auto;
     margin-right: $iui-s;
   }
