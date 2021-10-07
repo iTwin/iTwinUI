@@ -32,9 +32,16 @@
     text-decoration: underline;
     user-select: none;
     white-space: nowrap;
+    @include iui-focus;
+    @include themed {
+      color: t(iui-color-foreground-primary);
+    }
 
     &:hover {
       text-decoration: none;
+      @include themed {
+        color: t(iui-color-foreground-primary-overlay);
+      }
     }
   }
 
