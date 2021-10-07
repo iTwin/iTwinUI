@@ -22,7 +22,7 @@ jobs:
           cache: yarn
 
       - run: yarn install --frozen-lockfile
-      - run: yarn audit
+      - run: yarn audit-ci --allowlist 1002373
 
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
