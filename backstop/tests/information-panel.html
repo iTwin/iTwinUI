@@ -1535,10 +1535,9 @@
         infoPanel.classList.toggle('iui-bottom');
         infoPanel.classList.toggle('iui-right');
         if (infoPanel.classList.contains('iui-bottom')) {
-
-          button.firstElementChild.innerHTML = `<path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />`;
-        } else {
           button.firstElementChild.innerHTML = `<path d="m0 2v12h16v-12zm11 11h-10v-10h10z" />`;
+        } else {
+          button.firstElementChild.innerHTML = `<path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />`;
         }
       }
     </script>
