@@ -84,12 +84,12 @@ export default {
   },
 } as Meta<TableProps> & CreeveyMeta;
 
-export const Basic: Story<TableProps> = (args) => {
-  const { columns, data, ...rest } = args;
+export const Basic: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
-  const tableColumns = useMemo(
+
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -124,7 +124,7 @@ export const Basic: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableData = useMemo(
+  const data = useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -135,17 +135,15 @@ export const Basic: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns || tableColumns}
-      data={data || tableData}
+      columns={columns}
+      data={data}
       emptyTableContent='No data.'
-      {...rest}
+      {...args}
     />
   );
 };
 
-export const Selectable: Story<TableProps> = (args) => {
-  const { columns, data, ...rest } = args;
-
+export const Selectable: Story<Partial<TableProps>> = (args) => {
   const onSelect = useCallback(
     (rows, state) =>
       action(
@@ -162,7 +160,7 @@ export const Selectable: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -202,7 +200,7 @@ export const Selectable: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableData = useMemo(
+  const data = useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -213,21 +211,20 @@ export const Selectable: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns || tableColumns}
-      data={data || tableData}
+      columns={columns}
+      data={data}
       emptyTableContent='No data.'
       isSelectable={true}
       onSelect={onSelect}
       onRowClick={onRowClick}
-      {...rest}
+      {...args}
     />
   );
 };
 
 Selectable.args = { isSelectable: true };
 
-export const Sortable: Story<TableProps> = (args) => {
-  const { columns, data, isSortable, ...rest } = args;
+export const Sortable: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
@@ -237,7 +234,7 @@ export const Sortable: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -273,7 +270,7 @@ export const Sortable: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableData = useMemo(
+  const data = useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name3', description: 'Description3' },
@@ -284,12 +281,12 @@ export const Sortable: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns || tableColumns}
-      data={data || tableData}
+      columns={columns}
+      data={data}
       emptyTableContent='No data.'
-      isSortable={isSortable}
+      isSortable
       onSort={onSort}
-      {...rest}
+      {...args}
     />
   );
 };
@@ -303,8 +300,7 @@ Sortable.args = {
   isSortable: true,
 };
 
-export const Filters: Story<TableProps> = (args) => {
-  const { columns, data, ...rest } = args;
+export const Filters: Story<Partial<TableProps>> = (args) => {
   type TableStoryDataType = {
     index: number;
     name: string;
@@ -341,7 +337,7 @@ export const Filters: Story<TableProps> = (args) => {
     [formatter],
   );
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     (): Column<TableStoryDataType>[] => [
       {
         Header: 'Table',
@@ -411,7 +407,7 @@ export const Filters: Story<TableProps> = (args) => {
     [formatDate, translatedLabels],
   );
 
-  const tableData = useMemo(
+  const data = useMemo(
     () => [
       {
         index: 1,
@@ -454,11 +450,11 @@ export const Filters: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns || tableColumns}
-      data={data || tableData}
+      columns={columns}
+      data={data}
       emptyTableContent='No data.'
       onFilter={onFilter}
-      {...rest}
+      {...args}
     />
   );
 };
@@ -511,9 +507,7 @@ Filters.parameters = {
   } as CreeveyStoryParams,
 };
 
-export const Expandable: Story<TableProps> = (args) => {
-  const { columns, data, ...rest } = args;
-
+export const Expandable: Story<Partial<TableProps>> = (args) => {
   const onExpand = useCallback(
     (rows, state) =>
       action(
@@ -524,7 +518,7 @@ export const Expandable: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -546,7 +540,7 @@ export const Expandable: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableData = useMemo(
+  const data = useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -569,22 +563,17 @@ export const Expandable: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns || tableColumns}
-      data={data || tableData}
+      columns={columns}
+      data={data}
       emptyTableContent='No data.'
       subComponent={expandedSubComponent}
       onExpand={onExpand}
-      {...rest}
+      {...args}
     />
   );
 };
 
 Expandable.args = {
-  data: [
-    { name: 'Name1', description: 'Description1' },
-    { name: 'Name2', description: 'Description2' },
-    { name: 'Name3', description: 'Description3' },
-  ],
   isSelectable: true,
 };
 
@@ -610,9 +599,7 @@ Expandable.parameters = {
   } as CreeveyStoryParams,
 };
 
-export const ExpandableSubrows: Story<TableProps> = (args) => {
-  const { data, ...rest } = args;
-
+export const ExpandableSubrows: Story<Partial<TableProps>> = (args) => {
   const onExpand = useCallback(
     (rows, state) =>
       action(
@@ -623,7 +610,7 @@ export const ExpandableSubrows: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -645,16 +632,72 @@ export const ExpandableSubrows: Story<TableProps> = (args) => {
     [],
   );
 
+  const data = [
+    {
+      name: 'Row 1',
+      description: 'Description 1',
+      subRows: [
+        { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
+        {
+          name: 'Row 1.2',
+          description: 'Description 1.2',
+          subRows: [
+            {
+              name: 'Row 1.2.1',
+              description: 'Description 1.2.1',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.2',
+              description: 'Description 1.2.2',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.3',
+              description: 'Description 1.2.3',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.4',
+              description: 'Description 1.2.4',
+              subRows: [],
+            },
+          ],
+        },
+        { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
+        { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
+      ],
+    },
+    {
+      name: 'Row 2',
+      description: 'Description 2',
+      subRows: [
+        { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
+        { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
+        { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
+      ],
+    },
+    { name: 'Row 3', description: 'Description 3', subRows: [] },
+  ];
+
   return (
-    <Table
-      emptyTableContent='No data.'
-      isSelectable
-      isSortable
-      {...rest}
-      data={data}
-      columns={tableColumns}
-      onExpand={onExpand}
-    />
+    <>
+      <div>
+        Each data entry should have <Code>subRows</Code> property. If{' '}
+        <Code>subRows</Code> has any items, then expander will be shown for that
+        row.
+      </div>
+      <br />
+      <Table
+        emptyTableContent='No data.'
+        isSelectable
+        isSortable
+        data={data}
+        columns={columns}
+        {...args}
+        onExpand={onExpand}
+      />
+    </>
   );
 };
 
@@ -707,15 +750,14 @@ ExpandableSubrows.args = {
     { name: 'Row 3', description: 'Description 3', subRows: [] },
   ],
 };
-ExpandableSubrows.argTypes = {
-  data: { control: { disable: true } },
-};
 
 ExpandableSubrows.parameters = {
   creevey: {
     tests: {
       async expand() {
-        const closed = await this.takeScreenshot();
+        const closed = await this.browser
+          .findElement({ css: '.iui-table' })
+          .takeScreenshot();
 
         let expanders = await this.browser.findElements({
           css: '.iui-row-expander',
@@ -728,7 +770,9 @@ ExpandableSubrows.parameters = {
         // Expand Row 1.2
         await expanders[1].click();
 
-        const expanded = await this.takeScreenshot();
+        const expanded = await this.browser
+          .findElement({ css: '.iui-table' })
+          .takeScreenshot();
 
         await this.expect({ closed, expanded }).to.matchImages();
       },
@@ -736,14 +780,12 @@ ExpandableSubrows.parameters = {
   } as CreeveyStoryParams,
 };
 
-export const LazyLoading: Story<TableProps> = (args) => {
-  const { columns, ...rest } = args;
-
+export const LazyLoading: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -787,7 +829,7 @@ export const LazyLoading: Story<TableProps> = (args) => {
       }));
   };
 
-  const [tableData, setTableData] = useState(() => generateData(0, 100));
+  const [data, setData] = useState(() => generateData(0, 100));
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -796,22 +838,19 @@ export const LazyLoading: Story<TableProps> = (args) => {
     setIsLoading(true);
     // Simulating request
     setTimeout(() => {
-      setTableData(() => [
-        ...tableData,
-        ...generateData(tableData.length, tableData.length + 100),
-      ]);
+      setData(() => [...data, ...generateData(data.length, data.length + 100)]);
       setIsLoading(false);
     }, 1000);
-  }, [tableData]);
+  }, [data]);
 
   return (
     <Table
-      columns={columns || tableColumns}
+      columns={columns}
       emptyTableContent='No data.'
       onBottomReached={onBottomReached}
       isLoading={isLoading}
-      {...rest}
-      data={tableData}
+      {...args}
+      data={data}
     />
   );
 };
@@ -820,14 +859,12 @@ LazyLoading.argTypes = {
   isLoading: { control: { disable: true } },
 };
 
-export const RowInViewport: Story<TableProps> = (args) => {
-  const { columns, ...rest } = args;
-
+export const RowInViewport: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -862,7 +899,7 @@ export const RowInViewport: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableData = useMemo(
+  const data = useMemo(
     () =>
       Array(100)
         .fill(null)
@@ -899,11 +936,11 @@ export const RowInViewport: Story<TableProps> = (args) => {
       </div>
       <br />
       <Table
-        columns={columns || tableColumns}
+        columns={columns}
         emptyTableContent='No data.'
         onRowInViewport={onRowInViewport}
-        {...rest}
-        data={tableData}
+        {...args}
+        data={data}
       />
     </>
   );
@@ -913,9 +950,7 @@ RowInViewport.argTypes = {
   data: { control: { disable: true } },
 };
 
-export const DisabledRows: Story<TableProps> = (args) => {
-  const { columns, data, ...rest } = args;
-
+export const DisabledRows: Story<Partial<TableProps>> = (args) => {
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: Row) =>
       action(`Row clicked: ${JSON.stringify(row.original)}`)(),
@@ -929,7 +964,7 @@ export const DisabledRows: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -971,7 +1006,7 @@ export const DisabledRows: Story<TableProps> = (args) => {
     [isRowDisabled],
   );
 
-  const tableData = useMemo(
+  const data = useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -994,13 +1029,13 @@ export const DisabledRows: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns || tableColumns}
-      data={data || tableData}
+      columns={columns}
+      data={data}
       emptyTableContent='No data.'
       onRowClick={onRowClick}
       subComponent={expandedSubComponent}
       isRowDisabled={isRowDisabled}
-      {...rest}
+      {...args}
     />
   );
 };
@@ -1014,9 +1049,8 @@ DisabledRows.args = {
   isSelectable: true,
 };
 
-export const Loading: Story<TableProps> = (args) => {
-  const { columns, data, ...rest } = args;
-  const tableColumns = useMemo(
+export const Loading: Story<Partial<TableProps>> = (args) => {
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -1040,11 +1074,11 @@ export const Loading: Story<TableProps> = (args) => {
 
   return (
     <Table
-      columns={columns || tableColumns}
-      data={data || []}
+      columns={columns}
+      data={[]}
       isLoading={true}
       emptyTableContent='No data.'
-      {...rest}
+      {...args}
     />
   );
 };
@@ -1054,8 +1088,8 @@ Loading.args = {
   isLoading: true,
 };
 
-export const NoData: Story<TableProps> = ({ columns, data, ...rest }) => {
-  const tableColumns = useMemo(
+export const NoData: Story<Partial<TableProps>> = (args) => {
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -1079,11 +1113,11 @@ export const NoData: Story<TableProps> = ({ columns, data, ...rest }) => {
 
   return (
     <Table
-      columns={columns || tableColumns}
-      data={data || []}
+      columns={columns}
+      data={[]}
       isLoading={false}
       emptyTableContent='No data.'
-      {...rest}
+      {...args}
     />
   );
 };
@@ -1092,12 +1126,10 @@ NoData.args = {
   data: [],
 };
 
-export const ControlledState: Story<TableProps> = (args) => {
-  const { columns, data, ...rest } = args;
-
+export const ControlledState: Story<Partial<TableProps>> = (args) => {
   const [selectedRows, setSelectedRows] = useState<Record<string, boolean>>({});
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -1118,7 +1150,7 @@ export const ControlledState: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableData = useMemo(
+  const data = useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -1182,7 +1214,7 @@ export const ControlledState: Story<TableProps> = (args) => {
   return (
     <>
       <InputGroup label='Control selected rows' style={{ marginBottom: 11 }}>
-        {tableData.map((data, index) => (
+        {data.map((data, index) => (
           <Checkbox
             key={index}
             label={data.name}
@@ -1202,13 +1234,13 @@ export const ControlledState: Story<TableProps> = (args) => {
         ))}
       </InputGroup>
       <Table
-        columns={columns || tableColumns}
-        data={data || tableData}
+        columns={columns}
+        data={data}
         emptyTableContent='No data.'
         useControlledState={controlledState}
         stateReducer={tableStateReducer}
         isSelectable
-        {...rest}
+        {...args}
       />
     </>
   );
@@ -1216,9 +1248,7 @@ export const ControlledState: Story<TableProps> = (args) => {
 
 ControlledState.args = { isSelectable: true };
 
-export const Full: Story<TableProps> = (args) => {
-  const { columns, data, ...rest } = args;
-
+export const Full: Story<Partial<TableProps>> = (args) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(0);
 
   const rowRefMap = React.useRef<Record<number, HTMLDivElement>>({});
@@ -1230,7 +1260,7 @@ export const Full: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableColumns = useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Table',
@@ -1254,7 +1284,7 @@ export const Full: Story<TableProps> = (args) => {
     [],
   );
 
-  const tableData = useMemo(
+  const data = useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -1295,15 +1325,15 @@ export const Full: Story<TableProps> = (args) => {
   return (
     <>
       <Table
-        columns={columns || tableColumns}
-        data={data || tableData}
+        columns={columns}
+        data={data}
         emptyTableContent='No data.'
         subComponent={expandedSubComponent}
         isRowDisabled={isRowDisabled}
         rowProps={rowProps}
         isSelectable
         isSortable
-        {...rest}
+        {...args}
       />
       <Tooltip
         reference={rowRefMap.current[hoveredRowIndex]}
@@ -1325,12 +1355,10 @@ Full.args = {
   emptyFilteredTableContent: 'No results found. Clear or try another filter.',
 };
 
-export const Condensed: Story<TableProps> = Basic.bind({});
+export const Condensed: Story<Partial<TableProps>> = Basic.bind({});
 Condensed.args = { density: 'condensed' };
 
-export const Editable: Story<TableProps> = (args) => {
-  const { ...rest } = args;
-
+export const Editable: Story<Partial<TableProps>> = (args) => {
   type TableStoryDataType = {
     name: string;
     description: string;
@@ -1403,7 +1431,7 @@ export const Editable: Story<TableProps> = (args) => {
   return (
     <Table
       emptyTableContent='No data.'
-      {...rest}
+      {...args}
       columns={columns}
       data={data}
       isRowDisabled={isRowDisabled}
