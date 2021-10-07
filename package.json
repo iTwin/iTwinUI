@@ -80,6 +80,7 @@
     "trim-newlines": "^3.0.1",
     "glob-parent": "^5.1.2",
     "jpeg-js": "^0.4.3",
-    "set-value": "^4.1.0"
+    "set-value": "^4.1.0",
+    "ansi-regex": "^5.0.1"
   }
 }
