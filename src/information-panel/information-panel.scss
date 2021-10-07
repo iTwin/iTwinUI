@@ -14,6 +14,10 @@
   flex-direction: column;
   box-sizing: border-box;
   z-index: 2; // Needs to be higher than table's column resizers.
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
+  }
+
   @include themed {
     background-color: t(iui-color-background-1);
   }
@@ -22,7 +26,6 @@
     display: none;
     position: absolute;
     touch-action: none;
-    z-index: 1000;
 
     > .iui-resizer-bar {
       @include themed {
@@ -37,14 +40,6 @@
     }
   }
 
-  &.iui-information-panel-visible {
-    opacity: 1;
-
-    > .iui-resizer {
-      display: flex;
-    }
-  }
-
   .iui-information-header,
   .iui-information-body {
     padding-left: $iui-sm;
@@ -53,7 +48,8 @@
   }
 
   .iui-information-header {
-    height: $iui-baseline * 6;
+    height: $iui-baseline * 5;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -95,6 +91,7 @@
     padding-bottom: $iui-baseline;
     height: 100%;
     overflow-x: hidden;
+    overflow-y: auto;
     overflow-y: overlay;
 
     > hr {
@@ -105,9 +102,20 @@
   }
 }
 
+@mixin iui-information-panel-visible {
+  opacity: 1;
+  transform: translate(0);
+
+  > .iui-resizer {
+    display: flex;
+  }
+}
+
 @mixin iui-information-panel-vertical {
   top: 0;
+  right: 0;
   width: $iui-3xl * 4;
+  width: var(--width, $iui-3xl * 4);
   min-width: $iui-3xl * 2;
   height: 100%;
 
@@ -133,7 +141,9 @@
 }
 @mixin iui-information-panel-horizontal {
   left: 0;
+  bottom: 0;
   height: $iui-3xl * 4;
+  height: var(--height, $iui-3xl * 4);
   min-height: $iui-3xl * 2;
   width: 100%;
 
@@ -160,30 +170,22 @@
 
 @mixin iui-information-panel-right {
   @include iui-information-panel-vertical;
-  right: ($iui-3xl * 4) * -1; // Default width set negative so the panel hides off screen.
+  transform: translateX(100%); // hide off screen
   box-shadow: -1px 0 14px rgba(0, 0, 0, 0.25);
-  transition: right $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
+  clip-path: inset(0 0 0 -15px); // show box-shadow only on the left
 
   > .iui-resizer {
-    left: ($iui-m * 0.5) * -1;
-  }
-
-  &.iui-information-panel-visible {
-    right: 0;
+    left: $iui-m * -0.5;
   }
 }
 
 @mixin iui-information-panel-bottom {
   @include iui-information-panel-horizontal;
-  bottom: ($iui-3xl * 4) * -1; // Default height set negative so the panel hides off screen.
+  transform: translateY(100%); // hide off screen
   box-shadow: 0 -1px 14px rgba(0, 0, 0, 0.25);
-  transition: bottom $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
+  clip-path: inset(-15px 0 0 0); // show box-shadow only on top
 
   > .iui-resizer {
-    top: ($iui-m * 0.5) * -1;
-  }
-
-  &.iui-information-panel-visible {
-    bottom: 0;
+    top: $iui-m * -0.5;
   }
 }
