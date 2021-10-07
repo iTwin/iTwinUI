@@ -32,6 +32,7 @@
     text-decoration: underline;
     user-select: none;
     white-space: nowrap;
+    @include iui-focus;
     @include themed {
       color: t(iui-color-foreground-primary);
     }
