@@ -10,7 +10,7 @@ module.exports = [
     selectors: ['#demo-edit'],
   }),
   scenario('Type docked bottom', {
-    actions: [click('#myDockBottom')],
+    actions: [click('#demo-docked-bottom .iui-button')],
     selectors: ['#demo-docked-bottom'],
   }),
 ];
