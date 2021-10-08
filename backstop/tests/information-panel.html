@@ -270,8 +270,7 @@
         <button
           title="View info"
           class="iui-button"
-          id="myButton"
-          onclick="openInfoPanel()"
+          onclick="openInfoPanel(this)"
         >
           <svg-info
             class="iui-icon"
@@ -1236,7 +1235,7 @@
           </div>
         </div>
 
-        <div class="iui-information-panel iui-right iui-information-panel-visible">
+        <div class="iui-information-panel iui-right iui-visible">
           <div class="iui-resizer">
             <div class="iui-resizer-bar"></div>
           </div>
@@ -1399,7 +1398,7 @@
         <div class="demo-screenshot"></div>
 
         <div
-          class="iui-information-panel iui-right iui-information-panel-visible"
+          class="iui-information-panel iui-right iui-visible"
           id="myOrientingInfoPanel"
         >
           <div class="iui-resizer">
@@ -1415,23 +1414,7 @@
             <div class="iui-information-header-actions">
               <button
                 class="iui-button iui-borderless"
-                id="myDockBottom"
-                onclick="switchInfoPanelOrientation();showDockButtons();"
-              >
-                <!-- Docked bottom -->
-                <svg
-                  class="iui-icon"
-                  viewBox="0 0 16 16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />
-                </svg>
-              </button>
-              <button
-                class="iui-button iui-borderless"
-                id="myDockRight"
-                style="display: none;"
-                onclick="switchInfoPanelOrientation();showDockButtons();"
+                onclick="switchInfoPanelOrientation(this);"
               >
                 <!-- Docked right -->
                 <svg
@@ -1539,39 +1522,43 @@
 
     <!-- Show / hide the info panel -->
     <script>
-      function openInfoPanel() {
-        var element = document.getElementById('myOpeningInfoPanel');
-        element.classList.toggle('iui-information-panel-visible');
-        var button = document.getElementById('myButton');
+      function openInfoPanel(button) {
         button.classList.toggle('iui-active');
+        document.getElementById('myOpeningInfoPanel').classList.toggle('iui-visible');
       }
     </script>
 
     <!-- Switch docking orientation -->
     <script>
-      function switchInfoPanelOrientation() {
-        var element = document.getElementById('myOrientingInfoPanel');
-        element.classList.toggle('iui-bottom');
-        element.classList.toggle('iui-right');
+      function switchInfoPanelOrientation(button) {
+        const infoPanel = document.getElementById('myOrientingInfoPanel');
+        infoPanel.classList.toggle('iui-bottom');
+        infoPanel.classList.toggle('iui-right');
+        if (infoPanel.classList.contains('iui-bottom')) {
+          button.firstElementChild.innerHTML = `<path d="m0 2v12h16v-12zm11 11h-10v-10h10z" />`;
+        } else {
+          button.firstElementChild.innerHTML = `<path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />`;
+        }
       }
     </script>
 
-    <!-- Switch docking icon based on orientation -->
+    <!-- Resizer -->
     <script>
-      function showDockButtons() {
-        var x = document.getElementById("myDockBottom");
-        if (x.style.display === "none") {
-          x.style.display = "inline-flex";
-        } else {
-          x.style.display = "none";
+      document.querySelectorAll('.iui-resizer').forEach((resizer) => {
+        const infoPanel = resizer.parentElement;
+        const resizeFn = (e) => {
+          e.preventDefault();
+          if (infoPanel.classList.contains('iui-right')) {
+            infoPanel.style.width = `${infoPanel.getBoundingClientRect().right - e.x}px`;
+          } else {
+            infoPanel.style.height = `${infoPanel.getBoundingClientRect().bottom - e.y}px`;
+          }
         }
-        var y = document.getElementById("myDockRight");
-        if (y.style.display === "none") {
-          y.style.display = "inline-flex";
-        } else {
-          y.style.display = "none";
-        }
-      }
+        resizer.addEventListener('mousedown', () => {
+          document.addEventListener('mousemove', resizeFn);
+          document.addEventListener('mouseup', () => document.removeEventListener('mousemove', resizeFn));
+        });
+      });
     </script>
 
     <!-- Tabs -->
