@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.34.0](https://www.github.com/iTwin/iTwinUI/compare/v0.33.1...v0.34.0) (2021-10-08)
+
+
+### What's new
+
+* **Alert:** Reduced specificity by updating class names ([109e41b](https://www.github.com/iTwin/iTwinUI/commit/109e41bed93ab5ffced94686ae1b2dc5e7b14625))
+
+
+### Fixes
+
+* **Alert:** Add default styling for links ([#325](https://www.github.com/iTwin/iTwinUI/issues/325)) ([91b8e0f](https://www.github.com/iTwin/iTwinUI/commit/91b8e0ffb2bfe43bf347f23a833128e76375bbf2))
+* **Alert:** Removed unintentional margin applied to all links ([109e41b](https://www.github.com/iTwin/iTwinUI/commit/109e41bed93ab5ffced94686ae1b2dc5e7b14625))
+* **InformationPanel:** Use translate for positioning and other fixes ([#328](https://www.github.com/iTwin/iTwinUI/issues/328)) ([2fde3cb](https://www.github.com/iTwin/iTwinUI/commit/2fde3cb2f703103260e1baf9d176357ba12706c6))
+* **Table:** Moved paginator under table ([#331](https://www.github.com/iTwin/iTwinUI/issues/331)) ([c4c8f31](https://www.github.com/iTwin/iTwinUI/commit/c4c8f31eaeaaf64903f8a7f6a0f7f70feaf11164))
+* **Table:** Some paginator adjustments ([#326](https://www.github.com/iTwin/iTwinUI/issues/326)) ([4f8e8c8](https://www.github.com/iTwin/iTwinUI/commit/4f8e8c8ca214294ade7748e3828f513a767d73e7))
+
 ### [0.33.1](https://www.github.com/iTwin/iTwinUI/compare/v0.33.0...v0.33.1) (2021-10-06)
 
 ### Fixes
