@@ -1549,9 +1549,9 @@
         const resizeFn = (e) => {
           e.preventDefault();
           if (infoPanel.classList.contains('iui-right')) {
-            infoPanel.setAttribute('style', `--width: ${infoPanel.getBoundingClientRect().right - e.x}px`);
+            infoPanel.style.width = `${infoPanel.getBoundingClientRect().right - e.x}px`;
           } else {
-            infoPanel.setAttribute('style', `--height: ${infoPanel.getBoundingClientRect().bottom - e.y}px`);
+            infoPanel.style.height = `${infoPanel.getBoundingClientRect().bottom - e.y}px`;
           }
         }
         resizer.addEventListener('mousedown', () => {

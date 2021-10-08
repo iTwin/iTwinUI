@@ -115,7 +115,6 @@
   top: 0;
   right: 0;
   width: $iui-3xl * 4;
-  width: var(--width, $iui-3xl * 4);
   min-width: $iui-3xl * 2;
   height: 100%;
 
@@ -143,7 +142,6 @@
   left: 0;
   bottom: 0;
   height: $iui-3xl * 4;
-  height: var(--height, $iui-3xl * 4);
   min-height: $iui-3xl * 2;
   width: 100%;
 
