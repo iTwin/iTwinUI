@@ -149,4 +149,16 @@
       }
     }
   }
+
+  &.iui-small .iui-header {
+    padding: $iui-baseline * 0.5 $iui-s;
+
+    > .iui-expandable-block-label {
+      margin-left: $iui-s;
+    }
+
+    > .iui-status-icon {
+      margin-left: $iui-s;
+    }
+  }
 }
