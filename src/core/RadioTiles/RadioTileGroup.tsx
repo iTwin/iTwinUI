@@ -3,20 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { InputGroup } from '../InputGroup';
+import { InputGroup, InputGroupProps } from '../InputGroup';
 import '@itwin/itwinui-css/css/inputs.css';
 import { useTheme } from '../utils';
 
-export type RadioTileGroupProps = {
-  /**
-   * Label of the Radio tiles group.
-   */
-  label?: React.ReactNode;
-  /**
-   * RadioTile components.
-   */
-  children: React.ReactNode;
-};
+export type RadioTileGroupProps = Omit<
+  InputGroupProps,
+  'displayStyle' | 'disabled'
+>;
 
 /**
  * RadioTileGroup component to group RadioTile components together
