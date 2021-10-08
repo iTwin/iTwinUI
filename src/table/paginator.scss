@@ -25,10 +25,12 @@
     align-items: center;
     position: relative;
     flex: 1;
+    min-width: 0;
   }
 
   > .iui-center {
     justify-content: center;
+    flex: 2 1;
     @include themed {
       color: t(iui-text-color);
     }
@@ -43,6 +45,11 @@
         &.iui-small {
           width: $iui-component-height-small;
         }
+      }
+
+      > .iui-button {
+        // Animation looks odd when switching pages
+        transition: none;
       }
 
       > .iui-ellipsis {
