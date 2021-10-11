@@ -77,6 +77,19 @@
     border-radius: 0;
   }
 
+  .iui-windows-close:enabled:hover,
+  .iui-windows-close:focus {
+    @include themed {
+      background-color: t(iui-color-background-negative);
+    }
+
+    .iui-icon {
+      @include themed {
+        fill: t(iui-color-foreground-accessory);
+      }
+    }
+  }
+
   .iui-divider {
     width: 1px;
     height: $iui-baseline * 2;
