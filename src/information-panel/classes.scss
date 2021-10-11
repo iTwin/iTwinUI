@@ -16,4 +16,8 @@
   &.iui-bottom {
     @include iui-information-panel-bottom;
   }
+
+  &.iui-visible {
+    @include iui-information-panel-visible;
+  }
 }
