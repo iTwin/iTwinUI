@@ -28,7 +28,7 @@ export const Informational: Story<AlertProps> = (args) => {
       type='informational'
       clickableText='More Info.'
       onClose={action('Close!')}
-      onClick={action('Clicked more info!')}
+      clickableTextProps={{ onClick: action('Clicked more info!') }}
       {...args}
     >
       {args.children}
@@ -48,7 +48,7 @@ export const Positive: Story<AlertProps> = (args) => {
       type='positive'
       clickableText='More Info.'
       onClose={action('Close!')}
-      onClick={action('Clicked more info!')}
+      clickableTextProps={{ onClick: action('Clicked more info!') }}
       {...args}
     >
       {args.children}
@@ -68,7 +68,7 @@ export const Warning: Story<AlertProps> = (args) => {
       type='warning'
       clickableText='More Info.'
       onClose={action('Close!')}
-      onClick={action('Clicked more info!')}
+      clickableTextProps={{ onClick: action('Clicked more info!') }}
       {...args}
     >
       {args.children}
@@ -88,7 +88,7 @@ export const Negative: Story<AlertProps> = (args) => {
       type='negative'
       clickableText='More Info.'
       onClose={action('Close!')}
-      onClick={action('Clicked more info!')}
+      clickableTextProps={{ onClick: action('Clicked more info!') }}
       {...args}
     >
       {args.children}
@@ -107,7 +107,7 @@ export const Sticky: Story<AlertProps> & CreeveyStory = (args) => {
     <Alert
       clickableText='More Info.'
       onClose={action('Close!')}
-      onClick={action('Clicked more info!')}
+      clickableTextProps={{ onClick: action('Clicked more info!') }}
       {...args}
     >
       {args.children}
