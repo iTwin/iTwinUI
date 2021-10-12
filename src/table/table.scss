@@ -294,6 +294,11 @@
   > .iui-table-empty {
     text-align: center;
     padding: $iui-xl;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
     @include themed {
       color: t(iui-text-color-muted);
       background-color: t(iui-color-background-1);
