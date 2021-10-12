@@ -10,12 +10,16 @@
   @include iui-color-palette;
 }
 
+.iui-color-input {
+  @include iui-color-input;
+}
+
 .iui-color-swatch {
   @include iui-color-swatch;
 }
 
-.iui-saved-colors {
-  @include iui-saved-colors;
+.iui-color-picker-section-label {
+  @include iui-color-picker-section-label;
 }
 
 .iui-color-selection-wrapper {
@@ -28,6 +32,10 @@
 
 .iui-color-slider {
   @include iui-color-slider;
+}
+
+.iui-opacity-slider {
+  @include iui-opacity-slider;
 }
 
 .iui-color-dot {

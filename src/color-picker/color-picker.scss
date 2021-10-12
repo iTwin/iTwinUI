@@ -13,10 +13,6 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
 
 @mixin iui-color-picker {
   @include iui-dropdown;
-  max-width: ($iui-l * 10) + ($iui-s * 9) + ($iui-sm * 2);
-  // max-width: (10 swatches per row) + (gaps) + (container padding)
-  max-height: ($iui-l * 10) + ($iui-s * 9) + ($iui-baseline * 2);
-  // max-height: (10 rows) + (gaps) + (container padding)
   box-sizing: border-box;
   border-radius: $iui-border-radius;
   display: inline-flex;
@@ -27,10 +23,36 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
     overflow-y: overlay;
   }
 
+  &:not(.iui-advanced) {
+    resize: both;
+    min-height: $iui-l + ($iui-baseline * 2);
+    // min-height: (1 row of swatches) + (container padding)
+    min-width: $iui-l + ($iui-sm * 2);
+    // min-width: (1 swatches per row) + (container padding)
+    max-width: ($iui-l * 10) + ($iui-s * 9) + ($iui-sm * 2);
+    // max-width: (10 swatches per row) + (gaps) + (container padding)
+  }
+
   &.iui-advanced {
-    max-width: ($iui-color-field-size) + ($iui-sm) + ($iui-s) + ($iui-s) + ($iui-sm * 2);
-    // max-width: (color field width) + (color slider margins) + (color slider width) + (container padding);
     flex-direction: column;
+    resize: horizontal;
+    width: ($iui-l * 8) + ($iui-s * 7) + ($iui-sm * 2);
+    min-width: ($iui-l * 8) + ($iui-s * 7) + ($iui-sm * 2);
+    // min-width: (8 swatches per row) + (gaps) + (container padding)
+    max-width: (($iui-l * 8) + ($iui-s * 7) + ($iui-sm * 2)) * 2;
+    // max-width: twice as wide as the min-width
+  }
+
+  .iui-slider-component-container {
+    margin-bottom: $iui-baseline * 2;
+
+    .iui-slider-rail {
+      height: $iui-s;
+    }
+
+    .iui-slider-thumb {
+      top: 7px;
+    }
   }
 }
 
@@ -94,6 +116,7 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   //Contains the color swatches
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   @supports (gap: $iui-s) {
     gap: $iui-s;
   }
@@ -105,7 +128,21 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   }
 }
 
-@mixin iui-saved-colors {
+@mixin iui-color-input {
+  display: flex;
+  align-items: center;
+
+  &-fields {
+    display: flex;
+    width: 100%;
+
+    .iui-input:not(:last-child) {
+      margin-right: $iui-xxs;
+    }
+  }
+}
+
+@mixin iui-color-picker-section-label {
   margin-top: $iui-baseline;
   margin-bottom: $iui-baseline * 0.5;
   overflow: hidden;
@@ -115,12 +152,13 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
 
 @mixin iui-color-selection-wrapper {
   display: flex;
+  flex-direction: column;
 }
 
 @mixin iui-color-field {
   position: relative;
   cursor: crosshair;
-  width: $iui-color-field-size;
+  width: 100%;
   height: $iui-color-field-size;
 
   @include themed {
@@ -130,14 +168,9 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
 }
 
 @mixin iui-color-slider {
-  margin-left: $iui-sm;
-  margin-right: $iui-s;
-  position: relative;
-  width: $iui-s;
-  border-radius: $iui-border-radius;
-
-  @include themed {
-    background: linear-gradient(
+  .iui-slider-rail {
+    @include themed {
+      background: linear-gradient(to right,
       $iui-color-system-red 0%,
       $iui-color-system-yellow 17%,
       rgb(0, 255, 0) 33%,
@@ -146,7 +179,33 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
       $iui-color-system-magenta 83%,
       $iui-color-system-red 100%
     );
+    }
   }
+}
+
+@mixin iui-opacity-slider {
+  .iui-slider-rail {
+    @include themed {
+      background-image: repeating-linear-gradient(45deg, t(iui-color-background-3) 25%, transparent 25%, transparent 75%, t(iui-color-background-3) 75%, t(iui-color-background-3)), repeating-linear-gradient(45deg, t(iui-color-background-3) 25%, t(iui-color-background-5) 25%, t(iui-color-background-5) 75%, t(iui-color-background-3) 75%, t(iui-color-background-3));
+      background-position: 0 0, ($iui-s * 0.5) ($iui-s * 0.5);
+      background-size: $iui-s $iui-s;
+    }
+
+    &::before {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(to right,
+        rgba(#FFC335, 0) 0%,
+        rgba(#FFC335, 1) 100%
+      );
+      // NEED TO FIX THIS TO USE --color VAR
+    }
+  }
+
+
 }
 
 @mixin iui-color-dot {

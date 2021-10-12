@@ -212,48 +212,134 @@
               id="test-color-dot"
             ></div>
           </div>
-          <div class="iui-color-slider">
+
+          <div class="iui-slider-component-container iui-input-group iui-color-slider">
+            <div class="iui-slider-container iui-progress-slider">
+              <div class="iui-slider-rail"></div>
+              <div
+                style="left: 16%;"
+                class="iui-slider-thumb"
+                role="slider"
+                tabindex="0"
+                aria-label="Hue"
+                aria-valuemin="0"
+                aria-valuenow="42"
+                aria-valuemax="359"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="iui-slider-component-container iui-input-group iui-opacity-slider">
+          <div class="iui-slider-container iui-progress-slider">
+            <div class="iui-slider-rail"></div>
             <div
-              class="iui-color-dot iui-white"
-              style="--top: 14%;"
+              style="left: 100%;"
+              class="iui-slider-thumb"
+              role="slider"
               tabindex="0"
+              aria-label="Opacity"
+              aria-valuemin="0"
+              aria-valuenow="100"
+              aria-valuemax="100"
             ></div>
           </div>
         </div>
 
-        <div class="iui-saved-colors">Saved Colors</div>
-        <div class="iui-color-palette">
-          <button class="iui-button iui-borderless">
-            <svg-add-circular
-              class="iui-icon"
-              aria-hidden="true"
-            ></svg-add-circular>
-          </button>
-          <span
-            style="--swatch-color: hsl(0, 100%, 40%);"
-            class="iui-color-swatch"
-            tabindex="0"
-          ></span>
-          <span
-            style="--swatch-color: hsl(23, 100%, 50%);"
-            class="iui-color-swatch"
-            tabindex="0"
-          ></span>
-          <span
-            style="--swatch-color: hsl(42, 99%, 60%);"
-            class="iui-color-swatch  iui-active"
-            tabindex="0"
-          ></span>
-          <span
-            style="--swatch-color: hsl(95, 71%, 42%);"
-            class="iui-color-swatch"
-            tabindex="0"
-          ></span>
-          <span
-            style="--swatch-color: hsl(202, 100%, 59%);"
-            class="iui-color-swatch"
-            tabindex="0"
-          ></span>
+        <div>
+          <div class="iui-color-picker-section-label">RGBA</div>
+          <div class="iui-color-input">
+            <button class="iui-button iui-borderless iui-small">
+              <svg
+                class="iui-icon"
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="m5 15-3.78125-3.5 3.78125-3.5v2h8v3h-8zm6-7 3.78125-3.5-3.78125-3.5v2h-8v3h8z" />
+              </svg>
+            </button>
+            <div class="iui-color-input-fields">
+              <input
+                value="255"
+                class="iui-input iui-small"
+              />
+              <input
+                value="195"
+                class="iui-input iui-small"
+              />
+              <input
+                value="53"
+                class="iui-input iui-small"
+              />
+              <input
+                value="1.0"
+                class="iui-input iui-small"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="iui-color-picker-section-label">Saved colors</div>
+          <div class="iui-color-palette">
+            <button class="iui-button iui-borderless">
+              <svg-add-circular
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-add-circular>
+            </button>
+            <span
+              style="--swatch-color: hsl(0, 100%, 40%);"
+              class="iui-color-swatch"
+              tabindex="0"
+            ></span>
+            <span
+              style="--swatch-color: hsl(23, 100%, 50%);"
+              class="iui-color-swatch"
+              tabindex="0"
+            ></span>
+            <span
+              style="--swatch-color: hsl(42, 99%, 60%);"
+              class="iui-color-swatch  iui-active"
+              tabindex="0"
+            ></span>
+            <span
+              style="--swatch-color: hsl(95, 71%, 42%);"
+              class="iui-color-swatch"
+              tabindex="0"
+            ></span>
+            <span
+              style="--swatch-color: hsl(202, 100%, 59%);"
+              class="iui-color-swatch"
+              tabindex="0"
+            ></span>
+            <span
+              style="--swatch-color: hsl(0, 100%, 40%);"
+              class="iui-color-swatch"
+              tabindex="0"
+            ></span>
+            <span
+              style="--swatch-color: hsl(23, 100%, 50%);"
+              class="iui-color-swatch"
+              tabindex="0"
+            ></span>
+            <span
+              style="--swatch-color: hsl(42, 99%, 60%);"
+              class="iui-color-swatch"
+              tabindex="0"
+            ></span>
+            <span
+              style="--swatch-color: hsl(95, 71%, 42%);"
+              class="iui-color-swatch"
+              tabindex="0"
+            ></span>
+            <span
+              style="--swatch-color: hsl(202, 100%, 59%);"
+              class="iui-color-swatch"
+              tabindex="0"
+            ></span>
+          </div>
         </div>
       </div>
     </section>
