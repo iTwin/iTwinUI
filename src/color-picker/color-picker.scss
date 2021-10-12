@@ -19,12 +19,12 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   padding: $iui-baseline $iui-sm;
   user-select: none;
   overflow-y: auto;
+  resize: horizontal;
   @supports (overflow-y: overlay) {
     overflow-y: overlay;
   }
 
   &:not(.iui-advanced) {
-    resize: both;
     min-height: $iui-l + ($iui-baseline * 2);
     // min-height: (1 row of swatches) + (container padding)
     min-width: $iui-l + ($iui-sm * 2);
@@ -35,7 +35,6 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
 
   &.iui-advanced {
     flex-direction: column;
-    resize: horizontal;
     width: ($iui-l * 8) + ($iui-s * 7) + ($iui-sm * 2);
     min-width: ($iui-l * 8) + ($iui-s * 7) + ($iui-sm * 2);
     // min-width: (8 swatches per row) + (gaps) + (container padding)
