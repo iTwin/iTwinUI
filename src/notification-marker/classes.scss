@@ -3,7 +3,7 @@
 @import './index';
 
 @each $status in primary, positive, warning, negative, accessory {
-  &.iui-notification-#{$status} {
+  .iui-notification-#{$status} {
     @include iui-notification-marker($status: $status);
   }
 }
