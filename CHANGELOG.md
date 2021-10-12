@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.35.0](https://www.github.com/iTwin/iTwinUI/compare/v0.34.0...v0.35.0) (2021-10-12)
+
+### What's new
+
+* **ExpandableBlock:** Added small size ([#329](https://www.github.com/iTwin/iTwinUI/issues/329)) ([49092c3](https://www.github.com/iTwin/iTwinUI/commit/49092c3f21af887b2648a5b483fe074dabf046e4))
+
+### Fixes
+
+* **NotificationMarker:** Remove top-level `&` to fix error ([#337](https://www.github.com/iTwin/iTwinUI/issues/337)) ([5814c35](https://www.github.com/iTwin/iTwinUI/commit/5814c3505b823f05e7413e81d2a2b34f2d86a4b3))
+
 ## [0.34.0](https://www.github.com/iTwin/iTwinUI/compare/v0.33.1...v0.34.0) (2021-10-08)
 
 ### What's new
