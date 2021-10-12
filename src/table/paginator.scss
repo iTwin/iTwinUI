@@ -8,7 +8,6 @@
 @mixin iui-paginator {
   @include iui-reset;
   display: flex;
-  flex: 1;
   justify-content: space-around;
   align-items: center;
   min-height: $iui-baseline * 5;
