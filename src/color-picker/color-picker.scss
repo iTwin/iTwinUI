@@ -139,6 +139,14 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
     .iui-input:not(:last-child) {
       margin-right: $iui-xxs;
     }
+
+    input[type=number] {
+      appearance: textfield;
+
+      &::-webkit-inner-spin-button {
+        appearance: none;
+      }
+    }
   }
 }
 
