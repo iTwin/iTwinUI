@@ -153,3 +153,16 @@ it('should render with custom endIcon', () => {
   } = render(<SvgPlaceholder className='iui-status-icon' />);
   expect(container.querySelector('.iui-status-icon')).toEqual(placeholderIcon);
 });
+
+it('should render small size', () => {
+  const { container } = render(
+    <ExpandableBlock title='test title' size='small'>
+      content
+    </ExpandableBlock>,
+  );
+  const expandableBlock = container.querySelector(
+    '.iui-expandable-block',
+  ) as HTMLElement;
+  expect(expandableBlock).toBeTruthy();
+  expect(expandableBlock.classList).toContain('iui-small');
+});

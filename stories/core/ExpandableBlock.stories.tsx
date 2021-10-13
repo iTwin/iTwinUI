@@ -47,7 +47,7 @@ export default {
   },
 } as Meta<ExpandableBlockProps> & CreeveyMeta;
 
-export const Basic: Story<ExpandableBlockProps> = (args) => {
+export const Basic: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock title='Basic Block' {...args}>
       {args.children}
@@ -60,7 +60,7 @@ Basic.args = {
   isExpanded: false,
 };
 
-export const WithCaption: Story<ExpandableBlockProps> = (args) => {
+export const WithCaption: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock title='Basic Block' caption='basic caption' {...args}>
       {args.children}
@@ -74,7 +74,7 @@ WithCaption.args = {
   caption: 'basic caption',
 };
 
-export const Accordion: Story<ExpandableBlockProps> = (args) => {
+export const Accordion: Story<Partial<ExpandableBlockProps>> = (args) => {
   const [openedBlock, setOpenedBlock] = useState<number | undefined>(undefined);
   const toggleHandler = (isExpanding: boolean, id: number) => {
     action(`isExpanding: ${isExpanding}, id: ${id}`, {
@@ -114,7 +114,7 @@ Accordion.argTypes = {
   onToggle: { control: { disable: true } },
 };
 
-export const StatusIcon: Story<ExpandableBlockProps> = (args) => {
+export const StatusIcon: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock title='Basic Block' status='positive' {...args}>
       {args.children}
@@ -126,4 +126,17 @@ StatusIcon.args = {
   title: 'Basic Block With Status',
   isExpanded: false,
   status: 'positive',
+};
+
+export const Small: Story<Partial<ExpandableBlockProps>> = (args) => {
+  return (
+    <ExpandableBlock title='Basic Block' size='small' {...args}>
+      {args.children}
+    </ExpandableBlock>
+  );
+};
+
+Small.args = {
+  title: 'Basic Block',
+  size: 'small',
 };
