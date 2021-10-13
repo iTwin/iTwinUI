@@ -210,14 +210,11 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
       height: 100%;
       background-image:
         linear-gradient(to right,
-        rgba(#FFC335, 0) 0%,
-        rgba(#FFC335, 1) 100%
+        transparent 0%,
+        var(--selected-color) 100%
       );
-      // NEED TO FIX THIS TO USE --color VAR
     }
   }
-
-
 }
 
 @mixin iui-color-dot {
