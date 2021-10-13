@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { CommonProps, useTheme, useOverflow } from '../utils';
+import { useTheme, useOverflow, useMergedRefs } from '../utils';
 import '@itwin/itwinui-css/css/button.css';
 
 export type ButtonGroupProps = {
@@ -20,7 +20,7 @@ export type ButtonGroupProps = {
    * and returns the `ReactNode` to render.
    */
   overflowButton?: (firstOverflowingIndex: number) => React.ReactNode;
-} & Omit<CommonProps, 'title'>;
+} & React.ComponentPropsWithRef<'div'>;
 
 /**
  * Group buttons together for common actions.
@@ -50,34 +50,37 @@ export type ButtonGroupProps = {
  *   {buttons}
  * </ButtonGroup>
  */
-export const ButtonGroup = (props: ButtonGroupProps) => {
-  const { children, className, style, overflowButton, ...rest } = props;
+export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
+  (props, ref) => {
+    const { children, className, style, overflowButton, ...rest } = props;
 
-  const items = React.useMemo(() => React.Children.toArray(children), [
-    children,
-  ]);
+    const items = React.useMemo(() => React.Children.toArray(children), [
+      children,
+    ]);
 
-  useTheme();
+    useTheme();
 
-  const [overflowRef, visibleCount] = useOverflow(items, !overflowButton);
+    const [overflowRef, visibleCount] = useOverflow(items, !overflowButton);
+    const refs = useMergedRefs(overflowRef, ref);
 
-  return (
-    <div
-      className={cx('iui-button-group', className)}
-      style={{ ...(!!overflowButton && { width: '100%' }), ...style }}
-      ref={overflowRef}
-      {...rest}
-    >
-      {!!overflowButton && visibleCount < items.length ? (
-        <>
-          {items.slice(0, visibleCount - 1)}
-          {overflowButton(visibleCount)}
-        </>
-      ) : (
-        children
-      )}
-    </div>
-  );
-};
+    return (
+      <div
+        className={cx('iui-button-group', className)}
+        style={{ ...(!!overflowButton && { width: '100%' }), ...style }}
+        ref={refs}
+        {...rest}
+      >
+        {!!overflowButton && visibleCount < items.length ? (
+          <>
+            {items.slice(0, visibleCount - 1)}
+            {overflowButton(visibleCount)}
+          </>
+        ) : (
+          children
+        )}
+      </div>
+    );
+  },
+);
 
 export default ButtonGroup;

@@ -19,6 +19,7 @@ import {
   ActionType,
   TableInstance,
   useExpanded,
+  usePagination,
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators';
 import { useTheme, CommonProps } from '../utils';
@@ -43,6 +44,39 @@ import {
 import { onSingleSelectHandler } from './actionHandlers/selectHandler';
 
 const singleRowSelectedAction = 'singleRowSelected';
+
+export type TablePaginatorRendererProps = {
+  /**
+   * The zero-based index of the current page.
+   */
+  currentPage: number;
+  /**
+   * Total number of rows.
+   */
+  totalRowsCount: number;
+  /**
+   * Number of rows per page.
+   */
+  pageSize: number;
+  /**
+   * Callback when page is changed.
+   */
+  onPageChange: (page: number) => void;
+  /**
+   * Callback when page size is changed.
+   */
+  onPageSizeChange: (size: number) => void;
+  /**
+   * Modify the size of the pagination (adjusts the elements size).
+   * @default 'default' if Table density is `default` else `small`
+   */
+  size?: 'default' | 'small';
+  /**
+   * Flag whether data is still loading and total rows count is not known.
+   * @default false
+   */
+  isLoading?: boolean;
+};
 
 /**
  * Table props.
@@ -149,6 +183,21 @@ export type TableProps<
    * @default true
    */
   selectRowOnClick?: boolean;
+  /**
+   * Function that takes `TablePaginatorRendererProps` as an argument and returns pagination component.
+   *
+   * Recommended to use `TablePaginator`. Passing `props` to `TablePaginator` handles all state management and is enough for basic use-cases.
+   * @example
+   * (props: TablePaginatorRendererProps) => (
+   *   <TablePaginator {...props} />
+   * )
+   */
+  paginatorRenderer?: (props: TablePaginatorRendererProps) => React.ReactNode;
+  /**
+   * Number of rows per page.
+   * @default 25
+   */
+  pageSize?: number;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -227,6 +276,8 @@ export const Table = <
     selectSubRows = true,
     getSubRows,
     selectRowOnClick = true,
+    paginatorRenderer,
+    pageSize = 25,
     ...rest
   } = props;
 
@@ -308,6 +359,8 @@ export const Table = <
 
   const instance = useTable<T>(
     {
+      manualPagination: !paginatorRenderer, // Prevents from paginating rows in regular table without pagination
+      paginateExpandedRows: false, // When false, it shows sub-rows in the current page instead of splitting them
       ...props,
       columns,
       defaultColumn,
@@ -317,12 +370,14 @@ export const Table = <
       selectSubRows,
       data,
       getSubRows,
+      initialState: { pageSize, ...props.initialState },
     },
     useFlexLayout,
     useFilters,
     useSubRowFiltering(hasAnySubRows),
     useSortBy,
     useExpanded,
+    usePagination,
     useRowSelect,
     useSubRowSelection,
     useExpanderCell(subComponent, expanderCell, isRowDisabled),
@@ -339,6 +394,9 @@ export const Table = <
     allColumns,
     filteredFlatRows,
     dispatch,
+    page,
+    gotoPage,
+    setPageSize,
   } = instance;
 
   const ariaDataAttributes = Object.entries(rest).reduce(
@@ -373,118 +431,152 @@ export const Table = <
     [isRowDisabled, isSelectable, selectRowOnClick, dispatch, onRowClick],
   );
 
+  React.useEffect(() => {
+    setPageSize(pageSize);
+  }, [pageSize, setPageSize]);
+
+  const paginatorRendererProps: TablePaginatorRendererProps = React.useMemo(
+    () => ({
+      currentPage: state.pageIndex,
+      pageSize: state.pageSize,
+      totalRowsCount: rows.length,
+      size: density !== 'default' ? 'small' : 'default',
+      isLoading,
+      onPageChange: gotoPage,
+      onPageSizeChange: setPageSize,
+    }),
+    [
+      density,
+      gotoPage,
+      isLoading,
+      rows.length,
+      setPageSize,
+      state.pageIndex,
+      state.pageSize,
+    ],
+  );
+
   return (
-    <div
-      ref={(element) => setOwnerDocument(element?.ownerDocument)}
-      id={id}
-      {...getTableProps({
-        className: cx(
-          'iui-table',
-          { [`iui-${density}`]: density !== 'default' },
-          className,
-        ),
-        style,
-      })}
-      {...ariaDataAttributes}
-    >
-      <div className='iui-table-header'>
-        {headerGroups.slice(1).map((headerGroup: HeaderGroup<T>) => {
-          const headerGroupProps = headerGroup.getHeaderGroupProps({
-            className: 'iui-row',
-          });
-          return (
-            <div {...headerGroupProps} key={headerGroupProps.key}>
-              {headerGroup.headers.map((column) => {
-                const columnProps = column.getHeaderProps({
-                  ...column.getSortByToggleProps(),
-                  className: cx(
-                    'iui-cell',
-                    { 'iui-actionable': column.canSort },
-                    { 'iui-sorted': column.isSorted },
-                    column.columnClassName,
-                  ),
-                  style: { ...getCellStyle(column) },
-                });
-                return (
-                  <div {...columnProps} key={columnProps.key} title={undefined}>
-                    {column.render('Header')}
-                    {!isLoading && (data.length != 0 || areFiltersSet) && (
-                      <FilterToggle
-                        column={column}
-                        ownerDocument={ownerDocument}
-                      />
-                    )}
-                    {!isLoading && data.length != 0 && column.canSort && (
-                      <div className='iui-cell-end-icon'>
-                        {column.isSorted && column.isSortedDesc ? (
-                          <SvgSortUp
-                            className='iui-icon iui-sort'
-                            aria-hidden
-                          />
-                        ) : (
-                          <SvgSortDown
-                            className='iui-icon iui-sort'
-                            aria-hidden
-                          />
-                        )}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          );
+    <>
+      <div
+        ref={(element) => setOwnerDocument(element?.ownerDocument)}
+        id={id}
+        {...getTableProps({
+          className: cx(
+            'iui-table',
+            { [`iui-${density}`]: density !== 'default' },
+            className,
+          ),
+          style,
         })}
-      </div>
-      <div {...getTableBodyProps({ className: 'iui-table-body' })}>
-        {data.length !== 0 &&
-          rows.map((row: Row<T>) => {
-            prepareRow(row);
+        {...ariaDataAttributes}
+      >
+        <div className='iui-table-header'>
+          {headerGroups.slice(1).map((headerGroup: HeaderGroup<T>) => {
+            const headerGroupProps = headerGroup.getHeaderGroupProps({
+              className: 'iui-row',
+            });
             return (
-              <TableRowMemoized
-                row={row}
-                rowProps={rowProps}
-                isLast={row.index === data.length - 1}
-                onRowInViewport={onRowInViewportRef}
-                onBottomReached={onBottomReachedRef}
-                intersectionMargin={intersectionMargin}
-                state={state}
-                key={row.getRowProps().key}
-                onClick={onRowClickHandler}
-                subComponent={subComponent}
-                isDisabled={!!isRowDisabled?.(row.original)}
-                tableHasSubRows={hasAnySubRows}
-                tableInstance={instance}
-                expanderCell={expanderCell}
-              />
+              <div {...headerGroupProps} key={headerGroupProps.key}>
+                {headerGroup.headers.map((column) => {
+                  const columnProps = column.getHeaderProps({
+                    ...column.getSortByToggleProps(),
+                    className: cx(
+                      'iui-cell',
+                      { 'iui-actionable': column.canSort },
+                      { 'iui-sorted': column.isSorted },
+                      column.columnClassName,
+                    ),
+                    style: { ...getCellStyle(column) },
+                  });
+                  return (
+                    <div
+                      {...columnProps}
+                      key={columnProps.key}
+                      title={undefined}
+                    >
+                      {column.render('Header')}
+                      {!isLoading && (data.length != 0 || areFiltersSet) && (
+                        <FilterToggle
+                          column={column}
+                          ownerDocument={ownerDocument}
+                        />
+                      )}
+                      {!isLoading && data.length != 0 && column.canSort && (
+                        <div className='iui-cell-end-icon'>
+                          {column.isSorted && column.isSortedDesc ? (
+                            <SvgSortUp
+                              className='iui-icon iui-sort'
+                              aria-hidden
+                            />
+                          ) : (
+                            <SvgSortDown
+                              className='iui-icon iui-sort'
+                              aria-hidden
+                            />
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             );
           })}
-        {isLoading && data.length === 0 && (
-          <div className={'iui-table-empty'}>
-            <ProgressRadial indeterminate={true} />
-          </div>
-        )}
-        {isLoading && data.length !== 0 && (
-          <div className='iui-row'>
-            <div className='iui-cell' style={{ justifyContent: 'center' }}>
-              <ProgressRadial
-                indeterminate={true}
-                size='small'
-                style={{ float: 'none', marginLeft: 0 }}
-              />
+        </div>
+        <div {...getTableBodyProps({ className: 'iui-table-body' })}>
+          {data.length !== 0 &&
+            page.map((row: Row<T>) => {
+              prepareRow(row);
+              return (
+                <TableRowMemoized
+                  row={row}
+                  rowProps={rowProps}
+                  isLast={row.index === data.length - 1}
+                  onRowInViewport={onRowInViewportRef}
+                  onBottomReached={onBottomReachedRef}
+                  intersectionMargin={intersectionMargin}
+                  state={state}
+                  key={row.getRowProps().key}
+                  onClick={onRowClickHandler}
+                  subComponent={subComponent}
+                  isDisabled={!!isRowDisabled?.(row.original)}
+                  tableHasSubRows={hasAnySubRows}
+                  tableInstance={instance}
+                  expanderCell={expanderCell}
+                />
+              );
+            })}
+          {isLoading && data.length === 0 && (
+            <div className={'iui-table-empty'}>
+              <ProgressRadial indeterminate={true} />
             </div>
-          </div>
-        )}
-        {!isLoading && data.length === 0 && !areFiltersSet && (
-          <div className={'iui-table-empty'}>{emptyTableContent}</div>
-        )}
-        {!isLoading &&
-          (data.length === 0 || filteredFlatRows.length === 0) &&
-          areFiltersSet && (
-            <div className={'iui-table-empty'}>{emptyFilteredTableContent}</div>
           )}
+          {isLoading && data.length !== 0 && (
+            <div className='iui-row'>
+              <div className='iui-cell' style={{ justifyContent: 'center' }}>
+                <ProgressRadial
+                  indeterminate={true}
+                  size='small'
+                  style={{ float: 'none', marginLeft: 0 }}
+                />
+              </div>
+            </div>
+          )}
+          {!isLoading && data.length === 0 && !areFiltersSet && (
+            <div className={'iui-table-empty'}>{emptyTableContent}</div>
+          )}
+          {!isLoading &&
+            (data.length === 0 || filteredFlatRows.length === 0) &&
+            areFiltersSet && (
+              <div className={'iui-table-empty'}>
+                {emptyFilteredTableContent}
+              </div>
+            )}
+        </div>
+        {paginatorRenderer?.(paginatorRendererProps)}
       </div>
-    </div>
+    </>
   );
 };
 

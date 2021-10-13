@@ -12,13 +12,13 @@ export const onExpandHandler = <T extends Record<string, unknown>>(
     tableState?: TableState<T>,
   ) => void,
 ) => {
-  if (!instance?.rows.length) {
+  if (!instance?.preFilteredFlatRows.length) {
     onExpand?.([], newState);
     return;
   }
 
   const expandedData: T[] = [];
-  instance.rows.forEach((row) => {
+  instance.preFilteredFlatRows.forEach((row) => {
     if (newState.expanded[row.id]) {
       expandedData.push(row.original);
     }

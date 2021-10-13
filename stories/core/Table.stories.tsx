@@ -25,6 +25,8 @@ import {
   Tooltip,
   DefaultCell,
   EditableCell,
+  TablePaginator,
+  TablePaginatorRendererProps,
 } from '../../src/core';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
@@ -1352,7 +1354,6 @@ Full.args = {
   ],
   isSelectable: true,
   isSortable: true,
-  emptyFilteredTableContent: 'No results found. Clear or try another filter.',
 };
 
 export const Condensed: Story<Partial<TableProps>> = Basic.bind({});
@@ -1472,4 +1473,206 @@ Editable.parameters = {
       },
     },
   } as CreeveyStoryParams,
+};
+
+export const WithPaginator: Story<Partial<TableProps>> = (args) => {
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            Filter: tableFilters.TextFilter(),
+          },
+          {
+            id: 'description',
+            Header: 'Description',
+            accessor: 'description',
+            maxWidth: 200,
+            Filter: tableFilters.TextFilter(),
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  type TableStoryDataType = {
+    name: string;
+    description: string;
+    subRows: TableStoryDataType[];
+  };
+
+  const generateItem = useCallback(
+    (index: number, parentRow = '', depth = 0): TableStoryDataType => {
+      const keyValue = parentRow ? `${parentRow}.${index}` : `${index}`;
+      return {
+        name: `Name ${keyValue}`,
+        description: `Description ${keyValue}`,
+        subRows:
+          depth < 2
+            ? Array(Math.round(index % 5))
+                .fill(null)
+                .map((_, index) => generateItem(index, keyValue, depth + 1))
+            : [],
+      };
+    },
+    [],
+  );
+
+  const data = useMemo(
+    () =>
+      Array(495)
+        .fill(null)
+        .map((_, index) => generateItem(index)),
+    [generateItem],
+  );
+
+  const pageSizeList = useMemo(() => [10, 25, 50], []);
+  const paginator = useCallback(
+    (props: TablePaginatorRendererProps) => (
+      <TablePaginator {...props} pageSizeList={pageSizeList} />
+    ),
+    [pageSizeList],
+  );
+
+  return (
+    <>
+      <Table
+        emptyTableContent='No data.'
+        isSelectable
+        isSortable
+        {...args}
+        columns={columns}
+        data={data}
+        pageSize={25}
+        paginatorRenderer={paginator}
+        style={{ maxHeight: '100%' }}
+      />
+    </>
+  );
+};
+
+WithPaginator.args = {
+  isSelectable: true,
+  isSortable: true,
+};
+
+WithPaginator.decorators = [
+  (Story) => (
+    <div style={{ height: '90vh' }}>
+      <Story />
+    </div>
+  ),
+];
+
+WithPaginator.argTypes = {
+  data: { control: { disable: true } },
+  parameters: {
+    docs: { source: { excludeDecorators: true } },
+  },
+};
+
+export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            Filter: tableFilters.TextFilter(),
+          },
+          {
+            id: 'description',
+            Header: 'Description',
+            accessor: 'description',
+            maxWidth: 200,
+            Filter: tableFilters.TextFilter(),
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const generateData = (start: number, end: number) => {
+    return Array(end - start)
+      .fill(null)
+      .map((_, index) => ({
+        name: `Name${start + index}`,
+        description: `Description${start + index}`,
+      }));
+  };
+
+  const [data, setData] = useState(() => generateData(0, 25));
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const pageSizeList = useMemo(() => [10, 25, 50], []);
+  const paginator = useCallback(
+    (props: TablePaginatorRendererProps) => (
+      <TablePaginator
+        {...props}
+        onPageChange={(page) => {
+          setIsLoading(true);
+          setData([]);
+          setCurrentPage(page);
+          // Simulating a request
+          setTimeout(() => {
+            setIsLoading(false);
+            setData(
+              generateData(page * props.pageSize, (page + 1) * props.pageSize),
+            );
+          }, 500);
+        }}
+        onPageSizeChange={(size) => {
+          setData(generateData(currentPage * size, (currentPage + 1) * size));
+          props.onPageSizeChange(size);
+        }}
+        pageSizeList={pageSizeList}
+        currentPage={currentPage}
+        isLoading={false}
+        // Imagining we know the total count of data items
+        totalRowsCount={500}
+      />
+    ),
+    [currentPage, pageSizeList],
+  );
+
+  return (
+    <>
+      <Table
+        emptyTableContent='No data.'
+        {...args}
+        isLoading={isLoading}
+        columns={columns}
+        data={data}
+        pageSize={25}
+        paginatorRenderer={paginator}
+        style={{ maxHeight: '100%' }}
+        manualPagination
+      />
+    </>
+  );
+};
+
+WithManualPaginator.decorators = [
+  (Story) => (
+    <div style={{ height: '90vh' }}>
+      <Story />
+    </div>
+  ),
+];
+
+WithManualPaginator.argTypes = {
+  data: { control: { disable: true } },
+  parameters: {
+    docs: { source: { excludeDecorators: true } },
+  },
 };

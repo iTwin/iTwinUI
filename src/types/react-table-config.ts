@@ -33,7 +33,7 @@ import {
   UseGroupByRowProps,
   UseGroupByState,
   UsePaginationInstanceProps,
-  // UsePaginationOptions,
+  UsePaginationOptions,
   UsePaginationState,
   // UseResizeColumnsColumnOptions,
   UseResizeColumnsColumnProps,
@@ -75,7 +75,7 @@ declare module 'react-table' {
       UseFiltersOptions<D>,
       // UseGlobalFiltersOptions<D>,
       // UseGroupByOptions<D>,
-      // UsePaginationOptions<D>,
+      UsePaginationOptions<D>,
       // UseResizeColumnsOptions<D>,
       // UseRowStateOptions<D>,
       UseSortByOptions<D> {
