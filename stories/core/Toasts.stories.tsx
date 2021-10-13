@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Button, toaster } from '../../src/core';
+import { Button, toaster, ProgressRadial } from '../../src/core';
 import { Toast, ToastProps } from '../../src/core/Toast/Toast';
 import { CreeveyMeta } from 'creevey';
 import { ToasterSettings } from '../../src/core/Toast/Toaster';
@@ -342,4 +342,67 @@ export const AnchorToButton: Story<ToastProps & ToasterSettings> = ({
 
 AnchorToButton.args = {
   content: 'This is a positive toast message',
+};
+
+export const CloseIndividual: Story<ToastProps & ToasterSettings> = ({
+  duration,
+  hasCloseButton,
+  link,
+  type,
+  onRemove,
+  placement,
+  order,
+}) => {
+  const displayProcessToast = () => {
+    toaster.setSettings({
+      placement: placement ?? 'top',
+      order: order ?? 'descending',
+    });
+    const { close } = toaster.informational(
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'flex-end',
+        }}
+      >
+        <ProgressRadial
+          size={'small'}
+          indeterminate
+          style={{ marginRight: '8px' }}
+        />
+        Your process is running...
+      </div>,
+      {
+        duration,
+        hasCloseButton,
+        link,
+        type,
+        onRemove,
+      },
+    );
+
+    setTimeout(() => {
+      close();
+      toaster.positive('Process completed', {
+        duration,
+        hasCloseButton,
+        link,
+        type: 'temporary',
+        onRemove,
+      });
+    }, 3000);
+  };
+
+  return (
+    <>
+      <Button styleType='high-visibility' onClick={displayProcessToast}>
+        Start process
+      </Button>
+    </>
+  );
+};
+
+CloseIndividual.args = {
+  type: 'persisting',
 };

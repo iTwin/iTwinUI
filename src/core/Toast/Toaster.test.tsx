@@ -25,10 +25,11 @@ function assertAddedToast(
   category: ToastCategory,
   content: string,
   id: number,
+  options = mockedOptions(),
 ) {
   expect(toast).toEqual(
     expect.objectContaining({
-      ...mockedOptions(),
+      ...options,
       id: id,
       content: content,
       isVisible: true,
@@ -42,10 +43,11 @@ function assertRemovedToast(
   category: ToastCategory,
   content: string,
   id: number,
+  options = mockedOptions(),
 ) {
   expect(toast).toEqual(
     expect.objectContaining({
-      ...mockedOptions(),
+      ...options,
       id: id,
       content: content,
       isVisible: false,
@@ -91,6 +93,41 @@ it('should add toasts and remove all', () => {
   toaster.closeAll();
   assertRemovedToast(toaster['toasts'][1], 'informational', 'mockContent', 1);
   assertRemovedToast(toaster['toasts'][0], 'positive', 'mockContent', 2);
+
+  expect(
+    document.querySelector('.iui-toast-wrapper.iui-placement-top'),
+  ).toBeTruthy();
+});
+
+it('should add toast and remove using return function', () => {
+  const { close } = toaster.informational('mockContent', {
+    ...mockedOptions(),
+    type: 'persisting',
+  });
+  assertAddedToast(
+    toaster['toasts'][0],
+    'informational',
+    'mockContent',
+
+    1,
+    {
+      ...mockedOptions(),
+      type: 'persisting',
+    },
+  );
+
+  close();
+  assertRemovedToast(
+    toaster['toasts'][0],
+    'informational',
+    'mockContent',
+
+    1,
+    {
+      ...mockedOptions(),
+      type: 'persisting',
+    },
+  );
 
   expect(
     document.querySelector('.iui-toast-wrapper.iui-placement-top'),

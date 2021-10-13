@@ -88,7 +88,7 @@ export const Toast = (props: ToastProps) => {
     hasCloseButton,
     onRemove,
     animateOutTo,
-    placementPosition,
+    placementPosition = 'top',
   } = props;
 
   useTheme();
