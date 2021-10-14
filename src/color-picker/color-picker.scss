@@ -166,7 +166,7 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   }
 }
 
-@mixin iui-color-slider {
+@mixin iui-hue-slider {
   .iui-slider-rail {
     height: $iui-s;
     @include themed {
