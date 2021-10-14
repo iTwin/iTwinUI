@@ -6,3 +6,4 @@ export * from './Popover';
 export * from './FocusTrap';
 export * from './InputContainer';
 export * from './icons';
+export * from './WithCSSTransition';

@@ -5,8 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { CellProps, Row, TableInstance, TableState } from 'react-table';
-import { useIntersection, useMergedRefs } from '../utils';
-import { CSSTransition } from 'react-transition-group';
+import { useIntersection, useMergedRefs, WithCSSTransition } from '../utils';
 import { TableCell } from './TableCell';
 
 /**
@@ -54,8 +53,6 @@ const TableRow = <T extends Record<string, unknown>>(props: {
     rootMargin: `${intersectionMargin}px`,
   });
 
-  const expandedHeight = React.useRef(0);
-
   const userRowProps = rowProps?.(row);
   const mergedProps = {
     ...row.getRowProps(),
@@ -100,32 +97,11 @@ const TableRow = <T extends Record<string, unknown>>(props: {
         })}
       </div>
       {subComponent && (
-        <CSSTransition
-          in={row.isExpanded}
-          timeout={200}
-          unmountOnExit={true}
-          onEnter={(node) => (node.style.height = `0px`)}
-          onEntering={(node) =>
-            (node.style.height = `${expandedHeight.current}px`)
-          }
-          onEntered={(node) => (node.style.height = 'auto')}
-          onExit={(node) => (node.style.height = `${expandedHeight.current}px`)}
-          onExiting={(node) => (node.style.height = `0px`)}
-          classNames='iui'
-        >
-          {
-            <div
-              className='iui-row iui-expanded-content'
-              ref={(ref) => {
-                if (ref) {
-                  expandedHeight.current = ref.offsetHeight;
-                }
-              }}
-            >
-              {subComponent(row)}
-            </div>
-          }
-        </CSSTransition>
+        <WithCSSTransition in={row.isExpanded}>
+          <div className='iui-row iui-expanded-content'>
+            {subComponent(row)}
+          </div>
+        </WithCSSTransition>
       )}
     </>
   );
