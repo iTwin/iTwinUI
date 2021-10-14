@@ -174,11 +174,10 @@
 
 @mixin iui-side-navigation-submenu {
   min-width: $iui-3xl * 2;
-  width: $iui-3xl * 4;
   max-width: 50vw;
   height: 100%;
+  display: flex;
   box-sizing: border-box;
-  padding: 0 $iui-sm $iui-baseline;
   overflow-x: hidden;
   overflow-y: auto;
   overflow-y: overlay;
@@ -189,6 +188,12 @@
   }
 
   @include iui-transition-group;
+
+  &-content {
+    padding: 0 $iui-sm $iui-baseline;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
 
   &-header {
     height: $iui-baseline * 5;
