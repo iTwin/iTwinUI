@@ -24,6 +24,16 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   @supports (overflow-y: overlay) {
     overflow-y: overlay;
   }
+  @supports (row-gap) {
+    row-gap: $iui-baseline;
+  }
+
+  > div:not(:last-child) {
+    margin-bottom: $iui-baseline;
+    @supports (row-gap) {
+      margin-bottom: 0;
+    }
+  }
 }
 
 @mixin iui-color-swatch {
@@ -133,7 +143,6 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
 }
 
 @mixin iui-color-picker-section-label {
-  margin-top: $iui-baseline;
   margin-bottom: $iui-baseline * 0.5;
   overflow: hidden;
   text-overflow: ellipsis;
