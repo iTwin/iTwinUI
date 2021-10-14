@@ -9,6 +9,7 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-component-container {
   display: flex;
+  min-height: $iui-baseline * 2;
 
   .iui-slider-min,
   .iui-slider-max {
