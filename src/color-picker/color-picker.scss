@@ -21,6 +21,7 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   overflow-y: auto;
   flex-direction: column;
   max-width: $iui-color-picker-content-width + ($iui-sm * 2);
+  max-height: $iui-baseline * 45;
   @supports (overflow-y: overlay) {
     overflow-y: overlay;
   }
