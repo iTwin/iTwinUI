@@ -99,7 +99,6 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   align-content: flex-start;
   min-height: $iui-l;
   min-width: $iui-l;
-  max-width: $iui-color-picker-content-width;
   @supports (gap: $iui-s) {
     gap: $iui-s;
   }
@@ -114,7 +113,6 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
 @mixin iui-color-input {
   display: flex;
   align-items: center;
-  max-width: $iui-color-picker-content-width;
 
   .iui-button {
     margin-right: $iui-xs;
