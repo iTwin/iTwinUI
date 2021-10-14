@@ -20,6 +20,7 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   user-select: none;
   overflow-y: auto;
   flex-direction: column;
+  max-width: $iui-color-picker-content-width + ($iui-sm * 2);
   @supports (overflow-y: overlay) {
     overflow-y: overlay;
   }
@@ -146,6 +147,7 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   margin-bottom: $iui-baseline * 0.5;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   flex-shrink: 0;
 }
 
@@ -223,23 +225,11 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   height: $iui-m;
   border-radius: 50%;
   transform: translate(-$iui-s, -$iui-s);
-  cursor: grab;
+  cursor: crosshair;
   @include themed {
     box-shadow: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-1)) 0 0 0 $iui-xxs - 1,
       inset 0 0 0 $iui-xxs - 1 rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-6));
     background-color: var(--selected-color);
-  }
-
-  &:active {
-    cursor: grabbing;
-  }
-
-  &.iui-white {
-    transform: translate(-4px, -9px);
-    @include themed {
-      box-shadow: $iui-elevation-2;
-      background-color: #FFF;
-    }
   }
 
   &:hover {
