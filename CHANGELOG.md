@@ -2,7 +2,6 @@
 
 ### [0.35.2](https://www.github.com/iTwin/iTwinUI/compare/v0.35.1...v0.35.2) (2021-10-14)
 
-
 ### Fixes
 
 * **SideNavigation:** Use flex conditionally to fix resizing ([#346](https://www.github.com/iTwin/iTwinUI/issues/346)) ([ae73507](https://www.github.com/iTwin/iTwinUI/commit/ae735071a57cbaef06ee62bfbd77d4b4ad37c5ac))
