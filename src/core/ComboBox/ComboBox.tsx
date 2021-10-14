@@ -83,7 +83,10 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
 
   // Generate a stateful random id if not specified
   const [id] = React.useState(
-    () => props.id ?? `${inputProps?.id}-cb` ?? `iui-cb-${getRandomValue(10)}`,
+    () =>
+      props.id ??
+      (inputProps?.id && `${inputProps.id}-cb`) ??
+      `iui-cb-${getRandomValue(10)}`,
   );
 
   useTheme();
@@ -108,6 +111,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           role='option'
           onClick={(value: T) => {
             setSelectedValue(value);
+            onChange?.(value);
             setIsOpen(false);
           }}
           {...rest}
@@ -115,7 +119,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           {label}
         </MenuItem>
       )),
-    [options, getOptionId],
+    [options, getOptionId, onChange],
   );
 
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -152,15 +156,14 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     [inputProps],
   );
 
-  // Fire onChange callback and update inputValue every time selected value changes
+  // update inputValue every time selected value changes
   React.useEffect(() => {
     if (selectedValue != undefined) {
-      onChange?.(selectedValue);
       setInputValue(
         options.find(({ value }) => value === selectedValue)?.label ?? '',
       );
     }
-  }, [selectedValue, onChange, options]);
+  }, [selectedValue, options]);
 
   // Filter options and update focus when input value changes
   React.useEffect(() => {
@@ -237,6 +240,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         case 'Enter':
           if (isOpen) {
             setSelectedValue(options[focusedIndex].value);
+            onChange?.(options[focusedIndex].value);
           }
           setIsOpen((open) => !open);
           event.preventDefault();
@@ -257,7 +261,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           break;
       }
     },
-    [focusedIndex, isOpen, options, getOptionId],
+    [focusedIndex, isOpen, options, getOptionId, onChange],
   );
 
   const menuItems = React.useMemo(() => {
@@ -292,21 +296,27 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     <InputContainer
       className={className}
       isIconInline={true}
-      icon={
-        <span
-          ref={toggleButtonRef}
-          className={cx('iui-actionable', { 'iui-open': isOpen })}
-          onClick={() => {
-            if (isOpen) {
-              setIsOpen(false);
-            } else {
-              inputRef.current?.focus();
-            }
-          }}
-        >
-          <SvgCaretDownSmall aria-hidden />
-        </span>
-      }
+      icon={React.useMemo(
+        () => (
+          <span
+            ref={toggleButtonRef}
+            className={cx({
+              'iui-actionable': !inputProps?.disabled,
+              'iui-open': isOpen,
+            })}
+            onClick={() => {
+              if (isOpen) {
+                setIsOpen(false);
+              } else {
+                inputRef.current?.focus();
+              }
+            }}
+          >
+            <SvgCaretDownSmall aria-hidden />
+          </span>
+        ),
+        [inputProps?.disabled, isOpen],
+      )}
       {...rest}
       id={id}
     >
