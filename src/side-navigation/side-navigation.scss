@@ -176,7 +176,6 @@
   min-width: $iui-3xl * 2;
   max-width: 50vw;
   height: 100%;
-  display: flex;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
@@ -188,6 +187,11 @@
   }
 
   @include iui-transition-group;
+
+  &.iui-enter-active,
+  &.iui-exit-active {
+    display: flex;
+  }
 
   &-content {
     padding: 0 $iui-sm $iui-baseline;
@@ -216,11 +220,11 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+    }
 
-      &-actions {
-        flex-shrink: 0;
-        margin-left: $iui-s;
-      }
+    &-actions {
+      flex-shrink: 0;
+      margin-left: $iui-s;
     }
   }
 }
