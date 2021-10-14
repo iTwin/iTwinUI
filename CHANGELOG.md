@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.35.1](https://www.github.com/iTwin/iTwinUI/compare/v0.35.0...v0.35.1) (2021-10-14)
+
+### Fixes
+
+* **Button:** Add `font-family: inherit` so correct font is used ([#342](https://www.github.com/iTwin/iTwinUI/issues/342)) ([1d05c96](https://www.github.com/iTwin/iTwinUI/commit/1d05c9662917906e98d3917903bd450e766832f7))
+* **SideNavigation:** Remove fixed width from submenu ([#340](https://www.github.com/iTwin/iTwinUI/issues/340)) ([3a41f61](https://www.github.com/iTwin/iTwinUI/commit/3a41f61a39b38ac83c1d94d57a5bf6892275101f))
+* **Table:** Table body takes full available height ([#335](https://www.github.com/iTwin/iTwinUI/issues/335)) ([900ee53](https://www.github.com/iTwin/iTwinUI/commit/900ee531414f4245bacdbd8e189780556021a088))
+
 ## [0.35.0](https://www.github.com/iTwin/iTwinUI/compare/v0.34.0...v0.35.0) (2021-10-12)
 
 ### What's new
