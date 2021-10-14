@@ -126,6 +126,9 @@
   overflow-x: hidden;
   overflow-y: scroll;
   overflow-y: overlay;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 
   @include themed {
     background-color: t(iui-color-background-1);
@@ -133,7 +136,6 @@
 
   .iui-row {
     display: flex;
-    flex-grow: 1;
     border: solid 1px transparent;
     @media (prefers-reduced-motion: no-preference) {
       transition: border $iui-speed-fast ease-out;
@@ -292,6 +294,11 @@
   > .iui-table-empty {
     text-align: center;
     padding: $iui-xl;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
     @include themed {
       color: t(iui-text-color-muted);
       background-color: t(iui-color-background-1);
