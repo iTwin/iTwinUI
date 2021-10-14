@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.35.2](https://www.github.com/iTwin/iTwinUI/compare/v0.35.1...v0.35.2) (2021-10-14)
+
+
+### Fixes
+
+* **SideNavigation:** Use flex conditionally to fix resizing ([#346](https://www.github.com/iTwin/iTwinUI/issues/346)) ([ae73507](https://www.github.com/iTwin/iTwinUI/commit/ae735071a57cbaef06ee62bfbd77d4b4ad37c5ac))
+* **Slider:** Add min-height ([#344](https://www.github.com/iTwin/iTwinUI/issues/344)) ([233e24d](https://www.github.com/iTwin/iTwinUI/commit/233e24da6e30e88fe13412b255addd7681902ecd))
+
 ### [0.35.1](https://www.github.com/iTwin/iTwinUI/compare/v0.35.0...v0.35.1) (2021-10-14)
 
 ### Fixes
