@@ -2,7 +2,6 @@
 
 ### [0.36.1](https://www.github.com/iTwin/iTwinUI/compare/v0.36.0...v0.36.1) (2021-10-15)
 
-
 ### Fixes
 
 * **transition-group:** Handle exit animation correctly ([#350](https://www.github.com/iTwin/iTwinUI/issues/350)) ([480bcd8](https://www.github.com/iTwin/iTwinUI/commit/480bcd8e15c7918fb12092db8579db07b0c283fc))
