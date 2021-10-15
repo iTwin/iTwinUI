@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.36.0](https://www.github.com/iTwin/iTwinUI/compare/v0.35.2...v0.36.0) (2021-10-15)
+
+
+### What's new
+
+* **ColorPicker:** Add opacity slider and color value input options  ([#338](https://www.github.com/iTwin/iTwinUI/issues/338)) ([412f6d5](https://www.github.com/iTwin/iTwinUI/commit/412f6d532e083ec131fdfd97d9df1901f4511586))
+
 ### [0.35.2](https://www.github.com/iTwin/iTwinUI/compare/v0.35.1...v0.35.2) (2021-10-14)
 
 ### Fixes
