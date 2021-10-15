@@ -7,6 +7,8 @@
 
   > .iui-label {
     @include iui-input-label;
+    grid-area: label;
+    align-self: center;
   }
 
   .iui-input-icon {
@@ -32,6 +34,37 @@
   @each $status in positive, negative, warning {
     &.iui-#{$status} {
       @include iui-input-status($status: $status);
+    }
+  }
+}
+
+.iui-input-label {
+  @include iui-input-label;
+  display: block;
+  width: fit-content;
+  cursor: default;
+
+  @at-root {
+    label#{&} {
+      cursor: pointer;
+
+      &.iui-disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.iui-inline {
+    margin-bottom: 0;
+    margin-right: $iui-m;
+    display: inline-block;
+
+    &.iui-required {
+      margin-right: $iui-xs * 1.5;
+    }
+
+    ~ .iui-input-container {
+      display: inline-grid;
     }
   }
 }

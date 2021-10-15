@@ -155,8 +155,6 @@
 /// Supports .iui-required modifier to show red asterisk.
 @mixin iui-input-label {
   font-weight: $iui-font-weight-semibold;
-  grid-area: label;
-  align-self: center;
   margin-bottom: $iui-component-offset;
 
   &.iui-required {
