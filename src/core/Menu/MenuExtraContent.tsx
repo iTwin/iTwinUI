@@ -7,33 +7,42 @@ import cx from 'classnames';
 import { CommonProps, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/menu.css';
 
-export type MenuDividerProps = Omit<CommonProps, 'title'>;
+export type MenuExtraContentProps = {
+  children: React.ReactNode;
+} & Omit<CommonProps, 'title'>;
 
 /**
- * Divider between menu items. Should be used inside `Menu`.
+ * Component that allows to have any additional content inside `Menu`.
  * @example
  * <Menu>
  *   {(close) => [
- *     <MenuItem key={0} onClick={() => {}}>
- *       Item #1
- *     </MenuItem>,
+ *     <MenuExtraContent key={0}>
+ *       <>
+ *         <Text variant='leading'>Terry Rivers</Text>
+ *           terry.rivers@email.com
+ *         </Text>
+ *         <Select options={someOptions} />
+ *       </>
+ *     </MenuExtraContent>,
  *     <MenuDivider key={1} />,
  *     <MenuItem key={2} onClick={() => {}}>
- *       Item #2
+ *       Sign out
  *     </MenuItem>,
  *   ]}
  * </Menu>
  */
-export const MenuDivider = (props: MenuDividerProps) => {
-  const { className, ...rest } = props;
+export const MenuExtraContent = (props: MenuExtraContentProps) => {
+  const { children, className, ...rest } = props;
   useTheme();
   return (
     <li
-      role='separator'
-      className={cx('iui-menu-divider', className)}
+      className={cx('iui-menu-content', className)}
+      role='presentation'
       {...rest}
-    />
+    >
+      {children}
+    </li>
   );
 };
 
-export default MenuDivider;
+export default MenuExtraContent;

@@ -16,8 +16,12 @@ import {
   HeaderProps,
   IconButton,
   Input,
+  MenuExtraContent,
   MenuItem,
   UserIcon,
+  Text,
+  Select,
+  MenuDivider,
 } from '../../src/core';
 import SvgHelpCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/HelpCircularHollow';
 import SvgVersion from '@itwin/itwinui-icons-react/cjs/icons/Pin';
@@ -25,6 +29,7 @@ import SvgNetwork from '@itwin/itwinui-icons-react/cjs/icons/Network';
 import SvgNotification from '@itwin/itwinui-icons-react/cjs/icons/Notification';
 import { SvgImodel } from '@itwin/itwinui-icons-react';
 import { CreeveyMeta } from 'creevey';
+import { useState } from '@storybook/addons';
 
 export default {
   title: 'Core/Header',
@@ -53,25 +58,62 @@ export default {
 } as Meta<HeaderProps> & CreeveyMeta;
 
 const buildClickHandler = (menu: string, close: () => void) => (
-  index: number,
+  item: string,
 ) => {
-  action(`Menu '${menu}', Item #${index} clicked!`)();
+  action(`Menu '${menu}', ${item} clicked!`)();
   close();
 };
 
 const buildMenu = (menu: string) => (close: () => void) => [
-  <MenuItem key={1} value={1} onClick={buildClickHandler(menu, close)}>
+  <MenuItem key={1} value={'Item #1'} onClick={buildClickHandler(menu, close)}>
     {menu} item #1
   </MenuItem>,
-  <MenuItem key={2} value={2} onClick={buildClickHandler(menu, close)}>
+  <MenuItem key={2} value={'Item #2'} onClick={buildClickHandler(menu, close)}>
     {menu} item #2
   </MenuItem>,
-  <MenuItem key={3} value={3} onClick={buildClickHandler(menu, close)}>
+  <MenuItem key={3} value={'Item #3'} onClick={buildClickHandler(menu, close)}>
     {menu} item #3
   </MenuItem>,
 ];
 
 export const Full: Story<HeaderProps> = (args) => {
+  const [userType, setUserType] = useState('User');
+
+  const userIconMenuItems = (close: () => void) => [
+    <MenuExtraContent key={0}>
+      <>
+        <Text variant='leading'>Terry Rivers</Text>
+        <Text isMuted style={{ marginBottom: 8 }}>
+          terry.rivers@email.com
+        </Text>
+        <Select
+          options={[
+            { value: 'User', label: 'User' },
+            { value: 'Moderator', label: 'Moderator' },
+            { value: 'Administrator', label: 'Administrator' },
+          ]}
+          value={userType}
+          onChange={(type) => setUserType(type)}
+        />
+      </>
+    </MenuExtraContent>,
+    <MenuDivider key={1} />,
+    <MenuItem
+      key={2}
+      value='View profile'
+      onClick={buildClickHandler('UserIcon', close)}
+    >
+      View profile
+    </MenuItem>,
+    <MenuItem
+      key={3}
+      value='Sign out'
+      onClick={buildClickHandler('UserIcon', close)}
+    >
+      Sign out
+    </MenuItem>,
+  ];
+
   return (
     <Header
       {...args}
@@ -139,7 +181,7 @@ export const Full: Story<HeaderProps> = (args) => {
         </DropdownMenu>,
       ]}
       userIcon={
-        <DropdownMenu menuItems={buildMenu('User')}>
+        <DropdownMenu menuItems={userIconMenuItems}>
           <IconButton styleType='borderless'>
             <UserIcon
               size='medium'

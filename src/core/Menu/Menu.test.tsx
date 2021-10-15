@@ -7,6 +7,7 @@ import { fireEvent, render } from '@testing-library/react';
 import MenuItem from './MenuItem';
 import Menu, { MenuProps } from './Menu';
 import { MenuDivider } from './MenuDivider';
+import { MenuExtraContent } from './MenuExtraContent';
 
 const testLabels = ['Test0', 'Test1', 'Test2'];
 
@@ -63,35 +64,40 @@ it('should focus selected item', () => {
 it('should handle keyboard navigation', () => {
   const { container } = renderComponent({
     children: [
-      <MenuItem key={0}>Test0</MenuItem>,
-      <MenuItem key={1}>Test1</MenuItem>,
-      <MenuDivider key={2} />,
-      <MenuItem key={3} disabled>
+      <MenuExtraContent key={0}>Test content</MenuExtraContent>,
+      <MenuItem key={1}>Test0</MenuItem>,
+      <MenuItem key={2}>Test1</MenuItem>,
+      <MenuDivider key={3} />,
+      <MenuItem key={4} disabled>
         Test2
       </MenuItem>,
-      <MenuItem key={4}>Test3</MenuItem>,
+      <MenuItem key={5}>Test3</MenuItem>,
     ],
   });
-  const labels = ['Test0', 'Test1', '', 'Test2', 'Test3'];
+  const labels = ['Test content', 'Test0', 'Test1', '', 'Test2', 'Test3'];
 
   const menu = container.querySelector('.iui-menu') as HTMLUListElement;
-  assertBaseElement(menu, { labels });
-
-  fireEvent.keyDown(menu, { key: 'ArrowDown' });
   assertBaseElement(menu, { labels, focusedIndex: 1 });
+
+  // Test0 -> Test1
+  fireEvent.keyDown(menu, { key: 'ArrowDown' });
+  assertBaseElement(menu, { labels, focusedIndex: 2 });
+  // Test1 -> Test3
   // Should skip separator and disabled item
   fireEvent.keyDown(menu, { key: 'ArrowDown' });
-  assertBaseElement(menu, { labels, focusedIndex: 4 });
+  assertBaseElement(menu, { labels, focusedIndex: 5 });
   fireEvent.keyDown(menu, { key: 'ArrowDown' });
-  assertBaseElement(menu, { labels, focusedIndex: 4 });
+  assertBaseElement(menu, { labels, focusedIndex: 5 });
 
+  // Test3 -> Test1
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
-  assertBaseElement(menu, { labels, focusedIndex: 1 });
+  assertBaseElement(menu, { labels, focusedIndex: 2 });
+  // Test1 -> Test0
   // Should skip separator and disabled item
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
-  assertBaseElement(menu, { labels, focusedIndex: 0 });
+  assertBaseElement(menu, { labels, focusedIndex: 1 });
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
-  assertBaseElement(menu, { labels, focusedIndex: 0 });
+  assertBaseElement(menu, { labels, focusedIndex: 1 });
 });
 
 it('should reset focus when children changes', () => {
