@@ -26,4 +26,35 @@
       cursor: wait;
     }
   }
+
+  &.iui-visibility {
+
+    // Adds hover to everything that is not disabled
+    &:hover > input:enabled ~ .iui-checkbox-checkmark {
+      @include themed {
+        background-color: t(iui-color-background-1-overlay);
+      }
+    }
+
+    input ~ .iui-checkbox-checkmark,
+    &:hover > input:enabled ~ .iui-checkbox-checkmark {
+      border-color: transparent;
+    }
+
+    input ~ .iui-checkbox-checkmark {
+      background-color: transparent;
+    }
+
+    .iui-checkbox-checkmark svg:not(.iui-radial) {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+    }
+
+    input:not(:checked):not(:indeterminate) ~ .iui-checkbox-checkmark > svg > .iui-uncheck {
+      opacity: 1;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: opacity $iui-speed-fast ease;
+      }
+    }
+  }
 }

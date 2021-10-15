@@ -48,7 +48,8 @@
       height: $iui-sm;
 
       > path,
-      > circle {
+      > circle,
+      > g {
         opacity: 0;
         @media (prefers-reduced-motion: no-preference) {
           transition: opacity $iui-speed-fast ease;
@@ -101,8 +102,8 @@
   }
 
   // Show check, partial, or dot depending on type
-  input:checked ~ .iui-checkbox-checkmark > svg > path.iui-check,
-  input:indeterminate ~ .iui-checkbox-checkmark > svg > path.iui-check-partial,
+  input:checked ~ .iui-checkbox-checkmark > svg > .iui-check,
+  input:indeterminate ~ .iui-checkbox-checkmark > svg > .iui-check-partial,
   input:checked ~ .iui-radio-dot > svg > circle {
     opacity: 1;
     @media (prefers-reduced-motion: no-preference) {
@@ -142,6 +143,7 @@
 
   // Styles disabled checks
   input:disabled ~ .iui-checkbox-checkmark > svg > path,
+  input:disabled ~ .iui-checkbox-checkmark > svg > g,
   input:disabled ~ .iui-radio-dot > svg > circle {
     @include themed {
       fill: t(iui-icons-color-actionable-disabled);
