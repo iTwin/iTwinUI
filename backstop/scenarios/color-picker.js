@@ -20,7 +20,7 @@ module.exports = [
   }),
   scenario('State hover color dot', {
     actions: [hover('#test-color-dot')],
-    selectors: ['#demo-advanced'],
+    selectors: ['#demo-advanced-interactions'],
   }),
 
   // Focus states
@@ -30,6 +30,6 @@ module.exports = [
   }),
   scenario('State focus color dot', {
     actions: [focus('#test-color-dot')],
-    selectors: ['#demo-advanced'],
+    selectors: ['#demo-advanced-interactions'],
   }),
 ];
