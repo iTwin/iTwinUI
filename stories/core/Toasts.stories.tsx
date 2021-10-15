@@ -77,6 +77,7 @@ export default {
     controls: { expanded: true },
     creevey: {
       captureElement: null,
+      skip: { stories: ['Close Individual'] },
       tests: {
         async open() {
           const button = await this.browser.findElement({
