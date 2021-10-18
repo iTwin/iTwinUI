@@ -8,3 +8,9 @@ export default './SideNavigation';
 
 export { SidenavButton } from './SidenavButton';
 export type { SidenavButtonProps } from './SidenavButton';
+
+export { SidenavSubmenu } from './SidenavSubmenu';
+export type { SidenavSubmenuProps } from './SidenavSubmenu';
+
+export { SidenavSubmenuHeader } from './SidenavSubmenuHeader';
+export type { SidenavSubmenuHeaderProps } from './SidenavSubmenuHeader';

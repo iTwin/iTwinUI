@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { useTheme, CommonProps } from '../utils';
+import { useTheme, CommonProps, WithCSSTransition } from '../utils';
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import { IconButton } from '../Buttons';
 import { Tooltip } from '../Tooltip';
@@ -33,6 +33,25 @@ export type SideNavigationProps = {
    * Callback fired when the "expander" icon is clicked.
    */
   onExpanderClick?: () => void;
+  /**
+   * Submenu to show supplemental info assicated to the main item.
+   * @example
+   * <SideNavigation
+   *   // ...
+   *   submenu={(
+   *     <SidenavSubmenu>
+   *       <SidenavSubmenuHeader>Documents</SidenavSubmenuHeader>
+   *       <span>List of documents</span>
+   *     </SidenavSubmenu>
+   *   )}
+   * />
+   */
+  submenu?: JSX.Element;
+  /**
+   * Set to true to display the provided `submenu`.
+   * @default false
+   */
+  isSubmenuOpen?: boolean;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -57,6 +76,8 @@ export const SideNavigation = (props: SideNavigationProps) => {
     className,
     isExpanded = false,
     onExpanderClick,
+    submenu,
+    isSubmenuOpen = false,
     ...rest
   } = props;
 
@@ -80,51 +101,58 @@ export const SideNavigation = (props: SideNavigationProps) => {
   );
 
   return (
-    <div
-      className={cx(
-        'iui-side-navigation',
-        {
+    <div className={cx('iui-side-navigation-wrapper', className)} {...rest}>
+      <div
+        className={cx('iui-side-navigation', {
           'iui-expanded': _isExpanded,
           'iui-collapsed': !_isExpanded,
-        },
-        className,
-      )}
-      {...rest}
-    >
-      {expanderPlacement === 'top' && ExpandButton}
-      <div className='iui-sidenav-content'>
-        <div className='iui-top'>
-          {items.map((sidenavButton: JSX.Element, index) =>
-            !_isExpanded ? (
-              <Tooltip
-                content={sidenavButton.props.children}
-                placement='right'
-                key={index}
-              >
-                {sidenavButton}
-              </Tooltip>
-            ) : (
-              sidenavButton
-            ),
-          )}
+        })}
+      >
+        {expanderPlacement === 'top' && ExpandButton}
+        <div className='iui-sidenav-content'>
+          <div className='iui-top'>
+            {items.map((sidenavButton: JSX.Element, index) =>
+              !_isExpanded ? (
+                <Tooltip
+                  content={sidenavButton.props.children}
+                  placement='right'
+                  key={index}
+                >
+                  {sidenavButton}
+                </Tooltip>
+              ) : (
+                sidenavButton
+              ),
+            )}
+          </div>
+          <div className='iui-bottom'>
+            {secondaryItems?.map((sidenavButton: JSX.Element, index) =>
+              !_isExpanded ? (
+                <Tooltip
+                  content={sidenavButton.props.children}
+                  placement='right'
+                  key={index}
+                >
+                  {sidenavButton}
+                </Tooltip>
+              ) : (
+                sidenavButton
+              ),
+            )}
+          </div>
         </div>
-        <div className='iui-bottom'>
-          {secondaryItems?.map((sidenavButton: JSX.Element, index) =>
-            !_isExpanded ? (
-              <Tooltip
-                content={sidenavButton.props.children}
-                placement='right'
-                key={index}
-              >
-                {sidenavButton}
-              </Tooltip>
-            ) : (
-              sidenavButton
-            ),
-          )}
-        </div>
+        {expanderPlacement === 'bottom' && ExpandButton}
       </div>
-      {expanderPlacement === 'bottom' && ExpandButton}
+      {submenu && (
+        <WithCSSTransition
+          in={isSubmenuOpen}
+          dimension='width'
+          timeout={200}
+          classNames='iui'
+        >
+          {submenu}
+        </WithCSSTransition>
+      )}
     </div>
   );
 };

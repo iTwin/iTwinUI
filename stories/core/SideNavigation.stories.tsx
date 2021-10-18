@@ -15,20 +15,32 @@ import React from 'react';
 import {
   SideNavigation,
   SidenavButton,
+  SidenavSubmenu,
+  SidenavSubmenuHeader,
   SideNavigationProps,
+  Text,
+  IconButton,
 } from '../../src/core';
 
 export default {
   component: SideNavigation,
-  subcomponents: { SidenavButton },
+  subcomponents: { SidenavButton, SidenavSubmenu, SidenavSubmenuHeader },
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     id: { control: { disable: true } },
     items: { control: { disable: true } },
     secondaryItems: { control: { disable: true } },
+    submenu: { control: { disable: true } },
   },
-  args: { style: { height: 'calc(100vh - 24px) ' } },
+  decorators: [
+    (Story) => (
+      <div style={{ height: 'calc(100vh - 24px)' }}>
+        <Story />
+      </div>
+    ),
+  ],
+  parameters: { docs: { source: { excludeDecorators: true } } },
   title: 'Core/SideNavigation',
 } as Meta<SideNavigationProps>;
 
@@ -80,5 +92,93 @@ export const ActiveItem: Story<SideNavigationProps> = (args) => {
         </SidenavButton>,
       ]}
     />
+  );
+};
+
+export const Submenu: Story<SideNavigationProps> = (args) => {
+  const itemsData = [
+    { label: 'Home', icon: <SvgHome /> },
+    { label: 'Issues', icon: <SvgFlag /> },
+    { label: 'Documents', icon: <SvgFolderOpened /> },
+    { label: 'Settings', icon: <SvgSettings /> },
+  ];
+
+  const [activeItem, setActiveItem] = useState(2);
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(true);
+  const [activeSubItem, setActiveSubItem] = useState(0);
+
+  const items = itemsData.map(({ label, icon }, index) => (
+    <SidenavButton
+      key={index}
+      startIcon={icon}
+      isActive={activeItem === index}
+      onClick={() => {
+        if (label !== 'Documents') {
+          setActiveItem(index);
+          setActiveSubItem(-1);
+          setIsSubmenuOpen(false);
+        } else {
+          setIsSubmenuOpen((open) => !open);
+        }
+      }}
+    >
+      {label}
+    </SidenavButton>
+  ));
+
+  return (
+    <div style={{ display: 'flex', height: '100%' }}>
+      <SideNavigation
+        {...args}
+        expanderPlacement='bottom'
+        items={items.slice(0, 3)}
+        secondaryItems={[items[3]]}
+        isSubmenuOpen={isSubmenuOpen}
+        submenu={
+          <SidenavSubmenu>
+            <SidenavSubmenuHeader
+              actions={
+                <IconButton styleType='borderless'>
+                  <SvgSettings />
+                </IconButton>
+              }
+            >
+              <span>Documents</span>
+            </SidenavSubmenuHeader>
+            <Text variant='leading'>All documents</Text>
+            <ul>
+              {[...Array(10).fill(null)].map((_, index) => (
+                <li key={index}>
+                  <a
+                    className='iui-anchor'
+                    onClick={() => {
+                      setActiveItem(2);
+                      setActiveSubItem(index);
+                    }}
+                  >
+                    Folder {index}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </SidenavSubmenu>
+        }
+      />
+      <div
+        style={{
+          background: 'var(--iui-color-background-5)',
+          padding: 16,
+          flexGrow: 1,
+          display: 'grid',
+          placeContent: 'center',
+          placeItems: 'center',
+        }}
+      >
+        <Text>{itemsData[activeItem]?.label} page</Text>
+        <Text isMuted>
+          {activeSubItem >= 0 && `Contents of Folder ${activeSubItem}`}
+        </Text>
+      </div>
+    </div>
   );
 };
