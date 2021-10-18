@@ -2,7 +2,6 @@
 
 ## [0.37.0](https://www.github.com/iTwin/iTwinUI/compare/v0.36.1...v0.37.0) (2021-10-18)
 
-
 ### What's new
 
 * **SideNavigation:** Add open state to side navigation buttons. ([#353](https://www.github.com/iTwin/iTwinUI/issues/353)) ([ebbff83](https://www.github.com/iTwin/iTwinUI/commit/ebbff831d6b2d0e7098d2294cf6c55d262ab5f40))
