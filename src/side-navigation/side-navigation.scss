@@ -130,6 +130,12 @@
       }
     }
 
+    &.iui-open .iui-icon {
+      @include themed {
+        fill: t(iui-color-foreground-primary);
+      }
+    }
+
     &[disabled] {
       @include themed {
         background-color: t(iui-color-background-2);
