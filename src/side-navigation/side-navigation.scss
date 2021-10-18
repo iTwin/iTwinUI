@@ -113,6 +113,12 @@
       }
     }
 
+    &.iui-submenu-open .iui-icon {
+      @include themed {
+        fill: t(iui-color-foreground-primary);
+      }
+    }
+
     &.iui-active {
       &:focus,
       &:focus-visible {
