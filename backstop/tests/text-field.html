@@ -29,6 +29,17 @@
         flex-direction: column;
         gap: 11px;
       }
+
+      #block-labels { display: grid; }
+      #block-labels > .iui-input-container { margin-bottom: 11px; }
+
+      #inline-labels {
+        display: grid;
+        row-gap: 11px;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+      }
+      #inline-labels > .iui-input-label { justify-self: end; }
     </style>
     <script
       type="module"
@@ -415,7 +426,7 @@
     <h2>No wrapping label</h2>
     <section id="demo-no-label">
 
-      <div>
+      <div id="block-labels">
         <label
           class="iui-input-label"
           for="test-1"
@@ -427,9 +438,7 @@
             id="test-1"
           />
         </div>
-      </div>
 
-      <div>
         <label
           class="iui-input-label iui-disabled"
           for="test-2"
@@ -442,9 +451,7 @@
             disabled
           />
         </div>
-      </div>
 
-      <div>
         <label
           class="iui-input-label iui-required"
           for="test-3"
@@ -458,9 +465,7 @@
         </div>
       </div>
 
-
-
-      <div>
+      <div id="inline-labels">
         <label
           class="iui-input-label iui-inline"
           for="test-4"
@@ -472,9 +477,7 @@
             id="test-4"
           />
         </div>
-      </div>
 
-      <div>
         <label
           class="iui-input-label iui-inline iui-disabled"
           for="test-5"
@@ -487,9 +490,7 @@
             disabled
           />
         </div>
-      </div>
 
-      <div>
         <label
           class="iui-input-label iui-inline iui-required"
           for="test-6"
