@@ -24,10 +24,6 @@ export type InformationPanelProps = {
    */
   resizable?: boolean;
   /**
-   * Header of the panel. Expects `InformationPanelHeader` component.
-   */
-  header?: React.ReactNode;
-  /**
    * Content of the panel.
    */
   children?: React.ReactNode;
@@ -41,15 +37,13 @@ export type InformationPanelProps = {
  * @example
  * <InformationPanelWrapper>
  *   <Table ... /> // component to overlay
- *   <InformationPanel
- *     isOpen={true}
- *     header={
- *       <InformationPanelHeader onClose={() => {}}>
- *         <Text variant='subheading'>InfoPanel heading</Text>
- *       </InformationPanelHeader>
- *     }
- *   >
- *     <span>Info panel content</span>
+ *   <InformationPanel isOpen={true}>
+ *     <InformationPanelHeader onClose={() => {}}>
+ *       <Text variant='subheading'>InfoPanel heading</Text>
+ *     </InformationPanelHeader>
+ *     <InformationPanelBody>
+ *       <span>Info panel content</span>
+ *     </InformationPanelBody>
  *   </InformationPanel>
  * </InformationPanelWrapper>
  */
@@ -59,7 +53,6 @@ export const InformationPanel = React.forwardRef<
 >((props, ref) => {
   const {
     className,
-    header,
     isOpen = false,
     orientation = 'vertical',
     resizable = true,
@@ -131,8 +124,7 @@ export const InformationPanel = React.forwardRef<
           <div className='iui-resizer-bar' />
         </div>
       )}
-      {header}
-      <div className='iui-information-body'>{children}</div>
+      {children}
     </div>
   );
 });

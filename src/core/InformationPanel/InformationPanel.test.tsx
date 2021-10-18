@@ -8,6 +8,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { InformationPanel } from './InformationPanel';
 import { InformationPanelWrapper } from './InformationPanelWrapper';
 import { InformationPanelHeader } from './InformationPanelHeader';
+import { InformationPanelBody } from './InformationPanelBody';
 import { SvgCloseSmall, SvgEdit } from '@itwin/itwinui-icons-react';
 import { IconButton } from '../Buttons';
 import { act } from 'react-dom/test-utils';
@@ -28,10 +29,11 @@ afterAll(() => {
 
 it('should render in a basic state', () => {
   const { container } = render(
-    <InformationPanel
-      header={<InformationPanelHeader>InfoPanel label</InformationPanelHeader>}
-    >
-      <span className='demo-content'>InfoPanel content</span>
+    <InformationPanel>
+      <InformationPanelHeader>InfoPanel label</InformationPanelHeader>
+      <InformationPanelBody>
+        <span className='demo-content'>InfoPanel content</span>
+      </InformationPanelBody>
     </InformationPanel>,
   );
 
@@ -82,9 +84,9 @@ it('should allow turning off resizer', () => {
 it('should render close icon correctly', () => {
   const mockOnClose = jest.fn();
   const { container } = render(
-    <InformationPanel
-      header={<InformationPanelHeader onClose={mockOnClose} />}
-    />,
+    <InformationPanel>
+      <InformationPanelHeader onClose={mockOnClose} />
+    </InformationPanel>,
   );
 
   const infoPanel = container.querySelector(
@@ -115,18 +117,16 @@ it('should render custom header actions', () => {
     </IconButton>,
   );
   const { container } = render(
-    <InformationPanel
-      header={
-        <InformationPanelHeader
-          onClose={jest.fn()}
-          actions={
-            <IconButton styleType='borderless'>
-              <SvgEdit />
-            </IconButton>
-          }
-        />
-      }
-    />,
+    <InformationPanel>
+      <InformationPanelHeader
+        onClose={jest.fn()}
+        actions={
+          <IconButton styleType='borderless'>
+            <SvgEdit />
+          </IconButton>
+        }
+      />
+    </InformationPanel>,
   );
 
   const actions = container.querySelector(

@@ -80,11 +80,13 @@ export {
   InformationPanel,
   InformationPanelWrapper,
   InformationPanelHeader,
+  InformationPanelBody,
 } from './InformationPanel';
 export type {
   InformationPanelProps,
   InformationPanelWrapperProps,
   InformationPanelHeaderProps,
+  InformationPanelBodyProps,
 } from './InformationPanel';
 
 export { Input } from './Input';
