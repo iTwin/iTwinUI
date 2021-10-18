@@ -167,17 +167,16 @@
   }
 }
 
-/// Wrapping
-@mixin iui-input-label-wrapper {
+/// When the label wraps around the input.
+@mixin iui-input-container-label {
   @include iui-input-label-styling;
   grid-area: label;
   align-self: center;
 }
 
-/// Non-wrapping
+/// When the label does not wrap around the input.
 @mixin iui-input-label {
   @include iui-input-label-styling;
-  display: block;
   width: fit-content;
   cursor: default;
 
@@ -194,14 +193,9 @@
   &.iui-inline {
     margin-bottom: 0;
     margin-right: $iui-m;
-    display: inline-block;
 
     &.iui-required {
       margin-right: $iui-xs * 1.5;
-    }
-
-    ~ .iui-input-container {
-      display: inline-grid;
     }
   }
 }
