@@ -113,6 +113,12 @@
       }
     }
 
+    &.iui-submenu-open .iui-icon {
+      @include themed {
+        fill: t(iui-color-foreground-primary);
+      }
+    }
+
     &.iui-active {
       &:focus,
       &:focus-visible {
@@ -127,12 +133,6 @@
         @include themed {
           box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
         }
-      }
-    }
-
-    &.iui-open .iui-icon {
-      @include themed {
-        fill: t(iui-color-foreground-primary);
       }
     }
 
