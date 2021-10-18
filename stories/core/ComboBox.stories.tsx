@@ -27,6 +27,7 @@ export default {
   parameters: {
     docs: { source: { excludeDecorators: true } },
     creevey: {
+      skip: { stories: ['Disabled Items'] },
       tests: {
         async open() {
           const closed = await this.takeScreenshot();
