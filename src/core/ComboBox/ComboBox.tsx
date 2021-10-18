@@ -136,12 +136,18 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
   }, [isOpen]);
 
   const [filteredOptions, setFilteredOptions] = React.useState(options);
+  React.useEffect(() => {
+    setFilteredOptions(options);
+  }, [options]);
+
   const [focusedIndex, setFocusedIndex] = React.useState(() =>
     options.findIndex((option) => value === option.value),
   );
 
   // Maintain internal selected value state synced with `value` prop
-  const [selectedValue, setSelectedValue] = React.useState<T | undefined>();
+  const [selectedValue, setSelectedValue] = React.useState<T | undefined>(
+    value,
+  );
   React.useEffect(() => {
     setSelectedValue(value);
   }, [value]);
@@ -156,13 +162,11 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     [inputProps],
   );
 
-  // update inputValue every time selected value changes
+  // update inputValue and focusedIndex every time selected value changes
   React.useEffect(() => {
-    if (selectedValue != undefined) {
-      setInputValue(
-        options.find(({ value }) => value === selectedValue)?.label ?? '',
-      );
-    }
+    const selectedOption = options.find(({ value }) => value === selectedValue);
+    setInputValue(selectedOption?.label ?? '');
+    setFocusedIndex(selectedOption ? options.indexOf(selectedOption) : -1);
   }, [selectedValue, options]);
 
   // Filter options and update focus when input value changes
@@ -274,14 +278,20 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     }
     return filteredOptions.map((option) => {
       const index = options.findIndex(({ value }) => option.value === value);
-      return focusedIndex !== index && selectedValue !== option.value
-        ? memoizedItems[index]
-        : React.cloneElement(memoizedItems[index], {
-            className: cx({ 'iui-focused': focusedIndex === index }),
-            isSelected: selectedValue === option.value,
-            ref: (el: HTMLElement) =>
-              focusedIndex === index && el?.scrollIntoView(false),
-          });
+      if (index < 0) {
+        return;
+      }
+
+      if (selectedValue === option.value || focusedIndex === index) {
+        return React.cloneElement(memoizedItems[index], {
+          isSelected: selectedValue === option.value,
+          className: cx({ 'iui-focused': focusedIndex === index }),
+          ref: (el: HTMLElement) =>
+            focusedIndex === index && el?.scrollIntoView(false),
+        });
+      }
+
+      return memoizedItems[index];
     });
   }, [
     filteredOptions,
