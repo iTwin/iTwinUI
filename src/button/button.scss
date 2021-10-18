@@ -7,6 +7,9 @@ $iui-button-padding: $iui-xs * 4;
 $iui-button-padding-small: $iui-xs * 2;
 $iui-button-padding-large: $iui-xs * 6;
 
+// slider, info panel, submenu!!
+// add default button!!!!
+
 @mixin iui-button {
   @include iui-reset;
   display: inline-flex;
