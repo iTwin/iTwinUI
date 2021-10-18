@@ -28,7 +28,7 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     id: { control: { disable: true } },
-    headerActions: { control: { disable: true } },
+    header: { control: { disable: true } },
     children: { control: { disable: true } },
   },
   args: {
@@ -151,7 +151,7 @@ export const CustomActions: Story<InformationPanelProps> = (args) => {
   );
 
   return (
-    <InformationPanelWrapper style={{}}>
+    <InformationPanelWrapper>
       <Table columns={columns} data={data} emptyTableContent='No data.' />
 
       <InformationPanel
@@ -164,16 +164,15 @@ export const CustomActions: Story<InformationPanelProps> = (args) => {
               setIsEditing(false);
               action('Panel closed')();
             }}
-            actions={[
+            actions={
               <IconButton
-                key='edit'
                 styleType='borderless'
                 isActive={isEditing}
                 onClick={() => setIsEditing((editing) => !editing)}
               >
                 <SvgEdit />
-              </IconButton>,
-            ]}
+              </IconButton>
+            }
           >
             <Text variant='subheading'>Row details</Text>
           </InformationPanelHeader>

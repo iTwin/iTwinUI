@@ -7,10 +7,10 @@ import { fireEvent, render } from '@testing-library/react';
 
 import { InformationPanel } from './InformationPanel';
 import { InformationPanelWrapper } from './InformationPanelWrapper';
+import { InformationPanelHeader } from './InformationPanelHeader';
 import { SvgCloseSmall, SvgEdit } from '@itwin/itwinui-icons-react';
 import { IconButton } from '../Buttons';
 import { act } from 'react-dom/test-utils';
-import { InformationPanelHeader } from '.';
 
 const getBoundingClientRect = HTMLElement.prototype.getBoundingClientRect;
 HTMLElement.prototype.getBoundingClientRect = () => {
@@ -119,11 +119,11 @@ it('should render custom header actions', () => {
       header={
         <InformationPanelHeader
           onClose={jest.fn()}
-          actions={[
-            <IconButton key='edit' styleType='borderless'>
+          actions={
+            <IconButton styleType='borderless'>
               <SvgEdit />
-            </IconButton>,
-          ]}
+            </IconButton>
+          }
         />
       }
     />,

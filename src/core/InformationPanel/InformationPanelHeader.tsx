@@ -19,12 +19,14 @@ export type InformationPanelHeaderProps = {
   /**
    * Custom header action buttons shown alongside the close button.
    * @example
-   * [
-   *   <IconButton styleType='borderless' onClick={() => {}}><SvgEdit /></IconButton>,
-   *   <IconButton styleType='borderless' onClick={() => {}}><SvgDelete /></IconButton>,
-   * ]
+   * actions={(
+   *   <>
+   *     <IconButton styleType='borderless' onClick={() => {}}><SvgEdit /></IconButton>
+   *     <IconButton styleType='borderless' onClick={() => {}}><SvgDelete /></IconButton>
+   *   </>
+   * )}
    */
-  actions?: React.ReactNode[];
+  actions?: React.ReactNode;
   /**
    * Content of the panel header.
    */
@@ -37,10 +39,12 @@ export type InformationPanelHeaderProps = {
  * @example
  * <InformationPanelHeader
  *   onClose={() => {}}
- *   header={[
- *     <IconButton styleType='borderless' onClick={() => {}}><SvgEdit /></IconButton>,
- *     <IconButton styleType='borderless' onClick={() => {}}><SvgDelete /></IconButton>,
- *   ]}
+ *   actions={(
+ *     <>
+ *       <IconButton styleType='borderless' onClick={() => {}}><SvgEdit /></IconButton>
+ *       <IconButton styleType='borderless' onClick={() => {}}><SvgDelete /></IconButton>
+ *     </>
+ *   )}
  * >
  *   <Text variant='subheading'>InfoPanel heading</Text>
  * </InformationPanelHeader>
