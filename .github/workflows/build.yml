@@ -74,10 +74,3 @@ jobs:
       # `&` symbol is needed as it prevents Storybook from running endlessly
       - run: yarn storybook &
       - run: yarn creevey
-
-      - name: Publish test results artifact
-        if: failure()
-        uses: actions/upload-artifact@v2.2.3
-        with:
-          name: 'backstop_test_results'
-          path: '${{ github.workspace }}/tests/report/'
