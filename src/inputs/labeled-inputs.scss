@@ -153,7 +153,7 @@
 
 /// Text label for an input.
 /// Supports .iui-required modifier to show red asterisk.
-@mixin iui-input-label {
+@mixin iui-input-label-styling {
   font-weight: $iui-font-weight-semibold;
   margin-bottom: $iui-component-offset;
 
@@ -163,6 +163,45 @@
       @include themed {
         color: t(iui-color-foreground-negative);
       }
+    }
+  }
+}
+
+/// Wrapping
+@mixin iui-input-label-wrapper {
+  @include iui-input-label-styling;
+  grid-area: label;
+  align-self: center;
+}
+
+/// Non-wrapping
+@mixin iui-input-label {
+  @include iui-input-label-styling;
+  display: block;
+  width: fit-content;
+  cursor: default;
+
+  @at-root {
+    label#{&} {
+      cursor: pointer;
+
+      &.iui-disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.iui-inline {
+    margin-bottom: 0;
+    margin-right: $iui-m;
+    display: inline-block;
+
+    &.iui-required {
+      margin-right: $iui-xs * 1.5;
+    }
+
+    ~ .iui-input-container {
+      display: inline-grid;
     }
   }
 }
