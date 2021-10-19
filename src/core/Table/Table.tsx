@@ -564,13 +564,15 @@ export const Table = <
             </div>
           )}
           {!isLoading && data.length === 0 && !areFiltersSet && (
-            <div className={'iui-table-empty'}>{emptyTableContent}</div>
+            <div className={'iui-table-empty'}>
+              <div>{emptyTableContent}</div>
+            </div>
           )}
           {!isLoading &&
             (data.length === 0 || filteredFlatRows.length === 0) &&
             areFiltersSet && (
               <div className={'iui-table-empty'}>
-                {emptyFilteredTableContent}
+                <div>{emptyFilteredTableContent}</div>
               </div>
             )}
         </div>

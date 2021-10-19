@@ -1550,7 +1550,7 @@ export const WithPaginator: Story<Partial<TableProps>> = (args) => {
         data={data}
         pageSize={25}
         paginatorRenderer={paginator}
-        style={{ maxHeight: '100%' }}
+        style={{ height: '100%' }}
       />
     </>
   );
@@ -1655,7 +1655,7 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
         data={data}
         pageSize={25}
         paginatorRenderer={paginator}
-        style={{ maxHeight: '100%' }}
+        style={{ height: '100%' }}
         manualPagination
       />
     </>

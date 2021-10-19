@@ -55,7 +55,7 @@ const TableRow = <T extends Record<string, unknown>>(props: {
 
   const userRowProps = rowProps?.(row);
   const mergedProps = {
-    ...row.getRowProps(),
+    ...row.getRowProps({ style: { flex: `0 0 auto` } }),
     ...userRowProps,
     ...{
       className: cx(
