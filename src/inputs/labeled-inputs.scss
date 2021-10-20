@@ -56,17 +56,7 @@
   }
 
   // #region Cursors
-  cursor: default;
-
-  @at-root {
-    label#{&} {
-      cursor: pointer;
-
-      &.iui-disabled {
-        cursor: not-allowed;
-      }
-    }
-  }
+  @include iui-input-label-cursor;
 
   &.iui-disabled {
     label {
@@ -151,6 +141,21 @@
   }
 }
 
+/// Cursor styling for the label.
+@mixin iui-input-label-cursor {
+  cursor: default;
+
+  @at-root {
+    label#{&} {
+      cursor: pointer;
+
+      &.iui-disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
 /// Text label for an input.
 /// Supports .iui-required modifier to show red asterisk.
 @mixin iui-input-label-styling {
@@ -167,36 +172,7 @@
   }
 }
 
-
-/// When the label wraps around the input.
-@mixin iui-input-container-label {
-  @include iui-input-label-styling;
-  grid-area: label;
-  align-self: center;
-}
-
-/// When the label does not wrap around the input.
-@mixin iui-input-label {
-  @include iui-input-label-styling;
-  display: inline-block;
-  cursor: default;
-
-  @at-root {
-    label#{&} {
-      cursor: pointer;
-
-      &.iui-disabled {
-        cursor: not-allowed;
-      }
-    }
-  }
-
-  &.iui-inline {
-    @include iui-input-label-inline;
-  }
-}
-
-/// Modifier on iui-input-label to place it inline.
+/// Modifier on iui-input-label-styling to place it inline.
 @mixin iui-input-label-inline {
   margin: 0 $iui-m 0 0;
   // stylelint-disable -- fix position in IE
@@ -206,6 +182,20 @@
   &.iui-required {
     margin-right: $iui-xs * 1.5;
   }
+}
+
+/// Label inside the input-container grid.
+@mixin iui-input-container-label {
+  @include iui-input-label-styling;
+  grid-area: label;
+  align-self: center;
+}
+
+/// Independent label outside the grid.
+@mixin iui-input-label {
+  @include iui-input-label-styling;
+  @include iui-input-label-cursor;
+  display: inline-block;
 }
 
 /// Message shown below input
