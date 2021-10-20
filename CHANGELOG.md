@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.37.0](https://www.github.com/iTwin/iTwinUI/compare/v0.36.1...v0.37.0) (2021-10-18)
+
+### What's new
+
+* **SideNavigation:** Add open state to side navigation buttons. ([#353](https://www.github.com/iTwin/iTwinUI/issues/353)) ([ebbff83](https://www.github.com/iTwin/iTwinUI/commit/ebbff831d6b2d0e7098d2294cf6c55d262ab5f40))
+
+### [0.36.1](https://www.github.com/iTwin/iTwinUI/compare/v0.36.0...v0.36.1) (2021-10-15)
+
+### Fixes
+
+* **transition-group:** Handle exit animation correctly ([#350](https://www.github.com/iTwin/iTwinUI/issues/350)) ([480bcd8](https://www.github.com/iTwin/iTwinUI/commit/480bcd8e15c7918fb12092db8579db07b0c283fc))
+
+## [0.36.0](https://www.github.com/iTwin/iTwinUI/compare/v0.35.2...v0.36.0) (2021-10-15)
+
+### What's new
+
+* **ColorPicker:** Add opacity slider and color value input options  ([#338](https://www.github.com/iTwin/iTwinUI/issues/338)) ([412f6d5](https://www.github.com/iTwin/iTwinUI/commit/412f6d532e083ec131fdfd97d9df1901f4511586))
+
 ### [0.35.2](https://www.github.com/iTwin/iTwinUI/compare/v0.35.1...v0.35.2) (2021-10-14)
 
 ### Fixes
