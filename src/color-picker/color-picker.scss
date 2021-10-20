@@ -166,8 +166,8 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
       linear-gradient(90deg, rgb(255, 255, 255), var(--hue));
   }
 
-  + .iui-slider-component-container {
-    margin-top: round($iui-baseline * 0.5);
+  &:not(:last-child) {
+    margin-bottom: round($iui-baseline * 0.5);
   }
 }
 
