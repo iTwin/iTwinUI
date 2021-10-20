@@ -27,8 +27,7 @@
     }
   }
 
-  &.iui-visibility {
-
+  &-visibility {
     // Adds hover to everything that is not disabled
     &:hover > input:enabled ~ .iui-checkbox-checkmark {
       @include themed {
@@ -38,7 +37,7 @@
 
     input ~ .iui-checkbox-checkmark,
     &:hover > input:enabled ~ .iui-checkbox-checkmark {
-      border-color: transparent;
+      border: none;
     }
 
     input ~ .iui-checkbox-checkmark {
@@ -50,11 +49,14 @@
       height: $iui-icons-default;
     }
 
-    input:not(:checked):not(:indeterminate) ~ .iui-checkbox-checkmark > svg > .iui-uncheck {
+    input:checked ~ .iui-checkbox-checkmark .iui-uncheck,
+    input:indeterminate ~ .iui-checkbox-checkmark .iui-uncheck {
+      opacity: 0;
+    }
+
+    input ~ .iui-checkbox-checkmark > svg > .iui-uncheck {
       opacity: 1;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: opacity $iui-speed-fast ease;
-      }
+      transition: opacity $iui-speed-fast ease;
     }
   }
 }
