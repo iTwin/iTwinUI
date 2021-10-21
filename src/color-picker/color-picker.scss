@@ -124,18 +124,15 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
     width: 100%;
     gap: $iui-xxs;
 
-    > *:not(:last-child) {
-      margin-right: $iui-xxs;
-    }
-
-    @supports (gap: $iui-xxs) {
-      > *:not(:last-child) {
-        margin-right: 0;
-      }
-    }
-
     > * {
       flex-grow: 1;
+    }
+
+    > *:not(:last-child) {
+      margin-right: $iui-xxs;
+      @supports (gap: $iui-xxs) {
+        margin-right: 0;
+      }
     }
 
     input {
