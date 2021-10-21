@@ -2,7 +2,6 @@
 
 ### [0.37.1](https://www.github.com/iTwin/iTwinUI/compare/v0.37.0...v0.37.1) (2021-10-21)
 
-
 ### Fixes
 
 * **ColorPicker:** Add spacing between color field & adjacent slider ([#355](https://www.github.com/iTwin/iTwinUI/issues/355)) ([0dd56ff](https://www.github.com/iTwin/iTwinUI/commit/0dd56ff37618df3f05b61dd832bf3a85db22cd63))
