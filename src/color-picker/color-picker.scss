@@ -111,6 +111,8 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
   }
 
   &-wrapper {
+    max-width: $iui-color-picker-content-width;
+
     &:only-child {
       max-width: $iui-color-picker-max-width;
     }
