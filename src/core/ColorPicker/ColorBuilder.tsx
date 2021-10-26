@@ -1,0 +1,289 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
+import React from 'react';
+import cx from 'classnames';
+import {
+  ColorValue,
+  CommonProps,
+  getBoundedValue,
+  getWindow,
+  HsvColor,
+  useEventListener,
+  useMergedRefs,
+  useTheme,
+} from '../utils';
+import { Slider } from '../Slider';
+import '@itwin/itwinui-css/css/color-picker.css';
+import { useColorPickerContext } from './ColorPickerContext';
+
+const getVerticalPercentageOfRectangle = (rect: DOMRect, pointer: number) => {
+  const position = getBoundedValue(pointer, rect.top, rect.bottom);
+  return ((position - rect.top) / rect.height) * 100;
+};
+const getHorizontalPercentageOfRectangle = (rect: DOMRect, pointer: number) => {
+  const position = getBoundedValue(pointer, rect.left, rect.right);
+  return ((position - rect.left) / rect.width) * 100;
+};
+
+export type ColorBuilderProps = Omit<CommonProps, 'title'>;
+
+/**
+ * `ColorBuilder` consists of two parts:
+ * a color canvas to adjust saturation and lightness values,
+ * and a set of sliders to adjust hue and alpha values.
+ */
+export const ColorBuilder = React.forwardRef(
+  (props: ColorBuilderProps, ref: React.Ref<HTMLDivElement>) => {
+    const { className, ...rest } = props;
+
+    const builderRef = React.useRef<HTMLDivElement>();
+    const refs = useMergedRefs(builderRef, ref);
+
+    useTheme();
+
+    const {
+      activeColor,
+      hsvColor,
+      onChangeComplete,
+      applyHsvColorChange,
+    } = useColorPickerContext();
+
+    // Set values for slider
+    const hueSliderColor = React.useMemo(
+      () => ColorValue.create({ h: hsvColor.h, s: 100, v: 100 }),
+      [hsvColor],
+    );
+    const sliderValue = React.useMemo(() => hsvColor.h, [hsvColor]);
+
+    // Set values for color square and color dot
+    const dotColorString = React.useMemo(() => activeColor.toHexString(), [
+      activeColor,
+    ]);
+    const [colorDotActive, setColorDotActive] = React.useState(false);
+    const hueColorString = hueSliderColor.toHexString();
+    const colorSquareStyle = getWindow()?.CSS?.supports?.(
+      `--hue: ${hueColorString}`,
+    )
+      ? {
+          '--hue': hueColorString,
+          '--selected-color': dotColorString,
+        }
+      : { backgroundColor: hueColorString };
+
+    const squareTop = 100 - hsvColor.v;
+    const squareLeft = hsvColor.s;
+
+    const colorDotStyle = getWindow()?.CSS?.supports?.(
+      `--top: ${squareTop.toString()}%`,
+    )
+      ? {
+          '--top': squareTop.toString() + '%',
+          '--left': squareLeft.toString() + '%',
+        }
+      : {
+          backgroundColor: dotColorString,
+          top: squareTop.toString() + '%',
+          left: squareLeft.toString() + '%',
+        };
+
+    // Update slider change
+    const updateSlider = React.useCallback(
+      (huePercent: number, selectionChanged: boolean) => {
+        const hue = Math.round(huePercent);
+        const newHsvColor = {
+          h: hue,
+          s: hsvColor.s,
+          v: hsvColor.v,
+        };
+        applyHsvColorChange(newHsvColor, selectionChanged);
+      },
+      [applyHsvColorChange, hsvColor.s, hsvColor.v],
+    );
+
+    // Update Color field square change
+    const squareRef = React.useRef<HTMLDivElement>(null);
+    const colorDotRef = React.useRef<HTMLDivElement>(null);
+
+    const updateColorDot = React.useCallback(
+      (x: number, y: number, selectionChanged: boolean) => {
+        const newHsvColor: HsvColor = {
+          h: hsvColor.h,
+          s: x,
+          v: 100 - y,
+        };
+        applyHsvColorChange(newHsvColor, selectionChanged);
+      },
+      [applyHsvColorChange, hsvColor.h],
+    );
+
+    const updateSquareValue = React.useCallback(
+      (
+        event: PointerEvent | React.PointerEvent,
+        callbackType: 'onChange' | 'onUpdate' | 'onClick',
+      ) => {
+        if (
+          (squareRef.current && colorDotActive) ||
+          (squareRef.current && callbackType === 'onClick')
+        ) {
+          const percentX = getHorizontalPercentageOfRectangle(
+            squareRef.current.getBoundingClientRect(),
+            event.clientX,
+          );
+          const percentY = getVerticalPercentageOfRectangle(
+            squareRef.current.getBoundingClientRect(),
+            event.clientY,
+          );
+
+          if (callbackType === 'onChange') {
+            updateColorDot(percentX, percentY, true);
+          } else {
+            updateColorDot(percentX, percentY, false);
+          }
+        }
+      },
+      [colorDotActive, updateColorDot],
+    );
+    const handleSquarePointerUp = React.useCallback(
+      (event: PointerEvent) => {
+        updateSquareValue(event, 'onChange');
+        setColorDotActive(false);
+        event.preventDefault();
+        event.stopPropagation();
+      },
+      [updateSquareValue],
+    );
+    useEventListener(
+      'pointerup',
+      handleSquarePointerUp,
+      builderRef.current?.ownerDocument,
+    );
+
+    const handleSquarePointerMove = React.useCallback(
+      (event: PointerEvent): void => {
+        event.preventDefault();
+        event.stopPropagation();
+        updateSquareValue(event, 'onUpdate');
+      },
+      [updateSquareValue],
+    );
+    useEventListener(
+      'pointermove',
+      handleSquarePointerMove,
+      builderRef.current?.ownerDocument,
+    );
+
+    const handleSquarePointerLeave = React.useCallback(
+      (event: PointerEvent): void => {
+        updateSquareValue(event, 'onChange');
+        setColorDotActive(false);
+      },
+      [updateSquareValue],
+    );
+    useEventListener(
+      'pointerleave',
+      handleSquarePointerLeave,
+      builderRef.current?.ownerDocument,
+    );
+
+    const keysPressed = React.useRef<Record<string, boolean>>({}); // keep track of which keys are currently pressed
+
+    // Arrow key navigation for color dot
+    const handleColorDotKeyDown = (event: React.KeyboardEvent) => {
+      let x = squareLeft;
+      let y = squareTop;
+      keysPressed.current[event.key] = true;
+      switch (event.key) {
+        case 'ArrowDown': {
+          y = Math.min(y + 1, 100);
+          updateColorDot(x, y, false);
+          break;
+        }
+        case 'ArrowUp': {
+          y = Math.max(y - 1, 0);
+          updateColorDot(x, y, false);
+          break;
+        }
+        case 'ArrowLeft':
+          x = Math.max(x - 1, 0);
+          updateColorDot(x, y, false);
+          break;
+        case 'ArrowRight':
+          x = Math.min(x + 1, 100);
+          updateColorDot(x, y, false);
+          break;
+      }
+    };
+
+    const handleColorDotKeyUp = (event: React.KeyboardEvent) => {
+      keysPressed.current[event.key] = false;
+      switch (event.key) {
+        case 'ArrowUp':
+        case 'ArrowDown':
+        case 'ArrowLeft':
+        case 'ArrowRight':
+          if (
+            keysPressed.current['ArrowUp'] ||
+            keysPressed.current['ArrowDown'] ||
+            keysPressed.current['ArrowLeft'] ||
+            keysPressed.current['ArrowRight']
+          ) {
+            return;
+          }
+          onChangeComplete?.(ColorValue.create(hsvColor));
+          break;
+      }
+    };
+
+    return (
+      <div
+        className={cx('iui-color-selection-wrapper', className)}
+        ref={refs}
+        {...rest}
+      >
+        <div
+          className='iui-color-field'
+          style={colorSquareStyle}
+          ref={squareRef}
+          onPointerDown={(event: React.PointerEvent) => {
+            event.preventDefault();
+            updateSquareValue(event, 'onClick');
+            setColorDotActive(true);
+            colorDotRef.current?.focus();
+          }}
+        >
+          <div
+            className='iui-color-dot'
+            style={colorDotStyle}
+            onPointerDown={() => {
+              setColorDotActive(true);
+              colorDotRef.current?.focus();
+            }}
+            onKeyDown={handleColorDotKeyDown}
+            onKeyUp={handleColorDotKeyUp}
+            tabIndex={0}
+            ref={colorDotRef}
+          />
+        </div>
+
+        <Slider
+          minLabel=''
+          maxLabel=''
+          values={[sliderValue]}
+          className='iui-hue-slider'
+          trackDisplayMode='none'
+          tooltipProps={() => ({ visible: false })}
+          onChange={(values) => {
+            updateSlider(values[0], true);
+          }}
+          onUpdate={(values) => {
+            updateSlider(values[0], false);
+          }}
+          min={0}
+          max={359}
+        />
+      </div>
+    );
+  },
+);
