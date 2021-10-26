@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.37.2](https://www.github.com/iTwin/iTwinUI/compare/v0.37.1...v0.37.2) (2021-10-26)
+
+### Fixes
+
+* **ColorPicker:** make advanced picker smaller ([#359](https://www.github.com/iTwin/iTwinUI/issues/359)) ([33fc12d](https://www.github.com/iTwin/iTwinUI/commit/33fc12d7935f5274afe66cacc6fd14e6638114a2))
+* **Tabs:** Add `font-family: inherit` so correct font is used ([#357](https://www.github.com/iTwin/iTwinUI/issues/357)) ([7bec424](https://www.github.com/iTwin/iTwinUI/commit/7bec424970480000c1511496d264832cbbdaf92f))
+
 ### [0.37.1](https://www.github.com/iTwin/iTwinUI/compare/v0.37.0...v0.37.1) (2021-10-21)
 
 ### Fixes
