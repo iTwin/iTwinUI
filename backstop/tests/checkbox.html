@@ -1974,15 +1974,8 @@
     <script>
       // Need to base it on something as checked value resets indeterminate
       // https://www.w3.org/TR/2014/WD-html51-20140617/forms.html#checkbox-state-(type=checkbox)
-      const clickedCountMap = {
-        0: 0,
-        1: 0,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 0,
-      };
-      const indeterminateInputs = document.getElementsByName('indeterminate');
+      const indeterminateInputs = Array.from(document.getElementsByName('indeterminate'));
+      const clickedCountMap = Object.fromEntries(indeterminateInputs.map((_, index) => [index, 0]));
       indeterminateInputs.forEach((el, index) => {
         el.indeterminate = true;
         el.addEventListener('click', (e) => {
