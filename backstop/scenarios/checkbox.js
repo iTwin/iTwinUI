@@ -11,4 +11,7 @@ module.exports = [
     selectors: ['#demo-no-label'],
     hideSelectors: ['h3'],
   }),
+  scenario('Type specialty', {
+    selectors: ['#demo-special'],
+  }),
 ];
