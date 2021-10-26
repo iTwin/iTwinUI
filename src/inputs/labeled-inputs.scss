@@ -23,7 +23,8 @@
   &.iui-inline-icon {
     > .iui-input,
     > .iui-textarea {
-      padding-right: $iui-icons-default + $iui-l;
+      padding-right: ($iui-icons-default + $iui-l);
+      padding-right: var(--inline-icon-width, ($iui-icons-default + $iui-l));
 
       &:last-child {
         padding-right: $iui-sm;
