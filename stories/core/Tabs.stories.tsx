@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
-import { useState } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react/';
 import React from 'react';
 import {
@@ -30,8 +29,8 @@ export default {
   },
 } as Meta<TabsProps>;
 
-export const DefaultTabs: Story<HorizontalTabsProps> = (args) => {
-  const [index, setIndex] = useState(0);
+export const DefaultTabs: Story<Partial<HorizontalTabsProps>> = (args) => {
+  const [index, setIndex] = React.useState(0);
   const getContent = () => {
     switch (index) {
       case 0:
@@ -43,7 +42,15 @@ export const DefaultTabs: Story<HorizontalTabsProps> = (args) => {
     }
   };
   return (
-    <HorizontalTabs {...args} onTabSelected={setIndex}>
+    <HorizontalTabs
+      labels={[
+        <Tab key={1} label='Item1' />,
+        <Tab key={2} label='Item2' />,
+        <Tab key={3} label='Item3' />,
+      ]}
+      {...args}
+      onTabSelected={setIndex}
+    >
       {getContent()}
     </HorizontalTabs>
   );
@@ -91,8 +98,8 @@ SublabelsAndIcons.args = {
   type: 'borderless',
 };
 
-export const Vertical: Story<VerticalTabsProps> = (args) => {
-  const [index, setIndex] = useState(0);
+export const Vertical: Story<Partial<VerticalTabsProps>> = (args) => {
+  const [index, setIndex] = React.useState(0);
   const getContent = () => {
     switch (index) {
       case 0:
@@ -104,7 +111,21 @@ export const Vertical: Story<VerticalTabsProps> = (args) => {
     }
   };
   return (
-    <VerticalTabs {...args} onTabSelected={setIndex}>
+    <VerticalTabs
+      type='borderless'
+      labels={Array(3)
+        .fill(null)
+        .map((_, index) => (
+          <Tab
+            key={index}
+            label={`Item${index}`}
+            sublabel={`Sublabel ${index}`}
+            startIcon={<SvgStar />}
+          />
+        ))}
+      {...args}
+      onTabSelected={setIndex}
+    >
       {getContent()}
     </VerticalTabs>
   );
