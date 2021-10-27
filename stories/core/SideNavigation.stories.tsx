@@ -112,6 +112,7 @@ export const Submenu: Story<SideNavigationProps> = (args) => {
       key={index}
       startIcon={icon}
       isActive={activeItem === index}
+      isSubmenuOpen={label === 'Documents' && isSubmenuOpen} // needed for proper styling when submenu is open but page is not active
       onClick={() => {
         if (label !== 'Documents') {
           setActiveItem(index);

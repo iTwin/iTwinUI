@@ -35,6 +35,8 @@ export type SideNavigationProps = {
   onExpanderClick?: () => void;
   /**
    * Submenu to show supplemental info assicated to the main item.
+   *
+   * Should be used with the `isSubmenuOpen` props from both `SideNavigation` and `SidenavButton`.
    * @example
    * <SideNavigation
    *   // ...
@@ -44,11 +46,15 @@ export type SideNavigationProps = {
    *       <span>List of documents</span>
    *     </SidenavSubmenu>
    *   )}
+   *   isSubmenuOpen={true}
    * />
    */
   submenu?: JSX.Element;
   /**
    * Set to true to display the provided `submenu`.
+   *
+   * Note that there is an identical prop in `SidenavButton` which should also
+   * be set to true for proper styling when submenu is open but page is not active yet.
    * @default false
    */
   isSubmenuOpen?: boolean;

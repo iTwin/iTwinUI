@@ -184,15 +184,19 @@ it('should render active and disabled sidebar buttons', () => {
       <SidenavButton startIcon={<SvgPlaceholder />} key={1} disabled>
         mockbutton 1
       </SidenavButton>,
+      <SidenavButton startIcon={<SvgPlaceholder />} key={2} isSubmenuOpen>
+        mockbutton 2
+      </SidenavButton>,
     ],
   });
   expect(container.querySelector('.iui-side-navigation')).toBeTruthy();
 
   const mainItems = container.querySelectorAll('.iui-top .iui-sidenav-button');
-  expect(mainItems).toHaveLength(2);
+  expect(mainItems).toHaveLength(3);
 
-  expect(mainItems[0].classList).toContain('iui-active');
-  expect((mainItems[1] as HTMLButtonElement).disabled).toBeTruthy();
+  expect(mainItems[0]).toHaveClass('iui-active');
+  expect(mainItems[1]).toBeDisabled();
+  expect(mainItems[2]).toHaveClass('iui-submenu-open');
 });
 
 it('should handle custom class and style', () => {
