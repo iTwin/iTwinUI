@@ -49,6 +49,7 @@ $iui-button-padding-large: $iui-xs * 6;
 
   @include iui-focus;
   @include iui-button-sizes;
+  @include iui-button-default;
 }
 
 @mixin iui-button-sizes {

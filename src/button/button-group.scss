@@ -21,11 +21,11 @@
       border-bottom-right-radius: $iui-border-radius;
     }
 
-    &:not(.iui-borderless):not(.iui-cta):not(.iui-high-visibility):not(:last-of-type) {
+    &.iui-default:not(:last-of-type) {
       border-right: none;
     }
 
-    &:not(.iui-high-visibility):not(.iui-cta):not(.iui-borderless) {
+    &.iui-default {
       // Border trick for grouped default & disabled buttons
       &:enabled {
         + :disabled {
