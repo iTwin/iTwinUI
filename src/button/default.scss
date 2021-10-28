@@ -11,11 +11,11 @@
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
 
-  > .iui-icon {
-    @include themed {
-      fill: t(iui-icons-color-actionable);
-    }
-  }
+  // > .iui-icon {
+  //   @include themed {
+  //     fill: t(iui-icons-color-actionable);
+  //   }
+  // }
 
   &:enabled:hover,
   &:enabled:active,
@@ -27,11 +27,11 @@
     }
     @include iui-notification-marker-hover;
 
-    > .iui-icon {
-      @include themed {
-        fill: t(iui-icons-color-actionable-hover);
-      }
-    }
+    // > .iui-icon {
+    //   @include themed {
+    //     fill: t(iui-icons-color-actionable-hover);
+    //   }
+    // }
   }
 
   &.iui-dropdown {

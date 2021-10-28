@@ -7,8 +7,43 @@ $iui-button-padding: $iui-xs * 4;
 $iui-button-padding-small: $iui-xs * 2;
 $iui-button-padding-large: $iui-xs * 6;
 
-// slider, info panel, submenu!!
-// add default button!!!!
+@mixin iui-button-icon {
+  > .iui-icon:not(.iui-user-icon) {
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: fill $iui-speed-fast ease-out;
+    }
+  }
+
+  > .iui-icon {
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
+  }
+
+  &:enabled:hover,
+  &:enabled:active,
+  &:focus-visible {
+    > .iui-icon {
+      @include themed {
+        fill: t(iui-icons-color-actionable-hover);
+      }
+    }
+  }
+
+  &.iui-active:not(.iui-high-visibility):not(.iui-cta) {
+    &:enabled,
+    &:enabled:hover,
+    &:enabled:active {
+      > .iui-icon {
+        @include themed {
+          fill: t(iui-icons-color-primary);
+        }
+      }
+    }
+  }
+}
 
 @mixin iui-button {
   @include iui-reset;
@@ -50,7 +85,6 @@ $iui-button-padding-large: $iui-xs * 6;
 
   @include iui-focus;
   @include iui-button-sizes;
-  @include iui-button-default;
 }
 
 @mixin iui-button-sizes {
