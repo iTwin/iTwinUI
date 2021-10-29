@@ -18,29 +18,34 @@
     }
   }
 
-  &.iui-active:not(.iui-high-visibility):not(.iui-cta) {
-    &:enabled,
-    &:enabled:hover,
-    &:enabled:active {
-      @include themed {
-        background: linear-gradient(
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-        ),
-          linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-      }
-
-      > .iui-label {
-        @include themed {
-          color: t(iui-color-foreground-primary);
-        }
-      }
-
-      > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-primary);
-        }
-      }
+  &:enabled:hover,
+  &:enabled:active,
+  &:focus-visible {
+    @include themed {
+      background-color: t(iui-color-background-1-overlay);
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
     }
+    @include iui-notification-marker-hover;
   }
+
+  // &.iui-active:not(.iui-high-visibility):not(.iui-cta) {
+  //   &:enabled,
+  //   &:enabled:hover,
+  //   &:enabled:active {
+
+
+  //     > .iui-label {
+  //       @include themed {
+  //         color: t(iui-color-foreground-primary);
+  //       }
+  //     }
+
+  //     > .iui-icon {
+  //       @include themed {
+  //         fill: t(iui-icons-color-primary);
+  //       }
+  //     }
+  //   }
+  // }
 }
