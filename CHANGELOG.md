@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.23.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.23.0...v1.23.1) (2021-11-02)
+
+### Fixes
+
+* **Select:** Set max-width to 2x min-width ([#407](https://www.github.com/iTwin/iTwinUI-react/issues/407)) ([b863b1d](https://www.github.com/iTwin/iTwinUI-react/commit/b863b1d8917be9b64954bce03d75f60eb5f80d7a))
+* **SideNavigation:** Add `isSubmenuOpen` prop to `SidenavButton`. ([#388](https://www.github.com/iTwin/iTwinUI-react/issues/388)) ([d9b8a34](https://www.github.com/iTwin/iTwinUI-react/commit/d9b8a34f35c17507c9a9e38fa0543aab43038e0a))
+  * This prop allows for proper styling when submenu is open but page is not active.
+
 ## [1.23.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.22.0...v1.23.0) (2021-10-26)
 
 ### What's new
