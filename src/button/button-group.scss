@@ -6,23 +6,37 @@
   display: inline-flex;
   align-items: center;
 
-  > .iui-button {
+  > * {
     &:not(.iui-borderless) {
-      border-radius: 0;
+      &,
+      .iui-input {
+        border-radius: 0;
+      }
+
+      &:first-child {
+        &,
+        .iui-input {
+          border-top-left-radius: $iui-border-radius;
+          border-bottom-left-radius: $iui-border-radius;
+        }
+      }
+
+      &:last-child {
+        &,
+        .iui-input {
+          border-top-right-radius: $iui-border-radius;
+          border-bottom-right-radius: $iui-border-radius;
+        }
+      }
     }
 
-    &:first-of-type:not(.iui-borderless) {
-      border-top-left-radius: $iui-border-radius;
-      border-bottom-left-radius: $iui-border-radius;
+    &:not(:last-child) {
+      margin-right: -1px;
     }
 
-    &:last-of-type:not(.iui-borderless) {
-      border-top-right-radius: $iui-border-radius;
-      border-bottom-right-radius: $iui-border-radius;
-    }
-
-    &:not(.iui-borderless):not(.iui-cta):not(.iui-high-visibility):not(:last-of-type) {
-      border-right: none;
+    &:focus,
+    &:focus-within {
+      z-index: 2;
     }
 
     &:not(.iui-high-visibility):not(.iui-cta):not(.iui-borderless) {
@@ -30,10 +44,7 @@
       &:enabled {
         + :disabled {
           @include themed {
-            border-left-color: rgba(
-              t(iui-color-foreground-body-rgb),
-              t(iui-opacity-4)
-            );
+            border-left-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
           }
         }
 
@@ -41,10 +52,7 @@
         &:active + .iui-button,
         &:focus-visible + .iui-button {
           @include themed {
-            border-left-color: rgba(
-              t(iui-color-foreground-body-rgb),
-              t(iui-opacity-1)
-            );
+            border-left-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
           }
         }
       }
@@ -76,10 +84,7 @@
     &:disabled {
       &::after {
         @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-body-rgb),
-            t(iui-opacity-5)
-          );
+          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
         }
       }
     }

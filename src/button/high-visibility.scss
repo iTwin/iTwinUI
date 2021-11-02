@@ -17,8 +17,7 @@
   }
 
   &:enabled:hover,
-  &:enabled:active,
-  &:focus-visible {
+  &:enabled:active {
     @include themed {
       background-color: t(iui-color-background-primary-overlay);
       border-color: t(iui-color-background-primary-overlay);
@@ -29,6 +28,12 @@
       @include themed {
         fill: t(iui-color-foreground-accessory);
       }
+    }
+  }
+
+  &:focus {
+    @include themed {
+      outline-color: 1px solid t(iui-color-foreground-accessory);
     }
   }
 }
