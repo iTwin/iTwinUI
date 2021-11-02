@@ -33,7 +33,7 @@
 
   &:focus {
     @include themed {
-      outline-color: 1px solid t(iui-color-foreground-accessory);
+      outline-color: t(iui-color-foreground-accessory);
     }
   }
 }
