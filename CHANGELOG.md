@@ -2,11 +2,9 @@
 
 ## [0.38.0](https://www.github.com/iTwin/iTwinUI/compare/v0.37.2...v0.38.0) (2021-10-28)
 
-
 ### What's new
 
 * **Checkbox:** Add visibility checkbox styling ([#349](https://www.github.com/iTwin/iTwinUI/issues/349)) ([3572703](https://www.github.com/iTwin/iTwinUI/commit/3572703cb94ffa8aab8cf3046bd0c0b99b1f4cdc))
-
 
 ### Fixes
 
