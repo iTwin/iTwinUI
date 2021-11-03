@@ -45,18 +45,8 @@ $iui-button-padding-large: $iui-xs * 6;
     text-decoration: none;
   }
 
+  @include iui-focus;
   @include iui-button-sizes;
-
-  &:focus {
-    @include themed {
-      outline: 1px solid t(iui-color-foreground-primary);
-    }
-    outline-offset: -1px;
-
-    &:not(:focus-visible) {
-      outline: none;
-    }
-  }
 }
 
 @mixin iui-button-sizes {
