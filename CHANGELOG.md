@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.38.0](https://www.github.com/iTwin/iTwinUI/compare/v0.37.2...v0.38.0) (2021-10-28)
+
+### What's new
+
+* **Checkbox:** Add visibility checkbox styling ([#349](https://www.github.com/iTwin/iTwinUI/issues/349)) ([3572703](https://www.github.com/iTwin/iTwinUI/commit/3572703cb94ffa8aab8cf3046bd0c0b99b1f4cdc))
+
+### Fixes
+
+* **Header:** App logo hover color matches button hover ([#364](https://www.github.com/iTwin/iTwinUI/issues/364)) ([778a9e0](https://www.github.com/iTwin/iTwinUI/commit/778a9e019773b06199ae7a46f42aaaf0d850db14))
+
 ### [0.37.2](https://www.github.com/iTwin/iTwinUI/compare/v0.37.1...v0.37.2) (2021-10-26)
 
 ### Fixes
