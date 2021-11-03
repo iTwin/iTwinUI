@@ -22,6 +22,9 @@ module.exports = [
   scenario('Type Split Menu', {
     selectors: ['#demo-split-menu'],
   }),
+  scenario('Type Input Button Combo', {
+    selectors: ['#demo-combo-group'],
+  }),
   scenario('Type Ideas', {
     selectors: ['.iui-idea'],
   }),
