@@ -33,7 +33,7 @@
 
     > .iui-icon,
     > .iui-status-icon {
-      display: block;
+      display: inline-flex;
       flex-shrink: 0;
       width: $iui-icons-default;
       height: $iui-icons-default;
@@ -148,6 +148,23 @@
       > .iui-icon {
         transform: rotate(90deg);
       }
+    }
+  }
+
+  &.iui-small .iui-header {
+    padding: ($iui-baseline * 0.5) $iui-s;
+
+    > .iui-icon {
+      width: $iui-icons-small;
+      height: $iui-icons-small;
+    }
+
+    > .iui-expandable-block-label {
+      margin-left: $iui-s;
+    }
+
+    > .iui-status-icon {
+      margin-left: $iui-s;
     }
   }
 }

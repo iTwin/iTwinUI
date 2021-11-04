@@ -10,6 +10,10 @@ module.exports = [
     selectors: ['#demo-captions'],
     viewports: [{ width: 800, height: 600 }],
   }),
+  scenario('Type small', {
+    selectors: ['#demo-small'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
 
   // Hover states
   scenario('State hover', {

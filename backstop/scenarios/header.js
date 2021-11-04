@@ -4,6 +4,9 @@ module.exports = [
   // Header types
   scenario('Type Default', {
     selectors: ['#demo-default'],
+  }),
+  scenario('Type Slim', {
+    selectors: ['#demo-slim'],
     misMatchThreshold: 0.02,
   }),
   scenario('Type Slim', {
