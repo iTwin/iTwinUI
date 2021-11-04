@@ -5,6 +5,10 @@
 @mixin iui-button-split-menu {
   @include iui-button-group;
 
+  &[disabled] {
+    @include iui-button-disabled;
+  }
+
   &:hover {
     @include themed {
       background-color: rgba(

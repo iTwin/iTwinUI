@@ -4,14 +4,9 @@
 
 .iui-button {
   @include iui-button;
-  //@include iui-button-default;
 
   &.iui-default {
     @include iui-button-default;
-  }
-
-  &.iui-button-icon {
-    @include iui-button-icon;
   }
 
   &.iui-high-visibility {
@@ -29,10 +24,6 @@
   &.iui-borderless {
     @include iui-button-borderless;
   }
-
-  &[disabled] {
-    @include iui-button-disabled;
-  }
 }
 
 .iui-button-group {
@@ -42,4 +33,8 @@
 .iui-button-split-menu {
   @include iui-button-group;
   @include iui-button-split-menu;
+}
+
+.iui-button-icon {
+  @include iui-button-icon;
 }

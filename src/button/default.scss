@@ -3,8 +3,67 @@
 @import '../style/index';
 @import './button';
 @import '../notification-marker/index';
+@import './disabled';
 
 @mixin iui-button-default {
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
+
+  > .iui-button-icon {
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
+  }
+
+  &.iui-active {
+    > .iui-button-icon {
+      @include themed {
+        fill: t(iui-icons-color-primary);
+      }
+    }
+  }
+
+  &:hover,
+  &:active,
+  &:focus-visible {
+    @include themed {
+      background-color: t(iui-color-background-1-overlay);
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    }
+    @include iui-notification-marker-hover;
+
+    > .iui-button-icon {
+      @include themed {
+        fill: t(iui-icons-color-actionable-hover);
+      }
+    }
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:active,
+  &[disabled]:focus {
+    @include iui-button-disabled;
+    background-color: transparent;
+    border-color: transparent;
+
+    > .iui-button-icon {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
+      }
+    }
+
+    &.iui-active {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+      }
+    }
+  }
+
   &.iui-dropdown {
     padding-right: $iui-s;
 
@@ -17,35 +76,4 @@
       padding-right: $iui-sm;
     }
   }
-
-  &:enabled:hover,
-  &:enabled:active,
-  &:focus-visible {
-    @include themed {
-      background-color: t(iui-color-background-1-overlay);
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-    }
-    @include iui-notification-marker-hover;
-  }
-
-  // &.iui-active:not(.iui-high-visibility):not(.iui-cta) {
-  //   &:enabled,
-  //   &:enabled:hover,
-  //   &:enabled:active {
-
-
-  //     > .iui-label {
-  //       @include themed {
-  //         color: t(iui-color-foreground-primary);
-  //       }
-  //     }
-
-  //     > .iui-icon {
-  //       @include themed {
-  //         fill: t(iui-icons-color-primary);
-  //       }
-  //     }
-  //   }
-  // }
 }

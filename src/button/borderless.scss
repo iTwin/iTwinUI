@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import './button';
+@import './disabled';
 
 @mixin iui-button-borderless {
   background-color: transparent;
@@ -17,14 +18,18 @@
     padding: 0 $iui-sm;
   }
 
+  &[disabled] {
+    @include iui-button-disabled;
+  }
+
   // If icon is by itself, button takes 1:1 size ratio
-  > .iui-icon:only-child {
+  > .iui-button-icon:only-child {
     margin-left: $iui-component-offset;
     margin-right: $iui-component-offset;
   }
 
-  &:enabled:hover,
-  &:enabled:active,
+  &:hover,
+  &:active,
   &:focus-visible {
     @include themed {
       background-color: rgba(
@@ -35,10 +40,10 @@
     }
   }
 
-  &.iui-active:not(.iui-high-visibility):not(.iui-cta) {
-    &:enabled,
-    &:enabled:hover,
-    &:enabled:active {
+  &.iui-active {
+    &,
+    &:hover,
+    &:active {
       background: transparent;
       @include themed {
         background-color: rgba(
@@ -57,7 +62,7 @@
     background-color: transparent;
     border-color: transparent;
 
-    > .iui-icon {
+    > .iui-button-icon {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
       }
