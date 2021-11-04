@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.23.2](https://www.github.com/iTwin/iTwinUI-react/compare/v1.23.1...v1.23.2) (2021-11-04)
+
+### Fixes
+
+* **Header:** fixed hover effects on header logo.
+
 ### [1.23.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.23.0...v1.23.1) (2021-11-02)
 
 ### Fixes
