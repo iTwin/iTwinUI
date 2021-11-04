@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../inputs/labeled-inputs';
 
 @mixin iui-information-panel-wrapper {
   position: relative;
@@ -138,6 +139,7 @@
     }
   }
 }
+
 @mixin iui-information-panel-horizontal {
   left: 0;
   bottom: 0;
@@ -185,5 +187,36 @@
 
   > .iui-resizer {
     top: $iui-m * -0.5;
+  }
+}
+
+/// Labels and inputs aligned using css grid
+@mixin iui-information-body-content {
+  .iui-input-label {
+    font-weight: normal;
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
+  }
+
+  &:not(.iui-inline) {
+    // add bottom margin between pairs of label+input
+    > *:nth-child(even):not(:last-child) {
+      margin-bottom: 11px;
+    }
+  }
+
+  &.iui-inline {
+    display: grid;
+    row-gap: 11px;
+    // grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto;
+    align-items: center;
+    place-content: end;
+
+    .iui-input-label {
+      @include iui-input-label-inline;
+      justify-self: end;
+    }
   }
 }
