@@ -11,6 +11,7 @@
 
   .iui-tab {
     @include iui-reset;
+    font-family: inherit;
     position: relative;
     display: flex;
     align-items: center;

@@ -1,5 +1,61 @@
 # Changelog
 
+## [0.38.0](https://www.github.com/iTwin/iTwinUI/compare/v0.37.2...v0.38.0) (2021-10-28)
+
+### What's new
+
+* **Checkbox:** Add visibility checkbox styling ([#349](https://www.github.com/iTwin/iTwinUI/issues/349)) ([3572703](https://www.github.com/iTwin/iTwinUI/commit/3572703cb94ffa8aab8cf3046bd0c0b99b1f4cdc))
+
+### Fixes
+
+* **Header:** App logo hover color matches button hover ([#364](https://www.github.com/iTwin/iTwinUI/issues/364)) ([778a9e0](https://www.github.com/iTwin/iTwinUI/commit/778a9e019773b06199ae7a46f42aaaf0d850db14))
+
+### [0.37.2](https://www.github.com/iTwin/iTwinUI/compare/v0.37.1...v0.37.2) (2021-10-26)
+
+### Fixes
+
+* **ColorPicker:** make advanced picker smaller ([#359](https://www.github.com/iTwin/iTwinUI/issues/359)) ([33fc12d](https://www.github.com/iTwin/iTwinUI/commit/33fc12d7935f5274afe66cacc6fd14e6638114a2))
+* **Tabs:** Add `font-family: inherit` so correct font is used ([#357](https://www.github.com/iTwin/iTwinUI/issues/357)) ([7bec424](https://www.github.com/iTwin/iTwinUI/commit/7bec424970480000c1511496d264832cbbdaf92f))
+
+### [0.37.1](https://www.github.com/iTwin/iTwinUI/compare/v0.37.0...v0.37.1) (2021-10-21)
+
+### Fixes
+
+* **ColorPicker:** Add spacing between color field & adjacent slider ([#355](https://www.github.com/iTwin/iTwinUI/issues/355)) ([0dd56ff](https://www.github.com/iTwin/iTwinUI/commit/0dd56ff37618df3f05b61dd832bf3a85db22cd63))
+
+## [0.37.0](https://www.github.com/iTwin/iTwinUI/compare/v0.36.1...v0.37.0) (2021-10-18)
+
+### What's new
+
+* **SideNavigation:** Add open state to side navigation buttons. ([#353](https://www.github.com/iTwin/iTwinUI/issues/353)) ([ebbff83](https://www.github.com/iTwin/iTwinUI/commit/ebbff831d6b2d0e7098d2294cf6c55d262ab5f40))
+
+### [0.36.1](https://www.github.com/iTwin/iTwinUI/compare/v0.36.0...v0.36.1) (2021-10-15)
+
+### Fixes
+
+* **transition-group:** Handle exit animation correctly ([#350](https://www.github.com/iTwin/iTwinUI/issues/350)) ([480bcd8](https://www.github.com/iTwin/iTwinUI/commit/480bcd8e15c7918fb12092db8579db07b0c283fc))
+
+## [0.36.0](https://www.github.com/iTwin/iTwinUI/compare/v0.35.2...v0.36.0) (2021-10-15)
+
+### What's new
+
+* **ColorPicker:** Add opacity slider and color value input options  ([#338](https://www.github.com/iTwin/iTwinUI/issues/338)) ([412f6d5](https://www.github.com/iTwin/iTwinUI/commit/412f6d532e083ec131fdfd97d9df1901f4511586))
+
+### [0.35.2](https://www.github.com/iTwin/iTwinUI/compare/v0.35.1...v0.35.2) (2021-10-14)
+
+### Fixes
+
+* **SideNavigation:** Use flex conditionally to fix resizing ([#346](https://www.github.com/iTwin/iTwinUI/issues/346)) ([ae73507](https://www.github.com/iTwin/iTwinUI/commit/ae735071a57cbaef06ee62bfbd77d4b4ad37c5ac))
+* **Slider:** Add min-height ([#344](https://www.github.com/iTwin/iTwinUI/issues/344)) ([233e24d](https://www.github.com/iTwin/iTwinUI/commit/233e24da6e30e88fe13412b255addd7681902ecd))
+
+### [0.35.1](https://www.github.com/iTwin/iTwinUI/compare/v0.35.0...v0.35.1) (2021-10-14)
+
+### Fixes
+
+* **Button:** Add `font-family: inherit` so correct font is used ([#342](https://www.github.com/iTwin/iTwinUI/issues/342)) ([1d05c96](https://www.github.com/iTwin/iTwinUI/commit/1d05c9662917906e98d3917903bd450e766832f7))
+* **SideNavigation:** Remove fixed width from submenu ([#340](https://www.github.com/iTwin/iTwinUI/issues/340)) ([3a41f61](https://www.github.com/iTwin/iTwinUI/commit/3a41f61a39b38ac83c1d94d57a5bf6892275101f))
+* **Table:** Table body takes full available height ([#335](https://www.github.com/iTwin/iTwinUI/issues/335)) ([900ee53](https://www.github.com/iTwin/iTwinUI/commit/900ee531414f4245bacdbd8e189780556021a088))
+
 ## [0.35.0](https://www.github.com/iTwin/iTwinUI/compare/v0.34.0...v0.35.0) (2021-10-12)
 
 ### What's new

@@ -182,7 +182,7 @@
       &:hover,
       &:focus-visible {
         @include themed {
-          background-color: t(iui-color-background-1-overlay);
+          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
         }
       }
     }
