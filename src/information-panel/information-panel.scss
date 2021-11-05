@@ -75,6 +75,7 @@
         width: $iui-icons-large;
         height: $iui-icons-large;
         margin-right: $iui-s;
+        flex-shrink: 0;
         @include themed {
           fill: t(iui-icons-color);
         }
@@ -209,10 +210,10 @@
   &.iui-inline {
     display: grid;
     row-gap: 11px;
-    // grid-template-columns: auto 1fr;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 1fr;
     align-items: center;
     place-content: end;
+    text-align: end;
 
     .iui-input-label {
       @include iui-input-label-inline;
