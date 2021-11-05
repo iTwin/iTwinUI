@@ -33,39 +33,15 @@ $iui-button-padding-large: $iui-xs * 6;
       border-color $iui-speed-fast ease-out;
   }
 
-  &[disabled] {
-    @include iui-button-disabled;
-  }
-
   @include themed {
     background-color: t(iui-color-background-1);
     border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
 
-  &.iui-active {
-    &,
-    &:hover,
-    &:active {
-      @include themed {
-        background: linear-gradient(
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-        ),
-          linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-      }
-
-      > .iui-label {
-        @include themed {
-          color: t(iui-color-foreground-primary);
-        }
-      }
-    }
-
-    > .iui-button-icon {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-      }
+  > .iui-button-icon {
+    @include themed {
+      fill: t(iui-icons-color-actionable);
     }
   }
 
@@ -73,12 +49,12 @@ $iui-button-padding-large: $iui-xs * 6;
     text-decoration: none;
   }
 
-  &:enabled:hover {
-    text-decoration: none;
-  }
-
   @include iui-focus;
   @include iui-button-sizes;
+
+  &[disabled] {
+    @include iui-button-disabled;
+  }
 }
 
 @mixin iui-button-sizes {
@@ -106,7 +82,6 @@ $iui-button-padding-large: $iui-xs * 6;
     padding: 0 $iui-button-padding-large;
     height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
-
 
     > .iui-button-icon + .iui-label,
     > .iui-label + .iui-button-icon,
