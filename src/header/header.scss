@@ -181,11 +181,11 @@
         @include themed {
           background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
         }
-      }
 
-      &:focus:not(:focus-visible) {
-        @include themed {
-          background-color: t(iui-color-background-1);
+        &:not(:focus-visible):not(:hover) {
+          @include themed {
+            background-color: t(iui-color-background-1);
+          }
         }
       }
     }
