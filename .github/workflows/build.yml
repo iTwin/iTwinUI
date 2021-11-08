@@ -23,7 +23,7 @@ jobs:
 
       - run: yarn install --frozen-lockfile
 
-      - run: yarn audit --groups dependencies
+      - run: yarn audit
 
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{js,ts,tsx}
