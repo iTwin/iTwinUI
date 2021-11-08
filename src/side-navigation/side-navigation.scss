@@ -71,7 +71,7 @@
   > .iui-sidenav-content {
     max-width: $iui-3xl * 3;
 
-    > .iui-sidenav-button.iui-expand > .iui-icon {
+    > .iui-sidenav-button.iui-expand > .iui-button-icon {
       transform: scaleX(-1);
     }
   }
@@ -100,7 +100,7 @@
       }
     }
 
-    > .iui-icon:not(.iui-user-icon) {
+    > .iui-button-icon:not(.iui-user-icon) {
       width: $iui-icons-large;
       height: $iui-icons-large;
       flex-shrink: 0;
@@ -113,7 +113,7 @@
       }
     }
 
-    &.iui-submenu-open .iui-icon {
+    &.iui-submenu-open .iui-button-icon {
       @include themed {
         fill: t(iui-color-foreground-primary);
       }
@@ -168,7 +168,7 @@
         border-bottom: 1px solid t(iui-color-background-5);
       }
 
-      > .iui-icon {
+      > .iui-button-icon {
         @include iui-icons-small;
         @media (prefers-reduced-motion: no-preference) {
           transition: transform $iui-speed ease-out;

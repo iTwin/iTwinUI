@@ -167,7 +167,7 @@
       visibility: visible;
     }
 
-    .iui-row-expander > .iui-icon {
+    .iui-row-expander > .iui-button-icon {
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
@@ -181,7 +181,7 @@
         border-bottom-color: transparent;
       }
 
-      .iui-row-expander > .iui-icon {
+      .iui-row-expander > .iui-button-icon {
         transform: rotate(90deg);
       }
 

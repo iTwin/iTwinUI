@@ -107,7 +107,7 @@
     > .iui-picture + .iui-button + .iui-button {
       @include iui-blur($opacity: 5);
 
-      &:enabled > .iui-icon {
+      &:enabled > .iui-button-icon {
         @include themed() {
           fill: t(iui-color-foreground-accessory);
           filter: drop-shadow(0 2px 1px rgba(0, 0, 0, t(iui-opacity-5)));
@@ -122,7 +122,7 @@
           background-color: rgba(0, 0, 0, t(iui-opacity-4));
         }
 
-        > .iui-icon {
+        > .iui-button-icon {
           @include themed() {
             fill: t(iui-color-foreground-accessory);
           }
