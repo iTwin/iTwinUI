@@ -5,25 +5,24 @@
 @import './disabled';
 
 @mixin iui-button-high-visibility {
-  @include themed {
-    background-color: t(iui-color-background-primary);
-    border-color: t(iui-color-background-primary);
-    color: t(iui-color-foreground-accessory);
-  }
-
-  &[disabled] {
-    @include iui-button-disabled;
-  }
-
-  > .iui-button-icon {
+  &,
+  &:focus:not(:focus-visible) {
     @include themed {
-      fill: t(iui-color-foreground-accessory);
+      background-color: t(iui-color-background-primary);
+      border-color: t(iui-color-background-primary);
+      color: t(iui-color-foreground-accessory);
+    }
+
+    > .iui-button-icon {
+      @include themed {
+        fill: t(iui-color-foreground-accessory);
+      }
     }
   }
 
   &:hover,
   &:active,
-  &:focus-visible {
+  &:focus {
     @include themed {
       background-color: t(iui-color-background-primary-overlay);
       border-color: t(iui-color-background-primary-overlay);
@@ -35,5 +34,9 @@
         fill: t(iui-color-foreground-accessory);
       }
     }
+  }
+
+  &[disabled] {
+    @include iui-button-disabled;
   }
 }

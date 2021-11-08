@@ -9,6 +9,10 @@
   border-color: transparent;
   padding: 0 $iui-s;
 
+  @include themed {
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
+
   // Sizes
   &.iui-small {
     padding: 0 $iui-xxs;
