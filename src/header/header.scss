@@ -154,7 +154,7 @@
     @include iui-header-button-icon;
   }
 
-  .iui-header-button {
+  .iui-header-button.iui-header-button { // boost specificity
     @include iui-header-button;
   }
 
