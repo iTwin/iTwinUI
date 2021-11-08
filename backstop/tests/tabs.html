@@ -1394,7 +1394,7 @@
       document.querySelectorAll('.iui-tabs').forEach((tabs) => {
         const wrapper = tabs.parentElement;
         const isVertical = wrapper.classList.contains('iui-vertical');
-        const isAnimated = wrapper.classList.contains('iui-animated');
+        const isAnimated = tabs.classList.contains('iui-animated');
         const activeTab = tabs.querySelector('.iui-active');
         const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
         const setStripe = (activeEl) => {
