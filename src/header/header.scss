@@ -161,38 +161,48 @@
   .iui-header-split-button {
     @include iui-header-split-button;
   }
+}
 
-  .iui-header-logo {
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    height: 100%;
+@mixin iui-header-logo {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  height: 100%;
 
-    &[role='button'] {
+  @at-root {
+    a#{&}, // rendered as anchor element
+    button#{&}, // rendered as button element
+    &[role='button'] { // rendered as div with role=button
       @include iui-header-button-focus;
       cursor: pointer;
 
       &:hover,
-      &:focus-visible {
+      &:focus {
         @include themed {
           background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
         }
       }
-    }
 
-    .iui-header-button-icon {
-      margin: 0 $iui-l;
-      @include themed {
-        fill: t(iui-icons-color-actionable);
+      &:focus:not(:focus-visible) {
+        @include themed {
+          background-color: t(iui-color-background-1);
+        }
       }
     }
+  }
 
-    > .iui-label {
-      margin-right: $iui-sm;
-      font-size: $iui-font-size-leading;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: font-size $iui-speed-fast ease-out;
-      }
+  .iui-header-button-icon {
+    margin: 0 $iui-l;
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
+  }
+
+  > .iui-label {
+    margin-right: $iui-sm;
+    font-size: $iui-font-size-leading;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: font-size $iui-speed-fast ease-out;
     }
   }
 }
