@@ -176,6 +176,13 @@
       @include iui-header-button-focus;
       cursor: pointer;
 
+      // #region resets for button
+      @include iui-reset;
+      font-family: inherit;
+      background-color: unset;
+      color: unset;
+      // #endregion
+
       &:hover,
       &:focus {
         @include themed {
