@@ -29,6 +29,21 @@
         flex-direction: column;
         gap: 11px;
       }
+
+      #block-labels > .iui-input-container {
+        margin-bottom: 11px;
+      }
+
+      #inline-labels {
+        display: grid;
+        row-gap: 11px;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+      }
+
+      #inline-labels > .iui-input-label {
+        justify-self: end;
+      }
     </style>
     <script
       type="module"
@@ -302,37 +317,37 @@
 
     <h2>Without label</h2>
     <section id="demo-no-label">
-      <label class="iui-input-container">
+      <div class="iui-input-container">
         <input
           placeholder="Placeholder…"
           class="iui-input"
         />
-      </label>
+      </div>
 
-      <label class="iui-input-container">
+      <div class="iui-input-container">
         <input
           value="A value"
           class="iui-input"
         />
-      </label>
+      </div>
 
-      <label class="iui-input-container iui-disabled">
+      <div class="iui-input-container iui-disabled">
         <input
           disabled
           placeholder="Placeholder…"
           class="iui-input"
         />
-      </label>
+      </div>
 
-      <label class="iui-input-container iui-disabled">
+      <div class="iui-input-container iui-disabled">
         <input
           disabled
           value="A value"
           class="iui-input"
         />
-      </label>
+      </div>
 
-      <label class="iui-input-container iui-inline-icon iui-positive">
+      <div class="iui-input-container iui-inline-icon iui-positive">
         <input
           placeholder="Placeholder…"
           class="iui-input"
@@ -341,9 +356,9 @@
           class="iui-input-icon"
           aria-hidden="true"
         ></svg-status-success>
-      </label>
+      </div>
 
-      <label class="iui-input-container iui-inline-icon iui-warning">
+      <div class="iui-input-container iui-inline-icon iui-warning">
         <input
           placeholder="Placeholder…"
           class="iui-input"
@@ -352,9 +367,9 @@
           class="iui-input-icon"
           aria-hidden="true"
         ></svg-status-warning>
-      </label>
+      </div>
 
-      <label class="iui-input-container iui-inline-icon iui-negative">
+      <div class="iui-input-container iui-inline-icon iui-negative">
         <input
           placeholder="Placeholder…"
           class="iui-input"
@@ -363,34 +378,33 @@
           class="iui-input-icon"
           aria-hidden="true"
         ></svg-status-error>
-      </label>
+      </div>
 
-      <label class="iui-input-container">
+      <div class="iui-input-container">
         <input
           value="Small"
           class="iui-input iui-small"
         />
-      </label>
+      </div>
 
-      <label class="iui-input-container">
+      <div class="iui-input-container">
         <input
           value="Default"
           class="iui-input"
         />
-      </label>
+      </div>
 
-      <label class="iui-input-container">
+      <div class="iui-input-container">
         <input
           value="Large"
           class="iui-input iui-large"
         />
-      </label>
+      </div>
     </section>
 
     <br />
 
     <h2>Auto-complete demo</h2>
-
     <form
       method="post"
       action=""
@@ -410,5 +424,90 @@
         />
       </label>
     </form>
+
+    <br />
+
+    <h2>No wrapping label</h2>
+    <section id="demo-no-label">
+
+      <div id="block-labels">
+        <label
+          class="iui-input-label"
+          for="test-1"
+        >First name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-1"
+          />
+        </div>
+
+        <label
+          class="iui-input-label iui-disabled"
+          for="test-2"
+        >Middle name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-2"
+            disabled
+          />
+        </div>
+
+        <label
+          class="iui-input-label iui-required"
+          for="test-3"
+        >Last name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-3"
+          />
+        </div>
+      </div>
+
+      <div id="inline-labels">
+        <label
+          class="iui-input-label iui-inline"
+          for="test-4"
+        >First name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-4"
+          />
+        </div>
+
+        <label
+          class="iui-input-label iui-inline iui-disabled"
+          for="test-5"
+        >Middle name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-5"
+            disabled
+          />
+        </div>
+
+        <label
+          class="iui-input-label iui-inline iui-required"
+          for="test-6"
+        >Last name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-6"
+          />
+        </div>
+      </div>
+
+    </section>
   </body>
 </html>
