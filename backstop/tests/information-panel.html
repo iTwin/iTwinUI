@@ -1565,27 +1565,19 @@
     <script>
       document.querySelectorAll('.iui-tabs').forEach((tabs) => {
         const wrapper = tabs.parentElement;
-        const isVertical = wrapper.classList.contains('iui-vertical');
         const activeTab = tabs.querySelector('.iui-active');
-        const stripe = wrapper.querySelector('.iui-tab-stripe');
         const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
         const setStripe = (activeEl) => {
-          if (isVertical) {
-            stripe.style.top = `${activeEl.offsetTop}px`;
-            stripe.style.height = `${activeEl.getBoundingClientRect().height}px`;
-            stripe.style.left = `${activeEl.getBoundingClientRect().width - 2}px`;
-          } else {
-            stripe.style.top = `${activeEl.getBoundingClientRect().height - 2}px`;
-            stripe.style.left = `${activeEl.offsetLeft}px`;
-            stripe.style.width = `${activeEl.getBoundingClientRect().width}px`;
-          }
+          tabs.style.setProperty('--stripe-left', `${activeEl.offsetLeft}px`);
+          tabs.style.setProperty('--stripe-width', `${activeEl.getBoundingClientRect().width}px`);
         }
-        stripe && setStripe(activeTab);
+        setStripe(activeTab);
 
         [...tabs.children].forEach(({ firstElementChild: tab }) => {
           tab.addEventListener('click', () => {
             tabs.querySelector('.iui-active')?.classList.remove('iui-active');
             tab.classList.add('iui-active');
+            setStripe(activeTab);
             tabpanels.forEach((panel) => {
               if (panel.id === tab.getAttribute('aria-controls')) {
                 panel.removeAttribute('hidden');
@@ -1593,7 +1585,6 @@
                 panel.hidden = 'true';
               }
             });
-            stripe && setStripe(tab); // needs to be set in react for animation
           });
         });
       });
