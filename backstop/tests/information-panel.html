@@ -1577,7 +1577,7 @@
           tab.addEventListener('click', () => {
             tabs.querySelector('.iui-active')?.classList.remove('iui-active');
             tab.classList.add('iui-active');
-            setStripe(activeTab);
+            setStripe(tab);
             tabpanels.forEach((panel) => {
               if (panel.id === tab.getAttribute('aria-controls')) {
                 panel.removeAttribute('hidden');
