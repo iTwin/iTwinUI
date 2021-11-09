@@ -149,17 +149,21 @@
         gap: 4px;
       }
 
+      /* Removes border and padding from readonly text fields */
       input[readonly] {
         border: none;
         padding: 0;
       }
 
+      /* Removes focus when clicking on a readonly text field */
       input[readonly]:focus { box-shadow: none; }
 
+      /* Change cursor to default when no FOR is assigned */
       label:not([for]) {
         cursor: default;
       }
 
+      /* Fixes display bug when using web components */
       .iui-input-icon svg { display: flex; }
     </style>
     <script src="../assets/theme.js"></script>
@@ -1272,68 +1276,54 @@
 
           <div class="iui-information-body">
             <div class="iui-information-body-content iui-inline">
-              <label class="iui-input-label">
+              <span class="iui-input-label">
                 Kind
-              </label>
-              <input
-                readonly
-                value="MP3 audio"
-                class="iui-input iui-small"
-              />
+              </span>
+              <span>MP3 audio</span>
 
-              <label class="iui-input-label">
+              <span class="iui-input-label">
                 Size
-              </label>
-              <input
-                readonly
-                value="9.7 MB"
-                class="iui-input iui-small"
-              />
+              </span>
+              <span>9.7 MB</span>
 
-              <label class="iui-input-label">
+              <span class="iui-input-label">
                 Where
-              </label>
-              <input
-                readonly
-                value="/Shared/Music/"
-                class="iui-input iui-small"
-              />
+              </span>
+              <span>/Shared/Music/</span>
 
-              <label class="iui-input-label">
+              <span class="iui-input-label">
                 Date created
-              </label>
-              <input
-                readonly
-                value="Aug 10, 2021 2:26 PM"
-                class="iui-input iui-small"
-              />
+              </span>
+              <span>Aug 10, 2021 2:26 PM</span>
 
-              <label class="iui-input-label">
+              <span class="iui-input-label">
                 Owner
-              </label>
-              <input
-                readonly
-                value="Terry Rivers"
-                class="iui-input iui-small"
-              />
+              </span>
+              <div class="demo-usericon-with-label">
+                <user-icon
+                  size="small"
+                  type="2"
+                >
+                </user-icon>
+                Terry Rivers
+              </div>
 
-              <label class="iui-input-label">
+              <span class="iui-input-label">
                 Last modified
-              </label>
-              <input
-                readonly
-                value="Aug 10, 2021 2:26 PM"
-                class="iui-input iui-small"
-              />
+              </span>
+              <span>Aug 10, 2021 2:26 PM</span>
 
-              <label class="iui-input-label">
+              <span class="iui-input-label">
                 Modified by
-              </label>
-              <input
-                readonly
-                value="Robin Mercer"
-                class="iui-input iui-small"
-              />
+              </span>
+              <div class="demo-usericon-with-label">
+                <user-icon
+                  size="small"
+                  type="1"
+                >
+                </user-icon>
+                Robin Mercer
+              </div>
 
             </div>
 
