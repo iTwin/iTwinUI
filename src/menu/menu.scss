@@ -10,6 +10,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   box-shadow: $iui-elevation-2;
   @include themed {
     background-color: t(iui-color-background-1);
+    color: t(iui-text-color);
   }
 }
 
@@ -46,9 +47,6 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   cursor: pointer;
   box-sizing: border-box;
   line-height: normal;
-  @include themed {
-    color: t(iui-text-color);
-  }
 
   + #{&} {
     margin-top: -1px;
