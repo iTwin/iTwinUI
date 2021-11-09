@@ -6,7 +6,7 @@
   @include iui-input-container;
 
   > .iui-label {
-    @include iui-input-label;
+    @include iui-input-container-label;
   }
 
   .iui-input-icon {
@@ -33,6 +33,14 @@
     &.iui-#{$status} {
       @include iui-input-status($status: $status);
     }
+  }
+}
+
+.iui-input-label {
+  @include iui-input-label;
+
+  &.iui-inline {
+    @include iui-input-label-inline;
   }
 }
 
