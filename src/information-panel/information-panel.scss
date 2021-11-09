@@ -203,13 +203,13 @@
   &:not(.iui-inline) {
     // add bottom margin between pairs of label+input
     > *:nth-child(even):not(:last-child) {
-      margin-bottom: 11px;
+      margin-bottom: $iui-baseline;
     }
   }
 
   &.iui-inline {
     display: grid;
-    row-gap: 11px;
+    row-gap: $iui-baseline;
     grid-template-columns: auto 1fr;
     align-items: center;
 
