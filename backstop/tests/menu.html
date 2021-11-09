@@ -106,73 +106,115 @@
       </ul>
 
       <br />
-
-      <ul
-        class="iui-menu"
-        role="menu"
+      <div
+        class="iui-scroll-shadow-wrapper"
+        style='overflow: hidden; position: relative;'
       >
-        <li
-          class="iui-menu-item iui-active"
-          role="menuitem"
-          aria-checked="true"
-          tabindex="0"
+        <!-- This shouldn't show scroll shadow - scroll bar is not visible -->
+        <div
+          class="iui-scroll-shadow iui-shadow-top"
+          style="position: absolute;
+width: 100%;
+height: 11px;
+top: 0;
+background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent);
+opacity: 0;"
+        ></div>
+        <div
+          class="iui-scroll-shadow iui-shadow-bottom"
+          style='position: absolute;
+width: 100%;
+height: 11px;
+bottom: 0;
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent);'
+        ></div>
+        <ul
+          class="iui-menu iui-scroll-shadow-content"
+          role="menu"
         >
-          <span class="iui-content">Option 1</span>
-          <svg-checkmark
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-checkmark>
-        </li>
-        <li
-          class="iui-menu-item"
-          role="menuitem"
-          tabindex="0"
-        >
-          <span class="iui-content">Option 2</span>
-        </li>
-        <li
-          class="iui-menu-item"
-          role="menuitem"
-          tabindex="0"
-        >
-          <span class="iui-content">Option 3</span>
-        </li>
-      </ul>
-
+          <li
+            class="iui-menu-item iui-active"
+            role="menuitem"
+            aria-checked="true"
+            tabindex="0"
+          >
+            <span class="iui-content">Option 1</span>
+            <svg-checkmark
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-checkmark>
+          </li>
+          <li
+            class="iui-menu-item"
+            role="menuitem"
+            tabindex="0"
+          >
+            <span class="iui-content">Option 2</span>
+          </li>
+          <li
+            class="iui-menu-item"
+            role="menuitem"
+            tabindex="0"
+          >
+            <span class="iui-content">Option 3</span>
+          </li>
+        </ul>
+      </div>
       <br />
 
-      <ul
-        class="iui-menu iui-scroll"
-        id="demo-scrollable"
+      <div
+        class="iui-scroll-shadow-wrapper"
+        style='overflow: hidden; position: relative;'
       >
-        <li
-          class="iui-menu-item iui-active"
-          role="menuitem"
-          aria-checked="true"
-          tabindex="0"
+        <div
+          class="iui-scroll-shadow iui-shadow-top"
+          style="position: absolute;
+width: 100%;
+height: 11px;
+top: 0;
+background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent);
+opacity: 0;"
+        ></div>
+        <div
+          class="iui-scroll-shadow iui-shadow-bottom"
+          style='position: absolute;
+width: 100%;
+height: 11px;
+bottom: 0;
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent);'
+        ></div>
+        <ul
+          class="iui-menu iui-scroll iui-scroll-shadow-content"
+          id="demo-scrollable"
         >
-          <span class="iui-content">Option 1</span>
-          <svg-checkmark
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-checkmark>
-        </li>
-        <li
-          class="iui-menu-item"
-          role="menuitem"
-          tabindex="0"
-        >
-          <span class="iui-content">Option 2</span>
-        </li>
-        <li
-          class="iui-menu-item"
-          role="menuitem"
-          tabindex="0"
-        >
-          <span class="iui-content">Option 3</span>
-        </li>
-      </ul>
-
+          <li
+            class="iui-menu-item iui-active"
+            role="menuitem"
+            aria-checked="true"
+            tabindex="0"
+          >
+            <span class="iui-content">Option 1</span>
+            <svg-checkmark
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-checkmark>
+          </li>
+          <li
+            class="iui-menu-item"
+            role="menuitem"
+            tabindex="0"
+          >
+            <span class="iui-content">Option 2</span>
+          </li>
+          <li
+            class="iui-menu-item"
+            role="menuitem"
+            tabindex="0"
+          >
+            <span class="iui-content">Option 3</span>
+          </li>
+        </ul>
+      </div>
       <br />
 
       <ul
@@ -1628,6 +1670,28 @@
             }
           }
           item.classList.toggle('iui-active');
+        });
+      });
+    </script>
+    <script>
+      document.querySelectorAll('.iui-scroll-shadow-wrapper').forEach((wrapper) => {
+        wrapper.querySelectorAll('.iui-scroll-shadow-content').forEach((content) => {
+          var top = wrapper.querySelector('.iui-scroll-shadow.iui-shadow-top'),
+            bottom = wrapper.querySelector('.iui-scroll-shadow.iui-shadow-bottom'),
+            contentScrollHeight = content.scrollHeight - content.offsetHeight;
+
+          // Don't show scroll shadow when scroll bar is not visible 
+          if (contentScrollHeight === 0) {
+            top.style.opacity = 0;
+            bottom.style.opacity = 0;
+          }
+          else {
+            content.addEventListener('scroll', () => {
+              var currentScroll = content.scrollTop / (contentScrollHeight);
+              top.style.opacity = currentScroll;
+              bottom.style.opacity = 1 - currentScroll;
+            });
+          }
         });
       });
     </script>

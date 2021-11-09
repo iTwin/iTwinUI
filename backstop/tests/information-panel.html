@@ -1261,127 +1261,148 @@
               </button>
             </div>
           </div>
+          <div
+            class="iui-scroll-shadow-wrapper"
+            style='overflow: hidden; position: relative;'
+          >
+            <div
+              class="iui-scroll-shadow iui-shadow-top"
+              style="position: absolute;
+    width: 100%;
+    height: 11px;
+    top: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent);
+    opacity: 0;"
+            ></div>
+            <div
+              class="iui-scroll-shadow iui-shadow-bottom"
+              style='position: absolute;
+    width: 100%;
+    height: 11px;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent);'
+            ></div>
+            <div class="iui-information-body iui-scroll-shadow-content">
 
-          <div class="iui-information-body">
+              <table class="demo-information-table">
+                <tr>
+                  <td>Kind</td>
+                  <td>MP3 audio</td>
+                </tr>
+                <tr>
+                  <td>Size</td>
+                  <td>9.7 MB</td>
+                </tr>
+                <tr>
+                  <td>Where</td>
+                  <td>/Shared/Music/</td>
+                </tr>
+                <tr>
+                  <td>Date created</td>
+                  <td>Aug 10, 2021 2:26 PM</td>
+                </tr>
+                <tr>
+                  <td>Owner</td>
+                  <td>
+                    <div class="demo-information-table-center">
+                      <user-icon
+                        size="small"
+                        type="2"
+                      >
+                      </user-icon>
+                      Terry Rivers
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Last modified</td>
+                  <td>Aug 10, 2021 3:26 PM</td>
+                </tr>
+                <tr>
+                  <td>Modified by</td>
+                  <td>
+                    <div class="demo-information-table-center">
+                      <user-icon
+                        size="small"
+                        type="1"
+                      >
+                      </user-icon>
+                      Robin Mercer
+                    </div>
+                  </td>
+                </tr>
 
-            <table class="demo-information-table">
-              <tr>
-                <td>Kind</td>
-                <td>MP3 audio</td>
-              </tr>
-              <tr>
-                <td>Size</td>
-                <td>9.7 MB</td>
-              </tr>
-              <tr>
-                <td>Where</td>
-                <td>/Shared/Music/</td>
-              </tr>
-              <tr>
-                <td>Date created</td>
-                <td>Aug 10, 2021 2:26 PM</td>
-              </tr>
-              <tr>
-                <td>Owner</td>
-                <td>
-                  <div class="demo-information-table-center">
-                    <user-icon
-                      size="small"
-                      type="2"
-                    >
-                    </user-icon>
-                    Terry Rivers
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Last modified</td>
-                <td>Aug 10, 2021 3:26 PM</td>
-              </tr>
-              <tr>
-                <td>Modified by</td>
-                <td>
-                  <div class="demo-information-table-center">
-                    <user-icon
-                      size="small"
-                      type="1"
-                    >
-                    </user-icon>
-                    Robin Mercer
-                  </div>
-                </td>
-              </tr>
+              </table>
 
-            </table>
+              <hr />
 
-            <hr />
+              <div class="iui-text-leading">Attributes</div>
+              <table class="demo-information-table">
+                <tr>
+                  <td><label for="title">Title</label></td>
+                  <td>
+                    <input
+                      id="title"
+                      value="Beta (Gold Master)"
+                      class="iui-input iui-small"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Duration</td>
+                  <td>03:36</td>
+                </tr>
+                <tr>
+                  <td><label for="authors">Authors</label></td>
+                  <td>
+                    <input
+                      id="authors"
+                      value="DJ Terry"
+                      class="iui-input iui-small"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Audio channels</td>
+                  <td>Stereo</td>
+                </tr>
+                <tr>
+                  <td>Sample rate</td>
+                  <td>44.1 kHz</td>
+                </tr>
+                <tr>
+                  <td><label for="album">Album</label></td>
+                  <td>
+                    <input
+                      id="album"
+                      value="DJ Terry's Fire Mixtape"
+                      class="iui-input iui-small"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="genre">Musical genre</label></td>
+                  <td>
+                    <input
+                      id="genre"
+                      value="Dubstep"
+                      class="iui-input iui-small"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="year">Year recorded</label></td>
+                  <td>
+                    <input
+                      id="year"
+                      value="2021"
+                      class="iui-input iui-small"
+                    />
+                  </td>
+                </tr>
+              </table>
 
-            <div class="iui-text-leading">Attributes</div>
-            <table class="demo-information-table">
-              <tr>
-                <td><label for="title">Title</label></td>
-                <td>
-                  <input
-                    id="title"
-                    value="Beta (Gold Master)"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Duration</td>
-                <td>03:36</td>
-              </tr>
-              <tr>
-                <td><label for="authors">Authors</label></td>
-                <td>
-                  <input
-                    id="authors"
-                    value="DJ Terry"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Audio channels</td>
-                <td>Stereo</td>
-              </tr>
-              <tr>
-                <td>Sample rate</td>
-                <td>44.1 kHz</td>
-              </tr>
-              <tr>
-                <td><label for="album">Album</label></td>
-                <td>
-                  <input
-                    id="album"
-                    value="DJ Terry's Fire Mixtape"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td><label for="genre">Musical genre</label></td>
-                <td>
-                  <input
-                    id="genre"
-                    value="Dubstep"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td><label for="year">Year recorded</label></td>
-                <td>
-                  <input
-                    id="year"
-                    value="2021"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-            </table>
-
+            </div>
           </div>
         </div>
 
@@ -1595,6 +1616,30 @@
             });
             stripe && setStripe(tab); // needs to be set in react for animation
           });
+        });
+      });
+    </script>
+
+    <!-- Scroll shadow -->
+    <script>
+      document.querySelectorAll('.iui-scroll-shadow-wrapper').forEach((wrapper) => {
+        wrapper.querySelectorAll('.iui-scroll-shadow-content').forEach((content) => {
+          var top = wrapper.querySelector('.iui-scroll-shadow.iui-shadow-top'),
+            bottom = wrapper.querySelector('.iui-scroll-shadow.iui-shadow-bottom'),
+            contentScrollHeight = content.scrollHeight - content.offsetHeight;
+
+          // Don't show scroll shadow when scroll bar is not visible 
+          if (contentScrollHeight === 0) {
+            top.style.opacity = 0;
+            bottom.style.opacity = 0;
+          }
+          else {
+            content.addEventListener('scroll', () => {
+              var currentScroll = content.scrollTop / (contentScrollHeight);
+              top.style.opacity = currentScroll;
+              bottom.style.opacity = 1 - currentScroll;
+            });
+          }
         });
       });
     </script>
