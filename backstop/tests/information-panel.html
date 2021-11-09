@@ -86,6 +86,10 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
     <script>
       customElements.define('svg-filetype-imodel', class extends HTMLElement {
         connectedCallback() {
@@ -144,6 +148,19 @@
         align-items: center;
         gap: 4px;
       }
+
+      input[readonly] {
+        border: none;
+        padding: 0;
+      }
+
+      input[readonly]:focus { box-shadow: none; }
+
+      label:not([for]) {
+        cursor: default;
+      }
+
+      .iui-input-icon svg { display: flex; }
     </style>
     <script src="../assets/theme.js"></script>
     <script src="../assets/userIcon.js"></script>
@@ -1395,16 +1412,21 @@
               >
                 Musical genre
               </label>
-              <div
-                class="iui-select iui-small"
-                id="musical-genre-2"
-              >
-                <div
-                  tabindex="0"
-                  class="iui-select-button"
+              <div class="iui-input-container iui-inline-icon">
+                <input
+                  class="iui-input iui-small"
+                  id="musical-genre-2"
+                  role="combobox"
+                  aria-autocomplete="list"
+                  spellcheck="false"
+                  autocapitalize="none"
+                  autocorrect="off"
+                  value="Dubstep"
+                  aria-expanded="false"
                 >
-                  <span class="iui-content">Dubstep</span>
-                </div>
+                <span class="iui-input-icon iui-actionable">
+                  <svg-caret-down-small aria-hidden="true"></svg-caret-down-small>
+                </span>
               </div>
 
               <label
