@@ -35,4 +35,10 @@ module.exports = [
     selectors: ['#demo-split'],
     misMatchThreshold: 0.05,
   }),
+
+  // Narrow screeen
+  scenario('Type All - narrow screen', {
+    selectors: ['#demo-all'],
+    viewports: [{ width: 600, height: 400 }],
+  }),
 ];
