@@ -32,9 +32,9 @@
     height: 100%;
   }
 
-  > .iui-left {
-    @include iui-header-buttons;
+  @include iui-header-buttons;
 
+  > .iui-left {
     > nav {
       display: flex;
       align-items: center;
@@ -44,6 +44,7 @@
     &,
     > nav {
       overflow: hidden;
+      box-sizing: content-box;
       margin-bottom: -$iui-xs;
       padding-bottom: $iui-xs;
     }
@@ -119,9 +120,9 @@
 
   @media (max-width: 768px) {
     &,
-    &.iui-slim.iui-slim {
+    &.iui-slim {
       .iui-left {
-        .iui-header-button {
+        .iui-button {
           .iui-header-button-icon.iui-header-button-icon {
             @include iui-display-none;
           }
@@ -161,45 +162,62 @@
     @include iui-header-button-icon;
   }
 
-  .iui-header-button {
+  .iui-header-button.iui-header-button { // boost specificity
     @include iui-header-button;
   }
 
   .iui-header-split-button {
     @include iui-header-split-button;
   }
+}
 
-  .iui-header-logo {
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    height: 100%;
+@mixin iui-header-logo {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  height: 100%;
 
-    &[role='button'] {
+  @at-root {
+    a#{&}, // rendered as anchor element
+    button#{&}, // rendered as button element
+    &[role='button'] { // rendered as div with role=button
       @include iui-header-button-focus;
       cursor: pointer;
 
+      // #region resets for button
+      @include iui-reset;
+      font-family: inherit;
+      background-color: unset;
+      color: unset;
+      // #endregion
+
       &:hover,
-      &:focus-visible {
+      &:focus {
         @include themed {
           background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
         }
+
+        &:not(:focus-visible):not(:hover) {
+          @include themed {
+            background-color: t(iui-color-background-1);
+          }
+        }
       }
     }
+  }
 
-    .iui-header-button-icon {
-      margin: 0 $iui-l;
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
+  .iui-header-button-icon {
+    margin: 0 $iui-l;
+    @include themed {
+      fill: t(iui-icons-color-actionable);
     }
+  }
 
-    > .iui-label {
-      margin-right: $iui-sm;
-      font-size: $iui-font-size-leading;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: font-size $iui-speed-fast ease-out;
-      }
+  > .iui-label {
+    margin-right: $iui-sm;
+    font-size: $iui-font-size-leading;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: font-size $iui-speed-fast ease-out;
     }
   }
 }
@@ -410,7 +428,8 @@
       }
     }
 
-    .iui-icon {
+    .iui-icon,
+    svg {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
       }
