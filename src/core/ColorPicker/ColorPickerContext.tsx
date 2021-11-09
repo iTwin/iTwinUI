@@ -17,6 +17,7 @@ export const ColorPickerContext = React.createContext<
         newColor: HsvColor,
         selectionChanged: boolean,
       ) => void;
+      showAlpha: boolean;
     }
   | undefined
 >(undefined);

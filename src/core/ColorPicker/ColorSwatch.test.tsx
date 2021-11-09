@@ -9,12 +9,11 @@ import { ColorValue } from '../utils';
 
 it('should render in its most basic state with ColorValue', () => {
   const { container } = render(
-    <ColorSwatch color={ColorValue.create('#9BA5AF')} />,
+    <ColorSwatch color={ColorValue.create('rgb(156, 156, 156)')} />,
   );
-
   const swatch = container.querySelector('.iui-color-swatch');
   expect(swatch).toBeTruthy();
-  expect(swatch).toHaveStyle({ backgroundColor: '#9BA5AF' });
+  expect(swatch).toHaveStyle({ backgroundColor: 'rgb(156, 156, 156)' });
 });
 
 it('should render in its most basic state with color string', () => {
@@ -61,14 +60,10 @@ it('should render active color swatch', () => {
 it('should set --swatch-color', () => {
   window.CSS = { supports: () => true, escape: (i) => i };
 
-  const { container } = render(
-    <ColorSwatch color={ColorValue.create('#9BA5AF')} />,
-  );
+  const { container } = render(<ColorSwatch color={'#9BA5AF'} />);
   const swatch = container.querySelector('.iui-color-swatch') as HTMLElement;
   expect(swatch).toBeTruthy();
-  expect(swatch.style.getPropertyValue('--swatch-color')).toEqual(
-    '#9BA5AF'.toLowerCase(),
-  );
+  expect(swatch.style.getPropertyValue('--swatch-color')).toEqual('#9BA5AF');
 });
 
 it('should handle color swatch onClick', () => {

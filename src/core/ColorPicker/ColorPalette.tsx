@@ -160,7 +160,9 @@ export const ColorPalette = React.forwardRef(
                     onChangeComplete?.(color);
                     setActiveColor(color);
                   }}
-                  isActive={color.equals(activeColor)}
+                  isActive={
+                    color.toHslString(true) === activeColor.toHslString(true)
+                  }
                 />
               );
             })}

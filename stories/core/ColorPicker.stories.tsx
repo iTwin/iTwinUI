@@ -206,3 +206,87 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
 };
 
 Advanced.args = {};
+
+export const WithAlpha: Story<ColorPickerProps> = (args) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [selectedColor, setSelectedColor] = React.useState<ColorValue>(
+    ColorValue.create({ r: 90, g: 105, b: 115, a: 0.4 }),
+  );
+
+  const formats = ['hsl', 'rgb', 'hex'] as const;
+  const [currentFormat, setCurrentFormat] = React.useState<
+    typeof formats[number]
+  >(formats[0]);
+
+  const onColorChanged = (color: ColorValue) => {
+    setSelectedColor(color);
+    action(`Selected ${getDisplayString(color)}`)();
+  };
+
+  const getDisplayString = (color = selectedColor) => {
+    switch (currentFormat) {
+      case 'hsl':
+        return color.toHslString(true);
+      case 'rgb':
+        return color.toRgbString(true);
+      case 'hex':
+        return color.toHexString(true);
+    }
+  };
+
+  return (
+    <>
+      <ButtonGroup>
+        <Popover
+          content={
+            <ColorPicker
+              selectedColor={selectedColor}
+              {...args}
+              onChangeComplete={onColorChanged}
+              showAlpha={true}
+            >
+              <ColorBuilder />
+              <ColorInputPanel defaultColorFormat={currentFormat} />
+              <ColorPalette
+                label='Saved Colors'
+                colors={[
+                  { r: 90, g: 105, b: 115, a: 1 },
+                  { r: 90, g: 105, b: 115, a: 0.81 },
+                  { r: 90, g: 105, b: 115, a: 0.4 },
+                ]}
+              />
+            </ColorPicker>
+          }
+          appendTo={() => document.body}
+          visible={isOpen}
+          placement='bottom-start'
+        >
+          <IconButton onClick={() => setIsOpen((open) => !open)}>
+            <ColorSwatch
+              style={{ pointerEvents: 'none' }}
+              color={selectedColor}
+            />
+          </IconButton>
+        </Popover>
+        <Button
+          onClick={() => {
+            setCurrentFormat(
+              formats[(formats.indexOf(currentFormat) + 1) % formats.length],
+            );
+          }}
+          endIcon={
+            <svg viewBox='0 0 16 16' aria-hidden>
+              <path d='m5 15-3.78125-3.5 3.78125-3.5v2h8v3h-8zm6-7 3.78125-3.5-3.78125-3.5v2h-8v3h8z' />
+            </svg>
+          }
+        >
+          <div style={{ width: 150 }}>
+            {getDisplayString() ?? 'No color selected.'}
+          </div>
+        </Button>
+      </ButtonGroup>
+    </>
+  );
+};
+
+WithAlpha.args = {};

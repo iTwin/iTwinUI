@@ -50,6 +50,11 @@ export type ColorPickerProps = {
    * @default false
    */
   setFocus?: boolean;
+  /**
+   * If true, ColorBuilder will show the alpha slider and ColorInputPanel will show an alpha input.
+   * @default false
+   */
+  showAlpha?: boolean;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -73,6 +78,7 @@ export const ColorPicker = (props: ColorPickerProps) => {
     onChange,
     onChangeComplete,
     setFocus = false,
+    showAlpha = false,
     ...rest
   } = props;
 
@@ -142,6 +148,7 @@ export const ColorPicker = (props: ColorPickerProps) => {
           hsvColor,
           applyHsvColorChange,
           onChangeComplete,
+          showAlpha,
         }}
       >
         {children}

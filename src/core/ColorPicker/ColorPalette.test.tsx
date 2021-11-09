@@ -15,7 +15,12 @@ beforeAll(() => {
 });
 
 it('should render in its most basic state', () => {
-  const colors = ['#9ba5af', '#23450b', '#00121d', '#002a44'];
+  const colors = [
+    'hsla(210, 11%, 65%, 1.00)',
+    'hsla(95, 73%, 16%, 1.00)',
+    'hsla(203, 100%, 6%, 1.00)',
+    'hsla(203, 100%, 13%, 1.00)',
+  ];
 
   const { container } = render(
     <ColorPicker>
@@ -32,7 +37,12 @@ it('should render in its most basic state', () => {
 });
 
 it('should render with selectedColor', () => {
-  const colors = ['#9ba5af', '#23450b', '#00121d', '#002a44'];
+  const colors = [
+    'hsla(210, 11%, 65%, 1.00)',
+    'hsla(95, 73%, 16%, 1.00)',
+    'hsla(203, 100%, 6%, 1.00)',
+    'hsla(203, 100%, 13%, 1.00)',
+  ];
 
   const { container } = render(
     <ColorPicker selectedColor={colors[1]}>

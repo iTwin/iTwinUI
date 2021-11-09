@@ -31,7 +31,9 @@ export const ColorSwatch = React.forwardRef<HTMLDivElement, ColorSwatchProps>(
     useTheme();
 
     const c =
-      typeof color === 'string' ? color : getColorValue(color).toHexString();
+      typeof color === 'string'
+        ? color
+        : getColorValue(color).toHslString(true);
     const _style =
       color && getWindow()?.CSS?.supports?.(`--swatch-color: ${c}`)
         ? { '--swatch-color': c, ...style }

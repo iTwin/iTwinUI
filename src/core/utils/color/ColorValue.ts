@@ -453,7 +453,11 @@ export class ColorValue {
    */
   public toHexString(includeAlpha?: boolean): string {
     if (includeAlpha) {
-      return `#${this.getRgb(includeAlpha).toString(16)}`;
+      let value = this.getRgb(includeAlpha);
+      if (value < 0) {
+        value = 0xffffffff + value + 1;
+      }
+      return `#${`00000000${value.toString(16)}`.slice(-8)}`;
     }
     return `#${`000000${this.getRgb().toString(16)}`.slice(-6)}`;
   }
