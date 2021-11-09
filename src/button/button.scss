@@ -33,14 +33,26 @@ $iui-button-padding-large: $iui-xs * 6;
       border-color $iui-speed-fast ease-out;
   }
 
+  @include themed {
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
+
   > .iui-button-icon {
     @include themed {
       fill: t(iui-icons-color-actionable);
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     text-decoration: none;
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+
+    > .iui-button-icon {
+      @include themed {
+        fill: t(iui-icons-color-actionable-hover);
+      }
+    }
   }
 
   @include iui-focus;
