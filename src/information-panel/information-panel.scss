@@ -212,8 +212,12 @@
     row-gap: 11px;
     grid-template-columns: auto 1fr;
     align-items: center;
-    place-content: end;
-    text-align: end;
+
+    // right align labels
+    > *:nth-child(odd) {
+      place-content: end;
+      text-align: end;
+    }
 
     .iui-input-label {
       @include iui-input-label-inline;
