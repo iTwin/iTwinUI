@@ -67,8 +67,7 @@
 
 @mixin iui-scrollbar {
   @include themed {
-    scrollbar-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4))
-      transparent;
+    scrollbar-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4)) transparent;
     scrollbar-width: thin;
   }
 
@@ -79,19 +78,13 @@
 
   &::-webkit-scrollbar-thumb {
     @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-body-rgb),
-        t(iui-opacity-4)
-      );
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     }
     border-radius: $iui-s * 0.5;
 
     &:hover {
       @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-body-rgb),
-          t(iui-opacity-3)
-        );
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
       }
     }
   }
@@ -107,7 +100,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  @supports(-webkit-line-clamp: 1) {
+  @supports (-webkit-line-clamp: 1) {
     white-space: unset;
     display: -webkit-box; /* stylelint-disable-line */
     -webkit-line-clamp: $lines;
@@ -122,7 +115,7 @@
   }
 
   // With blur
-  @supports(backdrop-filter: $iui-blur-filter) {
+  @supports (backdrop-filter: $iui-blur-filter) {
     @include themed() {
       background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity}));
       backdrop-filter: $iui-blur-filter;
@@ -164,5 +157,28 @@
     @media (prefers-reduced-motion: no-preference) {
       transition: $transition-rule;
     }
+  }
+}
+
+/// Shadow shown over scrollable areas
+@mixin iui-scroll-shadow-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+@mixin iui-scroll-shadow {
+  position: absolute;
+  width: 100%;
+  height: 11px;
+
+  &.iui-shadow-top {
+    top: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent);
+    opacity: 0;
+  }
+
+  &.iui-shadow-bottom {
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent);
   }
 }
