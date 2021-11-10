@@ -166,3 +166,9 @@
     }
   }
 }
+
+@mixin iui-scroll-snapping {
+  .iui-scroll-snapping {
+    scroll-snap-type: y mandatory;
+  }
+}

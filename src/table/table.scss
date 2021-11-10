@@ -20,6 +20,7 @@
   }
 
   @include iui-table-cell-icon;
+  @include iui-scroll-snapping;
 }
 
 @mixin iui-table-header {
@@ -133,17 +134,10 @@
     background-color: t(iui-color-background-1);
   }
 
-  &.iui-scroll-snapping {
-    scroll-snap-type: y mandatory;
-
-    .iui-row {
-      scroll-snap-align: start;
-    }
-  }
-
   .iui-row {
     display: flex;
     border: solid 1px transparent;
+    scroll-snap-align: start;
     @media (prefers-reduced-motion: no-preference) {
       transition: border $iui-speed-fast ease-out;
     }
