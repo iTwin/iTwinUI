@@ -1597,10 +1597,13 @@
     <script>
       document.querySelectorAll('.iui-resizer').forEach((resizer) => {
         const infoPanel = resizer.parentElement;
+        const contentBlocks = infoPanel.querySelectorAll('.iui-information-body-content');
         const resizeFn = (e) => {
           e.preventDefault();
           if (infoPanel.classList.contains('iui-right')) {
-            infoPanel.style.width = `${infoPanel.getBoundingClientRect().right - e.x}px`;
+            const width = infoPanel.getBoundingClientRect().right - e.x;
+            infoPanel.style.width = `${width}px`;
+            contentBlocks.forEach((content) => content.classList.toggle('iui-inline', width > 300));
           } else {
             infoPanel.style.height = `${infoPanel.getBoundingClientRect().bottom - e.y}px`;
           }
