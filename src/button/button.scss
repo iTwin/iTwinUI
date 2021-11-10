@@ -56,6 +56,15 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 
   @include iui-focus;
+
+  &.iui-small {
+    @include iui-button-sizes(small);
+  }
+
+  &.iui-large {
+    @include iui-button-sizes(large);
+  }
+
   @include iui-button-sizes;
 
   &[disabled] {
@@ -63,7 +72,7 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 }
 
-@mixin iui-button-sizes {
+@mixin iui-button-sizes($size: medium) {
   padding: 0 $iui-button-padding;
   height: $iui-component-height;
 
@@ -73,7 +82,8 @@ $iui-button-padding-large: $iui-xs * 6;
     margin-left: $iui-s;
   }
 
-  &.iui-small {
+
+  @if $size == small {
     padding: 0 $iui-button-padding-small;
     height: $iui-component-height-small;
 
@@ -84,7 +94,7 @@ $iui-button-padding-large: $iui-xs * 6;
     }
   }
 
-  &.iui-large {
+  @if $size == large {
     padding: 0 $iui-button-padding-large;
     height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
