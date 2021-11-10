@@ -1,0 +1,118 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Carousel | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Carousel</h1>
+    <hr />
+
+    <section id="demo-default">
+      <div class="iui-carousel">
+        <div class="bnt-hc-scroll-container">
+          <ol class="bnt-hc-scroll-context">
+            <li>
+              <button
+                class="iui-dot iui-invisible"
+                tabindex="-1"
+              ></button>
+            </li>
+            <li>
+              <button class="iui-dot iui-first"></button>
+            </li>
+            <li>
+              <button class="iui-dot iui-second"></button>
+            </li>
+            <li>
+              <button
+                class="iui-dot"
+                id="test-1"
+              ></button>
+            </li>
+            <li>
+              <button class="iui-dot iui-active"></button>
+            </li>
+            <li>
+              <button
+                class="iui-dot"
+                id="test-2"
+              ></button>
+            </li>
+            <li>
+              <button class="iui-dot iui-second"></button>
+            </li>
+            <li>
+              <button class="iui-dot iui-first"></button>
+            </li>
+            <li>
+              <button
+                class="iui-dot iui-invisible"
+                tabindex="-1"
+              ></button>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <br />
+
+    <section id="demo-non-actionable">
+      <div class="iui-carousel">
+        <div class="bnt-hc-scroll-container">
+          <ol class="bnt-hc-scroll-context">
+            <li>
+              <div class="iui-dot iui-invisible"></div>
+            </li>
+            <li>
+              <div class="iui-dot iui-first"></div>
+            </li>
+            <li>
+              <div class="iui-dot iui-second"></div>
+            </li>
+            <li>
+              <div class="iui-dot"></div>
+            </li>
+            <li>
+              <div class="iui-dot iui-active"></div>
+            </li>
+            <li>
+              <div class="iui-dot"></div>
+            </li>
+            <li>
+              <div class="iui-dot iui-second"></div>
+            </li>
+            <li>
+              <div class="iui-dot iui-first"></div>
+            </li>
+            <li>
+              <div class="iui-dot iui-invisible"></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

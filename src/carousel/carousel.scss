@@ -1,0 +1,102 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-carousel {
+  @include iui-reset;
+  display: flex;
+
+  .bnt-hc-scroll-container {
+    display: flex;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    justify-content: center;
+  }
+
+  .bnt-hc-scroll-context {
+    @include iui-reset;
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    .iui-dot {
+      @include iui-reset;
+      width: $iui-baseline * 2;
+      height: $iui-baseline * 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &::after {
+        content: '';
+        display: block;
+        width: $iui-icons-small;
+        height: $iui-icons-small;
+        border-radius: 50%;
+        border: 1px solid transparent;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: background-color $iui-speed-fast ease, border-color $iui-speed-fast ease, width $iui-speed-fast ease, height $iui-speed-fast ease;
+        }
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        }
+      }
+
+      &.iui-first::after {
+        width: $iui-icons-small * 0.5;
+        height: $iui-icons-small * 0.5;
+      }
+
+      &.iui-second::after {
+        width: $iui-icons-small * 0.75;
+        height: $iui-icons-small * 0.75;
+      }
+
+      &.iui-invisible::after {
+        width: 0;
+        height: 0;
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), 0);
+        }
+      }
+
+      &.iui-active::after {
+        @include themed {
+          background-color: t(iui-color-foreground-primary);
+        }
+      }
+    }
+
+    button.iui-dot {
+      background-color: transparent;
+      cursor: pointer;
+
+      &:hover:not(.iui-invisible):not(.iui-active)::after {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+        }
+      }
+
+      &.iui-invisible {
+        cursor: default;
+      }
+
+      &:focus {
+        outline: none;
+
+        &:not(.iui-invisible)::after {
+          @include themed {
+            border-color: t(iui-color-foreground-primary);
+          }
+        }
+      }
+
+      &:focus:not(:focus-visible):not(.iui-invisible)::after {
+        @include themed {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+};
