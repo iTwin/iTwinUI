@@ -126,6 +126,7 @@
   overflow-x: hidden;
   overflow-y: scroll;
   overflow-y: overlay;
+  scroll-snap-type: y mandatory;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -137,6 +138,7 @@
   .iui-row {
     display: flex;
     border: solid 1px transparent;
+    scroll-snap-align: start;
     @media (prefers-reduced-motion: no-preference) {
       transition: border $iui-speed-fast ease-out;
     }
