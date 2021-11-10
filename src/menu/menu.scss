@@ -83,10 +83,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
   &:hover {
     @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-primary-rgb),
-        t(iui-opacity-6)
-      );
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
     }
   }
 
@@ -114,10 +111,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     &,
     &:hover {
       @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-5)
-        );
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
         outline: $iui-active-outline;
         outline-offset: -1px;
       }
