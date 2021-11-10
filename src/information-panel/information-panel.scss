@@ -196,7 +196,7 @@
 /// Labels and inputs aligned using css grid
 @mixin iui-information-body-content {
   .iui-input-label {
-    font-weight: normal;
+    font-weight: $iui-font-weight-normal;
     @include themed {
       color: t(iui-text-color-muted);
     }
