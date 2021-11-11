@@ -20,7 +20,6 @@
   }
 
   @include iui-table-cell-icon;
-  @include iui-scroll-snapping('.iui-row');
 }
 
 @mixin iui-table-header {
@@ -130,6 +129,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  @include iui-scroll-snapping('.iui-row');
   @include themed {
     background-color: t(iui-color-background-1);
   }
