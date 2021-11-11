@@ -159,3 +159,15 @@
     }
   }
 }
+
+/// Adds the ability to toggle vertical scroll snapping by setting `.iui-scroll-snapping` as a modifier (if used inside a class) or at root level.
+/// @arg $selector - selector to apply `scroll-snap-align: start` on. Defaults to '> *'
+@mixin iui-scroll-snapping($selector: '> *') {
+  #{if(&, '&.iui-scroll-snapping', '.iui-scroll-snapping')} {
+    scroll-snap-type: y mandatory;
+
+    #{$selector} {
+      scroll-snap-align: start;
+    }
+  }
+}
