@@ -167,8 +167,12 @@
   }
 }
 
-@mixin iui-scroll-snapping {
+@mixin iui-scroll-snapping($selector: '> *') {
   .iui-scroll-snapping {
     scroll-snap-type: y mandatory;
+
+    #{$selector} {
+      scroll-snap-align: start;
+    }
   }
 }
