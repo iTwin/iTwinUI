@@ -5,6 +5,34 @@
 @mixin iui-carousel {
   @include iui-reset;
   display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@mixin iui-carousel-slider {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  display: flex;
+  touch-action: pan-x;
+  @include themed {
+    border-bottom: 2px solid t(iui-color-background-4);
+  }
+
+  > .iui-carousel-slider-item {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+@mixin iui-carousel-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: $iui-baseline * 3;
 
   .bnt-hc-scroll-container {
     display: flex;
@@ -99,4 +127,4 @@
       }
     }
   }
-};
+}

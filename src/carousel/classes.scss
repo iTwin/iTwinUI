@@ -5,3 +5,11 @@
 .iui-carousel {
   @include iui-carousel;
 }
+
+.iui-carousel-slider {
+  @include iui-carousel-slider;
+}
+
+.iui-carousel-navigation {
+  @include iui-carousel-navigation;
+}
