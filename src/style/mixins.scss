@@ -159,7 +159,7 @@
     }
   }
 }
-
+/// Mixin allows scroll snapping to a specific class if .iui-scroll-snapping is applied to the parent
 @mixin iui-scroll-snapping($selector: '> *') {
   .iui-scroll-snapping {
     scroll-snap-type: y mandatory;
