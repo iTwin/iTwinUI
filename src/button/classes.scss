@@ -4,6 +4,7 @@
 
 .iui-button {
   @include iui-button;
+  @include iui-button-size;
 
   &.iui-default {
     @include iui-button-default;
@@ -23,6 +24,14 @@
 
   &.iui-borderless {
     @include iui-button-borderless;
+  }
+
+  &.iui-small {
+    @include iui-button-size(small);
+  }
+
+  &.iui-large {
+    @include iui-button-size(large);
   }
 }
 

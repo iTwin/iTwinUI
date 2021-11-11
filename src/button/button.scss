@@ -57,22 +57,13 @@ $iui-button-padding-large: $iui-xs * 6;
 
   @include iui-focus;
 
-  &.iui-small {
-    @include iui-button-sizes(small);
-  }
-
-  &.iui-large {
-    @include iui-button-sizes(large);
-  }
-
-  @include iui-button-sizes;
-
-  &[disabled] {
+  &[disabled],
+  &:disabled {
     @include iui-button-disabled;
   }
 }
 
-@mixin iui-button-sizes($size: medium) {
+@mixin iui-button-size($size: medium) {
   padding: 0 $iui-button-padding;
   height: $iui-component-height;
 
@@ -81,7 +72,6 @@ $iui-button-padding-large: $iui-xs * 6;
   > .iui-button-icon + .iui-button-icon {
     margin-left: $iui-s;
   }
-
 
   @if $size == small {
     padding: 0 $iui-button-padding-small;
