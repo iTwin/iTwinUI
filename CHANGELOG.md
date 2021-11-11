@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.39.0](https://www.github.com/iTwin/iTwinUI/compare/v0.38.0...v0.39.0) (2021-11-11)
+
+
+### Fixes
+
+* **Header:** Improve styling of header buttons ([#373](https://www.github.com/iTwin/iTwinUI/issues/373)) ([4be4900](https://www.github.com/iTwin/iTwinUI/commit/4be490070297ed6ac70856cd4a191c408e91bbaa))
+* **Menu:** Apply text color on menu root ([#371](https://www.github.com/iTwin/iTwinUI/issues/371)) ([da1edb7](https://www.github.com/iTwin/iTwinUI/commit/da1edb795f4b600fab30c441cfd348b68e781a36))
+* **Tabs:** Use `::after` pseudo-element for tab stripe ([#370](https://www.github.com/iTwin/iTwinUI/issues/370)) ([a7ef494](https://www.github.com/iTwin/iTwinUI/commit/a7ef49455b5f5de8b441b05846cf4e7ec2ef058f))
+
+
+### What's new
+
+* **InformationPanel:** Style inner content using grid ([#367](https://www.github.com/iTwin/iTwinUI/issues/367)) ([4756bb7](https://www.github.com/iTwin/iTwinUI/commit/4756bb7628a5ee5fecc2f8993087620c481474fd))
+* **Label:** Add non-wrapping label component ([#351](https://www.github.com/iTwin/iTwinUI/issues/351)) ([93798d8](https://www.github.com/iTwin/iTwinUI/commit/93798d8236d7e5d738534a703f4698cfb39494cf))
+* **Table:** Add scroll snapping ([#380](https://www.github.com/iTwin/iTwinUI/issues/380)) ([23d15da](https://www.github.com/iTwin/iTwinUI/commit/23d15da894d8a57c5c6ca85cd0e67f09ca9e0183))
+
 ## [0.38.0](https://www.github.com/iTwin/iTwinUI/compare/v0.37.2...v0.38.0) (2021-10-28)
 
 ### What's new
