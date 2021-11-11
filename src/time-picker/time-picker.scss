@@ -49,10 +49,7 @@
         cursor: pointer;
         @include themed {
           color: t(iui-color-foreground-primary);
-          background-color: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          );
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
         }
       }
 

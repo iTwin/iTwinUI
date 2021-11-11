@@ -61,7 +61,7 @@
     max-width: $iui-icons-large * 3;
 
     // iPhone notch support
-    @supports(min-width: unquote('max(0px)')) {
+    @supports (min-width: unquote('max(0px)')) {
       min-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
       max-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
     }
@@ -86,7 +86,7 @@
     &:not(.iui-expand) {
       height: $iui-baseline * 5;
       // iPhone notch support
-      @supports(padding: unquote('max(0px)')) {
+      @supports (padding: unquote('max(0px)')) {
         padding-left: unquote('max(#{$iui-icons-large}, #{$iui-icons-large} + env(safe-area-inset-left))');
       }
     }
@@ -123,8 +123,8 @@
       &:focus,
       &:focus-visible {
         @include themed {
-          box-shadow: inset 0 0 $iui-xs
-            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)), inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
+          box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)),
+            inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
         }
       }
 
@@ -145,8 +145,7 @@
     &:focus {
       outline: 0;
       @include themed {
-        box-shadow: inset 0 0 $iui-xs
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
+        box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
       }
     }
 
@@ -156,8 +155,7 @@
 
     &:focus-visible {
       outline: 0;
-      box-shadow: inset 0 0 $iui-xs
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
+      box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
     }
 
     &.iui-expand {
