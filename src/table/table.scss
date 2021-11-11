@@ -20,7 +20,7 @@
   }
 
   @include iui-table-cell-icon;
-  @include iui-scroll-snapping($selector: '.iui-row');
+  @include iui-scroll-snapping('.iui-row');
 }
 
 @mixin iui-table-header {
