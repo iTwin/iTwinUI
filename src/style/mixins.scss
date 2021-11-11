@@ -159,7 +159,8 @@
     }
   }
 }
-/// Mixin allows scroll snapping to a specific class if .iui-scroll-snapping is applied to the parent
+/// Adds the ability to toggle vertical scroll snapping using .iui-scroll-snapping class.
+/// @arg $selector - selector to apply `scroll-snap-align: start` on. Defaults to '> *'
 @mixin iui-scroll-snapping($selector: '> *') {
   .iui-scroll-snapping {
     scroll-snap-type: y mandatory;
