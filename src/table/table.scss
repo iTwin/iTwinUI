@@ -20,6 +20,8 @@
   }
 
   @include iui-table-cell-icon;
+
+  /// Mixin allows scroll snapping to individual table rows if .iui-scroll-snapping is applied to the table
   @include iui-scroll-snapping('.iui-row');
 }
 
