@@ -37,8 +37,7 @@
       border-style: solid;
 
       @include themed {
-        border-color: t(iui-color-foreground-accessory) transparent transparent
-          transparent;
+        border-color: t(iui-color-foreground-accessory) transparent transparent transparent;
       }
     }
 

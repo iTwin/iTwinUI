@@ -45,7 +45,7 @@
 @mixin iui-progress-indicator-radial {
   position: relative;
   display: inline-block;
-  @include iui-progress-indicator-radial-size($size:$iui-icons-xl);
+  @include iui-progress-indicator-radial-size($size: $iui-icons-xl);
 
   > .iui-radial {
     height: 100%;
@@ -167,7 +167,7 @@
   }
 
   &.iui-x-small {
-    @include iui-progress-indicator-radial-size($size:$iui-icons-default);
+    @include iui-progress-indicator-radial-size($size: $iui-icons-default);
 
     .iui-inner-content {
       display: none;
@@ -175,11 +175,11 @@
   }
 
   &.iui-small {
-    @include iui-progress-indicator-radial-size($size:$iui-icons-large);
+    @include iui-progress-indicator-radial-size($size: $iui-icons-large);
   }
 
   &.iui-large {
-    @include iui-progress-indicator-radial-size($size:$iui-icons-xxl);
+    @include iui-progress-indicator-radial-size($size: $iui-icons-xxl);
 
     .iui-inner-content {
       font-size: $iui-font-size-leading;
