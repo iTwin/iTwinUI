@@ -14,8 +14,7 @@
   visibility: hidden;
   opacity: 0;
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility 0s linear $iui-speed-fast,
-      opacity $iui-speed-fast ease-out;
+    transition: visibility 0s linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
   }
   @include themed {
     background-color: rgba(0, 0, 0, t(iui-opacity-4));
