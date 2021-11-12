@@ -75,9 +75,26 @@
   &-page-size-label {
     @include iui-text-muted;
     white-space: nowrap;
+  }
 
-    @media screen and (max-width: 1024px) {
-      display: none;
+  &-responsive {
+    flex-direction: column;
+    min-height: auto;
+    padding-top: round($iui-baseline * 0.375);
+    padding-bottom: round($iui-baseline * 0.375);
+
+    .iui-center {
+      order: 1;
+    }
+
+    .iui-left {
+      order: 2;
+      align-self: flex-start;
+    }
+
+    .iui-right {
+      order: 3;
+      align-self: flex-end;
     }
   }
 }
