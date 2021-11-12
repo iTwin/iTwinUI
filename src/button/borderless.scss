@@ -6,31 +6,18 @@
 @import './button-icon';
 
 @mixin iui-button-borderless {
-  background-color: transparent;
-  border-color: transparent;
-  padding: 0 $iui-s;
+  @include iui-button-borderless-base;
 
-  // Sizes
-  &.iui-small {
-    padding: 0 $iui-xxs;
+  &:focus:not(:focus-visible) {
+    @include  iui-button-borderless-base;
   }
 
-  &.iui-large {
-    padding: 0 $iui-sm;
+  &:hover {
+    @include iui-button-borderless-hover;
   }
 
-  // If icon is by itself, button takes 1:1 size ratio
-  > .iui-button-icon:only-child {
-    margin-left: $iui-component-offset;
-    margin-right: $iui-component-offset;
-  }
-
-  &:hover,
   &:focus-visible {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-      border-color: transparent;
-    }
+    @include iui-button-borderless-hover;
   }
 
   &.iui-active {
@@ -42,7 +29,7 @@
       }
       border-color: transparent;
 
-      > .iui-label {
+      > .iui-button-label {
         @include themed {
           color: t(iui-color-foreground-primary);
         }
@@ -65,3 +52,32 @@
     border-color: transparent;
   }
 }
+
+@mixin iui-button-borderless-base {
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0 $iui-s;
+
+  // Sizes
+  &.iui-small {
+    padding: 0 $iui-xxs;
+  }
+
+  &.iui-large {
+    padding: 0 $iui-sm;
+  }
+
+  // If icon is by itself, button takes 1:1 size ratio
+  > .iui-button-icon:only-child {
+    margin-left: $iui-component-offset;
+    margin-right: $iui-component-offset;
+  }
+}
+
+@mixin iui-button-borderless-hover {
+  @include themed {
+    background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+    border-color: transparent;
+  }
+}
+

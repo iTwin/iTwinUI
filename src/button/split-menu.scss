@@ -45,7 +45,8 @@
     }
   }
 
-  &[disabled] {
+  &[disabled],
+  &:disabled {
     @include iui-button-disabled;
   }
 }

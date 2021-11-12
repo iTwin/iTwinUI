@@ -123,7 +123,7 @@
             @include iui-display-none;
           }
 
-          .iui-header-button-icon + .iui-label {
+          .iui-header-button-icon + .iui-button-label {
             margin-left: 0;
           }
         }
@@ -236,7 +236,7 @@
 
   @include iui-header-button-focus;
 
-  > .iui-label {
+  > .iui-button-label {
     text-align: left;
     font-size: $iui-font-size;
     overflow: hidden;
@@ -290,7 +290,7 @@
             padding: $iui-xxs;
           }
 
-          .iui-label {
+          .iui-button-label {
             .iui-description {
               @include iui-display-none;
             }
@@ -318,6 +318,10 @@
 
   &.iui-active {
     @include iui-header-button-active;
+
+    .iui-button-label {
+      color: t(iui-color-foreground-primary);
+    }
 
     // Removing button hovers and backgrounds and adding last child hover
     .iui-button {

@@ -67,8 +67,8 @@ $iui-button-padding-large: $iui-xs * 6;
     padding: 0 $iui-button-padding;
     height: $iui-component-height;
 
-    > .iui-button-icon + .iui-label,
-    > .iui-label + .iui-button-icon,
+    > .iui-button-icon + .iui-button-label,
+    > .iui-button-label + .iui-button-icon,
     > .iui-button-icon + .iui-button-icon { margin-left: $iui-s;}
   }
 
@@ -76,8 +76,8 @@ $iui-button-padding-large: $iui-xs * 6;
     padding: 0 $iui-button-padding-small;
     height: $iui-component-height-small;
 
-    > .iui-button-icon + .iui-label,
-    > .iui-label + .iui-button-icon,
+    > .iui-button-icon + .iui-button-label,
+    > .iui-button-label + .iui-button-icon,
     > .iui-button-icon + .iui-button-icon { margin-left: $iui-xs;}
   }
 
@@ -86,8 +86,8 @@ $iui-button-padding-large: $iui-xs * 6;
     height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
 
-    > .iui-button-icon + .iui-label,
-    > .iui-label + .iui-button-icon,
+    > .iui-button-icon + .iui-button-label,
+    > .iui-button-label + .iui-button-icon,
     > .iui-button-icon + .iui-button-icon { margin-left: $iui-sm;}
 
   }

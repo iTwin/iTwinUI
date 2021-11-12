@@ -7,32 +7,19 @@
 @import './disabled';
 
 @mixin iui-button-default {
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-  }
+  @include iui-button-default-base;
 
-  &.iui-active {
-    > .iui-button-icon {
-      @include iui-button-icon(t(iui-icons-color-primary));
-
-    }
+  &:focus:not(:focus-visible) {
+    @include iui-button-default-base;
   }
 
   &:hover,
-  &:active,
-  &:focus-visible {
-    @include themed {
-      background-color: t(iui-color-background-1-overlay);
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-    }
-    @include iui-notification-marker-hover;
+  &:active {
+    @include iui-button-default-hover;
+  }
 
-    > .iui-button-icon {
-      @include iui-button-icon(t(iui-icons-color-actionable-hover));
-    }
+  &:focus-visible {
+    @include iui-button-default-hover;
   }
 
   &.iui-dropdown {
@@ -60,7 +47,7 @@
           linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
       }
 
-      > .iui-label {
+      > .iui-button-label {
         @include themed {
           color: t(iui-color-foreground-primary);
         }
@@ -75,5 +62,33 @@
   &[disabled],
   &:disabled {
     @include iui-button-disabled;
+  }
+}
+
+@mixin iui-button-default-base {
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
+
+  &.iui-active {
+    > .iui-button-icon {
+      @include iui-button-icon(t(iui-icons-color-primary));
+
+    }
+  }
+}
+
+@mixin iui-button-default-hover {
+  @include themed {
+    background-color: t(iui-color-background-1-overlay);
+    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+  }
+  @include iui-notification-marker-hover;
+
+  > .iui-button-icon {
+    @include iui-button-icon(t(iui-icons-color-actionable-hover));
   }
 }
