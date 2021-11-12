@@ -190,9 +190,9 @@
       linear-gradient(180deg, rgba(0, 0, 0, 0.2) 20%, $background-color) center top,
       // Bottom shadow
       linear-gradient(0deg, rgba(0, 0, 0, 0.2) 20%, $background-color) center bottom;
-
-    background-repeat: no-repeat;
-    background-size: 100% 100%, 100% $iui-xl, 100% $iui-xl, 100% $iui-sm, 100% $iui-sm;
-    background-attachment: scroll, local, local, scroll, scroll;
   }
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 100% $iui-xl, 100% $iui-xl, 100% $iui-sm, 100% $iui-sm;
+  background-attachment: scroll, local, local, scroll, scroll;
 }
