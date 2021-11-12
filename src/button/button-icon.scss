@@ -3,8 +3,12 @@
 @import '../style/index';
 @import '../icon/index';
 
-@mixin iui-button-icon {
+@mixin iui-button-icon($fillColor: iui-icons-color-actionable) {
   width: $iui-icons-default;
   height: $iui-icons-default;
   transition: fill $iui-speed-fast ease-out;
+
+  @include themed {
+    fill: $fillColor;
+  }
 }

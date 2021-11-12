@@ -3,6 +3,7 @@
 @import '../style/index';
 @import '../icon/index';
 @import './disabled';
+@import './button-icon';
 
 $iui-button-padding: $iui-xs * 4;
 $iui-button-padding-small: $iui-xs * 2;
@@ -38,9 +39,7 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 
   > .iui-button-icon {
-    @include themed {
-      fill: t(iui-icons-color-actionable);
-    }
+    @include iui-button-icon(t(iui-icons-color-actionable));
   }
 
   &:hover,
@@ -49,10 +48,7 @@ $iui-button-padding-large: $iui-xs * 6;
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
 
     > .iui-button-icon {
-      @include themed {
-        fill: t(iui-icons-color-actionable-hover);
-      }
-    }
+      @include iui-button-icon(t(iui-icons-color-actionable-hover)); }
   }
 
   @include iui-focus;
@@ -63,14 +59,17 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 }
 
+/// Mixin for applying status colors to input container.
+/// @arg size - must be one of: small, medium, large
 @mixin iui-button-size($size: medium) {
-  padding: 0 $iui-button-padding;
-  height: $iui-component-height;
 
-  > .iui-button-icon + .iui-label,
-  > .iui-label + .iui-button-icon,
-  > .iui-button-icon + .iui-button-icon {
-    margin-left: $iui-s;
+  @if $size == medium {
+    padding: 0 $iui-button-padding;
+    height: $iui-component-height;
+
+    > .iui-button-icon + .iui-label,
+    > .iui-label + .iui-button-icon,
+    > .iui-button-icon + .iui-button-icon { margin-left: $iui-s;}
   }
 
   @if $size == small {
@@ -79,9 +78,7 @@ $iui-button-padding-large: $iui-xs * 6;
 
     > .iui-button-icon + .iui-label,
     > .iui-label + .iui-button-icon,
-    > .iui-button-icon + .iui-button-icon {
-      margin-left: $iui-xs;
-    }
+    > .iui-button-icon + .iui-button-icon { margin-left: $iui-xs;}
   }
 
   @if $size == large {
@@ -89,10 +86,9 @@ $iui-button-padding-large: $iui-xs * 6;
     height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
 
-    > .iui-icon + .iui-label,
-    > .iui-label + .iui-icon,
-    > .iui-icon + .iui-icon {
-      margin-left: $iui-sm;
-    }
+    > .iui-button-icon + .iui-label,
+    > .iui-label + .iui-button-icon,
+    > .iui-button-icon + .iui-button-icon { margin-left: $iui-sm;}
+
   }
 }

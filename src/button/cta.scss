@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import './button';
+@import './button-icon';
 @import './disabled';
 
 @mixin iui-button-cta {
@@ -12,9 +13,7 @@
   }
 
   > .iui-button-icon {
-    @include themed {
-      fill: t(iui-color-foreground-accessory);
-    }
+    @include iui-button-icon(t(iui-color-foreground-accessory));
   }
 
   &:hover,
@@ -27,9 +26,7 @@
     }
 
     > .iui-button-icon {
-      @include themed {
-        fill: t(iui-color-foreground-accessory);
-      }
+      @include iui-button-icon(t(iui-color-foreground-accessory));
     }
   }
 

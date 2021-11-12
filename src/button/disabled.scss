@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import './button-icon';
 
 @mixin iui-button-disabled {
   cursor: not-allowed;
@@ -20,9 +21,7 @@
     }
 
     > .iui-button-icon {
-      @include themed {
-        fill: t(iui-icons-color-actionable-disabled);
-      }
+      @include iui-button-icon(t(iui-icons-color-actionable-disabled));
     }
   }
 }

@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import './button';
+@import './button-icon';
 @import '../notification-marker/index';
 @import './disabled';
 
@@ -14,9 +15,8 @@
 
   &.iui-active {
     > .iui-button-icon {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-      }
+      @include iui-button-icon(t(iui-icons-color-primary));
+
     }
   }
 
@@ -31,9 +31,7 @@
     @include iui-notification-marker-hover;
 
     > .iui-button-icon {
-      @include themed {
-        fill: t(iui-icons-color-actionable-hover);
-      }
+      @include iui-button-icon(t(iui-icons-color-actionable-hover));
     }
   }
 
@@ -52,7 +50,8 @@
 
   &.iui-active {
     &,
-    &:hover {
+    &:hover,
+    &:active {
       @include themed {
         background: linear-gradient(
           rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
@@ -69,9 +68,7 @@
     }
 
     > .iui-button-icon {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-      }
+      @include iui-button-icon(t(iui-icons-color-primary));
     }
   }
 
