@@ -14,6 +14,7 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
 
 @mixin iui-color-picker {
   @include iui-dropdown;
+  @include iui-scroll-shadow;
   box-sizing: border-box;
   border-radius: $iui-border-radius;
   display: inline-flex;

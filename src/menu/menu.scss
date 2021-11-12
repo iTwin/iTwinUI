@@ -33,6 +33,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   }
 
   &.iui-scroll {
+    @include iui-scroll-shadow;
     overflow-y: auto;
     overflow-y: overlay;
   }

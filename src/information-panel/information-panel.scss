@@ -87,6 +87,7 @@
   }
 
   .iui-information-body {
+    @include iui-scroll-shadow;
     padding-top: $iui-baseline;
     padding-bottom: $iui-baseline;
     height: 100%;

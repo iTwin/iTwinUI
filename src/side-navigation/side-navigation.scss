@@ -193,6 +193,7 @@
   }
 
   @include iui-transition-group;
+  @include iui-scroll-shadow;
 
   &.iui-enter-active,
   &.iui-exit-active {

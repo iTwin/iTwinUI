@@ -4,11 +4,13 @@
 
 @mixin iui-textarea {
   @include iui-input;
+  @include iui-scroll-shadow;
   resize: vertical;
   min-height: $iui-component-height;
 
   &[disabled],
   &[readonly] {
     resize: none;
+    @include iui-scroll-shadow($background-color: t(iui-color-background-disabled));
   }
 }

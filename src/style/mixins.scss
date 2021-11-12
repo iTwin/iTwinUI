@@ -161,24 +161,26 @@
 }
 
 /// Shadow shown over scrollable areas
-@mixin iui-scroll-shadow-wrapper {
-  overflow: hidden;
-  position: relative;
-}
+@mixin iui-scroll-shadow($background-color: t(iui-color-background-1)) {
+  @include themed {
+    background:
+      // Shadow to maintain background color on whole component
+      linear-gradient(
+        transparent $iui-sm,
+        $background-color $iui-sm calc(100% - #{$iui-sm}),
+        transparent calc(100% - #{$iui-sm})
+      ),
+      // Cover top shadow
+      linear-gradient($background-color 0% 100%) center top,
+      // Cover bottom shadow
+      linear-gradient($background-color 0% 100%) center bottom,
+      // Top shadow
+      linear-gradient(180deg, rgba(0, 0, 0, 0.2) 20%, $background-color) center top,
+      // Bottom shadow
+      linear-gradient(0deg, rgba(0, 0, 0, 0.2) 20%, $background-color) center bottom;
 
-@mixin iui-scroll-shadow {
-  position: absolute;
-  width: 100%;
-  height: 11px;
-
-  &.iui-shadow-top {
-    top: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent);
-    opacity: 0;
-  }
-
-  &.iui-shadow-bottom {
-    bottom: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent);
+    background-repeat: no-repeat;
+    background-size: 100% 100%, 100% $iui-xl, 100% $iui-xl, 100% $iui-sm, 100% $iui-sm;
+    background-attachment: scroll, local, local, scroll, scroll;
   }
 }
