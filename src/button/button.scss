@@ -65,34 +65,19 @@ $iui-button-padding-large: $iui-xs * 6;
   @if $size == medium {
     padding: 0 $iui-button-padding;
     height: $iui-component-height;
-
-    > .iui-button-icon + .iui-button-label,
-    > .iui-button-label + .iui-button-icon,
-    > .iui-button-icon + .iui-button-icon {
-      margin-left: $iui-s;
-    }
+    gap: $iui-s;
   }
 
   @if $size == small {
     padding: 0 $iui-button-padding-small;
     height: $iui-component-height-small;
-
-    > .iui-button-icon + .iui-button-label,
-    > .iui-button-label + .iui-button-icon,
-    > .iui-button-icon + .iui-button-icon {
-      margin-left: $iui-xs;
-    }
+    gap: $iui-xs;
   }
 
   @if $size == large {
     padding: 0 $iui-button-padding-large;
     height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
-
-    > .iui-button-icon + .iui-button-label,
-    > .iui-button-label + .iui-button-icon,
-    > .iui-button-icon + .iui-button-icon {
-      margin-left: $iui-sm;
-    }
+    gap: $iui-sm;
   }
 }
