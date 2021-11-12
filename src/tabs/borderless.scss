@@ -16,19 +16,13 @@
 
     &:hover {
       @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
       }
     }
 
     &.iui-active {
       @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
       }
     }
   }
@@ -56,10 +50,7 @@
   &.iui-green .iui-active,
   &.iui-green .iui-tab:hover {
     @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-positive-rgb),
-        t(iui-opacity-6)
-      );
+      background-color: rgba(t(iui-color-foreground-positive-rgb), t(iui-opacity-6));
     }
   }
 

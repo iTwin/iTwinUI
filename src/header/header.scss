@@ -13,8 +13,7 @@
   user-select: none;
   box-sizing: border-box;
   // iPhone notch support
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0
-    env(safe-area-inset-left);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
   @media (prefers-reduced-motion: no-preference) {
     transition: height $iui-speed-fast ease-out;
   }
@@ -110,10 +109,7 @@
 
     > .iui-right {
       .iui-user-icon {
-        @include iui-user-icon-size(
-          $size: $iui-icons-large,
-          $font-size: $iui-font-size-small
-        );
+        @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
       }
     }
   }
@@ -144,16 +140,12 @@
   }
 }
 
-@mixin iui-header-button-icon(
-  $size: $iui-icons-large,
-  $border-radius: $iui-border-radius
-) {
+@mixin iui-header-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
   width: $size;
   height: $size;
   border-radius: $border-radius;
   @media (prefers-reduced-motion: no-preference) {
-    transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out,
-      margin $iui-speed-fast ease-out;
+    transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, margin $iui-speed-fast ease-out;
   }
 }
 
@@ -162,7 +154,8 @@
     @include iui-header-button-icon;
   }
 
-  .iui-header-button.iui-header-button { // boost specificity
+  .iui-header-button.iui-header-button {
+    // boost specificity
     @include iui-header-button;
   }
 
@@ -180,7 +173,8 @@
   @at-root {
     a#{&}, // rendered as anchor element
     button#{&}, // rendered as button element
-    &[role='button'] { // rendered as div with role=button
+    &[role='button'] {
+      // rendered as div with role=button
       @include iui-header-button-focus;
       cursor: pointer;
 
@@ -342,10 +336,7 @@
 
       &:last-child:hover {
         @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          );
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
         }
       }
     }
@@ -375,19 +366,13 @@
     // Blue background and darker blue bottom line
     @include themed {
       box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-      background-color: rgba(
-        t(iui-color-foreground-primary-rgb),
-        t(iui-opacity-6)
-      );
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
     }
 
     .iui-header-button-icon {
       @include themed {
         fill: t(iui-icons-color-primary);
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
       }
     }
   }
@@ -402,8 +387,7 @@
   // Focus styling - blue outline
   &:focus {
     @include themed {
-      box-shadow: t(iui-focus-box-shadow),
-        0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+      box-shadow: t(iui-focus-box-shadow), 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
     }
   }
 
@@ -418,8 +402,7 @@
   &:disabled {
     @include themed {
       background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
-      box-shadow: 0 $iui-xxs 0 0
-        rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      box-shadow: 0 $iui-xxs 0 0 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     }
 
     .iui-label {

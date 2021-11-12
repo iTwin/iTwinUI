@@ -129,7 +129,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
+  @include iui-scroll-snapping('.iui-row');
   @include themed {
     background-color: t(iui-color-background-1);
   }
@@ -151,10 +151,7 @@
     &:hover:not(.iui-disabled) {
       &:not(.iui-expanded-content) {
         @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          );
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
         }
       }
 
@@ -367,10 +364,7 @@
 
     *::selection {
       @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-#{$status}-rgb),
-          t(iui-opacity-4)
-        );
+        background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
       }
     }
   }
@@ -384,18 +378,12 @@
 
 @mixin iui-table-cell-status($status) {
   @include themed {
-    background-color: rgba(
-      t(iui-color-foreground-#{$status}-rgb),
-      t(iui-opacity-6)
-    );
+    background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6));
   }
 
   &::selection {
     @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-#{$status}-rgb),
-        t(iui-opacity-4)
-      );
+      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
     }
   }
 }
