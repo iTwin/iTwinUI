@@ -10,21 +10,29 @@
 }
 
 @mixin iui-carousel-slider {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
   display: flex;
-  touch-action: pan-x;
+  overflow: hidden;
+  width: 100%;
+  height: $iui-baseline * 44;
+  @supports (aspect-ratio: 16 / 9) {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
   @include themed {
     border-bottom: 2px solid t(iui-color-background-4);
   }
 
   > .iui-carousel-slider-item {
-    width: 100%;
-    aspect-ratio: 16 / 9;
+    display: none;
     flex-shrink: 0;
     background-position: center;
     background-size: cover;
+    width: 100%;
+    height: $iui-baseline * 44;
+    @supports (aspect-ratio: 16 / 9) {
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
   }
 }
 
@@ -34,7 +42,7 @@
   align-items: center;
   height: $iui-baseline * 3;
 
-  .bnt-hc-scroll-container {
+  &-container {
     display: flex;
     flex-grow: 1;
     white-space: nowrap;
@@ -42,7 +50,7 @@
     justify-content: center;
   }
 
-  .bnt-hc-scroll-context {
+  &-dots {
     @include iui-reset;
     display: flex;
     align-items: center;
@@ -64,7 +72,8 @@
         border-radius: 50%;
         border: 1px solid transparent;
         @media (prefers-reduced-motion: no-preference) {
-          transition: background-color $iui-speed-fast ease, border-color $iui-speed-fast ease, width $iui-speed-fast ease, height $iui-speed-fast ease;
+          transition: background-color $iui-speed-fast ease, border-color $iui-speed-fast ease,
+            width $iui-speed-fast ease, height $iui-speed-fast ease;
         }
         @include themed {
           background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
