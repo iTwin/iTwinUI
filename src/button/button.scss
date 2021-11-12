@@ -42,13 +42,12 @@ $iui-button-padding-large: $iui-xs * 6;
     @include iui-button-icon(t(iui-icons-color-actionable));
   }
 
-  &:hover,
-  &:focus-visible {
-    text-decoration: none;
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+  &:hover {
+    @include iui-button-hover;
+  }
 
-    > .iui-button-icon {
-      @include iui-button-icon(t(iui-icons-color-actionable-hover)); }
+  &:focus-visible {
+    @include iui-button-hover;
   }
 
   @include iui-focus;
@@ -56,6 +55,15 @@ $iui-button-padding-large: $iui-xs * 6;
   &[disabled],
   &:disabled {
     @include iui-button-disabled;
+  }
+}
+
+@mixin iui-button-hover {
+  text-decoration: none;
+  color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+
+  > .iui-button-icon {
+    @include iui-button-icon(t(iui-icons-color-actionable-hover));
   }
 }
 
