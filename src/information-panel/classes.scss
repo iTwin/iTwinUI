@@ -21,3 +21,7 @@
     @include iui-information-panel-visible;
   }
 }
+
+.iui-information-body-content {
+  @include iui-information-body-content;
+}

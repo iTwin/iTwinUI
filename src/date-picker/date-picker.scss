@@ -97,10 +97,7 @@
             font-weight: $iui-font-weight-semibold;
             @include themed {
               color: t(iui-color-foreground-primary);
-              background-color: rgba(
-                t(iui-color-foreground-primary-rgb),
-                t(iui-opacity-6)
-              );
+              background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
             }
           }
 
@@ -108,10 +105,7 @@
             font-weight: $iui-font-weight-semibold;
             border-radius: 50%;
             @include themed {
-              background-color: rgba(
-                t(iui-color-foreground-body-rgb),
-                t(iui-opacity-6)
-              );
+              background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
             }
           }
 

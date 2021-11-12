@@ -219,7 +219,22 @@ $iui-focus-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-primary-
     height: $iui-s;
     @include themed {
       // Checkered transparency background pattern.
-      background-image: repeating-linear-gradient(45deg, t(iui-color-background-3) 25%, transparent 25%, transparent 75%, t(iui-color-background-3) 75%, t(iui-color-background-3)), repeating-linear-gradient(45deg, t(iui-color-background-3) 25%, t(iui-color-background-5) 25%, t(iui-color-background-5) 75%, t(iui-color-background-3) 75%, t(iui-color-background-3));
+      background-image: repeating-linear-gradient(
+        45deg,
+        t(iui-color-background-3) 25%,
+        transparent 25%,
+        transparent 75%,
+        t(iui-color-background-3) 75%,
+        t(iui-color-background-3)
+      ),
+        repeating-linear-gradient(
+        45deg,
+        t(iui-color-background-3) 25%,
+        t(iui-color-background-5) 25%,
+        t(iui-color-background-5) 75%,
+        t(iui-color-background-3) 75%,
+        t(iui-color-background-3)
+      );
       background-position: 0 0, ($iui-s * 0.5) ($iui-s * 0.5);
       background-size: $iui-s $iui-s;
     }

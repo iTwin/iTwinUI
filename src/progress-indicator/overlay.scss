@@ -16,19 +16,13 @@
 
   // Blur fallback
   @include themed {
-    background-color: rgba(
-      t(iui-color-background-1-rgb),
-      t(iui-opacity-2)
-    );
+    background-color: rgba(t(iui-color-background-1-rgb), t(iui-opacity-2));
   }
 
   // With blur
-  @supports(backdrop-filter: $iui-blur-filter) {
+  @supports (backdrop-filter: $iui-blur-filter) {
     @include themed {
-      background-color: rgba(
-        t(iui-color-background-1-rgb),
-        t(iui-opacity-3)
-      );
+      background-color: rgba(t(iui-color-background-1-rgb), t(iui-opacity-3));
       backdrop-filter: $iui-blur-filter;
     }
   }
