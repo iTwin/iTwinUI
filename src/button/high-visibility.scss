@@ -8,18 +8,22 @@
 @mixin iui-button-high-visibility {
   @include iui-button-high-visibility-base;
 
-  &:focus:not(:focus-visible) {
-    @include iui-button-high-visibility-base;
-  }
-
   &:hover,
   &:active,
   &:focus {
-    @include iui-button-high-visibility-hover;
+    @include themed {
+      background-color: t(iui-color-background-primary-overlay);
+      border-color: t(iui-color-background-primary-overlay);
+      color: t(iui-color-foreground-accessory);
+    }
+
+    > .iui-button-icon {
+      @include iui-button-icon(t(iui-color-foreground-accessory));
+    }
   }
 
-  &:focus-visible {
-    @include iui-button-high-visibility-hover;
+  &:focus:not(:focus-visible) {
+    @include iui-button-high-visibility-base;
   }
 
   &[disabled],
@@ -32,18 +36,6 @@
   @include themed {
     background-color: t(iui-color-background-primary);
     border-color: t(iui-color-background-primary);
-    color: t(iui-color-foreground-accessory);
-  }
-
-  > .iui-button-icon {
-    @include iui-button-icon(t(iui-color-foreground-accessory));
-  }
-}
-
-@mixin iui-button-high-visibility-hover {
-  @include themed {
-    background-color: t(iui-color-background-primary-overlay);
-    border-color: t(iui-color-background-primary-overlay);
     color: t(iui-color-foreground-accessory);
   }
 

@@ -9,17 +9,23 @@
 @mixin iui-button-default {
   @include iui-button-default-base;
 
+  &:hover,
+  &:active,
+  &:focus {
+    @include themed {
+      background-color: t(iui-color-background-1-overlay);
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    }
+    @include iui-notification-marker-hover;
+
+    > .iui-button-icon {
+      @include iui-button-icon(t(iui-icons-color-actionable-hover));
+    }
+  }
+
   &:focus:not(:focus-visible) {
     @include iui-button-default-base;
-  }
-
-  &:hover,
-  &:active {
-    @include iui-button-default-hover;
-  }
-
-  &:focus-visible {
-    @include iui-button-default-hover;
   }
 
   &.iui-dropdown {
@@ -75,20 +81,6 @@
   &.iui-active {
     > .iui-button-icon {
       @include iui-button-icon(t(iui-icons-color-primary));
-
     }
-  }
-}
-
-@mixin iui-button-default-hover {
-  @include themed {
-    background-color: t(iui-color-background-1-overlay);
-    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-  }
-  @include iui-notification-marker-hover;
-
-  > .iui-button-icon {
-    @include iui-button-icon(t(iui-icons-color-actionable-hover));
   }
 }

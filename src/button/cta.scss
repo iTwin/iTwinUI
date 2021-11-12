@@ -8,17 +8,22 @@
 @mixin iui-button-cta {
   @include iui-button-cta-base;
 
+  &:hover,
+  &:active,
+  &:focus {
+    @include themed {
+      background-color: t(iui-color-background-positive-overlay);
+      border-color: t(iui-color-background-positive-overlay);
+      color: t(iui-color-foreground-accessory);
+    }
+
+    > .iui-button-icon {
+      @include iui-button-icon(t(iui-color-foreground-accessory));
+    }
+  }
+
   &:focus:not(:focus-visible) {
     @include iui-button-cta-base;
-  }
-
-  &:hover,
-  &:active {
-    @include iui-button-cta-hover;
-  }
-
-  &:focus-visible {
-    @include iui-button-cta-hover;
   }
 
   &[disabled],
@@ -31,18 +36,6 @@
   @include themed {
     background-color: t(iui-color-background-positive);
     border-color: t(iui-color-background-positive);
-    color: t(iui-color-foreground-accessory);
-  }
-
-  > .iui-button-icon {
-    @include iui-button-icon(t(iui-color-foreground-accessory));
-  }
-}
-
-@mixin iui-button-cta-hover {
-  @include themed {
-    background-color: t(iui-color-background-positive-overlay);
-    border-color: t(iui-color-background-positive-overlay);
     color: t(iui-color-foreground-accessory);
   }
 

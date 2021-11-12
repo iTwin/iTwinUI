@@ -43,11 +43,12 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 
   &:hover {
-    @include iui-button-hover;
-  }
+    text-decoration: none;
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
 
-  &:focus-visible {
-    @include iui-button-hover;
+    > .iui-button-icon {
+      @include iui-button-icon(t(iui-icons-color-actionable-hover));
+    }
   }
 
   @include iui-focus;
@@ -58,26 +59,18 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 }
 
-@mixin iui-button-hover {
-  text-decoration: none;
-  color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-
-  > .iui-button-icon {
-    @include iui-button-icon(t(iui-icons-color-actionable-hover));
-  }
-}
-
-/// Mixin for applying status colors to input container.
+/// Mixin for applying padding and margins to various button sizes.
 /// @arg size - must be one of: small, medium, large
 @mixin iui-button-size($size: medium) {
-
   @if $size == medium {
     padding: 0 $iui-button-padding;
     height: $iui-component-height;
 
     > .iui-button-icon + .iui-button-label,
     > .iui-button-label + .iui-button-icon,
-    > .iui-button-icon + .iui-button-icon { margin-left: $iui-s;}
+    > .iui-button-icon + .iui-button-icon {
+      margin-left: $iui-s;
+    }
   }
 
   @if $size == small {
@@ -86,7 +79,9 @@ $iui-button-padding-large: $iui-xs * 6;
 
     > .iui-button-icon + .iui-button-label,
     > .iui-button-label + .iui-button-icon,
-    > .iui-button-icon + .iui-button-icon { margin-left: $iui-xs;}
+    > .iui-button-icon + .iui-button-icon {
+      margin-left: $iui-xs;
+    }
   }
 
   @if $size == large {
@@ -96,7 +91,8 @@ $iui-button-padding-large: $iui-xs * 6;
 
     > .iui-button-icon + .iui-button-label,
     > .iui-button-label + .iui-button-icon,
-    > .iui-button-icon + .iui-button-icon { margin-left: $iui-sm;}
-
+    > .iui-button-icon + .iui-button-icon {
+      margin-left: $iui-sm;
+    }
   }
 }
