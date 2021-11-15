@@ -2,10 +2,9 @@
 
 ### [0.39.1](https://www.github.com/iTwin/iTwinUI/compare/v0.39.0...v0.39.1) (2021-11-15)
 
-
 ### Fixes
 
-* **Label:** Change display style according to modifier ([#382](https://www.github.com/iTwin/iTwinUI/issues/382)) ([5634d6b](https://www.github.com/iTwin/iTwinUI/commit/5634d6bf19dba144c9304808bd9f1027ba34f5b0))
+* **Label:** Fixed display style and alignment to respect modifier ([#382](https://www.github.com/iTwin/iTwinUI/issues/382)) ([5634d6b](https://www.github.com/iTwin/iTwinUI/commit/5634d6bf19dba144c9304808bd9f1027ba34f5b0))
 
 ## [0.39.0](https://www.github.com/iTwin/iTwinUI/compare/v0.38.0...v0.39.0) (2021-11-12)
 
