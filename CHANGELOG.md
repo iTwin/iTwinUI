@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.39.0](https://www.github.com/iTwin/iTwinUI/compare/v0.38.0...v0.39.0) (2021-11-12)
+
+### What's new
+
+* **Label:** Add non-wrapping label component ([#351](https://www.github.com/iTwin/iTwinUI/issues/351)) ([93798d8](https://www.github.com/iTwin/iTwinUI/commit/93798d8236d7e5d738534a703f4698cfb39494cf))
+* **InformationPanel:** Add `.iui-information-body-content` to align inner content using grid ([#367](https://www.github.com/iTwin/iTwinUI/issues/367)) ([4756bb7](https://www.github.com/iTwin/iTwinUI/commit/4756bb7628a5ee5fecc2f8993087620c481474fd))
+* **Table:** Add vertical scroll snapping using `.iui-scroll-snapping` ([#380](https://www.github.com/iTwin/iTwinUI/issues/380)) ([23d15da](https://www.github.com/iTwin/iTwinUI/commit/23d15da894d8a57c5c6ca85cd0e67f09ca9e0183))
+* **Header:** Improve styling of header buttons ([#373](https://www.github.com/iTwin/iTwinUI/issues/373)) ([4be4900](https://www.github.com/iTwin/iTwinUI/commit/4be490070297ed6ac70856cd4a191c408e91bbaa))
+  * Added ability to use header logo as anchor
+  * Added ability to show active stripe in header buttons used outside `.iui-left`
+
+### Fixes
+
+* **Menu:** Apply text color on menu root so that it's also inherited by iui-menu-content ([#371](https://www.github.com/iTwin/iTwinUI/issues/371)) ([da1edb7](https://www.github.com/iTwin/iTwinUI/commit/da1edb795f4b600fab30c441cfd348b68e781a36))
+* **Tabs:** Replaced `.iui-tab-stripe` with `::after` pseudo-element ([#370](https://www.github.com/iTwin/iTwinUI/issues/370)) ([a7ef494](https://www.github.com/iTwin/iTwinUI/commit/a7ef49455b5f5de8b441b05846cf4e7ec2ef058f))
+
 ## [0.38.0](https://www.github.com/iTwin/iTwinUI/compare/v0.37.2...v0.38.0) (2021-10-28)
 
 ### What's new
