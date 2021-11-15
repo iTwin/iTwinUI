@@ -26,6 +26,10 @@
     }
   }
 
+  .iui-button {
+    gap: unset;
+  }
+
   > .iui-codeblock-content {
     margin: 0;
     overflow-x: auto;

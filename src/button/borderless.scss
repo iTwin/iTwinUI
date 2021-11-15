@@ -14,6 +14,10 @@
       background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
       border-color: transparent;
     }
+
+    > .iui-button-icon {
+      @include iui-button-icon(t(iui-icons-color-actionable-hover));
+    }
   }
 
   &:focus:not(:focus-visible) {

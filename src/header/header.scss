@@ -232,6 +232,7 @@
 }
 
 @mixin iui-header-button {
+  gap: unset;
   max-width: 25vw;
   overflow: hidden;
   padding-right: $iui-s;
@@ -261,6 +262,12 @@
 
   > .iui-button-icon {
     flex-shrink: 0;
+  }
+
+  > .iui-button-icon + .iui-button-label,
+  > .iui-button-label + .iui-button-icon,
+  > .iui-button-icon + .iui-button-icon {
+    margin-left: $iui-sm;
   }
 
   .iui-header-button-icon {

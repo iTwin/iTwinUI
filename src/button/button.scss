@@ -45,10 +45,6 @@ $iui-button-padding-large: $iui-xs * 6;
   &:hover {
     text-decoration: none;
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-
-    > .iui-button-icon {
-      @include iui-button-icon(t(iui-icons-color-actionable-hover));
-    }
   }
 
   @include iui-focus;
