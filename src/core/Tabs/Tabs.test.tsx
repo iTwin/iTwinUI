@@ -32,18 +32,27 @@ it('should render tabs', () => {
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
-  expect(tabContainer.className).toEqual('iui-tabs iui-default');
+  expect(tabContainer).toHaveClass('iui-default');
   expect(tabContainer.querySelectorAll('.iui-tab').length).toBe(3);
   screen.getByText('Test content');
 });
 
-it('should render borderless tabs', () => {
-  const { container } = renderComponent({ type: 'borderless' });
+it.each(['animated', 'not-animated'] as const)(
+  'should render borderless tabs (%s)',
+  (animated) => {
+    window.CSS = {
+      supports: () => !animated.includes('not'),
+      escape: (i) => i,
+    };
 
-  const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
-  expect(tabContainer).toBeTruthy();
-  expect(tabContainer.className).toContain('iui-tabs iui-borderless');
-});
+    const { container } = renderComponent({ type: 'borderless' });
+
+    const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
+    expect(tabContainer).toBeTruthy();
+    expect(tabContainer).toHaveClass('iui-borderless');
+    expect(tabContainer).toHaveClass(`iui-${animated}`);
+  },
+);
 
 it('should render pill tabs', () => {
   const { container } = renderComponent({ type: 'pill' });
