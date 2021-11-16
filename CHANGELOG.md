@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.25.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.24.0...v1.25.0) (2021-11-16)
+
+### What's new
+
+* **Label:** Add new standalone `Label` component ([#431](https://www.github.com/iTwin/iTwinUI-react/issues/431)) ([8e40b69](https://www.github.com/iTwin/iTwinUI-react/commit/8e40b69d2b5e9272c01e528cdfd75060357069a8))
+
+### Fixes
+
+* **ColorPicker:** Upgrade color conversion to remove rounding issues ([#425](https://www.github.com/iTwin/iTwinUI-react/issues/425)) ([1ce4905](https://www.github.com/iTwin/iTwinUI-react/commit/1ce4905219325080b5a6a4e5de200101d5b0860e))
+* **Table:** Fixed pagniator to handle a large number of items ([#428](https://www.github.com/iTwin/iTwinUI-react/issues/428)) ([1d947fc](https://www.github.com/iTwin/iTwinUI-react/commit/1d947fc3f55091b9b6da1ed7e7fa167b931cb8a0))
+
 ## [1.24.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.23.2...v1.24.0) (2021-11-09)
 
 ### What's new
