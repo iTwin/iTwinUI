@@ -102,7 +102,7 @@ export const ColorBuilder = React.forwardRef(
     // Update slider change
     const updateHueSlider = React.useCallback(
       (huePercent: number, selectionChanged: boolean) => {
-        const hue = Math.round(huePercent);
+        const hue = Number(huePercent.toFixed(2));
         const newHsvColor = {
           h: hue,
           s: hsvColor.s,

@@ -355,7 +355,7 @@ it('should handle hex input change with lose focus', () => {
   expect(handleOnChange).toHaveBeenCalledTimes(1);
 });
 
-it('should handle hsl input change with lose focus', () => {
+it('should NOT handle hsl input change with lose focus', () => {
   const handleOnChange = jest.fn();
 
   const { container } = render(
@@ -375,26 +375,19 @@ it('should handle hsl input change with lose focus', () => {
 
   h.focus();
   fireEvent.change(h, { target: { value: '100' } });
-  h.blur();
-  expect(handleOnChange).toHaveBeenCalledTimes(1);
-
   s.focus();
   fireEvent.change(s, { target: { value: '50' } });
-  s.blur();
-  expect(handleOnChange).toHaveBeenCalledTimes(2);
-
   l.focus();
   fireEvent.change(l, { target: { value: '50' } });
-  l.blur();
-  expect(handleOnChange).toHaveBeenCalledTimes(3);
-
   a.focus();
   fireEvent.change(a, { target: { value: '.50' } });
   a.blur();
-  expect(handleOnChange).toHaveBeenCalledTimes(4);
+  const hslColorValue = ColorValue.create({ h: 100, s: 50, l: 50, a: 0.5 });
+  expect(handleOnChange).toHaveBeenCalledWith(hslColorValue);
+  expect(handleOnChange).toHaveBeenCalledTimes(1);
 });
 
-it('should handle rgb input change with lose focus', () => {
+it('should NOT handle rgb input change with lose focus', () => {
   const handleOnChange = jest.fn();
 
   const { container } = render(
@@ -414,23 +407,14 @@ it('should handle rgb input change with lose focus', () => {
 
   r.focus();
   fireEvent.change(r, { target: { value: '100' } });
-  r.blur();
-  expect(handleOnChange).toHaveBeenCalledTimes(1);
-
   g.focus();
   fireEvent.change(g, { target: { value: '50' } });
-  g.blur();
-  expect(handleOnChange).toHaveBeenCalledTimes(2);
-
   b.focus();
   fireEvent.change(b, { target: { value: '50' } });
-  b.blur();
-  expect(handleOnChange).toHaveBeenCalledTimes(3);
-
   a.focus();
   fireEvent.change(a, { target: { value: '.50' } });
   a.blur();
-  expect(handleOnChange).toHaveBeenCalledTimes(4);
+  expect(handleOnChange).toHaveBeenCalledTimes(1);
 });
 
 it('should handle hex input when alpha is false', () => {
@@ -454,11 +438,8 @@ it('should handle hex input when alpha is false', () => {
   fireEvent.change(input, { target: { value: '#FF6200' } });
   fireEvent.keyDown(input, { key: 'Enter' });
 
-  const withoutHue = ColorValue.create('#FF6200');
-  // Create color using hsv to ensure that _hue is defined.
-  expect(handleOnChange).toHaveBeenCalledWith(
-    ColorValue.create(withoutHue.toHsvColor()),
-  );
+  const hexColorValue = ColorValue.create('#FF6200');
+  expect(handleOnChange).toHaveBeenCalledWith(hexColorValue);
 });
 
 it('should handle hsl input when alpha is false', () => {
@@ -508,9 +489,31 @@ it('should handle rgb input when alpha is false', () => {
   fireEvent.change(input, { target: { value: '41' } });
   fireEvent.keyDown(input, { key: 'Enter' });
 
-  const withoutHue = ColorValue.create({ r: 41, g: 0, b: 0 });
-  // Create color using hsv to ensure that _hue is defined.
-  expect(handleOnChange).toHaveBeenCalledWith(
-    ColorValue.create(withoutHue.toHsvColor()),
+  const rgbColorValue = ColorValue.create({ r: 41, g: 0, b: 0 });
+  expect(handleOnChange).toHaveBeenCalledWith(rgbColorValue);
+});
+
+it('should handle rgb input without any side effects', () => {
+  const handleOnChange = jest.fn();
+  const selectedColor = ColorValue.create({ r: 0, g: 100, b: 50 });
+  const { container } = render(
+    <ColorPicker
+      showAlpha={false}
+      onChangeComplete={handleOnChange}
+      selectedColor={selectedColor}
+    >
+      <ColorInputPanel defaultColorFormat={'rgb'} />
+    </ColorPicker>,
   );
+
+  const inputs = container.querySelectorAll('input');
+  expect(inputs.length).toBe(3);
+  const input = inputs[0] as HTMLInputElement;
+  expect(input).toBeTruthy();
+
+  fireEvent.change(input, { target: { value: '41' } });
+  fireEvent.keyDown(input, { key: 'Enter' });
+
+  const rgbColorValue = ColorValue.create({ r: 41, g: 100, b: 50 });
+  expect(handleOnChange).toHaveBeenCalledWith(rgbColorValue);
 });

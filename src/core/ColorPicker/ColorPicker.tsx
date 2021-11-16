@@ -119,10 +119,14 @@ export const ColorPicker = (props: ColorPickerProps) => {
   }, [inColor]);
 
   const applyHsvColorChange = React.useCallback(
-    (newColor: HsvColor, selectionChanged: boolean) => {
+    (
+      newColor: HsvColor,
+      selectionChanged: boolean,
+      newColorValue?: ColorValue,
+    ) => {
       // save the HSV values
       setHsvColor(newColor);
-      const newActiveColor = ColorValue.create(newColor);
+      const newActiveColor = newColorValue ?? ColorValue.create(newColor);
 
       // Only update selected color when dragging is done
       if (selectionChanged) {

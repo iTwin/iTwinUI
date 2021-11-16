@@ -23,33 +23,35 @@ describe('ColorValue', () => {
     const rgbColor = ColorValue.create({ r: 200, g: 20, b: 20, a: 0.5 });
     expect(colorRgbNumber.toRgbString()).toEqual(`rgb(200, 20, 20)`);
     expect(rgbColor.toRgbString()).toEqual(`rgb(200, 20, 20)`);
-    expect(colorRgbNumber.toRgbString(true)).toEqual(`rgba(200, 20, 20, 0.50)`);
-    expect(rgbColor.toRgbString(true)).toEqual(`rgba(200, 20, 20, 0.50)`);
+    expect(colorRgbNumber.toRgbString(true)).toEqual(`rgba(200, 20, 20, 0.5)`);
+    expect(rgbColor.toRgbString(true)).toEqual(`rgba(200, 20, 20, 0.5)`);
   });
 
   it('should properly handle rgb string values', () => {
     const rgbColor = ColorValue.create(`rgb(200, 20, 20)`);
     expect(rgbColor.toRgbString()).toEqual(`rgb(200, 20, 20)`);
-    expect(rgbColor.toRgbString(true)).toEqual(`rgba(200, 20, 20, 1.00)`);
+    expect(rgbColor.toRgbString(true)).toEqual(`rgba(200, 20, 20, 1)`);
   });
 
   it('should properly handle rgba string values', () => {
     const rgbColor = ColorValue.create(`rgb(200, 20, 20, 0.5)`);
     expect(rgbColor.toRgbString()).toEqual(`rgb(200, 20, 20)`);
-    expect(rgbColor.toRgbString(true)).toEqual(`rgba(200, 20, 20, 0.50)`);
+    expect(rgbColor.toRgbString(true)).toEqual(`rgba(200, 20, 20, 0.5)`);
   });
 
-  it('should properly handle hsl string values', () => {
+  it('should properly handle HslString values', () => {
+    const hslColor1 = ColorValue.create({ h: 10, s: 100, l: 50 });
     const hslColor = ColorValue.create(`hsl(10, 100%, 50%)`);
+    expect(hslColor1.toHslString()).toEqual(`hsl(10, 100%, 50%)`);
     expect(hslColor.toHslString()).toEqual(`hsl(10, 100%, 50%)`);
-    expect(hslColor.toHslString(true)).toEqual(`hsla(10, 100%, 50%, 1.00)`);
+    expect(hslColor.toHslString(true)).toEqual(`hsla(10, 100%, 50%, 1)`);
   });
 
   it('should properly handle HslColor values', () => {
     const hslColor = ColorValue.create({ h: 10, s: 100, l: 50 });
     expect(hslColor.toHslString()).toEqual(`hsl(10, 100%, 50%)`);
     const hslaColor = ColorValue.create({ h: 10, s: 100, l: 50, a: 0.5 });
-    expect(hslaColor.toHslString(true)).toEqual(`hsla(10, 100%, 50%, 0.50)`);
+    expect(hslaColor.toHslString(true)).toEqual(`hsla(10, 100%, 50%, 0.5)`);
   });
 
   it('should properly handle HexString values', () => {
@@ -80,10 +82,10 @@ describe('ColorValue', () => {
 
   it('should properly handle HexString values with alpha', () => {
     const colorRgba = ColorValue.create({ r: 95, g: 158, b: 160, a: 0.5 });
-    const colorHex = ColorValue.create(`#5f9ea080`);
+    const colorHex = ColorValue.create(`#5f9ea07f`);
     expect(colorHex.equals(colorRgba)).toBeTruthy();
-    expect(colorHex.toRgbString(true)).toEqual(`rgba(95, 158, 160, 0.50)`);
-    expect(colorHex.toHexString(true)).toEqual(`#5f9ea080`);
+    expect(colorHex.toRgbString(true)).toEqual(`rgba(95, 158, 160, 0.5)`);
+    expect(colorHex.toHexString(true)).toEqual(`#5f9ea07f`);
   });
 
   it('should properly handle HsvColor values', () => {
@@ -95,6 +97,6 @@ describe('ColorValue', () => {
     expect(outHsvColor.v).toEqual(inValue.v);
     expect(inHsvColor.toHsvString()).toEqual(`hsv(10, 100%, 100%)`);
     const hsvaColor = ColorValue.create({ h: 10, s: 100, v: 100, a: 0.5 });
-    expect(hsvaColor.toHsvString(true)).toEqual(`hsva(10, 100%, 100%, 0.50)`);
+    expect(hsvaColor.toHsvString(true)).toEqual(`hsva(10, 100%, 100%, 0.5)`);
   });
 });

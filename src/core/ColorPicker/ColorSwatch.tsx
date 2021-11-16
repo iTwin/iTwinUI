@@ -30,14 +30,21 @@ export const ColorSwatch = React.forwardRef<HTMLDivElement, ColorSwatchProps>(
     const { color, style, onClick, isActive, className, ...rest } = props;
     useTheme();
 
-    const c =
-      typeof color === 'string'
-        ? color
-        : getColorValue(color).toHslString(true);
-    const _style =
-      color && getWindow()?.CSS?.supports?.(`--swatch-color: ${c}`)
-        ? { '--swatch-color': c, ...style }
-        : { backgroundColor: c, ...style };
+    const colorString = React.useMemo(
+      () =>
+        typeof color === 'string'
+          ? color
+          : getColorValue(color).toHslString(true),
+      [color],
+    );
+
+    const _style = React.useMemo(
+      () =>
+        getWindow()?.CSS?.supports?.(`--swatch-color: ${colorString}`)
+          ? { '--swatch-color': colorString, ...style }
+          : { backgroundColor: colorString, ...style },
+      [colorString, style],
+    );
 
     return (
       <div

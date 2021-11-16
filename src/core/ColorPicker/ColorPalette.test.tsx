@@ -21,6 +21,13 @@ it('should render in its most basic state', () => {
     'hsla(203, 100%, 6%, 1.00)',
     'hsla(203, 100%, 13%, 1.00)',
   ];
+  // required due to precision error going from hsl -> tbgr -> hsl
+  const expectedStyleString = [
+    'hsla(210, 11.2%, 65.1%, 1)',
+    'hsla(95, 73.2%, 16.1%, 1)',
+    'hsla(203, 100%, 6.1%, 1)',
+    'hsla(203, 100%, 12.9%, 1)',
+  ];
 
   const { container } = render(
     <ColorPicker>
@@ -31,7 +38,7 @@ it('should render in its most basic state', () => {
   const palette = container.querySelector('.iui-color-palette') as HTMLElement;
 
   palette.querySelectorAll('.iui-color-swatch').forEach((swatch, index) => {
-    expect(swatch).toHaveStyle(`--swatch-color: ${colors[index]}`);
+    expect(swatch).toHaveStyle(`--swatch-color: ${expectedStyleString[index]}`);
     expect(swatch).toHaveAttribute('tabindex', index === 0 ? '0' : '-1');
   });
 });
@@ -43,6 +50,13 @@ it('should render with selectedColor', () => {
     'hsla(203, 100%, 6%, 1.00)',
     'hsla(203, 100%, 13%, 1.00)',
   ];
+  // required due to precision error going from hsl -> tbgr -> hsl
+  const expectedStyleString = [
+    'hsla(210, 11.2%, 65.1%, 1)',
+    'hsla(95, 73.2%, 16.1%, 1)',
+    'hsla(203, 100%, 6.1%, 1)',
+    'hsla(203, 100%, 12.9%, 1)',
+  ];
 
   const { container } = render(
     <ColorPicker selectedColor={colors[1]}>
@@ -53,8 +67,43 @@ it('should render with selectedColor', () => {
   const palette = container.querySelector('.iui-color-palette') as HTMLElement;
 
   palette.querySelectorAll('.iui-color-swatch').forEach((swatch, index) => {
-    expect(swatch).toHaveStyle(`--swatch-color: ${colors[index]}`);
+    expect(swatch).toHaveStyle(`--swatch-color: ${expectedStyleString[index]}`);
     if (index === 1) {
+      expect(swatch).toHaveClass('iui-active');
+      expect(swatch).toHaveAttribute('tabindex', '0');
+    } else {
+      expect(swatch).not.toHaveClass('iui-active');
+      expect(swatch).toHaveAttribute('tabindex', '-1');
+    }
+  });
+});
+
+it('should render with selectedColor 0', () => {
+  const colors = [
+    'hsla(210, 11%, 65%, 1.00)',
+    'hsla(95, 73%, 16%, 1.00)',
+    'hsla(203, 100%, 6%, 1.00)',
+    'hsla(203, 100%, 13%, 1.00)',
+  ];
+  // required due to precision error going from hsl -> tbgr -> hsl
+  const expectedStyleString = [
+    'hsla(210, 11.2%, 65.1%, 1)',
+    'hsla(95, 73.2%, 16.1%, 1)',
+    'hsla(203, 100%, 6.1%, 1)',
+    'hsla(203, 100%, 12.9%, 1)',
+  ];
+
+  const { container } = render(
+    <ColorPicker selectedColor={colors[0]}>
+      <ColorPalette colors={colors} />
+    </ColorPicker>,
+  );
+
+  const palette = container.querySelector('.iui-color-palette') as HTMLElement;
+
+  palette.querySelectorAll('.iui-color-swatch').forEach((swatch, index) => {
+    expect(swatch).toHaveStyle(`--swatch-color: ${expectedStyleString[index]}`);
+    if (index === 0) {
       expect(swatch).toHaveClass('iui-active');
       expect(swatch).toHaveAttribute('tabindex', '0');
     } else {

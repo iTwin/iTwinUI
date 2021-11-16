@@ -161,9 +161,7 @@ it('should set the dot positions', () => {
     '.iui-slider-thumb',
   )[1] as HTMLElement;
   expect(opacityDot).toBeTruthy();
-  expect(opacityDot.style.getPropertyValue('left')).toEqual(
-    '80.3921568627451%',
-  );
+  expect(opacityDot.style.getPropertyValue('left')).toEqual('80%');
 });
 
 it('should handle arrow key navigation on hue slider dot', () => {
@@ -400,7 +398,7 @@ it('should preserve hue when color dot is black/at bottom of square', () => {
   const colorDot = container.querySelector('.iui-color-dot') as HTMLElement;
   expect(colorDot).toBeTruthy();
   expect(colorDot.style.getPropertyValue('--left')).toEqual('75%');
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('98%');
+  expect(colorDot.style.getPropertyValue('--top')).toEqual('98.4%');
 
   // Go to bottom of square and hue should be preserved
   fireEvent.keyDown(colorDot, { key: 'ArrowDown' });

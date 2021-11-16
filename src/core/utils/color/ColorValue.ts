@@ -196,9 +196,11 @@ export class ColorValue {
     val: string,
     defaultColorIfNotParsed?: ColorValue,
   ): ColorValue {
-    return this.fromTbgr(
-      this.computeTbgrFromString(val, defaultColorIfNotParsed?.toTbgr()),
+    const [tbgr, hue] = this.computeTbgrFromString(
+      val,
+      defaultColorIfNotParsed?.toTbgr(),
     );
+    return new ColorValue(tbgr, hue);
   }
 
   /** Create a ColorValue from hue, saturation, lightness values.  */
@@ -209,7 +211,7 @@ export class ColorValue {
         hsl.h / 360,
         hsl.s / 100,
         hsl.l / 100,
-        (1 - alpha) * 255,
+        Math.round((1 - alpha) * 255),
       ),
       hsl.h,
     );
@@ -218,7 +220,12 @@ export class ColorValue {
   /** Create a ColorValue from an RgbColor */
   private static fromRGB(rgb: RgbColor): ColorValue {
     const alpha = rgb.a ?? 1;
-    return ColorValue.fromRgbt(rgb.r, rgb.g, rgb.b, (1 - alpha) * 255);
+    return ColorValue.fromRgbt(
+      rgb.r,
+      rgb.g,
+      rgb.b,
+      Math.round((1 - alpha) * 255),
+    );
   }
 
   /**
@@ -226,7 +233,7 @@ export class ColorValue {
    */
   private static fromHSV(hsv: HsvColor): ColorValue {
     const alpha = hsv.a ?? 1;
-    const transparency = (1 - alpha) * 255;
+    const transparency = Math.round((1 - alpha) * 255);
 
     // Check for simple case first.
     if (!hsv.s || hsv.h === -1) {
@@ -307,7 +314,7 @@ export class ColorValue {
   private static computeTbgrFromString(
     val: string,
     defaultColorIfNotParsed?: number,
-  ): number {
+  ): [number, number | undefined] {
     val = val.toLowerCase();
     let m = /^((?:rgb|hsl)a?)\(([^\)]*)\)/.exec(val);
     if (m) {
@@ -336,12 +343,17 @@ export class ColorValue {
           );
           if (color) {
             // rgb(255,0,0) rgba(255,0,0,0.5)
-            return this.computeTbgrFromComponents(
-              intOrPercent(color[1]),
-              intOrPercent(color[2]),
-              intOrPercent(color[3]),
-              typeof color[4] === 'string' ? 255 - floatOrPercent(color[4]) : 0,
-            );
+            return [
+              this.computeTbgrFromComponents(
+                intOrPercent(color[1]),
+                intOrPercent(color[2]),
+                intOrPercent(color[3]),
+                typeof color[4] === 'string'
+                  ? 255 - floatOrPercent(color[4])
+                  : 0,
+              ),
+              undefined,
+            ];
           }
 
           break;
@@ -352,12 +364,12 @@ export class ColorValue {
           );
           if (color) {
             // hsl(120,50%,50%) hsla(120,50%,50%,0.5)
-            const h = parseFloat(color[1]) / 360;
+            const h = parseFloat(color[1]);
             const s = parseInt(color[2], 10) / 100;
             const l = parseInt(color[3], 10) / 100;
             const t =
               typeof color[4] === 'string' ? 255 - floatOrPercent(color[4]) : 0;
-            return this.computeTbgrFromHSL(h, s, l, t);
+            return [this.computeTbgrFromHSL(h / 360, s, l, t), h];
           }
 
           break;
@@ -370,35 +382,44 @@ export class ColorValue {
 
       if (size === 3) {
         // #ff0
-        return this.computeTbgrFromComponents(
-          parseInt(hex.charAt(0) + hex.charAt(0), 16),
-          parseInt(hex.charAt(1) + hex.charAt(1), 16),
-          parseInt(hex.charAt(2) + hex.charAt(2), 16),
-          0,
-        );
+        return [
+          this.computeTbgrFromComponents(
+            parseInt(hex.charAt(0) + hex.charAt(0), 16),
+            parseInt(hex.charAt(1) + hex.charAt(1), 16),
+            parseInt(hex.charAt(2) + hex.charAt(2), 16),
+            0,
+          ),
+          undefined,
+        ];
       }
       if (size === 6) {
         // #ff0000
-        return this.computeTbgrFromComponents(
-          parseInt(hex.charAt(0) + hex.charAt(1), 16),
-          parseInt(hex.charAt(2) + hex.charAt(3), 16),
-          parseInt(hex.charAt(4) + hex.charAt(5), 16),
-          0,
-        );
+        return [
+          this.computeTbgrFromComponents(
+            parseInt(hex.charAt(0) + hex.charAt(1), 16),
+            parseInt(hex.charAt(2) + hex.charAt(3), 16),
+            parseInt(hex.charAt(4) + hex.charAt(5), 16),
+            0,
+          ),
+          undefined,
+        ];
       }
       if (size === 8) {
         // #ff0000ff
-        return this.computeTbgrFromComponents(
-          parseInt(hex.charAt(0) + hex.charAt(1), 16),
-          parseInt(hex.charAt(2) + hex.charAt(3), 16),
-          parseInt(hex.charAt(4) + hex.charAt(5), 16),
-          255 - parseInt(hex.charAt(6) + hex.charAt(7), 16),
-        );
+        return [
+          this.computeTbgrFromComponents(
+            parseInt(hex.charAt(0) + hex.charAt(1), 16),
+            parseInt(hex.charAt(2) + hex.charAt(3), 16),
+            parseInt(hex.charAt(4) + hex.charAt(5), 16),
+            255 - parseInt(hex.charAt(6) + hex.charAt(7), 16),
+          ),
+          undefined,
+        ];
       }
     }
 
     if (defaultColorIfNotParsed) {
-      return defaultColorIfNotParsed;
+      return [defaultColorIfNotParsed, undefined];
     }
     throw new Error('unable to parse string into ColorValue');
   }
@@ -529,42 +550,42 @@ export class ColorValue {
 
   /** Create an HslColor from this ColorValue */
   private static toHsl(tbgr: number): HslColor {
-    // internally h,s,l ranges are in 0.0 - 1.0
-    const col = ColorValue.getColors(tbgr);
-    col.r /= 255;
-    col.g /= 255;
-    col.b /= 255;
-    const max = Math.max(col.r, col.g, col.b);
-    const min = Math.min(col.r, col.g, col.b);
-
+    const { r, g, b } = ColorValue.getColors(tbgr);
+    const red = r / 255;
+    const green = g / 255;
+    const blue = b / 255;
+    const cMin = Math.min(red, green, blue);
+    const cMax = Math.max(red, green, blue);
+    const delta = cMax - cMin;
     let hue = 0;
-    let saturation;
-    const lightness = (min + max) / 2.0;
+    let saturation = 0;
 
-    if (min === max) {
-      saturation = 0;
+    if (0 === delta) {
+      hue = 0;
+    } else if (red === cMax) {
+      hue = ((green - blue) / delta) % 6;
+    } else if (green === cMax) {
+      hue = (blue - red) / delta + 2;
     } else {
-      const delta = max - min;
-      saturation =
-        lightness <= 0.5 ? delta / (max + min) : delta / (2 - max - min);
-      switch (max) {
-        case col.r:
-          hue = (col.g - col.b) / delta + (col.g < col.b ? 6 : 0);
-          break;
-        case col.g:
-          hue = (col.b - col.r) / delta + 2;
-          break;
-        case col.b:
-          hue = (col.r - col.g) / delta + 4;
-          break;
-      }
-      hue /= 6;
+      hue = (red - green) / delta + 4;
     }
 
+    hue = Math.round(hue * 60);
+    if (hue < 0) {
+      hue += 360;
+    }
+
+    let lightness = (cMax + cMin) / 2;
+    saturation = 0 === delta ? 0 : delta / (1 - Math.abs(2 * lightness - 1));
+
+    // round values to 1 decimal place
+    saturation = Number((saturation * 100).toFixed(1));
+    lightness = Number((lightness * 100).toFixed(1));
+
     return {
-      h: Math.round(hue * 360),
-      s: Math.round(saturation * 100),
-      l: Math.round(lightness * 100),
+      h: hue,
+      s: saturation,
+      l: lightness,
       a: this.getAlpha(tbgr) / 255,
     };
   }
@@ -592,61 +613,54 @@ export class ColorValue {
    */
   private static toHsv(tbgr: number): HsvColor {
     const { r, g, b } = ColorValue.getColors(tbgr);
-    let min = r < g ? r : g;
-    if (b < min) {
-      min = b;
-    }
+    const red = r / 255;
+    const green = g / 255;
+    const blue = b / 255;
+    const cMin = Math.min(red, green, blue);
+    const cMax = Math.max(red, green, blue);
+    const delta = cMax - cMin;
+    let hue = 0;
 
-    let max = r > g ? r : g;
-    if (b > max) {
-      max = b;
-    }
-
-    /* amount of "blackness" present */
-    const v = Math.floor((max / 255.0) * 100 + 0.5);
-    const deltaRgb = max - min;
-    const s = max !== 0.0 ? Math.floor((deltaRgb / max) * 100 + 0.5) : 0;
-    let h = 0;
-
-    if (s) {
-      const redDistance = (max - r) / deltaRgb;
-      const greenDistance = (max - g) / deltaRgb;
-      const blueDistance = (max - b) / deltaRgb;
-
-      let intermediateHue: number;
-      if (r === max) {
-        /* color between yellow & magenta */
-        intermediateHue = blueDistance - greenDistance;
-      } else if (g === max) {
-        /* color between cyan & yellow */
-        intermediateHue = 2.0 + redDistance - blueDistance;
-      } else {
-        /* color between magenta & cyan */
-        intermediateHue = 4.0 + greenDistance - redDistance;
-      }
-
-      /* intermediate hue is [0..6] */
-      intermediateHue *= 60;
-
-      if (intermediateHue < 0.0) {
-        intermediateHue += 360;
-      }
-
-      h = Math.floor(intermediateHue + 0.5);
-
-      if (h >= 360) {
-        h = 0;
-      }
+    if (0 === delta) {
+      hue = 0;
+    } else if (red === cMax) {
+      hue = ((green - blue) / delta) % 6;
+    } else if (green === cMax) {
+      hue = (blue - red) / delta + 2;
     } else {
-      h = 0;
+      hue = (red - green) / delta + 4;
     }
 
-    return { h, s, v, a: this.getAlpha(tbgr) / 255 };
+    hue = Math.round(hue * 60);
+    if (hue < 0) {
+      hue += 360;
+    }
+
+    let brightness = cMax;
+    let saturation = cMax === 0 ? 0 : delta / cMax;
+
+    // round values to 1 decimal place
+    saturation = Number((saturation * 100).toFixed(1));
+    brightness = Number((brightness * 100).toFixed(1));
+
+    return {
+      h: hue,
+      s: saturation,
+      v: brightness,
+      a: this.getAlpha(tbgr) / 255,
+    };
   }
 
   /** True if the value of this ColorValue is the same as another ColorValue. */
   public equals(other: ColorValue): boolean {
-    return this._tbgr === other._tbgr && this._hue === other._hue;
+    return this._tbgr === other._tbgr;
+  }
+
+  public static getFormattedColorNumber(value: number, precision = 1) {
+    if (0 === precision) {
+      Math.round(value).toString();
+    }
+    return Number(value.toFixed(precision)).toString();
   }
 
   /** Convert the 0xTTBBGGRR color to a string of the form "rgba(r,g,b,a)" where the color components are specified in decimal and the alpha component is a fraction. */
@@ -656,7 +670,10 @@ export class ColorValue {
 
     if (includeAlpha) {
       const alpha = rgb.a ?? 1;
-      return `rgba(${rgbString}, ${alpha.toFixed(2)})`;
+      return `rgba(${rgbString}, ${ColorValue.getFormattedColorNumber(
+        alpha,
+        2,
+      )})`;
     }
     return `rgb(${rgbString})`;
   }
@@ -664,10 +681,17 @@ export class ColorValue {
   /** Convert this ColorValue to a string in the form "hsl(h,s,l) or hsla(h,s,l,a)" - i.e hsl(120,50%,50%). */
   public toHslString(includeAlpha?: boolean): string {
     const hsl = this.toHslColor();
-    const hslString = `${this._hue ?? hsl.h}, ${hsl.s}%, ${hsl.l}%`;
+    const hslString = `${ColorValue.getFormattedColorNumber(
+      this._hue ?? hsl.h,
+    )}, ${ColorValue.getFormattedColorNumber(
+      hsl.s,
+    )}%, ${ColorValue.getFormattedColorNumber(hsl.l)}%`;
     if (includeAlpha) {
       const alpha = hsl.a ?? 1;
-      return `hsla(${hslString}, ${alpha.toFixed(2)})`;
+      return `hsla(${hslString}, ${ColorValue.getFormattedColorNumber(
+        alpha,
+        2,
+      )})`;
     }
     return `hsl(${hslString})`;
   }
@@ -679,7 +703,10 @@ export class ColorValue {
 
     if (includeAlpha) {
       const alpha = hsv.a ?? 1;
-      return `hsva(${hsvString}, ${alpha.toFixed(2)})`;
+      return `hsva(${hsvString}, ${ColorValue.getFormattedColorNumber(
+        alpha,
+        2,
+      )})`;
     }
     return `hsv(${hsvString})`;
   }

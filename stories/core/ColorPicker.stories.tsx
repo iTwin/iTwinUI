@@ -196,7 +196,7 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
             </svg>
           }
         >
-          <div style={{ width: 115 }}>
+          <div style={{ width: 170 }}>
             {getDisplayString() ?? 'No color selected.'}
           </div>
         </Button>
@@ -280,7 +280,7 @@ export const WithAlpha: Story<ColorPickerProps> = (args) => {
             </svg>
           }
         >
-          <div style={{ width: 150 }}>
+          <div style={{ width: 200 }}>
             {getDisplayString() ?? 'No color selected.'}
           </div>
         </Button>

@@ -16,6 +16,7 @@ export const ColorPickerContext = React.createContext<
       applyHsvColorChange: (
         newColor: HsvColor,
         selectionChanged: boolean,
+        newColorValue?: ColorValue,
       ) => void;
       showAlpha: boolean;
     }
