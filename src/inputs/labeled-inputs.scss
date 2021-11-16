@@ -164,7 +164,8 @@
 
   &.iui-required {
     &::after {
-      content: ' *';
+      content: '*';
+      margin-left: $iui-xs;
       @include themed {
         color: t(iui-color-foreground-negative);
       }
@@ -192,10 +193,17 @@
 }
 
 /// Independent label outside the grid.
+/// Supports .iui-inline modifier to place it inline.
 @mixin iui-input-label {
   @include iui-input-label-styling;
   @include iui-input-label-cursor;
-  display: inline-block;
+  display: block;
+
+  &.iui-inline {
+    @include iui-input-label-inline;
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 /// Message shown below input
