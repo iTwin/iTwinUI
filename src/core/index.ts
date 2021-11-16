@@ -107,6 +107,9 @@ export type {
 export { Input } from './Input';
 export type { InputProps } from './Input';
 
+export { Label } from './Label';
+export type { LabelProps } from './Label';
+
 export { LabeledInput } from './LabeledInput';
 export type { LabeledInputProps } from './LabeledInput';
 

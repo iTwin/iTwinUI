@@ -5,7 +5,7 @@
 import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
-import { ComboBox, ComboBoxProps, SelectOption } from '../../src/core';
+import { ComboBox, ComboBoxProps, Label, SelectOption } from '../../src/core';
 import { CreeveyStoryParams } from 'creevey';
 
 export default {
@@ -365,3 +365,25 @@ export const DisabledItems: Story<Partial<ComboBoxProps<string>>> = (args) => {
   );
 };
 DisabledItems.args = { ...Basic.args };
+
+export const WithLabel: Story<Partial<ComboBoxProps<string>>> = (args) => {
+  const options = React.useMemo(() => countriesList, []);
+
+  return (
+    <>
+      <Label htmlFor='combo-input'>Country</Label>
+      <ComboBox
+        options={options}
+        onChange={(value: string) => action(value ?? '')()}
+        inputProps={{
+          id: 'combo-input', // passing id to inputProps so it can be used in Label htmlFor
+          placeholder: 'Select a country',
+        }}
+        {...args}
+      />
+    </>
+  );
+};
+WithLabel.args = {
+  inputProps: { id: 'combo-input', placeholder: 'Select a country' },
+} as ComboBoxProps<string>;
