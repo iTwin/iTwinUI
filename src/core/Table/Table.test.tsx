@@ -17,6 +17,7 @@ import { CellProps, Column, Row } from 'react-table';
 import { SvgChevronRight } from '@itwin/itwinui-icons-react';
 import { EditableCell } from './cells';
 import { TablePaginator } from './TablePaginator';
+import * as UseOverflow from '../utils/hooks/useOverflow';
 
 const intersectionCallbacks = new Map<Element, () => void>();
 jest
@@ -1621,6 +1622,9 @@ it('should handle unwanted actions on editable cell', () => {
 });
 
 it('should render data in pages', () => {
+  jest
+    .spyOn(UseOverflow, 'useOverflow')
+    .mockImplementation((items) => [jest.fn(), items.length]);
   const { container } = renderComponent({
     data: mockedData(100),
     pageSize: 10,

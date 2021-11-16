@@ -8,6 +8,7 @@ import { render } from '@testing-library/react';
 import { Breadcrumbs, BreadcrumbsProps } from './Breadcrumbs';
 import { Button } from '../Buttons';
 import { SvgChevronRight } from '@itwin/itwinui-icons-react';
+import * as UseOverflow from '../utils/hooks/useOverflow';
 
 const renderComponent = (props?: Partial<BreadcrumbsProps>) => {
   return render(
@@ -45,6 +46,13 @@ const assertBaseElement = (
   });
 };
 
+const useOverflowMock = jest
+  .spyOn(UseOverflow, 'useOverflow')
+  .mockImplementation((items) => [jest.fn(), items.length]);
+beforeEach(() => {
+  useOverflowMock.mockImplementation((items) => [jest.fn(), items.length]);
+});
+
 it('should render all elements in default state', () => {
   const { container } = renderComponent();
   assertBaseElement(container);
@@ -79,14 +87,7 @@ it('should accept currentIndex prop', () => {
 });
 
 it('should overflow when there is not enough space', () => {
-  const scrollWidthSpy = jest
-    .spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValueOnce(250)
-    .mockReturnValue(200);
-  const offsetWidthSpy = jest
-    .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(200);
-
+  useOverflowMock.mockReturnValue([jest.fn(), 2]);
   const { container } = renderComponent();
 
   expect(container.querySelector('.iui-breadcrumbs')).toBeTruthy();
@@ -98,53 +99,10 @@ it('should overflow when there is not enough space', () => {
   expect(breadcrumbs[1].textContent).toEqual('…');
   expect(breadcrumbs[1].firstElementChild?.classList).toContain('iui-ellipsis');
   expect(breadcrumbs[2].textContent).toEqual('Item 2');
-
-  scrollWidthSpy.mockRestore();
-  offsetWidthSpy.mockRestore();
 });
 
-it('should restore hidden items when there is enough space again', () => {
-  const scrollWidthSpy = jest
-    .spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValueOnce(250)
-    .mockReturnValue(200);
-  const offsetWidthSpy = jest
-    .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(200);
-
-  const { container, rerender } = renderComponent();
-
-  expect(container.querySelector('.iui-breadcrumbs')).toBeTruthy();
-  expect(container.querySelectorAll('.iui-breadcrumbs-item')).toHaveLength(3);
-  expect(container.querySelector('.iui-ellipsis')?.textContent).toEqual('…');
-
-  scrollWidthSpy.mockReturnValue(250);
-  offsetWidthSpy.mockReturnValue(250);
-
-  rerender(
-    <Breadcrumbs>
-      {[...Array(3)].map((_, index) => (
-        <Button key={index}>Item {index}</Button>
-      ))}
-    </Breadcrumbs>,
-  );
-
-  expect(container.querySelector('.iui-ellipsis')).toBeFalsy();
-  assertBaseElement(container);
-
-  scrollWidthSpy.mockRestore();
-  offsetWidthSpy.mockRestore();
-});
-
-it('should hide first item on very small widths', () => {
-  const scrollWidthSpy = jest
-    .spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValueOnce(250)
-    .mockReturnValueOnce(150)
-    .mockReturnValue(100);
-  const offsetWidthSpy = jest
-    .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(100);
+it('should show the last item when only one can be visible', () => {
+  useOverflowMock.mockReturnValue([jest.fn(), 1]);
 
   const { container } = renderComponent();
 
@@ -156,7 +114,4 @@ it('should hide first item on very small widths', () => {
   expect(breadcrumbs[0].textContent).toEqual('…');
   expect(breadcrumbs[0].firstElementChild?.classList).toContain('iui-ellipsis');
   expect(breadcrumbs[1].textContent).toEqual('Item 2');
-
-  scrollWidthSpy.mockRestore();
-  offsetWidthSpy.mockRestore();
 });

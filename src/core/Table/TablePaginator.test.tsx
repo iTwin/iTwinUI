@@ -20,6 +20,12 @@ const renderComponent = (props?: Partial<TablePaginatorProps>) => {
   );
 };
 
+beforeEach(() => {
+  jest
+    .spyOn(UseOverflow, 'useOverflow')
+    .mockImplementation((items) => [jest.fn(), items.length]);
+});
+
 it('should render in its most basic form', () => {
   const { container } = renderComponent();
 

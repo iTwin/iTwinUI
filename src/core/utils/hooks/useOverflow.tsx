@@ -6,6 +6,8 @@ import React from 'react';
 import { useMergedRefs } from './useMergedRefs';
 import { useResizeObserver } from './useResizeObserver';
 
+const STARTING_MAX_ITEMS_COUNT = 20;
+
 /**
  * Hook that observes the size of an element and returns the number of items
  * that should be visible based on the width of the container element.
@@ -33,21 +35,29 @@ export const useOverflow = <T extends HTMLElement>(
 ) => {
   const containerRef = React.useRef<T>(null);
 
-  const [visibleCount, setVisibleCount] = React.useState(items.length);
-  const overflowBreakpoints = React.useRef<number[]>([]);
+  const [visibleCount, setVisibleCount] = React.useState(() =>
+    disabled ? items.length : Math.min(items.length, STARTING_MAX_ITEMS_COUNT),
+  );
 
-  React.useLayoutEffect(() => {
-    setVisibleCount(items.length);
-    overflowBreakpoints.current = [];
-  }, [items]);
+  const needsFullRerender = React.useRef(true);
 
   const [containerWidth, setContainerWidth] = React.useState<number>(0);
+  const previousContainerWidth = React.useRef<number>(0);
   const updateContainerWidth = React.useCallback(
     ({ width }) => setContainerWidth(width),
     [],
   );
   const [resizeRef, observer] = useResizeObserver<T>(updateContainerWidth);
   const resizeObserverRef = React.useRef(observer);
+
+  React.useLayoutEffect(() => {
+    if (disabled) {
+      setVisibleCount(items.length);
+    } else {
+      setVisibleCount(Math.min(items.length, STARTING_MAX_ITEMS_COUNT));
+      needsFullRerender.current = true;
+    }
+  }, [containerWidth, disabled, items]);
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
 
@@ -60,21 +70,26 @@ export const useOverflow = <T extends HTMLElement>(
     const availableWidth = containerRef.current.offsetWidth;
     const requiredWidth = containerRef.current.scrollWidth;
 
-    // hide items when there's no space available
-    if (availableWidth < requiredWidth && visibleCount > 1) {
-      setVisibleCount((count) => count - 1);
-      overflowBreakpoints.current.push(availableWidth);
+    if (availableWidth < requiredWidth) {
+      const avgItemWidth = requiredWidth / visibleCount;
+      const visibleItems = Math.floor(availableWidth / avgItemWidth);
+      setVisibleCount(visibleItems);
+    } else if (needsFullRerender.current) {
+      const childrenWidth = Array.from(containerRef.current.children).reduce(
+        (sum: number, child: HTMLElement) => sum + child.offsetWidth,
+        0,
+      );
+      const avgItemWidth = childrenWidth / visibleCount;
+      const visibleItems = Math.floor(availableWidth / avgItemWidth);
+      // Doubling the visible items to overflow the container. Just to be safe.
+      setVisibleCount(Math.min(items.length, visibleItems * 2));
     }
-    // restore items when there's enough space again
-    else if (
-      overflowBreakpoints.current.length > 0 &&
-      availableWidth >
-        overflowBreakpoints.current[overflowBreakpoints.current.length - 1]
-    ) {
-      setVisibleCount((count) => count + 1);
-      overflowBreakpoints.current.pop();
-    }
-  }, [containerWidth, visibleCount, disabled]);
+    needsFullRerender.current = false;
+  }, [containerWidth, visibleCount, disabled, items.length]);
+
+  React.useLayoutEffect(() => {
+    previousContainerWidth.current = containerWidth;
+  }, [containerWidth]);
 
   return [mergedRefs, visibleCount] as const;
 };
