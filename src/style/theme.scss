@@ -60,44 +60,64 @@ $iui-icons-color-positive--light: $iui-color-foreground-positive--light;
 $iui-icons-color-negative--light: $iui-color-foreground-negative--light;
 $iui-icons-color-warning--light: $iui-color-foreground-warning--light;
 
-// DARK THEME //
-// Dark theme > Background
-$iui-color-background-1--dark: #5A6973;
-$iui-color-background-2--dark: #4F5D65;
-$iui-color-background-3--dark: #445058;
-$iui-color-background-4--dark: #38444A;
-$iui-color-background-5--dark: #2D373C;
-$iui-color-background-primary--dark: #008BE1;
-$iui-color-background-positive--dark: #53A21A;
-$iui-color-background-negative--dark: #D30A0A;
-$iui-color-background-warning--dark: #F18B12;
-$iui-color-background-disabled--dark: $iui-color-background-3--dark;
+// DARK HIGH CONTRAST THEME //
+// Dark high contrast theme > Background
+$iui-color-background-1--dark-hc: #161518;
+$iui-color-background-2--dark-hc: #0F1112;
+$iui-color-background-3--dark-hc: #313334;
+$iui-color-background-4--dark-hc: #4C4D4D;
+$iui-color-background-5--dark-hc: #696969;
+$iui-color-background-primary--dark-hc: #0075B9;
+$iui-color-background-positive--dark-hc: #2B6800;
+$iui-color-background-negative--dark-hc: #D8158D;
+$iui-color-background-warning--dark-hc: #E0E400;
+$iui-color-background-disabled--dark-hc: $iui-color-background-3--dark-hc;
 
-// Dark theme > Foreground
-$iui-color-foreground-body--dark: #FFF;
-$iui-color-foreground-body-invert--dark: #000;
-$iui-color-foreground-accessory--dark: #FFF;
-$iui-color-foreground-primary--dark: #A5D7F5;
-$iui-color-foreground-positive--dark: #C3E1AF;
-$iui-color-foreground-negative--dark: #EFA9A9;
-$iui-color-foreground-warning--dark: #F9D7AB;
+// Dark high contrast theme > Foreground
+$iui-color-foreground-body--dark-hc: #FFF;
+$iui-color-foreground-accessory--dark-hc: #FFF;
+$iui-color-foreground-primary--dark-hc: #1897E0;
+$iui-color-foreground-positive--dark-hc: #5AD800;
+$iui-color-foreground-negative--dark-hc: #FF2BAE;
+$iui-color-foreground-warning--dark-hc: #FBFF24;
 
-// Dark theme > Overlays
-$iui-color-background-1-overlay--dark: lighten($iui-color-background-1--dark, 5%);
-$iui-color-background-primary-overlay--dark: lighten($iui-color-background-primary--dark, 5%);
-$iui-color-background-positive-overlay--dark: lighten($iui-color-background-positive--dark, 5%);
-$iui-color-foreground-primary-overlay--dark: lighten($iui-color-foreground-primary--dark, 10%);
-$iui-color-foreground-positive-overlay--dark: lighten($iui-color-foreground-positive--dark, 10%);
-$iui-color-foreground-warning-overlay--dark: lighten($iui-color-foreground-warning--dark, 10%);
-$iui-color-foreground-negative-overlay--dark: lighten($iui-color-foreground-negative--dark, 10%);
+// Dark high contrast theme > Overlays
+$iui-color-background-1-overlay--dark-hc: lighten(
+  $iui-color-background-1--dark-hc,
+  2%
+);
+$iui-color-background-primary-overlay--dark-hc: lighten(
+  $iui-color-background-primary--dark-hc,
+  5%
+);
+$iui-color-background-positive-overlay--dark-hc: lighten(
+  $iui-color-background-positive--dark-hc,
+  5%
+);
+$iui-color-foreground-primary-overlay--dark-hc: lighten(
+  $iui-color-foreground-primary--dark-hc,
+  10%
+);
+$iui-color-foreground-positive-overlay--dark-hc: lighten(
+  $iui-color-foreground-positive--dark-hc,
+  10%
+);
+$iui-color-foreground-warning-overlay--dark-hc: lighten(
+  $iui-color-foreground-warning--dark-hc,
+  10%
+);
+$iui-color-foreground-negative-overlay--dark-hc: lighten(
+  $iui-color-foreground-negative--dark-hc,
+  10%
+);
 
-// Dark theme > Opacity stops
-$iui-opacity-1--dark: 1;
-$iui-opacity-2--dark: 0.85;
-$iui-opacity-3--dark: 0.65;
-$iui-opacity-4--dark: 0.45;
-$iui-opacity-5--dark: 0.25;
-$iui-opacity-6--dark: 0.1;
+// Dark high contrast theme > Opacity stops
+$iui-opacity-1--dark-hc: 1;
+$iui-opacity-2--dark-hc: 0.85;
+$iui-opacity-3--dark-hc: 0.7;
+$iui-opacity-4--dark-hc: 0.55;
+$iui-opacity-5--dark-hc: 0.4;
+$iui-opacity-6--dark-hc: 0.25;
 
 // Dark theme > Text colors
 $iui-text-color--dark: rgba($iui-color-foreground-body--dark, $iui-opacity-2--dark);
