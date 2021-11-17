@@ -113,7 +113,7 @@ export type DatePickerProps = {
   /**
    * Callback when date is changed.
    */
-  onChange?: (date?: Date) => void;
+  onChange?: (date: Date) => void;
   /**
    * Pass localized week days (start from sunday) and months.
    * Use helper function `generateLocalizedStrings` to generate strings using `Intl.DateTimeFormat`.
