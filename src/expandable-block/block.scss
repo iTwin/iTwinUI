@@ -6,39 +6,34 @@
 
 @mixin iui-expandable-block {
   @include iui-reset;
-  display: flex;
-  flex-direction: column;
+  @include iui-font-family;
   box-sizing: border-box;
-  width: 100%;
   @include themed {
     background-color: t(iui-color-background-1);
   }
 
   > .iui-header {
-    display: flex;
-    align-items: center;
     padding: $iui-baseline $iui-sm;
     cursor: pointer;
-    box-sizing: border-box;
-    user-select: none;
     @media (prefers-reduced-motion: no-preference) {
-      transition: background-color $iui-speed-fast ease-out;
+      transition: background-color $iui-speed-fast ease-out,
+        border-color $iui-speed-fast ease-out;
     }
     @include themed {
-      border: 1px solid t(iui-color-background-3);
-      border-bottom-color: t(iui-color-background-4);
+      border-bottom: 1px solid t(iui-color-background-4);
       background-color: t(iui-color-background-3);
     }
 
-    > .iui-icon,
-    > .iui-status-icon {
-      display: inline-flex;
-      flex-shrink: 0;
+    > .iui-icon {
+      float: left;
       width: $iui-icons-default;
       height: $iui-icons-default;
-    }
-
-    > .iui-icon {
+      margin-right: $iui-sm;
+      margin-top: $iui-baseline * 0.25;
+      line-height: 3 * $iui-baseline;
+      text-align: center;
+      font-size: $iui-font-size-subheading;
+      vertical-align: middle;
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
@@ -47,61 +42,63 @@
       }
     }
 
-    > .iui-status-icon {
-      margin-left: $iui-sm;
-      @include iui-icons-color;
-    }
-
-    .iui-expandable-block-label {
-      display: flex;
-      flex-direction: column;
-      flex: auto;
-      min-width: 0;
-      margin-left: $iui-sm;
+    > .iui-title,
+    > .iui-caption {
+      @include no-link;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      user-select: none;
       @media (prefers-reduced-motion: no-preference) {
         transition: color $iui-speed-fast ease;
       }
+    }
+
+    > .iui-title {
+      font-size: $iui-font-size-leading;
+      margin: 0;
+
       @include themed {
         color: t(iui-text-color);
       }
     }
 
-    .iui-title,
-    .iui-caption {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .iui-title {
-      font-size: $iui-font-size-leading;
-    }
-
-    .iui-caption {
+    > .iui-caption {
       font-size: $iui-font-size-small;
+
       @include themed {
         color: t(iui-text-color-muted);
       }
     }
 
-    @include iui-focus;
+    &:focus {
+      outline: 0;
+
+      @include themed {
+        box-shadow: t(iui-focus-box-shadow);
+      }
+    }
+  }
+
+  &.iui-with-caption > .iui-header > .iui-icon {
+    margin-top: $iui-baseline;
   }
 
   .iui-expandable-content {
+    transform: scaleY(0);
+    transform-origin: top;
     overflow: hidden;
-    box-sizing: border-box;
-
+    padding: 0;
+    opacity: 0;
+    height: 0;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform $iui-speed-fast ease-in-out;
+    }
     @include themed {
       border-bottom: 1px solid t(iui-color-background-4);
       border-right: 1px solid t(iui-color-background-4);
       border-left: 1px solid t(iui-color-background-4);
-    }
-
-    @include iui-transition-group;
-
-    // padding should be in a separate div because otherwise it messes up height transition
-    > div {
-      padding: $iui-baseline $iui-sm;
     }
   }
 
@@ -117,8 +114,8 @@
         }
       }
 
-      .iui-caption,
-      .iui-title {
+      > .iui-caption,
+      > .iui-title {
         @include themed {
           color: t(iui-color-foreground-body);
         }
@@ -147,23 +144,20 @@
       > .iui-icon {
         transform: rotate(90deg);
       }
-    }
-  }
 
-  &.iui-small .iui-header {
-    padding: ($iui-baseline * 0.5) $iui-s;
-
-    > .iui-icon {
-      width: $iui-icons-small;
-      height: $iui-icons-small;
+      > .iui-caption,
+      > .iui-title {
+        left: -1px;
+        top: -1px;
+        position: relative;
+      }
     }
 
-    > .iui-expandable-block-label {
-      margin-left: $iui-s;
-    }
-
-    > .iui-status-icon {
-      margin-left: $iui-s;
+    > .iui-expandable-content {
+      transform: scaleY(1);
+      opacity: 1;
+      height: auto;
+      padding: $iui-baseline $iui-sm;
     }
   }
 }

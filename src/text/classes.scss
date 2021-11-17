@@ -1,40 +1,35 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
-@import './mixins';
+
+.iui-text-block {
+  @include iui-text-block;
+}
 
 .iui-text-headline {
-  @include iui-text(headline);
-}
-
-.iui-text-title {
-  @include iui-text(title);
-}
-
-.iui-text-subheading {
-  @include iui-text(subheading);
+  @include iui-text-headline;
 }
 
 .iui-text-leading {
-  @include iui-text(leading);
-}
-
-.iui-text-block {
-  @include iui-text(body);
-}
-
-.iui-text-small {
-  @include iui-text(small);
+  @include iui-text-leading;
 }
 
 .iui-text-muted {
   @include iui-text-muted;
 }
 
-.iui-skeleton {
-  @include iui-text-skeleton;
+.iui-text-small {
+  @include iui-text-small;
 }
 
-.iui-text-spacing {
-  @include iui-text-block-spacing;
+.iui-text-subheading {
+  @include iui-text-subheading;
+}
+
+.iui-text-title {
+  @include iui-text-title;
+}
+
+.iui-skeleton {
+  @include iui-text-skeleton;
 }

@@ -9,9 +9,6 @@ module.exports = [
   }),
   scenario('no-label', {
     selectors: ['#demo-no-label'],
-    hideSelectors: ['h3'],
-  }),
-  scenario('Type specialty', {
-    selectors: ['#demo-special'],
+    hideSelectors: ['.iui-indeterminate', 'h3'],
   }),
 ];

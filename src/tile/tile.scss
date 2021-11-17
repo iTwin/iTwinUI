@@ -6,6 +6,7 @@
 
 @mixin iui-tile {
   @include iui-reset;
+  @include iui-font-family;
   display: inline-flex;
   flex-direction: column;
   width: $iui-3xl * 3;
@@ -63,22 +64,27 @@
       }
     }
 
-    .iui-thumbnail-icon {
+    > svg {
       @include iui-icons-3xl;
     }
 
-    > .iui-picture ~ .iui-thumbnail-icon {
+    > .iui-play-icon {
       z-index: 1;
       cursor: pointer;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: fill $iui-speed-fast ease;
-      }
-      @include themed() {
-        fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
-        filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
+
+      &,
+      > path {
+        @media (prefers-reduced-motion: no-preference) {
+          transition: fill $iui-speed-fast ease;
+        }
+        @include themed() {
+          fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
+          filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
+        }
       }
 
-      &:hover {
+      &:hover,
+      &:hover > path {
         @include themed() {
           fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
         }
@@ -122,7 +128,7 @@
           background-color: rgba(0, 0, 0, t(iui-opacity-4));
         }
 
-        > .iui-icon {
+        > svg {
           @include themed() {
             fill: t(iui-color-foreground-accessory);
           }
@@ -151,7 +157,7 @@
         color: t(iui-text-color);
       }
 
-      .iui-tile-status-icon {
+      > svg {
         @include iui-icons-default;
         margin-right: $iui-s;
         flex-shrink: 0;
@@ -191,14 +197,13 @@
         color: t(iui-text-color-muted);
       }
 
-      > svg,
-      .iui-metadata-icon {
+      > svg {
         @include iui-icons-default;
         margin-right: $iui-s;
         flex-shrink: 0;
       }
 
-      > * {
+      > *:not(svg) {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -224,6 +229,7 @@
     white-space: nowrap;
 
     > .iui-button {
+      @include iui-font-family;
       font-size: $iui-font-size;
       flex: 1;
       height: auto;

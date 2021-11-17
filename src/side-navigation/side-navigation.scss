@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
-@import '../text/index';
 
 @mixin iui-side-navigation {
   display: inline-flex;
@@ -59,12 +58,6 @@
   &.iui-collapsed {
     min-width: $iui-icons-large * 3;
     max-width: $iui-icons-large * 3;
-
-    // iPhone notch support
-    @supports (min-width: unquote('max(0px)')) {
-      min-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
-      max-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
-    }
   }
 
   &.iui-expanded,
@@ -82,13 +75,9 @@
     border-right: none;
     overflow: hidden;
     justify-content: flex-start;
-
+    
     &:not(.iui-expand) {
       height: $iui-baseline * 5;
-      // iPhone notch support
-      @supports (padding: unquote('max(0px)')) {
-        padding-left: unquote('max(#{$iui-icons-large}, #{$iui-icons-large} + env(safe-area-inset-left))');
-      }
     }
 
     &,
@@ -113,18 +102,12 @@
       }
     }
 
-    &.iui-submenu-open .iui-icon {
-      @include themed {
-        fill: t(iui-color-foreground-primary);
-      }
-    }
-
     &.iui-active {
       &:focus,
       &:focus-visible {
         @include themed {
-          box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)),
-            inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
+          box-shadow: inset 0 0 $iui-xs
+            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)), inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
         }
       }
 
@@ -145,7 +128,8 @@
     &:focus {
       outline: 0;
       @include themed {
-        box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
+        box-shadow: inset 0 0 $iui-xs
+          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
       }
     }
 
@@ -155,7 +139,8 @@
 
     &:focus-visible {
       outline: 0;
-      box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
+      box-shadow: inset 0 0 $iui-xs
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
     }
 
     &.iui-expand {
@@ -174,67 +159,4 @@
       }
     }
   }
-}
-
-@mixin iui-side-navigation-submenu {
-  min-width: $iui-3xl * 2;
-  max-width: 50vw;
-  height: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: auto;
-  overflow-y: overlay;
-  resize: horizontal;
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border-right: 1px solid t(iui-color-background-5);
-  }
-
-  @include iui-transition-group;
-
-  &.iui-enter-active,
-  &.iui-exit-active {
-    display: flex;
-  }
-
-  &-content {
-    padding: 0 $iui-sm $iui-baseline;
-    flex-shrink: 0;
-    box-sizing: border-box;
-  }
-
-  &-header {
-    height: $iui-baseline * 5;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &-label {
-      @include iui-text(title);
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-
-      .iui-button {
-        flex-shrink: 0;
-      }
-
-      > * {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-
-    &-actions {
-      flex-shrink: 0;
-      margin-left: $iui-s;
-    }
-  }
-}
-
-@mixin iui-side-navigation-wrapper {
-  display: flex;
-  position: relative;
-  height: 100%;
 }

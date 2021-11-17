@@ -12,7 +12,10 @@
   > .iui-message {
     &::selection {
       @include themed {
-        background-color: rgba(t(iui-color-foreground-#{$category}-rgb), t(iui-opacity-4));
+        background-color: rgba(
+          t(iui-color-foreground-#{$category}-rgb),
+          t(iui-opacity-4)
+        );
       }
     }
   }

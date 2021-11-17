@@ -1,3 +1,4 @@
+body,
 h1,
 h2,
 h3,
@@ -14,7 +15,6 @@ p {
 }
 
 body {
-  margin: 0;
   padding: 24px;
 }
 
@@ -41,6 +41,16 @@ hr {
 /* Dark theme */
 .iui-theme-dark body hr {
   border-color: #2D373C;
+}
+
+/* Light high contrast theme */
+.iui-theme-light-hc body hr {
+  border-color: #cccccc;
+}
+
+/* Dark high contrast theme */
+.iui-theme-dark-hc body hr {
+  border-color: #696969;
 }
 
 /* Custom high contrast theme */

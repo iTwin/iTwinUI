@@ -6,6 +6,7 @@
 
 @mixin iui-file-upload {
   @include iui-reset;
+  @include iui-font-family;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
   position: relative;
@@ -39,8 +40,7 @@
       z-index: -1;
     }
 
-    > svg,
-    .iui-template-icon {
+    > svg {
       @include iui-icons-3xl;
       margin-top: $iui-baseline;
       margin-bottom: $iui-baseline;
@@ -81,7 +81,7 @@
     visibility: visible;
 
     > svg,
-    .iui-template-icon {
+    > svg > * {
       @include themed {
         fill: t(iui-icons-color-primary);
       }

@@ -89,15 +89,19 @@
           @include iui-focus;
           cursor: pointer;
           display: inline-block;
-          width: $iui-baseline * 3;
-          line-height: $iui-baseline * 3;
+          width: $iui-l;
+          line-height: $iui-l;
+          margin: 0 $iui-xs;
 
           &:hover:not(.iui-selected) {
             border-radius: $iui-border-radius;
             font-weight: $iui-font-weight-semibold;
             @include themed {
               color: t(iui-color-foreground-primary);
-              background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+              background-color: rgba(
+                t(iui-color-foreground-primary-rgb),
+                t(iui-opacity-6)
+              );
             }
           }
 
@@ -105,7 +109,10 @@
             font-weight: $iui-font-weight-semibold;
             border-radius: 50%;
             @include themed {
-              background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+              background-color: rgba(
+                t(iui-color-foreground-body-rgb),
+                t(iui-opacity-6)
+              );
             }
           }
 

@@ -27,7 +27,10 @@
   &:enabled:active,
   &:focus-visible {
     @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+      background-color: rgba(
+        t(iui-color-foreground-body-rgb),
+        t(iui-opacity-6)
+      );
       border-color: transparent;
     }
   }
@@ -38,7 +41,10 @@
     &:enabled:active {
       background: transparent;
       @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-6)
+        );
       }
       border-color: transparent;
     }

@@ -7,10 +7,10 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
 @mixin iui-dropdown {
   @include iui-reset;
+  @include iui-font-family;
   box-shadow: $iui-elevation-2;
   @include themed {
     background-color: t(iui-color-background-1);
-    color: t(iui-text-color);
   }
 }
 
@@ -21,12 +21,11 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   margin: 0;
   padding: 0;
 
-  .iui-header-menu-icon {
+  svg.iui-header-menu-icon {
     margin: 0 $iui-xs;
   }
 
   div.iui-header-menu-icon {
-    margin: 0;
     width: $iui-icons-large;
     height: $iui-icons-large;
     border-radius: $iui-border-radius;
@@ -47,6 +46,9 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   cursor: pointer;
   box-sizing: border-box;
   line-height: normal;
+  @include themed {
+    color: t(iui-text-color);
+  }
 
   + #{&} {
     margin-top: -1px;
@@ -83,12 +85,14 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
   &:hover {
     @include themed {
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      background-color: rgba(
+        t(iui-color-foreground-primary-rgb),
+        t(iui-opacity-6)
+      );
     }
   }
 
-  &:focus,
-  &.iui-focused {
+  &:focus {
     @include themed {
       outline: $iui-active-outline;
       outline-offset: -1px;
@@ -111,7 +115,10 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     &,
     &:hover {
       @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+        background-color: rgba(
+          t(iui-color-foreground-primary-rgb),
+          t(iui-opacity-5)
+        );
         outline: $iui-active-outline;
         outline-offset: -1px;
       }
@@ -123,8 +130,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
       }
     }
 
-    &:focus,
-    &.iui-focused {
+    &:focus {
       outline-width: $iui-xxs;
       outline-offset: -2px;
     }
@@ -152,10 +158,6 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
       }
     }
   }
-}
-
-@mixin iui-menu-content {
-  padding: $iui-baseline ($iui-component-padding-horizontal + 1px);
 }
 
 @mixin iui-menu-divider {

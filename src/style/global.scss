@@ -11,12 +11,8 @@
   font-size: $iui-font-size;
   line-height: $iui-line-height;
 
-  @include iui-scrollbar;
   @include iui-font-family;
-
-  &.iui-no-webfonts {
-    font-family: $iui-sans-fallback;
-  }
+  @include iui-scrollbar;
 }
 
 .iui-anchor {
@@ -28,7 +24,10 @@
   // Text highlight
   ::selection {
     @include themed {
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
+      background-color: rgba(
+        t(iui-color-foreground-primary-rgb),
+        t(iui-opacity-4)
+      );
     }
   }
 
@@ -46,6 +45,14 @@ html {
     @include theme-variables(dark);
   }
 
+  &.iui-theme-light-hc {
+    @include theme-variables(light-hc);
+  }
+
+  &.iui-theme-dark-hc {
+    @include theme-variables(dark-hc);
+  }
+
   @media (prefers-color-scheme: light) {
     // fall back to default - light theme variables
   }
@@ -53,6 +60,18 @@ html {
   @media (prefers-color-scheme: dark) {
     &:not([class*='iui-theme-']) {
       @include theme-variables(dark);
+    }
+  }
+
+  @media (prefers-color-scheme: light) and (prefers-contrast: more) {
+    &:not([class*='iui-theme-']) {
+      @include theme-variables(light-hc);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+    &:not([class*='iui-theme-']) {
+      @include theme-variables(dark-hc);
     }
   }
 }

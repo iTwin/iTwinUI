@@ -1,9 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../icon/variables';
 
 @mixin iui-progress-indicator-linear($height: 4px) {
   @include iui-reset;
+  @include iui-font-family;
   text-align: left;
   display: block;
 
@@ -45,7 +47,6 @@
     }
 
     svg {
-      display: flex; // needed for vertical alignment of webcomponents
       width: $iui-icons-default;
       height: $iui-icons-default;
     }
@@ -73,7 +74,10 @@
       > span {
         &::selection {
           @include themed {
-            background-color: rgba(t(iui-color-foreground-positive-rgb), t(iui-opacity-4));
+            background-color: rgba(
+              t(iui-color-foreground-positive-rgb),
+              t(iui-opacity-4)
+            );
           }
         }
       }
@@ -103,7 +107,10 @@
       > span {
         &::selection {
           @include themed {
-            background-color: rgba(t(iui-color-foreground-negative-rgb), t(iui-opacity-4));
+            background-color: rgba(
+              t(iui-color-foreground-negative-rgb),
+              t(iui-opacity-4)
+            );
           }
         }
       }
@@ -130,5 +137,6 @@
     }
   }
   width: 100%;
-  animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
+  animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite
+    linear;
 }

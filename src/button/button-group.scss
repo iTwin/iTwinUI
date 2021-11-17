@@ -30,7 +30,10 @@
       &:enabled {
         + :disabled {
           @include themed {
-            border-left-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+            border-left-color: rgba(
+              t(iui-color-foreground-body-rgb),
+              t(iui-opacity-4)
+            );
           }
         }
 
@@ -38,7 +41,10 @@
         &:active + .iui-button,
         &:focus-visible + .iui-button {
           @include themed {
-            border-left-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+            border-left-color: rgba(
+              t(iui-color-foreground-body-rgb),
+              t(iui-opacity-1)
+            );
           }
         }
       }
@@ -70,7 +76,10 @@
     &:disabled {
       &::after {
         @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+          background-color: rgba(
+            t(iui-color-foreground-body-rgb),
+            t(iui-opacity-5)
+          );
         }
       }
     }

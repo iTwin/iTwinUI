@@ -1,31 +1,25 @@
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  // Types
-  scenario('Type default', {
+  scenario('Default wizard', {
     selectors: ['#demo-default'],
-    viewports: [{ width: 800, height: 600 }],
   }),
-  scenario('Type long', {
+  scenario('Long wizard', {
     selectors: ['#demo-long'],
-    viewports: [{ width: 800, height: 600 }],
   }),
-  scenario('Type workflow', {
+  scenario('Workflow wizard', {
     selectors: ['#demo-workflow'],
-    viewports: [{ width: 800, height: 600 }],
   }),
-
-  // Hover states
-  scenario('State default hover on complete', {
-    actions: [hover('#demo-default .iui-clickable:first-child')],
+  scenario('Default wizard hover on complete', {
+    actions: [hover('#demo-default .iui-wizards-step-completed:first-child')],
     selectors: ['#demo-default'],
-    viewports: [{ width: 800, height: 600 }],
   }),
-
-  // Focus states
-  scenario('State long focus on complete', {
-    actions: [focus('#demo-long .iui-clickable:first-child')],
+  scenario('Long wizard focus on complete', {
+    actions: [
+      focus(
+        '#demo-long .iui-wizards-step-completed:first-child > .iui-wizards-step-circle'
+      ),
+    ],
     selectors: ['#demo-long'],
-    viewports: [{ width: 800, height: 600 }],
   }),
 ];

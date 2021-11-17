@@ -4,8 +4,6 @@
 @import './tabs';
 
 @mixin iui-tabs-default {
-  @include iui-tab-not-animated;
-
   .iui-tab {
     height: $iui-component-height;
     padding: 0 $iui-m;
@@ -16,8 +14,18 @@
     }
 
     &::after {
+      content: '';
+      position: absolute;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 0;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: height $iui-speed-fast ease-out;
+      }
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
+      }
     }
 
     &:hover {
@@ -27,8 +35,13 @@
     }
 
     &.iui-active {
+      border-bottom-color: transparent;
       @include themed {
         background-color: t(iui-color-background-1);
+      }
+
+      &::after {
+        height: $iui-xxs;
       }
     }
 
@@ -39,36 +52,8 @@
     }
   }
 
-  @at-root {
-    .iui-horizontal & {
-      .iui-tab.iui-active {
-        border-bottom-color: transparent;
-      }
-
-      :not(:first-child) .iui-tab {
-        border-left: none;
-      }
-
-      ~ .iui-tabs-content {
-        margin-top: -1px;
-      }
-    }
-  }
-
-  @at-root {
-    .iui-vertical & {
-      .iui-tab.iui-active {
-        border-right-color: transparent;
-      }
-
-      :not(:first-child) .iui-tab {
-        border-top: none;
-      }
-
-      ~ .iui-tabs-content {
-        margin-left: -1px;
-      }
-    }
+  li:not(:first-child) .iui-tab {
+    border-left: none;
   }
 
   &.iui-large {
@@ -90,6 +75,7 @@
   ~ .iui-tabs-content {
     padding-left: $iui-m;
     padding-right: $iui-m;
+    margin-top: -1px;
     @include themed {
       background-color: t(iui-color-background-1);
       border: 1px solid t(iui-color-background-5);

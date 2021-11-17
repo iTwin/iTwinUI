@@ -4,7 +4,7 @@ module.exports = [
   // Progress indicator types
   scenario('linear', {
     selectors: ['#demo-linear'],
-    hideSelectors: ['h3'],
+    hideSelectors: ['.iui-indeterminate', 'h3'],
   }),
   scenario('radial', {
     selectors: ['#demo-radial'],
@@ -12,5 +12,6 @@ module.exports = [
   }),
   scenario('overlay', {
     selectors: ['#demo-overlay'],
+    hideSelectors: ['.iui-indeterminate'],
   }),
 ];

@@ -6,6 +6,7 @@
 
 @mixin iui-table {
   @include iui-reset;
+  @include iui-font-family;
   display: flex;
   flex-direction: column;
 
@@ -126,16 +127,14 @@
   overflow-x: hidden;
   overflow-y: scroll;
   overflow-y: overlay;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  @include iui-scroll-snapping('.iui-row');
+
   @include themed {
     background-color: t(iui-color-background-1);
   }
 
   .iui-row {
     display: flex;
+    flex-grow: 1;
     border: solid 1px transparent;
     @media (prefers-reduced-motion: no-preference) {
       transition: border $iui-speed-fast ease-out;
@@ -151,7 +150,10 @@
     &:hover:not(.iui-disabled) {
       &:not(.iui-expanded-content) {
         @include themed {
-          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+          background-color: rgba(
+            t(iui-color-foreground-primary-rgb),
+            t(iui-opacity-6)
+          );
         }
       }
 
@@ -164,8 +166,8 @@
       visibility: visible;
     }
 
-    .iui-row-expander > .iui-icon {
-      @media (prefers-reduced-motion: no-preference) {
+    @media (prefers-reduced-motion: no-preference) {
+      .iui-row-expander > .iui-icon {
         transition: transform $iui-speed-fast ease-out;
       }
     }
@@ -192,8 +194,25 @@
 
     &.iui-expanded-content {
       overflow: hidden;
-      @include iui-transition-group;
-    }
+
+      &.iui-enter {
+        opacity: 0;
+      }
+
+      &.iui-enter-active {
+        opacity: 1;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+        }
+      }
+
+      &.iui-exit-active {
+        opacity: 0;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: opacity $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+        }
+      }
+    }    
 
     // #region Selection
     &:not(.iui-selected) + .iui-selected,
@@ -291,14 +310,9 @@
   > .iui-table-empty {
     text-align: center;
     padding: $iui-xl;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
     @include themed {
       color: t(iui-text-color-muted);
-      background-color: t(iui-color-background-1);
+      background-color: t(iui-color-background-2);
     }
   }
 }
@@ -312,7 +326,6 @@
   padding-left: $iui-m;
   flex-basis: $iui-xxl;
   position: relative;
-  word-break: break-word;
 
   &.iui-slot {
     width: $iui-l * 2;
@@ -336,23 +349,6 @@
   &.iui-negative {
     @include iui-table-cell-status($status: negative);
   }
-
-  &[contenteditable] {
-    outline-offset: -1px;
-
-    &:focus,
-    &:hover {
-      @include themed {
-        outline: 1px solid t(iui-color-foreground-primary);
-      }
-    }
-
-    &:focus {
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
-    }
-  }
 }
 
 @mixin iui-table-row-status($status) {
@@ -364,12 +360,15 @@
 
     *::selection {
       @include themed {
-        background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
+        background-color: rgba(
+          t(iui-color-foreground-#{$status}-rgb),
+          t(iui-opacity-4)
+        );
       }
     }
   }
 
-  .iui-cell-end-icon svg {
+  .iui-cell-end-icon > svg {
     @include themed {
       fill: t(iui-icons-color-#{$status});
     }
@@ -378,12 +377,18 @@
 
 @mixin iui-table-cell-status($status) {
   @include themed {
-    background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6));
+    background-color: rgba(
+      t(iui-color-foreground-#{$status}-rgb),
+      t(iui-opacity-6)
+    );
   }
 
   &::selection {
     @include themed {
-      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
+      background-color: rgba(
+        t(iui-color-foreground-#{$status}-rgb),
+        t(iui-opacity-4)
+      );
     }
   }
 }
@@ -396,8 +401,7 @@
     align-items: center;
     justify-content: center;
 
-    svg:not(.iui-radial) {
-      display: flex; // needed for vertical alignment of webcomponents
+    > svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
     }
