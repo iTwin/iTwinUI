@@ -4,15 +4,13 @@
 @import '../icon/index';
 
 @mixin iui-radio-tile {
-  @include iui-font-family;
   display: inline-flex;
+  flex-wrap: wrap;
   width: fit-content;
   user-select: none;
+  // Create stacking context
   position: relative;
-
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
+  z-index: 0;
 
   > label {
     cursor: pointer;
@@ -38,8 +36,8 @@
       }
 
       @include themed {
-        border: 1px solid
-          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        background-color: t(iui-color-background-1);
       }
 
       > .iui-icon {
@@ -190,8 +188,7 @@
       z-index: 3;
 
       @include themed {
-        border: 2px solid
-          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        border: 2px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       }
     }
   }

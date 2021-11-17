@@ -4,7 +4,6 @@
 
 @mixin iui-tooltip {
   @include iui-reset;
-  @include iui-font-family;
   display: block;
   text-align: center;
   border-radius: $iui-border-radius;
@@ -31,8 +30,7 @@
   opacity: 0;
   /// Following this guide for animation on exit hover: https://greywyvern.com/?post=337
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility 0s linear $iui-speed-fast,
-      opacity $iui-speed-fast ease-out;
+    transition: visibility 0s linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
   }
 }
 

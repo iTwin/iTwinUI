@@ -4,14 +4,17 @@
 -->
 
 <!DOCTYPE html>
-<html id="theme">
-
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
-    <title>Slider | iTwin UI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Slider | iTwinUI</title>
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -42,6 +45,22 @@
         transform: translateX(-50%);
       }
     </style>
+
+    <script>
+      customElements.define('svg-sound-mute', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m10.69329 1.72743-4.18186 3.26672h-2.04743a.949.949 0 0 0 -.964.93685v4.12776a.949.949 0 0 0 .964.9368h2.04743l4.19857 3.27451a1.10972 1.10972 0 0 0 1.78935-.8695l.00065-10.82006a1.12618 1.12618 0 0 0 -1.8069-.85318z" /></svg>`;
+        }
+      });
+    </script>
+    <script>
+      customElements.define('svg-sound-loud', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11.72617 5.17223a3.63009 3.63009 0 0 1 -.03351 5.66956.813.813 0 0 1 -1.09357-.13472l-.067-.067a.70591.70591 0 0 1 .11763-1.00944 2.02606 2.02606 0 0 0 .08409-3.19663.80271.80271 0 1 1 .99236-1.26181zm1.83433-2.25413a.81449.81449 0 0 0 -1.11066.11764.79447.79447 0 0 0 .10121 1.11066 4.96391 4.96391 0 0 1 0 7.70477.80191.80191 0 0 0 1.00945 1.24538 6.52839 6.52839 0 0 0 0-10.17859zm-6.36721-1.19067-4.18186 3.26672h-2.04743a.949.949 0 0 0 -.964.93685v4.12776a.949.949 0 0 0 .964.9368h2.04743l4.19857 3.27451a1.10972 1.10972 0 0 0 1.78935-.8695l.00065-10.82006a1.12618 1.12618 0 0 0 -1.8069-.85318z" /></svg>`;
+        }
+      });
+    </script>
+
     <script src="../assets/theme.js"></script>
   </head>
 
@@ -56,18 +75,12 @@
       <div class="iui-input-container">
         <div class="iui-label">Volume</div>
 
-        <div class="iui-slider-component-container">
+        <div class="iui-slider-component-container iui-input-group">
           <span class="iui-slider-min">
-            <!-- Use sound-mute.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-sound-mute
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m10.69329 1.72743-4.18186 3.26672h-2.04743a.949.949 0 0 0 -.964.93685v4.12776a.949.949 0 0 0 .964.9368h2.04743l4.19857 3.27451a1.10972 1.10972 0 0 0 1.78935-.8695l.00065-10.82006a1.12618 1.12618 0 0 0 -1.8069-.85318z"
-              />
-            </svg>
+            ></svg-sound-mute>
           </span>
           <div class="iui-slider-container iui-progress-slider">
             <div class="iui-slider-rail"></div>
@@ -94,16 +107,10 @@
             </output>
           </div>
           <span class="iui-slider-max">
-            <!-- Use sound-loud.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-sound-loud
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m11.72617 5.17223a3.63009 3.63009 0 0 1 -.03351 5.66956.813.813 0 0 1 -1.09357-.13472l-.067-.067a.70591.70591 0 0 1 .11763-1.00944 2.02606 2.02606 0 0 0 .08409-3.19663.80271.80271 0 1 1 .99236-1.26181zm1.83433-2.25413a.81449.81449 0 0 0 -1.11066.11764.79447.79447 0 0 0 .10121 1.11066 4.96391 4.96391 0 0 1 0 7.70477.80191.80191 0 0 0 1.00945 1.24538 6.52839 6.52839 0 0 0 0-10.17859zm-6.36721-1.19067-4.18186 3.26672h-2.04743a.949.949 0 0 0 -.964.93685v4.12776a.949.949 0 0 0 .964.9368h2.04743l4.19857 3.27451a1.10972 1.10972 0 0 0 1.78935-.8695l.00065-10.82006a1.12618 1.12618 0 0 0 -1.8069-.85318z"
-              />
-            </svg>
+            ></svg-sound-loud>
           </span>
         </div>
 
@@ -114,7 +121,7 @@
       <div class="iui-input-container">
         <div class="iui-label">Slider with ticks</div>
 
-        <div class="iui-slider-component-container">
+        <div class="iui-slider-component-container iui-input-group">
           <span class="iui-slider-min">0</span>
           <div class="iui-slider-container iui-progress-slider">
             <div class="iui-slider-rail"></div>
@@ -164,7 +171,7 @@
       <div class="iui-input-container iui-disabled">
         <div class="iui-label">Disabled slider</div>
 
-        <div class="iui-slider-component-container iui-disabled">
+        <div class="iui-slider-component-container iui-input-group iui-disabled">
           <span class="iui-slider-min">0</span>
           <div class="iui-slider-container iui-progress-slider">
             <div class="iui-slider-rail"></div>
@@ -216,7 +223,7 @@
       <div class="iui-input-container">
         <div class="iui-label">Price range</div>
 
-        <div class="iui-slider-component-container">
+        <div class="iui-slider-component-container iui-input-group">
           <span class="iui-slider-min">0</span>
           <div class="
               iui-slider-container iui-range-slider">
@@ -270,7 +277,7 @@
       <div class="iui-input-container">
         <div class="iui-label">Range with ticks</div>
 
-        <div class="iui-slider-component-container">
+        <div class="iui-slider-component-container iui-input-group">
           <span class="iui-slider-min">0</span>
           <div class="
             iui-slider-container iui-range-slider">
@@ -338,7 +345,7 @@
       <div class="iui-input-container iui-disabled">
         <div class="iui-label">Disabled range</div>
 
-        <div class="iui-slider-component-container iui-disabled">
+        <div class="iui-slider-component-container iui-input-group iui-disabled">
           <span class="iui-slider-min">0</span>
           <div class="
             iui-slider-container iui-range-slider">

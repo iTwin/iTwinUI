@@ -6,7 +6,6 @@
 
 @mixin iui-alert {
   @include iui-reset;
-  @include iui-font-family;
   border-radius: $iui-border-radius;
   box-sizing: border-box;
   display: flex;
@@ -14,36 +13,34 @@
   @include themed {
     border: 1px solid t(iui-color-background-5);
     color: t(iui-text-color);
+    background-color: t(iui-color-background-1);
   }
 
-  > .iui-icon {
-    display: inline-flex;
+  &-icon {
+    @include iui-icons-default;
     flex-shrink: 0;
     margin-left: $iui-m;
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    @include themed {
-      fill: t(iui-icons-color);
-    }
-
-    > * {
-      @include themed {
-        fill: t(iui-icons-color);
-      }
-    }
   }
 
-  > .iui-message {
+  &-message {
     margin: $iui-baseline $iui-m;
+  }
 
-    > a {
-      margin-left: $iui-s;
-      text-decoration: underline;
-      user-select: none;
-      white-space: nowrap;
-  
-      &:hover {
-        text-decoration: none;
+  &-link {
+    cursor: pointer;
+    margin-left: $iui-s;
+    text-decoration: underline;
+    user-select: none;
+    white-space: nowrap;
+    @include iui-focus;
+    @include themed {
+      color: t(iui-color-foreground-primary);
+    }
+
+    &:hover {
+      text-decoration: none;
+      @include themed {
+        color: t(iui-color-foreground-primary-overlay);
       }
     }
   }
@@ -59,5 +56,50 @@
     top: 0;
     left: 0;
     width: 100vw;
+  }
+}
+
+/// Modifier mixin to categorize the alert
+/// @arg $statusColor Can be one of: positive, negative, warning, primary
+/// @arg $rootSelector Selector of the root alert element. Defaults to .iui-alert
+@mixin iui-alert-category($statusColor, $rootSelector: '.iui-alert') {
+  @include themed {
+    background: linear-gradient(
+      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6)),
+      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6))
+    ),
+      linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+    border-color: t(iui-color-foreground-#{$statusColor});
+  }
+
+  #{$rootSelector}-icon {
+    @include themed {
+      fill: t(iui-icons-color-#{$statusColor});
+    }
+  }
+
+  #{$rootSelector}-message {
+    &::selection {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-4));
+      }
+    }
+  }
+
+  #{$rootSelector}-link {
+    @include themed {
+      color: t(iui-color-foreground-#{$statusColor});
+    }
+
+    &:hover {
+      @include themed {
+        color: t(iui-color-foreground-#{$statusColor}-overlay);
+      }
+    }
+  }
+
+  #{$rootSelector}-link,
+  > .iui-button {
+    @include iui-focus(if($statusColor == primary, iui-focus-box-shadow, iui-focus-#{$statusColor}-box-shadow));
   }
 }

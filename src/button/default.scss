@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import './button';
+@import '../notification-marker/index';
 
 @mixin iui-button-default {
   @include themed {
@@ -24,6 +25,7 @@
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
       color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
     }
+    @include iui-notification-marker-hover;
 
     > .iui-icon {
       @include themed {

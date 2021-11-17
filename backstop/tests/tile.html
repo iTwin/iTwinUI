@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Tile | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -18,8 +22,6 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/userIcon.js"></script>
     <style>
       /* Set the width of all tiles */
       .iui-tile {
@@ -44,6 +46,56 @@
         padding: 16px;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/placeholder"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/star"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/star-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/new"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/info"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/imodel-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/tag"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/checkmark"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/play-circular"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/clock"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/folder"
+    ></script>
+    <script src="../assets/theme.js"></script>
+    <script src="../assets/userIcon.js"></script>
   </head>
 
   <body class="iui-body">
@@ -68,76 +120,53 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-type-indicator"
           >
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-placeholder
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
+            ></svg-placeholder>
           </button>
           <button
             aria-label="Favorited"
             type="button"
             class="iui-button iui-borderless iui-active iui-small iui-quick-action"
           >
-            <!-- Use star.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-star
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m10.7 5-2.1-4.4a.642.642 0 0 0 -1.2 0l-2.1 4.4-4.8.7c-.6.1-.6.7-.2 1.1l3.4 3.3-.9 4.8c-.1.7.5.8.9.6l4.3-2.2 4.3 2.2a.5811.5811 0 0 0 .9-.6l-.8-4.8 3.5-3.4a.66889.66889 0 0 0 -.4-1z"
-              />
-            </svg>
+            ></svg-star>
           </button>
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #6AB9EC;"
+              style="background-color: hsl(197, 71%, 83%);"
             >
               Label
             </div>
             <div
               class="iui-badge"
-              style="background-color: #B1C854;"
+              style="background-color: hsl(72, 51%, 66%);"
             >
               Label
             </div>
             <div
               class="iui-badge"
-              style="background-color: #F7706C;"
+              style="background-color: hsl(2, 90%, 83%);"
             >
               Label
             </div>
           </div>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
+            class="iui-thumbnail-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </div>
 
         <div class="iui-content">
           <div class="iui-name">
-            <!-- Use new.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-positive"
-              viewBox="0 0 16 16"
+            <svg-new
+              class="iui-tile-status-icon iui-positive"
               aria-hidden="true"
-            >
-              <path
-                d="m8 5a1.00011 1.00011 0 0 1 -1-1v-3a1 1 0 0 1 2 0v3a1.00011 1.00011 0 0 1 -1 1zm-3.4648 2a.99727.99727 0 0 1 -.499-.1338l-2.5981-1.5a1.00013 1.00013 0 1 1 .9999-1.7324l2.5981 1.5a1 1 0 0 1 -.5009 1.8662zm-2.5962 5.5a1 1 0 0 1 -.501-1.8662l2.5981-1.5a1.00015 1.00015 0 1 1 1 1.7324l-2.5981 1.5a.99727.99727 0 0 1 -.499.1338zm6.061 3.5a.99979.99979 0 0 1 -1-1v-3a1 1 0 0 1 2 0v3a.99979.99979 0 0 1 -1 1zm6.0615-3.5a.99457.99457 0 0 1 -.499-.1338l-2.5986-1.5a1.00015 1.00015 0 1 1 1-1.7324l2.5986 1.5a1 1 0 0 1 -.501 1.8662zm-2.5967-5.5a1 1 0 0 1 -.501-1.8662l2.5986-1.5a1.00018 1.00018 0 1 1 1.0001 1.7324l-2.5986 1.5a.99493.99493 0 0 1 -.4991.1338z"
-              />
-            </svg>
+            ></svg-new>
             <span class="iui-name-label">Super long tile name that will truncate</span>
           </div>
           <div class="iui-description">
@@ -150,15 +179,10 @@
             culpa qui officia deserunt mollit anim id est laborum.
           </div>
           <div class="iui-metadata">
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
+            <svg-placeholder
+              class="iui-metadata-icon"
               aria-hidden="true"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
+            ></svg-placeholder>
             <div class="iui-tag-container">
               <span class="iui-tag iui-basic">tags</span>
               <span class="iui-tag iui-basic">go</span>
@@ -186,16 +210,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
 
@@ -216,37 +234,25 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-type-indicator"
           >
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-placeholder
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
+            ></svg-placeholder>
           </button>
           <button
             aria-label="Favorited"
             type="button"
             class="iui-button iui-borderless iui-active iui-small iui-quick-action"
           >
-            <!-- Use star.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-star
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m7.99957.5 2.47233 4.93748 5.5281.79223-4.00043 3.84319.94456 5.4271-4.94456-2.56252-4.94413 2.56252.94456-5.4271-4-3.84319 5.52778-.79223z"
-              />
-            </svg>
+            ></svg-star>
           </button>
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #6AB9EC;"
+              style="background-color: hsl(197, 71%, 83%);"
             >
               Label
             </div>
@@ -261,15 +267,10 @@
             This tile uses a DIV with a background image & only has 1 button.
           </div>
           <div class="iui-metadata">
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
+            <svg-placeholder
+              class="iui-metadata-icon"
               aria-hidden="true"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
+            ></svg-placeholder>
             <span>Metadata</span>
           </div>
 
@@ -278,16 +279,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
 
@@ -309,34 +304,23 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-quick-action"
           >
-            <!-- Use info.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-info
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m10 0a1.53894 1.53894 0 0 1 1.6617 1.40548q.00393.04717.005.09452a2.18227 2.18227 0 0 1 -2.1667 2 1.57463 1.57463 0 0 1 -1.66667-1.66667 2.04692 2.04692 0 0 1 2.16667-1.83333m-3.333 16c-.833 0-1.5-.5-.833-2.833l1-4c.166-.667.166-.834-.001-.834-.333-.167-1.5.333-2.167.833l-.333-.833c2-1.667 4.333-2.667 5.5-2.667.833 0 1 1 .5 2.667l-1.166 4.334c-.167.833-.167 1 .167 1a3.33817 3.33817 0 0 0 1.83334-1l.5.667a9.61465 9.61465 0 0 1 -5.00067 2.666"
-              />
-            </svg>
+            ></svg-info>
           </button>
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #F7706C;"
+              style="background-color: hsl(2, 90%, 83%);"
             >
               Draft
             </div>
           </div>
-          <!-- Use imodel-hollow.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-imodel-hollow
+            class="iui-thumbnail-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M8,1.0002a1.00413,1.00413,0,0,1,.51376.13829L13.52436,4.119A.95115.95115,0,0,1,14,4.93885v6.0975a1.00386,1.00386,0,0,1-.48626.85077l-5,2.9744a1.02348,1.02348,0,0,1-1.02748,0l-4.98453-2.965A1.03179,1.03179,0,0,1,2,11.03635V4.96365a1.004,1.004,0,0,1,.48624-.85086l5-2.97431A1.00412,1.00412,0,0,1,8,1.0002m0-1A2.00636,2.00636,0,0,0,6.975.27905l-5,2.9743A1.9939,1.9939,0,0,0,1,4.96365v6.0727a2.025,2.025,0,0,0,.975,1.7102l5,2.9744a2.02328,2.02328,0,0,0,2.05,0l5-2.9744A1.99376,1.99376,0,0,0,15,11.03635V4.93885a1.95338,1.95338,0,0,0-.975-1.6855l-5-2.9743A2.00636,2.00636,0,0,0,8,.0002ZM8,3.25005a1.0625,1.0625,0,1,1-1.0625,1.0625h0A1.0625,1.0625,0,0,1,8,3.25005Zm3,9.1894a.25006.25006,0,0,1-.1221.2148l-2.725,1.6229a.24974.24974,0,0,1-.255.0004L5.1229,12.639A.24992.24992,0,0,1,5,12.42365v-1.4408a.24991.24991,0,0,1,.3778-.2148L7,11.66667V8.23635l-.8778-.5593A.25.25,0,0,1,6,7.46215V6.01635a.25.25,0,0,1,.3783-.2146l2.5,1.3831A.24988.24988,0,0,1,9,7.39935v4.26732l1.6222-.89862a.25.25,0,0,1,.3778.2148Z"
-            />
-          </svg>
+          ></svg-imodel-hollow>
         </div>
 
         <div class="iui-content">
@@ -350,13 +334,10 @@
             construction, and operation of infrastructure.
           </div>
           <div class="iui-metadata">
-            <!-- Use tag.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
+            <svg-tag
+              class="iui-metadata-icon"
               aria-hidden="true"
-            >
-              <path d="m9 0-9 9 7 7 9-9v-7zm3.5 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1 -1.5 1.5z" />
-            </svg>
+            ></svg-tag>
             <div class="iui-tag-container">
               <span class="iui-tag iui-basic">tags</span>
               <span class="iui-tag iui-basic">go</span>
@@ -369,16 +350,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -392,21 +367,15 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-quick-action"
           >
-            <!-- Use info.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-info
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m10 0a1.53894 1.53894 0 0 1 1.6617 1.40548q.00393.04717.005.09452a2.18227 2.18227 0 0 1 -2.1667 2 1.57463 1.57463 0 0 1 -1.66667-1.66667 2.04692 2.04692 0 0 1 2.16667-1.83333m-3.333 16c-.833 0-1.5-.5-.833-2.833l1-4c.166-.667.166-.834-.001-.834-.333-.167-1.5.333-2.167.833l-.333-.833c2-1.667 4.333-2.667 5.5-2.667.833 0 1 1 .5 2.667l-1.166 4.334c-.167.833-.167 1 .167 1a3.33817 3.33817 0 0 0 1.83334-1l.5.667a9.61465 9.61465 0 0 1 -5.00067 2.666"
-              />
-            </svg>
+            ></svg-info>
           </button>
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #F7706C;"
+              style="background-color: hsl(2, 90%, 83%);"
             >
               Draft
             </div>
@@ -424,13 +393,10 @@
             construction, and operation of infrastructure.
           </div>
           <div class="iui-metadata">
-            <!-- Use tag.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
+            <svg-tag
+              class="iui-metadata-icon"
               aria-hidden="true"
-            >
-              <path d="m9 0-9 9 7 7 9-9v-7zm3.5 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1 -1.5 1.5z" />
-            </svg>
+            ></svg-tag>
             <div class="iui-tag-container">
               <span class="iui-tag iui-basic">tags</span>
               <span class="iui-tag iui-basic">go</span>
@@ -443,16 +409,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -466,21 +426,15 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-quick-action"
           >
-            <!-- Use info.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-info
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m10 0a1.53894 1.53894 0 0 1 1.6617 1.40548q.00393.04717.005.09452a2.18227 2.18227 0 0 1 -2.1667 2 1.57463 1.57463 0 0 1 -1.66667-1.66667 2.04692 2.04692 0 0 1 2.16667-1.83333m-3.333 16c-.833 0-1.5-.5-.833-2.833l1-4c.166-.667.166-.834-.001-.834-.333-.167-1.5.333-2.167.833l-.333-.833c2-1.667 4.333-2.667 5.5-2.667.833 0 1 1 .5 2.667l-1.166 4.334c-.167.833-.167 1 .167 1a3.33817 3.33817 0 0 0 1.83334-1l.5.667a9.61465 9.61465 0 0 1 -5.00067 2.666"
-              />
-            </svg>
+            ></svg-info>
           </button>
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #F7706C;"
+              style="background-color: hsl(2, 90%, 83%);"
             >
               Draft
             </div>
@@ -489,14 +443,10 @@
 
         <div class="iui-content">
           <div class="iui-name">
-            <!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-informational"
-              viewBox="0 0 16 16"
+            <svg-checkmark
+              class="iui-tile-status-icon iui-informational"
               aria-hidden="true"
-            >
-              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-            </svg>
+            ></svg-checkmark>
             <span class="iui-name-label">Tile name</span>
           </div>
           <div class="iui-description">
@@ -506,13 +456,10 @@
             construction, and operation of infrastructure.
           </div>
           <div class="iui-metadata">
-            <!-- Use tag.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
+            <svg-tag
+              class="iui-metadata-icon"
               aria-hidden="true"
-            >
-              <path d="m9 0-9 9 7 7 9-9v-7zm3.5 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1 -1.5 1.5z" />
-            </svg>
+            ></svg-tag>
             <div class="iui-tag-container">
               <span class="iui-tag iui-basic">tags</span>
               <span class="iui-tag iui-basic">go</span>
@@ -525,16 +472,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -566,16 +507,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -593,14 +528,10 @@
 
         <div class="iui-content">
           <div class="iui-name">
-            <!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-informational"
-              viewBox="0 0 16 16"
+            <svg-checkmark
+              class="iui-tile-status-icon iui-informational"
               aria-hidden="true"
-            >
-              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-            </svg>
+            ></svg-checkmark>
             <span class="iui-name-label">Terry Rivers</span>
           </div>
           <div class="iui-description">CEO</div>
@@ -610,16 +541,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -658,7 +583,7 @@
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #A3779F;"
+              style="background-color: hsl(305, 19%, 75%);"
             >
               External
             </div>
@@ -683,16 +608,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
 
@@ -723,7 +642,7 @@
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #A3779F;"
+              style="background-color: hsl(305, 19%, 75%);"
             >
               External
             </div>
@@ -748,16 +667,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
         <div class="iui-tile-buttons">
@@ -778,32 +691,23 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-quick-action"
           >
-            <!-- Use star-hollow.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-star-hollow
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m8 2.8253 1.3463 2.8208.3449.7227.7924.1156 3.0308.442-2.1596 2.0977-.5636.5475.1292.775.5034 3.02-2.7406-1.402-.6832-.3495-.6832.35-2.6992 1.381.5567-2.9692.1484-.7917-.5781-.561-2.1738-2.11 2.9456-.43.7924-.1156.3449-.7227zm-.0052-2.6386a.6437.6437 0 0 0 -.5948.4133l-2.1 4.4-4.8.7c-.6.1-.6.7-.2 1.1l3.4 3.3-.9 4.8c-.0709.4963.21.691.5222.691a.86.86 0 0 0 .3778-.091l4.3-2.2 4.3 2.2a.79113.79113 0 0 0 .3533.0915.56311.56311 0 0 0 .5467-.6915l-.8-4.8 3.5-3.4a.66889.66889 0 0 0 -.4-1l-4.8-.7-2.1-4.4a.6788.6788 0 0 0 -.6052-.4133z"
-              />
-            </svg>
+            ></svg-star-hollow>
           </button>
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #6AB9EC;"
+              style="background-color: hsl(197, 71%, 83%);"
             >
               10:23
             </div>
           </div>
-          <!-- Use play-circular.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-play-circular
+            class="iui-thumbnail-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0M6 11.6V4.4L12 8 6 11.6" />
-          </svg>
+          ></svg-play-circular>
         </div>
 
         <div class="iui-content">
@@ -816,15 +720,10 @@
             impressive projects that were made possible with Bentley.
           </div>
           <div class="iui-metadata">
-            <!-- Use clock.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
+            <svg-clock
+              class="iui-metadata-icon"
               aria-hidden="true"
-            >
-              <path
-                d="m8.6 9h-.2l-5-1.5a.48559.48559 0 0 1 -.3-.6.41926.41926 0 0 1 .6-.3l4.3 1.3v-2.4a.5.5 0 0 1 1 0v3a.75812.75812 0 0 1 -.2.4.34914.34914 0 0 1 -.2.1m-.6-7.5a6.5 6.5 0 1 1 -6.5 6.5 6.487 6.487 0 0 1 6.5-6.5m0-1.5a8 8 0 1 0 8 8 8.02352 8.02352 0 0 0 -8-8z"
-              />
-            </svg>
+            ></svg-clock>
             <time datetime="2020-12-31 14:00">Dec 31, 2020 @ 2:00pm</time>
           </div>
 
@@ -833,16 +732,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -856,28 +749,19 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-quick-action"
           >
-            <!-- Use star-hollow.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-star-hollow
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m8 2.8253 1.3463 2.8208.3449.7227.7924.1156 3.0308.442-2.1596 2.0977-.5636.5475.1292.775.5034 3.02-2.7406-1.402-.6832-.3495-.6832.35-2.6992 1.381.5567-2.9692.1484-.7917-.5781-.561-2.1738-2.11 2.9456-.43.7924-.1156.3449-.7227zm-.0052-2.6386a.6437.6437 0 0 0 -.5948.4133l-2.1 4.4-4.8.7c-.6.1-.6.7-.2 1.1l3.4 3.3-.9 4.8c-.0709.4963.21.691.5222.691a.86.86 0 0 0 .3778-.091l4.3-2.2 4.3 2.2a.79113.79113 0 0 0 .3533.0915.56311.56311 0 0 0 .5467-.6915l-.8-4.8 3.5-3.4a.66889.66889 0 0 0 -.4-1l-4.8-.7-2.1-4.4a.6788.6788 0 0 0 -.6052-.4133z"
-              />
-            </svg>
+            ></svg-star-hollow>
           </button>
-          <!-- Use play-circular.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-play-icon"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0M6 11.6V4.4L12 8 6 11.6" />
-          </svg>
+          <svg-play-circular
+            class="iui-thumbnail-icon"
+            aria-hidden="true"
+          ></svg-play-circular>
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #6AB9EC;"
+              style="background-color: hsl(197, 71%, 83%);"
             >
               10:23
             </div>
@@ -894,15 +778,10 @@
             impressive projects that were made possible with Bentley.
           </div>
           <div class="iui-metadata">
-            <!-- Use clock.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
+            <svg-clock
+              class="iui-metadata-icon"
               aria-hidden="true"
-            >
-              <path
-                d="m8.6 9h-.2l-5-1.5a.48559.48559 0 0 1 -.3-.6.41926.41926 0 0 1 .6-.3l4.3 1.3v-2.4a.5.5 0 0 1 1 0v3a.75812.75812 0 0 1 -.2.4.34914.34914 0 0 1 -.2.1m-.6-7.5a6.5 6.5 0 1 1 -6.5 6.5 6.487 6.487 0 0 1 6.5-6.5m0-1.5a8 8 0 1 0 8 8 8.02352 8.02352 0 0 0 -8-8z"
-              />
-            </svg>
+            ></svg-clock>
             <time datetime="2020-12-31 14:00">Dec 31, 2020 @ 2:00pm</time>
           </div>
 
@@ -911,16 +790,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -937,28 +810,19 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-quick-action"
           >
-            <!-- Use star-hollow.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-star-hollow
               class="iui-icon"
-              viewBox="0 0 16 16"
               aria-hidden="true"
-            >
-              <path
-                d="m8 2.8253 1.3463 2.8208.3449.7227.7924.1156 3.0308.442-2.1596 2.0977-.5636.5475.1292.775.5034 3.02-2.7406-1.402-.6832-.3495-.6832.35-2.6992 1.381.5567-2.9692.1484-.7917-.5781-.561-2.1738-2.11 2.9456-.43.7924-.1156.3449-.7227zm-.0052-2.6386a.6437.6437 0 0 0 -.5948.4133l-2.1 4.4-4.8.7c-.6.1-.6.7-.2 1.1l3.4 3.3-.9 4.8c-.0709.4963.21.691.5222.691a.86.86 0 0 0 .3778-.091l4.3-2.2 4.3 2.2a.79113.79113 0 0 0 .3533.0915.56311.56311 0 0 0 .5467-.6915l-.8-4.8 3.5-3.4a.66889.66889 0 0 0 -.4-1l-4.8-.7-2.1-4.4a.6788.6788 0 0 0 -.6052-.4133z"
-              />
-            </svg>
+            ></svg-star-hollow>
           </button>
-          <!-- Use play-circular.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-play-icon"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0M6 11.6V4.4L12 8 6 11.6" />
-          </svg>
+          <svg-play-circular
+            class="iui-thumbnail-icon"
+            aria-hidden="true"
+          ></svg-play-circular>
           <div class="iui-badge-container">
             <div
               class="iui-badge"
-              style="background-color: #6AB9EC;"
+              style="background-color: hsl(197, 71%, 83%);"
             >
               10:23
             </div>
@@ -967,14 +831,10 @@
 
         <div class="iui-content">
           <div class="iui-name">
-            <!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-informational"
-              viewBox="0 0 16 16"
+            <svg-checkmark
+              class="iui-tile-status-icon iui-informational"
               aria-hidden="true"
-            >
-              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-            </svg>
+            ></svg-checkmark>
             <span class="iui-name-label">Video name</span>
           </div>
           <div class="iui-description">
@@ -983,15 +843,10 @@
             impressive projects that were made possible with Bentley.
           </div>
           <div class="iui-metadata">
-            <!-- Use clock.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
+            <svg-clock
+              class="iui-metadata-icon"
               aria-hidden="true"
-            >
-              <path
-                d="m8.6 9h-.2l-5-1.5a.48559.48559 0 0 1 -.3-.6.41926.41926 0 0 1 .6-.3l4.3 1.3v-2.4a.5.5 0 0 1 1 0v3a.75812.75812 0 0 1 -.2.4.34914.34914 0 0 1 -.2.1m-.6-7.5a6.5 6.5 0 1 1 -6.5 6.5 6.487 6.487 0 0 1 6.5-6.5m0-1.5a8 8 0 1 0 8 8 8.02352 8.02352 0 0 0 -8-8z"
-              />
-            </svg>
+            ></svg-clock>
             <time datetime="2020-12-31 14:00">Dec 31, 2020 @ 2:00pm</time>
           </div>
 
@@ -1000,16 +855,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              />
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -1022,27 +871,18 @@
       <!-- No thumbnail & new -->
       <div class="iui-tile iui-folder iui-new">
         <div class="iui-thumbnail">
-          <!-- Use folder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-folder
+            class="iui-thumbnail-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="M1,13a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H7V3A1,1,0,0,0,6,2H2A1,1,0,0,0,1,3Z" />
-          </svg>
+          ></svg-folder>
         </div>
 
         <div class="iui-content">
           <div class="iui-name">
-            <!-- Use new.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-positive"
-              viewBox="0 0 16 16"
+            <svg-new
+              class="iui-tile-status-icon iui-positive"
               aria-hidden="true"
-            >
-              <path
-                d="m8 5a1.00011 1.00011 0 0 1 -1-1v-3a1 1 0 0 1 2 0v3a1.00011 1.00011 0 0 1 -1 1zm-3.4648 2a.99727.99727 0 0 1 -.499-.1338l-2.5981-1.5a1.00013 1.00013 0 1 1 .9999-1.7324l2.5981 1.5a1 1 0 0 1 -.5009 1.8662zm-2.5962 5.5a1 1 0 0 1 -.501-1.8662l2.5981-1.5a1.00015 1.00015 0 1 1 1 1.7324l-2.5981 1.5a.99727.99727 0 0 1 -.499.1338zm6.061 3.5a.99979.99979 0 0 1 -1-1v-3a1 1 0 0 1 2 0v3a.99979.99979 0 0 1 -1 1zm6.0615-3.5a.99457.99457 0 0 1 -.499-.1338l-2.5986-1.5a1.00015 1.00015 0 1 1 1-1.7324l2.5986 1.5a1 1 0 0 1 -.501 1.8662zm-2.5967-5.5a1 1 0 0 1 -.501-1.8662l2.5986-1.5a1.00018 1.00018 0 1 1 1.0001 1.7324l-2.5986 1.5a.99493.99493 0 0 1 -.4991.1338z"
-              />
-            </svg>
+            ></svg-new>
 
             <span class="iui-name-label">Folder name</span>
           </div>
@@ -1054,16 +894,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              ></path>
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -1071,13 +905,10 @@
       <!-- No thumbnail -->
       <div class="iui-tile iui-folder">
         <div class="iui-thumbnail">
-          <!-- Use folder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-folder
+            class="iui-thumbnail-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="M1,13a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H7V3A1,1,0,0,0,6,2H2A1,1,0,0,0,1,3Z" />
-          </svg>
+          ></svg-folder>
         </div>
 
         <div class="iui-content">
@@ -1092,16 +923,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              ></path>
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -1124,16 +949,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              ></path>
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>
@@ -1146,14 +965,10 @@
 
         <div class="iui-content">
           <div class="iui-name">
-            <!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-informational"
-              viewBox="0 0 16 16"
+            <svg-checkmark
+              class="iui-tile-status-icon iui-informational"
               aria-hidden="true"
-            >
-              <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-            </svg>
+            ></svg-checkmark>
             <span class="iui-name-label">Folder name</span>
           </div>
           <div class="iui-description">
@@ -1164,16 +979,10 @@
             type="button"
             class="iui-button iui-borderless iui-small iui-more-options"
           >
-            <!-- Use more.svg from @itwin/itwinui-icons package. -->
-            <svg
+            <svg-more
               class="iui-icon"
               aria-hidden="true"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-              ></path>
-            </svg>
+            ></svg-more>
           </button>
         </div>
       </div>

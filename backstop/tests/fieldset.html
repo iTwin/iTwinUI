@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Fieldset | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -34,7 +38,7 @@
       <fieldset class="iui-fieldset">
         <legend>General settings</legend>
 
-        <label class="iui-input-container iui-inline">
+        <label class="iui-input-container iui-inline-label">
           <div class="iui-label">Resolution</div>
           <div class="iui-select">
             <div
@@ -46,72 +50,74 @@
           </div>
         </label>
 
-        <div class="iui-input-container iui-inline">
+        <div class="iui-input-container iui-inline-label">
           <div class="iui-label">Color theme</div>
-          <label class="iui-radio">
-            <input
-              type="radio"
-              name="radio-demo-1"
-              value="light"
-            />
-            <span class="iui-radio-dot">
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  r="6"
-                />
-              </svg>
-            </span>
-            <span class="iui-label">Light</span>
-          </label>
-          <label class="iui-radio">
-            <input
-              type="radio"
-              name="radio-demo-1"
-              value="dark"
-            />
-            <span class="iui-radio-dot">
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  r="6"
-                />
-              </svg>
-            </span>
-            <span class="iui-label">Dark</span>
-          </label>
-          <label class="iui-radio">
-            <input
-              type="radio"
-              name="radio-demo-1"
-              value="match-device"
-              checked
-            />
-            <span class="iui-radio-dot">
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  r="6"
-                />
-              </svg>
-            </span>
-            <span class="iui-label">Match device</span>
-          </label>
+          <div class="iui-input-group">
+            <label class="iui-radio">
+              <input
+                type="radio"
+                name="radio-demo-1"
+                value="light"
+              />
+              <span class="iui-radio-dot">
+                <svg
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <circle
+                    cx="8"
+                    cy="8"
+                    r="6"
+                  />
+                </svg>
+              </span>
+              <span class="iui-label">Light</span>
+            </label>
+            <label class="iui-radio">
+              <input
+                type="radio"
+                name="radio-demo-1"
+                value="dark"
+              />
+              <span class="iui-radio-dot">
+                <svg
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <circle
+                    cx="8"
+                    cy="8"
+                    r="6"
+                  />
+                </svg>
+              </span>
+              <span class="iui-label">Dark</span>
+            </label>
+            <label class="iui-radio">
+              <input
+                type="radio"
+                name="radio-demo-1"
+                value="match-device"
+                checked
+              />
+              <span class="iui-radio-dot">
+                <svg
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <circle
+                    cx="8"
+                    cy="8"
+                    r="6"
+                  />
+                </svg>
+              </span>
+              <span class="iui-label">Match device</span>
+            </label>
+          </div>
         </div>
 
         <label class="iui-toggle-switch">
@@ -157,7 +163,7 @@
       >
         <legend>Advanced settings</legend>
 
-        <label class="iui-input-container iui-inline iui-disabled">
+        <label class="iui-input-container iui-inline-label iui-disabled">
           <div class="iui-label">Internal URL</div>
           <input
             value="http://127.0.0.1:5500/backstop/minified/fieldset.html"

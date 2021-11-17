@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Toggle switch | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -25,6 +29,10 @@
         gap: 11px;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/placeholder"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -36,126 +44,106 @@
     <section id="demo-default">
       <div class="iui-input-container">
         <div class="iui-label iui-required">Toggle switch group label</div>
-        <label class="iui-toggle-switch">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-toggle-switch">
-          <input type="checkbox" />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-toggle-switch iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-toggle-switch iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
+        <div class="iui-input-group">
+          <label class="iui-toggle-switch">
+            <input
+              type="checkbox"
+              checked
+            />
+            <span class="iui-toggle">
+              <span class="iui-handle"></span>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-toggle-switch">
+            <input type="checkbox" />
+            <span class="iui-toggle">
+              <span class="iui-handle"></span>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-toggle-switch iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-toggle">
+              <span class="iui-handle"></span>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-toggle-switch iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-toggle">
+              <span class="iui-handle"></span>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
       </div>
 
       <div class="iui-input-container">
         <div class="iui-label">Toggle switch group label</div>
-        <label class="iui-toggle-switch">
-          <input
-            type="checkbox"
-            checked
-          />
-          <span class="iui-toggle">
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-icon"
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Option 1</span>
-        </label>
-        <label class="iui-toggle-switch">
-          <input type="checkbox" />
-          <span class="iui-toggle">
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-icon"
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Option 2</span>
-        </label>
-        <label class="iui-toggle-switch iui-disabled">
-          <input
-            type="checkbox"
-            checked
-            disabled
-          />
-          <span class="iui-toggle">
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-icon"
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Option 3</span>
-        </label>
-        <label class="iui-toggle-switch iui-disabled">
-          <input
-            type="checkbox"
-            disabled
-          />
-          <span class="iui-toggle">
-            <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-            <svg
-              class="iui-icon"
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-              />
-            </svg>
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Option 4</span>
-        </label>
+        <div class="iui-input-group">
+          <label class="iui-toggle-switch">
+            <input
+              type="checkbox"
+              checked
+            />
+            <span class="iui-toggle">
+              <svg-placeholder
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-handle"></span>
+            </span>
+            <span class="iui-label">Option 1</span>
+          </label>
+          <label class="iui-toggle-switch">
+            <input type="checkbox" />
+            <span class="iui-toggle">
+              <svg-placeholder
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-handle"></span>
+            </span>
+            <span class="iui-label">Option 2</span>
+          </label>
+          <label class="iui-toggle-switch iui-disabled">
+            <input
+              type="checkbox"
+              checked
+              disabled
+            />
+            <span class="iui-toggle">
+              <svg-placeholder
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-handle"></span>
+            </span>
+            <span class="iui-label">Option 3</span>
+          </label>
+          <label class="iui-toggle-switch iui-disabled">
+            <input
+              type="checkbox"
+              disabled
+            />
+            <span class="iui-toggle">
+              <svg-placeholder
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-handle"></span>
+            </span>
+            <span class="iui-label">Option 4</span>
+          </label>
+        </div>
       </div>
     </section>
 
@@ -170,8 +158,7 @@
           width: fit-content;
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-        "
+          align-items: flex-start;"
       >
         <label class="iui-toggle-switch">
           <input
@@ -220,8 +207,7 @@
           width: fit-content;
           display: flex;
           flex-direction: column;
-          align-items: flex-end;
-        "
+          align-items: flex-end;"
       >
         <label class="iui-toggle-switch">
           <input

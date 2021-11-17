@@ -1,84 +1,75 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './variables';
+@import '../style/index';
 
 @mixin iui-icons-default {
   @include iui-icons-color();
+  display: inline-flex;
   width: $iui-icons-default;
   height: $iui-icons-default;
 }
 
 @mixin iui-icons-small {
   @include iui-icons-color();
+  display: inline-flex;
   width: $iui-icons-small;
   height: $iui-icons-small;
 }
 
 @mixin iui-icons-large {
   @include iui-icons-color();
+  display: inline-flex;
   width: $iui-icons-large;
   height: $iui-icons-large;
 }
 
 @mixin iui-icons-xl {
   @include iui-icons-color();
+  display: inline-flex;
   width: $iui-icons-xl;
   height: $iui-icons-xl;
 }
 
 @mixin iui-icons-xxl {
   @include iui-icons-color();
+  display: inline-flex;
   width: $iui-icons-xxl;
   height: $iui-icons-xxl;
 }
 
 @mixin iui-icons-3xl {
   @include iui-icons-color();
+  display: inline-flex;
   width: $iui-icons-3xl;
   height: $iui-icons-3xl;
 }
 
 @mixin iui-icons-color {
-  &,
-  path {
-    @include themed {
-      fill: t(iui-icons-color);
-    }
+  @include themed {
+    fill: t(iui-icons-color);
   }
 
   &.iui-informational {
-    &,
-    path {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-      }
+    @include themed {
+      fill: t(iui-icons-color-primary);
     }
   }
 
   &.iui-positive {
-    &,
-    path {
-      @include themed {
-        fill: t(iui-icons-color-positive);
-      }
+    @include themed {
+      fill: t(iui-icons-color-positive);
     }
   }
 
   &.iui-warning {
-    &,
-    path {
-      @include themed {
-        fill: t(iui-icons-color-warning);
-      }
+    @include themed {
+      fill: t(iui-icons-color-warning);
     }
   }
 
   &.iui-negative {
-    &,
-    path {
-      @include themed {
-        fill: t(iui-icons-color-negative);
-      }
+    @include themed {
+      fill: t(iui-icons-color-negative);
     }
   }
 }

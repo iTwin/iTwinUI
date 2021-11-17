@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Progress indicator | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -27,7 +31,7 @@
       section .iui-progress-indicator-radial {
         margin-right: 16px;
       }
-      
+
       #demo-overlay-content {
         padding: 11px 12px;
         border: 1px solid var(--iui-color-background-5);
@@ -35,6 +39,26 @@
         margin-bottom: 11px;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/pause"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/checkmark-small"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/important-small"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -107,15 +131,7 @@
           </div>
           <div class="iui-label">
             <span>Upload successful!</span>
-            <!-- Use status-success-hollow.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m8 1.5a6.5 6.5 0 1 1 -6.5001 6.5 6.5 6.5 0 0 1 6.5001-6.5m0-1.5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.349 11.9937-3.651-3.3999 1.3959-1.3 2.3625 2.2 4.8322-4.5 1.3959 1.2999z"
-              />
-            </svg>
+            <svg-status-success-hollow aria-hidden="true"></svg-status-success-hollow>
           </div>
         </div>
         <br />
@@ -143,15 +159,7 @@
           </div>
           <div class="iui-label">
             <span>Upload failed!</span>
-            <!-- Use status-error-hollow.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m8 1.5a6.5 6.5 0 1 1 -6.5 6.5 6.5 6.5 0 0 1 6.5-6.5m0-1.5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z"
-              />
-            </svg>
+            <svg-status-error-hollow aria-hidden="true"></svg-status-error-hollow>
           </div>
         </div>
         <br />
@@ -313,13 +321,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use pause.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-              </svg>
+              <svg-pause aria-hidden="true"></svg-pause>
             </span>
           </div>
 
@@ -347,13 +349,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use checkmark-small.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="m6 13.4-4.7-4.7 1.4-1.4 3.3 3.3 7.3-7.3 1.4 1.4z" />
-              </svg>
+              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
             </span>
           </div>
 
@@ -381,15 +377,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use important-small.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"
-                />
-              </svg>
+              <svg-important-small aria-hidden="true"></svg-important-small>
             </span>
           </div>
         </div>
@@ -472,13 +460,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use pause.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-              </svg>
+              <svg-pause aria-hidden="true"></svg-pause>
             </span>
           </div>
 
@@ -506,13 +488,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use checkmark-small.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="m6 13.4-4.7-4.7 1.4-1.4 3.3 3.3 7.3-7.3 1.4 1.4z" />
-              </svg>
+              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
             </span>
           </div>
 
@@ -540,15 +516,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use important-small.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"
-                />
-              </svg>
+              <svg-important-small aria-hidden="true"></svg-important-small>
             </span>
           </div>
         </div>
@@ -631,13 +599,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use pause.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-              </svg>
+              <svg-pause aria-hidden="true"></svg-pause>
             </span>
           </div>
 
@@ -665,13 +627,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use checkmark-small.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="m6 13.4-4.7-4.7 1.4-1.4 3.3 3.3 7.3-7.3 1.4 1.4z" />
-              </svg>
+              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
             </span>
           </div>
 
@@ -699,15 +655,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use important-small.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"
-                />
-              </svg>
+              <svg-important-small aria-hidden="true"></svg-important-small>
             </span>
           </div>
         </div>
@@ -790,13 +738,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use pause.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-              </svg>
+              <svg-pause aria-hidden="true"></svg-pause>
             </span>
           </div>
 
@@ -824,13 +766,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use checkmark-x-small.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path d="m6 13.4-4.7-4.7 1.4-1.4 3.3 3.3 7.3-7.3 1.4 1.4z" />
-              </svg>
+              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
             </span>
           </div>
 
@@ -858,15 +794,7 @@
               </circle>
             </svg>
             <span class="iui-inner-content">
-              <!-- Use important-x-small.svg from @itwin/itwinui-icons package. -->
-              <svg
-                viewBox="0 0 16 16"
-                aria-hidden="true"
-              >
-                <path
-                  d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"
-                />
-              </svg>
+              <svg-important-small aria-hidden="true"></svg-important-small>
             </span>
           </div>
         </div>
@@ -953,13 +881,7 @@
             </circle>
           </svg>
           <span class="iui-inner-content">
-            <!-- Use pause.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-            </svg>
+            <svg-pause aria-hidden="true"></svg-pause>
           </span>
         </div>
 
@@ -987,13 +909,7 @@
             </circle>
           </svg>
           <span class="iui-inner-content">
-            <!-- Use checkmark-small.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path d="m6 13.4-4.7-4.7 1.4-1.4 3.3 3.3 7.3-7.3 1.4 1.4z" />
-            </svg>
+            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
           </span>
         </div>
 
@@ -1021,15 +937,7 @@
             </circle>
           </svg>
           <span class="iui-inner-content">
-            <!-- Use important-small.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"
-              />
-            </svg>
+            <svg-important-small aria-hidden="true"></svg-important-small>
           </span>
         </div>
 
@@ -1081,13 +989,7 @@
             </circle>
           </svg>
           <span class="iui-inner-content">
-            <!-- Use pause.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-            </svg>
+            <svg-pause aria-hidden="true"></svg-pause>
           </span>
         </div>
 
@@ -1115,13 +1017,7 @@
             </circle>
           </svg>
           <span class="iui-inner-content">
-            <!-- Use checkmark-small.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path d="m6 13.4-4.7-4.7 1.4-1.4 3.3 3.3 7.3-7.3 1.4 1.4z" />
-            </svg>
+            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
           </span>
         </div>
 
@@ -1149,15 +1045,7 @@
             </circle>
           </svg>
           <span class="iui-inner-content">
-            <!-- Use important-small.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"
-              />
-            </svg>
+            <svg-important-small aria-hidden="true"></svg-important-small>
           </span>
         </div>
 
@@ -1177,13 +1065,7 @@
         <div class="iui-progress-indicator-radial iui-indeterminate">
           <span class="iui-progress-indicator-radial-ie"></span>
           <span class="iui-inner-content">
-            <!-- Use pause.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-            </svg>
+            <svg-pause aria-hidden="true"></svg-pause>
           </span>
         </div>
 
@@ -1191,13 +1073,7 @@
         <div class="iui-progress-indicator-radial iui-indeterminate iui-positive">
           <span class="iui-progress-indicator-radial-ie"></span>
           <span class="iui-inner-content">
-            <!-- Use checkmark-small.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path d="m6 13.4-4.7-4.7 1.4-1.4 3.3 3.3 7.3-7.3 1.4 1.4z" />
-            </svg>
+            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
           </span>
         </div>
 
@@ -1205,15 +1081,7 @@
         <div class="iui-progress-indicator-radial iui-indeterminate iui-negative">
           <span class="iui-progress-indicator-radial-ie"></span>
           <span class="iui-inner-content">
-            <!-- Use important-small.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"
-              />
-            </svg>
+            <svg-important-small aria-hidden="true"></svg-important-small>
           </span>
         </div>
 
@@ -1226,13 +1094,7 @@
         <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
           <span class="iui-progress-indicator-radial-ie"></span>
           <span class="iui-inner-content">
-            <!-- Use pause.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path d="m8 13h-3v-10h3zm4-10h-3v10h3z" />
-            </svg>
+            <svg-pause aria-hidden="true"></svg-pause>
           </span>
         </div>
 
@@ -1240,13 +1102,7 @@
         <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-positive">
           <span class="iui-progress-indicator-radial-ie"></span>
           <span class="iui-inner-content">
-            <!-- Use checkmark-small.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path d="m6 13.4-4.7-4.7 1.4-1.4 3.3 3.3 7.3-7.3 1.4 1.4z" />
-            </svg>
+            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
           </span>
         </div>
 
@@ -1254,15 +1110,7 @@
         <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-negative">
           <span class="iui-progress-indicator-radial-ie"></span>
           <span class="iui-inner-content">
-            <!-- Use important-small.svg from @itwin/itwinui-icons package. -->
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path
-                d="m6.25 1h3.5v3.18968l-.676 6.408h-2.16419l-.65981-6.408zm.12091 10.57169h3.26665v3.42831h-3.26665z"
-              />
-            </svg>
+            <svg-important-small aria-hidden="true"></svg-important-small>
           </span>
         </div>
       </div>

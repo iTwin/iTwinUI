@@ -2,12 +2,15 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+@mixin iui-bottom-placement {
+  bottom: 0;
+
+  .iui-toast {
+    margin: $iui-baseline $iui-m 0 $iui-m;
+  }
+}
+
 .iui-toast-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  top: 0;
-  right: 0;
   pointer-events: none;
   position: fixed;
   display: flex;
@@ -24,48 +27,53 @@
   @media screen and (min-width: 401px) {
     min-width: 400px;
     max-width: 640px;
-    margin-top: $iui-line-height;
+    margin: $iui-line-height 0;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    @keyframes openAnimation {
-      from {
-        opacity: 0;
-        transform: translateY(-120%);
-      }
-
-      to {
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes closeAnimation {
-      from {
-        transform: scale(1);
-
-        @include themed {
-          opacity: t(iui-opacity-1);
-        }
-      }
-
-      to {
-        transform: scale(0.9);
-        opacity: 0;
-      }
-    }
-
     .iui-toast-all {
       transition: all 240ms cubic-bezier(0, 0, 0.2, 1);
     }
+  }
 
-    .iui-toast-entering,
-    .iui-toast-entered {
-      animation: openAnimation 240ms cubic-bezier(0.175, 0.885, 0.32, 1.175) both;
-    }
+  &.iui-placement-top {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+  }
 
-    .iui-toast-exiting {
-      animation: closeAnimation 120ms cubic-bezier(0.4, 0, 1, 1) both;
-    }
+  &.iui-placement-top-start {
+    left: 0;
+    top: 0;
+    align-items: flex-start;
+  }
+
+  &.iui-placement-top-end {
+    right: 0;
+    top: 0;
+    align-items: flex-end;
+  }
+
+  &.iui-placement-bottom {
+    @include iui-bottom-placement;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+
+  &.iui-placement-bottom-start {
+    @include iui-bottom-placement;
+    left: 0;
+    align-items: flex-start;
+  }
+
+  &.iui-placement-bottom-end {
+    @include iui-bottom-placement;
+    right: 0;
+    align-items: flex-end;
   }
 }
 
@@ -75,7 +83,7 @@
   &.iui-informational {
     @include iui-toast-category($category: primary);
   }
-  
+
   &.iui-positive {
     @include iui-toast-category($category: positive);
   }

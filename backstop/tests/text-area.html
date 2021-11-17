@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Text area | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -26,6 +30,18 @@
         gap: 11px;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -35,7 +51,7 @@
 
     <h2>Default</h2>
     <section id="demo-default">
-      <label class="iui-input-container">
+      <label class="iui-input-container iui-with-message">
         <div class="iui-label iui-required">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
@@ -46,7 +62,7 @@
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container">
+      <label class="iui-input-container iui-with-message">
         <div class="iui-label">Textarea label</div>
         <textarea
           class="iui-textarea"
@@ -58,7 +74,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container iui-disabled">
+      <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Textarea label</div>
         <textarea
           disabled
@@ -69,7 +85,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container iui-disabled">
+      <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Textarea label</div>
         <textarea
           disabled
@@ -81,61 +97,50 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         <div class="iui-message">Help message.</div>
       </label>
 
-      <label class="iui-input-container iui-positive">
+      <label class="iui-input-container iui-with-message iui-positive">
         <div class="iui-label">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-textarea"
           rows="3"
         ></textarea>
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
         <div class="iui-message">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
           Positive message.
         </div>
       </label>
 
-      <label class="iui-input-container iui-warning">
+      <label class="iui-input-container iui-with-message iui-warning">
         <div class="iui-label">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-textarea"
           rows="3"
         ></textarea>
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
         <div class="iui-message">
-          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-            />
-          </svg>
           Warning message.
         </div>
       </label>
 
-      <label class="iui-input-container iui-negative">
+      <label class="iui-input-container iui-with-message iui-negative">
         <div class="iui-label">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-textarea"
           rows="3"
         ></textarea>
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
         <div class="iui-message">
-          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-          </svg>
           Negative message.
         </div>
       </label>
@@ -145,7 +150,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
     <h2>Inline</h2>
     <section id="demo-inline">
-      <label class="iui-input-container iui-inline">
+      <label class="iui-input-container iui-with-message iui-inline-label">
         <div class="iui-label iui-required">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
@@ -155,7 +160,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         ></textarea>
       </label>
 
-      <label class="iui-input-container iui-inline">
+      <label class="iui-input-container iui-with-message iui-inline-label">
         <div class="iui-label">Textarea label</div>
         <textarea
           class="iui-textarea"
@@ -166,7 +171,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         </textarea>
       </label>
 
-      <label class="iui-input-container iui-inline iui-disabled">
+      <label class="iui-input-container iui-with-message iui-inline-label iui-disabled">
         <div class="iui-label">Textarea label</div>
         <textarea
           disabled
@@ -176,7 +181,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         ></textarea>
       </label>
 
-      <label class="iui-input-container iui-inline iui-disabled">
+      <label class="iui-input-container iui-with-message iui-inline-label iui-disabled">
         <div class="iui-label">Textarea label</div>
         <textarea
           disabled
@@ -187,60 +192,43 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           </textarea>
       </label>
 
-      <label class="iui-input-container iui-inline iui-positive">
+      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon iui-positive">
         <div class="iui-label">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-textarea"
           rows="3"
         ></textarea>
-        <div class="iui-message">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
-        </div>
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
       </label>
 
-      <label class="iui-input-container iui-inline iui-warning">
+      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon iui-warning">
         <div class="iui-label">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-textarea"
           rows="3"
         ></textarea>
-        <div class="iui-message">
-          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-            />
-          </svg>
-        </div>
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
       </label>
 
-      <label class="iui-input-container iui-inline iui-negative">
+      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon iui-negative">
         <div class="iui-label">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-textarea"
           rows="3"
         ></textarea>
-        <div class="iui-message">
-          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-          </svg>
-        </div>
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
       </label>
     </section>
   </body>

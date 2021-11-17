@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Toast notification | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -19,247 +23,319 @@
       href="../assets/demo.css"
     />
     <style>
-      .iui-toast-wrapper {
-        margin-top: 90px;
-        padding-top: 20px;
+      html {
+        color-scheme: light dark;
+      }
+
+      html.iui-theme-dark {
+        color-scheme: dark;
+      }
+
+      html.iui-theme-light {
+        color-scheme: light;
+      }
+
+      .placement-control {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .placement-choice {
+        margin: 0 8px;
+        display: flex;
+        align-items: center;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/info-circular"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
-  <body class="iui-body">
+  <body
+    class="iui-body"
+    style='height: 90vh;'
+  >
     <theme-button></theme-button>
     <h1>Toast notification</h1>
     <hr />
-
-    <div class="iui-toast-wrapper">
-
-      <div
-        class="iui-toast iui-positive"
-        id="demo-positive"
-      >
-        <div class="iui-status-area">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
-        </div>
-        <div class="iui-message">Job processing completed.</div>
-        <a
-          class="iui-anchor"
-          href="#"
-        >View the report</a>
-        <button
-          aria-label="Close"
-          type="button"
-          class="iui-button iui-borderless iui-small"
+    <div style="display: grid; grid-template-rows: auto 1fr; gap: 11px; height: 100%;">
+      <div class="placement-control">
+        <h3>Toast notifications placement:</h3>
+        <label
+          class="placement-choice"
+          id='top-start-option'
         >
-          <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
-          </svg>
-        </button>
-      </div>
-
-      <div class="iui-toast iui-positive">
-        <div class="iui-status-area">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
-        </div>
-        <div class="iui-message">Processing completed.</div>
-        <button
-          aria-label="Close"
-          type="button"
-          class="iui-button iui-borderless iui-small"
+          <input
+            type="radio"
+            name="radio-demo-6"
+            value="top-start"
+          />
+          <span>Top Start</span>
+        </label>
+        <label
+          id='top-option'
+          class="placement-choice"
         >
-          <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
-          </svg>
-        </button>
-      </div>
-
-      <div class="iui-toast iui-positive">
-        <div class="iui-status-area">
-          <!-- Use status-success.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm-1.35 12-3.65-3.41 1.4-1.3 2.36 2.2 4.83-4.49 1.41 1.29z" />
-          </svg>
-        </div>
-        <div class="iui-message">
-          Bacon ipsum dolor amet shoulder andouille meatball meatloaf chicken
-          pork loin alcatra boudin pig beef ribs. Short loin short ribs buffalo
-          shankle, jerky fatback leberkas meatball boudin. Kevin meatloaf flank
-          pancetta, picanha tail kielbasa salami ham hock sirloin cow
-          frankfurter capicola. Jowl shankle short ribs rump shank ribeye,
-          frankfurter sausage.
-        </div>
-      </div>
-
-      <div class="iui-toast iui-informational">
-        <div class="iui-status-area">
-          <!-- Use info-circular.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1.2 3.2a.92336.92336 0 0 1 .997.8433q.00235.02829.003.0567a1.30936 1.30936 0 0 1 -1.3 1.2.94477.94477 0 0 1 -1-1 1.22815 1.22815 0 0 1 1.3-1.1zm-2 9.6c-.5 0-.9-.3-.5-1.7l.6-2.4c.1-.4.1-.5 0-.5-.2-.1-.9.2-1.3.5l-.2-.5a6.49722 6.49722 0 0 1 3.3-1.6c.5 0 .6.6.3 1.6l-.7 2.6c-.1.5-.1.6.1.6a2.00287 2.00287 0 0 0 1.1-.6l.3.4a5.76881 5.76881 0 0 1 -3 1.6z"
-            />
-          </svg>
-        </div>
-        <div class="iui-message">
-          Bacon ipsum dolor amet shoulder andouille meatball meatloaf chicken
-          pork loin alcatra boudin pig beef ribs. Short loin short ribs buffalo
-          shankle, jerky fatback leberkas meatball boudin. Kevin meatloaf flank
-          pancetta, picanha tail kielbasa salami ham hock sirloin cow
-          frankfurter capicola. Jowl shankle short ribs rump shank ribeye,
-          frankfurter sausage.
-        </div>
-        <a
-          class="iui-anchor"
-          href="#"
-        >View</a>
-        <button
-          aria-label="Close"
-          type="button"
-          class="iui-button iui-borderless iui-small"
+          <input
+            type="radio"
+            name="radio-demo-6"
+            value="top"
+            checked
+          />
+          </span>
+          <span>Top</span>
+        </label>
+        <label
+          id='top-end-option'
+          class="placement-choice"
         >
-          <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
-          </svg>
-        </button>
+          <input
+            type="radio"
+            name="radio-demo-6"
+            value="top-end"
+          />
+          <span>Top End</span>
+        </label>
+        <label
+          id='bottom-start-option'
+          class="placement-choice"
+        >
+          <input
+            type="radio"
+            name="radio-demo-6"
+            value="bottom-start"
+          />
+          <span>Bottom Start</span>
+        </label>
+        <label
+          id='bottom-option'
+          class="placement-choice"
+        >
+          <input
+            type="radio"
+            name="radio-demo-6"
+            value="bottom"
+          />
+          <span>Bottom</span>
+        </label>
+        <label
+          id='bottom-end-option'
+          class="placement-choice"
+        >
+          <input
+            type="radio"
+            name="radio-demo-6"
+            value="bottom-end"
+          />
+          <span>Bottom End</span>
+        </label>
       </div>
 
       <div
-        class="iui-toast iui-informational"
-        id="demo-informational"
+        style="position: relative; border: 1px solid;"
+        id='toast-notifications-test'
       >
-        <div class="iui-status-area">
-          <!-- Use info-circular.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1.2 3.2a.92336.92336 0 0 1 .997.8433q.00235.02829.003.0567a1.30936 1.30936 0 0 1 -1.3 1.2.94477.94477 0 0 1 -1-1 1.22815 1.22815 0 0 1 1.3-1.1zm-2 9.6c-.5 0-.9-.3-.5-1.7l.6-2.4c.1-.4.1-.5 0-.5-.2-.1-.9.2-1.3.5l-.2-.5a6.49722 6.49722 0 0 1 3.3-1.6c.5 0 .6.6.3 1.6l-.7 2.6c-.1.5-.1.6.1.6a2.00287 2.00287 0 0 0 1.1-.6l.3.4a5.76881 5.76881 0 0 1 -3 1.6z"
-            />
-          </svg>
-        </div>
-        <div class="iui-message">
-          26 files are available for synchronization.
-        </div>
-        <a
-          class="iui-anchor"
-          href="#"
-        >View</a>
-      </div>
-
-      <div
-        class="iui-toast iui-negative"
-        id="demo-negative"
-      >
-        <div class="iui-status-area">
-          <!-- Use status-error.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z" />
-          </svg>
-        </div>
-        <div class="iui-message">Job processing error.</div>
-        <a
-          class="iui-anchor"
-          href="#"
-        >View the report</a>
-        <button
-          aria-label="Close"
-          type="button"
-          class="iui-button iui-borderless iui-small"
+        <div
+          class="iui-toast-wrapper iui-placement-top"
+          style="position: absolute;"
+          id='toast-notifications-click'
         >
-          <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
+          <div
+            class="iui-toast iui-positive"
+            id="demo-positive"
           >
-            <path
-              d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
-          </svg>
-        </button>
-      </div>
+            <div class="iui-status-area">
+              <svg-status-success
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-status-success>
+            </div>
+            <div class="iui-message">Job processing completed.</div>
+            <a
+              class="iui-anchor"
+              href="#"
+            >View the report</a>
+            <button
+              aria-label="Close"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-close-small
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-close-small>
+            </button>
+          </div>
 
-      <div
-        class="iui-toast iui-warning"
-        id="demo-warning"
-      >
-        <div class="iui-status-area">
-          <!-- Use status-warning.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
+          <div class="iui-toast iui-positive">
+            <div class="iui-status-area">
+              <svg-status-success
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-status-success>
+            </div>
+            <div class="iui-message">Processing completed.</div>
+            <button
+              aria-label="Close"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-close-small
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-close-small>
+            </button>
+          </div>
+
+          <div class="iui-toast iui-positive">
+            <div class="iui-status-area">
+              <svg-status-success
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-status-success>
+            </div>
+            <div class="iui-message">
+              Bacon ipsum dolor amet shoulder andouille meatball meatloaf chicken
+              pork loin alcatra boudin pig beef ribs. Short loin short ribs buffalo
+              shankle, jerky fatback leberkas meatball boudin. Kevin meatloaf flank
+              pancetta, picanha tail kielbasa salami ham hock sirloin cow
+              frankfurter capicola. Jowl shankle short ribs rump shank ribeye,
+              frankfurter sausage.
+            </div>
+          </div>
+
+          <div class="iui-toast iui-informational">
+            <div class="iui-status-area">
+              <svg-info-circular
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-info-circular>
+            </div>
+            <div class="iui-message">
+              Bacon ipsum dolor amet shoulder andouille meatball meatloaf chicken
+              pork loin alcatra boudin pig beef ribs. Short loin short ribs buffalo
+              shankle, jerky fatback leberkas meatball boudin. Kevin meatloaf flank
+              pancetta, picanha tail kielbasa salami ham hock sirloin cow
+              frankfurter capicola. Jowl shankle short ribs rump shank ribeye,
+              frankfurter sausage.
+            </div>
+            <a
+              class="iui-anchor"
+              href="#"
+            >View</a>
+            <button
+              aria-label="Close"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-close-small
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-close-small>
+            </button>
+          </div>
+
+          <div
+            class="iui-toast iui-informational"
+            id="demo-informational"
           >
-            <path
-              d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
-            />
-          </svg>
+            <div class="iui-status-area">
+              <svg-info-circular
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-info-circular>
+            </div>
+            <div class="iui-message">
+              26 files are available for synchronization.
+            </div>
+            <a
+              class="iui-anchor"
+              href="#"
+            >View</a>
+          </div>
+
+          <div
+            class="iui-toast iui-negative"
+            id="demo-negative"
+          >
+            <div class="iui-status-area">
+              <svg-status-error
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-status-error>
+            </div>
+            <div class="iui-message">Job processing error.</div>
+            <a
+              class="iui-anchor"
+              href="#"
+            >View the report</a>
+            <button
+              aria-label="Close"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-close-small
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-close-small>
+            </button>
+          </div>
+
+          <div
+            class="iui-toast iui-warning"
+            id="demo-warning"
+          >
+            <div class="iui-status-area">
+              <svg-status-warning
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-status-warning>
+            </div>
+            <div class="iui-message">Job processing requires approval.</div>
+            <a
+              class="iui-anchor"
+              href="#"
+            >Approve</a>
+            <button
+              aria-label="Close"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-close-small
+                class="iui-icon"
+                aria-hidden="true"
+              ></svg-close-small>
+            </button>
+          </div>
         </div>
-        <div class="iui-message">Job processing requires approval.</div>
-        <a
-          class="iui-anchor"
-          href="#"
-        >Approve</a>
-        <button
-          aria-label="Close"
-          type="button"
-          class="iui-button iui-borderless iui-small"
-        >
-          <!-- Use close-small.svg from @itwin/itwinui-icons package. -->
-          <svg
-            class="iui-icon"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z" />
-          </svg>
-        </button>
       </div>
-
     </div>
+
+    <script>
+      const notifications = document.querySelector('#toast-notifications-click');
+      // Clicking on menu-item should toggle selection
+      document.querySelectorAll('input').forEach((item) => {
+        item.addEventListener('click', () => {
+          notifications.classList.value = `iui-toast-wrapper iui-placement-${item.value}`;
+        });
+      });
+    </script>
   </body>
 </html>

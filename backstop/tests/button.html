@@ -3,13 +3,17 @@
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
 <!DOCTYPE html>
-<html id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Button | iTwinUI</title>
-    <link
-      rel="icon"
-      href="../assets/favicon.ico"
-    />
     <link
       rel="stylesheet"
       href="../../lib/css/all.css"
@@ -18,6 +22,46 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/placeholder"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/download"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/arrow-right"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/delete"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/rename"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/list"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/thumbnails"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-happy"
+    ></script>
     <script src="../assets/theme.js"></script>
     <style>
       #demo-default button,
@@ -65,60 +109,36 @@
         </button>
 
         <button class="iui-button iui-high-visibility iui-small">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Small left icon</span>
         </button>
 
         <button class="iui-button iui-high-visibility iui-small">
           <span class="iui-label">Small right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-high-visibility iui-small">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button
           class="iui-button iui-high-visibility iui-small"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Small disabled</span>
         </button>
       </div>
@@ -132,60 +152,36 @@
         </button>
 
         <button class="iui-button iui-high-visibility">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Normal left icon</span>
         </button>
 
         <button class="iui-button iui-high-visibility">
           <span class="iui-label">Normal right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-high-visibility">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button
           class="iui-button iui-high-visibility"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Normal disabled</span>
         </button>
       </div>
@@ -199,60 +195,36 @@
         </button>
 
         <button class="iui-button iui-high-visibility iui-large">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Large left icon</span>
         </button>
 
         <button class="iui-button iui-high-visibility iui-large">
           <span class="iui-label">Large right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-high-visibility iui-large">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button
           class="iui-button iui-high-visibility iui-large"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Large disabled</span>
         </button>
       </div>
@@ -269,60 +241,36 @@
         </button>
 
         <button class="iui-button iui-cta iui-small">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Small left icon</span>
         </button>
 
         <button class="iui-button iui-cta iui-small">
           <span class="iui-label">Small right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-cta iui-small">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button
           class="iui-button iui-cta iui-small"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Small disabled</span>
         </button>
       </div>
@@ -336,60 +284,36 @@
         </button>
 
         <button class="iui-button iui-cta">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Normal left icon</span>
         </button>
 
         <button class="iui-button iui-cta">
           <span class="iui-label">Normal right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-cta">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button
           class="iui-button iui-cta"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Normal disabled</span>
         </button>
       </div>
@@ -403,60 +327,36 @@
         </button>
 
         <button class="iui-button iui-cta iui-large">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Large left icon</span>
         </button>
 
         <button class="iui-button iui-cta iui-large">
           <span class="iui-label">Large right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-cta iui-large">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button
           class="iui-button iui-cta iui-large"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Large disabled</span>
         </button>
       </div>
@@ -473,74 +373,44 @@
         </button>
 
         <button class="iui-button iui-small">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Small left icon</span>
         </button>
 
         <button class="iui-button iui-small">
           <span class="iui-label">Small right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-small">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-small iui-dropdown">
           <span class="iui-label">Small dropdown</span>
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon "
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
 
         <button
           class="iui-button iui-small"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Small disabled</span>
         </button>
       </div>
@@ -554,74 +424,44 @@
         </button>
 
         <button class="iui-button">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Normal left icon</span>
         </button>
 
         <button class="iui-button">
           <span class="iui-label">Normal right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-dropdown">
           <span class="iui-label">Normal dropdown</span>
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
 
         <button
           class="iui-button"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Normal disabled</span>
         </button>
       </div>
@@ -635,74 +475,44 @@
         </button>
 
         <button class="iui-button iui-large">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Large left icon</span>
         </button>
 
         <button class="iui-button iui-large">
           <span class="iui-label">Large right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-large">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-large iui-dropdown">
           <span class="iui-label">Large dropdown</span>
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
 
         <button
           class="iui-button iui-large"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Large disabled</span>
         </button>
       </div>
@@ -719,75 +529,45 @@
         </button>
 
         <button class="iui-button iui-borderless iui-small">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Small left icon</span>
         </button>
 
         <button class="iui-button iui-borderless iui-small">
           <span class="iui-label">Small right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
 
         <button class="iui-button iui-borderless iui-small">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-borderless iui-small iui-dropdown">
           <span class="iui-label">Small dropdown</span>
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon "
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
 
         <button
           class="iui-button iui-borderless iui-small"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Small disabled</span>
         </button>
       </div>
@@ -801,74 +581,44 @@
         </button>
 
         <button class="iui-button iui-borderless">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Normal left icon</span>
         </button>
 
         <button class="iui-button iui-borderless">
           <span class="iui-label">Normal right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-borderless">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-borderless iui-dropdown">
           <span class="iui-label">Normal dropdown</span>
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
 
         <button
           class="iui-button iui-borderless"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Normal disabled</span>
         </button>
       </div>
@@ -882,74 +632,44 @@
         </button>
 
         <button class="iui-button iui-borderless iui-large">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Large left icon</span>
         </button>
 
         <button class="iui-button iui-borderless iui-large">
           <span class="iui-label">Large right icon</span>
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-borderless iui-large">
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
         </button>
 
         <button class="iui-button iui-borderless iui-large iui-dropdown">
           <span class="iui-label">Large dropdown</span>
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
 
         <button
           class="iui-button iui-borderless iui-large"
           disabled
         >
-          <!-- Use placeholder.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-placeholder
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m0 0v16h16v-16zm14.85714 1.94286v12.11428l-6.05714-6.05714zm-6.85714 5.25714-6.05714-6.05714h12.11428zm-.8.8-6.05714 6.05714v-12.11428zm.8.8 6.05714 6.05714h-12.11428z"
-            />
-          </svg>
+          ></svg-placeholder>
           <span class="iui-label">Large disabled</span>
         </button>
       </div>
@@ -1009,71 +729,47 @@
           title="Download"
           class="iui-button"
         >
-          <!-- Use download.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-download
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m14 7h-4v-7h-4v7h-4l6 5zm0 4v3h-12v-3h-2v5h16v-5z" />
-          </svg>
+          ></svg-download>
         </button>
         <button
           title="Move"
           class="iui-button"
         >
-          <!-- Use arrow-right.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-arrow-right
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m11 3 5 5-5 5v-3h-11v-4h11z" />
-          </svg>
+          ></svg-arrow-right>
         </button>
         <button
           title="Delete"
           class="iui-button"
           disabled
         >
-          <!-- Use delete.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-delete
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="M14,1V2H2V1H5L6,0h4l1,1ZM3,3H13V15a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1ZM9,14h1V5H9ZM6,14H7V5H6Z" />
-          </svg>
+          ></svg-delete>
         </button>
         <button
           title="Rename"
           class="iui-button"
         >
-          <!-- Use rename.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-rename
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m13 3h-2v1h5v-1h-2v10h2v-1h-5v1h2zm-10 4h4a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2zm8 3h-10v-4h10v-1h-10a1 1 0 0 0 -1 1v4a1 1 0 0 0 1 1h10z"
-            />
-          </svg>
+          ></svg-rename>
         </button>
         <button
           title="More options&mldr;"
           class="iui-button"
         >
-          <!-- Use more.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-more
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-            />
-          </svg>
+          ></svg-more>
         </button>
       </span>
 
@@ -1085,74 +781,50 @@
           title="Download"
           class="iui-button"
         >
-          <!-- Use download.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-download
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m14 7h-4v-7h-4v7h-4l6 5zm0 4v3h-12v-3h-2v5h16v-5z" />
-          </svg>
+          ></svg-download>
         </button>
         <button
           disabled
           title="Move"
           class="iui-button"
         >
-          <!-- Use arrow-right.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-arrow-right
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m11 3 5 5-5 5v-3h-11v-4h11z" />
-          </svg>
+          ></svg-arrow-right>
         </button>
         <button
           title="Delete"
           class="iui-button"
           disabled
         >
-          <!-- Use delete.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-delete
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="M14,1V2H2V1H5L6,0h4l1,1ZM3,3H13V15a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1ZM9,14h1V5H9ZM6,14H7V5H6Z" />
-          </svg>
+          ></svg-delete>
         </button>
         <button
           disabled
           title="Rename"
           class="iui-button"
         >
-          <!-- Use rename.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-rename
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m13 3h-2v1h5v-1h-2v10h2v-1h-5v1h2zm-10 4h4a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2zm8 3h-10v-4h10v-1h-10a1 1 0 0 0 -1 1v4a1 1 0 0 0 1 1h10z"
-            />
-          </svg>
+          ></svg-rename>
         </button>
         <button
           disabled
           title="More options&mldr;"
           class="iui-button"
         >
-          <!-- Use more.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-more
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-            />
-          </svg>
+          ></svg-more>
         </button>
       </span>
 
@@ -1163,29 +835,19 @@
           title="List view"
           class="iui-button"
         >
-          <!-- Use list.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-list
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m2 2a.94477.94477 0 0 1 -1 1 .94477.94477 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.07539 1.07539 0 0 1 1 1m2-13h12v2h-12zm0 4h12v2h-12zm0 4h12v2h-12zm0 4h12v2h-12z"
-            />
-          </svg>
+          ></svg-list>
         </button>
         <button
           title="Tile view"
           class="iui-button iui-active"
         >
-          <!-- Use thumbnails.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-thumbnails
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m9 0h7v7h-7zm0 9h7v7h-7zm-9 0h7v7h-7zm0-9h7v7h-7z" />
-          </svg>
+          ></svg-thumbnails>
         </button>
       </span>
 
@@ -1197,30 +859,20 @@
           title="List view"
           class="iui-button"
         >
-          <!-- Use list.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-list
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m2 2a.94477.94477 0 0 1 -1 1 .94477.94477 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.07539 1.07539 0 0 1 1 1m2-13h12v2h-12zm0 4h12v2h-12zm0 4h12v2h-12zm0 4h12v2h-12z"
-            />
-          </svg>
+          ></svg-list>
         </button>
         <button
           disabled
           title="Tile view"
           class="iui-button iui-active"
         >
-          <!-- Use thumbnails.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-thumbnails
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m9 0h7v7h-7zm0 9h7v7h-7zm-9 0h7v7h-7zm0-9h7v7h-7z" />
-          </svg>
+          ></svg-thumbnails>
         </button>
       </span>
     </section>
@@ -1277,71 +929,47 @@
           title="Download"
           class="iui-button iui-borderless"
         >
-          <!-- Use download.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-download
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m14 7h-4v-7h-4v7h-4l6 5zm0 4v3h-12v-3h-2v5h16v-5z" />
-          </svg>
+          ></svg-download>
         </button>
         <button
           title="Move"
           class="iui-button iui-borderless"
         >
-          <!-- Use arrow-right.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-arrow-right
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m11 3 5 5-5 5v-3h-11v-4h11z" />
-          </svg>
+          ></svg-arrow-right>
         </button>
         <button
           title="Delete"
           class="iui-button iui-borderless"
           disabled
         >
-          <!-- Use delete.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-delete
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="M14,1V2H2V1H5L6,0h4l1,1ZM3,3H13V15a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1ZM9,14h1V5H9ZM6,14H7V5H6Z" />
-          </svg>
+          ></svg-delete>
         </button>
         <button
           title="Rename"
           class="iui-button iui-borderless"
         >
-          <!-- Use rename.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-rename
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m13 3h-2v1h5v-1h-2v10h2v-1h-5v1h2zm-10 4h4a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2zm8 3h-10v-4h10v-1h-10a1 1 0 0 0 -1 1v4a1 1 0 0 0 1 1h10z"
-            />
-          </svg>
+          ></svg-rename>
         </button>
         <button
           title="More options&mldr;"
           class="iui-button iui-borderless"
         >
-          <!-- Use more.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-more
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-            />
-          </svg>
+          ></svg-more>
         </button>
       </span>
 
@@ -1353,74 +981,50 @@
           title="Download"
           class="iui-button iui-borderless"
         >
-          <!-- Use download.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-download
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m14 7h-4v-7h-4v7h-4l6 5zm0 4v3h-12v-3h-2v5h16v-5z" />
-          </svg>
+          ></svg-download>
         </button>
         <button
           disabled
           title="Move"
           class="iui-button iui-borderless"
         >
-          <!-- Use arrow-right.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-arrow-right
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m11 3 5 5-5 5v-3h-11v-4h11z" />
-          </svg>
+          ></svg-arrow-right>
         </button>
         <button
           title="Delete"
           class="iui-button iui-borderless"
           disabled
         >
-          <!-- Use delete.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-delete
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="M14,1V2H2V1H5L6,0h4l1,1ZM3,3H13V15a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1ZM9,14h1V5H9ZM6,14H7V5H6Z" />
-          </svg>
+          ></svg-delete>
         </button>
         <button
           disabled
           title="Rename"
           class="iui-button iui-borderless"
         >
-          <!-- Use rename.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-rename
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m13 3h-2v1h5v-1h-2v10h2v-1h-5v1h2zm-10 4h4a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2zm8 3h-10v-4h10v-1h-10a1 1 0 0 0 -1 1v4a1 1 0 0 0 1 1h10z"
-            />
-          </svg>
+          ></svg-rename>
         </button>
         <button
           disabled
           title="More options&mldr;"
           class="iui-button iui-borderless"
         >
-          <!-- Use more.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-more
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
-            />
-          </svg>
+          ></svg-more>
         </button>
       </span>
 
@@ -1431,29 +1035,19 @@
           title="List view"
           class="iui-button iui-borderless"
         >
-          <!-- Use list.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-list
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m2 2a.94477.94477 0 0 1 -1 1 .94477.94477 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.07539 1.07539 0 0 1 1 1m2-13h12v2h-12zm0 4h12v2h-12zm0 4h12v2h-12zm0 4h12v2h-12z"
-            />
-          </svg>
+          ></svg-list>
         </button>
         <button
           title="Tile view"
           class="iui-button iui-borderless iui-active"
         >
-          <!-- Use thumbnails.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-thumbnails
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m9 0h7v7h-7zm0 9h7v7h-7zm-9 0h7v7h-7zm0-9h7v7h-7z" />
-          </svg>
+          ></svg-thumbnails>
         </button>
       </span>
 
@@ -1465,30 +1059,20 @@
           title="List view"
           class="iui-button iui-borderless"
         >
-          <!-- Use list.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-list
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m2 2a.94477.94477 0 0 1 -1 1 .94477.94477 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.00209 1.00209 0 0 1 1 1m0 4a.94477.94477 0 0 1 -1 1 1.00209 1.00209 0 0 1 -1-1 .94477.94477 0 0 1 1-1 1.07539 1.07539 0 0 1 1 1m2-13h12v2h-12zm0 4h12v2h-12zm0 4h12v2h-12zm0 4h12v2h-12z"
-            />
-          </svg>
+          ></svg-list>
         </button>
         <button
           disabled
           title="Tile view"
           class="iui-button iui-borderless iui-active"
         >
-          <!-- Use thumbnails.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-thumbnails
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path d="m9 0h7v7h-7zm0 9h7v7h-7zm-9 0h7v7h-7zm0-9h7v7h-7z" />
-          </svg>
+          ></svg-thumbnails>
         </button>
       </span>
     </section>
@@ -1503,16 +1087,10 @@
           <span class="iui-label">Small split menu</span>
         </button>
         <button class="iui-button iui-small iui-high-visibility">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1521,16 +1099,10 @@
           <span class="iui-label">Small split menu</span>
         </button>
         <button class="iui-button iui-small iui-cta">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1539,16 +1111,10 @@
           <span class="iui-label">Small split menu</span>
         </button>
         <button class="iui-button iui-small">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1563,16 +1129,10 @@
           class="iui-button iui-small"
           disabled
         >
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1583,16 +1143,10 @@
           <span class="iui-label">Split menu</span>
         </button>
         <button class="iui-button iui-high-visibility">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1601,16 +1155,10 @@
           <span class="iui-label">Split menu</span>
         </button>
         <button class="iui-button iui-cta">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1619,16 +1167,10 @@
           <span class="iui-label">Split menu</span>
         </button>
         <button class="iui-button">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1643,16 +1185,10 @@
           class="iui-button"
           disabled
         >
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1663,16 +1199,10 @@
           <span class="iui-label">Large split menu</span>
         </button>
         <button class="iui-button iui-large iui-high-visibility">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1681,16 +1211,10 @@
           <span class="iui-label">Large split menu</span>
         </button>
         <button class="iui-button iui-large iui-cta">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1699,16 +1223,10 @@
           <span class="iui-label">Large split menu</span>
         </button>
         <button class="iui-button iui-large">
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
 
@@ -1723,16 +1241,10 @@
           class="iui-button iui-large"
           disabled
         >
-          <!-- Use caret-down-small.svg from @itwin/itwinui-icons package. -->
-          <svg
+          <svg-caret-down-small
             class="iui-icon"
             aria-hidden="true"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
-            />
-          </svg>
+          ></svg-caret-down-small>
         </button>
       </span>
     </section>
@@ -1743,16 +1255,10 @@
     <p class="iui-text-small iui-text-muted">Look to the bottom right of your browser window.</p><br />
     <section id="demo-ideas">
       <button class="iui-button iui-idea">
-        <!-- Use smiley-happy.svg from @itwin/itwinui-icons package. -->
-        <svg
+        <svg-smiley-happy
           class="iui-icon"
           aria-hidden="true"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="m8 12.5a5.1892 5.1892 0 0 1 -3.8716-1.666.49964.49964 0 1 1 .7432-.668 4.19111 4.19111 0 0 0 3.1284 1.334 4.19111 4.19111 0 0 0 3.1284-1.334.49964.49964 0 1 1 .7432.668 5.1892 5.1892 0 0 1 -3.8716 1.666zm3-7.5a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm-6 0a1.14609 1.14609 0 0 1 1 1.25 1.14609 1.14609 0 0 1 -1 1.25 1.14609 1.14609 0 0 1 -1-1.25 1.14609 1.14609 0 0 1 1-1.25zm3-5a8 8 0 1 0 8 8 8 8 0 0 0 -8-8z"
-          />
-        </svg>
+        ></svg-smiley-happy>
         <span class="iui-label">Feedback</span>
       </button>
     </section>

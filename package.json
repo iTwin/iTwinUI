@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.24.1",
+  "version": "0.39.1",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -27,6 +27,9 @@
     }
   },
   "lint-staged": {
+    "*.{scss}": [
+      "prettier --write"
+    ],
     "*.{scss,html}": [
       "stylelint --fix"
     ],
@@ -38,13 +41,13 @@
     "build": "yarn clean && yarn build:scss && yarn build:css && yarn build:html && yarn copy-files",
     "build:scss": "cpx \"./src/**/*.scss\" ./lib/scss",
     "build:css": "node ./scripts/generateCss.js src lib/css && yarn postcss-processing && yarn lint:copyright --fix lib/css/*",
-    "build:html": "html-minifier --input-dir ./backstop/tests --output-dir ./backstop/minified --remove-comments --collapse-whitespace --collapse-inline-tag-whitespace && yarn print \"Finished minifying HTML files.\"",
+    "build:html": "node ./scripts/generateHtml.js backstop/tests backstop/minified",
     "build:watch": "yarn build && concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn build:watch:html\"",
     "build:watch:scss": "chokidar \"src/**/*\" -c \"yarn build:scss && yarn build:css\"",
     "build:watch:html": "chokidar \"backstop/tests/**/*\" -c \"yarn build:html\"",
     "copy-files": "cpx package.json lib && cpx README.md lib",
     "createComponent": "node ./scripts/createComponent.js",
-    "postcss-processing": "postcss lib/css --use autoprefixer --use postcss-discard-comments -d lib/css --no-map && yarn print \"Finished post-processing CSS.\"",
+    "postcss-processing": "postcss lib/css -d lib/css --no-map && yarn print \"Finished post-processing CSS.\"",
     "clean": "rimraf ./lib ./backstop/results/bitmaps_test",
     "lint": "stylelint \"src/**/*.scss\" \"backstop/tests/*.html\"",
     "lint:copyright": "node scripts/copyrightLinter.js",
@@ -64,11 +67,12 @@
     "cpx": "^1.5.0",
     "html-minifier": "^4.0.0",
     "husky": "=4",
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^11.2.6",
     "node-sass": "^5.0.0",
     "postcss": "^8.2.15",
     "postcss-cli": "^8.3.1",
     "postcss-discard-comments": "^4.0.2",
+    "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "stylelint": "^13.10.0",
     "stylelint-config-sass-guidelines": "^8.0.0"
@@ -79,6 +83,8 @@
     "jimp": ">=0.16.1",
     "trim-newlines": "^3.0.1",
     "glob-parent": "^5.1.2",
-    "jpeg-js": "^0.4.3"
+    "jpeg-js": "^0.4.3",
+    "set-value": "^4.1.0",
+    "ansi-regex": "^5.0.1"
   }
 }

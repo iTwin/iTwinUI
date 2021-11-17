@@ -5,19 +5,9 @@
 .iui-alert {
   @include iui-alert;
 
-  &.iui-informational {
-    @include iui-alert-informational;
-  }
-  
-  &.iui-positive {
-    @include iui-alert-positive;
-  }
-
-  &.iui-warning {
-    @include iui-alert-warning;
-  }
-
-  &.iui-negative {
-    @include iui-alert-negative;
+  @each $status in positive, negative, warning, informational {
+    &.iui-#{$status} {
+      @include iui-alert-category($statusColor: if($status == informational, 'primary', $status));
+    }
   }
 }

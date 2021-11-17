@@ -4,8 +4,8 @@
 
 @mixin iui-input {
   @include iui-reset;
-  @include iui-font-family;
   width: 100%;
+  font-family: inherit;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
   line-height: $iui-line-height;
@@ -52,21 +52,21 @@
     @include iui-input-autofill;
   }
 
-  &[disabled] {
-    @include themed {
-      background-color: t(iui-color-background-disabled);
-      border-color: t(iui-color-background-disabled);
-    }
-    cursor: not-allowed;
-  }
-
-  &:hover:enabled {
+  &:hover {
     @include themed {
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
     }
     @media (prefers-reduced-motion: no-preference) {
       transition: border-color $iui-speed-fast ease-out;
     }
+  }
+
+  &[disabled] {
+    @include themed {
+      background-color: t(iui-color-background-disabled);
+      border-color: t(iui-color-background-disabled);
+    }
+    cursor: not-allowed;
   }
 
   &:focus {

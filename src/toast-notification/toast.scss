@@ -5,7 +5,6 @@
 
 @mixin iui-toast {
   @include iui-reset;
-  @include iui-font-family;
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
@@ -16,9 +15,7 @@
   @include themed {
     background-color: t(iui-color-background-1);
     border: 1px solid t(iui-color-foreground-body);
-    box-shadow: 0 0 0 1px
-      rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4)),
-      $iui-elevation-24;
+    box-shadow: 0 0 0 1px rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4)), $iui-elevation-24;
   }
 
   > .iui-status-area {

@@ -4,7 +4,6 @@
 
 @mixin iui-toggle-switch {
   @include iui-reset;
-  @include iui-font-family;
   display: flex;
   align-items: center;
   font-size: $iui-font-size;
@@ -32,13 +31,11 @@
       width: ($iui-m * 2) + ($iui-xxs * 3);
       border-radius: $iui-baseline;
       @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast ease,
-          border-color $iui-speed-fast ease;
+        transition: background-color $iui-speed-fast ease, border-color $iui-speed-fast ease;
       }
       @include themed {
         background-color: t(iui-color-background-1);
-        border: 1px solid
-          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       }
 
       > .iui-icon {
@@ -65,8 +62,7 @@
         right: $iui-m + $iui-xs;
         border-radius: 50%;
         @media (prefers-reduced-motion: no-preference) {
-          transition: right $iui-speed-fast ease,
-            background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
+          transition: right $iui-speed-fast ease, background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
         }
         @include themed {
           background-color: t(iui-color-foreground-body);
@@ -79,8 +75,7 @@
     &:focus {
       ~ .iui-toggle {
         @include themed {
-          border: 1px solid
-            rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+          border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
         }
 
         > .iui-handle {
