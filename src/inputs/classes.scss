@@ -38,10 +38,6 @@
 
 .iui-input-label {
   @include iui-input-label;
-
-  &.iui-inline {
-    @include iui-input-label-inline;
-  }
 }
 
 .iui-input {
