@@ -154,8 +154,7 @@
     @include iui-header-button-icon;
   }
 
-  .iui-header-button.iui-header-button {
-    // boost specificity
+  .iui-header-button.iui-header-button { // boost specificity
     @include iui-header-button;
   }
 
@@ -173,8 +172,7 @@
   @at-root {
     a#{&}, // rendered as anchor element
     button#{&}, // rendered as button element
-    &[role='button'] {
-      // rendered as div with role=button
+    &[role='button'] { // rendered as div with role=button
       @include iui-header-button-focus;
       cursor: pointer;
 
