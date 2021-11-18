@@ -6,10 +6,10 @@ import cx from 'classnames';
 import React from 'react';
 import {
   useTheme,
-  useResizeObserver,
   useMergedRefs,
   getBoundedValue,
   getWindow,
+  useContainerWidth,
 } from '../utils';
 import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab';
@@ -110,16 +110,7 @@ export const Tabs = (props: TabsProps) => {
   useTheme();
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
-
-  const [tabsWidth, setTabsWidth] = React.useState(
-    () => tablistRef.current?.getBoundingClientRect().width,
-  );
-  const updateTabsWidth = React.useCallback(
-    ({ width }) => setTabsWidth(width),
-    [],
-  );
-
-  const [tablistSizeRef] = useResizeObserver(updateTabsWidth);
+  const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
   const refs = useMergedRefs(tablistRef, tablistSizeRef);
 
   const [currentActiveIndex, setCurrentActiveIndex] = React.useState(() =>

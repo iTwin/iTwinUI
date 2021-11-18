@@ -6,5 +6,6 @@ export * from './useEventListener';
 export * from './useMergedRefs';
 export * from './useOverflow';
 export * from './useResizeObserver';
+export * from './useContainerWidth';
 export * from './useTheme';
 export * from './useIntersection';
