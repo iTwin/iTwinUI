@@ -3,7 +3,9 @@
 @import '../style/index';
 @import '../icon/index';
 
-@mixin iui-button-icon($fillColor: iui-icons-color-actionable) {
+/// Mixin for button icons
+/// @arg fillColor - color to fill in icon
+@mixin iui-button-icon($fillColor: t(iui-icons-color-actionable)) {
   width: $iui-icons-default;
   height: $iui-icons-default;
   transition: fill $iui-speed-fast ease-out;
