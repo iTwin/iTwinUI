@@ -154,7 +154,8 @@
     @include iui-header-button-icon;
   }
 
-  .iui-header-button.iui-header-button { // boost specificity
+  // boost specificity
+  .iui-header-button.iui-header-button {
     @include iui-header-button;
   }
 
@@ -170,9 +171,12 @@
   height: 100%;
 
   @at-root {
-    a#{&}, // rendered as anchor element
-    button#{&}, // rendered as button element
-    &[role='button'] { // rendered as div with role=button
+    // rendered as anchor element
+    a#{&}, 
+    // rendered as button element
+    button#{&}, 
+    // rendered as div with role=button
+    &[role='button'] {
       @include iui-header-button-focus;
       cursor: pointer;
 
@@ -230,7 +234,7 @@
 }
 
 @mixin iui-header-button {
-  gap: unset;
+  gap: 0;
   max-width: 25vw;
   overflow: hidden;
   padding-right: $iui-s;
