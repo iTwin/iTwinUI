@@ -92,16 +92,29 @@
       }
     }
 
+    > .iui-button-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &,
-    &:enabled:hover,
+    &:hover,
     &[disabled],
-    &:focus-visible {
+    &:focus {
       @include themed {
         border-color: t(iui-color-background-5);
       }
     }
 
-    > .iui-icon:not(.iui-user-icon) {
+    // Overriding border from default button
+    &:focus:not(:focus-visible) {
+      @include themed {
+        border-color: t(iui-color-background-5);
+      }
+    }
+
+    > .iui-button-icon:not(.iui-user-icon) {
       width: $iui-icons-large;
       height: $iui-icons-large;
       flex-shrink: 0;
@@ -118,15 +131,17 @@
     }
 
     &.iui-active {
-      &:focus,
-      &:focus-visible {
+      @include themed {
+        box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
+      }
+
+      &:focus {
         @include themed {
           box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)),
             inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
         }
       }
 
-      &,
       &:focus:not(:focus-visible) {
         @include themed {
           box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
@@ -134,7 +149,8 @@
       }
     }
 
-    &[disabled] {
+    &[disabled],
+    &:disabled {
       @include themed {
         background-color: t(iui-color-background-2);
       }
@@ -149,11 +165,6 @@
 
     &:focus:not(:focus-visible) {
       box-shadow: none;
-    }
-
-    &:focus-visible {
-      outline: 0;
-      box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
     }
 
     &.iui-expand {

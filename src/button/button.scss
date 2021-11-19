@@ -57,21 +57,22 @@ $iui-button-padding-large: $iui-xs * 6;
 
 /// Mixin for applying padding and margins to various button sizes.
 /// @arg size - must be one of: small, medium, large
-@mixin iui-button-size($size: medium) {
+/// @arg styleType - must be one of: default, borderless
+@mixin iui-button-size($size: medium, $styleType: default) {
   @if $size == medium {
-    padding: 0 $iui-button-padding;
+    padding: if($styleType == 'borderless', 0 $iui-s, 0 $iui-button-padding);
     height: $iui-component-height;
     gap: $iui-s;
   }
 
   @if $size == small {
-    padding: 0 $iui-button-padding-small;
+    padding: if($styleType == 'borderless', 0 $iui-xxs, 0 $iui-button-padding-small);
     height: $iui-component-height-small;
     gap: $iui-xs;
   }
 
   @if $size == large {
-    padding: 0 $iui-button-padding-large;
+    padding: if($styleType == 'borderless', 0 $iui-sm, 0 $iui-button-padding-large);
     height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
     gap: $iui-sm;

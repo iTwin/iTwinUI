@@ -3,9 +3,11 @@
 @import '../style/index';
 @import '../user-icon/index';
 @import '../icon/index';
+@import '../button/index';
 
 @mixin iui-page-header {
   @include iui-reset;
+
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -171,11 +173,8 @@
   height: 100%;
 
   @at-root {
-    // rendered as anchor element
-    a#{&}, 
-    // rendered as button element
-    button#{&}, 
-    // rendered as div with role=button
+    a#{&}, // rendered as anchor element
+    button#{&}, // rendered as button element
     &[role='button'] {
       @include iui-header-button-focus;
       cursor: pointer;
@@ -234,8 +233,12 @@
 }
 
 @mixin iui-header-button {
+  @include iui-button-size(large, borderless);
+
   gap: 0;
   max-width: 25vw;
+  height: 100%;
+  border-radius: 0;
   overflow: hidden;
   padding-right: $iui-s;
 
@@ -266,9 +269,7 @@
     flex-shrink: 0;
   }
 
-  > .iui-button-icon + .iui-button-label,
-  > .iui-button-label + .iui-button-icon,
-  > .iui-button-icon + .iui-button-icon {
+  > * + * {
     margin-left: $iui-sm;
   }
 
@@ -330,10 +331,6 @@
   &.iui-active {
     @include iui-header-button-active;
 
-    .iui-button-label {
-      color: t(iui-color-foreground-primary);
-    }
-
     // Removing button hovers and backgrounds and adding last child hover
     .iui-button {
       &.iui-borderless {
@@ -391,7 +388,7 @@
   }
 
   // Blue text
-  .iui-label {
+  .iui-button-label {
     @include themed {
       color: t(iui-color-foreground-primary);
     }

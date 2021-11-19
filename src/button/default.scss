@@ -19,7 +19,7 @@
     }
     @include iui-notification-marker-hover;
 
-    > .iui-button-icon {
+    .iui-button-icon {
       @include iui-button-icon(t(iui-icons-color-actionable-hover));
     }
   }
@@ -42,25 +42,21 @@
   }
 
   &.iui-active {
-    &,
-    &:hover,
-    &:active {
-      @include themed {
-        background: linear-gradient(
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-        ),
-          linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-      }
+    @include themed {
+      background: linear-gradient(
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+      ),
+        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+    }
 
-      > .iui-button-label {
-        @include themed {
-          color: t(iui-color-foreground-primary);
-        }
+    .iui-button-label {
+      @include themed {
+        color: t(iui-color-foreground-primary);
       }
     }
 
-    > .iui-button-icon {
+    .iui-button-icon {
       @include iui-button-icon(t(iui-icons-color-primary));
     }
   }
@@ -79,8 +75,10 @@
   }
 
   &.iui-active {
-    > .iui-button-icon {
-      @include iui-button-icon(t(iui-icons-color-primary));
+    .iui-button-icon {
+      @include themed {
+        fill: t(iui-icons-color-primary);
+      }
     }
   }
 }

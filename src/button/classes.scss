@@ -24,14 +24,25 @@
 
   &.iui-borderless {
     @include iui-button-borderless;
+    @include iui-button-size(medium, borderless);
   }
+
+  @include iui-button-size(medium);
 
   &.iui-small {
     @include iui-button-size(small);
+
+    &.iui-borderless {
+      @include iui-button-size(small, borderless);
+    }
   }
 
   &.iui-large {
     @include iui-button-size(large);
+
+    &.iui-borderless {
+      @include iui-button-size(large, borderless);
+    }
   }
 }
 
