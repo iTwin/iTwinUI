@@ -45,5 +45,6 @@ module.exports = [
       { width: 500, height: 400 },
     ],
     hideSelectors: ['h2', 'hr'],
+    misMatchThreshold: 0.02,
   }),
 ];
