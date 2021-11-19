@@ -45,13 +45,9 @@
     }
   }
 
-  &[disabled] {
-    @include iui-button-disabled;
-  }
-
   &[disabled],
-  &:disabled,
-  &:disabled:hover {
+  &:disabled {
+    @include iui-button-disabled;
     background-color: transparent;
     border-color: transparent;
   }
