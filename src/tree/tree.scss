@@ -1,0 +1,140 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+$iui-active-outline: thin solid t(iui-color-foreground-primary);
+$iui-child-node-spacing: calc(36px * (var(--level, 0)));
+
+@mixin iui-tree {
+  @include themed {
+    border: 1px solid t(iui-color-background-3);
+    background-color: t(iui-color-background-1);
+  }
+}
+
+@mixin iui-tree-node {
+  @include iui-focus;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: $iui-xxs;
+  cursor: pointer;
+  box-sizing: border-box;
+  user-select: none;
+  margin-right: $iui-sm;
+  min-height: $iui-component-height-small + (2 * $iui-xxs); //button height + padding
+
+  > .iui-icon {
+    display: inline-flex;
+    width: $iui-icons-small;
+    height: $iui-icons-small;
+    margin-right: $iui-s;
+  }
+
+  > .iui-button {
+    margin-right: $iui-s;
+    margin-left: $iui-s;
+
+    &:first-child {
+      margin-left: $iui-child-node-spacing;
+    }
+
+    > .iui-icon {
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform $iui-speed-fast ease-out;
+      }
+    }
+  }
+
+  > .iui-checkbox {
+    margin-left: $iui-s;
+    margin-right: $iui-child-node-spacing;
+  }
+
+  .iui-node-label {
+    min-width: 0;
+
+    &:only-child {
+      margin-left: $iui-child-node-spacing;
+    }
+  }
+
+  .iui-title,
+  .iui-caption {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .iui-title {
+    font-size: $iui-font-size-leading;
+  }
+
+  .iui-caption {
+    font-size: $iui-font-size-small;
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
+  }
+
+  &.iui-active {
+    &,
+    &:hover {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+        outline: $iui-active-outline;
+        outline-offset: -1px;
+      }
+    }
+
+    &:focus,
+    &.iui-focused {
+      outline-width: $iui-xxs;
+      outline-offset: -2px;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: $iui-active-outline;
+      outline-offset: -1px;
+    }
+  }
+
+  &.iui-disabled {
+    &,
+    &:hover {
+      cursor: not-allowed;
+      outline: none;
+      @include themed {
+        background-color: t(iui-color-background-1);
+        color: t(iui-text-color-placeholder);
+      }
+
+      .iui-caption {
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
+      }
+    }
+  }
+
+  &:hover {
+    @include themed {
+      background-color: t(iui-color-background-4);
+    }
+
+    .iui-caption {
+      @include themed {
+        color: t(iui-color-foreground-body);
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        transition: color $iui-speed-fast ease;
+      }
+    }
+  }
+
+  &.iui-expanded {
+    > .iui-button > .iui-icon {
+      transform: rotate(90deg);
+    }
+  }
+}
