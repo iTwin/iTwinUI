@@ -106,11 +106,8 @@
       height: $iui-icons-large;
       flex-shrink: 0;
 
-      + .iui-button-label {
-        margin-left: $iui-icons-large;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      &:not(:last-child) {
+        margin-right: $iui-icons-large;
       }
     }
 

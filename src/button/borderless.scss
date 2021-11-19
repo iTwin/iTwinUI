@@ -57,6 +57,11 @@
       background-color: transparent;
       border-color: transparent;
     }
+
+    &.iui-active,
+    &:active {
+      background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
+    }
   }
 }
 
