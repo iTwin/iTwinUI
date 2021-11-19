@@ -48,8 +48,15 @@
   &[disabled],
   &:disabled {
     @include iui-button-disabled;
-    background-color: transparent;
-    border-color: transparent;
+  }
+
+  &[disabled],
+  &:disabled,
+  &:disabled:hover {
+    @include themed {
+      background-color: transparent;
+      border-color: transparent;
+    }
   }
 }
 
