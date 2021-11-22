@@ -1,13 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../icon/index';
 
 $iui-active-outline: thin solid t(iui-color-foreground-primary);
 $iui-child-node-spacing: calc(36px * (var(--level, 0)));
 
 @mixin iui-tree {
   @include themed {
-    border: 1px solid t(iui-color-background-3);
     background-color: t(iui-color-background-1);
   }
 }
@@ -22,12 +22,11 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
   box-sizing: border-box;
   user-select: none;
   margin-right: $iui-sm;
-  min-height: $iui-component-height-small + (2 * $iui-xxs); //button height + padding
+  //min-height: $iui-component-height-small + (2 * $iui-xxs); //button height + padding
+  min-height: $iui-baseline * 3;
 
   > .iui-icon {
-    display: inline-flex;
-    width: $iui-icons-small;
-    height: $iui-icons-small;
+    @include iui-icons-default;
     margin-right: $iui-s;
   }
 
@@ -67,7 +66,7 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
   }
 
   .iui-title {
-    font-size: $iui-font-size-leading;
+    font-size: $iui-font-size;
   }
 
   .iui-caption {
@@ -111,7 +110,7 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
 
       .iui-caption {
         @include themed {
-          color: t(iui-text-color-muted);
+          color: t(iui-text-color-placeholder);
         }
       }
     }
@@ -119,7 +118,7 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
 
   &:hover {
     @include themed {
-      background-color: t(iui-color-background-4);
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
     }
 
     .iui-caption {
