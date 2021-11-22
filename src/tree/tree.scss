@@ -28,6 +28,11 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
   > .iui-icon {
     @include iui-icons-default;
     margin-right: $iui-s;
+    margin-left: $iui-sm + 1;
+  }
+
+  .iui-button + .iui-icon {
+    margin-left: $iui-xs + 1;
   }
 
   > .iui-button {
@@ -48,6 +53,10 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
   > .iui-checkbox {
     margin-left: $iui-s;
     margin-right: $iui-child-node-spacing;
+  }
+
+  .iui-checkbox + .iui-node-label {
+    margin-left: $iui-s;
   }
 
   .iui-node-label {
