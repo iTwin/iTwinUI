@@ -31,7 +31,7 @@
     // Adds hover to everything that is not disabled
     &:hover > input:enabled ~ .iui-checkbox-checkmark {
       @include themed {
-        background-color: t(iui-color-background-1-overlay);
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
       }
     }
 
@@ -57,6 +57,12 @@
     input ~ .iui-checkbox-checkmark > svg > .iui-uncheck {
       opacity: 1;
       transition: opacity $iui-speed-fast ease;
+    }
+
+    input:enabled ~ .iui-checkbox-checkmark > svg > .iui-uncheck {
+      @include themed {
+        fill: t(iui-icons-color-actionable);
+      }
     }
   }
 }
