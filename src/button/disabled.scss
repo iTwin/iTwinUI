@@ -10,13 +10,13 @@
     border-color: t(iui-color-background-disabled);
   }
 
-  > .iui-button-label {
+  .iui-button-label {
     @include themed {
       color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
     }
   }
 
-  > .iui-button-icon {
-    @include iui-button-icon(t(iui-icons-color-actionable-disabled));
+  .iui-button-icon {
+    fill: t(iui-icons-color-actionable-disabled);
   }
 }

@@ -24,7 +24,6 @@
 
   &.iui-borderless {
     @include iui-button-borderless;
-    @include iui-button-size(medium, borderless);
   }
 
   @include iui-button-size(medium);

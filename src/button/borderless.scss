@@ -15,8 +15,8 @@
       border-color: transparent;
     }
 
-    > .iui-button-icon {
-      @include iui-button-icon(t(iui-icons-color-actionable-hover));
+    .iui-button-icon {
+      fill: t(iui-icons-color-actionable-hover);
     }
   }
 
@@ -37,8 +37,8 @@
       }
     }
 
-    > .iui-button-icon {
-      @include iui-button-icon(t(iui-icons-color-primary));
+    .iui-button-icon {
+      fill: t(iui-icons-color-primary);
     }
   }
 
@@ -62,6 +62,16 @@
 @mixin iui-button-borderless-base {
   background-color: transparent;
   border-color: transparent;
+
+  @include iui-button-size(medium, borderless);
+
+  &.iui-small {
+    @include iui-button-size(small, borderless);
+  }
+
+  &.iui-small {
+    @include iui-button-size(large, borderless);
+  }
 
   > .iui-button-icon:only-child {
     margin-left: $iui-component-offset;

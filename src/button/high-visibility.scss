@@ -18,7 +18,7 @@
     }
 
     .iui-button-icon {
-      @include iui-button-icon(t(iui-color-foreground-accessory));
+      fill: t(iui-color-foreground-accessory);
     }
   }
 
@@ -40,6 +40,6 @@
   }
 
   .iui-button-icon {
-    @include iui-button-icon(t(iui-color-foreground-accessory));
+    fill: t(iui-color-foreground-accessory);
   }
 }

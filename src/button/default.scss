@@ -55,10 +55,6 @@
         color: t(iui-color-foreground-primary);
       }
     }
-
-    .iui-button-icon {
-      @include iui-button-icon(t(iui-icons-color-primary));
-    }
   }
 
   &[disabled],
