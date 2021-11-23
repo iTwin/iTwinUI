@@ -54,12 +54,9 @@
       opacity: 0;
     }
 
-    input ~ .iui-checkbox-checkmark > svg > .iui-uncheck {
+    input ~ .iui-checkbox-checkmark .iui-uncheck {
       opacity: 1;
       transition: opacity $iui-speed-fast ease;
-    }
-
-    input:enabled ~ .iui-checkbox-checkmark > svg > .iui-uncheck {
       @include themed {
         fill: t(iui-icons-color-actionable);
       }
