@@ -10,6 +10,8 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
   @include themed {
     background-color: t(iui-color-background-1);
   }
+  list-style: none;
+  padding-left: 0;
 }
 
 @mixin iui-tree-node {

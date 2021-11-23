@@ -44,10 +44,11 @@
 
     <h2>Default Tree</h2>
     <section id="demo-default">
-      <div class="iui-tree">
-        <div
+      <ul class="iui-tree">
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -61,19 +62,21 @@
           <span class="iui-node-label">
             <div class="iui-title">Node 1</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <span class="iui-node-label">
             <div class="iui-title">Node 1.1</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -87,11 +90,12 @@
           <span class="iui-node-label">
             <div class="iui-title">Node 2</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -105,11 +109,12 @@
           <span class="iui-node-label">
             <div class="iui-title">Node 2.1</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="true"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -123,11 +128,12 @@
           <span class="iui-node-label">
             <div class="iui-title">Node 2.2</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           style='--level: 2;'
           tabindex="0"
+          aria-expanded="true"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -141,19 +147,21 @@
           <span class="iui-node-label">
             <div class="iui-title">Node 2.2.1</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 3;'
           tabindex="0"
+          aria-expanded="false"
         >
           <span class="iui-node-label">
             <div class="iui-title">Node 2.2.1.1</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           tabindex="0"
+          aria-expanded="false"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -167,18 +175,19 @@
           <span class="iui-node-label">
             <div class="iui-title">Node 3</div>
           </span>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
 
     <hr />
 
     <h2>With Captions</h2>
     <section id="demo-captions">
-      <div class="iui-tree">
-        <div
+      <ul class="iui-tree">
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -198,7 +207,8 @@
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+              qui officia deserunt mollit anim id est laborum.
+            </div>
             <div class="iui-caption"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -206,11 +216,12 @@
               qui officia deserunt mollit anim id est laborum.
             </div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -226,13 +237,15 @@
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+              qui officia deserunt mollit anim id est laborum.
+            </div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -252,13 +265,15 @@
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+              qui officia deserunt mollit anim id est laborum.
+            </div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <svg-placeholder
             class="iui-icon"
@@ -269,12 +284,14 @@
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+              qui officia deserunt mollit anim id est laborum.
+            </div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -290,18 +307,21 @@
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+              qui officia deserunt mollit anim id est laborum.
+            </div>
             <div class="iui-caption"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+              qui officia deserunt mollit anim id est laborum.
+            </div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -321,12 +341,14 @@
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+              qui officia deserunt mollit anim id est laborum.
+            </div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           tabindex="0"
+          aria-expanded="false"
         >
           <button
             class="iui-button iui-borderless iui-small iui-expander"
@@ -342,24 +364,27 @@
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+              qui officia deserunt mollit anim id est laborum.
+            </div>
             <div class="iui-caption"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+              qui officia deserunt mollit anim id est laborum.
+            </div>
           </span>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
 
     <hr />
     <h2>With Checkbox</h2>
     <section id="demo-checkbox">
-      <div class="iui-tree">
-        <div
+      <ul class="iui-tree">
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -405,14 +430,14 @@
           </button>
           <span class="iui-node-label">
             <div class="iui-title">Category 1</div>
-            <div class="iui-caption">A basic description.
-            </div>
+            <div class="iui-caption">A basic description.</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -450,10 +475,11 @@
           <span class="iui-node-label">
             <div class="iui-title">Subcategory</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -501,11 +527,12 @@
             <div class="iui-title">Category 2</div>
             <div class="iui-caption">A basic description.</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -552,10 +579,11 @@
           <span class="iui-node-label">
             <div class="iui-title">Subcategory</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -603,17 +631,18 @@
             <div class="iui-title">Category 3</div>
             <div class="iui-caption">A basic description.</div>
           </span>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
 
     <hr />
     <h2>Disabled</h2>
     <section id="demo-disabled">
-      <div class="iui-tree">
-        <div
+      <ul class="iui-tree">
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -659,14 +688,14 @@
           </button>
           <span class="iui-node-label">
             <div class="iui-title">Category 1</div>
-            <div class="iui-caption">A basic description.
-            </div>
+            <div class="iui-caption">A basic description.</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-disabled"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility iui-disabled">
             <input
@@ -705,10 +734,11 @@
           <span class="iui-node-label">
             <div class="iui-title">Subcategory</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -756,11 +786,12 @@
             <div class="iui-title">Category 2</div>
             <div class="iui-caption">A basic description.</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-disabled"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility iui-disabled">
             <input
@@ -809,10 +840,11 @@
           <span class="iui-node-label">
             <div class="iui-title">Subcategory</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-disabled"
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility iui-disabled">
             <input
@@ -862,17 +894,18 @@
             <div class="iui-title">Category 3</div>
             <div class="iui-caption">A basic description.</div>
           </span>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
 
     <hr />
     <h2>With Icons</h2>
     <section id="demo-icons">
-      <div class="iui-tree">
-        <div
+      <ul class="iui-tree">
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -923,11 +956,12 @@
           <span class="iui-node-label">
             <div class="iui-title">Facility 1</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="true"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -978,11 +1012,12 @@
           <span class="iui-node-label">
             <div class="iui-title">Unit 1</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 2;'
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -1024,11 +1059,12 @@
           <span class="iui-node-label">
             <div class="iui-title">System A</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 2;'
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -1070,10 +1106,11 @@
           <span class="iui-node-label">
             <div class="iui-title">System B</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           tabindex="0"
+          aria-expanded="true"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -1125,11 +1162,12 @@
             <div class="iui-title">Facility 2</div>
             <div class="iui-caption">A basic description.</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           style='--level: 1;'
           tabindex="0"
+          aria-expanded="true"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -1180,11 +1218,12 @@
           <span class="iui-node-label">
             <div class="iui-title">Unit 1</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node iui-expanded"
           style='--level: 2;'
           tabindex="0"
+          aria-expanded="true"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -1235,11 +1274,12 @@
           <span class="iui-node-label">
             <div class="iui-title">System A</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 3;'
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -1281,11 +1321,12 @@
           <span class="iui-node-label">
             <div class="iui-title">Subsystem</div>
           </span>
-        </div>
-        <div
+        </li>
+        <li
           class="iui-tree-node"
           style='--level: 2;'
           tabindex="0"
+          aria-expanded="false"
         >
           <label class="iui-checkbox iui-checkbox-visibility">
             <input
@@ -1336,8 +1377,8 @@
           <span class="iui-node-label">
             <div class="iui-title">System B</div>
           </span>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
 
     <script>
