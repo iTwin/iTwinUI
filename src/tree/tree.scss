@@ -15,20 +15,20 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
 @mixin iui-tree-node {
   @include iui-focus;
   display: flex;
-  width: 100%;
   align-items: center;
   padding: $iui-xxs;
   cursor: pointer;
   box-sizing: border-box;
-  user-select: none;
-  margin-right: $iui-sm;
-  //min-height: $iui-component-height-small + (2 * $iui-xxs); //button height + padding
+  // margin-right: $iui-sm;
   min-height: $iui-baseline * 3;
 
   > .iui-icon {
     @include iui-icons-default;
     margin-right: $iui-s;
-    margin-left: $iui-sm + 1;
+
+    &:first-child {
+      margin-left: $iui-child-node-spacing;
+    }
   }
 
   .iui-expander + .iui-icon {
