@@ -31,17 +31,17 @@
   &.iui-small {
     @include iui-button-size(small);
 
-    &.iui-borderless {
-      @include iui-button-size(small, borderless);
-    }
+    // &.iui-borderless {
+    //   @include iui-button-size(small, borderless);
+    // }
   }
 
   &.iui-large {
     @include iui-button-size(large);
 
-    &.iui-borderless {
-      @include iui-button-size(large, borderless);
-    }
+    // &.iui-borderless {
+    //   @include iui-button-size(large, borderless);
+    // }
   }
 }
 
