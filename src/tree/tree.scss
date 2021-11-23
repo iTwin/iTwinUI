@@ -31,11 +31,11 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
     margin-left: $iui-sm + 1;
   }
 
-  .iui-button + .iui-icon {
+  .iui-expander + .iui-icon {
     margin-left: $iui-xs + 1;
   }
 
-  > .iui-button {
+  > .iui-expander {
     margin-right: $iui-s;
     margin-left: $iui-s;
 
@@ -141,7 +141,7 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
   }
 
   &.iui-expanded {
-    > .iui-button > .iui-icon {
+    > .iui-expander > .iui-icon {
       transform: rotate(90deg);
     }
   }
