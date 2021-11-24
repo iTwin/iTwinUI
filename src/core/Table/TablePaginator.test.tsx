@@ -76,6 +76,29 @@ it('should render currently visible rows info and page size selector', () => {
   expect(onPageSizeChange).toHaveBeenCalledWith(25);
 });
 
+it('should render without page list', () => {
+  const { container } = renderComponent({
+    totalRowsCount: 10,
+    pageSizeList: [10, 25, 50],
+  });
+  const pageSizeSelector = container.querySelector(
+    '.iui-dropdown',
+  ) as HTMLButtonElement;
+
+  expect(pageSizeSelector).toBeTruthy();
+  expect(pageSizeSelector.textContent).toEqual('1-10 of 10');
+
+  const paginator = container.querySelector('.iui-center') as HTMLElement;
+  expect(paginator).not.toBeTruthy();
+});
+
+it('should render without page list and page size list', () => {
+  const { container } = renderComponent({ totalRowsCount: 10 });
+
+  const paginator = container.querySelector('.iui-paginator') as HTMLElement;
+  expect(paginator).not.toBeTruthy();
+});
+
 it('should render loading state when there is data', () => {
   const { container } = renderComponent({
     currentPage: 19,
@@ -118,31 +141,6 @@ it('should render loading state when there is no data', () => {
   expect(
     container.querySelector('.iui-progress-indicator-radial'),
   ).toBeTruthy();
-
-  const previousPageButton = screen.getByLabelText(
-    'Previous page',
-  ) as HTMLButtonElement;
-  expect(previousPageButton.disabled).toBe(true);
-  const nextPageButton = screen.getByLabelText(
-    'Next page',
-  ) as HTMLButtonElement;
-  expect(nextPageButton.disabled).toBe(true);
-
-  expect(container.querySelector('.iui-dropdown')).toBeFalsy();
-});
-
-it('should render disabled state when there is no data', () => {
-  const { container } = renderComponent({
-    totalRowsCount: 0,
-    pageSizeList: [10, 25, 50],
-    onPageSizeChange: jest.fn(),
-  });
-
-  const pages = container.querySelectorAll<HTMLButtonElement>(
-    '.iui-button-group .iui-button',
-  );
-  expect(pages).toHaveLength(1);
-  expect(pages[0].disabled).toBe(true);
 
   const previousPageButton = screen.getByLabelText(
     'Previous page',
