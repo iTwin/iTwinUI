@@ -4,7 +4,6 @@
 @import '../icon/index';
 
 $iui-active-outline: thin solid t(iui-color-foreground-primary);
-$iui-child-node-spacing: calc(36px * (var(--level, 0)));
 
 @mixin iui-tree {
   @include themed {
@@ -17,72 +16,59 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
 @mixin iui-tree-node {
   @include iui-focus;
   display: flex;
-  align-items: center;
-  padding: $iui-xxs;
   cursor: pointer;
-  box-sizing: border-box;
-  min-height: $iui-baseline * 3;
-
-  > .iui-icon {
-    @include iui-icons-default;
-    margin-right: $iui-s;
-
-    &:first-child {
-      margin-left: $iui-child-node-spacing;
-    }
-  }
-
-  .iui-expander + .iui-icon {
-    margin-left: $iui-xs + 1;
-  }
-
-  > .iui-expander {
-    margin-right: $iui-s;
-    margin-left: $iui-s;
-
-    &:first-child {
-      margin-left: $iui-child-node-spacing;
-    }
-
-    > .iui-icon {
-      @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed-fast ease-out;
-      }
-    }
-  }
 
   > .iui-checkbox {
     margin-left: $iui-s;
-    margin-right: $iui-child-node-spacing;
+    margin-right: $iui-s;
   }
 
-  .iui-checkbox + .iui-node-label {
-    margin-left: $iui-s;
-  }
-
-  .iui-node-label {
-    min-width: 0;
-
-    &:only-child {
-      margin-left: $iui-child-node-spacing;
-    }
-  }
-
-  .iui-title,
-  .iui-caption {
-    white-space: nowrap;
+  > .iui-node-content {
+    display: flex;
+    align-items: center;
+    padding: $iui-xxs;
+    box-sizing: border-box;
+    min-height: $iui-baseline * 3;
+    margin-left: calc(36px * (var(--level, 0)));
     overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
-  .iui-title {
-    font-size: $iui-font-size;
-  }
+    > .iui-icon {
+      @include iui-icons-default;
+      margin-right: $iui-s;
+      margin-left: $iui-xs + 1;
+    }
 
-  .iui-caption {
-    font-size: $iui-font-size-small;
-    @include themed {
-      color: t(iui-text-color-muted);
+    > .iui-expander {
+      margin-right: $iui-s;
+
+      > .iui-icon {
+        @media (prefers-reduced-motion: no-preference) {
+          transition: transform $iui-speed-fast ease-out;
+        }
+      }
+    }
+
+    .iui-node-label {
+      min-width: 0;
+      margin-right: $iui-s;
+    }
+
+    .iui-title,
+    .iui-caption {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .iui-title {
+      font-size: $iui-font-size;
+    }
+
+    .iui-caption {
+      font-size: $iui-font-size-small;
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
     }
   }
 
@@ -124,6 +110,17 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
         }
       }
     }
+
+    > .iui-node-content {
+      cursor: not-allowed;
+
+      .iui-caption,
+      .iui-title {
+        @include themed {
+          color: t(iui-text-color-placeholder);
+        }
+      }
+    }
   }
 
   &:hover {
@@ -142,7 +139,7 @@ $iui-child-node-spacing: calc(36px * (var(--level, 0)));
   }
 
   &.iui-expanded {
-    > .iui-expander > .iui-icon {
+    > .iui-node-content > .iui-expander > .iui-icon {
       transform: rotate(90deg);
     }
   }
