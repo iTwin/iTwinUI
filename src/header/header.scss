@@ -301,11 +301,11 @@
             height: $iui-icons-small;
             padding: $iui-xxs;
           }
+        }
 
-          .iui-button-label {
-            .iui-description {
-              @include iui-display-none;
-            }
+        .iui-button-label {
+          .iui-description {
+            @include iui-display-none;
           }
         }
       }
