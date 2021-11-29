@@ -6,6 +6,10 @@
   @include iui-tree;
 }
 
+.iui-sub-tree {
+  @include iui-sub-tree;
+}
+
 .iui-tree-node {
   @include iui-tree-node;
 }
