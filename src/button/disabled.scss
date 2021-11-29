@@ -8,12 +8,7 @@
   @include themed {
     background: t(iui-color-background-disabled);
     border-color: t(iui-color-background-disabled);
-  }
-
-  .iui-button-label {
-    @include themed {
-      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
-    }
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
   }
 
   .iui-button-icon {

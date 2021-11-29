@@ -20,7 +20,7 @@
     @include iui-notification-marker-hover;
 
     .iui-button-icon {
-      @include iui-button-icon(t(iui-icons-color-actionable-hover));
+      fill: t(iui-icons-color-actionable-hover);
     }
   }
 
@@ -48,12 +48,7 @@
         rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
       ),
         linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-    }
-
-    .iui-button-label {
-      @include themed {
-        color: t(iui-color-foreground-primary);
-      }
+      color: t(iui-color-foreground-primary);
     }
   }
 

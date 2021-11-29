@@ -31,10 +31,8 @@
     }
     border-color: transparent;
 
-    > .iui-button-label {
-      @include themed {
-        color: t(iui-color-foreground-primary);
-      }
+    @include themed {
+      color: t(iui-color-foreground-primary);
     }
 
     .iui-button-icon {
