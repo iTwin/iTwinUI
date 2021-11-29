@@ -70,7 +70,9 @@
     height: 100%;
     border-width: 0;
     border-radius: 50%;
-    background-color: #FFF;
+    @include themed {
+      background-color: t(iui-color-background-1);
+    }
   }
 
   > .iui-status {
