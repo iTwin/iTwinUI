@@ -15,7 +15,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
 @mixin iui-sub-tree {
   list-style: none;
-  padding-left: 36px;
+  @include iui-reset;
 }
 
 @mixin iui-tree-node {
@@ -25,7 +25,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
   > .iui-checkbox {
     margin-left: $iui-s;
-    margin-right: $iui-sm + 1; // Align checkbox with expander button icon below/above
+    margin-right: $iui-s;
   }
 
   > .iui-node-content {
@@ -34,6 +34,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     padding: $iui-xxs;
     box-sizing: border-box;
     min-height: $iui-baseline * 3;
+    margin-left: calc(36px * (var(--level, 0)));
     overflow: hidden;
 
     > .iui-icon {
