@@ -5,12 +5,12 @@
 
 /// Mixin for button icons
 /// @arg fillColor - color to fill in icon
-@mixin iui-button-icon($fillColor: t(iui-icons-color-actionable)) {
+@mixin iui-button-icon() {
   width: $iui-icons-default;
   height: $iui-icons-default;
   transition: fill $iui-speed-fast ease-out;
 
   @include themed {
-    fill: $fillColor;
+    fill: currentColor;
   }
 }

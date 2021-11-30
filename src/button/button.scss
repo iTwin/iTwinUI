@@ -39,7 +39,7 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 
   .iui-button-icon {
-    @include iui-button-icon(t(iui-icons-color-actionable));
+    @include iui-button-icon();
   }
 
   &:hover {
