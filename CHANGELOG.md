@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.26.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.25.0...v1.26.0) (2021-11-30)
+
+### What's new
+
+* **InformationPanel:** Add `InformationPanelContent` for inner rows ([#433](https://www.github.com/iTwin/iTwinUI-react/issues/433)) ([a706bcb](https://www.github.com/iTwin/iTwinUI-react/commit/a706bcb04f9af512131d9ed08fef1529314d2bb1))
+* **MiddleTextTruncation:** Utility to truncate text with ellipsis in the middle ([#330](https://www.github.com/iTwin/iTwinUI-react/issues/330)) ([371b56f](https://www.github.com/iTwin/iTwinUI-react/commit/371b56fa9150fdd110c92d05b3944f376d37441c))
+
+### Fixes
+
+* **DatePicker:** Make date arg required in `onChange` ([#437](https://www.github.com/iTwin/iTwinUI-react/issues/437)) ([ee79248](https://www.github.com/iTwin/iTwinUI-react/commit/ee792488a10e43a9b0f8ea6d77c30ef1897eb86c))
+* **Table:** Don't show paginator when there is only one page ([#441](https://www.github.com/iTwin/iTwinUI-react/issues/441)) ([e40cbc8](https://www.github.com/iTwin/iTwinUI-react/commit/e40cbc81929da14ea2754e5d847c0efe8af70203))
+
 ## [1.25.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.24.0...v1.25.0) (2021-11-16)
 
 ### What's new
