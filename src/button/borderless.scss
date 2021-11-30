@@ -17,25 +17,16 @@
     }
   }
 
+  &:focus:not(:focus-visible) {
+    @include iui-button-borderless-base;
+  }
+
   &.iui-active {
     @include themed {
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-    }
-    border-color: transparent;
-
-    @include themed {
       color: t(iui-color-foreground-primary);
     }
-  }
-
-  &:focus:not(:focus-visible) {
-    @include iui-button-borderless-base;
-
-    &.iui-active {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
-    }
+    border-color: transparent;
   }
 
   &[disabled],

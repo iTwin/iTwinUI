@@ -4,13 +4,9 @@
 @import '../icon/index';
 
 /// Mixin for button icons
-/// @arg fillColor - color to fill in icon
-@mixin iui-button-icon() {
+@mixin iui-button-icon {
   width: $iui-icons-default;
   height: $iui-icons-default;
   transition: fill $iui-speed-fast ease-out;
-
-  @include themed {
-    fill: currentColor;
-  }
+  fill: currentColor;
 }

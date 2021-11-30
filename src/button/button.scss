@@ -38,13 +38,11 @@ $iui-button-padding-large: $iui-xs * 6;
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
 
-  .iui-button-icon {
-    @include iui-button-icon();
-  }
-
   &:hover {
     text-decoration: none;
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    @include themed {
+      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    }
   }
 
   @include iui-focus;
