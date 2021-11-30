@@ -10,7 +10,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     background-color: t(iui-color-background-1);
   }
   list-style: none;
-  padding-left: 0;
+  @include iui-reset;
 }
 
 @mixin iui-sub-tree {
@@ -22,16 +22,15 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   @include iui-focus;
   display: flex;
   cursor: pointer;
+  padding: 0 $iui-s;
 
   > .iui-checkbox {
-    margin-left: $iui-s;
     margin-right: $iui-s;
   }
 
   > .iui-node-content {
     display: flex;
     align-items: center;
-    padding: $iui-xxs;
     box-sizing: border-box;
     min-height: $iui-baseline * 3;
     margin-left: calc(36px * (var(--level, 0)));
@@ -40,7 +39,8 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     > .iui-icon {
       @include iui-icons-default;
       margin-right: $iui-s;
-      margin-left: $iui-xs + 1;
+      margin-left: $iui-xs + 2; //Help align with icon inside expander button 2px (button left padding) + 1px (button left border) + 3px (button icon left margin)
+      flex-shrink: 0;
     }
 
     > .iui-expander {
@@ -55,7 +55,6 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
     .iui-node-label {
       min-width: 0;
-      margin-right: $iui-s;
     }
 
     .iui-title,
