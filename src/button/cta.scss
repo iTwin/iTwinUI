@@ -16,10 +16,6 @@
       border-color: t(iui-color-background-positive-overlay);
       color: t(iui-color-foreground-accessory);
     }
-
-    .iui-button-icon {
-      fill: t(iui-color-foreground-accessory);
-    }
   }
 
   &:focus:not(:focus-visible) {
@@ -39,7 +35,7 @@
     color: t(iui-color-foreground-accessory);
   }
 
-  > .iui-button-icon {
-    fill: t(iui-color-foreground-accessory);
+  .iui-button-icon {
+    fill: currentColor;
   }
 }
