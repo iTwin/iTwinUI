@@ -35,6 +35,7 @@
     > .iui-type-indicator,
     > .iui-quick-action {
       @include iui-button-borderless;
+      @include iui-button-size(small, borderless);
       position: absolute;
       border-radius: 50%;
       top: round($iui-baseline * 0.5);
@@ -206,6 +207,7 @@
     }
 
     > .iui-more-options {
+      @include iui-button-size(small, borderless);
       position: absolute;
       bottom: $iui-baseline * 0.5;
       right: $iui-s;

@@ -77,7 +77,7 @@
   }
 
   .iui-sidenav-button {
-    gap: unset;
+    gap: $iui-icons-large;
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -118,10 +118,6 @@
       width: $iui-icons-large;
       height: $iui-icons-large;
       flex-shrink: 0;
-
-      &:not(:last-child) {
-        margin-right: $iui-icons-large;
-      }
     }
 
     &.iui-submenu-open .iui-button-icon {

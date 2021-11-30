@@ -7,6 +7,7 @@
 
 @mixin iui-button-borderless {
   @include iui-button-borderless-base;
+  @include iui-button-size(medium, borderless);
 
   &:hover,
   &:focus {
@@ -60,16 +61,6 @@
 @mixin iui-button-borderless-base {
   background-color: transparent;
   border-color: transparent;
-
-  @include iui-button-size(medium, borderless);
-
-  &.iui-small {
-    @include iui-button-size(small, borderless);
-  }
-
-  &.iui-large {
-    @include iui-button-size(large, borderless);
-  }
 
   > .iui-button-icon:only-child {
     margin-left: $iui-component-offset;
