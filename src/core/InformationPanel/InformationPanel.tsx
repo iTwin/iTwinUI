@@ -42,7 +42,10 @@ export type InformationPanelProps = {
  *       <Text variant='subheading'>InfoPanel heading</Text>
  *     </InformationPanelHeader>
  *     <InformationPanelBody>
- *       <span>Info panel content</span>
+ *       <Text>Metadata</Text>
+ *       <InformationPanelContent ... />
+ *       <Text>Attributes</Text>
+ *       <InformationPanelContent ... />
  *     </InformationPanelBody>
  *   </InformationPanel>
  * </InformationPanelWrapper>

@@ -13,12 +13,14 @@ import {
   InformationPanelWrapper,
   InformationPanelHeader,
   InformationPanelBody,
+  InformationPanelContent,
   Table,
   Text,
-  LabeledTextarea,
   Button,
   IconButton,
-  LabeledInput,
+  Input,
+  Label,
+  Textarea,
 } from '../../src/core';
 import { CreeveyStoryParams } from 'creevey';
 
@@ -28,6 +30,7 @@ export default {
     InformationPanelWrapper,
     InformationPanelHeader,
     InformationPanelBody,
+    InformationPanelContent,
   },
   argTypes: {
     className: { control: { disable: true } },
@@ -83,9 +86,6 @@ export const Basic: Story<InformationPanelProps> = (args) => {
       [...Array(10).fill(null)].map((_, index) => ({ name: `Row${index}` })),
     [],
   );
-
-  const lorem100 = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus veniam dicta error doloremque libero sit est. Voluptatum nam modi, ex illum veritatis nobis omnis porro quod harum optio minus magnam tenetur quia dolor quis natus, eius, suscipit hic? Nobis deleniti obcaecati, sequi mollitia vero magnam error quidem, voluptatem asperiores repudiandae, molestias sit et voluptatibus magni. Sequi delectus, sunt eaque corrupti architecto modi suscipit? Quos in itaque dolore voluptas saepe natus repellat ad qui dolores. Incidunt temporibus ut, unde maxime nam explicabo saepe aspernatur molestiae iste libero neque, alias corporis laboriosam fugiat ad. Dicta neque quos fuga odit quae sequi dolore!`;
-
   return (
     <InformationPanelWrapper>
       <Table columns={columns} data={data} emptyTableContent='No data.' />
@@ -102,7 +102,34 @@ export const Basic: Story<InformationPanelProps> = (args) => {
           <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
         </InformationPanelHeader>
         <InformationPanelBody>
-          <Text>{lorem100}</Text>
+          <InformationPanelContent displayStyle='inline'>
+            <Label htmlFor='name-input'>File name</Label>
+            <Input
+              size='small'
+              id='name-input'
+              defaultValue={`Row ${openRowIndex ?? 0}`}
+              readOnly
+            />
+
+            <Label htmlFor='author-input'>Author</Label>
+            <Input
+              size='small'
+              id='author-input'
+              defaultValue='DJ Terry'
+              readOnly
+            />
+
+            <Label htmlFor='year-input'>Year</Label>
+            <Input size='small' id='year-input' defaultValue='2021' readOnly />
+
+            <Label htmlFor='path-input'>Path</Label>
+            <Input
+              size='small'
+              id='path-input'
+              defaultValue='/Shared/Music/'
+              readOnly
+            />
+          </InformationPanelContent>
         </InformationPanelBody>
       </InformationPanel>
     </InformationPanelWrapper>
@@ -179,9 +206,10 @@ export const CustomActions: Story<InformationPanelProps> = (args) => {
         </InformationPanelHeader>
         <InformationPanelBody>
           {openRowIndex != undefined && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
-              <LabeledInput
-                label='Name'
+            <InformationPanelContent>
+              <Label htmlFor='name-input'>Name</Label>
+              <Input
+                id='name-input'
                 defaultValue={data[openRowIndex]?.name}
                 disabled={!isEditing}
                 onChange={({ target: { value } }) => {
@@ -195,8 +223,9 @@ export const CustomActions: Story<InformationPanelProps> = (args) => {
                   });
                 }}
               />
-              <LabeledTextarea
-                label='Description'
+              <Label htmlFor='description-input'>Description</Label>
+              <Textarea
+                id='description-input'
                 defaultValue={data[openRowIndex]?.info}
                 disabled={!isEditing}
                 onChange={({ target: { value } }) => {
@@ -211,7 +240,7 @@ export const CustomActions: Story<InformationPanelProps> = (args) => {
                 }}
                 rows={15}
               />
-            </div>
+            </InformationPanelContent>
           )}
         </InformationPanelBody>
       </InformationPanel>

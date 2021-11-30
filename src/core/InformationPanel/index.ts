@@ -14,3 +14,6 @@ export type { InformationPanelHeaderProps } from './InformationPanelHeader';
 
 export { InformationPanelBody } from './InformationPanelBody';
 export type { InformationPanelBodyProps } from './InformationPanelBody';
+
+export { InformationPanelContent } from './InformationPanelContent';
+export type { InformationPanelContentProps } from './InformationPanelContent';

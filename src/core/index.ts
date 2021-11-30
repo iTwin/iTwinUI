@@ -96,12 +96,14 @@ export {
   InformationPanelWrapper,
   InformationPanelHeader,
   InformationPanelBody,
+  InformationPanelContent,
 } from './InformationPanel';
 export type {
   InformationPanelProps,
   InformationPanelWrapperProps,
   InformationPanelHeaderProps,
   InformationPanelBodyProps,
+  InformationPanelContentProps,
 } from './InformationPanel';
 
 export { Input } from './Input';
