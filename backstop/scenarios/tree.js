@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const { scenario } = require('../scenarioHelper');
+const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
   scenario('Default', {
@@ -23,6 +23,20 @@ module.exports = [
   }),
   scenario('With Icons', {
     selectors: ['#demo-icons'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
+
+  // Hover states
+  scenario('State hover tree node', {
+    actions: [hover('#test-node')],
+    selectors: ['#demo-captions'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
+
+  // Focus states
+  scenario('State focus tree node', {
+    actions: [focus('#test-node')],
+    selectors: ['#demo-captions'],
     viewports: [{ width: 800, height: 600 }],
   }),
 ];
