@@ -11,7 +11,7 @@ const MockComponent = ({
   children,
   disableOverflow = false,
 }: {
-  children: React.ReactNode[];
+  children: React.ReactNode[] | string;
   disableOverflow?: boolean;
 }) => {
   const [overflowRef, visibleCount] = useOverflow(children, disableOverflow);
@@ -44,6 +44,28 @@ it('should overflow when there is not enough space', async () => {
 
   await waitFor(() => {
     expect(container.querySelectorAll('span')).toHaveLength(4);
+  });
+});
+
+it('should overflow when there is not enough space  (string)', async () => {
+  jest
+    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+    .mockReturnValueOnce(50)
+    .mockReturnValue(28);
+  jest
+    .spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get')
+    .mockReturnValue(28);
+
+  // 20 symbols (default value taken), 50 width
+  // avg 2.5px per symbol
+  const { container } = render(
+    <MockComponent>This is a very long text.</MockComponent>,
+  );
+
+  // have 28px of a place
+  // 11 symbols can fit
+  await waitFor(() => {
+    expect(container.textContent).toBe('This is a v');
   });
 });
 

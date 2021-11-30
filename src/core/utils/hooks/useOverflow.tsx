@@ -30,7 +30,7 @@ const STARTING_MAX_ITEMS_COUNT = 20;
  * );
  */
 export const useOverflow = <T extends HTMLElement>(
-  items: React.ReactNode[],
+  items: React.ReactNode[] | string,
   disabled = false,
 ) => {
   const containerRef = React.useRef<T>(null);

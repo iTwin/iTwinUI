@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { MenuItem, Select } from '../../src/core';
+import { MenuItem, Select, MiddleTextTruncation } from '../../src/core';
 import { SelectProps } from '../../src/core/Select/Select';
 import { useState } from '@storybook/addons';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
@@ -301,4 +301,43 @@ Custom.args = {
     { value: 'green', label: 'Green' },
     { value: 'red', label: 'Red' },
   ],
+};
+
+export const TruncateMiddleText: Story<SelectProps<string>> = (args) => {
+  const {
+    options = [
+      {
+        value:
+          'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
+        label:
+          'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
+      },
+      { value: 'ShortNameFile.jpg', label: 'ShortNameFile.jpg' },
+      { value: 'SomeOtherFile.dgn', label: 'SomeOtherFile.dgn' },
+    ],
+    placeholder = 'Placeholder text',
+    ...rest
+  } = args;
+  const [selectedValue, setSelectedValue] = useState<string | undefined>(
+    options[0].value,
+  );
+  return (
+    <div style={{ minHeight: 350, width: 300 }}>
+      <Select<string>
+        {...rest}
+        options={options}
+        value={selectedValue}
+        onChange={setSelectedValue}
+        placeholder={placeholder}
+        itemRenderer={(option) => (
+          <MenuItem>
+            <MiddleTextTruncation text={option.label} />
+          </MenuItem>
+        )}
+        selectedItemRenderer={(option) => (
+          <MiddleTextTruncation text={option.label} />
+        )}
+      />
+    </div>
+  );
 };
