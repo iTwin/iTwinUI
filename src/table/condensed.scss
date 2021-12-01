@@ -6,7 +6,7 @@
 @mixin iui-table-condensed {
   .iui-table-header .iui-cell,
   .iui-row .iui-cell,
-  .iui-paginator:not(.iui-paginator-responsive) {
+  .iui-paginator {
     min-height: $iui-baseline * 4;
   }
 }
