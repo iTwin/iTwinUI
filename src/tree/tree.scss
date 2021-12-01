@@ -141,7 +141,7 @@ $iui-expander-button-width: 28px;
   }
 
   &.iui-expanded {
-    > .iui-tree-node-content > .iui-expander > .iui-icon {
+    > .iui-tree-node-content > .iui-expander > .iui-button-icon {
       transform: rotate(90deg);
     }
   }
