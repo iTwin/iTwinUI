@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.40.0](https://www.github.com/iTwin/iTwinUI/compare/v0.39.1...v0.40.0) (2021-12-01)
+
+
+### Fixes
+
+* **Checkbox:** Changing visibility hover background color & unchecked fill color. ([#392](https://www.github.com/iTwin/iTwinUI/issues/392)) ([15c9015](https://www.github.com/iTwin/iTwinUI/commit/15c90152cb1f7ea7a3ffb14957e4ae600b8e859d))
+
+
+### What's new
+
+* **Buttons:** Reduce nesting and specificity ([#363](https://www.github.com/iTwin/iTwinUI/issues/363)) ([0395323](https://www.github.com/iTwin/iTwinUI/commit/0395323cae55a38542020ecf5fc5f811bbbc3407))
+
 ### [0.39.1](https://www.github.com/iTwin/iTwinUI/compare/v0.39.0...v0.39.1) (2021-11-15)
 
 ### Fixes
