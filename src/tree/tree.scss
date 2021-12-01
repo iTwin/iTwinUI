@@ -5,6 +5,9 @@
 
 $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
+// Spacing for when expander button is not present: (icon margin 6px) + (icon width 16px) + (button padding 4px) + (button border 2px)
+$iui-expander-button-width: 28px;
+
 @mixin iui-tree {
   @include themed {
     background-color: t(iui-color-background-1);
@@ -33,24 +36,20 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     align-items: center;
     box-sizing: border-box;
     min-height: $iui-baseline * 3;
-    margin-left: calc(36px * (var(--level, 0)));
+    margin-left: calc(28px * (var(--level, 0)));
     overflow: hidden;
 
     > .iui-icon {
       @include iui-icons-default;
-      margin-right: $iui-s;
-      margin-left: $iui-xs + 2; //Help align with icon inside expander button 2px (button left padding) + 1px (button left border) + 3px (button icon left margin)
+      padding: 0 6px;
       flex-shrink: 0;
 
       &:first-child {
-        margin-left: 42px; // Align with other icons when expander button is not present
-        // (icon margin 6px) + (icon width 16px) + (button padding 4px) + (button border 2px) + (button right margin 8px) + (icon align 6px)
+        margin-left: $iui-expander-button-width;
       }
     }
 
     > .iui-expander {
-      margin-right: $iui-s;
-
       > .iui-icon {
         @media (prefers-reduced-motion: no-preference) {
           transition: transform $iui-speed-fast ease-out;
@@ -60,10 +59,10 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
     .iui-node-label {
       min-width: 0;
+      padding-left: 6px;
 
       &:first-child {
-        margin-left: 36px; // Align with other node labels when expander button is not present
-        // (icon margin 6px) + (icon width 16px) + (button padding 4px) + (button border 2px) + (button right margin 8px)
+        margin-left: $iui-expander-button-width;
       }
     }
 
