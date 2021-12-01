@@ -75,5 +75,7 @@
   &-page-size-label {
     @include iui-text-muted;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
