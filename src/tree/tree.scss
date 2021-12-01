@@ -31,7 +31,7 @@ $iui-expander-button-width: 28px;
     margin-right: $iui-s;
   }
 
-  > .iui-node-content {
+  &-content {
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -57,7 +57,7 @@ $iui-expander-button-width: 28px;
       }
     }
 
-    .iui-node-label {
+    &-label {
       min-width: 0;
       padding-left: 6px;
 
@@ -85,7 +85,7 @@ $iui-expander-button-width: 28px;
     }
   }
 
-  &.iui-active {
+  &.iui-active:not(.iui-disabled) {
     &,
     &:hover {
       @include themed {
@@ -123,17 +123,6 @@ $iui-expander-button-width: 28px;
         }
       }
     }
-
-    > .iui-node-content {
-      cursor: not-allowed;
-
-      .iui-caption,
-      .iui-title {
-        @include themed {
-          color: t(iui-text-color-placeholder);
-        }
-      }
-    }
   }
 
   &:hover {
@@ -152,7 +141,7 @@ $iui-expander-button-width: 28px;
   }
 
   &.iui-expanded {
-    > .iui-node-content > .iui-expander > .iui-icon {
+    > .iui-tree-node-content > .iui-expander > .iui-icon {
       transform: rotate(90deg);
     }
   }
