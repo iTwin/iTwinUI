@@ -22,7 +22,6 @@ $iui-expander-button-width: 28px;
 }
 
 @mixin iui-tree-node {
-  @include iui-focus;
   display: flex;
   cursor: pointer;
   padding: 0 $iui-s;
@@ -38,6 +37,7 @@ $iui-expander-button-width: 28px;
     min-height: $iui-baseline * 3;
     margin-left: calc(28px * (var(--level, 0)));
     overflow: hidden;
+    padding-left: $iui-xxs;
 
     > .iui-icon {
       @include iui-icons-default;
@@ -82,6 +82,14 @@ $iui-expander-button-width: 28px;
       @include themed {
         color: t(iui-text-color-muted);
       }
+    }
+  }
+
+  &:focus,
+  &.iui-focused {
+    @include themed {
+      outline: thin solid rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
+      outline-offset: -1px;
     }
   }
 
