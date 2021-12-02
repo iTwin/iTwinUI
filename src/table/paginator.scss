@@ -3,12 +3,13 @@
 @import '../style/index';
 @import '../icon/index';
 @import '../button/index';
+@import '../text/index';
 @import './variables';
 
 @mixin iui-paginator {
   @include iui-reset;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   min-height: $iui-baseline * 5;
   padding: 0 $iui-m;
@@ -69,5 +70,12 @@
 
   > .iui-right {
     justify-content: flex-end;
+  }
+
+  &-page-size-label {
+    @include iui-text-muted;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
