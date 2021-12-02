@@ -24,12 +24,16 @@
       href="../assets/demo.css"
     />
     <style>
-      section {
-        width: 100% !important;
+      section[id^='demo'] {
+        width: auto;
       }
 
       .demo-right-align {
         justify-content: flex-end;
+      }
+
+      #demo-responsive {
+        width: 375px;
       }
     </style>
     <script
@@ -2412,6 +2416,7 @@
           </div>
 
           <div class="iui-right">
+            <span class="iui-paginator-page-size-label">Rows per page</span>
             <button class="iui-button iui-borderless iui-dropdown">
               <span class="iui-button-label">1-10 of 300</span>
               <svg-caret-down-small
@@ -2595,6 +2600,7 @@
           </div>
 
           <div class="iui-right">
+            <span class="iui-paginator-page-size-label">Rows per page</span>
             <button class="iui-button iui-borderless iui-dropdown">
               <span class="iui-button-label">290-292 of 292</span>
               <svg-caret-down-small
@@ -2859,6 +2865,7 @@
           </div>
 
           <div class="iui-right">
+            <span class="iui-paginator-page-size-label">Rows per page</span>
             <button class="iui-button iui-borderless iui-small iui-dropdown">
               <span class="iui-button-label">150-160 of 300</span>
               <svg-caret-down-small
@@ -3147,6 +3154,7 @@
           </div>
 
           <div class="iui-right">
+            <span class="iui-paginator-page-size-label">Rows per page</span>
             <button class="iui-button iui-borderless iui-small iui-dropdown">
               <span class="iui-button-label">1-10&mldr;</span>
               <svg-caret-down-small
