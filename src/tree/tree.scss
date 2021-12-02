@@ -49,8 +49,8 @@ $iui-expander-button-width: 28px;
       }
     }
 
-    > .iui-expander {
-      > .iui-icon {
+    &-expander {
+      > .iui-button-icon {
         @media (prefers-reduced-motion: no-preference) {
           transition: transform $iui-speed-fast ease-out;
         }
@@ -66,18 +66,18 @@ $iui-expander-button-width: 28px;
       }
     }
 
-    .iui-title,
-    .iui-caption {
+    &-title,
+    &-caption {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .iui-title {
+    &-title {
       font-size: $iui-font-size;
     }
 
-    .iui-caption {
+    &-caption {
       font-size: $iui-font-size-small;
       @include themed {
         color: t(iui-text-color-muted);
@@ -125,7 +125,7 @@ $iui-expander-button-width: 28px;
         color: t(iui-text-color-placeholder);
       }
 
-      .iui-caption {
+      .iui-tree-node-content-caption {
         @include themed {
           color: t(iui-text-color-placeholder);
         }
@@ -138,7 +138,7 @@ $iui-expander-button-width: 28px;
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
     }
 
-    .iui-caption {
+    .iui-tree-node-content-caption {
       @include themed {
         color: t(iui-color-foreground-body);
       }
@@ -149,7 +149,7 @@ $iui-expander-button-width: 28px;
   }
 
   &.iui-expanded {
-    > .iui-tree-node-content > .iui-expander > .iui-button-icon {
+    > .iui-tree-node-content > .iui-tree-node-content-expander > .iui-button-icon {
       transform: rotate(90deg);
     }
   }
