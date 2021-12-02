@@ -44,12 +44,17 @@
 
     <h2>Default Tree</h2>
     <section id="demo-default">
-      <ul class="iui-tree">
-        <li>
+      <ul
+        class="iui-tree"
+        role="tree"
+      >
+        <li
+          role="treeitem"
+          aria-expanded="true"
+        >
           <div
             class="iui-tree-node iui-expanded"
             tabindex="0"
-            aria-expanded="true"
           >
             <div class="iui-tree-node-content">
               <button
@@ -66,13 +71,15 @@
               </span>
             </div>
           </div>
-          <ul class='iui-sub-tree'>
-            <li>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+          >
+            <li role="treeitem">
               <div
                 class="iui-tree-node"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="false"
               >
                 <div class="iui-tree-node-content">
                   <span class="iui-tree-node-content-label">
@@ -83,11 +90,13 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li
+          role="treeitem"
+          aria-expanded="true"
+        >
           <div
             class="iui-tree-node iui-expanded"
             tabindex="0"
-            aria-expanded="true"
           >
             <div class="iui-tree-node-content">
               <button
@@ -104,13 +113,18 @@
               </span>
             </div>
           </div>
-          <ul class='iui-sub-tree'>
-            <li>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+          >
+            <li
+              role="treeitem"
+              aria-expanded="false"
+            >
               <div
                 class="iui-tree-node"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="false"
               >
                 <div class="iui-tree-node-content">
                   <button
@@ -128,12 +142,14 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li
+              role="treeitem"
+              aria-expanded="true"
+            >
               <div
                 class="iui-tree-node iui-expanded"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="true"
               >
                 <div class="iui-tree-node-content">
                   <button
@@ -150,13 +166,18 @@
                   </span>
                 </div>
               </div>
-              <ul class='iui-sub-tree'>
-                <li>
+              <ul
+                class='iui-sub-tree'
+                role="group"
+              >
+                <li
+                  role="treeitem"
+                  aria-expanded="true"
+                >
                   <div
                     class="iui-tree-node iui-expanded"
                     style='--level: 2;'
                     tabindex="0"
-                    aria-expanded="true"
                   >
                     <div class="iui-tree-node-content">
                       <button
@@ -173,13 +194,15 @@
                       </span>
                     </div>
                   </div>
-                  <ul class='iui-sub-tree'>
-                    <li>
+                  <ul
+                    class='iui-sub-tree'
+                    role="group"
+                  >
+                    <li role="treeitem">
                       <div
                         class="iui-tree-node"
                         style='--level: 3;'
                         tabindex="0"
-                        aria-expanded="false"
                       >
                         <div class="iui-tree-node-content">
                           <span class="iui-tree-node-content-label">
@@ -194,11 +217,13 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li
+          role="treeitem"
+          aria-expanded="false"
+        >
           <div
             class="iui-tree-node"
             tabindex="0"
-            aria-expanded="false"
           >
             <div class="iui-tree-node-content">
               <button
@@ -223,12 +248,17 @@
 
     <h2>With Captions</h2>
     <section id="demo-captions">
-      <ul class="iui-tree">
-        <li>
+      <ul
+        class="iui-tree"
+        role="tree"
+      >
+        <li
+          role="treeitem"
+          aria-expanded="true"
+        >
           <div
             class="iui-tree-node iui-expanded"
             tabindex="0"
-            aria-expanded="true"
           >
             <div class="iui-tree-node-content">
               <button
@@ -266,13 +296,18 @@
               </span>
             </div>
           </div>
-          <ul class='iui-sub-tree'>
-            <li>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+          >
+            <li
+              role="treeitem"
+              aria-expanded="false"
+            >
               <div
                 class="iui-tree-node"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="false"
               >
                 <div class="iui-tree-node-content">
                   <button
@@ -301,12 +336,14 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li
+              role="treeitem"
+              aria-expanded="false"
+            >
               <div
                 class="iui-tree-node"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="false"
                 id="test-node"
               >
                 <div class="iui-tree-node-content">
@@ -340,12 +377,11 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li role="treeitem">
               <div
                 class="iui-tree-node"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="false"
               >
                 <div class="iui-tree-node-content">
                   <svg-placeholder
@@ -371,11 +407,13 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li
+          role="treeitem"
+          aria-expanded="true"
+        >
           <div
             class="iui-tree-node iui-expanded"
             tabindex="0"
-            aria-expanded="true"
           >
             <div class="iui-tree-node-content">
               <button
@@ -409,13 +447,18 @@
               </span>
             </div>
           </div>
-          <ul class='iui-sub-tree'>
-            <li>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+          >
+            <li
+              role="treeitem"
+              aria-expanded="false"
+            >
               <div
                 class="iui-tree-node"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="false"
               >
                 <div class="iui-tree-node-content">
                   <button
@@ -450,11 +493,13 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li
+          role="treeitem"
+          aria-expanded="false"
+        >
           <div
             class="iui-tree-node"
             tabindex="0"
-            aria-expanded="false"
           >
             <div class="iui-tree-node-content">
               <button
@@ -495,12 +540,17 @@
     <hr />
     <h2>With Checkbox</h2>
     <section id="demo-checkbox">
-      <ul class="iui-tree">
-        <li>
+      <ul
+        class="iui-tree"
+        role="tree"
+      >
+        <li
+          role="treeitem"
+          aria-expanded="true"
+        >
           <div
             class="iui-tree-node iui-expanded"
             tabindex="0"
-            aria-expanded="true"
           >
             <label class="iui-checkbox iui-checkbox-visibility">
               <input
@@ -551,13 +601,15 @@
               </span>
             </div>
           </div>
-          <ul class='iui-sub-tree'>
-            <li>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+          >
+            <li role="treeitem">
               <div
                 class="iui-tree-node"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="false"
               >
                 <label class="iui-checkbox iui-checkbox-visibility">
                   <input
@@ -601,11 +653,13 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li
+          role="treeitem"
+          aria-expanded="true"
+        >
           <div
             class="iui-tree-node iui-expanded"
             tabindex="0"
-            aria-expanded="true"
           >
             <label class="iui-checkbox iui-checkbox-visibility">
               <input
@@ -656,13 +710,18 @@
               </span>
             </div>
           </div>
-          <ul class="iui-sub-tree">
-            <li>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+          >
+            <li
+              role="treeitem"
+              aria-expanded="false"
+            >
               <div
                 class="iui-tree-node"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="false"
               >
                 <label class="iui-checkbox iui-checkbox-visibility">
                   <input
@@ -715,11 +774,13 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li
+          role="treeitem"
+          aria-expanded="false"
+        >
           <div
             class="iui-tree-node"
             tabindex="0"
-            aria-expanded="false"
           >
             <label class="iui-checkbox iui-checkbox-visibility">
               <input
@@ -777,12 +838,17 @@
     <hr />
     <h2>Disabled</h2>
     <section id="demo-disabled">
-      <ul class="iui-tree">
-        <li>
+      <ul
+        class="iui-tree"
+        role="tree"
+      >
+        <li
+          role="treeitem"
+          aria-expanded="true"
+        >
           <div
             class="iui-tree-node iui-expanded"
             tabindex="0"
-            aria-expanded="true"
           >
             <label class="iui-checkbox iui-checkbox-visibility">
               <input
@@ -833,12 +899,14 @@
               </span>
             </div>
           </div>
-          <ul class='iui-sub-tree'>
-            <li>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+          >
+            <li role="treeitem">
               <div
                 class="iui-tree-node iui-disabled"
                 style='--level: 1;'
-                aria-expanded="false"
               >
                 <label class="iui-checkbox iui-checkbox-visibility iui-disabled">
                   <input
@@ -881,11 +949,13 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li
+              role="treeitem"
+              aria-expanded="true"
+            >
               <div
                 class="iui-tree-node iui-expanded"
                 tabindex="0"
-                aria-expanded="true"
               >
                 <label class="iui-checkbox iui-checkbox-visibility">
                   <input
@@ -936,12 +1006,17 @@
                   </span>
                 </div>
               </div>
-              <ul class='iui-sub-tree'>
-                <li>
+              <ul
+                class='iui-sub-tree'
+                role="group"
+              >
+                <li
+                  role="treeitem"
+                  aria-expanded="false"
+                >
                   <div
                     class="iui-tree-node iui-disabled"
                     style='--level: 1;'
-                    aria-expanded="false"
                   >
                     <label class="iui-checkbox iui-checkbox-visibility iui-disabled">
                       <input
@@ -996,11 +1071,11 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <div
-                class="iui-tree-node iui-disabled"
-                aria-expanded="false"
-              >
+            <li
+              role="treeitem"
+              aria-expanded="false"
+            >
+              <div class="iui-tree-node iui-disabled">
                 <label class="iui-checkbox iui-checkbox-visibility iui-disabled">
                   <input
                     type="checkbox"
@@ -1061,12 +1136,17 @@
     <hr />
     <h2>With Icons</h2>
     <section id="demo-icons">
-      <ul class="iui-tree">
-        <li>
+      <ul
+        class="iui-tree"
+        role="tree"
+      >
+        <li
+          role="treeitem"
+          aria-expanded="true"
+        >
           <div
             class="iui-tree-node iui-expanded"
             tabindex="0"
-            aria-expanded="true"
           >
             <label class="iui-checkbox iui-checkbox-visibility">
               <input
@@ -1120,13 +1200,18 @@
               </span>
             </div>
           </div>
-          <ul class='iui-sub-tree'>
-            <li>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+          >
+            <li
+              role="treeitem"
+              aria-expanded="true"
+            >
               <div
                 class="iui-tree-node iui-expanded"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="true"
               >
                 <label class="iui-checkbox iui-checkbox-visibility">
                   <input
@@ -1180,13 +1265,15 @@
                   </span>
                 </div>
               </div>
-              <ul class='iui-sub-tree'>
-                <li>
+              <ul
+                class='iui-sub-tree'
+                role="group"
+              >
+                <li role="treeitem">
                   <div
                     class="iui-tree-node"
                     style='--level: 2;'
                     tabindex="0"
-                    aria-expanded="false"
                   >
                     <label class="iui-checkbox iui-checkbox-visibility">
                       <input
@@ -1232,12 +1319,11 @@
                     </div>
                   </div>
                 </li>
-                <li>
+                <li role="treeitem">
                   <div
                     class="iui-tree-node"
                     style='--level: 2;'
                     tabindex="0"
-                    aria-expanded="false"
                   >
                     <label class="iui-checkbox iui-checkbox-visibility">
                       <input
@@ -1287,11 +1373,13 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li
+          role="treeitem"
+          aria-expanded="true"
+        >
           <div
             class="iui-tree-node iui-expanded"
             tabindex="0"
-            aria-expanded="true"
           >
             <label class="iui-checkbox iui-checkbox-visibility">
               <input
@@ -1346,13 +1434,18 @@
               </span>
             </div>
           </div>
-          <ul class='iui-sub-tree'>
-            <li>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+          >
+            <li
+              role="treeitem"
+              aria-expanded="true"
+            >
               <div
                 class="iui-tree-node iui-expanded"
                 style='--level: 1;'
                 tabindex="0"
-                aria-expanded="true"
               >
                 <label class="iui-checkbox iui-checkbox-visibility">
                   <input
@@ -1406,13 +1499,18 @@
                   </span>
                 </div>
               </div>
-              <ul class='iui-sub-tree'>
-                <li>
+              <ul
+                class='iui-sub-tree'
+                role="group"
+              >
+                <li
+                  role="treeitem"
+                  aria-expanded="true"
+                >
                   <div
                     class="iui-tree-node iui-expanded"
                     style='--level: 2;'
                     tabindex="0"
-                    aria-expanded="true"
                   >
                     <label class="iui-checkbox iui-checkbox-visibility">
                       <input
@@ -1466,13 +1564,15 @@
                       </span>
                     </div>
                   </div>
-                  <ul class='iui-sub-tree'>
-                    <li>
+                  <ul
+                    class='iui-sub-tree'
+                    role="group"
+                  >
+                    <li role="treeitem">
                       <div
                         class="iui-tree-node"
                         style='--level: 3;'
                         tabindex="0"
-                        aria-expanded="false"
                       >
                         <label class="iui-checkbox iui-checkbox-visibility">
                           <input
@@ -1520,12 +1620,14 @@
                     </li>
                   </ul>
                 </li>
-                <li>
+                <li
+                  role="treeitem"
+                  aria-expanded="false"
+                >
                   <div
                     class="iui-tree-node"
                     style='--level: 2;'
                     tabindex="0"
-                    aria-expanded="false"
                   >
                     <label class="iui-checkbox iui-checkbox-visibility">
                       <input
