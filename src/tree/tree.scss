@@ -4,21 +4,20 @@
 @import '../icon/index';
 
 $iui-active-outline: thin solid t(iui-color-foreground-primary);
-
-// Spacing for when expander button is not present: (icon margin 6px) + (icon width 16px) + (button padding 4px) + (button border 2px)
-$iui-expander-button-width: 28px;
+$iui-expander-inline-padding: $iui-component-offset + $iui-xxs + 1px; // margin + padding + border
+$iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding * 2); // icon width + inline padding on both sides
 
 @mixin iui-tree {
+  @include iui-reset;
   @include themed {
     background-color: t(iui-color-background-1);
   }
   list-style: none;
-  @include iui-reset;
 }
 
 @mixin iui-sub-tree {
-  list-style: none;
   @include iui-reset;
+  list-style: none;
 }
 
 @mixin iui-tree-node {
@@ -35,13 +34,13 @@ $iui-expander-button-width: 28px;
     align-items: center;
     box-sizing: border-box;
     min-height: $iui-baseline * 3;
-    margin-left: calc(28px * (var(--level, 0)));
+    margin-left: calc(#{$iui-expander-button-width} * (var(--level, 0)));
     overflow: hidden;
     padding-left: $iui-xxs;
 
     &-icon {
       @include iui-icons-default;
-      padding: 0 6px;
+      padding: 0 $iui-expander-inline-padding;
       flex-shrink: 0;
 
       &:first-child {
@@ -50,7 +49,7 @@ $iui-expander-button-width: 28px;
     }
 
     &-expander {
-      > .iui-button-icon {
+      > .iui-expander-icon {
         @media (prefers-reduced-motion: no-preference) {
           transition: transform $iui-speed-fast ease-out;
         }
@@ -59,7 +58,7 @@ $iui-expander-button-width: 28px;
 
     &-label {
       min-width: 0;
-      padding-left: 6px;
+      padding-left: $iui-expander-inline-padding;
 
       &:first-child {
         margin-left: $iui-expander-button-width;
@@ -92,40 +91,6 @@ $iui-expander-button-width: 28px;
     }
   }
 
-  &.iui-active {
-    &,
-    &:hover {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
-        outline: $iui-active-outline;
-        outline-offset: -1px;
-      }
-    }
-
-    &:focus {
-      outline-width: $iui-xxs;
-      outline-offset: -2px;
-    }
-  }
-
-  &.iui-disabled {
-    &,
-    &:hover {
-      cursor: not-allowed;
-      outline: none;
-      @include themed {
-        background-color: t(iui-color-background-1);
-        color: t(iui-text-color-placeholder);
-      }
-
-      .iui-tree-node-content-caption {
-        @include themed {
-          color: t(iui-text-color-placeholder);
-        }
-      }
-    }
-  }
-
   &:hover {
     @include themed {
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
@@ -135,14 +100,40 @@ $iui-expander-button-width: 28px;
       @include themed {
         color: t(iui-color-foreground-body);
       }
-      @media (prefers-reduced-motion: no-preference) {
-        transition: color $iui-speed-fast ease;
+      transition: color $iui-speed-fast ease;
+    }
+  }
+
+  &.iui-active {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+      outline: $iui-active-outline;
+      outline-offset: -1px;
+    }
+
+    &:focus {
+      outline-width: $iui-xxs;
+      outline-offset: -2px;
+    }
+  }
+
+  &.iui-disabled {
+    cursor: not-allowed;
+    outline: none;
+    @include themed {
+      background-color: t(iui-color-background-1);
+      color: t(iui-text-color-placeholder);
+    }
+
+    .iui-tree-node-content-caption {
+      @include themed {
+        color: t(iui-text-color-placeholder);
       }
     }
   }
 
   &.iui-expanded {
-    > .iui-tree-node-content > .iui-tree-node-content-expander > .iui-button-icon {
+    .iui-tree-node-content-expander > .iui-expander-icon {
       transform: rotate(90deg);
     }
   }
