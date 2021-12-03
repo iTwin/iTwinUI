@@ -48,11 +48,9 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
       }
     }
 
-    &-expander {
-      > .iui-expander-icon {
-        @media (prefers-reduced-motion: no-preference) {
-          transition: transform $iui-speed-fast ease-out;
-        }
+    &-expander-icon {
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform $iui-speed-fast ease-out;
       }
     }
 
@@ -133,7 +131,7 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
   }
 
   &.iui-expanded {
-    .iui-tree-node-content-expander > .iui-expander-icon {
+    .iui-tree-node-content-expander-icon {
       transform: rotate(90deg);
     }
   }
