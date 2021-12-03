@@ -47,6 +47,7 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
       style={{
         display: 'flex',
         minWidth: 0,
+        flexGrow: 1,
         whiteSpace: 'nowrap',
         ...style,
       }}
