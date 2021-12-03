@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.26.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.26.0...v1.26.1) (2021-12-03)
+
+### Fixes
+
+* **MiddleTextTruncation:** Fix resizing by adding flex grow ([#455](https://www.github.com/iTwin/iTwinUI-react/issues/455)) ([17cd7fb](https://www.github.com/iTwin/iTwinUI-react/commit/17cd7fbbef9f5c35a121d664922fb1a5706be037))
+
 ## [1.26.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.25.0...v1.26.0) (2021-11-30)
 
 ### What's new
