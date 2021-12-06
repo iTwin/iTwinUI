@@ -52,6 +52,10 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
+
+      &-expanded {
+        transform: rotate(90deg);
+      }
     }
 
     &-label {
@@ -127,12 +131,6 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
       @include themed {
         color: t(iui-text-color-placeholder);
       }
-    }
-  }
-
-  &.iui-expanded {
-    .iui-tree-node-content-expander-icon {
-      transform: rotate(90deg);
     }
   }
 }
