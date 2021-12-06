@@ -18,7 +18,8 @@
     }
   }
 
-  &:focus:not(:focus-visible) {
+  // `not(:hover)` is needed for focus styles after button is clicked.
+  &:focus:not(:focus-visible):not(:hover) {
     @include iui-button-cta-base;
   }
 
