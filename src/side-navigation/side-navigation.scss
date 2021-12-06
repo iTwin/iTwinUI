@@ -141,6 +141,7 @@
       &:focus:not(:focus-visible) {
         @include themed {
           box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
+          color: t(iui-color-foreground-primary);
         }
       }
     }
