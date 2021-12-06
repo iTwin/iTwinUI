@@ -93,6 +93,10 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     }
   }
 
+  &:focus:not(:focus-visible) {
+    outline-offset: -2px;
+  }
+
   &:hover {
     @include themed {
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
