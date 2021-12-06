@@ -58,6 +58,10 @@ export type TabsProps = {
    */
   contentClassName?: string;
   /**
+   * Custom CSS class name for the tabs wrapper.
+   */
+  wrapperClassName?: string;
+  /**
    * Content inside the tab panel.
    */
   children?: React.ReactNode;
@@ -103,6 +107,7 @@ export const Tabs = (props: TabsProps) => {
     orientation = 'horizontal',
     tabsClassName,
     contentClassName,
+    wrapperClassName,
     children,
     ...rest
   } = props;
@@ -238,7 +243,7 @@ export const Tabs = (props: TabsProps) => {
 
   return (
     <div
-      className={cx('iui-tabs-wrapper', `iui-${orientation}`)}
+      className={cx('iui-tabs-wrapper', `iui-${orientation}`, wrapperClassName)}
       style={stripeProperties}
     >
       <ul

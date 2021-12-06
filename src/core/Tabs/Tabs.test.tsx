@@ -157,12 +157,18 @@ it('should add custom classnames', () => {
   const { container } = renderComponent({
     tabsClassName: 'customTabsClassName',
     contentClassName: 'customContentClassName',
+    wrapperClassName: 'customWrapperClassName',
   });
 
-  const tabsContainer = container.querySelector('ul.customTabsClassName');
-  expect(tabsContainer).toBeTruthy();
-  const content = container.querySelector('div.customContentClassName');
-  expect(content).toBeTruthy();
+  expect(container.querySelector('.iui-tabs-wrapper')).toHaveClass(
+    'customWrapperClassName',
+  );
+  expect(container.querySelector('ul.iui-tabs')).toHaveClass(
+    'customTabsClassName',
+  );
+  expect(container.querySelector('.iui-tabs-content')).toHaveClass(
+    'customContentClassName',
+  );
 });
 
 it.each(['horizontal', 'vertical'] as const)(
