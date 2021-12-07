@@ -8,23 +8,30 @@
 @mixin iui-button-cta {
   @include iui-button-cta-base;
 
-  &:hover,
-  &:active,
   &:focus {
-    @include themed {
-      background-color: t(iui-color-background-positive-overlay);
-      border-color: t(iui-color-background-positive-overlay);
-      color: t(iui-color-foreground-accessory);
+    @include iui-button-cta-hover-focus;
+
+    &:where(:not(:focus-visible)) {
+      @include iui-button-cta-base;
     }
   }
 
-  &:focus:not(:focus-visible) {
-    @include iui-button-cta-base;
+  &:hover,
+  &:active {
+    @include iui-button-cta-hover-focus;
   }
 
   &[disabled],
   &:disabled {
     @include iui-button-disabled;
+  }
+}
+
+@mixin iui-button-cta-hover-focus {
+  @include themed {
+    background-color: t(iui-color-background-positive-overlay);
+    border-color: t(iui-color-background-positive-overlay);
+    color: t(iui-color-foreground-accessory);
   }
 }
 
