@@ -3,9 +3,11 @@
 @import '../style/index';
 @import '../user-icon/index';
 @import '../icon/index';
+@import '../button/index';
 
 @mixin iui-page-header {
   @include iui-reset;
+
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -123,7 +125,7 @@
             @include iui-display-none;
           }
 
-          .iui-header-button-icon + .iui-label {
+          .iui-header-button-icon + .iui-button-label {
             margin-left: 0;
           }
         }
@@ -154,8 +156,8 @@
     @include iui-header-button-icon;
   }
 
+  // boost specificity
   .iui-header-button.iui-header-button {
-    // boost specificity
     @include iui-header-button;
   }
 
@@ -174,7 +176,6 @@
     a#{&}, // rendered as anchor element
     button#{&}, // rendered as button element
     &[role='button'] {
-      // rendered as div with role=button
       @include iui-header-button-focus;
       cursor: pointer;
 
@@ -232,13 +233,18 @@
 }
 
 @mixin iui-header-button {
+  @include iui-button-size(large, borderless);
+
+  gap: 0;
   max-width: 25vw;
+  height: 100%;
+  border-radius: 0;
   overflow: hidden;
   padding-right: $iui-s;
 
   @include iui-header-button-focus;
 
-  > .iui-label {
+  > .iui-button-label {
     text-align: left;
     font-size: $iui-font-size;
     overflow: hidden;
@@ -259,8 +265,12 @@
     }
   }
 
-  > .iui-icon {
+  > .iui-button-icon {
     flex-shrink: 0;
+  }
+
+  > * + * {
+    margin-left: $iui-sm;
   }
 
   .iui-header-button-icon {
@@ -291,11 +301,11 @@
             height: $iui-icons-small;
             padding: $iui-xxs;
           }
+        }
 
-          .iui-label {
-            .iui-description {
-              @include iui-display-none;
-            }
+        .iui-button-label {
+          .iui-description {
+            @include iui-display-none;
           }
         }
       }
@@ -378,7 +388,7 @@
   }
 
   // Blue text
-  .iui-label {
+  .iui-button-label {
     @include themed {
       color: t(iui-color-foreground-primary);
     }

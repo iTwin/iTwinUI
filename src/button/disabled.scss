@@ -1,24 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import './button';
+@import './button-icon';
 
 @mixin iui-button-disabled {
   cursor: not-allowed;
   @include themed {
-    background-color: t(iui-color-background-disabled);
+    background: t(iui-color-background-disabled);
     border-color: t(iui-color-background-disabled);
-  }
-
-  > .iui-label {
-    @include themed {
-      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
-    }
-  }
-
-  > .iui-icon {
-    @include themed {
-      fill: t(iui-icons-color-actionable-disabled);
-    }
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
   }
 }

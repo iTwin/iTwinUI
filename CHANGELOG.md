@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.40.0](https://www.github.com/iTwin/iTwinUI/compare/v0.39.1...v0.40.0) (2021-12-01)
+
+### What's new
+
+* **Buttons:** Reduce nesting and specificity ([#363](https://www.github.com/iTwin/iTwinUI/issues/363)) ([0395323](https://www.github.com/iTwin/iTwinUI/commit/0395323cae55a38542020ecf5fc5f811bbbc3407))
+  * Mixins were added/improved to allow easier overrides and fix elusive bugs.
+  * `iui-default` class was added as a modifier to style default buttons.
+  * Some class names were updated: `iui-icon` is now `iui-button-icon`, and `iui-label` is now `iui-button-label`.
+  * Some class names in derived components no longer need to be applied, e.g. `iui-large` is not needed in header buttons.
+
+### Fixes
+
+* **Checkbox:** Changed visibility hover background color & unchecked fill color. ([#392](https://www.github.com/iTwin/iTwinUI/issues/392)) ([15c9015](https://www.github.com/iTwin/iTwinUI/commit/15c90152cb1f7ea7a3ffb14957e4ae600b8e859d))
+
+### [0.39.1](https://www.github.com/iTwin/iTwinUI/compare/v0.39.0...v0.39.1) (2021-11-15)
+
+### Fixes
+
+* **Label:** Fixed display style and alignment to respect modifier ([#382](https://www.github.com/iTwin/iTwinUI/issues/382)) ([5634d6b](https://www.github.com/iTwin/iTwinUI/commit/5634d6bf19dba144c9304808bd9f1027ba34f5b0))
+
 ## [0.39.0](https://www.github.com/iTwin/iTwinUI/compare/v0.38.0...v0.39.0) (2021-11-12)
 
 ### What's new

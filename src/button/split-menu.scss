@@ -44,4 +44,9 @@
       background-color: transparent;
     }
   }
+
+  &[disabled],
+  &:disabled {
+    @include iui-button-disabled;
+  }
 }
