@@ -9,9 +9,6 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
 
 @mixin iui-tree {
   @include iui-reset;
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
   list-style: none;
 }
 
@@ -126,8 +123,8 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
   &.iui-disabled {
     cursor: not-allowed;
     outline: none;
+    background-color: transparent;
     @include themed {
-      background-color: t(iui-color-background-1);
       color: t(iui-text-color-placeholder);
     }
 
