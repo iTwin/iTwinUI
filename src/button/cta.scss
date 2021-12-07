@@ -11,7 +11,7 @@
   &:focus {
     @include iui-button-cta-hover-focus;
 
-    &:focus:not(:focus-visible):not(:hover) {
+    &:where(:not(:focus-visible)) {
       @include iui-button-cta-base;
     }
   }
