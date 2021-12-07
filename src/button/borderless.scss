@@ -9,17 +9,16 @@
   @include iui-button-borderless-base;
   @include iui-button-size(medium, borderless);
 
-  &:hover,
   &:focus {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-      border-color: transparent;
+    @include iui-button-borderless-hover-focus;
+
+    &:where(:not(:focus-visible)) {
+      @include iui-button-borderless-base;
     }
   }
 
-  // `not(:hover)` is needed for focus styles after button is clicked.
-  &:focus:not(:focus-visible):not(:hover) {
-    @include iui-button-borderless-base;
+  &:hover {
+    @include iui-button-borderless-hover-focus;
   }
 
   &.iui-active {
@@ -44,6 +43,13 @@
         background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
       }
     }
+  }
+}
+
+@mixin iui-button-borderless-hover-focus {
+  @include themed {
+    background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+    border-color: transparent;
   }
 }
 
