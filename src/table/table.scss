@@ -325,6 +325,10 @@
     flex-basis: $iui-l * 2;
   }
 
+  &:not(.iui-slot):last-child {
+    padding-right: $iui-m;
+  }
+
   &.iui-positive {
     @include iui-table-cell-status($status: positive);
   }
