@@ -1,5 +1,54 @@
 # Changelog
 
+## [0.41.0](https://www.github.com/iTwin/iTwinUI/compare/v0.40.0...v0.41.0) (2021-12-07)
+
+### What's new
+
+* **Tree:** Add tree component ([#388](https://www.github.com/iTwin/iTwinUI/issues/388)) ([dead18d](https://www.github.com/iTwin/iTwinUI/commit/dead18dcead164113fb8f81bd6892a60477f7e6d))
+* **Table:** Add label to paginator row count dropdown button ([#381](https://www.github.com/iTwin/iTwinUI/issues/381)) ([89645ca](https://www.github.com/iTwin/iTwinUI/commit/89645cadd7135764ce0f418f15176d23ea0282db))
+
+### Fixes
+
+* **Button:** Fixed hover effects after button is clicked ([#404](https://www.github.com/iTwin/iTwinUI/issues/404)) ([d584354](https://www.github.com/iTwin/iTwinUI/commit/d584354e6cdbc063076868d68337c8dc75d76e2c))
+* **Table:** Add padding to last non-slot column ([#403](https://www.github.com/iTwin/iTwinUI/issues/403)) ([30bb8b1](https://www.github.com/iTwin/iTwinUI/commit/30bb8b1cd99bf5fbd30f7bbda406105ea86e75c8))
+* **UserIcon:** Apply background color to transparent images ([#394](https://www.github.com/iTwin/iTwinUI/issues/394)) ([f9f181d](https://www.github.com/iTwin/iTwinUI/commit/f9f181db2ca06ab553ae1371a3efd8b183192e44))
+
+## [0.40.0](https://www.github.com/iTwin/iTwinUI/compare/v0.39.1...v0.40.0) (2021-12-01)
+
+### What's new
+
+* **Buttons:** Reduce nesting and specificity ([#363](https://www.github.com/iTwin/iTwinUI/issues/363)) ([0395323](https://www.github.com/iTwin/iTwinUI/commit/0395323cae55a38542020ecf5fc5f811bbbc3407))
+  * Mixins were added/improved to allow easier overrides and fix elusive bugs.
+  * `iui-default` class was added as a modifier to style default buttons.
+  * Some class names were updated: `iui-icon` is now `iui-button-icon`, and `iui-label` is now `iui-button-label`.
+  * Some class names in derived components no longer need to be applied, e.g. `iui-large` is not needed in header buttons.
+
+### Fixes
+
+* **Checkbox:** Changed visibility hover background color & unchecked fill color. ([#392](https://www.github.com/iTwin/iTwinUI/issues/392)) ([15c9015](https://www.github.com/iTwin/iTwinUI/commit/15c90152cb1f7ea7a3ffb14957e4ae600b8e859d))
+
+### [0.39.1](https://www.github.com/iTwin/iTwinUI/compare/v0.39.0...v0.39.1) (2021-11-15)
+
+### Fixes
+
+* **Label:** Fixed display style and alignment to respect modifier ([#382](https://www.github.com/iTwin/iTwinUI/issues/382)) ([5634d6b](https://www.github.com/iTwin/iTwinUI/commit/5634d6bf19dba144c9304808bd9f1027ba34f5b0))
+
+## [0.39.0](https://www.github.com/iTwin/iTwinUI/compare/v0.38.0...v0.39.0) (2021-11-12)
+
+### What's new
+
+* **Label:** Add non-wrapping label component ([#351](https://www.github.com/iTwin/iTwinUI/issues/351)) ([93798d8](https://www.github.com/iTwin/iTwinUI/commit/93798d8236d7e5d738534a703f4698cfb39494cf))
+* **InformationPanel:** Add `.iui-information-body-content` to align inner content using grid ([#367](https://www.github.com/iTwin/iTwinUI/issues/367)) ([4756bb7](https://www.github.com/iTwin/iTwinUI/commit/4756bb7628a5ee5fecc2f8993087620c481474fd))
+* **Table:** Add vertical scroll snapping using `.iui-scroll-snapping` ([#380](https://www.github.com/iTwin/iTwinUI/issues/380)) ([23d15da](https://www.github.com/iTwin/iTwinUI/commit/23d15da894d8a57c5c6ca85cd0e67f09ca9e0183))
+* **Header:** Improve styling of header buttons ([#373](https://www.github.com/iTwin/iTwinUI/issues/373)) ([4be4900](https://www.github.com/iTwin/iTwinUI/commit/4be490070297ed6ac70856cd4a191c408e91bbaa))
+  * Added ability to use header logo as anchor
+  * Added ability to show active stripe in header buttons used outside `.iui-left`
+
+### Fixes
+
+* **Menu:** Apply text color on menu root so that it's also inherited by iui-menu-content ([#371](https://www.github.com/iTwin/iTwinUI/issues/371)) ([da1edb7](https://www.github.com/iTwin/iTwinUI/commit/da1edb795f4b600fab30c441cfd348b68e781a36))
+* **Tabs:** Replaced `.iui-tab-stripe` with `::after` pseudo-element ([#370](https://www.github.com/iTwin/iTwinUI/issues/370)) ([a7ef494](https://www.github.com/iTwin/iTwinUI/commit/a7ef49455b5f5de8b441b05846cf4e7ec2ef058f))
+
 ## [0.38.0](https://www.github.com/iTwin/iTwinUI/compare/v0.37.2...v0.38.0) (2021-10-28)
 
 ### What's new

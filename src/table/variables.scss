@@ -6,7 +6,5 @@ $iui-table-density-vertical: $iui-baseline * 1.5;
 $iui-table-density-vertical-condensed: $iui-baseline;
 $iui-table-density-vertical-extra-condensed: $iui-baseline * 0.5;
 $iui-table-density: $iui-table-density-vertical $iui-m;
-$iui-table-density-condensed: $iui-table-density-vertical-condensed
-  $iui-m;
-$iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed
-  $iui-m;
+$iui-table-density-condensed: $iui-table-density-vertical-condensed $iui-m;
+$iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed $iui-m;

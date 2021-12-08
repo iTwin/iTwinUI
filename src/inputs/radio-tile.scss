@@ -36,8 +36,7 @@
       }
 
       @include themed {
-        border: 1px solid
-          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
         background-color: t(iui-color-background-1);
       }
 
@@ -201,8 +200,7 @@
       z-index: 3;
 
       @include themed {
-        border: 2px solid
-          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        border: 2px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       }
     }
   }

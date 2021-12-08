@@ -58,8 +58,7 @@
 
 @mixin iui-scrollbar {
   @include themed {
-    scrollbar-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4))
-      transparent;
+    scrollbar-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4)) transparent;
     scrollbar-width: thin;
   }
 
@@ -70,19 +69,13 @@
 
   &::-webkit-scrollbar-thumb {
     @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-body-rgb),
-        t(iui-opacity-4)
-      );
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     }
     border-radius: $iui-s * 0.5;
 
     &:hover {
       @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-body-rgb),
-          t(iui-opacity-3)
-        );
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
       }
     }
   }
@@ -98,7 +91,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  @supports(-webkit-line-clamp: 1) {
+  @supports (-webkit-line-clamp: 1) {
     white-space: unset;
     display: -webkit-box; /* stylelint-disable-line */
     -webkit-line-clamp: $lines;
@@ -113,7 +106,7 @@
   }
 
   // With blur
-  @supports(backdrop-filter: $iui-blur-filter) {
+  @supports (backdrop-filter: $iui-blur-filter) {
     @include themed() {
       background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity}));
       backdrop-filter: $iui-blur-filter;
@@ -154,6 +147,18 @@
     opacity: 0;
     @media (prefers-reduced-motion: no-preference) {
       transition: $transition-rule;
+    }
+  }
+}
+
+/// Adds the ability to toggle vertical scroll snapping by setting `.iui-scroll-snapping` as a modifier (if used inside a class) or at root level.
+/// @arg $selector - selector to apply `scroll-snap-align: start` on. Defaults to '> *'
+@mixin iui-scroll-snapping($selector: '> *') {
+  #{if(&, '&.iui-scroll-snapping', '.iui-scroll-snapping')} {
+    scroll-snap-type: y mandatory;
+
+    #{$selector} {
+      scroll-snap-align: start;
     }
   }
 }
