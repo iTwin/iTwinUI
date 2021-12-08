@@ -5,88 +5,68 @@
 @mixin iui-button-group {
   display: inline-flex;
   align-items: center;
+  isolation: isolate;
 
-  $childSelector: '&, input, button'; // target nested inputs and buttons
+  $childSelector: '.iui-input, .iui-button'; // target nested inputs and buttons
 
   > * {
-    &:not(.iui-borderless) {
-      #{$childSelector} {
+    #{$childSelector} {
+      &:hover,
+      &:focus,
+      &:focus-within {
+        z-index: 1;
+      }
+
+      &:disabled {
+        z-index: -1;
+      }
+
+      // Adds stripe above active button
+      &.iui-active {
+        &::after {
+          content: '';
+          position: absolute;
+          height: $iui-xxs;
+          opacity: 1;
+          top: $iui-xxs;
+          left: $iui-xxs;
+          width: calc(100% - #{$iui-xs});
+          @include themed {
+            background-color: t(iui-color-foreground-primary);
+          }
+        }
+
+        &:disabled {
+          &::after {
+            @include themed {
+              background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+            }
+          }
+        }
+      }
+
+      // Reset border radius only for non-borderless buttons
+      &:not(.iui-borderless) {
         border-radius: 0;
       }
+    }
 
-      &:first-child {
-        #{$childSelector} {
-          border-top-left-radius: $iui-border-radius;
-          border-bottom-left-radius: $iui-border-radius;
-        }
-      }
-
-      &:last-child {
-        #{$childSelector} {
-          border-top-right-radius: $iui-border-radius;
-          border-bottom-right-radius: $iui-border-radius;
-        }
-      }
-
-      &:not(:last-child) {
-        margin-right: -1px;
+    &:first-child {
+      #{$childSelector}:not(.iui-borderless) {
+        border-top-left-radius: $iui-border-radius;
+        border-bottom-left-radius: $iui-border-radius;
       }
     }
 
-    &:hover,
-    &:focus,
-    &:focus-within {
-      z-index: 2;
-    }
-
-    &.iui-default {
-      // Border trick for grouped default & disabled buttons
-      &:not(:disabled) {
-        + :disabled {
-          @include themed {
-            border-left-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-          }
-        }
-
-        &:hover + .iui-button,
-        &:active + .iui-button,
-        &:focus-visible + .iui-button {
-          @include themed {
-            border-left-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-          }
-        }
-      }
-
-      // Border between 2 side-by-side disabled buttons
-      &:disabled + .iui-button:disabled {
-        @include themed {
-          border-left-color: t(iui-color-background-4);
-        }
-      }
-    }
-  }
-
-  // Adds stripe above active button
-  > .iui-active {
-    &::after {
-      content: '';
-      position: absolute;
-      height: $iui-xxs;
-      opacity: 1;
-      top: $iui-xxs;
-      left: $iui-xxs;
-      width: calc(100% - #{$iui-xs});
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
+    &:last-child {
+      #{$childSelector}:not(.iui-borderless) {
+        border-top-right-radius: $iui-border-radius;
+        border-bottom-right-radius: $iui-border-radius;
       }
     }
 
-    &:disabled {
-      &::after {
-        @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
-        }
-      }
+    &:not(:last-child) {
+      margin-right: -1px;
     }
   }
 }
