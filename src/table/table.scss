@@ -129,7 +129,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
+  @include iui-scroll-snapping('.iui-row');
   @include themed {
     background-color: t(iui-color-background-1);
   }
@@ -151,10 +151,7 @@
     &:hover:not(.iui-disabled) {
       &:not(.iui-expanded-content) {
         @include themed {
-          background-color: rgba(
-            t(iui-color-foreground-primary-rgb),
-            t(iui-opacity-6)
-          );
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
         }
       }
 
@@ -167,7 +164,7 @@
       visibility: visible;
     }
 
-    .iui-row-expander > .iui-icon {
+    .iui-row-expander > .iui-button-icon {
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
@@ -181,7 +178,7 @@
         border-bottom-color: transparent;
       }
 
-      .iui-row-expander > .iui-icon {
+      .iui-row-expander > .iui-button-icon {
         transform: rotate(90deg);
       }
 
@@ -328,6 +325,10 @@
     flex-basis: $iui-l * 2;
   }
 
+  &:not(.iui-slot):last-child {
+    padding-right: $iui-m;
+  }
+
   &.iui-positive {
     @include iui-table-cell-status($status: positive);
   }
@@ -367,10 +368,7 @@
 
     *::selection {
       @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-#{$status}-rgb),
-          t(iui-opacity-4)
-        );
+        background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
       }
     }
   }
@@ -384,18 +382,12 @@
 
 @mixin iui-table-cell-status($status) {
   @include themed {
-    background-color: rgba(
-      t(iui-color-foreground-#{$status}-rgb),
-      t(iui-opacity-6)
-    );
+    background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6));
   }
 
   &::selection {
     @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-#{$status}-rgb),
-        t(iui-opacity-4)
-      );
+      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
     }
   }
 }

@@ -2,65 +2,40 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import './button';
+@import './disabled';
+@import './button-icon';
 
 @mixin iui-button-borderless {
-  background-color: transparent;
-  border-color: transparent;
-  padding: 0 $iui-s;
+  @include iui-button-borderless-base;
+  @include iui-button-size(medium, borderless);
 
-  // Sizes
-  &.iui-small {
-    padding: 0 $iui-xxs;
+  &:focus {
+    @include iui-button-borderless-hover-focus;
+
+    &:where(:not(:focus-visible)) {
+      @include iui-button-borderless-base;
+    }
   }
 
-  &.iui-large {
-    padding: 0 $iui-sm;
+  &:hover {
+    @include iui-button-borderless-hover-focus;
   }
 
-  // If icon is by itself, button takes 1:1 size ratio
-  > .iui-icon:only-child {
-    margin-left: $iui-component-offset;
-    margin-right: $iui-component-offset;
-  }
-
-  &:enabled:hover,
-  &:enabled:active,
-  &:focus-visible {
+  &.iui-active {
     @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-body-rgb),
-        t(iui-opacity-6)
-      );
-      border-color: transparent;
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      color: t(iui-color-foreground-primary);
     }
-  }
-
-  &.iui-active:not(.iui-high-visibility):not(.iui-cta) {
-    &:enabled,
-    &:enabled:hover,
-    &:enabled:active {
-      background: transparent;
-      @include themed {
-        background-color: rgba(
-          t(iui-color-foreground-primary-rgb),
-          t(iui-opacity-6)
-        );
-      }
-      border-color: transparent;
-    }
+    border-color: transparent;
   }
 
   &[disabled],
-  &[disabled]:hover,
-  &[disabled]:active,
-  &[disabled]:focus {
-    background-color: transparent;
-    border-color: transparent;
+  &:disabled {
+    @include iui-button-disabled;
 
-    > .iui-icon {
-      @include themed {
-        fill: t(iui-icons-color-actionable-disabled);
-      }
+    @include themed {
+      background-color: transparent;
+      border-color: transparent;
     }
 
     &.iui-active {
@@ -68,5 +43,22 @@
         background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
       }
     }
+  }
+}
+
+@mixin iui-button-borderless-hover-focus {
+  @include themed {
+    background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+    border-color: transparent;
+  }
+}
+
+@mixin iui-button-borderless-base {
+  border-color: transparent;
+  background-color: transparent;
+
+  > .iui-button-icon:only-child {
+    margin-left: $iui-component-offset;
+    margin-right: $iui-component-offset;
   }
 }

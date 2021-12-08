@@ -7,10 +7,7 @@
 
   &:hover {
     @include themed {
-      background-color: rgba(
-        t(iui-color-foreground-body-rgb),
-        t(iui-opacity-6)
-      );
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
     }
   }
 
@@ -38,10 +35,7 @@
   > .iui-cta + .iui-cta,
   > .iui-cta + .iui-cta:hover {
     @include themed {
-      border-left-color: rgba(
-        t(iui-color-foreground-accessory-rgb),
-        t(iui-opacity-4)
-      );
+      border-left-color: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4));
     }
   }
 
@@ -49,5 +43,10 @@
     @include themed {
       background-color: transparent;
     }
+  }
+
+  &[disabled],
+  &:disabled {
+    @include iui-button-disabled;
   }
 }

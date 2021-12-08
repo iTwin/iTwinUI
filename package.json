@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.38.0",
+  "version": "0.41.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -27,6 +27,9 @@
     }
   },
   "lint-staged": {
+    "*.{scss}": [
+      "prettier --write"
+    ],
     "*.{scss,html}": [
       "stylelint --fix"
     ],
@@ -64,11 +67,12 @@
     "cpx": "^1.5.0",
     "html-minifier": "^4.0.0",
     "husky": "=4",
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^11.2.6",
     "node-sass": "^5.0.0",
     "postcss": "^8.2.15",
     "postcss-cli": "^8.3.1",
     "postcss-discard-comments": "^4.0.2",
+    "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "stylelint": "^13.10.0",
     "stylelint-config-sass-guidelines": "^8.0.0"

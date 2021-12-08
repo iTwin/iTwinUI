@@ -61,7 +61,7 @@
     max-width: $iui-icons-large * 3;
 
     // iPhone notch support
-    @supports(min-width: unquote('max(0px)')) {
+    @supports (min-width: unquote('max(0px)')) {
       min-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
       max-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
     }
@@ -71,12 +71,13 @@
   > .iui-sidenav-content {
     max-width: $iui-3xl * 3;
 
-    > .iui-sidenav-button.iui-expand > .iui-icon {
+    > .iui-sidenav-button.iui-expand > .iui-button-icon {
       transform: scaleX(-1);
     }
   }
 
   .iui-sidenav-button {
+    gap: $iui-icons-large;
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -86,49 +87,57 @@
     &:not(.iui-expand) {
       height: $iui-baseline * 5;
       // iPhone notch support
-      @supports(padding: unquote('max(0px)')) {
+      @supports (padding: unquote('max(0px)')) {
         padding-left: unquote('max(#{$iui-icons-large}, #{$iui-icons-large} + env(safe-area-inset-left))');
       }
     }
 
+    > .iui-button-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &,
-    &:enabled:hover,
+    &:hover,
     &[disabled],
-    &:focus-visible {
+    &:focus {
       @include themed {
         border-color: t(iui-color-background-5);
       }
     }
 
-    > .iui-icon:not(.iui-user-icon) {
-      width: $iui-icons-large;
-      height: $iui-icons-large;
-      flex-shrink: 0;
-
-      + .iui-label {
-        margin-left: $iui-icons-large;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    // Overriding border from default button
+    &:focus:not(:focus-visible) {
+      @include themed {
+        border-color: t(iui-color-background-5);
       }
     }
 
-    &.iui-submenu-open .iui-icon {
+    > .iui-button-icon:not(.iui-user-icon) {
+      width: $iui-icons-large;
+      height: $iui-icons-large;
+      flex-shrink: 0;
+    }
+
+    &.iui-submenu-open .iui-button-icon {
       @include themed {
         fill: t(iui-color-foreground-primary);
       }
     }
 
     &.iui-active {
-      &:focus,
-      &:focus-visible {
+      @include themed {
+        box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
+      }
+
+      &:focus {
         @include themed {
-          box-shadow: inset 0 0 $iui-xs
-            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)), inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
+          box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)),
+            inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
         }
       }
 
-      &,
       &:focus:not(:focus-visible) {
         @include themed {
           box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
@@ -136,7 +145,8 @@
       }
     }
 
-    &[disabled] {
+    &[disabled],
+    &:disabled {
       @include themed {
         background-color: t(iui-color-background-2);
       }
@@ -145,19 +155,12 @@
     &:focus {
       outline: 0;
       @include themed {
-        box-shadow: inset 0 0 $iui-xs
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
+        box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
       }
     }
 
     &:focus:not(:focus-visible) {
       box-shadow: none;
-    }
-
-    &:focus-visible {
-      outline: 0;
-      box-shadow: inset 0 0 $iui-xs
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
     }
 
     &.iui-expand {
@@ -168,7 +171,7 @@
         border-bottom: 1px solid t(iui-color-background-5);
       }
 
-      > .iui-icon {
+      > .iui-button-icon {
         @include iui-icons-small;
         @media (prefers-reduced-motion: no-preference) {
           transition: transform $iui-speed ease-out;

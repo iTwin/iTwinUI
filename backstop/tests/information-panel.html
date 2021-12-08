@@ -86,6 +86,10 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
     <script>
       customElements.define('svg-filetype-imodel', class extends HTMLElement {
         connectedCallback() {
@@ -139,40 +143,28 @@
         height: 768px;
       }
 
-      .demo-information-table {
-        table-layout: fixed;
-        width: 100%;
-      }
-
-      tr {
-        height: 33px;
-      }
-
-      td {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      td:first-child {
-        text-align: right;
-        color: var(--iui-text-color-muted);
-        padding-right: 8px;
-      }
-
-      td:first-child::after {
-        content: ':';
-      }
-
-      .demo-information-table-center {
+      .demo-usericon-with-label {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 4px;
       }
 
-      label {
-        cursor: pointer;
+      /* Removes border and padding from readonly text fields */
+      input[readonly] {
+        border: none;
+        padding: 0;
       }
+
+      /* Removes focus when clicking on a readonly text field */
+      input[readonly]:focus { box-shadow: none; }
+
+      /* Change cursor to default when no FOR is assigned */
+      label:not([for]) {
+        cursor: default;
+      }
+
+      /* Fixes display bug when using web components */
+      .iui-input-icon svg { display: flex; }
     </style>
     <script src="../assets/theme.js"></script>
     <script src="../assets/userIcon.js"></script>
@@ -188,10 +180,10 @@
       <div class="demo-button-bar">
         <button class="iui-button iui-high-visibility">
           <svg-add
-            class="iui-icon"
+            class="iui-button-icon"
             aria-hidden="true"
           ></svg-add>
-          <span class="iui-label">New</span>
+          <span class="iui-button-label">New</span>
         </button>
 
         <span
@@ -200,47 +192,47 @@
         >
           <button
             title="Download"
-            class="iui-button"
+            class="iui-button iui-default"
           >
             <svg-download
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-download>
           </button>
           <button
             title="Move"
-            class="iui-button"
+            class="iui-button iui-default"
           >
             <svg-arrow-right
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-arrow-right>
           </button>
           <button
             title="Delete"
-            class="iui-button"
+            class="iui-button iui-default"
             disabled
           >
             <svg-delete
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-delete>
           </button>
           <button
             title="Rename"
-            class="iui-button"
+            class="iui-button iui-default"
           >
             <svg-rename
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-rename>
           </button>
           <button
             title="More options&mldr;"
-            class="iui-button"
+            class="iui-button iui-default"
           >
             <svg-more
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-more>
           </button>
@@ -249,19 +241,19 @@
         <span class="iui-button-group">
           <button
             title="List view"
-            class="iui-button iui-active"
+            class="iui-button iui-default iui-active"
           >
             <svg-list
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-list>
           </button>
           <button
             title="Tile view"
-            class="iui-button"
+            class="iui-button iui-default"
           >
             <svg-thumbnails
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-thumbnails>
           </button>
@@ -269,11 +261,11 @@
 
         <button
           title="View info"
-          class="iui-button"
+          class="iui-button iui-default"
           onclick="openInfoPanel(this)"
         >
           <svg-info
-            class="iui-icon"
+            class="iui-button-icon"
             aria-hidden="true"
           ></svg-info>
         </button>
@@ -319,13 +311,13 @@
                   type="button"
                 >
                   <svg-filter-hollow
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-filter-hollow>
                 </button>
                 <div class="iui-cell-end-icon">
                   <svg-sort-down
-                    class="iui-icon iui-sort"
+                    class="iui-button-icon iui-sort"
                     aria-hidden="true"
                   ></svg-sort-down>
                 </div>
@@ -344,13 +336,13 @@
                   type="button"
                 >
                   <svg-filter-hollow
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-filter-hollow>
                 </button>
                 <div class="iui-cell-end-icon">
                   <svg-sort-down
-                    class="iui-icon iui-sort"
+                    class="iui-button-icon iui-sort"
                     aria-hidden="true"
                   ></svg-sort-down>
                 </div>
@@ -369,13 +361,13 @@
                   type="button"
                 >
                   <svg-filter-hollow
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-filter-hollow>
                 </button>
                 <div class="iui-cell-end-icon">
                   <svg-sort-down
-                    class="iui-icon iui-sort"
+                    class="iui-button-icon iui-sort"
                     aria-hidden="true"
                   ></svg-sort-down>
                 </div>
@@ -394,13 +386,13 @@
                   type="button"
                 >
                   <svg-filter-hollow
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-filter-hollow>
                 </button>
                 <div class="iui-cell-end-icon">
                   <svg-sort-down
-                    class="iui-icon iui-sort"
+                    class="iui-button-icon iui-sort"
                     aria-hidden="true"
                   ></svg-sort-down>
                 </div>
@@ -412,7 +404,7 @@
                   type="button"
                 >
                   <svg-column-manager
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-column-manager>
                 </button>
@@ -468,7 +460,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -522,7 +514,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -575,7 +567,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -628,7 +620,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -681,7 +673,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -707,7 +699,7 @@
             <div class="iui-information-header-actions">
               <button class="iui-button iui-borderless">
                 <svg-edit
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-edit>
               </button>
@@ -716,7 +708,7 @@
                 onclick="openInfoPanel()"
               >
                 <svg-close-small
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-close-small>
               </button>
@@ -725,98 +717,118 @@
 
           <div class="iui-information-body">
 
-            <table class="demo-information-table">
-              <tr>
-                <td>Kind</td>
-                <td>MP3 audio</td>
-              </tr>
-              <tr>
-                <td>Size</td>
-                <td>9.7 MB</td>
-              </tr>
-              <tr>
-                <td>Where</td>
-                <td>/Shared/Music/</td>
-              </tr>
-              <tr>
-                <td>Date created</td>
-                <td>Aug 10, 2021 2:26 PM</td>
-              </tr>
-              <tr>
-                <td>Owner</td>
-                <td>
-                  <div class="demo-information-table-center">
-                    <user-icon
-                      size="small"
-                      type="2"
-                    >
-                    </user-icon>
-                    Terry Rivers
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Last modified</td>
-                <td>Aug 10, 2021 3:26 PM</td>
-              </tr>
-              <tr>
-                <td>Modified by</td>
-                <td>
-                  <div class="demo-information-table-center">
-                    <user-icon
-                      size="small"
-                      type="1"
-                    >
-                    </user-icon>
-                    Robin Mercer
-                  </div>
-                </td>
-              </tr>
+            <div class="iui-information-body-content iui-inline">
+              <span class="iui-input-label">
+                Kind
+              </span>
+              <span>MP3 audio</span>
 
-            </table>
+              <span class="iui-input-label">
+                Size
+              </span>
+              <span>9.7 MB</span>
+
+              <span class="iui-input-label">
+                Where
+              </span>
+              <span>/Shared/Music/</span>
+
+              <span class="iui-input-label">
+                Date created
+              </span>
+              <span>Aug 10, 2021 2:26 PM</span>
+
+              <span class="iui-input-label">
+                Owner
+              </span>
+              <div class="demo-usericon-with-label">
+                <user-icon
+                  size="small"
+                  type="2"
+                >
+                </user-icon>
+                Terry Rivers
+              </div>
+
+              <span class="iui-input-label">
+                Last modified
+              </span>
+              <span>Aug 10, 2021 2:26 PM</span>
+
+              <span class="iui-input-label">
+                Modified by
+              </span>
+              <div class="demo-usericon-with-label">
+                <user-icon
+                  size="small"
+                  type="1"
+                >
+                </user-icon>
+                Robin Mercer
+              </div>
+
+            </div>
 
             <hr />
 
             <div class="iui-text-leading">Attributes</div>
-            <table class="demo-information-table">
-              <tr>
-                <td>Title</td>
-                <td>Beta (Gold Master)</td>
-              </tr>
-              <tr>
-                <td>Duration</td>
-                <td>03:36</td>
-              </tr>
-              <tr>
-                <td>Authors</td>
-                <td>DJ Terry</td>
-              </tr>
-              <tr>
-                <td>Audio channels</td>
-                <td>Stereo</td>
-              </tr>
-              <tr>
-                <td>Sample rate</td>
-                <td>44.1 kHz</td>
-              </tr>
-              <tr>
-                <td>Album</td>
-                <td>DJ Terry's Fire Mixtape</td>
-              </tr>
-              <tr>
-                <td>Musical genre</td>
-                <td>Dubstep</td>
-              </tr>
-              <tr>
-                <td>Year recorded</td>
-                <td>2021</td>
-              </tr>
-            </table>
 
-          </div>
-        </div>
+            <div class="iui-information-body-content iui-inline">
 
-      </div>
+              <span
+                class="iui-input-label"
+                for="title-2"
+              >
+                Title
+              </span>
+              <span>Beta (Gold Master)</span>
+
+              <span class="iui-input-label">
+                Duration
+              </span>
+              <span>03:36</span>
+
+              <span
+                class="iui-input-label"
+                for="authors-2"
+              >
+                Authors
+              </span>
+              <span>DJ Terry</span>
+
+              <span class="iui-input-label">
+                Audio channels
+              </span>
+              <span>Stereo</span>
+
+              <span class="iui-input-label">
+                Sample rate
+              </span>
+              <span>44.1 kHz</span>
+
+              <span class="iui-input-label">
+                Album
+              </span>
+              <span>DJ Terry's Super Fire Mixtape</span>
+
+              <span class="iui-input-label">
+                Musical genre
+              </span>
+              <span>Dubstep</span>
+
+              <span
+                class="iui-input-label"
+                for="year-recorded-2"
+              >
+                Year recorded
+              </span>
+              <span>2021</span>
+
+              </span>
+
+            </div>
+
+            </span>
 
     </section>
 
@@ -864,13 +876,13 @@
                   type="button"
                 >
                   <svg-filter-hollow
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-filter-hollow>
                 </button>
                 <div class="iui-cell-end-icon">
                   <svg-sort-down
-                    class="iui-icon iui-sort"
+                    class="iui-button-icon iui-sort"
                     aria-hidden="true"
                   ></svg-sort-down>
                 </div>
@@ -889,13 +901,13 @@
                   type="button"
                 >
                   <svg-filter-hollow
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-filter-hollow>
                 </button>
                 <div class="iui-cell-end-icon">
                   <svg-sort-down
-                    class="iui-icon iui-sort"
+                    class="iui-button-icon iui-sort"
                     aria-hidden="true"
                   ></svg-sort-down>
                 </div>
@@ -914,13 +926,13 @@
                   type="button"
                 >
                   <svg-filter-hollow
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-filter-hollow>
                 </button>
                 <div class="iui-cell-end-icon">
                   <svg-sort-down
-                    class="iui-icon iui-sort"
+                    class="iui-button-icon iui-sort"
                     aria-hidden="true"
                   ></svg-sort-down>
                 </div>
@@ -939,13 +951,13 @@
                   type="button"
                 >
                   <svg-filter-hollow
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-filter-hollow>
                 </button>
                 <div class="iui-cell-end-icon">
                   <svg-sort-down
-                    class="iui-icon iui-sort"
+                    class="iui-button-icon iui-sort"
                     aria-hidden="true"
                   ></svg-sort-down>
                 </div>
@@ -957,7 +969,7 @@
                   type="button"
                 >
                   <svg-column-manager
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-column-manager>
                 </button>
@@ -1013,7 +1025,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -1067,7 +1079,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -1120,7 +1132,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -1173,7 +1185,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -1226,7 +1238,7 @@
                   type="button"
                 >
                   <svg-more
-                    class="iui-icon"
+                    class="iui-button-icon"
                     aria-hidden="true"
                   ></svg-more>
                 </button>
@@ -1249,13 +1261,13 @@
             <div class="iui-information-header-actions">
               <button class="iui-button iui-borderless iui-active">
                 <svg-edit
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-edit>
               </button>
               <button class="iui-button iui-borderless">
                 <svg-close-small
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-close-small>
               </button>
@@ -1263,124 +1275,163 @@
           </div>
 
           <div class="iui-information-body">
+            <div class="iui-information-body-content iui-inline">
+              <span class="iui-input-label">
+                Kind
+              </span>
+              <span>MP3 audio</span>
 
-            <table class="demo-information-table">
-              <tr>
-                <td>Kind</td>
-                <td>MP3 audio</td>
-              </tr>
-              <tr>
-                <td>Size</td>
-                <td>9.7 MB</td>
-              </tr>
-              <tr>
-                <td>Where</td>
-                <td>/Shared/Music/</td>
-              </tr>
-              <tr>
-                <td>Date created</td>
-                <td>Aug 10, 2021 2:26 PM</td>
-              </tr>
-              <tr>
-                <td>Owner</td>
-                <td>
-                  <div class="demo-information-table-center">
-                    <user-icon
-                      size="small"
-                      type="2"
-                    >
-                    </user-icon>
-                    Terry Rivers
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Last modified</td>
-                <td>Aug 10, 2021 3:26 PM</td>
-              </tr>
-              <tr>
-                <td>Modified by</td>
-                <td>
-                  <div class="demo-information-table-center">
-                    <user-icon
-                      size="small"
-                      type="1"
-                    >
-                    </user-icon>
-                    Robin Mercer
-                  </div>
-                </td>
-              </tr>
+              <span class="iui-input-label">
+                Size
+              </span>
+              <span>9.7 MB</span>
 
-            </table>
+              <span class="iui-input-label">
+                Where
+              </span>
+              <span>/Shared/Music/</span>
+
+              <span class="iui-input-label">
+                Date created
+              </span>
+              <span>Aug 10, 2021 2:26 PM</span>
+
+              <span class="iui-input-label">
+                Owner
+              </span>
+              <div class="demo-usericon-with-label">
+                <user-icon
+                  size="small"
+                  type="2"
+                >
+                </user-icon>
+                Terry Rivers
+              </div>
+
+              <span class="iui-input-label">
+                Last modified
+              </span>
+              <span>Aug 10, 2021 2:26 PM</span>
+
+              <span class="iui-input-label">
+                Modified by
+              </span>
+              <div class="demo-usericon-with-label">
+                <user-icon
+                  size="small"
+                  type="1"
+                >
+                </user-icon>
+                Robin Mercer
+              </div>
+
+            </div>
 
             <hr />
 
             <div class="iui-text-leading">Attributes</div>
-            <table class="demo-information-table">
-              <tr>
-                <td><label for="title">Title</label></td>
-                <td>
-                  <input
-                    id="title"
-                    value="Beta (Gold Master)"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Duration</td>
-                <td>03:36</td>
-              </tr>
-              <tr>
-                <td><label for="authors">Authors</label></td>
-                <td>
-                  <input
-                    id="authors"
-                    value="DJ Terry"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Audio channels</td>
-                <td>Stereo</td>
-              </tr>
-              <tr>
-                <td>Sample rate</td>
-                <td>44.1 kHz</td>
-              </tr>
-              <tr>
-                <td><label for="album">Album</label></td>
-                <td>
-                  <input
-                    id="album"
-                    value="DJ Terry's Fire Mixtape"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td><label for="genre">Musical genre</label></td>
-                <td>
-                  <input
-                    id="genre"
-                    value="Dubstep"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td><label for="year">Year recorded</label></td>
-                <td>
-                  <input
-                    id="year"
-                    value="2021"
-                    class="iui-input iui-small"
-                  />
-                </td>
-              </tr>
-            </table>
+
+            <div class="iui-information-body-content iui-inline">
+
+              <label
+                class="iui-input-label"
+                for="title-2"
+              >
+                Title
+              </label>
+              <input
+                value="Beta (Gold Master)"
+                class="iui-input iui-small"
+                id="title-2"
+              />
+
+              <label class="iui-input-label">
+                Duration
+              </label>
+              <input
+                readonly
+                value="03:36"
+                class="iui-input iui-small"
+              />
+
+              <label
+                class="iui-input-label"
+                for="authors-2"
+              >
+                Authors
+              </label>
+              <input
+                value="DJ Terry"
+                class="iui-input iui-small"
+                id="authors-2"
+              />
+
+              <label class="iui-input-label">
+                Audio channels
+              </label>
+              <input
+                readonly
+                value="Stereo"
+                class="iui-input iui-small"
+              />
+
+              <label class="iui-input-label">
+                Sample rate
+              </label>
+              <input
+                readonly
+                value="44.1 kHz"
+                class="iui-input iui-small"
+              />
+
+              <label
+                class="iui-input-label"
+                for="album-2"
+              >
+                Album
+              </label>
+              <input
+                value="DJ Terry's Super Fire Mixtape"
+                class="iui-input iui-small"
+                id="album-2"
+              />
+
+              <label
+                class="iui-input-label"
+                for="musical-genre-2"
+              >
+                Musical genre
+              </label>
+              <div class="iui-input-container iui-inline-icon">
+                <input
+                  class="iui-input iui-small"
+                  id="musical-genre-2"
+                  role="combobox"
+                  aria-autocomplete="list"
+                  spellcheck="false"
+                  autocapitalize="none"
+                  autocorrect="off"
+                  value="Dubstep"
+                  aria-expanded="false"
+                >
+                <span class="iui-input-icon iui-actionable">
+                  <svg-caret-down-small aria-hidden="true"></svg-caret-down-small>
+                </span>
+              </div>
+
+              <label
+                class="iui-input-label"
+                for="year-recorded-2"
+              >
+                Year recorded
+              </label>
+              <input
+                value="2021"
+                class="iui-input iui-small"
+                id="year-recorded-2"
+              />
+
+            </div>
 
           </div>
         </div>
@@ -1418,7 +1469,7 @@
               >
                 <!-- Docked right -->
                 <svg
-                  class="iui-icon"
+                  class="iui-button-icon"
                   viewBox="0 0 16 16"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -1427,7 +1478,7 @@
               </button>
               <button class="iui-button iui-borderless">
                 <svg-close-small
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-close-small>
               </button>
@@ -1546,10 +1597,13 @@
     <script>
       document.querySelectorAll('.iui-resizer').forEach((resizer) => {
         const infoPanel = resizer.parentElement;
+        const contentBlocks = infoPanel.querySelectorAll('.iui-information-body-content');
         const resizeFn = (e) => {
           e.preventDefault();
           if (infoPanel.classList.contains('iui-right')) {
-            infoPanel.style.width = `${infoPanel.getBoundingClientRect().right - e.x}px`;
+            const width = infoPanel.getBoundingClientRect().right - e.x;
+            infoPanel.style.width = `${width}px`;
+            contentBlocks.forEach((content) => content.classList.toggle('iui-inline', width > 300));
           } else {
             infoPanel.style.height = `${infoPanel.getBoundingClientRect().bottom - e.y}px`;
           }
@@ -1565,27 +1619,19 @@
     <script>
       document.querySelectorAll('.iui-tabs').forEach((tabs) => {
         const wrapper = tabs.parentElement;
-        const isVertical = wrapper.classList.contains('iui-vertical');
         const activeTab = tabs.querySelector('.iui-active');
-        const stripe = wrapper.querySelector('.iui-tab-stripe');
         const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
         const setStripe = (activeEl) => {
-          if (isVertical) {
-            stripe.style.top = `${activeEl.offsetTop}px`;
-            stripe.style.height = `${activeEl.getBoundingClientRect().height}px`;
-            stripe.style.left = `${activeEl.getBoundingClientRect().width - 2}px`;
-          } else {
-            stripe.style.top = `${activeEl.getBoundingClientRect().height - 2}px`;
-            stripe.style.left = `${activeEl.offsetLeft}px`;
-            stripe.style.width = `${activeEl.getBoundingClientRect().width}px`;
-          }
+          tabs.style.setProperty('--stripe-left', `${activeEl.offsetLeft}px`);
+          tabs.style.setProperty('--stripe-width', `${activeEl.getBoundingClientRect().width}px`);
         }
-        stripe && setStripe(activeTab);
+        setStripe(activeTab);
 
         [...tabs.children].forEach(({ firstElementChild: tab }) => {
           tab.addEventListener('click', () => {
             tabs.querySelector('.iui-active')?.classList.remove('iui-active');
             tab.classList.add('iui-active');
+            setStripe(tab);
             tabpanels.forEach((panel) => {
               if (panel.id === tab.getAttribute('aria-controls')) {
                 panel.removeAttribute('hidden');
@@ -1593,7 +1639,6 @@
                 panel.hidden = 'true';
               }
             });
-            stripe && setStripe(tab); // needs to be set in react for animation
           });
         });
       });
