@@ -45,12 +45,13 @@
         }
       }
 
-      // Reset border radius only for non-borderless buttons
+      // Reset border radius only for non-borderless items
       &:not(.iui-borderless) {
         border-radius: 0;
       }
     }
 
+    // Add rounded corners to first and last items
     &:first-child {
       #{$childSelector}:not(.iui-borderless) {
         border-top-left-radius: $iui-border-radius;
@@ -65,8 +66,18 @@
       }
     }
 
+    // Use negative margin to make adjacent borders overlap
     &:not(:last-child) {
       margin-right: -1px;
+    }
+
+    // Add slight border between disabled items
+    &:not(:first-child) {
+      .iui-default:disabled {
+        @include themed {
+          border-left-color: t(iui-color-background-4);
+        }
+      }
     }
   }
 }
