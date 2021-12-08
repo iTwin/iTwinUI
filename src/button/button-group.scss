@@ -7,7 +7,7 @@
   align-items: center;
   isolation: isolate;
 
-  $childSelector: '.iui-input, .iui-button'; // target nested inputs and buttons
+  $childSelector: 'input, button'; // target nested inputs and buttons
 
   > * {
     #{$childSelector} {
