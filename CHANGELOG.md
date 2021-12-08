@@ -2,18 +2,16 @@
 
 ## [0.41.0](https://www.github.com/iTwin/iTwinUI/compare/v0.40.0...v0.41.0) (2021-12-07)
 
+### What's new
+
+* **Tree:** Add tree component ([#388](https://www.github.com/iTwin/iTwinUI/issues/388)) ([dead18d](https://www.github.com/iTwin/iTwinUI/commit/dead18dcead164113fb8f81bd6892a60477f7e6d))
+* **Table:** Add label to paginator row count dropdown button ([#381](https://www.github.com/iTwin/iTwinUI/issues/381)) ([89645ca](https://www.github.com/iTwin/iTwinUI/commit/89645cadd7135764ce0f418f15176d23ea0282db))
 
 ### Fixes
 
 * **Button:** Fixed hover effects after button is clicked ([#404](https://www.github.com/iTwin/iTwinUI/issues/404)) ([d584354](https://www.github.com/iTwin/iTwinUI/commit/d584354e6cdbc063076868d68337c8dc75d76e2c))
 * **Table:** Add padding to last non-slot column ([#403](https://www.github.com/iTwin/iTwinUI/issues/403)) ([30bb8b1](https://www.github.com/iTwin/iTwinUI/commit/30bb8b1cd99bf5fbd30f7bbda406105ea86e75c8))
 * **UserIcon:** Apply background color to transparent images ([#394](https://www.github.com/iTwin/iTwinUI/issues/394)) ([f9f181d](https://www.github.com/iTwin/iTwinUI/commit/f9f181db2ca06ab553ae1371a3efd8b183192e44))
-
-
-### What's new
-
-* Add tree component ([#388](https://www.github.com/iTwin/iTwinUI/issues/388)) ([dead18d](https://www.github.com/iTwin/iTwinUI/commit/dead18dcead164113fb8f81bd6892a60477f7e6d))
-* **Table:** Add label to paginator row count dropdown button ([#381](https://www.github.com/iTwin/iTwinUI/issues/381)) ([89645ca](https://www.github.com/iTwin/iTwinUI/commit/89645cadd7135764ce0f418f15176d23ea0282db))
 
 ## [0.40.0](https://www.github.com/iTwin/iTwinUI/compare/v0.39.1...v0.40.0) (2021-12-01)
 
