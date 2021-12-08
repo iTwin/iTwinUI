@@ -13,7 +13,7 @@
 
   > * {
     &:first-child {
-      .iui-borderless:hover {
+      > .iui-borderless:hover {
         background-color: transparent;
       }
     }

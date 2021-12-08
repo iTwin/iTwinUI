@@ -14,10 +14,12 @@
       &:hover,
       &:focus,
       &:focus-within {
+        position: relative;
         z-index: 1;
       }
 
       &:disabled {
+        position: relative;
         z-index: -1;
       }
 
