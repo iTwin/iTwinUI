@@ -314,14 +314,14 @@
 }
 
 @mixin iui-header-split-button {
-  display: flex;
-  overflow: hidden;
-  max-width: 25vw;
-
   &,
   > * {
     height: 100%;
+    display: flex;
+    overflow: hidden;
   }
+
+  max-width: 25vw;
 
   .iui-button {
     @include iui-header-button;
