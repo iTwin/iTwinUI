@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../text/index';
 
 @mixin iui-carousel {
   @include iui-reset;
@@ -23,7 +24,7 @@
   }
 
   > .iui-carousel-slider-item {
-    display: none;
+    // display: none;
     flex-shrink: 0;
     background-position: center;
     background-size: cover;
@@ -55,85 +56,97 @@
     display: flex;
     align-items: center;
     list-style: none;
+  }
 
-    .iui-dot {
-      @include iui-reset;
-      width: $iui-baseline * 2;
-      height: $iui-baseline * 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  &-dot {
+    @include iui-reset;
+    width: $iui-baseline * 2;
+    height: $iui-baseline * 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      &::after {
-        content: '';
-        display: block;
-        width: $iui-icons-small;
-        height: $iui-icons-small;
-        border-radius: 50%;
-        border: 1px solid transparent;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: background-color $iui-speed-fast ease, border-color $iui-speed-fast ease,
-            width $iui-speed-fast ease, height $iui-speed-fast ease;
+    @at-root {
+      button#{&}, // rendered as button element
+      &[role='button'] {
+        background-color: transparent;
+        cursor: pointer;
+
+        &:hover:not(.iui-invisible):not(.iui-active)::after {
+          @include themed {
+            background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+          }
         }
-        @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+
+        &.iui-invisible {
+          cursor: default;
         }
-      }
 
-      &.iui-first::after {
-        width: $iui-icons-small * 0.5;
-        height: $iui-icons-small * 0.5;
-      }
+        &:focus {
+          outline: none;
 
-      &.iui-second::after {
-        width: $iui-icons-small * 0.75;
-        height: $iui-icons-small * 0.75;
-      }
-
-      &.iui-invisible::after {
-        width: 0;
-        height: 0;
-        @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), 0);
+          &:not(.iui-invisible)::after {
+            @include themed {
+              border-color: t(iui-color-foreground-primary);
+            }
+          }
         }
-      }
 
-      &.iui-active::after {
-        @include themed {
-          background-color: t(iui-color-foreground-primary);
+        &:focus:not(:focus-visible):not(.iui-invisible)::after {
+          @include themed {
+            border-color: transparent;
+          }
         }
       }
     }
 
-    button.iui-dot {
-      background-color: transparent;
-      cursor: pointer;
-
-      &:hover:not(.iui-invisible):not(.iui-active)::after {
-        @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
-        }
+    &::after {
+      content: '';
+      display: block;
+      width: $iui-icons-small;
+      height: $iui-icons-small;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: background-color $iui-speed-fast ease, border-color $iui-speed-fast ease, width $iui-speed-fast ease,
+          height $iui-speed-fast ease;
       }
-
-      &.iui-invisible {
-        cursor: default;
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       }
+    }
 
-      &:focus {
-        outline: none;
+    &.iui-first::after {
+      width: $iui-icons-small * 0.5;
+      height: $iui-icons-small * 0.5;
+    }
 
-        &:not(.iui-invisible)::after {
-          @include themed {
-            border-color: t(iui-color-foreground-primary);
-          }
-        }
+    &.iui-second::after {
+      width: $iui-icons-small * 0.75;
+      height: $iui-icons-small * 0.75;
+    }
+
+    &.iui-invisible::after {
+      width: 0;
+      height: 0;
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), 0);
       }
+    }
 
-      &:focus:not(:focus-visible):not(.iui-invisible)::after {
-        @include themed {
-          border-color: transparent;
-        }
+    &.iui-active::after {
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
       }
+    }
+  }
+
+  &-counter {
+    user-select: none;
+    @include iui-text(leading);
+
+    &-current::after {
+      content: ' / ';
     }
   }
 }
