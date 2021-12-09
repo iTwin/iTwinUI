@@ -6,19 +6,21 @@
 @import './button-icon';
 
 @mixin iui-button-borderless {
-  @include iui-button-borderless-base;
-  @include iui-button-size(medium, borderless);
+  border-color: transparent;
+  background-color: transparent;
 
-  &:focus {
-    @include iui-button-borderless-hover-focus;
-
-    &:where(:not(:focus-visible)) {
-      @include iui-button-borderless-base;
-    }
+  > .iui-button-icon:only-child {
+    margin-left: $iui-component-offset;
+    margin-right: $iui-component-offset;
   }
+  @include iui-button-size(medium, borderless);
+  @include iui-focus;
 
   &:hover {
-    @include iui-button-borderless-hover-focus;
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+      border-color: transparent;
+    }
   }
 
   &.iui-active {
@@ -43,22 +45,5 @@
         background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
       }
     }
-  }
-}
-
-@mixin iui-button-borderless-hover-focus {
-  @include themed {
-    background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-    border-color: transparent;
-  }
-}
-
-@mixin iui-button-borderless-base {
-  border-color: transparent;
-  background-color: transparent;
-
-  > .iui-button-icon:only-child {
-    margin-left: $iui-component-offset;
-    margin-right: $iui-component-offset;
   }
 }

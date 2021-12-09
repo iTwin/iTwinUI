@@ -97,7 +97,7 @@
       }
     }
 
-    @include iui-focus($color: iui-color-foreground-#{$statusColor}, $offset: 1px);
+    @include iui-focus($color: iui-color-foreground-#{$statusColor}, $offset: 2px);
   }
 
   > .iui-button {

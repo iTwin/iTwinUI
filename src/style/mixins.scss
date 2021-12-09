@@ -41,7 +41,7 @@
 }
 
 @mixin iui-anchor {
-  @include iui-focus(iui-color-foreground-primary, 2px);
+  @include iui-focus($offset: 2px);
   text-decoration: none;
   cursor: pointer;
   @include themed {

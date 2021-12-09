@@ -49,14 +49,7 @@
       }
     }
 
-    &:focus {
-      outline: 1px solid t(iui-color-foreground-primary);
-      outline-offset: -1px;
-    }
-
-    &:focus:not(:focus-visible) {
-      outline: none;
-    }
+    @include iui-focus;
   }
 
   .iui-tab-icon {

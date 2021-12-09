@@ -339,8 +339,8 @@
     &:focus {
       @include themed {
         border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
-        outline: 1px solid t(iui-color-foreground-#{$status});
-        outline-offset: -1px;
+        outline: 2px solid t(iui-color-foreground-#{$status});
+        outline-offset: -2px;
       }
     }
   }

@@ -115,15 +115,16 @@
       ~ .iui-checkbox-checkmark,
       ~ .iui-radio-dot {
         @include themed {
-          box-shadow: t(iui-focus-box-shadow);
+          outline: 2px solid t(iui-color-foreground-primary);
         }
+        outline-offset: -1px;
       }
     }
 
     &:focus:not(:focus-visible) {
       ~ .iui-checkbox-checkmark,
       ~ .iui-radio-dot {
-        box-shadow: none;
+        outline: none;
       }
     }
   }

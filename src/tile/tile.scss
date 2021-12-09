@@ -39,10 +39,6 @@
       position: absolute;
       border-radius: 50%;
       top: round($iui-baseline * 0.5);
-
-      &:focus {
-        outline: 0;
-      }
     }
 
     > .iui-type-indicator {

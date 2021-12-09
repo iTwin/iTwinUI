@@ -113,7 +113,7 @@
             font-weight: $iui-font-weight-semibold;
             border-radius: $iui-border-radius;
             cursor: default;
-            @include iui-focus(iui-color-foreground-accessory, -3px);
+            @include iui-focus($color: iui-color-foreground-accessory, $offset: -3px);
             @include themed {
               background-color: t(iui-color-background-primary);
               color: t(iui-color-foreground-accessory);
