@@ -1,0 +1,186 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-progress-indicator-full-page {
+  @include iui-reset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .iui-text-headline {
+    user-select: none;
+    text-align: center;
+  }
+
+  .iui-text-block {
+    text-align: center;
+  }
+
+  .iui-loading-imodel {
+    width: $iui-3xl * 2;
+    margin-bottom: $iui-baseline * 2;
+    $size: 24px;
+    $time: 1;
+
+    .iui-loading-imodel-shape {
+      fill: var(--iui-color-background-positive);
+      animation: blink $time + s infinite ease-out;
+
+      @for $i from 1 through 18 {
+        &.outer-#{$i} {
+          animation-delay: -($time / 18) * $i + s;
+        }
+      }
+
+      @for $i from 1 through 6 {
+        &.inner-#{$i} {
+          animation-delay: -($time / 6) * $i + s;
+        }
+      }
+    }
+
+    .iui-loading-imodel-i {
+      fill: var(--iui-color-foreground-accessory);
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 0.25;
+      }
+
+      25% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.25;
+      }
+    }
+
+    // &-shape {
+    //   @include themed {
+    //     fill: t(iui-color-background-positive);
+    //   }
+    // }
+
+    // &-i {
+    //   @include themed {
+    //     fill: t(iui-color-foreground-accessory);
+    //   }
+    // }
+  }
+
+  .iui-progress-indicator-linear {
+    width: 33%;
+  }
+}
+
+@mixin iui-tips-carousel {
+  display: flex;
+  flex-direction: column;
+  border-radius: $iui-border-radius;
+  box-shadow: $iui-elevation-2;
+  margin-bottom: $iui-baseline * 2;
+  overflow: hidden;
+  max-width: 50%;
+  min-width: 400px;
+  height: 50vh;
+  @include themed {
+    background-color: t(iui-color-background-1);
+  }
+
+  ~ .iui-progress-indicator-linear {
+    width: 50%;
+    min-width: 400px;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $iui-baseline $iui-m;
+    flex-shrink: 0;
+
+    &-title {
+      font-size: $iui-font-size-subheading;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      user-select: none;
+    }
+  }
+
+  &-body {
+    display: flex;
+    flex: 1 1 auto;
+
+    &-text {
+      width: 50%;
+      height: 100%;
+      padding: 0 $iui-m $iui-baseline;
+      box-sizing: border-box;
+      overflow-y: auto;
+      @supports (overflow-y: overlay) {
+        overflow-y: overlay;
+      }
+    }
+
+    &-image {
+      width: 50%;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+
+      &::before {
+        display: block;
+        content: '';
+        width: 24px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include themed {
+          background: linear-gradient(to right, t(iui-color-background-1), transparent);
+        }
+      }
+    }
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $iui-baseline $iui-m;
+    flex-shrink: 0;
+    @include themed {
+      border-top: 1px solid t(iui-color-background-4);
+    }
+
+    &-steps {
+      display: flex;
+      align-items: center;
+
+      @supports (gap: $iui-s) {
+        gap: $iui-l;
+      }
+
+      &-step {
+        width: $iui-s;
+        height: $iui-s;
+        border-radius: 50%;
+        @include themed {
+          background-color: t(iui-color-background-5);
+        }
+
+        &.iui-active {
+          @include themed {
+            background-color: t(iui-color-foreground-primary);
+          }
+        }
+      }
+    }
+  }
+}
