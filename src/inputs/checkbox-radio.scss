@@ -44,8 +44,8 @@
     }
 
     svg:not(.iui-radial) {
-      width: $iui-sm;
-      height: $iui-sm;
+      width: 100%;
+      height: auto;
 
       > * {
         opacity: 0;
