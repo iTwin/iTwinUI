@@ -19,3 +19,17 @@ it('should render in its most basic state', () => {
   screen.getByText('TestBtn1');
   screen.getByText('TestBtn2');
 });
+
+it('should propagate miscellaneous props', () => {
+  const { container } = render(
+    <ModalButtonBar className='test-class' id='test-id' style={{ gap: 8 }}>
+      <Button>TestBtn1</Button>
+      <Button>TestBtn2</Button>
+    </ModalButtonBar>,
+  );
+
+  const buttonBar = container.querySelector('.iui-button-bar') as HTMLElement;
+  expect(buttonBar).toHaveClass('test-class');
+  expect(buttonBar).toHaveStyle('gap: 8px;');
+  expect(buttonBar.id).toEqual('test-id');
+});
