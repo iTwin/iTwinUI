@@ -49,7 +49,7 @@ export const TableCell = <T extends Record<string, unknown>>(
   const cellElementProps = cell.getCellProps({
     className: cx('iui-cell', cell.column.cellClassName),
     style: {
-      ...getCellStyle(cell.column),
+      ...getCellStyle(cell.column, !!tableInstance.state.isTableResizing),
       ...getSubRowStyle(),
     },
   });

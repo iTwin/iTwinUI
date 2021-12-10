@@ -22,7 +22,7 @@ import {
   usePagination,
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators';
-import { useTheme, CommonProps } from '../utils';
+import { useTheme, CommonProps, useResizeObserver } from '../utils';
 import '@itwin/itwinui-css/css/table.css';
 import SvgSortDown from '@itwin/itwinui-icons-react/cjs/icons/SortDown';
 import SvgSortUp from '@itwin/itwinui-icons-react/cjs/icons/SortUp';
@@ -35,6 +35,7 @@ import {
   useSelectionCell,
   useSubRowFiltering,
   useSubRowSelection,
+  useResizeColumns,
 } from './hooks';
 import {
   onExpandHandler,
@@ -42,8 +43,14 @@ import {
   onSelectHandler,
 } from './actionHandlers';
 import { onSingleSelectHandler } from './actionHandlers/selectHandler';
+import {
+  onTableResizeEnd,
+  onTableResizeStart,
+} from './actionHandlers/resizeHandler';
 
 const singleRowSelectedAction = 'singleRowSelected';
+const tableResizeStartAction = 'tableResizeStart';
+const tableResizeEndAction = 'tableResizeEnd';
 
 export type TablePaginatorRendererProps = {
   /**
@@ -198,6 +205,14 @@ export type TableProps<
    * @default 25
    */
   pageSize?: number;
+  /**
+   * Flag whether columns are resizable.
+   * In order to disable resizing for specific column, set `disableResizing: true` for that column.
+   *
+   * If you want to use it in older browsers e.g. IE, then you need to have `ResizeObserver` polyfill.
+   * @default false
+   */
+  isResizable?: boolean;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -278,6 +293,7 @@ export const Table = <
     selectRowOnClick = true,
     paginatorRenderer,
     pageSize = 25,
+    isResizable = false,
     ...rest
   } = props;
 
@@ -336,6 +352,14 @@ export const Table = <
           onSelectHandler(newState, instance, onSelect, isRowDisabled);
           break;
         }
+        case tableResizeStartAction: {
+          newState = onTableResizeStart(newState);
+          break;
+        }
+        case tableResizeEndAction: {
+          newState = onTableResizeEnd(newState, action);
+          break;
+        }
         default:
           break;
       }
@@ -373,6 +397,7 @@ export const Table = <
       initialState: { pageSize, ...props.initialState },
     },
     useFlexLayout,
+    useResizeColumns(ownerDocument),
     useFilters,
     useSubRowFiltering(hasAnySubRows),
     useSortBy,
@@ -397,6 +422,7 @@ export const Table = <
     page,
     gotoPage,
     setPageSize,
+    flatHeaders,
   } = instance;
 
   const ariaDataAttributes = Object.entries(rest).reduce(
@@ -456,10 +482,59 @@ export const Table = <
     ],
   );
 
+  const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
+  const previousTableWidth = React.useRef(0);
+  const onTableResize = React.useCallback(
+    ({ width }: DOMRectReadOnly) => {
+      if (width === previousTableWidth.current) {
+        return;
+      }
+      previousTableWidth.current = width;
+
+      // Update column widths when table was resized
+      flatHeaders.forEach((header) => {
+        if (columnRefs.current[header.id]) {
+          header.resizeWidth = columnRefs.current[
+            header.id
+          ].getBoundingClientRect().width;
+        }
+      });
+
+      // If no column was resized then leave table resize handling to the flexbox
+      if (Object.keys(state.columnResizing.columnWidths).length === 0) {
+        return;
+      }
+
+      dispatch({ type: tableResizeStartAction });
+    },
+    [dispatch, state.columnResizing.columnWidths, flatHeaders],
+  );
+  const [resizeRef] = useResizeObserver(onTableResize);
+
+  // Flexbox handles columns resize so we take new column widths before browser repaints.
+  React.useLayoutEffect(() => {
+    if (state.isTableResizing) {
+      const newColumnWidths: Record<string, number> = {};
+      flatHeaders.forEach((column) => {
+        if (columnRefs.current[column.id]) {
+          newColumnWidths[column.id] = columnRefs.current[
+            column.id
+          ].getBoundingClientRect().width;
+        }
+      });
+      dispatch({ type: tableResizeEndAction, columnWidths: newColumnWidths });
+    }
+  });
+
   return (
     <>
       <div
-        ref={(element) => setOwnerDocument(element?.ownerDocument)}
+        ref={(element) => {
+          setOwnerDocument(element?.ownerDocument);
+          if (isResizable) {
+            resizeRef(element);
+          }
+        }}
         id={id}
         {...getTableProps({
           className: cx(
@@ -478,22 +553,39 @@ export const Table = <
             });
             return (
               <div {...headerGroupProps} key={headerGroupProps.key}>
-                {headerGroup.headers.map((column) => {
+                {headerGroup.headers.map((column, index) => {
+                  const {
+                    onClick: onSortClick,
+                    ...sortByProps
+                  } = column.getSortByToggleProps() as {
+                    onClick:
+                      | React.MouseEventHandler<HTMLDivElement>
+                      | undefined;
+                    style: React.CSSProperties;
+                    title: string;
+                  };
                   const columnProps = column.getHeaderProps({
-                    ...column.getSortByToggleProps(),
+                    ...sortByProps,
                     className: cx(
                       'iui-cell',
                       { 'iui-actionable': column.canSort },
                       { 'iui-sorted': column.isSorted },
                       column.columnClassName,
                     ),
-                    style: { ...getCellStyle(column) },
+                    style: { ...getCellStyle(column, !!state.isTableResizing) },
                   });
                   return (
                     <div
                       {...columnProps}
                       key={columnProps.key}
                       title={undefined}
+                      ref={(el) => {
+                        if (el && isResizable) {
+                          columnRefs.current[column.id] = el;
+                          column.resizeWidth = el.getBoundingClientRect().width;
+                        }
+                      }}
+                      onMouseDown={onSortClick}
                     >
                       {column.render('Header')}
                       {!isLoading && (data.length != 0 || areFiltersSet) && (
@@ -517,6 +609,16 @@ export const Table = <
                           )}
                         </div>
                       )}
+                      {isResizable &&
+                        column.isResizerVisible &&
+                        index !== headerGroup.headers.length - 1 && (
+                          <div
+                            {...column.getResizerProps()}
+                            className='iui-resizer'
+                          >
+                            <div className='iui-resizer-bar' />
+                          </div>
+                        )}
                     </div>
                   );
                 })}
@@ -524,7 +626,11 @@ export const Table = <
             );
           })}
         </div>
-        <div {...getTableBodyProps({ className: 'iui-table-body' })}>
+        <div
+          {...getTableBodyProps({
+            className: 'iui-table-body',
+          })}
+        >
           {data.length !== 0 &&
             page.map((row: Row<T>) => {
               prepareRow(row);

@@ -6,6 +6,7 @@ import { ColumnInstance } from 'react-table';
 
 export const getCellStyle = <T extends Record<string, unknown>>(
   column: ColumnInstance<T>,
+  isTableResizing: boolean,
 ): React.CSSProperties | undefined => {
   const style = {} as React.CSSProperties;
   style.flex = `1 1 145px`;
@@ -13,7 +14,12 @@ export const getCellStyle = <T extends Record<string, unknown>>(
     const width =
       typeof column.width === 'string' ? column.width : `${column.width}px`;
     style.width = width;
-    style.flex = `0 0 ${width}`;
+    // This allows flexbox to handle the width of the column on table resize
+    if (isTableResizing && column.canResize) {
+      style.flex = `${Number(column.width)} 1 ${width}`;
+    } else {
+      style.flex = `0 0 ${width}`;
+    }
   }
   if (column.maxWidth) {
     style.maxWidth = `${column.maxWidth}px`;

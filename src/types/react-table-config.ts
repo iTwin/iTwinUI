@@ -35,10 +35,10 @@ import {
   UsePaginationInstanceProps,
   UsePaginationOptions,
   UsePaginationState,
-  // UseResizeColumnsColumnOptions,
+  UseResizeColumnsColumnOptions,
   UseResizeColumnsColumnProps,
-  // UseResizeColumnsOptions,
-  UseResizeColumnsState,
+  UseResizeColumnsOptions,
+  // UseResizeColumnsState,
   UseRowSelectHooks,
   UseRowSelectInstanceProps,
   UseRowSelectOptions,
@@ -76,7 +76,7 @@ declare module 'react-table' {
       // UseGlobalFiltersOptions<D>,
       // UseGroupByOptions<D>,
       UsePaginationOptions<D>,
-      // UseResizeColumnsOptions<D>,
+      Omit<UseResizeColumnsOptions<D>, 'disableResizing'>,
       // UseRowStateOptions<D>,
       UseSortByOptions<D> {
     /**
@@ -115,17 +115,28 @@ declare module 'react-table' {
       UseGlobalFiltersState<D>,
       UseGroupByState<D>,
       UsePaginationState<D>,
-      UseResizeColumnsState<D>,
       UseRowSelectState<D>,
       UseRowStateState<D>,
-      UseSortByState<D> {}
+      UseSortByState<D> {
+    // UseResizeColumnsState with fixed typings
+    columnResizing: {
+      startX?: number;
+      columnWidth?: number;
+      nextColumnWidth?: number;
+      headerIdWidths?: Array<[string, number]>;
+      nextHeaderIdWidths?: Array<[string, number]>;
+      columnWidths: Record<string, number>;
+      isResizingColumn?: string;
+    };
+    isTableResizing?: boolean;
+  }
 
   export interface ColumnInterface<D extends object = {}>
     // extends UseGlobalFiltersColumnOptions<D>,
     // UseGroupByColumnOptions<D>,
-    // UseResizeColumnsColumnOptions<D>,
     extends UseSortByColumnOptions<D>,
-      UseFiltersColumnOptions<D> {
+      UseFiltersColumnOptions<D>,
+      UseResizeColumnsColumnOptions<D> {
     /**
      * Custom class name applied to header column cell.
      */
@@ -165,7 +176,11 @@ declare module 'react-table' {
     extends UseFiltersColumnProps<D>,
       UseGroupByColumnProps<D>,
       UseResizeColumnsColumnProps<D>,
-      UseSortByColumnProps<D> {}
+      UseSortByColumnProps<D> {
+    originalWidth: number;
+    resizeWidth?: number;
+    isResizerVisible?: boolean;
+  }
 
   export interface Cell<D extends object = {}>
     extends UseGroupByCellProps<D>,

@@ -14,7 +14,7 @@ import { TableCell } from './TableCell';
  * Although state is not used it is needed for `React.memo` to check state that changes row state e.g. selection.
  * When adding new features check whether it changes state that affects row. If it does then add equality check to `React.memo`.
  */
-const TableRow = <T extends Record<string, unknown>>(props: {
+export const TableRow = <T extends Record<string, unknown>>(props: {
   row: Row<T>;
   rowProps?: (row: Row<T>) => React.ComponentPropsWithRef<'div'>;
   isLast: boolean;
@@ -145,5 +145,7 @@ export const TableRowMemoized = React.memo(
     prevProp.isDisabled === nextProp.isDisabled &&
     prevProp.rowProps === nextProp.rowProps &&
     prevProp.expanderCell === nextProp.expanderCell &&
-    prevProp.tableHasSubRows === nextProp.tableHasSubRows,
+    prevProp.tableHasSubRows === nextProp.tableHasSubRows &&
+    !nextProp.state.columnResizing.isResizingColumn &&
+    !nextProp.state.isTableResizing,
 ) as typeof TableRow;
