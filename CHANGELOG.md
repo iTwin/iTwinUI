@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.41.1](https://www.github.com/iTwin/iTwinUI/compare/v0.41.0...v0.41.1) (2021-12-10)
+
+
+### Fixes
+
+* **Inputs:** Icon alignment fix in input container ([#409](https://www.github.com/iTwin/iTwinUI/issues/409)) ([22fcb9f](https://www.github.com/iTwin/iTwinUI/commit/22fcb9f184c54e5b039fe1d7aedeb913f2989aed))
+
 ## [0.41.0](https://www.github.com/iTwin/iTwinUI/compare/v0.40.0...v0.41.0) (2021-12-07)
 
 ### What's new
