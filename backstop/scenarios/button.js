@@ -21,13 +21,11 @@ module.exports = [
   }),
   scenario('Type Split Menu', {
     selectors: ['#demo-split-menu'],
-    misMatchThreshold: 0.03,
   }),
   scenario('Type Input Button Combo', {
     selectors: ['#demo-combo-group'],
   }),
   scenario('Type Ideas', {
     selectors: ['.iui-idea'],
-    misMatchThreshold: 0.02,
   }),
 ];
