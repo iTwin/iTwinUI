@@ -38,7 +38,7 @@ function renderComponent(
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
   expect(container.querySelector('.iui-button-split-menu')).toBeTruthy();
-  expect(container.querySelector('.iui-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-button-icon')).toBeTruthy();
 });
 
 it('should fire onClick callback', () => {
@@ -69,17 +69,17 @@ it('should update icon when menu opens or closes', () => {
 
   const {
     container: { firstChild: downArrow },
-  } = render(<SvgCaretDownSmall className='iui-icon' aria-hidden />);
-  expect(container.querySelector('.iui-icon')).toEqual(downArrow);
+  } = render(<SvgCaretDownSmall className='iui-button-icon' aria-hidden />);
+  expect(container.querySelector('.iui-button-icon')).toEqual(downArrow);
 
   dropdownButton.click();
   const {
     container: { firstChild: upArrow },
-  } = render(<SvgCaretUpSmall className='iui-icon' aria-hidden />);
-  expect(container.querySelector('.iui-icon')).toEqual(upArrow);
+  } = render(<SvgCaretUpSmall className='iui-button-icon' aria-hidden />);
+  expect(container.querySelector('.iui-button-icon')).toEqual(upArrow);
 
   dropdownButton.click();
-  expect(container.querySelector('.iui-icon')).toEqual(downArrow);
+  expect(container.querySelector('.iui-button-icon')).toEqual(downArrow);
 });
 
 it('should work with menu items', () => {

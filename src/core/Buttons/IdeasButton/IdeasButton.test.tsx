@@ -20,7 +20,7 @@ it('renders ideas button correctly', () => {
   expect(button.type).toBe('button');
   button.click();
   expect(onClickMock).toHaveBeenCalled();
-  expect(container.querySelector('.iui-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-button-icon')).toBeTruthy();
   getByText('Feedback');
 });
 
@@ -37,6 +37,6 @@ it('takes localized label', () => {
   expect(button.type).toBe('button');
   button.click();
   expect(onClickMock).toHaveBeenCalled();
-  expect(container.querySelector('.iui-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-button-icon')).toBeTruthy();
   getByText('my-feedback');
 });

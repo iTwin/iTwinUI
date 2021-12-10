@@ -154,7 +154,7 @@ function assertRowsData(rows: NodeListOf<Element>, data = mockedData()) {
 
 const setFilter = (container: HTMLElement, value: string) => {
   const filterIcon = container.querySelector(
-    '.iui-filter-button .iui-icon',
+    '.iui-filter-button .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeTruthy();
   fireEvent.click(filterIcon);
@@ -170,7 +170,7 @@ const setFilter = (container: HTMLElement, value: string) => {
 
 const clearFilter = (container: HTMLElement) => {
   const filterIcon = container.querySelector(
-    '.iui-filter-button .iui-icon',
+    '.iui-filter-button .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeTruthy();
   fireEvent.click(filterIcon);
@@ -613,7 +613,7 @@ it('should clear filter', () => {
   expect(rows.length).toBe(1);
 
   const filterIcon = container.querySelector(
-    '.iui-filter-button .iui-icon',
+    '.iui-filter-button .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeTruthy();
   fireEvent.click(filterIcon);
@@ -698,7 +698,7 @@ it('should not show filter icon when filter component is not set', () => {
   expect(rows.length).toBe(3);
 
   const filterIcon = container.querySelector(
-    '.iui-filter-button .iui-icon',
+    '.iui-filter-button .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeFalsy();
 });
@@ -730,7 +730,7 @@ it('should show message and active filter icon when there is no data after filte
   expect(rows.length).toBe(0);
   screen.getByText('No results. Clear filter.');
   const filterIcon = container.querySelector(
-    '.iui-filter-button.iui-active .iui-icon',
+    '.iui-filter-button.iui-active .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeTruthy();
 });
@@ -780,7 +780,7 @@ it('should show message and active filter icon when there is no data after manua
   expect(rows.length).toBe(0);
   screen.getByText('No results. Clear filter.');
   const filterIcon = container.querySelector(
-    '.iui-filter-button.iui-active .iui-icon',
+    '.iui-filter-button.iui-active .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeTruthy();
 });
@@ -906,10 +906,12 @@ it('should expand correctly', () => {
   });
   const {
     container: { firstChild: expanderIcon },
-  } = render(<SvgChevronRight className='iui-icon' aria-hidden />);
+  } = render(<SvgChevronRight className='iui-button-icon' aria-hidden />);
 
   expect(
-    container.querySelectorAll('.iui-button.iui-borderless > .iui-icon')[0],
+    container.querySelectorAll(
+      '.iui-button.iui-borderless > .iui-button-icon',
+    )[0],
   ).toEqual(expanderIcon);
 
   act(() => {

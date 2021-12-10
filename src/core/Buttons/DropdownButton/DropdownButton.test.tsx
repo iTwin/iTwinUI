@@ -34,7 +34,7 @@ function renderComponent(props?: Partial<DropdownButtonProps>) {
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
   expect(container.querySelector('.iui-button.iui-dropdown')).toBeTruthy();
-  expect(container.querySelector('.iui-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-button-icon')).toBeTruthy();
 });
 
 it('should update icon when menu opens or closes', () => {
@@ -45,17 +45,17 @@ it('should update icon when menu opens or closes', () => {
 
   const {
     container: { firstChild: downArrow },
-  } = render(<SvgCaretDownSmall className='iui-icon' aria-hidden />);
-  expect(container.querySelector('.iui-icon')).toEqual(downArrow);
+  } = render(<SvgCaretDownSmall className='iui-button-icon' aria-hidden />);
+  expect(container.querySelector('.iui-button-icon')).toEqual(downArrow);
 
   button.click();
   const {
     container: { firstChild: upArrow },
-  } = render(<SvgCaretUpSmall className='iui-icon' aria-hidden />);
-  expect(container.querySelector('.iui-icon')).toEqual(upArrow);
+  } = render(<SvgCaretUpSmall className='iui-button-icon' aria-hidden />);
+  expect(container.querySelector('.iui-button-icon')).toEqual(upArrow);
 
   button.click();
-  expect(container.querySelector('.iui-icon')).toEqual(downArrow);
+  expect(container.querySelector('.iui-button-icon')).toEqual(downArrow);
 });
 
 it('should work with menu items', () => {

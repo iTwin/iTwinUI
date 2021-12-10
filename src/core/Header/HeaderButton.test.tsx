@@ -13,7 +13,9 @@ import { MenuItem } from '../Menu';
 
 it('should render in its most basic state', () => {
   const { container } = render(<HeaderButton name='MockName' />);
-  expect(container.querySelector('.iui-label > :first-child')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-button-label > :first-child'),
+  ).toBeTruthy();
 });
 
 it('should render default button correctly', () => {
@@ -24,7 +26,7 @@ it('should render default button correctly', () => {
   );
   expect(root).toBeTruthy();
 
-  const name = container.querySelector('.iui-label > div:only-child');
+  const name = container.querySelector('.iui-button-label > div:only-child');
   expect(name).toBeTruthy();
   expect(name?.textContent).toEqual('MockName');
 });
@@ -34,12 +36,12 @@ it('should render description correctly', () => {
     <HeaderButton name='MockName' description='MockDescription' />,
   );
 
-  const name = container.querySelector('.iui-label > :first-child');
+  const name = container.querySelector('.iui-button-label > :first-child');
   expect(name).toBeTruthy();
   expect(name?.textContent).toEqual('MockName');
 
   const description = container.querySelector(
-    '.iui-label > .iui-description:last-child',
+    '.iui-button-label > .iui-description:last-child',
   );
   expect(description).toBeTruthy();
   expect(description?.textContent).toEqual('MockDescription');
@@ -111,7 +113,9 @@ it('should render startIcon correctly', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-icon iui-header-button-icon' />);
+  } = render(
+    <SvgPlaceholder className='iui-button-icon iui-header-button-icon' />,
+  );
   expect(container.querySelector('.iui-header-button-icon')).toEqual(
     placeholderIcon,
   );
@@ -151,8 +155,10 @@ it('should render menuItems correctly', () => {
 
   const {
     container: { firstChild: downArrow },
-  } = render(<SvgCaretDownSmall className='iui-icon' aria-hidden />);
-  expect(container.querySelector('.iui-icon:last-child')).toEqual(downArrow);
+  } = render(<SvgCaretDownSmall className='iui-button-icon' aria-hidden />);
+  expect(container.querySelector('.iui-button-icon:last-child')).toEqual(
+    downArrow,
+  );
 
   let menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeFalsy();
@@ -161,8 +167,10 @@ it('should render menuItems correctly', () => {
 
   const {
     container: { firstChild: upArrow },
-  } = render(<SvgCaretUpSmall className='iui-icon' aria-hidden />);
-  expect(container.querySelector('.iui-icon:last-child')).toEqual(upArrow);
+  } = render(<SvgCaretUpSmall className='iui-button-icon' aria-hidden />);
+  expect(container.querySelector('.iui-button-icon:last-child')).toEqual(
+    upArrow,
+  );
 
   let tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy.style.visibility).toEqual('visible');
@@ -179,7 +187,9 @@ it('should render menuItems correctly', () => {
   tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy.style.visibility).toEqual('hidden');
 
-  expect(container.querySelector('.iui-icon:last-child')).toEqual(downArrow);
+  expect(container.querySelector('.iui-button-icon:last-child')).toEqual(
+    downArrow,
+  );
 
   expect(itemOneOnClick).toHaveBeenCalled();
 });

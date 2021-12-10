@@ -94,7 +94,7 @@ it('should render close icon correctly', () => {
 
   const {
     container: { firstChild: closeSvg },
-  } = render(<SvgCloseSmall className='iui-icon' aria-hidden />);
+  } = render(<SvgCloseSmall className='iui-button-icon' aria-hidden />);
 
   const closeButton = infoPanel.querySelector(
     '.iui-information-header > .iui-information-header-actions > .iui-button.iui-borderless',

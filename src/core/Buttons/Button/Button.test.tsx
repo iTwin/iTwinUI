@@ -19,7 +19,7 @@ it('renders default button correctly', () => {
   button.click();
   expect(onClickMock).toHaveBeenCalled();
 
-  const label = container.querySelector('.iui-label') as HTMLSpanElement;
+  const label = container.querySelector('.iui-button-label') as HTMLSpanElement;
   expect(label.textContent).toEqual('Click me!');
 });
 
@@ -133,10 +133,11 @@ it('should render with icon correctly', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-icon' />);
-  expect(container.querySelector('.iui-icon')).toEqual(placeholderIcon);
+  } = render(<SvgPlaceholder className='iui-button-icon' />);
+  expect(container.querySelector('.iui-button-icon')).toEqual(placeholderIcon);
 
-  const label = container.querySelector('.iui-icon + .iui-label')?.textContent;
+  const label = container.querySelector('.iui-button-icon + .iui-button-label')
+    ?.textContent;
   expect(label).toEqual('Click me!');
 });
 
@@ -148,13 +149,13 @@ it('should render without label correctly', () => {
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.textContent).toBeFalsy();
-  expect(button.querySelector('.iui-label')).toBeFalsy();
+  expect(button.querySelector('.iui-button-label')).toBeFalsy();
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-icon' />);
+  } = render(<SvgPlaceholder className='iui-button-icon' />);
 
-  button.querySelectorAll('.iui-icon').forEach((icon) => {
+  button.querySelectorAll('.iui-button-icon').forEach((icon) => {
     expect(icon).toEqual(placeholderIcon);
   });
 });

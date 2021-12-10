@@ -38,14 +38,14 @@ it('should render in its most basic state', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-icon' />);
+  } = render(<SvgPlaceholder className='iui-button-icon' />);
 
   const mainItems = container.querySelectorAll('.iui-top .iui-sidenav-button');
   expect(mainItems).toHaveLength(3);
   mainItems.forEach((item, index) => {
     expect(item).toBeTruthy();
-    expect(item.querySelector('.iui-icon')).toEqual(placeholderIcon);
-    expect(item.querySelector('.iui-label')?.textContent).toBe(
+    expect(item.querySelector('.iui-button-icon')).toEqual(placeholderIcon);
+    expect(item.querySelector('.iui-button-label')?.textContent).toBe(
       `mockbutton ${index}`,
     );
   });
@@ -68,7 +68,7 @@ it('should render secondary items', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-icon' />);
+  } = render(<SvgPlaceholder className='iui-button-icon' />);
 
   const secondaryItems = container.querySelectorAll(
     '.iui-bottom .iui-sidenav-button',
@@ -77,8 +77,8 @@ it('should render secondary items', () => {
 
   secondaryItems.forEach((item, index) => {
     expect(item).toBeTruthy();
-    expect(item.querySelector('.iui-icon')).toEqual(placeholderIcon);
-    expect(item.querySelector('.iui-label')?.textContent).toBe(
+    expect(item.querySelector('.iui-button-icon')).toEqual(placeholderIcon);
+    expect(item.querySelector('.iui-button-label')?.textContent).toBe(
       `mock secondary ${index}`,
     );
   });
@@ -117,8 +117,10 @@ it('should render expand button svg correctly', () => {
 
   const {
     container: { firstChild: expandIcon },
-  } = render(<SvgChevronRight className='iui-icon' aria-hidden />);
-  expect(container.querySelector('.iui-expand .iui-icon')).toEqual(expandIcon);
+  } = render(<SvgChevronRight className='iui-button-icon' aria-hidden />);
+  expect(container.querySelector('.iui-expand .iui-button-icon')).toEqual(
+    expandIcon,
+  );
 });
 
 it('should handle clicking on expand button', () => {

@@ -20,7 +20,7 @@ it('renders icon button correctly', () => {
   expect(button).toBeTruthy();
   button.click();
   expect(onClickMock).toHaveBeenCalled();
-  const icon = container.querySelector('.iui-icon');
+  const icon = container.querySelector('.iui-button-icon');
   expect(icon).toBeTruthy();
 });
 
@@ -38,7 +38,7 @@ it('renders active icon button correctly', () => {
   expect(button).toBeTruthy();
   button.click();
   expect(onClickMock).toHaveBeenCalled();
-  const icon = container.querySelector('.iui-icon');
+  const icon = container.querySelector('.iui-button-icon');
   expect(icon).toBeTruthy();
 });
 
@@ -57,7 +57,7 @@ it('renders disabled small icon button correctly', () => {
   expect(button.disabled).toBe(true);
   button.click();
   expect(onClickMock).not.toHaveBeenCalled();
-  const icon = container.querySelector('.iui-icon');
+  const icon = container.querySelector('.iui-button-icon');
   expect(icon).toBeTruthy();
 });
 

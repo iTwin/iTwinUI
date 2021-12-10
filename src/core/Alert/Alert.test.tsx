@@ -16,7 +16,7 @@ it('renders correctly in its default state', () => {
   expect(message).toBeTruthy();
   expect(message.querySelector('a')).toBeNull();
   expect(message.textContent).toBe('This is an alert.');
-  expect(container.querySelector('button > .iui-icon')).toBeNull();
+  expect(container.querySelector('button > .iui-button-icon')).toBeNull();
 });
 
 it('renders clickable text correctly', () => {
@@ -36,7 +36,7 @@ it('renders clickable text correctly', () => {
   expect(link.textContent).toBe('I am a clickable text');
   link.click();
   expect(onClick).toHaveBeenCalled();
-  expect(container.querySelector('button > .iui-icon')).toBeNull();
+  expect(container.querySelector('button > .iui-button-icon')).toBeNull();
   getByText('This is an alert.');
 });
 
@@ -106,7 +106,9 @@ it('renders sticky alert correctly', () => {
     expect(
       container.querySelector('.iui-alert-message > .iui-alert-link'),
     ).toBeNull();
-    const close = container.querySelector('button > .iui-icon') as HTMLElement;
+    const close = container.querySelector(
+      'button > .iui-button-icon',
+    ) as HTMLElement;
     expect(close).toBeTruthy();
     fireEvent.click(close);
     expect(closeMock).toHaveBeenCalled();
