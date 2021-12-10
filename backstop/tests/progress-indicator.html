@@ -38,6 +38,14 @@
         position: relative;
         margin-bottom: 11px;
       }
+
+      .iui-demo-full-page {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     </style>
     <script
       type="module"
@@ -58,6 +66,18 @@
     <script
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/important-small"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-left"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
     ></script>
     <script src="../assets/theme.js"></script>
   </head>
@@ -1184,119 +1204,10 @@
     <h2>Full page</h2>
     <section class="iui-demo-full-page">
 
-      <div class="iui-progress-indicator-full-page">
-        <h1 class="iui-text-headline">Loading</h1>
-        <p class="iui-text-block iui-text-spacing">We are loading your iModel.</p>
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div
-              class="iui-fill"
-              style="width: 50%;"
-            ></div>
-          </div>
-          <div class="iui-label">
-            <span>Rendering your model&mldr;</span>
-            <span>50%</span>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <section class="iui-demo-full-page">
-
-      <div class="iui-progress-indicator-full-page iui-tutorial">
-        <div class="iui-tips-carousel">
-          <div class="iui-tips-carousel-header">
-            <div class="iui-tips-carousel-header-title">Tips</div>
-            <button
-              aria-label="Close"
-              type="button"
-              class="iui-button iui-borderless iui-small"
-            >
-              <svg-close
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-close>
-            </button>
-          </div>
-
-          <div class="iui-tips-carousel-body">
-            <div class="iui-tips-carousel-body-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
-
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div
-              class="iui-tips-carousel-body-image"
-              style="background-image: url('../assets/image-test.jpg');"
-            ></div>
-          </div>
-
-          <div class="iui-tips-carousel-footer">
-            <button
-              aria-label="Previous tip"
-              type="button"
-              class="iui-button iui-borderless iui-small"
-            >
-              <svg-chevron-left
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-chevron-left>
-            </button>
-
-            <div class="iui-tips-carousel-footer-steps">
-              <div class="iui-tips-carousel-footer-steps-step iui-active"></div>
-              <div class="iui-tips-carousel-footer-steps-step"></div>
-              <div class="iui-tips-carousel-footer-steps-step"></div>
-              <div class="iui-tips-carousel-footer-steps-step"></div>
-              <div class="iui-tips-carousel-footer-steps-step"></div>
-              <div class="iui-tips-carousel-footer-steps-step"></div>
-            </div>
-
-            <button
-              aria-label="Next tip"
-              type="button"
-              class="iui-button iui-borderless iui-small"
-            >
-              <svg-chevron-right
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-chevron-right>
-            </button>
-          </div>
-        </div>
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div
-              class="iui-fill"
-              style="width: 50%;"
-            ></div>
-          </div>
-          <div class="iui-label">
-            <span>Rendering your model&mldr;</span>
-            <span>50%</span>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <section class="iui-demo-full-page">
-
-      <div class="iui-progress-indicator-full-page">
+      <div
+        id='imodel-loader'
+        class="iui-progress-indicator-full-page"
+      >
 
         <svg
           class="iui-loading-imodel"

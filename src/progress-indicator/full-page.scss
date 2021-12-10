@@ -26,8 +26,12 @@
     $time: 1;
 
     .iui-loading-imodel-shape {
-      fill: var(--iui-color-background-positive);
-      animation: blink $time + s infinite ease-out;
+      @include themed {
+        fill: t(iui-color-background-positive);
+        box-shadow: 8px;
+      }
+
+      @include iui-blink-animation($time);
 
       @for $i from 1 through 18 {
         &.outer-#{$i} {
@@ -43,34 +47,10 @@
     }
 
     .iui-loading-imodel-i {
-      fill: var(--iui-color-foreground-accessory);
-    }
-
-    @keyframes blink {
-      0% {
-        opacity: 0.25;
-      }
-
-      25% {
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 0.25;
+      @include themed {
+        fill: t(iui-color-foreground-accessory);
       }
     }
-
-    // &-shape {
-    //   @include themed {
-    //     fill: t(iui-color-background-positive);
-    //   }
-    // }
-
-    // &-i {
-    //   @include themed {
-    //     fill: t(iui-color-foreground-accessory);
-    //   }
-    // }
   }
 
   .iui-progress-indicator-linear {
@@ -78,109 +58,20 @@
   }
 }
 
-@mixin iui-tips-carousel {
-  display: flex;
-  flex-direction: column;
-  border-radius: $iui-border-radius;
-  box-shadow: $iui-elevation-2;
-  margin-bottom: $iui-baseline * 2;
-  overflow: hidden;
-  max-width: 50%;
-  min-width: 400px;
-  height: 50vh;
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
+@mixin iui-blink-animation($time: 1) {
+  animation: blink $time + s infinite ease-out;
 
-  ~ .iui-progress-indicator-linear {
-    width: 50%;
-    min-width: 400px;
-  }
-
-  &-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: $iui-baseline $iui-m;
-    flex-shrink: 0;
-
-    &-title {
-      font-size: $iui-font-size-subheading;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      user-select: none;
-    }
-  }
-
-  &-body {
-    display: flex;
-    flex: 1 1 auto;
-
-    &-text {
-      width: 50%;
-      height: 100%;
-      padding: 0 $iui-m $iui-baseline;
-      box-sizing: border-box;
-      overflow-y: auto;
-      @supports (overflow-y: overlay) {
-        overflow-y: overlay;
-      }
+  @keyframes blink {
+    0% {
+      opacity: 0.3;
     }
 
-    &-image {
-      width: 50%;
-      background-position: center;
-      background-size: cover;
-      position: relative;
-
-      &::before {
-        display: block;
-        content: '';
-        width: 24px;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        @include themed {
-          background: linear-gradient(to right, t(iui-color-background-1), transparent);
-        }
-      }
-    }
-  }
-
-  &-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: $iui-baseline $iui-m;
-    flex-shrink: 0;
-    @include themed {
-      border-top: 1px solid t(iui-color-background-4);
+    30% {
+      opacity: 1;
     }
 
-    &-steps {
-      display: flex;
-      align-items: center;
-
-      @supports (gap: $iui-s) {
-        gap: $iui-l;
-      }
-
-      &-step {
-        width: $iui-s;
-        height: $iui-s;
-        border-radius: 50%;
-        @include themed {
-          background-color: t(iui-color-background-5);
-        }
-
-        &.iui-active {
-          @include themed {
-            background-color: t(iui-color-foreground-primary);
-          }
-        }
-      }
+    100% {
+      opacity: 0.3;
     }
   }
 }
