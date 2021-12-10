@@ -9,7 +9,7 @@
     @include iui-input-container-label;
   }
 
-  .iui-input-icon {
+  > .iui-input-icon {
     @include iui-input-icon;
   }
 
@@ -24,7 +24,7 @@
   }
 
   &.iui-inline-icon {
-    .iui-input-icon {
+    > .iui-input-icon {
       @include iui-input-icon-inline;
     }
   }
