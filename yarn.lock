@@ -866,10 +866,10 @@ babel-runtime@^6.9.2:
     core-js "^2.4.0"
     regenerator-runtime "^0.11.0"
 
-backstopjs@~6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/backstopjs/-/backstopjs-6.0.2.tgz#89da7e817d48defeecd139946b1552eb0155dce0"
-  integrity sha512-oww7tDmeinCrV5vQ6tsoBuYVI12nWys1UpQ3bSmOuI5kySaQ+6U2obxCZfUzilmvdJwhGcDxfqkZbpTpRu91Sg==
+backstopjs@~6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/backstopjs/-/backstopjs-6.0.4.tgz#d659a3d288260e140cc1634b4af4bf2a7cf2cda7"
+  integrity sha512-mn5YaTMR7m0zKms0nxc/8CyveNOia82WMm0p/V9tPQUnQ83ME4vSnNAdMWtJofk8/E62zGwgzN8QxVW4gvsgYA==
   dependencies:
     "@mirzazeyrek/node-resemble-js" "^1.2.1"
     chalk "^1.1.3"
