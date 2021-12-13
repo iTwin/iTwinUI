@@ -11,7 +11,8 @@ import Svg503 from '@itwin/itwinui-illustrations-react/cjs/illustrations/503';
 import SvgError from '@itwin/itwinui-illustrations-react/cjs/illustrations/Error';
 import React from 'react';
 import { Button } from '../Buttons/Button';
-import { useTheme } from '../utils';
+import { CommonProps, useTheme } from '../utils';
+import cx from 'classnames';
 import '@itwin/itwinui-css/css/non-ideal-state.css';
 
 export type ErrorPageType =
@@ -75,7 +76,7 @@ export type ErrorPageProps = {
    * Used to translate default error messages, if no specific @errorName passed in
    */
   translatedErrorMessages?: ErrorTypeTranslations;
-};
+} & Omit<CommonProps, 'title'>;
 
 /**
  * A stylized display to communicate common http errors.
@@ -92,6 +93,7 @@ export const ErrorPage = (props: ErrorPageProps): JSX.Element => {
     secondaryButtonHandle,
     secondaryButtonLabel,
     translatedErrorMessages,
+    className,
     ...rest
   } = props;
 
@@ -205,7 +207,7 @@ export const ErrorPage = (props: ErrorPageProps): JSX.Element => {
   }
 
   return (
-    <div className='iui-non-ideal-state' {...rest}>
+    <div className={cx('iui-non-ideal-state', className)} {...rest}>
       {getErrorIcon()}
       <div className='iui-non-ideal-state-title'>{getHeadingMessage()}</div>
       {errorMessage && (

@@ -166,4 +166,20 @@ describe(ErrorPage, () => {
     );
     screen.getByText('you shall not pass');
   });
+
+  it('should propagate misc props', () => {
+    const { container } = render(
+      <ErrorPage
+        errorType='401'
+        className='test class'
+        style={{ color: 'blue' }}
+      />,
+    );
+
+    const element = container.querySelector(
+      '.iui-non-ideal-state',
+    ) as HTMLElement;
+    expect(element).toHaveClass('test class');
+    expect(element).toHaveStyle('color: blue');
+  });
 });
