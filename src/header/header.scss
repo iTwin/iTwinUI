@@ -421,7 +421,7 @@
       }
     }
 
-    .iui-icon,
+    .iui-button-icon,
     svg {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
