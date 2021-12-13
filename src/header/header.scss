@@ -314,9 +314,13 @@
 }
 
 @mixin iui-header-split-button {
-  height: 100%;
-  display: flex;
-  overflow: hidden;
+  &,
+  > * {
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+  }
+
   max-width: 25vw;
 
   .iui-button {
@@ -324,8 +328,10 @@
     padding: 0 $iui-xs;
   }
 
-  .iui-button:first-child {
-    padding-left: $iui-sm;
+  > *:first-child {
+    .iui-button {
+      padding-left: $iui-sm;
+    }
   }
 
   &.iui-active {
@@ -343,8 +349,10 @@
           display: none;
         }
       }
+    }
 
-      &:last-child:hover {
+    > *:last-child {
+      > .iui-button:hover {
         @include themed {
           background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
         }
