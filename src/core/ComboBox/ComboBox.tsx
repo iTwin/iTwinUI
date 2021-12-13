@@ -16,6 +16,7 @@ import {
   CommonProps,
   getFocusableElements,
   getRandomValue,
+  InputContainerProps,
 } from '../utils';
 import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
 import 'tippy.js/animations/shift-away.css';
@@ -53,7 +54,8 @@ export type ComboBoxProps<T> = {
    * @default 'No options found'
    */
   emptyStateMessage?: string;
-} & Omit<CommonProps, 'title'>;
+} & Pick<InputContainerProps, 'status'> &
+  Omit<CommonProps, 'title'>;
 
 /**
  * ComboBox component that allows typing a value to filter the options in dropdown list.

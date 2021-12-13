@@ -298,3 +298,11 @@ it('should accept inputProps', () => {
   );
   expect(container.querySelector('.iui-menu')?.id).toBe(`${inputId}-cb-list`);
 });
+
+it('should accept status prop', () => {
+  const { container } = renderComponent({ status: 'negative' });
+
+  expect(container.querySelector('.iui-input-container')).toHaveClass(
+    'iui-negative',
+  );
+});

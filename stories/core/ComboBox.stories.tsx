@@ -387,3 +387,21 @@ export const WithLabel: Story<Partial<ComboBoxProps<string>>> = (args) => {
 WithLabel.args = {
   inputProps: { id: 'combo-input', placeholder: 'Select a country' },
 } as ComboBoxProps<string>;
+
+export const WithStatus: Story<Partial<ComboBoxProps<string>>> = (args) => {
+  const options = React.useMemo(() => countriesList, []);
+
+  return (
+    <ComboBox
+      options={options}
+      inputProps={{ placeholder: 'Select a country' }}
+      onChange={(value: string) => action(value ?? '')()}
+      status='negative'
+      {...args}
+    />
+  );
+};
+WithStatus.args = {
+  inputProps: { placeholder: 'Select a country' },
+  status: 'negative',
+};
