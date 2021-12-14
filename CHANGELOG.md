@@ -2,11 +2,9 @@
 
 ## [0.42.0](https://www.github.com/iTwin/iTwinUI/compare/v0.41.1...v0.42.0) (2021-12-14)
 
-
 ### What's new
 
 * **ButtonGroup:** handle input + button combo ([#365](https://www.github.com/iTwin/iTwinUI/issues/365)) ([067fe40](https://www.github.com/iTwin/iTwinUI/commit/067fe4028c85977664821ecd69816219dcd15c06))
-
 
 ### Fixes
 
