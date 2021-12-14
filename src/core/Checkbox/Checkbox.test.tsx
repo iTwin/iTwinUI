@@ -176,3 +176,19 @@ it('displays a spinner when isLoading is set to true', () => {
     container.querySelector('.iui-progress-indicator-radial.iui-indeterminate'),
   ).toBeTruthy();
 });
+
+it('renders correctly with default checkbox', () => {
+  const { container } = render(<Checkbox variant='default' />);
+
+  assertBaseElements(container);
+
+  expect(container.querySelector('.iui-checkbox-visibility')).toBeFalsy();
+});
+
+it('renders correctly with visibility checkbox', () => {
+  const { container } = render(<Checkbox variant='eyeball' />);
+
+  assertBaseElements(container);
+
+  expect(container.querySelector('.iui-checkbox-visibility')).toBeTruthy();
+});

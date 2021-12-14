@@ -88,3 +88,13 @@ Loading.args = {
   label: 'Loading Checkbox',
   isLoading: true,
 };
+
+export const Visibility: Story<CheckboxProps> = (args) => {
+  const { label = 'Visibility Checkbox', variant = 'eyeball', ...rest } = args;
+  return <Checkbox label={label} variant={variant} {...rest} />;
+};
+
+Visibility.args = {
+  label: 'Visibility Checkbox',
+  variant: 'eyeball',
+};
