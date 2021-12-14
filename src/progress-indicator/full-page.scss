@@ -19,59 +19,7 @@
     text-align: center;
   }
 
-  .iui-loading-imodel {
-    width: $iui-3xl * 2;
-    margin-bottom: $iui-baseline * 2;
-    $size: 24px;
-    $time: 1;
-
-    .iui-loading-imodel-shape {
-      @include themed {
-        fill: t(iui-color-background-positive);
-        box-shadow: 8px;
-      }
-
-      @include iui-blink-animation($time);
-
-      @for $i from 1 through 18 {
-        &.outer-#{$i} {
-          animation-delay: -($time / 18) * $i + s;
-        }
-      }
-
-      @for $i from 1 through 6 {
-        &.inner-#{$i} {
-          animation-delay: -($time / 6) * $i + s;
-        }
-      }
-    }
-
-    .iui-loading-imodel-i {
-      @include themed {
-        fill: t(iui-color-foreground-accessory);
-      }
-    }
-  }
-
   .iui-progress-indicator-linear {
     width: 33%;
-  }
-}
-
-@mixin iui-blink-animation($time: 1) {
-  animation: blink $time + s infinite ease-out;
-
-  @keyframes blink {
-    0% {
-      opacity: 0.3;
-    }
-
-    30% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0.3;
-    }
   }
 }
