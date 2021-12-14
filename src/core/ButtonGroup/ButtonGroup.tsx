@@ -54,9 +54,10 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
   (props, ref) => {
     const { children, className, style, overflowButton, ...rest } = props;
 
-    const items = React.useMemo(() => React.Children.toArray(children), [
-      children,
-    ]);
+    const items = React.useMemo(
+      () => React.Children.map(children, (child) => <div>{child}</div>) ?? [],
+      [children],
+    );
 
     useTheme();
 
@@ -76,7 +77,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
             {overflowButton(visibleCount)}
           </>
         ) : (
-          children
+          items
         )}
       </div>
     );

@@ -83,20 +83,28 @@ export const SplitButton = (props: SplitButtonProps) => {
       title={title}
       ref={ref}
     >
-      <Button styleType={styleType} size={size} onClick={onClick} {...rest}>
-        {children}
-      </Button>
-      <DropdownMenu
-        placement={menuPlacement}
-        menuItems={menuItems}
-        style={{ minWidth: menuWidth }}
-        onShow={React.useCallback(() => setIsMenuOpen(true), [])}
-        onHide={React.useCallback(() => setIsMenuOpen(false), [])}
-      >
-        <IconButton styleType={styleType} size={size} disabled={props.disabled}>
-          {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
-        </IconButton>
-      </DropdownMenu>
+      <div>
+        <Button styleType={styleType} size={size} onClick={onClick} {...rest}>
+          {children}
+        </Button>
+      </div>
+      <div>
+        <DropdownMenu
+          placement={menuPlacement}
+          menuItems={menuItems}
+          style={{ minWidth: menuWidth }}
+          onShow={React.useCallback(() => setIsMenuOpen(true), [])}
+          onHide={React.useCallback(() => setIsMenuOpen(false), [])}
+        >
+          <IconButton
+            styleType={styleType}
+            size={size}
+            disabled={props.disabled}
+          >
+            {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
+          </IconButton>
+        </DropdownMenu>
+      </div>
     </span>
   );
 };
