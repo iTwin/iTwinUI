@@ -13,12 +13,6 @@
     box-sizing: border-box;
   }
 
-  &.iui-zebra-striping > .iui-table-body > .iui-row:nth-child(even):not(.iui-selected) {
-    @include themed {
-      background: rgba(t(iui-color-foreground-body-rgb), 0.02);
-    }
-  }
-
   @include iui-table-cell-icon;
 }
 
@@ -139,6 +133,12 @@
   @include iui-scroll-snapping('.iui-row');
   @include themed {
     background-color: t(iui-color-background-1);
+  }
+
+  &.iui-zebra-striping > .iui-row:nth-child(even):not(.iui-selected) {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), 0.02);
+    }
   }
 
   .iui-row {

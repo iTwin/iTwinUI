@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.42.0](https://www.github.com/iTwin/iTwinUI/compare/v0.41.1...v0.42.0) (2021-12-14)
+
+### What's new
+
+* **ButtonGroup:** handle input + button combo ([#365](https://www.github.com/iTwin/iTwinUI/issues/365)) ([067fe40](https://www.github.com/iTwin/iTwinUI/commit/067fe4028c85977664821ecd69816219dcd15c06))
+
+### Fixes
+
+* **Header:** Correct label color in disabled header button ([#414](https://www.github.com/iTwin/iTwinUI/issues/414)) ([4ad31cb](https://www.github.com/iTwin/iTwinUI/commit/4ad31cb2f406fbfcc46d64a525c36bfd90dff41a))
+* **Table:** Fixed zebra rows hover style ([#416](https://www.github.com/iTwin/iTwinUI/issues/416)) ([879fcc8](https://www.github.com/iTwin/iTwinUI/commit/879fcc8ea2b6e3b128ae443417561576ea40fc96))
+
 ### [0.41.1](https://www.github.com/iTwin/iTwinUI/compare/v0.41.0...v0.41.1) (2021-12-10)
 
 ### Fixes
