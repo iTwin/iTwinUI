@@ -422,13 +422,13 @@
       box-shadow: 0 $iui-xxs 0 0 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     }
 
-    .iui-label {
+    .iui-button-label {
       @include themed {
         color: t(iui-icons-color-actionable-disabled);
       }
     }
 
-    .iui-icon,
+    .iui-button-icon,
     svg {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
