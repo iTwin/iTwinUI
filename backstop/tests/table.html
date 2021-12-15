@@ -35,6 +35,11 @@
       #demo-responsive {
         width: 375px;
       }
+
+      #demo-extras .iui-table:first-of-type .iui-cell {
+        width: 600px;
+        flex: 0 0 600px;
+      }
     </style>
     <script
       type="module"
@@ -2161,6 +2166,7 @@
       <div
         class="iui-table iui-zebra-striping"
         style="max-height: 407px;"
+        id="demo-extras-scrollable-table"
       >
         <div class="iui-table-header">
           <div class="iui-row">
@@ -2205,6 +2211,63 @@
                 ></svg-sort-down>
               </div>
             </div>
+            <div class="iui-cell iui-actionable">
+              Quantity
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Rating
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Delivery time
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2218,6 +2281,18 @@
               class="iui-cell"
               contenteditable
             >$5.00</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >500</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
           </div>
 
           <div class="iui-row">
@@ -2229,6 +2304,18 @@
               class="iui-cell"
               contenteditable
             >$12.00</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1200</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >15 days</div>
           </div>
 
           <div class="iui-row">
@@ -2240,6 +2327,18 @@
               class="iui-cell"
               contenteditable
             >$0.86</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >86</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >3/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
           </div>
 
           <div class="iui-row">
@@ -2251,6 +2350,18 @@
               class="iui-cell"
               contenteditable
             >$2.50</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >250</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >2 days</div>
           </div>
 
           <div class="iui-row">
@@ -2262,6 +2373,18 @@
               class="iui-cell"
               contenteditable
             >$1.95</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >195</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >25 days</div>
           </div>
 
           <div class="iui-row">
@@ -2273,6 +2396,18 @@
               class="iui-cell"
               contenteditable
             >$1.99</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >199</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >2/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >8 days</div>
           </div>
 
           <div class="iui-row">
@@ -2284,6 +2419,18 @@
               class="iui-cell"
               contenteditable
             >$19.95</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1995</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >10 days</div>
           </div>
 
           <div class="iui-row">
@@ -2295,6 +2442,18 @@
               class="iui-cell"
               contenteditable
             >$4.75</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >475</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >50 days</div>
           </div>
 
           <div class="iui-row">
@@ -2306,6 +2465,18 @@
               class="iui-cell"
               contenteditable
             >$22.95</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >2295</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
           </div>
 
           <div class="iui-row">
@@ -2317,6 +2488,18 @@
               class="iui-cell"
               contenteditable
             >$16.54</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1654</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
           </div>
         </div>
 
@@ -4203,6 +4386,16 @@
         'iui-table-extra-condensed',
       );
       selectAllFn('select-all-checkboxes-zebra', 'iui-table-zebra');
+    </script>
+
+    <script>
+      // Syncs body scroll with the header scroll
+      const scrollableBody = document.querySelector('#demo-extras-scrollable-table .iui-table-body');
+      const scrollableHeader = document.querySelector('#demo-extras-scrollable-table .iui-table-header');
+
+      scrollableBody.addEventListener('scroll', function (e) {
+        scrollableHeader.scrollLeft = this.scrollLeft;
+      });
     </script>
   </body>
 </html>

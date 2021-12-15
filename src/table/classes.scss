@@ -33,3 +33,13 @@
 .iui-column-filter {
   @include iui-column-filter;
 }
+
+.iui-table-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: scroll;
+  overflow-y: overlay;
+  position: relative;
+  overflow-x: hidden;
+}
