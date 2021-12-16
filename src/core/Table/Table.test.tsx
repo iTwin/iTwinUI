@@ -19,6 +19,7 @@ import { EditableCell } from './cells';
 import { TablePaginator } from './TablePaginator';
 import * as UseOverflow from '../utils/hooks/useOverflow';
 import * as UseResizeObserver from '../utils/hooks/useResizeObserver';
+import userEvent from '@testing-library/user-event';
 
 const intersectionCallbacks = new Map<Element, () => void>();
 jest
@@ -148,7 +149,7 @@ function assertRowsData(rows: NodeListOf<Element>, data = mockedData()) {
     expect(cells[0].textContent).toEqual(name);
     expect(cells[1].textContent).toEqual(description);
     expect(cells[2].textContent).toEqual('View');
-    fireEvent.click(cells[2].firstElementChild as HTMLElement);
+    userEvent.click(cells[2].firstElementChild as HTMLElement);
   }
 }
 
@@ -157,15 +158,15 @@ const setFilter = (container: HTMLElement, value: string) => {
     '.iui-filter-button .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeTruthy();
-  fireEvent.click(filterIcon);
+  userEvent.click(filterIcon);
 
   const filterInput = document.querySelector(
     '.iui-column-filter input',
   ) as HTMLInputElement;
   expect(filterInput).toBeTruthy();
 
-  fireEvent.change(filterInput, { target: { value } });
-  screen.getByText('Filter').click();
+  userEvent.type(filterInput, value);
+  userEvent.click(screen.getByText('Filter'));
 };
 
 const clearFilter = (container: HTMLElement) => {
@@ -173,7 +174,7 @@ const clearFilter = (container: HTMLElement) => {
     '.iui-filter-button .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeTruthy();
-  fireEvent.click(filterIcon);
+  userEvent.click(filterIcon);
 
   screen.getByText('Clear').click();
 };
@@ -183,7 +184,7 @@ const expandAll = (container: HTMLElement, oldExpanders: Element[] = []) => {
     container.querySelectorAll('.iui-row-expander'),
   );
   const newExpanders = allExpanders.filter((e) => !oldExpanders.includes(e));
-  newExpanders.forEach((button) => fireEvent.click(button));
+  newExpanders.forEach((button) => userEvent.click(button));
   if (newExpanders.length) {
     expandAll(container, allExpanders);
   }
@@ -294,13 +295,13 @@ it('should handle checkbox clicks', () => {
 
   const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
   expect(checkboxCells.length).toBe(4);
-  fireEvent.click(checkboxCells[2]);
+  userEvent.click(checkboxCells[2]);
   expect(onSelect).toHaveBeenCalledWith([mockedData()[1]], expect.any(Object));
 
-  fireEvent.click(checkboxCells[0]);
+  userEvent.click(checkboxCells[0]);
   expect(onSelect).toHaveBeenCalledWith(mockedData(), expect.any(Object));
 
-  fireEvent.click(checkboxCells[0]);
+  userEvent.click(checkboxCells[0]);
   expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
 });
 
@@ -317,18 +318,18 @@ it('should handle row clicks', () => {
   const rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(3);
 
-  fireEvent.click(getByText(mockedData()[1].name));
+  userEvent.click(getByText(mockedData()[1].name));
   expect(rows[1].classList).toContain('iui-selected');
   expect(onSelect).toHaveBeenCalledTimes(1);
   expect(onRowClick).toHaveBeenCalledTimes(1);
 
-  fireEvent.click(getByText(mockedData()[2].name));
+  userEvent.click(getByText(mockedData()[2].name));
   expect(rows[1].classList).not.toContain('iui-selected');
   expect(rows[2].classList).toContain('iui-selected');
   expect(onSelect).toHaveBeenCalledTimes(2);
   expect(onRowClick).toHaveBeenCalledTimes(2);
 
-  fireEvent.click(getByText(mockedData()[1].name), { ctrlKey: true });
+  userEvent.click(getByText(mockedData()[1].name), { ctrlKey: true });
   expect(rows[1].classList).toContain('iui-selected');
   expect(rows[2].classList).toContain('iui-selected');
   expect(onSelect).toHaveBeenCalledTimes(3);
@@ -349,7 +350,7 @@ it('should not select when clicked on row but selectRowOnClick flag is false', (
   const rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(3);
 
-  fireEvent.click(getByText(mockedData()[1].name));
+  userEvent.click(getByText(mockedData()[1].name));
   expect(onSelect).not.toHaveBeenCalled();
   expect(onRowClick).toHaveBeenCalled();
 });
@@ -386,7 +387,7 @@ it('should not trigger onSelect when sorting and filtering', () => {
   expect(nameHeader).toBeTruthy();
   expect(nameHeader.classList).not.toContain('iui-sorted');
 
-  fireEvent.mouseDown(nameHeader);
+  userEvent.click(nameHeader);
   expect(onSort).toHaveBeenCalled();
   expect(onSelect).not.toHaveBeenCalled();
 
@@ -450,7 +451,7 @@ it('should sort name column correctly', () => {
   expect(sortIcon).toBeTruthy();
 
   //first click
-  fireEvent.mouseDown(nameHeader);
+  userEvent.click(nameHeader);
   rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(nameHeader.classList).toContain('iui-sorted');
   assertRowsData(rows, sortedByName);
@@ -466,7 +467,7 @@ it('should sort name column correctly', () => {
   );
 
   //second click
-  fireEvent.mouseDown(nameHeader);
+  userEvent.click(nameHeader);
   rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(nameHeader.classList).toContain('iui-sorted');
   assertRowsData(rows, [...sortedByName].reverse());
@@ -482,7 +483,7 @@ it('should sort name column correctly', () => {
   );
 
   //third click resets it
-  fireEvent.mouseDown(nameHeader);
+  userEvent.click(nameHeader);
   rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(nameHeader.classList).not.toContain('iui-sorted');
   assertRowsData(rows, mocked);
@@ -616,7 +617,7 @@ it('should clear filter', () => {
     '.iui-filter-button .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeTruthy();
-  fireEvent.click(filterIcon);
+  userEvent.click(filterIcon);
 
   const filterInput = document.querySelector(
     '.iui-column-filter input',
@@ -806,6 +807,7 @@ it('should not trigger sorting when filter is clicked', () => {
     columns: mockedColumns,
     onFilter,
     onSort,
+    isSortable: true,
   });
 
   setFilter(container, '2');
@@ -915,7 +917,7 @@ it('should expand correctly', () => {
   ).toEqual(expanderIcon);
 
   act(() => {
-    fireEvent.click(container.querySelectorAll('.iui-button')[0]);
+    userEvent.click(container.querySelectorAll('.iui-button')[0]);
   });
 
   getByText('Expanded component, name: Name1');
@@ -945,16 +947,16 @@ it('should expand correctly with a custom expander cell', async () => {
   expect(queryByText('Expanded component, name: Name3')).toBeNull();
 
   act(() => {
-    fireEvent.click(getByText('Expand Name1'));
-    fireEvent.click(getByText('Expand Name2'));
+    userEvent.click(getByText('Expand Name1'));
+    userEvent.click(getByText('Expand Name2'));
   });
 
   getByText('Expanded component, name: Name1');
   getByText('Expanded component, name: Name2');
 
   act(() => {
-    fireEvent.click(getByText('Expand Name1'));
-    fireEvent.click(getByText('Expand Name3'));
+    userEvent.click(getByText('Expand Name1'));
+    userEvent.click(getByText('Expand Name3'));
   });
   await waitFor(() =>
     expect(queryByText('Expanded component, name: Name1')).toBeNull(),
@@ -989,10 +991,10 @@ it('should disable row and handle expansion accordingly', () => {
   expect(expansionCells[1].disabled).toBe(true);
   expect(expansionCells[2].disabled).toBe(false);
 
-  fireEvent.click(expansionCells[1]);
+  userEvent.click(expansionCells[1]);
   expect(onExpand).not.toHaveBeenCalled();
 
-  fireEvent.click(expansionCells[0]);
+  userEvent.click(expansionCells[0]);
   expect(onExpand).toHaveBeenCalled();
 });
 
@@ -1021,12 +1023,12 @@ it('should disable row and handle selection accordingly', () => {
   expect(checkboxCells[3].classList).not.toContain('iui-disabled');
 
   // Select disabled row
-  fireEvent.click(checkboxCells[2]);
+  userEvent.click(checkboxCells[2]);
   expect(onSelect).not.toHaveBeenCalled();
   expect(onRowClick).not.toHaveBeenCalled();
 
   // Select first row
-  fireEvent.click(checkboxCells[1]);
+  userEvent.click(checkboxCells[1]);
   expect(onSelect).toHaveBeenCalledWith([mockedData()[0]], expect.any(Object));
   const headerCheckbox = checkboxCells[0].querySelector(
     'input',
@@ -1035,7 +1037,7 @@ it('should disable row and handle selection accordingly', () => {
   expect(headerCheckbox.checked).toBe(false);
 
   // Select all
-  fireEvent.click(checkboxCells[0]);
+  userEvent.click(checkboxCells[0]);
   expect(onSelect).toHaveBeenCalledWith(
     [mockedData()[0], mockedData()[2]],
     expect.any(Object),
@@ -1044,7 +1046,7 @@ it('should disable row and handle selection accordingly', () => {
   expect(headerCheckbox.checked).toBe(true);
 
   // Deselect all
-  fireEvent.click(checkboxCells[0]);
+  userEvent.click(checkboxCells[0]);
   expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
   expect(headerCheckbox.indeterminate).toBe(false);
   expect(headerCheckbox.checked).toBe(false);
@@ -1079,7 +1081,7 @@ it('should select and filter rows', () => {
   expect(checkboxCells.length).toBe(4);
 
   // Select first row
-  fireEvent.click(checkboxCells[1]);
+  userEvent.click(checkboxCells[1]);
   expect(onSelect).toHaveBeenCalledWith([mockedData()[0]], expect.any(Object));
   const headerCheckbox = checkboxCells[0].querySelector(
     'input',
@@ -1094,7 +1096,7 @@ it('should select and filter rows', () => {
   expect(checkboxCells.length).toBe(2);
 
   // Select second row
-  fireEvent.click(checkboxCells[1]);
+  userEvent.click(checkboxCells[1]);
   expect(onSelect).toHaveBeenCalledWith(
     [mockedData()[0], mockedData()[1]],
     expect.any(Object),
@@ -1435,7 +1437,7 @@ it('should show indeterminate checkbox when clicking on a row itself after filte
   rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(7);
   // Click row 1
-  fireEvent.click(rows[0]);
+  userEvent.click(rows[0]);
 
   const checkboxes = container.querySelectorAll<HTMLInputElement>(
     '.iui-table-body .iui-checkbox input',
@@ -1504,9 +1506,9 @@ it('should render sub-rows with custom expander', () => {
   let rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(3);
 
-  fireEvent.click(screen.getByText('Expand Row 1'));
-  fireEvent.click(screen.getByText('Expand Row 1.2'));
-  fireEvent.click(screen.getByText('Expand Row 2'));
+  userEvent.click(screen.getByText('Expand Row 1'));
+  userEvent.click(screen.getByText('Expand Row 1.2'));
+  userEvent.click(screen.getByText('Expand Row 2'));
 
   rows = container.querySelectorAll('.iui-table-body .iui-row');
   expect(rows.length).toBe(10);
@@ -1620,7 +1622,7 @@ it('should handle unwanted actions on editable cell', () => {
     mockedData()[1],
   );
 
-  fireEvent.click(editableCells[1]);
+  userEvent.click(editableCells[1]);
   expect(onSelect).not.toHaveBeenCalled();
 });
 

@@ -185,11 +185,13 @@ const defaultGetResizerProps = (ownerDocument: Document | undefined) => (
     {
       onMouseDown: (e: React.MouseEvent) => {
         e.persist();
+        // Prevents from triggering sort
         e.stopPropagation();
         onResizeStart(e, header);
       },
       onTouchStart: (e: React.TouchEvent) => {
         e.persist();
+        // Prevents from triggering sort
         e.stopPropagation();
         onResizeStart(e, header);
       },

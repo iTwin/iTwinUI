@@ -6,6 +6,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { FilterButtonBar, FilterButtonBarProps } from './FilterButtonBar';
 import { BaseFilter } from './BaseFilter';
+import userEvent from '@testing-library/user-event';
 
 const setFilter = jest.fn();
 const clearFilter = jest.fn();
@@ -80,15 +81,14 @@ it('should call callbacks on clicks', () => {
 it('should consume the click event and stop its propagation', () => {
   const parentClick = jest.fn();
   render(
-    <div onClick={parentClick}>
+    <div onMouseDown={parentClick}>
       <BaseFilter>
         <FilterButtonBar setFilter={setFilter} clearFilter={clearFilter} />
       </BaseFilter>
     </div>,
   );
 
-  screen.getByText('Filter').click();
-
-  screen.getByText('Clear').click();
+  userEvent.click(screen.getByText('Filter'));
+  userEvent.click(screen.getByText('Clear'));
   expect(parentClick).not.toHaveBeenCalled();
 });
