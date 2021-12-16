@@ -1815,3 +1815,81 @@ ResizableColumns.args = {
     },
   ],
 };
+
+export const ZebraStripedRows: Story<Partial<TableProps>> = (args) => {
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            Filter: tableFilters.TextFilter(),
+          },
+          {
+            id: 'description',
+            Header: 'Description',
+            accessor: 'description',
+            maxWidth: 200,
+            Filter: tableFilters.TextFilter(),
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  type TableStoryDataType = {
+    name: string;
+    description: string;
+    subRows: TableStoryDataType[];
+  };
+
+  const generateItem = useCallback(
+    (index: number, parentRow = '', depth = 0): TableStoryDataType => {
+      const keyValue = parentRow ? `${parentRow}.${index}` : `${index}`;
+      return {
+        name: `Name ${keyValue}`,
+        description: `Description ${keyValue}`,
+        subRows:
+          depth < 2
+            ? Array(Math.round(index % 5))
+                .fill(null)
+                .map((_, index) => generateItem(index, keyValue, depth + 1))
+            : [],
+      };
+    },
+    [],
+  );
+
+  const data = useMemo(
+    () =>
+      Array(20)
+        .fill(null)
+        .map((_, index) => generateItem(index)),
+    [generateItem],
+  );
+
+  return (
+    <>
+      <Table
+        emptyTableContent='No data.'
+        isSelectable
+        isSortable
+        styleType='zebra-rows'
+        {...args}
+        columns={columns}
+        data={data}
+        style={{ height: '100%' }}
+      />
+    </>
+  );
+};
+
+ZebraStripedRows.args = {
+  isSelectable: true,
+  isSortable: true,
+  styleType: 'zebra-rows',
+};
