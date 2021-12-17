@@ -23,7 +23,7 @@
       href="../assets/demo.css"
     />
     <style>
-      .iui-progress-indicator-full-page {
+      #imodel-loader-page {
         height: 90vh;
         width: 100%;
         display: flex;
@@ -32,7 +32,7 @@
         justify-content: center;
       }
 
-      .iui-loading-imodel {
+      svg {
         width: 250px;
         margin-bottom: 20px;
       }
@@ -42,13 +42,9 @@
   <body class="iui-body">
     <theme-button></theme-button>
     <section>
-      <div
-        id="imodel-loader"
-        class="iui-progress-indicator-full-page"
-      >
+      <div id="imodel-loader-page">
         <!-- Use iModel-loader.svg from @itwin/itwinui-illustrations package. -->
         <svg
-          class="iui-loading-imodel"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 740 854.43"
         >
