@@ -119,10 +119,8 @@
 }
 
 @mixin iui-table-body {
-  overflow-x: auto;
-  overflow-x: overlay;
-  overflow-y: scroll;
-  overflow-y: overlay;
+  overflow: auto;
+  overflow: overlay;
   display: flex;
   flex-direction: column;
   flex-grow: 1;

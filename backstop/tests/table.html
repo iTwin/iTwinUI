@@ -36,7 +36,8 @@
         width: 375px;
       }
 
-      #demo-extras .iui-table:first-of-type .iui-cell {
+      #demo-extras-scrollable-table .iui-cell,
+      #demo-extras-scrollable-table-few-rows .iui-cell {
         width: 600px;
         flex: 0 0 600px;
       }
@@ -2633,6 +2634,7 @@
       <div
         class="iui-table"
         style="height: 407px;"
+        id="demo-extras-scrollable-table-few-rows"
       >
         <div class="iui-table-header">
           <div class="iui-row">
@@ -2677,6 +2679,63 @@
                 ></svg-sort-down>
               </div>
             </div>
+            <div class="iui-cell iui-actionable">
+              Quantity
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Rating
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Delivery time
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2690,6 +2749,18 @@
               class="iui-cell"
               contenteditable
             >$5.00</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >500</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
           </div>
 
           <div class="iui-row">
@@ -2701,6 +2772,18 @@
               class="iui-cell"
               contenteditable
             >$12.00</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1200</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >15 days</div>
           </div>
         </div>
 
@@ -4390,12 +4473,15 @@
 
     <script>
       // Syncs body scroll with the header scroll
-      const scrollableBody = document.querySelector('#demo-extras-scrollable-table .iui-table-body');
-      const scrollableHeader = document.querySelector('#demo-extras-scrollable-table .iui-table-header');
+      ['#demo-extras-scrollable-table', '#demo-extras-scrollable-table-few-rows'].forEach(tableSelector => {
+        const scrollableBody = document.querySelector(`${tableSelector} .iui-table-body`);
+        const scrollableHeader = document.querySelector(`${tableSelector} .iui-table-header`);
 
-      scrollableBody.addEventListener('scroll', function (e) {
-        scrollableHeader.scrollLeft = this.scrollLeft;
+        scrollableBody.addEventListener('scroll', function (e) {
+          scrollableHeader.scrollLeft = this.scrollLeft;
+        });
       });
+
     </script>
   </body>
 </html>
