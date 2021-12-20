@@ -18,6 +18,12 @@
 
 @mixin iui-table-header {
   user-select: none;
+  overflow: hidden;
+  // Fix for Firefox columns misalignment
+  @supports not (overflow: overlay) {
+    overflow-y: scroll;
+  }
+  flex-shrink: 0;
   @include themed {
     background-color: t(iui-color-background-3);
   }
@@ -117,12 +123,13 @@
 }
 
 @mixin iui-table-body {
-  overflow-x: hidden;
   overflow-y: scroll;
-  overflow-y: overlay;
+  overflow: overlay;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  // Allows columns with static width to take more space than the table width
+  align-items: flex-start;
   @include iui-scroll-snapping('.iui-row');
   @include themed {
     background-color: t(iui-color-background-1);
@@ -135,6 +142,7 @@
   }
 
   .iui-row {
+    min-width: 100%;
     display: flex;
     border: solid 1px transparent;
     @media (prefers-reduced-motion: no-preference) {
@@ -296,6 +304,7 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    align-self: center;
     @include themed {
       color: t(iui-text-color-muted);
       background-color: t(iui-color-background-1);
