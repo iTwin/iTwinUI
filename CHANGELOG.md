@@ -2,11 +2,9 @@
 
 ## [0.43.0](https://www.github.com/iTwin/iTwinUI/compare/v0.42.1...v0.43.0) (2021-12-20)
 
-
 ### What's new
 
 * **Table:** Added proper support for horizontal scroll ([#417](https://www.github.com/iTwin/iTwinUI/issues/417)) ([42e9fdd](https://www.github.com/iTwin/iTwinUI/commit/42e9fdd90e1b618e0d8e64fe9d421ff37860c387))
-
 
 ### Fixes
 
