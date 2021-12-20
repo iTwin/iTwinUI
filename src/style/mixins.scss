@@ -167,7 +167,7 @@
     scroll-snap-type: y mandatory;
 
     #{$selector} {
-      scroll-snap-align: start;
+      scroll-snap-align: start none;
     }
   }
 }
