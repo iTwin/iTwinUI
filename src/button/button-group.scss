@@ -13,6 +13,8 @@
     display: flex;
 
     #{$childSelector} {
+      position: relative;
+
       &:hover {
         z-index: 1;
       }
