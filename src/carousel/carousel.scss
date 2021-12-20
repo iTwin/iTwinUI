@@ -11,6 +11,7 @@
 }
 
 @mixin iui-carousel-slider {
+  position: relative;
   display: flex;
   overflow: hidden;
   width: 100%;
@@ -24,12 +25,17 @@
   }
 
   > .iui-carousel-slider-item {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
     flex-shrink: 0;
     background-position: center;
     background-size: cover;
     width: 100%;
     height: $iui-baseline * 44;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: left $iui-speed ease-in-out;
+    }
     @supports (aspect-ratio: 16 / 9) {
       height: auto;
       aspect-ratio: 16 / 9;

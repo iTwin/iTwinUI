@@ -165,11 +165,11 @@
       function showSlide(carousel, activeIndex) {
         carousel.querySelectorAll(".iui-carousel-slider-item").forEach((item, index) => {
           if (index === activeIndex) {
-            item.style.display = "flex";
+            item.style.left = "0";
           }
-          else {
-            item.style.display = "none"
-          }
+          // else {
+          //   item.style.left = "inherit";
+          // }
         })
       }
 
