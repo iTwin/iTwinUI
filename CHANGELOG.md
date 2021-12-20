@@ -2,10 +2,9 @@
 
 ### [0.42.1](https://www.github.com/iTwin/iTwinUI/compare/v0.42.0...v0.42.1) (2021-12-20)
 
-
 ### Fixes
 
-* **ButtonGroup:** Use flex instead of position to set z-index ([#418](https://www.github.com/iTwin/iTwinUI/issues/418)) ([6e9df50](https://www.github.com/iTwin/iTwinUI/commit/6e9df50fe3ddd2355f8d299d8d532fa720f029aa))
+* **ButtonGroup:** Use flex instead of position: relative to set z-index ([#418](https://www.github.com/iTwin/iTwinUI/issues/418)) ([6e9df50](https://www.github.com/iTwin/iTwinUI/commit/6e9df50fe3ddd2355f8d299d8d532fa720f029aa))
 
 ## [0.42.0](https://www.github.com/iTwin/iTwinUI/compare/v0.41.1...v0.42.0) (2021-12-14)
 
