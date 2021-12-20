@@ -37,6 +37,8 @@
 }
 
 html {
+  font-size: 14px;
+
   &,
   &.iui-theme-light {
     @include theme-variables(light);

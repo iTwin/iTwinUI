@@ -11,19 +11,13 @@ $iui-monospace: ui-monospace, Menlo, 'Segoe UI Mono', Consolas, 'Roboto Mono', '
 
 $iui-font-family: $iui-sans, $iui-sans-fallback;
 
-$iui-font-size: 14px;
-$iui-font-size-small: 12px;
-$iui-font-size-leading: 16px;
-$iui-font-size-subheading: 18px;
-$iui-font-size-title: 24px;
-$iui-font-size-headline: 32px;
-
-$iui-cap-size: 10px;
-$iui-cap-size-small: 9px;
-$iui-cap-size-leading: 12px;
-$iui-cap-size-subheading: 13px;
-$iui-cap-size-title: 17px;
-$iui-cap-size-headline: 23px;
+// Following 1.200 minor third scaling: https://type-scale.com
+$iui-font-size: 1rem;
+$iui-font-size-small: 0.833rem; // 11.67px
+$iui-font-size-leading: 1.2rem; // 16.80px
+$iui-font-size-subheading: 1.44rem; // 20.16px
+$iui-font-size-title: 1.728rem; // 24.19px
+$iui-font-size-headline: 2.074rem; // 29.03px
 
 $iui-font-weight-light: 300;
 $iui-font-weight-normal: 400;

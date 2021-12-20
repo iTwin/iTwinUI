@@ -1,3 +1,11 @@
 const { scenario } = require('../scenarioHelper');
 
-module.exports = [scenario('basic')];
+module.exports = [
+  scenario('Sizes', {
+    selectors: ['#demo-icons'],
+  }),
+
+  scenario('Colors', {
+    selectors: ['#demo-status'],
+  }),
+];
