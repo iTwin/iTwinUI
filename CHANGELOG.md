@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.43.0](https://www.github.com/iTwin/iTwinUI/compare/v0.42.1...v0.43.0) (2021-12-20)
+
+### What's new
+
+* **Table:** Added proper support for horizontal scroll ([#417](https://www.github.com/iTwin/iTwinUI/issues/417)) ([42e9fdd](https://www.github.com/iTwin/iTwinUI/commit/42e9fdd90e1b618e0d8e64fe9d421ff37860c387))
+
+### Fixes
+
+* **ButtonGroup:** Add back position to fix z-index issue ([#422](https://www.github.com/iTwin/iTwinUI/issues/422)) ([5b4637e](https://www.github.com/iTwin/iTwinUI/commit/5b4637e8a2b4dbbb066ba2ed0005f5ebeb21942c))
+* **ButtonGroup:** Disable exit animation to prevent flicker ([#421](https://www.github.com/iTwin/iTwinUI/issues/421)) ([39f9a03](https://www.github.com/iTwin/iTwinUI/commit/39f9a031e937977566c2d639ece9ba7434807a90))
+
 ### [0.42.1](https://www.github.com/iTwin/iTwinUI/compare/v0.42.0...v0.42.1) (2021-12-20)
 
 ### Fixes
