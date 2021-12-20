@@ -10,16 +10,22 @@
   $childSelector: 'input, button'; // target nested inputs and buttons
 
   > * {
+    display: flex;
+
     #{$childSelector} {
-      &:hover,
-      &:focus,
-      &:focus-within {
-        position: relative;
+      &:hover {
         z-index: 1;
       }
 
+      &:focus {
+        z-index: 2;
+
+        &:where(:not(:focus-visible):not(:hover)) {
+          z-index: revert;
+        }
+      }
+
       &:disabled {
-        position: relative;
         z-index: -1;
       }
 
