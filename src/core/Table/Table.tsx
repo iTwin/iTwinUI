@@ -532,6 +532,9 @@ export const Table = <
     }
   });
 
+  const headerRef = React.useRef<HTMLDivElement>(null);
+  const bodyRef = React.useRef<HTMLDivElement>(null);
+
   return (
     <>
       <div
@@ -552,7 +555,7 @@ export const Table = <
         })}
         {...ariaDataAttributes}
       >
-        <div className='iui-table-header'>
+        <div className='iui-table-header' ref={headerRef}>
           {headerGroups.slice(1).map((headerGroup: HeaderGroup<T>) => {
             const headerGroupProps = headerGroup.getHeaderGroupProps({
               className: 'iui-row',
@@ -638,6 +641,12 @@ export const Table = <
               'iui-zebra-striping': styleType === 'zebra-rows',
             }),
           })}
+          ref={bodyRef}
+          onScroll={() => {
+            if (headerRef.current && bodyRef.current) {
+              headerRef.current.scrollLeft = bodyRef.current.scrollLeft;
+            }
+          }}
         >
           {data.length !== 0 &&
             page.map((row: Row<T>) => {

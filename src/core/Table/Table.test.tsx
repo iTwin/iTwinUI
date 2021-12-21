@@ -2214,3 +2214,20 @@ it('should render zebra striped table', () => {
     container.querySelector('.iui-table-body.iui-zebra-striping'),
   ).toBeTruthy();
 });
+
+it('should sync body horizontal scroll with header scroll', () => {
+  const { container } = renderComponent();
+
+  const header = container.querySelector('.iui-table-header') as HTMLDivElement;
+  const body = container.querySelector('.iui-table-body') as HTMLDivElement;
+
+  expect(header.scrollLeft).toBe(0);
+  expect(body.scrollLeft).toBe(0);
+
+  fireEvent.scroll(body, {
+    target: { scrollLeft: 100 },
+  });
+
+  expect(header.scrollLeft).toBe(100);
+  expect(body.scrollLeft).toBe(100);
+});
