@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.28.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.27.0...v1.28.0) (2021-12-21)
+
+### What's new
+
+* **ButtonGroup:** Add support for input+button combo ([#492](https://www.github.com/iTwin/iTwinUI-react/issues/492), [#481](https://github.com/iTwin/iTwinUI-react/pull/481)) ([b8b15fd](https://www.github.com/iTwin/iTwinUI-react/commit/b8b15fd4a6f67fac03063a6fdeec1ea6216899c4))
+* **Table:** Added zebra stripes to rows ([#478](https://www.github.com/iTwin/iTwinUI-react/issues/478)) ([76d3eda](https://www.github.com/iTwin/iTwinUI-react/commit/76d3eda5d14aab2b02187c58fab70e93878c73cc))
+* **Table:** Proper support for horizontal scroll ([#495](https://www.github.com/iTwin/iTwinUI-react/issues/495)) ([079c2c0](https://www.github.com/iTwin/iTwinUI-react/commit/079c2c020be46f14ff41d407e81eee1487adfcab))
+
+### Fixes
+
+* **Table:** Prevents from triggering sort when filtering ([#487](https://www.github.com/iTwin/iTwinUI-react/issues/487)) ([d1e6165](https://www.github.com/iTwin/iTwinUI-react/commit/d1e61655bddffc37fa3f91b95766145f18392844))
+
 ## [1.27.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.26.1...v1.27.0) (2021-12-14)
 
 ### What's new
