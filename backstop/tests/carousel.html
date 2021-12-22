@@ -45,23 +45,70 @@
 
     <h2>Default</h2>
     <section id="demo-default">
-      <div class="iui-carousel">
+      <div
+        class="iui-carousel"
+        aria-roledescription="carousel"
+        aria-label="Introduction to iTwinUI"
+        aria-live="polite"
+      >
+
         <div class="iui-carousel-slider">
+
+          <!-- Slide with custom interior content. -->
           <div
-            class="iui-carousel-slider-item"
-            style="background-image: url('../assets/image-test.jpg');"
-          >1</div>
-          <div
-            class="iui-carousel-slider-item"
+            class="iui-carousel-slider-item iui-carousel-slider-item-with-content"
+            id="slide-1"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="1 of 3"
             style="background-color: var(--iui-color-background-4);"
-          >2</div>
+          >
+            <p>Welcome to iTwinUI.</p>
+            <img
+              src="https://camo.githubusercontent.com/6e2455ce043337048db0b9b8e679fac6ca7bbccd8cfb9416c58d6e0ad6dd82b5/68747470733a2f2f697477696e706c6174666f726d63646e2e617a757265656467652e6e65742f695477696e55492f695477696e55492d6c6f676f2e706e67"
+              alt="iTwinUI logo"
+            >
+          </div>
+
+          <!-- Slide with full frame video embed. -->
           <div
             class="iui-carousel-slider-item"
+            id="slide-2"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="2 of 3"
             style="background-color: var(--iui-color-background-5);"
-          >3</div>
+          >
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/DT59xdKNbA8"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <!-- Slide with image and title. -->
+          <div
+            class="iui-carousel-slider-item"
+            id="slide-3"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="3 of 3"
+            style="background-image: url('../assets/image-test.jpg');"
+          >
+            <div class="iui-carousel-slider-item-title">Bentley Systems headquarters</div>
+          </div>
+
         </div>
         <nav class="iui-carousel-navigation">
-          <button class="iui-button iui-borderless iui-small iui-carousel-navigation-button">
+          <button
+            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+            aria-controls="myCarousel-items"
+            aria-label="Previous slide"
+          >
             <svg-chevron-left
               class="iui-button-icon"
               aria-hidden="true"
@@ -70,47 +117,32 @@
           <div class="iui-carousel-navigation-container">
             <ol class="iui-carousel-navigation-dots">
               <li>
-                <button
-                  class="iui-carousel-navigation-dot iui-invisible"
-                  tabindex="-1"
-                ></button>
-              </li>
-              <li>
-                <button class="iui-carousel-navigation-dot iui-first"></button>
-              </li>
-              <li>
-                <button class="iui-carousel-navigation-dot iui-second"></button>
-              </li>
-              <li>
-                <button
-                  class="iui-carousel-navigation-dot"
+                <a
+                  class="iui-carousel-navigation-dot iui-active"
+                  href="#slide-1"
                   id="test-1"
-                ></button>
+                ></a>
               </li>
               <li>
-                <button class="iui-carousel-navigation-dot iui-active"></button>
-              </li>
-              <li>
-                <button
+                <a
                   class="iui-carousel-navigation-dot"
+                  href="#slide-2"
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="iui-carousel-navigation-dot"
+                  href="#slide-3"
                   id="test-2"
-                ></button>
-              </li>
-              <li>
-                <button class="iui-carousel-navigation-dot iui-second"></button>
-              </li>
-              <li>
-                <button class="iui-carousel-navigation-dot iui-first"></button>
-              </li>
-              <li>
-                <button
-                  class="iui-carousel-navigation-dot iui-invisible"
-                  tabindex="-1"
-                ></button>
+                ></a>
               </li>
             </ol>
           </div>
-          <button class="iui-button iui-borderless iui-small iui-carousel-navigation-button">
+          <button
+            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+            aria-controls="myCarousel-items"
+            aria-label="Next slide"
+          >
             <svg-chevron-right
               class="iui-button-icon"
               aria-hidden="true"
@@ -161,7 +193,20 @@
       </div>
     </section>
 
+    <!-- Toggle active state -->
     <script>
+      document.querySelectorAll('.iui-carousel-navigation-dot').forEach(a => {
+        // a.classList.remove('iui-active');
+        a.addEventListener('click', () => {
+          document.querySelectorAll('.iui-carousel-navigation-dot').forEach(activedot => {
+            if (activedot.classname.contains('iui-active')) activedot.classList('iui-active')
+          })
+          a.classList.toggle('iui-active');
+        })
+      })
+    </script>
+
+    <!-- <script>
       function showSlide(carousel, activeIndex) {
         carousel.querySelectorAll(".iui-carousel-slider-item").forEach((item, index) => {
           if (index === activeIndex) {
@@ -189,6 +234,6 @@
           showSlide(carousel, currentSlide);
         })
       })
-    </script>
+    </script> -->
   </body>
 </html>

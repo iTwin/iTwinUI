@@ -13,32 +13,75 @@
 @mixin iui-carousel-slider {
   position: relative;
   display: flex;
-  overflow: hidden;
   width: 100%;
-  height: $iui-baseline * 44;
   @supports (aspect-ratio: 16 / 9) {
-    height: auto;
     aspect-ratio: 16 / 9;
   }
   @include themed {
     border-bottom: 2px solid t(iui-color-background-4);
   }
+  overflow-x: scroll;
+  overflow-x: overlay;
+  counter-reset: item;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
-  > .iui-carousel-slider-item {
-    position: absolute;
-    top: 0;
-    left: 100%;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &-item {
+    position: relative;
     flex-shrink: 0;
     background-position: center;
     background-size: cover;
+    counter-increment: item;
+    scroll-snap-align: center;
     width: 100%;
     height: $iui-baseline * 44;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: left $iui-speed ease-in-out;
-    }
+    box-sizing: border-box;
     @supports (aspect-ratio: 16 / 9) {
       height: auto;
       aspect-ratio: 16 / 9;
+    }
+
+    &-with-content {
+      padding: $iui-baseline $iui-sm;
+    }
+
+    &-title {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      padding: $iui-baseline $iui-sm;
+      width: 100%;
+      @include themed {
+        background-color: rgba(0, 0, 0, t(iui-opacity-4));
+        color: t(iui-color-foreground-accessory);
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        transition: background-color $iui-speed-fast ease;
+      }
+
+      &:hover {
+        @include themed {
+          background-color: rgba(0, 0, 0, t(iui-opacity-3));
+        }
+      }
     }
   }
 }
@@ -73,11 +116,7 @@
     align-items: center;
 
     @at-root {
-      button#{&}, // rendered as button element
-      &[role='button'] {
-        background-color: transparent;
-        cursor: pointer;
-
+      a#{&} {
         &:hover:not(.iui-invisible):not(.iui-active)::after {
           @include themed {
             background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
@@ -91,16 +130,17 @@
         &:focus {
           outline: none;
 
-          &:not(.iui-invisible)::after {
+          &::after {
             @include themed {
-              border-color: t(iui-color-foreground-primary);
+              outline: 1px solid t(iui-color-foreground-primary);
+              outline-offset: 1px;
             }
           }
         }
 
-        &:focus:not(:focus-visible):not(.iui-invisible)::after {
+        &:focus:not(:focus-visible)::after {
           @include themed {
-            border-color: transparent;
+            outline: none;
           }
         }
       }
