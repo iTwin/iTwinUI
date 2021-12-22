@@ -4,14 +4,15 @@
 @import '../icon/index';
 @import '../button/index';
 
+$tile-min-width: $iui-3xl * 3; // 288px
+
 @mixin iui-tile {
   @include iui-reset;
   display: inline-flex;
   flex-direction: column;
-  width: $iui-3xl * 3;
+  width: $tile-min-width;
   box-shadow: $iui-elevation-2;
   backface-visibility: hidden;
-
   @include themed() {
     background-color: t(iui-color-background-1);
     color: t(iui-text-color);
@@ -315,5 +316,19 @@
         -webkit-line-clamp: 2;
       }
     }
+  }
+}
+
+@mixin iui-tile-array {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax($tile-min-width, 1fr));
+  grid-gap: $iui-line-height $iui-l;
+  @media (max-width: 480px) {
+    grid-gap: $iui-baseline $iui-m;
+  }
+
+  .iui-tile {
+    width: 100%;
   }
 }

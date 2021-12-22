@@ -23,27 +23,25 @@
       href="../assets/demo.css"
     />
     <style>
-      /* Set the width of all tiles */
-      .iui-tile {
-        width: 288px;
-        margin-bottom: 11px;
+      #demo-everything-turned-on,
+      #demo-default,
+      #demo-user,
+      #demo-location,
+      #demo-video,
+      #demo-folder {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 16px;
+        gap: 16px;
       }
 
-      /* Set the gap between tiles */
-      .iui-tile:not(:last-child) {
-        margin-right: 16px;
+      #demo-tile-array {
+        width: auto;
       }
 
       /* Set the thumbnail image */
       div.iui-picture {
         background-image: url('../assets/image-test.jpg');
-      }
-
-      section {
-        height: fit-content;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 16px;
       }
     </style>
     <script
@@ -987,6 +985,811 @@
           </button>
         </div>
       </div>
+    </section>
+
+    <hr />
+
+    <h2>Responsive array of tiles</h2>
+    <section id="demo-tile-array">
+
+      <div class="iui-tile-array">
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+        <div class="iui-tile">
+          <div class="iui-thumbnail">
+            <button
+              aria-label="Info"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-quick-action"
+            >
+              <svg-info
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-info>
+            </button>
+            <svg-imodel-hollow
+              class="iui-thumbnail-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-content">
+            <div class="iui-name">
+              <span class="iui-name-label">Tile name</span>
+            </div>
+            <div class="iui-description">
+              Bentley Systems, Incorporated, is an American-based software
+              development company that develops, manufactures, licenses, sells and
+              supports computer software and services for the design,
+              construction, and operation of infrastructure.
+            </div>
+            <div class="iui-metadata">
+              <svg-tag
+                class="iui-metadata-icon"
+                aria-hidden="true"
+              ></svg-tag>
+              <div class="iui-tag-container">
+                <span class="iui-tag iui-basic">tags</span>
+                <span class="iui-tag iui-basic">go</span>
+                <span class="iui-tag iui-basic">here</span>
+              </div>
+            </div>
+
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-more-options"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
     </section>
   </body>
 </html>
