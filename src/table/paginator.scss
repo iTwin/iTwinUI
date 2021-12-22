@@ -50,11 +50,6 @@
           }
         }
 
-        > .iui-button {
-          // Animation looks odd when switching pages
-          transition: none;
-        }
-
         > .iui-ellipsis {
           display: flex;
           justify-content: center;
