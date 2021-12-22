@@ -52,15 +52,9 @@
     counter-increment: item;
     scroll-snap-align: center;
     width: 100%;
-    height: $iui-baseline * 44;
     box-sizing: border-box;
     @supports (aspect-ratio: 16 / 9) {
-      height: auto;
       aspect-ratio: 16 / 9;
-    }
-
-    &-with-content {
-      padding: $iui-baseline $iui-sm;
     }
 
     &-title {
@@ -68,6 +62,7 @@
       left: 0;
       bottom: 0;
       padding: $iui-baseline $iui-sm;
+      box-sizing: border-box;
       width: 100%;
       @include themed {
         background-color: rgba(0, 0, 0, t(iui-opacity-4));

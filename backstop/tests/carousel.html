@@ -25,7 +25,30 @@
     <style>
       section[id^='demo'] {
         width: auto;
-        width: 30%;
+        margin-bottom: 22px;
+      }
+
+      .demo-columns {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background-color: var(--iui-color-background-4);
+      }
+
+      .demo-column {
+        width: 50%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+
+      .demo-left {
+        padding: 11px 12px;
+      }
+
+      .demo-right {
+        background-image: linear-gradient(to right, var(--iui-color-background-4), rgba(var(--iui-color-background-4-rgb), 0)), url('../assets/image-test.jpg');
+        background-position: center;
+        background-size: cover;
       }
     </style>
     <script
@@ -51,23 +74,29 @@
         aria-label="Introduction to iTwinUI"
         aria-live="polite"
       >
-
-        <div class="iui-carousel-slider">
+        <div
+          class="iui-carousel-slider"
+          id="myCarousel-items"
+        >
 
           <!-- Slide with custom interior content. -->
           <div
-            class="iui-carousel-slider-item iui-carousel-slider-item-with-content"
+            class="iui-carousel-slider-item"
             id="slide-1"
             role="group"
             aria-roledescription="slide"
             aria-label="1 of 3"
-            style="background-color: var(--iui-color-background-4);"
           >
-            <p>Welcome to iTwinUI.</p>
-            <img
-              src="https://camo.githubusercontent.com/6e2455ce043337048db0b9b8e679fac6ca7bbccd8cfb9416c58d6e0ad6dd82b5/68747470733a2f2f697477696e706c6174666f726d63646e2e617a757265656467652e6e65742f695477696e55492f695477696e55492d6c6f676f2e706e67"
-              alt="iTwinUI logo"
-            >
+            <div class="demo-columns">
+              <div class="demo-column demo-left">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+              <div class="demo-column demo-right"></div>
+            </div>
           </div>
 
           <!-- Slide with full frame video embed. -->
@@ -99,10 +128,12 @@
             aria-label="3 of 3"
             style="background-image: url('../assets/image-test.jpg');"
           >
-            <div class="iui-carousel-slider-item-title">Bentley Systems headquarters</div>
+            <div class="iui-carousel-slider-item-title">Bentley System headquarters
+            </div>
           </div>
 
         </div>
+
         <nav class="iui-carousel-navigation">
           <button
             class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
@@ -120,13 +151,13 @@
                 <a
                   class="iui-carousel-navigation-dot iui-active"
                   href="#slide-1"
-                  id="test-1"
                 ></a>
               </li>
               <li>
                 <a
                   class="iui-carousel-navigation-dot"
                   href="#slide-2"
+                  id="test-1"
                 ></a>
               </li>
               <li>
@@ -152,26 +183,139 @@
       </div>
     </section>
 
-    <hr />
-    <h2>Counter</h2>
-    <section id="demo-counter">
-      <div class="iui-carousel">
-        <div class="iui-carousel-slider">
+    <h3>Many slides</h3>
+    <p class="iui-text-small iui-text-muted">The dots are not functional in this demo.</p>
+    <section id="demo-many-slides">
+      <div
+        class="iui-carousel"
+        aria-roledescription="carousel"
+        aria-label="Introduction to iTwinUI"
+        aria-live="polite"
+      >
+        <div
+          class="iui-carousel-slider"
+          id="myCarousel-items-3"
+        >
+
           <div
             class="iui-carousel-slider-item"
             style="background-image: url('../assets/image-test.jpg');"
-          >1</div>
+          >
+            <div class="iui-carousel-slider-item-title">Bentley System headquarters
+            </div>
+          </div>
+
           <div
             class="iui-carousel-slider-item"
             style="background-color: var(--iui-color-background-4);"
           >2</div>
+
           <div
             class="iui-carousel-slider-item"
             style="background-color: var(--iui-color-background-5);"
           >3</div>
+
         </div>
+
         <nav class="iui-carousel-navigation">
-          <button class="iui-button iui-borderless iui-small iui-carousel-navigation-button">
+          <button
+            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+            aria-controls="myCarousel-items-3"
+            aria-label="Previous slide"
+          >
+            <svg-chevron-left
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-chevron-left>
+          </button>
+          <div class="iui-carousel-navigation-container">
+            <ol class="iui-carousel-navigation-dots">
+              <li>
+                <span class="iui-carousel-navigation-dot iui-invisible"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot iui-first"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot iui-second"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot iui-active"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot iui-second"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot iui-first"></span>
+              </li>
+              <li>
+                <span class="iui-carousel-navigation-dot iui-invisible"></span>
+              </li>
+            </ol>
+          </div>
+          <button
+            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+            aria-controls="myCarousel-items-3"
+            aria-label="Next slide"
+          >
+            <svg-chevron-right
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-chevron-right>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <hr />
+    <h2>Counter</h2>
+    <section id="demo-counter">
+      <div
+        class="iui-carousel"
+        aria-roledescription="carousel"
+        aria-label="Introduction to iTwinUI"
+        aria-live="polite"
+      >
+        <div
+          class="iui-carousel-slider"
+          id="myCarousel-items-2"
+        >
+
+          <div
+            class="iui-carousel-slider-item"
+            style="background-image: url('../assets/image-test.jpg');"
+          >1</div>
+
+          <div
+            class="iui-carousel-slider-item"
+            style="background-color: var(--iui-color-background-4);"
+          >2</div>
+
+          <div
+            class="iui-carousel-slider-item"
+            style="background-color: var(--iui-color-background-5);"
+          >3</div>
+
+        </div>
+
+        <nav class="iui-carousel-navigation">
+          <button
+            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+            aria-controls="myCarousel-items-2"
+            aria-label="Previous slide"
+          >
             <svg-chevron-left
               class="iui-button-icon"
               aria-hidden="true"
@@ -183,7 +327,11 @@
               <span class="iui-carousel-navigation-counter-total">7</span>
             </div>
           </div>
-          <button class="iui-button iui-borderless iui-small iui-carousel-navigation-button">
+          <button
+            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+            aria-controls="myCarousel-items-2"
+            aria-label="Next slide"
+          >
             <svg-chevron-right
               class="iui-button-icon"
               aria-hidden="true"
@@ -193,7 +341,7 @@
       </div>
     </section>
 
-    <!-- Toggle active state -->
+    <!-- Toggle active state on dots -->
     <script>
       document.querySelectorAll('.iui-carousel-navigation-dot').forEach((navDot) => {
         navDot.addEventListener('click', () => {
@@ -203,34 +351,5 @@
       });
     </script>
 
-    <!-- <script>
-      function showSlide(carousel, activeIndex) {
-        carousel.querySelectorAll(".iui-carousel-slider-item").forEach((item, index) => {
-          if (index === activeIndex) {
-            item.style.left = "0";
-          }
-          // else {
-          //   item.style.left = "inherit";
-          // }
-        })
-      }
-
-      document.querySelectorAll(".iui-carousel").forEach((carousel) => {
-        let currentSlide = 0;
-        showSlide(carousel, currentSlide)
-
-        const [previous, next] = carousel.querySelectorAll(".iui-carousel-navigation-button")
-
-        previous.addEventListener("click", () => {
-          currentSlide = (3 + currentSlide - 1) % 3;
-          showSlide(carousel, currentSlide);
-        })
-
-        next.addEventListener("click", () => {
-          currentSlide = (currentSlide + 1) % 3;
-          showSlide(carousel, currentSlide);
-        })
-      })
-    </script> -->
   </body>
 </html>
