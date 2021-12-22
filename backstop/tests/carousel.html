@@ -195,15 +195,12 @@
 
     <!-- Toggle active state -->
     <script>
-      document.querySelectorAll('.iui-carousel-navigation-dot').forEach(a => {
-        // a.classList.remove('iui-active');
-        a.addEventListener('click', () => {
-          document.querySelectorAll('.iui-carousel-navigation-dot').forEach(activedot => {
-            if (activedot.classname.contains('iui-active')) activedot.classList('iui-active')
-          })
-          a.classList.toggle('iui-active');
-        })
-      })
+      document.querySelectorAll('.iui-carousel-navigation-dot').forEach((navDot) => {
+        navDot.addEventListener('click', () => {
+          document.querySelector('.iui-active')?.classList.remove('iui-active');
+          navDot.classList.add('iui-active');
+        });
+      });
     </script>
 
     <!-- <script>
