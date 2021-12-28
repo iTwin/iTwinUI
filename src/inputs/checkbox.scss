@@ -44,11 +44,6 @@
       background-color: transparent;
     }
 
-    .iui-checkbox-checkmark svg:not(.iui-radial) {
-      width: $iui-icons-default;
-      height: $iui-icons-default;
-    }
-
     input:checked ~ .iui-checkbox-checkmark .iui-uncheck,
     input:indeterminate ~ .iui-checkbox-checkmark .iui-uncheck {
       opacity: 0;
