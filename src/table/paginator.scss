@@ -38,32 +38,31 @@
     .iui-button-group {
       margin: 0 $iui-s;
 
-      > .iui-button,
-      > .iui-ellipsis {
-        width: $iui-component-height;
+      > * {
+        margin-right: 0; // unset negative margin from button-group
 
-        &.iui-small {
-          width: $iui-component-height-small;
+        > .iui-button,
+        > .iui-ellipsis {
+          width: $iui-component-height;
+
+          &.iui-small {
+            width: $iui-component-height-small;
+          }
         }
-      }
 
-      > .iui-button {
-        // Animation looks odd when switching pages
-        transition: none;
-      }
-
-      > .iui-ellipsis {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        @include themed {
-          color: t(iui-text-color-muted);
+        > .iui-ellipsis {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          @include themed {
+            color: t(iui-text-color-muted);
+          }
         }
-      }
 
-      > .iui-active::after {
-        top: auto;
-        bottom: $iui-xxs;
+        > .iui-active::after {
+          top: auto;
+          bottom: $iui-xxs;
+        }
       }
     }
   }

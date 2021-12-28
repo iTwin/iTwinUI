@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.43.0](https://www.github.com/iTwin/iTwinUI/compare/v0.42.1...v0.43.0) (2021-12-20)
+
+### What's new
+
+* **Table:** Added proper support for horizontal scroll ([#417](https://www.github.com/iTwin/iTwinUI/issues/417)) ([42e9fdd](https://www.github.com/iTwin/iTwinUI/commit/42e9fdd90e1b618e0d8e64fe9d421ff37860c387))
+
+### Fixes
+
+* **ButtonGroup:** Add back position to fix z-index issue ([#422](https://www.github.com/iTwin/iTwinUI/issues/422)) ([5b4637e](https://www.github.com/iTwin/iTwinUI/commit/5b4637e8a2b4dbbb066ba2ed0005f5ebeb21942c))
+* **ButtonGroup:** Disable exit animation to prevent flicker ([#421](https://www.github.com/iTwin/iTwinUI/issues/421)) ([39f9a03](https://www.github.com/iTwin/iTwinUI/commit/39f9a031e937977566c2d639ece9ba7434807a90))
+
+### [0.42.1](https://www.github.com/iTwin/iTwinUI/compare/v0.42.0...v0.42.1) (2021-12-20)
+
+### Fixes
+
+* **ButtonGroup:** Use flex instead of position: relative to set z-index ([#418](https://www.github.com/iTwin/iTwinUI/issues/418)) ([6e9df50](https://www.github.com/iTwin/iTwinUI/commit/6e9df50fe3ddd2355f8d299d8d532fa720f029aa))
+
+## [0.42.0](https://www.github.com/iTwin/iTwinUI/compare/v0.41.1...v0.42.0) (2021-12-14)
+
+### What's new
+
+* **ButtonGroup:** handle input + button combo ([#365](https://www.github.com/iTwin/iTwinUI/issues/365)) ([067fe40](https://www.github.com/iTwin/iTwinUI/commit/067fe4028c85977664821ecd69816219dcd15c06))
+
+### Fixes
+
+* **Header:** Correct label color in disabled header button ([#414](https://www.github.com/iTwin/iTwinUI/issues/414)) ([4ad31cb](https://www.github.com/iTwin/iTwinUI/commit/4ad31cb2f406fbfcc46d64a525c36bfd90dff41a))
+* **Table:** Fixed zebra rows hover style ([#416](https://www.github.com/iTwin/iTwinUI/issues/416)) ([879fcc8](https://www.github.com/iTwin/iTwinUI/commit/879fcc8ea2b6e3b128ae443417561576ea40fc96))
+
 ### [0.41.1](https://www.github.com/iTwin/iTwinUI/compare/v0.41.0...v0.41.1) (2021-12-10)
 
 ### Fixes
