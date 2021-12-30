@@ -5,3 +5,15 @@
 .iui-date-picker {
   @include iui-date-picker;
 }
+
+.iui-calendar-month-year {
+  @include iui-calendar-month-year;
+}
+
+.iui-calender-weekdays {
+  @include iui-calendar-weekdays;
+}
+
+.iui-calendar-week {
+  @include iui-calendar-week;
+}
