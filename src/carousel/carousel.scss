@@ -11,9 +11,6 @@
 
 @mixin iui-carousel-slider {
   display: flex;
-  @supports (aspect-ratio: 16 / 9) {
-    aspect-ratio: 16 / 9;
-  }
   @include themed {
     border-bottom: 2px solid t(iui-color-background-4);
   }
