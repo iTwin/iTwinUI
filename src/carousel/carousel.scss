@@ -7,13 +7,10 @@
   @include iui-reset;
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 @mixin iui-carousel-slider {
-  position: relative;
   display: flex;
-  width: 100%;
   @supports (aspect-ratio: 16 / 9) {
     aspect-ratio: 16 / 9;
   }
@@ -83,7 +80,6 @@
 
 @mixin iui-carousel-navigation {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   height: $iui-baseline * 3;
 
