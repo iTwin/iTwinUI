@@ -28,6 +28,14 @@
 
 .iui-paginator {
   @include iui-paginator;
+
+  .iui-paginator-ellipsis {
+    @include iui-paginator-ellipsis;
+  }
+
+  .iui-paginator-pages-group {
+    @include iui-paginator-pages-group ;
+  }
 }
 
 .iui-column-filter {
