@@ -31,21 +31,21 @@ module.exports = [
 
   //// Type Indicator hover
   scenario('State Type Indicator hover', {
-    actions: [hover('#test-tile-1 .iui-type-indicator')],
+    actions: [hover('#test-tile-1 .iui-tile-thumbnail-type-indicator')],
     selectors: ['#test-tile-1'],
   }),
   scenario('State Type Indicator hover with thumbnail', {
-    actions: [hover('#test-tile-2 .iui-type-indicator')],
+    actions: [hover('#test-tile-2 .iui-tile-thumbnail-type-indicator')],
     selectors: ['#test-tile-2'],
   }),
 
   //// Quick Action hover
   scenario('State Quick Action hover', {
-    actions: [hover('#test-tile-1 .iui-quick-action')],
+    actions: [hover('#test-tile-1 .iui-tile-thumbnail-quick-action')],
     selectors: ['#test-tile-1'],
   }),
   scenario('State Quick Action hover with thumbnail', {
-    actions: [hover('#test-tile-2 .iui-quick-action')],
+    actions: [hover('#test-tile-2 .iui-tile-thumbnail-quick-action')],
     selectors: ['#test-tile-2'],
   }),
 
@@ -79,21 +79,21 @@ module.exports = [
 
   //// Type Indicator focus
   scenario('State Type Indicator focus', {
-    actions: [focus('#test-tile-1 .iui-type-indicator')],
+    actions: [focus('#test-tile-1 .iui-tile-thumbnail-type-indicator')],
     selectors: ['#test-tile-1'],
   }),
   scenario('State Type Indicator focus with thumbnail', {
-    actions: [focus('#test-tile-2 .iui-type-indicator')],
+    actions: [focus('#test-tile-2 .iui-tile-thumbnail-type-indicator')],
     selectors: ['#test-tile-2'],
   }),
 
   //// Quick Action focus
   scenario('State Quick Action focus', {
-    actions: [focus('#test-tile-1 .iui-quick-action')],
+    actions: [focus('#test-tile-1 .iui-tile-thumbnail-quick-action')],
     selectors: ['#test-tile-1'],
   }),
   scenario('State Quick Action focus with thumbnail', {
-    actions: [focus('#test-tile-2 .iui-quick-action')],
+    actions: [focus('#test-tile-2 .iui-tile-thumbnail-quick-action')],
     selectors: ['#test-tile-2'],
   }),
 
