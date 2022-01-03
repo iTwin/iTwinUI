@@ -72,8 +72,6 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
         box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow, $iui-active-box-shadow;
       }
     }
-
-    @include iui-focus($offset: 0, $thickness: 2px);
   }
 }
 
