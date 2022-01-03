@@ -116,13 +116,6 @@
       &:focus:not(:focus-visible) ~ .iui-radio-tile {
         outline: none;
       }
-
-      &:focus-visible ~ .iui-radio-tile {
-        @include themed {
-          outline: 2px solid t(iui-color-foreground-primary);
-          outline-offset: -4px;
-        }
-      }
     }
 
     // Adds hover to everything that is not checked or  disabled
