@@ -45,11 +45,6 @@
     }
   }
 
-  &:-webkit-autofill {
-    @include iui-input-autofill;
-  }
-
-  // stylelint-disable-next-line selector-pseudo-class-no-unknown
   &:autofill {
     @include iui-input-autofill;
   }
