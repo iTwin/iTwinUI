@@ -100,7 +100,9 @@
     @include iui-focus($color: iui-color-foreground-#{$statusColor}, $offset: 2px);
   }
 
-  > .iui-button {
-    @include iui-focus($color: iui-color-foreground-#{$statusColor});
+  > .iui-button:focus {
+    @include themed {
+      outline-color: t(iui-color-foreground-#{$statusColor});
+    }
   }
 }
