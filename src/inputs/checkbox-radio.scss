@@ -61,6 +61,8 @@
 
   > .iui-label {
     margin-right: $iui-s;
+    display: flex;
+    align-items: center;
 
     svg {
       width: $iui-icons-default;
