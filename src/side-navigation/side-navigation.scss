@@ -139,8 +139,6 @@
       }
     }
 
-    @include iui-focus($offset: -2px, $thickness: 2px);
-
     &.iui-expand {
       height: $iui-line-height;
       justify-content: center;
