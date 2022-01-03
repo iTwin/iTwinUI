@@ -53,7 +53,7 @@
 
       &:focus-within {
         @include themed {
-          outline: 2px solid t(iui-color-foreground-primary-rgb);
+          outline: 2px solid t(iui-color-foreground-primary);
           outline-offset: -2px;
         }
       }
