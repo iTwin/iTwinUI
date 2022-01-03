@@ -91,9 +91,9 @@
           display: inline-block;
           width: $iui-baseline * 3;
           line-height: $iui-baseline * 3;
+          border-radius: $iui-border-radius;
 
           &:hover:not(.iui-selected) {
-            border-radius: $iui-border-radius;
             font-weight: $iui-font-weight-semibold;
             @include themed {
               color: t(iui-color-foreground-primary);
