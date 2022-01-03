@@ -10,10 +10,18 @@
   @include iui-calendar-month-year;
 }
 
+.iui-calendar-month {
+  @include iui-calendar-month;
+}
+
 .iui-calendar-weekdays {
   @include iui-calendar-weekdays;
 }
 
 .iui-calendar-week {
   @include iui-calendar-week;
+}
+
+.iui-calendar-day {
+  @include iui-calendar-day;
 }

@@ -38,14 +38,14 @@
     justify-content: center;
     line-height: $iui-baseline * 4;
   }
+}
 
-  .iui-month {
-    overflow: hidden;
-    max-width: 15ch;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
+@mixin iui-calendar-month {
+  overflow: hidden;
+  max-width: 15ch;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 @mixin iui-calendar-weekdays {
@@ -74,45 +74,45 @@
   align-items: center;
   justify-content: space-evenly;
   padding: 0 $iui-s;
+}
 
-  > .iui-date {
-    @include iui-focus;
-    cursor: pointer;
-    display: inline-block;
-    width: $iui-baseline * 3;
-    line-height: $iui-baseline * 3;
+@mixin iui-calendar-day {
+  @include iui-focus;
+  cursor: pointer;
+  display: inline-block;
+  width: $iui-baseline * 3;
+  line-height: $iui-baseline * 3;
 
-    &.iui-today {
-      font-weight: $iui-font-weight-semibold;
-      border-radius: 50%;
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-      }
+  &.iui-today {
+    font-weight: $iui-font-weight-semibold;
+    border-radius: 50%;
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
     }
+  }
 
-    &:hover {
-      border-radius: $iui-border-radius;
-      font-weight: $iui-font-weight-semibold;
-      @include themed {
-        color: t(iui-color-foreground-primary);
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
+  &:hover {
+    border-radius: $iui-border-radius;
+    font-weight: $iui-font-weight-semibold;
+    @include themed {
+      color: t(iui-color-foreground-primary);
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
     }
+  }
 
-    &.iui-selected {
-      font-weight: $iui-font-weight-semibold;
-      border-radius: $iui-border-radius;
-      cursor: default;
-      @include themed {
-        background-color: t(iui-color-background-primary);
-        color: t(iui-color-foreground-accessory);
-      }
+  &.iui-selected {
+    font-weight: $iui-font-weight-semibold;
+    border-radius: $iui-border-radius;
+    cursor: default;
+    @include themed {
+      background-color: t(iui-color-background-primary);
+      color: t(iui-color-foreground-accessory);
     }
+  }
 
-    &.iui-outside-month {
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+  &.iui-outside-month {
+    @include themed {
+      color: t(iui-text-color-muted);
     }
   }
 }
