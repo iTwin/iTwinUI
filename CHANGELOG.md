@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.43.1](https://www.github.com/iTwin/iTwinUI/compare/v0.43.0...v0.43.1) (2022-01-03)
+
+
+### Fixes
+
+* **checkbox:** `iui-label` content is centered ([#433](https://www.github.com/iTwin/iTwinUI/issues/433)) ([30c7075](https://www.github.com/iTwin/iTwinUI/commit/30c70752b9bb3ed2e015809f924583cad4449185))
+
 ## [0.43.0](https://www.github.com/iTwin/iTwinUI/compare/v0.42.1...v0.43.0) (2021-12-20)
 
 ### What's new
