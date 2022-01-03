@@ -57,28 +57,34 @@
     color: t(iui-text-color-muted);
   }
 
-  &.iui-small {
+  &-small {
     width: $iui-component-height-small;
   }
 }
 
 @mixin iui-paginator-pages-group {
+  @include iui-button-group;
   margin: 0 $iui-s;
 
   > * {
-    margin-right: 0; // unset negative margin from button-group
-  }
-
-  .iui-paginator-page-button {
-    width: $iui-component-height;
-
-    &.iui-small {
-      width: $iui-component-height-small;
+    &:not(:last-child) {
+      margin-right: 0; // unset negative margin from button-group
     }
 
-    &.iui-active::after {
+    button.iui-active::after {
       top: auto;
       bottom: $iui-xxs;
     }
+  }
+}
+
+@mixin iui-paginator-page-button {
+  @include iui-button;
+  @include iui-button-borderless;
+  width: $iui-component-height;
+
+  &-small {
+    @include iui-button-size(small);
+    width: $iui-component-height-small;
   }
 }
