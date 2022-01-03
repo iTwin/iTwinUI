@@ -62,9 +62,12 @@
 }
 
 @mixin iui-tag-container {
-  @include iui-focus;
   @include themed {
     color: t(iui-text-color-muted);
+  }
+
+  > .iui-basic {
+    @include iui-focus;
   }
 
   > .iui-tag:not(:last-child) {
@@ -77,7 +80,7 @@
 
   &.iui-truncate {
     @include iui-line-clamp(1);
-    padding: 4px; // Needed to show full focus box
+    // padding: 4px; // Needed to show full focus box
   }
 
   &.iui-scroll {
