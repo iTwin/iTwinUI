@@ -35,7 +35,7 @@ const metaContent = (fileName) => `
   <link rel="manifest" href="../assets/manifest.json">
 `;
 
-/** skypack production optimized url for itwinui-icons-elements */
+/** skypack production optimized url for itwinui-icons-elements from https://cdn.skypack.dev/@itwin/itwinui-icons-elements@latest */
 const pinnedIconElementsUrl = `https://cdn.skypack.dev/pin/@itwin/itwinui-icons-elements@v0.2.0-TajkQ5xLOHPY07wRZTss/mode=imports,min/optimized/@itwin/itwinui-icons-elements`;
 
 const run = async () => {
