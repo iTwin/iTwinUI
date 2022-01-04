@@ -36,7 +36,7 @@ const metaContent = (fileName) => `
 `;
 
 /** skypack production optimized url for itwinui-icons-elements */
-const pinnedIconElementsUrl = `https://cdn.skypack.dev/pin/@itwin/itwinui-icons-elements@v0.1.0-58txt5yGsgoI5tjaWCdn/mode=imports,min/optimized/@itwin/itwinui-icons-elements`;
+const pinnedIconElementsUrl = `https://cdn.skypack.dev/pin/@itwin/itwinui-icons-elements@v0.2.0-TajkQ5xLOHPY07wRZTss/mode=imports,min/optimized/@itwin/itwinui-icons-elements`;
 
 const run = async () => {
   const files = await fs.promises.readdir(inDir, { withFileTypes: true });
@@ -46,10 +46,7 @@ const run = async () => {
     let htmlContent = fs.readFileSync(inPath, { encoding: 'utf8' });
 
     // add meta tags
-    htmlContent = htmlContent.replace(
-      '</title>',
-      `</title>${metaContent(file.name)}`
-    );
+    htmlContent = htmlContent.replace('</title>', `</title>${metaContent(file.name)}`);
 
     // replace icons-elements lookup url with pinned url
     htmlContent = htmlContent.replace(
