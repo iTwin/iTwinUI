@@ -14,7 +14,6 @@
     margin-right: $iui-component-offset;
   }
   @include iui-button-size(medium, borderless);
-  @include iui-focus;
 
   &:hover {
     @include themed {

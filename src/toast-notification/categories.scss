@@ -37,11 +37,11 @@
     }
 
     > .iui-anchor {
-      @include iui-focus($color: iui-color-foreground-#{$category}, $offset: 2px);
+      @include iui-focus($color: var(--iui-color-foreground-#{$category}), $offset: 2px);
     }
 
     > .iui-button {
-      @include iui-focus($color: iui-color-foreground-#{$category});
+      outline-color: var(--iui-color-foreground-#{$category});
     }
   }
 }

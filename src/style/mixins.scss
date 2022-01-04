@@ -20,16 +20,22 @@
   }
 }
 
-@mixin iui-focus($color: iui-color-foreground-primary, $offset: -1px, $thickness: 1px) {
-  &:focus {
-    @include themed {
-      outline: $thickness solid t($color);
-    }
-    outline-offset: $offset;
+@mixin focus-visible {
+  &:focus-visible {
+    @content;
   }
 
-  &:focus:not(:focus-visible) {
-    outline: none;
+  @supports #{'not selector(*:focus-visible)'} {
+    &:focus {
+      @content;
+    }
+  }
+}
+
+@mixin iui-focus($color: var(--iui-color-foreground-primary), $offset: -1px, $thickness: 1px) {
+  @include focus-visible {
+    outline: $thickness solid $color;
+    outline-offset: $offset;
   }
 }
 

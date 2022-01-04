@@ -108,7 +108,7 @@
       background-color: t(iui-color-background-primary);
       color: t(iui-color-foreground-accessory);
     }
-    @include iui-focus($color: iui-color-foreground-accessory, $offset: -3px);
+    @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
   }
 
   &.iui-outside-month {

@@ -61,23 +61,5 @@
         fill: t(iui-icons-color-actionable);
       }
     }
-
-    // Adds focus to enabled checkbox & radio
-    input:enabled {
-      &:focus {
-        ~ .iui-checkbox-checkmark,
-        ~ .iui-radio-dot {
-          outline-width: 1px;
-          outline-offset: 0;
-        }
-      }
-
-      &:focus:not(:focus-visible) {
-        ~ .iui-checkbox-checkmark,
-        ~ .iui-radio-dot {
-          outline: none;
-        }
-      }
-    }
   }
 }

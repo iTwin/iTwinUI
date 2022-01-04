@@ -101,13 +101,7 @@
     &,
     &:hover,
     &[disabled],
-    &:focus {
-      @include themed {
-        border-color: t(iui-color-background-5);
-      }
-    }
-
-    // Overriding border from default button
+    &:focus,
     &:focus:not(:focus-visible) {
       @include themed {
         border-color: t(iui-color-background-5);
