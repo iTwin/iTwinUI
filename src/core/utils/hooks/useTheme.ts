@@ -40,16 +40,33 @@ export const useTheme = (
       return;
     }
 
+    const prefersDarkMediaQuery = getWindow()?.matchMedia?.(
+      '(prefers-color-scheme: dark)',
+    );
+
+    const addOSTheme = ({
+      matches: isDark,
+    }: MediaQueryList | MediaQueryListEvent) => {
+      if (isDark) {
+        addDarkTheme(ownerDocument);
+      } else {
+        addLightTheme(ownerDocument);
+      }
+    };
+
     switch (theme) {
       case 'light':
+        prefersDarkMediaQuery?.removeEventListener?.('change', addOSTheme);
         addLightTheme(ownerDocument);
         break;
       case 'dark':
+        prefersDarkMediaQuery?.removeEventListener?.('change', addOSTheme);
         addDarkTheme(ownerDocument);
         break;
       case 'os':
-        if (getWindow()?.matchMedia?.('(prefers-color-scheme: dark)').matches) {
-          addDarkTheme(ownerDocument);
+        if (prefersDarkMediaQuery != undefined) {
+          addOSTheme(prefersDarkMediaQuery);
+          prefersDarkMediaQuery.addEventListener?.('change', addOSTheme);
         } else {
           addLightTheme(ownerDocument);
         }
@@ -61,6 +78,10 @@ export const useTheme = (
           addLightTheme(ownerDocument);
         }
     }
+
+    return () => {
+      prefersDarkMediaQuery?.removeEventListener?.('change', addOSTheme);
+    };
   }, [ownerDocument, theme]);
 };
 
