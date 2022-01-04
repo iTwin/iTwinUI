@@ -34,37 +34,6 @@
     @include themed {
       color: t(iui-text-color);
     }
-
-    .iui-button-group {
-      margin: 0 $iui-s;
-
-      > * {
-        margin-right: 0; // unset negative margin from button-group
-
-        > .iui-button,
-        > .iui-ellipsis {
-          width: $iui-component-height;
-
-          &.iui-small {
-            width: $iui-component-height-small;
-          }
-        }
-
-        > .iui-ellipsis {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          @include themed {
-            color: t(iui-text-color-muted);
-          }
-        }
-
-        > .iui-active::after {
-          top: auto;
-          bottom: $iui-xxs;
-        }
-      }
-    }
   }
 
   > .iui-right {
@@ -76,5 +45,44 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+
+@mixin iui-paginator-ellipsis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $iui-component-height;
+  @include themed {
+    color: t(iui-text-color-muted);
+  }
+
+  &-small {
+    width: $iui-component-height-small;
+  }
+}
+
+@mixin iui-paginator-pages-group {
+  @include iui-button-group;
+  margin: 0 $iui-s;
+
+  > * + * {
+    margin-left: 0; // unset negative margin from button-group
+  }
+
+  button.iui-active::after {
+    top: auto;
+    bottom: $iui-xxs;
+  }
+}
+
+@mixin iui-paginator-page-button {
+  @include iui-button;
+  @include iui-button-borderless;
+  width: $iui-component-height;
+
+  &-small {
+    @include iui-button-size(small);
+    width: $iui-component-height-small;
   }
 }

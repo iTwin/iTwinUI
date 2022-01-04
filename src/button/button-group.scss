@@ -84,8 +84,8 @@
     }
 
     // Use negative margin to make adjacent borders overlap
-    &:not(:last-child) {
-      margin-right: -1px;
+    + * {
+      margin-left: -1px;
     }
 
     // Add slight border between disabled items
