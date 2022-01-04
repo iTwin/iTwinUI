@@ -66,15 +66,13 @@
   @include iui-button-group;
   margin: 0 $iui-s;
 
-  > * {
-    &:not(:last-child) {
-      margin-right: 0; // unset negative margin from button-group
-    }
+  > * + * {
+    margin-left: 0; // unset negative margin from button-group
+  }
 
-    button.iui-active::after {
-      top: auto;
-      bottom: $iui-xxs;
-    }
+  button.iui-active::after {
+    top: auto;
+    bottom: $iui-xxs;
   }
 }
 
