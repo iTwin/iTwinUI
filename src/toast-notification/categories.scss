@@ -37,7 +37,9 @@
     }
 
     > .iui-anchor {
-      @include iui-focus($color: var(--iui-color-foreground-#{$category}), $offset: 2px);
+      outline-color: var(--iui-color-foreground-#{$category});
+      outline-offset: 2px;
+      border-radius: $iui-border-radius;
     }
 
     > .iui-button {

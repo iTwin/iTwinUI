@@ -68,6 +68,7 @@
   > a.iui-basic {
     @include iui-focus($offset: 1px);
     margin: $iui-xxs;
+    border-radius: $iui-border-radius;
   }
 
   > .iui-tag:not(:last-child) {

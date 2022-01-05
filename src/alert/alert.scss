@@ -87,6 +87,7 @@
   }
 
   #{$rootSelector}-link {
+    border-radius: $iui-border-radius;
     @include themed {
       color: t(iui-color-foreground-#{$statusColor});
     }
