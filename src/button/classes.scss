@@ -4,7 +4,11 @@
 
 .iui-button {
   @include iui-button;
-  @include iui-button-default;
+  @include iui-button-size;
+
+  &.iui-default {
+    @include iui-button-default;
+  }
 
   &.iui-high-visibility {
     @include iui-button-high-visibility;
@@ -22,8 +26,22 @@
     @include iui-button-borderless;
   }
 
-  &[disabled] {
-    @include iui-button-disabled;
+  @include iui-button-size(medium);
+
+  &.iui-small {
+    @include iui-button-size(small);
+
+    &.iui-borderless {
+      @include iui-button-size(small, borderless);
+    }
+  }
+
+  &.iui-large {
+    @include iui-button-size(large);
+
+    &.iui-borderless {
+      @include iui-button-size(large, borderless);
+    }
   }
 }
 
@@ -34,4 +52,8 @@
 .iui-button-split-menu {
   @include iui-button-group;
   @include iui-button-split-menu;
+}
+
+.iui-button-icon {
+  @include iui-button-icon;
 }

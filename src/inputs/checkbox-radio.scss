@@ -47,9 +47,7 @@
       width: $iui-sm;
       height: $iui-sm;
 
-      > path,
-      > circle,
-      > g {
+      > * {
         opacity: 0;
         @media (prefers-reduced-motion: no-preference) {
           transition: opacity $iui-speed-fast ease;
@@ -63,6 +61,8 @@
 
   > .iui-label {
     margin-right: $iui-s;
+    display: flex;
+    align-items: center;
 
     svg {
       width: $iui-icons-default;
