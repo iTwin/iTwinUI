@@ -167,31 +167,13 @@
     // Focus on non-disabled toggle switch
     &:enabled:focus ~ .iui-toggle {
       @include themed {
-        outline: 2px solid t(iui-color-foreground-primary);
+        outline: 1px solid t(iui-color-foreground-primary);
       }
-      outline-offset: -1px;
-    }
-
-    &:enabled:checked:focus ~ .iui-toggle::after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: $iui-baseline;
-      box-sizing: border-box;
-      @include themed {
-        border: 1px solid t(iui-color-foreground-accessory);
-      }
+      outline-offset: 1px;
     }
 
     &:enabled:focus:not(:focus-visible) ~ .iui-toggle {
       outline: none;
-
-      &::after {
-        display: none;
-      }
     }
   }
 
