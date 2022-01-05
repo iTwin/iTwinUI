@@ -129,7 +129,6 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  @include iui-scroll-shadow;
   @include iui-scroll-snapping('.iui-row');
   @include themed {
     background-color: t(iui-color-background-1);

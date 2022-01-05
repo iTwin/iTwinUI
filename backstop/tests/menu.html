@@ -1637,5 +1637,57 @@
         });
       });
     </script>
+
+    <!-- Scroll Shadow -->
+    <script>
+      document.querySelectorAll('.iui-menu.iui-scroll').forEach((content) => {
+        var contentScrollHeight = content.scrollHeight - content.offsetHeight;
+
+        if (contentScrollHeight != 0) { //If content is scrollable
+          var currentScroll = content.scrollTop / (contentScrollHeight);
+          const wrapper = content.parentNode;
+
+          document.addEventListener('DOMContentLoaded', () => {
+            if (wrapper.classList.contains('iui-scroll-shadow') === false) {
+              // Add top / bottom scroll shadows and wrapper
+              wrapper.insertBefore(getScrollWrapper(content, currentScroll), wrapper.children[4]);
+            }
+          });
+
+          content.addEventListener('scroll', () => {
+            //Adjust opacity
+            currentScroll = content.scrollTop / (contentScrollHeight);
+            wrapper.querySelector('.iui-top-shadow').style.opacity = currentScroll;
+            wrapper.querySelector('.iui-bottom-shadow').style.opacity = 1 - currentScroll;
+          });
+        }
+      });
+    </script>
+
+    <script>
+      function getScrollWrapper(el, currentOpacity) {
+        var wrapper = document.createElement('div');
+        wrapper.classList.add('iui-scroll-shadow');
+        wrapper.style.setProperty('overflow', 'hidden');
+        wrapper.style.setProperty('position', 'relative');
+
+        var topShadow = document.createElement('div');
+        topShadow.classList.add('iui-top-shadow');
+        topShadow.style.cssText =
+          "position: absolute; width: 100%; height: 11px; top: 0; background: radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)) center top; ";
+        topShadow.style.opacity = currentOpacity;
+
+        var bottomShadow = document.createElement('div');
+        bottomShadow.classList.add('iui-bottom-shadow');
+        bottomShadow.style.cssText =
+          "position: absolute; width: 100%; height: 11px; bottom: 0; background: radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)) center bottom;";
+        bottomShadow.style.opacity = 1 - currentOpacity;
+
+        wrapper.appendChild(topShadow);
+        wrapper.appendChild(bottomShadow);
+        wrapper.appendChild(el);
+        return wrapper;
+      }
+    </script>
   </body>
 </html>
