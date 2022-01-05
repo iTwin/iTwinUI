@@ -65,8 +65,9 @@
     color: t(iui-text-color-muted);
   }
 
-  > .iui-basic {
-    @include iui-focus;
+  > a.iui-basic {
+    @include iui-focus($offset: 1px);
+    margin: $iui-xxs;
   }
 
   > .iui-tag:not(:last-child) {
@@ -79,7 +80,6 @@
 
   &.iui-truncate {
     @include iui-line-clamp(1);
-    // padding: 4px; // Needed to show full focus box
   }
 
   &.iui-scroll {
