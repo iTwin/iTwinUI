@@ -100,9 +100,7 @@
 
     &,
     &:hover,
-    &[disabled],
-    &:focus,
-    &:focus:not(:focus-visible) {
+    &[disabled] {
       @include themed {
         border-color: t(iui-color-background-5);
       }
