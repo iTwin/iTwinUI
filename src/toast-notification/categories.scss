@@ -36,9 +36,12 @@
       }
     }
 
-    > .iui-anchor,
+    > .iui-anchor {
+      outline-color: var(--iui-color-foreground-#{$category});
+    }
+
     > .iui-button {
-      @include iui-focus(iui-focus-#{$category}-box-shadow);
+      outline-color: var(--iui-color-foreground-#{$category});
     }
   }
 }
