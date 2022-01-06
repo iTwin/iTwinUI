@@ -339,7 +339,8 @@
     &:focus {
       @include themed {
         border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
-        box-shadow: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-5)) 0 0 0 $iui-xxs;
+        outline: 2px solid t(iui-color-foreground-#{$status});
+        outline-offset: -2px;
       }
     }
   }

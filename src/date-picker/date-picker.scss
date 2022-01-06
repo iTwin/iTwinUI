@@ -82,6 +82,7 @@
   display: inline-block;
   width: $iui-baseline * 3;
   line-height: $iui-baseline * 3;
+  border-radius: $iui-border-radius;
 
   &.iui-today {
     font-weight: $iui-font-weight-semibold;
@@ -92,7 +93,6 @@
   }
 
   &:hover {
-    border-radius: $iui-border-radius;
     font-weight: $iui-font-weight-semibold;
     @include themed {
       color: t(iui-color-foreground-primary);
@@ -108,6 +108,7 @@
       background-color: t(iui-color-background-primary);
       color: t(iui-color-foreground-accessory);
     }
+    @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
   }
 
   &.iui-outside-month {

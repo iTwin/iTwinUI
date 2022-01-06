@@ -105,11 +105,16 @@
     }
 
     // Adds focus to enabled radio tiles
-    input:enabled:focus ~ .iui-radio-tile {
-      outline: 0;
+    input:enabled {
+      &:focus ~ .iui-radio-tile {
+        @include themed {
+          outline: 2px solid t(iui-color-foreground-primary);
+          outline-offset: -4px;
+        }
+      }
 
-      @include themed {
-        box-shadow: t(iui-focus-box-shadow);
+      &:focus:not(:focus-visible) ~ .iui-radio-tile {
+        outline: none;
       }
     }
 
