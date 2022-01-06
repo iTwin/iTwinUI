@@ -7,48 +7,45 @@
   @include iui-reset;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 @mixin iui-carousel-slider {
   display: flex;
-  @include themed {
-    border-bottom: 2px solid t(iui-color-background-4);
-  }
-  overflow-x: scroll;
-  overflow-x: overlay;
-  counter-reset: item;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-color: transparent transparent;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-
-  &::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border: none;
-
-    &:hover {
-      background-color: transparent;
-    }
-  }
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
   &-item {
-    position: relative;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     flex-shrink: 0;
-    background-position: center;
-    background-size: cover;
-    counter-increment: item;
-    scroll-snap-align: center;
     width: 100%;
     box-sizing: border-box;
-    @supports (aspect-ratio: 16 / 9) {
-      aspect-ratio: 16 / 9;
+    transition: transform $iui-speed-slow ease-in-out;
+
+    &.iui-previous {
+      transform: translateX(-100%);
+    }
+
+    &.iui-next {
+      transform: translateX(100%);
+    }
+
+    &.iui-current {
+      transform: translateX(0);
+    }
+
+    &-image {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
     }
 
     &-title {
@@ -73,6 +70,50 @@
       }
     }
   }
+
+  + .iui-carousel-navigation {
+    @include themed {
+      border-top: 2px solid t(iui-color-background-4);
+    }
+  }
+
+  &.iui-carousel-overflow {
+    .iui-carousel-slider-item {
+      width: 90%;
+
+      &.iui-previous {
+        transform: translateX(-102%);
+      }
+
+      &.iui-next {
+        transform: translateX(102%);
+      }
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 5%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    &::before {
+      left: 0;
+      @include themed {
+        background: linear-gradient(to right, t(iui-color-background-2), rgba(t(iui-color-background-2-rgb), 0));
+      }
+    }
+
+    &::after {
+      right: 0;
+      @include themed {
+        background: linear-gradient(to left, t(iui-color-background-2), rgba(t(iui-color-background-2-rgb), 0));
+      }
+    }
+  }
 }
 
 @mixin iui-carousel-navigation {
@@ -80,56 +121,51 @@
   align-items: center;
   height: $iui-baseline * 3;
 
-  &-container {
+  &-dots {
+    @include iui-reset;
     display: flex;
     flex-grow: 1;
     white-space: nowrap;
     overflow: hidden;
     justify-content: center;
-  }
-
-  &-dots {
-    @include iui-reset;
-    display: flex;
     align-items: center;
     list-style: none;
   }
 
   &-dot {
+    @include iui-reset;
+    background-color: transparent;
     width: $iui-baseline * 2;
     height: $iui-baseline * 2;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
-    @at-root {
-      a#{&} {
-        &:hover:not(.iui-invisible):not(.iui-active)::after {
-          @include themed {
-            background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
-          }
+    &:hover:not(.iui-invisible):not(.iui-active)::after {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+      }
+    }
+
+    &.iui-invisible {
+      cursor: default;
+    }
+
+    &:focus {
+      outline: none;
+
+      &::after {
+        @include themed {
+          outline: 1px solid t(iui-color-foreground-primary);
+          outline-offset: 1px;
         }
+      }
+    }
 
-        &.iui-invisible {
-          cursor: default;
-        }
-
-        &:focus {
-          outline: none;
-
-          &::after {
-            @include themed {
-              outline: 1px solid t(iui-color-foreground-primary);
-              outline-offset: 1px;
-            }
-          }
-        }
-
-        &:focus:not(:focus-visible)::after {
-          @include themed {
-            outline: none;
-          }
-        }
+    &:focus:not(:focus-visible)::after {
+      @include themed {
+        outline: none;
       }
     }
 
