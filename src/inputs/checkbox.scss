@@ -6,14 +6,14 @@
 @mixin iui-checkbox {
   @include iui-inputs-checkbox-radio;
 
-  .iui-checkbox-checkmark {
+  .iui-checkbox-checkmark::after {
     border-radius: $iui-border-radius;
   }
 
   &.iui-loading {
     cursor: wait;
 
-    input ~ .iui-checkbox-checkmark {
+    input ~ .iui-checkbox-checkmark::after {
       border: none;
       background-color: transparent;
     }
@@ -29,18 +29,18 @@
 
   &-visibility {
     // Adds hover to everything that is not disabled
-    &:hover > input:enabled ~ .iui-checkbox-checkmark {
+    &:hover > input:enabled ~ .iui-checkbox-checkmark::after {
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
       }
     }
 
-    input ~ .iui-checkbox-checkmark,
-    &:hover > input:enabled ~ .iui-checkbox-checkmark {
+    input ~ .iui-checkbox-checkmark::after,
+    &:hover > input:enabled ~ .iui-checkbox-checkmark::after {
       border: none;
     }
 
-    input ~ .iui-checkbox-checkmark {
+    input ~ .iui-checkbox-checkmark::after {
       background-color: transparent;
     }
 
@@ -54,6 +54,12 @@
       transition: opacity $iui-speed-fast ease;
       @include themed {
         fill: t(iui-icons-color-actionable);
+      }
+    }
+
+    input:disabled ~ .iui-checkbox-checkmark .iui-uncheck {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
       }
     }
   }
