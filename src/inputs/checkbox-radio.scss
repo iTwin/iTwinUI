@@ -44,12 +44,11 @@
       position: absolute;
       inset: 0;
       z-index: -1;
+      transition: border-color $iui-speed-fast ease-out;
+      border-radius: inherit;
       @include themed {
         border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
         background-color: t(iui-color-background-1);
-      }
-      @media (prefers-reduced-motion: no-preference) {
-        transition: border-color $iui-speed-fast ease-out;
       }
     }
 
@@ -121,8 +120,8 @@
   // Adds focus to enabled checkbox & radio
   input:enabled {
     &:focus {
-      ~ .iui-checkbox-checkmark::after,
-      ~ .iui-radio-dot::after {
+      ~ .iui-checkbox-checkmark,
+      ~ .iui-radio-dot {
         @include themed {
           outline: 2px solid t(iui-color-foreground-primary);
         }

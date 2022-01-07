@@ -5,7 +5,7 @@
 @mixin iui-radio {
   @include iui-inputs-checkbox-radio;
 
-  .iui-radio-dot::after {
+  .iui-radio-dot {
     border-radius: 50%;
   }
 }

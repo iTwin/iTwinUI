@@ -6,7 +6,7 @@
 @mixin iui-checkbox {
   @include iui-inputs-checkbox-radio;
 
-  .iui-checkbox-checkmark::after {
+  .iui-checkbox-checkmark {
     border-radius: $iui-border-radius;
   }
 
