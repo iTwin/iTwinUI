@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.44.0](https://www.github.com/iTwin/iTwinUI/compare/v0.43.0...v0.44.0) (2022-01-07)
+
+### What's new
+
+* New focus styling in all components ([#166](https://www.github.com/iTwin/iTwinUI/issues/166)) ([74bc798](https://www.github.com/iTwin/iTwinUI/commit/74bc79856f3a2cda0fd5b589df1f97a53e942e84))
+
+This release also includes some updated classnames and html structure in the following components:
+
+* **Checkbox and Radio:** Fix radio button dot and checkbox checkmark centering ([#426](https://www.github.com/iTwin/iTwinUI/issues/426)) ([3b2f979](https://www.github.com/iTwin/iTwinUI/commit/3b2f9791852123044295f1b9f1e999f0967c61af))
+* **DatePicker:** Reduce nesting and specificity ([#427](https://www.github.com/iTwin/iTwinUI/issues/427)) ([1dd79d2](https://www.github.com/iTwin/iTwinUI/commit/1dd79d2e75cd739845764a3636b799946dced3de))
+* **Paginator:** Reduce nesting and specificity ([#429](https://www.github.com/iTwin/iTwinUI/issues/429)) ([d52e650](https://www.github.com/iTwin/iTwinUI/commit/d52e6505498a97a958f0b6a9fbaf5cc781d1d9ab))
+
+### Fixes
+
+* **Checkbox:** `iui-label` content is centered ([#433](https://www.github.com/iTwin/iTwinUI/issues/433)) ([30c7075](https://www.github.com/iTwin/iTwinUI/commit/30c70752b9bb3ed2e015809f924583cad4449185))
+
 ## [0.43.0](https://www.github.com/iTwin/iTwinUI/compare/v0.42.1...v0.43.0) (2021-12-20)
 
 ### What's new
