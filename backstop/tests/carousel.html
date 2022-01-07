@@ -104,6 +104,7 @@
             role="group"
             aria-roledescription="slide"
             aria-label="1 of 3"
+            aria-hidden="false"
           >
             <div class="demo-columns">
               <div class="demo-column demo-left">
@@ -124,6 +125,7 @@
             role="group"
             aria-roledescription="slide"
             aria-label="2 of 3"
+            aria-hidden="true"
           >
             <iframe
               width="100%"
@@ -143,6 +145,7 @@
             role="group"
             aria-roledescription="slide"
             aria-label="3 of 3"
+            aria-hidden="true"
           >
             <div
               class="iui-carousel-slider-item-image"
@@ -230,14 +233,17 @@
               slide.classList.remove('iui-next');
               slide.classList.remove('iui-current');
               slide.classList.add('iui-previous');
+              slide.setAttribute('aria-hidden', 'true');
             } else if (index === current) {
               slide.classList.remove('iui-next');
               slide.classList.add('iui-current');
               slide.classList.remove('iui-previous');
+              slide.setAttribute('aria-hidden', 'false');
             } else {
               slide.classList.add('iui-next');
               slide.classList.remove('iui-current');
               slide.classList.remove('iui-previous');
+              slide.setAttribute('aria-hidden', 'true');
             }
           })
         };
