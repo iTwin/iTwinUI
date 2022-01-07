@@ -38,6 +38,9 @@
     align-items: center;
     position: relative;
     isolation: isolate;
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    }
 
     &::after {
       content: '';
@@ -46,8 +49,10 @@
       z-index: -1;
       transition: border-color $iui-speed-fast ease-out;
       border-radius: inherit;
+      border-style: solid;
+      border-width: 1px;
+      border-color: inherit;
       @include themed {
-        border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
         background-color: t(iui-color-background-1);
       }
     }
@@ -91,17 +96,17 @@
   }
 
   // Adds hover to everything that is not disabled
-  &:hover > input:enabled ~ .iui-checkbox-checkmark::after,
-  &:hover > input:enabled ~ .iui-radio-dot::after {
+  &:hover > input:enabled ~ .iui-checkbox-checkmark,
+  &:hover > input:enabled ~ .iui-radio-dot {
     @include themed {
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
     }
   }
 
   // Selected checkboxes & radios border opacity increase
-  input:checked ~ .iui-checkbox-checkmark::after,
-  input:indeterminate ~ .iui-checkbox-checkmark::after,
-  input:checked ~ .iui-radio-dot::after {
+  input:checked ~ .iui-checkbox-checkmark,
+  input:indeterminate ~ .iui-checkbox-checkmark,
+  input:checked ~ .iui-radio-dot {
     @include themed {
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
     }
@@ -130,8 +135,8 @@
     }
 
     &:focus:not(:focus-visible) {
-      ~ .iui-checkbox-checkmark::after,
-      ~ .iui-radio-dot::after {
+      ~ .iui-checkbox-checkmark,
+      ~ .iui-radio-dot {
         outline: none;
       }
     }
