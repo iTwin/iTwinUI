@@ -27,7 +27,6 @@
         margin-bottom: 22px;
       }
 
-      /* Default */
       /* These dimensions equal 16.9 ratio */
       .iui-carousel {
         width: 600px;
@@ -37,7 +36,6 @@
       .iui-carousel-slider-item {
         height: 337.5px;
       }
-
 
       /* Custom content within slide 1 */
       .demo-columns {
@@ -94,8 +92,12 @@
         aria-roledescription="carousel"
         aria-label="Introduction to iTwinUI"
         aria-live="polite"
+        aria-atomic="true"
       >
-        <ol class="iui-carousel-slider">
+        <ol
+          class="iui-carousel-slider"
+          id="myCarousel-items"
+        >
 
           <!-- Slide with custom interior content. -->
           <li
@@ -159,6 +161,7 @@
         <nav class="iui-carousel-navigation">
           <button
             class="iui-button iui-borderless iui-small iui-carousel-navigation-button iui-carousel-navigation-previous"
+            type="button"
             aria-controls="myCarousel-items"
             aria-label="Previous slide"
           >
@@ -209,6 +212,7 @@
 
           <button
             class="iui-button iui-borderless iui-small iui-carousel-navigation-button iui-carousel-navigation-next"
+            type="button"
             aria-controls="myCarousel-items"
             aria-label="Next slide"
           >
