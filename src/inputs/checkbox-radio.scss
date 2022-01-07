@@ -33,6 +33,7 @@
     height: $iui-icons-default;
     margin: 0;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     position: relative;
