@@ -85,9 +85,9 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
 
   &:focus {
     @include themed {
-      outline: thin solid rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
-      outline-offset: -1px;
+      outline: 1px solid t(iui-color-foreground-primary);
     }
+    outline-offset: -1px;
   }
 
   &:focus:not(:focus-visible) {
