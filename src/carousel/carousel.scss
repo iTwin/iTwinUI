@@ -134,9 +134,9 @@
       width: $iui-icons-small;
       height: $iui-icons-small;
       border-radius: 50%;
-      border: 1px solid transparent;
+      transition: background-color $iui-speed-fast ease;
       @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast ease, width $iui-speed-fast ease, height $iui-speed-fast ease;
+        transition: background-color $iui-speed-fast ease, transform $iui-speed-fast ease;
       }
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
@@ -144,13 +144,11 @@
     }
 
     &.iui-first::after {
-      width: $iui-icons-small * 0.5;
-      height: $iui-icons-small * 0.5;
+      transform: scale(0.5);
     }
 
     &.iui-second::after {
-      width: $iui-icons-small * 0.75;
-      height: $iui-icons-small * 0.75;
+      transform: scale(0.75);
     }
 
     &.iui-invisible::after {
