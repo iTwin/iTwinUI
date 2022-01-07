@@ -40,6 +40,7 @@
     isolation: isolate;
     @include themed {
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      background-color: t(iui-color-background-1);
     }
 
     &::after {
@@ -52,9 +53,6 @@
       border-style: solid;
       border-width: 1px;
       border-color: inherit;
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
     }
 
     svg:not(.iui-radial) {
@@ -143,8 +141,8 @@
   }
 
   // Styles disabled checkbox & radio
-  input:disabled ~ .iui-checkbox-checkmark::after,
-  input:disabled ~ .iui-radio-dot::after {
+  input:disabled ~ .iui-checkbox-checkmark,
+  input:disabled ~ .iui-radio-dot {
     cursor: not-allowed;
     @include themed {
       background-color: t(iui-color-background-disabled);

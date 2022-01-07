@@ -13,8 +13,8 @@
   &.iui-loading {
     cursor: wait;
 
-    input ~ .iui-checkbox-checkmark::after {
-      border: none;
+    input ~ .iui-checkbox-checkmark {
+      border-color: transparent;
       background-color: transparent;
     }
 
@@ -29,7 +29,7 @@
 
   &-visibility {
     // Adds hover to everything that is not disabled
-    &:hover > input:enabled ~ .iui-checkbox-checkmark::after {
+    &:hover > input:enabled ~ .iui-checkbox-checkmark {
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
       }
@@ -40,7 +40,7 @@
       border: none;
     }
 
-    input ~ .iui-checkbox-checkmark::after {
+    input ~ .iui-checkbox-checkmark {
       background-color: transparent;
     }
 
