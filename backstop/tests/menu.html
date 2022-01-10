@@ -1645,49 +1645,76 @@
 
         if (contentScrollHeight != 0) { //If content is scrollable
           var currentScroll = content.scrollTop / (contentScrollHeight);
-          const wrapper = content.parentNode;
+          const wrapper = content.parentElement;
 
           document.addEventListener('DOMContentLoaded', () => {
             if (wrapper.classList.contains('iui-scroll-shadow') === false) {
-              // Add top / bottom scroll shadows and wrapper
+              // Add scroll shadows
               wrapper.insertBefore(getScrollWrapper(content, currentScroll), wrapper.children[4]);
             }
           });
 
           content.addEventListener('scroll', () => {
-            //Adjust opacity
+            //Adjust shadows
+            const shadowWrap = wrapper.querySelector('.iui-scroll-shadow');
             currentScroll = content.scrollTop / (contentScrollHeight);
-            wrapper.querySelector('.iui-top-shadow').style.opacity = currentScroll;
-            wrapper.querySelector('.iui-bottom-shadow').style.opacity = 1 - currentScroll;
+
+            if (currentScroll > 0)
+              shadowWrap.classList.add('iui-top-shadow');
+            else
+              shadowWrap.classList.remove('iui-top-shadow');
+
+            if (currentScroll === 1)
+              shadowWrap.classList.remove('iui-bottom-shadow');
+            else
+              shadowWrap.classList.add('iui-bottom-shadow');
           });
         }
       });
     </script>
 
     <script>
-      function getScrollWrapper(el, currentOpacity) {
+      function getScrollWrapper(el, currentScroll) {
         var wrapper = document.createElement('div');
         wrapper.classList.add('iui-scroll-shadow');
-        wrapper.style.setProperty('overflow', 'hidden');
-        wrapper.style.setProperty('position', 'relative');
 
-        var topShadow = document.createElement('div');
-        topShadow.classList.add('iui-top-shadow');
-        topShadow.style.cssText =
-          "position: absolute; width: 100%; height: 11px; top: 0; background: radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)) center top; ";
-        topShadow.style.opacity = currentOpacity;
+        if (currentScroll > 0)
+          wrapper.classList.add('iui-top-shadow');
+        if (currentScroll != 1)
+          wrapper.classList.add('iui-bottom-shadow');
 
-        var bottomShadow = document.createElement('div');
-        bottomShadow.classList.add('iui-bottom-shadow');
-        bottomShadow.style.cssText =
-          "position: absolute; width: 100%; height: 11px; bottom: 0; background: radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)) center bottom;";
-        bottomShadow.style.opacity = 1 - currentOpacity;
-
-        wrapper.appendChild(topShadow);
-        wrapper.appendChild(bottomShadow);
         wrapper.appendChild(el);
         return wrapper;
       }
     </script>
+
+    <style>
+      .iui-scroll-shadow {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .iui-scroll-shadow.iui-top-shadow::before {
+        content: '';
+        height: 11px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: auto;
+        z-index: 1;
+        background: radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)) center top;
+      }
+
+      .iui-scroll-shadow.iui-bottom-shadow::after {
+        content: '';
+        height: 11px;
+        width: 100%;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        z-index: 1;
+        background: radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)) center bottom;
+      }
+    </style>
   </body>
 </html>

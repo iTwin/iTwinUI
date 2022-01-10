@@ -231,5 +231,85 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         ></svg-status-error>
       </label>
     </section>
+
+    <!-- Scroll Shadow -->
+    <script>
+      document.querySelectorAll('.iui-textarea').forEach((content) => {
+        var contentScrollHeight = content.scrollHeight - content.offsetHeight;
+
+        if (contentScrollHeight != 0) { //If content is scrollable
+          var currentScroll = content.scrollTop / (contentScrollHeight);
+          const wrapper = content.parentElement;
+
+          document.addEventListener('DOMContentLoaded', () => {
+            if (wrapper.classList.contains('iui-scroll-shadow') === false) {
+              // Add scroll shadows
+              wrapper.appendChild(getScrollWrapper(content, currentScroll));
+            }
+          });
+
+          content.addEventListener('scroll', () => {
+            //Adjust shadows
+            const shadowWrap = wrapper.querySelector('.iui-scroll-shadow');
+            currentScroll = content.scrollTop / (contentScrollHeight);
+
+            if (currentScroll > 0)
+              shadowWrap.classList.add('iui-top-shadow');
+            else
+              shadowWrap.classList.remove('iui-top-shadow');
+
+            // bottom shadow doesn't work at all
+            // if (currentScroll === 1)
+            //   shadowWrap.classList.remove('iui-bottom-shadow');
+            // else
+            //   shadowWrap.classList.add('iui-bottom-shadow');
+          });
+        }
+      });
+    </script>
+
+    <script>
+      function getScrollWrapper(el, currentScroll) {
+        var wrapper = document.createElement('div');
+        wrapper.classList.add('iui-scroll-shadow');
+
+        if (currentScroll > 0)
+          wrapper.classList.add('iui-top-shadow');
+        if (currentScroll != 1)
+          wrapper.classList.add('iui-bottom-shadow');
+
+        wrapper.appendChild(el);
+        return wrapper;
+      }
+    </script>
+
+    <style>
+      .iui-scroll-shadow {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .iui-scroll-shadow.iui-top-shadow::before {
+        content: '';
+        height: 11px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: auto;
+        z-index: 1;
+        background: radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)) center top;
+      }
+
+      .iui-scroll-shadow.iui-bottom-shadow::after {
+        content: '';
+        height: 11px;
+        width: 100%;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        z-index: 1;
+        background: radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)) center bottom;
+      }
+    </style>
   </body>
 </html>
