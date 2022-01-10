@@ -28,6 +28,9 @@ module.exports = {
     },
     'creevey',
   ],
+  core: {
+    builder: 'webpack5',
+  },
   webpackFinal: async (config, { configType }) => {
     if (configType === 'PRODUCTION') {
       config.plugins.push(new WebpackFailOnWarningsPlugin());

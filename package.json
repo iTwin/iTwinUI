@@ -55,8 +55,10 @@
     "@storybook/addon-storysource": "~6.3.6",
     "@storybook/addons": "~6.3.6",
     "@storybook/api": "~6.3.6",
+    "@storybook/builder-webpack5": "~6.3.6",
     "@storybook/components": "~6.3.6",
     "@storybook/core-events": "~6.3.6",
+    "@storybook/manager-webpack5": "~6.3.6",
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "~6.3.6",
     "@storybook/theming": "~6.3.6",
@@ -100,7 +102,7 @@
     "ts-loader": "^8.0.1",
     "ts-node": "^8.0.2",
     "typescript": "^4.4.3",
-    "webpack": "^4.46.0"
+    "webpack": "5"
   },
   "peerDependencies": {
     "react": "^16.8.6 || ^17.0.0",
@@ -118,7 +120,8 @@
     "prismjs": "^1.25.0",
     "nth-check": "^2.0.1",
     "ansi-regex": "^5.0.1",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1"
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
+    "postcss": "8"
   },
   "husky": {
     "hooks": {
