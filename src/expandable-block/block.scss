@@ -15,6 +15,7 @@
   }
 
   > .iui-header {
+    @include iui-focus;
     display: flex;
     align-items: center;
     padding: $iui-baseline $iui-sm;

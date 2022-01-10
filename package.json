@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.43.0",
+  "version": "0.44.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -61,7 +61,7 @@
   "devDependencies": {
     "audit-ci": "^4.0.0",
     "autoprefixer": "^10.4.1",
-    "backstopjs": "~5.1.0",
+    "backstopjs": "~6.0.4",
     "chokidar-cli": "^2.1.0",
     "concurrently": "^6.0.0",
     "cpx": "^1.5.0",
