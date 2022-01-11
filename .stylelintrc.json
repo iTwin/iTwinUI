@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-sass-guidelines", "stylelint-config-html/html"],
+  "extends": ["stylelint-config-sass-guidelines"],
   "rules": {
     "color-hex-case": "upper",
     "declaration-block-semicolon-newline-after": "always-multi-line",
@@ -29,5 +29,5 @@
     "selector-no-qualifying-type": null,
     "scss/dollar-variable-pattern": null
   },
-  "ignoreFiles": ["lib/**/*"]
+  "ignoreFiles": ["lib/**/*", "**/*.html"]
 }
