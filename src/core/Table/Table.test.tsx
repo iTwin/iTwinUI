@@ -1642,7 +1642,7 @@ it('should render data in pages', () => {
   expect(rows[9].querySelector('.iui-cell')?.textContent).toEqual('Name10');
 
   const pages = container.querySelectorAll<HTMLButtonElement>(
-    '.iui-paginator .iui-button-group .iui-button',
+    '.iui-paginator .iui-paginator-page-button',
   );
   expect(pages).toHaveLength(10);
   pages[3].click();

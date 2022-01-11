@@ -96,8 +96,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const defaultCheckbox = (
       <svg viewBox='0 0 16 16' aria-hidden='true' focusable='false'>
-        <path className='iui-check' d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' />
-        <path className='iui-check-partial' d='m1 6.5h14v3h-14z' />
+        <path
+          className='iui-check'
+          d='m6.5 12.5-4.5-4.5 1.5-1.5 3 3 6-6 1.5 1.5z'
+        />
+        <path className='iui-check-partial' d='m2.75 6.875h10.5v2.25h-10.5z' />
       </svg>
     );
 

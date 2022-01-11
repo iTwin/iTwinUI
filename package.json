@@ -40,8 +40,8 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@itwin/itwinui-css": "^0.43.0",
-    "@itwin/itwinui-icons-react": "^1.1.1",
+    "@itwin/itwinui-css": "^0.44.0",
+    "@itwin/itwinui-icons-react": "^1.5.0",
     "@itwin/itwinui-illustrations-react": "^1.0.1",
     "@tippyjs/react": "^4.2.5",
     "@types/react-table": "^7.0.18",

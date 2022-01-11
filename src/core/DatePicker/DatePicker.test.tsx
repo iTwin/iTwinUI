@@ -26,9 +26,11 @@ const assertMonthYear = (
   expectedMonth: string,
   expectedYear: string,
 ) => {
-  const month = container.querySelector('.iui-month') as HTMLElement;
+  const month = container.querySelector('.iui-calendar-month') as HTMLElement;
   expect(month.textContent).toBe(expectedMonth);
-  const year = container.querySelector('.iui-month-year > span') as HTMLElement;
+  const year = container.querySelector(
+    '.iui-calendar-month-year > span',
+  ) as HTMLElement;
   expect(year.textContent).toBe(
     `${expectedMonth}${String.fromCharCode(160)}${expectedYear}`,
   );
@@ -39,7 +41,9 @@ it('should display passed date', () => {
     <DatePicker date={new Date(2020, 0, 5)} onChange={jest.fn()} />,
   );
   assertMonthYear(container, 'January', '2020');
-  const day = container.querySelector('.iui-date.iui-selected') as HTMLElement;
+  const day = container.querySelector(
+    '.iui-calendar-day.iui-selected',
+  ) as HTMLElement;
   expect(day).toBeTruthy();
   expect(day.textContent).toBe('5');
   expect(document.activeElement).toEqual(document.body);
@@ -53,7 +57,9 @@ it('should display today', () => {
     `${defaultMonths[today.getMonth()]}`,
     `${today.getFullYear()}`,
   );
-  const day = container.querySelector('.iui-date.iui-today') as HTMLElement;
+  const day = container.querySelector(
+    '.iui-calendar-day.iui-today',
+  ) as HTMLElement;
   expect(day).toBeTruthy();
   expect(day.textContent).toBe(today.getDate().toString());
 });
@@ -65,14 +71,14 @@ it('should return selected date', () => {
   );
   assertMonthYear(container, 'June', '2020');
   let selectedDay = container.querySelector(
-    '.iui-date.iui-selected',
+    '.iui-calendar-day.iui-selected',
   ) as HTMLElement;
   expect(selectedDay.textContent).toBe('5');
   const day = getByText('15');
   day.click();
   expect(onClick).toHaveBeenCalledWith(new Date(2020, 5, 15));
   selectedDay = container.querySelector(
-    '.iui-date.iui-selected',
+    '.iui-calendar-day.iui-selected',
   ) as HTMLElement;
   expect(selectedDay.textContent).toBe('15');
 });
@@ -84,12 +90,14 @@ it('should navigate between months', () => {
     <DatePicker date={new Date(2020, 1, 10)} onChange={onClick} />,
   );
   assertMonthYear(container, 'February', '2020');
-  const day = container.querySelector('.iui-date.iui-selected') as HTMLElement;
+  const day = container.querySelector(
+    '.iui-calendar-day.iui-selected',
+  ) as HTMLElement;
   expect(day).toBeTruthy();
   expect(day.textContent).toBe(date.getDate().toString());
 
   const arrowImages = container.querySelectorAll(
-    '.iui-month-year svg',
+    '.iui-calendar-month-year svg',
   ) as NodeListOf<HTMLElement>;
   expect(arrowImages.length).toBe(2);
   const arrowLeft = arrowImages[0];
@@ -152,7 +160,9 @@ it('should show localized string', () => {
     const displayedDay = getByText(day);
     expect(displayedDay.title).toBe(days[ind]);
   });
-  const nextButton = container.querySelectorAll('.iui-month-year svg')[1];
+  const nextButton = container.querySelectorAll(
+    '.iui-calendar-month-year svg',
+  )[1];
   months.forEach((month) => {
     assertMonthYear(container, `${month}`, '2020');
     fireEvent.click(nextButton);
@@ -164,14 +174,18 @@ it('should switch to other month if day selected from other month', () => {
     <DatePicker date={new Date(2020, 0, 10)} />,
   );
   assertMonthYear(container, 'January', '2020');
-  let day = container.querySelector('.iui-date.iui-selected') as HTMLElement;
+  let day = container.querySelector(
+    '.iui-calendar-day.iui-selected',
+  ) as HTMLElement;
   expect(day).toBeTruthy();
   expect(day.textContent).toBe('10');
 
   const days = getAllByText('30');
   days[0].click();
   assertMonthYear(container, 'December', '2019');
-  day = container.querySelector('.iui-date.iui-selected') as HTMLElement;
+  day = container.querySelector(
+    '.iui-calendar-day.iui-selected',
+  ) as HTMLElement;
   expect(day).toBeTruthy();
   expect(day.textContent).toBe('30');
 });
@@ -193,16 +207,18 @@ it('should apply custom class and style', () => {
 
 it('should navigate with keyboard', () => {
   const onClick = jest.fn();
-  const { container, getAllByText } = render(
+  const { container, getAllByText, getByRole } = render(
     <DatePicker date={new Date(2020, 1, 1)} onChange={onClick} setFocus />,
   );
   assertMonthYear(container, 'February', '2020');
-  let day = container.querySelector('.iui-date.iui-selected') as HTMLElement;
+  let day = container.querySelector(
+    '.iui-calendar-day.iui-selected',
+  ) as HTMLElement;
   expect(day.textContent).toBe('1');
   expect(document.activeElement).toEqual(day);
 
   // go left
-  const calendar = container.querySelector('.iui-dates') as HTMLElement;
+  const calendar = getByRole('listbox') as HTMLElement;
   fireEvent.keyDown(calendar, { key: 'ArrowLeft' });
   assertMonthYear(container, 'January', '2020');
   day = getAllByText('31').find(
@@ -214,7 +230,9 @@ it('should navigate with keyboard', () => {
   // go right
   fireEvent.keyDown(calendar, { key: 'ArrowRight' });
   assertMonthYear(container, 'February', '2020');
-  day = container.querySelector('.iui-date.iui-selected') as HTMLElement;
+  day = container.querySelector(
+    '.iui-calendar-day.iui-selected',
+  ) as HTMLElement;
   expect(day.textContent).toBe('1');
   expect(document.activeElement).toEqual(day);
 
@@ -230,7 +248,9 @@ it('should navigate with keyboard', () => {
   // go down
   fireEvent.keyDown(calendar, { key: 'ArrowDown' });
   assertMonthYear(container, 'February', '2020');
-  day = container.querySelector('.iui-date.iui-selected') as HTMLElement;
+  day = container.querySelector(
+    '.iui-calendar-day.iui-selected',
+  ) as HTMLElement;
   expect(day.textContent).toBe('1');
   expect(document.activeElement).toEqual(day);
 
@@ -243,7 +263,9 @@ it('should navigate with keyboard', () => {
   expect(day).toBeTruthy();
   expect(document.activeElement).toEqual(day);
   fireEvent.keyDown(calendar, { key: 'Enter' });
-  day = container.querySelector('.iui-date.iui-selected') as HTMLElement;
+  day = container.querySelector(
+    '.iui-calendar-day.iui-selected',
+  ) as HTMLElement;
   expect(day.textContent).toBe('2');
   expect(onClick).toHaveBeenCalledTimes(1);
 
@@ -256,7 +278,9 @@ it('should navigate with keyboard', () => {
   expect(day).toBeTruthy();
   expect(document.activeElement).toEqual(day);
   fireEvent.keyDown(calendar, { key: ' ' });
-  day = container.querySelector('.iui-date.iui-selected') as HTMLElement;
+  day = container.querySelector(
+    '.iui-calendar-day.iui-selected',
+  ) as HTMLElement;
   expect(day.textContent).toBe('3');
   expect(onClick).toHaveBeenCalledTimes(2);
 });

@@ -97,7 +97,7 @@ it('should overflow when there is not enough space', () => {
   expect(breadcrumbs.length).toEqual(3);
   expect(breadcrumbs[0].textContent).toEqual('Item 0');
   expect(breadcrumbs[1].textContent).toEqual('…');
-  expect(breadcrumbs[1].firstElementChild?.classList).toContain('iui-ellipsis');
+  expect(breadcrumbs[1].firstElementChild?.textContent).toContain('…');
   expect(breadcrumbs[2].textContent).toEqual('Item 2');
 });
 
@@ -112,6 +112,6 @@ it('should show the last item when only one can be visible', () => {
   const breadcrumbs = container.querySelectorAll('.iui-breadcrumbs-item');
   expect(breadcrumbs.length).toEqual(2);
   expect(breadcrumbs[0].textContent).toEqual('…');
-  expect(breadcrumbs[0].firstElementChild?.classList).toContain('iui-ellipsis');
+  expect(breadcrumbs[0].firstElementChild?.textContent).toContain('…');
   expect(breadcrumbs[1].textContent).toEqual('Item 2');
 });

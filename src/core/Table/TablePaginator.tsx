@@ -7,7 +7,6 @@ import cx from 'classnames';
 import '@itwin/itwinui-css/css/table.css';
 import SvgChevronLeft from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeft';
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
-import { ButtonGroup } from '../ButtonGroup';
 import { IconButton, Button, DropdownButton } from '../Buttons';
 import { ProgressRadial } from '../ProgressIndicators';
 import { MenuItem } from '../Menu';
@@ -146,7 +145,8 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     // Checking `needFocus.current` prevents from focusing page when clicked on previous/next page.
     if (isMounted.current && needFocus.current) {
       const buttonToFocus = Array.from(
-        pageListRef.current?.querySelectorAll('.iui-button') ?? [],
+        pageListRef.current?.querySelectorAll('.iui-paginator-page-button') ??
+          [],
       ).find((el) => el.textContent?.trim() === (focusedIndex + 1).toString());
       (buttonToFocus as HTMLButtonElement | undefined)?.focus();
       needFocus.current = false;
@@ -158,18 +158,20 @@ export const TablePaginator = (props: TablePaginatorProps) => {
 
   const pageButton = React.useCallback(
     (index: number, tabIndex = index === focusedIndex ? 0 : -1) => (
-      <Button
-        key={index}
-        styleType='borderless'
-        className={cx({ 'iui-active': index === currentPage })}
-        onClick={() => onPageChange(index)}
-        aria-current={index === currentPage}
-        aria-label={localization.goToPageLabel(index + 1)}
-        tabIndex={tabIndex}
-        size={buttonSize}
-      >
-        {index + 1}
-      </Button>
+      <div key={index}>
+        <button
+          className={cx('iui-paginator-page-button', {
+            'iui-active': index === currentPage,
+            'iui-paginator-page-button-small': buttonSize === 'small',
+          })}
+          onClick={() => onPageChange(index)}
+          aria-current={index === currentPage}
+          aria-label={localization.goToPageLabel(index + 1)}
+          tabIndex={tabIndex}
+        >
+          {index + 1}
+        </button>
+      </div>
     ),
     [focusedIndex, currentPage, localization, buttonSize, onPageChange],
   );
@@ -248,9 +250,15 @@ export const TablePaginator = (props: TablePaginatorProps) => {
   const showPageSizeList = pageSizeList && onPageSizeChange && !!totalRowsCount;
 
   const ellipsis = (
-    <span className={cx('iui-ellipsis', { 'iui-small': size === 'small' })}>
-      …
-    </span>
+    <div>
+      <span
+        className={cx('iui-paginator-ellipsis', {
+          'iui-paginator-ellipsis-small': size === 'small',
+        })}
+      >
+        …
+      </span>
+    </div>
   );
 
   const noRowsContent = (
@@ -287,7 +295,11 @@ export const TablePaginator = (props: TablePaginatorProps) => {
           >
             <SvgChevronLeft />
           </IconButton>
-          <ButtonGroup onKeyDown={onKeyDown} ref={pageListRef}>
+          <span
+            className='iui-paginator-pages-group'
+            onKeyDown={onKeyDown}
+            ref={pageListRef}
+          >
             {(() => {
               if (hasNoRows) {
                 return noRowsContent;
@@ -319,7 +331,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
                 </>
               );
             })()}
-          </ButtonGroup>
+          </span>
           <IconButton
             styleType='borderless'
             disabled={currentPage === totalPagesCount - 1 || hasNoRows}

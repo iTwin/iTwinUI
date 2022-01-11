@@ -105,7 +105,7 @@ export const Breadcrumbs = React.forwardRef(
           {items.length - visibleCount > 0 && (
             <>
               <li className='iui-breadcrumbs-item'>
-                <span className='iui-ellipsis'>…</span>
+                <span>…</span>
               </li>
               <Separator />
             </>

@@ -8,6 +8,7 @@ import { IconButton } from '../Buttons';
 import { Input } from '../Input';
 import { ColorValue, CommonProps, InputContainer, useTheme } from '../utils';
 import { useColorPickerContext } from './ColorPickerContext';
+import SvgSwap from '@itwin/itwinui-icons-react/cjs/icons/Swap';
 import '@itwin/itwinui-css/css/color-picker.css';
 
 export type ColorInputPanelProps = {
@@ -490,9 +491,7 @@ export const ColorInputPanel = React.forwardRef(
               onClick={swapColorFormat}
               size='small'
             >
-              <svg viewBox='0 0 16 16' className='iui-icon' aria-hidden>
-                <path d='m5 15-3.78125-3.5 3.78125-3.5v2h8v3h-8zm6-7 3.78125-3.5-3.78125-3.5v2h-8v3h8z' />
-              </svg>
+              <SvgSwap />
             </IconButton>
           )}
           <div ref={inputsContainerRef} className='iui-color-input-fields'>

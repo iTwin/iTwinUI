@@ -19,6 +19,7 @@ import {
 import { Popover } from '../../src/core/utils';
 import { action } from '@storybook/addon-actions';
 import { CreeveyStoryParams } from 'creevey';
+import SvgSwap from '@itwin/itwinui-icons-react/cjs/icons/Swap';
 
 export default {
   component: ColorPicker,
@@ -190,11 +191,7 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
               formats[(formats.indexOf(currentFormat) + 1) % formats.length],
             );
           }}
-          endIcon={
-            <svg viewBox='0 0 16 16' aria-hidden>
-              <path d='m5 15-3.78125-3.5 3.78125-3.5v2h8v3h-8zm6-7 3.78125-3.5-3.78125-3.5v2h-8v3h8z' />
-            </svg>
-          }
+          endIcon={<SvgSwap />}
         >
           <div style={{ width: 170 }}>
             {getDisplayString() ?? 'No color selected.'}
@@ -274,11 +271,7 @@ export const WithAlpha: Story<ColorPickerProps> = (args) => {
               formats[(formats.indexOf(currentFormat) + 1) % formats.length],
             );
           }}
-          endIcon={
-            <svg viewBox='0 0 16 16' aria-hidden>
-              <path d='m5 15-3.78125-3.5 3.78125-3.5v2h8v3h-8zm6-7 3.78125-3.5-3.78125-3.5v2h-8v3h8z' />
-            </svg>
-          }
+          endIcon={<SvgSwap />}
         >
           <div style={{ width: 200 }}>
             {getDisplayString() ?? 'No color selected.'}

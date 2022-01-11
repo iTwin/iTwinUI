@@ -329,58 +329,52 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
 
   return (
     <div className={cx('iui-date-picker', className)} style={style} {...rest}>
-      <div className='iui-calendar'>
-        <div className='iui-header'>
-          <div className='iui-month-year'>
-            <IconButton
-              styleType='borderless'
-              onClick={handleMoveToPreviousMonth}
-              aria-label='Previous month'
+      <div>
+        <div className='iui-calendar-month-year'>
+          <IconButton
+            styleType='borderless'
+            onClick={handleMoveToPreviousMonth}
+            aria-label='Previous month'
+          >
+            <SvgChevronLeft />
+          </IconButton>
+          <span aria-live='polite'>
+            <span
+              className='iui-calendar-month'
+              title={monthNames[displayedMonthIndex]}
             >
-              <SvgChevronLeft />
-            </IconButton>
-            <span aria-live='polite'>
-              <span
-                className='iui-month'
-                title={monthNames[displayedMonthIndex]}
-              >
-                {monthNames[displayedMonthIndex]}
-              </span>
-              &nbsp;{displayedYear}
+              {monthNames[displayedMonthIndex]}
             </span>
-            <IconButton
-              styleType='borderless'
-              onClick={handleMoveToNextMonth}
-              aria-label='Next month'
-            >
-              <SvgChevronRight />
-            </IconButton>
-          </div>
-          <div className='iui-weekdays'>
-            {shortDays.map((day, index) => (
-              <div key={day} title={longDays[index]}>
-                {day}
-              </div>
-            ))}
-          </div>
+            &nbsp;{displayedYear}
+          </span>
+          <IconButton
+            styleType='borderless'
+            onClick={handleMoveToNextMonth}
+            aria-label='Next month'
+          >
+            <SvgChevronRight />
+          </IconButton>
         </div>
-        <div
-          className='iui-dates'
-          onKeyDown={handleCalendarKeyDown}
-          role='listbox'
-        >
+        <div className='iui-calendar-weekdays'>
+          {shortDays.map((day, index) => (
+            <div key={day} title={longDays[index]}>
+              {day}
+            </div>
+          ))}
+        </div>
+        <div onKeyDown={handleCalendarKeyDown} role='listbox'>
           {weeks.map((weekDays, weekIndex) => {
             return (
               <div
                 key={`week-${displayedMonthIndex}-${weekIndex}`}
-                className='iui-week'
+                className='iui-calendar-week'
               >
                 {weekDays.map((weekDay, dayIndex) => {
                   const dateValue = weekDay.getDate();
                   return (
                     <div
                       key={`day-${displayedMonthIndex}-${dayIndex}`}
-                      className={cx('iui-date', {
+                      className={cx('iui-calendar-day', {
                         'iui-outside-month':
                           weekDay.getMonth() !== displayedMonthIndex,
                         'iui-today': isSameDay(weekDay, new Date()),
