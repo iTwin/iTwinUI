@@ -5,10 +5,14 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { useTheme } from '../../utils';
+import {
+  useTheme,
+  PolymorphicComponentProps,
+  PolymorphicForwardRefComponent,
+} from '../../utils';
 import '@itwin/itwinui-css/css/button.css';
 
-export type ButtonProps = {
+type ButtonOwnProps = {
   /**
    * Modify size of the button.
    */
@@ -31,7 +35,13 @@ export type ButtonProps = {
    * Content of the button.
    */
   children?: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+};
+
+export type ButtonProps<
+  T extends React.ElementType = 'button'
+> = PolymorphicComponentProps<T, ButtonOwnProps>;
+
+type ButtonComponent = PolymorphicForwardRefComponent<'button', ButtonOwnProps>;
 
 /**
  * Generic button component
@@ -42,51 +52,50 @@ export type ButtonProps = {
  * <Button size='small' styleType='cta'>This is a small call to action button</Button>
  * <Button startIcon={<SvgAdd />}>New</Button>
  */
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => {
-    const {
-      children,
-      className,
-      size,
-      style,
-      styleType = 'default',
-      type = 'button',
-      startIcon,
-      endIcon,
-      ...rest
-    } = props;
+export const Button: ButtonComponent = React.forwardRef((props, ref) => {
+  const {
+    children,
+    className,
+    size,
+    style,
+    styleType = 'default',
+    type = 'button',
+    startIcon,
+    endIcon,
+    as: Element = 'button',
+    ...rest
+  } = props;
 
-    useTheme();
+  useTheme();
 
-    return (
-      <button
-        ref={ref}
-        className={cx(
-          'iui-button',
-          `iui-${styleType}`,
-          {
-            [`iui-${size}`]: !!size,
-          },
-          className,
-        )}
-        style={style}
-        type={type}
-        {...rest}
-      >
-        {startIcon &&
-          React.cloneElement(startIcon, {
-            className: cx('iui-button-icon', startIcon.props.className),
-          })}
+  return (
+    <Element
+      ref={ref}
+      className={cx(
+        'iui-button',
+        `iui-${styleType}`,
+        {
+          [`iui-${size}`]: !!size,
+        },
+        className,
+      )}
+      style={style}
+      type={type}
+      {...rest}
+    >
+      {startIcon &&
+        React.cloneElement(startIcon, {
+          className: cx('iui-button-icon', startIcon.props.className),
+        })}
 
-        {children && <span className='iui-button-label'>{children}</span>}
+      {children && <span className='iui-button-label'>{children}</span>}
 
-        {endIcon &&
-          React.cloneElement(endIcon, {
-            className: cx('iui-button-icon', endIcon.props.className),
-          })}
-      </button>
-    );
-  },
-);
+      {endIcon &&
+        React.cloneElement(endIcon, {
+          className: cx('iui-button-icon', endIcon.props.className),
+        })}
+    </Element>
+  );
+});
 
 export default Button;

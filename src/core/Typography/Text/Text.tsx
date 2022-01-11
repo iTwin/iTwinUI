@@ -4,15 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import React from 'react';
-import { useTheme, CommonProps } from '../../utils';
+import {
+  useTheme,
+  PolymorphicComponentProps,
+  PolymorphicForwardRefComponent,
+} from '../../utils';
 import '@itwin/itwinui-css/css/text.css';
 
-type TextOwnProps<T extends React.ElementType | React.ComponentType = 'div'> = {
-  /**
-   * What element should the text be rendered as?
-   * @default 'div'
-   */
-  as?: T;
+type TextOwnProps = {
   /**
    * Which typography variant/size should be used for the styling?
    *
@@ -36,12 +35,13 @@ type TextOwnProps<T extends React.ElementType | React.ComponentType = 'div'> = {
    * @default false
    */
   isSkeleton?: boolean;
-} & CommonProps;
+};
 
 export type TextProps<
-  T extends React.ElementType | React.ComponentType = 'div'
-> = TextOwnProps<T> &
-  Omit<React.ComponentPropsWithoutRef<T>, keyof TextOwnProps<T>>;
+  T extends React.ElementType = 'div'
+> = PolymorphicComponentProps<T, TextOwnProps>;
+
+type TextComponent = PolymorphicForwardRefComponent<'div', TextOwnProps>;
 
 /**
  * Polymorphic typography component to render any kind of text as any kind of element.
@@ -53,9 +53,7 @@ export type TextProps<
  * <Text isMuted>Some muted text.</Text>
  * <Text isSkeleton>Skeleton text</Text>
  */
-export const Text = <T extends React.ElementType | React.ComponentType = 'div'>(
-  props: TextProps<T>,
-) => {
+export const Text: TextComponent = React.forwardRef((props, ref) => {
   const {
     variant = 'body',
     as: Element = 'div',
@@ -78,9 +76,10 @@ export const Text = <T extends React.ElementType | React.ComponentType = 'div'>(
         },
         className,
       )}
+      ref={ref}
       {...rest}
     />
   );
-};
+});
 
 export default Text;

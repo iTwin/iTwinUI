@@ -70,3 +70,14 @@ it('should render borderless button correctly', () => {
 
   expect(container.querySelector('.iui-button.iui-borderless')).toBeTruthy();
 });
+
+it('should support polymorphic `as` prop', () => {
+  const { container } = render(
+    <IconButton as='a' href='https://example.com/'>
+      <SvgAdd />
+    </IconButton>,
+  );
+
+  const button = container.querySelector('a.iui-button') as HTMLAnchorElement;
+  expect(button.href).toEqual('https://example.com/');
+});

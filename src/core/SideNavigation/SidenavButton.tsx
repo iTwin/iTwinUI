@@ -6,7 +6,7 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { useTheme } from '../utils';
+import { PolymorphicForwardRefComponent, useTheme } from '../utils';
 import { Button, ButtonProps } from '../Buttons';
 import '@itwin/itwinui-css/css/side-navigation.css';
 
@@ -23,43 +23,47 @@ export type SidenavButtonProps = {
   isSubmenuOpen?: boolean;
 } & Omit<ButtonProps, 'styleType' | 'size'>;
 
+type SideNavButtonComponent = PolymorphicForwardRefComponent<
+  'button',
+  SidenavButtonProps
+>;
+
 /**
  * Wrapper around Button to be used as SideNavigation items.
  * Label is hidden when sidenav is collapsed.
  */
-export const SidenavButton = React.forwardRef<
-  HTMLButtonElement,
-  SidenavButtonProps
->((props, ref) => {
-  const {
-    className,
-    children,
-    isActive = false,
-    disabled = false,
-    isSubmenuOpen = false,
-    ...rest
-  } = props;
+export const SidenavButton: SideNavButtonComponent = React.forwardRef(
+  (props, ref) => {
+    const {
+      className,
+      children,
+      isActive = false,
+      disabled = false,
+      isSubmenuOpen = false,
+      ...rest
+    } = props;
 
-  useTheme();
+    useTheme();
 
-  return (
-    <Button
-      className={cx(
-        'iui-sidenav-button',
-        {
-          'iui-active': isActive,
-          'iui-submenu-open': isSubmenuOpen,
-        },
-        className,
-      )}
-      size='large'
-      disabled={disabled}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </Button>
-  );
-});
+    return (
+      <Button
+        className={cx(
+          'iui-sidenav-button',
+          {
+            'iui-active': isActive,
+            'iui-submenu-open': isSubmenuOpen,
+          },
+          className,
+        )}
+        size='large'
+        disabled={disabled}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Button>
+    );
+  },
+);
 
 export default SidenavButton;

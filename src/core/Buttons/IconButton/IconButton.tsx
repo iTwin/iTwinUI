@@ -6,7 +6,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import { ButtonProps } from '../Button';
-import { useTheme } from '../../utils';
+import { PolymorphicForwardRefComponent, useTheme } from '../../utils';
 import '@itwin/itwinui-css/css/button.css';
 
 export type IconButtonProps = {
@@ -17,13 +17,18 @@ export type IconButtonProps = {
   isActive?: boolean;
 } & Omit<ButtonProps, 'startIcon' | 'endIcon'>;
 
+type IconButtonComponent = PolymorphicForwardRefComponent<
+  'button',
+  IconButtonProps
+>;
+
 /**
  * Icon button
  * @example
  * <IconButton><SvgAdd /></IconButton>
  * <IconButton styleType='borderless'><SvgAdd /></IconButton>
  */
-export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+export const IconButton: IconButtonComponent = React.forwardRef(
   (props, ref) => {
     const {
       isActive,
@@ -32,13 +37,14 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       size,
       type = 'button',
       className,
+      as: Element = 'button',
       ...rest
     } = props;
 
     useTheme();
 
     return (
-      <button
+      <Element
         ref={ref}
         className={cx(
           'iui-button',
@@ -59,7 +65,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           ),
           'aria-hidden': true,
         })}
-      </button>
+      </Element>
     );
   },
 );

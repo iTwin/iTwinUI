@@ -14,6 +14,7 @@ export default {
   argTypes: {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
+    as: { type: { name: 'string', required: false } },
   },
   parameters: {
     creevey: {

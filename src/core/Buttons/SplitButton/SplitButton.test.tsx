@@ -106,3 +106,38 @@ it('should work with menu items', () => {
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy.style.visibility).toEqual('hidden');
 });
+
+it('should support polymorphic `as` prop', () => {
+  const { container } = render(
+    <SplitButton
+      as='a'
+      menuItems={(close) => [
+        <MenuItem key={0} onClick={close}>
+          Test0
+        </MenuItem>,
+        <MenuItem key={1} onClick={close}>
+          Test1
+        </MenuItem>,
+      ]}
+      href='https://www.example.com/'
+      rel='nofollow'
+    >
+      Example
+    </SplitButton>,
+  );
+
+  const splitMenu = container.querySelector(
+    '.iui-button-split-menu',
+  ) as HTMLElement;
+  expect(splitMenu).toBeTruthy();
+
+  const anchor = splitMenu.querySelector('a') as HTMLAnchorElement;
+  expect(anchor.href).toEqual('https://www.example.com/');
+  expect(anchor).toHaveTextContent('Example');
+  expect(anchor).toHaveAttribute('rel', 'nofollow');
+
+  expect(container.querySelector('.iui-menu')).toBeFalsy();
+  const dropdownButton = splitMenu.querySelector('button') as HTMLButtonElement;
+  dropdownButton.click();
+  expect(container.querySelector('.iui-menu')).toBeVisible();
+});

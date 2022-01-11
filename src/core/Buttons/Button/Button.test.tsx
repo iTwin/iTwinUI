@@ -159,3 +159,15 @@ it('should render without label correctly', () => {
     expect(icon).toEqual(placeholderIcon);
   });
 });
+
+it('should support polymorphic `as` prop', () => {
+  const { container } = render(
+    <Button as='a' href='https://example.com/'>
+      label
+    </Button>,
+  );
+
+  const button = container.querySelector('a.iui-button') as HTMLAnchorElement;
+  expect(button).toHaveTextContent('label');
+  expect(button.href).toEqual('https://example.com/');
+});

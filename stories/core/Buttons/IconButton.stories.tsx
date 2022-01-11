@@ -15,6 +15,7 @@ export default {
   component: IconButton,
   argTypes: {
     onClick: { control: { disable: true } },
+    as: { type: { name: 'string', required: false } },
     styleType: {
       control: 'select',
     },

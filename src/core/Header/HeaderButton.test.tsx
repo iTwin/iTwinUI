@@ -193,3 +193,14 @@ it('should render menuItems correctly', () => {
 
   expect(itemOneOnClick).toHaveBeenCalled();
 });
+
+it('should support polymorphic `as` prop', () => {
+  const { container } = render(
+    <HeaderButton name='Name' as='a' href='https://example.com/' />,
+  );
+
+  const anchor = container.querySelector('a') as HTMLAnchorElement;
+  expect(anchor).toHaveClass('iui-header-button');
+  expect(anchor).toHaveTextContent('Name');
+  expect(anchor.href).toEqual('https://example.com/');
+});

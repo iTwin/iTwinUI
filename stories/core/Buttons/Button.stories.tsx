@@ -18,6 +18,10 @@ export default {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
     type: { control: { disable: true } },
+    as: { type: { name: 'string', required: false } },
+  },
+  args: {
+    as: 'button',
   },
 } as Meta<ButtonProps>;
 
@@ -82,3 +86,25 @@ WithIcon.args = {
   styleType: 'high-visibility',
   startIcon: <SvgAdd />,
 };
+
+export const AsLink: Story<ButtonProps<'a'>> = (args) => {
+  return (
+    <Button
+      as='a'
+      href={window.location.href}
+      target='_blank'
+      startIcon={
+        <svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg' aria-hidden>
+          <path d='m16 0v5.4l-1.9-2-8.4 8.4-1.5-1.5 8.3-8.4-1.9-1.9m5.4 16v-9h-1v8h-14v-14h8v-1h-9v16z' />
+        </svg>
+      }
+      {...args}
+    >
+      Open in new tab
+    </Button>
+  );
+};
+AsLink.args = {
+  styleType: 'default',
+  as: 'a',
+} as Record<string, unknown>;
