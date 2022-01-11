@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-sass-guidelines"],
+  "extends": ["stylelint-config-sass-guidelines", "stylelint-config-html/html"],
   "rules": {
     "color-hex-case": "upper",
     "declaration-block-semicolon-newline-after": "always-multi-line",
