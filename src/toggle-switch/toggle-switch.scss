@@ -16,35 +16,32 @@
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
 
-  > input {
+  > input[type='checkbox'] {
     width: 0;
     height: 0;
     appearance: none;
     opacity: 0;
     position: absolute;
 
-    // Unchecked toggle switch
+    // Toggle switch
     ~ .iui-toggle {
-      display: block;
+      display: flex;
+      align-items: center;
       position: relative;
-      height: $iui-baseline * 2 - $iui-xxs;
-      width: ($iui-m * 2) + ($iui-xxs * 3);
+      height: $iui-baseline * 2;
+      width: ($iui-m * 2) + ($iui-xxs * 3) + $iui-xxs;
       border-radius: $iui-baseline;
       @media (prefers-reduced-motion: no-preference) {
         transition: background-color $iui-speed-fast ease, border-color $iui-speed-fast ease;
       }
-      @include themed {
-        background-color: t(iui-color-background-1);
-        border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-      }
 
       > .iui-icon {
         opacity: 0;
-        width: $iui-sm;
-        height: $iui-sm;
-        display: inline-block;
+        width: $iui-icons-small;
+        height: $iui-icons-small;
+        display: flex;
         position: relative;
-        left: $iui-xs;
+        margin-left: $iui-xs + 1px;
         @media (prefers-reduced-motion: no-preference) {
           transition: opacity $iui-speed-fast ease;
         }
@@ -53,35 +50,54 @@
         }
       }
 
-      > .iui-handle {
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: border-color $iui-speed-fast ease-out;
+        border-radius: inherit;
+        border-style: solid;
+        border-width: 1px;
+        border-color: inherit;
+        box-sizing: border-box;
+      }
+
+      &::after {
+        content: '';
         position: absolute;
         height: $iui-m;
         width: $iui-m;
         top: 50%;
         transform: translateY(-50%);
-        right: $iui-m + $iui-xs;
         border-radius: 50%;
         @media (prefers-reduced-motion: no-preference) {
-          transition: right $iui-speed-fast ease, background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
-        }
-        @include themed {
-          background-color: t(iui-color-foreground-body);
-          opacity: t(iui-opacity-2);
+          transition: left $iui-speed-fast ease, background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
         }
       }
     }
 
-    &:hover:not(:disabled),
-    &:focus {
+    // Unchecked toggle switch
+    &:not(:checked) {
       ~ .iui-toggle {
         @include themed {
-          border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+          background-color: t(iui-color-background-1);
+          border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
         }
 
-        > .iui-handle {
+        &::after {
+          left: 3px;
           @include themed {
-            opacity: t(iui-opacity-1);
+            background-color: t(iui-color-foreground-body);
+            opacity: t(iui-opacity-2);
           }
+        }
+      }
+
+      &:hover:enabled ~ .iui-toggle,
+      &:focus ~ .iui-toggle {
+        @include themed {
+          border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
         }
       }
     }
@@ -94,47 +110,58 @@
           border-color: t(iui-color-background-primary);
         }
 
+        &::after {
+          left: $iui-m + $iui-xs + 1px;
+          @include themed {
+            background-color: t(iui-color-foreground-accessory);
+            opacity: t(iui-opacity-2);
+          }
+        }
+
         > .iui-icon {
           @include themed {
             opacity: t(iui-opacity-1);
           }
         }
-
-        > .iui-handle {
-          @include themed {
-            background-color: t(iui-color-foreground-accessory);
-            opacity: t(iui-opacity-2);
-          }
-          right: $iui-xxs;
-        }
       }
 
-      &:hover:not(:disabled) {
-        ~ .iui-toggle {
-          @include themed {
-            border-color: t(iui-color-background-primary);
-          }
-
-          > .iui-handle {
-            @include themed {
-              opacity: t(iui-opacity-1);
-            }
-          }
+      &:hover:enabled ~ .iui-toggle {
+        @include themed {
+          border-color: t(iui-color-background-primary);
         }
       }
+    }
+
+    // Focused or hovered toggle switch
+    &:hover:enabled ~ .iui-toggle::after,
+    &:focus ~ .iui-toggle::after {
+      @include themed {
+        opacity: t(iui-opacity-1);
+      }
+    }
+
+    // Focused toggle switch
+    &:focus ~ .iui-toggle {
+      outline-offset: 1px;
+      @include themed {
+        outline: 1px solid t(iui-color-foreground-primary);
+      }
+    }
+
+    &:focus:not(:focus-visible) ~ .iui-toggle {
+      outline: none;
     }
 
     // Disabled toggle switch
     &:disabled {
       ~ .iui-toggle {
         cursor: not-allowed;
-
         @include themed {
           background-color: t(iui-color-background-disabled);
           border-color: t(iui-color-background-disabled);
         }
 
-        > .iui-handle {
+        &::after {
           @include themed {
             background-color: t(iui-color-foreground-body);
             opacity: t(iui-opacity-5);
@@ -162,18 +189,6 @@
           opacity: t(iui-opacity-5);
         }
       }
-    }
-
-    // Focus on non-disabled toggle switch
-    &:enabled:focus ~ .iui-toggle {
-      @include themed {
-        outline: 1px solid t(iui-color-foreground-primary);
-      }
-      outline-offset: 1px;
-    }
-
-    &:enabled:focus:not(:focus-visible) ~ .iui-toggle {
-      outline: none;
     }
   }
 
