@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.29.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.28.0...v1.29.0) (2022-01-11)
+
+### What's new
+
+* **Button:** Allow rendering as anchor element using `as` prop ([#409](https://www.github.com/iTwin/iTwinUI-react/issues/409)) ([9dfcef7](https://www.github.com/iTwin/iTwinUI-react/commit/9dfcef7ba1c2dc2a43b49fc8e40ef2dcbd89bd0b))
+* **Anchor:** Add new anchor component ([#501](https://www.github.com/iTwin/iTwinUI-react/issues/501)) ([684c18b](https://www.github.com/iTwin/iTwinUI-react/commit/684c18b313a3a7485a766b784d28a482e38e1a3d))
+* **useTheme:** Add event listener to respond to theme changes ([#491](https://www.github.com/iTwin/iTwinUI-react/issues/491)) ([b940ef0](https://www.github.com/iTwin/iTwinUI-react/commit/b940ef0eccc762e07c76bb46beb4a7e8de793d11))
+
 ## [1.28.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.27.0...v1.28.0) (2021-12-21)
 
 ### What's new
