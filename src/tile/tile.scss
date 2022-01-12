@@ -11,7 +11,7 @@
   width: $iui-3xl * 3;
   box-shadow: $iui-elevation-2;
   backface-visibility: hidden;
-
+  @include iui-focus($offset: $iui-xxs, $thickness: $iui-xxs);
   @include themed() {
     background-color: t(iui-color-background-1);
     color: t(iui-text-color);
@@ -276,6 +276,7 @@
   }
 
   &.iui-selected {
+    @include iui-focus($offset: 0, $thickness: $iui-xs);
     @include themed() {
       outline: solid 2px t(iui-color-foreground-primary);
       background: linear-gradient(
