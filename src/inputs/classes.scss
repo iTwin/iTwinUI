@@ -13,6 +13,10 @@
     @include iui-input-icon;
   }
 
+  > .iui-message-icon {
+    @include iui-message-icon;
+  }
+
   .iui-message {
     @include iui-input-message;
   }
@@ -25,7 +29,7 @@
 
   &.iui-inline-icon {
     > .iui-input-icon {
-      @include iui-input-icon-inline;
+      @include iui-input-icon;
     }
   }
 

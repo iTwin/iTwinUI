@@ -38,7 +38,7 @@
       'icon message' / auto 1fr;
 
     // add margin to the icon if it is below input
-    &:not(.iui-inline-icon) > .iui-input-icon {
+    &:not(.iui-inline-icon) > .iui-message-icon {
       margin-top: $iui-component-offset;
     }
   }
@@ -220,8 +220,8 @@
   }
 }
 
-/// Icon to be shown near an input.
-@mixin iui-input-icon {
+/// Icon to be shown near a message.
+@mixin iui-message-icon {
   display: flex;
   grid-area: icon;
   width: $iui-icons-default;
@@ -237,7 +237,19 @@
 }
 
 /// Modifier on iui-input-icon to place it at the end of input.
-@mixin iui-input-icon-inline {
+@mixin iui-input-icon {
+  display: flex;
+  width: $iui-icons-default;
+  height: $iui-icons-default;
+  align-self: center;
+
+  @include themed {
+    fill: t(iui-icons-color);
+  }
+
+  &:not(:last-child) {
+    margin-right: $iui-xs;
+  }
   // stylelint-disable -- fix position in IE
   -ms-grid-row: 1;
   -ms-grid-column: 3;
@@ -284,7 +296,7 @@
 /// @arg status - must be one of: positive, negative, warning
 /// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon
 /// @arg textSelector - selector to apply text color on. Defaults to .iui-message
-@mixin iui-input-status($status, $iconSelector: '.iui-input-icon', $textSelector: '.iui-message') {
+@mixin iui-input-status($status, $iconSelector: '.iui-message-icon', $textSelector: '.iui-message') {
   *::selection {
     @include themed {
       background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));

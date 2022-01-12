@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../menu/index';
+@import './index';
 
 $iui-after-border: 5px solid;
 
@@ -38,21 +39,6 @@ $iui-after-border: 5px solid;
     &.iui-placeholder {
       @include themed {
         color: t(iui-text-color-placeholder);
-      }
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: $iui-m;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-left: $iui-after-border transparent;
-      border-right: $iui-after-border transparent;
-      @include themed {
-        border-top: $iui-after-border t(iui-icons-color-actionable);
       }
     }
 
