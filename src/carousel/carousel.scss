@@ -74,7 +74,7 @@
 
   + .iui-carousel-navigation {
     @include themed {
-      border-top: 2px solid t(iui-color-background-4);
+      border-top: $iui-xxs solid t(iui-color-background-4);
     }
   }
 }
@@ -152,8 +152,7 @@
     }
 
     &.iui-invisible::after {
-      width: 0;
-      height: 0;
+      transform: scale(0);
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), 0);
       }
