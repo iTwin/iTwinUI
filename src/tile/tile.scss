@@ -211,10 +211,24 @@
       position: absolute;
       bottom: $iui-baseline * 0.5;
       right: $iui-s;
-      visibility: hidden;
+
+      clip-path: inset(50%);
+      overflow: hidden;
+      white-space: nowrap;
+      height: 1px;
+      width: 1px;
+      padding: 0;
+      margin: -1px;
+      border-width: 0;
 
       &.iui-visible {
-        visibility: visible;
+        clip-path: revert;
+        overflow: visible;
+        white-space: normal;
+        width: auto;
+        margin: 0;
+        border-width: 1px;
+        @include iui-button-size($size: small, $styleType: borderless);
       }
     }
   }
@@ -260,7 +274,13 @@
     }
 
     .iui-more-options {
-      visibility: visible;
+      clip-path: revert;
+      overflow: visible;
+      white-space: normal;
+      width: auto;
+      margin: 0;
+      border-width: 1px;
+      @include iui-button-size($size: small, $styleType: borderless);
     }
 
     .iui-picture {
