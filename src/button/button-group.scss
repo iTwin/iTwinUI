@@ -12,20 +12,18 @@
   > * {
     display: flex;
 
+    &:hover {
+      position: relative;
+      z-index: 1;
+    }
+
+    &:focus-within {
+      position: relative;
+      z-index: 2;
+    }
+
     #{$childSelector} {
       position: relative;
-
-      &:hover {
-        z-index: 1;
-      }
-
-      &:focus {
-        z-index: 2;
-
-        &:where(:not(:focus-visible):not(:hover)) {
-          z-index: revert;
-        }
-      }
 
       &:disabled {
         z-index: -1;
