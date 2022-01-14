@@ -37,7 +37,7 @@
     }
   }
 
-  &.iui-active {
+  &.iui-active:enabled {
     position: relative;
     @include themed {
       color: t(iui-color-foreground-primary);
