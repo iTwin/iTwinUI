@@ -9,11 +9,11 @@
     @include iui-input-container-label;
   }
 
-  > .iui-input-icon {
+  .iui-input-icon {
     @include iui-input-icon;
   }
 
-  > .iui-message-icon {
+  .iui-message-icon {
     @include iui-message-icon;
   }
 
