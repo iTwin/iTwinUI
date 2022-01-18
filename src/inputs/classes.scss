@@ -9,10 +9,6 @@
     @include iui-input-container-label;
   }
 
-  .iui-input-icon {
-    @include iui-input-icon;
-  }
-
   .iui-message-icon {
     @include iui-message-icon;
   }
@@ -54,6 +50,14 @@
 
 .iui-select {
   @include iui-select;
+}
+
+.iui-with-icon {
+  @include iui-with-icon;
+}
+
+.iui-input-icon {
+  @include iui-input-icon;
 }
 
 .iui-checkbox {

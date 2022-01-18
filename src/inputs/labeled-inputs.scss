@@ -220,6 +220,13 @@
   }
 }
 
+// Mixin to have inputs combined with icon (eg. search field and dropwdown icon)
+@mixin iui-with-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 /// Icon to be shown near a message.
 @mixin iui-message-icon {
   display: flex;
