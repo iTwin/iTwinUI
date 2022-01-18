@@ -36,29 +36,20 @@
         height: 337.5px;
       }
 
-      /* Custom content within slide 1 */
-      .demo-columns {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        background-color: var(--iui-color-background-4);
+      /* Slide gradients */
+      [data-slide-id="0"] {
+        background: linear-gradient(to right, #e65c00, #f9d423);
+      }
+      [data-slide-id="1"] {
+        background: linear-gradient(to right, #2193b0, #6dd5ed);
+      }
+      [data-slide-id="2"] {
+        background: linear-gradient(to right, #cc2b5e, #753a88);
+      }
+      [data-slide-id="3"] {
+        background: linear-gradient(to right, #00467f, #a5cc82);
       }
 
-      .demo-column {
-        width: 50%;
-        height: 100%;
-        box-sizing: border-box;
-      }
-
-      .demo-left {
-        padding: 11px 12px;
-      }
-
-      .demo-right {
-        background-image: linear-gradient(to right, var(--iui-color-background-4), rgba(var(--iui-color-background-4-rgb), 0)), url('../assets/image-test.jpg');
-        background-position: center;
-        background-size: cover;
-      }
     </style>
     <script
       type="module"
@@ -98,68 +89,51 @@
           id="myCarousel-items"
         >
 
-          <!-- Slide with custom interior content. -->
           <li
             class="iui-carousel-slider-item demo-carousel-height iui-current"
             data-slide-id="0"
             role="group"
             aria-roledescription="slide"
-            aria-label="1 of 3"
+            aria-label="1 of 4"
             aria-hidden="false"
-          >
-            <div class="demo-columns">
-              <div class="demo-column demo-left">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-              <div class="demo-column demo-right"></div>
-            </div>
-          </li>
+            id="demo-slide-1"
+          ></li>
 
-          <!-- Slide with full frame video embed. -->
           <li
             class="iui-carousel-slider-item demo-carousel-height iui-next"
             data-slide-id="1"
             role="group"
             aria-roledescription="slide"
-            aria-label="2 of 3"
+            aria-label="2 of 4"
             aria-hidden="true"
-          >
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/DT59xdKNbA8"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </li>
+            id="demo-slide-2"
+          ></li>
 
-          <!-- Slide with image and title. -->
           <li
             class="iui-carousel-slider-item demo-carousel-height iui-next"
             data-slide-id="2"
             role="group"
             aria-roledescription="slide"
-            aria-label="3 of 3"
+            aria-label="3 of 4"
             aria-hidden="true"
-          >
-            <div
-              class="iui-carousel-slider-item-image"
-              style="background-image: url('../assets/image-test.jpg');"
-            ></div>
-            <div class="iui-carousel-slider-item-title">Bentley System headquarters</div>
-          </li>
+            id="demo-slide-3"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height iui-next"
+            data-slide-id="3"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="4 of 4"
+            aria-hidden="true"
+            id="demo-slide-4"
+          ></li>
 
         </ol>
 
         <nav class="iui-carousel-navigation">
           <button
-            class="iui-button iui-borderless iui-small iui-carousel-navigation-button iui-carousel-navigation-previous"
+            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
             type="button"
             aria-controls="myCarousel-items"
             aria-label="Previous slide"
@@ -171,14 +145,23 @@
           </button>
 
           <button
-            class="iui-button iui-borderless iui-small"
+            class="iui-button iui-borderless iui-small iui-carousel-pause-button"
             aria-label="Pause animation"
             data-action="pause"
+            id="play-pause-button"
           >
             <svg-pause
               class="iui-button-icon"
               aria-hidden="true"
+              data-icon="pause"
+              style="margin: 0 3px;"
             ></svg-pause>
+            <svg-play
+              class="iui-button-icon"
+              aria-hidden="true"
+              data-icon="play"
+              style="margin: 0 3px; display: none;"
+            ></svg-play>
           </button>
 
           <ol class="iui-carousel-navigation-dots">
@@ -205,13 +188,17 @@
                 id="test-2"
               ></button>
             </li>
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                data-slide="3"
+                aria-label="Slide 4"
+              ></button>
+            </li>
           </ol>
 
-          <!-- Replicates the width of the play/pause button to center the dots -->
-          <div style="width: 28px;"></div>
-
           <button
-            class="iui-button iui-borderless iui-small iui-carousel-navigation-button iui-carousel-navigation-next"
+            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
             type="button"
             aria-controls="myCarousel-items"
             aria-label="Next slide"
@@ -226,10 +213,22 @@
 
     </section>
 
+    <!-- Next / previous slides -->
     <script>
       document.querySelectorAll('.iui-carousel').forEach((carousel) => {
         const slides = [...carousel.querySelectorAll('.iui-carousel-slider-item')];
+        const dots = [...carousel.querySelectorAll('.iui-carousel-navigation-dot')];
         const [prev, next] = [...carousel.querySelectorAll('.iui-carousel-navigation-button')];
+
+        const updateDotClasses = (current) => {
+          dots.forEach((dot, index) => {
+            if (index === current) {
+              dot.classList.add('iui-active');
+            } else {
+              dot.classList.remove('iui-active');
+            }
+          })
+        };
 
         const updateSlideClasses = (current) => {
           slides.forEach((slide, index) => {
@@ -250,6 +249,7 @@
               slide.setAttribute('aria-hidden', 'true');
             }
           })
+          updateDotClasses(current);
         };
 
         let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
@@ -264,6 +264,22 @@
           updateSlideClasses(currentSlide);
         });
       });
+    </script>
+
+    <!-- Play / pause button toggle -->
+    <script>
+      const pauseIcon = document.querySelector("[data-icon='pause']");
+      const playIcon = document.querySelector("[data-icon='play']");
+      const btn = document.getElementById("play-pause-button");
+      btn.onclick = function () {
+        if (pauseIcon.style.display !== "none") {
+          pauseIcon.style.display = "none";
+          playIcon.style.display = "block";
+        } else {
+          pauseIcon.style.display = "block";
+          playIcon.style.display = "none";
+        }
+      };
     </script>
 
   </body>

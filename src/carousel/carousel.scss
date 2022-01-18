@@ -5,14 +5,10 @@
 @import '../button/button';
 
 @mixin iui-carousel {
-  @include iui-reset;
-  display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 @mixin iui-carousel-slider {
-  display: flex;
   position: relative;
   overflow: hidden;
   list-style: none;
@@ -21,8 +17,6 @@
 
   &-item {
     position: absolute;
-    margin-left: auto;
-    margin-right: auto;
     left: 0;
     right: 0;
     flex-shrink: 0;
@@ -43,33 +37,6 @@
     &.iui-current {
       transform: translateX(0);
     }
-
-    &-image {
-      width: 100%;
-      height: 100%;
-      background-position: center;
-      background-size: cover;
-    }
-
-    &-title {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      padding: $iui-baseline $iui-sm;
-      box-sizing: border-box;
-      width: 100%;
-      transition: background-color $iui-speed-fast ease;
-      @include themed {
-        background-color: rgba(0, 0, 0, t(iui-opacity-4));
-        color: t(iui-color-foreground-accessory);
-      }
-
-      &:hover {
-        @include themed {
-          background-color: rgba(0, 0, 0, t(iui-opacity-3));
-        }
-      }
-    }
   }
 
   + .iui-carousel-navigation {
@@ -84,6 +51,10 @@
   align-items: center;
   height: $iui-baseline * 3;
 
+  .iui-carousel-pause-button ~ .iui-carousel-navigation-button {
+    margin-left: $iui-m + ($iui-xxs * 6);
+  }
+
   &-dots {
     @include iui-reset;
     display: flex;
@@ -91,7 +62,6 @@
     white-space: nowrap;
     overflow: hidden;
     justify-content: center;
-    align-items: center;
     list-style: none;
   }
 
@@ -99,9 +69,8 @@
     @include iui-button;
     @include iui-button-size($size: small);
     background-color: transparent;
-    outline: none;
 
-    &:hover:not(.iui-invisible):not(.iui-active)::after {
+    &:hover:not(.iui-active)::after {
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
       }
