@@ -6,37 +6,23 @@
 
 @mixin iui-carousel {
   flex-direction: column;
+  overflow: hidden;
 }
 
 @mixin iui-carousel-slider {
-  position: relative;
-  overflow: hidden;
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed-slow ease-in-out;
+  }
 
   &-item {
-    position: absolute;
-    left: 0;
-    right: 0;
-    flex-shrink: 0;
+    position: relative;
     width: 100%;
+    flex-shrink: 0;
     box-sizing: border-box;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: transform $iui-speed-slow ease-in-out;
-    }
-
-    &.iui-previous {
-      transform: translateX(-100%);
-    }
-
-    &.iui-next {
-      transform: translateX(100%);
-    }
-
-    &.iui-current {
-      transform: translateX(0);
-    }
   }
 
   + .iui-carousel-navigation {

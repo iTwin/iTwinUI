@@ -100,7 +100,7 @@
           ></li>
 
           <li
-            class="iui-carousel-slider-item demo-carousel-height iui-next"
+            class="iui-carousel-slider-item demo-carousel-height"
             data-slide-id="1"
             role="group"
             aria-roledescription="slide"
@@ -110,7 +110,7 @@
           ></li>
 
           <li
-            class="iui-carousel-slider-item demo-carousel-height iui-next"
+            class="iui-carousel-slider-item demo-carousel-height"
             data-slide-id="2"
             role="group"
             aria-roledescription="slide"
@@ -120,7 +120,7 @@
           ></li>
 
           <li
-            class="iui-carousel-slider-item demo-carousel-height iui-next"
+            class="iui-carousel-slider-item demo-carousel-height"
             data-slide-id="3"
             role="group"
             aria-roledescription="slide"
@@ -219,6 +219,7 @@
         const slides = [...carousel.querySelectorAll('.iui-carousel-slider-item')];
         const dots = [...carousel.querySelectorAll('.iui-carousel-navigation-dot')];
         const [prev, next] = [...carousel.querySelectorAll('.iui-carousel-navigation-button')];
+        const slider = carousel.querySelector('.iui-carousel-slider');
 
         const updateDotClasses = (current) => {
           dots.forEach((dot, index) => {
@@ -231,24 +232,7 @@
         };
 
         const updateSlideClasses = (current) => {
-          slides.forEach((slide, index) => {
-            if (index < current) {
-              slide.classList.remove('iui-next');
-              slide.classList.remove('iui-current');
-              slide.classList.add('iui-previous');
-              slide.setAttribute('aria-hidden', 'true');
-            } else if (index === current) {
-              slide.classList.remove('iui-next');
-              slide.classList.add('iui-current');
-              slide.classList.remove('iui-previous');
-              slide.setAttribute('aria-hidden', 'false');
-            } else {
-              slide.classList.add('iui-next');
-              slide.classList.remove('iui-current');
-              slide.classList.remove('iui-previous');
-              slide.setAttribute('aria-hidden', 'true');
-            }
-          })
+          slider.style.transform = `translateX(-${(current * 100)}%)`;
           updateDotClasses(current);
         };
 
