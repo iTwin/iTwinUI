@@ -247,12 +247,12 @@
       // play / pause toggle
       const playbackButton = document.querySelector("[data-action='pause']");
       playbackButton.addEventListener('click', () => {
-        if (btn.dataset.action === 'pause') {
-          btn.dataset.action = 'play';
-          btn.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
+        if (playbackButton.dataset.action === 'pause') {
+          playbackButton.dataset.action = 'play';
+          playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
         } else {
-          btn.dataset.action = 'pause';
-          btn.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
+          playbackButton.dataset.action = 'pause';
+          playbackButton.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
         }
       });
     </script>
