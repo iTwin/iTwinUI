@@ -221,33 +221,36 @@
         const [prev, next] = [...carousel.querySelectorAll('.iui-carousel-navigation-button')];
         const slider = carousel.querySelector('.iui-carousel-slider');
 
-        const updateDotClasses = (current) => {
-          dots.forEach((dot, index) => {
-            if (index === current) {
-              dot.classList.add('iui-active');
-            } else {
-              dot.classList.remove('iui-active');
-            }
-          })
-        };
-
-        const updateSlideClasses = (current) => {
+        const updateSlide = (current) => {
           slider.style.transform = `translateX(-${(current * 100)}%)`;
-          updateDotClasses(current);
+
+          dots.forEach((dot, index) => {
+            dot.classList.toggle('iui-active', index === current);
+          })
         };
 
         let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
 
         prev.addEventListener('click', () => {
-          currentSlide = Math.max(currentSlide - 1, 0);
-          updateSlideClasses(currentSlide);
+          currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+          updateSlide(currentSlide);
         });
 
         next.addEventListener('click', () => {
-          currentSlide = Math.min(currentSlide + 1, slides.length - 1);
-          updateSlideClasses(currentSlide);
+          currentSlide = (currentSlide + 1) % slides.length;
+          updateSlide(currentSlide);
+        });
+
+        dots.forEach((dot, index) => {
+          if (!dot.classList.contains('iui-invisible')) {
+            dot.addEventListener('click', () => {
+              currentSlide = index;
+              updateSlide(currentSlide);
+            });
+          }
         });
       });
+
     </script>
 
     <!-- Play / pause button toggle -->
@@ -255,7 +258,7 @@
       const pauseIcon = document.querySelector("[data-icon='pause']");
       const playIcon = document.querySelector("[data-icon='play']");
       const btn = document.getElementById("play-pause-button");
-      btn.onclick = function () {
+      btn.addEventListener('click', () => {
         if (pauseIcon.style.display !== "none") {
           pauseIcon.style.display = "none";
           playIcon.style.display = "block";
@@ -263,7 +266,7 @@
           pauseIcon.style.display = "block";
           playIcon.style.display = "none";
         }
-      };
+      });
     </script>
 
   </body>
