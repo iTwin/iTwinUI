@@ -326,6 +326,8 @@
     </section>
 
     <script>
+      const MAX_DOTS = 5;
+
       document.querySelectorAll('.iui-carousel').forEach((carousel) => {
         const slides = [...carousel.querySelectorAll('.iui-carousel-slider-item')];
         const dots = [...carousel.querySelectorAll('.iui-carousel-navigation-dot')];
@@ -335,8 +337,18 @@
         const updateSlide = (current) => {
           slider.style.transform = `translateX(-${(current * 100)}%)`;
 
+          const firstDotIndex = Math.max(0, Math.min(current - parseInt(MAX_DOTS / 2), dots.length - MAX_DOTS));
+          const lastDotIndex = Math.min(dots.length - 1, Math.max(current + parseInt(MAX_DOTS / 2), MAX_DOTS - 1));
+
           dots.forEach((dot, index) => {
             dot.classList.toggle('iui-active', index === current);
+            dot.classList.toggle('iui-invisible', index < firstDotIndex || index > lastDotIndex);
+
+            const isFirstSmallDot = (index === firstDotIndex && index !== 0) || (index === lastDotIndex && index !== dots.length - 1);
+            const isSecondSmallDot = (index === firstDotIndex + 1 && index !== 1) || (index === lastDotIndex - 1 && index !== dots.length - 2);
+
+            dot.classList.toggle('iui-first', isFirstSmallDot);
+            dot.classList.toggle('iui-second', isSecondSmallDot);
           })
         };
 
@@ -362,19 +374,23 @@
             });
           }
         });
+
+        // play / pause toggle
+        const playbackButton = document.querySelector("[data-action='pause']");
+        playbackButton.addEventListener('click', () => {
+          if (playbackButton.dataset.action === 'pause') {
+            playbackButton.dataset.action = 'play';
+            playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
+          } else {
+            playbackButton.dataset.action = 'pause';
+            playbackButton.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
+          }
+        });
+
+        // initialize
+        updateSlide(0);
       });
 
-      // play / pause toggle
-      const playbackButton = document.querySelector("[data-action='pause']");
-      playbackButton.addEventListener('click', () => {
-        if (playbackButton.dataset.action === 'pause') {
-          playbackButton.dataset.action = 'play';
-          playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
-        } else {
-          playbackButton.dataset.action = 'pause';
-          playbackButton.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
-        }
-      });
     </script>
 
   </body>
