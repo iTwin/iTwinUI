@@ -145,23 +145,14 @@
           </button>
 
           <button
-            class="iui-button iui-borderless iui-small iui-carousel-pause-button"
+            class="iui-button iui-borderless iui-small"
             aria-label="Pause animation"
             data-action="pause"
-            id="play-pause-button"
           >
             <svg-pause
               class="iui-button-icon"
               aria-hidden="true"
-              data-icon="pause"
-              style="margin: 0 3px;"
             ></svg-pause>
-            <svg-play
-              class="iui-button-icon"
-              aria-hidden="true"
-              data-icon="play"
-              style="margin: 0 3px; display: none;"
-            ></svg-play>
           </button>
 
           <ol class="iui-carousel-navigation-dots">
@@ -213,7 +204,6 @@
 
     </section>
 
-    <!-- Next / previous slides -->
     <script>
       document.querySelectorAll('.iui-carousel').forEach((carousel) => {
         const slides = [...carousel.querySelectorAll('.iui-carousel-slider-item')];
@@ -229,6 +219,7 @@
           })
         };
 
+        // previous / next slide buttons
         let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
 
         prev.addEventListener('click', () => {
@@ -241,6 +232,7 @@
           updateSlide(currentSlide);
         });
 
+        // clickable dots
         dots.forEach((dot, index) => {
           if (!dot.classList.contains('iui-invisible')) {
             dot.addEventListener('click', () => {
@@ -251,20 +243,15 @@
         });
       });
 
-    </script>
-
-    <!-- Play / pause button toggle -->
-    <script>
-      const pauseIcon = document.querySelector("[data-icon='pause']");
-      const playIcon = document.querySelector("[data-icon='play']");
-      const btn = document.getElementById("play-pause-button");
-      btn.addEventListener('click', () => {
-        if (pauseIcon.style.display !== "none") {
-          pauseIcon.style.display = "none";
-          playIcon.style.display = "block";
+      // play / pause toggle
+      const playbackButton = document.querySelector("[data-action='pause']");
+      playbackButton.addEventListener('click', () => {
+        if (btn.dataset.action === 'pause') {
+          btn.dataset.action = 'play';
+          btn.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
         } else {
-          pauseIcon.style.display = "block";
-          playIcon.style.display = "none";
+          btn.dataset.action = 'pause';
+          btn.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
         }
       });
     </script>
