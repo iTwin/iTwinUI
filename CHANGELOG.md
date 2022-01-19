@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.29.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.29.0...v1.29.1) (2022-01-19)
+
+### Fixes
+
+* **Button:** Improve polymorphic handling ([#512](https://www.github.com/iTwin/iTwinUI-react/issues/512)) ([6827264](https://www.github.com/iTwin/iTwinUI-react/commit/6827264397b3be5edde70426e43419a8ff161894))
+
 ## [1.29.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.28.0...v1.29.0) (2022-01-11)
 
 ### What's new
