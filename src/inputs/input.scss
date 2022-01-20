@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
+$iui-after-border: 5px solid;
+
 @mixin iui-input {
   @include iui-reset;
   @include iui-focus($offset: -2px, $thickness: 2px);
@@ -75,5 +77,74 @@
       rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
     ),
       linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+  }
+}
+
+// Mixin to have inputs combined with icon (eg. search field and dropwdown icon)
+@mixin iui-input-with-icon {
+  @include iui-input;
+  display: grid;
+  grid-template: 'input icon' / 1fr auto;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  position: relative;
+  width: 100%;
+
+  .iui-input-icon {
+    grid-area: icon;
+  }
+
+  @include iui-focus($offset: -2px, $thickness: 2px);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: border-color $iui-speed-fast ease-out;
+  }
+
+  &:hover {
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
+
+    &::after {
+      border-bottom: none;
+      @include themed {
+        border-top: $iui-after-border t(iui-icons-color-actionable-hover);
+      }
+    }
+  }
+
+  &.iui-active {
+    &::after {
+      border-top: none;
+      @include themed {
+        border-bottom: $iui-after-border t(iui-icons-color-actionable);
+      }
+    }
+
+    &:hover::after {
+      @include themed {
+        border-bottom: $iui-after-border t(iui-icons-color-actionable-hover);
+      }
+    }
+  }
+
+  &.iui-disabled {
+    //cursor: not-allowed;
+
+    @include themed {
+      background-color: t(iui-color-background-disabled);
+      border-color: t(iui-color-background-disabled);
+    }
+
+    .iui-input-icon {
+      cursor: not-allowed;
+
+      &,
+      &:hover {
+        @include themed {
+          background: t(iui-color-background-disabled);
+        }
+      }
+    }
   }
 }

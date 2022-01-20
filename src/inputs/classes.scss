@@ -23,12 +23,6 @@
     }
   }
 
-  &.iui-inline-icon {
-    > .iui-input-icon {
-      @include iui-input-icon;
-    }
-  }
-
   @each $status in positive, negative, warning {
     &.iui-#{$status} {
       @include iui-input-status($status: $status);
@@ -44,16 +38,16 @@
   @include iui-input;
 }
 
+.iui-input-content {
+  @include iui-input-content;
+}
+
 .iui-textarea {
   @include iui-textarea;
 }
 
-.iui-select {
-  @include iui-select;
-}
-
-.iui-with-icon {
-  @include iui-with-icon;
+.iui-input-with-icon {
+  @include iui-input-with-icon;
 }
 
 .iui-input-icon {

@@ -2,92 +2,24 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../menu/index';
-@import './labeled-inputs';
 
-$iui-after-border: 5px solid;
-
-@mixin iui-select {
+@mixin iui-input-content {
   @include iui-reset;
-  @include iui-with-icon;
-  @include iui-input;
-  @include iui-select-background;
-  position: relative;
-  padding-right: 0;
-  width: 100%;
-
-  > .iui-select-button {
-    @include iui-select-content;
-  }
-
-  &.iui-small .iui-select-button {
-    padding-top: $iui-component-padding-vertical-small;
-    padding-bottom: $iui-component-padding-vertical-small;
-    min-height: $iui-component-height-small;
-  }
-
-  &.iui-large .iui-select-button {
-    padding-top: $iui-component-padding-vertical-large;
-    padding-bottom: $iui-component-padding-vertical-large;
-    min-height: $iui-component-height-large;
-    font-size: $iui-font-size-leading;
-  }
-}
-
-@mixin iui-select-background {
-  @include iui-focus($offset: -2px, $thickness: 2px);
-  @media (prefers-reduced-motion: no-preference) {
-    transition: border-color $iui-speed-fast ease-out;
-  }
-
-  &:hover {
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-    }
-
-    &::after {
-      border-bottom: none;
-      @include themed {
-        border-top: $iui-after-border t(iui-icons-color-actionable-hover);
-      }
-    }
-  }
-
-  &.iui-active {
-    &::after {
-      border-top: none;
-      @include themed {
-        border-bottom: $iui-after-border t(iui-icons-color-actionable);
-      }
-    }
-
-    &:hover::after {
-      @include themed {
-        border-bottom: $iui-after-border t(iui-icons-color-actionable-hover);
-      }
-    }
-  }
-
-  &.iui-disabled {
-    cursor: not-allowed;
-    @include themed {
-      background-color: t(iui-color-background-disabled);
-      border-color: t(iui-color-background-disabled);
-    }
-
-    &::after {
-      @include themed {
-        border-top: $iui-after-border t(iui-icons-color-actionable-disabled);
-      }
-    }
-  }
-}
-
-@mixin iui-select-content {
   display: flex;
   align-items: center;
-  min-height: $iui-component-height;
   user-select: none;
   position: relative;
+  overflow: hidden;
+  border: none;
+  font-family: inherit;
+  font-size: $iui-font-size;
+  font-weight: $iui-font-weight-normal;
+  line-height: $iui-line-height;
+  padding: 0 12px;
+
+  @include themed {
+    color: t(iui-text-color);
+  }
 
   .iui-icon {
     @include iui-menu-icon;
@@ -102,6 +34,10 @@ $iui-after-border: 5px solid;
   &.iui-placeholder {
     @include themed {
       color: t(iui-text-color-placeholder);
+    }
+
+    .iui-icon {
+      fill: currentColor;
     }
   }
 }
