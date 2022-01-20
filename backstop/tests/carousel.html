@@ -37,7 +37,7 @@
       }
 
       /* Slide gradients */
-      [data-slide-id="0"] { background: linear-gradient(to right, #e65c00, #f9d423); }
+      [data-slide-id="0"] { background: linear-gradient(to right, #e65c00, #f9d423); text-align: center; vertical-align: middle; line-height: 337.5px; }
       [data-slide-id="1"] { background: linear-gradient(to right, #2193b0, #6dd5ed); }
       [data-slide-id="2"] { background: linear-gradient(to right, #cc2b5e, #753a88); }
       [data-slide-id="3"] { background: linear-gradient(to right, #00467f, #a5cc82); }
@@ -80,126 +80,9 @@
         class="iui-carousel demo-carousel-width"
         aria-roledescription="carousel"
         aria-label="Introduction to iTwinUI"
-        aria-live="polite"
+        aria-live="off"
         aria-atomic="true"
       >
-        <ol
-          class="iui-carousel-slider demo-carousel-height"
-          id="myCarousel-items"
-        >
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height iui-current"
-            data-slide-id="0"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="1 of 11"
-            aria-hidden="false"
-            id="demo-slide-1"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="1"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="2 of 11"
-            aria-hidden="true"
-            id="demo-slide-2"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="2"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="3 of 11"
-            aria-hidden="true"
-            id="demo-slide-3"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="3"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="4 of 11"
-            aria-hidden="true"
-            id="demo-slide-4"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="4"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="5 of 11"
-            aria-hidden="true"
-            id="demo-slide-5"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="5"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="6 of 11"
-            aria-hidden="true"
-            id="demo-slide-6"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="6"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="7 of 11"
-            aria-hidden="true"
-            id="demo-slide-7"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="7"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="8 of 11"
-            aria-hidden="true"
-            id="demo-slide-8"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="8"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="9 of 11"
-            aria-hidden="true"
-            id="demo-slide-9"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="9"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="10 of 11"
-            aria-hidden="true"
-            id="demo-slide-10"
-          ></li>
-
-          <li
-            class="iui-carousel-slider-item demo-carousel-height"
-            data-slide-id="10"
-            role="group"
-            aria-roledescription="slide"
-            aria-label="11 of 11"
-            aria-hidden="true"
-            id="demo-slide-11"
-          ></li>
-
-        </ol>
-
         <nav class="iui-carousel-navigation">
           <button
             class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
@@ -215,8 +98,10 @@
 
           <button
             class="iui-button iui-borderless iui-small"
+            type="button"
             aria-label="Pause animation"
-            data-action="pause"
+            aria-pressed="true"
+            data-action="play"
           >
             <svg-pause
               class="iui-button-icon"
@@ -224,86 +109,134 @@
             ></svg-pause>
           </button>
 
-          <ol class="iui-carousel-navigation-dots">
+          <ol
+            class="iui-carousel-navigation-dots"
+            role="tablist"
+            aria-label="Slides"
+          >
             <li>
               <button
                 class="iui-active iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="0"
                 aria-label="Slide 1 (Current slide)"
+                aria-selected="true"
+                aria-controls="demo-slide-1"
               ></button>
             </li>
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="1"
                 aria-label="Slide 2"
+                aria-selected="false"
+                aria-controls="demo-slide-2"
                 id="test-1"
               ></button>
             </li>
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="2"
                 aria-label="Slide 3"
+                aria-selected="false"
+                aria-controls="demo-slide-3"
                 id="test-2"
               ></button>
             </li>
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="3"
                 aria-label="Slide 4"
+                aria-selected="false"
+                aria-controls="demo-slide-4"
               ></button>
             </li>
 
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="4"
                 aria-label="Slide 5"
+                aria-selected="false"
+                aria-controls="demo-slide-5"
               ></button>
             </li>
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="5"
                 aria-label="Slide 6"
+                aria-selected="false"
+                aria-controls="demo-slide-6"
               ></button>
             </li>
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="6"
                 aria-label="Slide 7"
+                aria-selected="false"
+                aria-controls="demo-slide-7"
               ></button>
             </li>
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="7"
                 aria-label="Slide 8"
+                aria-selected="false"
+                aria-controls="demo-slide-8"
               ></button>
             </li>
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="8"
                 aria-label="Slide 9"
+                aria-selected="false"
+                aria-controls="demo-slide-9"
               ></button>
             </li>
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="9"
                 aria-label="Slide 10"
+                aria-selected="false"
+                aria-controls="demo-slide-10"
               ></button>
             </li>
 
             <li>
               <button
                 class="iui-carousel-navigation-dot"
+                type="button"
+                role="tab"
                 data-slide="10"
                 aria-label="Slide 11"
+                aria-selected="false"
+                aria-controls="demo-slide-11"
               ></button>
             </li>
           </ol>
@@ -321,6 +254,128 @@
             ></svg-chevron-right>
           </button>
         </nav>
+        <ol
+          class="iui-carousel-slider demo-carousel-height"
+          id="myCarousel-items"
+        >
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height iui-current"
+            data-slide-id="0"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="1 of 11"
+            aria-hidden="false"
+            id="demo-slide-1"
+          >
+            <a
+              href="#"
+              class="iui-anchor"
+              style="padding: 11px 12px; background-color: var(--iui-color-background-1);"
+            >Focus will target the navigation before slide content.</a>
+          </li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="1"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="2 of 11"
+            aria-hidden="true"
+            id="demo-slide-2"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="2"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="3 of 11"
+            aria-hidden="true"
+            id="demo-slide-3"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="3"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="4 of 11"
+            aria-hidden="true"
+            id="demo-slide-4"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="4"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="5 of 11"
+            aria-hidden="true"
+            id="demo-slide-5"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="5"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="6 of 11"
+            aria-hidden="true"
+            id="demo-slide-6"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="6"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="7 of 11"
+            aria-hidden="true"
+            id="demo-slide-7"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="7"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="8 of 11"
+            aria-hidden="true"
+            id="demo-slide-8"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="8"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="9 of 11"
+            aria-hidden="true"
+            id="demo-slide-9"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="9"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="10 of 11"
+            aria-hidden="true"
+            id="demo-slide-10"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="10"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="11 of 11"
+            aria-hidden="true"
+            id="demo-slide-11"
+          ></li>
+
+        </ol>
       </div>
 
     </section>
@@ -353,7 +408,8 @@
         };
 
         // previous / next slide buttons
-        let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
+        // let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
+        let currentSlide = dots.findIndex(dot => dot.classList.contains('iui-current'));
 
         prev.addEventListener('click', () => {
           currentSlide = (currentSlide - 1 + slides.length) % slides.length;

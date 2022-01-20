@@ -5,7 +5,8 @@
 @import '../button/button';
 
 @mixin iui-carousel {
-  flex-direction: column;
+  display: flex;
+  flex-direction: column-reverse;
   overflow: hidden;
 }
 
@@ -24,18 +25,13 @@
     flex-shrink: 0;
     box-sizing: border-box;
   }
-
-  + .iui-carousel-navigation {
-    @include themed {
-      border-top: $iui-xxs solid t(iui-color-background-4);
-    }
-  }
 }
 
 @mixin iui-carousel-navigation {
   display: flex;
   align-items: center;
   height: $iui-baseline * 3;
+  border-top: $iui-xxs solid t(iui-color-background-4);
 
   .iui-carousel-pause-button ~ .iui-carousel-navigation-button {
     margin-left: $iui-m + ($iui-xxs * 6);
