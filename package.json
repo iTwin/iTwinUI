@@ -38,9 +38,9 @@
     ]
   },
   "scripts": {
-    "build": "yarn clean && yarn build:scss && yarn build:css && yarn build:html && yarn copy-files",
+    "build": "yarn clean && yarn build:scss && yarn build:css && yarn lint:copyright --fix lib/css/* && yarn build:html && yarn copy-files",
     "build:scss": "cpx \"./src/**/*.scss\" ./lib/scss",
-    "build:css": "node ./scripts/generateCss.js src lib/css && yarn postcss-processing && yarn lint:copyright --fix lib/css/*",
+    "build:css": "node ./scripts/generateCss.js src lib/css",
     "build:html": "node ./scripts/generateHtml.js backstop/tests backstop/minified",
     "build:watch": "yarn build && concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn build:watch:html\"",
     "build:watch:scss": "chokidar \"src/**/*\" -c \"yarn build:scss && yarn build:css\"",
@@ -74,6 +74,7 @@
     "postcss-discard-comments": "^4.0.2",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
+    "sass-embedded": "^1.0.0-beta.8",
     "stylelint": "^13.10.0",
     "stylelint-config-sass-guidelines": "^8.0.0"
   },
