@@ -129,8 +129,6 @@ $iui-after-border: 5px solid;
   }
 
   &.iui-disabled {
-    //cursor: not-allowed;
-
     @include themed {
       background-color: t(iui-color-background-disabled);
       border-color: t(iui-color-background-disabled);
@@ -143,6 +141,7 @@ $iui-after-border: 5px solid;
       &:hover {
         @include themed {
           background: t(iui-color-background-disabled);
+          fill: t(iui-icons-color-actionable-disabled);
         }
       }
     }
