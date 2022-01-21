@@ -146,4 +146,14 @@ $iui-after-border: 5px solid;
       }
     }
   }
+
+  .iui-input {
+    border: none;
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      padding-left: 12px;
+    }
+  }
 }

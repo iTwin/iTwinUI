@@ -71,7 +71,7 @@
             <div
               tabindex="0"
               id="test-select-1"
-              class="iui-input-content iui-placeholder"
+              class="iui-select-content iui-placeholder"
             >
               <span class="iui-content">Placeholder…</span>
             </div>
@@ -96,7 +96,7 @@
         <div class="iui-input-with-icon">
           <div
             tabindex="0"
-            class="iui-input-content"
+            class="iui-select-content"
           >
             <span class="iui-content"></span>
           </div>
@@ -121,7 +121,7 @@
         <div class="iui-input-with-icon">
           <div
             tabindex="0"
-            class="iui-input-content"
+            class="iui-select-content"
           >
             <svg-placeholder
               class="iui-icon"
@@ -151,7 +151,7 @@
       <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Select label</div>
         <div class="iui-input-with-icon iui-disabled">
-          <div class="iui-input-content iui-placeholder">
+          <div class="iui-select-content iui-placeholder">
             <span class="iui-content">Placeholder…</span>
           </div>
           <span class="iui-input-icon iui-actionable">
@@ -172,7 +172,7 @@
       <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Select label</div>
         <div class="iui-input-with-icon iui-disabled">
-          <div class="iui-input-content">
+          <div class="iui-select-content">
             <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -199,7 +199,7 @@
         <div class="iui-input-with-icon">
           <div
             tabindex="0"
-            class="iui-input-content iui-placeholder"
+            class="iui-select-content iui-placeholder"
           >
             <span class="iui-content">Placeholder…</span>
           </div>
@@ -229,7 +229,7 @@
         <div class="iui-input-with-icon">
           <div
             tabindex="0"
-            class="iui-input-content iui-placeholder"
+            class="iui-select-content iui-placeholder"
           >
             <span class="iui-content">Placeholder…</span>
           </div>
@@ -259,7 +259,7 @@
         <div class="iui-input-with-icon">
           <div
             tabindex="0"
-            class="iui-input-content iui-placeholder"
+            class="iui-select-content iui-placeholder"
           >
             <span class="iui-content">Placeholder…</span>
           </div>
@@ -293,7 +293,7 @@
       <div class="iui-input-with-icon iui-small">
         <div
           tabindex="0"
-          class="iui-input-content"
+          class="iui-select-content"
         >
           <span class="iui-content">Small</span>
         </div>
@@ -312,10 +312,12 @@
 
 
       <div class="iui-input iui-input-with-icon">
-        <input
-          class="iui-input-content"
-          value="Default"
-        />
+        <div
+          tabindex="0"
+          class="iui-select-content"
+        >
+          <span class="iui-content">Default</span>
+        </div>
         <span class="iui-input-icon iui-actionable">
           <svg
             viewBox="0 0 16 16"
@@ -332,7 +334,7 @@
       <div class="iui-input-with-icon iui-large">
         <div
           tabindex="0"
-          class="iui-input-content"
+          class="iui-select-content"
         >
           <span class="iui-content">Large</span>
         </div>
@@ -349,6 +351,28 @@
         </span>
       </div>
 
+    </section>
+
+    <br />
+    <section id="demo-input">
+      <h3>With input element</h3>
+      <div class="iui-input iui-input-with-icon">
+        <input
+          class="iui-input"
+          placeholder="Input"
+        />
+        <span class="iui-input-icon iui-actionable">
+          <svg
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z"
+            ></path>
+          </svg>
+        </span>
+      </div>
     </section>
   </body>
 </html>
