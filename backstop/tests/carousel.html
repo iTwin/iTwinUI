@@ -408,8 +408,7 @@
         };
 
         // previous / next slide buttons
-        // let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
-        let currentSlide = dots.findIndex(dot => dot.classList.contains('iui-current'));
+        let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
 
         prev.addEventListener('click', () => {
           currentSlide = (currentSlide - 1 + slides.length) % slides.length;
@@ -432,13 +431,15 @@
         });
 
         // play / pause toggle
-        const playbackButton = document.querySelector("[data-action='pause']");
+        const playbackButton = document.querySelector("[data-action='play']");
         playbackButton.addEventListener('click', () => {
-          if (playbackButton.dataset.action === 'pause') {
-            playbackButton.dataset.action = 'play';
+          if (playbackButton.dataset.action === 'play') {
+            playbackButton.dataset.action = 'pause';
+            playbackButton.setAttribute('aria-pressed', 'false');
             playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
           } else {
-            playbackButton.dataset.action = 'pause';
+            playbackButton.dataset.action = 'play';
+            playbackButton.setAttribute('aria-pressed', 'true');
             playbackButton.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
           }
         });
