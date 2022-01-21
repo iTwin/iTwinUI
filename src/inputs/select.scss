@@ -11,6 +11,7 @@ $iui-after-border: 5px solid;
   flex-direction: column;
   position: relative;
   width: 100%;
+  min-width: 0;
 
   > .iui-select-button {
     @include iui-input;
