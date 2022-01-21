@@ -254,9 +254,6 @@
     svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
-      @include themed {
-        fill: t(iui-icons-color);
-      }
       transition: transform $iui-speed-fast ease-out;
     }
 
@@ -268,7 +265,7 @@
 
 /// Mixin for applying status colors to input container.
 /// @arg status - must be one of: positive, negative, warning
-/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon
+/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-message-icon
 /// @arg textSelector - selector to apply text color on. Defaults to .iui-message
 @mixin iui-input-status($status, $iconSelector: '.iui-message-icon', $textSelector: '.iui-message') {
   *::selection {
@@ -305,9 +302,9 @@
     }
   }
 
-  > .iui-input,
-  > .iui-input-with-icon,
-  > .iui-textarea {
+  .iui-input,
+  .iui-input-with-icon,
+  .iui-textarea {
     @include themed {
       border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
     }
