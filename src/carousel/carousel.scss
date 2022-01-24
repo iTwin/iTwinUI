@@ -50,7 +50,7 @@
     @include iui-button-size($size: small);
     background-color: transparent;
 
-    &:hover:not(.iui-active)::after {
+    &:hover::after {
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
       }
