@@ -84,30 +84,31 @@
         aria-atomic="true"
       >
         <nav class="iui-carousel-navigation">
-          <button
-            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
-            type="button"
-            aria-controls="myCarousel-items"
-            aria-label="Previous slide"
-          >
-            <svg-chevron-left
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-chevron-left>
-          </button>
-
-          <button
-            class="iui-button iui-borderless iui-small"
-            type="button"
-            aria-label="Pause animation"
-            aria-pressed="true"
-            data-action="play"
-          >
-            <svg-pause
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-pause>
-          </button>
+          <div class="iui-carousel-navigation-left">
+            <button
+              class="iui-button iui-borderless iui-small iui-carousel-navigation-animation-button"
+              type="button"
+              aria-label="Pause animation"
+              aria-pressed="true"
+              data-action="play"
+            >
+              <svg-pause
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-pause>
+            </button>
+            <button
+              class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+              type="button"
+              aria-controls="myCarousel-items"
+              aria-label="Previous slide"
+            >
+              <svg-chevron-left
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-left>
+            </button>
+          </div>
 
           <ol
             class="iui-carousel-navigation-dots"
@@ -241,18 +242,19 @@
             </li>
           </ol>
 
-          <div style="width: 28px"></div>
-          <button
-            class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
-            type="button"
-            aria-controls="myCarousel-items"
-            aria-label="Next slide"
-          >
-            <svg-chevron-right
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-chevron-right>
-          </button>
+          <div class="iui-carousel-navigation-right">
+            <button
+              class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+              type="button"
+              aria-controls="myCarousel-items"
+              aria-label="Next slide"
+            >
+              <svg-chevron-right
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-right>
+            </button>
+          </div>
         </nav>
         <ol
           class="iui-carousel-slider demo-carousel-height"

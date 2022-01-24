@@ -20,7 +20,6 @@
   }
 
   &-item {
-    position: relative;
     width: 100%;
     flex-shrink: 0;
     box-sizing: border-box;
@@ -35,10 +34,15 @@
     border-top: $iui-xxs solid t(iui-color-background-4);
   }
 
+  &-dots,
+  &-left,
+  &-right {
+    display: flex;
+    flex: 1;
+  }
+
   &-dots {
     @include iui-reset;
-    display: flex;
-    flex-grow: 1;
     white-space: nowrap;
     overflow: hidden;
     justify-content: center;
@@ -113,5 +117,13 @@
         background-color: t(iui-color-foreground-primary);
       }
     }
+  }
+
+  &-animation-button {
+    order: 1;
+  }
+
+  &-right {
+    justify-content: flex-end;
   }
 }
