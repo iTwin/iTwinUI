@@ -20,4 +20,9 @@ module.exports = [
     actions: [focus('#test-select-1')],
     selectors: ['#demo-default-singular'],
   }),
+
+  // Inline combo
+  scenario('Inline combo', {
+    selectors: ['#demo-inline-combo'],
+  }),
 ];
