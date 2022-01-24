@@ -10,7 +10,13 @@ import { Button } from './Button';
 it('renders default button correctly', () => {
   const onClickMock = jest.fn();
   const { container } = render(
-    <Button onClick={onClickMock}>Click me!</Button>,
+    <Button
+      onClick={(e) => {
+        onClickMock(e);
+      }}
+    >
+      Click me!
+    </Button>,
   );
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
