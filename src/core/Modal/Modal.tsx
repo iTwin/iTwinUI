@@ -160,6 +160,9 @@ export const Modal = (props: ModalProps) => {
   const handleMouseDown = (event: React.MouseEvent) => {
     // Prevents React from resetting its properties
     event.persist();
+    if (event.target !== overlayRef.current) {
+      return;
+    }
     if (isDismissible && closeOnExternalClick && onClose) {
       onClose(event);
     }
@@ -183,7 +186,6 @@ export const Modal = (props: ModalProps) => {
               style={style}
               role='dialog'
               aria-modal='true'
-              onMouseDown={(event) => event.stopPropagation()}
             >
               <div className='iui-title-bar'>
                 <div className='iui-title'>{title}</div>
