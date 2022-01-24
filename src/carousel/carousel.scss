@@ -46,9 +46,10 @@
   }
 
   &-dot {
-    @include iui-button;
     @include iui-button-size($size: small);
     background-color: transparent;
+    border: none;
+    cursor: pointer;
 
     &:hover::after {
       @include themed {
@@ -57,7 +58,6 @@
     }
 
     &.iui-invisible {
-      cursor: default;
       display: none;
     }
 
