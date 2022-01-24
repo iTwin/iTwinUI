@@ -1,5 +1,14 @@
 # Changelog
 
+### [0.44.1](https://www.github.com/iTwin/iTwinUI/compare/v0.44.0...v0.44.1) (2022-01-24)
+
+
+### Fixes
+
+* **Button:** Use `::before` for active background to fix flicker ([#449](https://www.github.com/iTwin/iTwinUI/issues/449)) ([b492a75](https://www.github.com/iTwin/iTwinUI/commit/b492a7596e02763be20ff3d14c89262c11196532))
+* **Menu:** Add missing class name for button dropdowns ([#443](https://www.github.com/iTwin/iTwinUI/issues/443)) ([08b4aa3](https://www.github.com/iTwin/iTwinUI/commit/08b4aa30fd15ad4d3abd2be01bb25bee48d4fad7))
+* **Select:** Allows to reduce Select size that other components would fit inside container ([#451](https://www.github.com/iTwin/iTwinUI/issues/451)) ([011cc70](https://www.github.com/iTwin/iTwinUI/commit/011cc701a51e7f7199690ce404a0bef0be90f6fd))
+
 ## [0.44.0](https://www.github.com/iTwin/iTwinUI/compare/v0.43.0...v0.44.0) (2022-01-07)
 
 ### What's new
