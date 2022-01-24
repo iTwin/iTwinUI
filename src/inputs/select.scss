@@ -23,55 +23,6 @@
   width: 100%;
   min-width: 0;
 
-  > .iui-select-button {
-    @include iui-input;
-    @include iui-focus($offset: -2px, $thickness: 2px);
-    display: flex;
-    align-items: center;
-    min-height: $iui-component-height;
-    padding-right: $iui-xl;
-    user-select: none;
-    position: relative;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: border-color $iui-speed-fast ease-out;
-    }
-
-    > .iui-icon {
-      @include iui-menu-icon;
-    }
-
-    > .iui-content {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &.iui-placeholder {
-      @include themed {
-        color: t(iui-text-color-placeholder);
-      }
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: $iui-m;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-left: $iui-after-border transparent;
-      border-right: $iui-after-border transparent;
-      @include themed {
-        border-top: $iui-after-border t(iui-icons-color-actionable);
-      }
-    }
-
-    &:hover {
-      @include themed {
-        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-      }
-
   .iui-icon {
     @include iui-menu-icon;
   }
