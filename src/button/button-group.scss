@@ -9,23 +9,21 @@
 
   $childSelector: 'input, button'; // target nested inputs and buttons
 
-  > * {
+  > .iui-button-group-item {
     display: flex;
+    position: relative;
 
     &:hover {
-      position: relative;
       z-index: 1;
     }
 
     &:focus-within {
-      position: relative;
       z-index: 2;
     }
 
-    #{$childSelector} {
-      position: relative;
-
-      &:disabled {
+    > * {
+      &:disabled,
+      &[aria-disabled='true'] {
         z-index: -1;
       }
 
@@ -59,11 +57,11 @@
           }
         }
       }
+    }
 
-      // Reset border radius only for non-borderless items
-      &:not(.iui-borderless) {
-        border-radius: 0;
-      }
+    // Reset border radius only for non-borderless items
+    #{$childSelector}:not(.iui-borderless) {
+      border-radius: 0;
     }
 
     // Add rounded corners to first and last items
