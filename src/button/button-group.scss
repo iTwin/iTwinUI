@@ -9,7 +9,7 @@
 
   $childSelector: 'input, button'; // target nested inputs and buttons
 
-  > .iui-button-group-item {
+  .iui-button-group-item {
     display: flex;
     position: relative;
 
