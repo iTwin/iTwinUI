@@ -11,10 +11,11 @@ $iui-after-border: 5px solid;
   flex-direction: column;
   position: relative;
   width: 100%;
+  min-width: 0;
 
   > .iui-select-button {
     @include iui-input;
-    @include iui-focus;
+    @include iui-focus($offset: -2px, $thickness: 2px);
     display: flex;
     align-items: center;
     min-height: $iui-component-height;

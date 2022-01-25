@@ -186,8 +186,7 @@
       color: unset;
       // #endregion
 
-      &:hover,
-      &:focus {
+      &:hover {
         @include themed {
           background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
         }
@@ -399,19 +398,6 @@
   .iui-button-label {
     @include themed {
       color: t(iui-color-foreground-primary);
-    }
-  }
-
-  // Focus styling - blue outline
-  &:focus {
-    @include themed {
-      box-shadow: t(iui-focus-box-shadow), 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-    }
-  }
-
-  &:focus:not(:focus-visible) {
-    @include themed {
-      box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
     }
   }
 

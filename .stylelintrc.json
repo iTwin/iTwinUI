@@ -29,5 +29,5 @@
     "selector-no-qualifying-type": null,
     "scss/dollar-variable-pattern": null
   },
-  "ignoreFiles": ["lib/**/*"]
+  "ignoreFiles": ["lib/**/*", "**/*.html"]
 }
