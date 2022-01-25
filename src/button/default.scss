@@ -37,14 +37,19 @@
     }
   }
 
-  &.iui-active {
+  &.iui-active:enabled {
+    position: relative;
     @include themed {
-      background: linear-gradient(
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-      ),
-        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
       color: t(iui-color-foreground-primary);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      }
     }
   }
 
