@@ -11,47 +11,18 @@
   width: $iui-3xl * 3;
   box-shadow: $iui-elevation-2;
   backface-visibility: hidden;
-
   @include themed() {
     background-color: t(iui-color-background-1);
     color: t(iui-text-color);
   }
 
-  .iui-tile-thumbnail-type-indicator {
-    @include iui-tile-thumbnail-type-indicator;
-  }
-
-  .iui-tile-thumbnail-quick-action {
-    @include iui-tile-thumbnail-quick-action;
-  }
-
-  .iui-tile-thumbnail-badge-container {
-    @include iui-tile-thumbnail-badge;
-  }
-
-  .iui-tile-buttons {
-    @include iui-tile-buttons;
-  }
-
-  .iui-tile-thumbnail {
-    @include iui-tile-thumbnail;
-  }
-
-  .iui-tile-thumbnail-picture {
-    @include iui-tile-thumbnail-picture;
-  }
-
-  .iui-tile-content {
-    @include iui-tile-content;
-  }
-
   &:hover,
   &:focus-within {
-    .iui-metadata:not(:last-child) {
+    .iui-tile-metadata:not(:last-child) {
       width: calc(100% - #{$iui-xl});
     }
 
-    .iui-more-options {
+    .iui-tile-more-options {
       visibility: visible;
     }
 
@@ -61,8 +32,8 @@
   }
 
   &.iui-new {
-    .iui-name,
-    .iui-description {
+    .iui-tile-name,
+    .iui-tile-description {
       font-weight: $iui-font-weight-semibold;
     }
   }
@@ -87,25 +58,24 @@
     flex-direction: row;
     flex-wrap: nowrap;
 
-    > .iui-tile-thumbnail {
+    .iui-tile-thumbnail {
       height: $iui-baseline * 10;
       flex: 1;
       border-bottom: none;
-
       @include themed() {
         border-right: 1px solid t(iui-color-background-4);
       }
     }
 
-    > .iui-tile-content {
+    .iui-tile-content {
       flex: 2;
+    }
 
-      > .iui-description {
-        height: 100%;
-        max-height: $iui-baseline * 4;
-        margin-bottom: 0;
-        -webkit-line-clamp: 2;
-      }
+    .iui-tile-description {
+      height: 100%;
+      max-height: $iui-baseline * 4;
+      margin-bottom: 0;
+      -webkit-line-clamp: 2;
     }
   }
 }
@@ -118,44 +88,42 @@
   flex-grow: 2;
   min-width: 0;
 
-  > .iui-name {
+  .iui-tile-name {
     display: flex;
     flex-shrink: 0;
     align-items: center;
     font-size: $iui-font-size-leading;
     user-select: all;
     margin-bottom: $iui-baseline * 0.5;
-
     @include themed() {
       color: t(iui-text-color);
     }
-
-    .iui-tile-status-icon {
-      @include iui-icons-default;
-      margin-right: $iui-s;
-      flex-shrink: 0;
-    }
-
-    > .iui-name-label {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
   }
 
-  > .iui-description {
+  .iui-tile-status-icon {
+    @include iui-icons-default;
+    margin-right: $iui-s;
+    flex-shrink: 0;
+  }
+
+  .iui-tile-name-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .iui-tile-description {
     margin-bottom: $iui-baseline;
     font-size: $iui-font-size;
     height: 100%;
     max-height: $iui-baseline * 6;
-
     @include iui-line-clamp(3);
     @include themed() {
       color: t(iui-text-color-muted);
     }
   }
 
-  > .iui-metadata {
+  .iui-tile-metadata {
     font-size: $iui-font-size-small;
     flex-shrink: 0;
     overflow: hidden;
@@ -165,13 +133,12 @@
     display: flex;
     align-items: center;
     margin-top: auto;
-
     @include themed() {
       color: t(iui-text-color-muted);
     }
 
     > svg,
-    .iui-metadata-icon {
+    .iui-tile-metadata-icon {
       @include iui-icons-default;
       margin-right: $iui-s;
       flex-shrink: 0;
@@ -184,7 +151,7 @@
     }
   }
 
-  > .iui-more-options {
+  .iui-tile-more-options {
     @include iui-button-size(small, borderless);
     position: absolute;
     bottom: $iui-baseline * 0.5;
@@ -206,7 +173,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   @include themed() {
     background-color: t(iui-color-background-1-overlay);
     border-bottom: 1px solid t(iui-color-background-4);
@@ -220,13 +186,12 @@
 @mixin iui-tile-thumbnail-picture {
   width: 100%;
   height: 100%;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed ease;
-  }
   position: absolute;
   top: 0;
   left: 0;
-
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed ease;
+  }
   @at-root {
     div#{&} {
       background-position: center;
