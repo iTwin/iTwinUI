@@ -5,8 +5,6 @@
 @import '../button/button';
 
 @mixin iui-carousel {
-  display: flex;
-  flex-direction: column-reverse;
   overflow: hidden;
   @include iui-focus($offset: 4px);
   border-radius: $iui-border-radius;
@@ -26,6 +24,12 @@
     flex-shrink: 0;
     box-sizing: border-box;
   }
+
+  ~ .iui-carousel-navigation {
+    @include themed {
+      border-top: $iui-xxs solid t(iui-color-background-4);
+    }
+  }
 }
 
 @mixin iui-carousel-navigation {
@@ -33,17 +37,15 @@
   align-items: center;
   height: $iui-baseline * 3;
   box-sizing: border-box;
-  @include themed {
-    border-top: $iui-xxs solid t(iui-color-background-4);
-  }
 
   &-dots,
   &-left,
   &-right {
     display: flex;
+    align-items: center;
     flex: 1;
 
-    button[data-pressed="true"] {
+    button[data-pressed='true'] {
       outline: 1px solid var(--iui-color-foreground-primary);
       outline-offset: -1px;
     }
@@ -112,10 +114,8 @@
     }
   }
 
-  &-animation-button {
-    order: 1;
-
-    &[data-pressed="true"] {
+  &-animation-button[data-pressed='true'] {
+    @include themed {
       outline: 1px solid var(--iui-color-foreground-primary);
     }
   }
