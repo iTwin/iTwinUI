@@ -9,12 +9,16 @@
     @include iui-input-container-label;
   }
 
-  .iui-message-icon {
-    @include iui-message-icon;
+  .iui-input-icon {
+    @include iui-input-icon;
   }
 
   .iui-message {
     @include iui-input-message;
+  }
+
+  &.iui-inline-icon > .iui-input-icon {
+    @include iui-input-icon-inline;
   }
 
   &.iui-inline-label {
@@ -38,8 +42,8 @@
   @include iui-input;
 }
 
-.iui-select-content {
-  @include iui-select-content;
+.iui-select {
+  @include iui-select;
 }
 
 .iui-textarea {
@@ -50,8 +54,8 @@
   @include iui-input-with-icon;
 }
 
-.iui-input-icon {
-  @include iui-input-icon;
+.iui-end-icon {
+  @include iui-end-icon;
 }
 
 .iui-checkbox {

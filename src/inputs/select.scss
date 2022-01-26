@@ -3,7 +3,7 @@
 @import '../style/index';
 @import '../menu/index';
 
-@mixin iui-select-content {
+@mixin iui-select {
   @include iui-reset;
   display: flex;
   align-items: center;
@@ -11,17 +11,12 @@
   position: relative;
   overflow: hidden;
   border: none;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
+  font: inherit;
   padding-left: 12px;
 
   @include themed {
     color: t(iui-text-color);
   }
-  width: 100%;
-  min-width: 0;
 
   .iui-icon {
     @include iui-menu-icon;

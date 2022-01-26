@@ -13,14 +13,10 @@
     'label label'
     'inputs inputs' / auto 1fr;
 
-  &.iui-inline-icon:not(.iui-inline-label) > .iui-message-icon {
-    grid-area: inputs;
-    margin: 0 $iui-sm 0 0;
-    justify-self: end;
-    position: relative;
+  &.iui-inline-icon:not(.iui-inline-label) > .iui-input-icon {
     // stylelint-disable -- fix position in IE
-    -ms-grid-row: 1;
-    -ms-grid-column: 3;
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
     // stylelint-enable
   }
 
@@ -33,15 +29,6 @@
         padding-right: $iui-sm;
       }
     }
-
-    > .iui-message-icon {
-      grid-area: inputs;
-      margin: 0 $iui-sm 0 0;
-      // stylelint-disable -- fix position in IE
-      -ms-grid-row: 1;
-      -ms-grid-column: 3;
-      // stylelint-enable
-    }
   }
 
   &.iui-with-message {
@@ -51,7 +38,7 @@
       'icon message' / auto 1fr;
 
     // add margin to the icon if it is below input
-    &:not(.iui-inline-icon) > .iui-message-icon {
+    &:not(.iui-inline-icon) > .iui-input-icon {
       margin-top: $iui-component-offset;
     }
   }
@@ -106,19 +93,7 @@
       // stylelint-enable
     }
 
-    .iui-message-icon {
-      grid-area: icon;
-      justify-self: end;
-      position: relative;
-      // stylelint-disable -- fix position in IE
-      -ms-grid-row: 1;
-      -ms-grid-column: 3;
-      // stylelint-enable
-    }
-
-    &.iui-inline-icon > .iui-message-icon {
-      grid-area: inputs;
-      margin: 0 $iui-sm 0 0;
+    .iui-input-icon {
       // stylelint-disable -- fix position in IE
       -ms-grid-row: 1;
       -ms-grid-column: 3;
@@ -130,8 +105,7 @@
         'label inputs inputs'
         '. icon message' / auto auto 1fr;
 
-      &:not(.iui-inline-icon) > .iui-message-icon {
-        grid-area: icon;
+      &:not(.iui-inline-icon) > .iui-input-icon {
         // stylelint-disable -- fix position in IE
         -ms-grid-row: 2;
         -ms-grid-column: 2;
@@ -247,7 +221,7 @@
 }
 
 /// Icon to be shown near a message.
-@mixin iui-message-icon {
+@mixin iui-input-icon {
   display: flex;
   grid-area: icon;
   width: $iui-icons-default;
@@ -263,15 +237,11 @@
 }
 
 /// Modifier on iui-input-icon to place it at the end of input.
-@mixin iui-input-icon {
-  display: flex;
-  width: $iui-icons-default;
-  height: $iui-icons-default;
-  align-self: center;
-
-  @include themed {
-    fill: t(iui-icons-color);
-  }
+@mixin iui-input-icon-inline {
+  // stylelint-disable -- fix position in IE
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  // stylelint-enable
 
   grid-area: inputs;
   justify-self: end;
@@ -291,12 +261,16 @@
     height: 90%;
     margin-right: 1px;
     padding: 0 $iui-sm;
+    cursor: pointer;
 
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
     svg {
       width: $iui-icons-default;
       height: $iui-icons-default;
+      @include themed {
+        fill: t(iui-icons-color);
+      }
       transition: transform $iui-speed-fast ease-out;
     }
 
@@ -308,9 +282,9 @@
 
 /// Mixin for applying status colors to input container.
 /// @arg status - must be one of: positive, negative, warning
-/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-message-icon
+/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon
 /// @arg textSelector - selector to apply text color on. Defaults to .iui-message
-@mixin iui-input-status($status, $iconSelector: '.iui-message-icon', $textSelector: '.iui-message') {
+@mixin iui-input-status($status, $iconSelector: '.iui-input-icon', $textSelector: '.iui-message') {
   *::selection {
     @include themed {
       background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
