@@ -427,12 +427,16 @@
         // previous / next slide buttons
         let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
         const goPrevSlide = () => {
+          stopAutoPlay();
           currentSlide = (currentSlide - 1 + slides.length) % slides.length;
           updateSlide(currentSlide);
+          if (document.querySelector('[data-action="pause"]')) startAutoPlay();
         };
         const goNextSlide = () => {
+          stopAutoPlay();
           currentSlide = (currentSlide + 1) % slides.length;
           updateSlide(currentSlide);
+          if (document.querySelector('[data-action="pause"]')) startAutoPlay();
         }
         prev.addEventListener('click', () => goPrevSlide());
         next.addEventListener('click', () => goNextSlide());
@@ -452,7 +456,8 @@
         const TIME_PER_SLIDE = 5000; // in ms
         const startAutoPlay = () => {
           autoplayTimer = setInterval(() => {
-            goNextSlide();
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide(currentSlide);
           }, TIME_PER_SLIDE)
         };
         const stopAutoPlay = () => {
