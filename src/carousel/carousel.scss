@@ -24,12 +24,6 @@
     flex-shrink: 0;
     box-sizing: border-box;
   }
-
-  ~ .iui-carousel-navigation {
-    @include themed {
-      border-top: $iui-xxs solid t(iui-color-background-4);
-    }
-  }
 }
 
 @mixin iui-carousel-navigation {
@@ -37,6 +31,9 @@
   align-items: center;
   height: $iui-baseline * 3;
   box-sizing: border-box;
+  @include themed {
+    border-top: $iui-xxs solid t(iui-color-background-4);
+  }
 
   &-dots,
   &-left,
@@ -46,8 +43,10 @@
     flex: 1;
 
     button[data-pressed='true'] {
-      outline: 1px solid var(--iui-color-foreground-primary);
       outline-offset: -1px;
+      @include themed {
+        outline: 1px solid t(iui-color-foreground-primary);
+      }
     }
   }
 
@@ -116,7 +115,7 @@
 
   &-animation-button[data-pressed='true'] {
     @include themed {
-      outline: 1px solid var(--iui-color-foreground-primary);
+      outline: 1px solid t(iui-color-foreground-primary);
     }
   }
 
