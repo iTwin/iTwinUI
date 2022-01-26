@@ -322,6 +322,16 @@
   .iui-input,
   .iui-input-with-icon,
   .iui-textarea {
+    padding-bottom: $iui-component-padding-vertical - 1px;
+
+    &.iui-small {
+      padding-bottom: $iui-component-padding-vertical-small - 1px;
+    }
+
+    &.iui-large {
+      padding-bottom: $iui-component-padding-vertical-large - 1px;
+    }
+
     @include themed {
       border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
     }
