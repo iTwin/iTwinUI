@@ -13,6 +13,17 @@
     'label label'
     'inputs inputs' / auto 1fr;
 
+  &.iui-inline-icon:not(.iui-inline-label) > .iui-message-icon {
+    grid-area: inputs;
+    margin: 0 $iui-sm 0 0;
+    justify-self: end;
+    position: relative;
+    // stylelint-disable -- fix position in IE
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    // stylelint-enable
+  }
+
   &.iui-inline-icon {
     > .iui-input,
     > .iui-textarea {
@@ -21,6 +32,14 @@
       &:last-child {
         padding-right: $iui-sm;
       }
+    }
+    > .iui-message-icon {
+      grid-area: inputs;
+      margin: 0 $iui-sm 0 0;
+      // stylelint-disable -- fix position in IE
+      -ms-grid-row: 1;
+      -ms-grid-column: 3;
+      // stylelint-enable
     }
   }
 
@@ -86,10 +105,37 @@
       // stylelint-enable
     }
 
+    .iui-message-icon {
+      grid-area: icon;
+      justify-self: end;
+      position: relative;
+      // stylelint-disable -- fix position in IE
+      -ms-grid-row: 1;
+      -ms-grid-column: 3;
+      // stylelint-enable
+    }
+
+    &.iui-inline-icon > .iui-message-icon {
+      grid-area: inputs;
+      margin: 0 $iui-sm 0 0;
+      // stylelint-disable -- fix position in IE
+      -ms-grid-row: 1;
+      -ms-grid-column: 3;
+      // stylelint-enable
+    }
+
     &.iui-with-message {
       grid-template:
         'label inputs inputs'
         '. icon message' / auto auto 1fr;
+
+      &:not(.iui-inline-icon) > .iui-message-icon {
+        grid-area: icon;
+        // stylelint-disable -- fix position in IE
+        -ms-grid-row: 2;
+        -ms-grid-column: 2;
+        // stylelint-enable
+      }
 
       .iui-message {
         // stylelint-disable -- fix position in IE
@@ -225,10 +271,6 @@
   @include themed {
     fill: t(iui-icons-color);
   }
-  // stylelint-disable -- fix position in IE
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-  // stylelint-enable
 
   grid-area: inputs;
   justify-self: end;
