@@ -82,6 +82,7 @@
         aria-label="Introduction to iTwinUI"
         aria-live="off"
         aria-atomic="true"
+        tabindex="0"
       >
         <nav class="iui-carousel-navigation">
           <div class="iui-carousel-navigation-left">
@@ -89,8 +90,8 @@
               class="iui-button iui-borderless iui-small iui-carousel-navigation-animation-button"
               type="button"
               aria-label="Pause animation"
-              aria-pressed="true"
-              data-action="play"
+              data-action="pause"
+              tabindex="-1"
             >
               <svg-pause
                 class="iui-button-icon"
@@ -116,7 +117,6 @@
             role="tablist"
             aria-controls="myCarousel-items"
             aria-label="Slides"
-            tabindex="0"
             id="test-2"
           >
             <li>
@@ -426,16 +426,16 @@
 
         // previous / next slide buttons
         let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
-
-        prev.addEventListener('click', () => {
+        const goPrevSlide = () => {
           currentSlide = (currentSlide - 1 + slides.length) % slides.length;
           updateSlide(currentSlide);
-        });
-
-        next.addEventListener('click', () => {
+        };
+        const goNextSlide = () => {
           currentSlide = (currentSlide + 1) % slides.length;
           updateSlide(currentSlide);
-        });
+        }
+        prev.addEventListener('click', () => goPrevSlide());
+        next.addEventListener('click', () => goNextSlide());
 
         // clickable dots
         dots.forEach((dot, index) => {
@@ -447,22 +447,75 @@
           }
         });
 
+        // autoplay timers
+        let autoplayTimer;
+        const TIME_PER_SLIDE = 5000; // in ms
+        const startAutoPlay = () => {
+          autoplayTimer = setInterval(() => {
+            goNextSlide();
+          }, TIME_PER_SLIDE)
+        };
+        const stopAutoPlay = () => {
+          clearInterval(autoplayTimer);
+        };
+
         // play / pause toggle
-        const playbackButton = document.querySelector("[data-action='play']");
-        playbackButton.addEventListener('click', () => {
+        const playbackButton = document.querySelector("[data-action='pause']");
+        const togglePlaybackState = () => {
           if (playbackButton.dataset.action === 'play') {
+            startAutoPlay();
             playbackButton.dataset.action = 'pause';
-            playbackButton.setAttribute('aria-pressed', 'false');
-            playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
-          } else {
-            playbackButton.dataset.action = 'play';
-            playbackButton.setAttribute('aria-pressed', 'true');
+            playbackButton.ariaLabel = 'Pause animation';
             playbackButton.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
+          } else {
+            stopAutoPlay();
+            playbackButton.dataset.action = 'play';
+            playbackButton.ariaLabel = 'Play animation';
+            playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
           }
-        });
+        };
+        playbackButton.addEventListener('click', () => togglePlaybackState());
 
         // initialize
         updateSlide(0);
+        startAutoPlay();
+
+        // keyboard shit
+        carousel.addEventListener('keydown', ({ key }) => {
+          if (document.activeElement !== carousel) return;
+
+          switch (key) {
+            case 'Enter':
+            case ' ':
+              playbackButton.dataset.pressed = 'true';
+              break;
+            case 'ArrowLeft':
+              prev.dataset.pressed = 'true';
+              break;
+            case 'ArrowRight':
+              next.dataset.pressed = 'true';
+              break;
+          }
+        });
+        carousel.addEventListener('keyup', ({ key }) => {
+          if (document.activeElement !== carousel) return;
+
+          switch (key) {
+            case 'Enter':
+            case ' ':
+              playbackButton.removeAttribute('data-pressed');
+              togglePlaybackState();
+              break;
+            case 'ArrowLeft':
+              prev.removeAttribute('data-pressed');
+              goPrevSlide();
+              break;
+            case 'ArrowRight':
+              next.removeAttribute('data-pressed');
+              goNextSlide();
+              break;
+          }
+        });
       });
 
     </script>

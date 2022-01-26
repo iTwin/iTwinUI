@@ -8,6 +8,8 @@
   display: flex;
   flex-direction: column-reverse;
   overflow: hidden;
+  @include iui-focus($offset: 4px);
+  border-radius: $iui-border-radius;
 }
 
 @mixin iui-carousel-slider {
@@ -40,6 +42,11 @@
   &-right {
     display: flex;
     flex: 1;
+
+    button[data-pressed="true"] {
+      outline: 1px solid var(--iui-color-foreground-primary);
+      outline-offset: -1px;
+    }
   }
 
   &-dots {
@@ -76,7 +83,7 @@
       border-radius: 50%;
       transition: background-color $iui-speed-fast ease;
       @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast ease, transform $iui-speed-fast ease;
+        transition: background-color $iui-speed-fast $iui-speed ease, transform $iui-speed ease;
       }
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
@@ -107,6 +114,10 @@
 
   &-animation-button {
     order: 1;
+
+    &[data-pressed="true"] {
+      outline: 1px solid var(--iui-color-foreground-primary);
+    }
   }
 
   &-right {
