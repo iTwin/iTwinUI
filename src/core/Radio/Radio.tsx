@@ -80,7 +80,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           style={checkmarkStyle}
         >
           <svg viewBox='0 0 16 16' aria-hidden='true' focusable='false'>
-            <circle cx='8' cy='8' r='6' />
+            <circle cx='8' cy='8' r='4' />
           </svg>
         </span>
         {label && <span className='iui-label'>{label}</span>}

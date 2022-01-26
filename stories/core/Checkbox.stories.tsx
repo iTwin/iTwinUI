@@ -17,12 +17,13 @@ export default {
 } as Meta<CheckboxProps>;
 
 export const Basic: Story<CheckboxProps> = (args) => {
-  const { label = 'Basic Checkbox', ...rest } = args;
-  return <Checkbox label={label} {...rest} />;
+  const { label = 'Basic Checkbox', defaultChecked = true, ...rest } = args;
+  return <Checkbox label={label} defaultChecked={defaultChecked} {...rest} />;
 };
 
 Basic.args = {
   label: 'Basic Checkbox',
+  defaultChecked: true,
 };
 
 export const Disabled: Story<CheckboxProps> = (args) => {

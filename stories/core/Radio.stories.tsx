@@ -16,12 +16,13 @@ export default {
 } as Meta<RadioProps>;
 
 export const Basic: Story<RadioProps> = (args) => {
-  const { label = 'Choose me!', ...rest } = args;
-  return <Radio label={label} {...rest} />;
+  const { label = 'Choose me!', defaultChecked = true, ...rest } = args;
+  return <Radio label={label} defaultChecked={defaultChecked} {...rest} />;
 };
 
 Basic.args = {
   label: 'Choose me!',
+  defaultChecked: true,
 };
 
 export const Disabled: Story<RadioProps> = (args) => {
