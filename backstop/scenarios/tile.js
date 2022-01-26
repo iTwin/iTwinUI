@@ -51,7 +51,7 @@ module.exports = [
 
   //// More Options hover
   scenario('State More Options hover', {
-    actions: [hover('#test-tile-1 .iui-more-options')],
+    actions: [hover('#test-tile-1 .iui-tile-more-options')],
     selectors: ['#test-tile-1'],
     misMatchThreshold: 0.1,
   }),
@@ -105,7 +105,7 @@ module.exports = [
 
   //// More Options focus
   scenario('State More Options focus', {
-    actions: [focus('#test-tile-1 .iui-more-options')],
+    actions: [focus('#test-tile-1 .iui-tile-more-options')],
     selectors: ['#test-tile-1'],
   }),
 

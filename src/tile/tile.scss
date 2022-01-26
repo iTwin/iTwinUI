@@ -301,6 +301,7 @@
     &:hover {
       @include themed() {
         border-top: 1px solid t(iui-color-background-4);
+        border-color: t(iui-color-background-4);
       }
     }
   }
