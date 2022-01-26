@@ -375,11 +375,14 @@
             <div class="iui-input-with-icon">
               <div
                 tabindex="0"
-                class="iui-select-content"
+                class="iui-select"
               >
                 <span class="iui-content">Administrator</span>
               </div>
-              <span class="iui-input-icon iui-actionable">
+              <span
+                class="iui-end-icon iui-actionable"
+                aria-hidden="true"
+              >
                 <svg
                   viewBox="0 0 16 16"
                   xmlns="http://www.w3.org/2000/svg"
@@ -717,7 +720,7 @@
         <div class="iui-input-with-icon iui-small">
           <div
             tabindex="0"
-            class="iui-select-content iui-active"
+            class="iui-select iui-active"
           >
             <svg-placeholder
               class="iui-icon"
@@ -725,7 +728,10 @@
             ></svg-placeholder>
             <span class="iui-content">Alpha</span>
           </div>
-          <span class="iui-input-icon iui-actionable">
+          <span
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          >
             <svg
               viewBox="0 0 16 16"
               xmlns="http://www.w3.org/2000/svg"
@@ -736,89 +742,89 @@
               ></path>
             </svg>
           </span>
-          <ul
-            class="iui-menu"
-            role="menu"
-          >
-            <li
-              class="iui-menu-item iui-large iui-active"
-              aria-checked="true"
-              tabindex="0"
-            >
-              <svg-placeholder
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-placeholder>
-              <span class="iui-content">
-                <div class="iui-menu-label">Alpha</div>
-                <div class="iui-menu-description">Lorem ipsum</div>
-              </span>
-              <svg-checkmark
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-checkmark>
-            </li>
-            <li
-              class="iui-menu-item iui-large"
-              tabindex="0"
-            >
-              <svg-placeholder
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-placeholder>
-              <span class="iui-content">
-                <div class="iui-menu-label">Beta</div>
-                <div class="iui-menu-description">Lorem ipsum</div>
-              </span>
-              <svg-caret-right-small
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-caret-right-small>
-            </li>
-            <li
-              class="iui-menu-item iui-large"
-              tabindex="0"
-            >
-              <svg-placeholder
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-placeholder>
-              <span class="iui-content">
-                <div class="iui-menu-label">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor
-                  incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex
-                  ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                  fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                  deserunt
-                  mollit anim id est laborum.</div>
-                <div class="iui-menu-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                  voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </span>
-              <svg-caret-right-small
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-caret-right-small>
-            </li>
-            <li
-              class="iui-menu-divider"
-              role="separator"
-            ></li>
-            <li
-              class="iui-menu-item"
-              tabindex="0"
-            >
-              <span class="iui-content">
-                <div class="iui-menu-label">My projects</div>
-              </span>
-            </li>
-          </ul>
         </div>
+        <ul
+          class="iui-menu"
+          role="menu"
+        >
+          <li
+            class="iui-menu-item iui-large iui-active"
+            aria-checked="true"
+            tabindex="0"
+          >
+            <svg-placeholder
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-placeholder>
+            <span class="iui-content">
+              <div class="iui-menu-label">Alpha</div>
+              <div class="iui-menu-description">Lorem ipsum</div>
+            </span>
+            <svg-checkmark
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-checkmark>
+          </li>
+          <li
+            class="iui-menu-item iui-large"
+            tabindex="0"
+          >
+            <svg-placeholder
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-placeholder>
+            <span class="iui-content">
+              <div class="iui-menu-label">Beta</div>
+              <div class="iui-menu-description">Lorem ipsum</div>
+            </span>
+            <svg-caret-right-small
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-caret-right-small>
+          </li>
+          <li
+            class="iui-menu-item iui-large"
+            tabindex="0"
+          >
+            <svg-placeholder
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-placeholder>
+            <span class="iui-content">
+              <div class="iui-menu-label">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor
+                incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex
+                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt
+                mollit anim id est laborum.</div>
+              <div class="iui-menu-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            </span>
+            <svg-caret-right-small
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-caret-right-small>
+          </li>
+          <li
+            class="iui-menu-divider"
+            role="separator"
+          ></li>
+          <li
+            class="iui-menu-item"
+            tabindex="0"
+          >
+            <span class="iui-content">
+              <div class="iui-menu-label">My projects</div>
+            </span>
+          </li>
+        </ul>
       </label>
       <br />
 
@@ -827,7 +833,7 @@
         <div class="iui-input-with-icon">
           <div
             tabindex="0"
-            class="iui-select-content iui-active"
+            class="iui-select iui-active"
           >
             <svg-placeholder
               class="iui-icon"
@@ -835,7 +841,10 @@
             ></svg-placeholder>
             <span class="iui-content">Alpha</span>
           </div>
-          <span class="iui-input-icon iui-actionable">
+          <span
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          >
             <svg
               viewBox="0 0 16 16"
               xmlns="http://www.w3.org/2000/svg"
@@ -937,7 +946,7 @@
         <div class="iui-input-with-icon iui-large">
           <div
             tabindex="0"
-            class="iui-select-content iui-active"
+            class="iui-select iui-active"
           >
             <svg-placeholder
               class="iui-icon"
@@ -945,7 +954,10 @@
             ></svg-placeholder>
             <span class="iui-content">Alpha</span>
           </div>
-          <span class="iui-input-icon iui-actionable">
+          <span
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          >
             <svg
               viewBox="0 0 16 16"
               xmlns="http://www.w3.org/2000/svg"
@@ -956,89 +968,89 @@
               ></path>
             </svg>
           </span>
-          <ul
-            class="iui-menu"
-            role="menu"
-          >
-            <li
-              class="iui-menu-item iui-large iui-active"
-              aria-checked="true"
-              tabindex="0"
-            >
-              <svg-placeholder
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-placeholder>
-              <span class="iui-content">
-                <div class="iui-menu-label">Alpha</div>
-                <div class="iui-menu-description">Lorem ipsum</div>
-              </span>
-              <svg-checkmark
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-checkmark>
-            </li>
-            <li
-              class="iui-menu-item iui-large"
-              tabindex="0"
-            >
-              <svg-placeholder
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-placeholder>
-              <span class="iui-content">
-                <div class="iui-menu-label">Beta</div>
-                <div class="iui-menu-description">Lorem ipsum</div>
-              </span>
-              <svg-caret-right-small
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-caret-right-small>
-            </li>
-            <li
-              class="iui-menu-item iui-large"
-              tabindex="0"
-            >
-              <svg-placeholder
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-placeholder>
-              <span class="iui-content">
-                <div class="iui-menu-label">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor
-                  incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex
-                  ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                  fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                  deserunt
-                  mollit anim id est laborum.</div>
-                <div class="iui-menu-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                  voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </span>
-              <svg-caret-right-small
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-caret-right-small>
-            </li>
-            <li
-              class="iui-menu-divider"
-              role="separator"
-            ></li>
-            <li
-              class="iui-menu-item"
-              tabindex="0"
-            >
-              <span class="iui-content">
-                <div class="iui-menu-label">My projects</div>
-              </span>
-            </li>
-          </ul>
         </div>
+        <ul
+          class="iui-menu"
+          role="menu"
+        >
+          <li
+            class="iui-menu-item iui-large iui-active"
+            aria-checked="true"
+            tabindex="0"
+          >
+            <svg-placeholder
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-placeholder>
+            <span class="iui-content">
+              <div class="iui-menu-label">Alpha</div>
+              <div class="iui-menu-description">Lorem ipsum</div>
+            </span>
+            <svg-checkmark
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-checkmark>
+          </li>
+          <li
+            class="iui-menu-item iui-large"
+            tabindex="0"
+          >
+            <svg-placeholder
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-placeholder>
+            <span class="iui-content">
+              <div class="iui-menu-label">Beta</div>
+              <div class="iui-menu-description">Lorem ipsum</div>
+            </span>
+            <svg-caret-right-small
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-caret-right-small>
+          </li>
+          <li
+            class="iui-menu-item iui-large"
+            tabindex="0"
+          >
+            <svg-placeholder
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-placeholder>
+            <span class="iui-content">
+              <div class="iui-menu-label">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor
+                incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex
+                ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt
+                mollit anim id est laborum.</div>
+              <div class="iui-menu-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            </span>
+            <svg-caret-right-small
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-caret-right-small>
+          </li>
+          <li
+            class="iui-menu-divider"
+            role="separator"
+          ></li>
+          <li
+            class="iui-menu-item"
+            tabindex="0"
+          >
+            <span class="iui-content">
+              <div class="iui-menu-label">My projects</div>
+            </span>
+          </li>
+        </ul>
       </label>
 
     </section>
