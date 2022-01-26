@@ -44,6 +44,8 @@
 
   &-dots {
     @include iui-reset;
+    @include iui-focus;
+    border-radius: $iui-border-radius;
     white-space: nowrap;
     overflow: hidden;
     justify-content: center;
@@ -64,23 +66,6 @@
 
     &.iui-invisible {
       display: none;
-    }
-
-    &:focus {
-      outline: none;
-
-      &::after {
-        @include themed {
-          outline: 1px solid t(iui-color-foreground-primary);
-          outline-offset: 1px;
-        }
-      }
-    }
-
-    &:focus:not(:focus-visible)::after {
-      @include themed {
-        outline: none;
-      }
     }
 
     &::after {
