@@ -2,10 +2,9 @@
 
 ### [0.44.2](https://www.github.com/iTwin/iTwinUI/compare/v0.44.1...v0.44.2) (2022-01-26)
 
-
 ### Fixes
 
-* **Tree:** Fix tree focus ([#456](https://www.github.com/iTwin/iTwinUI/issues/456)) ([da02613](https://www.github.com/iTwin/iTwinUI/commit/da026138bc3eca1d550ff52aa151d13480a3ff01))
+* **Tree:** Fix tree node focus ([#456](https://www.github.com/iTwin/iTwinUI/issues/456)) ([da02613](https://www.github.com/iTwin/iTwinUI/commit/da026138bc3eca1d550ff52aa151d13480a3ff01))
 
 ### [0.44.1](https://www.github.com/iTwin/iTwinUI/compare/v0.44.0...v0.44.1) (2022-01-24)
 
