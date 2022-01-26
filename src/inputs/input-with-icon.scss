@@ -1,0 +1,106 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import "./input.scss";
+
+// Mixin to have inputs combined with icon (eg. select)
+@mixin iui-input-with-icon {
+  @include iui-input;
+  display: grid;
+  grid-template: 'input icon' / 1fr auto;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  position: relative;
+  width: 100%;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: border-color $iui-speed-fast ease-out;
+  }
+
+  &:hover {
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
+
+    &::after {
+      border-bottom: none;
+      @include themed {
+        border-top: $iui-after-border t(iui-icons-color-actionable-hover);
+      }
+    }
+  }
+
+  &.iui-active {
+    &::after {
+      border-top: none;
+      @include themed {
+        border-bottom: $iui-after-border t(iui-icons-color-actionable);
+      }
+    }
+
+    &:hover::after {
+      @include themed {
+        border-bottom: $iui-after-border t(iui-icons-color-actionable-hover);
+      }
+    }
+  }
+
+  &.iui-disabled {
+    @include themed {
+      background-color: t(iui-color-background-disabled);
+      border-color: t(iui-color-background-disabled);
+    }
+
+    .iui-end-icon {
+      cursor: not-allowed;
+
+      &,
+      &:hover {
+        @include themed {
+          background: t(iui-color-background-disabled);
+          fill: t(iui-icons-color-actionable-disabled);
+        }
+      }
+    }
+  }
+}
+
+@mixin iui-end-icon {
+  grid-area: icon;
+  display: flex;
+  width: $iui-icons-default;
+  height: $iui-icons-default;
+  @include themed {
+    fill: t(iui-icons-color);
+  }
+
+  justify-self: end;
+  margin: 0 $iui-sm 0 0;
+  position: relative;
+
+  &.iui-button {
+    height: 100%;
+    width: fit-content;
+    margin-right: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.iui-actionable {
+    align-items: center;
+    height: 90%;
+    margin-right: 1px;
+    padding: 0 $iui-sm;
+    @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
+
+    svg {
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+      transition: transform $iui-speed-fast ease-out;
+    }
+
+    &.iui-open svg {
+      transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
+    }
+  }
+}
