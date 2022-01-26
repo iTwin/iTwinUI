@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.29.3](https://www.github.com/iTwin/iTwinUI-react/compare/v1.29.2...v1.29.3) (2022-01-26)
+
+### Fixes
+
+* **Radio:** Fix radio dot size ([#525](https://www.github.com/iTwin/iTwinUI-react/issues/525)) ([8d952b9](https://www.github.com/iTwin/iTwinUI-react/commit/8d952b91dc83d21881f7ecca323cab55f5403d90))
+
 ### [1.29.2](https://www.github.com/iTwin/iTwinUI-react/compare/v1.29.1...v1.29.2) (2022-01-24)
 
 ### Fixes
