@@ -13,15 +13,15 @@
     display: flex;
     position: relative;
 
-    &:hover {
-      z-index: 1;
-    }
-
     &:focus-within {
       z-index: 2;
     }
 
     > * {
+      &:hover {
+        z-index: 1;
+      }
+
       &:disabled,
       &[aria-disabled='true'] {
         z-index: -1;
