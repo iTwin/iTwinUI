@@ -113,12 +113,6 @@
     }
   }
 
-  &-animation-button[data-pressed='true'] {
-    @include themed {
-      outline: 1px solid t(iui-color-foreground-primary);
-    }
-  }
-
   &-right {
     justify-content: flex-end;
   }
