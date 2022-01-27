@@ -7,33 +7,32 @@
   align-items: center;
   isolation: isolate;
 
-  $childSelector: 'input, button'; // target nested inputs and buttons
-
+  
   .iui-button-group-item {
     display: flex;
     position: relative;
-
+    
     &:focus-within {
       z-index: 2;
     }
-
+    
     > * {
       &:hover {
         z-index: 1;
       }
-
+      
       &:disabled,
       &[aria-disabled='true'] {
         z-index: -1;
       }
-
+      
       transition-duration: 0ms; // disable exit animation to avoid border flicker
-
+      
       &:hover,
       &:focus {
         transition-duration: $iui-speed-fast; // re-enable enter animation
       }
-
+      
       // Adds stripe above active button
       &.iui-active {
         &::after {
@@ -48,7 +47,7 @@
             background-color: t(iui-color-foreground-primary);
           }
         }
-
+        
         &:disabled {
           &::after {
             @include themed {
@@ -58,22 +57,24 @@
         }
       }
     }
+    
+    $childSelector: 'input, button'; // target nested inputs and buttons
 
     // Reset border radius only for non-borderless items
-    #{$childSelector}:not(.iui-borderless) {
+    :is(#{$childSelector}):not(.iui-borderless) {
       border-radius: 0;
     }
-
+    
     // Add rounded corners to first and last items
     &:first-child {
-      #{$childSelector}:not(.iui-borderless) {
+      :is(#{$childSelector}):not(.iui-borderless) {
         border-top-left-radius: $iui-border-radius;
         border-bottom-left-radius: $iui-border-radius;
       }
     }
-
+    
     &:last-child {
-      #{$childSelector}:not(.iui-borderless) {
+      :is(#{$childSelector}):not(.iui-borderless) {
         border-top-right-radius: $iui-border-radius;
         border-bottom-right-radius: $iui-border-radius;
       }
