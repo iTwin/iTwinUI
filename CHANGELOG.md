@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.44.3](https://www.github.com/iTwin/iTwinUI/compare/v0.44.2...v0.44.3) (2022-01-27)
+
+
+### Fixes
+
+* **Table:** Zebra row selector change ([#458](https://www.github.com/iTwin/iTwinUI/issues/458)) ([0761392](https://www.github.com/iTwin/iTwinUI/commit/0761392582e737406dc6f2243e4a4d5a22ce781d))
+
 ### [0.44.2](https://www.github.com/iTwin/iTwinUI/compare/v0.44.1...v0.44.2) (2022-01-26)
 
 ### Fixes
