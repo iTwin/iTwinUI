@@ -57,27 +57,32 @@
       }
     }
 
-    $childSelector: 'input, button'; // target nested inputs and buttons
+    // #region Borders
+    $childSelector: 'input, .iui-button';
 
-    // Reset border radius only for non-borderless items
-    :is(#{$childSelector}):not(.iui-borderless) {
+    #{$childSelector} {
       border-radius: 0;
     }
 
-    // Add rounded corners to first and last items
     &:first-child {
-      :is(#{$childSelector}):not(.iui-borderless) {
+      #{$childSelector} {
         border-top-left-radius: $iui-border-radius;
         border-bottom-left-radius: $iui-border-radius;
       }
     }
 
     &:last-child {
-      :is(#{$childSelector}):not(.iui-borderless) {
+      #{$childSelector} {
         border-top-right-radius: $iui-border-radius;
         border-bottom-right-radius: $iui-border-radius;
       }
     }
+
+    // Revert border radius for borderless items
+    .iui-borderless {
+      border-radius: $iui-border-radius;
+    }
+    // #endregion
 
     // Use negative margin to make adjacent borders overlap
     + * {
