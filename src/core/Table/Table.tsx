@@ -47,6 +47,7 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/resizeHandler';
+import VirtualScroll from '../utils/components/VirtualScroll';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const tableResizeStartAction = 'tableResizeStart';
@@ -218,6 +219,15 @@ export type TableProps<
    * @default 'default'
    */
   styleType?: 'default' | 'zebra-rows';
+  /**
+   * Virtualization is used for the scrollable table body.
+   * Height on the table is required for virtualization to work.
+   * @example
+   * <Table enableVirtualization style={{height: 400}} {...} />
+   * @default false
+   * @beta
+   */
+  enableVirtualization?: boolean;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -300,6 +310,7 @@ export const Table = <
     pageSize = 25,
     isResizable = false,
     styleType = 'default',
+    enableVirtualization = false,
     ...rest
   } = props;
 
@@ -535,6 +546,48 @@ export const Table = <
   const headerRef = React.useRef<HTMLDivElement>(null);
   const bodyRef = React.useRef<HTMLDivElement>(null);
 
+  const getPreparedRow = React.useCallback(
+    (row: Row<T>) => {
+      prepareRow(row);
+      return (
+        <TableRowMemoized
+          row={row}
+          rowProps={rowProps}
+          isLast={row.index === data.length - 1}
+          onRowInViewport={onRowInViewportRef}
+          onBottomReached={onBottomReachedRef}
+          intersectionMargin={intersectionMargin}
+          state={state}
+          key={row.getRowProps().key}
+          onClick={onRowClickHandler}
+          subComponent={subComponent}
+          isDisabled={!!isRowDisabled?.(row.original)}
+          tableHasSubRows={hasAnySubRows}
+          tableInstance={instance}
+          expanderCell={expanderCell}
+        />
+      );
+    },
+    [
+      data.length,
+      expanderCell,
+      hasAnySubRows,
+      instance,
+      intersectionMargin,
+      isRowDisabled,
+      onRowClickHandler,
+      prepareRow,
+      rowProps,
+      state,
+      subComponent,
+    ],
+  );
+
+  const virtualizedItemRenderer = React.useCallback(
+    (index: number) => getPreparedRow(page[index]),
+    [getPreparedRow, page],
+  );
+
   return (
     <>
       <div
@@ -640,6 +693,7 @@ export const Table = <
             className: cx('iui-table-body', {
               'iui-zebra-striping': styleType === 'zebra-rows',
             }),
+            style: { outline: 0 },
           })}
           ref={bodyRef}
           onScroll={() => {
@@ -647,31 +701,22 @@ export const Table = <
               headerRef.current.scrollLeft = bodyRef.current.scrollLeft;
             }
           }}
+          tabIndex={-1}
         >
-          {data.length !== 0 &&
-            page.map((row: Row<T>) => {
-              prepareRow(row);
-              return (
-                <TableRowMemoized
-                  row={row}
-                  rowProps={rowProps}
-                  isLast={row.index === data.length - 1}
-                  onRowInViewport={onRowInViewportRef}
-                  onBottomReached={onBottomReachedRef}
-                  intersectionMargin={intersectionMargin}
-                  state={state}
-                  key={row.getRowProps().key}
-                  onClick={onRowClickHandler}
-                  subComponent={subComponent}
-                  isDisabled={!!isRowDisabled?.(row.original)}
-                  tableHasSubRows={hasAnySubRows}
-                  tableInstance={instance}
-                  expanderCell={expanderCell}
+          {data.length !== 0 && (
+            <>
+              {enableVirtualization ? (
+                <VirtualScroll
+                  itemsLength={page.length}
+                  itemRenderer={virtualizedItemRenderer}
                 />
-              );
-            })}
+              ) : (
+                page.map((row: Row<T>) => getPreparedRow(row))
+              )}
+            </>
+          )}
           {isLoading && data.length === 0 && (
-            <div className={'iui-table-empty'}>
+            <div className='iui-table-empty'>
               <ProgressRadial indeterminate={true} />
             </div>
           )}
@@ -687,14 +732,14 @@ export const Table = <
             </div>
           )}
           {!isLoading && data.length === 0 && !areFiltersSet && (
-            <div className={'iui-table-empty'}>
+            <div className='iui-table-empty'>
               <div>{emptyTableContent}</div>
             </div>
           )}
           {!isLoading &&
             (data.length === 0 || filteredFlatRows.length === 0) &&
             areFiltersSet && (
-              <div className={'iui-table-empty'}>
+              <div className='iui-table-empty'>
                 <div>{emptyFilteredTableContent}</div>
               </div>
             )}

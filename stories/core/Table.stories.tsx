@@ -82,7 +82,16 @@ export default {
     manualExpandedKey: { table: { disable: true } },
   },
   parameters: {
-    creevey: { skip: { stories: ['Lazy Loading', 'Row In Viewport'] } },
+    creevey: {
+      skip: {
+        stories: [
+          'Lazy Loading',
+          'Row In Viewport',
+          'Virtualized',
+          'Virtualized Sub Rows',
+        ],
+      },
+    },
   },
 } as Meta<TableProps> & CreeveyMeta;
 
@@ -847,11 +856,13 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
 
   return (
     <Table
+      enableVirtualization
       columns={columns}
       emptyTableContent='No data.'
       onBottomReached={onBottomReached}
       isLoading={isLoading}
       {...args}
+      style={{ height: 440, maxHeight: '90vh' }}
       data={data}
     />
   );
@@ -2117,3 +2128,144 @@ HorizontalScroll.decorators = [
     </div>
   ),
 ];
+
+export const Virtualized: Story<Partial<TableProps>> = (args) => {
+  const onClickHandler = (
+    props: CellProps<{ name: string; description: string }>,
+  ) => action(props.row.original.name)();
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+          },
+          {
+            id: 'description',
+            Header: 'Description',
+            accessor: 'description',
+          },
+          {
+            id: 'click-me',
+            Header: 'Click',
+            width: 100,
+            Cell: (props: CellProps<{ name: string; description: string }>) => {
+              const onClick = () => onClickHandler(props);
+              return (
+                <a className='iui-anchor' onClick={onClick}>
+                  Click me!
+                </a>
+              );
+            },
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const data = useMemo(() => {
+    const size = 100000;
+    const arr = new Array(size);
+    for (let i = 0; i < size; ++i) {
+      arr[i] = {
+        name: `Name${i}`,
+        description: `Description${i}`,
+      };
+    }
+    return arr;
+  }, []);
+
+  return (
+    <Table
+      enableVirtualization
+      columns={columns}
+      emptyTableContent='No data.'
+      {...args}
+      style={{ maxHeight: '90vh' }}
+      data={data}
+    />
+  );
+};
+
+Virtualized.argTypes = {
+  isLoading: { control: { disable: true } },
+  data: { control: { disable: true } },
+};
+
+export const VirtualizedSubRows: Story<Partial<TableProps>> = (args) => {
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            Filter: tableFilters.TextFilter(),
+          },
+          {
+            id: 'description',
+            Header: 'Description',
+            accessor: 'description',
+            maxWidth: 200,
+            Filter: tableFilters.TextFilter(),
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  type TableStoryDataType = {
+    name: string;
+    description: string;
+    subRows: TableStoryDataType[];
+  };
+
+  const generateItem = useCallback(
+    (index: number, parentRow = '', depth = 0): TableStoryDataType => {
+      const keyValue = parentRow ? `${parentRow}.${index}` : `${index}`;
+      return {
+        name: `Name ${keyValue}`,
+        description: `Description ${keyValue}`,
+        subRows:
+          depth < 2
+            ? Array(Math.round(index % 5))
+                .fill(null)
+                .map((_, index) => generateItem(index, keyValue, depth + 1))
+            : [],
+      };
+    },
+    [],
+  );
+
+  const data = useMemo(
+    () =>
+      Array(10000)
+        .fill(null)
+        .map((_, index) => generateItem(index)),
+    [generateItem],
+  );
+
+  return (
+    <Table
+      enableVirtualization
+      columns={columns}
+      emptyTableContent='No data.'
+      {...args}
+      style={{ maxHeight: '90vh' }}
+      data={data}
+    />
+  );
+};
+
+VirtualizedSubRows.argTypes = {
+  isLoading: { control: { disable: true } },
+  data: { control: { disable: true } },
+};

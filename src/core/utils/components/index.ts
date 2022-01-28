@@ -8,3 +8,4 @@ export * from './InputContainer';
 export * from './icons';
 export * from './WithCSSTransition';
 export * from './MiddleTextTruncation';
+export * from './VirtualScroll';
