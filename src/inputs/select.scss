@@ -5,14 +5,15 @@
 
 @mixin iui-select {
   @include iui-reset;
+  grid-area: input;
   display: flex;
   align-items: center;
   user-select: none;
   position: relative;
   overflow: hidden;
-  border: none;
   font: inherit;
   padding-left: 12px;
+  padding-right: $iui-icons-default + $iui-l;
 
   @include themed {
     color: t(iui-text-color);

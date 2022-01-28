@@ -10,7 +10,6 @@
   align-items: center;
   grid-template: 'input icon' / 1fr auto;
   vertical-align: baseline;
-  width: 100%;
   transition: border-color $iui-speed-fast ease-out;
   margin: 0;
   padding: 0;
@@ -43,15 +42,14 @@
 
 @mixin iui-end-icon {
   @include iui-input-icon-inline;
-  grid-area: icon;
+  grid-area: input;
   display: flex;
+  justify-self: end;
+  margin: 0 $iui-sm 0 0;
+  position: relative;
   width: $iui-icons-default;
   height: $iui-icons-default;
   @include themed {
     fill: t(iui-icons-color);
   }
-
-  justify-self: end;
-  margin: 0 $iui-sm 0 0;
-  position: relative;
 }
