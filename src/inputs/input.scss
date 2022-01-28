@@ -2,8 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-$iui-after-border: 5px solid;
-
 @mixin iui-input {
   @include iui-reset;
   @include iui-focus($offset: -2px, $thickness: 2px);
