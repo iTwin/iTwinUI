@@ -9,40 +9,15 @@
   display: grid;
   align-items: center;
   grid-template: 'input icon' / 1fr auto;
+  vertical-align: baseline;
+  width: 100%;
+  transition: border-color $iui-speed-fast ease-out;
   margin: 0;
   padding: 0;
-  vertical-align: baseline;
-  position: relative;
-  width: 100%;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: border-color $iui-speed-fast ease-out;
-  }
 
   &:hover {
     @include themed {
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-    }
-
-    &::after {
-      border-bottom: none;
-      @include themed {
-        border-top: $iui-after-border t(iui-icons-color-actionable-hover);
-      }
-    }
-  }
-
-  &.iui-active {
-    &::after {
-      border-top: none;
-      @include themed {
-        border-bottom: $iui-after-border t(iui-icons-color-actionable);
-      }
-    }
-
-    &:hover::after {
-      @include themed {
-        border-bottom: $iui-after-border t(iui-icons-color-actionable-hover);
-      }
     }
   }
 
