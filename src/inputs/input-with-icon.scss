@@ -7,59 +7,15 @@
 @mixin iui-input-with-icon {
   display: grid;
   align-items: center;
-  grid-template: 'input icon' / 1fr auto;
-  vertical-align: baseline;
-
-  &.iui-disabled {
-    :first-child {
-      @include themed {
-        background-color: t(iui-color-background-disabled);
-        border-color: t(iui-color-background-disabled);
-      }
-    }
-
-    .iui-end-icon {
-      cursor: not-allowed;
-
-      &,
-      &:hover {
-        @include themed {
-          background: t(iui-color-background-disabled);
-          fill: t(iui-icons-color-actionable-disabled);
-        }
-      }
-    }
-  }
-
-  &.iui-small > :first-child {
-    padding-top: $iui-component-padding-vertical-small;
-    padding-bottom: $iui-component-padding-vertical-small;
-    min-height: $iui-component-height-small;
-  }
-
-  &.iui-large > :first-child {
-    padding-top: $iui-component-padding-vertical-large;
-    padding-bottom: $iui-component-padding-vertical-large;
-    min-height: $iui-component-height-large;
-    font-size: $iui-font-size-leading;
-  }
 
   > :first-child {
-    grid-area: input;
+    grid-area: 1/1;
     padding-right: $iui-icons-default + $iui-l;
   }
 }
 
 @mixin iui-end-icon {
   @include iui-input-icon-inline;
-  grid-area: input;
   display: flex;
-  justify-self: end;
-  margin: 0 $iui-sm 0 0;
-  position: relative;
-  width: $iui-icons-default;
-  height: $iui-icons-default;
-  @include themed {
-    fill: t(iui-icons-color);
-  }
+  grid-area: 1/1;
 }

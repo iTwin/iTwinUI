@@ -248,6 +248,15 @@
   margin: 0 $iui-sm 0 0;
   position: relative;
 
+  svg {
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    @include themed {
+      fill: t(iui-icons-color);
+    }
+    transition: transform $iui-speed-fast ease-out;
+  }
+
   &.iui-button {
     height: 100%;
     width: fit-content;
@@ -265,17 +274,16 @@
 
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
-    svg {
-      width: $iui-icons-default;
-      height: $iui-icons-default;
-      @include themed {
-        fill: t(iui-icons-color);
-      }
-      transition: transform $iui-speed-fast ease-out;
-    }
-
     &.iui-open svg {
       transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
+    }
+  }
+
+  &.iui-disabled {
+    svg {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
+      }
     }
   }
 }
