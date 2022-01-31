@@ -5,25 +5,17 @@
 
 // Mixin to have inputs combined with icon (eg. select)
 @mixin iui-input-with-icon {
-  @include iui-input;
   display: grid;
   align-items: center;
   grid-template: 'input icon' / 1fr auto;
   vertical-align: baseline;
-  transition: border-color $iui-speed-fast ease-out;
-  margin: 0;
-  padding: 0;
-
-  &:hover {
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-    }
-  }
 
   &.iui-disabled {
-    @include themed {
-      background-color: t(iui-color-background-disabled);
-      border-color: t(iui-color-background-disabled);
+    :first-child {
+      @include themed {
+        background-color: t(iui-color-background-disabled);
+        border-color: t(iui-color-background-disabled);
+      }
     }
 
     .iui-end-icon {
@@ -37,6 +29,24 @@
         }
       }
     }
+  }
+
+  &.iui-small > :first-child {
+    padding-top: $iui-component-padding-vertical-small;
+    padding-bottom: $iui-component-padding-vertical-small;
+    min-height: $iui-component-height-small;
+  }
+
+  &.iui-large > :first-child {
+    padding-top: $iui-component-padding-vertical-large;
+    padding-bottom: $iui-component-padding-vertical-large;
+    min-height: $iui-component-height-large;
+    font-size: $iui-font-size-leading;
+  }
+
+  > :first-child {
+    grid-area: input;
+    padding-right: $iui-icons-default + $iui-l;
   }
 }
 
