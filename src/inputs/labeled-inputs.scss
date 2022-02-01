@@ -333,15 +333,27 @@
   .iui-input,
   .iui-input-with-icon > :first-child,
   .iui-textarea {
-    padding-bottom: $iui-xs;
-    @include themed {
-      border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
+    border-bottom: transparent;
+
+    ::after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: block;
+      height: $iui-xxs;
+      opacity: 1;
+      width: 100%;
+      @include themed {
+        background-color: t(iui-color-foreground-#{$status});
+      }
     }
 
     &:focus {
       @include themed {
-        outline: 2px solid t(iui-color-foreground-#{$status});
-        outline-offset: -2px;
+        outline: $iui-xxs solid t(iui-color-foreground-#{$status});
+        outline-offset: -$iui-xxs;
       }
     }
   }
