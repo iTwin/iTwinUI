@@ -265,6 +265,14 @@
     border-bottom-left-radius: 0;
   }
 
+  &.iui-disabled {
+    svg {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
+      }
+    }
+  }
+
   &.iui-actionable {
     align-items: center;
     height: 90%;
@@ -276,14 +284,6 @@
 
     &.iui-open svg {
       transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
-    }
-  }
-
-  &.iui-disabled {
-    svg {
-      @include themed {
-        fill: t(iui-icons-color-actionable-disabled);
-      }
     }
   }
 }
@@ -330,13 +330,13 @@
   .iui-input,
   .iui-input-with-icon > :first-child,
   .iui-textarea {
+    padding-bottom: $iui-xs;
     @include themed {
       border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
     }
 
     &:focus {
       @include themed {
-        border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
         outline: 2px solid t(iui-color-foreground-#{$status});
         outline-offset: -2px;
       }
