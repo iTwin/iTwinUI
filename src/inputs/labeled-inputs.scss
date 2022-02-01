@@ -331,8 +331,31 @@
   }
 
   .iui-input,
-  .iui-input-with-icon > :first-child,
   .iui-textarea {
+    padding-bottom: $iui-component-padding-vertical - 1px;
+
+    &.iui-small {
+      padding-bottom: $iui-component-padding-vertical-small - 1px;
+    }
+
+    &.iui-large {
+      padding-bottom: $iui-component-padding-vertical-large - 1px;
+    }
+
+    @include themed {
+      border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
+    }
+
+    &:focus {
+      @include themed {
+        border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
+        outline: 2px solid t(iui-color-foreground-#{$status});
+        outline-offset: -2px;
+      }
+    }
+  }
+
+  .iui-select-button {
     border-bottom: transparent;
 
     ::after {
