@@ -6,6 +6,38 @@
   @include iui-page-header;
 }
 
+.iui-page-header-left {
+  @include iui-page-header-left;
+}
+
+.iui-page-header-center {
+  @include iui-page-header-center;
+}
+
+.iui-page-header-right {
+  @include iui-page-header-right;
+}
+
 .iui-header-logo {
   @include iui-header-logo;
+}
+
+.iui-header-button-icon {
+  @include iui-header-button-icon;
+}
+
+.iui-header-button.iui-header-button {
+  @include iui-header-button;
+}
+
+.iui-header-split-button {
+  @include iui-header-split-button;
+}
+
+.iui-header-divider {
+  @include iui-header-divider;
+}
+
+.iui-header-chevron {
+  @include iui-header-chevron;
 }
