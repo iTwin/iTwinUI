@@ -4,7 +4,6 @@
 @import '../menu/index';
 
 @mixin iui-select-button {
-  @include iui-focus($offset: -2px, $thickness: 2px);
   width: 100%;
   margin: 0;
   border-radius: $iui-border-radius;
@@ -23,6 +22,15 @@
     color: t(iui-text-color);
     background-color: t(iui-color-background-1);
     border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+  }
+
+  @include iui-focus($offset: -2px, $thickness: 2px);
+
+  &:focus-within {
+    @include themed {
+      outline: 2px solid t(iui-color-foreground-primary);
+      outline-offset: -2px;
+    }
   }
 
   &.iui-small {
