@@ -124,12 +124,6 @@
           }
         }
       }
-
-      &:hover:enabled ~ .iui-toggle {
-        @include themed {
-          border-color: t(iui-color-background-primary);
-        }
-      }
     }
 
     // Focused or hovered toggle switch
