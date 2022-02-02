@@ -8,6 +8,8 @@
   isolation: isolate;
 
   .iui-button-group-item {
+    $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
+
     display: flex;
     position: relative;
 
@@ -20,8 +22,7 @@
         z-index: 1;
       }
 
-      &:disabled,
-      &[aria-disabled='true'] {
+      #{$disabledSelector} {
         z-index: -1;
       }
 
@@ -47,7 +48,7 @@
           }
         }
 
-        &:disabled {
+        #{$disabledSelector} {
           &::after {
             @include themed {
               background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
