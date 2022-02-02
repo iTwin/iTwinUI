@@ -171,8 +171,6 @@
       }
 
       ~ .iui-label {
-        cursor: not-allowed;
-
         @include themed {
           color: t(iui-text-color-muted);
         }
