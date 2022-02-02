@@ -13,6 +13,15 @@
     grid-area: 1/1;
     padding-right: $iui-icons-default + $iui-l;
   }
+
+  &:focus-within {
+    .iui-select-button {
+      @include themed {
+        outline: 2px solid t(iui-color-foreground-primary);
+        outline-offset: -2px;
+      }
+    }
+  }
 }
 
 @mixin iui-end-icon {
