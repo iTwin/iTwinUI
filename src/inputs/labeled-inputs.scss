@@ -360,16 +360,13 @@
   .iui-select-button {
     border-bottom: transparent;
 
-    ::after {
+    &::after {
       content: '';
       width: 100%;
       position: absolute;
       bottom: 0;
       left: 0;
-      display: block;
       height: $iui-xxs;
-      opacity: 1;
-      width: 100%;
       @include themed {
         background-color: t(iui-color-foreground-#{$status});
       }
