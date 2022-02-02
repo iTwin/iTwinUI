@@ -1,0 +1,529 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Carousel | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <style>
+      section[id^='demo'] {
+        margin-bottom: 22px;
+        padding: 11px;
+      }
+
+      /* These dimensions equal 16.9 ratio */
+      .demo-carousel-width {
+        width: 600px;
+      }
+
+      .demo-carousel-height {
+        height: 337.5px;
+      }
+
+      /* Slide gradients */
+      [data-slide-id="0"] { background: linear-gradient(to right, #e65c00, #f9d423); text-align: center; vertical-align: middle; line-height: 337.5px; }
+      [data-slide-id="1"] { background: linear-gradient(to right, #2193b0, #6dd5ed); }
+      [data-slide-id="2"] { background: linear-gradient(to right, #cc2b5e, #753a88); }
+      [data-slide-id="3"] { background: linear-gradient(to right, #00467f, #a5cc82); }
+      [data-slide-id="4"] { background: linear-gradient(to right, #ec008c, #fc6767); }
+      [data-slide-id="5"] { background: linear-gradient(to right, #1488cc, #2b32b2); }
+      [data-slide-id="6"] { background: linear-gradient(to right, #bbd2c5, #536976); }
+      [data-slide-id="7"] { background: linear-gradient(to right, #9796f0, #fbc7d4); }
+      [data-slide-id="8"] { background: linear-gradient(to right, #b79891, #94716b); }
+      [data-slide-id="9"] { background: linear-gradient(to right, #acb6e5, #86fde8); }
+      [data-slide-id="10"] { background: linear-gradient(to right, #ffe000, #799f0c); }
+
+    </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-left"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/pause"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/play"
+    ></script>
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Carousel</h1>
+    <hr />
+
+    <h2>Default</h2>
+    <section id="demo-default">
+
+      <div
+        class="iui-carousel demo-carousel-width"
+        aria-roledescription="carousel"
+        aria-label="Introduction to iTwinUI"
+        aria-live="off"
+        aria-atomic="true"
+        tabindex="0"
+        id="test-2"
+      >
+        <ol
+          class="iui-carousel-slider demo-carousel-height"
+          id="myCarousel-items"
+        >
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height iui-current"
+            data-slide-id="0"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="1 of 11"
+            aria-hidden="false"
+            id="demo-slide-1"
+          >
+            <a
+              href="#"
+              class="iui-anchor"
+              style="padding: 11px 12px; background-color: var(--iui-color-background-1);"
+            >Focus will target the navigation before slide content.</a>
+          </li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="1"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="2 of 11"
+            aria-hidden="true"
+            id="demo-slide-2"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="2"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="3 of 11"
+            aria-hidden="true"
+            id="demo-slide-3"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="3"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="4 of 11"
+            aria-hidden="true"
+            id="demo-slide-4"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="4"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="5 of 11"
+            aria-hidden="true"
+            id="demo-slide-5"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="5"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="6 of 11"
+            aria-hidden="true"
+            id="demo-slide-6"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="6"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="7 of 11"
+            aria-hidden="true"
+            id="demo-slide-7"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="7"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="8 of 11"
+            aria-hidden="true"
+            id="demo-slide-8"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="8"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="9 of 11"
+            aria-hidden="true"
+            id="demo-slide-9"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="9"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="10 of 11"
+            aria-hidden="true"
+            id="demo-slide-10"
+          ></li>
+
+          <li
+            class="iui-carousel-slider-item demo-carousel-height"
+            data-slide-id="10"
+            role="tabpanel"
+            aria-roledescription="slide"
+            aria-label="11 of 11"
+            aria-hidden="true"
+            id="demo-slide-11"
+          ></li>
+
+        </ol>
+        <nav class="iui-carousel-navigation">
+          <div class="iui-carousel-navigation-left">
+            <button
+              class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+              type="button"
+              aria-controls="myCarousel-items"
+              aria-label="Previous slide"
+              tabindex="-1"
+            >
+              <svg-chevron-left
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-left>
+            </button>
+            <button
+              class="iui-button iui-borderless iui-small iui-carousel-navigation-animation-button"
+              type="button"
+              aria-label="Pause animation"
+              data-action="pause"
+              tabindex="-1"
+            >
+              <svg-pause
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-pause>
+            </button>
+          </div>
+
+          <ol
+            class="iui-carousel-navigation-dots"
+            role="tablist"
+            aria-label="Slides"
+          >
+            <li>
+              <button
+                class="iui-carousel-navigation-dot iui-active"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="0"
+                aria-label="Slide 1 (Current slide)"
+                aria-selected="true"
+                aria-controls="demo-slide-1"
+              ></button>
+            </li>
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="1"
+                aria-label="Slide 2"
+                aria-selected="false"
+                aria-controls="demo-slide-2"
+                id="test-1"
+              ></button>
+            </li>
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="2"
+                aria-label="Slide 3"
+                aria-selected="false"
+                aria-controls="demo-slide-3"
+              ></button>
+            </li>
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="3"
+                aria-label="Slide 4"
+                aria-selected="false"
+                aria-controls="demo-slide-4"
+              ></button>
+            </li>
+
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="4"
+                aria-label="Slide 5"
+                aria-selected="false"
+                aria-controls="demo-slide-5"
+              ></button>
+            </li>
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="5"
+                aria-label="Slide 6"
+                aria-selected="false"
+                aria-controls="demo-slide-6"
+              ></button>
+            </li>
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="6"
+                aria-label="Slide 7"
+                aria-selected="false"
+                aria-controls="demo-slide-7"
+              ></button>
+            </li>
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="7"
+                aria-label="Slide 8"
+                aria-selected="false"
+                aria-controls="demo-slide-8"
+              ></button>
+            </li>
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="8"
+                aria-label="Slide 9"
+                aria-selected="false"
+                aria-controls="demo-slide-9"
+              ></button>
+            </li>
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="9"
+                aria-label="Slide 10"
+                aria-selected="false"
+                aria-controls="demo-slide-10"
+              ></button>
+            </li>
+
+            <li>
+              <button
+                class="iui-carousel-navigation-dot"
+                tabindex="-1"
+                type="button"
+                role="tab"
+                data-slide="10"
+                aria-label="Slide 11"
+                aria-selected="false"
+                aria-controls="demo-slide-11"
+              ></button>
+            </li>
+          </ol>
+
+          <div class="iui-carousel-navigation-right">
+            <button
+              class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+              type="button"
+              aria-controls="myCarousel-items"
+              aria-label="Next slide"
+              tabindex="-1"
+            >
+              <svg-chevron-right
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-right>
+            </button>
+          </div>
+        </nav>
+      </div>
+
+    </section>
+
+    <script>
+      const MAX_DOTS = 5;
+
+      document.querySelectorAll('.iui-carousel').forEach((carousel) => {
+        const slides = [...carousel.querySelectorAll('.iui-carousel-slider-item')];
+        const dots = [...carousel.querySelectorAll('.iui-carousel-navigation-dot')];
+        const [prev, next] = [...carousel.querySelectorAll('.iui-carousel-navigation-button')];
+        const slider = carousel.querySelector('.iui-carousel-slider');
+
+        const updateSlide = (current) => {
+          slider.style.transform = `translateX(-${(current * 100)}%)`;
+
+          const firstDotIndex = Math.max(0, Math.min(current - parseInt(MAX_DOTS / 2), dots.length - MAX_DOTS));
+          const lastDotIndex = Math.min(dots.length - 1, Math.max(current + parseInt(MAX_DOTS / 2), MAX_DOTS - 1));
+
+          dots.forEach((dot, index) => {
+            dot.classList.toggle('iui-active', index === current);
+            dot.classList.toggle('iui-invisible', index < firstDotIndex || index > lastDotIndex);
+
+            const isFirstSmallDot = (index === firstDotIndex && index !== 0) || (index === lastDotIndex && index !== dots.length - 1);
+            const isSecondSmallDot = (index === firstDotIndex + 1 && index !== 1) || (index === lastDotIndex - 1 && index !== dots.length - 2);
+
+            dot.classList.toggle('iui-first', isFirstSmallDot);
+            dot.classList.toggle('iui-second', isSecondSmallDot);
+          })
+        };
+
+        // previous / next slide buttons
+        let currentSlide = slides.findIndex(slide => slide.classList.contains('iui-current'));
+        const goPrevSlide = () => {
+          stopAutoPlay();
+          currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+          updateSlide(currentSlide);
+          if (document.querySelector('[data-action="pause"]')) startAutoPlay();
+        };
+        const goNextSlide = () => {
+          stopAutoPlay();
+          currentSlide = (currentSlide + 1) % slides.length;
+          updateSlide(currentSlide);
+          if (document.querySelector('[data-action="pause"]')) startAutoPlay();
+        }
+        prev.addEventListener('click', () => goPrevSlide());
+        next.addEventListener('click', () => goNextSlide());
+
+        // clickable dots
+        dots.forEach((dot, index) => {
+          if (!dot.classList.contains('iui-invisible')) {
+            dot.addEventListener('click', () => {
+              currentSlide = index;
+              updateSlide(currentSlide);
+            });
+          }
+        });
+
+        // autoplay timers
+        let autoplayTimer;
+        const TIME_PER_SLIDE = 5000; // in ms
+        const startAutoPlay = () => {
+          autoplayTimer = setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide(currentSlide);
+          }, TIME_PER_SLIDE)
+        };
+        const stopAutoPlay = () => {
+          clearInterval(autoplayTimer);
+        };
+
+        // play / pause toggle
+        const playbackButton = document.querySelector("[data-action='pause']");
+        const togglePlaybackState = () => {
+          if (playbackButton.dataset.action === 'play') {
+            startAutoPlay();
+            playbackButton.dataset.action = 'pause';
+            playbackButton.ariaLabel = 'Pause animation';
+            playbackButton.innerHTML = `<svg-pause class="iui-button-icon" aria-hidden="true"></svg-pause>`;
+          } else {
+            stopAutoPlay();
+            playbackButton.dataset.action = 'play';
+            playbackButton.ariaLabel = 'Play animation';
+            playbackButton.innerHTML = `<svg-play class="iui-button-icon" aria-hidden="true"></svg-play>`;
+          }
+        };
+        playbackButton.addEventListener('click', () => togglePlaybackState());
+
+        // initialize
+        updateSlide(0);
+        startAutoPlay();
+
+        // keyboard shit
+        carousel.addEventListener('keydown', ({ key }) => {
+          if (document.activeElement !== carousel) return;
+
+          switch (key) {
+            case 'Enter':
+            case ' ':
+              playbackButton.dataset.pressed = 'true';
+              break;
+            case 'ArrowLeft':
+              prev.dataset.pressed = 'true';
+              break;
+            case 'ArrowRight':
+              next.dataset.pressed = 'true';
+              break;
+          }
+        });
+        carousel.addEventListener('keyup', ({ key }) => {
+          if (document.activeElement !== carousel) return;
+
+          switch (key) {
+            case 'Enter':
+            case ' ':
+              playbackButton.removeAttribute('data-pressed');
+              togglePlaybackState();
+              break;
+            case 'ArrowLeft':
+              prev.removeAttribute('data-pressed');
+              goPrevSlide();
+              break;
+            case 'ArrowRight':
+              next.removeAttribute('data-pressed');
+              goNextSlide();
+              break;
+          }
+        });
+      });
+
+    </script>
+
+  </body>
+</html>
