@@ -283,6 +283,8 @@
   }
 
   &.iui-disabled {
+    cursor: not-allowed;
+
     svg {
       @include themed {
         fill: t(iui-icons-color-actionable-disabled);
