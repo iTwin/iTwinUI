@@ -284,6 +284,7 @@
 
   &.iui-disabled {
     cursor: not-allowed;
+    pointer-events: none;
 
     svg {
       @include themed {
@@ -359,6 +360,7 @@
 
   .iui-select-button {
     border-bottom: transparent;
+    --_focus-color: var(--iui-color-foreground-#{$status});
 
     &::after {
       content: '';
@@ -369,13 +371,6 @@
       height: $iui-xxs;
       @include themed {
         background-color: t(iui-color-foreground-#{$status});
-      }
-    }
-
-    &:focus {
-      @include themed {
-        outline: $iui-xxs solid t(iui-color-foreground-#{$status});
-        outline-offset: -$iui-xxs;
       }
     }
   }

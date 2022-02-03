@@ -10,28 +10,20 @@
   cursor: pointer;
 
   > :first-child {
-    grid-area: 1/-1;
+    grid-area: 1 / -1;
     padding-right: $iui-icons-default + $iui-l;
   }
 
   &:focus-within {
-    .iui-select-button {
-      @include themed {
-        outline: 2px solid t(iui-color-foreground-primary);
-        outline-offset: -2px;
-      }
+    > :first-child {
+      outline: 2px solid var(--_focus-color, var(--iui-color-foreground-primary));
+      outline-offset: -2px;
     }
   }
 
   &:hover {
-    :first-child {
-      &:not(.iui-disabled) {
-        @include themed {
-          border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-        }
-
-        transition: border-color $iui-speed-fast ease-out;
-      }
+    > :first-child {
+      border-color: var(--_hover-color, rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2)));
     }
   }
 }
@@ -39,9 +31,5 @@
 @mixin iui-end-icon {
   @include iui-input-icon-inline;
   display: flex;
-  grid-area: 1/-1;
-
-  &.iui-actionable:hover {
-    background: transparent;
-  }
+  grid-area: 1 / -1;
 }
