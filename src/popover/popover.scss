@@ -1,0 +1,10 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+
+// tippy.js helper class to hide Popover when it is scrolled out of view
+@mixin iui-popover {
+  &[data-popper-reference-hidden] {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
