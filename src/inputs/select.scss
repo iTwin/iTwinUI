@@ -38,15 +38,6 @@
     font-size: $iui-font-size-leading;
   }
 
-  &:hover {
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-    }
-    @media (prefers-reduced-motion: no-preference) {
-      transition: border-color $iui-speed-fast ease-out;
-    }
-  }
-
   &.iui-disabled {
     @include themed {
       background-color: t(iui-color-background-disabled);
@@ -57,6 +48,7 @@
 
   .iui-icon {
     @include iui-menu-icon;
+    fill: currentColor;
   }
 
   .iui-content {
@@ -68,10 +60,6 @@
   &.iui-placeholder {
     @include themed {
       color: t(iui-text-color-placeholder);
-    }
-
-    .iui-icon {
-      fill: currentColor;
     }
   }
 }
