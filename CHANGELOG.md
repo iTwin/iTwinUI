@@ -7,7 +7,6 @@
 * **Carousel:** Added carousel component ([#377](https://www.github.com/iTwin/iTwinUI/issues/377)) ([4ed38b9](https://www.github.com/iTwin/iTwinUI/commit/4ed38b9b0657b446602d58b2bca594bec85924de))
 * **Tile:** Reduced nesting ([#431](https://www.github.com/iTwin/iTwinUI/issues/431)) ([a2fc0d5](https://www.github.com/iTwin/iTwinUI/commit/a2fc0d59a6bb02fa86b65f0739cc88762aa214f6))
 
-
 ### Fixes
 
 * **Popover:** Added helper class ([#464](https://www.github.com/iTwin/iTwinUI/issues/464)) ([b147c61](https://www.github.com/iTwin/iTwinUI/commit/b147c6133c3f31ed4bb7b0a10c92c19b5d2cec20))
