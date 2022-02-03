@@ -3,7 +3,7 @@
 
 // tippy.js helper class to hide Popover when it is scrolled out of view
 @mixin iui-popover {
-  &[data-popper-reference-hidden] {
+  &[data-reference-hidden] {
     visibility: hidden;
     pointer-events: none;
   }
