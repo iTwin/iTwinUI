@@ -358,9 +358,13 @@
     }
   }
 
+  .iui-input-with-icon {
+    --_hover-color: var(--iui-color-foreground-#{$status});
+    --_focus-color: var(--iui-color-foreground-#{$status});
+  }
+
   .iui-select-button {
     border-bottom: transparent;
-    --_focus-color: var(--iui-color-foreground-#{$status});
 
     &::after {
       content: '';
