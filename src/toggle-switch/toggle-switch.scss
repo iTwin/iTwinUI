@@ -2,181 +2,156 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
+$toggle-switch-height: $iui-baseline * 2;
+
 @mixin iui-toggle-switch {
   @include iui-reset;
-  display: flex;
+  display: grid;
+  grid-template: 'toggle';
+  grid-column-gap: $iui-s;
   align-items: center;
   font-size: $iui-font-size;
   width: fit-content;
-  padding: ($iui-baseline/2) 0;
+  padding: ($iui-baseline * 0.5) 0;
   user-select: none;
   cursor: pointer;
   position: relative;
+  isolation: isolate;
   @include themed {
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
 
   > input[type='checkbox'] {
-    width: 0;
-    height: 0;
+    @include iui-reset;
+    @include iui-focus($thickness: 1px, $offset: 1px);
+    grid-area: toggle;
+    display: inline-block;
+    flex-shrink: 0;
+    position: relative;
     appearance: none;
-    opacity: 0;
-    position: absolute;
+    width: $toggle-switch-height * 2 - $iui-xs;
+    height: $toggle-switch-height;
+    border-radius: $toggle-switch-height * 0.5;
+    cursor: pointer;
+    @include themed {
+      background-color: t(iui-color-background-1);
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    }
 
-    // Toggle switch
-    ~ .iui-toggle {
-      display: flex;
-      align-items: center;
-      position: relative;
-      height: $iui-baseline * 2;
-      width: ($iui-m * 2) + ($iui-xxs * 3) + $iui-xxs;
-      border-radius: $iui-baseline;
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      transition: border-color $iui-speed-fast ease-out;
+      border-radius: inherit;
+      border-style: solid;
+      border-width: 1px;
+      border-color: inherit;
+      box-sizing: border-box;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: $toggle-switch-height - ($iui-xxs * 3);
+      width: $toggle-switch-height - ($iui-xxs * 3);
+      aspect-ratio: 1 / 1;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
       @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast ease, border-color $iui-speed-fast ease;
-      }
-
-      > .iui-icon {
-        opacity: 0;
-        width: $iui-icons-small;
-        height: $iui-icons-small;
-        display: flex;
-        position: relative;
-        margin-left: $iui-xs + 1px;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: opacity $iui-speed-fast ease;
-        }
-        @include themed {
-          fill: t(iui-color-foreground-accessory);
-        }
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        transition: border-color $iui-speed-fast ease-out;
-        border-radius: inherit;
-        border-style: solid;
-        border-width: 1px;
-        border-color: inherit;
-        box-sizing: border-box;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        height: $iui-m;
-        width: $iui-m;
-        top: 50%;
-        transform: translateY(-50%);
-        border-radius: 50%;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: left $iui-speed-fast ease, background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
-        }
+        transition: left $iui-speed-fast ease, background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
       }
     }
 
     // Unchecked toggle switch
     &:not(:checked) {
-      ~ .iui-toggle {
-        @include themed {
-          background-color: t(iui-color-background-1);
-          border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-        }
+      @include themed {
+        background-color: t(iui-color-background-1);
+        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      }
 
-        &::after {
-          left: 3px;
-          @include themed {
-            background-color: t(iui-color-foreground-body);
-            opacity: t(iui-opacity-2);
-          }
+      &::after {
+        left: 3px;
+        @include themed {
+          background-color: t(iui-color-foreground-body);
+          opacity: t(iui-opacity-2);
         }
       }
 
-      &:hover:enabled ~ .iui-toggle,
-      &:focus ~ .iui-toggle {
+      &:hover:enabled,
+      &:focus {
         @include themed {
           border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+        }
+      }
+
+      &:focus:not(:focus-visible) {
+        @include themed {
+          border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
         }
       }
     }
 
     // Checked toggle switch
     &:checked {
-      ~ .iui-toggle {
+      @include themed {
+        background-color: t(iui-color-background-primary);
+        border-color: t(iui-color-background-primary);
+      }
+
+      &::after {
+        left: $iui-m + $iui-xs + 1px;
         @include themed {
-          background-color: t(iui-color-background-primary);
-          border-color: t(iui-color-background-primary);
+          background-color: t(iui-color-foreground-accessory);
+          opacity: t(iui-opacity-2);
         }
+      }
 
-        &::after {
-          left: $iui-m + $iui-xs + 1px;
-          @include themed {
-            background-color: t(iui-color-foreground-accessory);
-            opacity: t(iui-opacity-2);
-          }
-        }
-
-        > .iui-icon {
-          @include themed {
-            opacity: t(iui-opacity-1);
-          }
+      ~ .iui-toggle-switch-icon {
+        @include themed {
+          opacity: t(iui-opacity-1);
         }
       }
     }
 
     // Focused or hovered toggle switch
-    &:hover:enabled ~ .iui-toggle::after,
-    &:focus ~ .iui-toggle::after {
+    &:hover:enabled::after,
+    &:focus::after {
       @include themed {
         opacity: t(iui-opacity-1);
       }
     }
 
-    // Focused toggle switch
-    &:focus ~ .iui-toggle {
-      outline-offset: 1px;
+    &:focus:not(:focus-visible)::after {
       @include themed {
-        outline: 1px solid t(iui-color-foreground-primary);
+        opacity: t(iui-opacity-2);
       }
-    }
-
-    &:focus:not(:focus-visible) ~ .iui-toggle {
-      outline: none;
     }
 
     // Disabled toggle switch
     &:disabled {
-      ~ .iui-toggle {
-        cursor: not-allowed;
+      cursor: not-allowed;
+      @include themed {
+        background-color: t(iui-color-background-disabled);
+        border-color: t(iui-color-background-disabled);
+      }
+
+      &::after {
         @include themed {
-          background-color: t(iui-color-background-disabled);
-          border-color: t(iui-color-background-disabled);
-        }
-
-        &::after {
-          @include themed {
-            background-color: t(iui-color-foreground-body);
-            opacity: t(iui-opacity-5);
-          }
-        }
-
-        > .iui-icon {
-          @include themed {
-            fill: t(iui-icons-color-actionable);
-          }
-          opacity: 0;
+          background-color: t(iui-color-foreground-body);
+          opacity: t(iui-opacity-5);
         }
       }
 
-      ~ .iui-label {
+      ~ .iui-toggle-switch-icon {
+        opacity: 0;
         @include themed {
-          color: t(iui-text-color-muted);
+          fill: t(iui-icons-color-actionable);
         }
       }
 
-      &:checked ~ .iui-toggle > .iui-icon {
+      &:checked ~ .iui-toggle-switch-icon {
         @include themed {
           opacity: t(iui-opacity-5);
         }
@@ -184,19 +159,49 @@
     }
   }
 
-  // Disabled cursor
+  > .iui-toggle-switch-icon {
+    grid-area: toggle;
+    opacity: 0;
+    width: $iui-icons-small;
+    height: $iui-icons-small;
+    display: flex;
+    padding: 0 ($iui-xs + 1px);
+    z-index: 1;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: opacity $iui-speed-fast ease;
+    }
+    @include themed {
+      fill: t(iui-color-foreground-accessory);
+    }
+    @supports not (grid-area: toggle) {
+      position: absolute;
+    }
+  }
+
+  // Disabled
   &.iui-disabled {
     cursor: not-allowed;
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
   }
 
-  // For labels on the right
-  > .iui-label {
-    margin-right: $iui-s;
+  // Label positioning
+  &.iui-label-left {
+    grid-template: 'label toggle';
+    @supports not (grid-column-gap: $iui-s) {
+      > .iui-label {
+        margin-right: $iui-s;
+      }
+    }
   }
 
-  // For labels on the left
-  .iui-toggle ~ .iui-label {
-    margin-left: $iui-s;
-    margin-right: 0;
+  &.iui-label-right {
+    grid-template: 'toggle label';
+    @supports not (grid-column-gap: $iui-s) {
+      > .iui-label {
+        margin-left: $iui-s;
+      }
+    }
   }
 }
