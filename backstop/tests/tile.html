@@ -35,7 +35,7 @@
       }
 
       /* Set the thumbnail image */
-      div.iui-picture {
+      div.iui-tile-thumbnail-picture {
         background-image: url('../assets/image-test.jpg');
       }
 
@@ -115,11 +115,11 @@
         tabindex="0"
         id="test-tile-1"
       >
-        <div class="iui-thumbnail">
+        <div class="iui-tile-thumbnail">
           <button
             aria-label="Type indicator"
             type="button"
-            class="iui-button iui-borderless iui-small iui-type-indicator"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
           >
             <svg-placeholder
               class="iui-button-icon"
@@ -129,14 +129,14 @@
           <button
             aria-label="Favorited"
             type="button"
-            class="iui-button iui-borderless iui-active iui-small iui-quick-action"
+            class="iui-button iui-borderless iui-active iui-small iui-tile-thumbnail-quick-action"
           >
             <svg-star
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-star>
           </button>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(197, 71%, 83%);"
@@ -162,15 +162,15 @@
           ></svg-placeholder>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
             <svg-new
               class="iui-tile-status-icon iui-positive"
               aria-hidden="true"
             ></svg-new>
-            <span class="iui-name-label">Super long tile name that will truncate</span>
+            <span class="iui-tile-name-label">Super long tile name that will truncate</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -179,9 +179,9 @@
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             <svg-placeholder
-              class="iui-metadata-icon"
+              class="iui-tile-metadata-icon"
               aria-hidden="true"
             ></svg-placeholder>
             <div class="iui-tag-container">
@@ -209,7 +209,7 @@
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -230,12 +230,12 @@
         tabindex="0"
         id="test-tile-2"
       >
-        <div class="iui-thumbnail">
-          <div class="iui-picture"></div>
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture"></div>
           <button
             aria-label="Type indicator"
             type="button"
-            class="iui-button iui-borderless iui-small iui-type-indicator"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
           >
             <svg-placeholder
               class="iui-button-icon"
@@ -245,14 +245,14 @@
           <button
             aria-label="Favorited"
             type="button"
-            class="iui-button iui-borderless iui-active iui-small iui-quick-action"
+            class="iui-button iui-borderless iui-active iui-small iui-tile-thumbnail-quick-action"
           >
             <svg-star
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-star>
           </button>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(197, 71%, 83%);"
@@ -262,16 +262,16 @@
           </div>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Title</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Title</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             This tile uses a DIV with a background image & only has 1 button.
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             <svg-placeholder
-              class="iui-metadata-icon"
+              class="iui-tile-metadata-icon"
               aria-hidden="true"
             ></svg-placeholder>
             <span>Metadata</span>
@@ -280,7 +280,7 @@
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -304,18 +304,18 @@
         class="iui-tile"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
+        <div class="iui-tile-thumbnail">
           <button
             aria-label="Info"
             type="button"
-            class="iui-button iui-borderless iui-small iui-quick-action"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
           >
             <svg-info
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-info>
           </button>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(2, 90%, 83%);"
@@ -329,19 +329,19 @@
           ></svg-imodel-hollow>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Tile name</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Tile name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             Bentley Systems, Incorporated, is an American-based software
             development company that develops, manufactures, licenses, sells and
             supports computer software and services for the design,
             construction, and operation of infrastructure.
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             <svg-tag
-              class="iui-metadata-icon"
+              class="iui-tile-metadata-icon"
               aria-hidden="true"
             ></svg-tag>
             <div class="iui-tag-container">
@@ -354,7 +354,7 @@
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -369,19 +369,19 @@
         class="iui-tile"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
-          <div class="iui-picture"></div>
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture"></div>
           <button
             aria-label="Info"
             type="button"
-            class="iui-button iui-borderless iui-small iui-quick-action"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
           >
             <svg-info
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-info>
           </button>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(2, 90%, 83%);"
@@ -391,19 +391,19 @@
           </div>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Tile name</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Tile name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             Bentley Systems, Incorporated, is an American-based software
             development company that develops, manufactures, licenses, sells and
             supports computer software and services for the design,
             construction, and operation of infrastructure.
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             <svg-tag
-              class="iui-metadata-icon"
+              class="iui-tile-metadata-icon"
               aria-hidden="true"
             ></svg-tag>
             <div class="iui-tag-container">
@@ -416,7 +416,7 @@
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -431,19 +431,19 @@
         class="iui-tile iui-selected"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
-          <div class="iui-picture"></div>
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture"></div>
           <button
             aria-label="Info"
             type="button"
-            class="iui-button iui-borderless iui-small iui-quick-action"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
           >
             <svg-info
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-info>
           </button>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(2, 90%, 83%);"
@@ -453,23 +453,23 @@
           </div>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
             <svg-checkmark
               class="iui-tile-status-icon iui-informational"
               aria-hidden="true"
             ></svg-checkmark>
-            <span class="iui-name-label">Tile name</span>
+            <span class="iui-tile-name-label">Tile name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             Bentley Systems, Incorporated, is an American-based software
             development company that develops, manufactures, licenses, sells and
             supports computer software and services for the design,
             construction, and operation of infrastructure.
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             <svg-tag
-              class="iui-metadata-icon"
+              class="iui-tile-metadata-icon"
               aria-hidden="true"
             ></svg-tag>
             <div class="iui-tag-container">
@@ -482,7 +482,7 @@
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -501,7 +501,7 @@
         class="iui-tile"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
+        <div class="iui-tile-thumbnail">
           <user-icon
             size="x-large"
             type="2"
@@ -511,16 +511,16 @@
           </user-icon>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Terry Rivers</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Terry Rivers</span>
           </div>
-          <div class="iui-description">CEO</div>
+          <div class="iui-tile-description">CEO</div>
 
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -534,7 +534,7 @@
         class="iui-tile iui-selected"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
+        <div class="iui-tile-thumbnail">
           <user-icon
             size="x-large"
             type="2"
@@ -544,20 +544,20 @@
           </user-icon>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
             <svg-checkmark
               class="iui-tile-status-icon iui-informational"
               aria-hidden="true"
             ></svg-checkmark>
-            <span class="iui-name-label">Terry Rivers</span>
+            <span class="iui-tile-name-label">Terry Rivers</span>
           </div>
-          <div class="iui-description">CEO</div>
+          <div class="iui-tile-description">CEO</div>
 
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -577,9 +577,9 @@
         class="iui-tile"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
+        <div class="iui-tile-thumbnail">
           <iframe
-            class="iui-picture"
+            class="iui-tile-thumbnail-picture"
             frameborder="0"
             src="
             https://www.bing.com/maps/embed?cp=40.065643~-75.688389&lvl=11&typ=s&sty=r&src=SHELL&FORM=MBEDV8"
@@ -589,7 +589,7 @@
           <button
             aria-label="Assetwise"
             type="button"
-            class="iui-button iui-borderless iui-small iui-type-indicator"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
           >
             <svg
               class="iui-button-icon"
@@ -601,7 +601,7 @@
               />
             </svg>
           </button>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(305, 19%, 75%);"
@@ -611,23 +611,23 @@
           </div>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Bentley Systems Headquarters</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Bentley Systems Headquarters</span>
           </div>
-          <div class="iui-description">
-            <div class="iui-description">
+          <div class="iui-tile-description">
+            <div class="iui-tile-description">
               685 Stockton Drive, Exton, PA 19341
             </div>
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             ID: <span class="iui-tag iui-basic">10001</span>
           </div>
 
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -646,12 +646,12 @@
         class="iui-tile"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
-          <div class="iui-picture"></div>
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture"></div>
           <button
             aria-label="Assetwise"
             type="button"
-            class="iui-button iui-borderless iui-small iui-type-indicator"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
           >
             <svg
               class="iui-button-icon"
@@ -663,7 +663,7 @@
               />
             </svg>
           </button>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(305, 19%, 75%);"
@@ -673,23 +673,23 @@
           </div>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Bentley Systems Headquarters</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Bentley Systems Headquarters</span>
           </div>
-          <div class="iui-description">
-            <div class="iui-description">
+          <div class="iui-tile-description">
+            <div class="iui-tile-description">
               685 Stockton Drive, Exton, PA 19341
             </div>
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             ID: <span class="iui-tag iui-basic">10001</span>
           </div>
 
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -712,18 +712,18 @@
         class="iui-tile"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
+        <div class="iui-tile-thumbnail">
           <button
             aria-label="Favorite"
             type="button"
-            class="iui-button iui-borderless iui-small iui-quick-action"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
           >
             <svg-star-hollow
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-star-hollow>
           </button>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(197, 71%, 83%);"
@@ -737,18 +737,18 @@
           ></svg-play-circular>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Video name</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Video name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             Are you ready to be inspired by some of the world’s most impressive
             infrastructure projects? We have highlighted a few of the most
             impressive projects that were made possible with Bentley.
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             <svg-clock
-              class="iui-metadata-icon"
+              class="iui-tile-metadata-icon"
               aria-hidden="true"
             ></svg-clock>
             <time datetime="2020-12-31 14:00">Dec 31, 2020 @ 2:00pm</time>
@@ -757,7 +757,7 @@
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -772,12 +772,12 @@
         class="iui-tile"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
-          <div class="iui-picture"></div>
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture"></div>
           <button
             aria-label="Favorite"
             type="button"
-            class="iui-button iui-borderless iui-small iui-quick-action"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
           >
             <svg-star-hollow
               class="iui-button-icon"
@@ -788,7 +788,7 @@
             class="iui-thumbnail-icon"
             aria-hidden="true"
           ></svg-play-circular>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(197, 71%, 83%);"
@@ -798,18 +798,18 @@
           </div>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Video name</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Video name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             Are you ready to be inspired by some of the world’s most impressive
             infrastructure projects? We have highlighted a few of the most
             impressive projects that were made possible with Bentley.
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             <svg-clock
-              class="iui-metadata-icon"
+              class="iui-tile-metadata-icon"
               aria-hidden="true"
             ></svg-clock>
             <time datetime="2020-12-31 14:00">Dec 31, 2020 @ 2:00pm</time>
@@ -818,7 +818,7 @@
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -834,12 +834,12 @@
         tabindex="0"
         id="test-tile-3"
       >
-        <div class="iui-thumbnail">
-          <div class="iui-picture"></div>
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture"></div>
           <button
             aria-label="Favorite"
             type="button"
-            class="iui-button iui-borderless iui-small iui-quick-action"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
           >
             <svg-star-hollow
               class="iui-button-icon"
@@ -850,7 +850,7 @@
             class="iui-thumbnail-icon"
             aria-hidden="true"
           ></svg-play-circular>
-          <div class="iui-badge-container">
+          <div class="iui-tile-thumbnail-badge-container">
             <div
               class="iui-badge"
               style="background-color: hsl(197, 71%, 83%);"
@@ -860,22 +860,22 @@
           </div>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
             <svg-checkmark
               class="iui-tile-status-icon iui-informational"
               aria-hidden="true"
             ></svg-checkmark>
-            <span class="iui-name-label">Video name</span>
+            <span class="iui-tile-name-label">Video name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             Are you ready to be inspired by some of the world’s most impressive
             infrastructure projects? We have highlighted a few of the most
             impressive projects that were made possible with Bentley.
           </div>
-          <div class="iui-metadata">
+          <div class="iui-tile-metadata">
             <svg-clock
-              class="iui-metadata-icon"
+              class="iui-tile-metadata-icon"
               aria-hidden="true"
             ></svg-clock>
             <time datetime="2020-12-31 14:00">Dec 31, 2020 @ 2:00pm</time>
@@ -884,7 +884,7 @@
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -904,29 +904,29 @@
         class="iui-tile iui-folder iui-new"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
+        <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
             aria-hidden="true"
           ></svg-folder>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
             <svg-new
               class="iui-tile-status-icon iui-positive"
               aria-hidden="true"
             ></svg-new>
 
-            <span class="iui-name-label">Folder name</span>
+            <span class="iui-tile-name-label">Folder name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
           </div>
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -941,24 +941,24 @@
         class="iui-tile iui-folder"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
+        <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
             aria-hidden="true"
           ></svg-folder>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Folder name</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Folder name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
           </div>
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -973,21 +973,21 @@
         class="iui-tile iui-folder"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
-          <div class="iui-picture"></div>
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture"></div>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
-            <span class="iui-name-label">Folder name</span>
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
+            <span class="iui-tile-name-label">Folder name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
           </div>
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"
@@ -1002,25 +1002,25 @@
         class="iui-tile iui-folder iui-selected"
         tabindex="0"
       >
-        <div class="iui-thumbnail">
-          <div class="iui-picture"></div>
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture"></div>
         </div>
 
-        <div class="iui-content">
-          <div class="iui-name">
+        <div class="iui-tile-content ">
+          <div class="iui-tile-name">
             <svg-checkmark
               class="iui-tile-status-icon iui-informational"
               aria-hidden="true"
             ></svg-checkmark>
-            <span class="iui-name-label">Folder name</span>
+            <span class="iui-tile-name-label">Folder name</span>
           </div>
-          <div class="iui-description">
+          <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
           </div>
           <button
             aria-label="More options"
             type="button"
-            class="iui-button iui-borderless iui-small iui-more-options"
+            class="iui-button iui-borderless iui-small iui-tile-more-options"
           >
             <svg-more
               class="iui-button-icon"

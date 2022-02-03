@@ -17,263 +17,13 @@
     color: t(iui-text-color);
   }
 
-  .iui-thumbnail {
-    width: 100%;
-    height: $iui-baseline * 14;
-    flex-shrink: 0;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    @include themed() {
-      background-color: t(iui-color-background-1-overlay);
-      border-bottom: 1px solid t(iui-color-background-4);
-    }
-
-    > .iui-type-indicator,
-    > .iui-quick-action {
-      @include iui-button-borderless;
-      @include iui-button-size(small, borderless);
-      position: absolute;
-      border-radius: 50%;
-      top: round($iui-baseline * 0.5);
-    }
-
-    > .iui-type-indicator {
-      left: $iui-s;
-    }
-
-    > .iui-quick-action {
-      right: $iui-s;
-    }
-
-    > .iui-badge-container {
-      position: absolute;
-      bottom: round($iui-baseline * 0.5);
-      width: calc(100% - 2 * #{$iui-sm});
-      height: auto;
-      right: $iui-sm;
-      display: flex;
-      justify-content: flex-end;
-      overflow: hidden;
-
-      > .iui-badge:not(:last-child) {
-        margin-right: $iui-xs;
-      }
-    }
-
-    .iui-thumbnail-icon {
-      @include iui-icons-3xl;
-    }
-
-    > .iui-picture ~ .iui-thumbnail-icon {
-      z-index: 1;
-      cursor: pointer;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: fill $iui-speed-fast ease;
-      }
-      @include themed() {
-        fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
-        filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
-      }
-
-      &:hover {
-        @include themed() {
-          fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
-        }
-      }
-    }
-
-    > .iui-picture {
-      width: 100%;
-      height: 100%;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed ease;
-      }
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      @at-root {
-        div#{&} {
-          background-position: center;
-          background-size: cover;
-        }
-      }
-    }
-
-    > .iui-picture + .iui-button,
-    > .iui-picture + .iui-button + .iui-button {
-      @include iui-blur($opacity: 5);
-
-      &:enabled > .iui-button-icon {
-        @include themed() {
-          fill: t(iui-color-foreground-accessory);
-          filter: drop-shadow(0 2px 1px rgba(0, 0, 0, t(iui-opacity-5)));
-        }
-      }
-
-      &:hover,
-      &.iui-active:enabled,
-      &.iui-active:enabled:hover,
-      &.iui-active:active {
-        @include themed() {
-          background-color: rgba(0, 0, 0, t(iui-opacity-4));
-        }
-
-        .iui-button-icon {
-          @include themed() {
-            fill: t(iui-color-foreground-accessory);
-          }
-        }
-      }
-    }
-  }
-
-  > .iui-content {
-    padding: $iui-baseline $iui-sm;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 2;
-    min-width: 0;
-
-    > .iui-name {
-      display: flex;
-      flex-shrink: 0;
-      align-items: center;
-      font-size: $iui-font-size-leading;
-      user-select: all;
-      margin-bottom: $iui-baseline * 0.5;
-
-      @include themed() {
-        color: t(iui-text-color);
-      }
-
-      .iui-tile-status-icon {
-        @include iui-icons-default;
-        margin-right: $iui-s;
-        flex-shrink: 0;
-      }
-
-      > .iui-name-label {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-    }
-
-    > .iui-description {
-      margin-bottom: $iui-baseline;
-      font-size: $iui-font-size;
-      height: 100%;
-      max-height: $iui-baseline * 6;
-
-      @include iui-line-clamp(3);
-      @include themed() {
-        color: t(iui-text-color-muted);
-      }
-    }
-
-    > .iui-metadata {
-      font-size: $iui-font-size-small;
-      flex-shrink: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      height: $iui-line-height;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      margin-top: auto;
-
-      @include themed() {
-        color: t(iui-text-color-muted);
-      }
-
-      > svg,
-      .iui-metadata-icon {
-        @include iui-icons-default;
-        margin-right: $iui-s;
-        flex-shrink: 0;
-      }
-
-      > * {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-
-    > .iui-more-options {
-      @include iui-button-size(small, borderless);
-      position: absolute;
-      bottom: $iui-baseline * 0.5;
-      right: $iui-s;
-
-      clip-path: inset(50%);
-      overflow: hidden;
-      white-space: nowrap;
-      height: 1px;
-      width: 1px;
-      padding: 0;
-      margin: -1px;
-      border-width: 0;
-
-      &.iui-visible {
-        clip-path: revert;
-        overflow: visible;
-        white-space: normal;
-        width: auto;
-        margin: 0;
-        border-width: 1px;
-        @include iui-button-size($size: small, $styleType: borderless);
-      }
-    }
-  }
-
-  .iui-tile-buttons {
-    display: flex;
-    flex-shrink: 0;
-    user-select: none;
-    white-space: nowrap;
-
-    > .iui-button {
-      font-size: $iui-font-size;
-      flex: 1;
-      height: auto;
-      padding: $iui-baseline $iui-sm;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      text-align: center;
-      margin: 0;
-      border: initial;
-      border-radius: 0;
-
-      &,
-      &:hover {
-        @include themed() {
-          border-top: 1px solid t(iui-color-background-4);
-        }
-      }
-    }
-
-    > button:not(:last-child) {
-      @include themed() {
-        border-right: 1px solid t(iui-color-background-4);
-      }
-    }
-  }
-
   &:hover,
   &:focus-within {
-    .iui-metadata:not(:last-child) {
+    .iui-tile-metadata:not(:last-child) {
       width: calc(100% - #{$iui-xl});
     }
 
-    .iui-more-options {
+    .iui-tile-more-options {
       clip-path: revert;
       overflow: visible;
       white-space: normal;
@@ -283,14 +33,14 @@
       @include iui-button-size($size: small, $styleType: borderless);
     }
 
-    .iui-picture {
+    .iui-tile-thumbnail-picture {
       transform: translateZ(0) scale(1.1);
     }
   }
 
   &.iui-new {
-    .iui-name,
-    .iui-description {
+    .iui-tile-name,
+    .iui-tile-description {
       font-weight: $iui-font-weight-semibold;
     }
   }
@@ -306,7 +56,7 @@
         linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
     }
 
-    .iui-picture {
+    .iui-tile-thumbnail-picture {
       transform: translateZ(0) scale(1.1);
     }
   }
@@ -316,25 +66,270 @@
     flex-direction: row;
     flex-wrap: nowrap;
 
-    > .iui-thumbnail {
+    .iui-tile-thumbnail {
       height: $iui-baseline * 10;
       flex: 1;
       border-bottom: none;
-
       @include themed() {
         border-right: 1px solid t(iui-color-background-4);
       }
     }
 
-    > .iui-content {
+    .iui-tile-content {
       flex: 2;
+    }
 
-      > .iui-description {
-        height: 100%;
-        max-height: $iui-baseline * 4;
-        margin-bottom: 0;
-        -webkit-line-clamp: 2;
+    .iui-tile-description {
+      height: 100%;
+      max-height: $iui-baseline * 4;
+      margin-bottom: 0;
+      -webkit-line-clamp: 2;
+    }
+  }
+}
+
+@mixin iui-tile-content {
+  padding: $iui-baseline $iui-sm;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  min-width: 0;
+
+  .iui-tile-name {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    font-size: $iui-font-size-leading;
+    user-select: all;
+    margin-bottom: $iui-baseline * 0.5;
+    @include themed() {
+      color: t(iui-text-color);
+    }
+  }
+
+  .iui-tile-status-icon {
+    @include iui-icons-default;
+    margin-right: $iui-s;
+    flex-shrink: 0;
+  }
+
+  .iui-tile-name-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .iui-tile-description {
+    margin-bottom: $iui-baseline;
+    font-size: $iui-font-size;
+    height: 100%;
+    max-height: $iui-baseline * 6;
+    @include iui-line-clamp(3);
+    @include themed() {
+      color: t(iui-text-color-muted);
+    }
+  }
+
+  .iui-tile-metadata {
+    font-size: $iui-font-size-small;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: $iui-line-height;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    @include themed() {
+      color: t(iui-text-color-muted);
+    }
+
+    > svg,
+    .iui-tile-metadata-icon {
+      @include iui-icons-default;
+      margin-right: $iui-s;
+      flex-shrink: 0;
+    }
+
+    > * {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .iui-tile-more-options {
+    @include iui-button-size(small, borderless);
+    position: absolute;
+    bottom: $iui-baseline * 0.5;
+    right: $iui-s;
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    margin: -1px;
+    border-width: 0;
+
+    &.iui-visible {
+      clip-path: revert;
+      overflow: visible;
+      white-space: normal;
+      width: auto;
+      margin: 0;
+      border-width: 1px;
+      @include iui-button-size($size: small, $styleType: borderless);
+    }
+  }
+}
+
+@mixin iui-tile-thumbnail {
+  width: 100%;
+  height: $iui-baseline * 14;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include themed() {
+    background-color: t(iui-color-background-1-overlay);
+    border-bottom: 1px solid t(iui-color-background-4);
+  }
+
+  .iui-thumbnail-icon {
+    @include iui-icons-3xl;
+  }
+}
+
+@mixin iui-tile-thumbnail-picture {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed ease;
+  }
+  @at-root {
+    div#{&} {
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  ~ .iui-thumbnail-icon {
+    z-index: 1;
+    cursor: pointer;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: fill $iui-speed-fast ease;
+    }
+    @include themed() {
+      fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
+      filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
+    }
+
+    &:hover {
+      @include themed() {
+        fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
       }
+    }
+  }
+
+  ~ .iui-tile-thumbnail-type-indicator,
+  ~ .iui-tile-thumbnail-quick-action {
+    @include iui-blur($opacity: 5);
+
+    > .iui-button-icon {
+      @include themed() {
+        fill: t(iui-color-foreground-accessory);
+        filter: drop-shadow(0 2px 1px rgba(0, 0, 0, t(iui-opacity-5)));
+      }
+    }
+
+    &:hover,
+    &.iui-active:enabled,
+    &.iui-active:enabled:hover,
+    &.iui-active:active {
+      @include themed() {
+        background-color: rgba(0, 0, 0, t(iui-opacity-4));
+      }
+
+      .iui-button-icon {
+        @include themed() {
+          fill: t(iui-color-foreground-accessory);
+        }
+      }
+    }
+  }
+}
+
+@mixin iui-tile-thumbnail-type-indicator {
+  @include iui-button-borderless;
+  @include iui-button-size(small, borderless);
+  position: absolute;
+  border-radius: 50%;
+  top: round($iui-baseline * 0.5);
+  left: $iui-s;
+}
+
+@mixin iui-tile-thumbnail-quick-action {
+  @include iui-button-borderless;
+  @include iui-button-size(small, borderless);
+  position: absolute;
+  border-radius: 50%;
+  top: round($iui-baseline * 0.5);
+  right: $iui-s;
+}
+
+@mixin iui-tile-thumbnail-badge {
+  position: absolute;
+  bottom: round($iui-baseline * 0.5);
+  width: calc(100% - 2 * #{$iui-sm});
+  height: auto;
+  right: $iui-sm;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+
+  > .iui-badge:not(:last-child) {
+    margin-right: $iui-xs;
+  }
+}
+
+@mixin iui-tile-buttons {
+  display: flex;
+  flex-shrink: 0;
+  user-select: none;
+  white-space: nowrap;
+
+  > .iui-button {
+    font-size: $iui-font-size;
+    flex: 1;
+    height: auto;
+    padding: $iui-baseline $iui-sm;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    margin: 0;
+    border: initial;
+    border-radius: 0;
+
+    &,
+    &:hover {
+      @include themed() {
+        border-top: 1px solid t(iui-color-background-4);
+        border-color: t(iui-color-background-4);
+      }
+    }
+  }
+
+  > button:not(:last-child) {
+    @include themed() {
+      border-right: 1px solid t(iui-color-background-4);
     }
   }
 }
