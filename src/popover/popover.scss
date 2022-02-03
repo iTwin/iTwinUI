@@ -12,11 +12,11 @@
   // Resets tippy.js default stylings that interfere with our own
   /* stylelint-disable-next-line selector-class-pattern */
   &.tippy-box {
-    all: initial;
+    all: revert;
   }
 
   /* stylelint-disable-next-line selector-class-pattern */
   .tippy-content {
-    all: initial;
+    all: revert;
   }
 }
