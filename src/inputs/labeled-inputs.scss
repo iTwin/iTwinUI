@@ -245,10 +245,8 @@
 
   grid-area: inputs;
   justify-self: end;
-  margin-right: 2px;
-  padding: 0 $iui-sm;
+  margin: 0 14px 0 0;
   position: relative;
-  pointer-events: none;
 
   svg {
     width: $iui-icons-default;
