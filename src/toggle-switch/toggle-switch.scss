@@ -117,16 +117,15 @@ $toggle-switch-handle: $iui-icons-default;
         }
       }
 
-      &:hover,
-      &:focus {
+      &:hover {
         @include themed {
           border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
         }
       }
 
-      &:focus:not(:focus-visible) {
+      @include focus-visible {
         @include themed {
-          border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+          border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
         }
       }
     }
@@ -154,16 +153,17 @@ $toggle-switch-handle: $iui-icons-default;
     }
 
     // Focused or hovered toggle switch
-    &:hover::after,
-    &:focus::after {
+    &:hover::after {
       @include themed {
         opacity: t(iui-opacity-1);
       }
     }
 
-    &:focus:not(:focus-visible)::after {
-      @include themed {
-        opacity: t(iui-opacity-2);
+    @include focus-visible {
+      &::after {
+        @include themed {
+          opacity: t(iui-opacity-1);
+        }
       }
     }
 
