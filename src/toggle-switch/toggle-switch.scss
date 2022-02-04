@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-$toggle-switch-height: $iui-baseline * 2;
+$toggle-switch-handle: $iui-icons-default;
 
 @mixin iui-toggle-switch {
   @include iui-reset;
@@ -25,16 +25,25 @@ $toggle-switch-height: $iui-baseline * 2;
     @include iui-reset;
     @include iui-focus($thickness: 1px, $offset: 1px);
     grid-area: toggle;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     position: relative;
-    appearance: none;
-    width: $toggle-switch-height * 2 - $iui-xs;
-    height: $toggle-switch-height;
-    border-radius: $toggle-switch-height * 0.5;
     cursor: pointer;
-    @include themed {
-      background-color: t(iui-color-background-1);
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+
+    // IE solution
+    width: $toggle-switch-handle;
+    height: $toggle-switch-handle;
+    @supports (appearance: none) {
+      appearance: none;
+      width: ($toggle-switch-handle + $iui-xs) * 2;
+      height: auto;
+      border-radius: 9999px;
+      padding: 1px;
+      box-sizing: border-box;
+      @include themed {
+        background-color: t(iui-color-background-1);
+        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      }
     }
 
     &::before {
@@ -51,15 +60,14 @@ $toggle-switch-height: $iui-baseline * 2;
 
     &::after {
       content: '';
-      position: absolute;
-      height: $toggle-switch-height - ($iui-xxs * 3);
-      width: $toggle-switch-height - ($iui-xxs * 3);
+      height: $toggle-switch-handle;
+      width: $toggle-switch-handle;
+      margin: $iui-xxs;
       aspect-ratio: 1 / 1;
-      top: 50%;
-      transform: translateY(-50%);
       border-radius: 50%;
+      transition: background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
       @media (prefers-reduced-motion: no-preference) {
-        transition: left $iui-speed-fast ease, background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
+        transition: transform $iui-speed-fast ease, background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
       }
     }
 
@@ -71,14 +79,13 @@ $toggle-switch-height: $iui-baseline * 2;
       }
 
       &::after {
-        left: 3px;
         @include themed {
           background-color: t(iui-color-foreground-body);
           opacity: t(iui-opacity-2);
         }
       }
 
-      &:hover:enabled,
+      &:hover,
       &:focus {
         @include themed {
           border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
@@ -100,7 +107,7 @@ $toggle-switch-height: $iui-baseline * 2;
       }
 
       &::after {
-        left: $iui-m + $iui-xs + 1px;
+        transform: translateX($toggle-switch-handle + $iui-xxs);
         @include themed {
           background-color: t(iui-color-foreground-accessory);
           opacity: t(iui-opacity-2);
@@ -115,7 +122,7 @@ $toggle-switch-height: $iui-baseline * 2;
     }
 
     // Focused or hovered toggle switch
-    &:hover:enabled::after,
+    &:hover::after,
     &:focus::after {
       @include themed {
         opacity: t(iui-opacity-1);
@@ -131,9 +138,13 @@ $toggle-switch-height: $iui-baseline * 2;
     // Disabled toggle switch
     &:disabled {
       cursor: not-allowed;
-      @include themed {
-        background-color: t(iui-color-background-disabled);
-        border-color: t(iui-color-background-disabled);
+
+      &,
+      &:hover {
+        @include themed {
+          background-color: t(iui-color-background-disabled);
+          border-color: t(iui-color-background-disabled);
+        }
       }
 
       &::after {
@@ -161,14 +172,13 @@ $toggle-switch-height: $iui-baseline * 2;
   > .iui-toggle-switch-icon {
     grid-area: toggle;
     opacity: 0;
-    width: $iui-icons-small;
-    height: $iui-icons-small;
+    width: $toggle-switch-handle * 0.75;
+    height: $toggle-switch-handle * 0.75;
     display: flex;
-    padding: 0 ($iui-xs + 1px);
+    // padding: 0 ($iui-xs + 1px);
+    padding-left: ($toggle-switch-handle * 0.25) + 1px;
     z-index: 1;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: opacity $iui-speed-fast ease;
-    }
+    transition: opacity $iui-speed-fast ease;
     @include themed {
       fill: t(iui-color-foreground-accessory);
     }
