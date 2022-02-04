@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.46.0](https://www.github.com/iTwin/iTwinUI/compare/v0.45.0...v0.46.0) (2022-02-04)
+
+
+### What's new
+
+* **Select:** Dropdown icon is an icon ([#444](https://www.github.com/iTwin/iTwinUI/issues/444)) ([703c5f6](https://www.github.com/iTwin/iTwinUI/commit/703c5f64463e269a46ee456595ef879eee9321fd))
+
+
+### Fixes
+
+* **Button:** Show default outline as fallback ([#468](https://www.github.com/iTwin/iTwinUI/issues/468)) ([6194a13](https://www.github.com/iTwin/iTwinUI/commit/6194a13a1d8349c477cbb86582adcf6f1fe1ce09))
+
 ## [0.45.0](https://www.github.com/iTwin/iTwinUI/compare/v0.44.2...v0.45.0) (2022-02-03)
 
 ### What's new
