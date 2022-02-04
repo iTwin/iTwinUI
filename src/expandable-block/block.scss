@@ -169,33 +169,21 @@
   }
 
   &.iui-borderless {
-    @include themed {
+    .iui-header,
+    .iui-expandable-content {
       background-color: transparent;
       border: initial;
     }
 
-    .iui-header {
+    .iui-header:hover {
       @include themed {
-        background-color: transparent;
-        border: initial;
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
       }
-
-      &:hover {
-        @include themed {
-          background-color: t(iui-color-background-4);
-        }
-      }
+      border-radius: $iui-border-radius;
     }
 
-    .iui-expandable-content {
-      @include themed {
-        background-color: transparent;
-        border: initial;
-      }
-
-      > div {
-        padding: 0;
-      }
+    .iui-expandable-content > div {
+      padding: 0;
     }
   }
 }
