@@ -7,30 +7,27 @@
   align-items: center;
   isolation: isolate;
 
-  .iui-button-group-item {
-    $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
+  $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
+  $childBorderSelector: '.iui-input, .iui-button:not(.iui-borderless)';
+  $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
+  > * {
     display: flex;
-    position: relative;
 
-    &:focus-within {
-      z-index: 2;
-    }
+    #{$childZindexSelector} {
+      position: relative;
 
-    > * {
       &:hover {
         z-index: 1;
       }
 
-      #{$disabledSelector} {
-        z-index: -1;
+      &:focus,
+      &:focus-within {
+        z-index: 2;
       }
 
-      transition-duration: 0ms; // disable exit animation to avoid border flicker
-
-      &:hover,
-      &:focus {
-        transition-duration: $iui-speed-fast; // re-enable enter animation
+      #{$disabledSelector} {
+        z-index: -1;
       }
 
       // Adds stripe above active button
@@ -58,32 +55,32 @@
       }
     }
 
-    // #region Borders
-    $childSelector: 'input, .iui-button';
-
-    #{$childSelector} {
+    #{$childBorderSelector} {
+      // Reset border radius
       border-radius: 0;
+
+      transition-duration: 0ms; // disable exit animation to avoid border flicker
+
+      &:hover,
+      &:focus {
+        transition-duration: $iui-speed-fast; // re-enable enter animation
+      }
     }
 
+    // Add rounded corners to first and last items
     &:first-child {
-      #{$childSelector} {
+      #{$childBorderSelector} {
         border-top-left-radius: $iui-border-radius;
         border-bottom-left-radius: $iui-border-radius;
       }
     }
 
     &:last-child {
-      #{$childSelector} {
+      #{$childBorderSelector} {
         border-top-right-radius: $iui-border-radius;
         border-bottom-right-radius: $iui-border-radius;
       }
     }
-
-    // Revert border radius for borderless items
-    .iui-borderless {
-      border-radius: $iui-border-radius;
-    }
-    // #endregion
 
     // Use negative margin to make adjacent borders overlap
     + * {
@@ -92,9 +89,11 @@
 
     // Add slight border between disabled items
     &:not(:first-child) {
-      .iui-default:disabled {
-        @include themed {
-          border-left-color: t(iui-color-background-4);
+      .iui-default {
+        #{$disabledSelector} {
+          @include themed {
+            border-left-color: t(iui-color-background-4);
+          }
         }
       }
     }
