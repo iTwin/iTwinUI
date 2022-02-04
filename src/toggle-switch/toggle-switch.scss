@@ -26,7 +26,6 @@ $toggle-switch-height: $iui-baseline * 2;
     @include iui-focus($thickness: 1px, $offset: 1px);
     grid-area: toggle;
     display: inline-block;
-    flex-shrink: 0;
     position: relative;
     appearance: none;
     width: $toggle-switch-height * 2 - $iui-xs;
