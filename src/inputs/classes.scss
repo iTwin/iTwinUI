@@ -9,7 +9,7 @@
     @include iui-input-container-label;
   }
 
-  > .iui-input-icon {
+  .iui-input-icon {
     @include iui-input-icon;
   }
 
@@ -17,15 +17,13 @@
     @include iui-input-message;
   }
 
+  &.iui-inline-icon > .iui-input-icon {
+    @include iui-input-icon-inline;
+  }
+
   &.iui-inline-label {
     > .iui-label {
       @include iui-input-label-inline;
-    }
-  }
-
-  &.iui-inline-icon {
-    > .iui-input-icon {
-      @include iui-input-icon-inline;
     }
   }
 
@@ -44,12 +42,20 @@
   @include iui-input;
 }
 
+.iui-select-button {
+  @include iui-select-button;
+}
+
 .iui-textarea {
   @include iui-textarea;
 }
 
-.iui-select {
-  @include iui-select;
+.iui-input-with-icon {
+  @include iui-input-with-icon;
+}
+
+.iui-end-icon {
+  @include iui-end-icon;
 }
 
 .iui-checkbox {
