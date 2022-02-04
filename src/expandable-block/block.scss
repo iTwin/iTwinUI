@@ -167,4 +167,35 @@
       margin-left: $iui-s;
     }
   }
+
+  &.iui-borderless {
+    @include themed {
+      background-color: transparent;
+      border: initial;
+    }
+
+    .iui-header {
+      @include themed {
+        background-color: transparent;
+        border: initial;
+      }
+
+      &:hover {
+        @include themed {
+          background-color: t(iui-color-background-4);
+        }
+      }
+    }
+
+    .iui-expandable-content {
+      @include themed {
+        background-color: transparent;
+        border: initial;
+      }
+
+      > div {
+        padding: 0;
+      }
+    }
+  }
 }
