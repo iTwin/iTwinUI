@@ -39,6 +39,10 @@
         border-bottom: none;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -2332,10 +2336,14 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <label class="iui-input-container">
-            <div class="iui-select">
+            <div class="iui-input-with-icon">
               <div class="iui-select-button iui-placeholder">
                 Please choose…
               </div>
+              <svg-caret-down-small
+                class="iui-end-icon iui-actionable"
+                aria-hidden="true"
+              ></svg-caret-down-small>
             </div>
           </label>
           <button class="iui-button iui-high-visibility">
