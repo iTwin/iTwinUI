@@ -245,7 +245,8 @@
 
   grid-area: inputs;
   justify-self: end;
-  margin: 0 calc($iui-sm + 2px) 0 0;
+  margin-right: 2px;
+  padding: 0 $iui-sm;
   position: relative;
   pointer-events: none;
 
