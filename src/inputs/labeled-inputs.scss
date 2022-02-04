@@ -245,7 +245,7 @@
 
   grid-area: inputs;
   justify-self: end;
-  margin: 0 calc(#{$iui-sm} + 2px) 0 0;
+  margin: 0 ($iui-sm + $iui-xxs) 0 0;
   position: relative;
 
   svg {
@@ -263,9 +263,8 @@
 
   &.iui-actionable {
     align-items: center;
-    pointer-events: auto;
     height: 90%;
-    margin-right: 2px;
+    margin-right: $iui-xxs;
     padding: 0 $iui-sm;
     cursor: pointer;
 
