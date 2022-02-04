@@ -245,8 +245,9 @@
 
   grid-area: inputs;
   justify-self: end;
-  margin: 0 $iui-sm 0 0;
+  margin: 0 calc($iui-sm + 2px) 0 0;
   position: relative;
+  pointer-events: none;
 
   svg {
     width: $iui-icons-default;
@@ -263,8 +264,9 @@
 
   &.iui-actionable {
     align-items: center;
+    pointer-events: auto;
     height: 90%;
-    margin-right: 1px;
+    margin-right: 2px;
     padding: 0 $iui-sm;
     cursor: pointer;
 
@@ -279,17 +281,6 @@
 
     &.iui-open svg {
       transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
-    }
-  }
-
-  &.iui-disabled {
-    cursor: not-allowed;
-    pointer-events: none;
-
-    svg {
-      @include themed {
-        fill: t(iui-icons-color-actionable-disabled);
-      }
     }
   }
 }
