@@ -281,6 +281,16 @@
       transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
     }
   }
+
+  &.iui-disabled {
+    cursor: not-allowed;
+
+    svg {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
+      }
+    }
+  }
 }
 
 /// Mixin for applying status colors to input container.
