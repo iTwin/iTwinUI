@@ -22,7 +22,7 @@
   }
 
   &:hover {
-    > :first-child:not(:has(.iui-disabled)) {
+    > :first-child {
       // --_hover-color can be used to control this from outside
       border-color: var(--_hover-color, rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2)));
     }
