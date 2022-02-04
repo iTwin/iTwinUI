@@ -304,11 +304,14 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
     const handlePointerMove = React.useCallback(
       (event: PointerEvent): void => {
+        if (activeThumbIndex === undefined) {
+          return;
+        }
         event.preventDefault();
         event.stopPropagation();
         updateThumbValue(event, 'onUpdate');
       },
-      [updateThumbValue],
+      [activeThumbIndex, updateThumbValue],
     );
 
     // function called by Thumb keyboard processing
@@ -331,12 +334,15 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
     const handlePointerUp = React.useCallback(
       (event: PointerEvent) => {
+        if (activeThumbIndex === undefined) {
+          return;
+        }
         updateThumbValue(event, 'onChange');
         setActiveThumbIndex(undefined);
         event.preventDefault();
         event.stopPropagation();
       },
-      [updateThumbValue],
+      [activeThumbIndex, updateThumbValue],
     );
 
     const handlePointerDownOnSlider = React.useCallback(
