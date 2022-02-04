@@ -6,9 +6,9 @@ $toggle-switch-handle: $iui-icons-default;
 
 @mixin iui-toggle-switch {
   @include iui-reset;
-  display: grid;
-  grid-template: 'toggle';
-  grid-column-gap: $iui-s;
+  display: flex;
+  align-items: center;
+  gap: $iui-s;
   align-items: center;
   font-size: $iui-font-size;
   width: fit-content;
@@ -20,6 +20,38 @@ $toggle-switch-handle: $iui-icons-default;
   @include themed {
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
+
+  // Disabled
+  &.iui-disabled {
+    cursor: not-allowed;
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
+  }
+
+  // IE solution
+  // For labels on the right
+  > .iui-label {
+    margin-right: $iui-s;
+    @supports (gap: $iui-s) {
+      margin-right: 0;
+    }
+  }
+
+  // For labels on the left
+  .iui-toggle ~ .iui-label {
+    margin-left: $iui-s;
+    margin-right: 0;
+    @supports (gap: $iui-s) {
+      margin-left: 0;
+    }
+  }
+}
+
+@mixin iui-toggle {
+  display: grid;
+  grid-template: 'toggle';
+  align-items: center;
 
   > input[type='checkbox'] {
     @include iui-reset;
@@ -184,33 +216,6 @@ $toggle-switch-handle: $iui-icons-default;
     }
     @supports not (grid-area: toggle) {
       position: absolute;
-    }
-  }
-
-  // Disabled
-  &.iui-disabled {
-    cursor: not-allowed;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
-  }
-
-  // Label positioning
-  &.iui-label-left {
-    grid-template: 'label toggle';
-    @supports not (grid-column-gap: $iui-s) {
-      > .iui-label {
-        margin-right: $iui-s;
-      }
-    }
-  }
-
-  &.iui-label-right {
-    grid-template: 'toggle label';
-    @supports not (grid-column-gap: $iui-s) {
-      > .iui-label {
-        margin-left: $iui-s;
-      }
     }
   }
 }
