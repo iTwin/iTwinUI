@@ -63,10 +63,6 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     arrow: false,
     duration: 0,
     interactive: true,
-    popperOptions: {
-      strategy: 'fixed',
-      modifiers: [{ name: 'flip' }],
-    },
     role: undefined,
     offset: [0, 0],
     maxWidth: '',
@@ -77,6 +73,15 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
       hideOnEscOrTab,
       ...(props.plugins || []),
     ],
+    popperOptions: {
+      strategy: 'fixed',
+      ...props.popperOptions,
+      modifiers: [
+        { name: 'flip' },
+        { name: 'preventOverflow', options: { padding: 0 } },
+        ...(props.popperOptions?.modifiers || []),
+      ],
+    },
   };
 
   if (props.render) {
