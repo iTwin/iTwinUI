@@ -161,27 +161,9 @@
 
   .iui-tile-more-options {
     @include iui-button-size(small, borderless);
-    position: absolute;
+    @include iui-visually-hidden;
     bottom: $iui-baseline * 0.5;
     right: $iui-s;
-    clip-path: inset(50%);
-    overflow: hidden;
-    white-space: nowrap;
-    height: 1px;
-    width: 1px;
-    padding: 0;
-    margin: -1px;
-    border-width: 0;
-
-    &.iui-visible {
-      clip-path: revert;
-      overflow: visible;
-      white-space: normal;
-      width: auto;
-      margin: 0;
-      border-width: 1px;
-      @include iui-button-size($size: small, $styleType: borderless);
-    }
   }
 }
 
