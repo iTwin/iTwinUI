@@ -176,11 +176,14 @@
       border: initial;
     }
 
-    .iui-header:hover {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-      }
+    .iui-header {
       border-radius: $iui-border-radius;
+
+      &:hover {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+        }
+      }
     }
 
     .iui-expandable-content > div {
