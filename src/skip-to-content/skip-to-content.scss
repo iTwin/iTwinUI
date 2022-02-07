@@ -2,12 +2,11 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-
 @mixin iui-skip-to-content {
-  @include iui-blur;
+  @include iui-blur($opacity: 3);
   @include iui-focus($offset: 2px, $thickness: 2px);
 
-  border-radius: 99999px;
+  border-radius: $iui-border-radius-huge;
   color: t(iui-color-foreground-accessory);
   padding: ($iui-baseline * 0.75) $iui-m;
   text-decoration: none;
@@ -16,17 +15,16 @@
   left: 50%;
   transform: translateX(-50%) translateY(-170%);
   transition: background-color $iui-speed-fast ease-in-out,
-              transform $iui-speed-fast ease-in-out,
+              transform $iui-speed-slow ease-in-out,
               box-shadow $iui-speed-fast ease-in-out;
   
   &:hover {
-    @include iui-blur($opacity: 3);
+    @include iui-blur($opacity: 2);
   };
   
   &:focus {
     transform: translateX(-50%) translateY(0);
+    transition: transform $iui-speed-fast ease-in-out;
     box-shadow: $iui-elevation-16;
   }
-
-  // visible for x amount of time after tabbed away from
 };
