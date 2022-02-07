@@ -4,17 +4,18 @@
 
 // tippy.js helper class to hide Popover when it is scrolled out of view
 @mixin iui-popover {
-  &[data-reference-hidden] {
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  // Resets tippy.js default stylings that interfere with our own
   /* stylelint-disable-next-line selector-class-pattern */
   &.tippy-box {
+    &[data-reference-hidden] {
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    // Resets tippy.js default stylings that interfere with our own
     all: revert;
   }
 
+  // Resets tippy.js default stylings that interfere with our own
   /* stylelint-disable-next-line selector-class-pattern */
   .tippy-content {
     all: revert;
