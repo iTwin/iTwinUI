@@ -51,6 +51,24 @@ $iui-button-padding-large: $iui-xs * 6;
   &:disabled {
     @include iui-button-disabled;
   }
+
+  &.iui-active {
+    // Shows active stripe only if --_active-stripe-inset is set (from outside)
+    &::after {
+      content: '';
+      position: absolute;
+      height: $iui-xxs;
+      inset: var(--_active-stripe-inset);
+      background-color: var(--iui-color-foreground-primary);
+    }
+
+    &[disabled],
+    &:disabled {
+      &::after {
+        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
+      }
+    }
+  }
 }
 
 /// Mixin for applying padding and margins to various button sizes.

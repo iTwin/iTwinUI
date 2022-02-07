@@ -32,26 +32,7 @@
 
       // Adds stripe above active button
       &.iui-active {
-        &::after {
-          content: '';
-          position: absolute;
-          height: $iui-xxs;
-          opacity: 1;
-          top: $iui-xxs;
-          left: $iui-xxs;
-          width: calc(100% - #{$iui-xs});
-          @include themed {
-            background-color: t(iui-color-foreground-primary);
-          }
-        }
-
-        #{$disabledSelector} {
-          &::after {
-            @include themed {
-              background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
-            }
-          }
-        }
+        --_active-stripe-inset: #{$iui-xxs} #{$iui-xxs} auto;
       }
     }
 
