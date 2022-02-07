@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.46.1](https://www.github.com/iTwin/iTwinUI/compare/v0.46.0...v0.46.1) (2022-02-07)
+
+
+### Fixes
+
+* **Popover:** Incresed hidden attribute specificity ([#469](https://www.github.com/iTwin/iTwinUI/issues/469)) ([d96ddda](https://www.github.com/iTwin/iTwinUI/commit/d96dddaf3a9bf3559c4624ee040ec97bc3c22488))
+
 ## [0.46.0](https://www.github.com/iTwin/iTwinUI/compare/v0.45.0...v0.46.0) (2022-02-04)
 
 ### What's new
