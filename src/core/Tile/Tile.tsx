@@ -147,15 +147,15 @@ export const Tile = (props: TileProps) => {
       {...rest}
     >
       {thumbnail && (
-        <div className='iui-thumbnail'>
+        <div className='iui-tile-thumbnail'>
           {typeof thumbnail === 'string' ? (
             <div
-              className='iui-picture'
+              className='iui-tile-thumbnail-picture'
               style={{ backgroundImage: `url(${thumbnail})` }}
             />
           ) : thumbnail && (thumbnail as JSX.Element).type === 'img' ? (
             React.cloneElement(thumbnail as JSX.Element, {
-              className: 'iui-picture',
+              className: 'iui-tile-thumbnail-picture',
             })
           ) : React.isValidElement(thumbnail) ? (
             React.cloneElement(thumbnail, {
@@ -167,20 +167,22 @@ export const Tile = (props: TileProps) => {
 
           {leftIcon &&
             React.cloneElement(leftIcon as React.ReactElement, {
-              className: 'iui-small iui-type-indicator',
+              className: 'iui-small iui-tile-thumbnail-type-indicator',
             })}
 
           {rightIcon &&
             React.cloneElement(rightIcon as React.ReactElement, {
-              className: 'iui-small iui-quick-action',
+              className: 'iui-small iui-tile-thumbnail-quick-action',
             })}
 
-          {badge && <div className='iui-badge-container'>{badge}</div>}
+          {badge && (
+            <div className='iui-tile-thumbnail-badge-container'>{badge}</div>
+          )}
         </div>
       )}
 
-      <div className='iui-content'>
-        <div className='iui-name'>
+      <div className='iui-tile-content'>
+        <div className='iui-tile-name'>
           {isSelected && (
             <SvgCheckmark
               className={cx('iui-tile-status-icon', 'iui-informational')}
@@ -193,15 +195,15 @@ export const Tile = (props: TileProps) => {
               aria-hidden
             />
           )}
-          <span className='iui-name-label'>{name}</span>
+          <span className='iui-tile-name-label'>{name}</span>
         </div>
 
         {description != undefined && (
-          <div className='iui-description'>{description}</div>
+          <div className='iui-tile-description'>{description}</div>
         )}
 
         {metadata != undefined && (
-          <div className='iui-metadata'>{metadata}</div>
+          <div className='iui-tile-metadata'>{metadata}</div>
         )}
 
         {moreOptions && (
@@ -223,7 +225,7 @@ export const Tile = (props: TileProps) => {
             <IconButton
               styleType='borderless'
               size='small'
-              className={cx('iui-more-options', {
+              className={cx('iui-tile-more-options', {
                 'iui-visible': isMenuVisible,
               })}
               aria-label='More options'
@@ -236,15 +238,7 @@ export const Tile = (props: TileProps) => {
         {children}
       </div>
 
-      {buttons && (
-        <div className='iui-tile-buttons'>
-          {buttons.map((button: React.ReactElement) =>
-            React.cloneElement(button, {
-              className: cx('iui-tile-button', button.props.className),
-            }),
-          )}
-        </div>
-      )}
+      {buttons && <div className='iui-tile-buttons'>{buttons}</div>}
     </div>
   );
 };

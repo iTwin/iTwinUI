@@ -4,10 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 import React from 'react';
+import cx from 'classnames';
 import Tippy, { TippyProps } from '@tippyjs/react';
-import { Placement, Instance } from 'tippy.js';
+import type { Placement, Instance } from 'tippy.js';
 import { useMergedRefs } from '../hooks/useMergedRefs';
 export type PopoverInstance = Instance;
+import '@itwin/itwinui-css/css/popover.css';
 
 export type PopoverProps = {
   /**
@@ -67,6 +69,7 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     offset: [0, 0],
     maxWidth: '',
     ...props,
+    className: cx('iui-popover', props.className),
     plugins: [
       lazyLoad,
       removeTabIndex,

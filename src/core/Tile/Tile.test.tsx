@@ -15,10 +15,12 @@ it('should render in its most basic state', () => {
   const { container } = render(<Tile name='test-name' />);
   expect(container.querySelector('.iui-tile')).toBeTruthy();
 
-  expect(container.querySelector('.iui-thumbnail')).toBeFalsy();
-  expect(container.querySelector('.iui-content')).toBeTruthy();
+  expect(container.querySelector('.iui-tile-thumbnail')).toBeFalsy();
+  expect(container.querySelector('.iui-tile-content')).toBeTruthy();
 
-  const label = container.querySelector('.iui-name-label') as HTMLSpanElement;
+  const label = container.querySelector(
+    '.iui-tile-name-label',
+  ) as HTMLSpanElement;
   expect(label.textContent).toBe('test-name');
 });
 
@@ -42,21 +44,29 @@ it('should render main text content correctly', () => {
   );
   expect(container.querySelector('.iui-tile')).toBeTruthy();
 
-  const desc = container.querySelector('.iui-description') as HTMLDivElement;
+  const desc = container.querySelector(
+    '.iui-tile-description',
+  ) as HTMLDivElement;
   expect(desc.textContent).toBe('test-description');
 
-  const metadata = container.querySelector('.iui-metadata') as HTMLDivElement;
+  const metadata = container.querySelector(
+    '.iui-tile-metadata',
+  ) as HTMLDivElement;
   expect(metadata.textContent).toBe('test-metadata');
 
-  expect(container.querySelector('.iui-badge-container')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-tile-thumbnail-badge-container'),
+  ).toBeTruthy();
   const badge = container.querySelector('.iui-badge') as HTMLSpanElement;
   expect(badge.textContent).toBe('test-badge');
 });
 
 it('should render thumbnail correctly (url)', () => {
   const { container } = render(<Tile name='test-name' thumbnail='image.png' />);
-  expect(container.querySelector('.iui-thumbnail')).toBeTruthy();
-  const picture = container.querySelector('.iui-picture') as HTMLDivElement;
+  expect(container.querySelector('.iui-tile-thumbnail')).toBeTruthy();
+  const picture = container.querySelector(
+    '.iui-tile-thumbnail-picture',
+  ) as HTMLDivElement;
   expect(picture).toBeTruthy();
   expect(picture.style.backgroundImage).toBe('url(image.png)');
 });
@@ -65,8 +75,10 @@ it('should render thumbnail correctly (<img>)', () => {
   const { container } = render(
     <Tile name='test-name' thumbnail={<img src='image.png' />} />,
   );
-  expect(container.querySelector('.iui-thumbnail')).toBeTruthy();
-  const img = container.querySelector('.iui-picture') as HTMLImageElement;
+  expect(container.querySelector('.iui-tile-thumbnail')).toBeTruthy();
+  const img = container.querySelector(
+    '.iui-tile-thumbnail-picture',
+  ) as HTMLImageElement;
   expect(img).toBeTruthy();
   expect(img.src).toContain('image.png');
 });
@@ -78,7 +90,7 @@ it('should render thumbnail correctly (svg)', () => {
   const { container: placeholderIcon } = render(
     <SvgPlaceholder className='iui-thumbnail-icon' />,
   );
-  expect(container.querySelector('.iui-thumbnail')).toBeTruthy();
+  expect(container.querySelector('.iui-tile-thumbnail')).toBeTruthy();
   const svg = container.querySelector('svg') as SVGSVGElement;
   expect(svg).toBeTruthy();
   expect(svg).toEqual(placeholderIcon.firstChild);
@@ -137,14 +149,14 @@ it('should work with icons correctly', () => {
   expect(container.querySelector('.iui-tile')).toBeTruthy();
 
   const leftIcon = container.querySelector(
-    '.iui-type-indicator',
+    '.iui-tile-thumbnail-type-indicator',
   ) as HTMLButtonElement;
   expect(leftIcon).toBeTruthy();
   leftIcon.click();
   expect(onClickMock).toBeCalledWith('left');
 
   const rightIcon = container.querySelector(
-    '.iui-quick-action',
+    '.iui-tile-thumbnail-quick-action',
   ) as HTMLButtonElement;
   expect(rightIcon).toBeTruthy();
   rightIcon.click();
@@ -171,7 +183,7 @@ it('should render options dropdown correctly', () => {
   expect(container.querySelector('.iui-tile')).toBeTruthy();
 
   const menuButton = container.querySelector(
-    '.iui-more-options',
+    '.iui-tile-more-options',
   ) as HTMLButtonElement;
   expect(menuButton).toBeTruthy();
   menuButton.click();
@@ -204,7 +216,7 @@ it('should propagate misc props correctly', () => {
   expect(tile.style.height).toBe('300px');
 
   const child = container.querySelector(
-    '.iui-content .test-child',
+    '.iui-tile-content .test-child',
   ) as HTMLSpanElement;
   expect(child).toBeTruthy();
   expect(child.textContent).toBe('test-content');
