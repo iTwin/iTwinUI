@@ -84,6 +84,9 @@
     overflow: hidden;
     justify-content: flex-start;
 
+    // Adds stripe to the left of active button
+    --_active-stripe-inset: 0 calc(100% - #{$iui-xxs}) 0 0;
+
     &:not(.iui-expand) {
       height: $iui-baseline * 5;
       // iPhone notch support
@@ -115,12 +118,6 @@
     &.iui-submenu-open .iui-button-icon {
       @include themed {
         fill: t(iui-color-foreground-primary);
-      }
-    }
-
-    &.iui-active {
-      @include themed {
-        box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
       }
     }
 

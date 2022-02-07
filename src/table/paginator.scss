@@ -73,7 +73,8 @@
   @include iui-button-borderless;
   width: $iui-component-height;
 
-  --_active-stripe-inset: auto #{$iui-xxs} #{$iui-xxs};
+  // Adds stripe above active button
+  --_active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
 
   &-small {
     @include iui-button-size(small);

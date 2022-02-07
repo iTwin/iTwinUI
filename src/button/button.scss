@@ -56,7 +56,6 @@ $iui-button-padding-large: $iui-xs * 6;
     &::after {
       content: '';
       position: absolute;
-      height: $iui-xxs;
       inset: var(--_active-stripe-inset);
       background-color: var(--iui-color-foreground-primary);
     }

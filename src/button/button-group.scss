@@ -31,9 +31,7 @@
       }
 
       // Adds stripe above active button
-      &.iui-active {
-        --_active-stripe-inset: #{$iui-xxs} #{$iui-xxs} auto;
-      }
+      --_active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
     }
 
     #{$childBorderSelector} {
