@@ -33,44 +33,48 @@ it('should render with four buttons', () => {
   expect(container.querySelectorAll('button').length).toBe(4);
 });
 
-it('should handle overflow when overflowButton is specified', () => {
-  const scrollWidthSpy = jest
-    .spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValueOnce(250)
-    .mockReturnValue(200);
-  const offsetWidthSpy = jest
-    .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(200);
+it.each(['start', 'end'] as const)(
+  'should handle overflow when overflowButton is specified (%s)',
+  (overflowPlacement) => {
+    const scrollWidthSpy = jest
+      .spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
+      .mockReturnValueOnce(250)
+      .mockReturnValue(200);
+    const offsetWidthSpy = jest
+      .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+      .mockReturnValue(200);
 
-  const mockOnClick = jest.fn();
+    const mockOnClick = jest.fn();
 
-  const OverflowGroup = () => {
-    const buttons = [...Array(3)].map((_, index) => (
-      <IconButton key={index}>
-        <SvgPlaceholder />
-      </IconButton>
-    ));
-    return (
-      <ButtonGroup
-        overflowButton={(overflowStart) => (
-          <IconButton onClick={() => mockOnClick(overflowStart)}>
-            <SvgMore />
-          </IconButton>
-        )}
-      >
-        {buttons}
-      </ButtonGroup>
-    );
-  };
-  const { container } = render(<OverflowGroup />);
+    const OverflowGroup = () => {
+      const buttons = [...Array(3)].map((_, index) => (
+        <IconButton key={index}>
+          <SvgPlaceholder />
+        </IconButton>
+      ));
+      return (
+        <ButtonGroup
+          overflowButton={(overflowStart) => (
+            <IconButton onClick={() => mockOnClick(overflowStart)}>
+              <SvgMore />
+            </IconButton>
+          )}
+          overflowPlacement={overflowPlacement}
+        >
+          {buttons}
+        </ButtonGroup>
+      );
+    };
+    const { container } = render(<OverflowGroup />);
 
-  expect(container.querySelector('.iui-button-group')).toBeTruthy();
+    expect(container.querySelector('.iui-button-group')).toBeTruthy();
 
-  const buttons = container.querySelectorAll('.iui-button');
-  expect(buttons).toHaveLength(2);
-  fireEvent.click(buttons[1]);
-  expect(mockOnClick).toHaveBeenCalledWith(2);
+    const buttons = container.querySelectorAll('.iui-button');
+    expect(buttons).toHaveLength(2);
+    fireEvent.click(overflowPlacement === 'end' ? buttons[1] : buttons[0]);
+    expect(mockOnClick).toHaveBeenCalledWith(2);
 
-  scrollWidthSpy.mockRestore();
-  offsetWidthSpy.mockRestore();
-});
+    scrollWidthSpy.mockRestore();
+    offsetWidthSpy.mockRestore();
+  },
+);

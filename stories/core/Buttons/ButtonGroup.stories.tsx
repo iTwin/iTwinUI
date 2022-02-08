@@ -102,19 +102,22 @@ export const Overflow: Story<ButtonGroupProps> = (args) => {
                     );
                   })
               }
-              {...args}
             >
               <IconButton onClick={() => action('Clicked on overflow icon')()}>
                 <SvgMore />
               </IconButton>
             </DropdownMenu>
           )}
+          {...args}
         >
           {buttons}
         </ButtonGroup>
       </div>
     </>
   );
+};
+Overflow.args = {
+  overflowPlacement: 'end',
 };
 Overflow.parameters = {
   creevey: {
