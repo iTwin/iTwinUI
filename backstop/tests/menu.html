@@ -446,7 +446,7 @@
           <nav aria-label="breadcrumbs">
             <!-- Project Button -->
             <button
-              class="iui-button iui-borderless iui-large iui-header-button"
+              class="iui-header-breadcrumbs-button"
               type="button"
               aria-label="Project picker"
               aria-expanded="false"
@@ -471,7 +471,7 @@
 
             <!-- IModel Button -->
             <button
-              class="iui-button iui-borderless iui-active iui-large iui-header-button"
+              class="iui-header-breadcrumbs-button iui-active"
               type="button"
               aria-label="Model picker"
               aria-expanded="true"
@@ -577,12 +577,12 @@
             <span class="iui-label">App name</span>
           </div>
 
-          <div class="iui-divider"></div>
+          <div class="iui-header-divider"></div>
 
           <nav aria-label="breadcrumbs">
             <!-- Project Button -->
             <button
-              class="iui-button iui-borderless iui-large iui-header-button"
+              class="iui-header-breadcrumbs-button"
               type="button"
               aria-label="Project picker"
               aria-expanded="false"
@@ -601,13 +601,13 @@
             </button>
 
             <svg-chevron-right
-              class="iui-chevron"
+              class="iui-header-chevron"
               aria-hidden="true"
             ></svg-chevron-right>
 
             <!-- IModel Button -->
             <button
-              class="iui-button iui-borderless iui-active iui-large iui-header-button"
+              class="iui-header-breadcrumbs-button iui-active"
               type="button"
               aria-label="Model picker"
               aria-expanded="true"
@@ -1620,7 +1620,7 @@
           } else {
             const checkmarkSvg = document.createElement('svg-checkmark');
             checkmarkSvg.classList.add('iui-icon');
-            checkmarkSvg.toggleAttribute('aria-hidden', true)
+            checkmarkSvg.toggleAttribute('aria-hidden', true);
             if (item.lastElementChild.classList.contains('iui-icon')) {
               item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
             } else {

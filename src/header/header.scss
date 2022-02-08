@@ -24,11 +24,6 @@
     color: t(iui-text-color);
   }
 
-  .iui-button {
-    height: 100%;
-    border-radius: 0;
-  }
-
   &.iui-slim {
     height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
 
@@ -55,7 +50,7 @@
   }
 
   @media (max-width: 768px) {
-    .iui-header-button {
+    .iui-header-breadcrumbs-button {
       .iui-header-button-icon {
         display: none;
       }
@@ -126,10 +121,10 @@
 }
 
 @mixin iui-header-logo {
+  @include iui-header-button-reset;
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  height: 100%;
 
   @at-root {
     a#{&}, // rendered as anchor element
@@ -189,12 +184,13 @@
   }
 }
 
-@mixin iui-header-button {
+@mixin iui-header-breadcrumbs-button {
+  @include iui-button;
+  @include iui-button-borderless;
   @include iui-button-size(large, borderless);
+  @include iui-header-button-reset;
   gap: 0;
   max-width: 25vw;
-  height: 100%;
-  border-radius: 0;
   overflow: hidden;
   padding-right: $iui-s;
   @include iui-header-button-focus;
@@ -222,6 +218,7 @@
 
   > .iui-button-icon {
     flex-shrink: 0;
+    box-sizing: content-box;
   }
 
   > * + * {
@@ -230,11 +227,18 @@
 
   .iui-header-button-icon {
     padding: $iui-xs;
+    box-sizing: content-box;
     @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
     @include themed {
       background-color: t(iui-color-background-3);
       fill: t(iui-icons-color);
     }
+  }
+
+  img.iui-header-button-icon {
+    padding: 0;
+    width: auto;
+    height: $iui-icons-default + ($iui-xs * 2);
   }
 
   &.iui-active {
@@ -251,11 +255,17 @@
 
   @at-root {
     .iui-slim {
-      .iui-header-button {
+      .iui-header-breadcrumbs-button {
         .iui-header-button-icon.iui-header-button-icon {
           width: $iui-icons-small;
           height: $iui-icons-small;
           padding: $iui-xxs;
+        }
+
+        img.iui-header-button-icon.iui-header-button-icon {
+          width: $iui-icons-small + ($iui-xxs * 2);
+          height: $iui-icons-small + ($iui-xxs * 2);
+          padding: 0;
         }
 
         .iui-description {
@@ -276,13 +286,13 @@
     overflow: hidden;
   }
 
-  .iui-button {
-    @include iui-header-button;
+  .iui-header-breadcrumbs-button {
+    @include iui-header-breadcrumbs-button;
     padding: 0 $iui-xs;
   }
 
   > *:first-child {
-    .iui-button {
+    .iui-header-breadcrumbs-button {
       padding-left: $iui-sm;
     }
   }
@@ -291,7 +301,7 @@
     @include iui-header-button-active;
 
     // Removing button hovers and backgrounds and adding last child hover
-    .iui-button {
+    .iui-header-breadcrumbs-button {
       &.iui-borderless {
         &,
         &:hover {
@@ -313,7 +323,7 @@
     }
 
     &.iui-disabled {
-      .iui-button {
+      .iui-header-breadcrumbs-button {
         &:last-child:hover {
           @include themed {
             background-color: transparent;
@@ -397,4 +407,15 @@
   @include iui-icons-small;
   flex-shrink: 0;
   margin: 0 $iui-xs;
+}
+
+@mixin iui-header-button-reset {
+  height: 100%;
+  border-radius: 0;
+}
+
+@mixin iui-header-button {
+  @include iui-button;
+  @include iui-button-borderless;
+  @include iui-header-button-reset;
 }
