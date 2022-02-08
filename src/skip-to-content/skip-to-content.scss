@@ -14,13 +14,11 @@
   text-align: center;
   left: 50%;
   transform: translateX(-50%) translateY(-170%);
-  transition: background-color $iui-speed-fast ease-in-out,
-              transform $iui-speed-slow ease-in-out,
-              box-shadow $iui-speed-fast ease-in-out;
+  transition: background-color $iui-speed-fast ease-in-out, transform $iui-speed-slow ease-in-out, box-shadow $iui-speed-fast ease-in-out;
   
   &:hover {
     @include iui-blur($opacity: 2);
-  };
+  }
   
   &:focus {
     transform: translateX(-50%) translateY(0);
