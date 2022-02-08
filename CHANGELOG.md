@@ -1,5 +1,33 @@
 # Changelog
 
+### [0.46.1](https://www.github.com/iTwin/iTwinUI/compare/v0.46.0...v0.46.1) (2022-02-07)
+
+### Fixes
+
+* **Popover:** Increased hidden attribute specificity ([#469](https://www.github.com/iTwin/iTwinUI/issues/469)) ([d96ddda](https://www.github.com/iTwin/iTwinUI/commit/d96dddaf3a9bf3559c4624ee040ec97bc3c22488))
+
+## [0.46.0](https://www.github.com/iTwin/iTwinUI/compare/v0.45.0...v0.46.0) (2022-02-04)
+
+### What's new
+
+* **Select:** Dropdown icon is an icon ([#444](https://www.github.com/iTwin/iTwinUI/issues/444)) ([703c5f6](https://www.github.com/iTwin/iTwinUI/commit/703c5f64463e269a46ee456595ef879eee9321fd))
+
+### Fixes
+
+* **Button:** Show default outline as fallback ([#468](https://www.github.com/iTwin/iTwinUI/issues/468)) ([6194a13](https://www.github.com/iTwin/iTwinUI/commit/6194a13a1d8349c477cbb86582adcf6f1fe1ce09))
+
+## [0.45.0](https://www.github.com/iTwin/iTwinUI/compare/v0.44.2...v0.45.0) (2022-02-03)
+
+### What's new
+
+* **Carousel:** Added new carousel component ([#377](https://www.github.com/iTwin/iTwinUI/issues/377)) ([4ed38b9](https://www.github.com/iTwin/iTwinUI/commit/4ed38b9b0657b446602d58b2bca594bec85924de))
+* **Tile:** Reduced nesting ([#431](https://www.github.com/iTwin/iTwinUI/issues/431)) ([a2fc0d5](https://www.github.com/iTwin/iTwinUI/commit/a2fc0d59a6bb02fa86b65f0739cc88762aa214f6))
+
+### Fixes
+
+* **Popover:** Added new helper class ([#464](https://www.github.com/iTwin/iTwinUI/issues/464)) ([b147c61](https://www.github.com/iTwin/iTwinUI/commit/b147c6133c3f31ed4bb7b0a10c92c19b5d2cec20))
+* **Table:** Zebra row selector change ([#458](https://www.github.com/iTwin/iTwinUI/issues/458)) ([0761392](https://www.github.com/iTwin/iTwinUI/commit/0761392582e737406dc6f2243e4a4d5a22ce781d))
+
 ### [0.44.2](https://www.github.com/iTwin/iTwinUI/compare/v0.44.1...v0.44.2) (2022-01-26)
 
 ### Fixes

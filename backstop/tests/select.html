@@ -24,7 +24,7 @@
     />
     <style>
       section[id^='demo'] {
-        width: 440px;
+        width: 45vw;
         display: flex;
         flex-direction: column;
         gap: 11px;
@@ -58,6 +58,10 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
 
@@ -71,35 +75,74 @@
       <section id="demo-default-singular">
         <label class="iui-input-container iui-with-message">
           <div class="iui-label iui-required">Select label</div>
-          <div class="iui-select">
+          <div class="iui-input-with-icon">
             <div
               tabindex="0"
-              id="test-select-1"
               class="iui-select-button iui-placeholder"
+              id="test-select-1"
             >
               <span class="iui-content">Placeholder…</span>
+
             </div>
+            <svg-caret-down-small
+              class="iui-end-icon iui-actionable"
+              aria-hidden="true"
+            ></svg-caret-down-small>
           </div>
           <div class="iui-message">Help message.</div>
         </label>
       </section>
 
       <label class="iui-input-container iui-with-message">
-        <div class="iui-label">Select label</div>
-        <div class="iui-select">
-          <div
-            tabindex="0"
-            class="iui-select-button"
-          >
-            <span class="iui-content"></span>
-          </div>
+        <div class="iui-label">ComboBox label</div>
+        <div class="iui-input-with-icon">
+          <input
+            class="iui-input"
+            placeholder="With input"
+          />
+          <svg-caret-down-small
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </div>
+        <div class="iui-message">Help message.</div>
+      </label>
+      <label class="iui-input-container iui-with-message iui-disabled">
+        <div class="iui-label">Disabled ComboBox label</div>
+        <div class="iui-input-with-icon">
+          <input
+            class="iui-input iui-disabled"
+            placeholder="With input"
+            disabled
+          />
+          <svg-caret-down-small
+            class="iui-end-icon iui-disabled"
+            aria-hidden="true"
+          ></svg-caret-down-small>
         </div>
         <div class="iui-message">Help message.</div>
       </label>
 
       <label class="iui-input-container iui-with-message">
         <div class="iui-label">Select label</div>
-        <div class="iui-select">
+        <div class="iui-input-with-icon">
+          <div
+            tabindex="0"
+            class="iui-select-button"
+          >
+            <span class="iui-content"></span>
+          </div>
+          <svg-caret-down-small
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </div>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message">
+        <div class="iui-label">Select label</div>
+        <div class="iui-input-with-icon">
           <div
             tabindex="0"
             class="iui-select-button"
@@ -114,23 +157,31 @@
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
               qui officia deserunt mollit anim id est laborum.</span>
           </div>
+          <svg-caret-down-small
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          ></svg-caret-down-small>
         </div>
         <div class="iui-message">Help message.</div>
       </label>
 
       <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Select label</div>
-        <div class="iui-select">
-          <div class="iui-select-button iui-placeholder iui-disabled">
+        <div class="iui-input-with-icon">
+          <div class="iui-select-button iui-disabled iui-placeholder">
             <span class="iui-content">Placeholder…</span>
           </div>
+          <svg-caret-down-small
+            class="iui-end-icon iui-disabled"
+            aria-hidden="true"
+          ></svg-caret-down-small>
         </div>
         <div class="iui-message">Help message.</div>
       </label>
 
       <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Select label</div>
-        <div class="iui-select">
+        <div class="iui-input-with-icon">
           <div class="iui-select-button iui-disabled">
             <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -138,19 +189,27 @@
               esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
               qui officia deserunt mollit anim id est laborum.</span>
           </div>
+          <svg-caret-down-small
+            class="iui-end-icon iui-disabled"
+            aria-hidden="true"
+          ></svg-caret-down-small>
         </div>
         <div class="iui-message">Help message.</div>
       </label>
 
       <label class="iui-input-container iui-with-message iui-positive">
         <div class="iui-label">Select label</div>
-        <div class="iui-select">
+        <div class="iui-input-with-icon">
           <div
             tabindex="0"
             class="iui-select-button iui-placeholder"
           >
             <span class="iui-content">Placeholder…</span>
           </div>
+          <svg-caret-down-small
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          ></svg-caret-down-small>
         </div>
         <svg-status-success
           class="iui-input-icon"
@@ -163,13 +222,17 @@
 
       <label class="iui-input-container iui-with-message iui-warning">
         <div class="iui-label">Select label</div>
-        <div class="iui-select">
+        <div class="iui-input-with-icon">
           <div
             tabindex="0"
             class="iui-select-button iui-placeholder"
           >
             <span class="iui-content">Placeholder…</span>
           </div>
+          <svg-caret-down-small
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          ></svg-caret-down-small>
         </div>
         <svg-status-warning
           class="iui-input-icon"
@@ -182,13 +245,18 @@
 
       <label class="iui-input-container iui-with-message iui-negative">
         <div class="iui-label">Select label</div>
-        <div class="iui-select">
+        <div class="iui-input-with-icon">
           <div
             tabindex="0"
             class="iui-select-button iui-placeholder"
           >
             <span class="iui-content">Placeholder…</span>
           </div>
+          <svg-caret-down-small
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          >
+          </svg-caret-down-small>
         </div>
         <svg-status-error
           class="iui-input-icon"
@@ -205,31 +273,42 @@
 
     <section id="demo-sizes">
 
-      <div class="iui-select iui-small">
+      <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button"
+          class="iui-select-button iui-small"
         >
           <span class="iui-content">Small</span>
         </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-actionable"
+          aria-hidden="true"
+        ></svg-caret-down-small>
       </div>
 
-      <div class="iui-select">
+      <div class="iui-input-with-icon">
         <div
           tabindex="0"
           class="iui-select-button"
-        >
-          <span class="iui-content">Default</span>
+        > <span class="iui-content">Default</span>
         </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-actionable"
+          aria-hidden="true"
+        ></svg-caret-down-small>
       </div>
 
-      <div class="iui-select iui-large">
+      <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button"
+          class="iui-select-button iui-large"
         >
           <span class="iui-content">Large</span>
         </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-actionable"
+          aria-hidden="true"
+        ></svg-caret-down-small>
       </div>
 
     </section>
@@ -239,7 +318,7 @@
     <h2>In context</h2>
 
     <section id="demo-inline-combo">
-      <div class="iui-select">
+      <div class="iui-input-with-icon">
         <div
           tabindex="0"
           class="iui-select-button"
@@ -250,6 +329,10 @@
             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
             qui officia deserunt mollit anim id est laborum.</span>
         </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-actionable"
+          aria-hidden="true"
+        ></svg-caret-down-small>
       </div>
       <button class="iui-button iui-default">
         <span class="iui-button-label">Add</span>
