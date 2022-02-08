@@ -215,6 +215,62 @@
         </div>
       </div>
     </section>
+    <hr />
+
+    <h2>Borderless</h2>
+    <section id="demo-borderless">
+      <div class="iui-expandable-block iui-borderless">
+        <div
+          aria-expanded="false"
+          class="iui-header"
+          tabindex="0"
+        >
+          <svg-chevron-right
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-chevron-right>
+          <span class="iui-expandable-block-label">
+            <div class="iui-title">Expandable block title</div>
+          </span>
+          <svg-status-success
+            class="iui-status-icon iui-positive"
+            aria-hidden="true"
+          ></svg-status-success>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="iui-expandable-block iui-expanded iui-borderless">
+        <div
+          aria-expanded="true"
+          class="iui-header"
+          tabindex="0"
+        >
+          <svg-chevron-right
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-chevron-right>
+          <span class="iui-expandable-block-label">
+            <div class="iui-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+              qui officia deserunt mollit anim id est laborum.</div>
+          </span>
+          <svg-status-success
+            class="iui-status-icon iui-positive"
+            aria-hidden="true"
+          ></svg-status-success>
+        </div>
+        <div class="iui-expandable-content">
+          <div>
+            <expandable-content></expandable-content>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <script>
       document.querySelectorAll('.iui-header').forEach((el) => {
