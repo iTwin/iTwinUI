@@ -109,6 +109,7 @@ export type TableProps<
   isSelectable?: boolean;
   /**
    * Handler for rows selection. Must be memoized.
+   * This is triggered only by user initiated actions (i.e. data change will not call it).
    */
   onSelect?: (
     selectedData: T[] | undefined,
