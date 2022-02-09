@@ -5,9 +5,11 @@
 @mixin iui-skip-to-content {
   @include iui-blur($opacity: 3);
   @include iui-focus($offset: 2px, $thickness: 2px);
+  @include themed {
+    color: t(iui-color-foreground-accessory);
+  }
 
   border-radius: $iui-border-radius-huge;
-  color: t(iui-color-foreground-accessory);
   text-decoration: none;
   padding: ($iui-baseline * 0.75) $iui-m;
   position: absolute;
