@@ -51,7 +51,7 @@ module.exports = [
 
   //// More Options hover
   scenario('State More Options hover', {
-    actions: [hover('#test-button')],
+    actions: [hover('#test-tile-1'), hover('#test-button')],
     selectors: ['#test-tile-1'],
     misMatchThreshold: 0.1,
   }),

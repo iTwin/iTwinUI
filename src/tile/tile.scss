@@ -19,15 +19,13 @@
 
   &:hover,
   &:focus-within {
-    .iui-tile-metadata:not(:last-child) {
-      width: calc(100% - #{$iui-xl});
-    }
-
     .iui-tile-more-options {
       @include iui-visually-hidden-revert;
       position: absolute;
-      bottom: $iui-baseline * 0.5;
-      right: $iui-s;
+    }
+
+    .iui-tile-metadata:not(:last-child) {
+      width: calc(100% - #{$iui-xl});
     }
 
     .iui-tile-thumbnail-picture {
@@ -153,18 +151,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-  }
-
-  .iui-tile-more-options {
-    @include iui-visually-hidden;
-
-    &:focus-within,
-    &.iui-visible {
-      @include iui-visually-hidden-revert;
-      position: absolute;
-      bottom: $iui-baseline * 0.5;
-      right: $iui-s;
     }
   }
 }
@@ -315,5 +301,15 @@
     @include themed() {
       border-right: 1px solid t(iui-color-background-4);
     }
+  }
+}
+
+@mixin iui-tile-more-options {
+  position: absolute;
+  bottom: $iui-baseline * 0.5;
+  right: $iui-s;
+
+  &:not(.iui-visible) {
+    @include iui-visually-hidden;
   }
 }
