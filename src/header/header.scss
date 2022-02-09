@@ -94,12 +94,10 @@
 
 @mixin iui-page-header-center {
   @include iui-page-header-zones;
-  justify-content: center;
 }
 
 @mixin iui-page-header-right {
   @include iui-page-header-zones;
-  justify-content: flex-end;
 
   @media (prefers-reduced-motion: no-preference) {
     .iui-user-icon {
