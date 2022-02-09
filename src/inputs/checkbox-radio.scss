@@ -15,64 +15,21 @@
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
 
-  > input {
-    width: 0;
-    height: 0;
-    appearance: none;
-    opacity: 0;
-    position: absolute;
-  }
-
-  &.iui-disabled {
-    cursor: not-allowed;
-  }
-
-  .iui-checkbox-checkmark,
-  .iui-radio-dot {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    margin: 0;
-    display: flex;
-    flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    isolation: isolate;
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-      background-color: t(iui-color-background-1);
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      transition: border-color $iui-speed-fast ease-out;
-      border-radius: inherit;
-      border-style: solid;
-      border-width: 1px;
-      border-color: inherit;
-    }
-
-    svg:not(.iui-radial) {
-      width: 100%;
-      height: 100%;
-      @include themed {
-        fill: t(iui-icons-color-primary);
-      }
-
-      > * {
-        opacity: 0;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: opacity $iui-speed-fast ease;
-        }
-      }
+  gap: $iui-s;
+  > * + * {
+    margin-left: $iui-s;
+    @supports (gap: $iui-s) {
+      margin-left: 0;
     }
   }
 
-  > .iui-label {
-    margin-right: $iui-s;
+  &.iui-loading {
+    cursor: wait;
+    color: var(--iui-text-color-muted);
+  }
+
+  > .iui-checkbox-label,
+  > .iui-radio-label {
     display: flex;
     align-items: center;
 
@@ -80,95 +37,16 @@
       width: $iui-icons-default;
       height: $iui-icons-default;
       vertical-align: middle;
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
+      fill: currentColor;
     }
   }
 
-  // For labels on the left
-  .iui-checkbox-checkmark ~ .iui-label,
-  .iui-radio-dot ~ .iui-label {
-    margin-left: $iui-s;
-    margin-right: 0;
-  }
-
-  // Adds hover to everything that is not disabled
-  &:hover > input:enabled ~ .iui-checkbox-checkmark,
-  &:hover > input:enabled ~ .iui-radio-dot {
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-    }
-  }
-
-  // Selected checkboxes & radios border opacity increase
-  input:checked ~ .iui-checkbox-checkmark,
-  input:indeterminate ~ .iui-checkbox-checkmark,
-  input:checked ~ .iui-radio-dot {
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
-    }
-  }
-
-  // Show check, partial, or dot depending on type
-  input:checked ~ .iui-checkbox-checkmark .iui-check,
-  input:indeterminate ~ .iui-checkbox-checkmark .iui-check-partial,
-  input:checked ~ .iui-radio-dot circle {
-    opacity: 1;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: opacity $iui-speed-fast ease;
-    }
-  }
-
-  // Adds focus to enabled checkbox & radio
-  input:enabled {
-    &:focus {
-      ~ .iui-checkbox-checkmark,
-      ~ .iui-radio-dot {
-        @include themed {
-          outline: 2px solid t(iui-color-foreground-primary);
-        }
-        outline-offset: -1px;
-      }
-    }
-
-    &:focus:not(:focus-visible) {
-      ~ .iui-checkbox-checkmark,
-      ~ .iui-radio-dot {
-        outline: none;
-      }
-    }
-  }
-
-  // Styles disabled checkbox & radio
-  input:disabled ~ .iui-checkbox-checkmark,
-  input:disabled ~ .iui-radio-dot {
+  &.iui-disabled {
     cursor: not-allowed;
-    @include themed {
-      background-color: t(iui-color-background-disabled);
-      border-color: t(iui-color-background-disabled);
-    }
-  }
-
-  // Styles disabled checks
-  input:disabled ~ .iui-checkbox-checkmark svg,
-  input:disabled ~ .iui-radio-dot svg {
-    @include themed {
-      fill: t(iui-icons-color-actionable-disabled);
-    }
-  }
-
-  // Styles disabled labels
-  input:disabled ~ .iui-label {
-    cursor: not-allowed;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
 
     svg {
-      @include themed {
-        fill: t(iui-icons-color-actionable-disabled);
-      }
+      fill: var(--iui-icons-color-actionable-disabled);
     }
   }
 
