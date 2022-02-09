@@ -67,12 +67,10 @@
     }
 
     // Add slight border between disabled items
-    &:not(:first-child) {
-      .iui-default {
-        #{$disabledSelector} {
-          @include themed {
-            border-left-color: t(iui-color-background-4);
-          }
+    &:not(:first-child) .iui-default {
+      #{$disabledSelector} {
+        @include themed {
+          border-left-color: t(iui-color-background-4);
         }
       }
     }
