@@ -133,14 +133,25 @@
 /// Visually hides an element but still allows it to be tabbed to.
 @mixin iui-visually-hidden {
   clip-path: inset(50%);
-  position: absolute;
   overflow: hidden;
+  position: absolute;
   white-space: nowrap;
   height: 1px;
   width: 1px;
   padding: 0;
   margin: -1px;
   border-width: 0;
+}
+
+@mixin iui-visually-hidden-revert {
+  clip-path: revert;
+  overflow: visible;
+  position: static;
+  white-space: normal;
+  height: auto;
+  width: auto;
+  padding: 0;
+  margin: 0;
 }
 
 /// Classes for react-transition-group
