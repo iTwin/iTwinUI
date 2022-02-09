@@ -130,8 +130,10 @@
   padding: 0;
 }
 
-/// Visually hides an element but still allows it to be tabbed to.
-@mixin iui-visually-hidden {
+/// Visually hides an element but keeps it accessible to screen readers.
+/// Because it applies some potentially invasive styles, use this mixin on a wrapper element for best results.
+/// If it contains a focusable element, make sure to revert/exclude these styles.
+@mixin visually-hidden {
   clip-path: inset(50%);
   overflow: hidden;
   position: absolute;
@@ -143,7 +145,8 @@
   border-width: 0;
 }
 
-@mixin iui-visually-hidden-revert {
+/// Reverts visually-hidden styles, making it visible again.
+@mixin visually-hidden-revert {
   clip-path: revert;
   overflow: visible;
   position: static;

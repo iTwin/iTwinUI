@@ -20,7 +20,7 @@
   &:hover,
   &:focus-within {
     .iui-tile-more-options {
-      @include iui-visually-hidden-revert;
+      @include visually-hidden-revert;
       position: absolute;
     }
 
@@ -310,6 +310,6 @@
   right: $iui-s;
 
   &:not(.iui-visible) {
-    @include iui-visually-hidden;
+    @include visually-hidden;
   }
 }
