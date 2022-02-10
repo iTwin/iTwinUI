@@ -35,8 +35,12 @@
       }
 
       /* Set the thumbnail image */
-      div.iui-tile-thumbnail-picture {
+      div.demo-photo {
         background-image: url('../assets/image-test.jpg');
+      }
+
+      div.demo-map {
+        background-image: url('https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/40.063042,-75.686659/18?mapSize=388,255&pp=40.063041,-75.686659;66&mapLayer=Basemap,Buildings&key=Ai5vgiR-OozsHavYr0VwSAyfvHOsgbRk4lV8CgdqmUbUj5XLj6VSUzql7jTtFwXj');
       }
 
       section {
@@ -112,6 +116,7 @@
       <!-- Newly uploaded file, text overflow, no thumbnail, lots of labels -->
       <div
         class="iui-tile iui-new"
+        tabindex="0"
         id="test-tile-1"
       >
         <div class="iui-tile-thumbnail">
@@ -205,16 +210,19 @@
             </div>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+              id="test-button"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
 
         <div class="iui-tile-buttons">
@@ -226,10 +234,11 @@
       <!-- With thumbnail -->
       <div
         class="iui-tile"
+        tabindex="0"
         id="test-tile-2"
       >
         <div class="iui-tile-thumbnail">
-          <div class="iui-tile-thumbnail-picture"></div>
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
           <button
             aria-label="Type indicator"
             type="button"
@@ -275,16 +284,18 @@
             <span>Metadata</span>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
 
         <div class="iui-tile-buttons">
@@ -298,7 +309,10 @@
     <h2>Default</h2>
     <section id="demo-default">
       <!-- No thumbnail -->
-      <div class="iui-tile">
+      <div
+        class="iui-tile"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <button
             aria-label="Info"
@@ -346,23 +360,28 @@
             </div>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- With thumbnail -->
-      <div class="iui-tile">
+      <div
+        class="iui-tile"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
-          <div class="iui-tile-thumbnail-picture"></div>
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
           <button
             aria-label="Info"
             type="button"
@@ -405,23 +424,28 @@
             </div>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- With thumbnail & selected -->
-      <div class="iui-tile iui-selected">
+      <div
+        class="iui-tile iui-selected"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
-          <div class="iui-tile-thumbnail-picture"></div>
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
           <button
             aria-label="Info"
             type="button"
@@ -468,16 +492,18 @@
             </div>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -486,7 +512,10 @@
 
     <h2>User</h2>
     <section id="demo-user">
-      <div class="iui-tile">
+      <div
+        class="iui-tile"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <user-icon
             size="x-large"
@@ -503,20 +532,25 @@
           </div>
           <div class="iui-tile-description">CEO</div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="iui-tile iui-selected">
+      <div
+        class="iui-tile iui-selected"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <user-icon
             size="x-large"
@@ -537,16 +571,18 @@
           </div>
           <div class="iui-tile-description">CEO</div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -556,16 +592,12 @@
     <h2>Location</h2>
     <section id="demo-location">
       <!-- No thumbnail -->
-      <div class="iui-tile">
+      <div
+        class="iui-tile"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
-          <iframe
-            class="iui-tile-thumbnail-picture"
-            frameborder="0"
-            src="
-            https://www.bing.com/maps/embed?cp=40.065643~-75.688389&lvl=11&typ=s&sty=r&src=SHELL&FORM=MBEDV8"
-            scrolling="no"
-          >
-          </iframe>
+          <div class="iui-tile-thumbnail-picture demo-map"></div>
           <button
             aria-label="Assetwise"
             type="button"
@@ -604,16 +636,18 @@
             ID: <span class="iui-tag iui-basic">10001</span>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
 
         <div class="iui-tile-buttons">
@@ -622,9 +656,12 @@
       </div>
 
       <!-- With thumbnail -->
-      <div class="iui-tile">
+      <div
+        class="iui-tile"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
-          <div class="iui-tile-thumbnail-picture"></div>
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
           <button
             aria-label="Assetwise"
             type="button"
@@ -663,16 +700,18 @@
             ID: <span class="iui-tag iui-basic">10001</span>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
         <div class="iui-tile-buttons">
           <button class="iui-button iui-default">Manage</button><button class="iui-button iui-default">Projects</button>
@@ -685,7 +724,10 @@
     <h2>Video</h2>
     <section id="demo-video">
       <!-- No thumbnail -->
-      <div class="iui-tile">
+      <div
+        class="iui-tile"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <button
             aria-label="Favorite"
@@ -728,23 +770,28 @@
             <time datetime="2020-12-31 14:00">Dec 31, 2020 @ 2:00pm</time>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- With thumbnail -->
-      <div class="iui-tile">
+      <div
+        class="iui-tile"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
-          <div class="iui-tile-thumbnail-picture"></div>
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
           <button
             aria-label="Favorite"
             type="button"
@@ -786,26 +833,29 @@
             <time datetime="2020-12-31 14:00">Dec 31, 2020 @ 2:00pm</time>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- With thumbnail -->
       <div
         class="iui-tile iui-selected"
+        tabindex="0"
         id="test-tile-3"
       >
         <div class="iui-tile-thumbnail">
-          <div class="iui-tile-thumbnail-picture"></div>
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
           <button
             aria-label="Favorite"
             type="button"
@@ -851,16 +901,18 @@
             <time datetime="2020-12-31 14:00">Dec 31, 2020 @ 2:00pm</time>
           </div>
 
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -870,7 +922,10 @@
     <h2>Folder</h2>
     <section id="demo-folder">
       <!-- No thumbnail & new -->
-      <div class="iui-tile iui-folder iui-new">
+      <div
+        class="iui-tile iui-folder iui-new"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -890,21 +945,26 @@
           <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
           </div>
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- No thumbnail -->
-      <div class="iui-tile iui-folder">
+      <div
+        class="iui-tile iui-folder"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -919,23 +979,28 @@
           <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
           </div>
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- With thumbnail -->
-      <div class="iui-tile iui-folder">
+      <div
+        class="iui-tile iui-folder"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
-          <div class="iui-tile-thumbnail-picture"></div>
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
         </div>
 
         <div class="iui-tile-content ">
@@ -945,23 +1010,28 @@
           <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
           </div>
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- With thumbnail -->
-      <div class="iui-tile iui-folder iui-selected">
+      <div
+        class="iui-tile iui-folder iui-selected"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
-          <div class="iui-tile-thumbnail-picture"></div>
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
         </div>
 
         <div class="iui-tile-content ">
@@ -975,16 +1045,18 @@
           <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
           </div>
-          <button
-            aria-label="More options"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-more-options"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </div>
       </div>
     </section>
