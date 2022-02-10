@@ -74,7 +74,7 @@
   width: $iui-component-height;
 
   // Adds stripe above active button
-  --_active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
+  --_iui-button-active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
 
   &-small {
     @include iui-button-size(small);

@@ -8,7 +8,7 @@
   isolation: isolate;
 
   $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
-  $childBorderSelector: '.iui-input, .iui-button:not(.iui-borderless)';
+  $childBorderSelector: '.iui-input, .iui-button:where(:not(.iui-borderless))';
   $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
   > * {
@@ -31,7 +31,7 @@
       }
 
       // Adds stripe above active button
-      --_active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
+      --_iui-button-active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
     }
 
     #{$childBorderSelector} {
@@ -67,7 +67,7 @@
     }
 
     // Add slight border between disabled items
-    &:not(:first-child) .iui-default {
+    &:not(:first-child) :where(.iui-button.iui-default) {
       #{$disabledSelector} {
         @include themed {
           border-left-color: t(iui-color-background-4);

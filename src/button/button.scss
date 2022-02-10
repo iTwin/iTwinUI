@@ -10,6 +10,8 @@ $iui-button-padding-small: $iui-xs * 2;
 $iui-button-padding-large: $iui-xs * 6;
 
 @mixin iui-button {
+  --_iui-button-active-stripe-inset: initial;
+
   @include iui-reset;
   font-family: inherit;
   display: inline-flex;
@@ -52,11 +54,11 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 
   &.iui-active {
-    // Shows active stripe only if --_active-stripe-inset is set (from outside)
+    // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
     &::after {
       content: '';
       position: absolute;
-      inset: var(--_active-stripe-inset);
+      inset: var(--_iui-button-active-stripe-inset);
       background-color: var(--iui-color-foreground-primary);
     }
 
