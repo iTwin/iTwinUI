@@ -8,6 +8,7 @@ import { DropdownMenu } from '../DropdownMenu';
 import { MenuItem } from '../Menu/MenuItem';
 import { PopoverProps, PopoverInstance, CommonProps, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/inputs.css';
+import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
 
 export type ItemRendererProps = {
   /**
@@ -196,6 +197,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const toggle = () => setIsOpen((open) => !open);
 
   const selectRef = React.useRef<HTMLDivElement>(null);
+  const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
 
   const onShowHandler = React.useCallback(
     (instance: PopoverInstance) => {
@@ -274,7 +276,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   return (
     <div
-      className={cx('iui-select', { [`iui-${size}`]: !!size }, className)}
+      className={cx('iui-input-with-icon', className)}
       aria-expanded={isOpen}
       aria-haspopup='listbox'
       style={style}
@@ -296,13 +298,18 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         disabled={disabled}
         {...popoverProps}
         visible={isOpen}
+        onClickOutside={(_, { target }) => {
+          if (!toggleButtonRef.current?.contains(target as Element)) {
+            setIsOpen(false);
+          }
+        }}
       >
         <div
           ref={selectRef}
           className={cx('iui-select-button', {
             'iui-placeholder': !selectedItem && !!placeholder,
             'iui-disabled': disabled,
-            'iui-active': isOpen,
+            [`iui-${size}`]: !!size,
           })}
           onClick={() => !disabled && toggle()}
           onKeyDown={(e) => !disabled && onKeyDown(e, toggle)}
@@ -323,6 +330,17 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           )}
         </div>
       </DropdownMenu>
+      <span
+        ref={toggleButtonRef}
+        className={cx('iui-end-icon', {
+          'iui-actionable': !disabled,
+          'iui-disabled': disabled,
+          'iui-open': isOpen,
+        })}
+        onClick={() => !disabled && toggle()}
+      >
+        <SvgCaretDownSmall aria-hidden />
+      </span>
     </div>
   );
 };

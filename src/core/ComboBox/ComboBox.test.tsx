@@ -75,7 +75,7 @@ it('should render with selected value', () => {
 
 it('should render caret icon correctly', () => {
   const { container } = renderComponent();
-  let icon = container.querySelector('.iui-input-icon svg') as HTMLElement;
+  let icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
 
   const {
     container: { firstChild: caretDown },
@@ -86,13 +86,13 @@ it('should render caret icon correctly', () => {
 
   // open
   fireEvent.click(icon);
-  icon = container.querySelector('.iui-input-icon svg') as HTMLElement;
+  icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
   expect(icon).toEqual(caretDown);
   expect(container.querySelector('.iui-menu')).toBeVisible();
 
   // close
   fireEvent.click(icon);
-  icon = container.querySelector('.iui-input-icon svg') as HTMLElement;
+  icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
   expect(icon).toEqual(caretDown);
   expect(container.querySelector('.iui-menu')).not.toBeVisible();
 });

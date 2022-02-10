@@ -305,89 +305,84 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
   ]);
 
   return (
-    <InputContainer
-      className={className}
-      isIconInline={true}
-      icon={React.useMemo(
-        () => (
-          <span
-            ref={toggleButtonRef}
-            className={cx({
-              'iui-actionable': !inputProps?.disabled,
-              'iui-open': isOpen,
-            })}
-            onClick={() => {
-              if (isOpen) {
-                setIsOpen(false);
-              } else {
-                inputRef.current?.focus();
-              }
-            }}
-          >
-            <SvgCaretDownSmall aria-hidden />
-          </span>
-        ),
-        [inputProps?.disabled, isOpen],
-      )}
-      {...rest}
-      id={id}
-    >
-      <Popover
-        placement='bottom-start'
-        visible={isOpen}
-        onClickOutside={(_, { target }) => {
-          if (!toggleButtonRef.current?.contains(target as Element)) {
-            setIsOpen(false);
+    <InputContainer className={className} isIconInline={true} {...rest} id={id}>
+      <div className='iui-input-with-icon'>
+        <Popover
+          placement='bottom-start'
+          visible={isOpen}
+          onClickOutside={(_, { target }) => {
+            if (!toggleButtonRef.current?.contains(target as Element)) {
+              setIsOpen(false);
+            }
+          }}
+          animation='shift-away'
+          duration={200}
+          {...dropdownMenuProps}
+          content={
+            <Menu
+              id={`${id}-list`}
+              className='iui-scroll'
+              style={{
+                minWidth,
+                maxWidth: `min(${minWidth * 2}px, 90vw)`,
+                maxHeight: 300,
+              }}
+              setFocus={false}
+              role='listbox'
+              ref={menuRef}
+            >
+              {menuItems}
+            </Menu>
           }
-        }}
-        animation='shift-away'
-        duration={200}
-        {...dropdownMenuProps}
-        content={
-          <Menu
-            id={`${id}-list`}
-            className='iui-scroll'
-            style={{
-              minWidth,
-              maxWidth: `min(${minWidth * 2}px, 90vw)`,
-              maxHeight: 300,
-            }}
-            setFocus={false}
-            role='listbox'
-            ref={menuRef}
-          >
-            {menuItems}
-          </Menu>
-        }
-        onHide={(instance) => {
-          const selectedIndex = options.findIndex(
-            ({ value }) => value === selectedValue,
-          );
-          setFocusedIndex(selectedIndex);
-          if (selectedIndex > -1) {
-            setInputValue(options[selectedIndex].label); // update input value to be same as selected value
-          }
-          dropdownMenuProps?.onHide?.(instance);
-        }}
-      >
-        <Input
-          ref={inputRef}
-          onKeyDown={onKeyDown}
-          onFocus={() => setIsOpen(true)}
-          onChange={onInput}
-          value={inputValue}
-          aria-activedescendant={
-            isOpen && focusedIndex > -1 ? getOptionId(focusedIndex) : undefined
-          }
-          role='combobox'
-          aria-controls={isOpen ? `${id}-list` : undefined}
-          aria-autocomplete='list'
-          spellCheck={false}
-          autoCapitalize='none'
-          autoCorrect='off'
-          {...inputProps}
-        />
-      </Popover>
+          onHide={(instance) => {
+            const selectedIndex = options.findIndex(
+              ({ value }) => value === selectedValue,
+            );
+            setFocusedIndex(selectedIndex);
+            if (selectedIndex > -1) {
+              setInputValue(options[selectedIndex].label); // update input value to be same as selected value
+            }
+            dropdownMenuProps?.onHide?.(instance);
+          }}
+        >
+          <Input
+            ref={inputRef}
+            onKeyDown={onKeyDown}
+            onFocus={() => setIsOpen(true)}
+            onChange={onInput}
+            value={inputValue}
+            aria-activedescendant={
+              isOpen && focusedIndex > -1
+                ? getOptionId(focusedIndex)
+                : undefined
+            }
+            role='combobox'
+            aria-controls={isOpen ? `${id}-list` : undefined}
+            aria-autocomplete='list'
+            spellCheck={false}
+            autoCapitalize='none'
+            autoCorrect='off'
+            {...inputProps}
+          />
+        </Popover>
+        <span
+          ref={toggleButtonRef}
+          className={cx('iui-end-icon', {
+            'iui-actionable': !inputProps?.disabled,
+            'iui-disabled': inputProps?.disabled,
+            'iui-open': isOpen,
+          })}
+          onClick={() => {
+            if (isOpen) {
+              setIsOpen(false);
+            } else {
+              inputRef.current?.focus();
+            }
+          }}
+        >
+          <SvgCaretDownSmall aria-hidden />
+        </span>
+      </div>
     </InputContainer>
   );
 };

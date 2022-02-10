@@ -69,14 +69,14 @@ beforeEach(() => {
 it('should render empty select', () => {
   const { container } = renderComponent();
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   assertSelect(select);
 });
 
 it('should show placeholder', () => {
   const { container } = renderComponent({ placeholder: 'TestPlaceholder' });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   assertSelect(select, { text: 'TestPlaceholder', isPlaceholderVisible: true });
 });
 
@@ -86,7 +86,7 @@ it('should show value inside select', () => {
     value: 1,
   });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   assertSelect(select, { text: 'Test1' });
 });
 
@@ -100,7 +100,7 @@ it('should show value with icon inside select', () => {
     })),
   });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   assertSelect(select, { text: 'Test1', hasIcon: true });
 });
 
@@ -126,7 +126,7 @@ it('should set focus on select and call onBlur', () => {
   const onBlur = jest.fn();
   const { container } = renderComponent({ setFocus: true, onBlur });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   assertSelect(select);
   const selectButton = container.querySelector(
     '.iui-select-button',
@@ -144,7 +144,7 @@ it('should set focus on select and call onBlur', () => {
 it('should render select with custom className', () => {
   const { container } = renderComponent({ className: 'test-className' });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   assertSelect(select);
   expect(select.classList).toContain('test-className');
 });
@@ -152,7 +152,7 @@ it('should render select with custom className', () => {
 it('should render select with custom style', () => {
   const { container } = renderComponent({ style: { color: 'red' } });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   assertSelect(select);
   expect(select.style.color).toEqual('red');
 });
@@ -172,7 +172,7 @@ it('should use custom render for selected item', () => {
     />,
   );
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   assertSelect(select, { text: 'Red' });
   const selectedValue = select.querySelector(
     '.iui-select-button > span',
@@ -184,7 +184,7 @@ it('should use custom render for selected item', () => {
 it('should open menu on click', () => {
   const { container } = renderComponent();
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
   let menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeFalsy();
@@ -204,7 +204,7 @@ it('should respect visible prop', () => {
     <Select options={options} popoverProps={{ visible: true }} />,
   );
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
@@ -223,7 +223,9 @@ it.each(['Enter', ' ', 'Spacebar'])(
   (key) => {
     const { container } = renderComponent();
 
-    const select = container.querySelector('.iui-select') as HTMLElement;
+    const select = container.querySelector(
+      '.iui-input-with-icon',
+    ) as HTMLElement;
     expect(select).toBeTruthy();
     let menu = document.querySelector('.iui-menu') as HTMLUListElement;
     expect(menu).toBeFalsy();
@@ -248,7 +250,7 @@ it('should show menu items with icons', () => {
     })),
   });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
@@ -265,7 +267,7 @@ it('should show menu with disabled item', () => {
     })),
   });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
@@ -283,7 +285,7 @@ it('should show selected item in menu', () => {
     })),
   });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
@@ -298,7 +300,7 @@ it('should call onChange on item click', () => {
     onChange,
   });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
@@ -314,7 +316,7 @@ it('should call onChange on item click', () => {
 it('should render menu with custom className', () => {
   const { container } = renderComponent({ menuClassName: 'test-className' });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
@@ -326,7 +328,7 @@ it('should render menu with custom className', () => {
 it('should render menu with custom style', () => {
   const { container } = renderComponent({ menuStyle: { color: 'red' } });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
@@ -349,7 +351,7 @@ it('should use custom renderer for menu items', () => {
     />,
   );
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
@@ -371,7 +373,9 @@ it.each(['small', 'large'] as const)(
   'should render small and large sizes',
   (size) => {
     const { container } = renderComponent({ size });
-    expect(container.querySelector(`.iui-select.iui-${size}`)).toBeTruthy();
+    expect(
+      container.querySelector(`.iui-select-button.iui-${size}`),
+    ).toBeTruthy();
   },
 );
 
@@ -384,12 +388,12 @@ it('should render large SelectOption', () => {
     })),
   });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
 
-  const menuItems = select.querySelectorAll('.iui-menu-item.iui-large');
+  const menuItems = container.querySelectorAll('.iui-menu-item.iui-large');
   expect(menuItems.length).toEqual(3);
 });
 
@@ -402,12 +406,12 @@ it('should render sublabel', () => {
     })),
   });
 
-  const select = container.querySelector('.iui-select') as HTMLElement;
+  const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
 
-  const menuItems = select.querySelectorAll('.iui-menu-item.iui-large');
+  const menuItems = container.querySelectorAll('.iui-menu-item.iui-large');
   expect(menuItems.length).toEqual(3);
 
   menuItems.forEach((menuItem, index) => {
