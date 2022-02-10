@@ -5,6 +5,7 @@
 @import '../icon/index';
 @import '../button/index';
 
+// #region Header structure
 @mixin iui-page-header {
   @include iui-reset;
   display: flex;
@@ -25,50 +26,11 @@
   }
 
   &.iui-slim {
-    @include iui-page-header-slim;
-  }
+    height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
 
-  @media (max-width: 768px) {
-    .iui-header-breadcrumbs-button {
-      .iui-header-button-icon {
-        display: none;
-      }
-
-      .iui-button-label {
-        margin-left: 0;
-      }
+    .iui-user-icon {
+      @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
     }
-  }
-
-  @media (max-width: 1024px) {
-    .iui-header-logo > .iui-label {
-      display: none;
-    }
-  }
-}
-
-@mixin iui-page-header-slim {
-  height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
-
-  .iui-header-logo {
-    > .iui-label {
-      font-size: $iui-font-size;
-    }
-
-    .iui-header-button-icon {
-      margin: 0 $iui-l + $iui-xs;
-    }
-  }
-
-  .iui-header-button-icon {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    margin: 0 $iui-xs;
-    display: inline-flex;
-  }
-
-  .iui-user-icon {
-    @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
   }
 }
 
@@ -112,28 +74,55 @@
     }
   }
 }
+// #endregion Selection
 
-@mixin iui-header-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
-  width: $size;
-  height: $size;
-  border-radius: $border-radius;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
-  }
+// #region Header buttons
+@mixin iui-header-button-reset {
+  height: 100%;
+  border-radius: 0 !important;
 }
 
-@mixin iui-header-logo {
+@mixin iui-header-brand {
   @include iui-header-button-reset;
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
+  background-color: transparent;
+
+  &-icon {
+    width: $iui-icons-large;
+    height: $iui-icons-large;
+    margin: 0 $iui-l;
+    transition: fill $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, margin $iui-speed-fast ease-out,
+        fill $iui-speed-fast ease-out;
+    }
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
+  }
+
+  &-label {
+    margin-right: $iui-sm;
+    font-size: $iui-font-size-leading;
+    transition: color $iui-speed-fast ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: color $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
+    }
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
 
   @at-root {
     a#{&}, // rendered as anchor element
     button#{&}, // rendered as button element
     &[role='button'] {
-      @include iui-header-button-focus;
+      @include iui-focus;
       cursor: pointer;
+      transition: background-color $iui-speed-fast ease-out;
 
       // #region resets for button
       @include iui-reset;
@@ -147,42 +136,19 @@
           background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
         }
       }
+    }
 
-      &:not(:focus-visible):not(:hover) {
-        @include themed {
-          background-color: t(iui-color-background-1);
-        }
+    .iui-slim {
+      .iui-header-brand-icon {
+        width: $iui-icons-default;
+        height: $iui-icons-default;
+        margin: 0 $iui-l + $iui-xs;
+      }
+
+      .iui-header-brand-label {
+        font-size: $iui-font-size;
       }
     }
-  }
-
-  .iui-header-button-icon {
-    margin: 0 $iui-l;
-    @include themed {
-      fill: t(iui-icons-color-actionable);
-    }
-  }
-
-  > .iui-label {
-    margin-right: $iui-sm;
-    font-size: $iui-font-size-leading;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: font-size $iui-speed-fast ease-out;
-    }
-  }
-}
-
-@mixin iui-header-button-focus {
-  &:focus {
-    box-shadow: none;
-    outline-offset: -1px;
-    @include themed {
-      outline: 1px solid t(iui-color-foreground-primary);
-    }
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: 0;
   }
 }
 
@@ -195,26 +161,31 @@
   max-width: 25vw;
   overflow: hidden;
   padding-right: $iui-s;
-  @include iui-header-button-focus;
 
-  > .iui-button-label {
-    text-align: left;
-    font-size: $iui-font-size;
+  &-name,
+  &-description {
     overflow: hidden;
-
-    > div {
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    text-overflow: ellipsis;
+    transition: color $iui-speed-fast ease-out;
   }
 
-  .iui-description {
+  &-description {
     height: $iui-baseline * 2;
     @media (prefers-reduced-motion: no-preference) {
       transition: height $iui-speed-fast ease-out;
     }
     @include themed {
       opacity: t(iui-opacity-3);
+    }
+  }
+
+  > .iui-button-label {
+    text-align: left;
+    font-size: $iui-font-size;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      margin-left: 0;
     }
   }
 
@@ -228,12 +199,17 @@
   }
 
   .iui-header-button-icon {
+    display: inline-flex;
     padding: $iui-xs;
     box-sizing: content-box;
     @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
     @include themed {
       background-color: t(iui-color-background-3);
       fill: t(iui-icons-color);
+    }
+
+    @media (max-width: 768px) {
+      display: none;
     }
   }
 
@@ -250,6 +226,8 @@
   &.iui-disabled,
   &:disabled,
   &[aria-disabled='true'] {
+    cursor: not-allowed;
+
     .iui-header-button-icon {
       filter: grayscale(1) opacity(0.7);
     }
@@ -258,19 +236,20 @@
   @at-root {
     .iui-slim {
       .iui-header-breadcrumbs-button {
-        .iui-header-button-icon.iui-header-button-icon {
+        .iui-header-button-icon {
           width: $iui-icons-small;
           height: $iui-icons-small;
           padding: $iui-xxs;
+          margin: 0 $iui-xs;
         }
 
-        img.iui-header-button-icon.iui-header-button-icon {
+        img.iui-header-button-icon {
           width: $iui-icons-small + ($iui-xxs * 2);
           height: $iui-icons-small + ($iui-xxs * 2);
           padding: 0;
         }
 
-        .iui-description {
+        .iui-header-breadcrumbs-button-description {
           @include iui-display-none;
         }
       }
@@ -278,8 +257,24 @@
   }
 }
 
+@mixin iui-header-button {
+  @include iui-button;
+  @include iui-button-borderless;
+  @include iui-header-button-reset;
+}
+
+@mixin iui-header-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
+  width: $size;
+  height: $size;
+  border-radius: $border-radius;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+  }
+}
+
 @mixin iui-header-split-button {
   max-width: 25vw;
+  transition: background-color $iui-speed-fast ease-out;
 
   &,
   > * {
@@ -289,7 +284,6 @@
   }
 
   .iui-header-breadcrumbs-button {
-    @include iui-header-breadcrumbs-button;
     padding: 0 $iui-xs;
   }
 
@@ -301,6 +295,10 @@
         background-color: transparent;
       }
     }
+  }
+
+  &.iui-disabled {
+    cursor: not-allowed;
   }
 
   &.iui-active {
@@ -321,16 +319,6 @@
     > *:last-child > .iui-header-breadcrumbs-button:hover {
       @include themed {
         background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
-    }
-
-    &.iui-disabled {
-      .iui-header-breadcrumbs-button {
-        &:last-child:hover {
-          @include themed {
-            background-color: transparent;
-          }
-        }
       }
     }
   }
@@ -396,7 +384,9 @@
     }
   }
 }
+// #endregion Header buttons
 
+// #region Header extras
 @mixin iui-header-divider {
   width: 1px;
   height: $iui-baseline * 2;
@@ -410,14 +400,4 @@
   flex-shrink: 0;
   margin: 0 $iui-xs;
 }
-
-@mixin iui-header-button-reset {
-  height: 100%;
-  border-radius: 0 !important;
-}
-
-@mixin iui-header-button {
-  @include iui-button;
-  @include iui-button-borderless;
-  @include iui-header-button-reset;
-}
+// #endregion Header extras
