@@ -22,7 +22,37 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <style>
+      section {
+        width: auto !important;
+      }
+    </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/imodel-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/notification"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/help-circular-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more-vertical"
+    ></script>
     <script src="../assets/theme.js"></script>
+    <script src="../assets/userIcon.js"></script>
   </head>
   <body class="iui-body">
     <a
@@ -34,23 +64,133 @@
     <h1>Skip to content</h1>
     <hr />
 
-    <section id="other-content">
-      <div style="height: 1000px; border: solid 1px;">
-        <p>This is not the main content.</p>
-        <a
-          href="#"
-          class="iui-anchor"
-        >Link 1</a>
-        <br>
-        <button class="iui-button iui-default">Button</button>
+    <section id="demo-other-content">
+      <header class="iui-page-header">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <div
+            class="iui-header-logo"
+            role="button"
+            aria-label="App name"
+            aria-expanded="false"
+            tabindex="0"
+          >
+            <svg-imodel-hollow
+              class="iui-header-button-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <nav aria-label="breadcrumbs">
+            <button
+              class="iui-button iui-borderless iui-header-button"
+              type="button"
+              aria-label="Project picker"
+              aria-expanded="false"
+            >
+              <span class="iui-button-label">
+                <div class="iui-name">Project Alpha</div>
+              </span>
+              <svg-caret-down-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-caret-down-small>
+            </button>
+
+            <svg-chevron-right
+              class="iui-chevron"
+              aria-hidden="true"
+            ></svg-chevron-right>
+
+            <!-- IModel Button -->
+            <button
+              class="iui-button iui-borderless iui-active iui-header-button"
+              type="button"
+              aria-label="Model picker"
+              aria-expanded="false"
+              aria-current="location"
+            >
+              <span class="iui-button-label">
+                <div class="iui-name">Model Beta</div>
+              </span>
+              <svg-caret-down-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-caret-down-small>
+            </button>
+          </nav>
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+          >
+            <svg-notification
+              class="iui-button-icon iui-notification-positive"
+              aria-hidden="true"
+            ></svg-notification>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <svg-help-circular-hollow
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-help-circular-hollow>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+
+            <user-icon type="2"></user-icon>
+            </span>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <svg-more-vertical
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-more-vertical>
+          </button>
+        </div>
+      </header>
+      <div style="border: solid 1px">
+        <p>This is not the main content. Press 'tab' to see skip-to-content component. You might need to click on the
+          top of the page or the URL first. Press 'enter' after focusing on skip-to-content to skip to the main content
+          below.</p>
       </div>
     </section>
+    <br>
     <section id="demo-skip-to-here">
-      <p>This is the main content.</p>
-      <a
-        href="#"
-        class="iui-anchor"
-      >Link 3</a>
+      <div style="height: 1000px; border: solid 1px;">
+        <p>This is the main content. <a
+            href="#"
+            class="iui-anchor"
+          >This is a link that directs to this page. </a> Tab again to focus on the link.</p>
+      </div>
     </section>
   </body>
 </html>
