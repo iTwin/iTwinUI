@@ -25,28 +25,7 @@
   }
 
   &.iui-slim {
-    height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
-
-    .iui-header-logo {
-      > .iui-label {
-        font-size: $iui-font-size;
-      }
-
-      .iui-header-button-icon {
-        margin: 0 $iui-l + $iui-xs;
-      }
-    }
-
-    .iui-header-button-icon {
-      width: $iui-icons-default;
-      height: $iui-icons-default;
-      margin: 0 $iui-xs;
-      display: inline-flex;
-    }
-
-    .iui-user-icon {
-      @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
-    }
+    @include iui-page-header-slim;
   }
 
   @media (max-width: 768px) {
@@ -55,7 +34,7 @@
         display: none;
       }
 
-      .iui-header-button-icon + .iui-button-label {
+      .iui-button-label {
         margin-left: 0;
       }
     }
@@ -65,6 +44,31 @@
     .iui-header-logo > .iui-label {
       display: none;
     }
+  }
+}
+
+@mixin iui-page-header-slim {
+  height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
+
+  .iui-header-logo {
+    > .iui-label {
+      font-size: $iui-font-size;
+    }
+
+    .iui-header-button-icon {
+      margin: 0 $iui-l + $iui-xs;
+    }
+  }
+
+  .iui-header-button-icon {
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+    margin: 0 $iui-xs;
+    display: inline-flex;
+  }
+
+  .iui-user-icon {
+    @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
   }
 }
 
@@ -292,6 +296,10 @@
   > *:first-child {
     .iui-header-breadcrumbs-button {
       padding-left: $iui-sm;
+
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
 
@@ -300,23 +308,19 @@
 
     // Removing button hovers and backgrounds and adding last child hover
     .iui-header-breadcrumbs-button {
-      &.iui-borderless {
-        &,
-        &:hover {
-          background-color: transparent;
-        }
+      &,
+      &:hover {
+        background-color: transparent;
+      }
 
-        &::after {
-          display: none;
-        }
+      &::after {
+        display: none;
       }
     }
 
-    > *:last-child {
-      > .iui-button:hover {
-        @include themed {
-          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-        }
+    > *:last-child > .iui-header-breadcrumbs-button:hover {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
       }
     }
 
@@ -409,7 +413,7 @@
 
 @mixin iui-header-button-reset {
   height: 100%;
-  border-radius: 0;
+  border-radius: 0 !important;
 }
 
 @mixin iui-header-button {
