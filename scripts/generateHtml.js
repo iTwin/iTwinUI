@@ -36,7 +36,7 @@ const metaContent = (fileName) => `
 `;
 
 /** skypack production optimized url for itwinui-icons-elements from https://cdn.skypack.dev/@itwin/itwinui-icons-elements@latest */
-const pinnedIconElementsUrl = `https://cdn.skypack.dev/pin/@itwin/itwinui-icons-elements@v0.2.0-TajkQ5xLOHPY07wRZTss/mode=imports,min/optimized/@itwin/itwinui-icons-elements`;
+const pinnedIconElementsUrl = `https://cdn.skypack.dev/pin/@itwin/itwinui-icons-elements@v0.3.0-6AFbqrt9XN9lrV7K4XGC/mode=imports,min/optimized/@itwin/itwinui-icons-elements`;
 
 const run = async () => {
   const files = await fs.promises.readdir(inDir, { withFileTypes: true });
