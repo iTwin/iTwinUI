@@ -17,6 +17,9 @@
     #{$childZindexSelector} {
       position: relative;
 
+      // Adds stripe above active button
+      --_iui-button-active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
+
       &:hover {
         z-index: 1;
       }
@@ -29,9 +32,6 @@
       #{$disabledSelector} {
         z-index: -1;
       }
-
-      // Adds stripe above active button
-      --_iui-button-active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
     }
 
     #{$childBorderSelector} {
