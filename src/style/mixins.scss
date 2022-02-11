@@ -117,6 +117,7 @@
     @include themed() {
       background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity}));
     }
+    backdrop-filter: $iui-blur-filter;
   }
 }
 
