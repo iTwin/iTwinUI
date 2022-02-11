@@ -320,15 +320,37 @@ $tile-min-width: $iui-3xl * 3; // 288px
 }
 
 @mixin iui-tile-array {
-  display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax($tile-min-width, 1fr));
-  grid-gap: $iui-line-height $iui-l;
-  @media (max-width: 480px) {
-    grid-gap: $iui-baseline $iui-m;
+
+  // #region IE support
+  .iui-tile {
+    margin: ($iui-line-height * 0.5) ($iui-l * 0.5);
+
+    @media (max-width: 480px) {
+      margin: ($iui-baseline * 0.5) 0;
+      width: 100%;
+    }
   }
 
-  .iui-tile {
-    width: 100%;
+  @supports (grid-gap: $iui-line-height $iui-l) {
+    .iui-tile {
+      margin: 0;
+    }
+  }
+  // #endregion IE support
+
+  @supports (grid-gap: $iui-line-height $iui-l) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($tile-min-width, 1fr));
+    grid-gap: $iui-line-height $iui-l;
+    align-items: stretch;
+
+    @media (max-width: 480px) {
+      grid-gap: $iui-baseline $iui-m;
+    }
+
+    .iui-tile {
+      width: 100%;
+    }
   }
 }
