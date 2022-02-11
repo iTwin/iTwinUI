@@ -15,7 +15,7 @@
   position: fixed;
   text-align: center;
   left: 50%;
-  top: 20px;
+  top: $iui-baseline * 2;
   transform: translateX(-50%) translateY(-170%);
   transition: background-color $iui-speed-fast ease-in-out;
   @media (prefers-reduced-motion: no-preference) {
