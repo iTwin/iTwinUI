@@ -11,7 +11,7 @@ $iui-badge-background-primary: $iui-color-foreground-primary--dark;
 $iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-3--light);
 
 @mixin iui-badge {
-  --_iui-badge-background-color: #{$iui-badge-background-default};
+  --iui-badge-background-color: #{$iui-badge-background-default};
   --_iui-badge-text-color: #{$iui-badge-text-color};
 
   @include iui-reset;
@@ -20,7 +20,7 @@ $iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-3--l
   padding: 0 $iui-xs * 1.5;
   margin: round($iui-baseline * 0.5) 0;
   border-radius: $iui-border-radius;
-  background-color: var(--_iui-badge-background-color);
+  background-color: var(--iui-badge-background-color);
   color: var(--_iui-badge-text-color);
   text-transform: uppercase;
   user-select: none;
