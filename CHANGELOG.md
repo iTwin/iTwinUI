@@ -1,5 +1,62 @@
 # Changelog
 
+### [0.46.1](https://www.github.com/iTwin/iTwinUI/compare/v0.46.0...v0.46.1) (2022-02-07)
+
+### Fixes
+
+* **Popover:** Increased hidden attribute specificity ([#469](https://www.github.com/iTwin/iTwinUI/issues/469)) ([d96ddda](https://www.github.com/iTwin/iTwinUI/commit/d96dddaf3a9bf3559c4624ee040ec97bc3c22488))
+
+## [0.46.0](https://www.github.com/iTwin/iTwinUI/compare/v0.45.0...v0.46.0) (2022-02-04)
+
+### What's new
+
+* **Select:** Dropdown icon is an icon ([#444](https://www.github.com/iTwin/iTwinUI/issues/444)) ([703c5f6](https://www.github.com/iTwin/iTwinUI/commit/703c5f64463e269a46ee456595ef879eee9321fd))
+
+### Fixes
+
+* **Button:** Show default outline as fallback ([#468](https://www.github.com/iTwin/iTwinUI/issues/468)) ([6194a13](https://www.github.com/iTwin/iTwinUI/commit/6194a13a1d8349c477cbb86582adcf6f1fe1ce09))
+
+## [0.45.0](https://www.github.com/iTwin/iTwinUI/compare/v0.44.2...v0.45.0) (2022-02-03)
+
+### What's new
+
+* **Carousel:** Added new carousel component ([#377](https://www.github.com/iTwin/iTwinUI/issues/377)) ([4ed38b9](https://www.github.com/iTwin/iTwinUI/commit/4ed38b9b0657b446602d58b2bca594bec85924de))
+* **Tile:** Reduced nesting ([#431](https://www.github.com/iTwin/iTwinUI/issues/431)) ([a2fc0d5](https://www.github.com/iTwin/iTwinUI/commit/a2fc0d59a6bb02fa86b65f0739cc88762aa214f6))
+
+### Fixes
+
+* **Popover:** Added new helper class ([#464](https://www.github.com/iTwin/iTwinUI/issues/464)) ([b147c61](https://www.github.com/iTwin/iTwinUI/commit/b147c6133c3f31ed4bb7b0a10c92c19b5d2cec20))
+* **Table:** Zebra row selector change ([#458](https://www.github.com/iTwin/iTwinUI/issues/458)) ([0761392](https://www.github.com/iTwin/iTwinUI/commit/0761392582e737406dc6f2243e4a4d5a22ce781d))
+
+### [0.44.2](https://www.github.com/iTwin/iTwinUI/compare/v0.44.1...v0.44.2) (2022-01-26)
+
+### Fixes
+
+* **Tree:** Fix tree node focus ([#456](https://www.github.com/iTwin/iTwinUI/issues/456)) ([da02613](https://www.github.com/iTwin/iTwinUI/commit/da026138bc3eca1d550ff52aa151d13480a3ff01))
+
+### [0.44.1](https://www.github.com/iTwin/iTwinUI/compare/v0.44.0...v0.44.1) (2022-01-24)
+
+### Fixes
+
+* **Button:** Use `::before` for active background to fix flicker ([#449](https://www.github.com/iTwin/iTwinUI/issues/449)) ([b492a75](https://www.github.com/iTwin/iTwinUI/commit/b492a7596e02763be20ff3d14c89262c11196532))
+* **Select:** Allows to reduce Select size that other components would fit inside container ([#451](https://www.github.com/iTwin/iTwinUI/issues/451)) ([011cc70](https://www.github.com/iTwin/iTwinUI/commit/011cc701a51e7f7199690ce404a0bef0be90f6fd))
+
+## [0.44.0](https://www.github.com/iTwin/iTwinUI/compare/v0.43.0...v0.44.0) (2022-01-07)
+
+### What's new
+
+* New focus styling in all components ([#166](https://www.github.com/iTwin/iTwinUI/issues/166)) ([74bc798](https://www.github.com/iTwin/iTwinUI/commit/74bc79856f3a2cda0fd5b589df1f97a53e942e84))
+
+This release also includes some updated classnames and html structure in the following components:
+
+* **Checkbox and Radio:** Fix radio button dot and checkbox checkmark centering ([#426](https://www.github.com/iTwin/iTwinUI/issues/426)) ([3b2f979](https://www.github.com/iTwin/iTwinUI/commit/3b2f9791852123044295f1b9f1e999f0967c61af))
+* **DatePicker:** Reduce nesting and specificity ([#427](https://www.github.com/iTwin/iTwinUI/issues/427)) ([1dd79d2](https://www.github.com/iTwin/iTwinUI/commit/1dd79d2e75cd739845764a3636b799946dced3de))
+* **Paginator:** Reduce nesting and specificity ([#429](https://www.github.com/iTwin/iTwinUI/issues/429)) ([d52e650](https://www.github.com/iTwin/iTwinUI/commit/d52e6505498a97a958f0b6a9fbaf5cc781d1d9ab))
+
+### Fixes
+
+* **Checkbox:** `iui-label` content is centered ([#433](https://www.github.com/iTwin/iTwinUI/issues/433)) ([30c7075](https://www.github.com/iTwin/iTwinUI/commit/30c70752b9bb3ed2e015809f924583cad4449185))
+
 ## [0.43.0](https://www.github.com/iTwin/iTwinUI/compare/v0.42.1...v0.43.0) (2021-12-20)
 
 ### What's new

@@ -30,6 +30,18 @@
   @include iui-paginator;
 }
 
+.iui-paginator-ellipsis {
+  @include iui-paginator-ellipsis;
+}
+
+.iui-paginator-pages-group {
+  @include iui-paginator-pages-group;
+}
+
+.iui-paginator-page-button {
+  @include iui-paginator-page-button;
+}
+
 .iui-column-filter {
   @include iui-column-filter;
 }

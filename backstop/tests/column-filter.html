@@ -31,6 +31,10 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/calendar"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -43,7 +47,7 @@
       <div class="iui-column-filter">
         <label class="iui-input-container">
           <div class="iui-label">Show items with value that</div>
-          <div class="iui-select">
+          <div class="iui-input-with-icon">
             <div
               tabindex="0"
               id="test-select-1"
@@ -51,6 +55,10 @@
             >
               <span class="iui-content">Starts with</span>
             </div>
+            <svg-caret-down-small
+              class="iui-end-icon iui-actionable"
+              aria-hidden="true"
+            ></svg-caret-down-small>
           </div>
         </label>
         <input class="iui-input" />

@@ -83,16 +83,7 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     }
   }
 
-  &:focus {
-    @include themed {
-      outline: thin solid rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
-      outline-offset: -1px;
-    }
-  }
-
-  &:focus:not(:focus-visible) {
-    outline-offset: -2px;
-  }
+  @include iui-focus;
 
   &:hover {
     @include themed {
@@ -114,10 +105,7 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
       outline-offset: -1px;
     }
 
-    &:focus {
-      outline-width: $iui-xxs;
-      outline-offset: -2px;
-    }
+    @include iui-focus($offset: -2px, $thickness: $iui-xxs);
   }
 
   &.iui-disabled {

@@ -14,7 +14,7 @@
     cursor: wait;
 
     input ~ .iui-checkbox-checkmark {
-      border: none;
+      border-color: transparent;
       background-color: transparent;
     }
 
@@ -35,18 +35,13 @@
       }
     }
 
-    input ~ .iui-checkbox-checkmark,
-    &:hover > input:enabled ~ .iui-checkbox-checkmark {
+    input ~ .iui-checkbox-checkmark::after,
+    &:hover > input:enabled ~ .iui-checkbox-checkmark::after {
       border: none;
     }
 
     input ~ .iui-checkbox-checkmark {
       background-color: transparent;
-    }
-
-    .iui-checkbox-checkmark svg:not(.iui-radial) {
-      width: $iui-icons-default;
-      height: $iui-icons-default;
     }
 
     input:checked ~ .iui-checkbox-checkmark .iui-uncheck,
@@ -59,6 +54,12 @@
       transition: opacity $iui-speed-fast ease;
       @include themed {
         fill: t(iui-icons-color-actionable);
+      }
+    }
+
+    input:disabled ~ .iui-checkbox-checkmark .iui-uncheck {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
       }
     }
   }

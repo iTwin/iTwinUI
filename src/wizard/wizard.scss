@@ -115,16 +115,16 @@
       outline: 0;
 
       .iui-wizard-circle {
-        outline: 0;
         @include themed {
-          box-shadow: t(iui-focus-positive-box-shadow);
+          outline: 2px solid t(iui-color-foreground-positive);
         }
+        outline-offset: -1px;
       }
     }
 
     &:focus:not(:focus-visible) {
       .iui-wizard-circle {
-        box-shadow: none;
+        outline: none;
       }
     }
   }
