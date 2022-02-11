@@ -86,6 +86,7 @@
   @include iui-header-button-reset;
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   white-space: nowrap;
   background-color: transparent;
 
@@ -261,6 +262,7 @@
   @include iui-button;
   @include iui-button-borderless;
   @include iui-header-button-reset;
+  flex-shrink: 0;
 }
 
 @mixin iui-header-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
