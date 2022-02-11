@@ -12,7 +12,6 @@ $toggle-switch-handle: $iui-icons-default;
   align-items: center;
   font-size: $iui-font-size;
   width: fit-content;
-  padding: ($iui-baseline * 0.5) 0;
   user-select: none;
   cursor: pointer;
   position: relative;
@@ -97,9 +96,10 @@ $toggle-switch-handle: $iui-icons-default;
       margin: $iui-xxs;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
-      transition: background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
+      transition: background-color $iui-speed-fast ease-out, opacity $iui-speed-fast ease-out;
       @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed-fast ease, background-color $iui-speed-fast ease, opacity $iui-speed-fast ease;
+        transition: transform $iui-speed-fast ease-out, background-color $iui-speed-fast ease-out,
+          opacity $iui-speed-fast ease-out;
       }
     }
 
@@ -206,7 +206,7 @@ $toggle-switch-handle: $iui-icons-default;
     // padding: 0 ($iui-xs + 1px);
     padding-left: ($toggle-switch-handle * 0.25) + 1px;
     z-index: 1;
-    transition: opacity $iui-speed-fast ease;
+    transition: opacity $iui-speed-fast ease-out;
     @include themed {
       fill: t(iui-color-foreground-accessory);
     }

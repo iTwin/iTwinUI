@@ -1,11 +1,26 @@
-const { scenario } = require('../scenarioHelper');
+const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
-  scenario('default', {
+  scenario('Type Default', {
     selectors: ['#demo-default'],
   }),
-  scenario('no-label', {
-    selectors: ['#demo-no-label'],
-    hideSelectors: ['h3'],
+  scenario('Type label left', {
+    selectors: ['#demo-toggle-right'],
+  }),
+  scenario('Type label right', {
+    selectors: ['#demo-toggle-left'],
+  }),
+  scenario('Type label none', {
+    selectors: ['#demo-toggle-no-label'],
+  }),
+
+  // Hover & focus states
+  scenario('State hover checked & focus unchecked', {
+    actions: [hover('#test-toggle-1'), focus('#test-toggle-2')],
+    selectors: ['#demo-default'],
+  }),
+  scenario('State focus checked & hover unchecked', {
+    actions: [hover('#test-toggle-2'), focus('#test-toggle-1')],
+    selectors: ['#demo-default'],
   }),
 ];
