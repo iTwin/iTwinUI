@@ -18,6 +18,10 @@ module.exports = [
     selectors: ['#demo-folder'],
   }),
 
+  scenario('Type Tile Array', {
+    selectors: ['#demo-tile-array'],
+  }),
+
   // Hover states
   //// Tile
   scenario('State hover', {
