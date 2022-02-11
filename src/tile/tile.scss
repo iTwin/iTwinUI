@@ -11,6 +11,7 @@
   width: $iui-3xl * 3;
   box-shadow: $iui-elevation-2;
   backface-visibility: hidden;
+  @include iui-focus($offset: $iui-xxs, $thickness: $iui-xxs);
   @include themed() {
     background-color: t(iui-color-background-1);
     color: t(iui-text-color);
@@ -18,12 +19,13 @@
 
   &:hover,
   &:focus-within {
-    .iui-tile-metadata:not(:last-child) {
-      width: calc(100% - #{$iui-xl});
+    .iui-tile-more-options {
+      @include visually-hidden-revert;
+      position: absolute;
     }
 
-    .iui-tile-more-options {
-      visibility: visible;
+    .iui-tile-metadata:not(:last-child) {
+      width: calc(100% - #{$iui-xl});
     }
 
     .iui-tile-thumbnail-picture {
@@ -39,6 +41,7 @@
   }
 
   &.iui-selected {
+    @include iui-focus($offset: 0, $thickness: $iui-xs);
     @include themed() {
       outline: solid 2px t(iui-color-foreground-primary);
       background: linear-gradient(
@@ -148,18 +151,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-  }
-
-  .iui-tile-more-options {
-    @include iui-button-size(small, borderless);
-    position: absolute;
-    bottom: $iui-baseline * 0.5;
-    right: $iui-s;
-    visibility: hidden;
-
-    &.iui-visible {
-      visibility: visible;
     }
   }
 }
@@ -310,5 +301,15 @@
     @include themed() {
       border-right: 1px solid t(iui-color-background-4);
     }
+  }
+}
+
+@mixin iui-tile-more-options {
+  position: absolute;
+  bottom: $iui-baseline * 0.5;
+  right: $iui-s;
+
+  &:not(.iui-visible) {
+    @include visually-hidden;
   }
 }
