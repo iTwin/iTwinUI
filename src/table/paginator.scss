@@ -63,23 +63,18 @@
 }
 
 @mixin iui-paginator-pages-group {
-  @include iui-button-group;
+  display: inline-flex;
+  align-items: center;
   margin: 0 $iui-s;
-
-  > * + * {
-    margin-left: 0; // unset negative margin from button-group
-  }
-
-  button.iui-active::after {
-    top: auto;
-    bottom: $iui-xxs;
-  }
 }
 
 @mixin iui-paginator-page-button {
   @include iui-button;
   @include iui-button-borderless;
   width: $iui-component-height;
+
+  // Adds stripe above active button
+  --_iui-button-active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
 
   &-small {
     @include iui-button-size(small);

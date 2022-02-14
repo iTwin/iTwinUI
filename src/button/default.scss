@@ -43,6 +43,7 @@
       color: t(iui-color-foreground-primary);
     }
 
+    // Used for combining overlay background color with base background
     &::before {
       content: '';
       position: absolute;
