@@ -321,7 +321,7 @@ $tile-min-width: $iui-3xl * 3; // 288px
 
   // #region IE support
   .iui-tile {
-    margin: ($iui-line-height * 0.5) ($iui-l * 0.5);
+    margin: $iui-baseline $iui-sm;
   }
 
   @supports (grid-gap: $iui-line-height $iui-l) {
