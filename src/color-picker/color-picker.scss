@@ -240,7 +240,7 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
 }
 
 @mixin iui-color-dot {
-  --iui-color-dot-inset: 0 0;
+  --iui-color-dot-inset: initial;
 
   position: absolute;
   inset: var(--iui-color-dot-inset);
