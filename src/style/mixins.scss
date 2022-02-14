@@ -114,7 +114,7 @@
 
   // With blur
   @supports (backdrop-filter: $iui-blur-filter) {
-    background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity}));
+    background-color: rgba(0, 0, 0, var(--iui-opacity-#{$opacity}));
     backdrop-filter: $iui-blur-filter;
   }
 }
