@@ -17,6 +17,28 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
   list-style: none;
 }
 
+@mixin iui-tree-item {
+  outline: none;
+
+  &:focus > .iui-tree-node {
+    @include themed {
+      outline: 1px solid t(iui-color-foreground-primary);
+    }
+    outline-offset: -1px;
+
+    &.iui-active {
+      @include themed {
+        outline: $iui-xxs solid t(iui-color-foreground-primary);
+      }
+      outline-offset: -2px;
+    }
+  }
+
+  &:focus:not(:focus-visible) > :where(.iui-tree-node:not(.iui-active)) {
+    outline: none;
+  }
+}
+
 @mixin iui-tree-node {
   display: flex;
   cursor: pointer;
@@ -83,8 +105,6 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     }
   }
 
-  @include iui-focus;
-
   &:hover {
     @include themed {
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
@@ -104,8 +124,6 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
       outline: $iui-active-outline;
       outline-offset: -1px;
     }
-
-    @include iui-focus($offset: -2px, $thickness: $iui-xxs);
   }
 
   &.iui-disabled {
