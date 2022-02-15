@@ -28,7 +28,7 @@ module.exports = [
 
   // Hover states
   scenario('State hover tree node', {
-    actions: [hover('#test-node')],
+    actions: [hover('#test-node .iui-tree-node')],
     selectors: ['#demo-captions'],
     viewports: [{ width: 800, height: 600 }],
   }),
