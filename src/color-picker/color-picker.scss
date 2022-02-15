@@ -64,8 +64,8 @@ $iui-transparency: repeating-linear-gradient(
   margin-bottom: $iui-xs;
   margin-right: $iui-xs;
   position: relative;
-  background-position: 0 0, ($iui-l * 0.5) ($iui-l * 0.5);
-  background-size: $iui-l $iui-l;
+  background-position: 0 0, ($iui-m * 0.5) ($iui-m * 0.5);
+  background-size: $iui-m $iui-m;
   @include themed {
     background-image: $iui-transparency;
   }
