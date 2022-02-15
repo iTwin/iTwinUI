@@ -12,7 +12,6 @@ $iui-active-box-shadow: 0 0 0 $iui-xxs rgba(t(iui-color-foreground-primary-rgb),
 $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
 
 @mixin iui-color-picker {
-  --iui-color-picker-hue: initial;
   --iui-color-picker-selected-color: initial;
 
   @include iui-dropdown;
@@ -164,13 +163,15 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
 }
 
 @mixin iui-color-field {
+  --iui-color-field-hue: initial;
+
   position: relative;
   cursor: crosshair;
   width: 100%;
   height: $iui-baseline * 19;
   @include themed {
     background-image: linear-gradient(0deg, rgb(0, 0, 0), transparent),
-      linear-gradient(90deg, rgb(255, 255, 255), var(--iui-color-picker-hue));
+      linear-gradient(90deg, rgb(255, 255, 255), var(--iui-color-field-hue));
   }
 
   &:not(:last-child) {
