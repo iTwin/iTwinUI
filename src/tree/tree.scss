@@ -18,9 +18,9 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
 }
 
 @mixin iui-tree-item {
-  outline: none;
-
   @include focus-visible {
+    outline: none;
+
     > .iui-tree-node {
       outline: 1px solid var(--iui-color-foreground-primary);
       outline-offset: -1px;
