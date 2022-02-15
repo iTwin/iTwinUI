@@ -20,22 +20,16 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
 @mixin iui-tree-item {
   outline: none;
 
-  &:focus > .iui-tree-node {
-    @include themed {
-      outline: 1px solid t(iui-color-foreground-primary);
-    }
-    outline-offset: -1px;
+  @include focus-visible {
+    > .iui-tree-node {
+      outline: 1px solid var(--iui-color-foreground-primary);
+      outline-offset: -1px;
 
-    &.iui-active {
-      @include themed {
-        outline: $iui-xxs solid t(iui-color-foreground-primary);
+      &.iui-active {
+        outline: 2px solid var(--iui-color-foreground-primary);
+        outline-offset: -2px;
       }
-      outline-offset: -2px;
     }
-  }
-
-  &:focus:not(:focus-visible) > :where(.iui-tree-node:not(.iui-active)) {
-    outline: none;
   }
 }
 
