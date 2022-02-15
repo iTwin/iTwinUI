@@ -28,6 +28,8 @@ $iui-transparency: repeating-linear-gradient(
 );
 
 @mixin iui-color-picker {
+  --iui-color-picker-selected-color: initial;
+
   @include iui-dropdown;
   box-sizing: border-box;
   border-radius: $iui-border-radius;
@@ -53,6 +55,8 @@ $iui-transparency: repeating-linear-gradient(
 }
 
 @mixin iui-color-swatch {
+  --iui-color-swatch-background: initial;
+
   height: $iui-l;
   width: $iui-l;
   cursor: pointer;
@@ -76,7 +80,7 @@ $iui-transparency: repeating-linear-gradient(
     width: inherit;
     height: inherit;
     border-radius: inherit;
-    background-color: var(--swatch-color);
+    background-color: var(--iui-color-swatch-background);
     @include themed {
       box-shadow: $iui-inset-box-shadow;
     }
@@ -187,13 +191,15 @@ $iui-transparency: repeating-linear-gradient(
 }
 
 @mixin iui-color-field {
+  --iui-color-field-hue: initial;
+
   position: relative;
   cursor: crosshair;
   width: 100%;
   height: $iui-baseline * 19;
   @include themed {
     background-image: linear-gradient(0deg, rgb(0, 0, 0), transparent),
-      linear-gradient(90deg, rgb(255, 255, 255), var(--hue));
+      linear-gradient(90deg, rgb(255, 255, 255), var(--iui-color-field-hue));
   }
 
   &:not(:last-child) {
@@ -237,7 +243,7 @@ $iui-transparency: repeating-linear-gradient(
       content: '';
       width: 100%;
       height: 100%;
-      background-image: linear-gradient(to right, transparent 0%, var(--selected-color) 100%);
+      background-image: linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%);
     }
   }
 
@@ -247,9 +253,10 @@ $iui-transparency: repeating-linear-gradient(
 }
 
 @mixin iui-color-dot {
+  --iui-color-dot-inset: initial;
+
   position: absolute;
-  top: var(--top, 0%);
-  left: var(--left, 0%);
+  inset: var(--iui-color-dot-inset);
   width: $iui-m;
   height: $iui-m;
   border-radius: 50%;
@@ -258,7 +265,7 @@ $iui-transparency: repeating-linear-gradient(
   @include themed {
     box-shadow: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-1)) 0 0 0 $iui-xxs - 1,
       inset 0 0 0 $iui-xxs - 1 rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-6));
-    background-color: var(--selected-color);
+    background-color: var(--iui-color-picker-selected-color);
   }
 
   &:hover {
