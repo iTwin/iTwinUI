@@ -24,10 +24,11 @@
     />
     <style>
       section[id^='demo'] {
-        width: 45vw;
+        width: auto;
         display: flex;
         flex-direction: column;
         gap: 11px;
+        padding: 2px;
       }
 
       #demo-default-opened {
@@ -72,7 +73,7 @@
     <h2>Default</h2>
     <section id="demo-default">
 
-      <section id="demo-default-singular">
+      <div id="demo-default-singular">
         <label class="iui-input-container iui-with-message">
           <div class="iui-label iui-required">Select label</div>
           <div class="iui-input-with-icon">
@@ -91,14 +92,14 @@
           </div>
           <div class="iui-message">Help message.</div>
         </label>
-      </section>
+      </div>
 
       <label class="iui-input-container iui-with-message">
         <div class="iui-label">ComboBox label</div>
         <div class="iui-input-with-icon">
           <input
             class="iui-input"
-            placeholder="With input"
+            placeholder="Placeholder…"
           />
           <svg-caret-down-small
             class="iui-end-icon iui-actionable"
@@ -112,7 +113,7 @@
         <div class="iui-input-with-icon">
           <input
             class="iui-input iui-disabled"
-            placeholder="With input"
+            placeholder="Placeholder…"
             disabled
           />
           <svg-caret-down-small
