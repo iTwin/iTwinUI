@@ -2,18 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-tree {
-  @include iui-tree;
-}
-
-.iui-sub-tree {
-  @include iui-sub-tree;
-}
-
-.iui-tree-item {
-  @include iui-tree-item;
-}
-
-.iui-tree-node {
-  @include iui-tree-node;
+.iui-skip-to-content-link {
+  @include iui-skip-to-content-link;
 }
