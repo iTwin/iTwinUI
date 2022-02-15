@@ -60,33 +60,22 @@ $toggle-switch-handle: $iui-icons-default;
     align-items: center;
     position: relative;
     cursor: pointer;
-
-    // IE solution
-    width: $toggle-switch-handle;
-    height: $toggle-switch-handle;
-    @supports (appearance: none) {
-      appearance: none;
-      width: ($toggle-switch-handle + $iui-xs) * 2;
-      height: auto;
-      border-radius: 9999px;
-      padding: 1px;
-      box-sizing: border-box;
-      @include themed {
-        background-color: t(iui-color-background-1);
-        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-      }
-    }
+    width: ($toggle-switch-handle + $iui-xs) * 2;
+    height: auto;
+    padding: 1px;
+    border-radius: 9999px;
+    appearance: none;
+    z-index: 1;
 
     &::before {
       content: '';
       position: absolute;
       inset: 0;
-      transition: border-color $iui-speed-fast ease-out;
+      transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
       border-radius: inherit;
       border-style: solid;
       border-width: 1px;
-      border-color: inherit;
-      box-sizing: border-box;
+      z-index: 2;
     }
 
     &::after {
@@ -96,6 +85,7 @@ $toggle-switch-handle: $iui-icons-default;
       margin: $iui-xxs;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
+      z-index: 4;
       transition: background-color $iui-speed-fast ease-out, opacity $iui-speed-fast ease-out;
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out, background-color $iui-speed-fast ease-out,
@@ -105,9 +95,11 @@ $toggle-switch-handle: $iui-icons-default;
 
     // Unchecked toggle switch
     &:not(:checked) {
-      @include themed {
-        background-color: t(iui-color-background-1);
-        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      &::before {
+        @include themed {
+          background-color: t(iui-color-background-1);
+          border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        }
       }
 
       &::after {
@@ -117,22 +109,26 @@ $toggle-switch-handle: $iui-icons-default;
         }
       }
 
-      &:hover {
+      &:hover::before {
         @include themed {
           border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
         }
       }
 
       @include focus-visible {
-        border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+        &::before {
+          border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+        }
       }
     }
 
     // Checked toggle switch
     &:checked {
-      @include themed {
-        background-color: t(iui-color-background-primary);
-        border-color: t(iui-color-background-primary);
+      &::before {
+        @include themed {
+          background-color: t(iui-color-background-primary);
+          border-color: t(iui-color-background-primary);
+        }
       }
 
       &::after {
@@ -167,8 +163,8 @@ $toggle-switch-handle: $iui-icons-default;
     &:disabled {
       cursor: not-allowed;
 
-      &,
-      &:hover {
+      &::before,
+      &:hover::before {
         @include themed {
           background-color: t(iui-color-background-disabled);
           border-color: t(iui-color-background-disabled);
@@ -205,7 +201,7 @@ $toggle-switch-handle: $iui-icons-default;
     display: flex;
     // padding: 0 ($iui-xs + 1px);
     padding-left: ($toggle-switch-handle * 0.25) + 1px;
-    z-index: 1;
+    z-index: 3;
     transition: opacity $iui-speed-fast ease-out;
     @include themed {
       fill: t(iui-color-foreground-accessory);
