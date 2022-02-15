@@ -40,8 +40,10 @@ export const ColorSwatch = React.forwardRef<HTMLDivElement, ColorSwatchProps>(
 
     const _style = React.useMemo(
       () =>
-        getWindow()?.CSS?.supports?.(`--swatch-color: ${colorString}`)
-          ? { '--swatch-color': colorString, ...style }
+        getWindow()?.CSS?.supports?.(
+          `--iui-color-swatch-background: ${colorString}`,
+        )
+          ? { '--iui-color-swatch-background': colorString, ...style }
           : { backgroundColor: colorString, ...style },
       [colorString, style],
     );

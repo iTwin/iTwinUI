@@ -213,8 +213,7 @@ export const Tile = (props: TileProps) => {
             menuItems={(close) =>
               moreOptions.map((option: React.ReactElement) =>
                 React.cloneElement(option, {
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  onClick: (value: any) => {
+                  onClick: (value: unknown) => {
                     close();
                     option.props.onClick?.(value);
                   },
@@ -222,16 +221,19 @@ export const Tile = (props: TileProps) => {
               )
             }
           >
-            <IconButton
-              styleType='borderless'
-              size='small'
+            <div
               className={cx('iui-tile-more-options', {
                 'iui-visible': isMenuVisible,
               })}
-              aria-label='More options'
             >
-              <SvgMore />
-            </IconButton>
+              <IconButton
+                styleType='borderless'
+                size='small'
+                aria-label='More options'
+              >
+                <SvgMore />
+              </IconButton>
+            </div>
           </DropdownMenu>
         )}
 

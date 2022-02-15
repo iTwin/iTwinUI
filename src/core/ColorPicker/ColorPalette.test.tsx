@@ -38,7 +38,9 @@ it('should render in its most basic state', () => {
   const palette = container.querySelector('.iui-color-palette') as HTMLElement;
 
   palette.querySelectorAll('.iui-color-swatch').forEach((swatch, index) => {
-    expect(swatch).toHaveStyle(`--swatch-color: ${expectedStyleString[index]}`);
+    expect(swatch).toHaveStyle(
+      `--iui-color-swatch-background: ${expectedStyleString[index]}`,
+    );
     expect(swatch).toHaveAttribute('tabindex', index === 0 ? '0' : '-1');
   });
 });
@@ -67,7 +69,9 @@ it('should render with selectedColor', () => {
   const palette = container.querySelector('.iui-color-palette') as HTMLElement;
 
   palette.querySelectorAll('.iui-color-swatch').forEach((swatch, index) => {
-    expect(swatch).toHaveStyle(`--swatch-color: ${expectedStyleString[index]}`);
+    expect(swatch).toHaveStyle(
+      `--iui-color-swatch-background: ${expectedStyleString[index]}`,
+    );
     if (index === 1) {
       expect(swatch).toHaveClass('iui-active');
       expect(swatch).toHaveAttribute('tabindex', '0');
@@ -102,7 +106,9 @@ it('should render with selectedColor 0', () => {
   const palette = container.querySelector('.iui-color-palette') as HTMLElement;
 
   palette.querySelectorAll('.iui-color-swatch').forEach((swatch, index) => {
-    expect(swatch).toHaveStyle(`--swatch-color: ${expectedStyleString[index]}`);
+    expect(swatch).toHaveStyle(
+      `--iui-color-swatch-background: ${expectedStyleString[index]}`,
+    );
     if (index === 0) {
       expect(swatch).toHaveClass('iui-active');
       expect(swatch).toHaveAttribute('tabindex', '0');
@@ -218,7 +224,9 @@ it('should propagate misc props correctly', () => {
       expect(child).toHaveClass('custom-child');
       expect(child).toHaveAttribute('tabindex', '0');
     } else {
-      expect(child).toHaveStyle(`--swatch-color: ${colors[index + 1]}`);
+      expect(child).toHaveStyle(
+        `--iui-color-swatch-background: ${colors[index + 1]}`,
+      );
       expect(child).toHaveAttribute('tabindex', '-1');
     }
   });

@@ -128,7 +128,9 @@ it('should set the selected color', () => {
   const colorBuilder = container.querySelector(
     '.iui-color-picker .iui-color-field',
   ) as HTMLElement;
-  expect(colorBuilder).toHaveStyle('--hue: #ffb300; --selected-color: #ffb300');
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-field-hue: #ffb300; --iui-color-picker-selected-color: #ffb300',
+  );
 });
 
 it('should set the dot positions', () => {
@@ -144,8 +146,9 @@ it('should set the dot positions', () => {
   //Set the correct position on color square
   const colorDot = container.querySelector('.iui-color-dot') as HTMLElement;
   expect(colorDot).toBeTruthy();
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('100%');
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('0%');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '0% auto auto 100%',
+  );
 
   // Set the correct position on the slider
   const sliderDot = container.querySelectorAll(
@@ -179,7 +182,9 @@ it('should handle arrow key navigation on hue slider dot', () => {
   const colorBuilder = container.querySelector(
     '.iui-color-picker .iui-color-field',
   ) as HTMLElement;
-  expect(colorBuilder).toHaveStyle('--hue: #ff0000; --selected-color: #ff0000');
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-field-hue: #ff0000; --iui-color-picker-selected-color: #ff0000',
+  );
 
   const sliderDot = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(sliderDot).toBeTruthy();
@@ -192,7 +197,7 @@ it('should handle arrow key navigation on hue slider dot', () => {
   expect(sliderDot.style.getPropertyValue('left')).toEqual(
     '0.5571030640668524%',
   );
-  expect(colorBuilder).toHaveStyle('--hue: #ff0800');
+  expect(colorBuilder).toHaveStyle('--iui-color-field-hue: #ff0800');
 
   // Go left
   fireEvent.keyDown(sliderDot, { key: 'ArrowLeft' });
@@ -200,7 +205,7 @@ it('should handle arrow key navigation on hue slider dot', () => {
   expect(sliderDot.style.getPropertyValue('left')).toEqual(
     '0.2785515320334262%',
   );
-  expect(colorBuilder).toHaveStyle('--hue: #ff0400');
+  expect(colorBuilder).toHaveStyle('--iui-color-field-hue: #ff0400');
 
   // Go left to edge
   fireEvent.keyDown(sliderDot, { key: 'ArrowLeft' });
@@ -227,7 +232,9 @@ it('should handle arrow key navigation on color dot', () => {
     '.iui-color-picker .iui-color-field',
   ) as HTMLElement;
 
-  expect(colorBuilder).toHaveStyle('--hue: #ff0000; --selected-color: #ff0000');
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-field-hue: #ff0000; --iui-color-picker-selected-color: #ff0000',
+  );
 
   const sliderDot = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(sliderDot).toBeTruthy();
@@ -235,26 +242,33 @@ it('should handle arrow key navigation on color dot', () => {
 
   const colorDot = container.querySelector('.iui-color-dot') as HTMLElement;
   expect(colorDot).toBeTruthy();
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('100%');
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('0%');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '0% auto auto 100%',
+  );
 
   // Go down
   fireEvent.keyDown(colorDot, { key: 'ArrowDown' });
   fireEvent.keyDown(colorDot, { key: 'ArrowDown' });
   expect(onChange).toHaveBeenCalledTimes(2);
   expect(onChangeComplete).not.toHaveBeenCalled();
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('2%');
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('100%');
-  expect(colorBuilder).toHaveStyle('--selected-color: #fa0000');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '2% auto auto 100%',
+  );
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-picker-selected-color: #fa0000',
+  );
   fireEvent.keyUp(colorDot, { key: 'ArrowDown' });
   expect(onChangeComplete).toHaveBeenCalledTimes(1);
 
   // Go left
   fireEvent.keyDown(colorDot, { key: 'ArrowLeft' });
   expect(onChange).toHaveBeenCalledTimes(3);
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('2%');
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('99%');
-  expect(colorBuilder).toHaveStyle('--selected-color: #fa0202');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '2% auto auto 99%',
+  );
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-picker-selected-color: #fa0202',
+  );
 
   fireEvent.keyUp(colorDot, { key: 'ArrowLeft' });
   expect(onChangeComplete).toHaveBeenCalledTimes(2);
@@ -262,30 +276,42 @@ it('should handle arrow key navigation on color dot', () => {
   // Go up to top
   fireEvent.keyDown(colorDot, { key: 'ArrowUp' });
   fireEvent.keyDown(colorDot, { key: 'ArrowUp' });
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('0%');
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('99%');
-  expect(colorBuilder).toHaveStyle('--selected-color: #ff0303');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '0% auto auto 99%',
+  );
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-picker-selected-color: #ff0303',
+  );
 
   fireEvent.keyDown(colorDot, { key: 'ArrowUp' });
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('0%');
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('99%');
-  expect(colorBuilder).toHaveStyle('--selected-color: #ff0303');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '0% auto auto 99%',
+  );
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-picker-selected-color: #ff0303',
+  );
   fireEvent.keyUp(colorDot, { key: 'ArrowUp' });
   expect(onChangeComplete).toHaveBeenCalledTimes(3);
 
   // Go right to the edge
   fireEvent.keyDown(colorDot, { key: 'ArrowRight' });
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('0%');
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('100%');
-  expect(colorBuilder).toHaveStyle('--selected-color: #ff0000');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '0% auto auto 100%',
+  );
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-picker-selected-color: #ff0000',
+  );
   fireEvent.keyUp(colorDot, { key: 'ArrowRight' });
   expect(onChangeComplete).toHaveBeenCalledTimes(4);
 
   // Go up
   fireEvent.keyDown(colorDot, { key: 'ArrowUp' });
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('0%');
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('100%');
-  expect(colorBuilder).toHaveStyle('--selected-color: #ff0000');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '0% auto auto 100%',
+  );
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-picker-selected-color: #ff0000',
+  );
   fireEvent.keyUp(colorDot, { key: 'ArrowUp' });
   expect(onChangeComplete).toHaveBeenCalledTimes(5);
 });
@@ -390,22 +416,28 @@ it('should preserve hue when color dot is black/at bottom of square', () => {
   const colorBuilder = container.querySelector(
     '.iui-color-picker .iui-color-field',
   ) as HTMLElement;
-  expect(colorBuilder.style.getPropertyValue('--selected-color')).toBe(
-    '#010402',
+  expect(
+    colorBuilder.style.getPropertyValue('--iui-color-picker-selected-color'),
+  ).toBe('#010402');
+  expect(colorBuilder.style.getPropertyValue('--iui-color-field-hue')).toBe(
+    '#00ff55',
   );
-  expect(colorBuilder.style.getPropertyValue('--hue')).toBe('#00ff55');
 
   const colorDot = container.querySelector('.iui-color-dot') as HTMLElement;
   expect(colorDot).toBeTruthy();
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('75%');
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('98.4%');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '98.4% auto auto 75%',
+  );
 
   // Go to bottom of square and hue should be preserved
   fireEvent.keyDown(colorDot, { key: 'ArrowDown' });
   fireEvent.keyDown(colorDot, { key: 'ArrowDown' });
-  expect(colorDot.style.getPropertyValue('--left')).toEqual('75%');
-  expect(colorDot.style.getPropertyValue('--top')).toEqual('100%');
-  expect(colorBuilder.style.getPropertyValue('--hue')).toBe('#00ff55');
+  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
+    '100% auto auto 75%',
+  );
+  expect(colorBuilder.style.getPropertyValue('--iui-color-field-hue')).toBe(
+    '#00ff55',
+  );
 });
 
 it('should set focus if setFocus is true', () => {
@@ -469,7 +501,9 @@ it('should handle arrow key navigation on opacity slider dot', () => {
   const colorBuilder = container.querySelector(
     '.iui-color-picker .iui-color-field',
   ) as HTMLElement;
-  expect(colorBuilder).toHaveStyle('--hue: #ff0000; --selected-color: #ff0000');
+  expect(colorBuilder).toHaveStyle(
+    '--iui-color-field-hue: #ff0000; --iui-color-picker-selected-color: #ff0000',
+  );
 
   const opacityDot = container.querySelectorAll(
     '.iui-slider-thumb',
@@ -510,7 +544,9 @@ it('should render color picker and handle onChangeCompleted when alpha is false'
 
   expect(
     container.querySelector('.iui-color-picker .iui-color-field'),
-  ).toHaveStyle('--hue: #ff0000; --selected-color: #ff0000');
+  ).toHaveStyle(
+    '--iui-color-field-hue: #ff0000; --iui-color-picker-selected-color: #ff0000',
+  );
   expect(container.querySelector('.iui-hue-slider')).toBeTruthy();
   expect(container.querySelector('.iui-opacity-slider')).toBeFalsy();
   expect(container.querySelector('.iui-color-input-wrapper')).toBeTruthy();

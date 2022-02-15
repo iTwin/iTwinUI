@@ -158,20 +158,19 @@ export const TablePaginator = (props: TablePaginatorProps) => {
 
   const pageButton = React.useCallback(
     (index: number, tabIndex = index === focusedIndex ? 0 : -1) => (
-      <div key={index}>
-        <button
-          className={cx('iui-paginator-page-button', {
-            'iui-active': index === currentPage,
-            'iui-paginator-page-button-small': buttonSize === 'small',
-          })}
-          onClick={() => onPageChange(index)}
-          aria-current={index === currentPage}
-          aria-label={localization.goToPageLabel(index + 1)}
-          tabIndex={tabIndex}
-        >
-          {index + 1}
-        </button>
-      </div>
+      <button
+        key={index}
+        className={cx('iui-paginator-page-button', {
+          'iui-active': index === currentPage,
+          'iui-paginator-page-button-small': buttonSize === 'small',
+        })}
+        onClick={() => onPageChange(index)}
+        aria-current={index === currentPage}
+        aria-label={localization.goToPageLabel(index + 1)}
+        tabIndex={tabIndex}
+      >
+        {index + 1}
+      </button>
     ),
     [focusedIndex, currentPage, localization, buttonSize, onPageChange],
   );
@@ -250,15 +249,13 @@ export const TablePaginator = (props: TablePaginatorProps) => {
   const showPageSizeList = pageSizeList && onPageSizeChange && !!totalRowsCount;
 
   const ellipsis = (
-    <div>
-      <span
-        className={cx('iui-paginator-ellipsis', {
-          'iui-paginator-ellipsis-small': size === 'small',
-        })}
-      >
-        …
-      </span>
-    </div>
+    <span
+      className={cx('iui-paginator-ellipsis', {
+        'iui-paginator-ellipsis-small': size === 'small',
+      })}
+    >
+      …
+    </span>
   );
 
   const noRowsContent = (

@@ -25,7 +25,7 @@ it('should set inline background color correctly', () => {
 
   const badge = container.querySelector('.iui-badge') as HTMLElement;
   expect(badge.textContent).toBe('label');
-  expect(badge.style.getPropertyValue('--badge-color')).toEqual(
+  expect(badge.style.getPropertyValue('--iui-badge-background-color')).toEqual(
     SoftBackgrounds.skyblue,
   );
 });
@@ -39,14 +39,18 @@ it.each([
   const { container } = render(<Badge backgroundColor={key}>label</Badge>);
   const badge = container.querySelector('.iui-badge') as HTMLElement;
   expect(badge.textContent).toBe('label');
-  expect(badge.style.getPropertyValue('--badge-color')).toEqual(value);
+  expect(badge.style.getPropertyValue('--iui-badge-background-color')).toEqual(
+    value,
+  );
 });
 
 it('should work with custom colors', () => {
   const { container } = render(<Badge backgroundColor={'pink'}>label</Badge>);
   const badge = container.querySelector('.iui-badge') as HTMLElement;
   expect(badge.textContent).toBe('label');
-  expect(badge.style.getPropertyValue('--badge-color')).toEqual('pink');
+  expect(badge.style.getPropertyValue('--iui-badge-background-color')).toEqual(
+    'pink',
+  );
 });
 
 it('should add className and style correctly', () => {

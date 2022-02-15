@@ -72,8 +72,13 @@ export const Badge = (props: BadgeProps) => {
 
   const _style =
     backgroundColor &&
-    getWindow()?.CSS?.supports?.(`--badge-color: ${backgroundColor}`)
-      ? { '--badge-color': getBadgeColorValue(backgroundColor), ...style }
+    getWindow()?.CSS?.supports?.(
+      `--iui-badge-background-color: ${backgroundColor}`,
+    )
+      ? {
+          '--iui-badge-background-color': getBadgeColorValue(backgroundColor),
+          ...style,
+        }
       : { backgroundColor: getBadgeColorValue(backgroundColor), ...style };
 
   return (
