@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.31.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.30.0...v1.31.0) (2022-02-15)
+
+### What's new
+
+* **Select:** Now uses an svg for the arrow to match ComboBox ([#540](https://www.github.com/iTwin/iTwinUI-react/issues/540)) ([c0ad092](https://www.github.com/iTwin/iTwinUI-react/commit/c0ad0921f859130f4cc866999ba2d31187b192ac))
+
+### Fixes
+
+* **ButtonGroup:** Fixed z-index handling through base CSS package.
+* **Popover:** Fixed popover not hiding when target is scrolled off screen.
+
 ## [1.30.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.29.3...v1.30.0) (2022-02-08)
 
 ### What's new
