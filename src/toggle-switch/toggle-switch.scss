@@ -66,6 +66,8 @@ $toggle-switch-handle: $iui-icons-default;
     border-radius: 9999px;
     appearance: none;
     z-index: 1;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: pan-y;
 
     &::before {
       content: '';
