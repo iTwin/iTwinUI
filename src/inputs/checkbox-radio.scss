@@ -16,12 +16,15 @@
   }
 
   gap: $iui-s;
+
+  // #region flex gap fallback
   > * + * {
     margin-left: $iui-s;
     @supports (gap: $iui-s) {
       margin-left: 0;
     }
   }
+  // #endregion
 
   &.iui-loading {
     cursor: wait;
