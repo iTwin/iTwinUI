@@ -318,6 +318,13 @@ $tile-min-width: $iui-3xl * 3; // 288px
 
 @mixin iui-tile-array {
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($tile-min-width, 1fr));
+  grid-gap: $iui-line-height $iui-l;
+
+  .iui-tile {
+    width: 100%;
+  }
 
   // #region IE support
   > * {
@@ -330,15 +337,4 @@ $tile-min-width: $iui-3xl * 3; // 288px
     }
   }
   // #endregion IE support
-
-  @supports (grid-gap: $iui-line-height $iui-l) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax($tile-min-width, 1fr));
-    grid-gap: $iui-line-height $iui-l;
-    align-items: stretch;
-
-    .iui-tile {
-      width: 100%;
-    }
-  }
 }
