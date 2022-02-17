@@ -48,27 +48,8 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
   margin-bottom: $iui-xs;
   margin-right: $iui-xs;
   position: relative;
-  background-position: 0 0, ($iui-m * 0.5) ($iui-m * 0.5);
-  background-size: $iui-m $iui-m;
   background-color: var(--iui-color-swatch-background);
-  @include themed {
-    background-image: repeating-linear-gradient(
-      45deg,
-      t(iui-color-background-3) 25%,
-      transparent 25%,
-      transparent 75%,
-      t(iui-color-background-3) 75%,
-      t(iui-color-background-3)
-    ),
-      repeating-linear-gradient(
-      45deg,
-      t(iui-color-background-3) 25%,
-      t(iui-color-background-5) 25%,
-      t(iui-color-background-5) 75%,
-      t(iui-color-background-3) 75%,
-      t(iui-color-background-3)
-    );
-  }
+  @include iui-transparent-background;
   @supports (gap: $iui-s) {
     margin-bottom: 0;
     margin-right: 0;
@@ -232,26 +213,7 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
 @mixin iui-opacity-slider {
   .iui-slider-rail {
     height: $iui-s;
-    background-position: 0 0, ($iui-s * 0.5) ($iui-s * 0.5);
-    background-size: $iui-s $iui-s;
-    @include themed {
-      background-image: repeating-linear-gradient(
-        45deg,
-        t(iui-color-background-3) 25%,
-        transparent 25%,
-        transparent 75%,
-        t(iui-color-background-3) 75%,
-        t(iui-color-background-3)
-      ),
-        repeating-linear-gradient(
-        45deg,
-        t(iui-color-background-3) 25%,
-        t(iui-color-background-5) 25%,
-        t(iui-color-background-5) 75%,
-        t(iui-color-background-3) 75%,
-        t(iui-color-background-3)
-      );
-    }
+    @include iui-transparent-background($size: $iui-s);
 
     &::before {
       display: block;
@@ -290,4 +252,27 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
   }
 
   @include iui-focus($offset: 0, $thickness: 2px);
+}
+
+@mixin iui-transparent-background($size: $iui-m) {
+  background-position: 0 0, ($size * 0.5) ($size * 0.5);
+  background-size: $size $size;
+  @include themed {
+    background-image: repeating-linear-gradient(
+      45deg,
+      t(iui-color-background-3) 25%,
+      transparent 25%,
+      transparent 75%,
+      t(iui-color-background-3) 75%,
+      t(iui-color-background-3)
+    ),
+      repeating-linear-gradient(
+      45deg,
+      t(iui-color-background-3) 25%,
+      t(iui-color-background-5) 25%,
+      t(iui-color-background-5) 75%,
+      t(iui-color-background-3) 75%,
+      t(iui-color-background-3)
+    );
+  }
 }
