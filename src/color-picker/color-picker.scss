@@ -6,10 +6,10 @@
 
 $iui-color-picker-content-width: ($iui-l * 9) + ($iui-s * 8); // (9 swatches per row) + (gaps)
 $iui-color-picker-max-width: ($iui-l * 10) + ($iui-s * 9); // (10 swatches per row) + (gaps)
-$iui-color-swatch-border-radius: 5px;
-$iui-inset-box-shadow: inset 0 0 0 1px rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
-$iui-active-box-shadow: 0 0 0 $iui-xxs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
-$iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+$iui-color-swatch-border-radius: $iui-border-radius * 2;
+$iui-inset-box-shadow: inset 0 0 0 1px rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
+$iui-active-box-shadow: 0 0 0 $iui-xxs rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-3));
+$iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
 
 @mixin iui-color-picker {
   --iui-color-picker-selected-color: initial;
@@ -62,28 +62,20 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
     height: inherit;
     border-radius: inherit;
     background-color: inherit;
-    @include themed {
-      box-shadow: $iui-inset-box-shadow;
-    }
+    box-shadow: $iui-inset-box-shadow;
   }
 
   &:hover {
-    @include themed {
-      box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow;
-    }
+    box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow;
   }
 
-  @include iui-focus($offset: 0, $thickness: 2px);
+  @include iui-focus($offset: 1px, $thickness: 2px);
 
   &.iui-active {
-    @include themed {
-      box-shadow: $iui-active-box-shadow, $iui-inset-box-shadow;
-    }
+    box-shadow: $iui-active-box-shadow, $iui-inset-box-shadow;
 
     &:hover {
-      @include themed {
-        box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow, $iui-active-box-shadow;
-      }
+      box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow, $iui-active-box-shadow;
     }
   }
 }
@@ -178,10 +170,8 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
   cursor: crosshair;
   width: 100%;
   height: $iui-baseline * 19;
-  @include themed {
-    background-image: linear-gradient(0deg, rgb(0, 0, 0), transparent),
-      linear-gradient(90deg, rgb(255, 255, 255), var(--iui-color-field-hue));
-  }
+  background-image: linear-gradient(0deg, rgb(0, 0, 0), transparent),
+    linear-gradient(90deg, rgb(255, 255, 255), var(--iui-color-field-hue));
 
   &:not(:last-child) {
     margin-bottom: round($iui-baseline * 0.5);
@@ -239,16 +229,12 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
   border-radius: 50%;
   transform: translate(-$iui-s, -$iui-s);
   cursor: crosshair;
-  @include themed {
-    box-shadow: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-1)) 0 0 0 $iui-xxs - 1,
-      inset 0 0 0 $iui-xxs - 1 rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-6));
-    background-color: var(--iui-color-picker-selected-color);
-  }
+  box-shadow: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-1)) 0 0 0 $iui-xxs - 1,
+    inset 0 0 0 $iui-xxs - 1 rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-6));
+  background-color: var(--iui-color-picker-selected-color);
 
   &:hover {
-    @include themed {
-      box-shadow: $iui-hover-box-shadow;
-    }
+    box-shadow: $iui-hover-box-shadow;
   }
 
   @include iui-focus($offset: 0, $thickness: 2px);
