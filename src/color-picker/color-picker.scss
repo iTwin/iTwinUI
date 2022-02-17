@@ -66,6 +66,7 @@ $iui-transparency: repeating-linear-gradient(
   position: relative;
   background-position: 0 0, ($iui-m * 0.5) ($iui-m * 0.5);
   background-size: $iui-m $iui-m;
+  background-color: var(--iui-color-swatch-background);
   @include themed {
     background-image: $iui-transparency;
   }
@@ -80,7 +81,7 @@ $iui-transparency: repeating-linear-gradient(
     width: inherit;
     height: inherit;
     border-radius: inherit;
-    background-color: var(--iui-color-swatch-background);
+    background-color: inherit;
     @include themed {
       box-shadow: $iui-inset-box-shadow;
     }
