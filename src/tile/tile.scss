@@ -321,14 +321,15 @@ $tile-min-width: $iui-3xl * 3; // 288px
   }
 }
 
-@mixin iui-tile-array {
-  width: 100%;
-  display: grid;
+@mixin iui-responsive-grid {
+  --_iui-grid-item-min-width: #{$tile-min-width};
+
   /* autoprefixer grid: no-autoplace */
-  grid-template-columns: repeat(auto-fit, minmax(Min(100%, 288px), 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(Min(100%, var(--_iui-grid-item-min-width)), 1fr));
   grid-gap: $iui-line-height $iui-l;
 
-  .iui-tile {
+  > * {
     width: 100%;
   }
 }
