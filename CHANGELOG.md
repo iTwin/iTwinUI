@@ -2,7 +2,6 @@
 
 ### [0.48.1](https://www.github.com/iTwin/iTwinUI/compare/v0.48.0...v0.48.1) (2022-02-18)
 
-
 ### Fixes
 
 * **Radio:** Set blank svg for indeterminate state ([#492](https://www.github.com/iTwin/iTwinUI/issues/492)) ([54c5b3f](https://www.github.com/iTwin/iTwinUI/commit/54c5b3fc0923042236b02fc12edec6b97f8f9c66))
