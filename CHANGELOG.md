@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.48.0](https://www.github.com/iTwin/iTwinUI/compare/v0.47.0...v0.48.0) (2022-02-18)
+
+
+### What's new
+
+* **ColorPicker:** Swatch supports transparency ([#483](https://www.github.com/iTwin/iTwinUI/issues/483)) ([f50481f](https://www.github.com/iTwin/iTwinUI/commit/f50481fe621f644fefd900aac0eb8f2ba0d8a25c))
+
 ## [0.47.0](https://www.github.com/iTwin/iTwinUI/compare/v0.46.1...v0.47.0) (2022-02-15)
 
 ### What's new
