@@ -7,4 +7,10 @@ module.exports = [
     actions: [click('#open-modal'), hover('body')],
     selectors: ['document'],
   }),
+  scenario('full-page-modal', {
+    // Hovering `body` to avoid random test failures
+    // when "Open modal" sometimes is and sometimes is not hovered.
+    actions: [click('#open-full-page-modal'), hover('body')],
+    selectors: ['document'],
+  }),
 ];

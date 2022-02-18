@@ -40,15 +40,30 @@
 
     <a
       id="open-modal"
-      onclick="openModal()"
+      onclick="toggleModal(false)"
       class="iui-anchor"
     >Open modal</a>
 
+    <br>
+
+    <a
+      id="open-full-page-modal"
+      onclick="toggleModal(true)"
+      class="iui-anchor"
+    >Open full page modal</a>
+
     <script>
-      function openModal() {
+      function toggleModal(isFullPage) {
         var element = document.getElementById('myModal');
         element.classList.toggle('iui-modal-visible');
+        if (isFullPage) {
+          element.classList.add('iui-modal-full-page');
+        } else {
+          element.classList.remove('iui-modal-full-page');
+        }
       }
+
+      f
     </script>
 
     <div
@@ -81,13 +96,13 @@
         <div class="iui-button-bar">
           <button
             class="iui-button iui-high-visibility"
-            onclick="openModal()"
+            onclick="toggleModal(document.getElementsByClassName('iui-modal-full-page') > 0)"
           >
             <span class="iui-button-label">Proceed</span>
           </button>
           <button
             class="iui-button iui-default"
-            onclick="openModal()"
+            onclick="toggleModal(document.getElementsByClassName('iui-modal-full-page') > 0)"
           >
             <span class="iui-button-label">Cancel</span>
           </button>

@@ -31,6 +31,7 @@
     border-radius: $iui-border-radius;
     box-shadow: $iui-elevation-24;
     padding: $iui-baseline $iui-m;
+    box-sizing: border-box;
 
     @include themed {
       background-color: t(iui-color-background-1);
@@ -72,5 +73,42 @@
     visibility: visible;
     opacity: 1;
     transition-delay: 0s;
+  }
+}
+
+@mixin iui-modal-full-page {
+  --iui-full-page-modal-transform-x: -100%;
+  --iui-full-page-modal-transform-y: 0%;
+
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(var(--iui-full-page-modal-transform-x)) translateY(var(--iui-full-page-modal-transform-y));
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed ease-in;
+  }
+
+  > .iui-modal-dialog {
+    height: 100vh;
+
+    left: 0;
+    top: 0;
+    transform: none;
+    max-width: initial;
+    min-width: initial;
+    border-radius: 0;
+    box-shadow: none;
+
+    .iui-button-bar {
+      position: absolute;
+      bottom: $iui-baseline;
+      right: $iui-m;
+    }
+  }
+
+  &.iui-modal-visible {
+    transform: translateX(0);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform $iui-speed ease-out;
+    }
   }
 }
