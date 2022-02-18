@@ -229,8 +229,8 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   border-radius: 50%;
   transform: translate(-$iui-s, -$iui-s);
   cursor: crosshair;
-  box-shadow: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-1)) 0 0 0 $iui-xxs - 1,
-    inset 0 0 0 $iui-xxs - 1 rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-6));
+  box-shadow: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-1)) 0 0 0 $iui-xxs - 1,
+    inset 0 0 0 $iui-xxs - 1 rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-6));
   background-color: var(--iui-color-picker-selected-color);
 
   &:hover {
