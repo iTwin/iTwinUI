@@ -55,6 +55,7 @@
   }
 
   &:indeterminate {
+    --_iui-checkbox-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));
     --_iui-checkbox-mask-image: var(--_iui-checkbox-indeterminate-svg);
   }
 
