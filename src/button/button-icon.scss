@@ -9,4 +9,5 @@
   height: $iui-icons-default;
   transition: fill $iui-speed-fast ease-out;
   fill: currentColor;
+  flex-shrink: 0;
 }
