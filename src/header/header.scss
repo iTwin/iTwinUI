@@ -190,11 +190,11 @@
     margin-left: $iui-sm;
   }
 
-  .iui-header-button-icon {
+  .iui-header-breadcrumbs-button-icon {
     display: inline-flex;
     padding: $iui-xs;
     box-sizing: content-box;
-    @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
+    @include iui-header-breadcrumbs-button-icon($iui-icons-default, $iui-border-radius);
     @include themed {
       background-color: t(iui-color-background-3);
       fill: t(iui-icons-color);
@@ -205,7 +205,7 @@
     }
   }
 
-  img.iui-header-button-icon {
+  img.iui-header-breadcrumbs-button-icon {
     padding: 0;
     width: $iui-icons-large;
     height: $iui-icons-large;
@@ -221,7 +221,7 @@
   &[aria-disabled='true'] {
     cursor: not-allowed;
 
-    .iui-header-button-icon {
+    .iui-header-breadcrumbs-button-icon {
       filter: grayscale(1) opacity(0.7);
     }
   }
@@ -229,14 +229,14 @@
   @at-root {
     .iui-slim {
       .iui-header-breadcrumbs-button {
-        .iui-header-button-icon {
+        .iui-header-breadcrumbs-button-icon {
           width: $iui-icons-small;
           height: $iui-icons-small;
           padding: $iui-xxs;
           margin: 0 $iui-xs;
         }
 
-        img.iui-header-button-icon {
+        img.iui-header-breadcrumbs-button-icon {
           width: $iui-icons-default;
           height: $iui-icons-default;
           padding: 0;
@@ -257,7 +257,7 @@
   flex-shrink: 0;
 }
 
-@mixin iui-header-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
+@mixin iui-header-breadcrumbs-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
   width: $size;
   height: $size;
   border-radius: $border-radius;
@@ -330,7 +330,7 @@
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
     }
 
-    .iui-header-button-icon {
+    .iui-header-breadcrumbs-button-icon {
       @include themed {
         fill: t(iui-icons-color-primary);
         background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
@@ -367,7 +367,7 @@
       }
     }
 
-    .iui-header-button-icon {
+    .iui-header-breadcrumbs-button-icon {
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
       }
