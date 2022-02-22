@@ -14,7 +14,6 @@ $toggle-switch-handle-size: $iui-icons-default;
   width: fit-content;
   user-select: none;
   cursor: pointer;
-  position: relative;
   isolation: isolate;
   @include themed {
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
@@ -52,16 +51,14 @@ $toggle-switch-handle-size: $iui-icons-default;
   grid-template: 'toggle';
   align-items: center;
 
-  > input[type='checkbox'] {
+  > input {
     @include iui-reset;
     @include iui-focus($thickness: 1px, $offset: 1px);
     grid-area: toggle;
     display: flex;
-    align-items: center;
     position: relative;
     cursor: pointer;
     width: ($toggle-switch-handle-size + ($iui-component-offset * 2)) * 2;
-    height: auto;
     padding: 1px;
     border-radius: $iui-border-radius-round;
     appearance: none;
