@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-$toggle-switch-handle-size: 24px;
+$toggle-switch-handle-size: $iui-icons-default;
 
 @mixin iui-toggle-switch {
   @include iui-reset;
