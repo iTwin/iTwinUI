@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-$toggle-switch-handle: $iui-icons-default;
+$toggle-switch-handle-size: $iui-icons-default;
 
 @mixin iui-toggle-switch {
   @include iui-reset;
@@ -60,7 +60,7 @@ $toggle-switch-handle: $iui-icons-default;
     align-items: center;
     position: relative;
     cursor: pointer;
-    width: ($toggle-switch-handle + $iui-xs) * 2;
+    width: ($toggle-switch-handle-size + $iui-xs) * 2;
     height: auto;
     padding: 1px;
     border-radius: 9999px;
@@ -82,8 +82,8 @@ $toggle-switch-handle: $iui-icons-default;
 
     &::after {
       content: '';
-      height: $toggle-switch-handle;
-      width: $toggle-switch-handle;
+      height: $toggle-switch-handle-size;
+      width: $toggle-switch-handle-size;
       margin: $iui-xxs;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
@@ -134,7 +134,7 @@ $toggle-switch-handle: $iui-icons-default;
       }
 
       &::after {
-        transform: translateX($toggle-switch-handle + $iui-xxs);
+        transform: translateX($toggle-switch-handle-size + $iui-xxs);
         @include themed {
           background-color: t(iui-color-foreground-accessory);
           opacity: t(iui-opacity-2);
@@ -198,11 +198,11 @@ $toggle-switch-handle: $iui-icons-default;
   > .iui-toggle-switch-icon {
     grid-area: toggle;
     opacity: 0;
-    width: $toggle-switch-handle * 0.75;
-    height: $toggle-switch-handle * 0.75;
+    width: $toggle-switch-handle-size * 0.75;
+    height: $toggle-switch-handle-size * 0.75;
     display: flex;
     // padding: 0 ($iui-xs + 1px);
-    padding-left: ($toggle-switch-handle * 0.25) + 1px;
+    padding-left: ($toggle-switch-handle-size * 0.25) + 1px;
     z-index: 3;
     transition: opacity $iui-speed-fast ease-out;
     @include themed {
