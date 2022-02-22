@@ -55,7 +55,7 @@
     // stylelint-enable
   }
 
-  .iui-input-group .iui-toggle-switch {
+  .iui-input-group .iui-toggle-switch-wrapper {
     padding: round($iui-baseline * 0.5) 0;
   }
 
@@ -130,7 +130,7 @@
 
       > .iui-checkbox,
       > .iui-radio,
-      > .iui-toggle-switch {
+      > .iui-toggle-switch-wrapper {
         margin-right: $iui-m;
 
         @supports (gap: $iui-m) {
