@@ -63,7 +63,7 @@ $toggle-switch-handle-size: $iui-icons-default;
     width: ($toggle-switch-handle-size + ($iui-component-offset * 2)) * 2;
     height: auto;
     padding: 1px;
-    border-radius: 9999px;
+    border-radius: $iui-border-radius-round;
     appearance: none;
     z-index: 1;
     -webkit-tap-highlight-color: transparent;
