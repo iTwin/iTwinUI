@@ -37,6 +37,7 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
   display: flex;
   cursor: pointer;
   padding: 0 $iui-s;
+  align-items: center;
 
   &-checkbox {
     margin-right: $iui-s;
