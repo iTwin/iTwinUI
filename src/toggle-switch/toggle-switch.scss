@@ -60,7 +60,7 @@ $toggle-switch-handle-size: $iui-icons-default;
     align-items: center;
     position: relative;
     cursor: pointer;
-    width: ($toggle-switch-handle-size + $iui-xs) * 2;
+    width: ($toggle-switch-handle-size + ($iui-component-offset * 2)) * 2;
     height: auto;
     padding: 1px;
     border-radius: 9999px;
@@ -84,7 +84,7 @@ $toggle-switch-handle-size: $iui-icons-default;
       content: '';
       height: $toggle-switch-handle-size;
       width: $toggle-switch-handle-size;
-      margin: $iui-xxs;
+      margin: $iui-component-offset;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       z-index: 4;
@@ -134,7 +134,7 @@ $toggle-switch-handle-size: $iui-icons-default;
       }
 
       &::after {
-        transform: translateX($toggle-switch-handle-size + $iui-xxs);
+        transform: translateX($toggle-switch-handle-size + $iui-component-offset);
         @include themed {
           background-color: t(iui-color-foreground-accessory);
           opacity: t(iui-opacity-2);
@@ -200,9 +200,9 @@ $toggle-switch-handle-size: $iui-icons-default;
     opacity: 0;
     width: $toggle-switch-handle-size * 0.75;
     height: $toggle-switch-handle-size * 0.75;
+    padding: $toggle-switch-handle-size * 0.125;
+    margin: $iui-component-offset + 1px;
     display: flex;
-    // padding: 0 ($iui-xs + 1px);
-    padding-left: ($toggle-switch-handle-size * 0.25) + 1px;
     z-index: 3;
     transition: opacity $iui-speed-fast ease-out;
     @include themed {
