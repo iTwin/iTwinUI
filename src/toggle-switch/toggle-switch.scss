@@ -26,7 +26,7 @@
   }
 
   // IE solution
-  // For labels on the right
+  // For labels on the left
   > .iui-label {
     margin-right: $iui-s;
     @supports (gap: $iui-s) {
@@ -34,8 +34,8 @@
     }
   }
 
-  // For labels on the left
-  .iui-toggle ~ .iui-label {
+  // For labels on the right
+  .iui-toggle-switch ~ .iui-label {
     margin-left: $iui-s;
     margin-right: 0;
     @supports (gap: $iui-s) {
