@@ -280,7 +280,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-second"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -290,10 +290,9 @@
                 aria-controls="demo-slide-4"
               ></button>
             </li>
-
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-first"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -305,7 +304,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -317,7 +316,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -329,7 +328,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -341,7 +340,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -353,7 +352,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -363,10 +362,9 @@
                 aria-controls="demo-slide-10"
               ></button>
             </li>
-
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -480,9 +478,6 @@
           }
         };
         playbackButton.addEventListener('click', () => togglePlaybackState());
-
-        // initialize
-        updateSlide(0);
 
         // keyboard navigation
         carousel.addEventListener('keydown', ({ key }) => {
