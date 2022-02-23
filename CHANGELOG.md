@@ -2,7 +2,6 @@
 
 ### [0.48.2](https://www.github.com/iTwin/iTwinUI/compare/v0.48.1...v0.48.2) (2022-02-23)
 
-
 ### Fixes
 
 * **ColorSwatch:** Fix absolute positioning when used in button ([#494](https://www.github.com/iTwin/iTwinUI/issues/494)) ([8e96995](https://www.github.com/iTwin/iTwinUI/commit/8e96995922cf8691894bea9f38dbd3fbc09c38e7))
