@@ -55,12 +55,12 @@
     <script>
       function toggleModal(isFullPage) {
         var element = document.getElementById('myModal');
-        element.classList.toggle('iui-modal-visible');
         if (isFullPage) {
           element.classList.add('iui-modal-full-page');
         } else {
           element.classList.remove('iui-modal-full-page');
         }
+        element.classList.toggle('iui-modal-visible');
       }
 
       f
@@ -96,13 +96,13 @@
         <div class="iui-button-bar">
           <button
             class="iui-button iui-high-visibility"
-            onclick="toggleModal(document.getElementsByClassName('iui-modal-full-page') > 0)"
+            onclick="toggleModal(document.getElementsByClassName('iui-modal-full-page').length > 0)"
           >
             <span class="iui-button-label">Proceed</span>
           </button>
           <button
             class="iui-button iui-default"
-            onclick="toggleModal(document.getElementsByClassName('iui-modal-full-page') > 0)"
+            onclick="toggleModal(document.getElementsByClassName('iui-modal-full-page').length > 0)"
           >
             <span class="iui-button-label">Cancel</span>
           </button>
