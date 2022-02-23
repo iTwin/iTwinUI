@@ -26,9 +26,6 @@
       .iui-input-container {
         margin-bottom: 11px;
       }
-      .iui-toggle-switch-wrapper {
-        padding: 5.5px 0;
-      }
     </style>
     <script
       type="module"
@@ -64,100 +61,67 @@
         <div class="iui-input-container iui-inline-label">
           <div class="iui-label">Color theme</div>
           <div class="iui-input-group">
-            <label class="iui-radio">
+            <label class="iui-radio-wrapper">
               <input
+                class="iui-radio"
                 type="radio"
                 name="radio-demo-1"
                 value="light"
               />
-              <span class="iui-radio-dot">
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <circle
-                    cx="8"
-                    cy="8"
-                    r="4"
-                  />
-                </svg>
-              </span>
-              <span class="iui-label">Light</span>
+              <span class="iui-radio-label">Light</span>
             </label>
-            <label class="iui-radio">
+            <label class="iui-radio-wrapper">
               <input
+                class="iui-radio"
                 type="radio"
                 name="radio-demo-1"
                 value="dark"
               />
-              <span class="iui-radio-dot">
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <circle
-                    cx="8"
-                    cy="8"
-                    r="4"
-                  />
-                </svg>
-              </span>
-              <span class="iui-label">Dark</span>
+              <span class="iui-radio-label">Dark</span>
             </label>
-            <label class="iui-radio">
+            <label class="iui-radio-wrapper">
               <input
+                class="iui-radio"
                 type="radio"
                 name="radio-demo-1"
                 value="match-device"
                 checked
               />
-              <span class="iui-radio-dot">
-                <svg
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <circle
-                    cx="8"
-                    cy="8"
-                    r="4"
-                  />
-                </svg>
-              </span>
-              <span class="iui-label">Match device</span>
+              <span class="iui-radio-label">Match device</span>
             </label>
           </div>
         </div>
 
-        <label class="iui-toggle-switch-wrapper">
-          <div class="iui-toggle-switch">
-            <input
-              type="checkbox"
-              checked
-            />
-          </div>
+        <label class="iui-toggle-switch">
+          <input
+            type="checkbox"
+            checked
+          />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
           <span class="iui-label">Share usage statistics</span>
         </label>
 
-        <label class="iui-toggle-switch-wrapper">
-          <div class="iui-toggle-switch">
-            <input
-              type="checkbox"
-              checked
-            />
-          </div>
+        <label class="iui-toggle-switch">
+          <input
+            type="checkbox"
+            checked
+          />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
           <span class="iui-label">Share crash logs</span>
         </label>
 
-        <label class="iui-toggle-switch-wrapper iui-disabled">
-          <div class="iui-toggle-switch">
-            <input
-              type="checkbox"
-              disabled
-            />
-          </div>
+        <label class="iui-toggle-switch">
+          <input
+            type="checkbox"
+            disabled
+          />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
           <span class="iui-label">Advanced settings</span>
         </label>
 
@@ -180,17 +144,19 @@
           />
         </label>
 
-        <label class="iui-toggle-switch-wrapper iui-disabled">
-          <div class="iui-toggle-switch">
-            <input type="checkbox" />
-          </div>
+        <label class="iui-toggle-switch">
+          <input type="checkbox" />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
           <span class="iui-label">Enable GPU rendering</span>
         </label>
 
-        <label class="iui-toggle-switch-wrapper iui-disabled">
-          <div class="iui-toggle-switch">
-            <input type="checkbox" />
-          </div>
+        <label class="iui-toggle-switch">
+          <input type="checkbox" />
+          <span class="iui-toggle">
+            <span class="iui-handle"></span>
+          </span>
           <span class="iui-label">Enable overclock mode</span>
         </label>
       </fieldset>
