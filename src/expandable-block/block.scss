@@ -15,6 +15,7 @@
   }
 
   > .iui-header {
+    @include iui-focus;
     display: flex;
     align-items: center;
     padding: $iui-baseline $iui-sm;
@@ -164,6 +165,29 @@
 
     > .iui-status-icon {
       margin-left: $iui-s;
+    }
+  }
+
+  &.iui-borderless {
+    &,
+    .iui-header,
+    .iui-expandable-content {
+      background-color: transparent;
+      border: initial;
+    }
+
+    .iui-header {
+      border-radius: $iui-border-radius;
+
+      &:hover {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+        }
+      }
+    }
+
+    .iui-expandable-content > div {
+      padding: 0;
     }
   }
 }

@@ -5,72 +5,72 @@
 @mixin iui-button-group {
   display: inline-flex;
   align-items: center;
+  isolation: isolate;
 
-  > .iui-button {
-    &:not(.iui-borderless) {
-      border-radius: 0;
-    }
+  $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
+  $childBorderSelector: '.iui-input, .iui-button:where(:not(.iui-borderless))';
+  $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
-    &:first-of-type:not(.iui-borderless) {
-      border-top-left-radius: $iui-border-radius;
-      border-bottom-left-radius: $iui-border-radius;
-    }
+  > * {
+    display: flex;
 
-    &:last-of-type:not(.iui-borderless) {
-      border-top-right-radius: $iui-border-radius;
-      border-bottom-right-radius: $iui-border-radius;
-    }
+    #{$childZindexSelector} {
+      position: relative;
 
-    &:not(.iui-borderless):not(.iui-cta):not(.iui-high-visibility):not(:last-of-type) {
-      border-right: none;
-    }
+      // Adds stripe above active button
+      --_iui-button-active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
 
-    &:not(.iui-high-visibility):not(.iui-cta):not(.iui-borderless) {
-      // Border trick for grouped default & disabled buttons
-      &:enabled {
-        + :disabled {
-          @include themed {
-            border-left-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-          }
-        }
-
-        &:hover + .iui-button,
-        &:active + .iui-button,
-        &:focus-visible + .iui-button {
-          @include themed {
-            border-left-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-          }
-        }
+      &:hover {
+        z-index: 1;
       }
 
-      // Border between 2 side-by-side disabled buttons
-      &:disabled + .iui-button:disabled {
+      &:focus,
+      &:focus-within {
+        z-index: 2;
+      }
+
+      #{$disabledSelector} {
+        z-index: -1;
+      }
+    }
+
+    #{$childBorderSelector} {
+      // Reset border radius
+      border-radius: 0;
+
+      transition-duration: 0ms; // disable exit animation to avoid border flicker
+
+      &:hover,
+      &:focus {
+        transition-duration: $iui-speed-fast; // re-enable enter animation
+      }
+    }
+
+    // Add rounded corners to first and last items
+    &:first-child {
+      #{$childBorderSelector} {
+        border-top-left-radius: $iui-border-radius;
+        border-bottom-left-radius: $iui-border-radius;
+      }
+    }
+
+    &:last-child {
+      #{$childBorderSelector} {
+        border-top-right-radius: $iui-border-radius;
+        border-bottom-right-radius: $iui-border-radius;
+      }
+    }
+
+    // Use negative margin to make adjacent borders overlap
+    + * {
+      margin-left: -1px;
+    }
+
+    // Add slight border between disabled items
+    &:not(:first-child) :where(.iui-button.iui-default) {
+      #{$disabledSelector} {
         @include themed {
           border-left-color: t(iui-color-background-4);
-        }
-      }
-    }
-  }
-
-  // Adds stripe above active button
-  > .iui-active {
-    &::after {
-      content: '';
-      position: absolute;
-      height: $iui-xxs;
-      opacity: 1;
-      top: $iui-xxs;
-      left: $iui-xxs;
-      width: calc(100% - #{$iui-xs});
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-      }
-    }
-
-    &:disabled {
-      &::after {
-        @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
         }
       }
     }

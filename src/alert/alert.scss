@@ -87,6 +87,7 @@
   }
 
   #{$rootSelector}-link {
+    border-radius: $iui-border-radius;
     @include themed {
       color: t(iui-color-foreground-#{$statusColor});
     }
@@ -96,10 +97,11 @@
         color: t(iui-color-foreground-#{$statusColor}-overlay);
       }
     }
+
+    @include iui-focus($color: var(--iui-color-foreground-#{$statusColor}), $offset: 2px);
   }
 
-  #{$rootSelector}-link,
   > .iui-button {
-    @include iui-focus(if($statusColor == primary, iui-focus-box-shadow, iui-focus-#{$statusColor}-box-shadow));
+    outline-color: var(--iui-color-foreground-#{$statusColor});
   }
 }

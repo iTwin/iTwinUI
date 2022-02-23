@@ -14,6 +14,10 @@ module.exports = [
     selectors: ['#demo-small'],
     viewports: [{ width: 800, height: 600 }],
   }),
+  scenario('Type borderless', {
+    selectors: ['#demo-borderless'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
 
   // Hover states
   scenario('State hover', {

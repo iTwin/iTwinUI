@@ -8,11 +8,11 @@
   id="theme"
 >
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1"
-    >
+    />
     <meta charset="utf-8" />
     <title>Table | iTwinUI</title>
     <link
@@ -24,12 +24,22 @@
       href="../assets/demo.css"
     />
     <style>
-      section {
-        width: 100% !important;
+      section[id^='demo'] {
+        width: auto;
       }
 
       .demo-right-align {
         justify-content: flex-end;
+      }
+
+      #demo-responsive {
+        width: 375px;
+      }
+
+      #demo-extras-scrollable-table .iui-cell,
+      #demo-extras-scrollable-table-few-rows .iui-cell {
+        width: 600px;
+        flex: 0 0 600px;
       }
     </style>
     <script
@@ -82,46 +92,64 @@
     ></script>
 
     <script>
-      customElements.define('svg-folder', class extends HTMLElement {
-        connectedCallback() {
-          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z" fill="#e7b93a" /><path d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z" fill="#f6d97a" /></svg>`;
+      customElements.define(
+        'svg-folder',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `<svg viewBox="0 0 16 16"><path d="M8,3,6.5856,1.5857A2,2,0,0,0,5.1715,1H1A1,1,0,0,0,0,2V5H16V4a1,1,0,0,0-1-1Z" fill="#e7b93a" /><path d="M0,14a1,1,0,0,0,1,1H15a1,1,0,0,0,1-1V5H0Z" fill="#f6d97a" /></svg>`;
+          }
         }
-      });
+      );
     </script>
     <script>
-      customElements.define('svg-filetype-imodel', class extends HTMLElement {
-        connectedCallback() {
-          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#5ebb47" /><path d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#448136" /></svg>`;
+      customElements.define(
+        'svg-filetype-imodel',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#5ebb47" /><path d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#448136" /></svg>`;
+          }
         }
-      });
+      );
     </script>
     <script>
-      customElements.define('svg-filetype-audio', class extends HTMLElement {
-        connectedCallback() {
-          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#66c6ff" /><path d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#478ab2" /></svg>`;
+      customElements.define(
+        'svg-filetype-audio',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#66c6ff" /><path d="m6 7 2-2v8l-2-2h-2v-4zm4 2a1.9961 1.9961 0 0 0 -1-1.73v3.46a1.9961 1.9961 0 0 0 1-1.73zm-1-3.82v1.04a2.9566 2.9566 0 0 1 0 5.56v1.04a3.9483 3.9483 0 0 0 0-7.64z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#478ab2" /></svg>`;
+          }
         }
-      });
+      );
     </script>
     <script>
-      customElements.define('svg-filetype-pdf', class extends HTMLElement {
-        connectedCallback() {
-          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#dd3e39" /><path d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#992d2b" /></svg>`;
+      customElements.define(
+        'svg-filetype-pdf',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#dd3e39" /><path d="m9.31938 9.44651a34.08328 34.08328 0 0 1 -2.75-2.9358v-.18739a3.04872 3.04872 0 0 0 -.25-1.87392c-.3-.31232-.65-.24985-.9.12493-.05.06246-.05.18739-.1.31232a1.68147 1.68147 0 0 0 .4 1.3742l.4.49972c-.2.93695-.6 2.9358-.8 3.87276-.45.31232-1.85 1.18681-1.15 2.12377.85 1.12435 1.7-1.68653 1.7-1.68653a6.71037 6.71037 0 0 1 3.4-.93695c2.85 3.6229 4.1-.62464.6-.62464zm-4.8 3.06073c-.4-.18739.05-1.06188.8-1.24928-.25.8745-.55 1.37421-.8 1.24928m1.5-6.68363a1.40832 1.40832 0 0 1 -.35-.8745c0-.12492.05-.24985.2-.24985a.35612.35612 0 0 1 .2.12493 4.96 4.96 0 0 1 .15 1.24927zm-.2 4.55986c.2-.99942.5-2.31116.6-3.24812.55.6871 1.3 1.49913 2.15 2.37363a8.93134 8.93134 0 0 0 -2.75.87449m4.05-.24986a4.85855 4.85855 0 0 1 .95.06247c1 .12493.65 1.18681.05.812a3.70943 3.70943 0 0 1 -1-.8745z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#992d2b" /></svg>`;
+          }
         }
-      });
+      );
     </script>
     <script>
-      customElements.define('svg-filetype-image', class extends HTMLElement {
-        connectedCallback() {
-          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#7956a3" /><path d="m3 5v8h10v-8zm9 7h-8v-6h8zm-1-1h-6l2-2 .8.8 1.2-1.8zm-4-3a1 1 0 1 1 -1-1 1 1 0 0 1 1 1z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#543d70" /></svg>`;
+      customElements.define(
+        'svg-filetype-image',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#7956a3" /><path d="m3 5v8h10v-8zm9 7h-8v-6h8zm-1-1h-6l2-2 .8.8 1.2-1.8zm-4-3a1 1 0 1 1 -1-1 1 1 0 0 1 1 1z" fill="#fff" /><path d="m11 0 3 3h-3z" fill="#543d70" /></svg>`;
+          }
         }
-      });
+      );
     </script>
     <script>
-      customElements.define('svg-filetype-vector', class extends HTMLElement {
-        connectedCallback() {
-          this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#d16c00" /><path d="m11.9665 9.6309a3.95941 3.95941 0 0 0 -1.3446-2.6309h1.3781v-1h-2.5921a1.4911 1.4911 0 0 0 -2.8158 0h-2.5921v1h1.3781a3.95941 3.95941 0 0 0 -1.3446 2.6309.99.99 0 0 0 -.5335.8691 1 1 0 0 0 2 0 .98412.98412 0 0 0 -.4709-.8268 2.98911 2.98911 0 0 1 1.7037-2.3788 1.49069 1.49069 0 0 0 2.5344 0 2.98911 2.98911 0 0 1 1.7037 2.3788.98412.98412 0 0 0 -.4709.8268 1 1 0 0 0 2 0 .99.99 0 0 0 -.5335-.8691zm-3.9665-2.6309a.5.5 0 1 1 .5-.5.5.5 0 0 1 -.5.5z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#924b00" /></svg>`;
+      customElements.define(
+        'svg-filetype-vector',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `<svg viewBox="0 0 16 16"><path d="m11 3v-3h-9v16h12v-13z" fill="#d16c00" /><path d="m11.9665 9.6309a3.95941 3.95941 0 0 0 -1.3446-2.6309h1.3781v-1h-2.5921a1.4911 1.4911 0 0 0 -2.8158 0h-2.5921v1h1.3781a3.95941 3.95941 0 0 0 -1.3446 2.6309.99.99 0 0 0 -.5335.8691 1 1 0 0 0 2 0 .98412.98412 0 0 0 -.4709-.8268 2.98911 2.98911 0 0 1 1.7037-2.3788 1.49069 1.49069 0 0 0 2.5344 0 2.98911 2.98911 0 0 1 1.7037 2.3788.98412.98412 0 0 0 -.4709.8268 1 1 0 0 0 2 0 .99.99 0 0 0 -.5335-.8691zm-3.9665-2.6309a.5.5 0 1 1 .5-.5.5.5 0 0 1 -.5.5z" fill="#fff" /><path d="m14 3h-3v-3z" fill="#924b00" /></svg>`;
+          }
         }
-      });
+      );
     </script>
 
     <script src="../assets/theme.js"></script>
@@ -133,35 +161,18 @@
     <hr />
 
     <h2>Default</h2>
-    <p class="iui-text-small iui-text-muted">This is not a real world example, please use pieces as necessary.</p><br />
+    <p class="iui-text-small iui-text-muted">This is not a real world example, please use pieces as necessary.</p>
+    <br />
     <section id="demo-default">
-
       <div class="iui-table">
         <div class="iui-table-header">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div
               class="iui-cell iui-actionable iui-sorted"
@@ -173,15 +184,14 @@
                 aria-label="Apply filter"
                 type="button"
               >
-
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -200,13 +210,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -225,13 +235,13 @@
                 type="button"
               >
                 <svg-filter
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -250,13 +260,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -268,7 +278,7 @@
                 type="button"
               >
                 <svg-column-manager
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-column-manager>
               </button>
@@ -279,24 +289,11 @@
         <div class="iui-table-body">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -310,16 +307,13 @@
             <div
               class="iui-cell"
               title="Jul 16, 2020 9:50am"
-            >
-              Last week
-            </div>
+            >Last week</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -331,7 +325,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -340,25 +334,12 @@
 
           <div class="iui-row iui-selected">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                  checked
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                checked
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -372,16 +353,13 @@
             <div
               class="iui-cell"
               title="Jul 23, 2020 10:21am"
-            >
-              Yesterday
-            </div>
+            >Yesterday</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="1"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Robin Mercer
             </div>
@@ -393,7 +371,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -402,25 +380,12 @@
 
           <div class="iui-row iui-selected">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                  checked
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                checked
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -434,16 +399,13 @@
             <div
               class="iui-cell"
               title="Jul 19, 2020 4:20pm"
-            >
-              5 days ago
-            </div>
+            >5 days ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="1"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Robin Mercer
             </div>
@@ -455,7 +417,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -464,25 +426,12 @@
 
           <div class="iui-row iui-disabled">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox iui-disabled">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                  disabled
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                disabled
+              />
             </div>
             <div class="iui-cell iui-main-column">
               <div class="iui-cell-start-icon">
@@ -501,16 +450,14 @@
                       cx="20"
                       cy="20"
                       r="15.91549"
-                    >
-                    </circle>
+                    ></circle>
                     <circle
                       class="iui-fill"
                       cx="20"
                       cy="20"
                       r="15.91549"
-                      style="stroke-dashoffset: 20;"
-                    >
-                    </circle>
+                      style="stroke-dashoffset: 20"
+                    ></circle>
                   </svg>
                 </div>
               </div>
@@ -521,8 +468,7 @@
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -534,7 +480,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -543,24 +489,11 @@
 
           <div class="iui-row iui-new">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -574,16 +507,13 @@
             <div
               class="iui-cell"
               title="Jul 24, 2020 2:12pm"
-            >
-              Just now
-            </div>
+            >Just now</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="1"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Robin Mercer
             </div>
@@ -595,7 +525,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -604,24 +534,11 @@
 
           <div class="iui-row iui-positive">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -633,7 +550,7 @@
               charlie.pdf
               <div class="iui-cell-end-icon">
                 <svg-status-success
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-status-success>
               </div>
@@ -641,16 +558,13 @@
             <div
               class="iui-cell iui-positive"
               title="Jul 24, 2020 2:10pm"
-            >
-              A few minutes ago
-            </div>
+            >A few minutes ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -662,7 +576,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -671,24 +585,11 @@
 
           <div class="iui-row iui-warning">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -700,7 +601,7 @@
               delta.jpg
               <div class="iui-cell-end-icon">
                 <svg-status-warning
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-status-warning>
               </div>
@@ -708,16 +609,13 @@
             <div
               class="iui-cell iui-warning"
               title="Jul 24, 2020 2:10pm"
-            >
-              A few minutes ago
-            </div>
+            >A few minutes ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -729,7 +627,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -738,24 +636,11 @@
 
           <div class="iui-row iui-negative">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -767,7 +652,7 @@
               MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.dgn
               <div class="iui-cell-end-icon">
                 <svg-status-error
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-status-error>
               </div>
@@ -775,16 +660,13 @@
             <div
               class="iui-cell iui-negative"
               title="Jul 24, 2020 2:10pm"
-            >
-              A few minutes ago
-            </div>
+            >A few minutes ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -796,7 +678,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -811,28 +693,11 @@
         <div class="iui-table-header">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div
               class="iui-cell iui-actionable iui-sorted"
@@ -845,13 +710,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -870,13 +735,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -895,13 +760,13 @@
                 type="button"
               >
                 <svg-filter
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -920,13 +785,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -938,7 +803,7 @@
                 type="button"
               >
                 <svg-column-manager
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-column-manager>
               </button>
@@ -949,24 +814,11 @@
         <div class="iui-table-body">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -980,16 +832,13 @@
             <div
               class="iui-cell"
               title="Jul 16, 2020 9:50am"
-            >
-              Last week
-            </div>
+            >Last week</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -1001,7 +850,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1010,25 +859,12 @@
 
           <div class="iui-row iui-selected">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                  checked
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                checked
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1042,16 +878,13 @@
             <div
               class="iui-cell"
               title="Jul 23, 2020 10:21am"
-            >
-              Yesterday
-            </div>
+            >Yesterday</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="1"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Robin Mercer
             </div>
@@ -1063,7 +896,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1072,25 +905,12 @@
 
           <div class="iui-row iui-selected">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                  checked
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                checked
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1104,16 +924,13 @@
             <div
               class="iui-cell"
               title="Jul 19, 2020 4:20pm"
-            >
-              5 days ago
-            </div>
+            >5 days ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="1"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Robin Mercer
             </div>
@@ -1125,7 +942,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1134,25 +951,12 @@
 
           <div class="iui-row iui-disabled">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox iui-disabled">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                  disabled
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                disabled
+              />
             </div>
             <div class="iui-cell iui-main-column">
               <div class="iui-cell-start-icon">
@@ -1171,16 +975,14 @@
                       cx="20"
                       cy="20"
                       r="15.91549"
-                    >
-                    </circle>
+                    ></circle>
                     <circle
                       class="iui-fill"
                       cx="20"
                       cy="20"
                       r="15.91549"
-                      style="stroke-dashoffset: 20;"
-                    >
-                    </circle>
+                      style="stroke-dashoffset: 20"
+                    ></circle>
                   </svg>
                 </div>
               </div>
@@ -1191,8 +993,7 @@
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -1204,7 +1005,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1213,24 +1014,11 @@
 
           <div class="iui-row iui-new">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1244,16 +1032,13 @@
             <div
               class="iui-cell"
               title="Jul 24, 2020 2:12pm"
-            >
-              Just now
-            </div>
+            >Just now</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="1"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Robin Mercer
             </div>
@@ -1265,7 +1050,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1274,24 +1059,11 @@
 
           <div class="iui-row iui-positive">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1303,7 +1075,7 @@
               charlie.pdf
               <div class="iui-cell-end-icon">
                 <svg-status-success
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-status-success>
               </div>
@@ -1311,16 +1083,13 @@
             <div
               class="iui-cell iui-positive"
               title="Jul 24, 2020 2:10pm"
-            >
-              A few minutes ago
-            </div>
+            >A few minutes ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -1332,7 +1101,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1341,24 +1110,11 @@
 
           <div class="iui-row iui-warning">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1370,7 +1126,7 @@
               delta.jpg
               <div class="iui-cell-end-icon">
                 <svg-status-warning
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-status-warning>
               </div>
@@ -1378,16 +1134,13 @@
             <div
               class="iui-cell iui-warning"
               title="Jul 24, 2020 2:10pm"
-            >
-              A few minutes ago
-            </div>
+            >A few minutes ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -1399,7 +1152,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1408,24 +1161,11 @@
 
           <div class="iui-row iui-negative">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1437,7 +1177,7 @@
               MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.dgn
               <div class="iui-cell-end-icon">
                 <svg-status-error
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-status-error>
               </div>
@@ -1445,16 +1185,13 @@
             <div
               class="iui-cell iui-negative"
               title="Jul 24, 2020 2:10pm"
-            >
-              A few minutes ago
-            </div>
+            >A few minutes ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -1466,7 +1203,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1481,28 +1218,11 @@
         <div class="iui-table-header">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div
               class="iui-cell iui-actionable iui-sorted"
@@ -1515,13 +1235,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -1540,13 +1260,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -1565,13 +1285,13 @@
                 type="button"
               >
                 <svg-filter
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -1590,13 +1310,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -1608,7 +1328,7 @@
                 type="button"
               >
                 <svg-column-manager
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-column-manager>
               </button>
@@ -1619,24 +1339,11 @@
         <div class="iui-table-body">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1650,16 +1357,13 @@
             <div
               class="iui-cell"
               title="Jul 16, 2020 9:50am"
-            >
-              Last week
-            </div>
+            >Last week</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -1671,7 +1375,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1680,25 +1384,12 @@
 
           <div class="iui-row iui-selected">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                  checked
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                checked
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1712,16 +1403,13 @@
             <div
               class="iui-cell"
               title="Jul 23, 2020 10:21am"
-            >
-              Yesterday
-            </div>
+            >Yesterday</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="1"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Robin Mercer
             </div>
@@ -1733,7 +1421,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1742,25 +1430,12 @@
 
           <div class="iui-row iui-selected">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                  checked
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                checked
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1774,16 +1449,13 @@
             <div
               class="iui-cell"
               title="Jul 19, 2020 4:20pm"
-            >
-              5 days ago
-            </div>
+            >5 days ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="1"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Robin Mercer
             </div>
@@ -1795,7 +1467,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1804,25 +1476,12 @@
 
           <div class="iui-row iui-disabled">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox iui-disabled">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                  disabled
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                disabled
+              />
             </div>
             <div class="iui-cell iui-main-column">
               <div class="iui-cell-start-icon">
@@ -1841,16 +1500,14 @@
                       cx="20"
                       cy="20"
                       r="15.91549"
-                    >
-                    </circle>
+                    ></circle>
                     <circle
                       class="iui-fill"
                       cx="20"
                       cy="20"
                       r="15.91549"
-                      style="stroke-dashoffset: 20;"
-                    >
-                    </circle>
+                      style="stroke-dashoffset: 20"
+                    ></circle>
                   </svg>
                 </div>
               </div>
@@ -1861,8 +1518,7 @@
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -1874,7 +1530,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1883,24 +1539,11 @@
 
           <div class="iui-row iui-new">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1914,16 +1557,13 @@
             <div
               class="iui-cell"
               title="Jul 24, 2020 2:12pm"
-            >
-              Just now
-            </div>
+            >Just now</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="1"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Robin Mercer
             </div>
@@ -1935,7 +1575,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -1944,24 +1584,11 @@
 
           <div class="iui-row iui-positive">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -1973,7 +1600,7 @@
               charlie.pdf
               <div class="iui-cell-end-icon">
                 <svg-status-success
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-status-success>
               </div>
@@ -1981,16 +1608,13 @@
             <div
               class="iui-cell iui-positive"
               title="Jul 24, 2020 2:10pm"
-            >
-              A few minutes ago
-            </div>
+            >A few minutes ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -2002,7 +1626,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -2011,24 +1635,11 @@
 
           <div class="iui-row iui-warning">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -2040,7 +1651,7 @@
               delta.jpg
               <div class="iui-cell-end-icon">
                 <svg-status-warning
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-status-warning>
               </div>
@@ -2048,16 +1659,13 @@
             <div
               class="iui-cell iui-warning"
               title="Jul 24, 2020 2:10pm"
-            >
-              A few minutes ago
-            </div>
+            >A few minutes ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -2069,7 +1677,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -2078,24 +1686,11 @@
 
           <div class="iui-row iui-negative">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="active-row"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
             </div>
             <div
               class="iui-cell iui-main-column"
@@ -2107,7 +1702,7 @@
               MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.dgn
               <div class="iui-cell-end-icon">
                 <svg-status-error
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-status-error>
               </div>
@@ -2115,16 +1710,13 @@
             <div
               class="iui-cell iui-negative"
               title="Jul 24, 2020 2:10pm"
-            >
-              A few minutes ago
-            </div>
+            >A few minutes ago</div>
             <div class="iui-cell">
               <div class="iui-cell-start-icon">
                 <user-icon
                   size="small"
                   type="2"
-                >
-                </user-icon>
+                > </user-icon>
               </div>
               Terry Rivers
             </div>
@@ -2136,7 +1728,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -2144,19 +1736,20 @@
           </div>
         </div>
       </div>
-
     </section>
 
     <hr />
 
     <h2>Additional options</h2>
-    <p class="iui-text-small iui-text-muted">Sticky header, zebra striping, pagination, editable cells, & scroll
-      snapping.</p><br />
+    <p class="iui-text-small iui-text-muted">
+      Sticky header, zebra striping, pagination, editable cells, & scroll snapping.
+    </p>
+    <br />
     <section id="demo-extras">
-
       <div
-        class="iui-table iui-zebra-striping"
-        style="max-height: 407px;"
+        class="iui-table"
+        style="max-height: 407px"
+        id="demo-extras-scrollable-table"
       >
         <div class="iui-table-header">
           <div class="iui-row">
@@ -2168,13 +1761,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -2190,13 +1783,70 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Quantity
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Rating
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Delivery time
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -2204,7 +1854,667 @@
           </div>
         </div>
 
-        <div class="iui-table-body iui-scroll-snapping">
+        <div class="iui-table-body iui-scroll-snapping iui-zebra-striping">
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Alpha</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$5.00</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >500</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Beta</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$12.00</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1200</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >15 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Charlie</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$0.86</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >86</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >3/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Delta</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$2.50</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >250</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >2 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Echo</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$1.95</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >195</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >25 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Foxtrot</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$1.99</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >199</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >2/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >8 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Golf</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$19.95</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1995</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >10 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Hotel</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$4.75</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >475</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >50 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >India</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$22.95</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >2295</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Juliet</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$16.54</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1654</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
+          </div>
+        </div>
+
+        <div class="iui-paginator">
+          <div class="iui-left"></div>
+
+          <div class="iui-center">
+            <button
+              class="iui-button iui-borderless"
+              aria-label="Previous page"
+              type="button"
+              disabled
+            >
+              <svg-chevron-left
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-left>
+            </button>
+
+            <span class="iui-paginator-pages-group">
+              <button
+                class="iui-active iui-paginator-page-button"
+                aria-label="Page 1"
+                type="button"
+              >
+                <span class="iui-button-label">1</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 2"
+                type="button"
+              >
+                <span class="iui-button-label">2</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 3"
+                type="button"
+              >
+                <span class="iui-button-label">3</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 4"
+                type="button"
+              >
+                <span class="iui-button-label">4</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 5"
+                type="button"
+              >
+                <span class="iui-button-label">5</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 6"
+                type="button"
+              >
+                <span class="iui-button-label">6</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 7"
+                type="button"
+              >
+                <span class="iui-button-label">7</span>
+              </button>
+
+              <span class="iui-paginator-ellipsis">&mldr;</span>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 30"
+                type="button"
+              >
+                <span class="iui-button-label">30</span>
+              </button>
+            </span>
+
+            <button
+              class="iui-button iui-borderless"
+              aria-label="Next page"
+              type="button"
+            >
+              <svg-chevron-right
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-right>
+            </button>
+          </div>
+
+          <div class="iui-right">
+            <span class="iui-paginator-page-size-label">Rows per page</span>
+            <button class="iui-button iui-borderless iui-dropdown">
+              <span class="iui-button-label">1-10 of 300</span>
+              <svg-caret-down-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-caret-down-small>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div
+        class="iui-table"
+        style="height: 407px"
+        id="demo-extras-scrollable-table-few-rows"
+      >
+        <div class="iui-table-header">
+          <div class="iui-row">
+            <div class="iui-cell iui-actionable iui-sorted">
+              Product
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+              <div class="iui-resizer">
+                <div class="iui-resizer-bar"></div>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Price
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Quantity
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Rating
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Delivery time
+              <button
+                class="iui-button iui-borderless iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="iui-table-body iui-zebra-striping">
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Alpha</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$5.00</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >500</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >4/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >5 days</div>
+          </div>
+
+          <div class="iui-row">
+            <div
+              class="iui-cell iui-main-column"
+              contenteditable
+            >Beta</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >$12.00</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1200</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >1/5</div>
+            <div
+              class="iui-cell"
+              contenteditable
+            >15 days</div>
+          </div>
+        </div>
+
+        <div class="iui-paginator">
+          <div class="iui-left"></div>
+
+          <div class="iui-center">
+            <button
+              class="iui-button iui-borderless"
+              aria-label="Previous page"
+              type="button"
+              disabled
+            >
+              <svg-chevron-left
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-left>
+            </button>
+
+            <span class="iui-paginator-pages-group">
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 1"
+                type="button"
+              >
+                <span class="iui-button-label">1</span>
+              </button>
+
+              <span class="iui-paginator-ellipsis">&mldr;</span>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 2"
+                type="button"
+              >
+                <span class="iui-button-label">24</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 3"
+                type="button"
+              >
+                <span class="iui-button-label">25</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 4"
+                type="button"
+              >
+                <span class="iui-button-label">26</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 5"
+                type="button"
+              >
+                <span class="iui-button-label">27</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 6"
+                type="button"
+              >
+                <span class="iui-button-label">28</span>
+              </button>
+
+              <button
+                class="iui-paginator-page-button"
+                aria-label="Page 7"
+                type="button"
+              >
+                <span class="iui-button-label">29</span>
+              </button>
+
+              <button
+                class="iui-active iui-paginator-page-button"
+                aria-label="Page 30"
+                type="button"
+              >
+                <span class="iui-button-label">30</span>
+              </button>
+            </span>
+
+            <button
+              class="iui-button iui-borderless"
+              aria-label="Next page"
+              type="button"
+            >
+              <svg-chevron-right
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-right>
+            </button>
+          </div>
+
+          <div class="iui-right">
+            <span class="iui-paginator-page-size-label">Rows per page</span>
+            <button class="iui-button iui-borderless iui-dropdown">
+              <span class="iui-button-label">290-292 of 292</span>
+              <svg-caret-down-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-caret-down-small>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div
+        class="iui-table iui-condensed"
+        style="max-height: 385px"
+      >
+        <div class="iui-table-header">
+          <div class="iui-row">
+            <div class="iui-cell iui-actionable iui-sorted">
+              Product
+              <button
+                class="iui-button iui-borderless iui-small iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+              <div class="iui-resizer">
+                <div class="iui-resizer-bar"></div>
+              </div>
+            </div>
+            <div class="iui-cell iui-actionable">
+              Price
+              <button
+                class="iui-button iui-borderless iui-small iui-filter-button"
+                aria-label="Apply filter"
+                type="button"
+              >
+                <svg-filter-hollow
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-filter-hollow>
+              </button>
+              <div class="iui-cell-end-icon">
+                <svg-sort-down
+                  class="iui-button-icon iui-sort"
+                  aria-hidden="true"
+                ></svg-sort-down>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="iui-table-body iui-scroll-snapping iui-zebra-striping">
           <div class="iui-row">
             <div
               class="iui-cell iui-main-column"
@@ -2315,460 +2625,7 @@
             >$16.54</div>
           </div>
         </div>
-        <div class="iui-paginator">
-          <div class="iui-left"></div>
 
-          <div class="iui-center">
-            <button
-              class="iui-button iui-borderless"
-              aria-label="Previous page"
-              type="button"
-              disabled
-            >
-              <svg-chevron-left
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-chevron-left>
-            </button>
-
-            <span class="iui-button-group">
-              <button
-                class="iui-button iui-borderless iui-active"
-                aria-label="Page 1"
-                type="button"
-              >
-                <span class="iui-label">1</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 2"
-                type="button"
-              >
-                <span class="iui-label">2</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 3"
-                type="button"
-              >
-                <span class="iui-label">3</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 4"
-                type="button"
-              >
-                <span class="iui-label">4</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 5"
-                type="button"
-              >
-                <span class="iui-label">5</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 6"
-                type="button"
-              >
-                <span class="iui-label">6</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 7"
-                type="button"
-              >
-                <span class="iui-label">7</span>
-              </button>
-
-              <span class="iui-ellipsis">&mldr;</span>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 30"
-                type="button"
-              >
-                <span class="iui-label">30</span>
-              </button>
-            </span>
-
-            <button
-              class="iui-button iui-borderless"
-              aria-label="Next page"
-              type="button"
-            >
-              <svg-chevron-right
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-chevron-right>
-            </button>
-          </div>
-
-          <div class="iui-right">
-            <button class="iui-button iui-borderless iui-dropdown">
-              <span class="iui-label">1-10 of 300</span>
-              <svg-caret-down-small
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-caret-down-small>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <br /><br />
-
-      <div
-        class="iui-table iui-zebra-striping"
-        style="height: 407px;"
-      >
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-actionable iui-sorted">
-              Product
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
-              </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Price
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="iui-table-body">
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Alpha</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$5.00</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Beta</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$12.00</div>
-          </div>
-        </div>
-        <div class="iui-paginator">
-          <div class="iui-left"></div>
-
-          <div class="iui-center">
-            <button
-              class="iui-button iui-borderless"
-              aria-label="Previous page"
-              type="button"
-              disabled
-            >
-              <svg-chevron-left
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-chevron-left>
-            </button>
-
-            <span class="iui-button-group">
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 1"
-                type="button"
-              >
-                <span class="iui-label">1</span>
-              </button>
-
-              <span class="iui-ellipsis">&mldr;</span>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 2"
-                type="button"
-              >
-                <span class="iui-label">24</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 3"
-                type="button"
-              >
-                <span class="iui-label">25</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 4"
-                type="button"
-              >
-                <span class="iui-label">26</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 5"
-                type="button"
-              >
-                <span class="iui-label">27</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 6"
-                type="button"
-              >
-                <span class="iui-label">28</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Page 7"
-                type="button"
-              >
-                <span class="iui-label">29</span>
-              </button>
-
-              <button
-                class="iui-button iui-borderless iui-active"
-                aria-label="Page 30"
-                type="button"
-              >
-                <span class="iui-label">30</span>
-              </button>
-            </span>
-
-            <button
-              class="iui-button iui-borderless"
-              aria-label="Next page"
-              type="button"
-            >
-              <svg-chevron-right
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-chevron-right>
-            </button>
-          </div>
-
-          <div class="iui-right">
-            <button class="iui-button iui-borderless iui-dropdown">
-              <span class="iui-label">290-292 of 292</span>
-              <svg-caret-down-small
-                class="iui-icon"
-                aria-hidden="true"
-              ></svg-caret-down-small>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <br /><br />
-
-      <div
-        class="iui-table iui-zebra-striping iui-condensed"
-        style="max-height: 385px;"
-      >
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-actionable iui-sorted">
-              Product
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
-              </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Price
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="iui-table-body iui-scroll-snapping">
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Alpha</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$5.00</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Beta</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$12.00</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Charlie</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$0.86</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Delta</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$2.50</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Echo</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$1.95</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Foxtrot</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$1.99</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Golf</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$19.95</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Hotel</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$4.75</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >India</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$22.95</div>
-          </div>
-
-          <div class="iui-row">
-            <div
-              class="iui-cell iui-main-column"
-              contenteditable
-            >Juliet</div>
-            <div
-              class="iui-cell"
-              contenteditable
-            >$16.54</div>
-          </div>
-        </div>
         <div class="iui-paginator">
           <div class="iui-left"></div>
 
@@ -2779,70 +2636,70 @@
               type="button"
             >
               <svg-chevron-left
-                class="iui-icon"
+                class="iui-button-icon"
                 aria-hidden="true"
               ></svg-chevron-left>
             </button>
 
-            <span class="iui-button-group">
+            <span class="iui-paginator-pages-group">
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 1"
                 type="button"
               >
-                <span class="iui-label">1</span>
+                <span class="iui-button-label">1</span>
               </button>
 
-              <span class="iui-ellipsis iui-small">&mldr;</span>
+              <span class="iui-paginator-ellipsis iui-paginator-ellipsis-small">&mldr;</span>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 13"
                 type="button"
               >
-                <span class="iui-label">13</span>
+                <span class="iui-button-label">13</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 14"
                 type="button"
               >
-                <span class="iui-label">14</span>
+                <span class="iui-button-label">14</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small iui-active"
+                class="iui-active iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 15"
                 type="button"
               >
-                <span class="iui-label">15</span>
+                <span class="iui-button-label">15</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 16"
                 type="button"
               >
-                <span class="iui-label">16</span>
+                <span class="iui-button-label">16</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 17"
                 type="button"
               >
-                <span class="iui-label">17</span>
+                <span class="iui-button-label">17</span>
               </button>
 
-              <span class="iui-ellipsis iui-small">&mldr;</span>
+              <span class="iui-paginator-ellipsis iui-paginator-ellipsis-small">&mldr;</span>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 30"
                 type="button"
               >
-                <span class="iui-label">30</span>
+                <span class="iui-button-label">30</span>
               </button>
             </span>
 
@@ -2852,17 +2709,18 @@
               type="button"
             >
               <svg-chevron-right
-                class="iui-icon"
+                class="iui-button-icon"
                 aria-hidden="true"
               ></svg-chevron-right>
             </button>
           </div>
 
           <div class="iui-right">
+            <span class="iui-paginator-page-size-label">Rows per page</span>
             <button class="iui-button iui-borderless iui-small iui-dropdown">
-              <span class="iui-label">150-160 of 300</span>
+              <span class="iui-button-label">150-160 of 300</span>
               <svg-caret-down-small
-                class="iui-icon"
+                class="iui-button-icon"
                 aria-hidden="true"
               ></svg-caret-down-small>
             </button>
@@ -2870,12 +2728,11 @@
         </div>
       </div>
 
-
       <br /><br />
 
       <div
-        class="iui-table iui-zebra-striping iui-extra-condensed"
-        style="max-height: 363px;"
+        class="iui-table iui-extra-condensed"
+        style="max-height: 363px"
       >
         <div class="iui-table-header">
           <div class="iui-row">
@@ -2887,13 +2744,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -2909,13 +2766,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -2923,7 +2780,7 @@
           </div>
         </div>
 
-        <div class="iui-table-body iui-scroll-snapping">
+        <div class="iui-table-body iui-scroll-snapping iui-zebra-striping">
           <div class="iui-row">
             <div
               class="iui-cell iui-main-column"
@@ -3034,6 +2891,7 @@
             >$16.54</div>
           </div>
         </div>
+
         <div class="iui-paginator">
           <div class="iui-left"></div>
 
@@ -3045,69 +2903,69 @@
               disabled
             >
               <svg-chevron-left
-                class="iui-icon"
+                class="iui-button-icon"
                 aria-hidden="true"
               ></svg-chevron-left>
             </button>
 
-            <span class="iui-button-group">
+            <span class="iui-paginator-pages-group">
               <button
-                class="iui-button iui-borderless iui-small iui-active"
+                class="iui-active iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 1"
                 type="button"
               >
-                <span class="iui-label">1</span>
+                <span class="iui-button-label">1</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 2"
                 type="button"
               >
-                <span class="iui-label">2</span>
+                <span class="iui-button-label">2</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 3"
                 type="button"
               >
-                <span class="iui-label">3</span>
+                <span class="iui-button-label">3</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 4"
                 type="button"
               >
-                <span class="iui-label">4</span>
+                <span class="iui-button-label">4</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 5"
                 type="button"
               >
-                <span class="iui-label">5</span>
+                <span class="iui-button-label">5</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 6"
                 type="button"
               >
-                <span class="iui-label">6</span>
+                <span class="iui-button-label">6</span>
               </button>
 
               <button
-                class="iui-button iui-borderless iui-small"
+                class="iui-paginator-page-button iui-paginator-page-button-small"
                 aria-label="Page 7"
                 type="button"
               >
-                <span class="iui-label">7</span>
+                <span class="iui-button-label">7</span>
               </button>
 
-              <span class="iui-ellipsis iui-small">&mldr;</span>
+              <span class="iui-paginator-ellipsis iui-paginator-ellipsis-small">&mldr;</span>
 
               <div class="iui-progress-indicator-radial iui-determinate iui-small">
                 <svg
@@ -3120,16 +2978,14 @@
                     cx="20"
                     cy="20"
                     r="15.91549"
-                  >
-                  </circle>
+                  ></circle>
                   <circle
                     class="iui-fill"
                     cx="20"
                     cy="20"
                     r="15.91549"
-                    style="stroke-dashoffset: 20;"
-                  >
-                  </circle>
+                    style="stroke-dashoffset: 20"
+                  ></circle>
                 </svg>
               </div>
             </span>
@@ -3140,57 +2996,39 @@
               type="button"
             >
               <svg-chevron-right
-                class="iui-icon"
+                class="iui-button-icon"
                 aria-hidden="true"
               ></svg-chevron-right>
             </button>
           </div>
 
           <div class="iui-right">
+            <span class="iui-paginator-page-size-label">Rows per page</span>
             <button class="iui-button iui-borderless iui-small iui-dropdown">
-              <span class="iui-label">1-10&mldr;</span>
+              <span class="iui-button-label">1-10&mldr;</span>
               <svg-caret-down-small
-                class="iui-icon"
+                class="iui-button-icon"
                 aria-hidden="true"
               ></svg-caret-down-small>
             </button>
           </div>
         </div>
       </div>
-
     </section>
 
     <hr />
 
     <h2>Expandable rows</h2>
     <section id="demo-expandable-rows">
-
       <div class="iui-table">
         <div class="iui-table-header">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div class="iui-cell iui-slot"></div>
             <div class="iui-cell iui-actionable iui-sorted">
@@ -3201,13 +3039,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -3223,13 +3061,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -3241,7 +3079,7 @@
                 type="button"
               >
                 <svg-column-manager
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-column-manager>
               </button>
@@ -3252,28 +3090,11 @@
         <div class="iui-table-body">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div class="iui-cell iui-slot">
               <button
@@ -3282,7 +3103,7 @@
                 aria-label="Expand row"
               >
                 <svg-chevron-right
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-chevron-right>
               </button>
@@ -3296,7 +3117,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -3305,28 +3126,11 @@
 
           <div class="iui-row iui-row-expanded">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div class="iui-cell iui-slot">
               <button
@@ -3335,7 +3139,7 @@
                 aria-label="Expand row"
               >
                 <svg-chevron-right
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-chevron-right>
               </button>
@@ -3349,7 +3153,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -3361,29 +3165,12 @@
 
           <div class="iui-row iui-selected iui-row-expanded">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                  checked
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+                checked
+              />
             </div>
             <div class="iui-cell iui-slot">
               <button
@@ -3392,7 +3179,7 @@
                 aria-label="Expand row"
               >
                 <svg-chevron-right
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-chevron-right>
               </button>
@@ -3406,7 +3193,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -3418,29 +3205,12 @@
 
           <div class="iui-row iui-disabled iui-row-expanded">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                  disabled
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+                disabled
+              />
             </div>
             <div class="iui-cell iui-slot">
               <button
@@ -3449,7 +3219,7 @@
                 aria-label="Expand row"
               >
                 <svg-chevron-right
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-chevron-right>
               </button>
@@ -3474,7 +3244,7 @@
                       cx="20"
                       cy="20"
                       r="15.91549"
-                      style="stroke-dashoffset: 20;"
+                      style="stroke-dashoffset: 20"
                     ></circle>
                   </svg>
                 </div>
@@ -3488,7 +3258,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -3500,28 +3270,11 @@
 
           <div class="iui-row iui-new iui-row-expanded">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div class="iui-cell iui-slot">
               <button
@@ -3530,7 +3283,7 @@
                 aria-label="Expand row"
               >
                 <svg-chevron-right
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-chevron-right>
               </button>
@@ -3544,7 +3297,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -3556,28 +3309,11 @@
 
           <div class="iui-row iui-positive iui-row-expanded">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div class="iui-cell iui-slot">
               <button
@@ -3586,7 +3322,7 @@
                 aria-label="Expand row"
               >
                 <svg-chevron-right
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-chevron-right>
               </button>
@@ -3595,7 +3331,7 @@
               Foxtrot
               <div class="iui-cell-end-icon">
                 <svg
-                  class="iui-icon"
+                  class="iui-button-icon"
                   viewBox="0 0 16 16"
                   aria-hidden="true"
                 >
@@ -3612,7 +3348,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -3624,28 +3360,11 @@
 
           <div class="iui-row iui-warning iui-row-expanded">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div class="iui-cell iui-slot">
               <button
@@ -3654,7 +3373,7 @@
                 aria-label="Expand row"
               >
                 <svg-chevron-right
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-chevron-right>
               </button>
@@ -3663,7 +3382,7 @@
               Foxtrot
               <div class="iui-cell-end-icon">
                 <svg
-                  class="iui-icon"
+                  class="iui-button-icon"
                   viewBox="0 0 16 16"
                   aria-hidden="true"
                 >
@@ -3681,7 +3400,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -3693,28 +3412,11 @@
 
           <div class="iui-row iui-negative iui-row-expanded">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div class="iui-cell iui-slot">
               <button
@@ -3723,7 +3425,7 @@
                 aria-label="Expand row"
               >
                 <svg-chevron-right
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-chevron-right>
               </button>
@@ -3732,7 +3434,7 @@
               Foxtrot
               <div class="iui-cell-end-icon">
                 <svg
-                  class="iui-icon"
+                  class="iui-button-icon"
                   viewBox="0 0 16 16"
                   aria-hidden="true"
                 >
@@ -3748,7 +3450,7 @@
                 type="button"
               >
                 <svg-more
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-more>
               </button>
@@ -3759,43 +3461,24 @@
           </div>
         </div>
       </div>
-
     </section>
 
     <hr />
 
     <h2>Loading</h2>
     <section id="demo-loading">
-
       <div
         class="iui-table"
-        style="height: 400px;"
+        style="height: 400px"
       >
         <div class="iui-table-header">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div
               class="iui-cell iui-actionable iui-sorted"
@@ -3808,13 +3491,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -3833,13 +3516,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -3858,13 +3541,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -3883,13 +3566,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -3901,7 +3584,7 @@
                 type="button"
               >
                 <svg-column-manager
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-column-manager>
               </button>
@@ -3923,56 +3606,35 @@
                     cx="20"
                     cy="20"
                     r="15.91549"
-                  >
-                  </circle>
+                  ></circle>
                   <circle
                     class="iui-fill"
                     cx="20"
                     cy="20"
                     r="15.91549"
-                    style="stroke-dashoffset: 20;"
-                  >
-                  </circle>
+                    style="stroke-dashoffset: 20"
+                  ></circle>
                 </svg>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </section>
 
     <hr />
 
     <h2>Empty state</h2>
     <section id="demo-empty-state">
-
       <div class="iui-table">
         <div class="iui-table-header">
           <div class="iui-row">
             <div class="iui-cell iui-slot">
-              <label class="iui-checkbox">
-                <input
-                  type="checkbox"
-                  id="select-all-checkboxes"
-                />
-                <span class="iui-checkbox-checkmark">
-                  <svg
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path
-                      class="iui-check-partial"
-                      d="m1 6.5h14v3h-14z"
-                    />
-                    <path
-                      class="iui-check"
-                      d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                    />
-                  </svg>
-                </span>
-              </label>
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="select-all-checkboxes"
+              />
             </div>
             <div
               class="iui-cell iui-actionable iui-sorted"
@@ -3986,7 +3648,7 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
                 <div class="iui-resizer">
@@ -3995,7 +3657,7 @@
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -4015,13 +3677,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -4041,13 +3703,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -4067,13 +3729,13 @@
                 type="button"
               >
                 <svg-filter-hollow
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-filter-hollow>
               </button>
               <div class="iui-cell-end-icon">
                 <svg-sort-down
-                  class="iui-icon iui-sort"
+                  class="iui-button-icon iui-sort"
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
@@ -4085,7 +3747,7 @@
                 type="button"
               >
                 <svg-column-manager
-                  class="iui-icon"
+                  class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-column-manager>
               </button>
@@ -4104,7 +3766,6 @@
           </div>
         </div>
       </div>
-
     </section>
 
     <script>
@@ -4112,9 +3773,7 @@
         var element = document.getElementById(selectAllId);
         element.indeterminate = true;
         element.onclick = function () {
-          var checkboxes = document.querySelectorAll(
-            `#${tableId} .iui-row input[type="checkbox"]:not(:disabled)`,
-          );
+          var checkboxes = document.querySelectorAll(`#${tableId} .iui-row input[type="checkbox"]:not(:disabled)`);
           for (var checkbox of checkboxes) {
             checkbox.checked = this.checked;
           }
@@ -4124,11 +3783,20 @@
       };
       selectAllFn('select-all-checkboxes', 'iui-table');
       selectAllFn('select-all-checkboxes-condensed', 'iui-table-condensed');
-      selectAllFn(
-        'select-all-checkboxes-extra-condensed',
-        'iui-table-extra-condensed',
-      );
+      selectAllFn('select-all-checkboxes-extra-condensed', 'iui-table-extra-condensed');
       selectAllFn('select-all-checkboxes-zebra', 'iui-table-zebra');
+    </script>
+
+    <script>
+      // Syncs body scroll with the header scroll
+      ['#demo-extras-scrollable-table', '#demo-extras-scrollable-table-few-rows'].forEach((tableSelector) => {
+        const scrollableBody = document.querySelector(`${tableSelector} .iui-table-body`);
+        const scrollableHeader = document.querySelector(`${tableSelector} .iui-table-header`);
+
+        scrollableBody.addEventListener('scroll', function (e) {
+          scrollableHeader.scrollLeft = this.scrollLeft;
+        });
+      });
     </script>
   </body>
 </html>

@@ -55,75 +55,72 @@
         role="dialog"
         aria-modal="true"
       >
-        <div class="iui-calendar">
-          <div class="iui-header">
-            <div class="iui-month-year">
-              <button
-                aria-label="Previous month"
-                type="button"
-                role="month-previous"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-left
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-left>
-              </button>
+        <div>
+          <div class="iui-calendar-month-year">
+            <button
+              aria-label="Previous month"
+              type="button"
+              role="month-previous"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-left
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-left>
+            </button>
 
-              <span aria-live="polite"><span class="iui-month">August</span>&nbsp;2020</span>
+            <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span>
 
-              <button
-                aria-label="Next month"
-                type="button"
-                role="month-next"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-right
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-right>
-              </button>
-            </div>
-            <div class="iui-weekdays">
-              <div
-                title="Sunday"
-                abbr="Sunday"
-              >Su</div>
-              <div
-                title="Monday"
-                abbr="Monday"
-              >Mo</div>
-              <div
-                title="Tuesday"
-                abbr="Tuesday"
-              >Tu</div>
-              <div
-                title="Wednesday"
-                abbr="Wednesday"
-              >We</div>
-              <div
-                title="Thursday"
-                abbr="Thursday"
-              >Th</div>
-              <div
-                title="Friday"
-                abbr="Friday"
-              >Fr</div>
-              <div
-                title="Saturday"
-                abbr="Saturday"
-              >Sa</div>
-            </div>
+            <button
+              aria-label="Next month"
+              type="button"
+              role="month-next"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-right
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-right>
+            </button>
+          </div>
+          <div class="iui-calendar-weekdays">
+            <div
+              title="Sunday"
+              abbr="Sunday"
+            >Su</div>
+            <div
+              title="Monday"
+              abbr="Monday"
+            >Mo</div>
+            <div
+              title="Tuesday"
+              abbr="Tuesday"
+            >Tu</div>
+            <div
+              title="Wednesday"
+              abbr="Wednesday"
+            >We</div>
+            <div
+              title="Thursday"
+              abbr="Thursday"
+            >Th</div>
+            <div
+              title="Friday"
+              abbr="Friday"
+            >Fr</div>
+            <div
+              title="Saturday"
+              abbr="Saturday"
+            >Sa</div>
           </div>
 
           <div
-            class="iui-dates"
             role="listbox"
             aria-label="month-2020-08"
           >
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-26"
                 role="option"
@@ -132,7 +129,7 @@
                 26
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-27"
                 role="option"
@@ -141,7 +138,7 @@
                 27
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-28"
                 role="option"
@@ -150,7 +147,7 @@
                 28
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-29"
                 role="option"
@@ -159,7 +156,7 @@
                 29
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-30"
                 role="option"
@@ -168,7 +165,7 @@
                 30
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-31"
                 role="option"
@@ -177,7 +174,7 @@
                 31
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-1"
                 role="option"
@@ -187,9 +184,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-2"
                 role="option"
@@ -198,7 +195,7 @@
                 2
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-3"
                 role="option"
@@ -207,7 +204,7 @@
                 3
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-4"
                 role="option"
@@ -216,7 +213,7 @@
                 4
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-5"
                 role="option"
@@ -225,7 +222,7 @@
                 5
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-6"
                 role="option"
@@ -234,7 +231,7 @@
                 6
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-7"
                 role="option"
@@ -243,7 +240,7 @@
                 7
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-8"
                 role="option"
@@ -253,9 +250,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-9"
                 role="option"
@@ -264,7 +261,7 @@
                 9
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-10"
                 role="option"
@@ -274,7 +271,7 @@
                 10
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-11"
                 role="option"
@@ -283,7 +280,7 @@
                 11
               </div>
               <div
-                class="iui-date iui-today"
+                class="iui-calendar-day iui-today"
                 tabindex="0"
                 aria-label="day-12"
                 role="option"
@@ -292,7 +289,7 @@
                 12
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-13"
                 role="option"
@@ -301,7 +298,7 @@
                 13
               </div>
               <div
-                class="iui-date iui-selected"
+                class="iui-calendar-day iui-selected"
                 tabindex="0"
                 aria-label="day-14"
                 role="option"
@@ -310,7 +307,7 @@
                 14
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-15"
                 role="option"
@@ -320,9 +317,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-16"
                 role="option"
@@ -331,7 +328,7 @@
                 16
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-17"
                 role="option"
@@ -340,7 +337,7 @@
                 17
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-18"
                 role="option"
@@ -349,7 +346,7 @@
                 18
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-19"
                 role="option"
@@ -358,7 +355,7 @@
                 19
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-20"
                 role="option"
@@ -367,7 +364,7 @@
                 20
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-21"
                 role="option"
@@ -376,7 +373,7 @@
                 21
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-22"
                 role="option"
@@ -386,9 +383,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-23"
                 role="option"
@@ -397,7 +394,7 @@
                 23
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-24"
                 role="option"
@@ -406,7 +403,7 @@
                 24
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-25"
                 role="option"
@@ -415,7 +412,7 @@
                 25
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-26"
                 role="option"
@@ -424,7 +421,7 @@
                 26
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-27"
                 role="option"
@@ -433,7 +430,7 @@
                 27
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-28"
                 role="option"
@@ -442,7 +439,7 @@
                 28
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-29"
                 role="option"
@@ -452,9 +449,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-30"
                 role="option"
@@ -463,7 +460,7 @@
                 30
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-31"
                 role="option"
@@ -472,7 +469,7 @@
                 31
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-1"
                 role="option"
@@ -481,7 +478,7 @@
                 1
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-2"
                 role="option"
@@ -490,7 +487,7 @@
                 2
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-3"
                 role="option"
@@ -499,7 +496,7 @@
                 3
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-4"
                 role="option"
@@ -508,7 +505,7 @@
                 4
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-5"
                 role="option"
@@ -531,97 +528,94 @@
         role="dialog"
         aria-modal="true"
       >
-        <div class="iui-calendar">
-          <div class="iui-header">
-            <div class="iui-month-year">
-              <button
-                aria-label="Previous year"
-                type="button"
-                role="year-previous"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-left-double
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-left-double>
-              </button>
-              <button
-                aria-label="Previous month"
-                type="button"
-                role="month-previous"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-left
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-left>
-              </button>
+        <div>
+          <div class="iui-calendar-month-year">
+            <button
+              aria-label="Previous year"
+              type="button"
+              role="year-previous"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-left-double
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-left-double>
+            </button>
+            <button
+              aria-label="Previous month"
+              type="button"
+              role="month-previous"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-left
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-left>
+            </button>
 
-              <span aria-live="polite"><span class="iui-month">August</span>&nbsp;2020</span>
+            <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span>
 
-              <button
-                aria-label="Next month"
-                type="button"
-                role="month-next"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-right
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-right>
-              </button>
-              <button
-                aria-label="Next year"
-                type="button"
-                role="year-next"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-right-double
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-right-double>
-              </button>
-            </div>
-            <div class="iui-weekdays">
-              <div
-                title="Sunday"
-                abbr="Sunday"
-              >Su</div>
-              <div
-                title="Monday"
-                abbr="Monday"
-              >Mo</div>
-              <div
-                title="Tuesday"
-                abbr="Tuesday"
-              >Tu</div>
-              <div
-                title="Wednesday"
-                abbr="Wednesday"
-              >We</div>
-              <div
-                title="Thursday"
-                abbr="Thursday"
-              >Th</div>
-              <div
-                title="Friday"
-                abbr="Friday"
-              >Fr</div>
-              <div
-                title="Saturday"
-                abbr="Saturday"
-              >Sa</div>
-            </div>
+            <button
+              aria-label="Next month"
+              type="button"
+              role="month-next"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-right
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-right>
+            </button>
+            <button
+              aria-label="Next year"
+              type="button"
+              role="year-next"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-right-double
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-right-double>
+            </button>
+          </div>
+          <div class="iui-calendar-weekdays">
+            <div
+              title="Sunday"
+              abbr="Sunday"
+            >Su</div>
+            <div
+              title="Monday"
+              abbr="Monday"
+            >Mo</div>
+            <div
+              title="Tuesday"
+              abbr="Tuesday"
+            >Tu</div>
+            <div
+              title="Wednesday"
+              abbr="Wednesday"
+            >We</div>
+            <div
+              title="Thursday"
+              abbr="Thursday"
+            >Th</div>
+            <div
+              title="Friday"
+              abbr="Friday"
+            >Fr</div>
+            <div
+              title="Saturday"
+              abbr="Saturday"
+            >Sa</div>
           </div>
 
           <div
-            class="iui-dates"
             role="listbox"
             aria-label="month-2020-08"
           >
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-26"
                 role="option"
@@ -630,7 +624,7 @@
                 26
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-27"
                 role="option"
@@ -639,7 +633,7 @@
                 27
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-28"
                 role="option"
@@ -648,7 +642,7 @@
                 28
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-29"
                 role="option"
@@ -657,7 +651,7 @@
                 29
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-30"
                 role="option"
@@ -666,7 +660,7 @@
                 30
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-31"
                 role="option"
@@ -675,7 +669,7 @@
                 31
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-1"
                 role="option"
@@ -685,9 +679,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-2"
                 role="option"
@@ -696,7 +690,7 @@
                 2
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-3"
                 role="option"
@@ -705,7 +699,7 @@
                 3
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-4"
                 role="option"
@@ -714,7 +708,7 @@
                 4
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-5"
                 role="option"
@@ -723,7 +717,7 @@
                 5
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-6"
                 role="option"
@@ -732,7 +726,7 @@
                 6
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-7"
                 role="option"
@@ -741,7 +735,7 @@
                 7
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-8"
                 role="option"
@@ -751,9 +745,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-9"
                 role="option"
@@ -762,7 +756,7 @@
                 9
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-10"
                 role="option"
@@ -772,7 +766,7 @@
                 10
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-11"
                 role="option"
@@ -781,7 +775,7 @@
                 11
               </div>
               <div
-                class="iui-date iui-today"
+                class="iui-calendar-day iui-today"
                 tabindex="0"
                 aria-label="day-12"
                 role="option"
@@ -790,7 +784,7 @@
                 12
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-13"
                 role="option"
@@ -799,7 +793,7 @@
                 13
               </div>
               <div
-                class="iui-date iui-selected"
+                class="iui-calendar-day iui-selected"
                 tabindex="0"
                 aria-label="day-14"
                 role="option"
@@ -808,7 +802,7 @@
                 14
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-15"
                 role="option"
@@ -818,9 +812,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-16"
                 role="option"
@@ -829,7 +823,7 @@
                 16
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-17"
                 role="option"
@@ -838,7 +832,7 @@
                 17
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-18"
                 role="option"
@@ -847,7 +841,7 @@
                 18
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-19"
                 role="option"
@@ -856,7 +850,7 @@
                 19
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-20"
                 role="option"
@@ -865,7 +859,7 @@
                 20
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-21"
                 role="option"
@@ -874,7 +868,7 @@
                 21
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-22"
                 role="option"
@@ -884,9 +878,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-23"
                 role="option"
@@ -895,7 +889,7 @@
                 23
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-24"
                 role="option"
@@ -904,7 +898,7 @@
                 24
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-25"
                 role="option"
@@ -913,7 +907,7 @@
                 25
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-26"
                 role="option"
@@ -922,7 +916,7 @@
                 26
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-27"
                 role="option"
@@ -931,7 +925,7 @@
                 27
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-28"
                 role="option"
@@ -940,7 +934,7 @@
                 28
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-29"
                 role="option"
@@ -950,9 +944,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-30"
                 role="option"
@@ -961,7 +955,7 @@
                 30
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-31"
                 role="option"
@@ -970,7 +964,7 @@
                 31
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-1"
                 role="option"
@@ -979,7 +973,7 @@
                 1
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-2"
                 role="option"
@@ -988,7 +982,7 @@
                 2
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-3"
                 role="option"
@@ -997,7 +991,7 @@
                 3
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-4"
                 role="option"
@@ -1006,7 +1000,7 @@
                 4
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-5"
                 role="option"
@@ -1029,75 +1023,72 @@
         role="dialog"
         aria-modal="true"
       >
-        <div class="iui-calendar">
-          <div class="iui-header">
-            <div class="iui-month-year">
-              <button
-                aria-label="Previous month"
-                type="button"
-                role="month-previous"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-left
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-left>
-              </button>
+        <div>
+          <div class="iui-calendar-month-year">
+            <button
+              aria-label="Previous month"
+              type="button"
+              role="month-previous"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-left
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-left>
+            </button>
 
-              <span aria-live="polite"><span class="iui-month">August</span>&nbsp;2020</span>
+            <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span>
 
-              <button
-                aria-label="Next month"
-                type="button"
-                role="month-next"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-right
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-right>
-              </button>
-            </div>
-            <div class="iui-weekdays">
-              <div
-                title="Sunday"
-                abbr="Sunday"
-              >Su</div>
-              <div
-                title="Monday"
-                abbr="Monday"
-              >Mo</div>
-              <div
-                title="Tuesday"
-                abbr="Tuesday"
-              >Tu</div>
-              <div
-                title="Wednesday"
-                abbr="Wednesday"
-              >We</div>
-              <div
-                title="Thursday"
-                abbr="Thursday"
-              >Th</div>
-              <div
-                title="Friday"
-                abbr="Friday"
-              >Fr</div>
-              <div
-                title="Saturday"
-                abbr="Saturday"
-              >Sa</div>
-            </div>
+            <button
+              aria-label="Next month"
+              type="button"
+              role="month-next"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-right
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-right>
+            </button>
+          </div>
+          <div class="iui-calendar-weekdays">
+            <div
+              title="Sunday"
+              abbr="Sunday"
+            >Su</div>
+            <div
+              title="Monday"
+              abbr="Monday"
+            >Mo</div>
+            <div
+              title="Tuesday"
+              abbr="Tuesday"
+            >Tu</div>
+            <div
+              title="Wednesday"
+              abbr="Wednesday"
+            >We</div>
+            <div
+              title="Thursday"
+              abbr="Thursday"
+            >Th</div>
+            <div
+              title="Friday"
+              abbr="Friday"
+            >Fr</div>
+            <div
+              title="Saturday"
+              abbr="Saturday"
+            >Sa</div>
           </div>
 
           <div
-            class="iui-dates"
             role="listbox"
             aria-label="month-2020-08"
           >
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-26"
                 role="option"
@@ -1106,7 +1097,7 @@
                 26
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-27"
                 role="option"
@@ -1115,7 +1106,7 @@
                 27
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-28"
                 role="option"
@@ -1124,7 +1115,7 @@
                 28
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-29"
                 role="option"
@@ -1133,7 +1124,7 @@
                 29
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-30"
                 role="option"
@@ -1142,7 +1133,7 @@
                 30
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-31"
                 role="option"
@@ -1151,7 +1142,7 @@
                 31
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-1"
                 role="option"
@@ -1161,9 +1152,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-2"
                 role="option"
@@ -1172,7 +1163,7 @@
                 2
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-3"
                 role="option"
@@ -1181,7 +1172,7 @@
                 3
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-4"
                 role="option"
@@ -1190,7 +1181,7 @@
                 4
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-5"
                 role="option"
@@ -1199,7 +1190,7 @@
                 5
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-6"
                 role="option"
@@ -1208,7 +1199,7 @@
                 6
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-7"
                 role="option"
@@ -1217,7 +1208,7 @@
                 7
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-8"
                 role="option"
@@ -1227,9 +1218,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-9"
                 role="option"
@@ -1238,7 +1229,7 @@
                 9
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-10"
                 role="option"
@@ -1248,7 +1239,7 @@
                 10
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-11"
                 role="option"
@@ -1257,7 +1248,7 @@
                 11
               </div>
               <div
-                class="iui-date iui-today"
+                class="iui-calendar-day iui-today"
                 tabindex="0"
                 aria-label="day-12"
                 role="option"
@@ -1266,7 +1257,7 @@
                 12
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-13"
                 role="option"
@@ -1275,7 +1266,7 @@
                 13
               </div>
               <div
-                class="iui-date iui-selected"
+                class="iui-calendar-day iui-selected"
                 tabindex="0"
                 aria-label="day-14"
                 role="option"
@@ -1284,7 +1275,7 @@
                 14
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-15"
                 role="option"
@@ -1294,9 +1285,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-16"
                 role="option"
@@ -1305,7 +1296,7 @@
                 16
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-17"
                 role="option"
@@ -1314,7 +1305,7 @@
                 17
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-18"
                 role="option"
@@ -1323,7 +1314,7 @@
                 18
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-19"
                 role="option"
@@ -1332,7 +1323,7 @@
                 19
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-20"
                 role="option"
@@ -1341,7 +1332,7 @@
                 20
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-21"
                 role="option"
@@ -1350,7 +1341,7 @@
                 21
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-22"
                 role="option"
@@ -1360,9 +1351,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-23"
                 role="option"
@@ -1371,7 +1362,7 @@
                 23
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-24"
                 role="option"
@@ -1380,7 +1371,7 @@
                 24
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-25"
                 role="option"
@@ -1389,7 +1380,7 @@
                 25
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-26"
                 role="option"
@@ -1398,7 +1389,7 @@
                 26
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-27"
                 role="option"
@@ -1407,7 +1398,7 @@
                 27
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-28"
                 role="option"
@@ -1416,7 +1407,7 @@
                 28
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-29"
                 role="option"
@@ -1426,9 +1417,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-30"
                 role="option"
@@ -1437,7 +1428,7 @@
                 30
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-31"
                 role="option"
@@ -1446,7 +1437,7 @@
                 31
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-1"
                 role="option"
@@ -1455,7 +1446,7 @@
                 1
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-2"
                 role="option"
@@ -1464,7 +1455,7 @@
                 2
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-3"
                 role="option"
@@ -1473,7 +1464,7 @@
                 3
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-4"
                 role="option"
@@ -1482,7 +1473,7 @@
                 4
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-5"
                 role="option"
@@ -1575,75 +1566,72 @@
         role="dialog"
         aria-modal="true"
       >
-        <div class="iui-calendar">
-          <div class="iui-header">
-            <div class="iui-month-year">
-              <button
-                aria-label="Previous month"
-                type="button"
-                role="month-previous"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-left
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-left>
-              </button>
+        <div>
+          <div class="iui-calendar-month-year">
+            <button
+              aria-label="Previous month"
+              type="button"
+              role="month-previous"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-left
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-left>
+            </button>
 
-              <span aria-live="polite"><span class="iui-month">August</span>&nbsp;2020</span>
+            <span aria-live="polite"><span class="iui-calendar-month">August</span>&nbsp;2020</span>
 
-              <button
-                aria-label="Next month"
-                type="button"
-                role="month-next"
-                class="iui-button iui-borderless"
-              >
-                <svg-chevron-right
-                  class="iui-icon"
-                  aria-hidden="true"
-                ></svg-chevron-right>
-              </button>
-            </div>
-            <div class="iui-weekdays">
-              <div
-                title="Sunday"
-                abbr="Sunday"
-              >Su</div>
-              <div
-                title="Monday"
-                abbr="Monday"
-              >Mo</div>
-              <div
-                title="Tuesday"
-                abbr="Tuesday"
-              >Tu</div>
-              <div
-                title="Wednesday"
-                abbr="Wednesday"
-              >We</div>
-              <div
-                title="Thursday"
-                abbr="Thursday"
-              >Th</div>
-              <div
-                title="Friday"
-                abbr="Friday"
-              >Fr</div>
-              <div
-                title="Saturday"
-                abbr="Saturday"
-              >Sa</div>
-            </div>
+            <button
+              aria-label="Next month"
+              type="button"
+              role="month-next"
+              class="iui-button iui-borderless"
+            >
+              <svg-chevron-right
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-chevron-right>
+            </button>
+          </div>
+          <div class="iui-calendar-weekdays">
+            <div
+              title="Sunday"
+              abbr="Sunday"
+            >Su</div>
+            <div
+              title="Monday"
+              abbr="Monday"
+            >Mo</div>
+            <div
+              title="Tuesday"
+              abbr="Tuesday"
+            >Tu</div>
+            <div
+              title="Wednesday"
+              abbr="Wednesday"
+            >We</div>
+            <div
+              title="Thursday"
+              abbr="Thursday"
+            >Th</div>
+            <div
+              title="Friday"
+              abbr="Friday"
+            >Fr</div>
+            <div
+              title="Saturday"
+              abbr="Saturday"
+            >Sa</div>
           </div>
 
           <div
-            class="iui-dates"
             role="listbox"
             aria-label="month-2020-08"
           >
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-26"
                 role="option"
@@ -1652,7 +1640,7 @@
                 26
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-27"
                 role="option"
@@ -1661,7 +1649,7 @@
                 27
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-28"
                 role="option"
@@ -1670,7 +1658,7 @@
                 28
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-29"
                 role="option"
@@ -1679,7 +1667,7 @@
                 29
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-30"
                 role="option"
@@ -1688,7 +1676,7 @@
                 30
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-31"
                 role="option"
@@ -1697,7 +1685,7 @@
                 31
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-1"
                 role="option"
@@ -1707,9 +1695,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-2"
                 role="option"
@@ -1718,7 +1706,7 @@
                 2
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-3"
                 role="option"
@@ -1727,7 +1715,7 @@
                 3
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-4"
                 role="option"
@@ -1736,7 +1724,7 @@
                 4
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-5"
                 role="option"
@@ -1745,7 +1733,7 @@
                 5
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-6"
                 role="option"
@@ -1754,7 +1742,7 @@
                 6
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-7"
                 role="option"
@@ -1763,7 +1751,7 @@
                 7
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-8"
                 role="option"
@@ -1773,9 +1761,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-9"
                 role="option"
@@ -1784,7 +1772,7 @@
                 9
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-10"
                 role="option"
@@ -1794,7 +1782,7 @@
                 10
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-11"
                 role="option"
@@ -1803,7 +1791,7 @@
                 11
               </div>
               <div
-                class="iui-date iui-today"
+                class="iui-calendar-day iui-today"
                 tabindex="0"
                 aria-label="day-12"
                 role="option"
@@ -1812,7 +1800,7 @@
                 12
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-13"
                 role="option"
@@ -1821,7 +1809,7 @@
                 13
               </div>
               <div
-                class="iui-date iui-selected"
+                class="iui-calendar-day iui-selected"
                 tabindex="0"
                 aria-label="day-14"
                 role="option"
@@ -1830,7 +1818,7 @@
                 14
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-15"
                 role="option"
@@ -1840,9 +1828,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-16"
                 role="option"
@@ -1851,7 +1839,7 @@
                 16
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-17"
                 role="option"
@@ -1860,7 +1848,7 @@
                 17
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-18"
                 role="option"
@@ -1869,7 +1857,7 @@
                 18
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-19"
                 role="option"
@@ -1878,7 +1866,7 @@
                 19
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-20"
                 role="option"
@@ -1887,7 +1875,7 @@
                 20
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-21"
                 role="option"
@@ -1896,7 +1884,7 @@
                 21
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-22"
                 role="option"
@@ -1906,9 +1894,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-23"
                 role="option"
@@ -1917,7 +1905,7 @@
                 23
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-24"
                 role="option"
@@ -1926,7 +1914,7 @@
                 24
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-25"
                 role="option"
@@ -1935,7 +1923,7 @@
                 25
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-26"
                 role="option"
@@ -1944,7 +1932,7 @@
                 26
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-27"
                 role="option"
@@ -1953,7 +1941,7 @@
                 27
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-28"
                 role="option"
@@ -1962,7 +1950,7 @@
                 28
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-29"
                 role="option"
@@ -1972,9 +1960,9 @@
               </div>
             </div>
 
-            <div class="iui-week">
+            <div class="iui-calendar-week">
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-30"
                 role="option"
@@ -1983,7 +1971,7 @@
                 30
               </div>
               <div
-                class="iui-date"
+                class="iui-calendar-day"
                 tabindex="0"
                 aria-label="day-31"
                 role="option"
@@ -1992,7 +1980,7 @@
                 31
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-1"
                 role="option"
@@ -2001,7 +1989,7 @@
                 1
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-2"
                 role="option"
@@ -2010,7 +1998,7 @@
                 2
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-3"
                 role="option"
@@ -2019,7 +2007,7 @@
                 3
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-4"
                 role="option"
@@ -2028,7 +2016,7 @@
                 4
               </div>
               <div
-                class="iui-date iui-outside-month"
+                class="iui-calendar-day iui-outside-month"
                 tabindex="0"
                 aria-label="day-5"
                 role="option"
