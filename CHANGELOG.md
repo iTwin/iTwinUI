@@ -1,5 +1,39 @@
 # Changelog
 
+### [0.48.2](https://www.github.com/iTwin/iTwinUI/compare/v0.48.1...v0.48.2) (2022-02-23)
+
+### Fixes
+
+* **ColorSwatch:** Fix absolute positioning when used in button ([#494](https://www.github.com/iTwin/iTwinUI/issues/494)) ([8e96995](https://www.github.com/iTwin/iTwinUI/commit/8e96995922cf8691894bea9f38dbd3fbc09c38e7))
+
+### [0.48.1](https://www.github.com/iTwin/iTwinUI/compare/v0.48.0...v0.48.1) (2022-02-18)
+
+### Fixes
+
+* **Radio:** Set blank svg for indeterminate state ([#492](https://www.github.com/iTwin/iTwinUI/issues/492)) ([54c5b3f](https://www.github.com/iTwin/iTwinUI/commit/54c5b3fc0923042236b02fc12edec6b97f8f9c66))
+
+## [0.48.0](https://www.github.com/iTwin/iTwinUI/compare/v0.47.0...v0.48.0) (2022-02-18)
+
+### What's new
+
+* **Checkbox** and **Radio**: Complete refactor. Svgs are inlined and input can now be used without wrapping label. ([#475](https://github.com/iTwin/iTwinUI/pull/475))
+* **ColorPicker:** Swatch supports transparency ([#483](https://www.github.com/iTwin/iTwinUI/issues/483)) ([f50481f](https://www.github.com/iTwin/iTwinUI/commit/f50481fe621f644fefd900aac0eb8f2ba0d8a25c))
+
+## [0.47.0](https://www.github.com/iTwin/iTwinUI/compare/v0.46.1...v0.47.0) (2022-02-15)
+
+### What's new
+
+* **ExpandableBlock:** Add borderless styling to expandable-block ([#467](https://www.github.com/iTwin/iTwinUI/issues/467)) ([4fff41a](https://www.github.com/iTwin/iTwinUI/commit/4fff41a0e20f3ac2505c90e1f48e706de08262f7))
+* **Skip-to-content:** Add skip-to-content button ([#471](https://www.github.com/iTwin/iTwinUI/issues/471)) ([0202a87](https://www.github.com/iTwin/iTwinUI/commit/0202a87b4e936fe804a188242b123fa4e3b9f91d))
+* **Tile:** Add focus styling to entire tile ([#446](https://www.github.com/iTwin/iTwinUI/issues/446)) ([6c4baad](https://www.github.com/iTwin/iTwinUI/commit/6c4baad7d3c25bcf2031def9caf4bff1a22de2c9))
+* **Badge:** Rename CSS variables for consistency ([#476](https://www.github.com/iTwin/iTwinUI/issues/476)) ([a718e9f](https://www.github.com/iTwin/iTwinUI/commit/a718e9fa49702dd2080706080ff30feefaedb210))
+* **ColorPicker:** Rename CSS variables for consistency ([#481](https://www.github.com/iTwin/iTwinUI/issues/481)) ([60d8f3c](https://www.github.com/iTwin/iTwinUI/commit/60d8f3caacb1b4fd597b1c235a5dfe881c87f84d))
+
+### Fixes
+
+* **ButtonGroup:** Don't target `<input>` inside labeled-input to fix z-index issues ([#448](https://www.github.com/iTwin/iTwinUI/issues/448)) ([b0c45cc](https://www.github.com/iTwin/iTwinUI/commit/b0c45cc3278aaa0f889f73ae8c7b51f3392ff18b))
+* **Tree:** Made `li` element focusable ([#484](https://www.github.com/iTwin/iTwinUI/issues/484)) ([19dc058](https://www.github.com/iTwin/iTwinUI/commit/19dc058bd9a748e600db16cd458e5c9f068404f0))
+
 ### [0.46.1](https://www.github.com/iTwin/iTwinUI/compare/v0.46.0...v0.46.1) (2022-02-07)
 
 ### Fixes
