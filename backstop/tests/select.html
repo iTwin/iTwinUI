@@ -39,8 +39,10 @@
         height: 210px;
       }
 
-      #demo-inline-combo {
-        flex-direction: row;
+      #demo-in-context {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
       }
     </style>
     <script
@@ -320,25 +322,27 @@
     <h2>In context</h2>
 
     <section id="demo-inline-combo">
-      <div class="iui-input-with-icon">
-        <div
-          tabindex="0"
-          class="iui-select-button"
-        >
-          <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-            qui officia deserunt mollit anim id est laborum.</span>
+      <div id="demo-in-context">
+        <div class="iui-input-with-icon">
+          <div
+            tabindex="0"
+            class="iui-select-button"
+          >
+            <span class="iui-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+              qui officia deserunt mollit anim id est laborum.</span>
+          </div>
+          <svg-caret-down-small
+            class="iui-end-icon iui-actionable"
+            aria-hidden="true"
+          ></svg-caret-down-small>
         </div>
-        <svg-caret-down-small
-          class="iui-end-icon iui-actionable"
-          aria-hidden="true"
-        ></svg-caret-down-small>
+        <button class="iui-button iui-default">
+          <span class="iui-button-label">Add</span>
+        </button>
       </div>
-      <button class="iui-button iui-default">
-        <span class="iui-button-label">Add</span>
-      </button>
     </section>
   </body>
 </html>
