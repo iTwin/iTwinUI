@@ -58,6 +58,8 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   &::after {
     content: '';
     position: absolute;
+    left: 0;
+    top: 0;
     width: inherit;
     height: inherit;
     border-radius: inherit;
