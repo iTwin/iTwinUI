@@ -166,3 +166,14 @@ it('should render small size', () => {
   expect(expandableBlock).toBeTruthy();
   expect(expandableBlock.classList).toContain('iui-small');
 });
+
+it('should render borderless', () => {
+  const { container } = render(
+    <ExpandableBlock title='test title' styleType='borderless'>
+      content
+    </ExpandableBlock>,
+  );
+  expect(container.querySelector('.iui-expandable-block')).toHaveClass(
+    'iui-borderless',
+  );
+});
