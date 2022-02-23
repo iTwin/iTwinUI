@@ -54,7 +54,15 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(t(iui-color-foreground-body-rgb
     margin-right: 0;
   }
 
-  @include themed {
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background-color: inherit;
     box-shadow: $iui-inset-box-shadow;
   }
 
