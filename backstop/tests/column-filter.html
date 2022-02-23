@@ -31,6 +31,10 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/calendar"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -43,7 +47,7 @@
       <div class="iui-column-filter">
         <label class="iui-input-container">
           <div class="iui-label">Show items with value that</div>
-          <div class="iui-select">
+          <div class="iui-input-with-icon">
             <div
               tabindex="0"
               id="test-select-1"
@@ -51,15 +55,19 @@
             >
               <span class="iui-content">Starts with</span>
             </div>
+            <svg-caret-down-small
+              class="iui-end-icon iui-actionable"
+              aria-hidden="true"
+            ></svg-caret-down-small>
           </div>
         </label>
         <input class="iui-input" />
         <div class="iui-button-bar">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Filter</span>
+            <span class="iui-button-label">Filter</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Clear</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Clear</span>
           </button>
         </div>
       </div>
@@ -81,7 +89,7 @@
             aria-label="Choose date"
           >
             <svg-calendar
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-calendar>
           </button>
@@ -97,7 +105,7 @@
             aria-label="Choose date"
           >
             <svg-calendar
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-calendar>
           </button>
@@ -115,10 +123,10 @@
             <span class="iui-label">All day</span>
           </label>
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Filter</span>
+            <span class="iui-button-label">Filter</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Clear</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Clear</span>
           </button>
         </div>
       </div>
@@ -137,7 +145,7 @@
             aria-label="Choose date"
           >
             <svg-calendar
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-calendar>
           </button>
@@ -153,7 +161,7 @@
             aria-label="Choose date"
           >
             <svg-calendar
-              class="iui-icon"
+              class="iui-button-icon"
               aria-hidden="true"
             ></svg-calendar>
           </button>
@@ -168,10 +176,10 @@
             <span class="iui-label">All day</span>
           </label>
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Filter</span>
+            <span class="iui-button-label">Filter</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Clear</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Clear</span>
           </button>
         </div>
       </div>

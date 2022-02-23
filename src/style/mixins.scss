@@ -20,25 +20,22 @@
   }
 }
 
-@mixin iui-focus($box-shadow-value: iui-focus-box-shadow) {
-  &:focus {
-    outline: 0;
-
-    @include themed {
-      box-shadow: t($box-shadow-value);
-    }
-  }
-
-  &:focus:not(:focus-visible) {
-    box-shadow: none;
-  }
-
+@mixin focus-visible {
   &:focus-visible {
-    outline: 0;
+    @content;
+  }
 
-    @include themed {
-      box-shadow: t($box-shadow-value);
+  @supports #{'not selector(*:focus-visible)'} {
+    &:focus {
+      @content;
     }
+  }
+}
+
+@mixin iui-focus($color: var(--iui-color-foreground-primary), $offset: -1px, $thickness: 1px) {
+  @include focus-visible {
+    outline: $thickness solid $color;
+    outline-offset: $offset;
   }
 }
 
@@ -50,7 +47,8 @@
 }
 
 @mixin iui-anchor {
-  @include iui-focus;
+  @include iui-focus($offset: 2px);
+  border-radius: $iui-border-radius;
   text-decoration: none;
   cursor: pointer;
   @include themed {
@@ -116,10 +114,8 @@
 
   // With blur
   @supports (backdrop-filter: $iui-blur-filter) {
-    @include themed() {
-      background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity}));
-      backdrop-filter: $iui-blur-filter;
-    }
+    background-color: rgba(0, 0, 0, var(--iui-opacity-#{$opacity}));
+    backdrop-filter: $iui-blur-filter;
   }
 }
 
@@ -130,6 +126,33 @@
   width: 0.1px;
   margin: 0;
   padding: 0;
+}
+
+/// Visually hides an element but keeps it accessible to screen readers.
+/// Because it applies some potentially invasive styles, use this mixin on a wrapper element for best results.
+/// If it contains a focusable element, make sure to revert/exclude these styles.
+@mixin visually-hidden {
+  clip-path: inset(50%);
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  margin: -1px;
+  border-width: 0;
+}
+
+/// Reverts visually-hidden styles, making it visible again.
+@mixin visually-hidden-revert {
+  clip-path: revert;
+  overflow: visible;
+  position: static;
+  white-space: normal;
+  height: auto;
+  width: auto;
+  padding: 0;
+  margin: 0;
 }
 
 /// Classes for react-transition-group
@@ -167,7 +190,7 @@
     scroll-snap-type: y mandatory;
 
     #{$selector} {
-      scroll-snap-align: start;
+      scroll-snap-align: start none;
     }
   }
 }

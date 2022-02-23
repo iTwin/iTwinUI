@@ -5,3 +5,35 @@
 .iui-tile {
   @include iui-tile;
 }
+
+.iui-tile-thumbnail-type-indicator {
+  @include iui-tile-thumbnail-type-indicator;
+}
+
+.iui-tile-thumbnail-quick-action {
+  @include iui-tile-thumbnail-quick-action;
+}
+
+.iui-tile-thumbnail-badge-container {
+  @include iui-tile-thumbnail-badge;
+}
+
+.iui-tile-buttons {
+  @include iui-tile-buttons;
+}
+
+.iui-tile-thumbnail {
+  @include iui-tile-thumbnail;
+}
+
+.iui-tile-thumbnail-picture {
+  @include iui-tile-thumbnail-picture;
+}
+
+.iui-tile-content {
+  @include iui-tile-content;
+}
+
+.iui-tile-more-options {
+  @include iui-tile-more-options;
+}

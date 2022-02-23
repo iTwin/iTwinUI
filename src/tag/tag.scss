@@ -6,7 +6,7 @@
 
 @mixin iui-tag {
   @include iui-reset;
-  @include iui-focus;
+  @include iui-focus($offset: -2px, $thickness: 2px);
   user-select: all;
   text-transform: lowercase;
   display: inline-flex;
@@ -58,11 +58,19 @@
       }
     }
   }
+
+  &.iui-basic {
+    outline-offset: 1px;
+  }
 }
 
 @mixin iui-tag-container {
   @include themed {
     color: t(iui-text-color-muted);
+  }
+
+  > a.iui-basic {
+    margin: $iui-xxs;
   }
 
   > .iui-tag:not(:last-child) {

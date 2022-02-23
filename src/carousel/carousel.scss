@@ -1,0 +1,119 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../text/index';
+@import '../button/button';
+
+@mixin iui-carousel {
+  overflow: hidden;
+  @include iui-focus($offset: 4px);
+  border-radius: $iui-border-radius;
+}
+
+@mixin iui-carousel-slider {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed-slow ease-in-out;
+  }
+
+  &-item {
+    width: 100%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+}
+
+@mixin iui-carousel-navigation {
+  display: flex;
+  align-items: center;
+  height: $iui-baseline * 3;
+  box-sizing: border-box;
+  @include themed {
+    border-top: $iui-xxs solid t(iui-color-background-4);
+  }
+
+  &-dots,
+  &-left,
+  &-right {
+    display: flex;
+    align-items: center;
+    flex: 1;
+
+    button[data-pressed='true'] {
+      outline-offset: -1px;
+      @include themed {
+        outline: 1px solid t(iui-color-foreground-primary);
+      }
+    }
+  }
+
+  &-dots {
+    @include iui-reset;
+    @include iui-focus;
+    border-radius: $iui-border-radius;
+    white-space: nowrap;
+    overflow: hidden;
+    justify-content: center;
+    list-style: none;
+  }
+
+  &-dot {
+    @include iui-button-size($size: small);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover::after {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+      }
+    }
+
+    &.iui-invisible {
+      display: none;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: $iui-icons-small;
+      height: $iui-icons-small;
+      border-radius: 50%;
+      transition: background-color $iui-speed-fast ease;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: background-color $iui-speed-fast $iui-speed-fast ease, transform $iui-speed ease;
+      }
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      }
+    }
+
+    &.iui-first::after {
+      transform: scale(0.5);
+    }
+
+    &.iui-second::after {
+      transform: scale(0.75);
+    }
+
+    &.iui-invisible::after {
+      transform: scale(0);
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), 0);
+      }
+    }
+
+    &.iui-active::after {
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
+      }
+    }
+  }
+
+  &-right {
+    justify-content: flex-end;
+  }
+}

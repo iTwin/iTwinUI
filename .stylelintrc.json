@@ -1,7 +1,5 @@
 {
-  "extends": [
-    "stylelint-config-sass-guidelines"
-  ],
+  "extends": ["stylelint-config-sass-guidelines"],
   "rules": {
     "color-hex-case": "upper",
     "declaration-block-semicolon-newline-after": "always-multi-line",
@@ -14,7 +12,7 @@
     },
     "no-eol-whitespace": true,
     "function-parentheses-space-inside": "never-single-line",
-    "max-nesting-depth": 6,
+    "max-nesting-depth": 5,
     "order/order": null,
     "order/properties-alphabetical-order": null,
     "selector-class-pattern": [
@@ -31,7 +29,5 @@
     "selector-no-qualifying-type": null,
     "scss/dollar-variable-pattern": null
   },
-  "ignoreFiles": [
-    "lib/**/*"
-  ]
+  "ignoreFiles": ["lib/**/*", "**/*.html"]
 }

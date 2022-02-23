@@ -39,6 +39,10 @@
         border-bottom: none;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -321,10 +325,10 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Visit iModel HUB</span>
+            <span class="iui-button-label">Visit iModel HUB</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Contact Us</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Contact Us</span>
           </button>
         </div>
       </div>
@@ -608,10 +612,10 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Visit iModel HUB</span>
+            <span class="iui-button-label">Visit iModel HUB</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Contact Us</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Contact Us</span>
           </button>
         </div>
       </div>
@@ -964,10 +968,10 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Visit iModel HUB</span>
+            <span class="iui-button-label">Visit iModel HUB</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Contact Us</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Contact Us</span>
           </button>
         </div>
       </div>
@@ -1222,10 +1226,10 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Visit iModel HUB</span>
+            <span class="iui-button-label">Visit iModel HUB</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Contact Us</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Contact Us</span>
           </button>
         </div>
       </div>
@@ -1543,10 +1547,10 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Visit iModel HUB</span>
+            <span class="iui-button-label">Visit iModel HUB</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Contact Us</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Contact Us</span>
           </button>
         </div>
       </div>
@@ -1823,10 +1827,10 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Visit iModel HUB</span>
+            <span class="iui-button-label">Visit iModel HUB</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Contact Us</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Contact Us</span>
           </button>
         </div>
       </div>
@@ -2179,10 +2183,10 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Visit iModel HUB</span>
+            <span class="iui-button-label">Visit iModel HUB</span>
           </button>
-          <button class="iui-button">
-            <span class="iui-label">Contact Us</span>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Contact Us</span>
           </button>
         </div>
       </div>
@@ -2246,30 +2250,19 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Web Portal</span></button>
-          <button class="iui-button">
-            <span class="iui-label">ProjectWise Explorer</span>
+            <span class="iui-button-label">Web Portal</span></button>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">ProjectWise Explorer</span>
           </button>
         </div>
 
-        <label class="iui-checkbox">
+        <label class="iui-checkbox-wrapper">
+          <span class="iui-checkbox-label">Remember my choice</span>
           <input
+            class="iui-checkbox"
             type="checkbox"
             checked
           />
-          <span class="iui-label">Remember my choice</span>
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-            </svg>
-          </span>
         </label>
       </div>
     </div>
@@ -2332,34 +2325,27 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <label class="iui-input-container">
-            <div class="iui-select">
+            <div class="iui-input-with-icon">
               <div class="iui-select-button iui-placeholder">
                 Please choose…
               </div>
+              <svg-caret-down-small
+                class="iui-end-icon iui-actionable"
+                aria-hidden="true"
+              ></svg-caret-down-small>
             </div>
           </label>
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Open</span>
+            <span class="iui-button-label">Open</span>
           </button>
         </div>
-        <label class="iui-checkbox">
+        <label class="iui-checkbox-wrapper">
+          <span class="iui-checkbox-label">Remember my choice</span>
           <input
+            class="iui-checkbox"
             type="checkbox"
             checked
           />
-          <span class="iui-label">Remember my choice</span>
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-            </svg>
-          </span>
         </label>
       </div>
     </div>
@@ -2603,9 +2589,10 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <button class="iui-button iui-high-visibility">
-            <span class="iui-label">Sign in</span></button>
-          <button class="iui-button">
-            <span class="iui-label">Contact us</span>
+            <span class="iui-button-label">Sign in</span></button>
+          <button class="iui-button iui-default">
+            <span class="
+            iui-button-label">Contact us</span>
           </button>
         </div>
       </div>

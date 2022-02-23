@@ -1,4 +1,4 @@
-const { scenario, hover, focus } = require('../scenarioHelper');
+const { scenario, hover, focus, click } = require('../scenarioHelper');
 
 module.exports = [
   // Header types
@@ -20,6 +20,14 @@ module.exports = [
     actions: [hover('#test-button-1'), focus('#test-button-2')],
     selectors: ['#demo-default'],
     misMatchThreshold: 0.02,
+  }),
+
+  //// Disabled
+  scenario('Type Default State hover & focus', {
+    actions: [click('#disabled-toggle')],
+    selectors: ['#demo-split'],
+    misMatchThreshold: 0.02,
+    viewports: [{ width: 800, height: 600 }],
   }),
 
   //// Slim
@@ -45,5 +53,6 @@ module.exports = [
       { width: 500, height: 400 },
     ],
     hideSelectors: ['h2', 'hr'],
+    misMatchThreshold: 0.02,
   }),
 ];

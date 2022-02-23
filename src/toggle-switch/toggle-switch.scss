@@ -109,8 +109,7 @@
         }
       }
 
-      &:hover:not(:disabled),
-      &:focus {
+      &:hover:not(:disabled) {
         ~ .iui-toggle {
           @include themed {
             border-color: t(iui-color-background-primary);
@@ -168,8 +167,13 @@
     // Focus on non-disabled toggle switch
     &:enabled:focus ~ .iui-toggle {
       @include themed {
-        box-shadow: t(iui-focus-box-shadow);
+        outline: 1px solid t(iui-color-foreground-primary);
       }
+      outline-offset: 1px;
+    }
+
+    &:enabled:focus:not(:focus-visible) ~ .iui-toggle {
+      outline: none;
     }
   }
 

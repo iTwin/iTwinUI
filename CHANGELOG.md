@@ -1,5 +1,157 @@
 # Changelog
 
+### [0.48.2](https://www.github.com/iTwin/iTwinUI/compare/v0.48.1...v0.48.2) (2022-02-23)
+
+### Fixes
+
+* **ColorSwatch:** Fix absolute positioning when used in button ([#494](https://www.github.com/iTwin/iTwinUI/issues/494)) ([8e96995](https://www.github.com/iTwin/iTwinUI/commit/8e96995922cf8691894bea9f38dbd3fbc09c38e7))
+
+### [0.48.1](https://www.github.com/iTwin/iTwinUI/compare/v0.48.0...v0.48.1) (2022-02-18)
+
+### Fixes
+
+* **Radio:** Set blank svg for indeterminate state ([#492](https://www.github.com/iTwin/iTwinUI/issues/492)) ([54c5b3f](https://www.github.com/iTwin/iTwinUI/commit/54c5b3fc0923042236b02fc12edec6b97f8f9c66))
+
+## [0.48.0](https://www.github.com/iTwin/iTwinUI/compare/v0.47.0...v0.48.0) (2022-02-18)
+
+### What's new
+
+* **Checkbox** and **Radio**: Complete refactor. Svgs are inlined and input can now be used without wrapping label. ([#475](https://github.com/iTwin/iTwinUI/pull/475))
+* **ColorPicker:** Swatch supports transparency ([#483](https://www.github.com/iTwin/iTwinUI/issues/483)) ([f50481f](https://www.github.com/iTwin/iTwinUI/commit/f50481fe621f644fefd900aac0eb8f2ba0d8a25c))
+
+## [0.47.0](https://www.github.com/iTwin/iTwinUI/compare/v0.46.1...v0.47.0) (2022-02-15)
+
+### What's new
+
+* **ExpandableBlock:** Add borderless styling to expandable-block ([#467](https://www.github.com/iTwin/iTwinUI/issues/467)) ([4fff41a](https://www.github.com/iTwin/iTwinUI/commit/4fff41a0e20f3ac2505c90e1f48e706de08262f7))
+* **Skip-to-content:** Add skip-to-content button ([#471](https://www.github.com/iTwin/iTwinUI/issues/471)) ([0202a87](https://www.github.com/iTwin/iTwinUI/commit/0202a87b4e936fe804a188242b123fa4e3b9f91d))
+* **Tile:** Add focus styling to entire tile ([#446](https://www.github.com/iTwin/iTwinUI/issues/446)) ([6c4baad](https://www.github.com/iTwin/iTwinUI/commit/6c4baad7d3c25bcf2031def9caf4bff1a22de2c9))
+* **Badge:** Rename CSS variables for consistency ([#476](https://www.github.com/iTwin/iTwinUI/issues/476)) ([a718e9f](https://www.github.com/iTwin/iTwinUI/commit/a718e9fa49702dd2080706080ff30feefaedb210))
+* **ColorPicker:** Rename CSS variables for consistency ([#481](https://www.github.com/iTwin/iTwinUI/issues/481)) ([60d8f3c](https://www.github.com/iTwin/iTwinUI/commit/60d8f3caacb1b4fd597b1c235a5dfe881c87f84d))
+
+### Fixes
+
+* **ButtonGroup:** Don't target `<input>` inside labeled-input to fix z-index issues ([#448](https://www.github.com/iTwin/iTwinUI/issues/448)) ([b0c45cc](https://www.github.com/iTwin/iTwinUI/commit/b0c45cc3278aaa0f889f73ae8c7b51f3392ff18b))
+* **Tree:** Made `li` element focusable ([#484](https://www.github.com/iTwin/iTwinUI/issues/484)) ([19dc058](https://www.github.com/iTwin/iTwinUI/commit/19dc058bd9a748e600db16cd458e5c9f068404f0))
+
+### [0.46.1](https://www.github.com/iTwin/iTwinUI/compare/v0.46.0...v0.46.1) (2022-02-07)
+
+### Fixes
+
+* **Popover:** Increased hidden attribute specificity ([#469](https://www.github.com/iTwin/iTwinUI/issues/469)) ([d96ddda](https://www.github.com/iTwin/iTwinUI/commit/d96dddaf3a9bf3559c4624ee040ec97bc3c22488))
+
+## [0.46.0](https://www.github.com/iTwin/iTwinUI/compare/v0.45.0...v0.46.0) (2022-02-04)
+
+### What's new
+
+* **Select:** Dropdown icon is an icon ([#444](https://www.github.com/iTwin/iTwinUI/issues/444)) ([703c5f6](https://www.github.com/iTwin/iTwinUI/commit/703c5f64463e269a46ee456595ef879eee9321fd))
+
+### Fixes
+
+* **Button:** Show default outline as fallback ([#468](https://www.github.com/iTwin/iTwinUI/issues/468)) ([6194a13](https://www.github.com/iTwin/iTwinUI/commit/6194a13a1d8349c477cbb86582adcf6f1fe1ce09))
+
+## [0.45.0](https://www.github.com/iTwin/iTwinUI/compare/v0.44.2...v0.45.0) (2022-02-03)
+
+### What's new
+
+* **Carousel:** Added new carousel component ([#377](https://www.github.com/iTwin/iTwinUI/issues/377)) ([4ed38b9](https://www.github.com/iTwin/iTwinUI/commit/4ed38b9b0657b446602d58b2bca594bec85924de))
+* **Tile:** Reduced nesting ([#431](https://www.github.com/iTwin/iTwinUI/issues/431)) ([a2fc0d5](https://www.github.com/iTwin/iTwinUI/commit/a2fc0d59a6bb02fa86b65f0739cc88762aa214f6))
+
+### Fixes
+
+* **Popover:** Added new helper class ([#464](https://www.github.com/iTwin/iTwinUI/issues/464)) ([b147c61](https://www.github.com/iTwin/iTwinUI/commit/b147c6133c3f31ed4bb7b0a10c92c19b5d2cec20))
+* **Table:** Zebra row selector change ([#458](https://www.github.com/iTwin/iTwinUI/issues/458)) ([0761392](https://www.github.com/iTwin/iTwinUI/commit/0761392582e737406dc6f2243e4a4d5a22ce781d))
+
+### [0.44.2](https://www.github.com/iTwin/iTwinUI/compare/v0.44.1...v0.44.2) (2022-01-26)
+
+### Fixes
+
+* **Tree:** Fix tree node focus ([#456](https://www.github.com/iTwin/iTwinUI/issues/456)) ([da02613](https://www.github.com/iTwin/iTwinUI/commit/da026138bc3eca1d550ff52aa151d13480a3ff01))
+
+### [0.44.1](https://www.github.com/iTwin/iTwinUI/compare/v0.44.0...v0.44.1) (2022-01-24)
+
+### Fixes
+
+* **Button:** Use `::before` for active background to fix flicker ([#449](https://www.github.com/iTwin/iTwinUI/issues/449)) ([b492a75](https://www.github.com/iTwin/iTwinUI/commit/b492a7596e02763be20ff3d14c89262c11196532))
+* **Select:** Allows to reduce Select size that other components would fit inside container ([#451](https://www.github.com/iTwin/iTwinUI/issues/451)) ([011cc70](https://www.github.com/iTwin/iTwinUI/commit/011cc701a51e7f7199690ce404a0bef0be90f6fd))
+
+## [0.44.0](https://www.github.com/iTwin/iTwinUI/compare/v0.43.0...v0.44.0) (2022-01-07)
+
+### What's new
+
+* New focus styling in all components ([#166](https://www.github.com/iTwin/iTwinUI/issues/166)) ([74bc798](https://www.github.com/iTwin/iTwinUI/commit/74bc79856f3a2cda0fd5b589df1f97a53e942e84))
+
+This release also includes some updated classnames and html structure in the following components:
+
+* **Checkbox and Radio:** Fix radio button dot and checkbox checkmark centering ([#426](https://www.github.com/iTwin/iTwinUI/issues/426)) ([3b2f979](https://www.github.com/iTwin/iTwinUI/commit/3b2f9791852123044295f1b9f1e999f0967c61af))
+* **DatePicker:** Reduce nesting and specificity ([#427](https://www.github.com/iTwin/iTwinUI/issues/427)) ([1dd79d2](https://www.github.com/iTwin/iTwinUI/commit/1dd79d2e75cd739845764a3636b799946dced3de))
+* **Paginator:** Reduce nesting and specificity ([#429](https://www.github.com/iTwin/iTwinUI/issues/429)) ([d52e650](https://www.github.com/iTwin/iTwinUI/commit/d52e6505498a97a958f0b6a9fbaf5cc781d1d9ab))
+
+### Fixes
+
+* **Checkbox:** `iui-label` content is centered ([#433](https://www.github.com/iTwin/iTwinUI/issues/433)) ([30c7075](https://www.github.com/iTwin/iTwinUI/commit/30c70752b9bb3ed2e015809f924583cad4449185))
+
+## [0.43.0](https://www.github.com/iTwin/iTwinUI/compare/v0.42.1...v0.43.0) (2021-12-20)
+
+### What's new
+
+* **Table:** Added proper support for horizontal scroll ([#417](https://www.github.com/iTwin/iTwinUI/issues/417)) ([42e9fdd](https://www.github.com/iTwin/iTwinUI/commit/42e9fdd90e1b618e0d8e64fe9d421ff37860c387))
+
+### Fixes
+
+* **ButtonGroup:** Add back position to fix z-index issue ([#422](https://www.github.com/iTwin/iTwinUI/issues/422)) ([5b4637e](https://www.github.com/iTwin/iTwinUI/commit/5b4637e8a2b4dbbb066ba2ed0005f5ebeb21942c))
+* **ButtonGroup:** Disable exit animation to prevent flicker ([#421](https://www.github.com/iTwin/iTwinUI/issues/421)) ([39f9a03](https://www.github.com/iTwin/iTwinUI/commit/39f9a031e937977566c2d639ece9ba7434807a90))
+
+### [0.42.1](https://www.github.com/iTwin/iTwinUI/compare/v0.42.0...v0.42.1) (2021-12-20)
+
+### Fixes
+
+* **ButtonGroup:** Use flex instead of position: relative to set z-index ([#418](https://www.github.com/iTwin/iTwinUI/issues/418)) ([6e9df50](https://www.github.com/iTwin/iTwinUI/commit/6e9df50fe3ddd2355f8d299d8d532fa720f029aa))
+
+## [0.42.0](https://www.github.com/iTwin/iTwinUI/compare/v0.41.1...v0.42.0) (2021-12-14)
+
+### What's new
+
+* **ButtonGroup:** handle input + button combo ([#365](https://www.github.com/iTwin/iTwinUI/issues/365)) ([067fe40](https://www.github.com/iTwin/iTwinUI/commit/067fe4028c85977664821ecd69816219dcd15c06))
+
+### Fixes
+
+* **Header:** Correct label color in disabled header button ([#414](https://www.github.com/iTwin/iTwinUI/issues/414)) ([4ad31cb](https://www.github.com/iTwin/iTwinUI/commit/4ad31cb2f406fbfcc46d64a525c36bfd90dff41a))
+* **Table:** Fixed zebra rows hover style ([#416](https://www.github.com/iTwin/iTwinUI/issues/416)) ([879fcc8](https://www.github.com/iTwin/iTwinUI/commit/879fcc8ea2b6e3b128ae443417561576ea40fc96))
+
+### [0.41.1](https://www.github.com/iTwin/iTwinUI/compare/v0.41.0...v0.41.1) (2021-12-10)
+
+### Fixes
+
+* **Inputs:** Fix icon alignment in nested input containers ([#409](https://www.github.com/iTwin/iTwinUI/issues/409)) ([22fcb9f](https://www.github.com/iTwin/iTwinUI/commit/22fcb9f184c54e5b039fe1d7aedeb913f2989aed))
+
+## [0.41.0](https://www.github.com/iTwin/iTwinUI/compare/v0.40.0...v0.41.0) (2021-12-07)
+
+### What's new
+
+* **Tree:** Add tree component ([#388](https://www.github.com/iTwin/iTwinUI/issues/388)) ([dead18d](https://www.github.com/iTwin/iTwinUI/commit/dead18dcead164113fb8f81bd6892a60477f7e6d))
+* **Table:** Add label to paginator row count dropdown button ([#381](https://www.github.com/iTwin/iTwinUI/issues/381)) ([89645ca](https://www.github.com/iTwin/iTwinUI/commit/89645cadd7135764ce0f418f15176d23ea0282db))
+
+### Fixes
+
+* **Button:** Fixed hover effects after button is clicked ([#404](https://www.github.com/iTwin/iTwinUI/issues/404)) ([d584354](https://www.github.com/iTwin/iTwinUI/commit/d584354e6cdbc063076868d68337c8dc75d76e2c))
+* **Table:** Add padding to last non-slot column ([#403](https://www.github.com/iTwin/iTwinUI/issues/403)) ([30bb8b1](https://www.github.com/iTwin/iTwinUI/commit/30bb8b1cd99bf5fbd30f7bbda406105ea86e75c8))
+* **UserIcon:** Apply background color to transparent images ([#394](https://www.github.com/iTwin/iTwinUI/issues/394)) ([f9f181d](https://www.github.com/iTwin/iTwinUI/commit/f9f181db2ca06ab553ae1371a3efd8b183192e44))
+
+## [0.40.0](https://www.github.com/iTwin/iTwinUI/compare/v0.39.1...v0.40.0) (2021-12-01)
+
+### What's new
+
+* **Buttons:** Reduce nesting and specificity ([#363](https://www.github.com/iTwin/iTwinUI/issues/363)) ([0395323](https://www.github.com/iTwin/iTwinUI/commit/0395323cae55a38542020ecf5fc5f811bbbc3407))
+  * Mixins were added/improved to allow easier overrides and fix elusive bugs.
+  * `iui-default` class was added as a modifier to style default buttons.
+  * Some class names were updated: `iui-icon` is now `iui-button-icon`, and `iui-label` is now `iui-button-label`.
+  * Some class names in derived components no longer need to be applied, e.g. `iui-large` is not needed in header buttons.
+
+### Fixes
+
+* **Checkbox:** Changed visibility hover background color & unchecked fill color. ([#392](https://www.github.com/iTwin/iTwinUI/issues/392)) ([15c9015](https://www.github.com/iTwin/iTwinUI/commit/15c90152cb1f7ea7a3ffb14957e4ae600b8e859d))
+
 ### [0.39.1](https://www.github.com/iTwin/iTwinUI/compare/v0.39.0...v0.39.1) (2021-11-15)
 
 ### Fixes

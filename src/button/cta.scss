@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import './button';
+@import './button-icon';
+@import './disabled';
 
 @mixin iui-button-cta {
   @include themed {
@@ -9,26 +11,19 @@
     border-color: t(iui-color-background-positive);
     color: t(iui-color-foreground-accessory);
   }
+  @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px, $thickness: 1px);
 
-  > .iui-icon {
-    @include themed {
-      fill: t(iui-color-foreground-accessory);
-    }
-  }
-
-  &:enabled:hover,
-  &:enabled:active,
-  &:focus-visible {
+  &:hover,
+  &:active {
     @include themed {
       background-color: t(iui-color-background-positive-overlay);
       border-color: t(iui-color-background-positive-overlay);
       color: t(iui-color-foreground-accessory);
     }
+  }
 
-    > .iui-icon {
-      @include themed {
-        fill: t(iui-color-foreground-accessory);
-      }
-    }
+  &[disabled],
+  &:disabled {
+    @include iui-button-disabled;
   }
 }
