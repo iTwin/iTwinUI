@@ -19,10 +19,16 @@ export type RadioProps = {
   status?: 'positive' | 'warning' | 'negative';
   /**
    * Custom CSS class name for the checkmark element.
+   *
+   * @deprecated As of 1.32.0, this is applied on the actual radio `<input>` element.
+   * The checkmark has been moved into a pseudo-element.
    */
   checkmarkClassName?: string;
   /**
    * Custom CSS Style for the checkmark element.
+   *
+   * @deprecated As of 1.32.0, this is applied on the actual radio `<input>` element.
+   * The checkmark has been moved into a pseudo-element.
    */
   checkmarkStyle?: React.CSSProperties;
   /**
@@ -31,9 +37,11 @@ export type RadioProps = {
    */
   setFocus?: boolean;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>;
+
 /**
  * Basic radio input component
  * @example
+ * <Radio />
  * <Radio label='Radio' />
  * <Radio disabled={true} label='Radio' />
  * <Radio status='positive' label='Positive' />
@@ -65,25 +73,34 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       }
     }, [setFocus]);
 
-    return (
-      <label
+    const radio = (
+      <input
         className={cx(
           'iui-radio',
+          className && { [className]: !label },
+          checkmarkClassName,
+        )}
+        style={{ ...(!label && style), ...checkmarkStyle }}
+        disabled={disabled}
+        type='radio'
+        ref={refs}
+        {...rest}
+      />
+    );
+
+    return !label ? (
+      radio
+    ) : (
+      <label
+        className={cx(
+          'iui-radio-wrapper',
           { 'iui-disabled': disabled, [`iui-${status}`]: !!status },
           className,
         )}
         style={style}
       >
-        <input disabled={disabled} type='radio' ref={refs} {...rest} />
-        <span
-          className={cx('iui-radio-dot', checkmarkClassName)}
-          style={checkmarkStyle}
-        >
-          <svg viewBox='0 0 16 16' aria-hidden='true' focusable='false'>
-            <circle cx='8' cy='8' r='4' />
-          </svg>
-        </span>
-        {label && <span className='iui-label'>{label}</span>}
+        {radio}
+        {label && <span className='iui-radio-label'>{label}</span>}
       </label>
     );
   },

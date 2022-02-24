@@ -3,23 +3,23 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import { Checkbox } from './Checkbox';
 
 const assertBaseElements = (container: HTMLElement) => {
-  expect(container.querySelector('.iui-checkbox')).toBeTruthy();
-  expect(container.querySelector('.iui-checkbox-checkmark')).toBeTruthy();
-  expect(container.querySelector('input[type="checkbox"]')).toBeTruthy();
+  expect(container.querySelector('input[type="checkbox"]')).toHaveClass(
+    'iui-checkbox',
+  );
 };
 
-it('renders correctly in its most basic state', () => {
+it('renders correctly with label', () => {
   const { container } = render(<Checkbox label='Some checkbox' />);
 
   assertBaseElements(container);
-
-  expect(container.querySelector('.iui-label')).toBeTruthy();
-  screen.getByText('Some checkbox');
+  expect(container.querySelector('label')).toHaveClass('iui-checkbox-wrapper');
+  expect(screen.getByText('Some checkbox')).toHaveClass('iui-checkbox-label');
 });
 
 it('renders correctly indeterminate state', () => {
@@ -40,7 +40,7 @@ it('renders correctly without label and checked', () => {
 
   assertBaseElements(container);
 
-  expect(container.querySelector('.iui-label')).toBeNull();
+  expect(container.querySelector('.iui-checkbox-label')).toBeNull();
   const input = container.querySelector('input') as HTMLInputElement;
   expect(input.indeterminate).toBe(false);
   expect(input.checked).toBe(true);
@@ -78,7 +78,9 @@ it('renders positive component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some checkbox');
-  expect(container.querySelector('.iui-checkbox.iui-positive')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-checkbox-wrapper.iui-positive'),
+  ).toBeTruthy();
 });
 
 it('renders warning component', () => {
@@ -89,7 +91,9 @@ it('renders warning component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some checkbox');
-  expect(container.querySelector('.iui-checkbox.iui-warning')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-checkbox-wrapper.iui-warning'),
+  ).toBeTruthy();
 });
 
 it('renders negative component', () => {
@@ -100,7 +104,9 @@ it('renders negative component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some checkbox');
-  expect(container.querySelector('.iui-checkbox.iui-negative')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-checkbox-wrapper.iui-negative'),
+  ).toBeTruthy();
 });
 
 it('takes styles for input and label', () => {
@@ -116,10 +122,11 @@ it('takes styles for input and label', () => {
 
   screen.getByText('Some checkbox');
   expect(
-    (container.querySelector('.iui-checkbox') as HTMLElement).style.color,
+    (container.querySelector('.iui-checkbox-wrapper') as HTMLElement).style
+      .color,
   ).toBe('blue');
   expect(
-    (container.querySelector('.iui-checkbox-checkmark') as HTMLElement).style
+    (container.querySelector('.iui-checkbox') as HTMLElement).style
       .backgroundColor,
   ).toBe('red');
 });
@@ -137,11 +144,10 @@ it('takes class for input and label', () => {
 
   screen.getByText('Some checkbox');
   expect(
-    (container.querySelector('.iui-checkbox') as HTMLElement).classList,
+    (container.querySelector('.iui-checkbox-wrapper') as HTMLElement).classList,
   ).toContain('labelClass');
   expect(
-    (container.querySelector('.iui-checkbox-checkmark') as HTMLElement)
-      .classList,
+    (container.querySelector('.iui-checkbox') as HTMLElement).classList,
   ).toContain('checkboxClass');
 });
 
@@ -167,13 +173,16 @@ it('displays a spinner when isLoading is set to true', () => {
   assertBaseElements(container);
 
   screen.getByText('Some checkbox');
-  expect(container.querySelector('.iui-checkbox.iui-loading')).toBeTruthy();
   expect(
-    (container.querySelector('input[type="checkbox"]') as HTMLInputElement)
-      .disabled,
-  ).toBe(true);
+    container.querySelector('.iui-checkbox-wrapper.iui-loading'),
+  ).toBeTruthy();
   expect(
-    container.querySelector('.iui-progress-indicator-radial.iui-indeterminate'),
+    container.querySelector('input[type="checkbox"].iui-loading'),
+  ).toBeDisabled();
+  expect(
+    container.querySelector(
+      '.iui-progress-indicator-radial.iui-x-small.iui-indeterminate',
+    ),
   ).toBeTruthy();
 });
 
@@ -192,3 +201,32 @@ it('renders correctly with visibility checkbox', () => {
 
   expect(container.querySelector('.iui-checkbox-visibility')).toBeTruthy();
 });
+
+it.each(['', 'not'] as const)(
+  'should %s stop propagation correctly if %s used with label',
+  (labelPresent) => {
+    const wrapperOnClick = jest.fn();
+    const checkboxOnChange = jest.fn();
+    const { container } = render(
+      <div onClick={wrapperOnClick}>
+        <Checkbox
+          label={labelPresent && 'label'}
+          className='my-checkbox'
+          onClick={(e) => e.stopPropagation()}
+          onChange={checkboxOnChange}
+        />
+      </div>,
+    );
+    const checkboxComponent = container.querySelector(
+      '.my-checkbox',
+    ) as HTMLElement;
+    userEvent.click(checkboxComponent);
+
+    expect(checkboxOnChange).toBeCalled();
+    if (labelPresent) {
+      expect(wrapperOnClick).toBeCalled();
+    } else {
+      expect(wrapperOnClick).not.toBeCalled();
+    }
+  },
+);

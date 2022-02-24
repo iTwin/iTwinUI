@@ -8,7 +8,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { TreeNode, TreeNodeProps } from './TreeNode';
 import { TreeContextProps, TreeContext } from './TreeContext';
 import { Checkbox } from '../Checkbox';
-import { SvgPlaceholder } from '@itwin/itwinui-icons-react/cjs/icons';
+import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 const renderComponent = ({
   props,
@@ -89,11 +89,9 @@ it('should render node with a checkbox', () => {
     },
   });
 
-  const checkbox = container.querySelector(
-    '.iui-tree-node-checkbox.testClass',
-  ) as HTMLElement;
-  expect(checkbox).toBeTruthy();
-  expect(checkbox.classList.contains('iui-disabled')).toBe(false);
+  expect(
+    container.querySelector('.iui-tree-node-checkbox.testClass'),
+  ).not.toBeDisabled();
 });
 
 it('should render node with an icon', () => {
@@ -185,8 +183,7 @@ it('should render disabled node', () => {
   expect(treeNode).toBeTruthy();
   expect(treeNode?.classList.contains('iui-disabled')).toBe(true);
 
-  const checkbox = container.querySelector('.iui-tree-node-checkbox');
-  expect(checkbox?.classList.contains('iui-disabled')).toBe(true);
+  expect(container.querySelector('.iui-tree-node-checkbox')).toBeDisabled();
 
   const button = container.querySelector(
     '.iui-button.iui-borderless.iui-small',

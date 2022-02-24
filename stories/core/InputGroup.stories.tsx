@@ -101,6 +101,7 @@ export const CheckboxGroup: Story<InputGroupProps> = (args) => {
     >
       <Checkbox
         onChange={(event) => onAllChange(event.target.checked)}
+        label='Select all'
         indeterminate={isIndeterminate}
         checked={allOptions}
         disabled={args.disabled}

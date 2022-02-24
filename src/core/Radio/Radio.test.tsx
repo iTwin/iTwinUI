@@ -8,24 +8,26 @@ import React from 'react';
 import { Radio } from './Radio';
 
 const assertBaseElements = (container: HTMLElement) => {
-  expect(container.querySelector('.iui-radio')).toBeTruthy();
-  expect(container.querySelector('.iui-radio-dot')).toBeTruthy();
-  expect(container.querySelector('input[type="radio"]')).toBeTruthy();
+  expect(container.querySelector('input[type="radio"]')).toHaveClass(
+    'iui-radio',
+  );
 };
 
-it('renders correctly in its most basic state', () => {
+it('renders correctly with label', () => {
   const { container } = render(<Radio label='Some label' />);
 
   assertBaseElements(container);
-  screen.getByText('Some label');
+  expect(container.querySelector('label')).toHaveClass('iui-radio-wrapper');
+  expect(screen.getByText('Some label')).toHaveClass('iui-radio-label');
 });
 
 it('renders correctly without label', () => {
   const { container } = render(<Radio />);
 
   assertBaseElements(container);
-
-  expect(container.querySelector('.iui-label')).toBeNull();
+  expect(container.querySelector('label')).toBeFalsy();
+  expect(container.querySelector('iui-radio-wrapper')).toBeFalsy();
+  expect(container.querySelector('.iui-radio-label')).toBeNull();
 });
 
 it('renders correctly with jsx element as label', () => {
@@ -57,7 +59,9 @@ it('renders positive component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some label');
-  expect(container.querySelector('.iui-radio.iui-positive')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-radio-wrapper.iui-positive'),
+  ).toBeTruthy();
 });
 
 it('renders warning component', () => {
@@ -66,7 +70,9 @@ it('renders warning component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some label');
-  expect(container.querySelector('.iui-radio.iui-warning')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-radio-wrapper.iui-warning'),
+  ).toBeTruthy();
 });
 
 it('renders negative component', () => {
@@ -75,7 +81,9 @@ it('renders negative component', () => {
   assertBaseElements(container);
 
   screen.getByText('Some label');
-  expect(container.querySelector('.iui-radio.iui-negative')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-radio-wrapper.iui-negative'),
+  ).toBeTruthy();
 });
 
 it('takes styles for input and label', () => {
@@ -91,10 +99,10 @@ it('takes styles for input and label', () => {
 
   screen.getByText('Some label');
   expect(
-    (container.querySelector('.iui-radio') as HTMLElement).style.color,
+    (container.querySelector('.iui-radio-wrapper') as HTMLElement).style.color,
   ).toBe('blue');
   expect(
-    (container.querySelector('.iui-radio-dot') as HTMLElement).style
+    (container.querySelector('.iui-radio') as HTMLElement).style
       .backgroundColor,
   ).toBe('red');
 });
@@ -112,10 +120,10 @@ it('takes class for input and label', () => {
 
   screen.getByText('Some label');
   expect(
-    (container.querySelector('.iui-radio') as HTMLElement).classList,
+    (container.querySelector('.iui-radio-wrapper') as HTMLElement).classList,
   ).toContain('labelClass');
   expect(
-    (container.querySelector('.iui-radio-dot') as HTMLElement).classList,
+    (container.querySelector('.iui-radio') as HTMLElement).classList,
   ).toContain('radioClass');
 });
 

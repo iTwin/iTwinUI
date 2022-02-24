@@ -1017,10 +1017,10 @@ it('should disable row and handle selection accordingly', () => {
 
   const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
   expect(checkboxCells.length).toBe(4);
-  expect(checkboxCells[0].classList).not.toContain('iui-disabled');
-  expect(checkboxCells[1].classList).not.toContain('iui-disabled');
-  expect(checkboxCells[2].classList).toContain('iui-disabled');
-  expect(checkboxCells[3].classList).not.toContain('iui-disabled');
+  expect(checkboxCells[0]).not.toBeDisabled();
+  expect(checkboxCells[1]).not.toBeDisabled();
+  expect(checkboxCells[2]).toBeDisabled();
+  expect(checkboxCells[3]).not.toBeDisabled();
 
   // Select disabled row
   userEvent.click(checkboxCells[2]);
@@ -1030,9 +1030,7 @@ it('should disable row and handle selection accordingly', () => {
   // Select first row
   userEvent.click(checkboxCells[1]);
   expect(onSelect).toHaveBeenCalledWith([mockedData()[0]], expect.any(Object));
-  const headerCheckbox = checkboxCells[0].querySelector(
-    'input',
-  ) as HTMLInputElement;
+  const headerCheckbox = checkboxCells[0] as HTMLInputElement;
   expect(headerCheckbox.indeterminate).toBe(true);
   expect(headerCheckbox.checked).toBe(false);
 
@@ -1083,9 +1081,7 @@ it('should select and filter rows', () => {
   // Select first row
   userEvent.click(checkboxCells[1]);
   expect(onSelect).toHaveBeenCalledWith([mockedData()[0]], expect.any(Object));
-  const headerCheckbox = checkboxCells[0].querySelector(
-    'input',
-  ) as HTMLInputElement;
+  const headerCheckbox = checkboxCells[0] as HTMLInputElement;
   expect(headerCheckbox.indeterminate).toBe(true);
 
   // Filter table
@@ -1106,7 +1102,7 @@ it('should select and filter rows', () => {
   // Clear filter
   clearFilter(container);
   const checkboxInputs = container.querySelectorAll<HTMLInputElement>(
-    '.iui-slot .iui-checkbox input',
+    '.iui-slot .iui-checkbox',
   );
   expect(checkboxInputs.length).toBe(4);
   expect(checkboxInputs[0].indeterminate).toBe(true);
@@ -1234,7 +1230,7 @@ it('should handle sub-rows selection', () => {
   expect(rows.length).toBe(3);
 
   let checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(3);
   checkboxes[0].click();
@@ -1242,7 +1238,7 @@ it('should handle sub-rows selection', () => {
   expandAll(container);
 
   checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(10);
   Array.from(checkboxes).forEach((checkbox, index) =>
@@ -1270,14 +1266,14 @@ it('should show indeterminate checkbox when some sub-rows are selected', () => {
   expandAll(container);
 
   let checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(10);
   // Click row 1.2 checkbox
   checkboxes[2].click();
 
   checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(10);
   expect(checkboxes[0].indeterminate).toBe(true);
@@ -1306,14 +1302,14 @@ it('should show indeterminate checkbox when a sub-row of a sub-row is selected',
   expandAll(container);
 
   let checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(10);
   // Click row 1.2.1 checkbox
   checkboxes[3].click();
 
   checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(10);
   // Row 1
@@ -1372,14 +1368,14 @@ it('should show indeterminate checkbox when sub-row selected after filtering', (
   expandAll(container);
 
   let checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(7);
   // Click row 1.2 checkbox
   checkboxes[1].click();
 
   checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(7);
   expect(checkboxes[0].indeterminate).toBe(true);
@@ -1440,7 +1436,7 @@ it('should show indeterminate checkbox when clicking on a row itself after filte
   userEvent.click(rows[0]);
 
   const checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(7);
   expect(checkboxes[0].indeterminate).toBe(true);
@@ -1468,7 +1464,7 @@ it('should only select one row even if it has sub-rows when selectSubRows is fal
   expect(rows.length).toBe(3);
 
   let checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(3);
   checkboxes[0].click();
@@ -1476,7 +1472,7 @@ it('should only select one row even if it has sub-rows when selectSubRows is fal
   expandAll(container);
 
   checkboxes = container.querySelectorAll<HTMLInputElement>(
-    '.iui-table-body .iui-checkbox input',
+    '.iui-table-body .iui-checkbox',
   );
   expect(checkboxes.length).toBe(10);
   Array.from(checkboxes).forEach((checkbox, index) =>
