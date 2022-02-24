@@ -21,6 +21,8 @@
   }
 
   > .iui-modal-dialog {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     left: 50%;
     top: 33%;
@@ -67,6 +69,11 @@
         margin-right: $iui-s;
       }
     }
+
+    .iui-modal-content {
+      flex-grow: 2;
+      overflow: scroll;
+    }
   }
 
   &.iui-modal-visible {
@@ -97,12 +104,6 @@
     min-width: initial;
     border-radius: 0;
     box-shadow: none;
-
-    .iui-button-bar {
-      position: absolute;
-      bottom: $iui-baseline;
-      right: $iui-m;
-    }
   }
 
   &.iui-modal-visible {
