@@ -53,6 +53,10 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
     const refs = useMergedRefs(menuRef, ref);
 
     React.useEffect(() => {
+      setFocusedIndex(null);
+    }, [children]);
+
+    React.useEffect(() => {
       const items = getFocusableElements(menuRef.current);
       if (focusedIndex != null) {
         (items?.[focusedIndex] as HTMLLIElement)?.focus();
@@ -66,10 +70,6 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
         setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
       }
     }, [setFocus, focusedIndex]);
-
-    React.useEffect(() => {
-      setFocusedIndex(null);
-    }, [children]);
 
     const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
       const items = getFocusableElements(menuRef.current);
