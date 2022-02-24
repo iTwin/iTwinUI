@@ -22,7 +22,7 @@ jobs:
           cache: yarn
 
       - run: yarn install --frozen-lockfile
-      - run: yarn audit-ci --allowlist 1002373
+      - run: yarn audit
 
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
@@ -49,18 +49,18 @@ jobs:
           git-config-email: github-actions[bot]@users.noreply.github.com
 
       - name: Post gh pages link under Checks
-        if: failure()
-        uses: actions/github-script@v4
+        if: always()
+        uses: actions/github-script@v5
         with:
           script: |
-            github.repos.createCommitStatus({
+            github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
               sha: '${{ github.event.pull_request.head.sha }}',
               state: '${{ job.status }}',
               context: 'Test results',
-              description: 'Backstop html report',
-              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
+              ...(context.job.status !== 'success' && { description: 'Backstop html report' }),
+              ...(context.job.status !== 'success' && { target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/' }),
             })
 
   deploy:
