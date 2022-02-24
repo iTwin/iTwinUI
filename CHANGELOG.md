@@ -1,5 +1,24 @@
 # Changelog
 
+### [0.48.2](https://www.github.com/iTwin/iTwinUI/compare/v0.48.1...v0.48.2) (2022-02-23)
+
+### Fixes
+
+* **ColorSwatch:** Fix absolute positioning when used in button ([#494](https://www.github.com/iTwin/iTwinUI/issues/494)) ([8e96995](https://www.github.com/iTwin/iTwinUI/commit/8e96995922cf8691894bea9f38dbd3fbc09c38e7))
+
+### [0.48.1](https://www.github.com/iTwin/iTwinUI/compare/v0.48.0...v0.48.1) (2022-02-18)
+
+### Fixes
+
+* **Radio:** Set blank svg for indeterminate state ([#492](https://www.github.com/iTwin/iTwinUI/issues/492)) ([54c5b3f](https://www.github.com/iTwin/iTwinUI/commit/54c5b3fc0923042236b02fc12edec6b97f8f9c66))
+
+## [0.48.0](https://www.github.com/iTwin/iTwinUI/compare/v0.47.0...v0.48.0) (2022-02-18)
+
+### What's new
+
+* **Checkbox** and **Radio**: Complete refactor. Svgs are inlined and input can now be used without wrapping label. ([#475](https://github.com/iTwin/iTwinUI/pull/475))
+* **ColorPicker:** Swatch supports transparency ([#483](https://www.github.com/iTwin/iTwinUI/issues/483)) ([f50481f](https://www.github.com/iTwin/iTwinUI/commit/f50481fe621f644fefd900aac0eb8f2ba0d8a25c))
+
 ## [0.47.0](https://www.github.com/iTwin/iTwinUI/compare/v0.46.1...v0.47.0) (2022-02-15)
 
 ### What's new
