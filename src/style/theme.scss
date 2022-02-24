@@ -80,7 +80,7 @@ $iui-color-foreground-accessory--light-hc: #FFF;
 $iui-color-foreground-primary--light-hc: #00728C;
 $iui-color-foreground-positive--light-hc: #487217;
 $iui-color-foreground-negative--light-hc: #D30A0A;
-$iui-color-foreground-warning--light-hc: #F18B12;
+$iui-color-foreground-warning--light-hc: #F18B12; // THIS IS NOT PASSING
 
 // Light high contrast theme > Overlays
 $iui-color-background-1-overlay--light-hc: darken($iui-color-background-1--light-hc, 2%);
@@ -93,11 +93,11 @@ $iui-color-foreground-negative-overlay--light-hc: darken($iui-color-foreground-n
 
 // Light high contrast theme > Opacity stops
 $iui-opacity-1--light-hc: 1;
-$iui-opacity-2--light-hc: 0.8;
-$iui-opacity-3--light-hc: 0.6;
-$iui-opacity-4--light-hc: 0.4;
-$iui-opacity-5--light-hc: 0.2;
-$iui-opacity-6--light-hc: 0.1;
+$iui-opacity-2--light-hc: 1;
+$iui-opacity-3--light-hc: 0.95;
+$iui-opacity-4--light-hc: 0.6;
+$iui-opacity-5--light-hc: 0.3;
+$iui-opacity-6--light-hc: 0.075;
 
 // Light high contrast theme > Text colors
 $iui-text-color--light-hc: rgba($iui-color-foreground-body--light-hc, $iui-opacity-2--light-hc);
