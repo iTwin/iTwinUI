@@ -225,14 +225,14 @@
             <button
               class="iui-button iui-borderless iui-small iui-carousel-navigation-animation-button"
               type="button"
-              aria-label="Pause animation"
-              data-action="pause"
+              aria-label="Play animation"
+              data-action="play"
               tabindex="-1"
             >
-              <svg-pause
+              <svg-play
                 class="iui-button-icon"
                 aria-hidden="true"
-              ></svg-pause>
+              ></svg-play>
             </button>
           </div>
 
@@ -280,7 +280,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-second"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -290,10 +290,9 @@
                 aria-controls="demo-slide-4"
               ></button>
             </li>
-
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-first"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -305,7 +304,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -317,7 +316,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -329,7 +328,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -341,7 +340,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -353,7 +352,7 @@
             </li>
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -363,10 +362,9 @@
                 aria-controls="demo-slide-10"
               ></button>
             </li>
-
             <li>
               <button
-                class="iui-carousel-navigation-dot"
+                class="iui-carousel-navigation-dot iui-invisible"
                 tabindex="-1"
                 type="button"
                 role="tab"
@@ -421,7 +419,7 @@
 
             dot.classList.toggle('iui-first', isFirstSmallDot);
             dot.classList.toggle('iui-second', isSecondSmallDot);
-          })
+          });
         };
 
         // previous / next slide buttons
@@ -437,7 +435,7 @@
           currentSlide = (currentSlide + 1) % slides.length;
           updateSlide(currentSlide);
           if (document.querySelector('[data-action="pause"]')) startAutoPlay();
-        }
+        };
         prev.addEventListener('click', () => goPrevSlide());
         next.addEventListener('click', () => goNextSlide());
 
@@ -458,14 +456,14 @@
           autoplayTimer = setInterval(() => {
             currentSlide = (currentSlide + 1) % slides.length;
             updateSlide(currentSlide);
-          }, TIME_PER_SLIDE)
+          }, TIME_PER_SLIDE);
         };
         const stopAutoPlay = () => {
           clearInterval(autoplayTimer);
         };
 
         // play / pause toggle
-        const playbackButton = document.querySelector("[data-action='pause']");
+        const playbackButton = document.querySelector("[data-action='play']");
         const togglePlaybackState = () => {
           if (playbackButton.dataset.action === 'play') {
             startAutoPlay();
@@ -481,11 +479,7 @@
         };
         playbackButton.addEventListener('click', () => togglePlaybackState());
 
-        // initialize
-        updateSlide(0);
-        startAutoPlay();
-
-        // keyboard shit
+        // keyboard navigation
         carousel.addEventListener('keydown', ({ key }) => {
           if (document.activeElement !== carousel) return;
 
