@@ -54,6 +54,17 @@ html {
     @include theme-variables(dark-hc);
   }
 
+  &.iui-theme-light-hc,
+  &.iui-theme-dark-hc {
+    .iui-anchor {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
   @media (prefers-color-scheme: light) {
     // fall back to default - light theme variables
   }
