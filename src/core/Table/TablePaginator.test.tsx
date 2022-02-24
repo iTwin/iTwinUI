@@ -242,7 +242,7 @@ it('should handle keyboard navigation when focusActivationMode is auto', () => {
 
 it('should handle keyboard navigation when focusActivationMode is manual', () => {
   const onPageChange = jest.fn();
-  const { container, debug } = renderComponent({
+  const { container } = renderComponent({
     currentPage: 10,
     onPageChange,
     focusActivationMode: 'manual',
@@ -255,7 +255,6 @@ it('should handle keyboard navigation when focusActivationMode is manual', () =>
 
   // 11 -> 10
   fireEvent.keyDown(buttonGroup, { key: 'ArrowLeft' });
-  debug();
   expect(document.activeElement?.textContent).toEqual('10');
 
   // 10 -> 1

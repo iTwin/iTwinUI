@@ -20,7 +20,9 @@ export const getTabbableElements = (
 
   return Array.from(elements).filter(
     (el) =>
-      !el.hasAttribute('disabled') && !el.classList.contains('iui-disabled'),
+      !el.hasAttribute('disabled') &&
+      !el.classList.contains('iui-disabled') &&
+      el.getAttribute('aria-disabled') !== 'true',
   );
 };
 
@@ -40,6 +42,8 @@ export const getFocusableElements = (
 
   return Array.from(elements).filter(
     (el) =>
-      !el.hasAttribute('disabled') && !el.classList.contains('iui-disabled'),
+      !el.hasAttribute('disabled') &&
+      !el.classList.contains('iui-disabled') &&
+      el.getAttribute('aria-disabled') !== 'true',
   );
 };

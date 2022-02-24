@@ -26,6 +26,11 @@ describe('getTabbableElements', () => {
     disabledDiv.className = 'iui-disabled';
     container.append(disabledDiv);
 
+    const focusableDisabledDiv = document.createElement('div');
+    focusableDisabledDiv.setAttribute('tabindex', '0');
+    focusableDisabledDiv.setAttribute('aria-disabled', 'true');
+    container.append(focusableDisabledDiv);
+
     expect(getTabbableElements(container).length).toBe(4);
   });
 
@@ -61,6 +66,11 @@ describe('getFocusableElements', () => {
     const focusableSpan = document.createElement('span');
     focusableSpan.setAttribute('tabindex', '-1');
     container.append(focusableSpan);
+
+    const focusableDisabledDiv = document.createElement('div');
+    focusableDisabledDiv.setAttribute('tabindex', '-1');
+    focusableDisabledDiv.setAttribute('aria-disabled', 'true');
+    container.append(focusableDisabledDiv);
 
     expect(getFocusableElements(container).length).toBe(5);
   });

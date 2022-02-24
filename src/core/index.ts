@@ -210,6 +210,15 @@ export type { ToggleSwitchProps } from './ToggleSwitch';
 export { Tooltip } from './Tooltip';
 export type { TooltipProps } from './Tooltip';
 
+export { Tree, TreeNode, TreeNodeExpander } from './Tree';
+export type {
+  TreeProps,
+  TreeNodeProps,
+  TreeNodeExpanderProps,
+  NodeData,
+  NodeRenderProps,
+} from './Tree';
+
 export {
   Anchor,
   Body,
