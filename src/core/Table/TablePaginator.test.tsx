@@ -70,7 +70,7 @@ it('should render currently visible rows info and page size selector', () => {
   expect(pageSizeSelector.textContent).toEqual('191-195 of 195');
 
   pageSizeSelector.click();
-  const pageSizeSelections = container.querySelectorAll('.iui-menu-item');
+  const pageSizeSelections = document.querySelectorAll('.iui-menu-item');
   expect(pageSizeSelections).toHaveLength(3);
   pageSizeSelections.forEach((el, index) => {
     expect(el.textContent).toEqual(`${pageSizeList[index]} per page`);
@@ -319,7 +319,7 @@ it('should render with custom localization', () => {
   ).toHaveTextContent('Items per test page');
 
   pageSizeSelector.click();
-  const pageSizeSelections = container.querySelectorAll('.iui-menu-item');
+  const pageSizeSelections = document.querySelectorAll('.iui-menu-item');
   expect(pageSizeSelections).toHaveLength(3);
   pageSizeSelections.forEach((el, index) => {
     expect(el.textContent).toEqual(`${pageSizeList[index]} per test page`);

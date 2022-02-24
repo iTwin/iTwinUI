@@ -188,6 +188,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         <Popover
           placement='right-start'
           visible={isSubmenuVisible}
+          appendTo='parent'
           content={
             <div
               onMouseLeave={() => setIsSubmenuVisible(false)}

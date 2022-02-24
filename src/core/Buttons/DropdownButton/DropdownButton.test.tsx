@@ -31,6 +31,11 @@ function renderComponent(props?: Partial<DropdownButtonProps>) {
   );
 }
 
+afterEach(() => {
+  // cleanup tippy after every test, so it does not stay in the dom
+  document.querySelector('[data-tippy-root]')?.remove();
+});
+
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
   expect(container.querySelector('.iui-button.iui-dropdown')).toBeTruthy();

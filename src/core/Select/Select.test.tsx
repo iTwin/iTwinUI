@@ -393,7 +393,7 @@ it('should render large SelectOption', () => {
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
 
-  const menuItems = container.querySelectorAll('.iui-menu-item.iui-large');
+  const menuItems = document.querySelectorAll('.iui-menu-item.iui-large');
   expect(menuItems.length).toEqual(3);
 });
 
@@ -411,7 +411,7 @@ it('should render sublabel', () => {
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
 
-  const menuItems = container.querySelectorAll('.iui-menu-item.iui-large');
+  const menuItems = document.querySelectorAll('.iui-menu-item.iui-large');
   expect(menuItems.length).toEqual(3);
 
   menuItems.forEach((menuItem, index) => {
@@ -436,7 +436,7 @@ it('should pass custom props to menu item', () => {
   });
 
   fireEvent.click(container.querySelector('.iui-select-button') as HTMLElement);
-  const menuItem = container.querySelector(
+  const menuItem = document.querySelector(
     '.iui-menu-item.test-class',
   ) as HTMLElement;
   expect(menuItem.getAttribute('data-value')).toBe('Test one');

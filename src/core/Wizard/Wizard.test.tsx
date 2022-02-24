@@ -7,6 +7,11 @@ import React from 'react';
 import { Wizard } from './Wizard';
 
 describe('<Wizard />', () => {
+  afterEach(() => {
+    // cleanup tippy after every test, so it does not stay in the dom
+    document.querySelector('[data-tippy-root]')?.remove();
+  });
+
   it('should render all step names and numbers in default wizard', () => {
     const wizard = (
       <Wizard
@@ -225,14 +230,14 @@ describe('<Wizard />', () => {
       />
     );
 
-    const { getByText, queryByText, container } = render(wizard);
+    const { getByText, queryByText } = render(wizard);
 
-    expect(container.querySelector('.iui-tooltip')).toBeNull();
+    expect(document.querySelector('.iui-tooltip')).toBeNull();
     expect(queryByText('Step one tooltip')).toBeNull();
     act(() => {
       fireEvent.mouseEnter(getByText('Step One'), { bubbles: true });
     });
-    expect(container.querySelector('.iui-tooltip')).not.toBeNull();
+    expect(document.querySelector('.iui-tooltip')).not.toBeNull();
     getByText('Step one tooltip');
 
     act(() => {
@@ -244,7 +249,7 @@ describe('<Wizard />', () => {
     act(() => {
       fireEvent.mouseEnter(getByText('Step Three'), { bubbles: true });
     });
-    expect(container.querySelector('.iui-tooltip')).not.toBeVisible();
+    expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
 
     jest.useRealTimers();
   });

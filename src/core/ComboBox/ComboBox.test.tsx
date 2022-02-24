@@ -46,7 +46,7 @@ it('should render in its most basic state', () => {
   expect(input).toHaveAttribute('aria-controls', `${id}-list`);
   expect(input).toHaveAttribute('aria-autocomplete', 'list');
 
-  const list = container.querySelector('.iui-menu') as HTMLUListElement;
+  const list = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(list).toBeVisible();
   expect(list.id).toEqual(`${id}-list`);
   expect(list).toHaveAttribute('role', 'listbox');
@@ -64,7 +64,7 @@ it('should render with selected value', () => {
   expect(input.value).toEqual('Item 2');
 
   input.focus();
-  container.querySelectorAll('.iui-menu-item').forEach((item, index) => {
+  document.querySelectorAll('.iui-menu-item').forEach((item, index) => {
     expect(item).toHaveTextContent(`Item ${index}`);
     if (index === 2) {
       expect(item).toHaveClass('iui-active');
@@ -82,19 +82,19 @@ it('should render caret icon correctly', () => {
   } = render(<SvgCaretDownSmall aria-hidden />);
 
   expect(icon).toEqual(caretDown);
-  expect(container.querySelector('.iui-menu')).toBeFalsy();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // open
   fireEvent.click(icon);
   icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
   expect(icon).toEqual(caretDown);
-  expect(container.querySelector('.iui-menu')).toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeVisible();
 
   // close
   fireEvent.click(icon);
   icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
   expect(icon).toEqual(caretDown);
-  expect(container.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).not.toBeVisible();
 });
 
 it('should filter list according to text input', () => {
@@ -110,7 +110,7 @@ it('should filter list according to text input', () => {
   });
   const input = assertBaseElement(container);
   input.focus();
-  const menu = container.querySelector('.iui-menu') as HTMLElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
 
   // no filter
   expect(menu.children).toHaveLength(4);
@@ -159,7 +159,7 @@ it('should accept custom filter function', () => {
   });
   const input = assertBaseElement(container);
   input.focus();
-  const menu = container.querySelector('.iui-menu') as HTMLElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
 
   // no filter
   expect(menu.children).toHaveLength(4);
@@ -192,13 +192,13 @@ it('should select value on click', () => {
   input.focus();
   getByText('Item 1').click();
   expect(mockOnChange).toHaveBeenCalledWith(1);
-  expect(container.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).not.toBeVisible();
   expect(input.value).toEqual('Item 1');
 
   input.blur();
   input.focus();
   expect(
-    container.querySelector('.iui-menu-item.iui-active.iui-focused'),
+    document.querySelector('.iui-menu-item.iui-active.iui-focused'),
   ).toHaveTextContent('Item 1');
 });
 
@@ -211,7 +211,7 @@ it('should handle keyboard navigation', () => {
   input.focus();
   expect(input).toHaveAttribute('aria-controls', `${id}-list`);
 
-  const items = container.querySelectorAll('.iui-menu-item');
+  const items = document.querySelectorAll('.iui-menu-item');
 
   // focus index 0
   fireEvent.keyDown(input, { key: 'ArrowDown' });
@@ -248,7 +248,7 @@ it('should handle keyboard navigation', () => {
   // select 0
   fireEvent.keyDown(input, { key: 'Enter' });
   expect(mockOnChange).toHaveBeenCalledWith(0);
-  expect(container.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).not.toBeVisible();
 
   // reopen menu
   fireEvent.keyDown(input, { key: 'Enter' });
@@ -263,7 +263,7 @@ it('should handle keyboard navigation', () => {
   // select 2
   fireEvent.keyDown(input, { key: 'Enter' });
   expect(mockOnChange).toHaveBeenCalledWith(2);
-  expect(container.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).not.toBeVisible();
 
   // reopen
   fireEvent.keyDown(input, { key: 'ArrowDown' });
@@ -272,13 +272,13 @@ it('should handle keyboard navigation', () => {
 
   // close
   fireEvent.keyDown(input, { key: 'Escape' });
-  expect(container.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).not.toBeVisible();
 
   // reopen and close
   fireEvent.keyDown(input, { key: 'X' });
-  expect(container.querySelector('.iui-menu')).toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeVisible();
   fireEvent.keyDown(input, { key: 'Tab' });
-  expect(container.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).not.toBeVisible();
 });
 
 it('should accept inputProps', () => {
@@ -296,7 +296,7 @@ it('should accept inputProps', () => {
   expect(container.querySelector('.iui-input-container')?.id).toBe(
     `${inputId}-cb`,
   );
-  expect(container.querySelector('.iui-menu')?.id).toBe(`${inputId}-cb-list`);
+  expect(document.querySelector('.iui-menu')?.id).toBe(`${inputId}-cb-list`);
 });
 
 it('should accept status prop', () => {

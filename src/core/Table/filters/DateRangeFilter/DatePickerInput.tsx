@@ -66,6 +66,7 @@ const DatePickerInput = (props: DatePickerInputProps) => {
           close();
         }
       }}
+      appendTo='parent'
     >
       <LabeledInput
         displayStyle='inline'

@@ -136,8 +136,8 @@ it('should support polymorphic `as` prop', () => {
   expect(anchor).toHaveTextContent('Example');
   expect(anchor).toHaveAttribute('rel', 'nofollow');
 
-  expect(container.querySelector('.iui-menu')).toBeFalsy();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
   const dropdownButton = splitMenu.querySelector('button') as HTMLButtonElement;
   dropdownButton.click();
-  expect(container.querySelector('.iui-menu')).toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeVisible();
 });
