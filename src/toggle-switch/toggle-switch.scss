@@ -61,7 +61,6 @@
     position: relative;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    touch-action: pan-y;
 
     // IE solution
     width: $iui-icons-default; // IE doesn't support CSS variables
