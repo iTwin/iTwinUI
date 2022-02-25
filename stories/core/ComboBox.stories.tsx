@@ -5,7 +5,13 @@
 import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
-import { ComboBox, ComboBoxProps, Label, SelectOption } from '../../src/core';
+import {
+  ComboBox,
+  ComboBoxProps,
+  Label,
+  MenuItem,
+  SelectOption,
+} from '../../src/core';
 import { CreeveyStoryParams } from 'creevey';
 
 export default {
@@ -404,4 +410,44 @@ export const WithStatus: Story<Partial<ComboBoxProps<string>>> = (args) => {
 WithStatus.args = {
   inputProps: { placeholder: 'Select a country' },
   status: 'negative',
+};
+
+export const CustomRenderer: Story<Partial<ComboBoxProps<string>>> = (args) => {
+  const options = React.useMemo(() => countriesList, []);
+  const [selectedValue, setSelectedValue] = React.useState('AF');
+
+  const onChange = React.useCallback((value: string) => {
+    action(value ?? '')();
+    setSelectedValue(value);
+  }, []);
+
+  const itemRenderer = React.useCallback(
+    ({ value, label }, { isSelected, id }) => (
+      <MenuItem key={value} id={id} isSelected={isSelected} value={value}>
+        <em
+          style={{
+            textTransform: 'uppercase',
+            fontWeight: isSelected ? 'bold' : undefined,
+          }}
+        >
+          {label}
+        </em>
+      </MenuItem>
+    ),
+    [],
+  ) as NonNullable<ComboBoxProps<string>['itemRenderer']>;
+
+  return (
+    <ComboBox
+      options={options}
+      inputProps={{ placeholder: 'Select a country' }}
+      value={selectedValue}
+      onChange={onChange}
+      itemRenderer={itemRenderer}
+      {...args}
+    />
+  );
+};
+WithStatus.args = {
+  inputProps: { placeholder: 'Select a country' },
 };

@@ -7,6 +7,7 @@ import { fireEvent, render } from '@testing-library/react';
 
 import { ComboBox, ComboBoxProps } from './ComboBox';
 import { SvgCaretDownSmall } from '@itwin/itwinui-icons-react';
+import { MenuItem } from '../Menu';
 
 const renderComponent = (props?: Partial<ComboBoxProps<number>>) => {
   return render(
@@ -297,6 +298,47 @@ it('should accept inputProps', () => {
     `${inputId}-cb`,
   );
   expect(document.querySelector('.iui-menu')?.id).toBe(`${inputId}-cb-list`);
+});
+
+it('should work with custom itemRenderer', () => {
+  const mockOnChange = jest.fn();
+  const { container, getByText } = renderComponent({
+    itemRenderer: ({ value, label }, { isSelected, id }) => (
+      <MenuItem
+        key={value}
+        id={id}
+        isSelected={isSelected}
+        value={value}
+        className='my-custom-item'
+      >
+        <em>CUSTOM {label}</em>
+      </MenuItem>
+    ),
+    onChange: mockOnChange,
+  });
+  const input = assertBaseElement(container);
+
+  input.focus();
+  getByText('CUSTOM Item 1').click();
+  expect(mockOnChange).toHaveBeenCalledWith(1);
+  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(input).toHaveValue('Item 1'); // the actual value of input doesn't change
+
+  input.blur();
+  input.focus();
+  expect(
+    document.querySelector(
+      '.iui-menu-item.iui-active.iui-focused.my-custom-item',
+    ),
+  ).toHaveTextContent('CUSTOM Item 1');
+
+  fireEvent.keyDown(input, { key: 'ArrowDown' });
+  expect(
+    document.querySelector('.iui-menu-item.iui-focused.my-custom-item'),
+  ).toHaveTextContent('CUSTOM Item 2');
+
+  fireEvent.keyDown(input, { key: 'Enter' });
+  expect(input).toHaveValue('Item 2');
 });
 
 it('should accept status prop', () => {

@@ -17,6 +17,7 @@ import {
   getFocusableElements,
   getRandomValue,
   InputContainerProps,
+  mergeRefs,
 } from '../utils';
 import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
 import 'tippy.js/animations/shift-away.css';
@@ -54,6 +55,20 @@ export type ComboBoxProps<T> = {
    * @default 'No options found'
    */
   emptyStateMessage?: string;
+  /**
+   * A custom item renderer can be specified to control the rendering.
+   * This function should ideally return a customized version of `MenuItem`,
+   * otherwise you will need to make sure to provide styling for the `isFocused` state.
+   */
+  itemRenderer?: (
+    option: SelectOption<T>,
+    states: {
+      isSelected: boolean;
+      isFocused: boolean;
+      id: string;
+      index: number;
+    },
+  ) => JSX.Element;
 } & Pick<InputContainerProps, 'status'> &
   Omit<CommonProps, 'title'>;
 
@@ -80,6 +95,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     inputProps,
     dropdownMenuProps,
     emptyStateMessage = 'No options found',
+    itemRenderer,
     ...rest
   } = props;
 
@@ -103,25 +119,44 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     [options, id],
   );
 
+  const userOnChange = React.useRef(onChange);
+
   const memoizedItems = React.useMemo(
     () =>
-      options.map(({ label, value, ...rest }, index) => (
-        <MenuItem
-          id={getOptionId(index)}
-          key={getOptionId(index)}
-          value={value}
-          role='option'
-          onClick={(value: T) => {
+      options.map((option, index) => {
+        const { label, value, ...rest } = option;
+        const additionalProps = {
+          value: value,
+          role: 'option',
+          onClick: () => {
             setSelectedValue(value);
-            onChange?.(value);
+            userOnChange.current?.(value);
             setIsOpen(false);
-          }}
-          {...rest}
-        >
-          {label}
-        </MenuItem>
-      )),
-    [options, getOptionId, onChange],
+          },
+        };
+        if (itemRenderer) {
+          return React.cloneElement(
+            itemRenderer(option, {
+              id: getOptionId(index),
+              index,
+              isSelected: false,
+              isFocused: false,
+            }),
+            additionalProps,
+          );
+        }
+        return (
+          <MenuItem
+            id={getOptionId(index)}
+            key={getOptionId(index)}
+            {...additionalProps}
+            {...rest}
+          >
+            {label}
+          </MenuItem>
+        );
+      }),
+    [options, getOptionId, itemRenderer],
   );
 
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -246,7 +281,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         case 'Enter':
           if (isOpen) {
             setSelectedValue(options[focusedIndex].value);
-            onChange?.(options[focusedIndex].value);
+            userOnChange.current?.(options[focusedIndex].value);
           }
           setIsOpen((open) => !open);
           event.preventDefault();
@@ -267,29 +302,44 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           break;
       }
     },
-    [focusedIndex, isOpen, options, getOptionId, onChange],
+    [focusedIndex, isOpen, options, getOptionId],
   );
 
   const menuItems = React.useMemo(() => {
     if (filteredOptions.length === 0) {
-      return (
-        <MenuExtraContent>
+      return [
+        <MenuExtraContent key={0}>
           <Text isMuted>{emptyStateMessage}</Text>
-        </MenuExtraContent>
-      );
+        </MenuExtraContent>,
+      ];
     }
     return filteredOptions.map((option) => {
       const index = options.findIndex(({ value }) => option.value === value);
       if (index < 0) {
-        return;
+        return <></>;
       }
 
-      if (selectedValue === option.value || focusedIndex === index) {
-        return React.cloneElement(memoizedItems[index], {
-          isSelected: selectedValue === option.value,
-          className: cx({ 'iui-focused': focusedIndex === index }),
-          ref: (el: HTMLElement) =>
-            focusedIndex === index && el?.scrollIntoView(false),
+      const id = getOptionId(index);
+      const isSelected = selectedValue === option.value;
+      const isFocused = focusedIndex === index;
+      const focusScrollRef = (el: HTMLElement) =>
+        isFocused && el?.scrollIntoView({ block: 'nearest' });
+
+      if (isSelected || isFocused) {
+        const item =
+          itemRenderer?.(option, { index, id, isSelected, isFocused }) ??
+          React.cloneElement(memoizedItems[index], { isSelected });
+
+        return React.cloneElement(item, {
+          className: cx({ 'iui-focused': isFocused }, item.props.className),
+          ref: mergeRefs(focusScrollRef, item.props.ref),
+          value: option.value,
+          role: 'option',
+          onClick: () => {
+            setSelectedValue(option.value);
+            userOnChange.current?.(option.value);
+            setIsOpen(false);
+          },
         });
       }
 
@@ -299,8 +349,10 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     filteredOptions,
     emptyStateMessage,
     options,
-    focusedIndex,
+    getOptionId,
     selectedValue,
+    focusedIndex,
+    itemRenderer,
     memoizedItems,
   ]);
 
