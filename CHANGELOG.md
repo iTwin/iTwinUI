@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.32.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.31.0...v1.32.0) (2022-02-25)
+
+### What's new
+
+* **Popover:** Append to `body` by default and increase z-index ([#562](https://www.github.com/iTwin/iTwinUI-react/issues/562)) ([66df49f](https://www.github.com/iTwin/iTwinUI-react/commit/66df49fec85ec13707cc73bb3fdf84ca3a4c7655))
+  - This will fix many clipping and positioning issues in tooltips and dropdowns, without the need for any workarounds.
+  - If a popover is nested within another popover which is already appended to document.body, then it should use `appendTo='parent'`.
+* **Tree:** Add new Tree Component ([#468](https://www.github.com/iTwin/iTwinUI-react/issues/468)) ([1d5083c](https://www.github.com/iTwin/iTwinUI-react/commit/1d5083c612cd1f1b1cbec0e5ea82b8b573d72b86))
+* **ComboBox:** Add new `itemRenderer` prop for customizing the look of menu items ([#547](https://www.github.com/iTwin/iTwinUI-react/issues/547)) ([d866d32](https://www.github.com/iTwin/iTwinUI-react/commit/d866d32a719dea6e359519ae40bc66dc7df209e1))
+* **ExpandableBlock:** Add borderless variant via new `styleType` prop ([#557](https://www.github.com/iTwin/iTwinUI-react/issues/557)) ([9e8c8ab](https://www.github.com/iTwin/iTwinUI-react/commit/9e8c8ab76a7c6d24c51d5eea9e4424417c0e2fad))
+* **Checkbox** and **Radio**: Render without `<label>` wrapper if `label` prop is not passed ([#556](https://www.github.com/iTwin/iTwinUI-react/issues/556)) ([a436cbf](https://www.github.com/iTwin/iTwinUI-react/commit/a436cbf333629b2603bf160f9a8ffe2592093805))
+
+### Fixes
+
+* **Menu:** Fix lost item focus in edge cases ([#563](https://www.github.com/iTwin/iTwinUI-react/issues/563)) ([3ccb5ed](https://www.github.com/iTwin/iTwinUI-react/commit/3ccb5ed98ac4f60479e0450abb31cbb659d902b9))
+
 ## [1.31.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.30.0...v1.31.0) (2022-02-15)
 
 ### What's new
