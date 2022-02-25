@@ -103,9 +103,15 @@
     }
   }
 
-  .iui-reorder-column {
+  .iui-reorder-column-right {
     @include themed {
       border-right: $iui-xxs solid t(iui-color-foreground-primary);
+    }
+  }
+
+  .iui-reorder-column-left {
+    @include themed {
+      border-left: $iui-xxs solid t(iui-color-foreground-primary);
     }
   }
 
