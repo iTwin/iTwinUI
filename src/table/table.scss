@@ -40,6 +40,10 @@
       cursor: pointer;
     }
 
+    &.iui-grabbing {
+      cursor: grabbing;
+    }
+
     > .iui-filter-button {
       margin-left: $iui-xs;
       margin-right: $iui-s;
@@ -96,6 +100,18 @@
       .iui-filter-button {
         visibility: visible;
       }
+    }
+  }
+
+  .iui-reorder-column-right {
+    @include themed {
+      border-right: $iui-xxs solid t(iui-color-foreground-primary);
+    }
+  }
+
+  .iui-reorder-column-left {
+    @include themed {
+      border-left: $iui-xxs solid t(iui-color-foreground-primary);
     }
   }
 
