@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.49.0](https://www.github.com/iTwin/iTwinUI/compare/v0.48.2...v0.49.0) (2022-02-25)
+
+
+### What's new
+
+* **Table:** Add column reordering ([#498](https://www.github.com/iTwin/iTwinUI/issues/498)) ([385b769](https://www.github.com/iTwin/iTwinUI/commit/385b769096aa08dd55f9d207407fdf2dbf78f0e5))
+
 ### [0.48.2](https://www.github.com/iTwin/iTwinUI/compare/v0.48.1...v0.48.2) (2022-02-23)
 
 ### Fixes
