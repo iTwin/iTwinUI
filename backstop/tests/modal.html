@@ -40,28 +40,29 @@
 
     <a
       id="open-modal"
-      onclick="toggleModal('myModal')"
+      onclick="toggleModal('default-modal')"
       class="iui-anchor"
     >Open modal</a>
 
     <br>
 
     <a
-      id="open-full-page-modal"
-      onclick="toggleModal('fullPageModal')"
+      id="open-full-page-modal-slide"
+      onclick="toggleModal('full-page-modal-slide')"
       class="iui-anchor"
-    >Open full page modal</a>
+    >Open full page modal - sliding animation</a>
 
-    <script>
-      function toggleModal(modalId) {
-        var element = document.getElementById(modalId);
-        element.classList.toggle('iui-modal-visible');
-      }
-    </script>
+    <br>
+
+    <a
+      id="open-full-page-modal-scale"
+      onclick="toggleModal('full-page-modal-scale')"
+      class="iui-anchor"
+    >Open full page modal - scaling animation</a>
 
     <div
       class="iui-modal"
-      id="myModal"
+      id="default-modal"
     >
       <div class="iui-modal-dialog">
         <div class="iui-title-bar">
@@ -70,52 +71,7 @@
             aria-label="Close"
             type="button"
             class="iui-button iui-borderless iui-small"
-            onclick="toggleModal('myModal')"
-          >
-            <svg-close
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-close>
-          </button>
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <div class="iui-button-bar">
-          <button
-            class="iui-button iui-high-visibility"
-            onclick="toggleModal('myModal')"
-          >
-            <span class="iui-button-label">Proceed</span>
-          </button>
-          <button
-            class="iui-button iui-default"
-            onclick="toggleModal('myModal')"
-          >
-            <span class="iui-button-label">Cancel</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="iui-modal iui-modal-full-page"
-      id="fullPageModal"
-    >
-      <div class="iui-modal-dialog">
-        <div class="iui-title-bar">
-          <div class="iui-title">Title</div>
-          <button
-            aria-label="Close"
-            type="button"
-            class="iui-button iui-borderless iui-small"
-            onclick="toggleModal('fullPageModal')"
+            onclick="toggleModal('default-modal')"
           >
             <svg-close
               class="iui-button-icon"
@@ -137,18 +93,119 @@
         <div class="iui-button-bar">
           <button
             class="iui-button iui-high-visibility"
-            onclick="toggleModal('fullPageModal')"
+            onclick="toggleModal('default-modal')"
           >
             <span class="iui-button-label">Proceed</span>
           </button>
           <button
             class="iui-button iui-default"
-            onclick="toggleModal('fullPageModal')"
+            onclick="toggleModal('default-modal')"
           >
             <span class="iui-button-label">Cancel</span>
           </button>
         </div>
       </div>
     </div>
+
+    <div
+      class="iui-modal iui-modal-full-page iui-modal-full-page-slide-animation"
+      id="full-page-modal-slide"
+    >
+      <div class="iui-modal-dialog">
+        <div class="iui-title-bar">
+          <div class="iui-title">Title</div>
+          <button
+            aria-label="Close"
+            type="button"
+            class="iui-button iui-borderless iui-small"
+            onclick="toggleModal('full-page-modal-slide')"
+          >
+            <svg-close
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close>
+          </button>
+        </div>
+        <div class="iui-modal-content">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+        <div class="iui-button-bar">
+          <button
+            class="iui-button iui-high-visibility"
+            onclick="toggleModal('full-page-modal-slide')"
+          >
+            <span class="iui-button-label">Proceed</span>
+          </button>
+          <button
+            class="iui-button iui-default"
+            onclick="toggleModal('full-page-modal-slide')"
+          >
+            <span class="iui-button-label">Cancel</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="iui-modal iui-modal-full-page iui-modal-full-page-scale-animation"
+      id="full-page-modal-scale"
+    >
+      <div class="iui-modal-dialog">
+        <div class="iui-title-bar">
+          <div class="iui-title">Title</div>
+          <button
+            aria-label="Close"
+            type="button"
+            class="iui-button iui-borderless iui-small"
+            onclick="toggleModal('full-page-modal-scale')"
+          >
+            <svg-close
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close>
+          </button>
+        </div>
+        <div class="iui-modal-content">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+        <div class="iui-button-bar">
+          <button
+            class="iui-button iui-high-visibility"
+            onclick="toggleModal('full-page-modal-scale')"
+          >
+            <span class="iui-button-label">Proceed</span>
+          </button>
+          <button
+            class="iui-button iui-default"
+            onclick="toggleModal('full-page-modal-scale')"
+          >
+            <span class="iui-button-label">Cancel</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleModal(modalId) {
+        var element = document.getElementById(modalId);
+        element.classList.toggle('iui-modal-visible');
+      }
+    </script>
   </body>
 </html>

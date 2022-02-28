@@ -30,6 +30,7 @@
     z-index: 1000;
     max-width: 50%;
     min-width: 400px;
+    max-height: 100vh;
     border-radius: $iui-border-radius;
     box-shadow: $iui-elevation-24;
     padding: $iui-baseline $iui-m;
@@ -72,7 +73,10 @@
 
     .iui-modal-content {
       flex-grow: 2;
-      overflow: scroll;
+      overflow-y: auto;
+      @supports (overflow-y: overlay) {
+        overflow-y: overlay;
+      }
     }
   }
 
@@ -84,16 +88,6 @@
 }
 
 @mixin iui-modal-full-page {
-  --iui-full-page-modal-transform-x: 100%;
-  --iui-full-page-modal-transform-y: 0%;
-
-  visibility: visible;
-  opacity: 1;
-  transform: translate(var(--iui-full-page-modal-transform-x), var(--iui-full-page-modal-transform-y));
-  @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed ease-in;
-  }
-
   > .iui-modal-dialog {
     height: 100vh;
     width: 100vw;
@@ -103,13 +97,36 @@
     max-width: initial;
     min-width: initial;
     border-radius: 0;
-    box-shadow: none;
+  }
+}
+
+@mixin iui-modal-full-page-slide-animation {
+  --iui-full-page-modal-transform-x: 0%;
+  --iui-full-page-modal-transform-y: 100%;
+
+  transform: translate(var(--iui-full-page-modal-transform-x), var(--iui-full-page-modal-transform-y));
+  @media (prefers-reduced-motion: no-preference) {
+    transition: visibility 0s linear $iui-speed, opacity 0s linear $iui-speed, transform $iui-speed ease-in;
   }
 
   &.iui-modal-visible {
     transform: translate(0, 0);
     @media (prefers-reduced-motion: no-preference) {
       transition: transform $iui-speed ease-out;
+    }
+  }
+}
+
+@mixin iui-modal-full-page-scale-animation {
+  transform: scale(0);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: visibility 0s linear $iui-speed, opacity $iui-speed ease-in, transform $iui-speed ease-in;
+  }
+
+  &.iui-modal-visible {
+    transform: scale(1);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: visibility 0s linear $iui-speed-fast, opacity $iui-speed-fast ease-out, transform $iui-speed-slow ease-out;
     }
   }
 }
