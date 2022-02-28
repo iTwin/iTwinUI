@@ -35,6 +35,16 @@ const urls: FooterElement[] = [
   },
 ];
 
+const customUrls: FooterElement[] = [
+  {
+    title: 'Custom link',
+    url: 'https://www.bentley.com/',
+  },
+  {
+    title: 'Products link',
+  },
+];
+
 it('should show all default footer elements', () => {
   const { container } = renderComponent();
   const copyright = container.querySelector<HTMLLIElement>('li:first-child');
@@ -53,16 +63,7 @@ it('should show all default footer elements', () => {
   });
 });
 
-it('should show all default footer elements', () => {
-  const customUrls: FooterElement[] = [
-    {
-      title: 'Custom link',
-      url: 'https://www.bentley.com/',
-    },
-    {
-      title: 'Products link',
-    },
-  ];
+it('should show all default and custom footer elements', () => {
   const { container } = renderComponent({ customElements: customUrls });
   const copyright = container.querySelector<HTMLLIElement>('li:first-child');
   const today = new Date();
@@ -74,6 +75,25 @@ it('should show all default footer elements', () => {
     const link = screen.getByText(element.title) as HTMLAnchorElement;
     if (element.url) {
       expect(link.href).toBe(element.url);
+    }
+  });
+});
+
+it('should not show default footer elements', () => {
+  const { container } = renderComponent({
+    customElements: () => customUrls,
+  });
+  const allLi = container.querySelectorAll<HTMLAnchorElement>('li > a');
+  allLi.forEach((element, i) => {
+    expect(element).toBeTruthy();
+    expect(element.textContent).toBe(customUrls[i].title);
+    expect(element.href).toBe(customUrls[i].url);
+    if (i > 0) {
+      expect((element.previousSibling as HTMLSpanElement).classList).toContain(
+        'iui-separator',
+      );
+    } else {
+      expect(element.previousSibling as HTMLSpanElement).toBeNull();
     }
   });
 });
