@@ -26,6 +26,10 @@
   @include iui-header-button;
 }
 
+.iui-header-breadcrumb {
+  @include iui-header-breadcrumb;
+}
+
 .iui-header-breadcrumb-button {
   @include iui-header-breadcrumb-button;
 }
@@ -34,8 +38,8 @@
   @include iui-header-breadcrumb-button-icon;
 }
 
-.iui-header-breadcrumb {
-  @include iui-header-breadcrumb;
+.iui-header-breadcrumb-button-label {
+  @include iui-header-breadcrumb-button-label;
 }
 
 .iui-header-divider {

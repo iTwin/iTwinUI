@@ -159,7 +159,7 @@
     }
   }
 
-  &-button:first-child:not(:only-child) {
+  &-button:not(:only-child) {
     padding-right: $iui-xs;
   }
 
@@ -168,38 +168,12 @@
   }
 
   &.iui-active {
-    svg {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-      }
-    }
-
-    .iui-header-breadcrumb-button-dropdown:hover {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
-    }
-
     &,
     &:hover {
       // Blue background and darker blue bottom line
       @include themed {
         box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
         background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
-
-      .iui-header-breadcrumb-button-icon {
-        @include themed {
-          fill: t(iui-icons-color-primary);
-          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-        }
-      }
-    }
-
-    // Blue text
-    .iui-button-label {
-      @include themed {
-        color: t(iui-color-foreground-primary);
       }
     }
 
@@ -211,88 +185,65 @@
         background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
         box-shadow: 0 $iui-xxs 0 0 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       }
-
-      .iui-button-label {
-        @include themed {
-          color: t(iui-icons-color-actionable-disabled);
-        }
-      }
-
-      .iui-button-icon,
-      svg {
-        @include themed {
-          fill: t(iui-icons-color-actionable-disabled);
-        }
-      }
-
-      .iui-header-breadcrumb-button-icon {
-        @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
-        }
-      }
     }
   }
 
   &.iui-disabled {
     cursor: not-allowed;
 
-    &,
-    .iui-header-breadcrumb-button-dropdown:hover {
+    &:hover:not(.iui-active) {
       background-color: transparent;
     }
   }
 }
 
+// RENAME TO IUI-HEADER-BUTTON
 @mixin iui-header-breadcrumb-button {
-  @include iui-button;
-  @include iui-button-borderless;
-  @include iui-button-size(large, borderless);
+  @include iui-reset;
+  @include iui-focus;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
   height: 100%;
   border-radius: 0;
-  gap: 0;
   max-width: 25vw;
   overflow: hidden;
+  padding-left: $iui-sm;
   padding-right: $iui-s;
+  box-sizing: border-box;
+  transition: background-color $iui-speed-fast ease-out;
+  cursor: pointer;
+  @include themed {
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
+
+  // IE solution
+  > * + * {
+    margin-left: $iui-sm;
+  }
+  @supports (gap: $iui-sm) {
+    gap: $iui-sm;
+
+    > * + * {
+      margin-left: 0;
+    }
+  }
+  // End IE solution
 
   &,
   &:hover {
     background-color: transparent;
   }
 
-  &-dropdown:hover {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+  &-dropdown {
+    padding: 0 $iui-xs;
+
+    &:hover {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+      }
     }
-  }
-
-  &-name,
-  &-description {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  &-description {
-    height: $iui-baseline * 2;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: height $iui-speed-fast ease-out;
-    }
-    @include themed {
-      opacity: t(iui-opacity-3);
-    }
-  }
-
-  > .iui-button-label {
-    text-align: left;
-    font-size: $iui-font-size;
-    overflow: hidden;
-
-    @media (max-width: 768px) {
-      margin-left: 0;
-    }
-  }
-
-  > * + * {
-    margin-left: $iui-sm;
   }
 
   .iui-header-breadcrumb-button-icon {
@@ -321,10 +272,6 @@
   &:disabled,
   &[aria-disabled='true'] {
     cursor: not-allowed;
-
-    .iui-header-breadcrumb-button-icon {
-      filter: grayscale(1) opacity(0.7);
-    }
   }
 
   @at-root {
@@ -342,10 +289,118 @@
           height: $iui-icons-default;
           padding: 0;
         }
+      }
+    }
 
-        .iui-header-breadcrumb-button-description {
-          @include iui-display-none;
+    .iui-active {
+      svg {
+        @include themed {
+          fill: t(iui-icons-color-primary);
         }
+      }
+
+      .iui-header-breadcrumb-button-dropdown:hover {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        }
+      }
+
+      // Blue text
+      .iui-button-label {
+        @include themed {
+          color: t(iui-color-foreground-primary);
+        }
+      }
+
+      &,
+      &:hover {
+        // Blue background and darker blue bottom line
+        @include themed {
+          box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        }
+
+        .iui-header-breadcrumb-button-icon {
+          @include themed {
+            fill: t(iui-icons-color-primary);
+            background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+          }
+        }
+      }
+
+      // Disabled state
+      &.iui-disabled,
+      &:disabled,
+      &[aria-disabled='true'] {
+        .iui-button-label {
+          @include themed {
+            color: t(iui-icons-color-actionable-disabled);
+          }
+        }
+
+        .iui-button-icon,
+        svg {
+          @include themed {
+            fill: t(iui-icons-color-actionable-disabled);
+          }
+        }
+
+        .iui-header-breadcrumb-button-icon {
+          @include themed {
+            background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+          }
+        }
+      }
+    }
+
+    .iui-disabled.iui-header-breadcrumb-button-dropdown:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-label {
+  font-family: $iui-font-family;
+  font-size: $iui-font-size;
+  line-height: $iui-line-height;
+  text-align: left;
+  overflow: hidden;
+  transition: color $iui-speed-fast ease-out;
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+
+  &-name,
+  &-description {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &-description {
+    height: $iui-baseline * 2;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: height $iui-speed-fast ease-out;
+    }
+    @include themed {
+      opacity: t(iui-opacity-3);
+    }
+  }
+
+  @at-root {
+    .iui-slim .iui-header-breadcrumb-button-label-description {
+      @include iui-display-none;
+    }
+
+    .iui-active .iui-header-breadcrumb-button-label {
+      @include themed {
+        color: t(iui-color-foreground-primary);
+      }
+    }
+
+    .iui-disabled .iui-header-breadcrumb-button-label {
+      @include themed {
+        color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
       }
     }
   }
@@ -358,8 +413,19 @@
   @media (prefers-reduced-motion: no-preference) {
     transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
   }
+
+  @at-root {
+    .iui-disabled,
+    :disabled,
+    [aria-disabled='true'] {
+      .iui-header-breadcrumb-button-icon {
+        filter: grayscale(1) opacity(0.7);
+      }
+    }
+  }
 }
 
+// RIP vv
 @mixin iui-header-button {
   @include iui-button;
   @include iui-button-borderless;
