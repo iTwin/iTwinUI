@@ -18,12 +18,16 @@
   @include iui-page-header-right;
 }
 
-.iui-header-brand {
-  @include iui-header-brand;
+.iui-page-header-divider {
+  @include iui-page-header-divider;
 }
 
-.iui-header-button {
-  @include iui-header-button;
+.iui-page-header-chevron {
+  @include iui-page-header-chevron;
+}
+
+.iui-header-brand {
+  @include iui-header-brand;
 }
 
 .iui-header-breadcrumb {
@@ -40,12 +44,4 @@
 
 .iui-header-breadcrumb-button-label {
   @include iui-header-breadcrumb-button-label;
-}
-
-.iui-header-divider {
-  @include iui-header-divider;
-}
-
-.iui-header-chevron {
-  @include iui-header-chevron;
 }

@@ -30,6 +30,7 @@ $iui-button-padding-large: $iui-xs * 6;
   cursor: pointer;
   white-space: nowrap;
   border: 1px solid transparent;
+  -webkit-tap-highlight-color: transparent;
   @media (prefers-reduced-motion: no-preference) {
     transition: color $iui-speed-fast ease-out, background-color $iui-speed-fast ease-out,
       border-color $iui-speed-fast ease-out;

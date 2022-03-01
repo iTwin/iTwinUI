@@ -42,7 +42,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   display: flex;
   align-items: center;
   font-size: $iui-font-size;
-  padding: 0 ($iui-component-padding-horizontal + 1px);
+  padding: 0 $iui-component-padding-horizontal;
   height: $iui-component-height;
   cursor: pointer;
   box-sizing: border-box;
@@ -155,7 +155,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 }
 
 @mixin iui-menu-content {
-  padding: $iui-baseline ($iui-component-padding-horizontal + 1px);
+  padding: $iui-baseline $iui-component-padding-horizontal;
 }
 
 @mixin iui-menu-divider {
