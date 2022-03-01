@@ -102,16 +102,19 @@
 
     // Disabled state
     &.iui-disabled,
-    &:disabled,
     &[aria-disabled='true'] {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
-        box-shadow: 0 $iui-xxs 0 0 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      &,
+      &:hover {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+          box-shadow: 0 $iui-xxs 0 0 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        }
       }
     }
   }
 
-  &.iui-disabled {
+  &.iui-disabled,
+  &[aria-disabled='true'] {
     cursor: not-allowed;
 
     &:hover:not(.iui-active) {
