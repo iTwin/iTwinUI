@@ -26,16 +26,16 @@
   @include iui-header-button;
 }
 
-.iui-header-breadcrumbs-button {
-  @include iui-header-breadcrumbs-button;
+.iui-header-breadcrumb-button {
+  @include iui-header-breadcrumb-button;
 }
 
-.iui-header-breadcrumbs-button-icon {
-  @include iui-header-breadcrumbs-button-icon;
+.iui-header-breadcrumb-button-icon {
+  @include iui-header-breadcrumb-button-icon;
 }
 
-.iui-header-split-button {
-  @include iui-header-split-button;
+.iui-header-breadcrumb {
+  @include iui-header-breadcrumb;
 }
 
 .iui-header-divider {

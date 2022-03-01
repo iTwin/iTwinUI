@@ -66,71 +66,76 @@
 
     <section id="demo-other-content">
       <header class="iui-page-header">
-        <div class="iui-left">
+        <div class="iui-page-header-left">
           <!-- Application Button -->
           <div
-            class="iui-header-logo"
+            class="iui-header-brand"
             role="button"
             aria-label="App name"
             aria-expanded="false"
             tabindex="0"
           >
             <svg-imodel-hollow
-              class="iui-header-button-icon"
+              class="iui-header-brand-icon"
               aria-hidden="true"
             ></svg-imodel-hollow>
           </div>
 
-          <div class="iui-divider"></div>
+          <div class="iui-header-divider"></div>
 
-          <!-- Project Button -->
           <nav aria-label="breadcrumbs">
-            <button
-              class="iui-button iui-borderless iui-header-button"
-              type="button"
-              aria-label="Project picker"
-              aria-expanded="false"
-            >
-              <span class="iui-button-label">
-                <div class="iui-name">Project Alpha</div>
-              </span>
-              <svg-caret-down-small
-                class="iui-button-icon"
-                aria-hidden="true"
-              ></svg-caret-down-small>
-            </button>
+            <!-- Project Button -->
+            <span class="iui-header-breadcrumb">
+              <button
+                class="iui-header-breadcrumb-button"
+                type="button"
+                aria-label="Project picker"
+                aria-expanded="false"
+              >
+                <span class="iui-button-label">
+                  <div class="iui-name">Project Alpha</div>
+                </span>
+                <svg-caret-down-small
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-caret-down-small>
+              </button>
+            </span>
 
             <svg-chevron-right
-              class="iui-chevron"
+              class="iui-header-chevron"
               aria-hidden="true"
             ></svg-chevron-right>
 
             <!-- IModel Button -->
-            <button
-              class="iui-button iui-borderless iui-active iui-header-button"
-              type="button"
-              aria-label="Model picker"
-              aria-expanded="false"
-              aria-current="location"
-            >
-              <span class="iui-button-label">
-                <div class="iui-name">Model Beta</div>
-              </span>
-              <svg-caret-down-small
-                class="iui-button-icon"
-                aria-hidden="true"
-              ></svg-caret-down-small>
-            </button>
+            <span class="iui-header-breadcrumb iui-active">
+              <button
+                class="iui-header-breadcrumb-button"
+                type="button"
+                aria-label="Model picker"
+                aria-expanded="false"
+                aria-current="location"
+              >
+                <span class="iui-button-label">
+                  <div class="iui-name">Model Beta</div>
+                </span>
+                <svg-caret-down-small
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-caret-down-small>
+              </button>
+            </span>
           </nav>
         </div>
 
-        <div class="iui-right">
+        <div class="iui-page-header-right">
           <!-- Notifications -->
           <button
-            class="iui-button iui-borderless"
+            class="iui-header-button"
             type="button"
             aria-label="Notifications"
             aria-expanded="false"
+            id="test-button-2"
           >
             <svg-notification
               class="iui-button-icon iui-notification-positive"
@@ -140,7 +145,7 @@
 
           <!-- Help -->
           <button
-            class="iui-button iui-borderless"
+            class="iui-header-button"
             type="button"
             aria-label="Help"
             aria-expanded="false"
@@ -153,19 +158,17 @@
 
           <!-- Profile dropdown button -->
           <button
-            class="iui-button iui-dropdown iui-borderless"
+            class="iui-header-button"
             type="button"
             aria-label="My account"
             aria-expanded="false"
           >
-
             <user-icon type="2"></user-icon>
-            </span>
           </button>
 
           <!-- More menu -->
           <button
-            class="iui-button iui-borderless"
+            class="iui-header-button"
             type="button"
             aria-label="More options"
             aria-expanded="false"

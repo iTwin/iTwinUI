@@ -77,13 +77,9 @@
 // #endregion Header structure
 
 // #region Header buttons
-@mixin iui-header-button-reset {
-  height: 100%;
-  border-radius: 0 !important;
-}
-
 @mixin iui-header-brand {
-  @include iui-header-button-reset;
+  height: 100%;
+  border-radius: 0;
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
@@ -150,15 +146,124 @@
   }
 }
 
-@mixin iui-header-breadcrumbs-button {
+@mixin iui-header-breadcrumb {
+  max-width: 25vw;
+  transition: background-color $iui-speed-fast ease-out;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+
+  &:hover {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+    }
+  }
+
+  &-button:first-child:not(:only-child) {
+    padding-right: $iui-xs;
+  }
+
+  &-button-dropdown {
+    padding: 0 $iui-xs;
+  }
+
+  &.iui-active {
+    svg {
+      @include themed {
+        fill: t(iui-icons-color-primary);
+      }
+    }
+
+    .iui-header-breadcrumb-button-dropdown:hover {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      }
+    }
+
+    &,
+    &:hover {
+      // Blue background and darker blue bottom line
+      @include themed {
+        box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      }
+
+      .iui-header-breadcrumb-button-icon {
+        @include themed {
+          fill: t(iui-icons-color-primary);
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        }
+      }
+    }
+
+    // Blue text
+    .iui-button-label {
+      @include themed {
+        color: t(iui-color-foreground-primary);
+      }
+    }
+
+    // Disabled state
+    &.iui-disabled,
+    &:disabled,
+    &[aria-disabled='true'] {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+        box-shadow: 0 $iui-xxs 0 0 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      }
+
+      .iui-button-label {
+        @include themed {
+          color: t(iui-icons-color-actionable-disabled);
+        }
+      }
+
+      .iui-button-icon,
+      svg {
+        @include themed {
+          fill: t(iui-icons-color-actionable-disabled);
+        }
+      }
+
+      .iui-header-breadcrumb-button-icon {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+        }
+      }
+    }
+  }
+
+  &.iui-disabled {
+    cursor: not-allowed;
+
+    &,
+    .iui-header-breadcrumb-button-dropdown:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button {
   @include iui-button;
   @include iui-button-borderless;
   @include iui-button-size(large, borderless);
-  @include iui-header-button-reset;
+  height: 100%;
+  border-radius: 0;
   gap: 0;
   max-width: 25vw;
   overflow: hidden;
   padding-right: $iui-s;
+
+  &,
+  &:hover {
+    background-color: transparent;
+  }
+
+  &-dropdown:hover {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+    }
+  }
 
   &-name,
   &-description {
@@ -190,11 +295,11 @@
     margin-left: $iui-sm;
   }
 
-  .iui-header-breadcrumbs-button-icon {
+  .iui-header-breadcrumb-button-icon {
     display: inline-flex;
     padding: $iui-xs;
     box-sizing: content-box;
-    @include iui-header-breadcrumbs-button-icon($iui-icons-default, $iui-border-radius);
+    @include iui-header-breadcrumb-button-icon($iui-icons-default, $iui-border-radius);
     @include themed {
       background-color: t(iui-color-background-3);
       fill: t(iui-icons-color);
@@ -205,15 +310,11 @@
     }
   }
 
-  img.iui-header-breadcrumbs-button-icon {
+  img.iui-header-breadcrumb-button-icon {
     padding: 0;
     width: $iui-icons-large;
     height: $iui-icons-large;
     object-fit: cover;
-  }
-
-  &.iui-active {
-    @include iui-header-button-active;
   }
 
   &.iui-disabled,
@@ -221,28 +322,28 @@
   &[aria-disabled='true'] {
     cursor: not-allowed;
 
-    .iui-header-breadcrumbs-button-icon {
+    .iui-header-breadcrumb-button-icon {
       filter: grayscale(1) opacity(0.7);
     }
   }
 
   @at-root {
     .iui-slim {
-      .iui-header-breadcrumbs-button {
-        .iui-header-breadcrumbs-button-icon {
+      .iui-header-breadcrumb-button {
+        .iui-header-breadcrumb-button-icon {
           width: $iui-icons-small;
           height: $iui-icons-small;
           padding: $iui-xxs;
           margin: 0 $iui-xs;
         }
 
-        img.iui-header-breadcrumbs-button-icon {
+        img.iui-header-breadcrumb-button-icon {
           width: $iui-icons-default;
           height: $iui-icons-default;
           padding: 0;
         }
 
-        .iui-header-breadcrumbs-button-description {
+        .iui-header-breadcrumb-button-description {
           @include iui-display-none;
         }
       }
@@ -250,14 +351,7 @@
   }
 }
 
-@mixin iui-header-button {
-  @include iui-button;
-  @include iui-button-borderless;
-  @include iui-header-button-reset;
-  flex-shrink: 0;
-}
-
-@mixin iui-header-breadcrumbs-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
+@mixin iui-header-breadcrumb-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
   width: $size;
   height: $size;
   border-radius: $border-radius;
@@ -266,113 +360,12 @@
   }
 }
 
-@mixin iui-header-split-button {
-  max-width: 25vw;
-  transition: background-color $iui-speed-fast ease-out;
-
-  &,
-  > * {
-    height: 100%;
-    display: flex;
-    overflow: hidden;
-  }
-
-  .iui-header-breadcrumbs-button {
-    padding: 0 $iui-xs;
-  }
-
-  > *:first-child {
-    .iui-header-breadcrumbs-button {
-      padding-left: $iui-sm;
-    }
-  }
-
-  &.iui-disabled {
-    cursor: not-allowed;
-  }
-
-  &.iui-active {
-    @include iui-header-button-active;
-
-    // Removing button hovers and backgrounds and adding last child hover
-    .iui-header-breadcrumbs-button {
-      &,
-      &:hover {
-        background-color: transparent;
-      }
-
-      &::after {
-        display: none;
-      }
-    }
-
-    > *:last-child > .iui-header-breadcrumbs-button:hover {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
-    }
-  }
-}
-
-@mixin iui-header-button-active {
-  // Blue icons
-  svg {
-    @include themed {
-      fill: t(iui-icons-color-primary);
-    }
-  }
-
-  &,
-  &:hover {
-    // Blue background and darker blue bottom line
-    @include themed {
-      box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-    }
-
-    .iui-header-breadcrumbs-button-icon {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
-    }
-  }
-
-  // Blue text
-  .iui-button-label {
-    @include themed {
-      color: t(iui-color-foreground-primary);
-    }
-  }
-
-  // Disabled state
-  &.iui-disabled,
-  &:disabled,
-  &[aria-disabled='true'] {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
-      box-shadow: 0 $iui-xxs 0 0 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-    }
-
-    .iui-button-label {
-      @include themed {
-        color: t(iui-icons-color-actionable-disabled);
-      }
-    }
-
-    .iui-button-icon,
-    svg {
-      @include themed {
-        fill: t(iui-icons-color-actionable-disabled);
-      }
-    }
-
-    .iui-header-breadcrumbs-button-icon {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
-      }
-    }
-  }
+@mixin iui-header-button {
+  @include iui-button;
+  @include iui-button-borderless;
+  height: 100%;
+  border-radius: 0;
+  flex-shrink: 0;
 }
 // #endregion Header buttons
 
