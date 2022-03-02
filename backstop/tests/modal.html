@@ -26,6 +26,9 @@
       .toggle-theme {
         z-index: 9999;
       }
+      button.iui-button {
+        margin: 5px 0;
+      }
     </style>
     <script
       type="module"
@@ -38,27 +41,36 @@
     <h1>Modal</h1>
     <hr />
 
-    <a
-      id="open-modal"
+    <button
+      aria-label="Open modal"
+      type="button"
+      class="iui-button iui-default"
       onclick="toggleModal('default-modal')"
-      class="iui-anchor"
-    >Open modal</a>
+    >
+      Open modal
+    </button>
 
-    <br>
+    <br />
 
-    <a
-      id="open-full-page-modal-slide"
+    <button
+      aria-label="Open full page modal - sliding animation"
+      type="button"
+      class="iui-button iui-default"
       onclick="toggleModal('full-page-modal-slide')"
-      class="iui-anchor"
-    >Open full page modal - sliding animation</a>
+    >
+      Open full page modal - sliding animation
+    </button>
 
-    <br>
+    <br />
 
-    <a
-      id="open-full-page-modal-scale"
+    <button
+      aria-label="Open full page modal - scaling animation"
+      type="button"
+      class="iui-button iui-default"
       onclick="toggleModal('full-page-modal-scale')"
-      class="iui-anchor"
-    >Open full page modal - scaling animation</a>
+    >
+      Open full page modal - scaling animation
+    </button>
 
     <div
       class="iui-modal"
@@ -79,15 +91,17 @@
             ></svg-close>
           </button>
         </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <div class="iui-modal-content">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
         <div class="iui-button-bar">
           <button
             class="iui-button iui-high-visibility"

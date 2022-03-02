@@ -68,6 +68,14 @@
         margin-right: $iui-s;
       }
     }
+
+    .iui-modal-content {
+      flex-grow: 2;
+      overflow-y: auto;
+      @supports (overflow-y: overlay) {
+        overflow-y: overlay;
+      }
+    }
   }
 
   &.iui-modal-visible {
@@ -89,14 +97,6 @@
     max-width: initial;
     min-width: initial;
     border-radius: 0;
-  }
-
-  .iui-modal-content {
-    flex-grow: 2;
-    overflow-y: auto;
-    @supports (overflow-y: overlay) {
-      overflow-y: overlay;
-    }
   }
 }
 
@@ -138,7 +138,7 @@
   &.iui-modal-visible > .iui-modal-dialog {
     transform: scale(1);
     @media (prefers-reduced-motion: no-preference) {
-      transition: visibility $iui-speed-instant linear $iui-speed-fast, transform ($iui-speed-slow - 0.2) ease-out;
+      transition: visibility $iui-speed-instant linear $iui-speed-fast, transform ($iui-speed + 0.2) ease-out;
     }
   }
 }
