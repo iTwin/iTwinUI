@@ -1,4 +1,4 @@
-const THEMEAVAILABLE = ['iui-theme-light', 'iui-theme-dark', 'iui-theme-light-hc', 'iui-theme-dark-hc',];
+const THEMEAVAILABLE = ['iui-theme-light', 'iui-theme-dark', 'iui-theme-light-hc', 'iui-theme-dark-hc'];
 
 class ThemeButton extends HTMLElement {
   constructor() {
@@ -37,10 +37,12 @@ class ThemeButton extends HTMLElement {
         display: inline-block;
         margin-left: 0.25rem;
       }
-      :host-context(.iui-theme-dark) svg {
+      :host-context(.iui-theme-dark) svg,
+      :host-context(.iui-theme-dark-hc) svg {
         fill: white;
       }
-      :host-context(.iui-theme-dark) span {
+      :host-context(.iui-theme-dark) span,
+      :host-context(.iui-theme-dark-hc) span {
         color: white;
       }`;
     this.attachShadow({ mode: 'open' });
@@ -65,9 +67,7 @@ class ThemeButton extends HTMLElement {
     }
     element.classList.add(
       // https://stackoverflow.com/questions/17483149/how-to-access-array-in-circular-manner-in-javascript
-      THEMEAVAILABLE[
-        (((themeIndex + 1) % themeLength) + themeLength) % themeLength
-      ],
+      THEMEAVAILABLE[(((themeIndex + 1) % themeLength) + themeLength) % themeLength]
     );
   };
 
