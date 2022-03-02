@@ -38,9 +38,19 @@ hr {
   margin: 11px 0;
 }
 
+/* Light high contrast theme */
+.iui-theme-light-hc body hr {
+  border-color: #CCC;
+}
+
 /* Dark theme */
 .iui-theme-dark body hr {
   border-color: #2D373C;
+}
+
+/* Dark high contrast theme */
+.iui-theme-dark-hc body hr {
+  border-color: #696969;
 }
 
 /* Custom high contrast theme */
