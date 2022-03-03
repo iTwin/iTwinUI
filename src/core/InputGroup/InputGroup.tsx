@@ -75,7 +75,17 @@ export const InputGroup = (props: InputGroupProps) => {
   } = props;
   useTheme();
 
-  const icon = svgIcon ?? (status && StatusIconMap[status]());
+  const icon = () => {
+    if (svgIcon) {
+      return React.cloneElement(svgIcon, { 'aria-hidden': true });
+    }
+    if (status && message) {
+      return React.cloneElement(StatusIconMap[status](), {
+        'aria-hidden': true,
+      });
+    }
+    return undefined;
+  };
 
   return (
     <InputContainer
@@ -84,9 +94,7 @@ export const InputGroup = (props: InputGroupProps) => {
       required={required}
       status={status}
       message={message}
-      icon={
-        icon ? React.cloneElement(icon, { 'aria-hidden': true }) : undefined
-      }
+      icon={icon()}
       isLabelInline={displayStyle === 'inline'}
       className={className}
       style={style}

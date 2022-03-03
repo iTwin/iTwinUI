@@ -58,7 +58,10 @@ it('should render message', () => {
 it.each(['positive', 'warning', 'negative'] as const)(
   'should render %s status',
   (status) => {
-    const { container } = renderComponent({ status });
+    const { container } = renderComponent({
+      status,
+      message: 'This is a status message',
+    });
 
     const inputContainer = container.querySelector(
       '.iui-input-container',
@@ -68,6 +71,7 @@ it.each(['positive', 'warning', 'negative'] as const)(
       container.querySelector(`.iui-input-container.iui-${status}`),
     ).toBeTruthy();
     expect(container.querySelector('.iui-input-icon')).toBeTruthy();
+    expect(container.querySelector('.iui-message')).toBeTruthy();
   },
 );
 

@@ -21,6 +21,7 @@ import {
 } from '../utils';
 import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
 import 'tippy.js/animations/shift-away.css';
+import { StatusMessage } from '../StatusMessage';
 
 export type ComboBoxProps<T> = {
   /**
@@ -31,6 +32,11 @@ export type ComboBoxProps<T> = {
    * Controlled value of ComboBox.
    */
   value?: T;
+  /**
+   * Message shown below the combobox.
+   * Use `StatusMessage` component.
+   */
+  message?: React.ReactNode;
   /**
    * Callback fired when selected value changes.
    */
@@ -94,6 +100,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     className,
     inputProps,
     dropdownMenuProps,
+    message,
+    status,
     emptyStateMessage = 'No options found',
     itemRenderer,
     ...rest
@@ -357,7 +365,20 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
   ]);
 
   return (
-    <InputContainer className={className} isIconInline={true} {...rest} id={id}>
+    <InputContainer
+      className={className}
+      status={status}
+      statusMessage={
+        typeof message === 'string' ? (
+          <StatusMessage status={status}>{message}</StatusMessage>
+        ) : (
+          React.isValidElement(message) &&
+          React.cloneElement(message, { status })
+        )
+      }
+      {...rest}
+      id={id}
+    >
       <div className='iui-input-with-icon'>
         <Popover
           placement='bottom-start'

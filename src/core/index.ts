@@ -166,6 +166,9 @@ export type {
 export { Slider } from './Slider';
 export type { SliderProps } from './Slider';
 
+export { StatusMessage } from './StatusMessage';
+export type { StatusMessageProps } from './StatusMessage';
+
 export {
   Table,
   tableFilters,
