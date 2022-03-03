@@ -12,17 +12,29 @@
 
 @mixin iui-carousel-slider {
   display: flex;
+  gap: $iui-s;
   list-style: none;
   margin: 0;
   padding: 0;
+  overflow-x: auto;
+  overflow-x: overlay;
+  scroll-snap-type: x mandatory;
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed-slow ease-in-out;
+    scroll-behavior: smooth;
   }
+
+  // hide scrollbar
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    height: 0;
+  }
+  scrollbar-width: none;
 
   &-item {
     width: 100%;
     flex-shrink: 0;
     box-sizing: border-box;
+    scroll-snap-align: center;
   }
 }
 

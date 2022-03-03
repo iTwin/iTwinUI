@@ -97,7 +97,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="1 of 11"
-            aria-hidden="false"
             id="demo-slide-1"
           >
             <a
@@ -113,7 +112,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="2 of 11"
-            aria-hidden="true"
             id="demo-slide-2"
           ></li>
 
@@ -123,7 +121,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="3 of 11"
-            aria-hidden="true"
             id="demo-slide-3"
           ></li>
 
@@ -133,7 +130,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="4 of 11"
-            aria-hidden="true"
             id="demo-slide-4"
           ></li>
 
@@ -143,7 +139,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="5 of 11"
-            aria-hidden="true"
             id="demo-slide-5"
           ></li>
 
@@ -153,7 +148,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="6 of 11"
-            aria-hidden="true"
             id="demo-slide-6"
           ></li>
 
@@ -163,7 +157,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="7 of 11"
-            aria-hidden="true"
             id="demo-slide-7"
           ></li>
 
@@ -173,7 +166,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="8 of 11"
-            aria-hidden="true"
             id="demo-slide-8"
           ></li>
 
@@ -183,7 +175,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="9 of 11"
-            aria-hidden="true"
             id="demo-slide-9"
           ></li>
 
@@ -193,7 +184,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="10 of 11"
-            aria-hidden="true"
             id="demo-slide-10"
           ></li>
 
@@ -203,7 +193,6 @@
             role="tabpanel"
             aria-roledescription="slide"
             aria-label="11 of 11"
-            aria-hidden="true"
             id="demo-slide-11"
           ></li>
 
@@ -405,7 +394,7 @@
         const slider = carousel.querySelector('.iui-carousel-slider');
 
         const updateSlide = (current) => {
-          slider.style.transform = `translateX(-${(current * 100)}%)`;
+          slides[current].scrollIntoView();
 
           const firstDotIndex = Math.max(0, Math.min(current - parseInt(MAX_DOTS / 2), dots.length - MAX_DOTS));
           const lastDotIndex = Math.min(dots.length - 1, Math.max(current + parseInt(MAX_DOTS / 2), MAX_DOTS - 1));
