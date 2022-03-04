@@ -45,12 +45,6 @@ $iui-text-color--light: rgba($iui-color-foreground-body--light, $iui-opacity-2--
 $iui-text-color-muted--light: rgba($iui-color-foreground-body--light, $iui-opacity-4--light);
 $iui-text-color-placeholder--light: rgba($iui-color-foreground-body--light, $iui-opacity-5--light);
 
-// Light theme > Focus color
-$iui-focus-box-shadow--light: rgba($iui-color-foreground-primary--light, $iui-opacity-5--light) 0 0 0 2px;
-$iui-focus-positive-box-shadow--light: rgba($iui-color-foreground-positive--light, $iui-opacity-5--light) 0 0 0 2px;
-$iui-focus-warning-box-shadow--light: rgba($iui-color-foreground-warning--light, $iui-opacity-5--light) 0 0 0 2px;
-$iui-focus-negative-box-shadow--light: rgba($iui-color-foreground-negative--light, $iui-opacity-5--light) 0 0 0 2px;
-
 // Light theme > Icon colors
 $iui-icons-color--light: rgba($iui-color-foreground-body--light, $iui-opacity-4--light);
 $iui-icons-color-actionable--light: rgba($iui-color-foreground-body--light, $iui-opacity-2--light);
@@ -103,9 +97,6 @@ $iui-opacity-6--light-hc: 0.08;
 $iui-text-color--light-hc: rgba($iui-color-foreground-body--light-hc, $iui-opacity-2--light-hc);
 $iui-text-color-muted--light-hc: rgba($iui-color-foreground-body--light-hc, $iui-opacity-4--light-hc);
 $iui-text-color-placeholder--light-hc: rgba($iui-color-foreground-body--light-hc, $iui-opacity-4--light-hc);
-
-// Light high contrast theme > Focus color
-$iui-focus-box-shadow--light-hc: rgba($iui-color-foreground-primary--light-hc, $iui-opacity-5--light-hc) 0 0 0 2px;
 
 // Light high contrast theme > Icon colors
 $iui-icons-color--light-hc: rgba($iui-color-foreground-body--light-hc, $iui-opacity-4--light-hc);
@@ -161,11 +152,6 @@ $iui-text-color--dark: rgba($iui-color-foreground-body--dark, $iui-opacity-2--da
 $iui-text-color-muted--dark: rgba($iui-color-foreground-body--dark, $iui-opacity-4--dark);
 $iui-text-color-placeholder--dark: rgba($iui-color-foreground-body--dark, $iui-opacity-5--dark);
 
-// Dark theme > Focus color
-$iui-focus-box-shadow--dark: rgba($iui-color-foreground-primary--dark, $iui-opacity-5--dark) 0 0 0 2px;
-$iui-focus-positive-box-shadow--dark: rgba($iui-color-foreground-positive--dark, $iui-opacity-5--dark) 0 0 0 2px;
-$iui-focus-warning-box-shadow--dark: rgba($iui-color-foreground-warning--dark, $iui-opacity-5--dark) 0 0 0 2px;
-$iui-focus-negative-box-shadow--dark: rgba($iui-color-foreground-negative--dark, $iui-opacity-5--dark) 0 0 0 2px;
 // Dark theme > Icon colors
 $iui-icons-color--dark: rgba($iui-color-foreground-body--dark, $iui-opacity-4--dark);
 $iui-icons-color-actionable--dark: rgba($iui-color-foreground-body--dark, $iui-opacity-2--dark);
@@ -219,9 +205,6 @@ $iui-text-color--dark-hc: rgba($iui-color-foreground-body--dark-hc, $iui-opacity
 $iui-text-color-muted--dark-hc: rgba($iui-color-foreground-body--dark-hc, $iui-opacity-4--dark-hc);
 $iui-text-color-placeholder--dark-hc: rgba($iui-color-foreground-body--dark-hc, $iui-opacity-5--dark-hc);
 
-// Dark high contrast theme > Focus color
-$iui-focus-box-shadow--dark-hc: rgba($iui-color-foreground-primary--dark-hc, $iui-opacity-5--dark-hc) 0 0 0 2px;
-
 // Dark high contrast theme > Icon colors
 $iui-icons-color--dark-hc: rgba($iui-color-foreground-body--dark-hc, $iui-opacity-4--dark-hc);
 $iui-icons-color-actionable--dark-hc: rgba($iui-color-foreground-body--dark-hc, $iui-opacity-2--dark-hc);
@@ -268,10 +251,6 @@ $themes: (
     iui-text-color: $iui-text-color--light,
     iui-text-color-muted: $iui-text-color-muted--light,
     iui-text-color-placeholder: $iui-text-color-placeholder--light,
-    iui-focus-box-shadow: $iui-focus-box-shadow--light,
-    iui-focus-positive-box-shadow: $iui-focus-positive-box-shadow--light,
-    iui-focus-warning-box-shadow: $iui-focus-warning-box-shadow--light,
-    iui-focus-negative-box-shadow: $iui-focus-negative-box-shadow--light,
     iui-icons-color: $iui-icons-color--light,
     iui-icons-color-actionable: $iui-icons-color-actionable--light,
     iui-icons-color-actionable-hover: $iui-icons-color-actionable-hover--light,
@@ -315,10 +294,6 @@ $themes: (
     iui-text-color: $iui-text-color--dark,
     iui-text-color-muted: $iui-text-color-muted--dark,
     iui-text-color-placeholder: $iui-text-color-placeholder--dark,
-    iui-focus-box-shadow: $iui-focus-box-shadow--dark,
-    iui-focus-positive-box-shadow: $iui-focus-positive-box-shadow--dark,
-    iui-focus-warning-box-shadow: $iui-focus-warning-box-shadow--dark,
-    iui-focus-negative-box-shadow: $iui-focus-negative-box-shadow--dark,
     iui-icons-color: $iui-icons-color--dark,
     iui-icons-color-actionable: $iui-icons-color-actionable--dark,
     iui-icons-color-actionable-hover: $iui-icons-color-actionable-hover--dark,
@@ -361,7 +336,6 @@ $themes: (
     iui-text-color: $iui-text-color--dark-hc,
     iui-text-color-muted: $iui-text-color-muted--dark-hc,
     iui-text-color-placeholder: $iui-text-color-placeholder--dark-hc,
-    iui-focus-box-shadow: $iui-focus-box-shadow--dark-hc,
     iui-icons-color: $iui-icons-color--dark-hc,
     iui-icons-color-actionable: $iui-icons-color-actionable--dark-hc,
     iui-icons-color-actionable-hover: $iui-icons-color-actionable-hover--dark-hc,
@@ -404,7 +378,6 @@ $themes: (
     iui-text-color: $iui-text-color--light-hc,
     iui-text-color-muted: $iui-text-color-muted--light-hc,
     iui-text-color-placeholder: $iui-text-color-placeholder--light-hc,
-    iui-focus-box-shadow: $iui-focus-box-shadow--light-hc,
     iui-icons-color: $iui-icons-color--light-hc,
     iui-icons-color-actionable: $iui-icons-color-actionable--light-hc,
     iui-icons-color-actionable-hover: $iui-icons-color-actionable-hover--light-hc,
@@ -421,10 +394,6 @@ $cssVariables: (
   iui-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2)),
   iui-text-color-muted: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4)),
   iui-text-color-placeholder: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5)),
-  iui-focus-box-shadow: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5)) 0 0 0 2px,
-  iui-focus-positive-box-shadow: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-5)) 0 0 0 2px,
-  iui-focus-warning-box-shadow: rgba(var(--iui-color-foreground-warning-rgb), var(--iui-opacity-5)) 0 0 0 2px,
-  iui-focus-negative-box-shadow: rgba(var(--iui-color-foreground-negative-rgb), var(--iui-opacity-5)) 0 0 0 2px,
   iui-icons-color-primary: var(--iui-color-foreground-primary),
   iui-icons-color-positive: var(--iui-color-foreground-positive),
   iui-icons-color-negative: var(--iui-color-foreground-negative),
