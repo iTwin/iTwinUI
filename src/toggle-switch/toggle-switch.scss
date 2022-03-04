@@ -46,9 +46,9 @@
 }
 
 @mixin iui-toggle-switch {
-  --_iui-toggle-switch-handle-size: #{$iui-icons-default};
-  --_iui-toggle-switch-handle-offset: #{$iui-component-offset};
-  --_iui-toggle-switch-border-thickness: 1px;
+  $iui-toggle-switch-handle-size: $iui-icons-default;
+  $iui-toggle-switch-handle-offset: $iui-component-offset;
+  $iui-toggle-switch-border-thickness: 1px;
 
   display: grid;
   grid-template: 'toggle';
@@ -64,28 +64,27 @@
     -webkit-tap-highlight-color: transparent;
 
     // #region IE solution
-    width: $iui-icons-default; // IE doesn't support CSS variables
-    height: $iui-icons-default; // IE doesn't support CSS variables
+    width: $iui-toggle-switch-handle-size;
+    height: $iui-toggle-switch-handle-size;
     @supports (appearance: none) {
       appearance: none;
-      width: calc((var(--_iui-toggle-switch-handle-size) + (var(--_iui-toggle-switch-handle-offset) * 2)) * 2);
+      width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
       height: auto;
       border-radius: $iui-border-radius-round;
       box-sizing: border-box;
       transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
       @include themed {
         background-color: t(iui-color-background-1);
-        border: var(--_iui-toggle-switch-border-thickness) solid
-          rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        border: $iui-toggle-switch-border-thickness solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       }
     }
     // #endregion IE solution
 
     &::after {
       content: '';
-      height: var(--_iui-toggle-switch-handle-size);
-      width: var(--_iui-toggle-switch-handle-size);
-      margin: var(--_iui-toggle-switch-handle-offset);
+      height: $iui-toggle-switch-handle-size;
+      width: $iui-toggle-switch-handle-size;
+      margin: $iui-toggle-switch-handle-offset;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       transition: background-color $iui-speed-fast ease-out, opacity $iui-speed-fast ease-out;
@@ -128,7 +127,7 @@
       }
 
       &::after {
-        transform: translateX(calc(var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset)));
+        transform: translateX($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset);
         @include themed {
           background-color: t(iui-color-foreground-accessory);
           opacity: t(iui-opacity-2);
@@ -191,10 +190,10 @@
   &-icon {
     grid-area: toggle;
     opacity: 0;
-    width: calc(var(--_iui-toggle-switch-handle-size) * 0.75);
-    height: calc(var(--_iui-toggle-switch-handle-size) * 0.75);
-    padding: calc(var(--_iui-toggle-switch-handle-size) * 0.125);
-    margin: calc(var(--_iui-toggle-switch-handle-offset) + var(--_iui-toggle-switch-border-thickness));
+    width: $iui-toggle-switch-handle-size * 0.75;
+    height: $iui-toggle-switch-handle-size * 0.75;
+    padding: $iui-toggle-switch-handle-size * 0.125;
+    margin: $iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness;
     display: flex;
     z-index: 1;
     transition: opacity $iui-speed-fast ease-out;
