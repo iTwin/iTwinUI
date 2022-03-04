@@ -2,12 +2,10 @@
 
 ## [0.50.0](https://www.github.com/iTwin/iTwinUI/compare/v0.49.0...v0.50.0) (2022-03-04)
 
-
 ### What's new
 
-* **ButtonGroup:** Add vertical orientation ([#503](https://www.github.com/iTwin/iTwinUI/issues/503)) ([ef78a61](https://www.github.com/iTwin/iTwinUI/commit/ef78a6199faced3e6923d4472d1f253a8699b0fa))
-* **Carousel:** Use scroll-snap instead of transform ([#507](https://www.github.com/iTwin/iTwinUI/issues/507)) ([ff69309](https://www.github.com/iTwin/iTwinUI/commit/ff693098add76ccfca608ae48440f5e6608c37b5))
-
+* **ButtonGroup:** Add vertical orientation through new `iui-button-group-vertical` class ([#503](https://www.github.com/iTwin/iTwinUI/issues/503)) ([ef78a61](https://www.github.com/iTwin/iTwinUI/commit/ef78a6199faced3e6923d4472d1f253a8699b0fa))
+* **Carousel:** Use scroll-snap instead of transform for moving slides ([#507](https://www.github.com/iTwin/iTwinUI/issues/507)) ([ff69309](https://www.github.com/iTwin/iTwinUI/commit/ff693098add76ccfca608ae48440f5e6608c37b5))
 
 ### Fixes
 
