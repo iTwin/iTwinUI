@@ -25,8 +25,7 @@
 
   // hide scrollbar
   &::-webkit-scrollbar {
-    background-color: transparent;
-    height: 0;
+    display: none;
   }
   scrollbar-width: none;
 
@@ -85,7 +84,7 @@
     }
 
     &.iui-invisible {
-      display: none;
+      @include visually-hidden;
     }
 
     &::after {
@@ -113,9 +112,6 @@
 
     &.iui-invisible::after {
       transform: scale(0);
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), 0);
-      }
     }
 
     &.iui-active::after {
