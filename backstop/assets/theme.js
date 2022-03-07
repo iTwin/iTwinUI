@@ -1,88 +1,109 @@
-const THEMEAVAILABLE = ['iui-theme-light', 'iui-theme-dark', 'iui-theme-light-hc', 'iui-theme-dark-hc'];
-
 class ThemeButton extends HTMLElement {
   constructor() {
     super();
     const html = `
-      <button title="Toggle theme" id="theme-button">
-        <svg viewBox="0 0 16 16" aria-hidden="true">
-          <path d="m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm0 12v3a7 7 0 0 1 0-14v3a4 4 0 0 1 0 8zm0 0a4 4 0 0 1 0-8z"/>
-        </svg>
-        <span class="toggle-theme-label">Toggle theme</span>
-      </button>`;
+      <div class="settings-root">
+        <button aria-label="Settings">
+          <svg width="1rem" height="1rem" fill="currentColor" aria-hidden="true" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <path d="m16 9.42256v-2.85566l-2.20352-.44435a6.05356 6.05356 0 0 0 -.37645-.903l1.2427-1.87048-2.01923-2.01931-1.86669 1.24016a6.047 6.047 0 0 0 -.91294-.38153l-.44131-2.18839h-2.85566l-.44131 2.18839a6.0501 6.0501 0 0 0 -.91778.38383l-1.85881-1.23495-2.01924 2.01923 1.2388 1.86464a6.05267 6.05267 0 0 0 -.38067.91511l-2.18789.44119v2.85566l2.20054.44373a6.059 6.059 0 0 0 .37924.90383l-1.24251 1.87034 2.01923 2.01924 1.88089-1.24959a6.049 6.049 0 0 0 .8949.372l.44515 2.20735h2.85566l.44683-2.21567a6.05213 6.05213 0 0 0 .88907-.37186l1.882 1.25026 2.01923-2.01923-1.25089-1.88287a6.04854 6.04854 0 0 0 .37291-.89285zm-8.0053 1.61456a3.04782 3.04782 0 1 1 3.04782-3.04782 3.04781 3.04781 0 0 1 -3.04782 3.04782z"/>
+          </svg>
+        </button>
+        <article class="popup">
+          <fieldset>
+            <legend>Choose theme</legend>
+            <label tabindex="-1"><input type="radio" name="theme" value="light" /><span>Light</span></label>
+            <label tabindex="-1"><input type="radio" name="theme" value="dark" /><span>Dark</span></label>
+            <label tabindex="-1"><input type="radio" name="theme" value="light-hc" /><span>High contrast light</span></label>
+            <label tabindex="-1"><input type="radio" name="theme" value="dark-hc" /><span>Hight contrast dark</span></label>
+          </fieldset>
+        </article>
+      </div>
+    `;
     const style = `
-      :host {
+      * {
+        box-sizing: border-box;
+      }
+      .settings-root {
         position: absolute;
         top: 0;
         right: 0;
+        display: grid;
+        justify-items: end;
+        accent-color: var(--iui-color-foreground-primary);
+        z-index: 1;
       }
-      :host button {
-        background-color: transparent;
-        cursor: pointer;
+      button[aria-label="Settings"] {
         padding: 0.5rem;
-        border: 0;
+        font: inherit;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        display: inline-grid;
+        cursor: pointer;
       }
-      :host svg {
-        width: 1rem;
-        height: 1rem;
-        display: inline-block;
-        vertical-align: middle;
-        fill: black;
+      button[aria-label="Settings"]:hover {
+        background: hsl(0 0% 50% / 0.3);
       }
-      :host span {
+      .popup {
         display: none;
-        color: black;
+        box-shadow: 0 1px 5px hsl(0 0% 0% / 0.25);
+        background-color: var(--iui-color-background-1);
+        padding: 0.5rem 0.25rem;
+        margin: 0.25rem;
       }
-      :host(:hover) span {
+      .settings-root:focus-within .popup {
         display: inline-block;
-        margin-left: 0.25rem;
       }
-      :host-context(.iui-theme-dark) svg,
-      :host-context(.iui-theme-dark-hc) svg {
-        fill: white;
+      fieldset {
+        display: grid;
       }
-      :host-context(.iui-theme-dark) span,
-      :host-context(.iui-theme-dark-hc) span {
-        color: white;
-      }`;
+      fieldset > * {
+        display: inline-flex;
+        align-items: center;
+      }
+      label, input {
+        cursor: pointer;
+      }
+    `;
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.innerHTML = `
       <style>
         ${style}
       </style>
-      ${html}`;
-    this.themeButton = this.shadowRoot.getElementById(`theme-button`);
+      <style id="theme-color-scheme">
+        :host { color-scheme: light dark; }
+      </style>
+      ${html}
+    `;
+    this.button = this.shadowRoot.querySelector('[aria-label="Settings"]');
+
+    // set default state
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersHC = window.matchMedia('(prefers-contrast: more)').matches;
+    this.shadowRoot.querySelector(
+      `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`
+    ).checked = true;
   }
 
-  // Cycle between all the theme available
-  toggleTheme = () => {
-    const element = document.getElementById('theme');
-    const themeLength = THEMEAVAILABLE.length;
-    let themeIndex = themeLength;
-    // Verify if theme is set. Set index and remove theme
-    if (element.classList.length) {
-      const [first, ...rest] = element.className.split(' ');
-      themeIndex = THEMEAVAILABLE.findIndex((theme) => theme === first);
-      element.classList.remove(first, ...rest);
-    }
-    element.classList.add(
-      // https://stackoverflow.com/questions/17483149/how-to-access-array-in-circular-manner-in-javascript
-      THEMEAVAILABLE[(((themeIndex + 1) % themeLength) + themeLength) % themeLength]
-    );
-  };
-
-  toggleCustomTheme = () => {
-    const element = document.getElementById('theme');
-    element.classList.toggle('custom-theme');
+  changeTheme = ({ target: { value: theme } }) => {
+    document.documentElement.className = `iui-theme-${theme}`;
+    this.shadowRoot.querySelector('#theme-color-scheme').innerHTML = `
+      :host {
+        color-scheme: ${theme.includes('light') ? 'light' : 'dark'};
+      }
+    `;
   };
 
   connectedCallback() {
-    this.themeButton.addEventListener('click', this.toggleTheme);
-    this.themeButton.addEventListener('contextmenu', this.toggleCustomTheme);
+    this.shadowRoot.querySelectorAll('input[name="theme"]').forEach((radio) => {
+      radio.addEventListener('change', this.changeTheme);
+    });
   }
+
   disconnectedCallback() {
-    this.themeButton.removeEventListener('click', this.toggleTheme);
-    this.themeButton.removeEventListener('contextmenu', this.toggleCustomTheme);
+    this.shadowRoot.querySelectorAll('input[name="theme"]').forEach((radio) => {
+      radio.removeEventListener('change', this.changeTheme);
+    });
   }
 }
 customElements.define('theme-button', ThemeButton);
