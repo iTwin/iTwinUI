@@ -148,3 +148,25 @@ export const InputButtonCombo: Story<ButtonGroupProps> = (args) => {
   );
 };
 InputButtonCombo.parameters = {};
+
+export const Vertical: Story<ButtonGroupProps> = (args) => {
+  return (
+    <ButtonGroup orientation='vertical' {...args}>
+      <IconButton onClick={action('Clicked add!')}>
+        <SvgAdd />
+      </IconButton>
+      <IconButton onClick={action('Clicked edit!')} isActive>
+        <SvgEdit />
+      </IconButton>
+      <IconButton disabled onClick={action('Clicked delete!')}>
+        <SvgDelete />
+      </IconButton>
+      <IconButton onClick={action('Clicked undo!')}>
+        <SvgUndo />
+      </IconButton>
+    </ButtonGroup>
+  );
+};
+Vertical.args = {
+  orientation: 'vertical',
+};

@@ -78,3 +78,18 @@ it.each(['start', 'end'] as const)(
     offsetWidthSpy.mockRestore();
   },
 );
+
+it('should work in vertical orientation', () => {
+  const { container } = render(
+    <ButtonGroup orientation='vertical'>
+      <Button>First</Button>
+      <Button>Second</Button>
+    </ButtonGroup>,
+  );
+  const group = container.querySelector(
+    '.iui-button-group-vertical',
+  ) as HTMLElement;
+  expect(group).toBeTruthy();
+  expect(group).not.toHaveClass('iui-button-group');
+  expect(group.children).toHaveLength(2);
+});

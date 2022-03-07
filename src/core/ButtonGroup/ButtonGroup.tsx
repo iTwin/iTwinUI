@@ -20,6 +20,8 @@ export type ButtonGroupProps = {
    * and returns the `ReactNode` to render.
    *
    * The placement of this button can be controlled using the `overflowPlacement` prop.
+   *
+   * *Note: this will not work with `orientation='vertical'`.*
    */
   overflowButton?: (firstOverflowingIndex: number) => React.ReactNode;
   /**
@@ -27,6 +29,11 @@ export type ButtonGroupProps = {
    * @default 'end'
    */
   overflowPlacement?: 'start' | 'end';
+  /**
+   * Should the buttons be placed in a horizontal or vertical layout?
+   * @default 'horizontal'
+   */
+  orientation?: 'horizontal' | 'vertical';
 } & React.ComponentPropsWithRef<'div'>;
 
 /**
@@ -65,6 +72,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
       style,
       overflowButton,
       overflowPlacement = 'end',
+      orientation = 'horizontal',
       ...rest
     } = props;
 
@@ -80,8 +88,19 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
 
     return (
       <div
-        className={cx('iui-button-group', className)}
-        style={{ ...(!!overflowButton && { width: '100%' }), ...style }}
+        className={cx(
+          {
+            'iui-button-group': orientation === 'horizontal',
+            'iui-button-group-vertical': orientation === 'vertical',
+          },
+          className,
+        )}
+        style={{
+          ...(!!overflowButton &&
+            orientation === 'horizontal' && { width: '100%' }),
+          ...style,
+        }}
+        aria-orientation={orientation}
         ref={refs}
         {...rest}
       >
