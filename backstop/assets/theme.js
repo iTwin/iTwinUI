@@ -1,7 +1,7 @@
 class ThemeButton extends HTMLElement {
   constructor() {
     super();
-    const html = `
+    const html = /* html */ `
       <div class="settings-root">
         <button aria-label="Settings">
           <svg width="1rem" height="1rem" fill="currentColor" aria-hidden="true" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +19,7 @@ class ThemeButton extends HTMLElement {
         </article>
       </div>
     `;
-    const style = `
+    const style = /* css */ `
       * {
         box-sizing: border-box;
       }
@@ -83,7 +83,7 @@ class ThemeButton extends HTMLElement {
       }
     `;
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = /* html */ `
       <style>
         ${style}
       </style>
