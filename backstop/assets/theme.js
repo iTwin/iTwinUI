@@ -31,6 +31,7 @@ class ThemeButton extends HTMLElement {
         justify-items: end;
         accent-color: var(--iui-color-foreground-primary);
         z-index: 1;
+        overflow: hidden;
       }
       button[aria-label="Settings"] {
         padding: 0.5rem;
@@ -40,19 +41,35 @@ class ThemeButton extends HTMLElement {
         background: transparent;
         display: inline-grid;
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+      @media (pointer: coarse) {
+        button[aria-label="Settings"] {
+          padding: 1rem;
+        }
       }
       button[aria-label="Settings"]:hover {
         background: hsl(0 0% 50% / 0.3);
       }
       .popup {
-        display: none;
+        visibility: hidden; 
         box-shadow: 0 1px 5px hsl(0 0% 0% / 0.25);
         background-color: var(--iui-color-background-1);
         padding: 0.5rem 0.25rem;
         margin: 0.25rem;
       }
       .settings-root:focus-within .popup {
-        display: inline-block;
+        visibility: visible;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .popup {
+          transform: translateX(100%);
+          transition: transform 200ms ease-in, visibility 0s 200ms;
+        }
+        .settings-root:focus-within .popup {
+          transform: translateX(0%);
+          transition: transform 200ms ease-out;
+        }
       }
       fieldset {
         display: grid;
