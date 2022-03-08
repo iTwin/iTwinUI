@@ -6,5 +6,6 @@ module.exports = [
     // when "Open modal" sometimes is and sometimes is not hovered.
     actions: [click('#open-modal'), hover('body')],
     selectors: ['document'],
+    hideSelectors: ['theme-button'],
   }),
 ];
