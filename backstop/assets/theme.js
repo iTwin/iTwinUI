@@ -14,7 +14,7 @@ class ThemeButton extends HTMLElement {
             <label tabindex="-1"><input type="radio" name="theme" value="light" /><span>Light</span></label>
             <label tabindex="-1"><input type="radio" name="theme" value="dark" /><span>Dark</span></label>
             <label tabindex="-1"><input type="radio" name="theme" value="light-hc" /><span>High contrast light</span></label>
-            <label tabindex="-1"><input type="radio" name="theme" value="dark-hc" /><span>Hight contrast dark</span></label>
+            <label tabindex="-1"><input type="radio" name="theme" value="dark-hc" /><span>High contrast dark</span></label>
           </fieldset>
         </article>
       </div>
