@@ -1,5 +1,42 @@
 # Changelog
 
+## [0.50.0](https://www.github.com/iTwin/iTwinUI/compare/v0.49.0...v0.50.0) (2022-03-04)
+
+### What's new
+
+* **ButtonGroup:** Add vertical orientation through new `iui-button-group-vertical` class ([#503](https://www.github.com/iTwin/iTwinUI/issues/503)) ([ef78a61](https://www.github.com/iTwin/iTwinUI/commit/ef78a6199faced3e6923d4472d1f253a8699b0fa))
+* **Carousel:** Use scroll-snap instead of transform for moving slides ([#507](https://www.github.com/iTwin/iTwinUI/issues/507)) ([ff69309](https://www.github.com/iTwin/iTwinUI/commit/ff693098add76ccfca608ae48440f5e6608c37b5))
+
+### Fixes
+
+* **Carousel:** Make invisible dot visually hidden ([#509](https://www.github.com/iTwin/iTwinUI/issues/509)) ([91b4ed0](https://www.github.com/iTwin/iTwinUI/commit/91b4ed043eba5b7cc72f522cc2af64c1a531bbf5))
+* **Modal:** Fix clipping of text ([#502](https://www.github.com/iTwin/iTwinUI/issues/502)) ([7cd974c](https://www.github.com/iTwin/iTwinUI/commit/7cd974c9c8ec3d66e4cfe862f4390abec11b0c98))
+
+## [0.49.0](https://www.github.com/iTwin/iTwinUI/compare/v0.48.2...v0.49.0) (2022-02-25)
+
+### What's new
+
+* **Table:** Add column reordering ([#498](https://www.github.com/iTwin/iTwinUI/issues/498)) ([385b769](https://www.github.com/iTwin/iTwinUI/commit/385b769096aa08dd55f9d207407fdf2dbf78f0e5))
+
+### [0.48.2](https://www.github.com/iTwin/iTwinUI/compare/v0.48.1...v0.48.2) (2022-02-23)
+
+### Fixes
+
+* **ColorSwatch:** Fix absolute positioning when used in button ([#494](https://www.github.com/iTwin/iTwinUI/issues/494)) ([8e96995](https://www.github.com/iTwin/iTwinUI/commit/8e96995922cf8691894bea9f38dbd3fbc09c38e7))
+
+### [0.48.1](https://www.github.com/iTwin/iTwinUI/compare/v0.48.0...v0.48.1) (2022-02-18)
+
+### Fixes
+
+* **Radio:** Set blank svg for indeterminate state ([#492](https://www.github.com/iTwin/iTwinUI/issues/492)) ([54c5b3f](https://www.github.com/iTwin/iTwinUI/commit/54c5b3fc0923042236b02fc12edec6b97f8f9c66))
+
+## [0.48.0](https://www.github.com/iTwin/iTwinUI/compare/v0.47.0...v0.48.0) (2022-02-18)
+
+### What's new
+
+* **Checkbox** and **Radio**: Complete refactor. Svgs are inlined and input can now be used without wrapping label. ([#475](https://github.com/iTwin/iTwinUI/pull/475))
+* **ColorPicker:** Swatch supports transparency ([#483](https://www.github.com/iTwin/iTwinUI/issues/483)) ([f50481f](https://www.github.com/iTwin/iTwinUI/commit/f50481fe621f644fefd900aac0eb8f2ba0d8a25c))
+
 ## [0.47.0](https://www.github.com/iTwin/iTwinUI/compare/v0.46.1...v0.47.0) (2022-02-15)
 
 ### What's new
