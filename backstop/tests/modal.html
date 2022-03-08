@@ -26,7 +26,7 @@
       .toggle-theme {
         z-index: 9999;
       }
-      button.iui-button {
+      body > button.iui-button {
         margin: 5px 0;
       }
     </style>
@@ -43,6 +43,7 @@
 
     <button
       aria-label="Open modal"
+      id="open-modal"
       type="button"
       class="iui-button iui-default"
       onclick="toggleModal('default-modal')"
@@ -54,6 +55,7 @@
 
     <button
       aria-label="Open full page modal - sliding animation"
+      id="open-full-page-modal-slide"
       type="button"
       class="iui-button iui-default"
       onclick="toggleModal('full-page-modal-slide')"
@@ -65,6 +67,7 @@
 
     <button
       aria-label="Open full page modal - scaling animation"
+      id="open-full-page-modal-scale"
       type="button"
       class="iui-button iui-default"
       onclick="toggleModal('full-page-modal-scale')"
