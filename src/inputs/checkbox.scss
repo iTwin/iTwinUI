@@ -63,4 +63,9 @@
       }
     }
   }
+
+  &.iui-menu-item {
+    width: auto;
+    padding: 0 ($iui-component-padding-horizontal + 1px);
+  }
 }
