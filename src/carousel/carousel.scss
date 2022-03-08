@@ -12,17 +12,28 @@
 
 @mixin iui-carousel-slider {
   display: flex;
+  gap: $iui-s;
   list-style: none;
   margin: 0;
   padding: 0;
+  overflow-x: auto;
+  overflow-x: overlay;
+  scroll-snap-type: x mandatory;
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed-slow ease-in-out;
+    scroll-behavior: smooth;
   }
+
+  // hide scrollbar
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
 
   &-item {
     width: 100%;
     flex-shrink: 0;
     box-sizing: border-box;
+    scroll-snap-align: center;
   }
 }
 
@@ -73,7 +84,7 @@
     }
 
     &.iui-invisible {
-      display: none;
+      @include visually-hidden;
     }
 
     &::after {
@@ -101,9 +112,6 @@
 
     &.iui-invisible::after {
       transform: scale(0);
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), 0);
-      }
     }
 
     &.iui-active::after {
