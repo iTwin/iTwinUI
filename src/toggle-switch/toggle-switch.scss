@@ -56,7 +56,7 @@
 
   > input {
     @include iui-reset;
-    @include iui-focus($thickness: 1px, $offset: 1px);
+    @include iui-focus($thickness: $iui-toggle-switch-border-thickness, $offset: $iui-toggle-switch-border-thickness);
     grid-area: toggle;
     display: flex;
     position: relative;
