@@ -20,17 +20,19 @@ class ThemeButton extends HTMLElement {
       </div>
     `;
     const style = /* css */ `
+      :host {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        accent-color: var(--iui-color-foreground-primary);
+      }
       * {
         box-sizing: border-box;
       }
       .settings-root {
-        position: absolute;
-        top: 0;
-        right: 0;
         display: grid;
         justify-items: end;
-        accent-color: var(--iui-color-foreground-primary);
-        z-index: 1;
         overflow: hidden;
       }
       button[aria-label="Settings"] {
