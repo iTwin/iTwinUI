@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.50.0](https://www.github.com/iTwin/iTwinUI/compare/v0.49.0...v0.50.0) (2022-03-04)
+
+### What's new
+
+* **ButtonGroup:** Add vertical orientation through new `iui-button-group-vertical` class ([#503](https://www.github.com/iTwin/iTwinUI/issues/503)) ([ef78a61](https://www.github.com/iTwin/iTwinUI/commit/ef78a6199faced3e6923d4472d1f253a8699b0fa))
+* **Carousel:** Use scroll-snap instead of transform for moving slides ([#507](https://www.github.com/iTwin/iTwinUI/issues/507)) ([ff69309](https://www.github.com/iTwin/iTwinUI/commit/ff693098add76ccfca608ae48440f5e6608c37b5))
+
+### Fixes
+
+* **Carousel:** Make invisible dot visually hidden ([#509](https://www.github.com/iTwin/iTwinUI/issues/509)) ([91b4ed0](https://www.github.com/iTwin/iTwinUI/commit/91b4ed043eba5b7cc72f522cc2af64c1a531bbf5))
+* **Modal:** Fix clipping of text ([#502](https://www.github.com/iTwin/iTwinUI/issues/502)) ([7cd974c](https://www.github.com/iTwin/iTwinUI/commit/7cd974c9c8ec3d66e4cfe862f4390abec11b0c98))
+
+## [0.49.0](https://www.github.com/iTwin/iTwinUI/compare/v0.48.2...v0.49.0) (2022-02-25)
+
+### What's new
+
+* **Table:** Add column reordering ([#498](https://www.github.com/iTwin/iTwinUI/issues/498)) ([385b769](https://www.github.com/iTwin/iTwinUI/commit/385b769096aa08dd55f9d207407fdf2dbf78f0e5))
+
 ### [0.48.2](https://www.github.com/iTwin/iTwinUI/compare/v0.48.1...v0.48.2) (2022-02-23)
 
 ### Fixes
