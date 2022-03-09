@@ -276,12 +276,63 @@
                 class="iui-button iui-borderless iui-dropdown"
                 aria-label="Modify columns"
                 type="button"
+                onclick="openColumnManger()"
               >
                 <svg-column-manager
                   class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-column-manager>
               </button>
+              <div
+                data-tippy-root=""
+                id="tippy-1"
+                style="z-index: 9999; display: none; position: fixed; inset: 0px auto auto 0px; margin: 0px; transform: translate(625px, 62px);"
+              >
+                <div
+                  class="tippy-box iui-popover"
+                  data-state="hidden"
+                  data-placement="bottom-end"
+                  style="transition-duration: 0ms;"
+                >
+                  <div
+                    class="tippy-content"
+                    data-state="hidden"
+                    style="transition-duration: 0ms;"
+                  >
+                    <div>
+                      <ul
+                        class="iui-menu"
+                        role="menu"
+                        style="min-width: 58px;"
+                      ><label
+                          class="iui-checkbox-wrapper iui-menu-item"
+                          style="cursor: pointer;"
+                        ><input
+                            type="checkbox"
+                            title="Toggle Column Visible"
+                            role="menu"
+                            checked=""
+                          ><span class="iui-checkbox-label">Name</span></label><label
+                          class="iui-checkbox-wrapper iui-menu-item"
+                          style="cursor: pointer;"
+                        ><input
+                            type="checkbox"
+                            title="Toggle Column Visible"
+                            role="menu"
+                            checked=""
+                          ><span class="iui-checkbox-label">Description</span></label><label
+                          class="iui-checkbox-wrapper iui-menu-item"
+                          style="cursor: pointer;"
+                        ><input
+                            type="checkbox"
+                            title="Toggle Column Visible"
+                            role="menu"
+                            checked=""
+                          ><span class="iui-checkbox-label">Click</span></label></ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -3798,5 +3849,16 @@
         });
       });
     </script>
+
+    <script>
+      var elements = document.getElementsByClassName('iui-dropdown');
+
+      function openColumnManger() {
+        var element = document.getElementById('tippy-1');
+        element.style.display = element.style.display == "none" ? "block" : "none";
+        document.getelement;
+      }
+    </script>
+
   </body>
 </html>
