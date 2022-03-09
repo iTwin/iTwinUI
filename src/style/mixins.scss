@@ -63,6 +63,15 @@
   }
 }
 
+@mixin iui-text-selection($status: primary) {
+  &::selection,
+  *::selection {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-5));
+    }
+  }
+}
+
 @mixin iui-scrollbar {
   @include themed {
     scrollbar-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4)) transparent;
