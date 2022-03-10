@@ -71,11 +71,7 @@
       }
 
       > span {
-        &::selection {
-          @include themed {
-            background-color: rgba(t(iui-color-foreground-positive-rgb), t(iui-opacity-4));
-          }
-        }
+        @include iui-text-selection(positive);
       }
     }
   }
@@ -101,11 +97,7 @@
       }
 
       > span {
-        &::selection {
-          @include themed {
-            background-color: rgba(t(iui-color-foreground-negative-rgb), t(iui-opacity-4));
-          }
-        }
+        @include iui-text-selection(negative);
       }
     }
   }
