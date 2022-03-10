@@ -7,8 +7,9 @@ import { getWindow } from '../functions/dom';
 
 /**
  * Hook that uses `IntersectionObserver` to trigger `onIntersect` callback when element is in viewport.
- * Callback is called only once.
- * Hook returns a function that you need to use to set a reference of the element you want to observe.
+ * Callback is called only once by default (can be changed using the `once` parameter).
+ * @returns a callback ref that needs to be set on the element you want to observe.
+ * @private
  * @example
  * const onIntersection = React.useCallback(() => {
  *   console.log('Element is in viewport!');
@@ -19,6 +20,7 @@ import { getWindow } from '../functions/dom';
 export const useIntersection = (
   onIntersect: () => void,
   options: IntersectionObserverInit = {},
+  once = true,
 ) => {
   const { root, rootMargin, threshold } = options;
   const observer = React.useRef<IntersectionObserver>();
@@ -40,7 +42,9 @@ export const useIntersection = (
       observer.current = new IntersectionObserver(
         ([entry], obs) => {
           if (entry.isIntersecting) {
-            obs.disconnect();
+            if (once) {
+              obs.disconnect();
+            }
             onIntersect();
           }
         },
@@ -48,8 +52,10 @@ export const useIntersection = (
       );
       observer.current.observe(node);
     },
-    [onIntersect, root, rootMargin, threshold],
+    [onIntersect, once, root, rootMargin, threshold],
   );
+
+  React.useEffect(() => () => observer.current?.disconnect(), []);
 
   return setRef;
 };

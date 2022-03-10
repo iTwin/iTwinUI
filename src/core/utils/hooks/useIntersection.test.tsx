@@ -14,7 +14,7 @@ const originalIntersectionObserver = window.IntersectionObserver;
 
 const mockIntersection = (element: Element, isIntersecting = true) => {
   observers.get(element)?.([{ isIntersecting } as IntersectionObserverEntry], ({
-    disconnect: jest.fn(),
+    disconnect: () => observers.delete(element),
   } as unknown) as IntersectionObserver);
 };
 
@@ -135,3 +135,25 @@ it('should do nothing when element is missing', () => {
   });
   expect(onIntersect).not.toHaveBeenCalled();
 });
+
+it.each([
+  ['not', true],
+  ['', false],
+])(
+  'should %s trigger onIntersect more than once if `once` is %s',
+  (_, once) => {
+    const mockedElement = {} as HTMLElement;
+    const onIntersect = jest.fn();
+    const { result } = renderHook(() => useIntersection(onIntersect, {}, once));
+
+    act(() => {
+      result.current(mockedElement);
+    });
+
+    expect(onIntersect).not.toHaveBeenCalled();
+    mockIntersection(mockedElement);
+    mockIntersection(mockedElement);
+    mockIntersection(mockedElement);
+    expect(onIntersect).toHaveBeenCalledTimes(once ? 1 : 3);
+  },
+);
