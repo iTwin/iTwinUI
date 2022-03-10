@@ -101,6 +101,58 @@ stories/core/**Alert.stories.tsx**
 
 - Contains common demo states and examples for the component.
 
+### Documentation
+
+We use [JSDoc](https://jsdoc.app/) (not TSDoc) to write documentation for our code.
+
+Every component should have a multiline description and at least one example.
+
+```jsx
+/**
+ * A small box to quickly grab user attention and communicate a brief message.
+ * @example
+ * <Alert>This is a basic alert.</Alert>
+ */
+export const Alert = (props: AlertProps) => {
+  ...
+```
+
+Examples can be captioned. This is especially helpful when there are multiple examples.
+
+```jsx
+/**
+ * Footer element with all needed legal and info links.
+ * Be sure to place it manually at the bottom of your page.
+ * You can use position 'absolute' with relative body or set the height of the content and place footer at the end.
+ * @example <caption>Appending custom element after default elements</caption>
+ * <Footer customElements={[{title: 'Bentley', url: 'https://www.bentley.com/'}]} />
+ * @example <caption>Returning only custom elements</caption>
+ * <Footer customElements={() => newFooterElements)} />
+ ...
+ */
+export const Footer = (props: FooterProps) => {
+  ...
+```
+
+Every prop should have a multiline description with relevant informational tags.
+
+```jsx
+export type AlertProps = {
+  /**
+   * Type of the alert.
+   * @default 'informational'
+   */
+  type?: 'positive' | 'warning' | 'negative' | 'informational';
+ /**
+   * Action handler for the clickable text.
+   * @deprecated `clickableTextProps` should be used instead.
+   */
+  onClick?: () => void;
+  ...
+```
+
+More examples can be found in the [style guide](./STYLEGUIDE.md).
+
 ### Unit Testing
 
 Each component has a corresponding jest test inside of its directory. Be sure to cover your added code with tests.
