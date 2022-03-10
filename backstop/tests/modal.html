@@ -54,25 +54,13 @@
     <br />
 
     <button
-      aria-label="Open full page modal - sliding animation"
-      id="open-full-page-modal-slide"
+      aria-label="Open full page modal"
+      id="open-full-page-modal"
       type="button"
       class="iui-button iui-default"
-      onclick="toggleModal('full-page-modal-slide')"
+      onclick="toggleModal('full-page-modal')"
     >
-      Open full page modal - sliding animation
-    </button>
-
-    <br />
-
-    <button
-      aria-label="Open full page modal - scaling animation"
-      id="open-full-page-modal-scale"
-      type="button"
-      class="iui-button iui-default"
-      onclick="toggleModal('full-page-modal-scale')"
-    >
-      Open full page modal - scaling animation
+      Open full page modal
     </button>
 
     <div
@@ -123,8 +111,8 @@
     </div>
 
     <div
-      class="iui-modal iui-modal-full-page iui-modal-full-page-slide-animation"
-      id="full-page-modal-slide"
+      class="iui-modal iui-modal-full-page"
+      id="full-page-modal"
     >
       <div class="iui-modal-dialog">
         <div class="iui-title-bar">
@@ -133,7 +121,7 @@
             aria-label="Close"
             type="button"
             class="iui-button iui-borderless iui-small"
-            onclick="toggleModal('full-page-modal-slide')"
+            onclick="toggleModal('full-page-modal')"
           >
             <svg-close
               class="iui-button-icon"
@@ -155,60 +143,13 @@
         <div class="iui-button-bar">
           <button
             class="iui-button iui-high-visibility"
-            onclick="toggleModal('full-page-modal-slide')"
+            onclick="toggleModal('full-page-modal')"
           >
             <span class="iui-button-label">Proceed</span>
           </button>
           <button
             class="iui-button iui-default"
-            onclick="toggleModal('full-page-modal-slide')"
-          >
-            <span class="iui-button-label">Cancel</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="iui-modal iui-modal-full-page iui-modal-full-page-scale-animation"
-      id="full-page-modal-scale"
-    >
-      <div class="iui-modal-dialog">
-        <div class="iui-title-bar">
-          <div class="iui-title">Title</div>
-          <button
-            aria-label="Close"
-            type="button"
-            class="iui-button iui-borderless iui-small"
-            onclick="toggleModal('full-page-modal-scale')"
-          >
-            <svg-close
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-close>
-          </button>
-        </div>
-        <div class="iui-modal-content">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-        <div class="iui-button-bar">
-          <button
-            class="iui-button iui-high-visibility"
-            onclick="toggleModal('full-page-modal-scale')"
-          >
-            <span class="iui-button-label">Proceed</span>
-          </button>
-          <button
-            class="iui-button iui-default"
-            onclick="toggleModal('full-page-modal-scale')"
+            onclick="toggleModal('full-page-modal')"
           >
             <span class="iui-button-label">Cancel</span>
           </button>

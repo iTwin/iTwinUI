@@ -7,16 +7,10 @@ module.exports = [
     actions: [click('#open-modal'), hover('body')],
     selectors: ['document'],
   }),
-  scenario('full-page-modal-slide', {
+  scenario('full-page-modal', {
     // Hovering `body` to avoid random test failures
     // when "Open modal" sometimes is and sometimes is not hovered.
-    actions: [click('#open-full-page-modal-slide'), hover('body')],
-    selectors: ['document'],
-  }),
-  scenario('full-page-modal-scale', {
-    // Hovering `body` to avoid random test failures
-    // when "Open modal" sometimes is and sometimes is not hovered.
-    actions: [click('#open-full-page-modal-scale'), hover('body')],
+    actions: [click('#open-full-page-modal'), hover('body')],
     selectors: ['document'],
   }),
 ];

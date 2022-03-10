@@ -72,6 +72,8 @@
 
     .iui-modal-content {
       flex-grow: 2;
+      margin: 0 -#{$iui-m};
+      padding: 0 $iui-m;
       overflow-y: auto;
       @supports (overflow-y: overlay) {
         overflow-y: overlay;
@@ -99,9 +101,7 @@
     min-width: initial;
     border-radius: 0;
   }
-}
 
-@mixin iui-modal-full-page-slide-animation {
   --iui-full-page-modal-transform-x: 0%;
   --iui-full-page-modal-transform-y: 100%;
 
@@ -120,26 +120,6 @@
     transform: translate(0, 0);
     @media (prefers-reduced-motion: no-preference) {
       transition: transform $iui-speed ease-out;
-    }
-  }
-}
-
-@mixin iui-modal-full-page-scale-animation {
-  @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed ease-out $iui-speed-fast;
-  }
-
-  > .iui-modal-dialog {
-    transform: scale(0);
-    @media (prefers-reduced-motion: no-preference) {
-      transition: visibility $iui-speed-instant linear $iui-speed-fast, transform $iui-speed ease-in;
-    }
-  }
-
-  &.iui-modal-visible > .iui-modal-dialog {
-    transform: scale(1);
-    @media (prefers-reduced-motion: no-preference) {
-      transition: visibility $iui-speed-instant linear $iui-speed-fast, transform ($iui-speed + 0.2) ease-out;
     }
   }
 }

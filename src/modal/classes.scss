@@ -7,13 +7,5 @@
 
   &-full-page {
     @include iui-modal-full-page;
-
-    &-slide-animation {
-      @include iui-modal-full-page-slide-animation;
-    }
-
-    &-scale-animation {
-      @include iui-modal-full-page-scale-animation;
-    }
   }
 }
