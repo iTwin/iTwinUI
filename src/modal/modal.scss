@@ -13,11 +13,19 @@
   height: 100%;
   visibility: hidden;
   opacity: 0;
+  will-change: transform;
   @media (prefers-reduced-motion: no-preference) {
     transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
   }
   @include themed {
     background-color: rgba(0, 0, 0, t(iui-opacity-4));
+  }
+
+  &.iui-modal-visible {
+    visibility: visible;
+    opacity: 1;
+    // remove delay for entry animation so it's instantly visible
+    transition-delay: $iui-speed-instant;
   }
 
   > .iui-modal-dialog {
@@ -33,6 +41,7 @@
     box-shadow: $iui-elevation-24;
     padding: $iui-baseline $iui-m;
     box-sizing: border-box;
+    will-change: transform;
 
     @include themed {
       background-color: t(iui-color-background-1);
@@ -80,12 +89,6 @@
       }
     }
   }
-
-  &.iui-modal-visible {
-    visibility: visible;
-    opacity: 1;
-    transition-delay: $iui-speed-instant;
-  }
 }
 
 @mixin iui-modal-full-page {
@@ -100,26 +103,27 @@
     max-width: initial;
     min-width: initial;
     border-radius: 0;
-  }
 
-  --iui-full-page-modal-transform-x: 0%;
-  --iui-full-page-modal-transform-y: 100%;
-
-  @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed ease-out $iui-speed-fast;
-  }
-
-  > .iui-modal-dialog {
-    transform: translate(var(--iui-full-page-modal-transform-x), var(--iui-full-page-modal-transform-y));
-    @media (prefers-reduced-motion: no-preference) {
-      transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed, transform $iui-speed ease-in;
+    &.iui-modal-animation-enter {
+      transform: translateY(100%);
+      opacity: 0;
     }
-  }
 
-  &.iui-modal-visible > .iui-modal-dialog {
-    transform: translate(0, 0);
-    @media (prefers-reduced-motion: no-preference) {
-      transition: transform $iui-speed ease-out;
+    &.iui-modal-animation-enter-active {
+      transform: translateY(0);
+      opacity: 1;
+      transition: opacity $iui-speed linear, transform $iui-speed ease-in;
+    }
+
+    &.iui-modal-animation-exit {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    &.iui-modal-animation-exit-active {
+      transform: translateY(100%);
+      opacity: 0;
+      transition: opacity $iui-speed linear, transform $iui-speed ease-in;
     }
   }
 }
