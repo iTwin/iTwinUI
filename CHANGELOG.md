@@ -2,7 +2,6 @@
 
 ### [0.50.1](https://www.github.com/iTwin/iTwinUI/compare/v0.50.0...v0.50.1) (2022-03-10)
 
-
 ### Fixes
 
 * **ButtonGroup:** Add max width/height for overflow calculations ([#514](https://www.github.com/iTwin/iTwinUI/issues/514)) ([9e7bf15](https://www.github.com/iTwin/iTwinUI/commit/9e7bf153fa065ba11d26b3e59ae06136d614ae7a))
