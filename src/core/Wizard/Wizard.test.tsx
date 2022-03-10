@@ -7,11 +7,6 @@ import React from 'react';
 import { Wizard } from './Wizard';
 
 describe('<Wizard />', () => {
-  afterEach(() => {
-    // cleanup tippy after every test, so it does not stay in the dom
-    document.querySelector('[data-tippy-root]')?.remove();
-  });
-
   it('should render all step names and numbers in default wizard', () => {
     const wizard = (
       <Wizard

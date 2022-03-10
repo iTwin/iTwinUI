@@ -39,11 +39,6 @@ function renderComponent(props?: Partial<DropdownMenuProps>) {
   );
 }
 
-afterEach(() => {
-  // cleanup tippy after every test, so it does not stay in the dom
-  document.querySelector('[data-tippy-root]')?.remove();
-});
-
 it('should show menu only after click', () => {
   renderComponent();
 

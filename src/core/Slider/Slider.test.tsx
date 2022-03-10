@@ -30,11 +30,6 @@ const getBoundingClientRect = Element.prototype.getBoundingClientRect;
 const sliderContainerSize = createBoundingClientRect(10, 0, 1010, 60);
 Element.prototype.getBoundingClientRect = () => sliderContainerSize;
 
-afterEach(() => {
-  // cleanup tippy after every test, so it does not stay in the dom
-  document.querySelector('[data-tippy-root]')?.remove();
-});
-
 afterAll(() => {
   Element.prototype.getBoundingClientRect = getBoundingClientRect;
 });
