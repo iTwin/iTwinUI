@@ -45,9 +45,9 @@
     @include themed() {
       outline: solid 2px t(iui-color-foreground-primary);
       background: linear-gradient(
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-        ),
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+      ),
         linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
     }
 
