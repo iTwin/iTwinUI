@@ -85,7 +85,7 @@
       }
     }
 
-    &:hover > .iui-resizer {
+    &:hover:where(:not(.iui-reorder-column-left, .iui-reorder-column-right)) > .iui-resizer {
       opacity: 1;
     }
 
