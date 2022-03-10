@@ -7,19 +7,21 @@
 @import './disabled';
 
 @mixin iui-button-default {
-  @include iui-button-default-base;
-
-  &:focus {
-    @include iui-button-default-hover-focus;
-
-    &:where(:not(:focus-visible)) {
-      @include iui-button-default-base;
-    }
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
+  @include iui-focus($offset: -2px, $thickness: 2px);
 
   &:hover,
   &:active {
-    @include iui-button-default-hover-focus;
+    @include themed {
+      background-color: t(iui-color-background-1-overlay);
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    }
+    @include iui-notification-marker-hover;
   }
 
   &.iui-dropdown {
@@ -35,36 +37,25 @@
     }
   }
 
-  &.iui-active {
+  &.iui-active:enabled {
+    position: relative;
     @include themed {
-      background: linear-gradient(
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-      ),
-        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
       color: t(iui-color-foreground-primary);
+    }
+
+    // Used for combining overlay background color with base background
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      }
     }
   }
 
   &[disabled],
   &:disabled {
     @include iui-button-disabled;
-  }
-}
-
-@mixin iui-button-default-hover-focus {
-  @include themed {
-    background-color: t(iui-color-background-1-overlay);
-    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-  }
-  @include iui-notification-marker-hover;
-}
-
-@mixin iui-button-default-base {
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
 }

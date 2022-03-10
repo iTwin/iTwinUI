@@ -190,73 +190,87 @@
           class="iui-button-group"
           style="margin-right: auto;"
         >
-          <button
-            title="Download"
-            class="iui-button iui-default"
-          >
-            <svg-download
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-download>
-          </button>
-          <button
-            title="Move"
-            class="iui-button iui-default"
-          >
-            <svg-arrow-right
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-arrow-right>
-          </button>
-          <button
-            title="Delete"
-            class="iui-button iui-default"
-            disabled
-          >
-            <svg-delete
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-delete>
-          </button>
-          <button
-            title="Rename"
-            class="iui-button iui-default"
-          >
-            <svg-rename
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-rename>
-          </button>
-          <button
-            title="More options&mldr;"
-            class="iui-button iui-default"
-          >
-            <svg-more
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more>
-          </button>
+          <div>
+            <button
+              title="Download"
+              class="iui-button iui-default"
+            >
+              <svg-download
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-download>
+            </button>
+          </div>
+          <div>
+            <button
+              title="Move"
+              class="iui-button iui-default"
+            >
+              <svg-arrow-right
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-arrow-right>
+            </button>
+          </div>
+          <div>
+            <button
+              title="Delete"
+              class="iui-button iui-default"
+              disabled
+            >
+              <svg-delete
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-delete>
+            </button>
+          </div>
+          <div>
+            <button
+              title="Rename"
+              class="iui-button iui-default"
+            >
+              <svg-rename
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-rename>
+            </button>
+          </div>
+          <div>
+            <button
+              title="More options&mldr;"
+              class="iui-button iui-default"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
         </span>
 
         <span class="iui-button-group">
-          <button
-            title="List view"
-            class="iui-button iui-default iui-active"
-          >
-            <svg-list
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-list>
-          </button>
-          <button
-            title="Tile view"
-            class="iui-button iui-default"
-          >
-            <svg-thumbnails
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-thumbnails>
-          </button>
+          <div>
+            <button
+              title="List view"
+              class="iui-button iui-default iui-active"
+            >
+              <svg-list
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-list>
+            </button>
+          </div>
+          <div>
+            <button
+              title="Tile view"
+              class="iui-button iui-default"
+            >
+              <svg-thumbnails
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-thumbnails>
+            </button>
+          </div>
         </span>
 
         <button
@@ -277,28 +291,12 @@
           <div class="iui-table-header">
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="select-all-checkboxes"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check-partial"
-                        d="m1 6.5h14v3h-14z"
-                      />
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="select-all-checkboxes"
+                />
               </div>
               <div
                 class="iui-cell iui-actionable iui-sorted"
@@ -416,24 +414,13 @@
 
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -469,25 +456,14 @@
 
             <div class="iui-row iui-selected">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                    checked
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                  checked
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -523,24 +499,13 @@
 
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -576,24 +541,13 @@
 
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -629,24 +583,13 @@
 
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -842,28 +785,11 @@
           <div class="iui-table-header">
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="select-all-checkboxes"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check-partial"
-                        d="m1 6.5h14v3h-14z"
-                      />
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="select-all-checkboxes"
+                />
               </div>
               <div
                 class="iui-cell iui-actionable iui-sorted"
@@ -981,24 +907,13 @@
 
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -1034,25 +949,14 @@
 
             <div class="iui-row iui-selected">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                    checked
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                  checked
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -1088,24 +992,13 @@
 
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -1141,24 +1034,13 @@
 
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -1194,24 +1076,13 @@
 
             <div class="iui-row">
               <div class="iui-cell iui-slot">
-                <label class="iui-checkbox">
-                  <input
-                    type="checkbox"
-                    id="active-row"
-                  />
-                  <span class="iui-checkbox-checkmark">
-                    <svg
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <path
-                        class="iui-check"
-                        d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-                      />
-                    </svg>
-                  </span>
-                </label>
+
+                <input
+                  type="checkbox"
+                  class="iui-checkbox"
+                  id="active-row"
+                />
+                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -1607,7 +1478,7 @@
           } else {
             infoPanel.style.height = `${infoPanel.getBoundingClientRect().bottom - e.y}px`;
           }
-        }
+        };
         resizer.addEventListener('mousedown', () => {
           document.addEventListener('mousemove', resizeFn);
           document.addEventListener('mouseup', () => document.removeEventListener('mousemove', resizeFn));
@@ -1624,7 +1495,7 @@
         const setStripe = (activeEl) => {
           tabs.style.setProperty('--stripe-left', `${activeEl.offsetLeft}px`);
           tabs.style.setProperty('--stripe-width', `${activeEl.getBoundingClientRect().width}px`);
-        }
+        };
         setStripe(activeTab);
 
         [...tabs.children].forEach(({ firstElementChild: tab }) => {

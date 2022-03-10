@@ -4,6 +4,7 @@
 
 @mixin iui-input {
   @include iui-reset;
+  @include iui-focus($offset: -2px, $thickness: 2px);
   width: 100%;
   font-family: inherit;
   font-size: $iui-font-size;
@@ -62,15 +63,7 @@
       border-color: t(iui-color-background-disabled);
     }
     cursor: not-allowed;
-  }
-
-  &:focus {
-    outline: 0;
-
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-      box-shadow: t(iui-focus-box-shadow);
-    }
+    --_hover-color: var(--iui-color-background-disabled);
   }
 }
 

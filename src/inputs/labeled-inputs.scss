@@ -44,9 +44,9 @@
   }
 
   .iui-input,
+  .iui-input-with-icon,
   .iui-textarea,
-  .iui-input-group,
-  .iui-select {
+  .iui-input-group {
     grid-area: inputs;
     // stylelint-disable -- fix position in IE
     -ms-grid-row: 2;
@@ -66,8 +66,8 @@
   // #endregion
 
   // Appropriate spacing even if no text label is given
-  .iui-checkbox,
-  .iui-radio {
+  .iui-checkbox-wrapper,
+  .iui-radio-wrapper {
     min-height: $iui-line-height;
   }
 
@@ -84,9 +84,9 @@
     }
 
     .iui-input,
+    .iui-input-with-icon,
     .iui-textarea,
-    .iui-input-group,
-    .iui-select {
+    .iui-input-group {
       // stylelint-disable -- fix position in IE
       -ms-grid-row: 1;
       -ms-grid-column: 2;
@@ -220,7 +220,7 @@
   }
 }
 
-/// Icon to be shown near an input.
+/// Icon to be shown near a message.
 @mixin iui-input-icon {
   display: flex;
   grid-area: icon;
@@ -245,8 +245,13 @@
 
   grid-area: inputs;
   justify-self: end;
-  margin: 0 $iui-sm 0 0;
+  margin: 0 ($iui-sm + $iui-xxs) 0 0;
   position: relative;
+
+  svg {
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+  }
 
   &.iui-button {
     height: 100%;
@@ -254,20 +259,20 @@
     margin-right: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
   }
 
   &.iui-actionable {
     align-items: center;
     height: 90%;
-    margin-right: 1px;
+    margin-right: $iui-xxs;
     padding: 0 $iui-sm;
     cursor: pointer;
 
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
     svg {
-      width: $iui-icons-default;
-      height: $iui-icons-default;
       @include themed {
         fill: t(iui-icons-color);
       }
@@ -276,6 +281,16 @@
 
     &.iui-open svg {
       transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
+    }
+  }
+
+  &.iui-disabled {
+    cursor: not-allowed;
+
+    svg {
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
+      }
     }
   }
 }
@@ -319,9 +334,8 @@
     }
   }
 
-  > .iui-input,
-  > .iui-textarea,
-  > .iui-select > .iui-select-button {
+  .iui-input,
+  .iui-textarea {
     padding-bottom: $iui-component-padding-vertical - 1px;
 
     &.iui-small {
@@ -339,7 +353,29 @@
     &:focus {
       @include themed {
         border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
-        box-shadow: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-5)) 0 0 0 $iui-xxs;
+        outline: 2px solid t(iui-color-foreground-#{$status});
+        outline-offset: -2px;
+      }
+    }
+  }
+
+  .iui-input-with-icon {
+    --_hover-color: var(--iui-color-foreground-#{$status});
+    --_focus-color: var(--iui-color-foreground-#{$status});
+  }
+
+  .iui-select-button {
+    border-bottom: transparent;
+
+    &::after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: $iui-xxs;
+      @include themed {
+        background-color: t(iui-color-foreground-#{$status});
       }
     }
   }

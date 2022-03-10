@@ -3,112 +3,64 @@
 @import '../style/index';
 @import '../menu/index';
 
-$iui-after-border: 5px solid;
-
-@mixin iui-select {
-  @include iui-reset;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+@mixin iui-select-button {
+  @include iui-focus($offset: -2px, $thickness: 2px);
   width: 100%;
+  margin: 0;
+  border-radius: $iui-border-radius;
+  box-sizing: border-box;
+  padding: $iui-component-padding-vertical $iui-component-padding-horizontal;
+  min-height: $iui-component-height;
+  transition: border-color $iui-speed-fast ease-out;
 
-  > .iui-select-button {
-    @include iui-input;
-    @include iui-focus;
-    display: flex;
-    align-items: center;
-    min-height: $iui-component-height;
-    padding-right: $iui-xl;
-    user-select: none;
-    position: relative;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: border-color $iui-speed-fast ease-out;
-    }
+  display: flex;
+  align-items: center;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
 
-    > .iui-icon {
-      @include iui-menu-icon;
-    }
-
-    > .iui-content {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &.iui-placeholder {
-      @include themed {
-        color: t(iui-text-color-placeholder);
-      }
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: $iui-m;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-left: $iui-after-border transparent;
-      border-right: $iui-after-border transparent;
-      @include themed {
-        border-top: $iui-after-border t(iui-icons-color-actionable);
-      }
-    }
-
-    &:hover {
-      @include themed {
-        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-      }
-
-      &::after {
-        border-bottom: none;
-        @include themed {
-          border-top: $iui-after-border t(iui-icons-color-actionable-hover);
-        }
-      }
-    }
-
-    &.iui-active {
-      &::after {
-        border-top: none;
-        @include themed {
-          border-bottom: $iui-after-border t(iui-icons-color-actionable);
-        }
-      }
-
-      &:hover::after {
-        @include themed {
-          border-bottom: $iui-after-border t(iui-icons-color-actionable-hover);
-        }
-      }
-    }
-
-    &.iui-disabled {
-      cursor: not-allowed;
-      @include themed {
-        background-color: t(iui-color-background-disabled);
-        border-color: t(iui-color-background-disabled);
-      }
-
-      &::after {
-        @include themed {
-          border-top: $iui-after-border t(iui-icons-color-actionable-disabled);
-        }
-      }
-    }
+  @include themed {
+    color: t(iui-text-color);
+    background-color: t(iui-color-background-1);
+    border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
   }
 
-  &.iui-small .iui-select-button {
+  &.iui-small {
     padding-top: $iui-component-padding-vertical-small;
     padding-bottom: $iui-component-padding-vertical-small;
     min-height: $iui-component-height-small;
   }
 
-  &.iui-large .iui-select-button {
+  &.iui-large {
     padding-top: $iui-component-padding-vertical-large;
     padding-bottom: $iui-component-padding-vertical-large;
     min-height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
+  }
+
+  &.iui-disabled {
+    @include themed {
+      background-color: t(iui-color-background-disabled);
+      border-color: t(iui-color-background-disabled);
+    }
+    --_hover-color: var(--iui-color-background-disabled);
+    cursor: not-allowed;
+  }
+
+  .iui-icon {
+    @include iui-menu-icon;
+    fill: currentColor;
+  }
+
+  .iui-content {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &.iui-placeholder {
+    @include themed {
+      color: t(iui-text-color-placeholder);
+    }
   }
 }

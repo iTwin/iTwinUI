@@ -39,10 +39,14 @@
         border-bottom: none;
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
-    <theme-button></theme-button>
+    <theme-button style="position:fixed"></theme-button>
     <div
       id="nis-401"
       class="iui-non-ideal-state-scrolling"
@@ -2252,24 +2256,13 @@
           </button>
         </div>
 
-        <label class="iui-checkbox">
+        <label class="iui-checkbox-wrapper">
+          <span class="iui-checkbox-label">Remember my choice</span>
           <input
+            class="iui-checkbox"
             type="checkbox"
             checked
           />
-          <span class="iui-label">Remember my choice</span>
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-            </svg>
-          </span>
         </label>
       </div>
     </div>
@@ -2332,34 +2325,27 @@
         </div>
         <div class="iui-non-ideal-state-actions">
           <label class="iui-input-container">
-            <div class="iui-select">
+            <div class="iui-input-with-icon">
               <div class="iui-select-button iui-placeholder">
                 Please choose…
               </div>
+              <svg-caret-down-small
+                class="iui-end-icon iui-actionable"
+                aria-hidden="true"
+              ></svg-caret-down-small>
             </div>
           </label>
           <button class="iui-button iui-high-visibility">
             <span class="iui-button-label">Open</span>
           </button>
         </div>
-        <label class="iui-checkbox">
+        <label class="iui-checkbox-wrapper">
+          <span class="iui-checkbox-label">Remember my choice</span>
           <input
+            class="iui-checkbox"
             type="checkbox"
             checked
           />
-          <span class="iui-label">Remember my choice</span>
-          <span class="iui-checkbox-checkmark">
-            <svg
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="iui-check"
-                d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z"
-              />
-            </svg>
-          </span>
         </label>
       </div>
     </div>

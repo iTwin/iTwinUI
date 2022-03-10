@@ -10,6 +10,8 @@ $iui-button-padding-small: $iui-xs * 2;
 $iui-button-padding-large: $iui-xs * 6;
 
 @mixin iui-button {
+  --_iui-button-active-stripe-inset: initial;
+
   @include iui-reset;
   font-family: inherit;
   display: inline-flex;
@@ -20,7 +22,6 @@ $iui-button-padding-large: $iui-xs * 6;
   box-sizing: border-box;
   border-radius: $iui-border-radius;
   line-height: $iui-line-height;
-  outline: none;
   box-shadow: none;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
@@ -50,6 +51,23 @@ $iui-button-padding-large: $iui-xs * 6;
   &[disabled],
   &:disabled {
     @include iui-button-disabled;
+  }
+
+  &.iui-active {
+    // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
+    &::after {
+      content: '';
+      position: absolute;
+      inset: var(--_iui-button-active-stripe-inset);
+      background-color: var(--iui-color-foreground-primary);
+    }
+
+    &[disabled],
+    &:disabled {
+      &::after {
+        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
+      }
+    }
   }
 }
 

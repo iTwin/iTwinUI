@@ -2,34 +2,52 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-button-group {
+/// Mixin for button group or input+button combo group.
+/// @arg $orientation must be one of: horizontal, vertical
+/// Note: Vertical button-group should be used for icon buttons only.
+@mixin iui-button-group($orientation: horizontal) {
   display: inline-flex;
   align-items: center;
   isolation: isolate;
 
-  $childSelector: 'input, button'; // target nested inputs and buttons
+  @if $orientation != 'horizontal' {
+    flex-direction: column;
+  }
+
+  $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
+  $childBorderSelector: '.iui-input, .iui-button:where(:not(.iui-borderless))';
+  $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
   > * {
     display: flex;
 
-    #{$childSelector} {
+    #{$childZindexSelector} {
       position: relative;
+
+      // Adds stripe to active button
+      @if $orientation == 'horizontal' {
+        --_iui-button-active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
+      } @else {
+        --_iui-button-active-stripe-inset: #{$iui-xxs} calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
+      }
 
       &:hover {
         z-index: 1;
       }
 
-      &:focus {
+      &:focus,
+      &:focus-within {
         z-index: 2;
-
-        &:where(:not(:focus-visible):not(:hover)) {
-          z-index: revert;
-        }
       }
 
-      &:disabled {
+      #{$disabledSelector} {
         z-index: -1;
       }
+    }
+
+    #{$childBorderSelector} {
+      // Reset border radius
+      border-radius: 0;
 
       transition-duration: 0ms; // disable exit animation to avoid border flicker
 
@@ -37,62 +55,49 @@
       &:focus {
         transition-duration: $iui-speed-fast; // re-enable enter animation
       }
-
-      // Adds stripe above active button
-      &.iui-active {
-        &::after {
-          content: '';
-          position: absolute;
-          height: $iui-xxs;
-          opacity: 1;
-          top: $iui-xxs;
-          left: $iui-xxs;
-          width: calc(100% - #{$iui-xs});
-          @include themed {
-            background-color: t(iui-color-foreground-primary);
-          }
-        }
-
-        &:disabled {
-          &::after {
-            @include themed {
-              background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
-            }
-          }
-        }
-      }
-
-      // Reset border radius only for non-borderless items
-      &:not(.iui-borderless) {
-        border-radius: 0;
-      }
     }
 
     // Add rounded corners to first and last items
     &:first-child {
-      #{$childSelector}:not(.iui-borderless) {
+      #{$childBorderSelector} {
         border-top-left-radius: $iui-border-radius;
-        border-bottom-left-radius: $iui-border-radius;
+
+        @if $orientation == 'horizontal' {
+          border-bottom-left-radius: $iui-border-radius;
+        } @else {
+          border-top-right-radius: $iui-border-radius;
+        }
       }
     }
 
     &:last-child {
-      #{$childSelector}:not(.iui-borderless) {
-        border-top-right-radius: $iui-border-radius;
+      #{$childBorderSelector} {
         border-bottom-right-radius: $iui-border-radius;
+
+        @if $orientation == 'horizontal' {
+          border-top-right-radius: $iui-border-radius;
+        } @else {
+          border-bottom-left-radius: $iui-border-radius;
+        }
       }
     }
 
     // Use negative margin to make adjacent borders overlap
     + * {
-      margin-left: -1px;
+      @if $orientation == 'horizontal' {
+        margin-left: -1px;
+      } @else {
+        margin-top: -1px;
+      }
     }
 
     // Add slight border between disabled items
-    &:not(:first-child) {
-      .iui-default:disabled {
-        @include themed {
-          border-left-color: t(iui-color-background-4);
+    &:not(:first-child) :where(.iui-button.iui-default) {
+      #{$disabledSelector} {
+        @if $orientation == 'horizontal' {
+          border-left-color: var(--iui-color-background-4);
+        } @else {
+          border-top-color: var(--iui-color-background-4);
         }
       }
     }

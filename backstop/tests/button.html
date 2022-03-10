@@ -62,6 +62,10 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-happy"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
+    ></script>
     <script src="../assets/theme.js"></script>
     <style>
       #demo-default button,
@@ -920,6 +924,79 @@
           </button>
         </div>
       </span>
+
+      <br />
+
+      <span class="iui-button-group-vertical">
+        <div>
+          <button class="iui-button iui-default">
+            <svg-download
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-download>
+          </button>
+        </div>
+        <div>
+          <button class="iui-button iui-default">
+            <svg-arrow-right
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-arrow-right>
+          </button>
+        </div>
+        <div>
+          <button
+            class="iui-button iui-default"
+            disabled
+          >
+            <svg-delete
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-delete>
+          </button>
+        </div>
+        <div>
+          <button
+            class="iui-button iui-default"
+            disabled
+          >
+            <svg-rename
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-rename>
+          </button>
+        </div>
+        <div>
+          <button class="iui-button iui-default">
+            <svg-more
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-more>
+          </button>
+        </div>
+      </span>
+
+      &nbsp;
+
+      <span class="iui-button-group-vertical">
+        <div>
+          <button class="iui-button iui-default">
+            <svg-list
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-list>
+          </button>
+        </div>
+        <div>
+          <button class="iui-button iui-default iui-active">
+            <svg-thumbnails
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-thumbnails>
+          </button>
+        </div>
+      </span>
+
     </section>
 
     <br />
@@ -1407,14 +1484,60 @@
 
       <div class="iui-button-group">
         <div>
-          <div class="iui-input-container">
+          <button class="iui-button iui-default"><span class="iui-button-label">Button 1</span></button>
+        </div>
+        <div>
+          <input
+            class="iui-input"
+            placeholder="Disabled input"
+            disabled
+          />
+        </div>
+        <div>
+          <button class="iui-button iui-default"><span class="iui-button-label">Button 2</span></button>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="iui-button-group">
+        <div>
+          <div class="iui-input-container iui-disabled">
             <input
               class="iui-input"
               value="https://itwin.github.io/iTwinUI"
+              disabled
             />
           </div>
         </div>
         <div><button class="iui-button iui-high-visibility">Copy</button></div>
+      </div>
+
+      <br />
+
+      <div class="iui-button-group">
+        <div>
+          <div class="iui-input-container iui-inline-icon">
+            <input
+              class="iui-input"
+              value="https://itwin.github.io/iTwinUI"
+            />
+            <button class="iui-button iui-borderless iui-input-icon">
+              <svg-close-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-close-small>
+            </button>
+          </div>
+        </div>
+        <div>
+          <button class="iui-button iui-default">
+            <svg-more
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-more>
+          </button>
+        </div>
       </div>
     </section>
 

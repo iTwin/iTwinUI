@@ -40,6 +40,10 @@
       cursor: pointer;
     }
 
+    &.iui-grabbing {
+      cursor: grabbing;
+    }
+
     > .iui-filter-button {
       margin-left: $iui-xs;
       margin-right: $iui-s;
@@ -99,6 +103,18 @@
     }
   }
 
+  .iui-reorder-column-right {
+    @include themed {
+      border-right: $iui-xxs solid t(iui-color-foreground-primary);
+    }
+  }
+
+  .iui-reorder-column-left {
+    @include themed {
+      border-left: $iui-xxs solid t(iui-color-foreground-primary);
+    }
+  }
+
   // Sort icon
   .iui-sort {
     visibility: hidden;
@@ -135,7 +151,7 @@
     background-color: t(iui-color-background-1);
   }
 
-  &.iui-zebra-striping > .iui-row:nth-child(even):not(.iui-selected) {
+  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) {
     @include themed {
       background-color: rgba(t(iui-color-foreground-body-rgb), 0.02);
     }

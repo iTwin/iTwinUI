@@ -17,10 +17,27 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
   list-style: none;
 }
 
+@mixin iui-tree-item {
+  @include focus-visible {
+    outline: none;
+
+    > .iui-tree-node {
+      outline: 1px solid var(--iui-color-foreground-primary);
+      outline-offset: -1px;
+
+      &.iui-active {
+        outline: 2px solid var(--iui-color-foreground-primary);
+        outline-offset: -2px;
+      }
+    }
+  }
+}
+
 @mixin iui-tree-node {
   display: flex;
   cursor: pointer;
   padding: 0 $iui-s;
+  align-items: center;
 
   &-checkbox {
     margin-right: $iui-s;
@@ -83,17 +100,6 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     }
   }
 
-  &:focus {
-    @include themed {
-      outline: thin solid rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
-      outline-offset: -1px;
-    }
-  }
-
-  &:focus:not(:focus-visible) {
-    outline-offset: -2px;
-  }
-
   &:hover {
     @include themed {
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
@@ -112,11 +118,6 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
       outline: $iui-active-outline;
       outline-offset: -1px;
-    }
-
-    &:focus {
-      outline-width: $iui-xxs;
-      outline-offset: -2px;
     }
   }
 

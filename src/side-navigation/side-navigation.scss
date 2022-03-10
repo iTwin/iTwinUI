@@ -84,6 +84,9 @@
     overflow: hidden;
     justify-content: flex-start;
 
+    // Adds stripe to the left of active button
+    --_iui-button-active-stripe-inset: 0 calc(100% - #{$iui-xxs}) 0 0;
+
     &:not(.iui-expand) {
       height: $iui-baseline * 5;
       // iPhone notch support
@@ -100,15 +103,7 @@
 
     &,
     &:hover,
-    &[disabled],
-    &:focus {
-      @include themed {
-        border-color: t(iui-color-background-5);
-      }
-    }
-
-    // Overriding border from default button
-    &:focus:not(:focus-visible) {
+    &[disabled] {
       @include themed {
         border-color: t(iui-color-background-5);
       }
@@ -126,41 +121,11 @@
       }
     }
 
-    &.iui-active {
-      @include themed {
-        box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
-      }
-
-      &:focus {
-        @include themed {
-          box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3)),
-            inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
-        }
-      }
-
-      &:focus:not(:focus-visible) {
-        @include themed {
-          box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-primary);
-        }
-      }
-    }
-
     &[disabled],
     &:disabled {
       @include themed {
         background-color: t(iui-color-background-2);
       }
-    }
-
-    &:focus {
-      outline: 0;
-      @include themed {
-        box-shadow: inset 0 0 $iui-xs rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-3));
-      }
-    }
-
-    &:focus:not(:focus-visible) {
-      box-shadow: none;
     }
 
     &.iui-expand {
