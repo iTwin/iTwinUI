@@ -5,7 +5,7 @@
 @mixin iui-toggle-switch-wrapper {
   @include iui-reset;
   display: grid;
-  grid-template-areas: 'toggle label';
+  grid-template-areas: 'toggle';
   align-items: center;
   gap: $iui-s;
   font-size: $iui-font-size;
@@ -25,16 +25,8 @@
     }
   }
 
-  > .iui-label {
-    grid-area: label;
-    margin-right: $iui-s;
-    @supports (gap: $iui-s) {
-      margin-right: 0;
-    }
-  }
-
-  // For labels on the right
-  &.iui-label-on-right {
+  // For labels on the left
+  &.iui-label-on-left {
     grid-template-areas: 'label toggle';
 
     .iui-label {
@@ -42,6 +34,19 @@
       margin-right: 0;
       @supports (gap: $iui-s) {
         margin-left: 0;
+      }
+    }
+  }
+
+  // For labels on the right
+  &.iui-label-on-right {
+    grid-template-areas: 'toggle label';
+
+    .iui-label {
+      grid-area: label;
+      margin-right: $iui-s;
+      @supports (gap: $iui-s) {
+        margin-right: 0;
       }
     }
   }
