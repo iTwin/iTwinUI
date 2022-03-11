@@ -10,6 +10,7 @@
   width: fit-content;
   user-select: none;
   position: relative;
+  -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
   cursor: pointer;
   @include themed {
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
