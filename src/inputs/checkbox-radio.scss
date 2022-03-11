@@ -55,18 +55,21 @@
   }
 
   &.iui-positive {
+    -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-5));
     @include themed {
       color: t(iui-color-foreground-positive);
     }
   }
 
   &.iui-warning {
+    -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-warning-rgb), var(--iui-opacity-5));
     @include themed {
       color: t(iui-color-foreground-warning);
     }
   }
 
   &.iui-negative {
+    -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-negative-rgb), var(--iui-opacity-5));
     @include themed {
       color: t(iui-color-foreground-negative);
     }
