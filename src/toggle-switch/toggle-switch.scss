@@ -29,7 +29,7 @@
   &.iui-label-on-left {
     grid-template-areas: 'label toggle';
 
-    .iui-label {
+    .iui-toggle-switch-label {
       margin-left: $iui-s;
       margin-right: 0;
       @supports (gap: $iui-s) {
@@ -42,7 +42,7 @@
   &.iui-label-on-right {
     grid-template-areas: 'toggle label';
 
-    .iui-label {
+    .iui-toggle-switch-label {
       grid-area: label;
       margin-right: $iui-s;
       @supports (gap: $iui-s) {
@@ -63,7 +63,6 @@
   display: flex;
   position: relative;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
 
   // #region IE solution
   width: $iui-toggle-switch-handle-size;
