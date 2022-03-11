@@ -75,10 +75,8 @@
     border-radius: $iui-border-radius-round;
     box-sizing: border-box;
     transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
-    @include themed {
-      background-color: t(iui-color-background-1);
-      border: $iui-toggle-switch-border-thickness solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-    }
+    background-color: var(--iui-color-background-1);
+    border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
   }
   // #endregion IE solution
 
@@ -98,22 +96,16 @@
   }
 
   // #region Unchecked toggle switch
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-  }
+  background-color: var(--iui-color-background-1);
+  border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
 
   &::after {
-    @include themed {
-      background-color: t(iui-color-foreground-body);
-      opacity: t(iui-opacity-2);
-    }
+    background-color: var(--iui-color-foreground-body);
+    opacity: var(--iui-opacity-2);
   }
 
   &:hover {
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-    }
+    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
   }
 
   @include focus-visible {
@@ -123,32 +115,24 @@
 
   // #region Checked toggle switch
   &:checked {
-    @include themed {
-      background-color: t(iui-color-background-primary);
-      border-color: t(iui-color-background-primary);
-    }
+    background-color: var(--iui-color-background-primary);
+    border-color: var(--iui-color-background-primary);
 
     &::after {
       transform: translateX($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset);
-      @include themed {
-        background-color: t(iui-color-foreground-accessory);
-        opacity: t(iui-opacity-2);
-      }
+      background-color: var(--iui-color-foreground-accessory);
+      opacity: var(--iui-opacity-2);
     }
 
     ~ .iui-toggle-switch-icon {
-      @include themed {
-        opacity: t(iui-opacity-1);
-      }
+      opacity: var(--iui-opacity-1);
     }
   }
   // #endregion Checked toggle switch
 
   // #region Focused or hovered toggle switch
   &:hover::after {
-    @include themed {
-      opacity: t(iui-opacity-1);
-    }
+    opacity: var(--iui-opacity-1);
   }
 
   @include focus-visible {
@@ -161,29 +145,21 @@
   // #region Disabled toggle switch
   &:disabled {
     cursor: not-allowed;
-    @include themed {
-      background-color: t(iui-color-background-disabled);
-      border-color: t(iui-color-background-disabled);
-    }
+    background-color: var(--iui-color-background-disabled);
+    border-color: var(--iui-color-background-disabled);
 
     &::after {
-      @include themed {
-        background-color: t(iui-color-foreground-body);
-        opacity: t(iui-opacity-5);
-      }
+      background-color: var(--iui-color-foreground-body);
+      opacity: var(--iui-opacity-5);
     }
 
     ~ .iui-toggle-switch-icon {
       opacity: 0;
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
+      fill: var(--iui-icons-color-actionable);
     }
 
     &:checked ~ .iui-toggle-switch-icon {
-      @include themed {
-        opacity: t(iui-opacity-5);
-      }
+      opacity: var(--iui-opacity-5);
     }
   }
   // #endregion Disabled toggle switch
@@ -199,8 +175,6 @@
     z-index: 1;
     transition: opacity $iui-speed-fast ease-out;
     pointer-events: none;
-    @include themed {
-      fill: t(iui-color-foreground-accessory);
-    }
+    fill: var(--iui-color-foreground-accessory);
   }
 }
