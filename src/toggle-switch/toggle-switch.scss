@@ -43,7 +43,6 @@
     grid-template-areas: 'toggle label';
 
     .iui-toggle-switch-label {
-      grid-area: label;
       margin-right: $iui-s;
       @supports (gap: $iui-s) {
         margin-right: 0;
@@ -78,6 +77,10 @@
     border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
   }
   // #endregion IE solution
+
+  &-label {
+    grid-area: label;
+  }
 
   &::after {
     content: '';
