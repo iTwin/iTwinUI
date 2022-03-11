@@ -48,18 +48,18 @@
   vertical-align: baseline;
 }
 
-@mixin iui-anchor {
-  @include iui-focus($offset: 2px);
+@mixin iui-anchor($status: primary) {
+  @include iui-focus($status: $status, $offset: 2px);
   border-radius: $iui-border-radius;
   text-decoration: none;
   cursor: pointer;
   @include themed {
-    color: t(iui-color-foreground-primary);
+    color: t(iui-color-foreground-#{$status});
   }
 
   &:hover {
     @include themed {
-      color: t(iui-color-foreground-primary-overlay);
+      color: t(iui-color-foreground-#{$status}-overlay);
     }
     text-decoration: underline;
   }
