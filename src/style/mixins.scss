@@ -32,10 +32,12 @@
   }
 }
 
-@mixin iui-focus($color: var(--iui-color-foreground-primary), $offset: -1px, $thickness: 1px) {
+@mixin iui-focus($status: primary, $offset: -1px, $thickness: 1px) {
   @include focus-visible {
-    outline: $thickness solid $color;
     outline-offset: $offset;
+    @include themed {
+      outline: $thickness solid t(iui-color-foreground-#{$status});
+    }
   }
 }
 

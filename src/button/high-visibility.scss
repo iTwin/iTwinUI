@@ -11,7 +11,7 @@
     border-color: t(iui-color-background-primary);
     color: t(iui-color-foreground-accessory);
   }
-  @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px, $thickness: 1px);
+  @include iui-focus($status: accessory, $offset: -3px, $thickness: 1px);
 
   &:hover,
   &:active {
