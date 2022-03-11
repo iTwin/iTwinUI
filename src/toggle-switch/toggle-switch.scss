@@ -17,6 +17,13 @@
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
 
+  > * + * {
+    margin-left: $iui-s;
+    @supports (gap: $iui-s) {
+      margin-left: 0;
+    }
+  }
+
   // Disabled
   &.iui-disabled {
     cursor: not-allowed;
@@ -28,25 +35,11 @@
   // For labels on the left
   &.iui-label-on-left {
     grid-template-areas: 'label toggle';
-
-    .iui-toggle-switch-label {
-      margin-left: $iui-s;
-      @supports (gap: $iui-s) {
-        margin-left: 0;
-      }
-    }
   }
 
   // For labels on the right
   &.iui-label-on-right {
     grid-template-areas: 'toggle label';
-
-    .iui-toggle-switch-label {
-      margin-right: $iui-s;
-      @supports (gap: $iui-s) {
-        margin-right: 0;
-      }
-    }
   }
 }
 
