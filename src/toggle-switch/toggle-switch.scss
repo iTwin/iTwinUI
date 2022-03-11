@@ -31,7 +31,6 @@
 
     .iui-toggle-switch-label {
       margin-left: $iui-s;
-      margin-right: 0;
       @supports (gap: $iui-s) {
         margin-left: 0;
       }
