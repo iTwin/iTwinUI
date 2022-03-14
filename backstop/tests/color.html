@@ -1,0 +1,255 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Color | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <style>
+      section[id^='demo'] {
+        margin: 0 -24px -24px -24px;
+        width: auto;
+      }
+      section[id^='demo'] > * {
+        padding: 11px 24px;
+      }
+      section[id^='demo'],
+      .demo-background-1 {
+        background-color: var(--iui-color-background-1);
+      }
+      .demo-background-2 {
+        background-color: var(--iui-color-background-2);
+      }
+      .demo-background-3 {
+        background-color: var(--iui-color-background-3);
+      }
+      .demo-background-4 {
+        background-color: var(--iui-color-background-4);
+      }
+      .demo-background-5 {
+        background-color: var(--iui-color-background-5);
+      }
+      .demo-status-primary,
+      .demo-status-positive,
+      .demo-status-warning,
+      .demo-status-negative {
+        color: var(--iui-color-foreground-accessory);
+      }
+      .demo-status-primary {
+        background-color: var(--iui-color-background-primary);
+      }
+      .demo-status-positive {
+        background-color: var(--iui-color-background-positive);
+      }
+      .demo-status-warning {
+        background-color: var(--iui-color-background-warning);
+      }
+      .demo-status-negative {
+        background-color: var(--iui-color-background-negative);
+      }
+      .demo-status-overlay-primary {
+        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      }
+      .demo-status-overlay-positive {
+        background-color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-6));
+      }
+      .demo-status-overlay-warning {
+        background-color: rgba(var(--iui-color-foreground-warning-rgb), var(--iui-opacity-6));
+      }
+      .demo-status-overlay-negative {
+        background-color: rgba(var(--iui-color-foreground-negative-rgb), var(--iui-opacity-6));
+      }
+      .demo-text-primary {
+        color: var(--iui-color-foreground-primary);
+      }
+      .demo-text-primary-muted {
+        color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-3));
+      }
+      .demo-text-positive {
+        color: var(--iui-color-foreground-positive);
+      }
+      .demo-text-positive-muted {
+        color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-3));
+      }
+      .demo-text-positive::selection,
+      .demo-text-positive-muted::selection {
+        background-color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-5));
+      }
+      .demo-text-warning {
+        color: var(--iui-color-foreground-warning);
+      }
+      .demo-text-warning-muted {
+        color: rgba(var(--iui-color-foreground-warning-rgb), var(--iui-opacity-3));
+      }
+      .demo-text-warning::selection,
+      .demo-text-warning-muted::selection {
+        background-color: rgba(var(--iui-color-foreground-warning-rgb), var(--iui-opacity-5));
+      }
+      .demo-text-negative {
+        color: var(--iui-color-foreground-negative);
+      }
+      .demo-text-negative-muted {
+        color: rgba(var(--iui-color-foreground-negative-rgb), var(--iui-opacity-3));
+      }
+      .demo-text-negative::selection,
+      .demo-text-negative-muted::selection {
+        background-color: rgba(var(--iui-color-foreground-negative-rgb), var(--iui-opacity-5));
+      }
+    </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/info-circular"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
+    ></script>
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Color</h1>
+
+    <section id="demo-all">
+      <div class="demo-background-1">
+        <h2 class="iui-text-title iui-text-spacing">Background 1</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+          <li class="iui-text-block iui-text-muted">Muted</li>
+          <li class="demo-text-primary">Primary</li>
+          <li class="demo-text-positive">Positive</li>
+          <li class="demo-text-warning">Warning</li>
+          <li class="demo-text-negative">Negative</li>
+        </ul>
+      </div>
+      <div class="demo-background-2">
+        <h2 class="iui-text-title iui-text-spacing">Background 2</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+          <li class="iui-text-block iui-text-muted">Muted</li>
+          <li class="demo-text-primary">Primary</li>
+          <li class="demo-text-positive">Positive</li>
+          <li class="demo-text-warning">Warning</li>
+          <li class="demo-text-negative">Negative</li>
+        </ul>
+      </div>
+      <div class="demo-background-3">
+        <h2 class="iui-text-title iui-text-spacing">Background 3</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+          <li class="iui-text-block iui-text-muted">Muted</li>
+          <li class="demo-text-primary">Primary</li>
+          <li class="demo-text-positive">Positive</li>
+          <li class="demo-text-warning">Warning</li>
+          <li class="demo-text-negative">Negative</li>
+        </ul>
+      </div>
+      <div class="demo-background-4">
+        <h2 class="iui-text-title iui-text-spacing">Background 4</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+          <li class="iui-text-block iui-text-muted">Muted</li>
+        </ul>
+      </div>
+      <div class="demo-background-5">
+        <h2 class="iui-text-title iui-text-spacing">Background 5</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+          <li class="iui-text-block iui-text-muted">Muted</li>
+        </ul>
+      </div>
+
+      <div class="demo-status-primary">
+        <h2 class="iui-text-title iui-text-spacing">Background primary</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+        </ul>
+      </div>
+      <div class="demo-status-positive">
+        <h2 class="iui-text-title iui-text-spacing">Background positive</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+        </ul>
+      </div>
+      <div class="demo-status-warning">
+        <h2 class="iui-text-title iui-text-spacing">Background warning</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+        </ul>
+      </div>
+      <div class="demo-status-negative">
+        <h2 class="iui-text-title iui-text-spacing">Background negative</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+        </ul>
+      </div>
+
+      <div class="demo-status-overlay-primary">
+        <h2 class="iui-text-title iui-text-spacing">Overlay primary</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+          <li class="iui-text-block iui-text-muted">Muted</li>
+          <li class="demo-text-primary">Primary</li>
+          <li class="demo-text-primary-muted">Primary muted</li>
+        </ul>
+      </div>
+      <div class="demo-status-overlay-positive">
+        <h2 class="iui-text-title iui-text-spacing">Overlay positive</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+          <li class="iui-text-block iui-text-muted">Muted</li>
+          <li class="demo-text-positive">Positive</li>
+          <li class="demo-text-positive-muted">Positive muted</li>
+        </ul>
+      </div>
+      <div class="demo-status-overlay-warning">
+        <h2 class="iui-text-title iui-text-spacing">Overlay warning</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+          <li class="iui-text-block iui-text-muted">Muted</li>
+          <li class="demo-text-warning">Warning</li>
+          <li class="demo-text-warning-muted">Warning muted</li>
+        </ul>
+      </div>
+      <div class="demo-status-overlay-negative">
+        <h2 class="iui-text-title iui-text-spacing">Overlay negative</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+          <li class="iui-text-block iui-text-muted">Muted</li>
+          <li class="demo-text-negative">Negative</li>
+          <li class="demo-text-negative-muted">Negative muted</li>
+        </ul>
+      </div>
+    </section>
+
+  </body>
+</html>

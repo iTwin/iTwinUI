@@ -16,6 +16,7 @@ p {
 body {
   margin: 0;
   padding: 24px;
+  overflow: overlay;
 }
 
 h1 {
@@ -32,32 +33,9 @@ h3 {
   font-size: 16px;
 }
 
-/* Light theme */
 hr {
-  border-top: 1px solid #C7CCD1;
+  border-top: 1px solid var(--iui-color-background-5);
   margin: 11px 0;
-}
-
-/* Light high contrast theme */
-.iui-theme-light-hc body hr {
-  border-color: #CCC;
-}
-
-/* Dark theme */
-.iui-theme-dark body hr {
-  border-color: #2D373C;
-}
-
-/* Dark high contrast theme */
-.iui-theme-dark-hc body hr {
-  border-color: #696969;
-}
-
-/* Custom high contrast theme */
-html.custom-theme {
-  --iui-color-foreground-body-rgb: 255, 0, 0;
-  --iui-color-foreground-accessory-rgb: 0, 255, 0;
-  --iui-color-foreground-primary-rgb: 0, 0, 255;
 }
 
 /** For sections in backstop tests */
