@@ -16,6 +16,7 @@ p {
 body {
   margin: 0;
   padding: 24px;
+  overflow: overlay;
 }
 
 h1 {

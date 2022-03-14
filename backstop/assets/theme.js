@@ -23,7 +23,7 @@ class ThemeButton extends HTMLElement {
       :host {
         position: absolute;
         top: 0;
-        right: 0;
+        right: 8px;
         z-index: 1;
         accent-color: var(--iui-color-foreground-primary);
       }
