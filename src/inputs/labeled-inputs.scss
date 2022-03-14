@@ -55,6 +55,10 @@
     // stylelint-enable
   }
 
+  .iui-input-group .iui-toggle-switch-wrapper {
+    padding: round($iui-baseline * 0.5) 0;
+  }
+
   // #region Cursors
   @include iui-input-label-cursor;
 
@@ -124,9 +128,9 @@
       display: flex;
       gap: $iui-m;
 
-      > .iui-checkbox,
-      > .iui-radio,
-      > .iui-toggle-switch {
+      > .iui-checkbox-wrapper,
+      > .iui-radio-wrapper,
+      > .iui-toggle-switch-wrapper {
         margin-right: $iui-m;
 
         @supports (gap: $iui-m) {
@@ -300,11 +304,7 @@
 /// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon
 /// @arg textSelector - selector to apply text color on. Defaults to .iui-message
 @mixin iui-input-status($status, $iconSelector: '.iui-input-icon', $textSelector: '.iui-message') {
-  *::selection {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
-    }
-  }
+  @include iui-text-selection($status);
 
   #{$iconSelector} {
     @include themed {
