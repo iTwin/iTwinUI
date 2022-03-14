@@ -26,6 +26,7 @@ class ThemeButton extends HTMLElement {
         right: 8px;
         z-index: 1;
         accent-color: var(--iui-color-foreground-primary);
+        pointer-events: none;
       }
       * {
         box-sizing: border-box;
@@ -36,6 +37,7 @@ class ThemeButton extends HTMLElement {
         overflow: hidden;
       }
       button[aria-label="Settings"] {
+        pointer-events: auto;
         padding: 0.5rem;
         font: inherit;
         border: none;
@@ -55,6 +57,7 @@ class ThemeButton extends HTMLElement {
       }
       .popup {
         visibility: hidden; 
+        pointer-events: none;
         box-shadow: 0 1px 5px hsl(0 0% 0% / 0.25);
         background-color: var(--iui-color-background-1);
         padding: 0.5rem 0.25rem;
@@ -62,6 +65,7 @@ class ThemeButton extends HTMLElement {
       }
       .settings-root:focus-within .popup {
         visibility: visible;
+        pointer-events: auto;
       }
       @media (prefers-reduced-motion: no-preference) {
         .popup {
