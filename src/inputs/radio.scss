@@ -3,10 +3,6 @@
 @import '../style/index';
 
 @mixin iui-radio {
-  &-wrapper {
-    @include iui-inputs-checkbox-radio;
-  }
-
   @include iui-checkbox;
 
   border-radius: 50%;
