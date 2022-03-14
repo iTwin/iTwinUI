@@ -23,13 +23,14 @@
       href="../assets/demo.css"
     />
     <style>
-      section {
+      section[id^='demo'] {
         margin: 0 -24px -24px -24px;
+        width: auto;
       }
-      section > * {
+      section[id^='demo'] > * {
         padding: 11px 24px;
       }
-      section,
+      section[id^='demo'],
       .demo-background-1 {
         background-color: var(--iui-color-background-1);
       }
@@ -138,7 +139,7 @@
     <theme-button></theme-button>
     <h1>Color</h1>
 
-    <section>
+    <section id="demo-all">
       <div class="demo-background-1">
         <h2 class="iui-text-title iui-text-spacing">Background 1</h2>
         <ul>
