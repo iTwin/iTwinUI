@@ -606,14 +606,15 @@
         Split Menu Buttons
         <label
           id="disabled-toggle"
-          class="iui-toggle-switch"
+          class="iui-toggle-switch-wrapper iui-label-on-right"
           style="display: inline-flex; vertical-align: middle; margin-left: 1em;"
         >
-          <input type="checkbox" />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Disabled</span>
+          <input
+            class="iui-toggle-switch"
+            type="checkbox"
+            role="switch"
+          />
+          <span class="iui-toggle-switch-label">Disabled</span>
         </label>
       </h2>
 
@@ -910,12 +911,13 @@
     <h2>Animation (Toggle default ⇔ slim)</h2>
     <section id="demo-slim-toggle">
 
-      <label class="iui-toggle-switch">
-        <input type="checkbox" />
-        <span class="iui-toggle">
-          <span class="iui-handle"></span>
-        </span>
-        <span class="iui-label">Slim</span>
+      <label class="iui-toggle-switch-wrapper iui-label-on-right">
+        <input
+          class="iui-toggle-switch"
+          type="checkbox"
+          role="switch"
+        />
+        <span class="iui-toggle-switch-label">Slim</span>
       </label>
       <br />
 
@@ -1070,7 +1072,7 @@
         splitButton.classList.toggle('iui-disabled');
         splitButton.querySelectorAll('button').forEach((button) => button.toggleAttribute('disabled'));
       });
-    })
+    });
 
     document.querySelector('#demo-slim-toggle input[type=checkbox]').addEventListener('change', (e) => {
       document.querySelector('#demo-slim-toggle .iui-page-header').classList.toggle('iui-slim');
