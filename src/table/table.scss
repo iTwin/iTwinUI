@@ -391,11 +391,7 @@
       box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-#{$status});
     }
 
-    *::selection {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
-      }
-    }
+    @include iui-text-selection($status);
   }
 
   .iui-cell-end-icon svg {
@@ -410,11 +406,7 @@
     background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6));
   }
 
-  &::selection {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
-    }
-  }
+  @include iui-text-selection($status);
 }
 
 @mixin iui-table-cell-icon {

@@ -79,11 +79,7 @@
   }
 
   #{$rootSelector}-message {
-    &::selection {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-4));
-      }
-    }
+    @include iui-text-selection($statusColor);
   }
 
   #{$rootSelector}-link {
