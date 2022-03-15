@@ -46,7 +46,6 @@
     border-top: $iui-xxs solid t(iui-color-background-4);
   }
 
-  &-dots,
   &-left,
   &-right {
     display: flex;
@@ -64,6 +63,9 @@
   &-dots {
     @include iui-reset;
     @include iui-focus;
+    display: flex;
+    align-items: center;
+    flex: 2;
     border-radius: $iui-border-radius;
     white-space: nowrap;
     overflow: hidden;
