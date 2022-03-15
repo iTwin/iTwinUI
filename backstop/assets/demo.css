@@ -34,7 +34,7 @@ h3 {
 }
 
 hr {
-  border-top: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
+  border-top: 1px solid var(--iui-color-background-5);
   margin: 11px 0;
 }
 
