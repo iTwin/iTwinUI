@@ -3,11 +3,8 @@
 @import '../style/index';
 
 @mixin iui-skip-to-content-link {
-  @include iui-blur($opacity: 3);
+  @include iui-blur($opacity: 3, $invert: true);
   @include iui-focus($offset: 2px, $thickness: 2px);
-  @include themed {
-    color: t(iui-color-foreground-accessory);
-  }
   border-radius: $iui-border-radius-round;
   text-decoration: none;
   user-select: none;
@@ -24,7 +21,7 @@
   }
 
   &:hover {
-    @include iui-blur($opacity: 2);
+    @include iui-blur($opacity: 2, $invert: true);
   }
 
   &:focus {

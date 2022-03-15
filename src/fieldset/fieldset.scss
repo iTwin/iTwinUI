@@ -8,7 +8,7 @@
   padding: $iui-baseline $iui-sm;
   border-radius: $iui-border-radius;
   @include themed {
-    border: 1px solid t(iui-color-background-4);
+    border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
     background-color: t(iui-color-background-1);
   }
 

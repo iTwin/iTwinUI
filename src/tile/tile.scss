@@ -291,15 +291,14 @@
     &,
     &:hover {
       @include themed() {
-        border-top: 1px solid t(iui-color-background-4);
-        border-color: t(iui-color-background-4);
+        border-top: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
       }
     }
   }
 
   > button:not(:last-child) {
     @include themed() {
-      border-right: 1px solid t(iui-color-background-4);
+      border-right: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
     }
   }
 }

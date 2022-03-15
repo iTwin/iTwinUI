@@ -4,6 +4,7 @@
 
 @mixin iui-tooltip {
   @include iui-reset;
+  @include iui-blur($opacity: 3, $invert: true);
   display: block;
   text-align: center;
   border-radius: $iui-border-radius;
@@ -18,8 +19,9 @@
   box-shadow: $iui-elevation-8;
   pointer-events: none;
   @include themed {
-    background-color: rgba(0, 0, 0, t(iui-opacity-3));
-    color: t(iui-color-foreground-accessory);
+    // background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
+    border: 1px solid rgba(t(iui-color-foreground-body-invert-rgb), t(iui-opacity-5));
+    // color: t(iui-color-foreground-body-invert);
   }
 }
 

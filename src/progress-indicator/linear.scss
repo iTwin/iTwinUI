@@ -13,7 +13,7 @@
     overflow: hidden;
 
     @include themed {
-      background-color: t(iui-color-background-5);
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
     }
 
     > .iui-fill {

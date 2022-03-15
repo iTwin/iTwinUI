@@ -95,10 +95,12 @@
       border-radius: 50%;
       transition: background-color $iui-speed-fast ease;
       @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast $iui-speed-fast ease, transform $iui-speed ease;
+        transition: background-color $iui-speed-fast $iui-speed-fast ease, transform $iui-speed ease,
+          outline-width $iui-speed-fast ease;
       }
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        outline: 0 solid t(iui-color-foreground-primary);
       }
     }
 
@@ -115,8 +117,10 @@
     }
 
     &.iui-active::after {
+      outline-offset: 1px;
       @include themed {
         background-color: t(iui-color-foreground-primary);
+        outline-width: 1px;
       }
     }
   }

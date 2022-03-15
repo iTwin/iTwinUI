@@ -165,7 +165,7 @@
       transition: border $iui-speed-fast ease-out;
     }
     @include themed {
-      border-bottom-color: t(iui-color-background-4);
+      border-bottom-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
     }
 
     > .iui-slot > .iui-more-options {
@@ -228,7 +228,7 @@
     &.iui-selected {
       @include themed {
         border-color: t(iui-color-foreground-primary);
-        background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+        background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
       }
 
       + .iui-selected {
