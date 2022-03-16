@@ -368,12 +368,21 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           newValues[closestValueIndex] = pointerValue;
           setCurrentValues(newValues);
           onChange?.(newValues);
+          onUpdate?.(newValues);
           focusThumb(containerRef.current, closestValueIndex);
           event.preventDefault();
           event.stopPropagation();
         }
       },
-      [min, max, step, currentValues, getAllowableThumbRange, onChange],
+      [
+        min,
+        max,
+        step,
+        currentValues,
+        getAllowableThumbRange,
+        onChange,
+        onUpdate,
+      ],
     );
 
     useEventListener(

@@ -346,7 +346,7 @@ it('should call onChange and onChangeComplete from hueSlider', () => {
     buttons: 1,
     clientX: 410,
   });
-  expect(handleOnUpdate).toHaveBeenCalledTimes(1);
+  expect(handleOnUpdate).toHaveBeenCalledTimes(2);
 
   fireEvent.pointerUp(sliderContainer, {
     pointerId: 5,
