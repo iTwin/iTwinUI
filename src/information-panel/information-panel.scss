@@ -32,7 +32,7 @@
 
     > .iui-resizer-bar {
       @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+        background-color: t(iui-color-background-border);
       }
     }
 
@@ -100,7 +100,7 @@
 
     > hr {
       @include themed {
-        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+        border-color: t(iui-color-background-border);
       }
     }
   }

@@ -166,7 +166,7 @@
   justify-content: center;
   @include themed() {
     background-color: t(iui-color-background-1-overlay);
-    border-bottom: 1px solid t(iui-color-background-4);
+    border-bottom: 1px solid t(iui-color-background-border);
   }
 
   .iui-thumbnail-icon {
@@ -291,14 +291,14 @@
     &,
     &:hover {
       @include themed() {
-        border-top: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+        border-top: 1px solid t(iui-color-background-border);
       }
     }
   }
 
   > button:not(:last-child) {
     @include themed() {
-      border-right: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      border-right: 1px solid t(iui-color-background-border);
     }
   }
 }

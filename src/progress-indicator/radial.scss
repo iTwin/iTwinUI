@@ -27,7 +27,7 @@
     animation: dash $iui-speed-slow linear infinite;
 
     @include themed {
-      border-bottom-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      border-bottom-color: t(iui-color-background-border);
     }
   }
 

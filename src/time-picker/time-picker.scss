@@ -15,7 +15,7 @@
 
   &:not(:first-child) {
     @include themed {
-      border-left: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      border-left: 1px solid t(iui-color-background-border);
     }
   }
 
@@ -32,7 +32,7 @@
 
   &:not(:first-child) {
     @include themed {
-      border-left: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      border-left: 1px solid t(iui-color-background-border);
     }
   }
 

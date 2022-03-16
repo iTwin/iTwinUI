@@ -74,7 +74,7 @@
   &.iui-current ~ & {
     .iui-wizard-circle {
       @include themed {
-        border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+        border: 1px solid t(iui-color-background-border);
         background-color: t(iui-color-background-1);
         color: t(iui-text-color-muted);
       }

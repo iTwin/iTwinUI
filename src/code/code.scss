@@ -11,7 +11,7 @@
   border-radius: $iui-border-radius;
   user-select: all;
   @include themed {
-    background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+    background-color: t(iui-color-background-border);
     color: t(iui-text-color);
   }
 }

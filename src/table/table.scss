@@ -73,7 +73,7 @@
           transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
         }
         @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+          background-color: t(iui-color-background-border);
         }
       }
 
@@ -165,7 +165,7 @@
       transition: border $iui-speed-fast ease-out;
     }
     @include themed {
-      border-bottom-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      border-bottom-color: t(iui-color-background-border);
     }
 
     > .iui-slot > .iui-more-options {
