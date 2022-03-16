@@ -26,11 +26,7 @@
 [class*='iui-'],
 [class*='iui-'] * {
   // Text highlight
-  ::selection {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
-    }
-  }
+  @include iui-text-selection;
 
   // Scrollbar
   @include iui-scrollbar;
