@@ -73,7 +73,7 @@
           transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
         }
         @include themed {
-          background-color: t(iui-color-background-5);
+          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
         }
       }
 
