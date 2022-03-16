@@ -66,6 +66,7 @@
     display: flex;
     align-items: center;
     flex: 2;
+    max-width: $iui-xxl * 4;
     border-radius: $iui-border-radius;
     white-space: nowrap;
     overflow: hidden;
