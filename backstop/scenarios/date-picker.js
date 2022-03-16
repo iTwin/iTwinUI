@@ -14,6 +14,9 @@ module.exports = [
   scenario('Type Date & Time 24 hour format', {
     selectors: ['#demo-date-and-time-24h'],
   }),
+  scenario('Type Date Range', {
+    selectors: ['#demo-date-range'],
+  }),
 
   // Hover states
   //// Date
