@@ -85,7 +85,7 @@
       }
     }
 
-    &:hover:where(:not(.iui-reorder-column-left, .iui-reorder-column-right)) > .iui-resizer {
+    &:hover > .iui-resizer {
       opacity: 1;
     }
 
@@ -103,15 +103,30 @@
     }
   }
 
+  .iui-reorder-bar {
+    position: absolute;
+    height: 100%;
+    width: $iui-xxs;
+  }
+
   .iui-reorder-column-right {
-    @include themed {
-      border-right: $iui-xxs solid t(iui-color-foreground-primary);
+    > .iui-reorder-bar {
+      right: 0;
     }
   }
 
   .iui-reorder-column-left {
-    @include themed {
-      border-left: $iui-xxs solid t(iui-color-foreground-primary);
+    > .iui-reorder-bar {
+      left: 0;
+    }
+  }
+
+  .iui-reorder-column-left,
+  .iui-reorder-column-right {
+    > .iui-reorder-bar {
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
+      }
     }
   }
 
