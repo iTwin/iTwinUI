@@ -91,13 +91,14 @@
       box-shadow: inset 0 0 0 1px rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
     }
 
-    > .iui-status-symbol {
-      display: inline-flex;
-      @include themed {
-        fill: t(iui-icons-color);
-      }
+    &::after {
+      content: '';
+      mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z'%3E%3C/path%3E%3C/svg%3E");
       width: calc(100% / 1.5);
       height: calc(100% / 1.5);
+      @include themed {
+        background-color: t(iui-icons-color);
+      }
     }
 
     &.iui-online,
@@ -105,9 +106,9 @@
     &.iui-busy {
       box-shadow: none;
 
-      > .iui-status-symbol {
+      &::after {
         @include themed {
-          fill: t(iui-color-foreground-accessory);
+          background-color: t(iui-color-foreground-accessory);
         }
       }
     }
@@ -116,17 +117,29 @@
       @include themed {
         background-color: t(iui-color-background-positive);
       }
+
+      &::after {
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z'%3E%3C/path%3E%3C/svg%3E");
+      }
     }
 
     &.iui-away {
       @include themed {
         background-color: t(iui-color-background-warning);
       }
+
+      &::after {
+        mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z'%3E%3C/path%3E%3C/svg%3E");
+      }
     }
 
     &.iui-busy {
       @include themed {
         background-color: t(iui-color-background-negative);
+      }
+
+      &::after {
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='7' width='12' height='2'%3E%3C/rect%3E%3C/svg%3E");
       }
     }
   }
