@@ -10,11 +10,17 @@ import * as UseResizeObserver from './useResizeObserver';
 const MockComponent = ({
   children,
   disableOverflow = false,
+  orientation = 'horizontal',
 }: {
   children: React.ReactNode[] | string;
   disableOverflow?: boolean;
+  orientation?: 'horizontal' | 'vertical';
 }) => {
-  const [overflowRef, visibleCount] = useOverflow(children, disableOverflow);
+  const [overflowRef, visibleCount] = useOverflow(
+    children,
+    disableOverflow,
+    orientation,
+  );
   return <div ref={overflowRef}>{children.slice(0, visibleCount)}</div>;
 };
 
@@ -22,30 +28,34 @@ afterEach(() => {
   jest.restoreAllMocks();
 });
 
-it('should overflow when there is not enough space', async () => {
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValueOnce(120)
-    .mockReturnValue(100);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(100);
-  jest
-    .spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(25);
+it.each(['horizontal', 'vertical'] as const)(
+  'should overflow when there is not enough space (%s)',
+  async (orientation) => {
+    const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
+    jest
+      .spyOn(HTMLDivElement.prototype, `scroll${dimension}`, 'get')
+      .mockReturnValueOnce(120)
+      .mockReturnValue(100);
+    jest
+      .spyOn(HTMLDivElement.prototype, `offset${dimension}`, 'get')
+      .mockReturnValue(100);
+    jest
+      .spyOn(HTMLSpanElement.prototype, `offset${dimension}`, 'get')
+      .mockReturnValue(25);
 
-  const { container } = render(
-    <MockComponent>
-      {[...Array(5)].map((_, i) => (
-        <span key={i}>Test {i}</span>
-      ))}
-    </MockComponent>,
-  );
+    const { container } = render(
+      <MockComponent orientation={orientation}>
+        {[...Array(5)].map((_, i) => (
+          <span key={i}>Test {i}</span>
+        ))}
+      </MockComponent>,
+    );
 
-  await waitFor(() => {
-    expect(container.querySelectorAll('span')).toHaveLength(4);
-  });
-});
+    await waitFor(() => {
+      expect(container.querySelectorAll('span')).toHaveLength(4);
+    });
+  },
+);
 
 it('should overflow when there is not enough space  (string)', async () => {
   jest

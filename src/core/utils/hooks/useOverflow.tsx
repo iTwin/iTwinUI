@@ -10,13 +10,14 @@ const STARTING_MAX_ITEMS_COUNT = 20;
 
 /**
  * Hook that observes the size of an element and returns the number of items
- * that should be visible based on the width of the container element.
+ * that should be visible based on the size of the container element.
  *
  * The returned number should be used to render the element with fewer items.
  *
  * @private
  * @param items Items that this element contains.
  * @param disabled Set to true to disconnect the observer.
+ * @param dimension 'horizontal' (default) or 'vertical'
  * @returns [callback ref to set on container, stateful count of visible items]
  *
  * @example
@@ -32,6 +33,7 @@ const STARTING_MAX_ITEMS_COUNT = 20;
 export const useOverflow = <T extends HTMLElement>(
   items: React.ReactNode[] | string,
   disabled = false,
+  orientation: 'horizontal' | 'vertical' = 'horizontal',
 ) => {
   const containerRef = React.useRef<T>(null);
 
@@ -41,13 +43,14 @@ export const useOverflow = <T extends HTMLElement>(
 
   const needsFullRerender = React.useRef(true);
 
-  const [containerWidth, setContainerWidth] = React.useState<number>(0);
-  const previousContainerWidth = React.useRef<number>(0);
-  const updateContainerWidth = React.useCallback(
-    ({ width }) => setContainerWidth(width),
-    [],
+  const [containerSize, setContainerSize] = React.useState<number>(0);
+  const previousContainerSize = React.useRef<number>(0);
+  const updateContainerSize = React.useCallback(
+    ({ width, height }) =>
+      setContainerSize(orientation === 'horizontal' ? width : height),
+    [orientation],
   );
-  const [resizeRef, observer] = useResizeObserver<T>(updateContainerWidth);
+  const [resizeRef, observer] = useResizeObserver<T>(updateContainerSize);
   const resizeObserverRef = React.useRef(observer);
 
   React.useLayoutEffect(() => {
@@ -57,7 +60,7 @@ export const useOverflow = <T extends HTMLElement>(
       setVisibleCount(Math.min(items.length, STARTING_MAX_ITEMS_COUNT));
       needsFullRerender.current = true;
     }
-  }, [containerWidth, disabled, items]);
+  }, [containerSize, disabled, items]);
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
 
@@ -66,30 +69,31 @@ export const useOverflow = <T extends HTMLElement>(
       resizeObserverRef.current?.disconnect();
       return;
     }
+    const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
 
-    const availableWidth = containerRef.current.offsetWidth;
-    const requiredWidth = containerRef.current.scrollWidth;
+    const availableSize = containerRef.current[`offset${dimension}`];
+    const requiredSize = containerRef.current[`scroll${dimension}`];
 
-    if (availableWidth < requiredWidth) {
-      const avgItemWidth = requiredWidth / visibleCount;
-      const visibleItems = Math.floor(availableWidth / avgItemWidth);
+    if (availableSize < requiredSize) {
+      const avgItemSize = requiredSize / visibleCount;
+      const visibleItems = Math.floor(availableSize / avgItemSize);
       setVisibleCount(visibleItems);
     } else if (needsFullRerender.current) {
-      const childrenWidth = Array.from(containerRef.current.children).reduce(
-        (sum: number, child: HTMLElement) => sum + child.offsetWidth,
+      const childrenSize = Array.from(containerRef.current.children).reduce(
+        (sum: number, child: HTMLElement) => sum + child[`offset${dimension}`],
         0,
       );
-      const avgItemWidth = childrenWidth / visibleCount;
-      const visibleItems = Math.floor(availableWidth / avgItemWidth);
+      const avgItemSize = childrenSize / visibleCount;
+      const visibleItems = Math.floor(availableSize / avgItemSize);
       // Doubling the visible items to overflow the container. Just to be safe.
       setVisibleCount(Math.min(items.length, visibleItems * 2));
     }
     needsFullRerender.current = false;
-  }, [containerWidth, visibleCount, disabled, items.length]);
+  }, [containerSize, visibleCount, disabled, items.length, orientation]);
 
   React.useLayoutEffect(() => {
-    previousContainerWidth.current = containerWidth;
-  }, [containerWidth]);
+    previousContainerSize.current = containerSize;
+  }, [containerSize]);
 
   return [mergedRefs, visibleCount] as const;
 };
