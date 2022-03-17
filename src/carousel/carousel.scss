@@ -75,6 +75,7 @@
     @include iui-button-size($size: small);
     background-color: transparent;
     border: none;
+    position: relative;
     cursor: pointer;
 
     &:hover::after {
@@ -93,14 +94,13 @@
       width: $iui-icons-small;
       height: $iui-icons-small;
       border-radius: 50%;
-      transition: background-color $iui-speed-fast ease;
+      transition: background-color $iui-speed-fast ease, box-shadow $iui-speed-fast ease;
       @media (prefers-reduced-motion: no-preference) {
         transition: background-color $iui-speed-fast $iui-speed-fast ease, transform $iui-speed ease,
-          outline-width $iui-speed-fast ease;
+          box-shadow $iui-speed-fast ease;
       }
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-        outline: 0 solid t(iui-color-foreground-primary);
       }
     }
 
@@ -116,11 +116,13 @@
       transform: scale(0);
     }
 
-    &.iui-active::after {
-      outline-offset: 1px;
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-        outline-width: 1px;
+    &.iui-active {
+      &::after {
+        @include themed {
+          background-color: t(iui-color-foreground-primary);
+          border: 1px solid t(iui-color-foreground-primary);
+          box-shadow: inset 0 0 0 1px t(iui-color-background-1);
+        }
       }
     }
   }
