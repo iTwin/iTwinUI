@@ -33,6 +33,18 @@
       .demo-surface-content {
         padding: 11px 12px;
       }
+      #demo-elevations {
+        display: flex;
+        gap: 16px;
+        width: auto;
+      }
+      #demo-elevations > * {
+        height: 100px;
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
     <script src="../assets/theme.js"></script>
   </head>
@@ -54,6 +66,16 @@
             anim id est laborum.</p>
         </div>
       </div>
+    </section>
+
+    <br />
+
+    <section id="demo-elevations">
+      <div class="iui-surface-2">2</div>
+      <div class="iui-surface-4">4</div>
+      <div class="iui-surface-8">8</div>
+      <div class="iui-surface-16">16</div>
+      <div class="iui-surface-24">24</div>
     </section>
   </body>
 </html>
