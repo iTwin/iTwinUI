@@ -6,6 +6,7 @@
 
 @mixin iui-date-picker {
   @include iui-dropdown;
+  box-shadow: $iui-elevation-2;
   user-select: none;
   text-align: center;
   height: $iui-baseline * 26;

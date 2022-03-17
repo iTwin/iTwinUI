@@ -10,8 +10,9 @@
   padding: 0 $iui-xs;
   border-radius: $iui-border-radius;
   user-select: all;
+
   @include themed {
-    background-color: t(iui-color-background-border);
+    background-color: t(iui-color-background-3);
     color: t(iui-text-color);
   }
 }
