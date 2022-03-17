@@ -1,0 +1,16 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-surface {
+  box-shadow: $iui-elevation-2;
+  box-sizing: border-box;
+  @include themed {
+    background-color: t(iui-color-background-1);
+    color: t(iui-text-color);
+  }
+
+  @media (forced-colors: active) {
+    border: 1px solid transparent;
+  }
+} ;
