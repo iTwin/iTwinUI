@@ -11,6 +11,10 @@
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex; //new
+  justify-content: center; //new
+  align-items: center; //new
+  flex-direction: column; //new
   @include themed {
     background-color: rgba(0, 0, 0, t(iui-opacity-4));
   }
@@ -60,9 +64,9 @@
 
   > .iui-modal-dialog {
     position: absolute;
-    left: 50%;
-    top: 33%;
-    transform: translate(-50%, -33%);
+    // left: 50%; //old
+    // top: 33%; //old
+    // transform: translate(-50%, -33%); //old
     z-index: 1000;
     max-width: 50%;
     min-width: 400px;
@@ -118,6 +122,18 @@
     }
   }
 }
+
+//new start
+.iui-modal-dialog::before {
+  content: '';
+  flex: 1;
+}
+
+.iui-modal-dialog::after {
+  content: '';
+  flex: 2;
+}
+//new end
 
 @mixin iui-modal-full-page {
   > .iui-modal-dialog {
