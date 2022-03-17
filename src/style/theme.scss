@@ -68,7 +68,7 @@ $iui-color-background-positive--light-hc: hsl(140, 100%, 19%);
 $iui-color-background-warning--light-hc: hsl(45, 100%, 22%);
 $iui-color-background-negative--light-hc: hsl(0, 100%, 31%);
 $iui-color-background-disabled--light-hc: $iui-color-background-3--light-hc;
-$iui-color-background-border--light-hc: hsla(0, 0%, 0%, 0.3); // NEEDS FIXED
+$iui-color-background-border--light-hc: hsl(0 0% 0% / 0.3);
 
 // Light high contrast theme > Foreground
 $iui-color-foreground-body--light-hc: hsl(0, 0%, 0%);
@@ -179,7 +179,7 @@ $iui-color-background-positive--dark-hc: hsl(140, 100%, 19%);
 $iui-color-background-warning--dark-hc: hsl(45, 100%, 22%);
 $iui-color-background-negative--dark-hc: hsl(0, 100%, 31%);
 $iui-color-background-disabled--dark-hc: $iui-color-background-4--dark-hc;
-$iui-color-background-border--dark-hc: hsla(0, 0%, 100%, 0.34); // NEEDS FIXED
+$iui-color-background-border--dark-hc: hsl(0 0% 100% / 0.34);
 
 // Dark high contrast theme > Foreground
 $iui-color-foreground-body--dark-hc: hsl(0, 0%, 100%);
@@ -442,10 +442,14 @@ $fallbackvars: getfallbackvars();
 
       --#{$key}: #{$cssVarValue};
     } @else if (type-of($value) == color) {
-      $rgbVal: hextorgb($value);
+      @if alpha($value) < 1 {
+        --#{$key}: #{$value};
+      } @else {
+        $rgbVal: hextorgb($value);
 
-      --#{$key}-rgb: #{$rgbVal};
-      --#{$key}: rgb(var(--#{$key}-rgb));
+        --#{$key}-rgb: #{$rgbVal};
+        --#{$key}: rgb(var(--#{$key}-rgb));
+      }
     } @else {
       --#{$key}: #{$value};
     }
