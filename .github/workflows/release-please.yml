@@ -26,21 +26,7 @@ jobs:
     if: needs.release-please.outputs.release-created
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node 16.X
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-          registry-url: https://registry.npmjs.org/
-
-      - run: yarn install
-      - run: yarn build
-
-      - run: npm publish --access public
-        working-directory: './lib'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
+      - uses: ./.github/workflows/publish-npm.yml
 
   fix-title:
     name: Edit release title
