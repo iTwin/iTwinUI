@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.33.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.33.0...v1.33.1) (2022-03-18)
+
+### Fixes
+
+* **ButtonGroup:** Add vertical support to `overflowButton` ([#579](https://www.github.com/iTwin/iTwinUI-react/issues/579)) ([aad619b](https://www.github.com/iTwin/iTwinUI-react/commit/aad619b6dc7d65ffd79c8d33111489b1b8d27680))
+* **Slider:** Fixed to call onUpdate on rail click ([#587](https://www.github.com/iTwin/iTwinUI-react/issues/587)) ([e7cc679](https://www.github.com/iTwin/iTwinUI-react/commit/e7cc6796308928230f2d2c7c79b6ee35286595a7))
+* **Table:** Removed wrapper span from checkbox ([#583](https://www.github.com/iTwin/iTwinUI-react/issues/583)) ([996377b](https://www.github.com/iTwin/iTwinUI-react/commit/996377bf44cdacd9f42361f2199c2a83420ca15b))
+
 ## [1.33.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.32.0...v1.33.0) (2022-03-07)
 
 ### What's new
