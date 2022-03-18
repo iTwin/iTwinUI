@@ -8,10 +8,12 @@ module.exports = [
   scenario('Type default', {
     selectors: ['#demo-default'],
     viewports: [{ width: 800, height: 600 }],
+    hideSelectors: ['h1', 'hr', '#demo-elevations'],
   }),
 
   scenario('Type elevations', {
     selectors: ['#demo-elevations'],
     viewports: [{ width: 800, height: 600 }],
+    hideSelectors: ['#demo-default'],
   }),
 ];
