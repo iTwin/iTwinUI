@@ -24,7 +24,7 @@ class ThemeButton extends HTMLElement {
         position: absolute;
         top: 0;
         right: 8px;
-        z-index: 1;
+        z-index: 2;
         accent-color: var(--iui-color-foreground-primary);
         pointer-events: none;
       }
