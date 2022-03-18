@@ -181,7 +181,7 @@
               ondragstart="onDragStart(event)"
               ondragover="onDragOver(event)"
               ondragleave="onDragLeave(event)"
-              ondrop="onDrop(event)"
+              ondrop="onDragLeave(event)"
             >
               Name
               <button
@@ -212,7 +212,7 @@
               ondragstart="onDragStart(event)"
               ondragover="onDragOver(event)"
               ondragleave="onDragLeave(event)"
-              ondrop="onDrop(event)"
+              ondrop="onDragLeave(event)"
             >
               Modified
               <button
@@ -243,7 +243,7 @@
               ondragstart="onDragStart(event)"
               ondragover="onDragOver(event)"
               ondragleave="onDragLeave(event)"
-              ondrop="onDrop(event)"
+              ondrop="onDragLeave(event)"
             >
               Modified by
               <button
@@ -274,7 +274,7 @@
               ondragstart="onDragStart(event)"
               ondragover="onDragOver(event)"
               ondragleave="onDragLeave(event)"
-              ondrop="onDrop(event)"
+              ondrop="onDragLeave(event)"
             >
               Size
               <button
@@ -3839,11 +3839,6 @@
         column.classList.add(columnIndex > reorderStartIndex ? 'iui-reorder-column-right' : 'iui-reorder-column-left');
       };
       const onDragLeave = (event) => {
-        const column = event.currentTarget;
-        column.classList.remove('iui-reorder-column-right');
-        column.classList.remove('iui-reorder-column-left');
-      };
-      const onDrop = (event) => {
         const column = event.currentTarget;
         column.classList.remove('iui-reorder-column-right');
         column.classList.remove('iui-reorder-column-left');
