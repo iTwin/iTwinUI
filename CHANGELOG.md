@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.51.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.2...v0.51.0) (2022-03-18)
+
+
+### What's new
+
+* **UserIcon:** Add icon to busy status ([#532](https://www.github.com/iTwin/iTwinUI/issues/532)) ([cc3e5dd](https://www.github.com/iTwin/iTwinUI/commit/cc3e5dd3ac8d0bc6ab9bd69714361018c5afea4b))
+
 ### [0.51.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.1...v0.51.0) (2022-03-18)
 
 ### What's new
