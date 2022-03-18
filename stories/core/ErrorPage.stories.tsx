@@ -30,10 +30,10 @@ export default {
   },
 } as Meta<ErrorPageProps> & CreeveyMeta;
 
-export const unauthorized: Story<ErrorPageProps> = (props) => (
+export const Unauthorized: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-unauthorized.args = {
+Unauthorized.args = {
   errorType: '401',
   errorMessage: (
     <>
@@ -44,10 +44,10 @@ unauthorized.args = {
   ),
 };
 
-export const forbidden: Story<ErrorPageProps> = (props) => (
+export const Forbidden: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-forbidden.args = {
+Forbidden.args = {
   errorType: '403',
   errorMessage: (
     <>
@@ -58,10 +58,10 @@ forbidden.args = {
   ),
 };
 
-export const pageNotFound: Story<ErrorPageProps> = (props) => (
+export const PageNotFound: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-pageNotFound.args = {
+PageNotFound.args = {
   errorType: '404',
   errorMessage: (
     <>
@@ -72,46 +72,46 @@ pageNotFound.args = {
   ),
 };
 
-export const internalServerError: Story<ErrorPageProps> = (props) => (
+export const InternalServerError: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-internalServerError.args = {
+InternalServerError.args = {
   errorType: '500',
   errorMessage:
     'Please retry again. If this continues to happen, please contact our support team or visit the iModel HUB.',
 };
 
-export const badGateway: Story<ErrorPageProps> = (props) => (
+export const BadGateway: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-badGateway.args = {
+BadGateway.args = {
   errorType: '502',
   errorMessage:
     'The server encountered a temporary error. Please try again in 30 seconds or visit iModel HUB.',
 };
 
-export const serviceUnavailable: Story<ErrorPageProps> = (props) => (
+export const ServiceUnavailable: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-serviceUnavailable.args = {
+ServiceUnavailable.args = {
   errorType: '503',
   errorMessage:
     'This service is being worked on. Please come back in a little bit or visit iModel HUB.',
 };
 
-export const generic: Story<ErrorPageProps> = (props) => (
+export const Generic: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-generic.args = {
+Generic.args = {
   errorType: 'generic',
   errorMessage:
     "We can't find the iModel that you are looking for or it does not exist. Visit the iModel HUB or contact our support team.",
 };
 
-export const customHtmlMessage: Story<ErrorPageProps> = (props) => (
+export const CustomHtmlMessage: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-customHtmlMessage.args = {
+CustomHtmlMessage.args = {
   errorMessage: (
     <>
       A React component with an{' '}
@@ -128,20 +128,20 @@ customHtmlMessage.args = {
   ),
 };
 
-export const withoutMessageOrButtons: Story<ErrorPageProps> = (props) => (
+export const WithoutMessageOrButtons: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-withoutMessageOrButtons.args = {
+WithoutMessageOrButtons.args = {
   primaryButtonLabel: undefined,
   secondaryButtonLabel: undefined,
   primaryButtonHandle: undefined,
   secondaryButtonHandle: undefined,
 };
 
-export const translatedMessages: Story<ErrorPageProps> = (props) => (
+export const TranslatedMessages: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
-translatedMessages.args = {
+TranslatedMessages.args = {
   errorType: 'generic',
   errorMessage:
     "We can't find the iModel that you are looking for or it does not exist. Visit the iModel HUB or contact our support team.",
