@@ -29,5 +29,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.useEditorConfig": true
+  "prettier.useEditorConfig": true,
+  "stylelint.validate": ["scss"]
 }
