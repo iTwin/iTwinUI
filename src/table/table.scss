@@ -31,6 +31,8 @@
   .iui-row {
     display: flex;
     flex-grow: 1;
+    border-left: solid 1px transparent;
+    border-right: solid 1px transparent;
   }
 
   .iui-cell:not(.iui-slot) {
