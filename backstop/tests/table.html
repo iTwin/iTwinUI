@@ -297,10 +297,10 @@
             </div>
             <div class="iui-cell iui-slot">
               <button
-                class="iui-button iui-borderless iui-dropdown"
+                class="iui-button iui-borderless"
                 aria-label="Modify columns"
                 type="button"
-                onclick="openColumnManger()"
+                onclick="openColumnManger(event)"
               >
                 <svg-column-manager
                   class="iui-button-icon"
@@ -310,32 +310,69 @@
               <ul
                 class="iui-menu"
                 role="menu"
-                style="min-width: 58px;"
-              ><label
-                  class="iui-checkbox-wrapper iui-menu-item"
+                style="display: none"
+              >
+                <li
+                  class="iui-menu-item"
+                  role="menuitem"
+                  tabindex="-1"
+                  aria-haspopup="false"
+                  title="Toggle Column Visible"
                   style="cursor: pointer;"
-                ><input
-                    type="checkbox"
-                    title="Toggle Column Visible"
-                    role="menu"
-                    checked=""
-                  ><span class="iui-checkbox-label">Name</span></label><label
-                  class="iui-checkbox-wrapper iui-menu-item"
+                >
+                  <span class="iui-content">
+                    <div class="iui-menu-label">
+                      <label class="iui-checkbox-wrapper">
+                        <input
+                          class="iui-checkbox"
+                          type="checkbox"
+                        />
+                        <span class="iui-checkbox-label">Name</span>
+                      </label>
+                    </div>
+                  </span>
+                </li>
+                <li
+                  class="iui-menu-item"
+                  role="menuitem"
+                  tabindex="-1"
+                  aria-haspopup="false"
+                  title="Toggle Column Visible"
                   style="cursor: pointer;"
-                ><input
-                    type="checkbox"
-                    title="Toggle Column Visible"
-                    role="menu"
-                    checked=""
-                  ><span class="iui-checkbox-label">Description</span></label><label
-                  class="iui-checkbox-wrapper iui-menu-item"
+                >
+                  <span class="iui-content">
+                    <div class="iui-menu-label">
+                      <label class="iui-checkbox-wrapper">
+                        <input
+                          class="iui-checkbox"
+                          type="checkbox"
+                        />
+                        <span class="iui-checkbox-label">Description</span>
+                      </label>
+                    </div>
+                  </span>
+                </li>
+                <li
+                  class="iui-menu-item"
+                  role="menuitem"
+                  tabindex="-1"
+                  aria-haspopup="false"
+                  title="Toggle Column Visible"
                   style="cursor: pointer;"
-                ><input
-                    type="checkbox"
-                    title="Toggle Column Visible"
-                    role="menu"
-                    checked=""
-                  ><span class="iui-checkbox-label">Click</span></label></ul>
+                >
+                  <span class="iui-content">
+                    <div class="iui-menu-label">
+                      <label class="iui-checkbox-wrapper">
+                        <input
+                          class="iui-checkbox"
+                          type="checkbox"
+                        />
+                        <span class="iui-checkbox-label">Click</span>
+                      </label>
+                    </div>
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -852,7 +889,7 @@
             </div>
             <div class="iui-cell iui-slot">
               <button
-                class="iui-button iui-borderless iui-dropdown iui-small"
+                class="iui-button iui-borderless iui-small"
                 aria-label="Modify columns"
                 type="button"
               >
@@ -1377,7 +1414,7 @@
             </div>
             <div class="iui-cell iui-slot">
               <button
-                class="iui-button iui-borderless iui-dropdown iui-small"
+                class="iui-button iui-borderless iui-small"
                 aria-label="Modify columns"
                 type="button"
               >
@@ -3128,7 +3165,7 @@
             </div>
             <div class="iui-cell iui-slot">
               <button
-                class="iui-button iui-borderless iui-dropdown"
+                class="iui-button iui-borderless"
                 aria-label="Modify columns"
                 type="button"
               >
@@ -3633,7 +3670,7 @@
             </div>
             <div class="iui-cell iui-slot">
               <button
-                class="iui-button iui-borderless iui-dropdown"
+                class="iui-button iui-borderless"
                 aria-label="Modify columns"
                 type="button"
               >
@@ -3796,7 +3833,7 @@
             </div>
             <div class="iui-cell iui-slot">
               <button
-                class="iui-button iui-borderless iui-dropdown"
+                class="iui-button iui-borderless"
                 aria-label="Modify columns"
                 type="button"
               >
@@ -3854,9 +3891,10 @@
     </script>
 
     <script>
-      function openColumnManger() {
-        const element = document.getElementById('tippy-1');
-        element.style.display = element.style.display == "none" ? "block" : "none";
+      function openColumnManger(event) {
+        const buttonElement = event.currentTarget;
+        const menuElement = buttonElement.parentElement.lastElementChild;
+        menuElement.style.display = menuElement.style.display == "none" ? "block" : "none";
       }
     </script>
 
