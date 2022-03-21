@@ -2,6 +2,10 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+.iui-toggle-switch-wrapper {
+  @include iui-toggle-switch-wrapper;
+}
+
 .iui-toggle-switch {
   @include iui-toggle-switch;
 }

@@ -10,11 +10,7 @@
   }
 
   > .iui-message {
-    &::selection {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-#{$category}-rgb), t(iui-opacity-4));
-      }
-    }
+    @include iui-text-selection($category);
   }
 
   > .iui-status-area {
