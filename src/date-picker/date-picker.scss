@@ -115,6 +115,7 @@ $iui-date-picker-cell-height: 36px;
   &.iui-range-start {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    cursor: pointer;
   }
 
   &.iui-range-end {
