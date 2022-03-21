@@ -55,6 +55,10 @@
     // stylelint-enable
   }
 
+  .iui-input-group .iui-toggle-switch-wrapper {
+    padding: round($iui-baseline * 0.5) 0;
+  }
+
   // #region Cursors
   @include iui-input-label-cursor;
 
@@ -124,9 +128,9 @@
       display: flex;
       gap: $iui-m;
 
-      > .iui-checkbox,
-      > .iui-radio,
-      > .iui-toggle-switch {
+      > .iui-checkbox-wrapper,
+      > .iui-radio-wrapper,
+      > .iui-toggle-switch-wrapper {
         margin-right: $iui-m;
 
         @supports (gap: $iui-m) {

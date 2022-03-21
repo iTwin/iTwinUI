@@ -20,11 +20,11 @@
   }
 
   > .iui-location-marker-me-dot {
-    width: $iui-icons-large/2;
-    height: $iui-icons-large/2;
+    width: $iui-icons-large * 0.5;
+    height: $iui-icons-large * 0.5;
     position: absolute;
-    top: $iui-icons-large/4;
-    left: $iui-icons-large/4;
+    top: $iui-icons-large * 0.25;
+    left: $iui-icons-large * 0.25;
     border-radius: 50%;
     box-sizing: border-box;
 
