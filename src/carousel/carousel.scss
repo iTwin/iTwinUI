@@ -118,13 +118,11 @@
       transform: scale(0);
     }
 
-    &.iui-active {
-      &::after {
-        @include themed {
-          background-color: t(iui-color-foreground-primary);
-          border-color: t(iui-color-foreground-primary);
-          box-shadow: inset 0 0 0 1px t(iui-color-background-1);
-        }
+    &.iui-active::after {
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
+        border-color: t(iui-color-foreground-primary);
+        box-shadow: inset 0 0 0 1px t(iui-color-background-1);
       }
     }
   }
