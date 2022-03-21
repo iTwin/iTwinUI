@@ -1,5 +1,19 @@
 # Changelog
 
+### [0.51.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.1...v0.51.0) (2022-03-18)
+
+### What's new
+
+* **Toggle switch:** Complete refactor with new classnames and html structure ([#465](https://www.github.com/iTwin/iTwinUI/issues/465)) ([7af1955](https://www.github.com/iTwin/iTwinUI/commit/7af1955b033dd0236d0a81518c766616356dce0e))
+
+### Fixes
+
+* **Carousel:** Increase flex-grow for dots ([#527](https://www.github.com/iTwin/iTwinUI/issues/527)) ([dbd4483](https://www.github.com/iTwin/iTwinUI/commit/dbd44839f2f21d441c3cde24de2552430594769a))
+* **Inputs:** Fix shrink issue on checkbox & radio ([#522](https://www.github.com/iTwin/iTwinUI/issues/522)) ([38794b6](https://www.github.com/iTwin/iTwinUI/commit/38794b6c6673c31f8f00412f33523c8d67e93f13))
+* **Radio:** Remove redundant wrapper styles ([#524](https://www.github.com/iTwin/iTwinUI/issues/524)) ([cd497a1](https://www.github.com/iTwin/iTwinUI/commit/cd497a1e80511674e373d2b51740ba19df027ea3))
+* **Table:** Fix for resize calculations in react ([#528](https://www.github.com/iTwin/iTwinUI/issues/528)) ([3132024](https://www.github.com/iTwin/iTwinUI/commit/3132024df1ecda631cf8ff0a972d056f568ac882))
+* **Table:** Fixed column reorder styling on resizable column ([#518](https://www.github.com/iTwin/iTwinUI/issues/518)) ([c0239c3](https://www.github.com/iTwin/iTwinUI/commit/c0239c3b9b1e146b383449ad77739e8b35111910))
+
 ### [0.50.1](https://www.github.com/iTwin/iTwinUI/compare/v0.50.0...v0.50.1) (2022-03-10)
 
 ### Fixes

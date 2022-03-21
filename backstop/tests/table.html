@@ -177,6 +177,11 @@
             <div
               class="iui-cell iui-actionable iui-sorted"
               tabindex="0"
+              draggable="true"
+              ondragstart="onDragStart(event)"
+              ondragover="onDragOver(event)"
+              ondragleave="onDragLeave(event)"
+              ondrop="onDragLeave(event)"
             >
               Name
               <button
@@ -198,10 +203,16 @@
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
               </div>
+              <div class="iui-reorder-bar"></div>
             </div>
             <div
               class="iui-cell iui-actionable"
               tabindex="0"
+              draggable="true"
+              ondragstart="onDragStart(event)"
+              ondragover="onDragOver(event)"
+              ondragleave="onDragLeave(event)"
+              ondrop="onDragLeave(event)"
             >
               Modified
               <button
@@ -223,10 +234,16 @@
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
               </div>
+              <div class="iui-reorder-bar"></div>
             </div>
             <div
               class="iui-cell iui-actionable"
               tabindex="0"
+              draggable="true"
+              ondragstart="onDragStart(event)"
+              ondragover="onDragOver(event)"
+              ondragleave="onDragLeave(event)"
+              ondrop="onDragLeave(event)"
             >
               Modified by
               <button
@@ -248,10 +265,16 @@
               <div class="iui-resizer">
                 <div class="iui-resizer-bar"></div>
               </div>
+              <div class="iui-reorder-bar"></div>
             </div>
             <div
               class="iui-cell iui-actionable"
               tabindex="0"
+              draggable="true"
+              ondragstart="onDragStart(event)"
+              ondragover="onDragOver(event)"
+              ondragleave="onDragLeave(event)"
+              ondrop="onDragLeave(event)"
             >
               Size
               <button
@@ -270,6 +293,7 @@
                   aria-hidden="true"
                 ></svg-sort-down>
               </div>
+              <div class="iui-reorder-bar"></div>
             </div>
             <div class="iui-cell iui-slot">
               <button
@@ -3797,6 +3821,28 @@
           scrollableHeader.scrollLeft = this.scrollLeft;
         });
       });
+    </script>
+
+    <script>
+      let reorderStartIndex = -1;
+      const onDragStart = (event) => {
+        const column = event.currentTarget;
+        reorderStartIndex = Array.from(column.parentElement.childNodes).indexOf(column);
+      };
+      const onDragOver = (event) => {
+        event.preventDefault();
+        const column = event.currentTarget;
+        const columnIndex = Array.from(column.parentElement.childNodes).indexOf(column);
+        if (columnIndex === reorderStartIndex) {
+          return;
+        }
+        column.classList.add(columnIndex > reorderStartIndex ? 'iui-reorder-column-right' : 'iui-reorder-column-left');
+      };
+      const onDragLeave = (event) => {
+        const column = event.currentTarget;
+        column.classList.remove('iui-reorder-column-right');
+        column.classList.remove('iui-reorder-column-left');
+      };
     </script>
   </body>
 </html>
