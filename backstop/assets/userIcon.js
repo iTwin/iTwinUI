@@ -18,21 +18,6 @@ const persons = {
   },
 };
 
-const statusIcons = {
-  online: `<!-- Use checkmark.svg from @itwin/itwinui-icons package. -->
-  <svg class="iui-status-symbol" aria-hidden="true" viewBox="0 0 16 16">
-    <path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" />
-  </svg>`,
-  away: `<!-- Use away.svg from @itwin/itwinui-icons package. -->
-  <svg class="iui-status-symbol" aria-hidden="true" viewBox="0 0 16 16" >
-    <path d="m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z"/>
-  </svg>`,
-  offline: `<!-- Use close-small.svg from @itwin/itwinui-icons package. -->
-  <svg class="iui-status-symbol" aria-hidden="true" viewBox="0 0 16 16">
-    <path d="m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z"/>
-  </svg>`,
-};
-
 class UserIcon extends HTMLElement {
   constructor() {
     super();
@@ -42,7 +27,6 @@ class UserIcon extends HTMLElement {
     const person = persons[this.getAttribute('type') || 1];
     const status = this.getAttribute('status');
     const size = this.getAttribute('size') || 'medium';
-    const icon = statusIcons[status];
     const showPlaceholder = this.getAttribute('showPlaceholder');
 
     const innerHtml = `
@@ -70,9 +54,7 @@ class UserIcon extends HTMLElement {
           ? `<span
               title="${status}"
               class="iui-status iui-${status}"
-            >
-              ${icon && icon}
-            </span>`
+            ></span>`
           : ''
       }
     </span>
