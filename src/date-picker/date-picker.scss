@@ -86,18 +86,44 @@ $iui-date-picker-cell-height: 36px;
   border-radius: $iui-border-radius;
   font-variant-numeric: tabular-nums;
 
-  &.iui-today {
-    font-weight: $iui-font-weight-semibold;
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-    }
-  }
-
   &:hover {
     font-weight: $iui-font-weight-semibold;
     @include themed {
       color: t(iui-color-foreground-primary);
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+    }
+  }
+
+  &.iui-today {
+    position: relative;
+    font-weight: $iui-font-weight-semibold;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: $iui-date-picker-cell-height;
+      height: $iui-date-picker-cell-height;
+      border-radius: $iui-border-radius-round;
+      box-sizing: border-box;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @include themed {
+        border: 2px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      }
+    }
+
+    &:hover {
+      @include themed {
+        background-color: initial;
+      }
+    }
+
+    &:hover::before {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      }
     }
   }
 
