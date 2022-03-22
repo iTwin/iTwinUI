@@ -11,6 +11,7 @@
 @mixin iui-information-panel {
   position: absolute;
   opacity: 0;
+  visibility: hidden;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -18,7 +19,8 @@
   max-height: 100%;
   z-index: 2; // Needs to be higher than table's column resizers.
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
+    transition: visibility $iui-speed-instant $iui-speed-fast ease-in, transform $iui-speed-fast ease-out,
+      opacity $iui-speed-fast ease;
   }
 
   @include themed {
@@ -108,7 +110,12 @@
 
 @mixin iui-information-panel-visible {
   opacity: 1;
+  visibility: visible;
   transform: translate(0);
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
+  }
 
   > .iui-resizer {
     display: flex;
