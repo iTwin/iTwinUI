@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.50.1",
+  "version": "0.52.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -69,6 +69,7 @@
     "lint-staged": "^11.2.6",
     "postcss": "^8.4.5",
     "postcss-discard-comments": "^5.0.1",
+    "postcss-scss": "^4.0.3",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "sass-embedded": "^1.49.9",
