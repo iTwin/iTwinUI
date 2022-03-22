@@ -7,24 +7,35 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { ToggleSwitch } from './ToggleSwitch';
 
-const assertBaseElements = (container: HTMLElement) => {
+const assertBaseElements = (
+  container: HTMLElement,
+  labelPosition?: 'left' | 'right',
+) => {
+  const wrapper = container.querySelector(
+    `.iui-toggle-switch-wrapper${
+      labelPosition ? `.iui-label-on-${labelPosition}` : ''
+    }`,
+  ) as HTMLElement;
+  expect(wrapper).toBeTruthy();
+  expect(wrapper.tagName).toBe(!!labelPosition ? 'LABEL' : 'DIV');
   expect(container.querySelector('.iui-toggle-switch')).toBeTruthy();
-  expect(container.querySelector('.iui-toggle > .iui-handle')).toBeTruthy();
-  expect(container.querySelector('input[type="checkbox"]')).toBeTruthy();
+  expect(
+    container.querySelector('input[type="checkbox"][role="switch"]'),
+  ).toBeTruthy();
 };
 
 it('should render correctly in its most basic state', () => {
   const { container } = render(<ToggleSwitch />);
 
   assertBaseElements(container);
-  expect(container.querySelector('.iui-label')).toBeNull();
+  expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
 });
 
 it('should render checked toggle', () => {
   const { container } = render(<ToggleSwitch defaultChecked />);
 
   assertBaseElements(container);
-  expect(container.querySelector('.iui-label')).toBeNull();
+  expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
   expect(
     (container.querySelector('input[type="checkbox"]') as HTMLInputElement)
       .checked,
@@ -37,8 +48,8 @@ it('should render toggle with icon', () => {
   );
 
   assertBaseElements(container);
-  expect(container.querySelector('.iui-label')).toBeNull();
-  expect(container.querySelector('.iui-toggle > .iui-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
+  expect(container.querySelector('.iui-toggle-switch-icon')).toBeTruthy();
 });
 
 it('should render disabled toggle', () => {
@@ -46,7 +57,7 @@ it('should render disabled toggle', () => {
 
   assertBaseElements(container);
   expect(
-    container.querySelector('.iui-toggle-switch.iui-disabled'),
+    container.querySelector('.iui-toggle-switch-wrapper.iui-disabled'),
   ).toBeTruthy();
   expect(
     (container.querySelector('input[type="checkbox"]') as HTMLInputElement)
@@ -57,9 +68,8 @@ it('should render disabled toggle', () => {
 it('should render label on the right', () => {
   const { container, getByText } = render(<ToggleSwitch label='my label' />);
 
-  assertBaseElements(container);
+  assertBaseElements(container, 'right');
   getByText('my label');
-  expect(container.querySelector('.iui-toggle ~ .iui-label')).toBeTruthy();
 });
 
 it('should render label on the left', () => {
@@ -67,9 +77,8 @@ it('should render label on the left', () => {
     <ToggleSwitch label='my label' labelPosition='left' />,
   );
 
-  assertBaseElements(container);
+  assertBaseElements(container, 'left');
   getByText('my label');
-  expect(container.querySelector('.iui-label ~ .iui-toggle')).toBeTruthy();
 });
 
 it('should set focus', () => {
@@ -81,7 +90,7 @@ it('should set focus', () => {
     <ToggleSwitch label='my label' ref={onRef} setFocus />,
   );
 
-  assertBaseElements(container);
+  assertBaseElements(container, 'right');
 
   getByText('my label');
   expect(element).toBeTruthy();
@@ -95,7 +104,7 @@ it('should apply style and class', () => {
 
   assertBaseElements(container);
   const element = container.querySelector(
-    '.iui-toggle-switch.my-class',
+    '.iui-toggle-switch-wrapper.my-class',
   ) as HTMLElement;
   expect(element).toBeTruthy();
   expect(element.style.width).toBe('80px');

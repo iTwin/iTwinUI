@@ -65,6 +65,7 @@ export const ToggleSwitch = React.forwardRef<
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
+  const WrapperComponent = label ? 'label' : 'div';
 
   React.useEffect(() => {
     if (inputElementRef.current && setFocus) {
@@ -73,29 +74,33 @@ export const ToggleSwitch = React.forwardRef<
   }, [setFocus]);
 
   return (
-    <label
+    <WrapperComponent
       className={cx(
-        'iui-toggle-switch',
-        { 'iui-disabled': disabled },
+        'iui-toggle-switch-wrapper',
+        {
+          'iui-disabled': disabled,
+          'iui-label-on-right': label && labelPosition === 'right',
+          'iui-label-on-left': label && labelPosition === 'left',
+        },
         className,
       )}
       style={style}
     >
-      <input type='checkbox' disabled={disabled} ref={refs} {...rest} />
-      {labelPosition === 'left' && label && (
-        <span className='iui-label'>{label}</span>
-      )}
-      <span className='iui-toggle'>
-        {icon &&
-          React.cloneElement(icon, {
-            className: cx('iui-icon', icon.props.className),
-          })}
-        <span className='iui-handle' />
-      </span>
-      {labelPosition === 'right' && label && (
-        <span className='iui-label'>{label}</span>
-      )}
-    </label>
+      <input
+        className='iui-toggle-switch'
+        type='checkbox'
+        role='switch'
+        disabled={disabled}
+        ref={refs}
+        {...rest}
+      />
+      {icon &&
+        React.cloneElement(icon, {
+          className: cx('iui-toggle-switch-icon', icon.props.className),
+          'aria-hidden': true,
+        })}
+      {label && <span className='iui-toggle-switch-label'>{label}</span>}
+    </WrapperComponent>
   );
 });
 

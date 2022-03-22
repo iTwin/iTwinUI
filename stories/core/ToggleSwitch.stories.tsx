@@ -11,6 +11,13 @@ import { ToggleSwitchProps } from '../../src/core/ToggleSwitch/ToggleSwitch';
 export default {
   title: 'Input/ToggleSwitch',
   component: ToggleSwitch,
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '5.5px 0' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as Meta<ToggleSwitchProps>;
 
 export const Basic: Story<ToggleSwitchProps> = (args) => {
