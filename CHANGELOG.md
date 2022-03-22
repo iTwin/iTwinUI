@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.52.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.2...v0.52.0) (2022-03-22)
+
+
+### What's new
+
+* **Modal:** Add full-page modal ([#489](https://www.github.com/iTwin/iTwinUI/issues/489)) ([4ea0ac8](https://www.github.com/iTwin/iTwinUI/commit/4ea0ac8e8d9eb275008bf694b03bba78f5c5cee4))
+* **UserIcon:** Add icon to busy status ([#532](https://www.github.com/iTwin/iTwinUI/issues/532)) ([cc3e5dd](https://www.github.com/iTwin/iTwinUI/commit/cc3e5dd3ac8d0bc6ab9bd69714361018c5afea4b))
+
 ### [0.51.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.1...v0.51.0) (2022-03-18)
 
 ### What's new
