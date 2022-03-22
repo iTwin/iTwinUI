@@ -13,6 +13,6 @@
   &:active {
     background-color: $rippleColor;
     background-size: 100%;
-    transition: background $iui-speed-instant;
+    transition: background 0s;
   }
 }

@@ -4,8 +4,4 @@
 
 .iui-modal {
   @include iui-modal;
-
-  &-full-page {
-    @include iui-modal-full-page;
-  }
 }
