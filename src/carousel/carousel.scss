@@ -19,9 +19,6 @@
   overflow-x: auto;
   overflow-x: overlay;
   scroll-snap-type: x mandatory;
-  @media (prefers-reduced-motion: no-preference) {
-    scroll-behavior: smooth;
-  }
 
   // hide scrollbar
   &::-webkit-scrollbar {
@@ -63,15 +60,11 @@
   &-dots {
     @include iui-reset;
     @include iui-focus;
-    display: flex;
-    align-items: center;
     flex: 2;
     max-width: $iui-xxl * 4;
     border-radius: $iui-border-radius;
     white-space: nowrap;
     overflow: hidden;
-    justify-content: center;
-    list-style: none;
   }
 
   &-dot {
@@ -86,20 +79,12 @@
       }
     }
 
-    &.iui-invisible {
-      @include visually-hidden;
-    }
-
     &::after {
       content: '';
       display: block;
       width: $iui-icons-small;
       height: $iui-icons-small;
       border-radius: 50%;
-      transition: background-color $iui-speed-fast ease;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast $iui-speed-fast ease, transform $iui-speed ease;
-      }
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       }
@@ -111,10 +96,6 @@
 
     &.iui-second::after {
       transform: scale(0.75);
-    }
-
-    &.iui-invisible::after {
-      transform: scale(0);
     }
 
     &.iui-active::after {

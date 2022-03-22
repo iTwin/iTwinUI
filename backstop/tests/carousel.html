@@ -30,7 +30,7 @@
 
       /* These dimensions equal 16.9 ratio */
       .demo-carousel-width {
-        width: 600px;
+        width: min(600px, 80vw);
       }
 
       .demo-carousel-height {
@@ -225,145 +225,123 @@
             </button>
           </div>
 
-          <ol
+          <div
             class="iui-carousel-navigation-dots"
             role="tablist"
             aria-label="Slides"
           >
-            <li>
-              <button
-                class="iui-carousel-navigation-dot iui-active"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="0"
-                aria-label="Slide 1 (Current slide)"
-                aria-selected="true"
-                aria-controls="demo-slide-1"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="1"
-                aria-label="Slide 2"
-                aria-selected="false"
-                aria-controls="demo-slide-2"
-                id="test-1"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="2"
-                aria-label="Slide 3"
-                aria-selected="false"
-                aria-controls="demo-slide-3"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="3"
-                aria-label="Slide 4"
-                aria-selected="false"
-                aria-controls="demo-slide-4"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="4"
-                aria-label="Slide 5"
-                aria-selected="false"
-                aria-controls="demo-slide-5"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot iui-second"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="5"
-                aria-label="Slide 6"
-                aria-selected="false"
-                aria-controls="demo-slide-6"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot iui-first"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="6"
-                aria-label="Slide 7"
-                aria-selected="false"
-                aria-controls="demo-slide-7"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot iui-invisible"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="7"
-                aria-label="Slide 8"
-                aria-selected="false"
-                aria-controls="demo-slide-8"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot iui-invisible"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="8"
-                aria-label="Slide 9"
-                aria-selected="false"
-                aria-controls="demo-slide-9"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot iui-invisible"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="9"
-                aria-label="Slide 10"
-                aria-selected="false"
-                aria-controls="demo-slide-10"
-              ></button>
-            </li>
-            <li>
-              <button
-                class="iui-carousel-navigation-dot iui-invisible"
-                tabindex="-1"
-                type="button"
-                role="tab"
-                data-slide="10"
-                aria-label="Slide 11"
-                aria-selected="false"
-                aria-controls="demo-slide-11"
-              ></button>
-            </li>
-          </ol>
+            <button
+              class="iui-carousel-navigation-dot iui-active"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="0"
+              aria-label="Slide 1 (Current slide)"
+              aria-selected="true"
+              aria-controls="demo-slide-1"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="1"
+              aria-label="Slide 2"
+              aria-selected="false"
+              aria-controls="demo-slide-2"
+              id="test-1"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="2"
+              aria-label="Slide 3"
+              aria-selected="false"
+              aria-controls="demo-slide-3"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="3"
+              aria-label="Slide 4"
+              aria-selected="false"
+              aria-controls="demo-slide-4"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="4"
+              aria-label="Slide 5"
+              aria-selected="false"
+              aria-controls="demo-slide-5"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="5"
+              aria-label="Slide 6"
+              aria-selected="false"
+              aria-controls="demo-slide-6"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="6"
+              aria-label="Slide 7"
+              aria-selected="false"
+              aria-controls="demo-slide-7"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot iui-second"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="7"
+              aria-label="Slide 8"
+              aria-selected="false"
+              aria-controls="demo-slide-8"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot iui-first"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="8"
+              aria-label="Slide 9"
+              aria-selected="false"
+              aria-controls="demo-slide-9"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot iui-first"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="9"
+              aria-label="Slide 10"
+              aria-selected="false"
+              aria-controls="demo-slide-10"
+            ></button>
+            <button
+              class="iui-carousel-navigation-dot iui-first"
+              tabindex="-1"
+              type="button"
+              role="tab"
+              data-slide="10"
+              aria-label="Slide 11"
+              aria-selected="false"
+              aria-controls="demo-slide-11"
+            ></button>
+          </div>
 
           <div class="iui-carousel-navigation-right">
             <button
@@ -385,28 +363,32 @@
     </section>
 
     <script>
-      const MAX_DOTS = 7;
+      let MAX_DOTS = 9;
 
       document.querySelectorAll('.iui-carousel').forEach((carousel) => {
         const slides = [...carousel.querySelectorAll('.iui-carousel-slider-item')];
+        const dotsList = carousel.querySelector('.iui-carousel-navigation-dots');
         const dots = [...carousel.querySelectorAll('.iui-carousel-navigation-dot')];
         const [prev, next] = [...carousel.querySelectorAll('.iui-carousel-navigation-button')];
         const slider = carousel.querySelector('.iui-carousel-slider');
 
         const updateSlide = (current) => {
-          slides[current].scrollIntoView();
+          slider.scrollTo({ left: slides[current].offsetLeft - slider.offsetLeft, behavior: 'smooth' });
 
           const firstDotIndex = Math.max(0, Math.min(current - parseInt(MAX_DOTS / 2), dots.length - MAX_DOTS));
           const lastDotIndex = Math.min(dots.length - 1, Math.max(current + parseInt(MAX_DOTS / 2), MAX_DOTS - 1));
 
           dots.forEach((dot, index) => {
             dot.classList.toggle('iui-active', index === current);
-            dot.classList.toggle('iui-invisible', index < firstDotIndex || index > lastDotIndex);
+            if (index === current) {
+              dot.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
 
             const isFirstSmallDot = (index === firstDotIndex && index !== 0) || (index === lastDotIndex && index !== dots.length - 1);
             const isSecondSmallDot = (index === firstDotIndex + 1 && index !== 1) || (index === lastDotIndex - 1 && index !== dots.length - 2);
+            const isClipped = index < firstDotIndex || index > lastDotIndex;
 
-            dot.classList.toggle('iui-first', isFirstSmallDot);
+            dot.classList.toggle('iui-first', isFirstSmallDot || isClipped);
             dot.classList.toggle('iui-second', isSecondSmallDot);
           });
         };
@@ -428,9 +410,16 @@
         prev.addEventListener('click', () => goPrevSlide());
         next.addEventListener('click', () => goNextSlide());
 
+        // update dots truncation on resize
+        const resizeObserver = new ResizeObserver(([{ contentRect: { width } }]) => {
+          MAX_DOTS = Math.floor(width / dots[0].offsetWidth);
+          updateSlide(currentSlide);
+        });
+        resizeObserver.observe(dotsList);
+
         // clickable dots
         dots.forEach((dot, index) => {
-          if (!dot.classList.contains('iui-invisible')) {
+          if (!dot.classList.contains('iui-first')) {
             dot.addEventListener('click', () => {
               currentSlide = index;
               updateSlide(currentSlide);
@@ -504,6 +493,8 @@
               break;
           }
         });
+        // initialize
+        updateSlide(0);
       });
 
     </script>
