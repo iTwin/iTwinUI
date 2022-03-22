@@ -2,7 +2,6 @@
 
 ## [0.52.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.2...v0.52.0) (2022-03-22)
 
-
 ### What's new
 
 * **Modal:** Add full-page modal ([#489](https://www.github.com/iTwin/iTwinUI/issues/489)) ([4ea0ac8](https://www.github.com/iTwin/iTwinUI/commit/4ea0ac8e8d9eb275008bf694b03bba78f5c5cee4))
