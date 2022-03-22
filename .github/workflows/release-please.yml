@@ -26,6 +26,7 @@ jobs:
     if: needs.release-please.outputs.release-created
 
     steps:
+      - uses: actions/checkout@v2
       - uses: ./.github/workflows/publish-npm.yml
 
   fix-title:
