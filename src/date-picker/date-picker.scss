@@ -9,7 +9,6 @@ $iui-date-picker-cell-height: 36px;
 
 @mixin iui-date-picker {
   @include iui-dropdown;
-  box-shadow: $iui-elevation-2;
   user-select: none;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -79,6 +78,7 @@ $iui-date-picker-cell-height: 36px;
 
 //#region Helper mixins
 @mixin iui-calendar-day-base {
+  @include iui-focus;
   cursor: pointer;
   text-align: center;
   width: $iui-date-picker-cell-width;
@@ -165,7 +165,6 @@ $iui-date-picker-cell-height: 36px;
 @mixin iui-calendar-day {
   &,
   &-today {
-    @include iui-focus;
     @include iui-calendar-day-base;
     @include iui-calendar-day-base-hover;
   }
