@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.34.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.33.1...v1.34.0) (2022-03-22)
+
+### What's new
+
+* **Table:** support for draggable columns ([#561](https://www.github.com/iTwin/iTwinUI-react/issues/561)) ([0e741f5](https://www.github.com/iTwin/iTwinUI-react/commit/0e741f5c0838996a5f45c57abedf41daeef652d4))
+
+### Fixes
+
+* **ToggleSwitch:** updated toggle switch styles through css package ([#592](https://www.github.com/iTwin/iTwinUI-react/issues/592)) ([3a0be35](https://www.github.com/iTwin/iTwinUI-react/commit/3a0be355d4363fe7d704c3fd6f975c509c65da2b))
+* **UserIcon:** busy status now also shows an icon
+
 ### [1.33.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.33.0...v1.33.1) (2022-03-18)
 
 ### Fixes
