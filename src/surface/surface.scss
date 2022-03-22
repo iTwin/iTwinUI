@@ -2,23 +2,26 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-surface($elevation: $iui-elevation-2) {
-  @include surface;
+@mixin iui-surface($background-color: var(--iui-color-background-1), $border-radius: 0, $elevation: $iui-elevation-2) {
+  @include surface($background-color, $border-radius);
   @include elevation($elevation);
 }
 
-@mixin surface {
-  box-sizing: border-box;
-  @include themed {
-    background-color: t(iui-color-background-1);
-    color: t(iui-text-color);
-  }
+@mixin surface($background-color: var(--iui-color-background-1), $border-radius: 0) {
+  --iui-surface-background-color: #{$background-color};
+  --iui-surface-border-radius: #{$border-radius};
 
+  background-color: var(--iui-surface-background-color);
+  border-radius: var(--iui-surface-border-radius);
+  box-sizing: border-box;
+  color: var(--iui-text-color);
   @media (forced-colors: active) {
     border: 1px solid transparent;
   }
 }
 
 @mixin elevation($elevation: $iui-elevation-2) {
-  box-shadow: $elevation;
+  --iui-surface-elevation: #{$elevation};
+
+  box-shadow: var(--iui-surface-elevation);
 }
