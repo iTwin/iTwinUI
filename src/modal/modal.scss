@@ -11,14 +11,36 @@
   left: 0;
   width: 100%;
   height: 100%;
-  visibility: hidden;
-  opacity: 0;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: visibility 0s linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
-  }
   @include themed {
     background-color: rgba(0, 0, 0, t(iui-opacity-4));
   }
+
+  // #region Small Modal Animations for CSS
+  visibility: hidden;
+  opacity: 0;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
+  }
+
+  &.iui-modal-visible {
+    visibility: visible;
+    opacity: 1;
+    // remove delay for entry animation so it's instantly visible
+    transition-delay: $iui-speed-instant;
+  }
+  // #endregion Small Modal Animations for CSS
+
+  // #region Small Modal Animations for React
+  &.iui-modal-animation-enter {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &.iui-modal-animation-enter-active {
+    visibility: visible;
+    opacity: 1;
+  }
+  // #endregion Full Page Modal Animations for React
 
   > .iui-modal-dialog {
     position: absolute;
@@ -27,10 +49,12 @@
     transform: translate(-50%, -33%);
     z-index: 1000;
     max-width: 50%;
-    min-width: 400px;
+    min-width: 380px;
+    max-height: 100vh;
     border-radius: $iui-border-radius;
     box-shadow: $iui-elevation-24;
     padding: $iui-baseline $iui-m;
+    box-sizing: border-box;
 
     @include themed {
       background-color: t(iui-color-background-1);
@@ -67,11 +91,62 @@
         margin-right: $iui-s;
       }
     }
+
+    .iui-modal-content {
+      flex-grow: 2;
+      margin: 0 -#{$iui-m};
+      padding: 0 $iui-m;
+      overflow-y: auto;
+      overflow-y: overlay;
+    }
+  }
+}
+
+@mixin iui-modal-full-page {
+  > .iui-modal-dialog {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    top: 0;
+    transform: none;
+    max-width: initial;
+    min-width: initial;
+    border-radius: 0;
+    will-change: transform;
   }
 
-  &.iui-modal-visible {
-    visibility: visible;
-    opacity: 1;
-    transition-delay: 0s;
+  // #region Full Page Modal Animations for CSS
+  @media (prefers-reduced-motion: no-preference) {
+    transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed ease-out $iui-speed-fast;
   }
+
+  > .iui-modal-dialog {
+    transform: translateY(100%);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
+        transform $iui-speed ease-in;
+    }
+  }
+
+  &.iui-modal-visible > .iui-modal-dialog {
+    transform: translateY(0);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform $iui-speed ease-out;
+    }
+  }
+  // #endregion Full Page Modal Animations for CSS
+
+  // #region Full Page Modal Animations for React
+  &.iui-modal-animation-enter > .iui-modal-dialog {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  &.iui-modal-animation-enter-active > .iui-modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  // #endregion Full Page Modal Animations for React
 }
