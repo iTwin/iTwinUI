@@ -77,15 +77,16 @@ $iui-date-picker-cell-height: 36px;
   margin-bottom: $iui-xxs;
 }
 
-@mixin iui-calendar-day {
-  @include iui-focus;
+@mixin iui-calendar-day-base {
   cursor: pointer;
   text-align: center;
   width: $iui-date-picker-cell-width;
   height: $iui-date-picker-cell-height;
   border-radius: $iui-border-radius;
   font-variant-numeric: tabular-nums;
+}
 
+@mixin iui-calendar-day-base-hover {
   &:hover {
     font-weight: $iui-font-weight-semibold;
     @include themed {
@@ -93,83 +94,221 @@ $iui-date-picker-cell-height: 36px;
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
     }
   }
+}
 
-  &.iui-today {
-    position: relative;
-    font-weight: $iui-font-weight-semibold;
+@mixin iui-calendar-day-today-base {
+  position: relative;
+  font-weight: $iui-font-weight-semibold;
 
-    &::before {
-      content: '';
-      position: absolute;
-      display: block;
-      width: $iui-date-picker-cell-height;
-      height: $iui-date-picker-cell-height;
-      border-radius: $iui-border-radius-round;
-      box-sizing: border-box;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      @include themed {
-        border: 2px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
-      }
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: $iui-date-picker-cell-height;
+    height: $iui-date-picker-cell-height;
+    border-radius: $iui-border-radius-round;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include themed {
+      border: 2px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
     }
+  }
+
+  &:hover {
+    background-color: initial;
+    @include themed {
+      color: t(iui-color-foreground-primary);
+    }
+  }
+
+  &:hover::before {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+    }
+  }
+}
+
+@mixin iui-calendar-day-selected-base {
+  font-weight: $iui-font-weight-semibold;
+  @include themed {
+    background-color: t(iui-color-background-primary);
+    color: t(iui-color-foreground-accessory);
+  }
+  @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
+}
+
+@mixin iui-calendar-day {
+  &,
+  &-today {
+    @include iui-focus;
+    @include iui-calendar-day-base;
+    @include iui-calendar-day-base-hover;
+  }
+
+  &-today {
+    @include iui-calendar-day-today-base;
+  }
+}
+
+@mixin iui-calendar-day-selected {
+  &,
+  &-today {
+    @include iui-calendar-day-base;
+    @include iui-calendar-day-selected-base;
+    cursor: default;
+  }
+
+  &-today {
+    @include iui-calendar-day-today-base;
 
     &:hover {
       @include themed {
-        background-color: initial;
+        background-color: t(iui-color-background-primary);
+        color: t(iui-color-foreground-accessory);
+      }
+
+      &::before {
+        @include themed {
+          background-color: initial;
+        }
       }
     }
 
-    &:hover::before {
+    &::before {
       @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        border-color: t(iui-color-foreground-accessory);
       }
     }
   }
+}
 
-  &.iui-selected {
-    font-weight: $iui-font-weight-semibold;
-    border-radius: $iui-border-radius;
-    cursor: default;
-    @include themed {
-      background-color: t(iui-color-background-primary);
-      color: t(iui-color-foreground-accessory);
-    }
-    @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
-  }
+@mixin iui-calendar-day-range-start {
+  &,
+  &-today {
+    @include iui-calendar-day-base;
+    @include iui-calendar-day-selected-base;
 
-  &.iui-range-start {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     cursor: pointer;
   }
 
-  &.iui-range-end {
+  &-today {
+    @include iui-calendar-day-today-base;
+
+    &:hover {
+      @include themed {
+        background-color: t(iui-color-background-primary);
+        color: t(iui-color-foreground-accessory);
+      }
+
+      &::before {
+        @include themed {
+          background-color: initial;
+        }
+      }
+    }
+
+    &::before {
+      @include themed {
+        border-color: t(iui-color-foreground-accessory);
+      }
+    }
+  }
+}
+
+@mixin iui-calendar-day-range-end {
+  &,
+  &-today {
+    @include iui-calendar-day-base;
+    @include iui-calendar-day-selected-base;
+
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    cursor: pointer;
   }
 
-  &.iui-range {
+  &-today {
+    @include iui-calendar-day-today-base;
+
+    &:hover {
+      @include themed {
+        background-color: t(iui-color-background-primary);
+        color: t(iui-color-foreground-accessory);
+      }
+
+      &::before {
+        @include themed {
+          background-color: initial;
+        }
+      }
+    }
+
+    &::before {
+      @include themed {
+        border-color: t(iui-color-foreground-accessory);
+      }
+    }
+  }
+}
+
+@mixin iui-calendar-day-range {
+  &,
+  &-today {
+    @include iui-calendar-day-base;
+
     border-radius: 0;
-    cursor: pointer;
     @include themed {
       background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
       color: t(iui-text-color);
     }
-  }
 
-  &.iui-range:hover {
-    font-weight: $iui-font-weight-semibold;
+    &:hover {
+      font-weight: $iui-font-weight-semibold;
 
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
+      }
     }
   }
 
-  &.iui-outside-month {
+  &-today {
+    @include iui-calendar-day-today-base;
+
+    &:hover {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+        color: t(iui-text-color);
+      }
+
+      &::before {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
+        }
+      }
+    }
+
+    &::before {
+      @include themed {
+        border-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
+      }
+    }
+  }
+}
+
+@mixin iui-calendar-day-outside-month {
+  &,
+  &-today {
+    @include iui-calendar-day-base;
+    @include iui-calendar-day-base-hover;
+
     @include themed {
       color: t(iui-text-color-muted);
     }
+  }
+
+  &-today {
+    @include iui-calendar-day-today-base;
   }
 }
