@@ -252,15 +252,16 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
 
-    .iui-description {
-      height: $iui-baseline * 2;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: all $iui-speed-fast ease;
-      }
-      @include themed {
-        opacity: t(iui-opacity-3);
-      }
+  .iui-description {
+    height: $iui-baseline * 2;
+    font-size: $iui-font-size-small;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: all $iui-speed-fast ease;
+    }
+    @include themed {
+      opacity: t(iui-opacity-3);
     }
   }
 
