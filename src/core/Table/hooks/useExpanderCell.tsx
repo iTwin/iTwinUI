@@ -27,6 +27,7 @@ export const useExpanderCell = <T extends Record<string, unknown>>(
       maxWidth: 48,
       columnClassName: 'iui-slot',
       cellClassName: 'iui-slot',
+      disableReordering: true,
       Cell: (props: CellProps<T>) => {
         const { row } = props;
         if (!subComponent(row)) {

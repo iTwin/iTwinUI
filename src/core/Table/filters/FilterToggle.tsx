@@ -56,11 +56,11 @@ export const FilterToggle = <T extends Record<string, unknown>>(
             styleType='borderless'
             isActive={isVisible || column.filterValue}
             className={cx('iui-filter-button', className)}
-            onClick={() => {
+            onClick={(e) => {
               setIsVisible((v) => !v);
+              // Prevents from triggering sort
+              e.stopPropagation();
             }}
-            // Prevents from triggering sort
-            onMouseDown={(e) => e.stopPropagation()}
             {...rest}
           >
             {column.filterValue ? <SvgFilter /> : <SvgFilterHollow />}

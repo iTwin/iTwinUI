@@ -26,6 +26,7 @@ export const useSelectionCell = <T extends Record<string, unknown>>(
       maxWidth: 48,
       columnClassName: 'iui-slot',
       cellClassName: 'iui-slot',
+      disableReordering: true,
       Header: ({
         getToggleAllRowsSelectedProps,
         rows,

@@ -183,16 +183,20 @@ const defaultGetResizerProps = (ownerDocument: Document | undefined) => (
   return [
     props,
     {
-      onMouseDown: (e: React.MouseEvent) => {
-        e.persist();
+      onClick: (e: React.MouseEvent) => {
         // Prevents from triggering sort
         e.stopPropagation();
+      },
+      onMouseDown: (e: React.MouseEvent) => {
+        e.persist();
+        // Prevents from triggering drag'n'drop
+        e.preventDefault();
         onResizeStart(e, header);
       },
       onTouchStart: (e: React.TouchEvent) => {
         e.persist();
-        // Prevents from triggering sort
-        e.stopPropagation();
+        // Prevents from triggering drag'n'drop
+        e.preventDefault();
         onResizeStart(e, header);
       },
       style: {

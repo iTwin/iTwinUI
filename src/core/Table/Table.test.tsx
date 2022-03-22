@@ -44,13 +44,13 @@ const columns = (onViewClick: () => void = jest.fn()) => [
       },
       {
         id: 'description',
-        Header: 'description',
+        Header: 'Description',
         accessor: 'description',
         maxWidth: 200,
       },
       {
         id: 'view',
-        Header: 'view',
+        Header: 'View',
         Cell: () => {
           return <span onClick={onViewClick}>View</span>;
         },
@@ -2226,4 +2226,150 @@ it('should sync body horizontal scroll with header scroll', () => {
 
   expect(header.scrollLeft).toBe(100);
   expect(body.scrollLeft).toBe(100);
+});
+
+it.each([
+  {
+    testCase: 'dragging Name to View',
+    srcIndex: 0,
+    dstIndex: 2,
+    resultingColumns: ['Description', 'View', 'Name'],
+  },
+  {
+    testCase: 'dragging View to Name',
+    srcIndex: 2,
+    dstIndex: 0,
+    resultingColumns: ['View', 'Name', 'Description'],
+  },
+  {
+    testCase: 'dragging Name to itself and it should not change',
+    srcIndex: 0,
+    dstIndex: 0,
+    resultingColumns: ['Name', 'Description', 'View'],
+  },
+  {
+    testCase: 'dragging Name to Description',
+    srcIndex: 0,
+    dstIndex: 1,
+    resultingColumns: ['Description', 'Name', 'View'],
+  },
+  {
+    testCase: 'dragging View to Description',
+    srcIndex: 2,
+    dstIndex: 1,
+    resultingColumns: ['Name', 'View', 'Description'],
+  },
+])(
+  'should handle column reorder by $testCase',
+  ({ srcIndex, dstIndex, resultingColumns }) => {
+    const onSort = jest.fn();
+    jest.spyOn(HTMLElement.prototype, 'offsetLeft', 'get').mockReturnValue(0);
+    jest
+      .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+      .mockReturnValue(100);
+    const { container, rerender } = render(
+      <Table
+        columns={columns()}
+        data={mockedData()}
+        emptyTableContent='Empty table'
+        emptyFilteredTableContent='No results. Clear filter.'
+        enableColumnReordering
+        isSortable
+        onSort={onSort}
+      />,
+    );
+
+    const headerCells = container.querySelectorAll<HTMLDivElement>(
+      '.iui-table-header .iui-cell',
+    );
+    headerCells.forEach((cell) =>
+      expect(cell.getAttribute('draggable')).toBe('true'),
+    );
+
+    const srcColumn = headerCells[srcIndex];
+    const dstColumn = headerCells[dstIndex];
+
+    fireEvent.dragStart(srcColumn);
+    fireEvent.dragEnter(dstColumn);
+    fireEvent.dragOver(dstColumn);
+    // If dragging over itself
+    if (srcIndex === dstIndex) {
+      expect(dstColumn).not.toHaveClass('iui-reorder-column-left');
+      expect(dstColumn).not.toHaveClass('iui-reorder-column-right');
+    } else {
+      expect(dstColumn).toHaveClass(
+        'iui-reorder-column-' + (srcIndex < dstIndex ? 'right' : 'left'),
+      );
+    }
+    fireEvent.drop(dstColumn);
+
+    // Should not trigger sort
+    expect(onSort).not.toHaveBeenCalled();
+
+    rerender(
+      <Table
+        columns={columns()}
+        data={mockedData()}
+        emptyTableContent='Empty table'
+        emptyFilteredTableContent='No results. Clear filter.'
+        enableColumnReordering
+        isSortable
+        onSort={onSort}
+      />,
+    );
+
+    container
+      .querySelectorAll<HTMLDivElement>('.iui-table-header .iui-cell')
+      .forEach((cell, index) =>
+        expect(cell.textContent).toBe(resultingColumns[index]),
+      );
+  },
+);
+
+it('should not have `draggable` attribute on columns with `disableReordering` enabled', () => {
+  const columns: Column<TestDataType>[] = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+        },
+        {
+          id: 'description',
+          Header: 'description',
+          accessor: 'description',
+        },
+        {
+          id: 'view',
+          Header: 'view',
+          Cell: () => 'View',
+          disableReordering: true,
+        },
+      ],
+    },
+  ];
+  const { container } = render(
+    <Table
+      columns={columns}
+      data={mockedData()}
+      emptyTableContent='Empty table'
+      emptyFilteredTableContent='No results. Clear filter.'
+      enableColumnReordering
+      isSelectable
+      subComponent={(row) => (
+        <div>{`Expanded component, name: ${row.original.name}`}</div>
+      )}
+    />,
+  );
+
+  const headerCells = container.querySelectorAll<HTMLDivElement>(
+    '.iui-table-header .iui-cell',
+  );
+  expect(headerCells[0].getAttribute('draggable')).toBeFalsy(); // Selection column
+  expect(headerCells[1].getAttribute('draggable')).toBeFalsy(); // Expander column
+  expect(headerCells[2].getAttribute('draggable')).toBe('true'); // Name column
+  expect(headerCells[3].getAttribute('draggable')).toBe('true'); // Description column
+  expect(headerCells[4].getAttribute('draggable')).toBeFalsy(); // View column
 });
