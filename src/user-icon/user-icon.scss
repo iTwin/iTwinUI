@@ -92,8 +92,8 @@
 
     &::after {
       content: '';
-      width: calc(100% / 1.5);
-      height: calc(100% / 1.5);
+      width: $iui-s;
+      height: $iui-s;
     }
 
     &.iui-online {
