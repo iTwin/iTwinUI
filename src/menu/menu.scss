@@ -111,10 +111,15 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     &,
     &:hover {
       @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        color: t(iui-color-foreground-primary);
         outline: $iui-active-outline;
         outline-offset: -1px;
       }
+    }
+
+    .iui-menu-description {
+      opacity: 1;
     }
 
     > .iui-icon {
@@ -163,7 +168,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   width: calc(100% - #{$iui-l});
   margin: 1px auto;
   @include themed {
-    background-color: t(iui-color-background-4);
+    background-color: t(iui-color-background-border);
   }
 }
 

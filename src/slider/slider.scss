@@ -53,7 +53,7 @@ $tick-height: $iui-baseline; // 11px
   height: $track-height;
   top: $iui-sm;
   @include themed {
-    background-color: t(iui-color-background-4);
+    background-color: t(iui-color-background-border);
   }
 }
 
@@ -71,7 +71,7 @@ $tick-height: $iui-baseline; // 11px
   @include iui-focus($thickness: 2px);
   @include themed {
     background: t(iui-color-background-1);
-    border: 1px solid t(iui-color-background-5);
+    border: 1px solid t(iui-color-background-border);
   }
 
   &:active {

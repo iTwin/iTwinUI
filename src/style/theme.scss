@@ -13,6 +13,7 @@ $iui-color-background-positive--light: hsl(95, 72%, 37%);
 $iui-color-background-warning--light: hsl(33, 89%, 51%);
 $iui-color-background-negative--light: hsl(0, 91%, 43%);
 $iui-color-background-disabled--light: $iui-color-background-3--light;
+$iui-color-background-border--light: $iui-color-background-5--light;
 
 // Light theme > Foreground
 $iui-color-foreground-body--light: hsl(0, 0%, 0%);
@@ -67,6 +68,7 @@ $iui-color-background-positive--light-hc: hsl(140, 100%, 19%);
 $iui-color-background-warning--light-hc: hsl(45, 100%, 22%);
 $iui-color-background-negative--light-hc: hsl(0, 100%, 31%);
 $iui-color-background-disabled--light-hc: $iui-color-background-3--light-hc;
+$iui-color-background-border--light-hc: hsl(0 0% 0% / 0.3);
 
 // Light high contrast theme > Foreground
 $iui-color-foreground-body--light-hc: hsl(0, 0%, 0%);
@@ -121,6 +123,7 @@ $iui-color-background-positive--dark: hsl(95, 72%, 37%);
 $iui-color-background-warning--dark: hsl(33, 89%, 51%);
 $iui-color-background-negative--dark: hsl(0, 91%, 43%);
 $iui-color-background-disabled--dark: $iui-color-background-3--dark;
+$iui-color-background-border--dark: $iui-color-background-5--dark;
 
 // Dark theme > Foreground
 $iui-color-foreground-body--dark: hsl(0, 0%, 100%);
@@ -176,6 +179,7 @@ $iui-color-background-positive--dark-hc: hsl(140, 100%, 19%);
 $iui-color-background-warning--dark-hc: hsl(45, 100%, 22%);
 $iui-color-background-negative--dark-hc: hsl(0, 100%, 31%);
 $iui-color-background-disabled--dark-hc: $iui-color-background-4--dark-hc;
+$iui-color-background-border--dark-hc: hsl(0 0% 100% / 0.34);
 
 // Dark high contrast theme > Foreground
 $iui-color-foreground-body--dark-hc: hsl(0, 0%, 100%);
@@ -231,6 +235,7 @@ $themes: (
     iui-color-background-warning: $iui-color-background-warning--light,
     iui-color-background-negative: $iui-color-background-negative--light,
     iui-color-background-disabled: $iui-color-background-disabled--light,
+    iui-color-background-border: $iui-color-background-border--light,
     iui-color-foreground-body: $iui-color-foreground-body--light,
     iui-color-foreground-body-invert: $iui-color-foreground-body-invert--light,
     iui-color-foreground-accessory: $iui-color-foreground-accessory--light,
@@ -274,6 +279,7 @@ $themes: (
     iui-color-background-warning: $iui-color-background-warning--dark,
     iui-color-background-negative: $iui-color-background-negative--dark,
     iui-color-background-disabled: $iui-color-background-disabled--dark,
+    iui-color-background-border: $iui-color-background-border--dark,
     iui-color-foreground-body: $iui-color-foreground-body--dark,
     iui-color-foreground-body-invert: $iui-color-foreground-body-invert--dark,
     iui-color-foreground-accessory: $iui-color-foreground-accessory--dark,
@@ -317,6 +323,7 @@ $themes: (
     iui-color-background-warning: $iui-color-background-warning--dark-hc,
     iui-color-background-negative: $iui-color-background-negative--dark-hc,
     iui-color-background-disabled: $iui-color-background-disabled--dark-hc,
+    iui-color-background-border: $iui-color-background-border--dark-hc,
     iui-color-foreground-body: $iui-color-foreground-body--dark-hc,
     iui-color-foreground-accessory: $iui-color-foreground-accessory--dark-hc,
     iui-color-foreground-primary: $iui-color-foreground-primary--dark-hc,
@@ -359,6 +366,7 @@ $themes: (
     iui-color-background-warning: $iui-color-background-warning--light-hc,
     iui-color-background-negative: $iui-color-background-negative--light-hc,
     iui-color-background-disabled: $iui-color-background-disabled--light-hc,
+    iui-color-background-border: $iui-color-background-border--light-hc,
     iui-color-foreground-body: $iui-color-foreground-body--light-hc,
     iui-color-foreground-accessory: $iui-color-foreground-accessory--light-hc,
     iui-color-foreground-primary: $iui-color-foreground-primary--light-hc,
@@ -434,10 +442,14 @@ $fallbackvars: getfallbackvars();
 
       --#{$key}: #{$cssVarValue};
     } @else if (type-of($value) == color) {
-      $rgbVal: hextorgb($value);
+      @if alpha($value) < 1 {
+        --#{$key}: #{$value};
+      } @else {
+        $rgbVal: hextorgb($value);
 
-      --#{$key}-rgb: #{$rgbVal};
-      --#{$key}: rgb(var(--#{$key}-rgb));
+        --#{$key}-rgb: #{$rgbVal};
+        --#{$key}: rgb(var(--#{$key}-rgb));
+      }
     } @else {
       --#{$key}: #{$value};
     }

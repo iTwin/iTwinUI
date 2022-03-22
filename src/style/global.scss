@@ -74,12 +74,28 @@ html {
   @media (prefers-color-scheme: light) and (prefers-contrast: more) {
     &:not([class*='iui-theme-']) {
       @include theme-variables(light-hc);
+
+      .iui-anchor {
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
   }
 
   @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
     &:not([class*='iui-theme-']) {
       @include theme-variables(dark-hc);
+
+      .iui-anchor {
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
   }
 }
