@@ -2,9 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgAway from '@itwin/itwinui-icons-react/cjs/icons/Away';
-import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
-import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps, useTheme } from '../utils';
@@ -87,13 +84,6 @@ export const UserIcon = (props: UserIconProps) => {
 
   const statusTitles = { ...defaultStatusTitles, ...translatedStatusTitles };
 
-  const iconMap: { [key in UserIconStatus]: JSX.Element } = {
-    away: <SvgAway className='iui-status-symbol' aria-hidden />,
-    offline: <SvgCloseSmall className='iui-status-symbol' aria-hidden />,
-    online: <SvgCheckmark className='iui-status-symbol' aria-hidden />,
-    busy: <></>,
-  };
-
   return (
     <span
       className={cx(
@@ -118,9 +108,7 @@ export const UserIcon = (props: UserIconProps) => {
             [`iui-${status}`]: !!status,
           })}
           aria-label={statusTitles[status]}
-        >
-          {iconMap[status]}
-        </span>
+        />
       )}
     </span>
   );

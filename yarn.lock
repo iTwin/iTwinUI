@@ -2543,10 +2543,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
-"@itwin/itwinui-css@^0.51.0":
-  version "0.51.0"
-  resolved "https://registry.npmjs.org/@itwin/itwinui-css/-/itwinui-css-0.51.0.tgz#4d15a967d9a52b4a36af604a1dfd12e2cb3c8012"
-  integrity sha512-gMx6mI/5OXZuXUcfOKaNlr6e2RdZmvYQ/ZvHtWR+9JGkLsTmV2wV+p0IwbwYl+jZ4AwQIAyJ1bBPEqIWpJJtzA==
+"@itwin/itwinui-css@^0.52.0":
+  version "0.52.0"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-0.52.0.tgz#0491ac7408b7855311977da20c5187a258c7a997"
+  integrity sha512-OTrCEuBR3221I9RuamlE9R19m58uHWR0rKP0lQEgnWlurGI5etgTvoA3r5PIWbT7SM5PJ64toV0NH0pXY9x+Uw==
 
 "@itwin/itwinui-icons-react@^1.5.0":
   version "1.5.0"
@@ -11036,7 +11036,7 @@ minimatch@3.0.4, minimatch@^3.0.2, minimatch@^3.0.4:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist@^1.1.0, minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5, minimist@^1.2.6:
+minimist@^1.1.0, minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
