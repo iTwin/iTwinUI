@@ -77,6 +77,7 @@ $iui-date-picker-cell-height: 36px;
   margin-bottom: $iui-xxs;
 }
 
+//#region Helper mixins
 @mixin iui-calendar-day-base {
   cursor: pointer;
   text-align: center;
@@ -139,6 +140,28 @@ $iui-date-picker-cell-height: 36px;
   @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
 }
 
+@mixin iui-calendar-day-selected-today-base {
+  &:hover {
+    @include themed {
+      background-color: t(iui-color-background-primary);
+      color: t(iui-color-foreground-accessory);
+    }
+
+    &::before {
+      @include themed {
+        background-color: initial;
+      }
+    }
+  }
+
+  &::before {
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4));
+    }
+  }
+}
+//#endregion Helper mixins
+
 @mixin iui-calendar-day {
   &,
   &-today {
@@ -162,25 +185,7 @@ $iui-date-picker-cell-height: 36px;
 
   &-today {
     @include iui-calendar-day-today-base;
-
-    &:hover {
-      @include themed {
-        background-color: t(iui-color-background-primary);
-        color: t(iui-color-foreground-accessory);
-      }
-
-      &::before {
-        @include themed {
-          background-color: initial;
-        }
-      }
-    }
-
-    &::before {
-      @include themed {
-        border-color: t(iui-color-foreground-accessory);
-      }
-    }
+    @include iui-calendar-day-selected-today-base;
   }
 }
 
@@ -197,25 +202,7 @@ $iui-date-picker-cell-height: 36px;
 
   &-today {
     @include iui-calendar-day-today-base;
-
-    &:hover {
-      @include themed {
-        background-color: t(iui-color-background-primary);
-        color: t(iui-color-foreground-accessory);
-      }
-
-      &::before {
-        @include themed {
-          background-color: initial;
-        }
-      }
-    }
-
-    &::before {
-      @include themed {
-        border-color: t(iui-color-foreground-accessory);
-      }
-    }
+    @include iui-calendar-day-selected-today-base;
   }
 }
 
@@ -231,25 +218,7 @@ $iui-date-picker-cell-height: 36px;
 
   &-today {
     @include iui-calendar-day-today-base;
-
-    &:hover {
-      @include themed {
-        background-color: t(iui-color-background-primary);
-        color: t(iui-color-foreground-accessory);
-      }
-
-      &::before {
-        @include themed {
-          background-color: initial;
-        }
-      }
-    }
-
-    &::before {
-      @include themed {
-        border-color: t(iui-color-foreground-accessory);
-      }
-    }
+    @include iui-calendar-day-selected-today-base;
   }
 }
 
