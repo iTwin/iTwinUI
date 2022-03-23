@@ -3,28 +3,5 @@
 @import './index';
 
 .iui-surface {
-  @include surface;
-}
-
-.iui-elevation {
-  &,
-  &-1 {
-    @include elevation;
-  }
-
-  &-2 {
-    @include elevation($iui-elevation-4);
-  }
-
-  &-3 {
-    @include elevation($iui-elevation-8);
-  }
-
-  &-4 {
-    @include elevation($iui-elevation-16);
-  }
-
-  &-5 {
-    @include elevation($iui-elevation-24);
-  }
+  @include iui-surface;
 }

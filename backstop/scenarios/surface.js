@@ -14,6 +14,6 @@ module.exports = [
   scenario('Type elevations', {
     selectors: ['#demo-elevations'],
     viewports: [{ width: 800, height: 600 }],
-    hideSelectors: ['#demo-default'],
+    hideSelectors: ['h2', '#demo-default'],
   }),
 ];
