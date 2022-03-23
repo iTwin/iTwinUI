@@ -6,6 +6,7 @@
 
 $iui-date-picker-cell-width: 40px;
 $iui-date-picker-cell-height: 36px;
+$iui-date-picker-today-circle-size: 32px;
 
 @mixin iui-date-picker {
   @include iui-dropdown;
@@ -105,8 +106,8 @@ $iui-date-picker-cell-height: 36px;
     content: '';
     position: absolute;
     display: block;
-    width: $iui-date-picker-cell-height;
-    height: $iui-date-picker-cell-height;
+    width: $iui-date-picker-today-circle-size;
+    height: $iui-date-picker-today-circle-size;
     border-radius: $iui-border-radius-round;
     box-sizing: border-box;
     top: 50%;

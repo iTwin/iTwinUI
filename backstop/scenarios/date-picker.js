@@ -28,6 +28,10 @@ module.exports = [
     actions: [hover('#test-time')],
     selectors: ['#demo-date-and-time'],
   }),
+  scenario('State hover range', {
+    actions: [hover('#test-range')],
+    selectors: ['#demo-date-range'],
+  }),
 
   // Focus states
   //// Date
@@ -38,5 +42,9 @@ module.exports = [
   scenario('State focus time', {
     actions: [focus('#test-time')],
     selectors: ['#demo-date-and-time'],
+  }),
+  scenario('State focus range', {
+    actions: [focus('#test-range')],
+    selectors: ['#demo-date-range'],
   }),
 ];
