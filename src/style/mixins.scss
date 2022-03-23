@@ -115,30 +115,16 @@
   }
 }
 
-@mixin iui-blur($opacity: 4, $invert: false) {
-  @if $invert == true {
-    // Blur fallback
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-#{$opacity - 1}));
-      color: t(iui-color-foreground-body-invert);
-    }
+@mixin iui-blur($opacity: 4) {
+  // Blur fallback
+  @include themed {
+    background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity - 1}));
+  }
 
-    // With blur
-    @supports (backdrop-filter: $iui-blur-filter) {
-      background-color: rgba(t(iui-color-foreground-body-rgb), var(--iui-opacity-#{$opacity}));
-      backdrop-filter: $iui-blur-filter;
-    }
-  } @else {
-    // Blur fallback
-    @include themed {
-      background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity - 1}));
-    }
-
-    // With blur
-    @supports (backdrop-filter: $iui-blur-filter) {
-      background-color: rgba(0, 0, 0, var(--iui-opacity-#{$opacity}));
-      backdrop-filter: $iui-blur-filter;
-    }
+  // With blur
+  @supports (backdrop-filter: $iui-blur-filter) {
+    background-color: rgba(0, 0, 0, var(--iui-opacity-#{$opacity}));
+    backdrop-filter: $iui-blur-filter;
   }
 }
 
