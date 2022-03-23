@@ -2,6 +2,38 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+html {
+  @include theme-variables(light);
+
+  @media (prefers-color-scheme: dark) {
+    @include theme-variables(dark);
+  }
+
+  @media (prefers-color-scheme: light) and (prefers-contrast: more) {
+    @include theme-variables(light-hc);
+  }
+
+  @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+    @include theme-variables(dark-hc);
+  }
+
+  &.iui-theme-light {
+    @include theme-variables(light);
+  }
+
+  &.iui-theme-dark {
+    @include theme-variables(dark);
+  }
+
+  &.iui-theme-light-hc {
+    @include theme-variables(light-hc);
+  }
+
+  &.iui-theme-dark-hc {
+    @include theme-variables(dark-hc);
+  }
+}
+
 .iui-body {
   @include themed {
     background-color: t(iui-color-background-2);
@@ -30,45 +62,4 @@
 
   // Scrollbar
   @include iui-scrollbar;
-}
-
-html {
-  &,
-  &.iui-theme-light {
-    @include theme-variables(light);
-  }
-
-  &.iui-theme-dark {
-    @include theme-variables(dark);
-  }
-
-  &.iui-theme-light-hc {
-    @include theme-variables(light-hc);
-  }
-
-  &.iui-theme-dark-hc {
-    @include theme-variables(dark-hc);
-  }
-
-  @media (prefers-color-scheme: light) {
-    // fall back to default - light theme variables
-  }
-
-  @media (prefers-color-scheme: dark) {
-    &:not([class*='iui-theme-']) {
-      @include theme-variables(dark);
-    }
-  }
-
-  @media (prefers-color-scheme: light) and (prefers-contrast: more) {
-    &:not([class*='iui-theme-']) {
-      @include theme-variables(light-hc);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
-    &:not([class*='iui-theme-']) {
-      @include theme-variables(dark-hc);
-    }
-  }
 }
