@@ -23,6 +23,14 @@
       href="../assets/demo.css"
     />
     <style>
+      /* Demo elevations replicate /styles/elevation.scss SASS variables. */
+      :root {
+        --demo-elevation-4: 0 1px 10px rgba(0, 0, 0, 0.25);
+        --demo-elevation-8: 0 3px 14px rgba(0, 0, 0, 0.25);
+        --demo-elevation-16: 0 6px 30px rgba(0, 0, 0, 0.25);
+        --demo-elevation-24: 0 9px 46px rgba(0, 0, 0, 0.25);
+      }
+
       section[id^='demo'] {
         margin: -24px;
         padding: 24px;
@@ -79,19 +87,19 @@
       <div class="iui-surface">2</div>
       <div
         class="iui-surface"
-        style="--iui-surface-elevation: 0 1px 10px rgba(0, 0, 0, 0.25);"
+        style="--iui-surface-elevation: var(--demo-elevation-4);"
       >4</div>
       <div
         class="iui-surface"
-        style="--iui-surface-elevation: 0 3px 14px rgba(0, 0, 0, 0.25);"
+        style="--iui-surface-elevation: var(--demo-elevation-8);"
       >8</div>
       <div
         class="iui-surface"
-        style="--iui-surface-elevation: 0 6px 30px rgba(0, 0, 0, 0.25);"
+        style="--iui-surface-elevation: var(--demo-elevation-16);"
       >16</div>
       <div
         class="iui-surface"
-        style="--iui-surface-elevation: 0 9px 46px rgba(0, 0, 0, 0.25);"
+        style="--iui-surface-elevation: var(--demo-elevation-24);"
       >24</div>
     </section>
   </body>
