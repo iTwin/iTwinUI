@@ -1,5 +1,44 @@
 # Changelog
 
+## [0.52.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.2...v0.52.0) (2022-03-22)
+
+### What's new
+
+* **Modal:** Add full-page modal ([#489](https://www.github.com/iTwin/iTwinUI/issues/489)) ([4ea0ac8](https://www.github.com/iTwin/iTwinUI/commit/4ea0ac8e8d9eb275008bf694b03bba78f5c5cee4))
+* **UserIcon:** Add icon to busy status ([#532](https://www.github.com/iTwin/iTwinUI/issues/532)) ([cc3e5dd](https://www.github.com/iTwin/iTwinUI/commit/cc3e5dd3ac8d0bc6ab9bd69714361018c5afea4b))
+
+### [0.51.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.1...v0.51.0) (2022-03-18)
+
+### What's new
+
+* **Toggle switch:** Complete refactor with new classnames and html structure ([#465](https://www.github.com/iTwin/iTwinUI/issues/465)) ([7af1955](https://www.github.com/iTwin/iTwinUI/commit/7af1955b033dd0236d0a81518c766616356dce0e))
+
+### Fixes
+
+* **Carousel:** Increase flex-grow for dots ([#527](https://www.github.com/iTwin/iTwinUI/issues/527)) ([dbd4483](https://www.github.com/iTwin/iTwinUI/commit/dbd44839f2f21d441c3cde24de2552430594769a))
+* **Inputs:** Fix shrink issue on checkbox & radio ([#522](https://www.github.com/iTwin/iTwinUI/issues/522)) ([38794b6](https://www.github.com/iTwin/iTwinUI/commit/38794b6c6673c31f8f00412f33523c8d67e93f13))
+* **Radio:** Remove redundant wrapper styles ([#524](https://www.github.com/iTwin/iTwinUI/issues/524)) ([cd497a1](https://www.github.com/iTwin/iTwinUI/commit/cd497a1e80511674e373d2b51740ba19df027ea3))
+* **Table:** Fix for resize calculations in react ([#528](https://www.github.com/iTwin/iTwinUI/issues/528)) ([3132024](https://www.github.com/iTwin/iTwinUI/commit/3132024df1ecda631cf8ff0a972d056f568ac882))
+* **Table:** Fixed column reorder styling on resizable column ([#518](https://www.github.com/iTwin/iTwinUI/issues/518)) ([c0239c3](https://www.github.com/iTwin/iTwinUI/commit/c0239c3b9b1e146b383449ad77739e8b35111910))
+
+### [0.50.1](https://www.github.com/iTwin/iTwinUI/compare/v0.50.0...v0.50.1) (2022-03-10)
+
+### Fixes
+
+* **ButtonGroup:** Add max width/height for overflow calculations ([#514](https://www.github.com/iTwin/iTwinUI/issues/514)) ([9e7bf15](https://www.github.com/iTwin/iTwinUI/commit/9e7bf153fa065ba11d26b3e59ae06136d614ae7a))
+
+## [0.50.0](https://www.github.com/iTwin/iTwinUI/compare/v0.49.0...v0.50.0) (2022-03-04)
+
+### What's new
+
+* **ButtonGroup:** Add vertical orientation through new `iui-button-group-vertical` class ([#503](https://www.github.com/iTwin/iTwinUI/issues/503)) ([ef78a61](https://www.github.com/iTwin/iTwinUI/commit/ef78a6199faced3e6923d4472d1f253a8699b0fa))
+* **Carousel:** Use scroll-snap instead of transform for moving slides ([#507](https://www.github.com/iTwin/iTwinUI/issues/507)) ([ff69309](https://www.github.com/iTwin/iTwinUI/commit/ff693098add76ccfca608ae48440f5e6608c37b5))
+
+### Fixes
+
+* **Carousel:** Make invisible dot visually hidden ([#509](https://www.github.com/iTwin/iTwinUI/issues/509)) ([91b4ed0](https://www.github.com/iTwin/iTwinUI/commit/91b4ed043eba5b7cc72f522cc2af64c1a531bbf5))
+* **Modal:** Fix clipping of text ([#502](https://www.github.com/iTwin/iTwinUI/issues/502)) ([7cd974c](https://www.github.com/iTwin/iTwinUI/commit/7cd974c9c8ec3d66e4cfe862f4390abec11b0c98))
+
 ## [0.49.0](https://www.github.com/iTwin/iTwinUI/compare/v0.48.2...v0.49.0) (2022-02-25)
 
 ### What's new

@@ -26,6 +26,10 @@
       .iui-input-container {
         margin-bottom: 11px;
       }
+
+      .iui-toggle-switch-wrapper {
+        padding: 5.5px 0;
+      }
     </style>
     <script
       type="module"
@@ -92,37 +96,34 @@
           </div>
         </div>
 
-        <label class="iui-toggle-switch">
+        <label class="iui-toggle-switch-wrapper iui-label-on-right">
           <input
+            class="iui-toggle-switch"
             type="checkbox"
+            role="switch"
             checked
           />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Share usage statistics</span>
+          <span class="iui-toggle-switch-label">Share usage statistics</span>
         </label>
 
-        <label class="iui-toggle-switch">
+        <label class="iui-toggle-switch-wrapper iui-label-on-right">
           <input
+            class="iui-toggle-switch"
             type="checkbox"
+            role="switch"
             checked
           />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Share crash logs</span>
+          <span class="iui-toggle-switch-label">Share crash logs</span>
         </label>
 
-        <label class="iui-toggle-switch">
+        <label class="iui-toggle-switch-wrapper iui-label-on-right iui-disabled">
           <input
+            class="iui-toggle-switch"
             type="checkbox"
+            role="switch"
             disabled
           />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Advanced settings</span>
+          <span class="iui-toggle-switch-label">Advanced settings</span>
         </label>
 
       </fieldset>
@@ -144,20 +145,24 @@
           />
         </label>
 
-        <label class="iui-toggle-switch">
-          <input type="checkbox" />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Enable GPU rendering</span>
+        <label class="iui-toggle-switch-wrapper iui-label-on-right iui-disabled">
+          <input
+            class="iui-toggle-switch"
+            type="checkbox"
+            role="switch"
+            disabled
+          />
+          <span class="iui-toggle-switch-label">Enable GPU rendering</span>
         </label>
 
-        <label class="iui-toggle-switch">
-          <input type="checkbox" />
-          <span class="iui-toggle">
-            <span class="iui-handle"></span>
-          </span>
-          <span class="iui-label">Enable overclock mode</span>
+        <label class="iui-toggle-switch-wrapper iui-label-on-right iui-disabled">
+          <input
+            class="iui-toggle-switch"
+            type="checkbox"
+            role="switch"
+            disabled
+          />
+          <span class="iui-toggle-switch-label">Enable overclock mode</span>
         </label>
       </fieldset>
     </section>

@@ -31,6 +31,8 @@
   .iui-row {
     display: flex;
     flex-grow: 1;
+    border-left: solid 1px transparent;
+    border-right: solid 1px transparent;
   }
 
   .iui-cell:not(.iui-slot) {
@@ -103,15 +105,30 @@
     }
   }
 
+  .iui-reorder-bar {
+    position: absolute;
+    height: 100%;
+    width: $iui-xxs;
+  }
+
   .iui-reorder-column-right {
-    @include themed {
-      border-right: $iui-xxs solid t(iui-color-foreground-primary);
+    > .iui-reorder-bar {
+      right: 0;
     }
   }
 
   .iui-reorder-column-left {
-    @include themed {
-      border-left: $iui-xxs solid t(iui-color-foreground-primary);
+    > .iui-reorder-bar {
+      left: 0;
+    }
+  }
+
+  .iui-reorder-column-left,
+  .iui-reorder-column-right {
+    > .iui-reorder-bar {
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
+      }
     }
   }
 
@@ -391,11 +408,7 @@
       box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-#{$status});
     }
 
-    *::selection {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
-      }
-    }
+    @include iui-text-selection($status);
   }
 
   .iui-cell-end-icon svg {
@@ -410,11 +423,7 @@
     background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6));
   }
 
-  &::selection {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
-    }
-  }
+  @include iui-text-selection($status);
 }
 
 @mixin iui-table-cell-icon {

@@ -2,10 +2,20 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-button-group {
+/// Mixin for button group or input+button combo group.
+/// @arg $orientation must be one of: horizontal, vertical
+/// Note: Vertical button-group should be used for icon buttons only.
+@mixin iui-button-group($orientation: horizontal) {
   display: inline-flex;
   align-items: center;
   isolation: isolate;
+
+  @if $orientation == 'horizontal' {
+    max-width: 100%;
+  } @else {
+    flex-direction: column;
+    max-height: 100%;
+  }
 
   $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
   $childBorderSelector: '.iui-input, .iui-button:where(:not(.iui-borderless))';
@@ -17,8 +27,12 @@
     #{$childZindexSelector} {
       position: relative;
 
-      // Adds stripe above active button
-      --_iui-button-active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
+      // Adds stripe to active button
+      @if $orientation == 'horizontal' {
+        --_iui-button-active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
+      } @else {
+        --_iui-button-active-stripe-inset: #{$iui-xxs} calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
+      }
 
       &:hover {
         z-index: 1;
@@ -50,27 +64,43 @@
     &:first-child {
       #{$childBorderSelector} {
         border-top-left-radius: $iui-border-radius;
-        border-bottom-left-radius: $iui-border-radius;
+
+        @if $orientation == 'horizontal' {
+          border-bottom-left-radius: $iui-border-radius;
+        } @else {
+          border-top-right-radius: $iui-border-radius;
+        }
       }
     }
 
     &:last-child {
       #{$childBorderSelector} {
-        border-top-right-radius: $iui-border-radius;
         border-bottom-right-radius: $iui-border-radius;
+
+        @if $orientation == 'horizontal' {
+          border-top-right-radius: $iui-border-radius;
+        } @else {
+          border-bottom-left-radius: $iui-border-radius;
+        }
       }
     }
 
     // Use negative margin to make adjacent borders overlap
     + * {
-      margin-left: -1px;
+      @if $orientation == 'horizontal' {
+        margin-left: -1px;
+      } @else {
+        margin-top: -1px;
+      }
     }
 
     // Add slight border between disabled items
     &:not(:first-child) :where(.iui-button.iui-default) {
       #{$disabledSelector} {
-        @include themed {
-          border-left-color: t(iui-color-background-4);
+        @if $orientation == 'horizontal' {
+          border-left-color: var(--iui-color-background-4);
+        } @else {
+          border-top-color: var(--iui-color-background-4);
         }
       }
     }

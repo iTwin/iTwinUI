@@ -47,6 +47,10 @@
 
 .iui-button-group {
   @include iui-button-group;
+
+  &-vertical {
+    @include iui-button-group(vertical);
+  }
 }
 
 .iui-button-split-menu {
