@@ -9,6 +9,7 @@ import { ComboBox, ComboBoxProps } from './ComboBox';
 import { SvgCaretDownSmall } from '@itwin/itwinui-icons-react';
 import { MenuItem } from '../Menu';
 import { StatusMessage } from '../StatusMessage';
+import userEvent from '@testing-library/user-event';
 
 const renderComponent = (props?: Partial<ComboBoxProps<number>>) => {
   return render(
@@ -422,4 +423,19 @@ it('should render with message and status', () => {
   expect(inputContainer.querySelector('.iui-input-icon')).toBeTruthy();
   const message = container.querySelector('.iui-message') as HTMLElement;
   expect(message.textContent).toBe('Text here');
+});
+
+it('should merge inputProps.onChange correctly', () => {
+  const mockOnChange = jest.fn();
+  const { container } = renderComponent({
+    inputProps: { onChange: ({ target: { value } }) => mockOnChange(value) },
+  });
+
+  assertBaseElement(container);
+  const input = container.querySelector('.iui-input') as HTMLInputElement;
+  userEvent.tab();
+  userEvent.keyboard('hi');
+
+  expect(input).toHaveValue('hi');
+  expect(mockOnChange).toHaveBeenCalledWith('hi');
 });
