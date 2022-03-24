@@ -53,16 +53,11 @@
     }
   }
 
-  > .iui-anchor {
+  &-anchor {
     font-size: $iui-font-size-small;
     margin-right: $iui-m;
     user-select: none;
-    text-decoration: underline;
     white-space: nowrap;
-
-    &:hover {
-      text-decoration: none;
-    }
   }
 
   > .iui-button {

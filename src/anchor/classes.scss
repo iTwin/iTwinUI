@@ -1,0 +1,19 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-anchor {
+  @include iui-anchor;
+
+  &-positive {
+    @include iui-anchor-status($status: positive);
+  }
+
+  &-warning {
+    @include iui-anchor-status($status: warning);
+  }
+
+  &-negative {
+    @include iui-anchor-status($status: negative);
+  }
+}

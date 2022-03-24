@@ -1,0 +1,58 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-anchor($status: primary, $underline: 'false') {
+  --_iui-anchor-popout-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m16 0v5.4l-1.9-2-8.4 8.4-1.5-1.5 8.3-8.4-1.9-1.9m5.4 16v-9h-1v8h-14v-14h8v-1h-9v16z' /></svg>");
+
+  @include iui-anchor-status($status);
+  border-radius: $iui-border-radius;
+  text-underline-offset: 1px;
+  forced-color-adjust: none;
+  cursor: pointer;
+
+  @if $underline == 'false' {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  } @else {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &[target='_blank']::after {
+    content: '';
+    display: inline-block;
+    width: $iui-icons-small;
+    height: $iui-icons-small;
+    margin-left: $iui-xs;
+    mask: var(--_iui-anchor-popout-svg);
+  }
+}
+
+@mixin iui-anchor-status($status: primary) {
+  @include iui-focus($status: $status, $offset: $iui-xxs);
+  @include themed {
+    color: t(iui-color-foreground-#{$status});
+  }
+  @if $status != primary {
+    @include iui-text-selection($status);
+  }
+
+  &:hover {
+    @include themed {
+      color: t(iui-color-foreground-#{$status}-overlay);
+    }
+  }
+
+  &[target='_blank'] {
+    &::after {
+      @include themed {
+        background-color: currentColor;
+      }
+    }
+  }
+}

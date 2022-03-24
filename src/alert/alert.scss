@@ -1,8 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../text/index';
+@import '../anchor/index';
 @import '../icon/index';
+@import '../text/index';
 
 @mixin iui-alert {
   @include iui-reset;
@@ -27,22 +28,9 @@
   }
 
   &-link {
-    cursor: pointer;
     margin-left: $iui-s;
-    text-decoration: underline;
     user-select: none;
     white-space: nowrap;
-    @include iui-focus;
-    @include themed {
-      color: t(iui-color-foreground-primary);
-    }
-
-    &:hover {
-      text-decoration: none;
-      @include themed {
-        color: t(iui-color-foreground-primary-overlay);
-      }
-    }
   }
 
   > .iui-button {
@@ -83,18 +71,7 @@
   }
 
   #{$rootSelector}-link {
-    border-radius: $iui-border-radius;
-    @include themed {
-      color: t(iui-color-foreground-#{$statusColor});
-    }
-
-    &:hover {
-      @include themed {
-        color: t(iui-color-foreground-#{$statusColor}-overlay);
-      }
-    }
-
-    @include iui-focus($status: $statusColor, $offset: 2px);
+    @include iui-anchor($status: $statusColor, $underline: 'true');
   }
 
   > .iui-button {
