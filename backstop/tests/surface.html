@@ -1,0 +1,106 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Surface | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <style>
+      /* Demo elevations replicate /styles/elevation.scss SASS variables. */
+      :root {
+        --demo-elevation-4: 0 1px 10px rgba(0, 0, 0, 0.25);
+        --demo-elevation-8: 0 3px 14px rgba(0, 0, 0, 0.25);
+        --demo-elevation-16: 0 6px 30px rgba(0, 0, 0, 0.25);
+        --demo-elevation-24: 0 9px 46px rgba(0, 0, 0, 0.25);
+      }
+
+      section[id^='demo'] {
+        margin: -24px;
+        padding: 24px;
+      }
+      .demo-surface-title-bar {
+        display: flex;
+        align-items: center;
+        height: 44px;
+        border-bottom: 1px solid var(--iui-color-background-5);
+        padding: 0 12px;
+      }
+      .demo-surface-content {
+        padding: 11px 12px;
+      }
+      #demo-elevations {
+        display: flex;
+        gap: 60px;
+        width: auto;
+      }
+      #demo-elevations > * {
+        height: 100px;
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Surface</h1>
+    <hr />
+
+    <section id="demo-default">
+      <div class="iui-surface">
+        <div class="demo-surface-title-bar">
+          <h2 class="iui-text-subheading">Title of section</h2>
+        </div>
+        <div class="demo-surface-content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.</p>
+        </div>
+      </div>
+    </section>
+
+    <br />
+
+    <h2>Elevations</h2>
+    <section id="demo-elevations">
+      <div class="iui-surface">2</div>
+      <div
+        class="iui-surface"
+        style="--iui-surface-elevation: var(--demo-elevation-4);"
+      >4</div>
+      <div
+        class="iui-surface"
+        style="--iui-surface-elevation: var(--demo-elevation-8);"
+      >8</div>
+      <div
+        class="iui-surface"
+        style="--iui-surface-elevation: var(--demo-elevation-16);"
+      >16</div>
+      <div
+        class="iui-surface"
+        style="--iui-surface-elevation: var(--demo-elevation-24);"
+      >24</div>
+    </section>
+  </body>
+</html>
