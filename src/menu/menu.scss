@@ -5,16 +5,8 @@
 
 $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
-@mixin iui-dropdown {
-  @include iui-reset;
-  box-shadow: $iui-elevation-2;
-  @include themed {
-    background-color: t(iui-color-background-1);
-    color: t(iui-text-color);
-  }
-}
-
 @mixin iui-list-menu {
+  @include iui-reset;
   list-style-type: none;
   user-select: none;
   width: 100%;

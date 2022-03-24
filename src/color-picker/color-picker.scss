@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../menu/index';
+@import '../surface/index';
 @import '../button/borderless';
 
 $iui-color-picker-content-width: ($iui-l * 9) + ($iui-s * 8); // (9 swatches per row) + (gaps)
@@ -14,7 +14,7 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
 @mixin iui-color-picker {
   --iui-color-picker-selected-color: initial;
 
-  @include iui-dropdown;
+  @include iui-surface;
   box-sizing: border-box;
   border-radius: $iui-border-radius;
   display: inline-flex;
