@@ -23,7 +23,7 @@
     }
   }
 
-  &[target='_blank']::after {
+  &-blank::after {
     content: '';
     display: inline-block;
     width: $iui-icons-small;
@@ -48,7 +48,7 @@
     }
   }
 
-  &[target='_blank'] {
+  &.iui-anchor-blank {
     &::after {
       @include themed {
         background-color: currentColor;
