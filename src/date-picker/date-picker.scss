@@ -2,10 +2,10 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
-@import '../menu/index';
+@import '../surface/index';
 
 @mixin iui-date-picker {
-  @include iui-dropdown;
+  @include iui-surface;
   box-shadow: $iui-elevation-2;
   user-select: none;
   text-align: center;
