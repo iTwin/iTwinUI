@@ -379,8 +379,8 @@
 
           dots.forEach((dot, index) => {
             dot.classList.toggle('iui-active', index === current);
-            if (index === current) {
-              dot.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            if (index === firstDotIndex) {
+              dotsList.scrollTo({ left: dot.offsetLeft - dotsList.offsetLeft, behavior: 'smooth' });
             }
 
             const isFirstSmallDot = (index === firstDotIndex && index !== 0) || (index === lastDotIndex && index !== dots.length - 1);
@@ -492,6 +492,7 @@
               break;
           }
         });
+
         // initialize
         updateSlide(0);
       });
