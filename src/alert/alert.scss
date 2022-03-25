@@ -12,7 +12,7 @@
   align-items: center;
   @include themed {
     border: 1px solid t(iui-color-background-5);
-    color: rgba(81, 36, 170, 0.37);
+    color: t(iui-text-color);
     background-color: t(iui-color-background-1);
   }
 
