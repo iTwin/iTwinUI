@@ -20,6 +20,7 @@
   @include themed {
     background-color: rgba(0, 0, 0, t(iui-opacity-3));
     color: t(iui-color-foreground-accessory);
+    border: 1px solid rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4));
   }
 }
 

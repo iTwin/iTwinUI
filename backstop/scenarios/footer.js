@@ -5,6 +5,7 @@ module.exports = [
   scenario('Type hidden below viewport', {
     selectors: ['viewport'],
     viewports: [{ width: 800, height: 600 }],
+    hideSelectors: ['theme-button'],
   }),
   scenario('Type visible in viewport', {
     selectors: ['viewport'],

@@ -75,7 +75,7 @@
           transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
         }
         @include themed {
-          background-color: t(iui-color-background-5);
+          background-color: t(iui-color-background-border);
         }
       }
 
@@ -182,7 +182,7 @@
       transition: border $iui-speed-fast ease-out;
     }
     @include themed {
-      border-bottom-color: t(iui-color-background-4);
+      border-bottom-color: t(iui-color-background-border);
     }
 
     > .iui-slot > .iui-more-options {
@@ -245,7 +245,7 @@
     &.iui-selected {
       @include themed {
         border-color: t(iui-color-foreground-primary);
-        background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+        background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
       }
 
       + .iui-selected {
