@@ -92,8 +92,8 @@
 
     &::after {
       content: '';
-      width: $iui-s;
-      height: $iui-s;
+      width: var(--_iui-user-icon-status-size, $iui-s);
+      height: var(--_iui-user-icon-status-size, $iui-s);
     }
 
     &.iui-online {
