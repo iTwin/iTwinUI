@@ -53,6 +53,7 @@
     "approve": "backstop --config=./backstop/backstop.js approve",
     "test": "yarn build && yarn test:ci",
     "test:ci": "backstop --config=./backstop/backstop.js test --docker",
+    "test:m1": "backstop --config=./backstop/backstop.js test --docker --m1",
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
     "audit:ci": "audit-ci --moderate --report-type=full"

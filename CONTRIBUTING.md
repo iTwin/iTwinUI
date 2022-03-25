@@ -34,11 +34,15 @@ You can also use `yarn build:watch` to rebuild automatically when files change.
 
 ### To preview
 
-The minified html files are outputted into the `backstop/minified/` folder and can be opened directly in your browser. You may want to use a local http server (e.g. with the  [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)).
+The minified html files are outputted into the `backstop/minified/` folder and can be opened directly in your browser. You may want to use a local http server (e.g. with the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)).
 
 ### To run visual tests
 
 `yarn test`
+
+#### To run tests on M1 machine
+
+`yarn test:m1`
 
 _Before running this command, make sure Docker is running. See [Testing](#Testing) section below for more details._
 
@@ -69,9 +73,9 @@ We provide a script that can automatically create all the necessary files for yo
   - Use existing Sass variables for spacing (margin, padding, sizing, etc).
   - Use [`themed`](https://github.com/iTwin/iTwinUI/blob/main/src/style/theme.scss#L430) mixin wherever color is involved.
 - Define classes for your mixin in `src/[component-name]/classes.scss` file.
-  - *Running the `createComponent` command will do this for you.*
+  - _Running the `createComponent` command will do this for you._
 - Make sure your component index and classes are imported in `src/index.scss` and `src/classes.scss`.
-  - *Running the `createComponent` command will also do this for you but you need to manually sort the imports alphabetically.*
+  - _Running the `createComponent` command will also do this for you but you need to manually sort the imports alphabetically._
 - Write tests for your new component in `backstop/tests/[component-name].html` and `backstop/scenarios/[component-name].js`. See [Testing](#Testing) section below.
 - After running `yarn build` you can open minified html in browser to check up, how your component looks like from `backstop/minified`.
 
@@ -100,23 +104,17 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
   - For actions like click, hover use according functions from `scenarioHelper.js` and pass them as scenario options `actions` property.
     ```js
     const { scenario, hover } = require('../scenarioHelper');
-    module.exports = [
-      scenario('hover', { actions: [hover('.element-selector')] }),
-    ];
+    module.exports = [scenario('hover', { actions: [hover('.element-selector')] })];
     ```
   - If you want to select only specific part of the test elements, pass `selectors` property to the options.
     ```js
     const { scenario } = require('../scenarioHelper');
-    module.exports = [
-      scenario('selected part', { selectors: ['.selected-part-selector'] }),
-    ];
+    module.exports = [scenario('selected part', { selectors: ['.selected-part-selector'] })];
     ```
   - If you want to hide some elements because they might be moving e.g. spinner, pass `hideSelectors` property to the options.
     ```js
     const { scenario } = require('../scenarioHelper');
-    module.exports = [
-      scenario('hide part', { hideSelectors: ['.hide-selector'] }),
-    ];
+    module.exports = [scenario('hide part', { hideSelectors: ['.hide-selector'] })];
     ```
   - More information about options can be found in [BackstopJS GitHub](https://github.com/garris/BackstopJS#advanced-scenarios).
 
