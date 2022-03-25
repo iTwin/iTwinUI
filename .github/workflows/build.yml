@@ -49,8 +49,8 @@ jobs:
           git-config-email: github-actions[bot]@users.noreply.github.com
 
       - name: Post gh pages link under Checks
-        if: github.ref != 'refs/heads/main' && always()
-        uses: actions/github-script@v5
+        if: failure()
+        uses: actions/github-script@v6
         with:
           script: |
             github.rest.repos.createCommitStatus({
@@ -59,8 +59,8 @@ jobs:
               sha: '${{ github.event.pull_request.head.sha }}',
               state: '${{ job.status }}',
               context: 'Test results',
-              ...(context.job.status !== 'success' && { description: 'Backstop html report' }),
-              ...(context.job.status !== 'success' && { target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/' }),
+               description: 'Backstop html report',
+              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
             })
 
   deploy:
