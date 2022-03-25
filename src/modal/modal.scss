@@ -125,7 +125,8 @@
   > .iui-modal-dialog {
     transform: translateY(100%);
     @media (prefers-reduced-motion: no-preference) {
-      transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed, transform $iui-speed ease-in;
+      transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
+        transform $iui-speed ease-in;
     }
   }
 

@@ -2,20 +2,17 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
-@import '../menu/index';
+@import '../surface/index';
 
 $iui-date-picker-cell-width: 40px;
 $iui-date-picker-cell-height: 36px;
 $iui-date-picker-today-circle-size: 32px;
 
 @mixin iui-date-picker {
-  @include iui-dropdown;
+  @include iui-surface;
   user-select: none;
   display: grid;
   grid-template-columns: 1fr auto;
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
 
   .iui-time-picker {
     height: 0;
