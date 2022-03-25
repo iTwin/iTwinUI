@@ -8,57 +8,65 @@
   @include iui-reset;
   display: flex;
   align-items: center;
-}
 
-@mixin iui-breadcrumbs-list {
-  @include iui-reset;
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-  user-select: none;
-}
-
-@mixin iui-breadcrumbs-item {
-  display: flex;
-  line-height: $iui-component-height;
-  height: $iui-component-height;
-  max-width: $iui-3xl * 2;
-  margin: 0 $iui-sm;
-
-  a {
-    @include iui-anchor;
+  &-list {
+    @include iui-reset;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    user-select: none;
+    gap: $iui-sm;
   }
 
-  .iui-button {
-    @include iui-button-borderless;
-    margin: 0 (-$iui-s - 1);
+  &-item {
+    display: flex;
+    align-items: center;
+    line-height: $iui-component-height;
+    height: $iui-component-height;
+    max-width: $iui-3xl * 2;
+    gap: $iui-sm;
+
+    &:not(:last-child)::after {
+      content: '';
+      flex-shrink: 0;
+      width: $iui-icons-small;
+      height: $iui-icons-small;
+      background-color: var(--iui-icons-color);
+      mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z' /></svg>");
+    }
   }
 
-  > *,
-  .iui-button-label {
+  &-other,
+  &-anchor {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    // margin: 0 $iui-sm;
   }
 
-  &:not(.iui-current) > .iui-button {
-    @include themed {
-      color: t(iui-color-foreground-primary);
+  &-anchor {
+    @include iui-anchor;
+  }
+
+  &-button {
+    // margin: 0 (-$iui-s - 1);
+
+    .iui-button-label {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
-    &:hover {
+    &:not(.iui-current) > .iui-button {
       @include themed {
-        color: t(iui-color-foreground-primary-overlay);
+        color: t(iui-color-foreground-primary);
+      }
+
+      &:hover {
+        @include themed {
+          color: t(iui-color-foreground-primary-overlay);
+        }
       }
     }
-  }
-}
-
-@mixin iui-breadcrumbs-separator {
-  display: flex;
-
-  svg {
-    @include iui-icons-small;
-    display: flex; // needed for vertical alignment of webcomponents
   }
 }
