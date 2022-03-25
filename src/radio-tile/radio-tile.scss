@@ -5,6 +5,32 @@
 
 @mixin iui-radio-tile {
   cursor: pointer;
+  width: $iui-xl * 5;
+  height: 100%;
+  box-sizing: border-box;
+  padding: $iui-s;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  background-color: var(--iui-color-background-1);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: border-color $iui-speed-fast ease-out;
+  }
+
+  // Rounded corners on first tile
+  &:first-of-type {
+    border-radius: $iui-border-radius 0 0 $iui-border-radius;
+  }
+
+  // Rounded corners on last tile
+  &:last-of-type {
+    border-radius: 0 $iui-border-radius $iui-border-radius 0;
+  }
+
+  // All tiles shift 1px left so we don't have 2px thick dividers
+  &:not(:first-of-type) {
+    margin-left: -1px;
+  }
 
   &-container {
     display: inline-flex;
@@ -24,7 +50,7 @@
     position: absolute;
 
     // Styles checked radio tile
-    &:checked ~ .iui-radio-tile-content {
+    &:checked + .iui-radio-tile {
       padding: $iui-s - 1;
       z-index: 3;
       border: 2px solid var(--iui-color-foreground-primary);
@@ -46,7 +72,7 @@
     }
 
     // Styles disabled radio tile
-    &:disabled ~ .iui-radio-tile-content {
+    &:disabled + .iui-radio-tile {
       cursor: not-allowed;
       z-index: 0;
       border-color: var(--iui-color-background-disabled);
@@ -68,17 +94,15 @@
 
     // Adds focus to enabled radio tiles
     &:enabled {
-      &:focus ~ .iui-radio-tile-content {
-        outline: 2px solid var(--iui-color-foreground-primary);
-        outline-offset: -4px;
-      }
-
-      &:focus:not(:focus-visible) ~ .iui-radio-tile-content {
-        outline: none;
+      @include focus-visible {
+        + .iui-radio-tile {
+          outline: 2px solid var(--iui-color-foreground-primary);
+          outline-offset: -4px;
+        }
       }
 
       // Adds hover to everything that is not checked or  disabled
-      &:not(:checked) ~ .iui-radio-tile-content:hover {
+      &:not(:checked) + .iui-radio-tile-content:hover {
         z-index: 2;
         border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
         @media (prefers-reduced-motion: no-preference) {
@@ -95,23 +119,9 @@
     }
 
     // Styles disabled checked radio tile
-    &:disabled:checked ~ .iui-radio-tile-content {
+    &:disabled:checked + .iui-radio-tile {
       z-index: 3;
       border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-    }
-  }
-
-  &-content {
-    width: $iui-xl * 5;
-    height: 100%;
-    box-sizing: border-box;
-    padding: $iui-s;
-    position: relative;
-    z-index: 1;
-    border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-    background-color: var(--iui-color-background-1);
-    @media (prefers-reduced-motion: no-preference) {
-      transition: border-color $iui-speed-fast ease-out;
     }
   }
 
@@ -141,20 +151,5 @@
     line-height: round($iui-baseline * 1.375);
     text-align: center;
     color: var(--iui-text-color-muted);
-  }
-
-  // Rounded corners on first tile
-  &:first-child > .iui-radio-tile-content {
-    border-radius: $iui-border-radius 0 0 $iui-border-radius;
-  }
-
-  // Rounded corners on last tile
-  &:last-child > .iui-radio-tile-content {
-    border-radius: 0 $iui-border-radius $iui-border-radius 0;
-  }
-
-  // All tiles shift 1px left so we don't have 2px thick dividers
-  &:not(:first-child) > .iui-radio-tile-content {
-    margin-left: -1px;
   }
 }
