@@ -67,7 +67,7 @@
   &::selection,
   *::selection {
     @include themed {
-      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-4));
+      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-5));
     }
   }
 }
