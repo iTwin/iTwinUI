@@ -2,13 +2,11 @@
 
 ## [0.53.0](https://www.github.com/iTwin/iTwinUI/compare/v0.52.0...v0.53.0) (2022-03-25)
 
-
 ### What's new
 
-* **DatePicker:** Added range date support ([#530](https://www.github.com/iTwin/iTwinUI/issues/530)) ([b32f641](https://www.github.com/iTwin/iTwinUI/commit/b32f641c833345eec9cdbfa62597663294d590dd))
+* **DatePicker:** Add range date support ([#530](https://www.github.com/iTwin/iTwinUI/issues/530)) ([b32f641](https://www.github.com/iTwin/iTwinUI/commit/b32f641c833345eec9cdbfa62597663294d590dd))
 * **Surface:** Add surface component ([#533](https://www.github.com/iTwin/iTwinUI/issues/533)) ([64a582f](https://www.github.com/iTwin/iTwinUI/commit/64a582fa85a580944d21acc0172ee530c836bb43))
-* **theme:** Add high contrast themes ([#505](https://www.github.com/iTwin/iTwinUI/issues/505)) ([fbb5006](https://www.github.com/iTwin/iTwinUI/commit/fbb50065af3b6a9f764dc697779d6b4c6092c355))
-
+* **Theme:** Add high contrast themes ([#505](https://www.github.com/iTwin/iTwinUI/issues/505)) ([fbb5006](https://www.github.com/iTwin/iTwinUI/commit/fbb50065af3b6a9f764dc697779d6b4c6092c355))
 
 ### Fixes
 
