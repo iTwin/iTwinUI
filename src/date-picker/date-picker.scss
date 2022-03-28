@@ -11,7 +11,7 @@ $iui-date-picker-today-circle-size: 32px;
 @mixin iui-date-picker {
   @include iui-surface;
   user-select: none;
-  display: grid;
+  display: inline-grid;
   grid-template-columns: 1fr auto;
 
   .iui-time-picker {
