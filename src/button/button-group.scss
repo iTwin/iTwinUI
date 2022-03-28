@@ -106,3 +106,8 @@
     }
   }
 }
+
+@mixin iui-button-group-overflow-x {
+  max-width: revert;
+  width: 100%;
+}
