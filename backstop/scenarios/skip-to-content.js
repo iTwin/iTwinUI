@@ -9,10 +9,12 @@ module.exports = [
     selectors: ['viewport'],
     viewports: [{ width: 800, height: 600 }],
     actions: [focus('#test-1')],
+    hideSelectors: ['theme-button'],
   }),
   scenario('Type focus and hover', {
     selectors: ['viewport'],
     viewports: [{ width: 800, height: 600 }],
     actions: [focus('#test-1'), hover('#test-1')],
+    hideSelectors: ['theme-button'],
   }),
 ];

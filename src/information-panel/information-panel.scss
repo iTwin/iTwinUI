@@ -34,7 +34,7 @@
 
     > .iui-resizer-bar {
       @include themed {
-        background-color: t(iui-color-background-5);
+        background-color: t(iui-color-background-border);
       }
     }
 
@@ -102,7 +102,7 @@
 
     > hr {
       @include themed {
-        border-color: t(iui-color-background-4);
+        border-color: t(iui-color-background-border);
       }
     }
   }
