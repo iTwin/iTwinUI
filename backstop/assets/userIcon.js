@@ -7,13 +7,13 @@ const persons = {
   1: {
     src: 'https://itwinplatformcdn.azureedge.net/iTwinUI/user-icon-1.jpg',
     title: 'Robin Mercer',
-    abbr: 'RM',
+    abbr: 'AA',
     color: '#FFC335',
   },
   2: {
     src: 'https://itwinplatformcdn.azureedge.net/iTwinUI/user-icon-2.jpg',
     title: 'Terry Rivers',
-    abbr: 'TR',
+    abbr: 'BB',
     color: '#6AB9EC',
   },
 };
