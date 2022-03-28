@@ -65,7 +65,6 @@ jobs:
 
   deploy:
     name: Deploy demo html pages
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
