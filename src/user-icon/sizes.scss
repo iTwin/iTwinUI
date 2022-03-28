@@ -7,6 +7,14 @@
   width: $size;
   height: $size;
 
+  @if ($size == $iui-icons-xl) {
+    --_iui-user-icon-status-size: #{$iui-xs * 1.5};
+  } @else if ($size == $iui-icons-xxl) {
+    --_iui-user-icon-status-size: #{$iui-s};
+  } @else {
+    --_iui-user-icon-status-size: #{$iui-sm};
+  }
+
   > .iui-initials {
     line-height: $size;
     font-size: $font-size;
