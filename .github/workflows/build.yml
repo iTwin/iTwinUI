@@ -114,6 +114,7 @@ jobs:
           branch: gh-pages
           folder: ${{ github.workspace }}/backstop/gh-pages/
           target-folder: ./
+          clean: false
           commit-message: Add index file
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
