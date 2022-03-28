@@ -111,14 +111,15 @@ jobs:
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
           
-      - name: copy index.html
-        run: |
-          git checkout origin/gh-pages
-          git checkout origin/main backstop/index.html
-          git mv backstop/index.html ./
-          git add -A
-          git commit -m "add index.html"
-          git push
+      - name: Copy index file
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/gh-pages/
+          target-folder: ./
+          commit-message: Add index file
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
 
       - name: Host css on gh pages
         uses: JamesIves/github-pages-deploy-action@4.1.3
