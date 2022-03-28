@@ -101,8 +101,6 @@ jobs:
           target-folder: backstop
           clean-exclude: |
             index.html
-            *.ts
-            *.js
             tests
             scenarios
             results
