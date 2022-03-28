@@ -59,7 +59,7 @@ class ThemeButton extends HTMLElement {
         visibility: hidden; 
         pointer-events: none;
         box-shadow: 0 1px 5px hsl(0 0% 0% / 0.25);
-        background-color: red;
+        background-color: var(--iui-color-background-1);
         padding: 0.5rem 0.25rem;
         margin: 0.25rem;
       }
