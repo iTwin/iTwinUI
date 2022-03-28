@@ -107,7 +107,6 @@ jobs:
             scenarios
             results
             engine_scripts
-            ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
