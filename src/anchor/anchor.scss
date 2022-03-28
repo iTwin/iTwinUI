@@ -26,9 +26,9 @@
   &-blank::after {
     content: '';
     display: inline-block;
-    width: $iui-icons-small;
-    height: $iui-icons-small;
-    margin-left: $iui-xs;
+    width: 1.5ch;
+    height: 1.5ch;
+    margin-left: 0.5ch;
     mask: var(--_iui-anchor-popout-svg);
   }
 }
