@@ -112,7 +112,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/gh-pages/
+          folder: ${{ github.workspace }}/backstop/gh-pages/
           target-folder: ./
           commit-message: Add index file
           git-config-name: github-actions[bot]
