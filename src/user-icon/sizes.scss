@@ -1,13 +1,19 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use 'sass:math';
 @import '../style/index';
 @import '../text/mixins';
 
 @mixin iui-user-icon-size($size: $iui-icons-xl, $font-size: $iui-font-size-leading) {
   width: $size;
   height: $size;
-  --_iui-user-icon-status-size: #{math.round(math.div($size, 6))};
+
+  @if ($size == $iui-icons-xl) {
+    --_iui-user-icon-status-size: #{$iui-xs};
+  } @else if ($size == $iui-icons-xxl) {
+    --_iui-user-icon-status-size: #{$iui-s};
+  } @else {
+    --_iui-user-icon-status-size: #{$iui-sm};
+  }
 
   > .iui-initials {
     line-height: $size;
