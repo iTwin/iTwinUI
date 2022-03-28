@@ -13,7 +13,7 @@
 * **Carousel:** Update dots truncation and animation ([#544](https://www.github.com/iTwin/iTwinUI/issues/544)) ([8435deb](https://www.github.com/iTwin/iTwinUI/commit/8435deb45ae0a2056adcd5e838390606b0dc2df4))
 * **InformationPanel:** Prevent focusing hidden panel content ([#543](https://www.github.com/iTwin/iTwinUI/issues/543)) ([863e783](https://www.github.com/iTwin/iTwinUI/commit/863e7830c1e7dae11d72c6060c4629f6b3af60a8))
 
-## [0.52.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.2...v0.52.0) (2022-03-22)
+## [0.52.0](https://www.github.com/iTwin/iTwinUI/compare/v0.51.0...v0.52.0) (2022-03-22)
 
 ### What's new
 
