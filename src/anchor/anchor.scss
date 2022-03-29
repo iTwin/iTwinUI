@@ -49,7 +49,7 @@
     }
   }
 
-  &::after {
+  .iui-anchor-external::after {
     @media (forced-colors: none) {
       background-color: currentColor;
     }
