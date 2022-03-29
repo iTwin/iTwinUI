@@ -4,36 +4,36 @@
 @import '../button/index';
 @import '../icon/index';
 
-@mixin iui-breadcrumbs($breadcrumbs-height: $iui-component-height) {
-  --_iui-breadcrumbs-separator-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z' /></svg>");
-
+@mixin iui-breadcrumbs {
   @include iui-reset;
   display: flex;
   align-items: center;
+}
 
-  &-list {
-    @include iui-reset;
-    display: flex;
-    align-items: center;
-    list-style-type: none;
-    user-select: none;
-  }
+@mixin iui-breadcrumbs-list {
+  @include iui-reset;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  user-select: none;
+}
 
-  &-item {
-    display: flex;
-    align-items: center;
-    line-height: $breadcrumbs-height;
-    height: $breadcrumbs-height;
+@mixin iui-breadcrumbs-item($breadcrumbs-height: $iui-component-height) {
+  --_iui-breadcrumbs-item-separator-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z' /></svg>");
 
-    &:not(:last-child)::after {
-      content: '';
-      flex-shrink: 0;
-      width: $iui-icons-small;
-      height: $iui-icons-small;
-      background-color: var(--iui-icons-color);
-      margin: 0 $iui-xxs;
-      mask: var(--_iui-breadcrumbs-separator-svg);
-    }
+  display: flex;
+  align-items: center;
+  line-height: $breadcrumbs-height;
+  height: $breadcrumbs-height;
+
+  &:not(:last-child)::after {
+    content: '';
+    flex-shrink: 0;
+    width: $iui-icons-small;
+    height: $iui-icons-small;
+    background-color: var(--iui-icons-color);
+    margin: 0 $iui-xxs;
+    mask: var(--_iui-breadcrumbs-item-separator-svg);
   }
 }
 

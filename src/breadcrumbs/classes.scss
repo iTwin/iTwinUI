@@ -5,6 +5,14 @@
 .iui-breadcrumbs {
   @include iui-breadcrumbs;
 
+  &-list {
+    @include iui-breadcrumbs-list;
+  }
+
+  &-item {
+    @include iui-breadcrumbs-item;
+  }
+
   &-text {
     @include iui-breadcrumbs-text;
   }
