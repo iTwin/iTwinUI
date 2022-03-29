@@ -8,4 +8,8 @@
   &-full-page {
     @include iui-modal-full-page;
   }
+
+  &-animation {
+    @include iui-modal-animation;
+  }
 }
