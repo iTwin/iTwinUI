@@ -69,9 +69,42 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
   const [from, setFrom] = React.useState<Date | undefined>(
     column.filterValue?.[0] ? new Date(column.filterValue?.[0]) : undefined,
   );
+  const onFromChange = React.useCallback((date?: Date) => {
+    setFrom((prevDate) => {
+      if (prevDate || !date) {
+        return date;
+      }
+      return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        0,
+        0,
+        0,
+        0,
+      );
+    });
+  }, []);
+
   const [to, setTo] = React.useState<Date | undefined>(
     column.filterValue?.[1] ? new Date(column.filterValue?.[1]) : undefined,
   );
+  const onToChange = React.useCallback((date?: Date) => {
+    setTo((prevDate) => {
+      if (prevDate || !date) {
+        return date;
+      }
+      return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        23,
+        59,
+        59,
+        999,
+      );
+    });
+  }, []);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
@@ -84,7 +117,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
       <DatePickerInput
         label={translatedStrings.from}
         date={from}
-        onChange={setFrom}
+        onChange={onFromChange}
         formatDate={formatDate}
         parseInput={parseInput}
         onKeyDown={onKeyDown}
@@ -94,7 +127,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
       <DatePickerInput
         label={translatedStrings.to}
         date={to}
-        onChange={setTo}
+        onChange={onToChange}
         formatDate={formatDate}
         parseInput={parseInput}
         onKeyDown={onKeyDown}

@@ -70,8 +70,8 @@ it('should set filter when both values entered', () => {
   screen.getByText('Filter').click();
 
   expect(setFilter).toHaveBeenCalledWith([
-    new Date(2021, 4, 1),
-    new Date(2021, 4, 3),
+    new Date(2021, 4, 1, 0, 0, 0, 0),
+    new Date(2021, 4, 3, 23, 59, 59, 999),
   ]);
 });
 
@@ -88,7 +88,10 @@ it('should set filter when only From is entered', () => {
 
   screen.getByText('Filter').click();
 
-  expect(setFilter).toHaveBeenCalledWith([new Date(2021, 4, 1), undefined]);
+  expect(setFilter).toHaveBeenCalledWith([
+    new Date(2021, 4, 1, 0, 0, 0, 0),
+    undefined,
+  ]);
 });
 
 it('should set filter when only To is entered', () => {
@@ -104,7 +107,10 @@ it('should set filter when only To is entered', () => {
 
   screen.getByText('Filter').click();
 
-  expect(setFilter).toHaveBeenCalledWith([undefined, new Date(2021, 4, 3)]);
+  expect(setFilter).toHaveBeenCalledWith([
+    undefined,
+    new Date(2021, 4, 3, 23, 59, 59, 999),
+  ]);
 });
 
 it('should set filter when both values entered and Enter is pressed', () => {
@@ -125,8 +131,8 @@ it('should set filter when both values entered and Enter is pressed', () => {
   });
 
   expect(setFilter).toHaveBeenCalledWith([
-    new Date(2021, 4, 1),
-    new Date(2021, 4, 3),
+    new Date(2021, 4, 1, 0, 0, 0, 0),
+    new Date(2021, 4, 3, 23, 59, 59, 999),
   ]);
 });
 
@@ -160,4 +166,32 @@ it('should set filter with empty values when date is not fully entered', () => {
   screen.getByText('Filter').click();
 
   expect(setFilter).toHaveBeenCalledWith([undefined, undefined]);
+});
+
+it('should set filter and keep time from existing dates', () => {
+  const setFilter = jest.fn();
+  const { container } = renderComponent({
+    setFilter,
+    column: {
+      filterValue: [
+        new Date(2021, 4, 1, 10, 20, 30, 400),
+        new Date(2021, 4, 3, 20, 30, 40, 500),
+      ],
+    } as HeaderGroup,
+  });
+
+  const labeledInputs = container.querySelectorAll(
+    '.iui-input-container.iui-inline-label input',
+  ) as NodeListOf<HTMLInputElement>;
+  expect(labeledInputs.length).toBe(2);
+
+  fireEvent.change(labeledInputs[0], { target: { value: 'May 1, 2021' } });
+  fireEvent.change(labeledInputs[1], { target: { value: 'May 3, 2021' } });
+
+  screen.getByText('Filter').click();
+
+  expect(setFilter).toHaveBeenCalledWith([
+    new Date(2021, 4, 1, 10, 20, 30, 400),
+    new Date(2021, 4, 3, 20, 30, 40, 500),
+  ]);
 });
