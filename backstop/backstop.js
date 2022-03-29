@@ -1,6 +1,6 @@
 const scenarios = require('./scenarios');
 
-// Using diferent Cypress image for M1 processors
+// Using different Cypress image for M1 processors
 const isM1 = process.argv.includes('--m1');
 const dockerImage = isM1 ? `dockerman33/backstopjs:5.4.4` : `backstopjs/backstopjs:{version}`;
 
@@ -36,7 +36,7 @@ const config = {
   dockerCommandTemplate: `docker run --rm -i --mount type=bind,source="{cwd}",target=/src ${dockerImage} {backstopCommand} {args}`,
   engineOptions: {
     args: ['--no-sandbox'],
-    executablePath: '/usr/bin/chromium',
+    executablePath: isM1 ? '/usr/bin/chromium' : '',
   },
 };
 
