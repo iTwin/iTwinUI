@@ -33,7 +33,7 @@
     transform: translateX(-50%) translateY(0);
     box-shadow: $iui-elevation-16;
     @media (prefers-reduced-motion: no-preference) {
-      transition: opacity $iui-speed-fast ease-in-out, background-color $iui-speed-fast ease-in-out,
+      transition: opacity $iui-speed-instant ease-in-out, background-color $iui-speed-fast ease-in-out,
         transform $iui-speed-fast ease-in-out, box-shadow $iui-speed-fast ease-in-out;
     }
   }
