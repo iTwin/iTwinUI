@@ -5,13 +5,11 @@
  */
 const persons = {
   1: {
-    src: 'https://itwinplatformcdn.azureedge.net/iTwinUI/user-icon-1.jpg',
     title: 'Robin Mercer',
     abbr: 'RM',
     color: '#FFC335',
   },
   2: {
-    src: 'https://itwinplatformcdn.azureedge.net/iTwinUI/user-icon-2.jpg',
     title: 'Terry Rivers',
     abbr: 'TR',
     color: '#6AB9EC',
@@ -43,7 +41,7 @@ class UserIcon extends HTMLElement {
       ${
         showPlaceholder
           ? `<img
-              src="https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png"
+              src="../assets//user-placeholder.png"
               alt="${person.title}"
             />`
           : ''
