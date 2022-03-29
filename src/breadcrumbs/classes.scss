@@ -4,4 +4,12 @@
 
 .iui-breadcrumbs {
   @include iui-breadcrumbs;
+
+  &-text {
+    @include iui-breadcrumbs-text;
+  }
+
+  &-button {
+    @include iui-breadcrumbs-button;
+  }
 }

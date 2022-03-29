@@ -1,10 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../button/index';
 @import '../icon/index';
-@import '../button/borderless';
 
-@mixin iui-breadcrumbs {
+@mixin iui-breadcrumbs($breadcrumbs-height: $iui-component-height) {
+  --_iui-breadcrumbs-separator-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z' /></svg>");
+
   @include iui-reset;
   display: flex;
   align-items: center;
@@ -15,16 +17,13 @@
     align-items: center;
     list-style-type: none;
     user-select: none;
-    gap: $iui-sm;
   }
 
   &-item {
     display: flex;
     align-items: center;
-    line-height: $iui-component-height;
-    height: $iui-component-height;
-    max-width: $iui-3xl * 2;
-    gap: $iui-sm;
+    line-height: $breadcrumbs-height;
+    height: $breadcrumbs-height;
 
     &:not(:last-child)::after {
       content: '';
@@ -32,41 +31,40 @@
       width: $iui-icons-small;
       height: $iui-icons-small;
       background-color: var(--iui-icons-color);
-      mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z' /></svg>");
+      margin: 0 $iui-xxs;
+      mask: var(--_iui-breadcrumbs-separator-svg);
     }
   }
+}
 
-  &-other,
-  &-anchor {
+@mixin iui-breadcrumbs-text {
+  margin: 0 ($iui-s + 1);
+  max-width: 24ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @at-root {
+    a#{&} {
+      @include iui-anchor;
+    }
+  }
+}
+
+@mixin iui-breadcrumbs-button {
+  @include iui-button;
+  @include iui-button-borderless;
+
+  .iui-button-label {
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
-    // margin: 0 $iui-sm;
+    max-width: 24ch;
+    color: var(--iui-color-foreground-primary);
   }
 
-  &-anchor {
-    @include iui-anchor;
-  }
-
-  &-button {
-    // margin: 0 (-$iui-s - 1);
-
+  @at-root .iui-breadcrumbs-item-current {
     .iui-button-label {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &:not(.iui-current) > .iui-button {
-      @include themed {
-        color: t(iui-color-foreground-primary);
-      }
-
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-primary-overlay);
-        }
-      }
+      color: var(--iui-text-color);
     }
   }
 }
