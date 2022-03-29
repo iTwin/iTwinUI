@@ -38,8 +38,10 @@
 }
 
 @mixin iui-breadcrumbs-text {
+  --_iui-breadcrumbs-text-character-limit: 24ch;
+
   margin: 0 ($iui-s + 1);
-  max-width: 24ch;
+  max-width: var(--_iui-breadcrumbs-text-character-limit);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -52,13 +54,15 @@
 }
 
 @mixin iui-breadcrumbs-button {
+  --_iui-breadcrumbs-button-character-limit: 24ch;
+
   @include iui-button;
   @include iui-button-borderless;
 
   .iui-button-label {
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 24ch;
+    max-width: var(--_iui-breadcrumbs-button-character-limit);
     color: var(--iui-color-foreground-primary);
   }
 
