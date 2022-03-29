@@ -21,7 +21,7 @@
   }
   @include themed {
     background-color: t(iui-color-background-1);
-    border-bottom: $iui-xxs solid t(iui-color-background-5);
+    border-bottom: $iui-xxs solid t(iui-color-background-border);
     color: t(iui-text-color);
   }
 
@@ -83,7 +83,7 @@
     width: 1px;
     height: $iui-baseline * 2;
     @include themed {
-      background-color: t(iui-color-background-4);
+      background-color: t(iui-color-background-border);
     }
   }
 
@@ -252,15 +252,16 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
 
-    .iui-description {
-      height: $iui-baseline * 2;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: all $iui-speed-fast ease;
-      }
-      @include themed {
-        opacity: t(iui-opacity-3);
-      }
+  .iui-description {
+    height: $iui-baseline * 2;
+    font-size: $iui-font-size-small;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: all $iui-speed-fast ease;
+    }
+    @include themed {
+      opacity: t(iui-opacity-3);
     }
   }
 
@@ -376,6 +377,10 @@
     @include themed {
       fill: t(iui-icons-color-primary);
     }
+  }
+
+  .iui-description {
+    opacity: 1;
   }
 
   &,
