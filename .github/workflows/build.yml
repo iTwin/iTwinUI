@@ -101,8 +101,8 @@ jobs:
           target-folder: backstop
           clean-exclude: |
             gh-pages
-            *.ts
-            *.js
+            ./*.ts
+            ./*.js
             tests
             scenarios
             results
