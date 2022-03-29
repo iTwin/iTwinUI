@@ -27,6 +27,7 @@
     width: 1.5ch;
     height: 1.5ch;
     margin-left: 0.5ch;
+    background-color: currentColor;
     mask: var(--_iui-anchor-external-svg);
     @media (forced-colors: active) {
       background-color: LinkText;
@@ -46,12 +47,6 @@
   &:hover {
     @include themed {
       color: t(iui-color-foreground-#{$status}-overlay);
-    }
-  }
-
-  .iui-anchor-external::after {
-    @media (forced-colors: none) {
-      background-color: currentColor;
     }
   }
 }
