@@ -10,9 +10,7 @@
   align-items: center;
   isolation: isolate;
 
-  @if $orientation == 'horizontal' {
-    max-width: 100%;
-  } @else {
+  @if $orientation != 'horizontal' {
     flex-direction: column;
     max-height: 100%;
   }
@@ -108,6 +106,5 @@
 }
 
 @mixin iui-button-group-overflow-x {
-  max-width: revert;
   width: 100%;
 }
