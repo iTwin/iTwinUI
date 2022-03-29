@@ -4,16 +4,4 @@
 
 .iui-anchor {
   @include iui-anchor;
-
-  &-positive {
-    @include iui-anchor-status($status: positive);
-  }
-
-  &-warning {
-    @include iui-anchor-status($status: warning);
-  }
-
-  &-negative {
-    @include iui-anchor-status($status: negative);
-  }
 }

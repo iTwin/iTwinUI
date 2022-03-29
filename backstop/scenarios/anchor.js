@@ -9,23 +9,13 @@ module.exports = [
     selectors: ['#demo-default'],
   }),
 
-  scenario('Hover primary & focus positive', {
+  scenario('Hover 1st & focus 2nd', {
     selectors: ['#demo-default'],
     actions: [hover('#test-1'), focus('#test-2')],
   }),
 
-  scenario('Hover positive & focus warning', {
+  scenario('Hover 2nd & focus 1st', {
     selectors: ['#demo-default'],
-    actions: [hover('#test-2'), focus('#test-3')],
-  }),
-
-  scenario('Hover warning & focus negative', {
-    selectors: ['#demo-default'],
-    actions: [hover('#test-3'), focus('#test-4')],
-  }),
-
-  scenario('Hover negative & focus primary', {
-    selectors: ['#demo-default'],
-    actions: [hover('#test-4'), focus('#test-1')],
+    actions: [hover('#test-2'), focus('#test-1')],
   }),
 ];
