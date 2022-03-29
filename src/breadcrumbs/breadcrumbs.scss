@@ -34,6 +34,10 @@
     background-color: var(--iui-icons-color);
     margin: 0 $iui-xxs;
     mask: var(--_iui-breadcrumbs-item-separator-svg);
+
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+    }
   }
 }
 
