@@ -7,7 +7,6 @@
 
   @include iui-anchor-status($status);
   border-radius: $iui-border-radius;
-  text-underline-offset: 0.07142857142857142em;
   cursor: pointer;
 
   @if $underline == 'false' {
