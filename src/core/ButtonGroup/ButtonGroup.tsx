@@ -93,6 +93,8 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
           {
             'iui-button-group': orientation === 'horizontal',
             'iui-button-group-vertical': orientation === 'vertical',
+            'iui-button-group-overflow-x':
+              !!overflowButton && orientation === 'horizontal',
           },
           className,
         )}
