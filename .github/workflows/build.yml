@@ -49,7 +49,7 @@ jobs:
           git-config-email: github-actions[bot]@users.noreply.github.com
 
       - name: Post gh pages link under Checks
-        if: failure()
+        if: github.ref != 'refs/heads/main' && always()
         uses: actions/github-script@v6
         with:
           script: |
@@ -59,8 +59,8 @@ jobs:
               sha: '${{ github.event.pull_request.head.sha }}',
               state: '${{ job.status }}',
               context: 'Test results',
-              description: 'Backstop html report',
-              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/'
+              ...(context.job.status !== 'success' && { description: 'Backstop html report' }),
+              ...(context.job.status !== 'success' && { target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/html_report/' }),
             })
 
   deploy:
@@ -100,14 +100,13 @@ jobs:
           folder: ${{ github.workspace }}/backstop/
           target-folder: backstop
           clean-exclude: |
-            index.html
-            *.ts
-            *.js
+            gh-pages
+            ./*.ts
+            ./*.js
             tests
             scenarios
             results
             engine_scripts
-            ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
@@ -117,5 +116,19 @@ jobs:
           branch: gh-pages
           folder: ${{ github.workspace }}/lib/css
           target-folder: lib/css
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+      - name: Host index file on gh pages
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/backstop/gh-pages/
+          target-folder: ./
+          clean-exclude: |
+            backstop
+            lib/css/all.css
+            lib/css/global.css
+            ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
