@@ -2,7 +2,6 @@
 
 ### [0.53.1](https://www.github.com/iTwin/iTwinUI/compare/v0.53.0...v0.53.1) (2022-03-29)
 
-
 ### Fixes
 
 * **ButtonGroup:** Add `width: 100%` for overflow handling ([#559](https://www.github.com/iTwin/iTwinUI/issues/559)) ([e086388](https://www.github.com/iTwin/iTwinUI/commit/e08638810ecc8808bc4a74295525984c1d9accb0))
