@@ -30,18 +30,6 @@
   }
   // #endregion Small Modal Animations for CSS
 
-  // #region Small Modal Animations for React
-  &.iui-modal-animation-enter {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  &.iui-modal-animation-enter-active {
-    visibility: visible;
-    opacity: 1;
-  }
-  // #endregion Full Page Modal Animations for React
-
   > .iui-modal-dialog {
     position: absolute;
     left: 50%;
@@ -137,16 +125,28 @@
     }
   }
   // #endregion Full Page Modal Animations for CSS
+}
 
-  // #region Full Page Modal Animations for React
-  &.iui-modal-animation-enter > .iui-modal-dialog {
+@mixin iui-modal-animation {
+  // Full Page Modal Animations for React
+  &-enter .iui-modal .iui-modal-dialog {
     transform: translateY(100%);
     opacity: 0;
   }
 
-  &.iui-modal-animation-enter-active > .iui-modal-dialog {
+  &-enter-active .iui-modal .iui-modal-dialog {
     transform: translateY(0);
     opacity: 1;
   }
-  // #endregion Full Page Modal Animations for React
+
+  // Small Modal Animations for React
+  &-enter .iui-modal {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &-enter-active .iui-modal {
+    visibility: visible;
+    opacity: 1;
+  }
 }
