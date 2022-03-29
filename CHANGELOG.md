@@ -1,5 +1,14 @@
 # Changelog
 
+### [0.53.1](https://www.github.com/iTwin/iTwinUI/compare/v0.53.0...v0.53.1) (2022-03-29)
+
+### Fixes
+
+* **ButtonGroup:** Add `width: 100%` for overflow handling ([#559](https://www.github.com/iTwin/iTwinUI/issues/559)) ([e086388](https://www.github.com/iTwin/iTwinUI/commit/e08638810ecc8808bc4a74295525984c1d9accb0))
+* **DatePicker:** Make element inline ([#554](https://www.github.com/iTwin/iTwinUI/issues/554)) ([81e75d7](https://www.github.com/iTwin/iTwinUI/commit/81e75d7f76aeaafb5f810ad644f40d8bf9b95176))
+* **Modal:** Update modal animation ([#557](https://www.github.com/iTwin/iTwinUI/issues/557)) ([7517aa4](https://www.github.com/iTwin/iTwinUI/commit/7517aa478a046b7222963c0b9dac941aeb98e09f))
+* **UserIcon:** Use pixel values for status icon ([#541](https://www.github.com/iTwin/iTwinUI/issues/541)) ([f26c811](https://www.github.com/iTwin/iTwinUI/commit/f26c81182a286120c9935d712acedde4d37835ba))
+
 ## [0.53.0](https://www.github.com/iTwin/iTwinUI/compare/v0.52.0...v0.53.0) (2022-03-25)
 
 ### What's new
