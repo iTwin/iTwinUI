@@ -28,6 +28,7 @@
   }
 
   &-link {
+    @include iui-anchor($underline: 'true');
     margin-left: $iui-s;
     user-select: none;
     white-space: nowrap;
@@ -71,7 +72,7 @@
   }
 
   #{$rootSelector}-link {
-    @include iui-anchor($status: $statusColor, $underline: 'true');
+    @include iui-anchor-status($statusColor);
   }
 
   > .iui-button {

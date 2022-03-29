@@ -17,6 +17,10 @@ html {
     @include theme-variables(dark-hc);
   }
 
+  @media (prefers-contrast: more) {
+    $underline: 'true';
+  }
+
   &.iui-theme-light {
     @include theme-variables(light);
   }
@@ -31,6 +35,11 @@ html {
 
   &.iui-theme-dark-hc {
     @include theme-variables(dark-hc);
+  }
+
+  &.iui-theme-light-hc,
+  &.iui-theme-dark-hc {
+    $underline: 'true';
   }
 }
 

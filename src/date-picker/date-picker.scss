@@ -135,7 +135,7 @@ $iui-date-picker-today-circle-size: 32px;
     background-color: t(iui-color-background-primary);
     color: t(iui-color-foreground-accessory);
   }
-  @include iui-focus($status: var(--iui-color-foreground-accessory), $offset: -3px);
+  @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
 }
 
 @mixin iui-calendar-day-selected-today-base {

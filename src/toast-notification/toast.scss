@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../anchor/index';
 @import '../icon/index';
 
 @mixin iui-toast {
@@ -54,6 +55,7 @@
   }
 
   &-anchor {
+    @include iui-anchor($underline: 'true');
     font-size: $iui-font-size-small;
     margin-right: $iui-m;
     user-select: none;

@@ -3,12 +3,11 @@
 @import '../style/index';
 
 @mixin iui-anchor($status: primary, $underline: 'false') {
-  --_iui-anchor-popout-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m16 0v5.4l-1.9-2-8.4 8.4-1.5-1.5 8.3-8.4-1.9-1.9m5.4 16v-9h-1v8h-14v-14h8v-1h-9v16z' /></svg>");
+  --_iui-anchor-external-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m16 0v5.4l-1.9-2-8.4 8.4-1.5-1.5 8.3-8.4-1.9-1.9m5.4 16v-9h-1v8h-14v-14h8v-1h-9v16z' /></svg>");
 
   @include iui-anchor-status($status);
   border-radius: $iui-border-radius;
-  text-underline-offset: 1px;
-  forced-color-adjust: none;
+  text-underline-offset: 0.07142857142857142em;
   cursor: pointer;
 
   @if $underline == 'false' {
@@ -23,18 +22,21 @@
     }
   }
 
-  &-blank::after {
+  &-external::after {
     content: '';
     display: inline-block;
     width: 1.5ch;
     height: 1.5ch;
     margin-left: 0.5ch;
-    mask: var(--_iui-anchor-popout-svg);
+    mask: var(--_iui-anchor-external-svg);
+    @media (forced-colors: active) {
+      background-color: LinkText;
+    }
   }
 }
 
 @mixin iui-anchor-status($status: primary) {
-  @include iui-focus($status: $status, $offset: $iui-xxs);
+  @include iui-focus($color: var(--iui-color-foreground-#{$status}), $offset: $iui-xxs);
   @include themed {
     color: t(iui-color-foreground-#{$status});
   }
@@ -48,11 +50,9 @@
     }
   }
 
-  &.iui-anchor-blank {
-    &::after {
-      @include themed {
-        background-color: currentColor;
-      }
+  &::after {
+    @media (forced-colors: none) {
+      background-color: currentColor;
     }
   }
 }

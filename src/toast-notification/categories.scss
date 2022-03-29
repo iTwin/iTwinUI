@@ -21,6 +21,6 @@
   }
 
   > .iui-toast-anchor {
-    @include iui-anchor($status: $category, $underline: 'true');
+    @include iui-anchor-status($category);
   }
 }

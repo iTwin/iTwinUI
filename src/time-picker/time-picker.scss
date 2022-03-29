@@ -56,7 +56,7 @@
       &.iui-selected {
         font-weight: $iui-font-weight-semibold;
         cursor: default;
-        @include iui-focus($status: accessory, $offset: -3px);
+        @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
         @include themed {
           background-color: t(iui-color-background-primary);
           color: t(iui-color-foreground-accessory);
