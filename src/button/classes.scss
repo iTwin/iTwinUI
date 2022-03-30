@@ -51,6 +51,10 @@
   &-vertical {
     @include iui-button-group(vertical);
   }
+
+  &-overflow-x {
+    @include iui-button-group-overflow-x;
+  }
 }
 
 .iui-button-split-menu {
