@@ -91,8 +91,8 @@
 }
 
 @mixin iui-modal-full-page {
-  --_iui-full-page-modal-slide-in-speed: 0.3s;
-  --_iui-full-page-modal-slide-out-speed: 0.25s;
+  $iui-full-page-modal-slide-in-speed: 0.3s;
+  $iui-full-page-modal-slide-out-speed: 0.25s;
 
   > .iui-modal-dialog {
     display: flex;
@@ -117,14 +117,14 @@
     transform: translateY(100%);
     @media (prefers-reduced-motion: no-preference) {
       transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
-        transform var(--_iui-full-page-modal-slide-out-speed) ease-in;
+        transform $iui-full-page-modal-slide-out-speed ease-in;
     }
   }
 
   &.iui-modal-visible > .iui-modal-dialog {
     transform: translateY(0);
     @media (prefers-reduced-motion: no-preference) {
-      transition: transform var(--_iui-full-page-modal-slide-in-speed) ease-out;
+      transition: transform $iui-full-page-modal-slide-in-speed ease-out;
     }
   }
   // #endregion Full Page Modal Animations for CSS
