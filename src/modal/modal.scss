@@ -107,7 +107,7 @@
 
   // #region Full Page Modal Animations for CSS
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed ease-out $iui-speed-fast;
+    transition: visibility $iui-speed-instant linear $iui-speed-slow, opacity $iui-speed ease-out $iui-speed-fast;
   }
 
   > .iui-modal-dialog {
@@ -129,15 +129,23 @@
 
 @mixin iui-modal-animation {
   // Full Page Modal Animations for React
-  &-enter .iui-modal .iui-modal-dialog {
+  &-enter .iui-modal-full-page .iui-modal-dialog {
     transform: translateY(100%);
     opacity: 0;
   }
 
-  &-enter-active .iui-modal .iui-modal-dialog {
+  &-enter-active .iui-modal-full-page .iui-modal-dialog {
     transform: translateY(0);
     opacity: 1;
   }
+
+  // &-exit .iui-modal-full-page .iui-modal {
+
+  // }
+
+  // &-exit-active .iui-modal-full-page .iui-modal {
+
+  // }
 
   // Small Modal Animations for React
   &-enter .iui-modal {
