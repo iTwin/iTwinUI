@@ -180,3 +180,48 @@ Localized.args = {
   date: new Date(2021, 4, 11, 14, 55, 22),
   localizedNames: generateLocalizedStrings('ja'),
 };
+
+export const WithYear: Story<DatePickerProps> = (args) => {
+  const {
+    date = new Date(2021, 4, 11, 14, 55, 22),
+    setFocus = true,
+    localizedNames,
+    ...rest
+  } = args;
+  const [opened, setOpened] = useState(false);
+  const [currentDate, setCurrentDate] = useState(new Date(date));
+  const onChange = (date: Date) => {
+    setCurrentDate(date);
+    action(`New date value: ${date}`, { clearOnStoryChange: false })();
+  };
+
+  useEffect(() => {
+    setCurrentDate(new Date(date));
+    return () => action('', { clearOnStoryChange: true })();
+  }, [date]);
+  return (
+    <>
+      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <SvgCalendar />
+      </IconButton>
+      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
+      {opened && (
+        <div style={{ marginTop: 4 }}>
+          <DatePicker
+            showYearSelection
+            {...rest}
+            date={currentDate}
+            onChange={onChange}
+            localizedNames={localizedNames}
+            setFocus={setFocus}
+          />
+        </div>
+      )}
+    </>
+  );
+};
+
+WithYear.args = {
+  date: new Date(2021, 4, 11, 14, 55, 22),
+  showYearSelection: true,
+};

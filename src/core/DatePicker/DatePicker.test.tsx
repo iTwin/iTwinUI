@@ -271,3 +271,38 @@ it('should show time selection', () => {
   expect(container.querySelector('.iui-date-picker')).toBeTruthy();
   expect(container.querySelector('.iui-time')).toBeTruthy();
 });
+
+it('should navigate between years', () => {
+  const date = new Date(2020, 1, 10);
+  const onClick = jest.fn();
+  const { container } = render(
+    <DatePicker
+      date={new Date(2020, 1, 10)}
+      onChange={onClick}
+      showYearSelection
+    />,
+  );
+  assertMonthYear(container, 'February', '2020');
+
+  const yearLeft = container.querySelector(
+    'button[aria-label="Previous year"]',
+  ) as HTMLButtonElement;
+  expect(yearLeft).toBeTruthy();
+  const yearRight = container.querySelector(
+    'button[aria-label="Next year"]',
+  ) as HTMLButtonElement;
+  expect(yearRight).toBeTruthy();
+
+  // go left
+  fireEvent.click(yearLeft);
+  date.setFullYear(date.getFullYear() - 1);
+  assertMonthYear(container, 'February', '2019');
+  // go left
+  fireEvent.click(yearLeft);
+  date.setMonth(date.getFullYear() - 1);
+  assertMonthYear(container, 'February', '2018');
+  // go right
+  fireEvent.click(yearRight);
+  date.setMonth(date.getFullYear() + 1);
+  assertMonthYear(container, 'February', '2019');
+});
