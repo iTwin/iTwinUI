@@ -1,0 +1,364 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-header-brand {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+  background-color: transparent;
+
+  &-icon {
+    width: $iui-icons-large;
+    height: $iui-icons-large;
+    margin: 0 $iui-l;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform $iui-speed-fast ease-out;
+    }
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
+  }
+
+  &-label {
+    margin-right: $iui-sm;
+    font-size: $iui-font-size-leading;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: font-size $iui-speed-fast ease-out;
+    }
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  @at-root {
+    a#{&}, // rendered as anchor element
+    button#{&}, // rendered as button element
+    &[role='button'] {
+      @include iui-focus;
+      cursor: pointer;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color $iui-speed-fast ease-out;
+      @media (forced-colors: active) {
+        border: 1px solid transparent;
+        border-bottom-width: 0;
+      }
+
+      // #region resets for button
+      @include iui-reset;
+      font-family: inherit;
+      background-color: unset;
+      color: unset;
+      // #endregion
+
+      &:hover {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+        }
+      }
+    }
+
+    .iui-slim {
+      .iui-header-brand-icon {
+        transform: scale(0.66666);
+      }
+
+      .iui-header-brand-label {
+        font-size: $iui-font-size;
+      }
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-container {
+  max-width: 25vw;
+  transition: background-color $iui-speed-fast ease-out;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+
+  &:hover {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+    }
+  }
+
+  &-button:not(:only-child) {
+    padding-right: $iui-xs;
+  }
+
+  &-button-dropdown {
+    padding: 0 $iui-xs;
+  }
+
+  &.iui-active {
+    &,
+    &:hover {
+      // Blue background and darker blue bottom line
+      @include themed {
+        box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      }
+    }
+
+    // Disabled state
+    &.iui-disabled,
+    &[aria-disabled='true'] {
+      &,
+      &:hover {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+          box-shadow: 0 $iui-xxs 0 0 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+        }
+      }
+    }
+  }
+
+  &.iui-disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+
+    &:hover:not(.iui-active) {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button {
+  @include iui-reset;
+  @include iui-focus;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  height: 100%;
+  border-radius: 0;
+  max-width: 25vw;
+  overflow: hidden;
+  padding-left: $iui-sm;
+  padding-right: $iui-s;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color $iui-speed-fast ease-out;
+  cursor: pointer;
+  @include themed {
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
+  @media (forced-colors: active) {
+    border: 1px solid transparent;
+    border-bottom-width: 0;
+
+    &:not(:last-child) {
+      border-right-width: 0;
+    }
+  }
+
+  // IE solution
+  > * + * {
+    margin-left: $iui-sm;
+  }
+  @supports (gap: $iui-sm) {
+    gap: $iui-sm;
+
+    > * + * {
+      margin-left: 0;
+    }
+  }
+  // End IE solution
+
+  &,
+  &:hover {
+    background-color: transparent;
+  }
+
+  &-dropdown {
+    padding: 0 $iui-xs;
+
+    &:hover:enabled {
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+      }
+    }
+  }
+
+  .iui-header-breadcrumb-button-icon {
+    display: inline-flex;
+    padding: $iui-xs;
+    box-sizing: content-box;
+    @include iui-header-breadcrumb-button-icon($iui-icons-default, $iui-border-radius);
+    @include themed {
+      background-color: t(iui-color-background-3);
+      fill: t(iui-icons-color);
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  img.iui-header-breadcrumb-button-icon {
+    padding: 0;
+    width: $iui-icons-large;
+    height: $iui-icons-large;
+    object-fit: cover;
+  }
+
+  &.iui-disabled,
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+
+    svg {
+      @include themed {
+        fill: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      }
+    }
+  }
+
+  @at-root {
+    .iui-slim .iui-header-breadcrumb-button-icon {
+      transform: scale(0.66666);
+    }
+
+    .iui-header-breadcrumb.iui-active {
+      svg {
+        @include themed {
+          fill: t(iui-icons-color-primary);
+        }
+      }
+
+      .iui-header-breadcrumb-button-dropdown:hover {
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        }
+      }
+
+      // Blue text
+      .iui-button-label {
+        @include themed {
+          color: t(iui-color-foreground-primary);
+        }
+      }
+
+      &,
+      &:hover {
+        // Blue background and darker blue bottom line
+        @include themed {
+          box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        }
+
+        .iui-header-breadcrumb-button-icon {
+          @include themed {
+            fill: t(iui-icons-color-primary);
+            background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+          }
+        }
+      }
+
+      // Disabled state
+      &.iui-disabled,
+      &:disabled,
+      &[aria-disabled='true'] {
+        .iui-button-label {
+          @include themed {
+            color: t(iui-icons-color-actionable-disabled);
+          }
+        }
+
+        .iui-button-icon,
+        svg {
+          @include themed {
+            fill: t(iui-icons-color-actionable-disabled);
+          }
+        }
+
+        .iui-header-breadcrumb-button-icon {
+          @include themed {
+            background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+          }
+        }
+      }
+    }
+
+    .iui-disabled.iui-header-breadcrumb-button-dropdown:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-label {
+  font-family: $iui-font-family;
+  font-size: $iui-font-size;
+  line-height: $iui-line-height;
+  text-align: left;
+  overflow: hidden;
+  transition: color $iui-speed-fast ease-out;
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+
+  &-name,
+  &-description {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &-description {
+    height: $iui-baseline * 2;
+    font-size: $iui-font-size-small;
+    transition: height $iui-speed-fast ease-out;
+    @include themed {
+      opacity: t(iui-opacity-3);
+    }
+  }
+
+  @at-root {
+    .iui-slim .iui-header-breadcrumb-button-label-description {
+      @include iui-display-none;
+    }
+
+    .iui-active {
+      .iui-header-breadcrumb-button-label {
+        @include themed {
+          color: t(iui-color-foreground-primary);
+        }
+      }
+
+      .iui-header-breadcrumb-button-label-description {
+        opacity: 1;
+      }
+    }
+
+    .iui-disabled .iui-header-breadcrumb-button-label {
+      @include themed {
+        color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
+      }
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
+  width: $size;
+  height: $size;
+  border-radius: $border-radius;
+  will-change: transform;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed-fast ease-out;
+  }
+
+  @at-root {
+    .iui-disabled,
+    :disabled,
+    [aria-disabled='true'] {
+      .iui-header-breadcrumb-button-icon {
+        filter: grayscale(1) opacity(0.7);
+      }
+    }
+  }
+}
