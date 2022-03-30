@@ -28,7 +28,9 @@
   }
 
   &-link {
-    @include iui-anchor($underline: 'true');
+    @include iui-anchor-underline('on-default');
+    border-radius: $iui-border-radius;
+    cursor: pointer;
     margin-left: $iui-s;
     user-select: none;
     white-space: nowrap;
