@@ -5,6 +5,7 @@
 import '@testing-library/jest-dom';
 
 window.HTMLElement.prototype.scrollIntoView = () => {};
+window.HTMLElement.prototype.scrollTo = () => {};
 
 if (window.PointerEvent) {
   console.error('ERROR: patching PointerEvent is no longer necessary');

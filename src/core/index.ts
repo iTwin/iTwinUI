@@ -29,6 +29,9 @@ export type {
 export { ButtonGroup } from './ButtonGroup';
 export type { ButtonGroupProps } from './ButtonGroup';
 
+export { Carousel } from './Carousel';
+export type { CarouselProps } from './Carousel';
+
 export { Checkbox } from './Checkbox';
 export type { CheckboxProps } from './Checkbox';
 
