@@ -203,3 +203,69 @@
     }
   }
 }
+
+@mixin iui-label-with-sublabel(
+  $label-font-size: $iui-font-size,
+  $sublabel-font-size: $iui-font-size-small,
+  $label-gap: 0
+) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: $label-font-size;
+  font-family: $iui-font-family;
+  text-align: left;
+  overflow: hidden;
+  row-gap: $label-gap;
+  transition: color $iui-speed-fast ease-out;
+
+  &-label,
+  &-sublabel {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: inherit;
+  }
+
+  &-sublabel {
+    font-size: $sublabel-font-size;
+    opacity: var(--iui-opacity-3);
+
+    @at-root .iui-active & {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin iui-thumbnail-or-icon(
+  $size: $iui-icons-large,
+  $border-radius: $iui-border-radius,
+  $background-color: var(--iui-color-background-3),
+  $active-color: primary
+) {
+  width: $size;
+  height: $size;
+  background-color: $background-color;
+  border-radius: $border-radius;
+  display: inline-flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: $iui-xs;
+  fill: var(--iui-icons-color);
+  color: inherit;
+
+  @at-root img#{&} {
+    object-fit: cover;
+    padding: 0;
+    transition: filter $iui-speed-fast ease-out;
+  }
+
+  @at-root .iui-active & {
+    background-color: var(--iui-color-background-1);
+    fill: currentColor;
+  }
+
+  @at-root .iui-disabled img#{&} {
+    filter: grayscale(1) opacity(0.7);
+  }
+}

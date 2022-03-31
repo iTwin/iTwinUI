@@ -8,6 +8,7 @@
   @include iui-reset;
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 @mixin iui-breadcrumbs-list {
@@ -16,6 +17,7 @@
   align-items: center;
   list-style-type: none;
   user-select: none;
+  height: 100%;
 }
 
 @mixin iui-breadcrumbs-item($breadcrumbs-height: $iui-component-height) {

@@ -26,23 +26,25 @@
     @include iui-header-brand;
   }
 
-  &-breadcrumb-item {
-    @include iui-breadcrumbs-item($breadcrumbs-height: 100%);
-  }
-
-  &-breadcrumb-button {
-    @include iui-header-breadcrumb-button;
-
-    &-container {
-      @include iui-header-breadcrumb-container;
+  &-breadcrumb {
+    &-item {
+      @include iui-breadcrumbs-item($breadcrumbs-height: 100%);
     }
 
-    &-icon {
-      @include iui-header-breadcrumb-button-icon;
-    }
+    &-button {
+      @include iui-header-breadcrumb-button;
 
-    &-label {
-      @include iui-header-breadcrumb-button-label;
+      &-container {
+        @include iui-header-breadcrumb-button-container;
+      }
+
+      &-icon {
+        @include iui-header-breadcrumb-button-icon;
+      }
+
+      &-label {
+        @include iui-header-breadcrumb-button-label;
+      }
     }
   }
 }
