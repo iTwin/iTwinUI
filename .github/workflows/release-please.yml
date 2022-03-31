@@ -24,6 +24,8 @@ jobs:
     needs: release-please
     if: needs.release-please.outputs.release-created
     uses: ./.github/workflows/publish-npm.yml
+    secrets:
+      NPMJS_PUBLISH_ITWIN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
 
   fix-title:
     name: Edit release title

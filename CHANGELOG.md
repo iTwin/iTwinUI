@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.53.2](https://www.github.com/iTwin/iTwinUI/compare/v0.53.1...v0.53.2) (2022-03-30)
+
+### Fixes
+
+* **Modal:** Update animation speed ([#564](https://www.github.com/iTwin/iTwinUI/issues/564)) ([7c3fe48](https://www.github.com/iTwin/iTwinUI/commit/7c3fe48cf5a2022c6c81c0a96dc7b3831aee60e8))
+* **SkipToContent:** Hide skip-to-content link when not focused ([#558](https://www.github.com/iTwin/iTwinUI/issues/558)) ([2b3add7](https://www.github.com/iTwin/iTwinUI/commit/2b3add7c3fc3559bfe609587e72b8c367376dba7))
+
 ### [0.53.1](https://www.github.com/iTwin/iTwinUI/compare/v0.53.0...v0.53.1) (2022-03-29)
 
 ### Fixes
