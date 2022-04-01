@@ -78,8 +78,7 @@
     margin: $iui-xxs;
   }
 
-  > .iui-tag:not(:last-child),
-  > .iui-tag-basic:not(:last-child) {
+  > *:not(last-child) {
     margin-right: $iui-xs;
   }
 
