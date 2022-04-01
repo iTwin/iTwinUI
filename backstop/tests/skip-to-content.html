@@ -26,6 +26,12 @@
       section {
         width: auto !important;
       }
+
+      #demo-skip-to-here {
+        height: 1000px;
+        border: solid 1px var(--iui-color-background-border);
+        padding: 11px 12px;
+      }
     </style>
     <script
       type="module"
@@ -177,20 +183,35 @@
           </button>
         </div>
       </header>
-      <div style="border: solid 1px">
-        <p>This is not the main content. Press 'tab' to see skip-to-content-link component. You might need to click on
-          the top of the page or the URL first. Press 'enter' after focusing on skip-to-content-link to skip to the main
-          content below.</p>
+      <br />
+      <div>
+        <p>
+          This is not the main content. Press&nbsp;<kbd class="iui-keyboard">tab</kbd>&nbsp;to see skip-to-content-link
+          component. You might need to click on the top of the page or the URL first. Press&nbsp;
+          <kbd
+            class="iui-keyboard"
+            title="Return"
+          >
+            &crarr;
+          </kbd>
+          &nbsp;after focusing on skip-to-content-link to skip to the main content below.
+        </p>
       </div>
     </section>
-    <br>
+
+    <br />
+
     <section id="demo-skip-to-here">
-      <div style="height: 1000px; border: solid 1px;">
-        <p>This is the main content. <a
-            href="#"
-            class="iui-anchor"
-          >This is a link that directs to this page. </a> Tab again to focus on the preceding link.</p>
-      </div>
+      <p>
+        This is the main content.&nbsp;
+        <a
+          href="#"
+          class="iui-anchor"
+        >
+          This is a link that directs to this page.
+        </a>
+        &nbsp;Tab again to focus on the preceding link.
+      </p>
     </section>
   </body>
 </html>
