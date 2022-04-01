@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { render } from '@testing-library/react';
+import * as UseMediaQuery from '../utils/hooks/useMediaQuery';
 
 import { ThemeProvider } from './ThemeProvider';
 
@@ -19,9 +20,18 @@ const expectDarkTheme = () => {
   expect(document.documentElement.classList).toContain('iui-theme-dark');
 };
 
+let useMediaSpy: jest.SpyInstance;
+
+beforeEach(() => {
+  useMediaSpy = jest
+    .spyOn(UseMediaQuery, 'useMediaQuery')
+    .mockReturnValue(false);
+});
+
 afterEach(() => {
   document.documentElement.classList.remove('iui-theme-light');
   document.documentElement.classList.remove('iui-theme-dark');
+  useMediaSpy?.mockRestore();
 });
 
 it('should respect os theme (light)', () => {
@@ -149,3 +159,37 @@ it('should set body class', () => {
   render(<ThemeProvider />);
   expect(document.body.classList).toContain('iui-body');
 });
+
+it.each(['light', 'dark'] as const)(
+  'should respect prefers-contrast query (%s)',
+  (theme) => {
+    useMediaSpy.mockReturnValue(true);
+    render(<ThemeProvider theme={theme} />);
+    expect(document.documentElement.classList).toContain(
+      `iui-theme-${theme}-hc`,
+    );
+  },
+);
+
+it.each(['light', 'dark'] as const)(
+  'should support `themeOptions.highContrast` (%s)',
+  (theme) => {
+    render(
+      <ThemeProvider theme={theme} themeOptions={{ highContrast: true }} />,
+    );
+    expect(document.documentElement.classList).toContain(
+      `iui-theme-${theme}-hc`,
+    );
+  },
+);
+
+it.each([true, false])(
+  'should override prefers-contrast query when `themeOptions.highContrast` is %s',
+  (highContrast) => {
+    useMediaSpy.mockReturnValue(true);
+    render(<ThemeProvider theme={'light'} themeOptions={{ highContrast }} />);
+    expect(document.documentElement.classList).toContain(
+      `iui-theme-light${highContrast ? '-hc' : ''}`,
+    );
+  },
+);

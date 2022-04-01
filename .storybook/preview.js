@@ -5,6 +5,7 @@
 import addons from '@storybook/addons';
 import { addParameters } from '@storybook/react';
 import { themes } from '@storybook/theming';
+import React from 'react';
 import { lightTheme, darkTheme } from './itwinTheme';
 
 // get an instance to the communication channel for the manager and preview
@@ -39,12 +40,18 @@ addParameters({
 
 // helper for updating theme according to dark mode flag
 const updateTheme = (isDark) => {
+  const classes = document.documentElement.classList;
+  const currentTheme = Array.from(classes).find((cls) =>
+    cls.startsWith('iui-theme'),
+  );
+  const isHc = currentTheme?.includes('-hc');
+  const isHcString = isHc ? '-hc' : '';
   if (isDark) {
-    document.documentElement.classList.remove('iui-theme-light');
-    document.documentElement.classList.add('iui-theme-dark');
+    classes.remove(`iui-theme-light${isHcString}`);
+    classes.add(`iui-theme-dark${isHcString}`);
   } else {
-    document.documentElement.classList.remove('iui-theme-dark');
-    document.documentElement.classList.add('iui-theme-light');
+    classes.remove(`iui-theme-dark${isHcString}`);
+    classes.add(`iui-theme-light${isHcString}`);
   }
 };
 
@@ -64,3 +71,34 @@ if (window.parent !== window) {
 export const parameters = {
   controls: { sort: 'requiredFirst' },
 };
+
+export const decorators = [
+  (Story, context) => {
+    const {
+      globals: { hc: highContrast },
+    } = context;
+
+    React.useEffect(() => {
+      const classes = document.documentElement.classList;
+      const currentTheme = Array.from(classes).find((cls) =>
+        cls.startsWith('iui-theme'),
+      );
+      if (!currentTheme) {
+        return;
+      }
+
+      if (highContrast && !currentTheme.includes('-hc')) {
+        classes.remove(currentTheme);
+        classes.add(`${currentTheme}-hc`);
+        return;
+      }
+
+      if (!highContrast && currentTheme.includes('-hc')) {
+        classes.remove(currentTheme);
+        classes.add(`${currentTheme.split('-hc')[0]}`);
+      }
+    }, [highContrast]);
+
+    return <Story />;
+  },
+];

@@ -9,3 +9,4 @@ export * from './useResizeObserver';
 export * from './useContainerWidth';
 export * from './useTheme';
 export * from './useIntersection';
+export * from './useMediaQuery';

@@ -26,6 +26,7 @@ module.exports = {
         },
       },
     },
+    './hcThemeAddon/register.js',
     'creevey',
     '@storybook/addon-a11y',
   ],
