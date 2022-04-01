@@ -146,7 +146,82 @@ Basic.decorators = [
   ),
 ];
 
-export const Horizontal = Basic.bind({});
+export const Horizontal: Story<InformationPanelProps> = (args) => {
+  const [openRowIndex, setOpenRowIndex] = React.useState<number>();
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          { id: 'name', Header: 'Name', accessor: 'name' },
+          {
+            Header: 'Details',
+            Cell: ({ row: { index } }: CellProps<{ name: string }>) => (
+              <Button onClick={() => setOpenRowIndex(index)}>Details</Button>
+            ),
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const data = React.useMemo(
+    () =>
+      [...Array(10).fill(null)].map((_, index) => ({ name: `Row${index}` })),
+    [],
+  );
+  return (
+    <InformationPanelWrapper>
+      <Table columns={columns} data={data} emptyTableContent='No data.' />
+      <InformationPanel
+        orientation='horizontal'
+        {...args}
+        isOpen={openRowIndex != undefined && openRowIndex !== -1}
+      >
+        <InformationPanelHeader
+          onClose={() => {
+            setOpenRowIndex(-1);
+            action('Panel closed')();
+          }}
+        >
+          <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
+        </InformationPanelHeader>
+        <InformationPanelBody>
+          <InformationPanelContent displayStyle='inline'>
+            <Label htmlFor='name-input'>File name</Label>
+            <Input
+              size='small'
+              id='name-input'
+              defaultValue={`Row ${openRowIndex ?? 0}`}
+              readOnly
+            />
+
+            <Label htmlFor='author-input'>Author</Label>
+            <Input
+              size='small'
+              id='author-input'
+              defaultValue='DJ Terry'
+              readOnly
+            />
+
+            <Label htmlFor='year-input'>Year</Label>
+            <Input size='small' id='year-input' defaultValue='2021' readOnly />
+
+            <Label htmlFor='path-input'>Path</Label>
+            <Input
+              size='small'
+              id='path-input'
+              defaultValue='/Shared/Music/'
+              readOnly
+            />
+          </InformationPanelContent>
+        </InformationPanelBody>
+      </InformationPanel>
+    </InformationPanelWrapper>
+  );
+};
 Horizontal.args = { orientation: 'horizontal' };
 Horizontal.decorators = [...Basic.decorators];
 

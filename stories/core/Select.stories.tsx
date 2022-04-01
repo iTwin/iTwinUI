@@ -160,9 +160,30 @@ WithSelectedValue.args = {
   popoverProps: { visible: true },
 };
 
-export const Disabled: Story<SelectProps<number>> & CreeveyStory = Basic.bind(
-  {},
-);
+export const Disabled: Story<SelectProps<number>> & CreeveyStory = (args) => {
+  const {
+    options = [
+      { value: 1, label: 'Item #1' },
+      { value: 2, label: 'Item #2' },
+      { value: 3, label: 'Item #3' },
+    ],
+    placeholder = 'Placeholder text',
+    ...rest
+  } = args;
+  const [value, setValue] = useState<number | undefined>(undefined);
+  return (
+    <div style={{ minHeight: 350 }}>
+      <Select<number>
+        disabled
+        {...rest}
+        options={options}
+        value={value}
+        onChange={setValue}
+        placeholder={placeholder}
+      />
+    </div>
+  );
+};
 
 Disabled.args = {
   disabled: true,
@@ -183,9 +204,31 @@ Disabled.parameters = {
   },
 };
 
-export const DisabledWithSelectedValue: Story<
-  SelectProps<number>
-> = WithSelectedValue.bind({});
+export const DisabledWithSelectedValue: Story<SelectProps<number>> = (args) => {
+  const {
+    options = [
+      { value: 1, label: 'Item #1' },
+      { value: 2, label: 'Item #2' },
+      { value: 3, label: 'Item #3' },
+    ],
+    placeholder = 'Placeholder text',
+    ...rest
+  } = args;
+  const [value, setValue] = useState<number>(2);
+  return (
+    <div style={{ minHeight: 350 }}>
+      <Select<number>
+        options={options}
+        value={value}
+        onChange={setValue}
+        placeholder={placeholder}
+        popoverProps={{ visible: true }}
+        disabled
+        {...rest}
+      />
+    </div>
+  );
+};
 
 DisabledWithSelectedValue.args = {
   disabled: true,
