@@ -135,8 +135,12 @@ export type {
   MenuExtraContentProps,
 } from './Menu';
 
-export { Modal, ModalButtonBar } from './Modal';
-export type { ModalProps, ModalButtonBarProps } from './Modal';
+export { Modal, ModalButtonBar, ModalContent } from './Modal';
+export type {
+  ModalProps,
+  ModalButtonBarProps,
+  ModalContentProps,
+} from './Modal';
 
 export { ProgressLinear, ProgressRadial } from './ProgressIndicators';
 export type {

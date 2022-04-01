@@ -46,6 +46,15 @@ it('should render in basic form', () => {
   assertBaseElement(overlay);
 });
 
+it('should render in full page form', () => {
+  renderComponent({ styleType: 'fullPage' });
+
+  const overlay = document.querySelector(
+    '.iui-modal.iui-modal-full-page.iui-modal-visible',
+  ) as HTMLElement;
+  assertBaseElement(overlay);
+});
+
 it('should not render modal when closed', () => {
   renderComponent({ isOpen: false });
 

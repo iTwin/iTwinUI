@@ -6,4 +6,6 @@ export { Modal } from './Modal';
 export type { ModalProps } from './Modal';
 export { ModalButtonBar } from './ModalButtonBar';
 export type { ModalButtonBarProps } from './ModalButtonBar';
+export { ModalContent } from './ModalContent';
+export type { ModalContentProps } from './ModalContent';
 export default './Modal';
