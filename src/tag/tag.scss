@@ -27,13 +27,11 @@
   @include iui-tag-base;
   height: $iui-baseline * 3;
   margin: $iui-component-offset 0;
-  border-radius: ($iui-baseline * 3) * 0.5;
+  border-radius: $iui-border-radius-round;
   box-sizing: border-box;
   padding: 0 $iui-xxs;
   align-items: center;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: border $iui-speed-fast ease-out;
-  }
+  transition: border-color $iui-speed-fast ease-out;
   font-size: $iui-font-size;
   text-transform: none;
   cursor: default;
