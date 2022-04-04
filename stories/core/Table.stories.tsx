@@ -805,6 +805,7 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
             id: 'name',
             Header: 'Name',
             accessor: 'name',
+            Filter: tableFilters.TextFilter(),
           },
           {
             id: 'description',
@@ -861,11 +862,19 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
       emptyTableContent='No data.'
       onBottomReached={onBottomReached}
       isLoading={isLoading}
+      isSortable
       {...args}
       style={{ height: 440, maxHeight: '90vh' }}
       data={data}
+      // Prevents from resetting filters and sorting when more data is loaded
+      autoResetFilters={false}
+      autoResetSortBy={false}
     />
   );
+};
+
+LazyLoading.args = {
+  isSortable: true,
 };
 
 LazyLoading.argTypes = {

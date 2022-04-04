@@ -406,11 +406,21 @@ it('should not show sorting icon if sorting is disabled', () => {
 
 it('should not show sort icon if data is loading', () => {
   const { container } = renderComponent({
+    data: [],
     isSortable: true,
     isLoading: true,
   });
 
   expect(container.querySelector('.iui-cell-end-icon .iui-sort')).toBeFalsy();
+});
+
+it('should show sort icon if more data is loading', () => {
+  const { container } = renderComponent({
+    isSortable: true,
+    isLoading: true,
+  });
+
+  expect(container.querySelector('.iui-cell-end-icon .iui-sort')).toBeTruthy();
 });
 
 it('should not show sort icon if data is empty', () => {
@@ -529,6 +539,41 @@ it('should trigger onBottomReached', () => {
   expect(onBottomReached).not.toHaveBeenCalled();
   expect(intersectionCallbacks.size).toBe(50);
   mockIntersection(rows[49]);
+
+  expect(onBottomReached).toHaveBeenCalledTimes(1);
+});
+
+it('should trigger onBottomReached with filter applied', () => {
+  const onBottomReached = jest.fn();
+  const mockedColumns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          Filter: tableFilters.TextFilter(),
+          fieldType: 'text',
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns: mockedColumns,
+    data: mockedData(50),
+    onBottomReached,
+  });
+
+  let rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(50);
+
+  setFilter(container, '1');
+  rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(14);
+
+  expect(onBottomReached).not.toHaveBeenCalled();
+  mockIntersection(rows[13]);
 
   expect(onBottomReached).toHaveBeenCalledTimes(1);
 });
@@ -702,6 +747,33 @@ it('should not show filter icon when filter component is not set', () => {
     '.iui-filter-button .iui-button-icon',
   ) as HTMLElement;
   expect(filterIcon).toBeFalsy();
+});
+
+it('should show active filter icon when more data is loading', () => {
+  const mockedColumns = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          Filter: tableFilters.TextFilter(),
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns: mockedColumns,
+    isLoading: true,
+  });
+
+  setFilter(container, '2');
+
+  const filterIcon = container.querySelector(
+    '.iui-filter-button.iui-active .iui-button-icon',
+  ) as HTMLElement;
+  expect(filterIcon).toBeTruthy();
 });
 
 it('should show message and active filter icon when there is no data after filtering', () => {
