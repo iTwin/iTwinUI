@@ -9,6 +9,8 @@ const config = {
   engineOptions: {
     args: ['--no-sandbox'],
     ignoreDefaultArgs: ['--hide-scrollbars'],
+    executablePath: isM1 ? '/usr/bin/chromium' : '',
+    gotoTimeout: 60000,
   },
   viewports: [
     {
@@ -31,13 +33,10 @@ const config = {
   engine: 'puppeteer',
   asyncCaptureLimit: 10,
   asyncCompareLimit: 50,
-  debug: false,
+  debug: true,
   debugWindow: false,
-  dockerCommandTemplate: `docker run --rm -i --mount type=bind,source="{cwd}",target=/src ${dockerImage} {backstopCommand} {args}`,
-  engineOptions: {
-    args: ['--no-sandbox'],
-    executablePath: isM1 ? '/usr/bin/chromium' : '',
-  },
+  //dockerCommandTemplate: `docker run --platform linux/amd64 --rm -i --mount type=bind,source="{cwd}",target=/src ${dockerImage} {backstopCommand} {args}`,
+  dockerCommandTemplate: `docker buildx build --platform linux/arm64/v8 -t foo /Users/greta/Documents/code/repos/iTwinUI/backstop && docker run --rm -i --mount type=bind,source="{cwd}",target=/src foo {backstopCommand} {args}`,
 };
 
 module.exports = config;
