@@ -2,118 +2,71 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../surface/index';
 
-@mixin iui-modal {
+@mixin iui-modal-backdrop {
   @include iui-reset;
   z-index: 999;
+  isolation: isolate;
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
   @include themed {
     background-color: rgba(0, 0, 0, t(iui-opacity-4));
   }
 
-  // #region Small Modal Animations for CSS
-  visibility: hidden;
-  opacity: 0;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
+  &.iui-modal-resizable {
+    background-color: transparent;
+    pointer-events: none;
+    z-index: 998;
   }
 
   &.iui-modal-visible {
     visibility: visible;
     opacity: 1;
-    // remove delay for entry animation so it's instantly visible
     transition-delay: $iui-speed-instant;
   }
-  // #endregion Small Modal Animations for CSS
+}
 
-  > .iui-modal-dialog {
-    position: absolute;
+@mixin iui-modal {
+  $iui-full-page-modal-slide-in-speed: 0.3s;
+  $iui-full-page-modal-slide-out-speed: 0.25s;
+
+  @include iui-surface($border-radius: $iui-border-radius, $elevation: $iui-elevation-24);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @at-root .iui-modal-default & {
     left: 50%;
     top: 33%;
     transform: translate(-50%, -33%);
-    z-index: 1000;
     max-width: 50%;
     min-width: 380px;
     max-height: 100vh;
-    border-radius: $iui-border-radius;
-    box-shadow: $iui-elevation-24;
-    padding: $iui-baseline $iui-m;
-    box-sizing: border-box;
-
-    @include themed {
-      background-color: t(iui-color-background-1);
-    }
 
     @media screen and (max-width: 400px) {
       max-width: 95%;
       width: 95%;
       min-width: 95%;
     }
-
-    .iui-title-bar {
-      display: flex;
-      align-items: center;
-      margin-bottom: $iui-baseline;
-      justify-content: space-between;
-
-      > .iui-title {
-        font-size: $iui-font-size-subheading;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 1.5;
-      }
-    }
-
-    .iui-button-bar {
-      margin-top: $iui-baseline;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-
-      > .iui-button:not(:last-child) {
-        margin-right: $iui-s;
-      }
-    }
-
-    .iui-modal-content {
-      flex-grow: 2;
-      margin: 0 -#{$iui-m};
-      padding: 0 $iui-m;
-      overflow-y: auto;
-      overflow-y: overlay;
-    }
   }
-}
 
-@mixin iui-modal-full-page {
-  $iui-full-page-modal-slide-in-speed: 0.3s;
-  $iui-full-page-modal-slide-out-speed: 0.25s;
-
-  > .iui-modal-dialog {
-    display: flex;
-    flex-direction: column;
+  @at-root .iui-modal-full-page & {
+    border-radius: 0;
     height: 100vh;
     width: 100vw;
-    left: 0;
-    top: 0;
-    transform: none;
+    inset: 0;
     max-width: initial;
     min-width: initial;
     border-radius: 0;
     will-change: transform;
-  }
-
-  // #region Full Page Modal Animations for CSS
-  @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed-slow, opacity $iui-speed ease-out $iui-speed-fast;
-  }
-
-  > .iui-modal-dialog {
     transform: translateY(100%);
     @media (prefers-reduced-motion: no-preference) {
       transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
@@ -121,13 +74,24 @@
     }
   }
 
-  &.iui-modal-visible > .iui-modal-dialog {
+  @at-root .iui-modal-full-page.iui-modal-visible & {
     transform: translateY(0);
     @media (prefers-reduced-motion: no-preference) {
       transition: transform $iui-full-page-modal-slide-in-speed ease-out;
     }
   }
-  // #endregion Full Page Modal Animations for CSS
+
+  @at-root .iui-modal-resizable & {
+    pointer-events: initial;
+    max-width: 100vw;
+    max-height: 100vh;
+    min-width: 380px;
+    min-height: 144px;
+    resize: both;
+    @include themed {
+      border: 1px solid t(iui-color-background-border);
+    }
+  }
 }
 
 @mixin iui-modal-animation {
@@ -152,4 +116,68 @@
     visibility: visible;
     opacity: 1;
   }
+}
+
+@mixin iui-modal-title {
+  font-size: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+}
+
+@mixin iui-modal-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $iui-baseline $iui-m;
+  box-sizing: border-box;
+  font-size: $iui-font-size-subheading;
+
+  @at-root .iui-modal-resizable & {
+    user-select: none;
+    font-size: $iui-font-size-leading;
+    padding: round($iui-baseline * 0.5) $iui-m;
+    cursor: grab;
+    @include themed {
+      background-color: t(iui-color-background-3);
+      border-bottom: 1px solid t(iui-color-background-border);
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+
+@mixin iui-modal-content {
+  flex-grow: 2;
+  overflow-y: auto;
+  overflow-y: overlay;
+  padding: 0 $iui-m;
+
+  @at-root .iui-modal-resizable & {
+    padding-top: $iui-baseline;
+  }
+}
+
+@mixin iui-modal-button-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: $iui-baseline $iui-m;
+
+  // #region IE support
+  > .iui-button:not(:last-child) {
+    margin-right: $iui-s;
+  }
+
+  @supports (column-gap: $iui-s) {
+    column-gap: $iui-s;
+
+    > .iui-button:not(:last-child) {
+      margin-right: 0;
+    }
+  }
+  // #endregion IE support
 }

@@ -5,8 +5,24 @@
 .iui-modal {
   @include iui-modal;
 
-  &-full-page {
-    @include iui-modal-full-page;
+  &-backdrop {
+    @include iui-modal-backdrop;
+  }
+
+  &-title {
+    @include iui-modal-title;
+
+    &-bar {
+      @include iui-modal-title-bar;
+    }
+  }
+
+  &-content {
+    @include iui-modal-content;
+  }
+
+  &-button-bar {
+    @include iui-modal-button-bar;
   }
 
   &-animation {
