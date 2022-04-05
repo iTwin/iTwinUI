@@ -34,6 +34,7 @@
 
       #demo-header {
         position: relative;
+        padding: 11px 0;
       }
 
       div.demo-picture {
@@ -1640,7 +1641,7 @@
           } else {
             const checkmarkSvg = document.createElement('svg-checkmark');
             checkmarkSvg.classList.add('iui-icon');
-            checkmarkSvg.toggleAttribute('aria-hidden', true)
+            checkmarkSvg.toggleAttribute('aria-hidden', true);
             if (item.lastElementChild.classList.contains('iui-icon')) {
               item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
             } else {
