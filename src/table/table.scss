@@ -196,12 +196,12 @@
         }
       }
 
-      > .iui-slot > .iui-more-options {
+      > .iui-slot:not(.iui-disabled) > .iui-more-options {
         visibility: visible;
       }
     }
 
-    &:not(.iui-disabled):focus-within > .iui-slot > .iui-more-options {
+    &:focus-within:not(.iui-disabled) > .iui-slot:not(.iui-disabled) > .iui-more-options {
       visibility: visible;
     }
 
@@ -295,15 +295,15 @@
       }
     }
 
-    &.iui-disabled,
-    &.iui-disabled + .iui-expanded-content {
+    .iui-cell.iui-disabled,
+    &.iui-expanded-content.iui-disabled {
       font-style: italic;
       cursor: not-allowed;
       @include themed {
         color: t(iui-text-color-muted);
       }
 
-      &:hover > .iui-slot > .iui-more-options {
+      &.iui-slot:hover > .iui-more-options {
         visibility: hidden;
       }
 
