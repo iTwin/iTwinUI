@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.53.3](https://www.github.com/iTwin/iTwinUI/compare/v0.53.2...v0.53.3) (2022-04-05)
+
+
+### Fixes
+
+* **ColorPicker:** Add `forced-colors` support. ([#569](https://www.github.com/iTwin/iTwinUI/issues/569)) ([d997651](https://www.github.com/iTwin/iTwinUI/commit/d9976519a919c0a3793829fb217245f7466364fb))
+* **Tree:** Fix spacing for tree node icon ([#570](https://www.github.com/iTwin/iTwinUI/issues/570)) ([d98d363](https://www.github.com/iTwin/iTwinUI/commit/d98d363b2a411b7eba8568439e3565d3aed4bfb0))
+
 ### [0.53.2](https://www.github.com/iTwin/iTwinUI/compare/v0.53.1...v0.53.2) (2022-03-30)
 
 ### Fixes
