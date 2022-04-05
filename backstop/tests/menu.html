@@ -1622,16 +1622,14 @@
       </ul>
     </section>
     <script>
-      const sectionPadding = parseInt(getComputedStyle(document.querySelector('#demo-header')).paddingLeft);
-
       // Menu is placed differently based on the user screen, so need to set margin-left dynamically
       const headerButton = document.querySelector('#demo-header-imodel-button');
       const headerButtonMenu = document.querySelector('#demo-header-imodel-menu');
-      headerButtonMenu.style.marginLeft = `${headerButton.offsetLeft - sectionPadding}px`;
+      headerButtonMenu.style.marginLeft = `${headerButton.offsetLeft}px`;
 
       const slimHeaderButton = document.querySelector('#demo-header-slim-imodel-button');
       const slimHeaderButtonMenu = document.querySelector('#demo-header-slim-imodel-menu');
-      slimHeaderButtonMenu.style.marginLeft = `${slimHeaderButton.offsetLeft - sectionPadding}px`;
+      slimHeaderButtonMenu.style.marginLeft = `${slimHeaderButton.offsetLeft}px`;
 
       // Clicking on menu-item should toggle selection
       document.querySelectorAll('.iui-menu-item').forEach((item) => {
