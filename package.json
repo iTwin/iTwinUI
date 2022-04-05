@@ -56,8 +56,7 @@
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
     "audit:ci": "audit-ci --moderate --report-type=full",
-    "build-docker": "docker buildx build backstop/docker --platform linux/arm64/v8,linux/amd64 -t itwinui/backstopjs:latest",
-    "load-docker": "docker buildx build backstop/docker --load -t itwinui/backstopjs:latest"
+    "build-docker": "node scripts/buildDocker.js"
   },
   "devDependencies": {
     "audit-ci": "^4.0.0",
