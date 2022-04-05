@@ -2,7 +2,6 @@
 
 ### [0.53.3](https://www.github.com/iTwin/iTwinUI/compare/v0.53.2...v0.53.3) (2022-04-05)
 
-
 ### Fixes
 
 * **ColorPicker:** Add `forced-colors` support. ([#569](https://www.github.com/iTwin/iTwinUI/issues/569)) ([d997651](https://www.github.com/iTwin/iTwinUI/commit/d9976519a919c0a3793829fb217245f7466364fb))
