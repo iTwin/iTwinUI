@@ -20,6 +20,7 @@
 
 a.iui-tag-basic {
   @include iui-anchor;
+  @include iui-focus($offset: 1px);
 }
 
 .iui-tag-container {
