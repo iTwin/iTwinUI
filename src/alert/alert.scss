@@ -28,7 +28,7 @@
   }
 
   &-link {
-    @include iui-anchor-underline('on-default');
+    @include iui-anchor-underline('on-initial');
     border-radius: $iui-border-radius;
     cursor: pointer;
     margin-left: $iui-s;

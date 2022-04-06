@@ -26,7 +26,7 @@
   @include iui-anchor-underline('on-hover');
 
   @media (prefers-contrast: more) {
-    @include iui-anchor-underline('on-default');
+    @include iui-anchor-underline('on-initial');
   }
 
   @at-root {
@@ -39,7 +39,7 @@
   @at-root {
     .iui-theme-light-hc &,
     .iui-theme-dark-hc & {
-      @include iui-anchor-underline('on-default');
+      @include iui-anchor-underline('on-initial');
     }
   }
 }
@@ -61,7 +61,7 @@
   }
 }
 
-/// $behavior should be one of: 'on-hover' or 'on-default'
+/// $behavior should be one of: 'on-hover' or 'on-initial'
 @mixin iui-anchor-underline($behavior: 'on-hover') {
   @if $behavior == 'on-hover' {
     text-decoration: none;
