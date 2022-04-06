@@ -18,11 +18,11 @@
   user-select: none;
 }
 
-@mixin iui-breadcrumbs-item($breadcrumbs-height: $iui-component-height) {
+@mixin iui-breadcrumbs-item {
   display: flex;
   align-items: center;
-  line-height: $breadcrumbs-height;
-  height: $breadcrumbs-height;
+  line-height: $iui-component-height;
+  height: $iui-component-height;
 
   // #region Component overrides
   > a {
