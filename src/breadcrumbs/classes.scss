@@ -20,4 +20,8 @@
   &-button {
     @include iui-breadcrumbs-button;
   }
+
+  &-separator {
+    @include iui-breadcrumbs-separator;
+  }
 }

@@ -28,6 +28,7 @@
 
       section[id^='demo'] {
         padding: 11px 12px;
+        margin-bottom: 22px;
       }
     </style>
     <script
@@ -40,6 +41,10 @@
     ></script>
     <script
       type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
+    ></script>
+    <script
+      type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
     ></script>
     <script src="../assets/theme.js"></script>
@@ -49,6 +54,7 @@
     <h1>Breadcrumbs</h1>
     <hr />
 
+    <h2>Generic anchor</h2>
     <section id="demo-anchors">
 
       <nav
@@ -58,41 +64,60 @@
         <button class="iui-button iui-borderless iui-dropdown">
           <svg-folder
             class="iui-button-icon"
-            aria-hidden="true"
+            aria-hidden
           ></svg-folder>
           <svg-caret-down-small
             class="iui-button-icon"
-            aria-hidden="true"
+            aria-hidden
           ></svg-caret-down-small>
         </button>
         <ol class="iui-breadcrumbs-list">
           <li class="iui-breadcrumbs-item">
-            <a
-              class="iui-breadcrumbs-text"
-              href="#"
-            >Root</a>
+            <a href="#">Root</a>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
           </li>
           <li class="iui-breadcrumbs-item">
             <span class="iui-breadcrumbs-text">&mldr;</span>
           </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
           <li class="iui-breadcrumbs-item">
             <a
-              class="iui-breadcrumbs-text"
               href="#"
               id="test-1"
             >Nested</a>
           </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
           <li class="iui-breadcrumbs-item">
             <a
-              class="iui-breadcrumbs-text"
               href="#"
               id="test-2"
             >Double nested folder with truncation</a>
           </li>
-          <li class="iui-breadcrumbs-item iui-breadcrumbs-item-current">
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item iui-current">
             <span
               class="iui-breadcrumbs-text"
-              aria-current='page'
+              aria-current="page"
             >You are here</span>
           </li>
         </ol>
@@ -100,6 +125,7 @@
 
     </section>
 
+    <h2><code>.iui-button</code>&nbsp;overrides</h2>
     <section id="demo-buttons">
 
       <nav
@@ -109,42 +135,66 @@
         <button class="iui-button iui-borderless iui-dropdown">
           <svg-folder
             class="iui-button-icon"
-            aria-hidden="true"
+            aria-hidden
           ></svg-folder>
           <svg-caret-down-small
             class="iui-button-icon"
-            aria-hidden="true"
+            aria-hidden
           ></svg-caret-down-small>
         </button>
         <ol class="iui-breadcrumbs-list">
           <li class="iui-breadcrumbs-item">
-            <button class="iui-breadcrumbs-button">
+            <button class="iui-button">
               <span class="iui-button-label">Root</span>
             </button>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
           </li>
           <li class="iui-breadcrumbs-item">
             <span class="iui-breadcrumbs-text">&mldr;</span>
           </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
           <li class="iui-breadcrumbs-item">
             <button
-              class="iui-breadcrumbs-button"
+              class="iui-button"
               id="test-3"
             >
               <span class="iui-button-label">Nested</span>
             </button>
           </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
           <li class="iui-breadcrumbs-item">
             <button
-              class="iui-breadcrumbs-button"
+              class="iui-button"
               id="test-4"
             >
               <span class="iui-button-label">Double nested folder with truncation</span>
             </button>
           </li>
-          <li class="iui-breadcrumbs-item iui-breadcrumbs-item-current">
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item iui-current">
             <button
-              class="iui-breadcrumbs-button"
-              aria-current='page'
+              class="iui-button"
+              aria-current="page"
             >
               <span class="iui-button-label">You are here</span>
             </button>
@@ -154,6 +204,162 @@
 
     </section>
 
+    <h2>Breadcrumbs anchor</h2>
+    <section id="demo-anchors-2">
+
+      <nav
+        class="iui-breadcrumbs"
+        aria-label="Breadcrumbs"
+      >
+        <button class="iui-button iui-borderless iui-dropdown">
+          <svg-folder
+            class="iui-button-icon"
+            aria-hidden
+          ></svg-folder>
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden
+          ></svg-caret-down-small>
+        </button>
+        <ol class="iui-breadcrumbs-list">
+          <li class="iui-breadcrumbs-item">
+            <a
+              class="iui-breadcrumbs-text"
+              href="#"
+            >Root</a>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <span class="iui-breadcrumbs-text">&mldr;</span>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <a
+              class="iui-breadcrumbs-text"
+              href="#"
+              id="test-5"
+            >Nested</a>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <a
+              class="iui-breadcrumbs-text"
+              href="#"
+              id="test-6"
+            >Double nested folder with truncation</a>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item iui-breadcrumbs-item-current">
+            <span
+              class="iui-breadcrumbs-text"
+              aria-current="page"
+            >You are here</span>
+          </li>
+        </ol>
+      </nav>
+
+    </section>
+
+    <h2>Breadcrumbs button</h2>
+    <section id="demo-buttons-2">
+
+      <nav
+        class="iui-breadcrumbs"
+        aria-label="Breadcrumbs"
+      >
+        <button class="iui-button iui-borderless iui-dropdown">
+          <svg-folder
+            class="iui-button-icon"
+            aria-hidden
+          ></svg-folder>
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden
+          ></svg-caret-down-small>
+        </button>
+        <ol class="iui-breadcrumbs-list">
+          <li class="iui-breadcrumbs-item">
+            <button class="iui-breadcrumbs-button">
+              <span class="iui-button-label">Root</span>
+            </button>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <span class="iui-breadcrumbs-text">&mldr;</span>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <button
+              class="iui-breadcrumbs-button"
+              id="test-7"
+            >
+              <span class="iui-button-label">Nested</span>
+            </button>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <button
+              class="iui-breadcrumbs-button"
+              id="test-8"
+            >
+              <span class="iui-button-label">Double nested folder with truncation</span>
+            </button>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden
+          >
+            <svg-chevron-right aria-hidden></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item iui-breadcrumbs-item-current">
+            <button
+              class="iui-breadcrumbs-button"
+              aria-current="page"
+            >
+              <span class="iui-button-label">You are here</span>
+            </button>
+          </li>
+        </ol>
+      </nav>
+
+    </section>
+
+    <h2>After clicking "you are here"</h2>
     <section id="demo-not-tested">
 
       <nav
@@ -163,11 +369,11 @@
         <button class="iui-button iui-borderless iui-dropdown">
           <svg-folder
             class="iui-button-icon"
-            aria-hidden="true"
+            aria-hidden
           ></svg-folder>
           <svg-caret-down-small
             class="iui-button-icon"
-            aria-hidden="true"
+            aria-hidden
           ></svg-caret-down-small>
         </button>
         <label class="iui-input-container iui-inline-label iui-inline-icon">
@@ -182,7 +388,7 @@
           >
             <svg-close-small
               class="iui-button-icon"
-              aria-hidden="true"
+              aria-hidden
             ></svg-close-small>
           </button>
         </label>

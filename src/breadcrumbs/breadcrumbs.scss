@@ -19,34 +19,31 @@
 }
 
 @mixin iui-breadcrumbs-item($breadcrumbs-height: $iui-component-height) {
-  --_iui-breadcrumbs-item-separator-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z' /></svg>");
-
   display: flex;
   align-items: center;
   line-height: $breadcrumbs-height;
   height: $breadcrumbs-height;
 
-  &:not(:last-child)::after {
-    flex-shrink: 0;
-    width: $iui-icons-small;
-    height: $iui-icons-small;
-    margin: 0 $iui-xxs;
-
-    // #region IE support & future support
-    content: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z' fill='%23000' fill-opacity='0.4' /%3E%3C/svg%3E");
-    line-height: 14px;
-
-    @supports (mask: var(--_iui-breadcrumbs-item-separator-svg)) {
-      content: '';
-      background-color: var(--iui-icons-color);
-      mask: var(--_iui-breadcrumbs-item-separator-svg);
-    }
-    // #endregion IE support & future support
-
-    @media (forced-colors: active) {
-      background-color: CanvasText;
-    }
+  // #region Component overrides
+  > a {
+    @include iui-anchor;
+    max-width: 24ch;
+    margin: 0 ($iui-s + 1);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
+
+  > .iui-button {
+    @include iui-button-borderless;
+    --_iui-button-label-character-count: 24ch;
+  }
+
+  &:not(.iui-current) > .iui-button {
+    --_iui-button-label-color: var(--iui-color-foreground-primary);
+    --_iui-button-label-color-hover: var(--_iui-button-label-color);
+  }
+  // #endregion Component overrides
 }
 
 @mixin iui-breadcrumbs-text {
@@ -79,6 +76,19 @@
       @include themed {
         color: t(iui-text-color);
       }
+    }
+  }
+}
+
+@mixin iui-breadcrumbs-separator {
+  display: flex;
+  margin: 0 $iui-xxs;
+
+  svg {
+    @include iui-icons-small;
+    display: flex; // needed for vertical alignment of webcomponents
+    @media (forced-colors: active) {
+      fill: CanvasText;
     }
   }
 }

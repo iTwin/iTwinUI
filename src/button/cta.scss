@@ -6,12 +6,16 @@
 @import './disabled';
 
 @mixin iui-button-cta {
+  --_iui-button-label-color: var(--iui-color-foreground-accessory);
+  --_iui-button-label-color-hover: --_iui-button-label-color;
+
+  @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px, $thickness: 1px);
   @include themed {
     background-color: t(iui-color-background-positive);
     border-color: t(iui-color-background-positive);
     color: t(iui-color-foreground-accessory);
   }
-  @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px, $thickness: 1px);
+  color: var(--_iui-button-label-color);
 
   &:hover,
   &:active {
@@ -20,6 +24,7 @@
       border-color: t(iui-color-background-positive-overlay);
       color: t(iui-color-foreground-accessory);
     }
+    color: var(--_iui-button-label-color-hover);
   }
 
   &[disabled],
