@@ -201,7 +201,7 @@
       }
     }
 
-    &:focus-within:not(.iui-disabled) > .iui-slot:not(.iui-disabled) > .iui-more-options {
+    &:focus-within > .iui-slot:not(.iui-disabled) > .iui-more-options {
       visibility: visible;
     }
 
