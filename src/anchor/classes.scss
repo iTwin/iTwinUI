@@ -1,16 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './tag';
-@import '../anchor/index';
+@import './index';
 
-.iui-tag {
-  @include iui-tag;
-}
-
-a.iui-tag {
+.iui-anchor {
   @include iui-anchor;
-}
-
-.iui-tag-container {
-  @include iui-tag-container;
 }

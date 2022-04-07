@@ -1,8 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
+@import '../anchor/index';
 @import '../button/borderless';
+@import '../icon/index';
 
 @mixin iui-breadcrumbs {
   @include iui-reset;
