@@ -51,10 +51,6 @@ html {
   }
 }
 
-.iui-anchor {
-  @include iui-anchor;
-}
-
 [class*='iui-'],
 [class*='iui-'] * {
   // Text highlight
