@@ -1,21 +1,18 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
 @import '../button/index';
+@import '../icon/index';
+@import '../surface/index';
 
 @mixin iui-tile {
   @include iui-reset;
+  @include iui-surface;
+  @include iui-focus($offset: $iui-xxs, $thickness: $iui-xxs);
   display: inline-flex;
   flex-direction: column;
   width: $iui-3xl * 3;
-  box-shadow: $iui-elevation-2;
   backface-visibility: hidden;
-  @include iui-focus($offset: $iui-xxs, $thickness: $iui-xxs);
-  @include themed() {
-    background-color: t(iui-color-background-1);
-    color: t(iui-text-color);
-  }
 
   &:hover,
   &:focus-within {
@@ -53,6 +50,20 @@
 
     .iui-tile-thumbnail-picture {
       transform: translateZ(0) scale(1.1);
+    }
+  }
+
+  &[tabindex] {
+    cursor: pointer;
+    transition: box-shadow $iui-speed-fast ease-in-out;
+
+    &,
+    * {
+      user-select: none;
+    }
+
+    &:hover {
+      box-shadow: $iui-elevation-8;
     }
   }
 
