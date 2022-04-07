@@ -392,7 +392,9 @@ const getPreviousResizableHeader = <T extends Record<string, unknown>>(
   headerColumn: ColumnInstance<T>,
   instance: TableInstance<T>,
 ) => {
-  const headersList = headerColumn.parent?.columns || instance.flatHeaders;
+  const headersList = (
+    headerColumn.parent?.columns || instance.flatHeaders
+  ).filter(({ isVisible }) => isVisible);
   const headerIndex = headersList.findIndex((h) => h.id === headerColumn.id);
   return [...headersList]
     .slice(0, headerIndex)
@@ -404,7 +406,9 @@ const getNextResizableHeader = <T extends Record<string, unknown>>(
   headerColumn: ColumnInstance<T>,
   instance: TableInstance<T>,
 ) => {
-  const headersList = headerColumn.parent?.columns || instance.flatHeaders;
+  const headersList = (
+    headerColumn.parent?.columns || instance.flatHeaders
+  ).filter(({ isVisible }) => isVisible);
   const headerIndex = headersList.findIndex((h) => h.id === headerColumn.id);
   return [...headersList]
     .slice(headerIndex + 1)

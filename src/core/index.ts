@@ -183,6 +183,7 @@ export {
   DefaultCell,
   EditableCell,
   TablePaginator,
+  ActionColumn,
 } from './Table';
 export type {
   TableProps,

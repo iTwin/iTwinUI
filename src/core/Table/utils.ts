@@ -16,7 +16,7 @@ export const getCellStyle = <T extends Record<string, unknown>>(
     style.width = width;
     // This allows flexbox to handle the width of the column on table resize
     if (isTableResizing && column.canResize) {
-      style.flex = `${Number(column.width)} 1 ${width}`;
+      style.flex = `${Number(column.width)} ${Number(column.width)} ${width}`;
     } else {
       style.flex = `0 0 ${width}`;
     }

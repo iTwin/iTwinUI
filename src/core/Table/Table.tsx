@@ -43,16 +43,14 @@ import {
   onExpandHandler,
   onFilterHandler,
   onSelectHandler,
-} from './actionHandlers';
-import { onSingleSelectHandler } from './actionHandlers/selectHandler';
-import {
+  onSingleSelectHandler,
   onTableResizeEnd,
   onTableResizeStart,
-} from './actionHandlers/resizeHandler';
+} from './actionHandlers';
 import VirtualScroll from '../utils/components/VirtualScroll';
 
 const singleRowSelectedAction = 'singleRowSelected';
-const tableResizeStartAction = 'tableResizeStart';
+export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
 
 export type TablePaginatorRendererProps = {

@@ -176,6 +176,11 @@ declare module 'react-table' {
      * @default false
      */
     disableReordering?: boolean;
+    /**
+     * If true, column's visibility cannot be toggled.
+     * @default false
+     */
+    disableToggleVisibility?: boolean;
   }
 
   export interface ColumnInstance<D extends object = {}>

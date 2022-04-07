@@ -21,4 +21,5 @@ export type { DefaultCellProps, EditableCellProps } from './cells';
 export { TablePaginator } from './TablePaginator';
 export type { TablePaginatorProps } from './TablePaginator';
 
+export { ActionColumn } from './columns';
 export default './Table';
