@@ -14,7 +14,6 @@
 
 @mixin iui-tag-basic {
   @include iui-tag-base;
-  outline-offset: 1px;
 
   &:not(a) {
     @include themed {
@@ -35,6 +34,7 @@
   font-size: $iui-font-size;
   text-transform: none;
   cursor: default;
+  -webkit-tap-highlight-color: transparent;
   @include themed {
     border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     background-color: t(iui-color-background-1);
@@ -61,9 +61,6 @@
 }
 
 @mixin iui-tag-button {
-  @include iui-button;
-  @include iui-button-borderless;
-  @include iui-button-size($size: small, $styleType: borderless);
   border-radius: 50%;
 }
 
