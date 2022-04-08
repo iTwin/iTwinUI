@@ -2,7 +2,6 @@
 
 ## [0.54.0](https://www.github.com/iTwin/iTwinUI/compare/v0.53.3...v0.54.0) (2022-04-07)
 
-
 ### What's new
 
 * **Anchor:** Add anchor component ([#525](https://www.github.com/iTwin/iTwinUI/issues/525)) ([ca6a85f](https://www.github.com/iTwin/iTwinUI/commit/ca6a85f08779150b349c942babed4409e9ca882c))
