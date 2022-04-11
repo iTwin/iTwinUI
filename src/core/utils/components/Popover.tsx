@@ -92,7 +92,18 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     const render = props.render;
     computedProps.render = (...args) => (mounted ? render(...args) : '');
   } else {
-    computedProps.content = mounted ? props.content : '';
+    // Fixing issue where elements below Popover gets click events.
+    // Tippy uses react Portal, which propagates events by react tree, not dom tree.
+    // Read more: https://reactjs.org/docs/portals.html#event-bubbling-through-portals
+    const clonedContent = React.isValidElement(props.content)
+      ? React.cloneElement(props.content, {
+          onClick: (e: MouseEvent) => {
+            e.stopPropagation();
+            (props.content as JSX.Element).props.onClick?.(e);
+          },
+        })
+      : props.content;
+    computedProps.content = mounted ? clonedContent : '';
   }
 
   return <Tippy {...computedProps} ref={refs} />;
