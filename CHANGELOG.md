@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.54.1](https://www.github.com/iTwin/iTwinUI/compare/v0.54.0...v0.54.1) (2022-04-11)
+
+
+### Fixes
+
+* **Anchor:** Bringing Anchor back to global.scss ([#580](https://www.github.com/iTwin/iTwinUI/issues/580)) ([a5f1962](https://www.github.com/iTwin/iTwinUI/commit/a5f1962a4ffe7393f465f78d5a6a5cd31f8b74bf))
+
 ## [0.54.0](https://www.github.com/iTwin/iTwinUI/compare/v0.53.3...v0.54.0) (2022-04-07)
 
 ### What's new
