@@ -85,7 +85,7 @@ it('renders a report message Link correctly', () => {
     />,
   );
 
-  const link = container.querySelector('.iui-anchor') as HTMLElement;
+  const link = container.querySelector('.iui-toast-anchor') as HTMLElement;
   expect(link.textContent).toBe('View Message Function');
   link.click();
   expect(mockedFn).toHaveBeenCalled();

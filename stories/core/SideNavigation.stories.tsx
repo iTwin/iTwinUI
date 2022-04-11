@@ -20,6 +20,7 @@ import {
   SideNavigationProps,
   Text,
   IconButton,
+  Anchor,
 } from '../../src/core';
 
 export default {
@@ -150,15 +151,14 @@ export const Submenu: Story<SideNavigationProps> = (args) => {
             <ul>
               {[...Array(10).fill(null)].map((_, index) => (
                 <li key={index}>
-                  <a
-                    className='iui-anchor'
+                  <Anchor
                     onClick={() => {
                       setActiveItem(2);
                       setActiveSubItem(index);
                     }}
                   >
                     Folder {index}
-                  </a>
+                  </Anchor>
                 </li>
               ))}
             </ul>

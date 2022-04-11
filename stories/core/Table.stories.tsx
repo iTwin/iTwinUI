@@ -31,6 +31,7 @@ import {
   TablePaginator,
   TablePaginatorRendererProps,
   ActionColumn,
+  Anchor,
 } from '../../src/core';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
@@ -127,11 +128,7 @@ export const Basic: Story<Partial<TableProps>> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               const onClick = () => onClickHandler(props);
-              return (
-                <a className='iui-anchor' onClick={onClick}>
-                  Click me!
-                </a>
-              );
+              return <Anchor onClick={onClick}>Click me!</Anchor>;
             },
           },
         ],
@@ -198,15 +195,14 @@ export const Selectable: Story<Partial<TableProps>> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               return (
-                <a
-                  className='iui-anchor'
+                <Anchor
                   onClick={(e) => {
                     e.stopPropagation(); // prevent row selection when clicking on link
                     action(props.row.original.name)();
                   }}
                 >
                   Click me!
-                </a>
+                </Anchor>
               );
             },
           },
@@ -273,11 +269,7 @@ export const Sortable: Story<Partial<TableProps>> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               const onClick = () => onClickHandler(props);
-              return (
-                <a className='iui-anchor' onClick={onClick}>
-                  Click me!
-                </a>
-              );
+              return <Anchor onClick={onClick}>Click me!</Anchor>;
             },
           },
         ],
@@ -824,11 +816,7 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               const onClick = () => onClickHandler(props);
-              return (
-                <a className='iui-anchor' onClick={onClick}>
-                  Click me!
-                </a>
-              );
+              return <Anchor onClick={onClick}>Click me!</Anchor>;
             },
           },
         ],
@@ -913,11 +901,7 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               const onClick = () => onClickHandler(props);
-              return (
-                <a className='iui-anchor' onClick={onClick}>
-                  Click me!
-                </a>
-              );
+              return <Anchor onClick={onClick}>Click me!</Anchor>;
             },
           },
         ],
@@ -949,8 +933,7 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
       </div>
       <div>
         Open{' '}
-        <a
-          className='iui-anchor'
+        <Anchor
           onClick={() =>
             (parent.document.querySelector(
               '[id^="tabbutton-actions"]',
@@ -958,7 +941,7 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
           }
         >
           Actions
-        </a>{' '}
+        </Anchor>{' '}
         tab to see when callback is called and scroll the table.
       </div>
       <br />
@@ -1019,12 +1002,9 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
             {isRowDisabled(props.row.original) ? (
               <>Click me!</>
             ) : (
-              <a
-                className='iui-anchor'
-                onClick={action(props.row.original.name)}
-              >
+              <Anchor onClick={action(props.row.original.name)}>
                 Click me!
-              </a>
+              </Anchor>
             )}
           </>
         ),
@@ -1437,11 +1417,7 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               const onClick = () => onClickHandler(props);
-              return (
-                <a className='iui-anchor' onClick={onClick}>
-                  Click me!
-                </a>
-              );
+              return <Anchor onClick={onClick}>Click me!</Anchor>;
             },
           },
         ],
@@ -2261,11 +2237,7 @@ export const Virtualized: Story<Partial<TableProps>> = (args) => {
             width: 100,
             Cell: (props: CellProps<{ name: string; description: string }>) => {
               const onClick = () => onClickHandler(props);
-              return (
-                <a className='iui-anchor' onClick={onClick}>
-                  Click me!
-                </a>
-              );
+              return <Anchor onClick={onClick}>Click me!</Anchor>;
             },
           },
         ],

@@ -5,7 +5,7 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { CreeveyMeta } from 'creevey';
 import React from 'react';
-import { ErrorPage } from '../../src/core';
+import { Anchor, ErrorPage } from '../../src/core';
 import { ErrorPageProps } from '../../src/core/ErrorPage/ErrorPage';
 
 export default {
@@ -115,14 +115,9 @@ CustomHtmlMessage.args = {
   errorMessage: (
     <>
       A React component with an{' '}
-      <a
-        className='iui-anchor'
-        href='https://www.bentley.com'
-        target='_blank'
-        rel='noreferrer'
-      >
+      <Anchor href='https://www.bentley.com' target='_blank' rel='noreferrer'>
         anchor
-      </a>{' '}
+      </Anchor>{' '}
       may be passed.
     </>
   ),

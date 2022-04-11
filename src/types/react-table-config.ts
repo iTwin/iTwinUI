@@ -62,9 +62,22 @@ declare module 'react-table' {
   export type FieldType = 'text' | 'number' | 'date' | string;
 
   export type CellRendererProps<D extends object = {}> = {
+    /**
+     * Cell HTML props passed from the Table.
+     */
     cellElementProps: TableCellProps;
+    /**
+     * Table specific cell props like `column`, `row`.
+     */
     cellProps: CellProps<D>;
+    /**
+     * Cell's content.
+     */
     children: React.ReactNode;
+    /**
+     * Function that returns whether the cell is disabled.
+     */
+    isDisabled?: (rowData: D) => boolean;
   };
 
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration

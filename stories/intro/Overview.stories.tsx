@@ -9,8 +9,7 @@ import Markdown from 'markdown-to-jsx';
 import readme from '../../README.md';
 import itwinImage from '../../.storybook/public/itwin.svg';
 import itwinImageDark from '../../.storybook/public/itwin-dark.svg';
-import { Headline, Subheading, Title, Code } from '../../src/';
-import cx from 'classnames';
+import { Headline, Subheading, Title, Code, Anchor } from '../../src/';
 import { CreeveyMeta } from 'creevey';
 
 const channel = addons.getChannel();
@@ -93,9 +92,7 @@ export const Overview: Story = () => {
           },
           a: {
             component: (args) =>
-              args.href.includes('_build') ? null : (
-                <a {...args} className={cx('iui-anchor', args.className)} />
-              ),
+              args.href.includes('_build') ? null : <Anchor {...args} />,
           },
           img: {
             component: (args) =>

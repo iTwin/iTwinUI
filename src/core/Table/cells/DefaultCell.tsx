@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { CellRendererProps } from 'react-table';
+import cx from 'classnames';
 
 export type DefaultCellProps<
   T extends Record<string, unknown>
@@ -21,13 +22,33 @@ export type DefaultCellProps<
  * }
  */
 export const DefaultCell = <T extends Record<string, unknown>>(
-  props: CellRendererProps<T>,
+  props: DefaultCellProps<T>,
 ) => {
   // Omitting `cellProps`
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { cellElementProps, children, cellProps, ...rest } = props;
+  const {
+    cellElementProps: {
+      className: cellElementClassName,
+      style: cellElementStyle,
+      ...cellElementProps
+    },
+    children,
+    cellProps,
+    isDisabled,
+    className,
+    style,
+    ...rest
+  } = props;
+
   return (
-    <div {...cellElementProps} {...rest}>
+    <div
+      {...cellElementProps}
+      {...rest}
+      className={cx(cellElementClassName, className, {
+        'iui-disabled': isDisabled?.(cellProps.row.original),
+      })}
+      style={{ ...cellElementStyle, ...style }}
+    >
       {children}
     </div>
   );

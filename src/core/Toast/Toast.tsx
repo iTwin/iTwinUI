@@ -250,7 +250,7 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
       </div>
       <div className='iui-message'>{content}</div>
       {link && (
-        <a className='iui-anchor' onClick={link.onClick}>
+        <a className='iui-toast-anchor' onClick={link.onClick}>
           {link.title}
         </a>
       )}
