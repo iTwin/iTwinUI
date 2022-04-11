@@ -152,11 +152,11 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   }
 
   &-skeleton {
-    --iui-menu-item-skeleton-max-width: 30%;
+    --iui-menu-item-content-skeleton-max-width: 30%;
     cursor: auto;
 
     .iui-content {
-      max-width: var(--iui-menu-item-skeleton-max-width);
+      max-width: var(--iui-menu-item-content-skeleton-max-width);
     }
 
     .iui-menu-label {
