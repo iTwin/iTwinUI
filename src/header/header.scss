@@ -239,7 +239,7 @@
   height: 100%;
   border-radius: 0;
   overflow: hidden;
-  padding-right: $iui-s;
+  padding: $iui-s;
 
   @include iui-header-button-focus;
 
@@ -270,7 +270,7 @@
   }
 
   > * + * {
-    margin-left: $iui-sm;
+    margin-left: $iui-s;
   }
 
   .iui-header-button-icon {
@@ -330,7 +330,7 @@
 
   > *:first-child {
     .iui-button {
-      padding-left: $iui-sm;
+      padding-left: $iui-s;
     }
   }
 
