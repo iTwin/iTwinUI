@@ -161,13 +161,13 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
     .iui-menu-label {
       width: 100%;
-      height: $iui-line-height * 0.7;
+      height: $iui-font-size;
       vertical-align: middle;
     }
 
     .iui-menu-description {
       width: 70%;
-      height: $iui-line-height * 0.5;
+      height: $iui-font-size-small;
       vertical-align: middle;
       margin-top: $iui-xs;
     }
