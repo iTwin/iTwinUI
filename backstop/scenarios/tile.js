@@ -18,50 +18,104 @@ module.exports = [
     selectors: ['#demo-folder'],
   }),
 
-  // Entire tile hover & focus states
-  scenario('State hover & focus with thumbnail', {
-    actions: [hover('#test-tile-4'), focus('#test-tile-5')],
-    selectors: ['#demo-default'],
+  // Hover states
+  //// Tile
+  scenario('State hover', {
+    actions: [hover('#test-tile-1')],
+    selectors: ['#test-tile-1'],
   }),
-  scenario('State focus & hover with thumbnail', {
-    actions: [hover('#test-tile-5'), focus('#test-tile-4')],
-    selectors: ['#demo-default'],
-  }),
-  scenario('State focus selected tile', {
-    actions: [focus('#test-tile-6')],
-    selectors: ['#demo-default'],
+  scenario('State hover with thumbnail', {
+    actions: [hover('#test-tile-2')],
+    selectors: ['#test-tile-2'],
   }),
 
-  // Type Indicator & Quick Action hover & focus
-  scenario('State Type Indicator & Quick Action hover & focus', {
-    actions: [
-      hover('#test-tile-1 .iui-tile-thumbnail-type-indicator'),
-      focus('#test-tile-2 .iui-tile-thumbnail-quick-action'),
-    ],
-    selectors: ['#demo-everything-turned-on'],
+  //// Type Indicator hover
+  scenario('State Type Indicator hover', {
+    actions: [hover('#test-tile-1 .iui-tile-thumbnail-type-indicator')],
+    selectors: ['#test-tile-1'],
   }),
-  scenario('State Type Indicator & Quick Action focus & hover', {
-    actions: [
-      focus('#test-tile-1 .iui-tile-thumbnail-type-indicator'),
-      hover('#test-tile-2 .iui-tile-thumbnail-quick-action'),
-    ],
-    selectors: ['#demo-everything-turned-on'],
+  scenario('State Type Indicator hover with thumbnail', {
+    actions: [hover('#test-tile-2 .iui-tile-thumbnail-type-indicator')],
+    selectors: ['#test-tile-2'],
   }),
 
-  // More Options hover & focus
+  //// Quick Action hover
+  scenario('State Quick Action hover', {
+    actions: [hover('#test-tile-1 .iui-tile-thumbnail-quick-action')],
+    selectors: ['#test-tile-1'],
+  }),
+  scenario('State Quick Action hover with thumbnail', {
+    actions: [hover('#test-tile-2 .iui-tile-thumbnail-quick-action')],
+    selectors: ['#test-tile-2'],
+  }),
+
+  //// More Options hover
   scenario('State More Options hover', {
-    actions: [hover('#test-tile-1 #test-button'), focus('#test-tile-2 #test-button-2')],
-    selectors: ['#demo-everything-turned-on'],
+    actions: [hover('#test-tile-1'), hover('#test-button')],
+    selectors: ['#test-tile-1'],
     misMatchThreshold: 0.1,
   }),
 
-  // Button hover & focus
-  scenario('State Tile Button hover & focus', {
-    actions: [hover('#test-tile-1 .iui-tile-buttons .iui-button'), focus('#test-tile-2 .iui-tile-buttons .iui-button')],
-    selectors: ['#demo-everything-turned-on'],
+  //// Button hover
+  scenario('State Double Button hover', {
+    actions: [hover('#test-tile-1 .iui-tile-buttons .iui-button')],
+    selectors: ['#test-tile-1'],
   }),
-  scenario('State Tile Button focus & hover', {
-    actions: [hover('#test-tile-2 .iui-tile-buttons .iui-button'), focus('#test-tile-1 .iui-tile-buttons .iui-button')],
-    selectors: ['#demo-everything-turned-on'],
+  scenario('State Single Button hover', {
+    actions: [hover('#test-tile-2 .iui-tile-buttons .iui-button')],
+    selectors: ['#test-tile-2'],
+  }),
+
+  // Focus states
+  //// Tile
+  scenario('State focus', {
+    actions: [focus('#test-tile-1')],
+    selectors: ['#test-tile-1'],
+  }),
+  scenario('State focus with thumbnail', {
+    actions: [focus('#test-tile-2')],
+    selectors: ['#test-tile-2'],
+  }),
+
+  //// Type Indicator focus
+  scenario('State Type Indicator focus', {
+    actions: [focus('#test-tile-1 .iui-tile-thumbnail-type-indicator')],
+    selectors: ['#test-tile-1'],
+  }),
+  scenario('State Type Indicator focus with thumbnail', {
+    actions: [focus('#test-tile-2 .iui-tile-thumbnail-type-indicator')],
+    selectors: ['#test-tile-2'],
+  }),
+
+  //// Quick Action focus
+  scenario('State Quick Action focus', {
+    actions: [focus('#test-tile-1 .iui-tile-thumbnail-quick-action')],
+    selectors: ['#test-tile-1'],
+  }),
+  scenario('State Quick Action focus with thumbnail', {
+    actions: [focus('#test-tile-2 .iui-tile-thumbnail-quick-action')],
+    selectors: ['#test-tile-2'],
+  }),
+
+  //// Play Icon focus
+  scenario('State Play Icon focus with thumbnail', {
+    actions: [focus('#test-tile-3 .iui-thumbnail-icon')],
+    selectors: ['#test-tile-3'],
+  }),
+
+  //// More Options focus
+  scenario('State More Options focus', {
+    actions: [focus('#test-button')],
+    selectors: ['#test-tile-1'],
+  }),
+
+  //// Button focus
+  scenario('State Double Button focus', {
+    actions: [focus('#test-tile-1 .iui-tile-buttons .iui-button')],
+    selectors: ['#test-tile-1'],
+  }),
+  scenario('State Single Button focus', {
+    actions: [focus('#test-tile-2 .iui-tile-buttons .iui-button')],
+    selectors: ['#test-tile-2'],
   }),
 ];
