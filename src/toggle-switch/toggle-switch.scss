@@ -30,6 +30,9 @@
     @include themed {
       color: t(iui-text-color-muted);
     }
+    @media (forced-colors: active) {
+      color: GrayText;
+    }
   }
 
   // For labels on the left
@@ -96,6 +99,9 @@
   &::after {
     background-color: var(--iui-color-foreground-body);
     opacity: var(--iui-opacity-2);
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+    }
   }
 
   &:hover {
@@ -111,11 +117,18 @@
   &:checked {
     background-color: var(--iui-color-background-primary);
     border-color: var(--iui-color-background-primary);
+    @media (forced-colors: active) {
+      background-color: ActiveText;
+      border-color: ActiveText;
+    }
 
     &::after {
       transform: translateX($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset);
       background-color: var(--iui-color-foreground-accessory);
       opacity: var(--iui-opacity-2);
+      @media (forced-colors: active) {
+        background-color: Canvas;
+      }
     }
 
     ~ .iui-toggle-switch-icon {
@@ -141,6 +154,10 @@
     cursor: not-allowed;
     background-color: var(--iui-color-background-disabled);
     border-color: var(--iui-color-background-disabled);
+    @media (forced-colors: active) {
+      background-color: GrayText;
+      border-color: GrayText;
+    }
 
     &::after {
       background-color: var(--iui-color-foreground-body);
@@ -170,5 +187,8 @@
     transition: opacity $iui-speed-fast ease-out;
     pointer-events: none;
     fill: var(--iui-color-foreground-accessory);
+    @media (forced-colors: active) {
+      fill: Canvas;
+    }
   }
 }
