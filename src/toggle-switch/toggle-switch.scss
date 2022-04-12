@@ -101,6 +101,7 @@
     opacity: var(--iui-opacity-2);
     @media (forced-colors: active) {
       background-color: CanvasText;
+      opacity: 1;
     }
   }
 
@@ -118,8 +119,8 @@
     background-color: var(--iui-color-background-primary);
     border-color: var(--iui-color-background-primary);
     @media (forced-colors: active) {
-      background-color: ActiveText;
-      border-color: ActiveText;
+      background-color: Highlight;
+      border-color: Highlight;
     }
 
     &::after {
@@ -128,6 +129,7 @@
       opacity: var(--iui-opacity-2);
       @media (forced-colors: active) {
         background-color: Canvas;
+        opacity: 1;
       }
     }
 
@@ -162,6 +164,11 @@
     &::after {
       background-color: var(--iui-color-foreground-body);
       opacity: var(--iui-opacity-5);
+
+      @media (forced-colors: active) {
+        background-color: Canvas;
+        opacity: 0.75;
+      }
     }
 
     ~ .iui-toggle-switch-icon {
@@ -171,6 +178,10 @@
 
     &:checked ~ .iui-toggle-switch-icon {
       opacity: var(--iui-opacity-5);
+      @media (forced-colors: active) {
+        fill: Canvas;
+        opacity: 0.75;
+      }
     }
   }
   // #endregion Disabled toggle switch
