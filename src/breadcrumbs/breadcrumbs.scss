@@ -29,7 +29,7 @@
   > a {
     @include iui-anchor;
     max-width: 24ch;
-    margin: 0 ($iui-s + 1);
+    margin: 0 $iui-s;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -38,6 +38,7 @@
   > .iui-button {
     @include iui-button-borderless;
     --_iui-button-label-character-count: 24ch;
+    border: none;
   }
 
   &:not(.iui-current) > .iui-button {
@@ -48,7 +49,7 @@
 }
 
 @mixin iui-breadcrumbs-text {
-  margin: 0 ($iui-s + 1);
+  margin: 0 $iui-s;
   max-width: 24ch;
   overflow: hidden;
   white-space: nowrap;
@@ -62,6 +63,7 @@
 @mixin iui-breadcrumbs-button {
   @include iui-button;
   @include iui-button-borderless;
+  border: none;
 
   .iui-button-label {
     overflow: hidden;
