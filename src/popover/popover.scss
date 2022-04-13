@@ -7,7 +7,7 @@
 @mixin iui-popover {
   &.tippy-box {
     &[data-reference-hidden] {
-      visibility: visible;
+      visibility: hidden;
       pointer-events: auto;
     }
 
