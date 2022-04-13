@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.54.2](https://www.github.com/iTwin/iTwinUI/compare/v0.54.1...v0.54.2) (2022-04-13)
+
+
+### Fixes
+
+* **Popover:** Hiding popover when parent element is not visible ([#589](https://www.github.com/iTwin/iTwinUI/issues/589)) ([7a87dda](https://www.github.com/iTwin/iTwinUI/commit/7a87dda47bf8ee2de925bdcb0eac2fb1dd941d77))
+
 ### [0.54.1](https://www.github.com/iTwin/iTwinUI/compare/v0.54.0...v0.54.1) (2022-04-11)
 
 ### Fixes
