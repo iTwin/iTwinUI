@@ -8,7 +8,7 @@
   &.tippy-box {
     &[data-reference-hidden] {
       visibility: hidden;
-      pointer-events: auto;
+      pointer-events: none;
     }
 
     // Resets tippy.js default stylings that interfere with our own
