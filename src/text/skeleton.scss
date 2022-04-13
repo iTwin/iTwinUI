@@ -7,7 +7,7 @@
   user-select: none;
   color: transparent;
   border-radius: $iui-border-radius;
-  cursor: progress;
+  cursor: wait;
 
   @include themed {
     background: linear-gradient(
