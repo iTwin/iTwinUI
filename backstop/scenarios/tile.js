@@ -21,12 +21,12 @@ module.exports = [
   // Hover states
   //// Tile
   scenario('State hover', {
-    actions: [hover('#test-tile-1')],
-    selectors: ['#test-tile-1'],
+    actions: [hover('#test-tile-4')],
+    selectors: ['#demo-default'],
   }),
   scenario('State hover with thumbnail', {
-    actions: [hover('#test-tile-2')],
-    selectors: ['#test-tile-2'],
+    actions: [hover('#test-tile-5')],
+    selectors: ['#demo-default'],
   }),
 
   //// Type Indicator hover

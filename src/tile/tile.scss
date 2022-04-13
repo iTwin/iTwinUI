@@ -53,14 +53,9 @@
     }
   }
 
-  &[tabindex] {
+  &.iui-actionable {
     cursor: pointer;
     transition: box-shadow $iui-speed-fast ease-in-out;
-
-    &,
-    * {
-      user-select: none;
-    }
 
     &:hover {
       box-shadow: $iui-elevation-8;
