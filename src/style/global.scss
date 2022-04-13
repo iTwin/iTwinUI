@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
+@import './anchor';
 
 html {
   @include theme-variables(light);
@@ -49,6 +50,10 @@ html {
   &.iui-no-webfonts {
     font-family: $iui-sans-fallback;
   }
+}
+
+.iui-anchor {
+  @include iui-anchor;
 }
 
 [class*='iui-'],

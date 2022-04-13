@@ -1,5 +1,23 @@
 # Changelog
 
+### [0.54.1](https://www.github.com/iTwin/iTwinUI/compare/v0.54.0...v0.54.1) (2022-04-11)
+
+### Fixes
+
+* **Anchor:** Bringing Anchor back to global.scss ([#580](https://www.github.com/iTwin/iTwinUI/issues/580)) ([a5f1962](https://www.github.com/iTwin/iTwinUI/commit/a5f1962a4ffe7393f465f78d5a6a5cd31f8b74bf))
+
+## [0.54.0](https://www.github.com/iTwin/iTwinUI/compare/v0.53.3...v0.54.0) (2022-04-07)
+
+### What's new
+
+* **Anchor:** Add anchor component ([#525](https://www.github.com/iTwin/iTwinUI/issues/525)) ([ca6a85f](https://www.github.com/iTwin/iTwinUI/commit/ca6a85f08779150b349c942babed4409e9ca882c))
+* **Table:** Allows to disable any column in a row ([#575](https://www.github.com/iTwin/iTwinUI/issues/575)) ([f8cf32a](https://www.github.com/iTwin/iTwinUI/commit/f8cf32a517eae9a50972d08773483b9f485c15d1))
+
+
+### Fixes
+
+* **SkipToContent:** Fix Overlapping Visibility Bug ([#572](https://www.github.com/iTwin/iTwinUI/issues/572)) ([de3f966](https://www.github.com/iTwin/iTwinUI/commit/de3f9662ab723e44ed139627d26fbf5b2340c265))
+
 ### [0.53.3](https://www.github.com/iTwin/iTwinUI/compare/v0.53.2...v0.53.3) (2022-04-05)
 
 ### Fixes
