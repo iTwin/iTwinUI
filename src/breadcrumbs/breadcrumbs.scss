@@ -28,57 +28,64 @@
   // #region Component overrides
   > a {
     @include iui-anchor;
-    max-width: 24ch;
-    margin: 0 $iui-s;
+    padding: 0 $iui-s;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    &:focus,
+    &:focus-visible {
+      outline-offset: -1px;
+    }
   }
 
   > .iui-button {
     @include iui-button-borderless;
-    --_iui-button-label-character-count: 24ch;
     border: none;
   }
 
-  &:not(.iui-current) > .iui-button {
-    --_iui-button-label-color: var(--iui-color-foreground-primary);
-    --_iui-button-label-color-hover: var(--_iui-button-label-color);
+  > * {
+    max-width: 26ch;
+  }
+
+  &:not(.iui-current) > * {
+    &,
+    &:hover,
+    &:active {
+      --_iui-button-foreground-color: var(--iui-color-foreground-primary);
+    }
   }
   // #endregion Component overrides
 }
 
 @mixin iui-breadcrumbs-text {
-  margin: 0 $iui-s;
-  max-width: 24ch;
+  padding: 0 $iui-s;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 
   @at-root a#{&} {
     @include iui-anchor;
+
+    &:focus,
+    &:focus-visible {
+      outline-offset: -1px;
+    }
   }
 }
 
 @mixin iui-breadcrumbs-button {
   @include iui-button;
   @include iui-button-borderless;
-  border: none;
 
-  .iui-button-label {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 24ch;
-    @include themed {
-      color: t(iui-color-foreground-primary);
-    }
+  border: none;
+  @include themed {
+    color: t(iui-color-foreground-primary);
   }
 
-  @at-root .iui-breadcrumbs-item-current {
-    .iui-button-label {
-      @include themed {
-        color: t(iui-text-color);
-      }
+  @at-root .iui-breadcrumbs-item-current & {
+    @include themed {
+      color: t(iui-text-color);
     }
   }
 }

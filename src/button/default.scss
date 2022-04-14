@@ -7,17 +7,18 @@
 @import './disabled';
 
 @mixin iui-button-default {
-  --_iui-button-label-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-  --_iui-button-label-color-hover: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+  --_iui-button-foreground-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
 
-  @include iui-focus($offset: -2px, $thickness: 2px);
   @include themed {
     background-color: t(iui-color-background-1);
     border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
   }
+  @include iui-focus($offset: -2px, $thickness: 2px);
 
   &:hover,
   &:active {
+    --_iui-button-foreground-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+
     @include themed {
       background-color: t(iui-color-background-1-overlay);
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
