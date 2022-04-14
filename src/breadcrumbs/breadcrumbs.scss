@@ -33,8 +33,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    &:focus,
-    &:focus-visible {
+    &:focus {
       outline-offset: -1px;
     }
   }
@@ -67,8 +66,7 @@
   @at-root a#{&} {
     @include iui-anchor;
 
-    &:focus,
-    &:focus-visible {
+    &:focus {
       outline-offset: -1px;
     }
   }
