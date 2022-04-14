@@ -7,8 +7,6 @@
 @import './disabled';
 
 @mixin iui-button-default {
-  --_iui-button-foreground-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-
   @include themed {
     background-color: t(iui-color-background-1);
     border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
@@ -17,8 +15,6 @@
 
   &:hover,
   &:active {
-    --_iui-button-foreground-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-
     @include themed {
       background-color: t(iui-color-background-1-overlay);
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
