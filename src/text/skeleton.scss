@@ -3,7 +3,6 @@
 @import '../style/index';
 
 @mixin iui-text-skeleton {
-  width: fit-content;
   user-select: none;
   color: transparent;
   border-radius: $iui-border-radius;
@@ -18,8 +17,8 @@
       t(iui-text-color-muted),
       t(iui-text-color-muted)
     );
-    background-size: 200% 100%;
   }
+  background-size: 200% 100%;
 
   @media (forced-colors: active) {
     forced-color-adjust: none;
