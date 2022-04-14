@@ -1621,35 +1621,38 @@
       </ul>
     </section>
     <script>
-      const sectionPadding = parseInt(getComputedStyle(document.querySelector('#demo-header')).paddingLeft);
+      window.onload = () => {
+        const sectionPadding = parseInt(getComputedStyle(document.querySelector('#demo-header')).getPropertyValue('padding-left'));
 
-      // Menu is placed differently based on the user screen, so need to set margin-left dynamically
-      const headerButton = document.querySelector('#demo-header-imodel-button');
-      const headerButtonMenu = document.querySelector('#demo-header-imodel-menu');
-      headerButtonMenu.style.marginLeft = `${headerButton.offsetLeft - sectionPadding}px`;
+        // Menu is placed differently based on the user screen, so need to set margin-left dynamically
+        const headerButton = document.querySelector('#demo-header-imodel-button');
+        const headerButtonMenu = document.querySelector('#demo-header-imodel-menu');
+        console.log(sectionPadding, headerButton.offsetLeft);
+        headerButtonMenu.style.marginLeft = `${headerButton.offsetLeft - sectionPadding}px`;
 
-      const slimHeaderButton = document.querySelector('#demo-header-slim-imodel-button');
-      const slimHeaderButtonMenu = document.querySelector('#demo-header-slim-imodel-menu');
-      slimHeaderButtonMenu.style.marginLeft = `${slimHeaderButton.offsetLeft - sectionPadding}px`;
+        const slimHeaderButton = document.querySelector('#demo-header-slim-imodel-button');
+        const slimHeaderButtonMenu = document.querySelector('#demo-header-slim-imodel-menu');
+        slimHeaderButtonMenu.style.marginLeft = `${slimHeaderButton.offsetLeft - sectionPadding}px`;
 
-      // Clicking on menu-item should toggle selection
-      document.querySelectorAll('.iui-menu-item').forEach((item) => {
-        item.addEventListener('click', () => {
-          if (item.classList.contains('iui-active')) {
-            item.lastElementChild.remove();
-          } else {
-            const checkmarkSvg = document.createElement('svg-checkmark');
-            checkmarkSvg.classList.add('iui-icon');
-            checkmarkSvg.toggleAttribute('aria-hidden', true)
-            if (item.lastElementChild.classList.contains('iui-icon')) {
-              item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
+        // Clicking on menu-item should toggle selection
+        document.querySelectorAll('.iui-menu-item').forEach((item) => {
+          item.addEventListener('click', () => {
+            if (item.classList.contains('iui-active')) {
+              item.lastElementChild.remove();
             } else {
-              item.appendChild(checkmarkSvg);
+              const checkmarkSvg = document.createElement('svg-checkmark');
+              checkmarkSvg.classList.add('iui-icon');
+              checkmarkSvg.toggleAttribute('aria-hidden', true);
+              if (item.lastElementChild.classList.contains('iui-icon')) {
+                item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
+              } else {
+                item.appendChild(checkmarkSvg);
+              }
             }
-          }
-          item.classList.toggle('iui-active');
+            item.classList.toggle('iui-active');
+          });
         });
-      });
+      }
     </script>
   </body>
 </html>
