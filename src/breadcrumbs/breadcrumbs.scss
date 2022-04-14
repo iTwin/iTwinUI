@@ -53,7 +53,7 @@
     max-width: 26ch;
   }
 
-  &:not(.iui-current) > * {
+  &:not([aria-current]) > * {
     &,
     &:hover,
     &:active {
@@ -93,7 +93,7 @@
     text-overflow: ellipsis;
   }
 
-  @at-root .iui-breadcrumbs-item-current & {
+  @at-root [aria-current] & {
     @include themed {
       color: t(iui-text-color);
     }
