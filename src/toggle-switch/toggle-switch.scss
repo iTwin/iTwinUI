@@ -95,6 +95,9 @@
   // #region Unchecked toggle switch
   background-color: var(--iui-color-background-1);
   border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  @media (forced-colors: active) {
+    border-color: CanvasText;
+  }
 
   &::after {
     background-color: var(--iui-color-foreground-body);
