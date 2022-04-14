@@ -1760,12 +1760,11 @@
     </section>
     <script>
       window.onload = () => {
-        const sectionPadding = parseInt(getComputedStyle(document.querySelector('#demo-header')).getPropertyValue('padding-left'));
+        const sectionPadding = parseInt(getComputedStyle(document.querySelector('#demo-header')).paddingLeft);
 
         // Menu is placed differently based on the user screen, so need to set margin-left dynamically
         const headerButton = document.querySelector('#demo-header-imodel-button');
         const headerButtonMenu = document.querySelector('#demo-header-imodel-menu');
-        console.log(sectionPadding, headerButton.offsetLeft);
         headerButtonMenu.style.marginLeft = `${headerButton.offsetLeft - sectionPadding}px`;
 
         const slimHeaderButton = document.querySelector('#demo-header-slim-imodel-button');
