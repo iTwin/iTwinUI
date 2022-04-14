@@ -38,9 +38,15 @@
     }
   }
 
-  > .iui-button {
+  .iui-button {
     @include iui-button-borderless;
     border: none;
+
+    &-label {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 
   > * {
@@ -79,6 +85,12 @@
   border: none;
   @include themed {
     color: t(iui-color-foreground-primary);
+  }
+
+  &-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   @at-root .iui-breadcrumbs-item-current & {

@@ -41,12 +41,6 @@ $iui-button-padding-large: $iui-xs * 6;
   }
   color: var(--_iui-button-foreground-color);
 
-  &-label {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
   &:hover {
     --_iui-button-foreground-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
 
