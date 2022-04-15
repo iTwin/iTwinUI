@@ -76,7 +76,12 @@
       document.querySelector('#skeleton-toggle input[type=checkbox]').addEventListener('change', (e) => {
         document.querySelectorAll('.iui-text-spacing').forEach((skeletonText) => {
           skeletonText.classList.toggle('iui-skeleton');
-          skeletonText.setAttribute("aria-hidden", "true");
+
+          if (skeletonText.getAttribute('aria-hidden')) {
+            skeletonText.removeAttribute("aria-hidden");
+          } else {
+            skeletonText.setAttribute("aria-hidden", "true");
+          }
         });
       });
     </script>
