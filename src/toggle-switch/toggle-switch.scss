@@ -131,7 +131,7 @@
       background-color: var(--iui-color-foreground-accessory);
       opacity: var(--iui-opacity-2);
       @media (forced-colors: active) {
-        background-color: Canvas;
+        background-color: HighlightText;
         opacity: 1;
       }
     }
