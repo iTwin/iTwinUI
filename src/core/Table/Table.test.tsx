@@ -15,12 +15,13 @@ import * as IntersectionHooks from '../utils/hooks/useIntersection';
 import { tableFilters } from './filters';
 import { CellProps, Column, Row } from 'react-table';
 import { SvgChevronRight } from '@itwin/itwinui-icons-react';
-import { EditableCell } from './cells';
+import { DefaultCell, EditableCell } from './cells';
 import { TablePaginator } from './TablePaginator';
 import * as UseOverflow from '../utils/hooks/useOverflow';
 import * as UseResizeObserver from '../utils/hooks/useResizeObserver';
 import userEvent from '@testing-library/user-event';
-import { ActionColumn } from './columns';
+import { ActionColumn, SelectionColumn, ExpanderColumn } from './columns';
+
 const intersectionCallbacks = new Map<Element, () => void>();
 jest
   .spyOn(IntersectionHooks, 'useIntersection')
@@ -1055,6 +1056,12 @@ it('should disable row and handle expansion accordingly', () => {
   expect(rows[1].classList).toContain('iui-disabled');
   expect(rows[2].classList).not.toContain('iui-disabled');
 
+  const disabledRowCells = rows[1].querySelectorAll('.iui-cell');
+  expect(disabledRowCells.length).toBe(4);
+  disabledRowCells.forEach((cell) =>
+    expect(cell.classList).toContain('iui-disabled'),
+  );
+
   const expansionCells = container.querySelectorAll(
     '.iui-slot .iui-button',
   ) as NodeListOf<HTMLButtonElement>;
@@ -1086,6 +1093,12 @@ it('should disable row and handle selection accordingly', () => {
   expect(rows[0].classList).not.toContain('iui-disabled');
   expect(rows[1].classList).toContain('iui-disabled');
   expect(rows[2].classList).not.toContain('iui-disabled');
+
+  const disabledRowCells = rows[1].querySelectorAll('.iui-cell');
+  expect(disabledRowCells.length).toBe(4);
+  disabledRowCells.forEach((cell) =>
+    expect(cell.classList).toContain('iui-disabled'),
+  );
 
   const checkboxCells = container.querySelectorAll('.iui-slot .iui-checkbox');
   expect(checkboxCells.length).toBe(4);
@@ -2666,4 +2679,168 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
     (columnManagerColumns[0].querySelector('.iui-checkbox') as HTMLInputElement)
       .disabled,
   ).toBeTruthy();
+});
+
+it('should add selection column manually', () => {
+  const onSelect = jest.fn();
+  const isDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
+  const columns: Column<TestDataType>[] = [
+    {
+      Header: 'Table',
+      columns: [
+        SelectionColumn({ isDisabled }),
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+        },
+        {
+          id: 'description',
+          Header: 'Description',
+          accessor: 'description',
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns,
+    onSelect,
+    isSelectable: true,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  const checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+  expect(checkboxes.length).toBe(3);
+  expect(checkboxes[0].disabled).toBe(false);
+  expect(checkboxes[1].disabled).toBe(true);
+  expect(checkboxes[2].disabled).toBe(false);
+  fireEvent.click(checkboxes[1]);
+  expect(onSelect).toHaveBeenCalledWith(
+    [{ name: 'Name2', description: 'Description2' }],
+    expect.any(Object),
+  );
+});
+
+it('should add expander column manually', () => {
+  const onExpand = jest.fn();
+  const subComponent = (row: Row<TestDataType>) => (
+    <div>{`Expanded component, name: ${row.original.name}`}</div>
+  );
+  const isRowDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
+  const columns: Column<TestDataType>[] = [
+    {
+      Header: 'Table',
+      columns: [
+        ExpanderColumn({ subComponent, isDisabled: isRowDisabled }),
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+        },
+        {
+          id: 'description',
+          Header: 'Description',
+          accessor: 'description',
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns,
+    subComponent,
+    onExpand,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  const expanders = container.querySelectorAll<HTMLButtonElement>(
+    '.iui-row-expander',
+  );
+  expect(expanders.length).toBe(3);
+  expect(expanders[0].disabled).toBe(false);
+  expect(expanders[1].disabled).toBe(true);
+  expect(expanders[2].disabled).toBe(false);
+  fireEvent.click(expanders[2]);
+  expect(onExpand).toHaveBeenCalledWith(
+    [{ name: 'Name3', description: 'Description3' }],
+    expect.any(Object),
+  );
+});
+
+it('should add disabled column', () => {
+  const isCellDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
+  const columns: Column<TestDataType>[] = [
+    {
+      Header: 'Table',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          cellRenderer: (props) => (
+            <DefaultCell {...props} isDisabled={isCellDisabled} />
+          ),
+        },
+        {
+          id: 'description',
+          Header: 'Description',
+          accessor: 'description',
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns,
+  });
+
+  const disabledCell = container.querySelector(
+    '.iui-cell.iui-disabled',
+  ) as HTMLElement;
+  expect(disabledCell).toBeTruthy();
+  expect(disabledCell.textContent).toBe('Name2');
+});
+
+it('should show column enabled when whole row is disabled', () => {
+  const isCellDisabled = (rowData: TestDataType) => rowData.name !== 'Name2';
+  const isRowDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
+  const columns: Column<TestDataType>[] = [
+    {
+      Header: 'Table',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          cellRenderer: (props) => (
+            <DefaultCell {...props} isDisabled={isCellDisabled} />
+          ),
+        },
+        {
+          id: 'description',
+          Header: 'Description',
+          accessor: 'description',
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns,
+    isRowDisabled,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+  expect(rows[0].classList).not.toContain('iui-disabled');
+  expect(rows[1].classList).toContain('iui-disabled');
+  expect(rows[2].classList).not.toContain('iui-disabled');
+
+  const rowCells = rows[1].querySelectorAll('.iui-cell');
+  expect(rowCells.length).toBe(2);
+  expect(rowCells[0].classList).not.toContain('iui-disabled');
+  expect(rowCells[1].classList).toContain('iui-disabled');
 });

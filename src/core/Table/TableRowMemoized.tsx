@@ -98,7 +98,11 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
       </div>
       {subComponent && (
         <WithCSSTransition in={row.isExpanded}>
-          <div className='iui-row iui-expanded-content'>
+          <div
+            className={cx('iui-row', 'iui-expanded-content', {
+              'iui-disabled': isDisabled,
+            })}
+          >
             {subComponent(row)}
           </div>
         </WithCSSTransition>

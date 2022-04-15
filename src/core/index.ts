@@ -184,6 +184,8 @@ export {
   EditableCell,
   TablePaginator,
   ActionColumn,
+  ExpanderColumn,
+  SelectionColumn,
 } from './Table';
 export type {
   TableProps,
