@@ -56,8 +56,16 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
       setFocusedIndex(null);
     }, [children]);
 
+    const getFocusableNodes = React.useCallback(() => {
+      const focusableItems = getFocusableElements(menuRef.current);
+      // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
+      return focusableItems.filter(
+        (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
+      ) as HTMLElement[];
+    }, []);
+
     React.useEffect(() => {
-      const items = getFocusableElements(menuRef.current);
+      const items = getFocusableNodes();
       if (focusedIndex != null) {
         (items?.[focusedIndex] as HTMLLIElement)?.focus();
         return;
@@ -69,10 +77,10 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
       if (setFocus) {
         setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
       }
-    }, [setFocus, focusedIndex]);
+    }, [setFocus, focusedIndex, getFocusableNodes]);
 
     const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
-      const items = getFocusableElements(menuRef.current);
+      const items = getFocusableNodes();
       if (!items?.length) {
         return;
       }

@@ -8,6 +8,8 @@ import MenuItem from './MenuItem';
 import Menu, { MenuProps } from './Menu';
 import { MenuDivider } from './MenuDivider';
 import { MenuExtraContent } from './MenuExtraContent';
+import { Checkbox } from '../Checkbox';
+import { Button } from '../Buttons';
 
 const testLabels = ['Test0', 'Test1', 'Test2'];
 
@@ -66,15 +68,29 @@ it('should handle keyboard navigation', () => {
     children: [
       <MenuExtraContent key={0}>Test content</MenuExtraContent>,
       <MenuItem key={1}>Test0</MenuItem>,
-      <MenuItem key={2}>Test1</MenuItem>,
+      <MenuItem key={2}>
+        <Checkbox />
+        Test1
+      </MenuItem>,
       <MenuDivider key={3} />,
       <MenuItem key={4} disabled>
         Test2
       </MenuItem>,
       <MenuItem key={5}>Test3</MenuItem>,
+      <MenuExtraContent key={6}>
+        <Button>Test4</Button>
+      </MenuExtraContent>,
     ],
   });
-  const labels = ['Test content', 'Test0', 'Test1', '', 'Test2', 'Test3'];
+  const labels = [
+    'Test content',
+    'Test0',
+    'Test1',
+    '',
+    'Test2',
+    'Test3',
+    'Test4',
+  ];
 
   const menu = container.querySelector('.iui-menu') as HTMLUListElement;
   assertBaseElement(menu, { labels, focusedIndex: 1 });
@@ -83,12 +99,22 @@ it('should handle keyboard navigation', () => {
   fireEvent.keyDown(menu, { key: 'ArrowDown' });
   assertBaseElement(menu, { labels, focusedIndex: 2 });
   // Test1 -> Test3
-  // Should skip separator and disabled item
+  // Should skip checkbox, separator and disabled item
   fireEvent.keyDown(menu, { key: 'ArrowDown' });
   assertBaseElement(menu, { labels, focusedIndex: 5 });
+  // Test3 -> Test4
   fireEvent.keyDown(menu, { key: 'ArrowDown' });
-  assertBaseElement(menu, { labels, focusedIndex: 5 });
+  // Extra content li element is not focused, therefore setting focusedIndex to -1
+  assertBaseElement(menu, { labels, focusedIndex: -1 });
+  expect(container.querySelector('.iui-button')).toHaveFocus();
+  // Should stay on Test4
+  fireEvent.keyDown(menu, { key: 'ArrowDown' });
+  assertBaseElement(menu, { labels, focusedIndex: -1 });
+  expect(container.querySelector('.iui-button')).toHaveFocus();
 
+  // Test4 -> Test3
+  fireEvent.keyDown(menu, { key: 'ArrowUp' });
+  assertBaseElement(menu, { labels, focusedIndex: 5 });
   // Test3 -> Test1
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
   assertBaseElement(menu, { labels, focusedIndex: 2 });
@@ -96,6 +122,7 @@ it('should handle keyboard navigation', () => {
   // Should skip separator and disabled item
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
   assertBaseElement(menu, { labels, focusedIndex: 1 });
+  // Should stay on Test0
   fireEvent.keyDown(menu, { key: 'ArrowUp' });
   assertBaseElement(menu, { labels, focusedIndex: 1 });
 });
