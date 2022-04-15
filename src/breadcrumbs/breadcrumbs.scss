@@ -47,18 +47,18 @@
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+
+    &:not([aria-current]) {
+      &,
+      &:hover,
+      &:active {
+        --_iui-button-foreground-color: var(--iui-color-foreground-primary);
+      }
+    }
   }
 
   > * {
     max-width: 26ch;
-  }
-
-  &:not([aria-current]) > * {
-    &,
-    &:hover,
-    &:active {
-      --_iui-button-foreground-color: var(--iui-color-foreground-primary);
-    }
   }
   // #endregion Component overrides
 }
@@ -93,7 +93,7 @@
     text-overflow: ellipsis;
   }
 
-  @at-root [aria-current] & {
+  &[aria-current] {
     @include themed {
       color: t(iui-text-color);
     }
