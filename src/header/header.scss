@@ -161,6 +161,10 @@
     @include iui-header-button;
   }
 
+  .iui-header-dropdown-button.iui-header-dropdown-button {
+    @include iui-header-dropdown-button;
+  }
+
   .iui-header-split-button {
     @include iui-header-split-button;
   }
@@ -239,7 +243,6 @@
   height: 100%;
   border-radius: 0;
   overflow: hidden;
-  padding-right: $iui-s;
 
   @include iui-header-button-focus;
 
@@ -311,6 +314,10 @@
       }
     }
   }
+}
+
+@mixin iui-header-dropdown-button {
+  padding-right: $iui-s;
 }
 
 @mixin iui-header-split-button {
