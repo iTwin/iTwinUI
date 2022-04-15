@@ -22,6 +22,12 @@
       rel="stylesheet"
       href="../assets/demo.css"
     />
+    <style>
+      section[id^='demo'] {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
     <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
@@ -70,8 +76,7 @@
       document.querySelector('#skeleton-toggle input[type=checkbox]').addEventListener('change', (e) => {
         document.querySelectorAll('.iui-text-spacing').forEach((skeletonText) => {
           skeletonText.classList.toggle('iui-skeleton');
-          skeletonText.toggleAttribute("aria-hidden");
-          skeletonText.toggleAttribute("aria-busy");
+          skeletonText.setAttribute("aria-hidden", "true");
         });
       });
     </script>

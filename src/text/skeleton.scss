@@ -3,10 +3,11 @@
 @import '../style/index';
 
 @mixin iui-text-skeleton {
+  display: inline-block;
   user-select: none;
   color: transparent;
   border-radius: $iui-border-radius;
-  cursor: wait;
+  cursor: progress;
 
   @include themed {
     background: linear-gradient(
