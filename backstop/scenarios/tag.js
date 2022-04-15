@@ -21,14 +21,4 @@ module.exports = [
     actions: [hover('#test-tag')],
     selectors: ['#demo-basic'],
   }),
-
-  // Focus states
-  scenario('State focus', {
-    actions: [focus('#test-tag-1')],
-    selectors: ['#demo-default'],
-  }),
-  scenario('State focus basic', {
-    actions: [focus('#test-tag')],
-    selectors: ['#demo-basic'],
-  }),
 ];
