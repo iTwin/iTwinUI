@@ -56,6 +56,10 @@ html {
   @include iui-anchor;
 }
 
+.iui-visually-hidden {
+  @include visually-hidden;
+}
+
 [class*='iui-'],
 [class*='iui-'] * {
   // Text highlight
