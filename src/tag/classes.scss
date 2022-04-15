@@ -7,8 +7,21 @@
   @include iui-tag;
 }
 
-a.iui-tag {
+.iui-tag-basic {
+  @include iui-tag-basic;
+}
+
+.iui-tag-label {
+  @include iui-tag-label;
+}
+
+.iui-tag-button {
+  @include iui-tag-button;
+}
+
+a.iui-tag-basic {
   @include iui-anchor;
+  @include iui-focus($offset: 1px);
 }
 
 .iui-tag-container {
