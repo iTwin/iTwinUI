@@ -176,6 +176,9 @@ export type { SliderProps } from './Slider';
 export { StatusMessage } from './StatusMessage';
 export type { StatusMessageProps } from './StatusMessage';
 
+export { Surface } from './Surface';
+export type { SurfaceProps } from './Surface';
+
 export {
   Table,
   tableFilters,
