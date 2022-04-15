@@ -6,7 +6,6 @@
 
 @mixin iui-tag-base {
   @include iui-reset;
-  @include iui-focus($offset: -2px, $thickness: 2px);
   user-select: all;
   text-transform: lowercase;
   display: inline-flex;
