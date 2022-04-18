@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../anchor/index';
 @import './toast';
 
 /// category must be one of: positive, negative, primary (informational), warning
@@ -19,25 +20,7 @@
     }
   }
 
-  @if $category != primary {
-    > .iui-anchor {
-      @include themed {
-        color: t(iui-color-foreground-#{$category});
-      }
-
-      &:hover {
-        @include themed {
-          color: t(iui-color-foreground-#{$category}-overlay);
-        }
-      }
-    }
-
-    > .iui-anchor {
-      outline-color: var(--iui-color-foreground-#{$category});
-    }
-
-    > .iui-button {
-      outline-color: var(--iui-color-foreground-#{$category});
-    }
+  > .iui-toast-anchor {
+    @include iui-anchor-status($category);
   }
 }

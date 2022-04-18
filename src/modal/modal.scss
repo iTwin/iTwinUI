@@ -30,18 +30,6 @@
   }
   // #endregion Small Modal Animations for CSS
 
-  // #region Small Modal Animations for React
-  &.iui-modal-animation-enter {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  &.iui-modal-animation-enter-active {
-    visibility: visible;
-    opacity: 1;
-  }
-  // #endregion Full Page Modal Animations for React
-
   > .iui-modal-dialog {
     position: absolute;
     left: 50%;
@@ -103,6 +91,9 @@
 }
 
 @mixin iui-modal-full-page {
+  $iui-full-page-modal-slide-in-speed: 0.3s;
+  $iui-full-page-modal-slide-out-speed: 0.25s;
+
   > .iui-modal-dialog {
     display: flex;
     flex-direction: column;
@@ -119,34 +110,46 @@
 
   // #region Full Page Modal Animations for CSS
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed ease-out $iui-speed-fast;
+    transition: visibility $iui-speed-instant linear $iui-speed-slow, opacity $iui-speed ease-out $iui-speed-fast;
   }
 
   > .iui-modal-dialog {
     transform: translateY(100%);
     @media (prefers-reduced-motion: no-preference) {
       transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
-        transform $iui-speed ease-in;
+        transform $iui-full-page-modal-slide-out-speed ease-in;
     }
   }
 
   &.iui-modal-visible > .iui-modal-dialog {
     transform: translateY(0);
     @media (prefers-reduced-motion: no-preference) {
-      transition: transform $iui-speed ease-out;
+      transition: transform $iui-full-page-modal-slide-in-speed ease-out;
     }
   }
   // #endregion Full Page Modal Animations for CSS
+}
 
-  // #region Full Page Modal Animations for React
-  &.iui-modal-animation-enter > .iui-modal-dialog {
+@mixin iui-modal-animation {
+  // Full Page Modal Animations for React
+  &-enter .iui-modal-full-page .iui-modal-dialog {
     transform: translateY(100%);
     opacity: 0;
   }
 
-  &.iui-modal-animation-enter-active > .iui-modal-dialog {
+  &-enter-active .iui-modal-full-page .iui-modal-dialog {
     transform: translateY(0);
     opacity: 1;
   }
-  // #endregion Full Page Modal Animations for React
+
+  // Small Modal Animations for React
+  &-enter .iui-modal {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &-enter-active .iui-modal {
+    visibility: visible;
+    opacity: 1;
+  }
 }

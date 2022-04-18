@@ -1,6 +1,60 @@
 # Changelog
 
-## [0.52.0](https://www.github.com/iTwin/iTwinUI/compare/v0.50.2...v0.52.0) (2022-03-22)
+### [0.54.1](https://www.github.com/iTwin/iTwinUI/compare/v0.54.0...v0.54.1) (2022-04-11)
+
+### Fixes
+
+* **Anchor:** Bringing Anchor back to global.scss ([#580](https://www.github.com/iTwin/iTwinUI/issues/580)) ([a5f1962](https://www.github.com/iTwin/iTwinUI/commit/a5f1962a4ffe7393f465f78d5a6a5cd31f8b74bf))
+
+## [0.54.0](https://www.github.com/iTwin/iTwinUI/compare/v0.53.3...v0.54.0) (2022-04-07)
+
+### What's new
+
+* **Anchor:** Add anchor component ([#525](https://www.github.com/iTwin/iTwinUI/issues/525)) ([ca6a85f](https://www.github.com/iTwin/iTwinUI/commit/ca6a85f08779150b349c942babed4409e9ca882c))
+* **Table:** Allows to disable any column in a row ([#575](https://www.github.com/iTwin/iTwinUI/issues/575)) ([f8cf32a](https://www.github.com/iTwin/iTwinUI/commit/f8cf32a517eae9a50972d08773483b9f485c15d1))
+
+
+### Fixes
+
+* **SkipToContent:** Fix Overlapping Visibility Bug ([#572](https://www.github.com/iTwin/iTwinUI/issues/572)) ([de3f966](https://www.github.com/iTwin/iTwinUI/commit/de3f9662ab723e44ed139627d26fbf5b2340c265))
+
+### [0.53.3](https://www.github.com/iTwin/iTwinUI/compare/v0.53.2...v0.53.3) (2022-04-05)
+
+### Fixes
+
+* **ColorPicker:** Add `forced-colors` support. ([#569](https://www.github.com/iTwin/iTwinUI/issues/569)) ([d997651](https://www.github.com/iTwin/iTwinUI/commit/d9976519a919c0a3793829fb217245f7466364fb))
+* **Tree:** Fix spacing for tree node icon ([#570](https://www.github.com/iTwin/iTwinUI/issues/570)) ([d98d363](https://www.github.com/iTwin/iTwinUI/commit/d98d363b2a411b7eba8568439e3565d3aed4bfb0))
+
+### [0.53.2](https://www.github.com/iTwin/iTwinUI/compare/v0.53.1...v0.53.2) (2022-03-30)
+
+### Fixes
+
+* **Modal:** Update animation speed ([#564](https://www.github.com/iTwin/iTwinUI/issues/564)) ([7c3fe48](https://www.github.com/iTwin/iTwinUI/commit/7c3fe48cf5a2022c6c81c0a96dc7b3831aee60e8))
+* **SkipToContent:** Hide skip-to-content link when not focused ([#558](https://www.github.com/iTwin/iTwinUI/issues/558)) ([2b3add7](https://www.github.com/iTwin/iTwinUI/commit/2b3add7c3fc3559bfe609587e72b8c367376dba7))
+
+### [0.53.1](https://www.github.com/iTwin/iTwinUI/compare/v0.53.0...v0.53.1) (2022-03-29)
+
+### Fixes
+
+* **ButtonGroup:** Add `width: 100%` for overflow handling ([#559](https://www.github.com/iTwin/iTwinUI/issues/559)) ([e086388](https://www.github.com/iTwin/iTwinUI/commit/e08638810ecc8808bc4a74295525984c1d9accb0))
+* **DatePicker:** Make element inline ([#554](https://www.github.com/iTwin/iTwinUI/issues/554)) ([81e75d7](https://www.github.com/iTwin/iTwinUI/commit/81e75d7f76aeaafb5f810ad644f40d8bf9b95176))
+* **Modal:** Update modal animation ([#557](https://www.github.com/iTwin/iTwinUI/issues/557)) ([7517aa4](https://www.github.com/iTwin/iTwinUI/commit/7517aa478a046b7222963c0b9dac941aeb98e09f))
+* **UserIcon:** Use pixel values for status icon ([#541](https://www.github.com/iTwin/iTwinUI/issues/541)) ([f26c811](https://www.github.com/iTwin/iTwinUI/commit/f26c81182a286120c9935d712acedde4d37835ba))
+
+## [0.53.0](https://www.github.com/iTwin/iTwinUI/compare/v0.52.0...v0.53.0) (2022-03-25)
+
+### What's new
+
+* **DatePicker:** Add range date support ([#530](https://www.github.com/iTwin/iTwinUI/issues/530)) ([b32f641](https://www.github.com/iTwin/iTwinUI/commit/b32f641c833345eec9cdbfa62597663294d590dd))
+* **Surface:** Add surface component ([#533](https://www.github.com/iTwin/iTwinUI/issues/533)) ([64a582f](https://www.github.com/iTwin/iTwinUI/commit/64a582fa85a580944d21acc0172ee530c836bb43))
+* **Theme:** Add high contrast themes ([#505](https://www.github.com/iTwin/iTwinUI/issues/505)) ([fbb5006](https://www.github.com/iTwin/iTwinUI/commit/fbb50065af3b6a9f764dc697779d6b4c6092c355))
+
+### Fixes
+
+* **Carousel:** Update dots truncation and animation ([#544](https://www.github.com/iTwin/iTwinUI/issues/544)) ([8435deb](https://www.github.com/iTwin/iTwinUI/commit/8435deb45ae0a2056adcd5e838390606b0dc2df4))
+* **InformationPanel:** Prevent focusing hidden panel content ([#543](https://www.github.com/iTwin/iTwinUI/issues/543)) ([863e783](https://www.github.com/iTwin/iTwinUI/commit/863e7830c1e7dae11d72c6060c4629f6b3af60a8))
+
+## [0.52.0](https://www.github.com/iTwin/iTwinUI/compare/v0.51.0...v0.52.0) (2022-03-22)
 
 ### What's new
 

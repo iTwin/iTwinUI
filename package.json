@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.52.0",
+  "version": "0.54.1",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -85,6 +85,7 @@
     "jpeg-js": "^0.4.3",
     "set-value": "^4.1.0",
     "ansi-regex": "^5.0.1",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "async": "^3.2.2"
   }
 }
