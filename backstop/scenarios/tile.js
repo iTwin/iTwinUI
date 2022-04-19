@@ -1,4 +1,10 @@
-const { scenario, hover, focus } = require('../scenarioHelper');
+const { scenario: _scenario, hover, focus } = require('../scenarioHelper');
+
+/**
+ * @type import('../scenarioHelper').Scenario
+ */
+const scenario = (name, options) =>
+  _scenario(name, { ...options, hideSelectors: ['.demo-photo', '.demo-map', ...(options.hideSelectors ?? [])] });
 
 module.exports = [
   // Tile types
