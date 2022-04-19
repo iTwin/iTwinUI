@@ -2,13 +2,11 @@
 
 ## [0.55.0](https://www.github.com/iTwin/iTwinUI/compare/v0.54.1...v0.55.0) (2022-04-19)
 
-
 ### What's new
 
 * **Menu:** Skeleton menu items ([#577](https://www.github.com/iTwin/iTwinUI/issues/577)) ([8cd710b](https://www.github.com/iTwin/iTwinUI/commit/8cd710b7a26745dbc0673f12b328a3552131db54))
 * **Tag:** Classes change and specificity improvement ([#561](https://www.github.com/iTwin/iTwinUI/issues/561)) ([0d3608f](https://www.github.com/iTwin/iTwinUI/commit/0d3608f54efe0b327a4224c9fc7295e1d9029fec))
 * **Tile:** Add hover effect ([#579](https://www.github.com/iTwin/iTwinUI/issues/579)) ([f665779](https://www.github.com/iTwin/iTwinUI/commit/f6657791d42d6818760728615ae4cc45f4a0edb9))
-
 
 ### Fixes
 
