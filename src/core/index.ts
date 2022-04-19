@@ -170,6 +170,9 @@ export type {
   SidenavSubmenuHeaderProps,
 } from './SideNavigation';
 
+export { SkipToContentLink } from './SkipToContentLink';
+export type { SkipToContentLinkProps } from './SkipToContentLink';
+
 export { Slider } from './Slider';
 export type { SliderProps } from './Slider';
 
