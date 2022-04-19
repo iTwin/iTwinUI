@@ -356,6 +356,18 @@ it('should not select when clicked on row but selectRowOnClick flag is false', (
   expect(onRowClick).toHaveBeenCalled();
 });
 
+it('should not select when clicked on row and preventDefault is set', () => {
+  const onSelect = jest.fn();
+  renderComponent({
+    isSelectable: true,
+    onSelect,
+    rowProps: () => ({ onClick: (e) => e.preventDefault() }),
+  });
+
+  userEvent.click(screen.getByText(mockedData()[1].name));
+  expect(onSelect).not.toHaveBeenCalled();
+});
+
 it('should not trigger onSelect when sorting and filtering', () => {
   const onSort = jest.fn();
   const onSelect = jest.fn();

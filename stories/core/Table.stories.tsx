@@ -2652,6 +2652,9 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
       onExpand={onExpand}
       isSelectable
       isRowDisabled={isRowDisabled}
+      rowProps={({ index }) => ({
+        onClick: (e) => index === 0 && e.preventDefault(),
+      })}
       {...args}
     />
   );

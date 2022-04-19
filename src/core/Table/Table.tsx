@@ -491,7 +491,15 @@ export const Table = <
   const onRowClickHandler = React.useCallback(
     (event: React.MouseEvent, row: Row<T>) => {
       const isDisabled = isRowDisabled?.(row.original);
-      if (isSelectable && !isDisabled && selectRowOnClick) {
+      if (!isDisabled) {
+        onRowClick?.(event, row);
+      }
+      if (
+        isSelectable &&
+        !isDisabled &&
+        selectRowOnClick &&
+        !event.isDefaultPrevented()
+      ) {
         if (!row.isSelected && !event.ctrlKey) {
           dispatch({
             type: singleRowSelectedAction,
@@ -500,9 +508,6 @@ export const Table = <
         } else {
           row.toggleRowSelected(!row.isSelected);
         }
-      }
-      if (!isDisabled) {
-        onRowClick?.(event, row);
       }
     },
     [isRowDisabled, isSelectable, selectRowOnClick, dispatch, onRowClick],
