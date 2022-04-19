@@ -4,7 +4,6 @@
 
 @mixin iui-text-skeleton {
   display: inline-block;
-  width: fit-content;
   user-select: none;
   color: transparent;
   border-radius: $iui-border-radius;
