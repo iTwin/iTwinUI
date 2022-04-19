@@ -86,8 +86,11 @@
 
   &:disabled {
     --_iui-checkbox-svg-color: var(--iui-icons-color-actionable-disabled);
-    --_iui-checkbox-border-color: var(--iui-color-background-border);
     --_iui-checkbox-background-color: var(--iui-color-background-disabled);
+
+    &:where(:not(.iui-checkbox-visibility)) {
+      --_iui-checkbox-border-color: var(--iui-color-background-border);
+    }
     cursor: not-allowed;
   }
 
