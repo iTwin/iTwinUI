@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.55.0](https://www.github.com/iTwin/iTwinUI/compare/v0.54.1...v0.55.0) (2022-04-19)
+
+
+### What's new
+
+* **Menu:** Skeleton menu items ([#577](https://www.github.com/iTwin/iTwinUI/issues/577)) ([8cd710b](https://www.github.com/iTwin/iTwinUI/commit/8cd710b7a26745dbc0673f12b328a3552131db54))
+* **Tag:** Classes change and specificity improvement ([#561](https://www.github.com/iTwin/iTwinUI/issues/561)) ([0d3608f](https://www.github.com/iTwin/iTwinUI/commit/0d3608f54efe0b327a4224c9fc7295e1d9029fec))
+* **Tile:** Add hover effect ([#579](https://www.github.com/iTwin/iTwinUI/issues/579)) ([f665779](https://www.github.com/iTwin/iTwinUI/commit/f6657791d42d6818760728615ae4cc45f4a0edb9))
+
+
+### Fixes
+
+* **Header:** Adjust header buttons spacing ([#585](https://www.github.com/iTwin/iTwinUI/issues/585)) ([f16bc31](https://www.github.com/iTwin/iTwinUI/commit/f16bc31d82f86606be8069507fe2ffc374130201))
+* **Menu:** Improved skeleton menu item accessibility ([#593](https://www.github.com/iTwin/iTwinUI/issues/593)) ([367731b](https://www.github.com/iTwin/iTwinUI/commit/367731b8d13308a20b2ee31dcaff385c2a2df9a8))
+* **Popover:** Hiding popover when parent element is not visible ([#589](https://www.github.com/iTwin/iTwinUI/issues/589)) ([7a87dda](https://www.github.com/iTwin/iTwinUI/commit/7a87dda47bf8ee2de925bdcb0eac2fb1dd941d77))
+
 ### [0.54.1](https://www.github.com/iTwin/iTwinUI/compare/v0.54.0...v0.54.1) (2022-04-11)
 
 ### Fixes
