@@ -16,7 +16,7 @@ it('should render correctly', () => {
     </TagContainer>,
   );
   expect(container.querySelector('.iui-tag-container')).toBeTruthy();
-  expect(container.querySelectorAll('.iui-tag').length).toEqual(2);
+  expect(container.querySelectorAll('.iui-tag-basic').length).toEqual(2);
 });
 
 it('should propagate custom styles and className', () => {
@@ -44,7 +44,7 @@ it('should render scroll container', () => {
     </TagContainer>,
   );
   expect(container.querySelector('.iui-tag-container.iui-scroll')).toBeTruthy();
-  expect(container.querySelectorAll('.iui-tag').length).toEqual(4);
+  expect(container.querySelectorAll('.iui-tag-basic').length).toEqual(4);
 });
 
 it('should render truncated container', () => {
@@ -59,7 +59,7 @@ it('should render truncated container', () => {
   expect(
     container.querySelector('.iui-tag-container.iui-truncate'),
   ).toBeTruthy();
-  expect(container.querySelectorAll('.iui-tag').length).toEqual(4);
+  expect(container.querySelectorAll('.iui-tag-basic').length).toEqual(4);
 });
 
 it('should render filled background', () => {
@@ -74,5 +74,5 @@ it('should render filled background', () => {
   expect(
     container.querySelector('.iui-tag-container.iui-visible'),
   ).toBeTruthy();
-  expect(container.querySelectorAll('.iui-tag').length).toEqual(4);
+  expect(container.querySelectorAll('.iui-tag-basic').length).toEqual(4);
 });

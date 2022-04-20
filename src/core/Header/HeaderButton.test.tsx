@@ -149,7 +149,7 @@ it('should render menuItems correctly', () => {
   );
 
   const button = container.querySelector(
-    '.iui-header-button.iui-dropdown.iui-borderless',
+    '.iui-header-dropdown-button',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
 

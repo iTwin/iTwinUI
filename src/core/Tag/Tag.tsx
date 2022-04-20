@@ -40,16 +40,27 @@ export const Tag = (props: TagProps) => {
 
   return (
     <span
-      className={cx('iui-tag', { 'iui-basic': variant === 'basic' }, className)}
+      className={cx(
+        {
+          'iui-tag-basic': variant === 'basic',
+          'iui-tag': variant === 'default',
+        },
+        className,
+      )}
       {...rest}
     >
-      <span className='iui-label'>{children}</span>
+      {variant === 'default' ? (
+        <span className='iui-tag-label'>{children}</span>
+      ) : (
+        children
+      )}
       {onRemove && (
         <IconButton
           styleType='borderless'
           size='small'
           onClick={onRemove}
           aria-label='Delete tag'
+          className='iui-tag-button'
         >
           <SvgCloseSmall aria-hidden />
         </IconButton>

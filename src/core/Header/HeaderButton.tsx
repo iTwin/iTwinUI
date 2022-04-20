@@ -41,7 +41,7 @@ const isSplitButton = (
 };
 
 const isDropdownButton = (
-  props: Partial<DropdownButtonProps>,
+  props: Omit<Partial<DropdownButtonProps>, 'name'>,
 ): props is DropdownButtonProps => {
   return !!props.menuItems;
 };
@@ -89,6 +89,8 @@ export const HeaderButton: HeaderButtonComponent = React.forwardRef(
         {
           'iui-header-button': !isSplitButton(props),
           'iui-header-split-button': isSplitButton(props),
+          'iui-header-dropdown-button':
+            !isSplitButton(props) && isDropdownButton(props),
           'iui-active': isActive,
         },
         className,
