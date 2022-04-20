@@ -2856,3 +2856,32 @@ it('should show column enabled when whole row is disabled', () => {
   expect(rowCells[0].classList).not.toContain('iui-disabled');
   expect(rowCells[1].classList).toContain('iui-disabled');
 });
+
+it('should render selectable rows without select column', () => {
+  const onRowClick = jest.fn();
+  const { container, getByText } = renderComponent({
+    isSelectable: true,
+    selectionMode: 'single',
+    onRowClick,
+  });
+
+  const rows = container.querySelectorAll('.iui-table-body .iui-row');
+  expect(rows.length).toBe(3);
+
+  expect(container.querySelectorAll('.iui-slot .iui-checkbox').length).toBe(0);
+
+  userEvent.click(getByText(mockedData()[1].name));
+  expect(rows[1].classList).toContain('iui-selected');
+  expect(onRowClick).toHaveBeenCalledTimes(1);
+
+  userEvent.click(getByText(mockedData()[2].name));
+  expect(rows[1].classList).not.toContain('iui-selected');
+  expect(rows[2].classList).toContain('iui-selected');
+  expect(onRowClick).toHaveBeenCalledTimes(2);
+
+  //Test that ctrl clicking doesn't highlight more than one row
+  userEvent.click(getByText(mockedData()[1].name), { ctrlKey: true });
+  expect(rows[1].classList).toContain('iui-selected');
+  expect(rows[2].classList).not.toContain('iui-selected');
+  expect(onRowClick).toHaveBeenCalledTimes(3);
+});

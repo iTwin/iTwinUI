@@ -122,6 +122,12 @@ export type TableProps<
    */
   onRowClick?: (event: React.MouseEvent, row: Row<T>) => void;
   /**
+   * Modify the selection mode of the table.
+   * The column with checkboxes will not be present with 'single' selection mode.
+   * @default 'multi'
+   */
+  selectionMode?: 'multi' | 'single';
+  /**
    * Flag whether table columns can be sortable.
    * @default false
    */
@@ -296,6 +302,7 @@ export const Table = <
     isSelectable = false,
     onSelect,
     onRowClick,
+    selectionMode = 'multi',
     isSortable = false,
     onSort,
     stateReducer,
@@ -455,7 +462,7 @@ export const Table = <
     useRowSelect,
     useSubRowSelection,
     useExpanderCell(subComponent, expanderCell, isRowDisabled),
-    useSelectionCell(isSelectable, isRowDisabled),
+    useSelectionCell(isSelectable, selectionMode, isRowDisabled),
     useColumnOrder,
     useColumnDragAndDrop(enableColumnReordering),
   );
@@ -500,7 +507,7 @@ export const Table = <
         selectRowOnClick &&
         !event.isDefaultPrevented()
       ) {
-        if (!row.isSelected && !event.ctrlKey) {
+        if (!row.isSelected && (selectionMode === 'single' || !event.ctrlKey)) {
           dispatch({
             type: singleRowSelectedAction,
             id: row.id,
@@ -510,7 +517,14 @@ export const Table = <
         }
       }
     },
-    [isRowDisabled, isSelectable, selectRowOnClick, dispatch, onRowClick],
+    [
+      isRowDisabled,
+      isSelectable,
+      selectRowOnClick,
+      selectionMode,
+      dispatch,
+      onRowClick,
+    ],
   );
 
   React.useEffect(() => {
