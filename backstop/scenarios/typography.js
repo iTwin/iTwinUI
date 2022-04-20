@@ -1,7 +1,12 @@
-const { scenario } = require('../scenarioHelper');
+const { scenario, click } = require('../scenarioHelper');
 
 module.exports = [
-  scenario('basic', {
-    hideSelectors: ['theme-button'],
+  scenario('Type all', {
+    selectors: ['#demo-typography'],
+  }),
+
+  scenario('Type skeleton text', {
+    actions: [click('.iui-toggle-switch')],
+    selectors: ['#demo-typography'],
   }),
 ];
