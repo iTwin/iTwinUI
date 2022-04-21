@@ -48,14 +48,28 @@
     appearance: none;
     opacity: 0;
     position: absolute;
+    @include focus-visible {
+      + * {
+        outline: 2px solid var(--iui-color-foreground-primary);
+        outline-offset: -4px;
+      }
+    }
 
+    + *:hover {
+      z-index: 2;
+      border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+
+      > * {
+        fill: var(--iui-icons-color-actionable);
+      }
+    }
     // Styles checked radio tile
-    &:checked + .iui-radio-tile {
+    &:checked + * {
       padding: $iui-s - 1;
       z-index: 3;
       border: 2px solid var(--iui-color-foreground-primary);
 
-      .iui-radio-tile-icon {
+      > * {
         fill: var(--iui-icons-color-primary);
       }
 
@@ -72,7 +86,7 @@
     }
 
     // Styles disabled radio tile
-    &:disabled + .iui-radio-tile {
+    &:disabled + * {
       cursor: not-allowed;
       z-index: 0;
       border-color: var(--iui-color-background-disabled);
@@ -92,34 +106,8 @@
       }
     }
 
-    // Adds focus to enabled radio tiles
-    &:enabled {
-      @include focus-visible {
-        + .iui-radio-tile {
-          outline: 2px solid var(--iui-color-foreground-primary);
-          outline-offset: -4px;
-        }
-      }
-
-      // Adds hover to everything that is not checked or  disabled
-      &:not(:checked) + .iui-radio-tile-content:hover {
-        z-index: 2;
-        border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-        @media (prefers-reduced-motion: no-preference) {
-          transition: border-color $iui-speed-fast ease-out;
-        }
-
-        > .iui-radio-tile-icon {
-          fill: var(--iui-icons-color-actionable);
-          @media (prefers-reduced-motion: no-preference) {
-            transition: fill $iui-speed-fast ease-out;
-          }
-        }
-      }
-    }
-
     // Styles disabled checked radio tile
-    &:disabled:checked + .iui-radio-tile {
+    &:disabled:checked + * {
       z-index: 3;
       border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
     }
