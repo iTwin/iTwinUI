@@ -105,9 +105,10 @@ export const AllProps: Story<TileProps> = (props) => {
     buttons,
     leftIcon,
     rightIcon,
-    isSelected,
+    isSelected = true,
     isNew,
     moreOptions,
+    isActionable = true,
     ...rest
   } = props;
   return (
@@ -123,6 +124,7 @@ export const AllProps: Story<TileProps> = (props) => {
       isSelected={isSelected}
       isNew={isNew}
       moreOptions={moreOptions}
+      isActionable={isActionable}
       {...rest}
     />
   );
@@ -131,6 +133,68 @@ AllProps.argTypes = { ...Basic.argTypes };
 AllProps.args = {
   ...Basic.args,
   isSelected: true,
+  isActionable: true,
+  leftIcon: (
+    <IconButton styleType='borderless' onClick={action('clicked left icon')}>
+      <SvgInfo />
+    </IconButton>
+  ),
+  rightIcon: (
+    <IconButton styleType='borderless' onClick={action('clicked right icon')}>
+      <SvgStar />
+    </IconButton>
+  ),
+  buttons: [
+    <Button key={1} onClick={action('clicked left button')}>
+      Manage
+    </Button>,
+    <Button key={2} onClick={action('clicked right button')}>
+      Projects
+    </Button>,
+  ],
+};
+
+export const Actionable: Story<TileProps> = (props) => {
+  const {
+    name,
+    description = 'If you click on this stadium, it is going to be selected.',
+    metadata,
+    badge,
+    thumbnail,
+    buttons,
+    leftIcon,
+    rightIcon,
+    isNew,
+    moreOptions,
+    isActionable = true,
+    ...rest
+  } = props;
+  const [selected, setSelected] = React.useState(false);
+
+  return (
+    <Tile
+      name={name}
+      description={description}
+      metadata={metadata}
+      badge={badge}
+      thumbnail={thumbnail}
+      buttons={buttons}
+      leftIcon={leftIcon}
+      rightIcon={rightIcon}
+      isSelected={selected}
+      isNew={isNew}
+      moreOptions={moreOptions}
+      isActionable={isActionable}
+      {...rest}
+      onClick={() => setSelected((prev) => !prev)}
+    />
+  );
+};
+Actionable.argTypes = { ...Basic.argTypes };
+Actionable.args = {
+  ...Basic.args,
+  description: 'If you click on this stadium, it is going to be selected.',
+  isActionable: true,
   leftIcon: (
     <IconButton styleType='borderless' onClick={action('clicked left icon')}>
       <SvgInfo />

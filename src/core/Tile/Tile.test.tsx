@@ -221,3 +221,8 @@ it('should propagate misc props correctly', () => {
   expect(child).toBeTruthy();
   expect(child.textContent).toBe('test-content');
 });
+
+it('should render actionable tile', () => {
+  const { container } = render(<Tile isActionable name='test-name' />);
+  expect(container.querySelector('.iui-tile.iui-actionable')).toBeTruthy();
+});
