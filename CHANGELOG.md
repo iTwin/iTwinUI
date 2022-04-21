@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.37.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.36.0...v1.37.0) (2022-04-21)
+
+### What's new
+
+* **SkipToContent:** Add `SkipToContent` Component ([#618](https://www.github.com/iTwin/iTwinUI-react/issues/618)) ([5d56809](https://www.github.com/iTwin/iTwinUI-react/commit/5d56809c46ad312402669f9cb2dbf6c8d3c733ad))
+* **Surface:** Add `Surface` component ([#624](https://www.github.com/iTwin/iTwinUI-react/issues/624)) ([aa8f992](https://www.github.com/iTwin/iTwinUI-react/commit/aa8f99228cd4069bcba237c4a599d4735beccd0e))
+* **Table:** Single selection of rows ([#628](https://www.github.com/iTwin/iTwinUI-react/issues/628)) ([b8e0bf6](https://www.github.com/iTwin/iTwinUI-react/commit/b8e0bf63cbb07d8bd21fc165a505af1388e57a98))
+* **Tile:** Add `isActionable` prop to use for interactive tile ([#631](https://www.github.com/iTwin/iTwinUI-react/issues/631)) ([abfb807](https://www.github.com/iTwin/iTwinUI-react/commit/abfb8073c129c06488be276e4d301b89bf4588d5))
+
+### Fixes
+
+* **Table:** Add support for `preventDefault` in row click events ([#629](https://www.github.com/iTwin/iTwinUI-react/issues/629)) ([997897d](https://www.github.com/iTwin/iTwinUI-react/commit/997897d438ff00ed9d63da1745c81f37957c14ba))
+* **Header:** Fix `HeaderButton` spacing through css package update ([4094a3b](https://www.github.com/iTwin/iTwinUI-react/commit/4094a3bc94c8e589b4dbc6a2fd68f4f00389d941))
+
 ## [1.36.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.35.0...v1.36.0) (2022-04-15)
 
 ### What's new
