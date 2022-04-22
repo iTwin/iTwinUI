@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { ComboBox, ComboBoxProps } from './ComboBox';
 import { SvgCaretDownSmall } from '@itwin/itwinui-icons-react';
@@ -438,4 +438,23 @@ it('should merge inputProps.onChange correctly', () => {
 
   expect(input).toHaveValue('hi');
   expect(mockOnChange).toHaveBeenCalledWith('hi');
+});
+
+it('should use the latest onChange prop', () => {
+  const mockOnChange1 = jest.fn();
+  const mockOnChange2 = jest.fn();
+  const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
+
+  const { rerender } = render(
+    <ComboBox options={options} onChange={mockOnChange1} />,
+  );
+
+  userEvent.tab();
+  screen.getByText('Item 1').click();
+  expect(mockOnChange1).toHaveBeenNthCalledWith(1, 1);
+
+  rerender(<ComboBox options={options} onChange={mockOnChange2} />);
+  screen.getByText('Item 2').click();
+  expect(mockOnChange2).toHaveBeenNthCalledWith(1, 2);
+  expect(mockOnChange1).toHaveBeenCalledTimes(1);
 });
