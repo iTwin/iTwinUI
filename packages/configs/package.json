@@ -1,0 +1,21 @@
+{
+  "name": "configs",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "eslint-preset.js",
+    "prettier-config.js",
+    "tsconfig.base.json"
+  ],
+  "dependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.29.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-storybook": "^0.5.7",
+    "prettier": "2.2.1"
+  },
+  "prettier": "./prettier-config"
+}

@@ -15,10 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node 12.X
+      - name: Use Node 16.X
         uses: actions/setup-node@v2
         with:
-          node-version: 12.x
+          node-version: 16.x
           cache: yarn
 
       - run: yarn install --frozen-lockfile
@@ -26,9 +26,9 @@ jobs:
       - run: yarn audit
 
       - run: yarn lint
-      - run: yarn lint:copyright ${{ github.workspace }}/*/**.{js,ts,tsx}
+      - run: yarn workspace @itwin/itwinui-react lint:copyright ${{ github.workspace }}/*/**.{js,ts,tsx}
       - run: yarn build
-      - run: yarn build-storybook
+      - run: yarn workspace @itwin/itwinui-react build-storybook
 
   unit-test:
     name: Run unit tests
@@ -37,21 +37,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node 12.X
+      - name: Use Node 16.X
         uses: actions/setup-node@v2
         with:
-          node-version: 12.x
+          node-version: 16.x
           cache: yarn
 
       - run: yarn install --frozen-lockfile
 
-      - run: yarn test --coverage
+      - run: yarn workspace @itwin/itwinui-react test --coverage
 
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v1.16
         if: always()
         with:
-          files: 'coverage/junit.xml'
+          files: 'packages/iTwinUI-react/coverage/junit.xml'
           comment_mode: off
           check_name: 'Test results'
           fail_on: 'nothing'
@@ -63,14 +63,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node 12.X
+      - name: Use Node 16.X
         uses: actions/setup-node@v2
         with:
-          node-version: 12.x
+          node-version: 16.x
           cache: yarn
 
       - run: yarn install --frozen-lockfile
 
       # `&` symbol is needed as it prevents Storybook from running endlessly
-      - run: yarn storybook &
-      - run: yarn creevey
+      - run: yarn dev &
+      - run: yarn workspace @itwin/itwinui-react creevey

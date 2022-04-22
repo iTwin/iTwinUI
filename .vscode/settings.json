@@ -2,17 +2,10 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "prettier.disableLanguages": ["vue", "markdown"],
   "files.insertFinalNewline": true,
-  "files.exclude": {
-    "**/src/**/*.css": true
-  },
-  "search.exclude": {
-    "**/src/**/*.css": true
-  },
-  "files.watcherExclude": {
-    "**/lib/**": true,
-    "**/src/**/*.css": true
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[markdown]": {
+    "editor.defaultFormatter": "vscode.markdown-language-features"
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

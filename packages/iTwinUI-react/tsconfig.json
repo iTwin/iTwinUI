@@ -1,0 +1,4 @@
+{
+  "extends": "configs/tsconfig.base.json",
+  "exclude": ["node_modules", "cjs/**/*", "esm/**/*"]
+}

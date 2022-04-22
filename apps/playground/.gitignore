@@ -1,0 +1,7 @@
+# Logs
+logs
+*.log
+
+dist
+dist-ssr
+*.local
