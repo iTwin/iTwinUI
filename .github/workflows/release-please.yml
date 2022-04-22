@@ -18,6 +18,7 @@ jobs:
           release-type: node
           package-name: release-please-action
           changelog-types: '[{"type":"feat","section":"What''s new"},{"type":"fix","section":"Fixes"}]'
+          path: packages/iTwinUI-react
 
   publish:
     name: Publish npm package
