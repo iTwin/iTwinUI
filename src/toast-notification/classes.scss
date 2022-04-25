@@ -17,7 +17,7 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  z-index: 1070;
+  z-index: 99999;
 
   @media screen and (max-width: 400px) {
     width: calc(100vw - 36px);
