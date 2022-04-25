@@ -17,14 +17,17 @@
     transition: border-color $iui-speed-fast ease-out;
   }
 
+  // Rounded corners on first tile
   &:first-of-type {
     border-radius: $iui-border-radius 0 0 $iui-border-radius;
   }
 
+  // Rounded corners on last tile
   &:last-of-type {
     border-radius: 0 $iui-border-radius $iui-border-radius 0;
   }
 
+  // All tiles shift 1px left so we don't have 2px thick dividers
   &:not(:first-of-type) {
     margin-left: -1px;
   }
@@ -60,7 +63,7 @@
         fill: var(--iui-icons-color-actionable);
       }
     }
-
+    // Styles checked radio tile
     &:checked + * {
       padding: $iui-s - 1;
       z-index: 3;
@@ -82,6 +85,7 @@
       }
     }
 
+    // Styles disabled radio tile
     &:disabled + * {
       cursor: not-allowed;
       z-index: 0;
@@ -102,6 +106,7 @@
       }
     }
 
+    // Styles disabled checked radio tile
     &:disabled:checked + * {
       z-index: 3;
       border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
