@@ -27,14 +27,21 @@
 
   // #region Component overrides
   > a {
-    @include iui-anchor;
     padding: 0 $iui-s;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    cursor: default;
+    @include themed {
+      color: t(iui-text-color);
+    }
 
-    &:focus {
-      outline-offset: -1px;
+    &:any-link {
+      @include iui-anchor;
+
+      &:focus {
+        outline-offset: -1px;
+      }
     }
   }
 
