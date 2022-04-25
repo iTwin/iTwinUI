@@ -160,7 +160,6 @@
     background-color: var(--iui-color-background-disabled);
     border-color: var(--iui-color-background-disabled);
     @media (forced-colors: active) {
-      background-color: GrayText;
       border-color: GrayText;
     }
 
@@ -169,7 +168,7 @@
       opacity: var(--iui-opacity-5);
 
       @media (forced-colors: active) {
-        background-color: Canvas;
+        background-color: GrayText;
         opacity: 0.75;
       }
     }
@@ -179,11 +178,23 @@
       fill: var(--iui-icons-color-actionable);
     }
 
-    &:checked ~ .iui-toggle-switch-icon {
-      opacity: var(--iui-opacity-5);
+    &:checked {
       @media (forced-colors: active) {
-        fill: Canvas;
-        opacity: 0.75;
+        background-color: GrayText;
+      }
+
+      &::after {
+        @media (forced-colors: active) {
+          background-color: Canvas;
+        }
+      }
+
+      ~ .iui-toggle-switch-icon {
+        opacity: var(--iui-opacity-5);
+        @media (forced-colors: active) {
+          fill: Canvas;
+          opacity: 0.75;
+        }
       }
     }
   }
