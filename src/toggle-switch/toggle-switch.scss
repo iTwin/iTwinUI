@@ -110,6 +110,9 @@
 
   &:hover {
     border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    @media (forced-colors: active) {
+      border-color: CanvasText;
+    }
   }
 
   @include focus-visible {
