@@ -30,6 +30,9 @@
     @include themed {
       color: t(iui-text-color-muted);
     }
+    @media (forced-colors: active) {
+      color: GrayText;
+    }
   }
 
   // For labels on the left
@@ -92,14 +95,24 @@
   // #region Unchecked toggle switch
   background-color: var(--iui-color-background-1);
   border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  @media (forced-colors: active) {
+    border-color: CanvasText;
+  }
 
   &::after {
     background-color: var(--iui-color-foreground-body);
     opacity: var(--iui-opacity-2);
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+      opacity: 1;
+    }
   }
 
   &:hover {
     border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    @media (forced-colors: active) {
+      border-color: CanvasText;
+    }
   }
 
   @include focus-visible {
@@ -111,11 +124,19 @@
   &:checked {
     background-color: var(--iui-color-background-primary);
     border-color: var(--iui-color-background-primary);
+    @media (forced-colors: active) {
+      background-color: Highlight;
+      border-color: Highlight;
+    }
 
     &::after {
       transform: translateX($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset);
       background-color: var(--iui-color-foreground-accessory);
       opacity: var(--iui-opacity-2);
+      @media (forced-colors: active) {
+        background-color: HighlightText;
+        opacity: 1;
+      }
     }
 
     ~ .iui-toggle-switch-icon {
@@ -141,10 +162,18 @@
     cursor: not-allowed;
     background-color: var(--iui-color-background-disabled);
     border-color: var(--iui-color-background-disabled);
+    @media (forced-colors: active) {
+      border-color: GrayText;
+    }
 
     &::after {
       background-color: var(--iui-color-foreground-body);
       opacity: var(--iui-opacity-5);
+
+      @media (forced-colors: active) {
+        background-color: GrayText;
+        opacity: 0.75;
+      }
     }
 
     ~ .iui-toggle-switch-icon {
@@ -152,8 +181,24 @@
       fill: var(--iui-icons-color-actionable);
     }
 
-    &:checked ~ .iui-toggle-switch-icon {
-      opacity: var(--iui-opacity-5);
+    &:checked {
+      @media (forced-colors: active) {
+        background-color: GrayText;
+      }
+
+      &::after {
+        @media (forced-colors: active) {
+          background-color: Canvas;
+        }
+      }
+
+      ~ .iui-toggle-switch-icon {
+        opacity: var(--iui-opacity-5);
+        @media (forced-colors: active) {
+          fill: Canvas;
+          opacity: 0.75;
+        }
+      }
     }
   }
   // #endregion Disabled toggle switch
@@ -170,5 +215,8 @@
     transition: opacity $iui-speed-fast ease-out;
     pointer-events: none;
     fill: var(--iui-color-foreground-accessory);
+    @media (forced-colors: active) {
+      fill: HighlightText;
+    }
   }
 }
