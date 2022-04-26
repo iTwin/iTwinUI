@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../menu/index';
+@import '../tag/index';
+@import '../button/index';
 
 @mixin iui-select-button {
   @include iui-focus($offset: -2px, $thickness: 2px);
@@ -62,5 +64,67 @@
     @include themed {
       color: t(iui-text-color-placeholder);
     }
+  }
+}
+
+@mixin iui-multi-select-tag-container {
+  // @include iui-tag-container;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@mixin iui-multi-select-tag {
+  @include iui-tag;
+  margin: 0;
+  // height: $iui-baseline * 2;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  height: 80%;
+
+  @at-root .iui-small#{&} {
+    // height: $iui-baseline * 1.5;
+
+    .iui-multi-select-tag-label,
+    .iui-multi-select-tag-button {
+      // height: $iui-baseline * 1.5;
+    }
+  }
+
+  @at-root .iui-large#{&} {
+    // height: $iui-baseline * 2.5;
+
+    .iui-multi-select-tag-label,
+    .iui-multi-select-tag-button {
+      // height: $iui-baseline * 2.5;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+  }
+}
+
+@mixin iui-multi-select-tag-label {
+  @include iui-tag-label;
+  display: inline-flex;
+  align-items: center;
+}
+
+@mixin iui-multi-select-tag-button {
+  @include iui-button;
+  @include iui-button-borderless;
+  @include iui-tag-button;
+  padding: 0 4px;
+  // height: $iui-baseline * 2;
+  height: 100%;
+  // width: 100%;
+  aspect-ratio: 1 / 1;
+
+  .iui-button-icon {
+    flex-shrink: 0;
   }
 }

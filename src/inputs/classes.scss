@@ -46,6 +46,22 @@
   @include iui-select-button;
 }
 
+.iui-multi-select-tag-container {
+  @include iui-multi-select-tag-container;
+}
+
+.iui-multi-select-tag {
+  @include iui-multi-select-tag;
+}
+
+.iui-multi-select-tag-label {
+  @include iui-multi-select-tag-label;
+}
+
+.iui-multi-select-tag-button {
+  @include iui-multi-select-tag-button;
+}
+
 .iui-textarea {
   @include iui-textarea;
 }
