@@ -70,41 +70,32 @@
 @mixin iui-multi-select-tag-container {
   // @include iui-tag-container;
   position: absolute;
-  top: 0;
+  inset: 0 40px 0 6px;
   height: 100%;
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 
 @mixin iui-multi-select-tag {
   @include iui-tag;
   margin: 0;
-  // height: $iui-baseline * 2;
-  border: none;
   display: inline-flex;
   align-items: center;
   height: 80%;
+  max-height: $iui-baseline * 3;
 
   @at-root .iui-small#{&} {
-    // height: $iui-baseline * 1.5;
-
     .iui-multi-select-tag-label,
     .iui-multi-select-tag-button {
-      // height: $iui-baseline * 1.5;
+      font-size: $iui-font-size-small;
     }
-  }
 
-  @at-root .iui-large#{&} {
-    // height: $iui-baseline * 2.5;
-
-    .iui-multi-select-tag-label,
-    .iui-multi-select-tag-button {
-      // height: $iui-baseline * 2.5;
+    .iui-button-icon {
+      width: $iui-icons-small;
+      height: $iui-icons-small;
+      display: flex;
     }
-  }
-
-  &:hover {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
   }
 }
 
