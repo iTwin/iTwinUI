@@ -11,6 +11,7 @@
 
   &-item {
     @include iui-breadcrumbs-item;
+    @include iui-breadcrumbs-item-overrides;
   }
 
   &-text {

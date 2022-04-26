@@ -25,7 +25,12 @@
   line-height: $iui-component-height;
   height: $iui-component-height;
 
-  // #region Component overrides
+  > * {
+    max-width: 26ch;
+  }
+}
+
+@mixin iui-breadcrumbs-item-overrides {
   > a {
     padding: 0 $iui-s;
     overflow: hidden;
@@ -63,11 +68,6 @@
       }
     }
   }
-
-  > * {
-    max-width: 26ch;
-  }
-  // #endregion Component overrides
 }
 
 @mixin iui-breadcrumbs-text {
