@@ -127,6 +127,7 @@
     line-height: $iui-line-height;
     text-align: center;
     color: var(--iui-text-color);
+    word-break: break-word;
   }
 
   &-description {
@@ -134,5 +135,6 @@
     line-height: round($iui-baseline * 1.375);
     text-align: center;
     color: var(--iui-text-color-muted);
+    word-break: break-word;
   }
 }
