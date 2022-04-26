@@ -10,12 +10,12 @@ module.exports = [
   }),
   // Hover
   scenario('State hover', {
-    actions: [hover('#test-radio-tile')],
-    selectors: ['#test-radio-tile'],
+    actions: [hover('#test-radio-tile-content')],
+    selectors: ['#test-radio-tile-content'],
   }),
   // Focus
   scenario('State focus', {
-    actions: [focus('input[id="radio-tile-demo-1.3"]')],
-    selectors: ['#test-radio-tile'],
+    actions: [focus('#test-radio-tile-input')],
+    selectors: ['#test-radio-tile-content'],
   }),
 ];

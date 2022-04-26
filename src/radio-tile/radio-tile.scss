@@ -5,28 +5,31 @@
 
 @mixin iui-radio-tile {
   cursor: pointer;
-  width: $iui-xl * 5;
-  height: 100%;
-  box-sizing: border-box;
-  padding: $iui-s;
-  position: relative;
-  z-index: 1;
-  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  background-color: var(--iui-color-background-1);
-  @media (prefers-reduced-motion: no-preference) {
-    transition: border-color $iui-speed-fast ease-out;
-  }
 
-  &:first-of-type {
+  &:first-of-type > .iui-radio-tile-content {
     border-radius: $iui-border-radius 0 0 $iui-border-radius;
   }
 
-  &:last-of-type {
+  &:last-of-type > .iui-radio-tile-content {
     border-radius: 0 $iui-border-radius $iui-border-radius 0;
   }
 
-  &:not(:first-of-type) {
+  &:not(:first-of-type) > .iui-radio-tile-content {
     margin-left: -1px;
+  }
+
+  &-content {
+    width: $iui-xl * 5;
+    height: 100%;
+    box-sizing: border-box;
+    padding: $iui-s;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    background-color: var(--iui-color-background-1);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: border-color $iui-speed-fast ease-out;
+    }
   }
 
   &-container {
