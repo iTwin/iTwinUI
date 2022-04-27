@@ -4,28 +4,29 @@
 
 .iui-modal {
   @include iui-modal;
-
-  &-backdrop {
-    @include iui-modal-backdrop;
-  }
-
-  &-title {
-    @include iui-modal-title;
-
-    &-bar {
-      @include iui-modal-title-bar;
-    }
-  }
-
-  &-content {
-    @include iui-modal-content;
-  }
-
-  &-button-bar {
-    @include iui-modal-button-bar;
-  }
-
-  &-animation {
-    @include iui-modal-animation;
-  }
 }
+
+.iui-modal-backdrop {
+  @include iui-modal-backdrop;
+}
+
+.iui-modal-title {
+  @include iui-modal-title;
+}
+
+.iui-modal-title-bar {
+  @include iui-modal-title-bar;
+}
+
+.iui-modal-content {
+  @include iui-modal-content;
+}
+
+.iui-modal-button-bar {
+  @include iui-modal-button-bar;
+}
+
+.iui-modal-animation {
+  @include iui-modal-animation;
+}
+
