@@ -34,6 +34,12 @@
           fill: t(iui-icons-color-primary);
         }
       }
+
+      .iui-tab-description {
+        @include themed {
+          opacity: t(iui-opacity-1);
+        }
+      }
     }
 
     &[disabled] {
