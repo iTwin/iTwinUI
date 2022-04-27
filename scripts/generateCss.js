@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 const fs = require('fs');
+const path = require('path');
 const sass = require('sass-embedded');
 const postcss = require('postcss');
 
@@ -25,7 +26,7 @@ const compileScss = async (path, outFile) => {
       console.log(` Wrote -> ${outFile}.css`);
       resolve();
     } catch (error) {
-      reject(error);
+      reject(`${error}\n in ${path}`);
     }
   });
 };
@@ -39,7 +40,7 @@ const run = async () => {
   promiseList.push(compileScss(`${inDir}/reset-global-styles.scss`, 'reset-global-styles'));
 
   for (const directory of directories) {
-    if (!ignorePaths.includes(directory)) {
+    if (!ignorePaths.includes(directory) && fs.existsSync(path.join(inDir, directory, 'classes.scss'))) {
       promiseList.push(compileScss(`${inDir}/${directory}/classes.scss`, directory));
     }
   }
