@@ -28,10 +28,12 @@
     padding: $iui-s;
     position: relative;
     z-index: 1;
-    border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-    background-color: var(--iui-color-background-1);
     @media (prefers-reduced-motion: no-preference) {
       transition: border-color $iui-speed-fast ease-out;
+    }
+    @include themed {
+      border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+      background-color: t(iui-color-background-1);
     }
   }
 
@@ -52,22 +54,28 @@
     position: absolute;
     @include focus-visible {
       + * {
-        outline: 2px solid var(--iui-color-foreground-primary);
         outline-offset: -4px;
         @media (forced-colors: active) {
           outline-color: Highlight;
+        }
+        @include themed {
+          outline: 2px solid t(iui-color-foreground-primary);
         }
       }
     }
 
     + *:hover {
       z-index: 2;
-      border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+      @include themed {
+        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+      }
 
       > * {
-        fill: var(--iui-icons-color-actionable);
         @media (forced-colors: active) {
           fill: CanvasText;
+        }
+        @include themed {
+          fill: t(iui-icons-color-actionable);
         }
       }
     }
@@ -75,15 +83,19 @@
     &:checked + * {
       padding: $iui-s - 1;
       z-index: 3;
-      border: 2px solid var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
         border-color: Highlight;
       }
+      @include themed {
+        border: 2px solid t(iui-color-foreground-primary);
+      }
 
       > * {
-        fill: var(--iui-icons-color-primary);
         @media (forced-colors: active) {
           fill: Highlight;
+        }
+        @include themed {
+          fill: t(iui-icons-color-primary);
         }
       }
 
@@ -94,10 +106,12 @@
         position: absolute;
         top: $iui-s;
         right: $iui-s;
-        background-color: var(--iui-color-foreground-primary);
         mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" /></svg>');
         @media (forced-colors: active) {
           background-color: Highlight;
+        }
+        @include themed {
+          background-color: t(iui-color-foreground-primary);
         }
       }
     }
@@ -105,34 +119,44 @@
     &:disabled + * {
       cursor: not-allowed;
       z-index: 0;
-      border-color: var(--iui-color-background-disabled);
-      background-color: var(--iui-color-background-disabled);
+      @include themed {
+        border-color: t(iui-color-background-disabled);
+        background-color: t(iui-color-background-disabled);
+      }
 
       &::after {
-        background-color: var(--iui-icons-color-actionable-disabled);
         @media (forced-colors: active) {
           background-color: GrayText;
+        }
+        @include themed {
+          background-color: t(iui-icons-color-actionable-disabled);
         }
       }
 
       .iui-radio-tile-icon {
-        fill: var(--iui-icons-color-actionable-disabled);
         filter: $iui-icons-color-multicolor-disabled;
         @media (forced-colors: active) {
           fill: GrayText;
         }
+        @include themed {
+          fill: t(iui-icons-color-actionable-disabled);
+        }
       }
 
       .iui-radio-tile-label {
-        color: var(--iui-text-color-muted);
+        @include themed {
+          color: t(iui-text-color-muted);
+        }
       }
     }
 
     &:disabled:checked + * {
       z-index: 3;
-      border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
       @media (forced-colors: active) {
         border-color: GrayText;
+      }
+      @include themed {
+        border: 2px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
       }
     }
   }
@@ -144,12 +168,14 @@
     margin: 0 auto;
     margin-top: round($iui-baseline * 0.5);
     margin-bottom: $iui-baseline;
-    fill: var(--iui-icons-color);
     @media (prefers-reduced-motion: no-preference) {
       transition: fill $iui-speed-fast ease-out;
     }
     @media (forced-colors: active) {
       fill: CanvasText;
+    }
+    @include themed {
+      fill: t(iui-icons-color);
     }
   }
 
@@ -158,15 +184,19 @@
     font-weight: $iui-font-weight-semibold;
     line-height: $iui-line-height;
     text-align: center;
-    color: var(--iui-text-color);
     word-break: break-word;
+    @include themed {
+      color: t(iui-text-color);
+    }
   }
 
   &-description {
     font-size: $iui-font-size-small;
     line-height: round($iui-baseline * 1.375);
     text-align: center;
-    color: var(--iui-text-color-muted);
     word-break: break-word;
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
   }
 }
