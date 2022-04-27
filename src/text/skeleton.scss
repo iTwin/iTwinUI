@@ -7,17 +7,23 @@
   user-select: none;
   color: transparent;
   border-radius: $iui-border-radius;
+  cursor: progress;
 
   @include themed {
     background: linear-gradient(
-      270deg,
-      t(iui-color-background-3),
-      t(iui-color-background-3),
-      t(iui-color-background-2),
-      t(iui-color-background-3),
-      t(iui-color-background-3)
+      292deg,
+      t(iui-text-color-muted),
+      t(iui-text-color-muted),
+      t(iui-text-color-placeholder),
+      t(iui-text-color-muted),
+      t(iui-text-color-muted)
     );
-    background-size: 200% 100%;
+  }
+  background-size: 200% 100%;
+
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    background: linear-gradient(292deg, CanvasText, CanvasText, Canvas, CanvasText, CanvasText);
   }
 
   @media (prefers-reduced-motion: no-preference) {

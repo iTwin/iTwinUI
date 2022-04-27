@@ -11,11 +11,21 @@ module.exports = [
     misMatchThreshold: 0.01,
     viewports: [{ width: 800, height: 600 }],
   }),
+  scenario('Type Skeleton', {
+    selectors: ['#demo-skeleton'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
 
   // Hover & focus states
   scenario('State hover & focus', {
     actions: [hover('#test-menu-1'), focus('#test-menu-2')],
     selectors: ['#demo-default'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
+  // Skeleton should not be have hover background
+  scenario('Hover Skeleton', {
+    selectors: ['#demo-skeleton'],
+    actions: [hover('#test-menu-item-skeleton')],
     viewports: [{ width: 800, height: 600 }],
   }),
 ];
