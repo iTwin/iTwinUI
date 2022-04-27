@@ -20,7 +20,7 @@ module.exports = [
   scenario('resizable-modal', {
     // Hovering `body` to avoid random test failures
     // when "Open modal" sometimes is and sometimes is not hovered.
-    actions: [click('#open-resizable-modal'), hover('body')],
+    actions: [click('#toggle-resizable-modal'), hover('body')],
     selectors: ['document'],
     hideSelectors: ['body > *:not(.iui-modal-backdrop)'],
   }),
