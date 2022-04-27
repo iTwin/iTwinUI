@@ -4,197 +4,198 @@
 @import '../icon/index';
 
 @mixin iui-radio-tile {
+  cursor: pointer;
+  @include themed {
+    -webkit-tap-highlight-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+  }
+
+  &:first-of-type > .iui-radio-tile-content {
+    border-radius: $iui-border-radius 0 0 $iui-border-radius;
+  }
+
+  &:last-of-type > .iui-radio-tile-content {
+    border-radius: 0 $iui-border-radius $iui-border-radius 0;
+  }
+
+  &:not(:first-of-type) > .iui-radio-tile-content {
+    margin-left: -1px;
+  }
+}
+@mixin iui-radio-tile-content {
+  width: $iui-xl * 5;
+  height: 100%;
+  box-sizing: border-box;
+  padding: $iui-s;
+  position: relative;
+  z-index: 1;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: border-color $iui-speed-fast ease-out;
+  }
+  @include themed {
+    border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    background-color: t(iui-color-background-1);
+  }
+
+  &:hover {
+    z-index: 2;
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
+
+    > * {
+      @media (forced-colors: active) {
+        fill: CanvasText;
+      }
+      @include themed {
+        fill: t(iui-icons-color-actionable);
+      }
+    }
+  }
+}
+
+@mixin iui-radio-tile-container {
   display: inline-flex;
   flex-wrap: wrap;
-  width: fit-content;
   user-select: none;
   // Create stacking context
   position: relative;
   z-index: 0;
+}
 
-  > label {
-    cursor: pointer;
+@mixin iui-radio-tile-input {
+  width: 0;
+  height: 0;
+  appearance: none;
+  opacity: 0;
+  position: absolute;
+  @include focus-visible {
+    + * {
+      outline-offset: -4px;
+      @media (forced-colors: active) {
+        outline-color: Highlight;
+      }
+      @include themed {
+        outline: 2px solid t(iui-color-foreground-primary);
+      }
+    }
+  }
 
-    > input {
-      width: 0;
-      height: 0;
-      appearance: none;
-      opacity: 0;
+  &:checked + * {
+    padding: $iui-s - 1;
+    z-index: 3;
+    @media (forced-colors: active) {
+      border-color: Highlight;
+    }
+    @include themed {
+      border: 2px solid t(iui-color-foreground-primary);
+    }
+
+    > * {
+      @media (forced-colors: active) {
+        fill: Highlight;
+      }
+      @include themed {
+        fill: t(iui-icons-color-primary);
+      }
+    }
+
+    &::after {
+      content: '';
+      width: $iui-icons-default;
+      height: $iui-icons-default;
       position: absolute;
-    }
-
-    // Radio tile styling
-    > .iui-radio-tile {
-      width: $iui-xl * 5;
-      height: 100%;
-      box-sizing: border-box;
-      padding: $iui-s;
-      position: relative;
-      z-index: 1;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: border-color $iui-speed-fast ease-out;
+      top: $iui-s;
+      right: $iui-s;
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" /></svg>');
+      @media (forced-colors: active) {
+        background-color: Highlight;
       }
-
       @include themed {
-        border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-        background-color: t(iui-color-background-1);
-      }
-
-      > .iui-icon {
-        width: $iui-icons-xl;
-        height: $iui-icons-xl;
-        display: block;
-        margin: 0 auto;
-        margin-top: round($iui-baseline * 0.5);
-        margin-bottom: $iui-baseline;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: fill $iui-speed-fast ease-out;
-        }
-        @include themed {
-          fill: t(iui-icons-color);
-        }
-      }
-
-      > .iui-checkmark {
-        display: none;
-        width: $iui-icons-default;
-        height: $iui-icons-default;
-        position: absolute;
-        right: $iui-s;
-
-        @include themed {
-          fill: t(iui-icons-color-primary);
-        }
-      }
-
-      > .iui-label {
-        font-size: $iui-font-size;
-        font-weight: $iui-font-weight-semibold;
-        line-height: $iui-line-height;
-        text-align: center;
-
-        @include themed {
-          color: t(iui-text-color);
-        }
-      }
-
-      > .iui-description {
-        font-size: $iui-font-size-small;
-        line-height: round($iui-baseline * 1.375);
-        text-align: center;
-
-        @include themed {
-          color: t(iui-text-color-muted);
-        }
+        background-color: t(iui-color-foreground-primary);
       }
     }
+  }
 
-    // Rounded corners on first tile
-    &:first-child > .iui-radio-tile {
-      border-radius: $iui-border-radius 0 0 $iui-border-radius;
+  &:disabled + * {
+    cursor: not-allowed;
+    z-index: 0;
+    @include themed {
+      border-color: t(iui-color-background-disabled);
+      background-color: t(iui-color-background-disabled);
     }
 
-    // Rounded corners on last tile
-    &:last-child > .iui-radio-tile {
-      border-radius: 0 $iui-border-radius $iui-border-radius 0;
-    }
-
-    // All tiles shift 1px left so we don't have 2px thick dividers
-    &:not(:first-child) > .iui-radio-tile {
-      margin-left: -1px;
-    }
-
-    // Adds focus to enabled radio tiles
-    input:enabled {
-      &:focus ~ .iui-radio-tile {
-        @include themed {
-          outline: 2px solid t(iui-color-foreground-primary);
-          outline-offset: -4px;
-        }
+    &::after {
+      @media (forced-colors: active) {
+        background-color: GrayText;
       }
-
-      &:focus:not(:focus-visible) ~ .iui-radio-tile {
-        outline: none;
-      }
-    }
-
-    // Adds hover to everything that is not checked or  disabled
-    &:hover > input:enabled:not(:checked) ~ .iui-radio-tile {
-      z-index: 2;
       @include themed {
-        border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-      }
-      @media (prefers-reduced-motion: no-preference) {
-        transition: border-color $iui-speed-fast ease-out;
-      }
-
-      > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable);
-        }
-        @media (prefers-reduced-motion: no-preference) {
-          transition: fill $iui-speed-fast ease-out;
-        }
+        background-color: t(iui-icons-color-actionable-disabled);
       }
     }
 
-    // Styles checked radio tile
-    input:checked ~ .iui-radio-tile {
-      padding: $iui-s - 1;
-      z-index: 3;
-
+    .iui-radio-tile-icon {
+      filter: $iui-icons-color-multicolor-disabled;
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
       @include themed {
-        border: 2px solid t(iui-color-foreground-primary);
-      }
-
-      > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-primary);
-        }
-      }
-
-      > .iui-checkmark {
-        display: inline-block;
+        fill: t(iui-icons-color-actionable-disabled);
       }
     }
 
-    // Styles disabled radio tile
-    input:disabled ~ .iui-radio-tile {
-      cursor: not-allowed;
-      z-index: 0;
-
+    .iui-radio-tile-label {
       @include themed {
-        border-color: t(iui-color-background-disabled);
-        background-color: t(iui-color-background-disabled);
-      }
-
-      > .iui-checkmark {
-        @include themed {
-          fill: t(iui-icons-color-actionable-disabled);
-        }
-      }
-
-      > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable-disabled);
-        }
-        filter: $iui-icons-color-multicolor-disabled;
-      }
-
-      > .iui-label {
-        @include themed {
-          color: t(iui-text-color-muted);
-        }
+        color: t(iui-text-color-muted);
       }
     }
+  }
 
-    // Styles disabled checked radio tile
-    input:disabled:checked ~ .iui-radio-tile {
-      z-index: 3;
-
-      @include themed {
-        border: 2px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-      }
+  &:disabled:checked + * {
+    z-index: 3;
+    @media (forced-colors: active) {
+      border-color: GrayText;
     }
+    @include themed {
+      border: 2px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    }
+  }
+}
+
+@mixin iui-radio-tile-icon {
+  width: $iui-icons-xl;
+  height: $iui-icons-xl;
+  display: block;
+  margin: 0 auto;
+  padding-top: round($iui-baseline * 0.5);
+  padding-bottom: $iui-baseline;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: fill $iui-speed-fast ease-out;
+  }
+  @media (forced-colors: active) {
+    fill: CanvasText;
+  }
+  @include themed {
+    fill: t(iui-icons-color);
+  }
+}
+
+@mixin iui-radio-tile-label {
+  font-size: $iui-font-size;
+  font-weight: $iui-font-weight-semibold;
+  line-height: $iui-line-height;
+  text-align: center;
+  word-break: break-word;
+  @include themed {
+    color: t(iui-text-color);
+  }
+}
+
+@mixin iui-radio-tile-sublabel {
+  font-size: $iui-font-size-small;
+  line-height: round($iui-baseline * 1.375);
+  text-align: center;
+  word-break: break-word;
+  @include themed {
+    color: t(iui-text-color-muted);
   }
 }
