@@ -2,12 +2,25 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+.iui-modal-backdrop {
+  @include iui-modal-backdrop;
+}
+
 .iui-modal {
   @include iui-modal;
 }
 
-.iui-modal-backdrop {
-  @include iui-modal-backdrop;
+.iui-modal-default {
+  @include iui-modal-default;
+}
+
+.iui-modal-full-page {
+  @include iui-modal-full-page;
+}
+
+.iui-modal-resizable {
+  @include iui-modal-default;
+  @include iui-modal-resizable;
 }
 
 .iui-modal-title {
@@ -29,4 +42,3 @@
 .iui-modal-animation {
   @include iui-modal-animation;
 }
-

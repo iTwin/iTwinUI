@@ -16,19 +16,6 @@
     background-color: rgba(0, 0, 0, t(iui-opacity-4));
   }
 
-  &.iui-modal-resizable {
-    background-color: transparent;
-    pointer-events: none;
-    z-index: 998;
-  }
-
-  // Full Page Modal Animations for CSS
-  &.iui-modal-full-page {
-    @media (prefers-reduced-motion: no-preference) {
-      transition: visibility $iui-speed-instant linear $iui-speed-slow, opacity $iui-speed ease-out $iui-speed-fast;
-    }
-  }
-
   // Small/Resizable Modal Animations for CSS
   visibility: hidden;
   opacity: 0;
@@ -43,15 +30,14 @@
 }
 
 @mixin iui-modal {
-  $iui-full-page-modal-slide-in-speed: 0.3s;
-  $iui-full-page-modal-slide-out-speed: 0.25s;
-
   @include iui-surface($border-radius: $iui-border-radius, $elevation: $iui-elevation-24);
   position: absolute;
   box-sizing: border-box;
   overflow: hidden;
+}
 
-  @at-root .iui-modal-default & {
+@mixin iui-modal-default {
+  .iui-modal {
     left: 50%;
     top: 33%;
     transform: translate(-50%, -33%);
@@ -65,8 +51,17 @@
       min-width: 95%;
     }
   }
+}
 
-  @at-root .iui-modal-full-page & {
+@mixin iui-modal-full-page {
+  $iui-full-page-modal-slide-in-speed: 0.3s;
+  $iui-full-page-modal-slide-out-speed: 0.25s;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: visibility $iui-speed-instant linear $iui-speed-slow, opacity $iui-speed ease-out $iui-speed-fast;
+  }
+
+  .iui-modal {
     border-radius: 0;
     height: 100vh;
     width: 100vw;
@@ -83,14 +78,20 @@
     }
   }
 
-  @at-root .iui-modal-full-page.iui-modal-visible & {
+  &.iui-modal-visible .iui-modal {
     transform: translateY(0);
     @media (prefers-reduced-motion: no-preference) {
       transition: transform $iui-full-page-modal-slide-in-speed ease-out;
     }
   }
+}
 
-  @at-root .iui-modal-resizable & {
+@mixin iui-modal-resizable {
+  background-color: transparent;
+  pointer-events: none;
+  z-index: 998;
+
+  .iui-modal {
     pointer-events: initial;
     max-width: 100vw;
     max-height: 100vh;
