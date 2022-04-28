@@ -107,23 +107,23 @@
 
 @mixin iui-modal-animation {
   // Full Page Modal Animations for React
-  &-enter .iui-modal-full-page .iui-modal-dialog {
+  &-enter .iui-modal-full-page .iui-modal {
     transform: translateY(100%);
     opacity: 0;
   }
 
-  &-enter-active .iui-modal-full-page .iui-modal-dialog {
+  &-enter-active .iui-modal-full-page .iui-modal {
     transform: translateY(0);
     opacity: 1;
   }
 
   // Small Modal Animations for React
-  &-enter .iui-modal {
+  &-enter .iui-modal-backdrop {
     visibility: hidden;
     opacity: 0;
   }
 
-  &-enter-active .iui-modal {
+  &-enter-active .iui-modal-backdrop {
     visibility: visible;
     opacity: 1;
   }
