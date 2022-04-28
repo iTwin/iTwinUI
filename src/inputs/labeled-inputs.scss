@@ -278,7 +278,7 @@
 
     svg {
       @include themed {
-        fill: t(iui-icons-color);
+        fill: t(iui-icons-color-actionable);
       }
       transition: transform $iui-speed-fast ease-out;
     }
