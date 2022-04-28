@@ -11,11 +11,11 @@ module.exports = [
   // Hover
   scenario('State hover', {
     actions: [hover('#test-radio-tile-content')],
-    selectors: ['#test-radio-tile-content'],
+    selectors: ['#demo-default'],
   }),
   // Focus
   scenario('State focus', {
     actions: [focus('#test-radio-tile-input')],
-    selectors: ['#test-radio-tile-content'],
+    selectors: ['#demo-default'],
   }),
 ];
