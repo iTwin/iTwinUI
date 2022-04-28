@@ -146,6 +146,13 @@
       filter: $iui-icons-color-multicolor-disabled;
     }
 
+    .iui-radio-tile-label,
+    .iui-radio-tile-sublabel {
+      @media (forced-colors: active) {
+        color: GrayText;
+      }
+    }
+
     .iui-radio-tile-label {
       @include themed {
         color: t(iui-text-color-muted);
