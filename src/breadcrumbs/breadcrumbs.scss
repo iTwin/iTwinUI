@@ -89,15 +89,10 @@
   @include iui-button;
   @include iui-button-borderless;
 
+  padding: 0;
   border: none;
   @include themed {
     color: t(iui-color-foreground-primary);
-  }
-
-  &-label {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 
   &[aria-current] {
