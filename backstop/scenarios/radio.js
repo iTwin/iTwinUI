@@ -11,7 +11,4 @@ module.exports = [
     selectors: ['#demo-label'],
     hideSelectors: ['h3'],
   }),
-  scenario('tiles', {
-    selectors: ['#demo-tiles'],
-  }),
 ];
