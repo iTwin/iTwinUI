@@ -20,9 +20,9 @@
 @import './header/classes';
 @import './icon/classes';
 @import './information-panel/classes';
+@import './label/classes'; // Needs to be above Input
 @import './input/classes';
 @import './keyboard/classes';
-@import './label/classes';
 @import './location-marker/classes';
 @import './menu/classes';
 @import './modal/classes';
