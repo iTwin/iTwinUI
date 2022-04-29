@@ -68,13 +68,12 @@
 }
 
 @mixin iui-multi-select-tag-container {
-  // @include iui-tag-container;
   position: absolute;
-  inset: 0 40px 0 6px;
+  inset: 0 $iui-icons-default + $iui-l 0 $iui-sm;
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: $iui-xs;
 }
 
 @mixin iui-multi-select-tag {
@@ -109,10 +108,8 @@
   @include iui-button;
   @include iui-button-borderless;
   @include iui-tag-button;
-  padding: 0 4px;
-  // height: $iui-baseline * 2;
+  padding: 0 $iui-xs;
   height: 100%;
-  // width: 100%;
   aspect-ratio: 1 / 1;
 
   .iui-button-icon {
