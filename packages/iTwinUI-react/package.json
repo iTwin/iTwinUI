@@ -43,7 +43,7 @@
     "copy-files": "cpx \"../../{README,LICENSE}.md\" .",
     "storybook": "start-storybook -p 6006",
     "dev": "yarn storybook",
-    "build-storybook": "build-storybook"
+    "build-storybook": "yarn copy-files && build-storybook"
   },
   "dependencies": {
     "@itwin/itwinui-css": "^0.55.0",
