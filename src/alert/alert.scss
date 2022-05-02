@@ -33,7 +33,7 @@
 
   &.iui-sticky {
     border-radius: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -58,10 +58,17 @@
 }
 
 @mixin iui-alert-button {
+  @include iui-button;
   @include iui-button-borderless;
   @include iui-button-size(small, borderless);
   margin-left: auto;
   margin-right: $iui-s;
+}
+
+@mixin iui-alert-button-icon {
+  @include iui-button-icon;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 /// Modifier mixin to categorize the alert
