@@ -241,7 +241,6 @@
 
     &.iui-expanded-content {
       overflow: hidden;
-      flex-shrink: 0;
       @include iui-transition-group;
     }
 
