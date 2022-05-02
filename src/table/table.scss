@@ -35,54 +35,62 @@
     border-right: solid 1px transparent;
   }
 
-  .iui-cell:not(.iui-slot) {
-    @include iui-focus;
-
-    &.iui-actionable {
-      cursor: pointer;
+  .iui-cell {
+    &-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    &.iui-grabbing {
-      cursor: grabbing;
-    }
+    &:not(.iui-slot) {
+      @include iui-focus;
 
-    > .iui-filter-button {
-      margin-left: $iui-xs;
-      margin-right: $iui-s;
-
-      &:not(.iui-active) {
-        visibility: hidden;
+      &.iui-actionable {
+        cursor: pointer;
       }
-    }
 
-    > .iui-resizer {
-      height: 100%;
-      width: $iui-m;
-      position: absolute;
-      top: 0;
-      right: 0;
-      transform: translateX(50%);
-      touch-action: none;
-      cursor: ew-resize;
-      z-index: 1;
-      opacity: 0;
+      &.iui-grabbing {
+        cursor: grabbing;
+      }
 
-      > .iui-resizer-bar {
+      > .iui-filter-button {
+        margin-left: $iui-xs;
+        margin-right: $iui-s;
+
+        &:not(.iui-active) {
+          visibility: hidden;
+        }
+      }
+
+      > .iui-resizer {
         height: 100%;
-        width: $iui-xxs;
-        margin: 0 auto;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
-        }
-        @include themed {
-          background-color: t(iui-color-background-border);
-        }
-      }
+        width: $iui-m;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateX(50%);
+        touch-action: none;
+        cursor: ew-resize;
+        z-index: 1;
+        opacity: 0;
 
-      &:hover > .iui-resizer-bar {
-        width: $iui-xs;
-        @include themed {
-          background-color: t(iui-color-foreground-primary);
+        > .iui-resizer-bar {
+          height: 100%;
+          width: $iui-xxs;
+          margin: 0 auto;
+          @media (prefers-reduced-motion: no-preference) {
+            transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+          }
+          @include themed {
+            background-color: t(iui-color-background-border);
+          }
+        }
+
+        &:hover > .iui-resizer-bar {
+          width: $iui-xs;
+          @include themed {
+            background-color: t(iui-color-foreground-primary);
+          }
         }
       }
     }
@@ -233,6 +241,7 @@
 
     &.iui-expanded-content {
       overflow: hidden;
+      flex-shrink: 0;
       @include iui-transition-group;
     }
 
