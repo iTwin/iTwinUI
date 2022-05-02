@@ -84,26 +84,17 @@
   align-items: center;
   height: 80%;
   max-height: $iui-baseline * 3;
-
-  @at-root .iui-small#{&} {
-    .iui-multi-select-tag-label,
-    .iui-multi-select-tag-button {
-      font-size: $iui-font-size-small;
-      line-height: floor($iui-baseline * 1.5);
-    }
-
-    .iui-button-icon {
-      width: $iui-icons-small;
-      height: $iui-icons-small;
-      display: flex;
-    }
-  }
 }
 
 @mixin iui-multi-select-tag-label {
   @include iui-tag-label;
   display: inline-flex;
   align-items: center;
+
+  @at-root .iui-select-button.iui-small & {
+    font-size: $iui-font-size-small;
+    line-height: floor($iui-baseline * 1.5);
+  }
 }
 
 @mixin iui-multi-select-tag-button {
@@ -116,5 +107,15 @@
 
   .iui-button-icon {
     flex-shrink: 0;
+  }
+
+  @at-root .iui-select-button.iui-small & {
+    font-size: $iui-font-size-small;
+    line-height: floor($iui-baseline * 1.5);
+
+    .iui-button-icon {
+      width: $iui-icons-small;
+      height: $iui-icons-small;
+    }
   }
 }
