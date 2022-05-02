@@ -26,4 +26,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ github.workspace }}/storybook-static/
+          publish_dir: ${{ github.workspace }}/packages/iTwinUI-react/storybook-static/
