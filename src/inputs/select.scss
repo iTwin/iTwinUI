@@ -69,6 +69,7 @@
 
 @mixin iui-multi-select-tag-container {
   position: absolute;
+  // align wth Select's padding
   inset: 0 $iui-icons-default + $iui-l 0 $iui-sm;
   height: 100%;
   display: flex;
@@ -88,6 +89,7 @@
     .iui-multi-select-tag-label,
     .iui-multi-select-tag-button {
       font-size: $iui-font-size-small;
+      line-height: floor($iui-baseline * 1.5);
     }
 
     .iui-button-icon {
