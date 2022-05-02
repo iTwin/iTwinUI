@@ -36,8 +36,8 @@
         width: 375px;
       }
 
-      #demo-extras-scrollable-table .iui-cell,
-      #demo-extras-scrollable-table-few-rows .iui-cell {
+      #demo-extras-scrollable-table .iui-cell:not(:first-child):not(:last-child),
+      #demo-extras-scrollable-table-few-rows .iui-cell:not(:first-child):not(:last-child) {
         width: 600px;
         flex: 0 0 600px;
       }
@@ -165,147 +165,149 @@
     <br />
     <section id="demo-default">
       <div class="iui-table">
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-slot">
-              <input
-                class="iui-checkbox"
-                type="checkbox"
-                id="select-all-checkboxes"
-              />
-            </div>
-            <div
-              class="iui-cell iui-actionable iui-sorted"
-              tabindex="0"
-              draggable="true"
-              ondragstart="onDragStart(event)"
-              ondragover="onDragOver(event)"
-              ondragleave="onDragLeave(event)"
-              ondrop="onDragLeave(event)"
-            >
-              Name
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <input
+                  class="iui-checkbox"
+                  type="checkbox"
+                  id="select-all-checkboxes"
+                />
+              </div>
+              <div
+                class="iui-cell iui-actionable iui-sorted"
+                tabindex="0"
+                draggable="true"
+                ondragstart="onDragStart(event)"
+                ondragover="onDragOver(event)"
+                ondragleave="onDragLeave(event)"
+                ondrop="onDragLeave(event)"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Name
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
+                <div class="iui-reorder-bar"></div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-              <div class="iui-reorder-bar"></div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-              draggable="true"
-              ondragstart="onDragStart(event)"
-              ondragover="onDragOver(event)"
-              ondragleave="onDragLeave(event)"
-              ondrop="onDragLeave(event)"
-            >
-              Modified
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
+                draggable="true"
+                ondragstart="onDragStart(event)"
+                ondragover="onDragOver(event)"
+                ondragleave="onDragLeave(event)"
+                ondrop="onDragLeave(event)"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
+                <div class="iui-reorder-bar"></div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-              <div class="iui-reorder-bar"></div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-              draggable="true"
-              ondragstart="onDragStart(event)"
-              ondragover="onDragOver(event)"
-              ondragleave="onDragLeave(event)"
-              ondrop="onDragLeave(event)"
-            >
-              Modified by
-              <button
-                class="iui-button iui-borderless iui-active iui-filter-button"
-                aria-label="Modify filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
+                draggable="true"
+                ondragstart="onDragStart(event)"
+                ondragover="onDragOver(event)"
+                ondragleave="onDragLeave(event)"
+                ondrop="onDragLeave(event)"
               >
-                <svg-filter
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified by
+                <button
+                  class="iui-button iui-borderless iui-active iui-filter-button"
+                  aria-label="Modify filter"
+                  type="button"
+                >
+                  <svg-filter
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
+                <div class="iui-reorder-bar"></div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-              <div class="iui-reorder-bar"></div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-              draggable="true"
-              ondragstart="onDragStart(event)"
-              ondragover="onDragOver(event)"
-              ondragleave="onDragLeave(event)"
-              ondrop="onDragLeave(event)"
-            >
-              Size
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
+                draggable="true"
+                ondragstart="onDragStart(event)"
+                ondragover="onDragOver(event)"
+                ondragleave="onDragLeave(event)"
+                ondrop="onDragLeave(event)"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Size
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-reorder-bar"></div>
               </div>
-              <div class="iui-reorder-bar"></div>
-            </div>
-            <div class="iui-cell iui-slot">
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Modify columns"
-                type="button"
-              >
-                <svg-column-manager
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-column-manager>
-              </button>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -714,123 +716,125 @@
       <br /><br />
 
       <div class="iui-table iui-condensed">
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-slot">
-              <input
-                class="iui-checkbox"
-                type="checkbox"
-                id="select-all-checkboxes"
-              />
-            </div>
-            <div
-              class="iui-cell iui-actionable iui-sorted"
-              tabindex="0"
-            >
-              Name
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <input
+                  class="iui-checkbox"
+                  type="checkbox"
+                  id="select-all-checkboxes"
+                />
+              </div>
+              <div
+                class="iui-cell iui-actionable iui-sorted"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Name
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Modified
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Modified by
-              <button
-                class="iui-button iui-borderless iui-small iui-active iui-filter-button"
-                aria-label="Modify filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified by
+                <button
+                  class="iui-button iui-borderless iui-small iui-active iui-filter-button"
+                  aria-label="Modify filter"
+                  type="button"
+                >
+                  <svg-filter
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Size
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Size
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-slot">
-              <button
-                class="iui-button iui-borderless iui-small"
-                aria-label="Modify columns"
-                type="button"
-              >
-                <svg-column-manager
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-column-manager>
-              </button>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-small"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -1239,123 +1243,125 @@
       <br /><br />
 
       <div class="iui-table iui-extra-condensed">
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-slot">
-              <input
-                class="iui-checkbox"
-                type="checkbox"
-                id="select-all-checkboxes"
-              />
-            </div>
-            <div
-              class="iui-cell iui-actionable iui-sorted"
-              tabindex="0"
-            >
-              Name
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <input
+                  class="iui-checkbox"
+                  type="checkbox"
+                  id="select-all-checkboxes"
+                />
+              </div>
+              <div
+                class="iui-cell iui-actionable iui-sorted"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Name
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Modified
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Modified by
-              <button
-                class="iui-button iui-borderless iui-small iui-active iui-filter-button"
-                aria-label="Modify filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified by
+                <button
+                  class="iui-button iui-borderless iui-small iui-active iui-filter-button"
+                  aria-label="Modify filter"
+                  type="button"
+                >
+                  <svg-filter
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Size
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Size
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-slot">
-              <button
-                class="iui-button iui-borderless iui-small"
-                aria-label="Modify columns"
-                type="button"
-              >
-                <svg-column-manager
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-column-manager>
-              </button>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless iui-small"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -1775,104 +1781,134 @@
         style="max-height: 407px"
         id="demo-extras-scrollable-table"
       >
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-actionable iui-sorted">
-              Product
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div
+                class="iui-cell iui-slot iui-sticky"
+                style="left: 0;"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                <input
+                  class="iui-checkbox"
+                  type="checkbox"
+                />
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Price
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable iui-sorted iui-sticky"
+                style="left: 48px;"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Product
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Quantity
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+              <div class="iui-cell iui-actionable">
+                Price
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Rating
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+              <div class="iui-cell iui-actionable">
+                Quantity
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Delivery time
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div class="iui-cell iui-actionable">
+                Rating
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+              </div>
+              <div class="iui-cell iui-actionable">
+                Delivery time
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+              </div>
+              <div
+                class="iui-cell iui-slot iui-sticky"
+                style="right: 0;"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                <button
+                  class="iui-button iui-borderless"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+                <div class="iui-shadow-left"></div>
               </div>
             </div>
           </div>
@@ -1881,7 +1917,18 @@
         <div class="iui-table-body iui-scroll-snapping iui-zebra-striping">
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Alpha</div>
             <div
@@ -1900,11 +1947,38 @@
               class="iui-cell"
               contenteditable
             >5 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
-          <div class="iui-row">
+          <div class="iui-row iui-selected">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                checked
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Beta</div>
             <div
@@ -1923,11 +1997,38 @@
               class="iui-cell"
               contenteditable
             >15 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
-          <div class="iui-row">
+          <div class="iui-row iui-selected">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                checked
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Charlie</div>
             <div
@@ -1946,11 +2047,37 @@
               class="iui-cell"
               contenteditable
             >5 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Delta</div>
             <div
@@ -1969,11 +2096,37 @@
               class="iui-cell"
               contenteditable
             >2 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Echo</div>
             <div
@@ -1992,11 +2145,37 @@
               class="iui-cell"
               contenteditable
             >25 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Foxtrot</div>
             <div
@@ -2015,11 +2194,37 @@
               class="iui-cell"
               contenteditable
             >8 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Golf</div>
             <div
@@ -2038,11 +2243,37 @@
               class="iui-cell"
               contenteditable
             >10 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Hotel</div>
             <div
@@ -2061,11 +2292,37 @@
               class="iui-cell"
               contenteditable
             >50 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >India</div>
             <div
@@ -2084,11 +2341,37 @@
               class="iui-cell"
               contenteditable
             >5 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Juliet</div>
             <div
@@ -2107,6 +2390,22 @@
               class="iui-cell"
               contenteditable
             >5 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
         </div>
 
@@ -2226,104 +2525,134 @@
         style="height: 407px"
         id="demo-extras-scrollable-table-few-rows"
       >
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-actionable iui-sorted">
-              Product
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div
+                class="iui-cell iui-slot iui-sticky"
+                style="left: 0;"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                <input
+                  class="iui-checkbox"
+                  type="checkbox"
+                />
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Price
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable iui-sorted iui-sticky"
+                style="left: 48px;"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Product
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Quantity
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+              <div class="iui-cell iui-actionable">
+                Price
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Rating
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+              <div class="iui-cell iui-actionable">
+                Quantity
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Delivery time
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div class="iui-cell iui-actionable">
+                Rating
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+              </div>
+              <div class="iui-cell iui-actionable">
+                Delivery time
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+              </div>
+              <div
+                class="iui-cell iui-slot iui-sticky"
+                style="right: 0;"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                <button
+                  class="iui-button iui-borderless iui-more-options"
+                  aria-label="More options"
+                  type="button"
+                >
+                  <svg-more
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-more>
+                </button>
+                <div class="iui-shadow-left"></div>
               </div>
             </div>
           </div>
@@ -2332,7 +2661,17 @@
         <div class="iui-table-body iui-zebra-striping">
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Alpha</div>
             <div
@@ -2351,11 +2690,37 @@
               class="iui-cell"
               contenteditable
             >5 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
 
           <div class="iui-row">
             <div
-              class="iui-cell iui-main-column"
+              class="iui-cell iui-slot iui-sticky"
+              style="left: 0;"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="iui-cell iui-main-column iui-sticky"
+              style="left: 48px;"
               contenteditable
             >Beta</div>
             <div
@@ -2374,6 +2739,22 @@
               class="iui-cell"
               contenteditable
             >15 days</div>
+            <div
+              class="iui-cell iui-slot iui-sticky"
+              style="right: 0;"
+            >
+              <button
+                class="iui-button iui-borderless iui-more-options"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+              <div class="iui-shadow-left"></div>
+            </div>
           </div>
         </div>
 
@@ -2492,47 +2873,49 @@
         class="iui-table iui-condensed"
         style="max-height: 385px"
       >
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-actionable iui-sorted">
-              Product
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-actionable iui-sorted">
+                Product
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Price
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+              <div class="iui-cell iui-actionable">
+                Price
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
             </div>
           </div>
@@ -2758,47 +3141,49 @@
         class="iui-table iui-extra-condensed"
         style="max-height: 363px"
       >
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-actionable iui-sorted">
-              Product
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-actionable iui-sorted">
+                Product
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              Price
-              <button
-                class="iui-button iui-borderless iui-small iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+              <div class="iui-cell iui-actionable">
+                Price
+                <button
+                  class="iui-button iui-borderless iui-small iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
             </div>
           </div>
@@ -3045,68 +3430,70 @@
     <h2>Expandable rows</h2>
     <section id="demo-expandable-rows">
       <div class="iui-table">
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-slot">
-              <input
-                class="iui-checkbox"
-                type="checkbox"
-                id="select-all-checkboxes"
-              />
-            </div>
-            <div class="iui-cell iui-slot"></div>
-            <div class="iui-cell iui-actionable iui-sorted">
-              Project name
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <input
+                  class="iui-checkbox"
+                  type="checkbox"
+                  id="select-all-checkboxes"
+                />
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
+              <div class="iui-cell iui-slot"></div>
+              <div class="iui-cell iui-actionable iui-sorted">
+                Project name
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-actionable">
-              File count
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
-              >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+              <div class="iui-cell iui-actionable">
+                File count
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-slot">
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Modify columns"
-                type="button"
-              >
-                <svg-column-manager
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-column-manager>
-              </button>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -3495,123 +3882,125 @@
         class="iui-table"
         style="height: 400px"
       >
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-slot">
-              <input
-                class="iui-checkbox"
-                type="checkbox"
-                id="select-all-checkboxes"
-              />
-            </div>
-            <div
-              class="iui-cell iui-actionable iui-sorted"
-              tabindex="0"
-            >
-              Name
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <input
+                  class="iui-checkbox"
+                  type="checkbox"
+                  id="select-all-checkboxes"
+                />
+              </div>
+              <div
+                class="iui-cell iui-actionable iui-sorted"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Name
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Modified
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Modified by
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Modify filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified by
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Modify filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Size
-              <button
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Size
+                <button
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-slot">
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Modify columns"
-                type="button"
-              >
-                <svg-column-manager
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-column-manager>
-              </button>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -3651,130 +4040,132 @@
     <h2>Empty state</h2>
     <section id="demo-empty-state">
       <div class="iui-table">
-        <div class="iui-table-header">
-          <div class="iui-row">
-            <div class="iui-cell iui-slot">
-              <input
-                class="iui-checkbox"
-                type="checkbox"
-                id="select-all-checkboxes"
-              />
-            </div>
-            <div
-              class="iui-cell iui-actionable iui-sorted"
-              tabindex="0"
-            >
-              Name
-              <button
-                disabled
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-row">
+              <div class="iui-cell iui-slot">
+                <input
+                  class="iui-checkbox"
+                  type="checkbox"
+                  id="select-all-checkboxes"
+                />
+              </div>
+              <div
+                class="iui-cell iui-actionable iui-sorted"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
+                Name
+                <button
+                  disabled
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                  <div class="iui-resizer">
+                    <div class="iui-resizer-bar"></div>
+                  </div>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
                 <div class="iui-resizer">
                   <div class="iui-resizer-bar"></div>
                 </div>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Modified
-              <button
-                disabled
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified
+                <button
+                  disabled
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Modified by
-              <button
-                disabled
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Modify filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Modified by
+                <button
+                  disabled
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Modify filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
+                <div class="iui-resizer">
+                  <div class="iui-resizer-bar"></div>
+                </div>
               </div>
-              <div class="iui-resizer">
-                <div class="iui-resizer-bar"></div>
-              </div>
-            </div>
-            <div
-              class="iui-cell iui-actionable"
-              tabindex="0"
-            >
-              Size
-              <button
-                disabled
-                class="iui-button iui-borderless iui-filter-button"
-                aria-label="Apply filter"
-                type="button"
+              <div
+                class="iui-cell iui-actionable"
+                tabindex="0"
               >
-                <svg-filter-hollow
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-filter-hollow>
-              </button>
-              <div class="iui-cell-end-icon">
-                <svg-sort-down
-                  class="iui-button-icon iui-sort"
-                  aria-hidden="true"
-                ></svg-sort-down>
+                Size
+                <button
+                  disabled
+                  class="iui-button iui-borderless iui-filter-button"
+                  aria-label="Apply filter"
+                  type="button"
+                >
+                  <svg-filter-hollow
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-filter-hollow>
+                </button>
+                <div class="iui-cell-end-icon">
+                  <svg-sort-down
+                    class="iui-button-icon iui-sort"
+                    aria-hidden="true"
+                  ></svg-sort-down>
+                </div>
               </div>
-            </div>
-            <div class="iui-cell iui-slot">
-              <button
-                class="iui-button iui-borderless"
-                aria-label="Modify columns"
-                type="button"
-              >
-                <svg-column-manager
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-column-manager>
-              </button>
+              <div class="iui-cell iui-slot">
+                <button
+                  class="iui-button iui-borderless"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -3793,32 +4184,112 @@
     </section>
 
     <script>
-      var selectAllFn = function (selectAllId, tableId) {
-        var element = document.getElementById(selectAllId);
-        element.indeterminate = true;
-        element.onclick = function () {
-          var checkboxes = document.querySelectorAll(`#${tableId} .iui-row input[type="checkbox"]:not(:disabled)`);
-          for (var checkbox of checkboxes) {
-            checkbox.checked = this.checked;
-          }
-          element.indeterminate = false;
-          element.checked = this.checked;
-        };
+      const setTableHeaderCheckbox = (table) => {
+        const headerCheckbox = table.querySelector('.iui-table-header .iui-checkbox');
+        const checkboxes = [...table.querySelectorAll('.iui-table-body .iui-row .iui-checkbox:not(:disabled)')];
+        headerCheckbox.checked = checkboxes.length && checkboxes.every(checkbox => checkbox.checked);
+        headerCheckbox.indeterminate = !headerCheckbox.checked && checkboxes.some(checkbox => checkbox.checked);
       };
-      selectAllFn('select-all-checkboxes', 'iui-table');
-      selectAllFn('select-all-checkboxes-condensed', 'iui-table-condensed');
-      selectAllFn('select-all-checkboxes-extra-condensed', 'iui-table-extra-condensed');
-      selectAllFn('select-all-checkboxes-zebra', 'iui-table-zebra');
+
+      const toggleRowSelection = (row, isSelected) => {
+        if (isSelected) {
+          row.classList.add('iui-selected');
+        } else {
+          row.classList.remove('iui-selected');
+        }
+      };
+
+      document.querySelectorAll('.iui-table-header .iui-checkbox:not(:disabled)').forEach((headerCheckbox) => {
+        const table = headerCheckbox.closest('.iui-table');
+        setTableHeaderCheckbox(table);
+        headerCheckbox.addEventListener('change', () => {
+          table.querySelectorAll('.iui-row .iui-checkbox:not(:disabled)').forEach((checkbox) => {
+            checkbox.checked = headerCheckbox.checked;
+            toggleRowSelection(checkbox.closest('.iui-row'), headerCheckbox.checked);
+          });
+          setTableHeaderCheckbox(table);
+        });
+      });
+
+      document.querySelectorAll('.iui-table .iui-table-body .iui-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function (event) {
+          toggleRowSelection(this.closest('.iui-row'), checkbox.checked);
+          setTableHeaderCheckbox(this.closest('.iui-table'));
+        });
+      });
     </script>
 
     <script>
       // Syncs body scroll with the header scroll
       ['#demo-extras-scrollable-table', '#demo-extras-scrollable-table-few-rows'].forEach((tableSelector) => {
         const scrollableBody = document.querySelector(`${tableSelector} .iui-table-body`);
-        const scrollableHeader = document.querySelector(`${tableSelector} .iui-table-header`);
+        const scrollableHeader = document.querySelector(`${tableSelector} .iui-table-header-wrapper`);
 
         scrollableBody.addEventListener('scroll', function (e) {
           scrollableHeader.scrollLeft = this.scrollLeft;
+          if (this.scrollLeft) {
+            scrollableHeader.querySelectorAll('.iui-sticky:nth-of-type(2)').forEach((sticky) => {
+              if (sticky.querySelector('.iui-shadow-right')) {
+                return;
+              }
+              const shadow = document.createElement('div');
+              shadow.classList.add('iui-shadow-right');
+              sticky.appendChild(shadow);
+            });
+            scrollableBody.querySelectorAll('.iui-sticky:nth-of-type(2)').forEach((sticky) => {
+              if (sticky.querySelector('.iui-shadow-right')) {
+                return;
+              }
+              const shadow = document.createElement('div');
+              shadow.classList.add('iui-shadow-right');
+              sticky.appendChild(shadow);
+            });
+          } else {
+            scrollableHeader.querySelectorAll('.iui-sticky').forEach((sticky) => {
+              const shadow = sticky.querySelector('.iui-shadow-right');
+              if (shadow) {
+                sticky.removeChild(shadow);
+              }
+            });
+            scrollableBody.querySelectorAll('.iui-sticky').forEach((sticky) => {
+              const shadow = sticky.querySelector('.iui-shadow-right');
+              if (shadow) {
+                sticky.removeChild(shadow);
+              }
+            });
+          }
+
+          if (this.scrollWidth - this.scrollLeft - this.offsetWidth > 0) {
+            scrollableHeader.querySelectorAll('.iui-sticky:last-of-type').forEach((sticky) => {
+              if (sticky.querySelector('.iui-shadow-left')) {
+                return;
+              }
+              const shadow = document.createElement('div');
+              shadow.classList.add('iui-shadow-left');
+              sticky.appendChild(shadow);
+            });
+            scrollableBody.querySelectorAll('.iui-sticky:last-of-type').forEach((sticky) => {
+              if (sticky.querySelector('.iui-shadow-left')) {
+                return;
+              }
+              const shadow = document.createElement('div');
+              shadow.classList.add('iui-shadow-left');
+              sticky.appendChild(shadow);
+            });
+          } else {
+            scrollableHeader.querySelectorAll('.iui-sticky').forEach((sticky) => {
+              const shadow = sticky.querySelector('.iui-shadow-left');
+              if (shadow) {
+                sticky.removeChild(shadow);
+              }
+            });
+            scrollableBody.querySelectorAll('.iui-sticky').forEach((sticky) => {
+              const shadow = sticky.querySelector('.iui-shadow-left');
+              if (shadow) {
+                sticky.removeChild(shadow);
+              }
+            });
+          }
         });
       });
     </script>
@@ -3843,6 +4314,9 @@
         column.classList.remove('iui-reorder-column-right');
         column.classList.remove('iui-reorder-column-left');
       };
+    </script>
+
+    <script>
     </script>
   </body>
 </html>

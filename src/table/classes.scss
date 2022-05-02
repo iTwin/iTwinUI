@@ -14,6 +14,10 @@
   }
 }
 
+.iui-table-header-wrapper {
+  @include iui-table-header-wrapper;
+}
+
 .iui-table-header {
   @include iui-table-header;
 }
