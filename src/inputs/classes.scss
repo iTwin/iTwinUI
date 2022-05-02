@@ -62,6 +62,10 @@
   @include iui-multi-select-tag-button;
 }
 
+.iui-multi-select-tag-button-icon {
+  @include iui-multi-select-tag-button-icon;
+}
+
 .iui-textarea {
   @include iui-textarea;
 }

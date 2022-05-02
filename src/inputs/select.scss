@@ -114,17 +114,18 @@
   height: 100%;
   aspect-ratio: 1 / 1;
 
-  .iui-button-icon {
-    flex-shrink: 0;
-  }
-
   @at-root .iui-select-button.iui-small & {
     font-size: $iui-font-size-small;
     line-height: floor($iui-baseline * 1.5);
+  }
+}
 
-    .iui-button-icon {
-      width: $iui-icons-small;
-      height: $iui-icons-small;
-    }
+@mixin iui-multi-select-tag-button-icon {
+  @include iui-button-icon;
+  flex-shrink: 0;
+
+  @at-root .iui-select-button.iui-small & {
+    width: $iui-icons-small;
+    height: $iui-icons-small;
   }
 }
