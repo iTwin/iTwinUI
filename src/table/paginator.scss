@@ -70,6 +70,7 @@
 
 @mixin iui-paginator-page-button {
   @include iui-button;
+  @include iui-button-active;
   @include iui-button-borderless;
   width: $iui-component-height;
 
