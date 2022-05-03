@@ -9,7 +9,8 @@
   z-index: 999;
   isolation: isolate;
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   @include themed {
@@ -30,10 +31,15 @@
 }
 
 @mixin iui-modal {
-  @include iui-surface($border-radius: $iui-border-radius, $elevation: $iui-elevation-24);
+  border-radius: $iui-border-radius;
+  box-shadow: $iui-elevation-24;
+  box-sizing: border-box;
   position: absolute;
   box-sizing: border-box;
   overflow: hidden;
+  @include themed {
+    background-color: t(iui-color-background-1);
+  }
 }
 
 @mixin iui-modal-default {
@@ -65,7 +71,8 @@
     border-radius: 0;
     height: 100vh;
     width: 100vw;
-    inset: 0;
+    top: 0;
+    left: 0;
     max-width: initial;
     min-width: initial;
     display: flex;

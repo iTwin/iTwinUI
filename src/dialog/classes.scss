@@ -1,0 +1,35 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-dialog {
+  @include iui-dialog;
+}
+
+.iui-dialog-draggable {
+  @include iui-dialog-draggable;
+}
+
+.iui-dialog-resizable {
+  @include iui-dialog-resizable;
+}
+
+.iui-dialog-animation {
+  @include iui-dialog-animation;
+}
+
+.iui-dialog-title {
+  @include iui-dialog-title;
+}
+
+.iui-dialog-title-bar {
+  @include iui-dialog-title-bar;
+}
+
+.iui-dialog-content {
+  @include iui-dialog-content;
+}
+
+.iui-dialog-button-bar {
+  @include iui-dialog-button-bar;
+}
