@@ -48,6 +48,7 @@
 
 @mixin iui-alert-button {
   @include iui-button;
+  @include iui-button-borderless;
   @include iui-button-size(small, borderless);
   margin-left: auto;
   margin-right: $iui-s;
