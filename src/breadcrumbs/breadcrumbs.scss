@@ -31,43 +31,29 @@
 }
 
 @mixin iui-breadcrumbs-item-overrides {
-  > a {
+  > * {
     padding: 0 $iui-s;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    cursor: default;
     @include themed {
       color: t(iui-text-color);
     }
+  }
 
-    &:any-link {
-      @include iui-anchor;
+  > :any-link {
+    @include iui-anchor;
 
-      &:focus {
-        outline-offset: -1px;
-      }
+    &:focus {
+      outline-offset: -1px;
     }
   }
 
-  > *:not([class]) {
-    padding: 0 $iui-s;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
   .iui-button {
-    &,
-    &.iui-default {
+    &.iui-button {
       @include iui-button-borderless;
-      background-color: transparent;
+      @include iui-focus;
       border: none;
-
-      &:focus-visible {
-        outline-offset: -1px;
-        outline-width: 1px;
-      }
     }
 
     &-label {
@@ -104,7 +90,6 @@
 @mixin iui-breadcrumbs-button {
   @include iui-button;
   @include iui-button-borderless;
-
   padding: 0;
   border: none;
   @include themed {
