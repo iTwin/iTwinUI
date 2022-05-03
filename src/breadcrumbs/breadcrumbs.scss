@@ -51,8 +51,17 @@
   }
 
   .iui-button {
-    @include iui-button-borderless;
-    border: none;
+    &,
+    &.iui-default {
+      @include iui-button-borderless;
+      background-color: transparent;
+      border: none;
+
+      &:focus-visible {
+        outline-offset: -1px;
+        outline-width: 1px;
+      }
+    }
 
     &-label {
       overflow: hidden;
