@@ -6,14 +6,14 @@
 @import './button-icon';
 
 @mixin iui-button-high-visibility {
-  --_iui-button-foreground-color: var(--iui-color-foreground-accessory);
+  --_iui-button-text-color: var(--iui-color-foreground-accessory);
 
   @include themed {
     background-color: t(iui-color-background-primary);
     border-color: t(iui-color-background-primary);
     color: t(iui-color-foreground-accessory);
   }
-  color: var(--_iui-button-foreground-color);
+  color: var(--_iui-button-text-color);
   @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px, $thickness: 1px);
 
   &:hover,

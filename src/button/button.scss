@@ -11,7 +11,7 @@ $iui-button-padding-large: $iui-xs * 6;
 
 @mixin iui-button {
   --_iui-button-active-stripe-inset: initial;
-  --_iui-button-foreground-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+  --_iui-button-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
 
   @include iui-reset;
   font-family: inherit;
@@ -39,10 +39,10 @@ $iui-button-padding-large: $iui-xs * 6;
   @include themed {
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
-  color: var(--_iui-button-foreground-color);
+  color: var(--_iui-button-text-color);
 
   &:hover {
-    --_iui-button-foreground-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
+    --_iui-button-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
 
     text-decoration: none;
   }
