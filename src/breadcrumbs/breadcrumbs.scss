@@ -50,7 +50,7 @@
     }
   }
 
-  > span:not([class]) {
+  > *:not([class]) {
     padding: 0 $iui-s;
     overflow: hidden;
     white-space: nowrap;
