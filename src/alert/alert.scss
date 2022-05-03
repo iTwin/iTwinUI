@@ -17,19 +17,6 @@
     color: t(iui-text-color);
     background-color: t(iui-color-background-1);
   }
-  @each $status in positive, negative, warning, informational {
-    $statusColor: if($status == informational, 'primary', $status);
-    &.iui-#{$status} {
-      @include themed {
-        background: linear-gradient(
-          rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6)),
-          rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6))
-        ),
-          linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-        border-color: t(iui-color-foreground-#{$statusColor});
-      }
-    }
-  }
 
   &.iui-sticky {
     border-radius: 0;
@@ -39,11 +26,13 @@
     width: 100vw;
   }
 }
+
 @mixin iui-alert-icon {
   @include iui-icons-default;
   flex-shrink: 0;
   margin-left: $iui-m;
 }
+
 @mixin iui-alert-message {
   margin: $iui-baseline $iui-m;
 }
@@ -59,7 +48,6 @@
 
 @mixin iui-alert-button {
   @include iui-button;
-  @include iui-button-borderless;
   @include iui-button-size(small, borderless);
   margin-left: auto;
   margin-right: $iui-s;
@@ -67,14 +55,24 @@
 
 @mixin iui-alert-button-icon {
   @include iui-button-icon;
-  margin-left: 3px;
-  margin-right: 3px;
+  margin-left: $iui-component-offset;
+  margin-right: $iui-component-offset;
 }
 
 /// Modifier mixin to categorize the alert
 /// @arg $statusColor Can be one of: positive, negative, warning, primary
 /// @arg $rootSelector Selector of the root alert element. Defaults to .iui-alert
 @mixin iui-alert-category($statusColor, $rootSelector: '.iui-alert') {
+  @include iui-alert;
+  @include themed {
+    background: linear-gradient(
+      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6)),
+      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6))
+    ),
+      linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+    border-color: t(iui-color-foreground-#{$statusColor});
+  }
+
   #{$rootSelector}-icon {
     @include themed {
       fill: t(iui-icons-color-#{$statusColor});
