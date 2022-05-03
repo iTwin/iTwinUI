@@ -5,7 +5,10 @@
 .iui-button {
   @include iui-button;
   @include iui-button-size;
-  @include iui-button-active;
+
+  &.iui-active {
+    @include iui-button-active;
+  }
 
   &.iui-default {
     @include iui-button-default;
