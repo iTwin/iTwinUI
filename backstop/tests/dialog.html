@@ -66,13 +66,13 @@
     <br />
 
     <button
-      aria-label="Toggle resizable and draggable dialog"
-      id="toggle-resizable-dialog"
+      aria-label="Toggle draggable and draggable dialog"
+      id="toggle-draggable-dialog"
       type="button"
       class="iui-button iui-default"
-      onclick="toggleDialog('resizable-dialog')"
+      onclick="toggleDialog('draggable-dialog-test')"
     >
-      Toggle resizable and draggable dialog
+      Toggle draggable dialog
     </button>
 
     <div
@@ -170,17 +170,20 @@
     </div>
 
     <div
-      class="iui-dialog-backdrop iui-dialog-resizable"
-      id="resizable-dialog"
+      class="iui-dialog-backdrop iui-dialog-default iui-dialog-draggable"
+      id="draggable-dialog-test"
     >
-      <div class="iui-dialog">
+      <div
+        class="iui-dialog"
+        id="draggable-dialog"
+      >
         <div class="iui-dialog-title-bar">
           <div class="iui-dialog-title">Title</div>
           <button
             aria-label="Close"
             type="button"
             class="iui-button iui-borderless iui-small"
-            onclick="toggleDialog('resizable-dialog')"
+            onclick="toggleDialog('draggable-dialog')"
           >
             <svg-close
               class="iui-button-icon"
@@ -202,13 +205,13 @@
         <div class="iui-dialog-button-bar">
           <button
             class="iui-button iui-high-visibility"
-            onclick="toggleDialog('resizable-dialog')"
+            onclick="toggleDialog('draggable-dialog')"
           >
             <span class="iui-button-label">Proceed</span>
           </button>
           <button
             class="iui-button iui-default"
-            onclick="toggleDialog('resizable-dialog')"
+            onclick="toggleDialog('draggable-dialog')"
           >
             <span class="iui-button-label">Cancel</span>
           </button>
@@ -223,7 +226,7 @@
       }
 
       // Make the element draggable:
-      dragElement(document.getElementById('resizable-dialog'));
+      dragElement(document.getElementById('draggable-dialog'));
 
       function dragElement(element) {
         let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -259,8 +262,9 @@
           pos3 = e.clientX;
           pos4 = e.clientY;
           // set the element's new position:
-          element.style.top = (element.offsetTop - pos2) + "px";
-          element.style.left = (element.offsetLeft - pos1) + "px";
+          element.style.transform = `translate(${element.offsetLeft - pos1}px, ${element.offsetTop - pos2}px)`;
+          // element.style.top = (element.offsetTop - pos2) + "px";
+          // element.style.left = (element.offsetLeft - pos1) + "px";
         }
 
         function closeDragElement() {

@@ -92,7 +92,7 @@
   }
 }
 
-@mixin iui-dialog-resizable {
+@mixin iui-dialog-draggable {
   background-color: transparent;
   pointer-events: none;
   z-index: 998;
@@ -103,7 +103,7 @@
     max-height: 100vh;
     min-width: 380px;
     min-height: 144px;
-    resize: both;
+    // resize: both;
     display: flex;
     flex-direction: column;
     @include themed {
@@ -152,7 +152,7 @@
   box-sizing: border-box;
   font-size: $iui-font-size-subheading;
 
-  @at-root .iui-dialog-resizable & {
+  @at-root .iui-dialog-draggable & {
     user-select: none;
     font-size: $iui-font-size-leading;
     padding: round($iui-baseline * 0.5) $iui-m;
@@ -174,7 +174,7 @@
   overflow-y: overlay;
   padding: 0 $iui-m;
 
-  @at-root .iui-dialog-resizable & {
+  @at-root .iui-dialog-draggable & {
     padding-top: $iui-baseline;
   }
 }

@@ -18,9 +18,8 @@
   @include iui-dialog-full-page;
 }
 
-.iui-dialog-resizable {
-  @include iui-dialog-default;
-  @include iui-dialog-resizable;
+.iui-dialog-draggable {
+  @include iui-dialog-draggable;
 }
 
 .iui-dialog-title {
