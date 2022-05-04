@@ -244,6 +244,23 @@ export type TableProps<
   enableColumnReordering?: boolean;
 } & Omit<CommonProps, 'title'>;
 
+// Original type for some reason is missing sub-columns
+type ColumnType<
+  T extends Record<string, unknown> = Record<string, unknown>
+> = Column<T> & {
+  columns: ColumnType[];
+};
+const flattenColumns = (columns: ColumnType[]): ColumnType[] => {
+  const flatColumns: ColumnType[] = [];
+  columns.forEach((column) => {
+    flatColumns.push(column);
+    if (column.columns) {
+      flatColumns.push(...flattenColumns(column.columns));
+    }
+  });
+  return flatColumns;
+};
+
 /**
  * Table based on [react-table](https://react-table.tanstack.com/docs/api/overview).
  * @example
@@ -351,13 +368,10 @@ export const Table = <
     onRowInViewportRef.current = onRowInViewport;
   }, [onBottomReached, onRowInViewport]);
 
-  // Original type for some reason is missing sub-columns
-  type ColumnType = Column<T> & {
-    columns: Column<T>[];
-  };
-  const hasManualSelectionColumn = (columns as ColumnType[])[0]?.columns.some(
-    (column) => column.id === SELECTION_CELL_ID,
-  );
+  const hasManualSelectionColumn = React.useMemo(() => {
+    const flatColumns = flattenColumns(columns as ColumnType[]);
+    return flatColumns.some((column) => column.id === SELECTION_CELL_ID);
+  }, [columns]);
 
   const tableStateReducer = React.useCallback(
     (

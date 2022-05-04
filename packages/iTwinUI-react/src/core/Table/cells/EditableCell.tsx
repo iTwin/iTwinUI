@@ -41,7 +41,15 @@ export type EditableCellProps<
 export const EditableCell = <T extends Record<string, unknown>>(
   props: EditableCellProps<T>,
 ) => {
-  const { cellElementProps, cellProps, onCellEdit, children, ...rest } = props;
+  const {
+    cellElementProps,
+    cellProps,
+    onCellEdit,
+    children,
+    isDisabled,
+    ...rest
+  } = props;
+  isDisabled; // To omit and prevent eslint error.
 
   const sanitizeString = (text: string) => {
     return text.replace(/(\r\n|\n|\r)+/gm, ' ');

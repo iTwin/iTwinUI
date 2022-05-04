@@ -2880,3 +2880,24 @@ it('should render selectable rows without select column', () => {
   expect(rows[2].classList).not.toContain('iui-selected');
   expect(onRowClick).toHaveBeenCalledTimes(3);
 });
+
+it('should not throw on headless table', () => {
+  const columns: Column<TestDataType>[] = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+    },
+  ];
+  const { container } = renderComponent({
+    columns,
+  });
+
+  expect(container.querySelector('.iui-table-header .iui-row')).toBeFalsy();
+  expect(container.querySelector('.iui-table-body')).toBeTruthy();
+});
