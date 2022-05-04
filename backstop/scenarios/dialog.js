@@ -17,11 +17,11 @@ module.exports = [
     hideSelectors: ['body > *:not(.iui-dialog-backdrop)'],
   }),
 
-  // scenario('resizable-dialog', {
-  //   // Hovering `body` to avoid random test failures
-  //   // when "Open dialog" sometimes is and sometimes is not hovered.
-  //   actions: [click('#toggle-resizable-dialog'), hover('body')],
-  //   selectors: ['document'],
-  //   hideSelectors: ['body > *:not(.iui-dialog-backdrop)'],
-  // }),
+  scenario('draggable-dialog', {
+    // Hovering `body` to avoid random test failures
+    // when "Open dialog" sometimes is and sometimes is not hovered.
+    actions: [click('#toggle-draggable-dialog'), hover('body')],
+    selectors: ['document'],
+    hideSelectors: ['body > *:not(.iui-dialog-backdrop)'],
+  }),
 ];
