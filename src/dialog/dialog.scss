@@ -2,10 +2,34 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
-@import '../surface/index';
 
-@mixin iui-dialog { //iui-modal
+@mixin iui-dialog-backdrop {
+  @include iui-reset;
   z-index: 999;
+  isolation: isolate;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @include themed {
+    background-color: rgba(0, 0, 0, t(iui-opacity-4));
+  }
+
+  // Small/Resizable Dialog Animations for CSS
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
+
+  &.iui-dialog-visible {
+    visibility: visible;
+    opacity: 1;
+    // remove delay for entry animation so dialog is instantly visible
+    transition-delay: $iui-speed-instant;
+  }
+}
+
+@mixin iui-dialog {
   border-radius: $iui-border-radius;
   box-shadow: $iui-elevation-24;
   box-sizing: border-box;
@@ -15,145 +39,98 @@
   @include themed {
     background-color: t(iui-color-background-1);
   }
+}
 
-  left: 50%;
-  top: 33%;
-  transform: translate(-50%, -33%);
-  max-width: 50%;
-  min-width: 380px;
-  max-height: 100vh;
+@mixin iui-dialog-default {
+  .iui-dialog {
+    left: 50%;
+    top: 33%;
+    transform: translate(-50%, -33%);
+    max-width: 50%;
+    min-width: 380px;
+    max-height: 100vh;
 
-  @media screen and (max-width: 400px) {
-    max-width: 95%;
-    width: 95%;
-    min-width: 95%;
-  }
-
-  // Modal Animations for CSS
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
-
-  &.iui-dialog-visible {
-    visibility: visible;
-    opacity: 1;
-    // remove delay for entry animation so modal is instantly visible
-    transition-delay: $iui-speed-instant;
+    @media screen and (max-width: 400px) {
+      max-width: 95%;
+      width: 95%;
+      min-width: 95%;
+    }
   }
 }
 
-// @mixin iui-dialog-backdrop {
-//   @include iui-reset;
-//   z-index: 999;
-//   isolation: isolate;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   @include themed {
-//     background-color: rgba(0, 0, 0, t(iui-opacity-4));
-//   }
+@mixin iui-dialog-full-page {
+  $iui-full-page-dialog-slide-in-speed: 0.3s;
+  $iui-full-page-dialog-slide-out-speed: 0.25s;
 
-//   // Modal Animations for CSS
-//   visibility: hidden;
-//   opacity: 0;
-//   transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: visibility $iui-speed-instant linear $iui-speed-slow, opacity $iui-speed ease-out $iui-speed-fast;
+  }
 
-//   &.iui-dialog-visible {
-//     visibility: visible;
-//     opacity: 1;
-//     // remove delay for entry animation so modal is instantly visible
-//     transition-delay: $iui-speed-instant;
-//   }
-// }
+  .iui-dialog {
+    border-radius: 0;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    max-width: initial;
+    min-width: initial;
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(100%);
+      transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
+        transform $iui-full-page-dialog-slide-out-speed ease-in;
+    }
+  }
 
-// @mixin iui-dialog-modal { //iui-modal-default
-//   .iui-dialog {
-//     left: 50%;
-//     top: 33%;
-//     transform: translate(-50%, -33%);
-//     max-width: 50%;
-//     min-width: 380px;
-//     max-height: 100vh;
-
-//     @media screen and (max-width: 400px) {
-//       max-width: 95%;
-//       width: 95%;
-//       min-width: 95%;
-//     }
-//   }
-// }
-
-// @mixin iui-dialog-modal-full-page {
-//   $iui-full-page-modal-slide-in-speed: 0.3s;
-//   $iui-full-page-modal-slide-out-speed: 0.25s;
-
-//   @media (prefers-reduced-motion: no-preference) {
-//     transition: visibility $iui-speed-instant linear $iui-speed-slow, opacity $iui-speed ease-out $iui-speed-fast;
-//   }
-
-//   .iui-dialog {
-//     border-radius: 0;
-//     height: 100vh;
-//     width: 100vw;
-//     top: 0;
-//     left: 0;
-//     max-width: initial;
-//     min-width: initial;
-//     display: flex;
-//     flex-direction: column;
-//     will-change: transform;
-//     @media (prefers-reduced-motion: no-preference) {
-//       transform: translateY(100%);
-//       transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
-//         transform $iui-full-page-modal-slide-out-speed ease-in;
-//     }
-//   }
-
-//   &.iui-dialog-visible .iui-dialog {
-//     transform: translateY(0);
-//     @media (prefers-reduced-motion: no-preference) {
-//       transition: transform $iui-full-page-modal-slide-in-speed ease-out;
-//     }
-//   }
-// }
-
-@mixin iui-dialog-draggable {
-  display: flex;
-  flex-direction: column;
-  @include themed {
-    border: 1px solid t(iui-color-background-border);
+  &.iui-dialog-visible .iui-dialog {
+    transform: translateY(0);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform $iui-full-page-dialog-slide-in-speed ease-out;
+    }
   }
 }
 
 @mixin iui-dialog-resizable {
-  max-width: 100vw;
-  max-height: 100vh;
-  min-width: 380px;
-  min-height: 144px;
-  resize: both;
+  background-color: transparent;
+  pointer-events: none;
+  z-index: 998;
+
+  .iui-dialog {
+    pointer-events: initial;
+    max-width: 100vw;
+    max-height: 100vh;
+    min-width: 380px;
+    min-height: 144px;
+    resize: both;
+    display: flex;
+    flex-direction: column;
+    @include themed {
+      border: 1px solid t(iui-color-background-border);
+    }
+  }
 }
 
 @mixin iui-dialog-animation {
-  // Full Page Modal Animations for React
-  &-enter .iui-dialog-modal-full-page .iui-dialog {
+  // Full Page Dialog Animations for React
+  &-enter .iui-dialog-full-page .iui-dialog {
     transform: translateY(100%);
     opacity: 0;
   }
 
-  &-enter-active .iui-dialog-modal-full-page .iui-dialog {
+  &-enter-active .iui-dialog-full-page .iui-dialog {
     transform: translateY(0);
     opacity: 1;
   }
 
-  // Small Modal Animations for React
-  &-enter .iui-dialog-modal-backdrop {
+  // Small Dialog Animations for React
+  &-enter .iui-dialog-backdrop {
     visibility: hidden;
     opacity: 0;
   }
 
-  &-enter-active .iui-dialog-modal-backdrop {
+  &-enter-active .iui-dialog-backdrop {
     visibility: visible;
     opacity: 1;
   }
@@ -175,7 +152,7 @@
   box-sizing: border-box;
   font-size: $iui-font-size-subheading;
 
-  @at-root .iui-dialog-draggable & {
+  @at-root .iui-dialog-resizable & {
     user-select: none;
     font-size: $iui-font-size-leading;
     padding: round($iui-baseline * 0.5) $iui-m;
@@ -197,7 +174,7 @@
   overflow-y: overlay;
   padding: 0 $iui-m;
 
-  @at-root .iui-dialog-draggable & {
+  @at-root .iui-dialog-resizable & {
     padding-top: $iui-baseline;
   }
 }

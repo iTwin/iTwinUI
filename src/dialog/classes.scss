@@ -2,20 +2,25 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+.iui-dialog-backdrop {
+  @include iui-dialog-backdrop;
+}
+
 .iui-dialog {
   @include iui-dialog;
 }
 
-.iui-dialog-draggable {
-  @include iui-dialog-draggable;
+.iui-dialog-default {
+  @include iui-dialog-default;
+}
+
+.iui-dialog-full-page {
+  @include iui-dialog-full-page;
 }
 
 .iui-dialog-resizable {
+  @include iui-dialog-default;
   @include iui-dialog-resizable;
-}
-
-.iui-dialog-animation {
-  @include iui-dialog-animation;
 }
 
 .iui-dialog-title {
@@ -32,4 +37,8 @@
 
 .iui-dialog-button-bar {
   @include iui-dialog-button-bar;
+}
+
+.iui-dialog-animation {
+  @include iui-dialog-animation;
 }
