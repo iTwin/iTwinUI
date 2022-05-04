@@ -193,8 +193,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
   );
 
   // Maintain internal selected value state synced with `value` prop
-  const [selectedValue, setSelectedValue] =
-    React.useState<T | undefined>(value);
+  const [selectedValue, setSelectedValue] = React.useState<T | undefined>(
+    value,
+  );
   React.useEffect(() => {
     setSelectedValue(value);
   }, [value]);
