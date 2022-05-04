@@ -717,12 +717,12 @@ export const Table = <
                       {data.length !== 0 && column.canSort && (
                         <div className='iui-cell-end-icon'>
                           {column.isSorted && column.isSortedDesc ? (
-                            <SvgSortUp
+                            <SvgSortDown
                               className='iui-icon iui-sort'
                               aria-hidden
                             />
                           ) : (
-                            <SvgSortDown
+                            <SvgSortUp
                               className='iui-icon iui-sort'
                               aria-hidden
                             />
