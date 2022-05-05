@@ -225,50 +225,36 @@
         element.classList.toggle('iui-dialog-visible');
       }
 
-      // Make the element draggable:
       dragElement(document.getElementById('draggable-dialog'));
 
       function dragElement(element) {
-        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        const titleBarElements = element.getElementsByClassName('iui-dialog-title-bar');
-        if (titleBarElements && titleBarElements.length === 1) {
-          var titleBar = titleBarElements[0];
-        }
-        if (titleBar) {
-          /* if present, the header is where you move the DIV from:*/
-          titleBar.onmousedown = dragMouseDown;
-        } else {
-          /* otherwise, move the DIV from anywhere inside the DIV:*/
-          element.onmousedown = dragMouseDown;
+        let grabOffsetX, grabOffsetY, prevX, prevY;
+        const { width, height } = element.getBoundingClientRect();
+        const titleBar = element.querySelector('.iui-dialog-title-bar');
+        titleBar.onmousedown = onMouseDown;
+
+        function onMouseDown(e) {
+          const { x, y } = element.querySelector('.iui-dialog-title-bar').getBoundingClientRect();
+          grabOffsetX = e.clientX - x;
+          grabOffsetY = e.clientY - y;
+          prevX = x;
+          prevY = y;
+          document.onmouseup = onMouseUp;
+          document.onmousemove = onMouseMove;
         }
 
-        function dragMouseDown(e) {
-          e = e || window.event;
-          e.preventDefault();
-          // get the mouse cursor position at startup:
-          pos3 = e.clientX;
-          pos4 = e.clientY;
-          document.onmouseup = closeDragElement;
-          // call a function whenever the cursor moves:
-          document.onmousemove = elementDrag;
+        function onMouseMove(e) {
+          const styles = getComputedStyle(element);
+          const { m41: transformX, m42: transformY } = new DOMMatrixReadOnly(styles.transform);
+          const diffX = e.clientX - prevX;
+          const xVal = diffX - grabOffsetX - width / 2;
+          const diffY = e.clientY - prevY;
+          const yVal = diffY - grabOffsetY - height / 3;
+
+          element.style.transform = `translate(${xVal}px, ${yVal}px)`;
         }
 
-        function elementDrag(e) {
-          e = e || window.event;
-          e.preventDefault();
-          // calculate the new cursor position:
-          pos1 = pos3 - e.clientX;
-          pos2 = pos4 - e.clientY;
-          pos3 = e.clientX;
-          pos4 = e.clientY;
-          // set the element's new position:
-          element.style.transform = `translate(${element.offsetLeft - pos1}px, ${element.offsetTop - pos2}px)`;
-          // element.style.top = (element.offsetTop - pos2) + "px";
-          // element.style.left = (element.offsetLeft - pos1) + "px";
-        }
-
-        function closeDragElement() {
-          /* stop moving when mouse button is released:*/
+        function onMouseUp() {
           document.onmouseup = null;
           document.onmousemove = null;
         }
