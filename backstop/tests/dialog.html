@@ -70,7 +70,7 @@
       id="toggle-draggable-dialog"
       type="button"
       class="iui-button iui-default"
-      onclick="toggleDialog('draggable-dialog-test')"
+      onclick="toggleDialog('draggable-dialog')"
     >
       Toggle draggable dialog
     </button>
@@ -171,12 +171,9 @@
 
     <div
       class="iui-dialog-backdrop iui-dialog-default iui-dialog-draggable"
-      id="draggable-dialog-test"
+      id="draggable-dialog"
     >
-      <div
-        class="iui-dialog"
-        id="draggable-dialog"
-      >
+      <div class="iui-dialog">
         <div class="iui-dialog-title-bar">
           <div class="iui-dialog-title">Title</div>
           <button
@@ -225,38 +222,50 @@
         element.classList.toggle('iui-dialog-visible');
       }
 
-      dragElement(document.getElementById('draggable-dialog'));
+      const dragItem = document.querySelector('#draggable-dialog .iui-dialog');
+      dragElement(dragItem);
 
       function dragElement(element) {
-        let grabOffsetX, grabOffsetY, prevX, prevY;
-        const { width, height } = element.getBoundingClientRect();
         const titleBar = element.querySelector('.iui-dialog-title-bar');
-        titleBar.onmousedown = onMouseDown;
+        titleBar.onmousedown = dragStart;
 
-        function onMouseDown(e) {
-          const { x, y } = element.querySelector('.iui-dialog-title-bar').getBoundingClientRect();
-          grabOffsetX = e.clientX - x;
-          grabOffsetY = e.clientY - y;
-          prevX = x;
-          prevY = y;
-          document.onmouseup = onMouseUp;
-          document.onmousemove = onMouseMove;
+        let active = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = dragItem.offsetLeft - dragItem.offsetWidth;
+        let yOffset = dragItem.offsetTop - dragItem.offsetHeight;
+
+        document.addEventListener("mouseup", dragEnd, false);
+        document.addEventListener("mousemove", drag, false);
+
+        function dragStart(e) {
+          initialX = e.clientX - xOffset;
+          initialY = e.clientY - yOffset;
+
+          active = true;
         }
 
-        function onMouseMove(e) {
-          const styles = getComputedStyle(element);
-          const { m41: transformX, m42: transformY } = new DOMMatrixReadOnly(styles.transform);
-          const diffX = e.clientX - prevX;
-          const xVal = diffX - grabOffsetX - width / 2;
-          const diffY = e.clientY - prevY;
-          const yVal = diffY - grabOffsetY - height / 3;
+        function dragEnd(e) {
+          initialX = currentX;
+          initialY = currentY;
 
-          element.style.transform = `translate(${xVal}px, ${yVal}px)`;
+          active = false;
         }
 
-        function onMouseUp() {
-          document.onmouseup = null;
-          document.onmousemove = null;
+        function drag(e) {
+          if (active) {
+            e.preventDefault();
+
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+
+            xOffset = currentX;
+            yOffset = currentY;
+
+            dragItem.style.transform = "translate(" + currentX + "px, " + currentY + "px)";
+          }
         }
       }
     </script>
