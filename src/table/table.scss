@@ -37,6 +37,7 @@
 
   .iui-cell:not(.iui-slot) {
     @include iui-focus;
+    flex-wrap: wrap;
 
     &.iui-actionable {
       cursor: pointer;
@@ -153,6 +154,12 @@
       }
     }
   }
+}
+
+@mixin iui-table-header-actions-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
 }
 
 @mixin iui-table-body {
