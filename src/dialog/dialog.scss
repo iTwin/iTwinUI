@@ -61,9 +61,6 @@
 }
 
 @mixin iui-dialog-full-page {
-  $iui-full-page-dialog-slide-in-speed: 0.3s;
-  $iui-full-page-dialog-slide-out-speed: 0.25s;
-
   @media (prefers-reduced-motion: no-preference) {
     transition: visibility $iui-speed-instant linear $iui-speed-slow, opacity $iui-speed ease-out $iui-speed-fast;
   }
@@ -82,14 +79,14 @@
     @media (prefers-reduced-motion: no-preference) {
       transform: translateY(100%);
       transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
-        transform $iui-full-page-dialog-slide-out-speed ease-in;
+        transform $iui-speed-fast ease-in;
     }
   }
 
   &.iui-dialog-visible .iui-dialog {
     transform: translateY(0);
     @media (prefers-reduced-motion: no-preference) {
-      transition: transform $iui-full-page-dialog-slide-in-speed ease-out;
+      transition: transform $iui-speed ease-out;
     }
   }
 }
