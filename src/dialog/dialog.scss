@@ -34,7 +34,9 @@
   box-shadow: $iui-elevation-24;
   box-sizing: border-box;
   position: absolute;
+  padding: $iui-baseline $iui-m;
   box-sizing: border-box;
+  padding: $iui-baseline $iui-m;
   overflow: hidden;
   @include themed {
     background-color: t(iui-color-background-1);
@@ -103,9 +105,10 @@
     max-height: 100vh;
     min-width: 380px;
     min-height: 144px;
-    // resize: both;
+    resize: both;
     display: flex;
     flex-direction: column;
+    padding: 0;
     @include themed {
       border: 1px solid t(iui-color-background-border);
     }
@@ -147,8 +150,8 @@
 @mixin iui-dialog-title-bar {
   display: flex;
   align-items: center;
+  margin-bottom: $iui-baseline;
   justify-content: space-between;
-  padding: $iui-baseline $iui-m;
   box-sizing: border-box;
   font-size: $iui-font-size-subheading;
 
@@ -170,20 +173,26 @@
 
 @mixin iui-dialog-content {
   flex-grow: 2;
+  margin: 0 -#{$iui-m};
+  padding: 0 $iui-m;
   overflow-y: auto;
   overflow-y: overlay;
-  padding: 0 $iui-m;
 
   @at-root .iui-dialog-draggable & {
-    padding-top: $iui-baseline;
+    margin: 0;
+    padding: 0 $iui-m;
   }
 }
 
 @mixin iui-dialog-button-bar {
+  margin-top: $iui-baseline;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: $iui-baseline $iui-m;
+
+  @at-root .iui-dialog-draggable & {
+    padding: 0 $iui-m $iui-baseline $iui-m;
+  }
 
   // #region IE support
   > .iui-button:not(:last-child) {
