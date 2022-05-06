@@ -4,4 +4,8 @@
 
 .iui-anchor {
   @include iui-anchor;
+
+  &-external {
+    @include iui-anchor-external;
+  }
 }
