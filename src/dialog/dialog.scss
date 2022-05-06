@@ -29,6 +29,11 @@
   }
 }
 
+@mixin iui-dialog-backdrop-relative {
+  position: relative;
+  overflow: hidden;
+}
+
 @mixin iui-dialog {
   border-radius: $iui-border-radius;
   box-shadow: $iui-elevation-24;
@@ -95,6 +100,7 @@
   background-color: transparent;
   pointer-events: none;
   z-index: 998;
+  position: relative;
 
   .iui-dialog {
     pointer-events: initial;
@@ -102,7 +108,6 @@
     max-height: 100vh;
     min-width: 380px;
     min-height: 144px;
-    resize: both;
     display: flex;
     flex-direction: column;
     padding: 0;

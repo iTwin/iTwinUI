@@ -4,6 +4,10 @@
 
 .iui-dialog-backdrop {
   @include iui-dialog-backdrop;
+
+  &.iui-dialog-backdrop-relative {
+    @include iui-dialog-backdrop-relative;
+  }
 }
 
 .iui-dialog {
