@@ -20,10 +20,22 @@ function generateSegments(
   max: number,
 ): { left: number; right: number }[] {
   const segments: { left: number; right: number }[] = [];
+  const newValues = [...values];
+  newValues.sort((a, b) => a - b);
+
+  if (
+    0 === newValues.length ||
+    newValues[0] < min ||
+    newValues[newValues.length - 1] > max ||
+    min === max
+  ) {
+    return [];
+  }
+
   let lastValue = min;
-  for (let i = 0; i < values.length; i++) {
-    segments.push({ left: lastValue, right: values[i] });
-    lastValue = values[i];
+  for (let i = 0; i < newValues.length; i++) {
+    segments.push({ left: lastValue, right: newValues[i] });
+    lastValue = newValues[i];
   }
   segments.push({ left: lastValue, right: max });
   return segments;
@@ -42,30 +54,27 @@ export type TrackProps = {
  */
 export const Track = (props: TrackProps) => {
   const { trackDisplayMode, sliderMin, sliderMax, values } = props;
-  const [currentValues, setCurrentValues] = React.useState(
-    [...values].sort((a, b) => a - b),
+  const [segments, setSegments] = React.useState(() =>
+    generateSegments(values, sliderMin, sliderMax),
   );
 
   React.useEffect(() => {
-    const newValues = [...values];
-    newValues.sort((a, b) => a - b);
-    setCurrentValues(newValues);
-  }, [values]);
-
-  const segments = React.useMemo(
-    () => generateSegments(currentValues, sliderMin, sliderMax),
-    [currentValues, sliderMin, sliderMax],
-  );
+    setSegments(generateSegments(values, sliderMin, sliderMax));
+  }, [values, sliderMin, sliderMax]);
 
   return (
     <>
       {'none' !== trackDisplayMode &&
         segments.map((segment, index) => {
           const leftPercent =
-            (100.0 * (segment.left - sliderMin)) / (sliderMax - sliderMin);
-          let rightPercent =
-            (100.0 * (segment.right - sliderMin)) / (sliderMax - sliderMin);
-          rightPercent = 100.0 - rightPercent;
+            segment.left >= sliderMin && sliderMax !== sliderMin
+              ? (100.0 * (segment.left - sliderMin)) / (sliderMax - sliderMin)
+              : 0;
+          const rightPercent =
+            segment.right >= sliderMin && sliderMax !== sliderMin
+              ? 100.0 -
+                (100.0 * (segment.right - sliderMin)) / (sliderMax - sliderMin)
+              : 100;
           return (
             <React.Fragment key={index}>
               {shouldDisplaySegment(index, trackDisplayMode) ? (
