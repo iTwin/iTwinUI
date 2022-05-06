@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.37.3](https://www.github.com/iTwin/iTwinUI-react/compare/v1.37.2...v1.37.3) (2022-05-06)
+
+### Fixes
+
+* **Slider:** Skip drawing track if thumb values are out of range ([#652](https://www.github.com/iTwin/iTwinUI-react/issues/652)) ([38d6574](https://www.github.com/iTwin/iTwinUI-react/commit/38d657423d2def7d54b9e195f0c543a35e725d3f))
+
 ### [1.37.2](https://www.github.com/iTwin/iTwinUI-react/compare/v1.37.1...v1.37.2) (2022-05-04)
 
 ### Fixes
