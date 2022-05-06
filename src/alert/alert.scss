@@ -17,6 +17,9 @@
     color: t(iui-text-color);
     background-color: t(iui-color-background-1);
   }
+  @media (forced-colors: active) {
+    background-color: Canvas;
+  }
 
   &.iui-sticky {
     border-radius: 0;
