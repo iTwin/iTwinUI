@@ -38,6 +38,7 @@
   .iui-cell:not(.iui-slot) {
     @include iui-focus;
     flex-wrap: wrap;
+    column-gap: $iui-xs;
 
     &.iui-actionable {
       cursor: pointer;
@@ -48,7 +49,6 @@
     }
 
     .iui-filter-button {
-      margin-left: $iui-xs;
       margin-right: $iui-s;
 
       &:not(.iui-active) {
