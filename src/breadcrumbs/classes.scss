@@ -12,6 +12,15 @@
 
 .iui-breadcrumbs-item {
   @include iui-breadcrumbs-item;
+  @include iui-breadcrumbs-item-overrides;
+}
+
+.iui-breadcrumbs-text {
+  @include iui-breadcrumbs-text;
+}
+
+.iui-breadcrumbs-button {
+  @include iui-breadcrumbs-button;
 }
 
 .iui-breadcrumbs-separator {
