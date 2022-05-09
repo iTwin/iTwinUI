@@ -17,7 +17,6 @@
   box-sizing: border-box;
   max-width: 100%;
   max-height: 100%;
-  z-index: 2; // Needs to be higher than table's column resizers.
   @media (prefers-reduced-motion: no-preference) {
     transition: visibility $iui-speed-instant $iui-speed-fast ease-in, transform $iui-speed-fast ease-out,
       opacity $iui-speed-fast ease;

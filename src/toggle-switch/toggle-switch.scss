@@ -85,7 +85,7 @@
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     transition: background-color $iui-speed-fast ease-out, opacity $iui-speed-fast ease-out;
-    z-index: 2;
+    z-index: 1;
     @media (prefers-reduced-motion: no-preference) {
       transition: transform $iui-speed-fast ease-out, background-color $iui-speed-fast ease-out,
         opacity $iui-speed-fast ease-out;
@@ -141,6 +141,7 @@
 
     ~ .iui-toggle-switch-icon {
       opacity: var(--iui-opacity-1);
+      z-index: 0;
     }
   }
   // #endregion Checked toggle switch
@@ -211,7 +212,7 @@
     padding: $iui-toggle-switch-handle-size * 0.125;
     margin: $iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness;
     display: flex;
-    z-index: 1;
+    z-index: 0;
     transition: opacity $iui-speed-fast ease-out;
     pointer-events: none;
     fill: var(--iui-color-foreground-accessory);
