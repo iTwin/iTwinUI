@@ -27,6 +27,7 @@
   box-sizing: border-box;
   padding: $iui-s;
   position: relative;
+  z-index: 1;
   @media (prefers-reduced-motion: no-preference) {
     transition: border-color $iui-speed-fast ease-out;
   }
@@ -36,7 +37,7 @@
   }
 
   &:hover {
-    z-index: 1;
+    z-index: 2;
     @include themed {
       border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
     }
@@ -81,7 +82,7 @@
 
   &:checked + * {
     padding: $iui-s - 1;
-    z-index: 2;
+    z-index: 3;
     @media (forced-colors: active) {
       border-color: Highlight;
     }
@@ -117,7 +118,7 @@
 
   &:disabled + * {
     cursor: not-allowed;
-    z-index: -1;
+    z-index: 0;
     @include themed {
       border-color: t(iui-color-background-disabled);
       background-color: t(iui-color-background-disabled);
@@ -157,7 +158,7 @@
   }
 
   &:disabled:checked + * {
-    z-index: 2;
+    z-index: 3;
     @media (forced-colors: active) {
       border-color: GrayText;
     }

@@ -8,6 +8,7 @@
   @include iui-reset;
   display: flex;
   flex-direction: column;
+  isolation: isolate;
 
   * {
     box-sizing: border-box;
@@ -64,6 +65,7 @@
       transform: translateX(50%);
       touch-action: none;
       cursor: ew-resize;
+      z-index: 1;
       opacity: 0;
 
       > .iui-resizer-bar {
