@@ -18,6 +18,10 @@
   @include iui-table-header;
 }
 
+.iui-table-header-actions-container {
+  @include iui-table-header-actions-container;
+}
+
 .iui-table-body {
   @include iui-table-body;
 }
