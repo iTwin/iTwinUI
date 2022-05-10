@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.57.0](https://www.github.com/iTwin/iTwinUI/compare/v0.56.0...v0.57.0) (2022-05-09)
+
+### What's new
+
+* **Breadcrumbs:** Class name & specificity refactor ([#568](https://www.github.com/iTwin/iTwinUI/issues/568)) ([1dec25a](https://www.github.com/iTwin/iTwinUI/commit/1dec25adf55fd2e279f48c8987d57a39e191c17d))
+
+### Fixes
+
+* **RadioTile:** Use icon class name selector for regular svgs ([#630](https://github.com/iTwin/iTwinUI/pull/630))
+
 ## [0.56.0](https://www.github.com/iTwin/iTwinUI/compare/v0.55.0...v0.56.0) (2022-04-29)
 
 ### What's new
