@@ -133,7 +133,7 @@
       transform: translateX($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset);
       background-color: var(--iui-color-foreground-accessory);
       opacity: var(--iui-opacity-2);
-      @media (fozrced-colors: active) {
+      @media (forced-colors: active) {
         background-color: HighlightText;
         opacity: 1;
       }
