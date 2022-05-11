@@ -39,6 +39,7 @@
   }
 
   .iui-cell {
+    min-height: $iui-baseline * 5;
     @include themed {
       background-color: t(iui-color-background-3);
     }
