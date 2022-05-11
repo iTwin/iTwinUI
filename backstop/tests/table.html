@@ -1772,7 +1772,7 @@
 
     <h2>Additional options</h2>
     <p class="iui-text-small iui-text-muted">
-      Sticky header, zebra striping, pagination, editable cells, & scroll snapping.
+      Sticky header, sticky columns, zebra striping, pagination, editable cells, & scroll snapping.
     </p>
     <br />
     <section id="demo-extras">
@@ -1908,7 +1908,7 @@
                     aria-hidden="true"
                   ></svg-column-manager>
                 </button>
-                <div class="iui-shadow-left"></div>
+                <div class="iui-cell-shadow-left"></div>
               </div>
             </div>
           </div>
@@ -1961,7 +1961,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2011,7 +2011,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2061,7 +2061,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2110,7 +2110,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2159,7 +2159,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2208,7 +2208,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2257,7 +2257,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2306,7 +2306,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2355,7 +2355,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2404,7 +2404,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
         </div>
@@ -2652,7 +2652,7 @@
                     aria-hidden="true"
                   ></svg-more>
                 </button>
-                <div class="iui-shadow-left"></div>
+                <div class="iui-cell-shadow-left"></div>
               </div>
             </div>
           </div>
@@ -2704,7 +2704,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
 
@@ -2753,7 +2753,7 @@
                   aria-hidden="true"
                 ></svg-more>
               </button>
-              <div class="iui-shadow-left"></div>
+              <div class="iui-cell-shadow-left"></div>
             </div>
           </div>
         </div>
@@ -4227,64 +4227,68 @@
 
         scrollableBody.addEventListener('scroll', function (e) {
           scrollableHeader.scrollLeft = this.scrollLeft;
+          // If table body is scrolled to the right, then add shadow to the first columns
           if (this.scrollLeft) {
             scrollableHeader.querySelectorAll('.iui-sticky:nth-of-type(2)').forEach((sticky) => {
-              if (sticky.querySelector('.iui-shadow-right')) {
+              if (sticky.querySelector('.iui-cell-shadow-right')) {
                 return;
               }
               const shadow = document.createElement('div');
-              shadow.classList.add('iui-shadow-right');
+              shadow.classList.add('iui-cell-shadow-right');
               sticky.appendChild(shadow);
             });
             scrollableBody.querySelectorAll('.iui-sticky:nth-of-type(2)').forEach((sticky) => {
-              if (sticky.querySelector('.iui-shadow-right')) {
+              if (sticky.querySelector('.iui-cell-shadow-right')) {
                 return;
               }
               const shadow = document.createElement('div');
-              shadow.classList.add('iui-shadow-right');
+              shadow.classList.add('iui-cell-shadow-right');
               sticky.appendChild(shadow);
             });
+            // If table body is scrolled to the very left, then remove shadows from the first columns
           } else {
             scrollableHeader.querySelectorAll('.iui-sticky').forEach((sticky) => {
-              const shadow = sticky.querySelector('.iui-shadow-right');
+              const shadow = sticky.querySelector('.iui-cell-shadow-right');
               if (shadow) {
                 sticky.removeChild(shadow);
               }
             });
             scrollableBody.querySelectorAll('.iui-sticky').forEach((sticky) => {
-              const shadow = sticky.querySelector('.iui-shadow-right');
+              const shadow = sticky.querySelector('.iui-cell-shadow-right');
               if (shadow) {
                 sticky.removeChild(shadow);
               }
             });
           }
 
+          // If table body is scrolled to the left, then add shadows to the last columns
           if (this.scrollWidth - this.scrollLeft - this.offsetWidth > 0) {
             scrollableHeader.querySelectorAll('.iui-sticky:last-of-type').forEach((sticky) => {
-              if (sticky.querySelector('.iui-shadow-left')) {
+              if (sticky.querySelector('.iui-cell-shadow-left')) {
                 return;
               }
               const shadow = document.createElement('div');
-              shadow.classList.add('iui-shadow-left');
+              shadow.classList.add('iui-cell-shadow-left');
               sticky.appendChild(shadow);
             });
             scrollableBody.querySelectorAll('.iui-sticky:last-of-type').forEach((sticky) => {
-              if (sticky.querySelector('.iui-shadow-left')) {
+              if (sticky.querySelector('.iui-cell-shadow-left')) {
                 return;
               }
               const shadow = document.createElement('div');
-              shadow.classList.add('iui-shadow-left');
+              shadow.classList.add('iui-cell-shadow-left');
               sticky.appendChild(shadow);
             });
+            // If table body is scrolled to the very right, then remove shadows from the last columns
           } else {
             scrollableHeader.querySelectorAll('.iui-sticky').forEach((sticky) => {
-              const shadow = sticky.querySelector('.iui-shadow-left');
+              const shadow = sticky.querySelector('.iui-cell-shadow-left');
               if (shadow) {
                 sticky.removeChild(shadow);
               }
             });
             scrollableBody.querySelectorAll('.iui-sticky').forEach((sticky) => {
-              const shadow = sticky.querySelector('.iui-shadow-left');
+              const shadow = sticky.querySelector('.iui-cell-shadow-left');
               if (shadow) {
                 sticky.removeChild(shadow);
               }
