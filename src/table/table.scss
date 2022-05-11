@@ -47,6 +47,8 @@
 
   .iui-cell:not(.iui-slot) {
     @include iui-focus;
+    flex-wrap: wrap;
+    column-gap: $iui-xs;
 
     &.iui-actionable {
       cursor: pointer;
@@ -56,8 +58,7 @@
       cursor: grabbing;
     }
 
-    > .iui-filter-button {
-      margin-left: $iui-xs;
+    .iui-filter-button {
       margin-right: $iui-s;
 
       &:not(.iui-active) {
@@ -163,6 +164,12 @@
       }
     }
   }
+}
+
+@mixin iui-table-header-actions-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
 }
 
 @mixin iui-table-body {
