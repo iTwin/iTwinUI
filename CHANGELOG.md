@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.57.0](https://www.github.com/iTwin/iTwinUI/compare/v0.56.0...v0.57.0) (2022-05-09)
+
+### What's new
+
+* **Breadcrumbs:** Class name & specificity refactor ([#568](https://www.github.com/iTwin/iTwinUI/issues/568)) ([1dec25a](https://www.github.com/iTwin/iTwinUI/commit/1dec25adf55fd2e279f48c8987d57a39e191c17d))
+
+### Fixes
+
+* **RadioTile:** Use icon class name selector for regular svgs ([#630](https://github.com/iTwin/iTwinUI/pull/630))
+
+## [0.56.0](https://www.github.com/iTwin/iTwinUI/compare/v0.55.0...v0.56.0) (2022-04-29)
+
+### What's new
+
+* **RadioTile:** Class names changes and specificity improvements ([#598](https://www.github.com/iTwin/iTwinUI/issues/598)) ([c9bae1a](https://www.github.com/iTwin/iTwinUI/commit/c9bae1adc7c54d3878b5ad586774ab31665040bc))
+
+### Fixes
+
+* **Checkbox:** Add border to disabled checkbox ([#594](https://www.github.com/iTwin/iTwinUI/issues/594)) ([67e0db8](https://www.github.com/iTwin/iTwinUI/commit/67e0db801ad474f2c600615f58c85474aa1160ee))
+* **Select:** Fix arrow color ([#601](https://www.github.com/iTwin/iTwinUI/issues/601)) ([d45a257](https://www.github.com/iTwin/iTwinUI/commit/d45a257d379232ea1a121ec4fc7fddc378b5cf06))
+* **Tabs:** Fix description color ([#601](https://www.github.com/iTwin/iTwinUI/issues/601)) ([d45a257](https://www.github.com/iTwin/iTwinUI/commit/d45a257d379232ea1a121ec4fc7fddc378b5cf06))
+* **Toast:** Increase z-index of toast wrapper ([#597](https://www.github.com/iTwin/iTwinUI/issues/597)) ([a39adfc](https://www.github.com/iTwin/iTwinUI/commit/a39adfc354db225c5dad3500ddb5128e41f5afa8))
+* **ToggleSwitch:** Add `forced-colors` support ([#588](https://www.github.com/iTwin/iTwinUI/issues/588)) ([9d6ca88](https://www.github.com/iTwin/iTwinUI/commit/9d6ca88b4561ef8cb57f76e16c0f65e3a0f1d9fd))
+* **Typography:** Accessible skeleton text ([#587](https://www.github.com/iTwin/iTwinUI/issues/587)) ([235758d](https://www.github.com/iTwin/iTwinUI/commit/235758d9d7181c816d5cd2f8828cbac3b87ba7eb))
+
 ## [0.55.0](https://www.github.com/iTwin/iTwinUI/compare/v0.54.1...v0.55.0) (2022-04-19)
 
 ### What's new

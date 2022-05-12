@@ -11,6 +11,7 @@ $iui-button-padding-large: $iui-xs * 6;
 
 @mixin iui-button {
   --_iui-button-active-stripe-inset: initial;
+  --_iui-button-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
 
   @include iui-reset;
   font-family: inherit;
@@ -38,12 +39,12 @@ $iui-button-padding-large: $iui-xs * 6;
   @include themed {
     color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
   }
+  color: var(--_iui-button-text-color);
 
   &:hover {
+    --_iui-button-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
+
     text-decoration: none;
-    @include themed {
-      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-    }
   }
 
   @include iui-focus;
@@ -52,21 +53,21 @@ $iui-button-padding-large: $iui-xs * 6;
   &:disabled {
     @include iui-button-disabled;
   }
+}
 
-  &.iui-active {
-    // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
+@mixin iui-button-active {
+  // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
+  &::after {
+    content: '';
+    position: absolute;
+    inset: var(--_iui-button-active-stripe-inset);
+    background-color: var(--iui-color-foreground-primary);
+  }
+
+  &[disabled],
+  &:disabled {
     &::after {
-      content: '';
-      position: absolute;
-      inset: var(--_iui-button-active-stripe-inset);
-      background-color: var(--iui-color-foreground-primary);
-    }
-
-    &[disabled],
-    &:disabled {
-      &::after {
-        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
-      }
+      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
     }
   }
 }
