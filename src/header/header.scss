@@ -16,6 +16,9 @@
   border-bottom: $iui-xxs solid var(--iui-color-background-border);
   color: var(--iui-text-color);
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left); // iPhone notch support
+}
+
+@mixin iui-page-header-slim {
   @media (prefers-reduced-motion: no-preference) {
     transition: height $iui-speed-fast ease-out;
   }

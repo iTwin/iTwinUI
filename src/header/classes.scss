@@ -5,6 +5,7 @@
 
 .iui-page-header {
   @include iui-page-header;
+  @include iui-page-header-slim;
 }
 
 .iui-page-header-left,
@@ -25,12 +26,29 @@
   @include iui-header-brand;
 }
 
+.iui-header-brand-icon {
+  @include iui-header-brand-icon;
+}
+
+.iui-header-brand-label {
+  @include iui-header-brand-label;
+}
+
+.iui-breadcrumbs,
+.iui-breadcrumbs-list {
+  height: 100%;
+}
+
 .iui-header-breadcrumb-item {
-  @include iui-breadcrumbs-item;
+  @include iui-breadcrumbs-item($breadcrumbs-height: 100%);
 }
 
 .iui-header-breadcrumb-button {
   @include iui-header-breadcrumb-button;
+}
+
+.iui-header-breadcrumb-button-dropdown {
+  @include iui-header-breadcrumb-button-dropdown;
 }
 
 .iui-header-breadcrumb-button-container {

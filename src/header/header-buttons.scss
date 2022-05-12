@@ -12,34 +12,6 @@
   background-color: transparent;
   box-sizing: border-box;
 
-  &-icon {
-    width: $iui-icons-large;
-    height: $iui-icons-large;
-    margin: 0 $iui-side-navigation-icon-margins;
-    fill: var(--iui-icons-color-actionable);
-    will-change: transform;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: transform $iui-speed-fast ease-out;
-    }
-    @at-root .iui-slim & {
-      transform: scale(0.66666);
-    }
-  }
-
-  &-label {
-    margin-right: $iui-sm;
-    font-size: $iui-font-size-leading;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: font-size $iui-speed-fast ease-out;
-    }
-    @media (max-width: 1024px) {
-      display: none;
-    }
-    @at-root .iui-slim & {
-      font-size: $iui-font-size;
-    }
-  }
-
   @at-root {
     a#{&}, // rendered as anchor element
     button#{&}, // rendered as button element
@@ -64,6 +36,34 @@
         background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
       }
     }
+  }
+}
+
+@mixin iui-header-brand-icon {
+  width: $iui-icons-large;
+  height: $iui-icons-large;
+  margin: 0 $iui-side-navigation-icon-margins;
+  fill: var(--iui-icons-color-actionable);
+  will-change: transform;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed-fast ease-out;
+  }
+  @at-root .iui-slim & {
+    transform: scale(0.66666);
+  }
+}
+
+@mixin iui-header-brand-label {
+  margin-right: $iui-sm;
+  font-size: $iui-font-size-leading;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: font-size $iui-speed-fast ease-out;
+  }
+  @media (max-width: 1024px) {
+    display: none;
+  }
+  @at-root .iui-slim & {
+    font-size: $iui-font-size;
   }
 }
 
@@ -162,20 +162,23 @@
     mask: var(--_iui-header-breadcrumb-button-dropdown-svg);
   }
 
-  // Split menu dropdown button
-  &-dropdown {
-    padding: 0 $iui-xs;
-
-    &:hover:enabled {
-      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
-    }
-  }
-
   // Disabled state
   &.iui-disabled,
   &:disabled,
   &[aria-disabled='true'] {
     cursor: not-allowed;
+  }
+}
+
+@mixin iui-header-breadcrumb-button-dropdown {
+  padding: 0 $iui-xs;
+
+  &:hover:enabled {
+    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+  }
+
+  @at-root .iui-active &:hover:enabled {
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
   }
 }
 

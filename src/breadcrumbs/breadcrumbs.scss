@@ -19,11 +19,11 @@
   user-select: none;
 }
 
-@mixin iui-breadcrumbs-item {
+@mixin iui-breadcrumbs-item($breadcrumbs-height: $iui-component-height) {
   display: flex;
   align-items: center;
   line-height: $iui-component-height;
-  height: $iui-component-height;
+  height: $breadcrumbs-height;
 
   > * {
     max-width: 26ch;
