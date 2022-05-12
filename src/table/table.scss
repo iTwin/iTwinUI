@@ -419,9 +419,11 @@
     flex-basis: $iui-l * 2;
   }
 
-  &.iui-sticky {
+  &.iui-cell-sticky {
     position: sticky;
     z-index: 1;
+    left: var(--iui-table-sticky-left, initial);
+    right: var(--iui-table-sticky-right, initial);
   }
 
   &:not(.iui-slot):last-child {
