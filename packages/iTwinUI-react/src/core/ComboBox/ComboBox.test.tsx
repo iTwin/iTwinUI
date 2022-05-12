@@ -3,8 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
-
+import { fireEvent, render, screen, act } from '@testing-library/react';
 import { ComboBox, ComboBoxProps } from './ComboBox';
 import { SvgCaretDownSmall } from '@itwin/itwinui-icons-react';
 import { MenuItem } from '../Menu';
@@ -55,8 +54,8 @@ it('should render in its most basic state', () => {
   expect(list.children).toHaveLength(3);
   list.querySelectorAll('.iui-menu-item').forEach((item, index) => {
     expect(item).toHaveTextContent(`Item ${index}`);
-    expect(item).not.toHaveAttribute('aria-selected');
-    expect(item.id).toEqual(`${id}-option${index}`);
+    expect(item).toHaveAttribute('aria-selected', 'false');
+    expect(item.id).toEqual(`${id}-option-Item-${index}`);
   });
 });
 
@@ -191,14 +190,14 @@ it('should select value on click', () => {
   const { container, getByText } = renderComponent({ onChange: mockOnChange });
   const input = assertBaseElement(container);
 
-  input.focus();
-  getByText('Item 1').click();
+  userEvent.tab();
+  userEvent.click(getByText('Item 1'));
   expect(mockOnChange).toHaveBeenCalledWith(1);
   expect(document.querySelector('.iui-menu')).not.toBeVisible();
   expect(input.value).toEqual('Item 1');
 
-  input.blur();
-  input.focus();
+  userEvent.tab({ shift: true });
+  userEvent.tab();
   expect(
     document.querySelector('.iui-menu-item.iui-active.iui-focused'),
   ).toHaveTextContent('Item 1');
@@ -209,77 +208,99 @@ it('should handle keyboard navigation', () => {
   const mockOnChange = jest.fn();
   const { container } = renderComponent({ id, onChange: mockOnChange });
 
+  userEvent.tab();
+
   const input = assertBaseElement(container);
-  input.focus();
   expect(input).toHaveAttribute('aria-controls', `${id}-list`);
 
-  const items = document.querySelectorAll('.iui-menu-item');
+  let items = document.querySelectorAll('.iui-menu-item');
 
   // focus index 0
-  fireEvent.keyDown(input, { key: 'ArrowDown' });
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option0`);
+  userEvent.keyboard('{ArrowDown}');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
+  items = document.querySelectorAll('.iui-menu-item');
   expect(items[0]).toHaveClass('iui-focused');
 
   // 0 -> 1
-  fireEvent.keyDown(input, { key: 'ArrowDown' });
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option1`);
+  userEvent.keyboard('{ArrowDown}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-1`);
   expect(items[1]).toHaveClass('iui-focused');
   expect(items[0]).not.toHaveClass('iui-focused');
 
   // 1 -> 2
-  fireEvent.keyDown(input, { key: 'ArrowDown' });
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option2`);
+  userEvent.keyboard('{ArrowDown}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
   expect(items[2]).toHaveClass('iui-focused');
 
-  // 2 -> 2
-  fireEvent.keyDown(input, { key: 'ArrowDown' });
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option2`);
+  // 2 -> 0
+  userEvent.keyboard('{ArrowDown}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
+  expect(items[0]).toHaveClass('iui-focused');
+
+  // 0 -> 2
+  userEvent.keyboard('{ArrowUp}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
   expect(items[2]).toHaveClass('iui-focused');
 
   // 2 -> 1
-  fireEvent.keyDown(input, { key: 'ArrowUp' });
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option1`);
+  userEvent.keyboard('{ArrowUp}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-1`);
   expect(items[1]).toHaveClass('iui-focused');
   expect(items[2]).not.toHaveClass('iui-focused');
 
   // 1 -> 0
-  fireEvent.keyDown(input, { key: 'ArrowUp' });
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option0`);
+  userEvent.keyboard('{ArrowUp}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
   expect(items[0]).toHaveClass('iui-focused');
 
   // select 0
-  fireEvent.keyDown(input, { key: 'Enter' });
+  userEvent.keyboard('{Enter}');
+  items = document.querySelectorAll('.iui-menu-item');
   expect(mockOnChange).toHaveBeenCalledWith(0);
   expect(document.querySelector('.iui-menu')).not.toBeVisible();
 
   // reopen menu
-  fireEvent.keyDown(input, { key: 'Enter' });
+  userEvent.keyboard('{Enter}');
+  items = document.querySelectorAll('.iui-menu-item');
   expect(items[0]).toHaveClass('iui-active iui-focused');
 
   // filter and focus item 2
-  fireEvent.change(input, { target: { value: 'Item 2' } });
-  fireEvent.keyDown(input, { key: 'ArrowDown' });
-  expect(items[2]).toHaveClass('iui-focused');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option2`);
+  act(() => {
+    input.select();
+    userEvent.keyboard('2');
+  });
+
+  act(() => void userEvent.keyboard('{ArrowDown}'));
+  expect(screen.getByText('Item 2').closest('.iui-menu-item')).toHaveClass(
+    'iui-focused',
+  );
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
 
   // select 2
-  fireEvent.keyDown(input, { key: 'Enter' });
+  userEvent.keyboard('{Enter}');
   expect(mockOnChange).toHaveBeenCalledWith(2);
   expect(document.querySelector('.iui-menu')).not.toBeVisible();
 
   // reopen
-  fireEvent.keyDown(input, { key: 'ArrowDown' });
-  expect(items[2]).toHaveClass('iui-active iui-focused');
-  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option2`);
+  act(() => void userEvent.keyboard('{ArrowDown}'));
+  expect(screen.getByText('Item 2').closest('.iui-menu-item')).toHaveClass(
+    'iui-active',
+  );
 
   // close
-  fireEvent.keyDown(input, { key: 'Escape' });
+  act(() => void userEvent.keyboard('{Esc}'));
   expect(document.querySelector('.iui-menu')).not.toBeVisible();
 
   // reopen and close
-  fireEvent.keyDown(input, { key: 'X' });
+  act(() => void userEvent.keyboard('X'));
   expect(document.querySelector('.iui-menu')).toBeVisible();
-  fireEvent.keyDown(input, { key: 'Tab' });
+  userEvent.tab();
   expect(document.querySelector('.iui-menu')).not.toBeVisible();
 });
 
@@ -319,26 +340,27 @@ it('should work with custom itemRenderer', () => {
   });
   const input = assertBaseElement(container);
 
-  input.focus();
-  getByText('CUSTOM Item 1').click();
+  userEvent.tab();
+  userEvent.click(getByText('CUSTOM Item 1'));
   expect(mockOnChange).toHaveBeenCalledWith(1);
   expect(document.querySelector('.iui-menu')).not.toBeVisible();
   expect(input).toHaveValue('Item 1'); // the actual value of input doesn't change
 
-  input.blur();
-  input.focus();
+  userEvent.tab({ shift: true }); // reopen menu
+
   expect(
     document.querySelector(
       '.iui-menu-item.iui-active.iui-focused.my-custom-item',
     ),
   ).toHaveTextContent('CUSTOM Item 1');
 
-  fireEvent.keyDown(input, { key: 'ArrowDown' });
+  act(() => void userEvent.keyboard('{ArrowDown}'));
+
   expect(
     document.querySelector('.iui-menu-item.iui-focused.my-custom-item'),
   ).toHaveTextContent('CUSTOM Item 2');
 
-  fireEvent.keyDown(input, { key: 'Enter' });
+  act(() => void userEvent.keyboard('{Enter}'));
   expect(input).toHaveValue('Item 2');
 });
 
@@ -450,11 +472,11 @@ it('should use the latest onChange prop', () => {
   );
 
   userEvent.tab();
-  screen.getByText('Item 1').click();
+  userEvent.click(screen.getByText('Item 1'));
   expect(mockOnChange1).toHaveBeenNthCalledWith(1, 1);
 
   rerender(<ComboBox options={options} onChange={mockOnChange2} />);
-  screen.getByText('Item 2').click();
+  userEvent.click(screen.getByText('Item 2'));
   expect(mockOnChange2).toHaveBeenNthCalledWith(1, 2);
   expect(mockOnChange1).toHaveBeenCalledTimes(1);
 });
