@@ -5,46 +5,42 @@
 
 .iui-page-header {
   @include iui-page-header;
-
-  &-left,
-  &-center,
-  &-right {
-    @include iui-page-header-zone;
-  }
-
-  &-right {
-    @include iui-page-header-right;
-  }
-
-  &-divider {
-    @include iui-page-header-divider;
-  }
 }
 
-.iui-header {
-  &-brand {
-    @include iui-header-brand;
-  }
+.iui-page-header-left,
+.iui-page-header-center,
+.iui-page-header-right {
+  @include iui-page-header-zone;
+}
 
-  &-breadcrumb {
-    &-item {
-      @include iui-breadcrumbs-item;
-    }
+.iui-page-header-right {
+  @include iui-page-header-right;
+}
 
-    &-button {
-      @include iui-header-breadcrumb-button;
+.iui-page-header-divider {
+  @include iui-page-header-divider;
+}
 
-      &-container {
-        @include iui-header-breadcrumb-button-container;
-      }
+.iui-header-brand {
+  @include iui-header-brand;
+}
 
-      &-icon {
-        @include iui-header-breadcrumb-button-icon;
-      }
+.iui-header-breadcrumb-item {
+  @include iui-breadcrumbs-item;
+}
 
-      &-label {
-        @include iui-header-breadcrumb-button-label;
-      }
-    }
-  }
+.iui-header-breadcrumb-button {
+  @include iui-header-breadcrumb-button;
+}
+
+.iui-header-breadcrumb-button-container {
+  @include iui-header-breadcrumb-button-container;
+}
+
+.iui-header-breadcrumb-button-icon {
+  @include iui-header-breadcrumb-button-icon;
+}
+
+.iui-header-breadcrumb-button-label {
+  @include iui-header-breadcrumb-button-label;
 }
