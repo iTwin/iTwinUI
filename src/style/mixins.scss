@@ -216,6 +216,10 @@
     @at-root .iui-active & {
       opacity: 1;
     }
+
+    @at-root [aria-current] & {
+      opacity: 1;
+    }
   }
 }
 
@@ -243,6 +247,11 @@
   }
 
   @at-root .iui-active & {
+    background-color: var(--iui-color-background-1);
+    fill: currentColor;
+  }
+
+  @at-root [aria-current] & {
     background-color: var(--iui-color-background-1);
     fill: currentColor;
   }

@@ -87,7 +87,7 @@
   }
 
   // Active state
-  &.iui-active {
+  &[aria-current] {
     background-color: rgba(var(--iui-color-foreground-#{$active-color}-rgb), var(--iui-opacity-6));
     box-shadow: 0 $iui-xxs 0 0 currentColor;
     color: var(--iui-color-foreground-#{$active-color});
@@ -107,7 +107,7 @@
     pointer-events: none; // Removes hover effect
 
     // Disabled active state
-    &.iui-active {
+    &[aria-current] {
       box-shadow: none;
       background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
     }
@@ -177,7 +177,7 @@
     background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
   }
 
-  @at-root .iui-active &:hover:enabled {
+  @at-root [aria-current] &:hover:enabled {
     background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
   }
 }
