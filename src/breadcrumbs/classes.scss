@@ -12,6 +12,9 @@
 
 .iui-breadcrumbs-item {
   @include iui-breadcrumbs-item;
+}
+
+.iui-breadcrumbs-item-overrides {
   @include iui-breadcrumbs-item-overrides;
 }
 
