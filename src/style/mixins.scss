@@ -46,23 +46,6 @@
   vertical-align: baseline;
 }
 
-@mixin iui-anchor {
-  @include iui-focus($offset: 2px);
-  border-radius: $iui-border-radius;
-  text-decoration: none;
-  cursor: pointer;
-  @include themed {
-    color: t(iui-color-foreground-primary);
-  }
-
-  &:hover {
-    @include themed {
-      color: t(iui-color-foreground-primary-overlay);
-    }
-    text-decoration: underline;
-  }
-}
-
 @mixin iui-text-selection($status: primary) {
   &::selection,
   *::selection {

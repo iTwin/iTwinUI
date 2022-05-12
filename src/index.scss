@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './style/index';
 @import './alert/index';
+@import './anchor/index';
 @import './badge/index';
 @import './blockquote/index';
 @import './breadcrumbs/index';
@@ -10,6 +11,7 @@
 @import './code/index';
 @import './color-picker/index';
 @import './date-picker/index';
+@import './dialog/index';
 @import './expandable-block/index';
 @import './file-upload/index';
 @import './footer/index';
@@ -20,13 +22,15 @@
 @import './keyboard/index';
 @import './location-marker/index';
 @import './menu/index';
-@import './modal/index';
 @import './non-ideal-state/index';
 @import './notification-marker/index';
 @import './popover/index';
 @import './progress-indicator/index';
+@import './radio-tile/index';
 @import './side-navigation/index';
+@import './skip-to-content/index';
 @import './slider/index';
+@import './surface/index';
 @import './table/index';
 @import './tabs/index';
 @import './tag/index';
@@ -39,5 +43,3 @@
 @import './tree/index';
 @import './user-icon/index';
 @import './wizard/index';
-@import './skip-to-content/index';
-@import './surface/index';

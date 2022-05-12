@@ -1,14 +1,14 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../button/index';
+@import '../anchor/index';
+@import '../button/borderless';
 @import '../icon/index';
 
 @mixin iui-breadcrumbs {
   @include iui-reset;
   display: flex;
   align-items: center;
-  height: 100%;
 }
 
 @mixin iui-breadcrumbs-list {
@@ -17,64 +17,108 @@
   align-items: center;
   list-style-type: none;
   user-select: none;
-  height: 100%;
 }
 
-@mixin iui-breadcrumbs-item($breadcrumbs-height: $iui-component-height) {
-  --_iui-breadcrumbs-item-separator-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m4.7 0-1.4 1.4 6.6 6.6-6.6 6.6 1.4 1.4 8-8z' /></svg>");
-
+@mixin iui-breadcrumbs-item {
   display: flex;
   align-items: center;
-  line-height: $breadcrumbs-height;
-  height: $breadcrumbs-height;
+  line-height: $iui-component-height;
+  height: $iui-component-height;
 
-  &:not(:last-child)::after {
-    content: '';
-    flex-shrink: 0;
-    width: $iui-icons-small;
-    height: $iui-icons-small;
-    background-color: var(--iui-icons-color);
-    margin: 0 $iui-xxs;
-    mask: var(--_iui-breadcrumbs-item-separator-svg);
+  > * {
+    max-width: 26ch;
+  }
+}
 
-    @media (forced-colors: active) {
-      background-color: CanvasText;
+@mixin iui-breadcrumbs-item-overrides {
+  > * {
+    padding: 0 $iui-s;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &:not(.iui-button) {
+      @include themed {
+        color: t(iui-text-color);
+      }
+    }
+  }
+
+  > :any-link {
+    @include iui-anchor;
+
+    &:focus {
+      outline-offset: -1px;
+    }
+  }
+
+  .iui-button {
+    &.iui-button {
+      @include iui-button-borderless;
+      @include iui-focus;
+      border: none;
+    }
+
+    &-label {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &:not([aria-current]) {
+      &,
+      &:hover,
+      &:active {
+        --_iui-button-text-color: var(--iui-color-foreground-primary);
+      }
     }
   }
 }
 
 @mixin iui-breadcrumbs-text {
-  --_iui-breadcrumbs-text-character-limit: 24ch;
-
-  margin: 0 ($iui-s + 1);
-  max-width: var(--_iui-breadcrumbs-text-character-limit);
+  padding: 0 $iui-s;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  @at-root {
-    a#{&} {
-      @include iui-anchor;
+  @at-root a#{&} {
+    @include iui-anchor;
+
+    &:focus {
+      outline-offset: -1px;
     }
   }
 }
 
 @mixin iui-breadcrumbs-button {
-  --_iui-breadcrumbs-button-character-limit: 24ch;
-
   @include iui-button;
   @include iui-button-borderless;
-
-  .iui-button-label {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: var(--_iui-breadcrumbs-button-character-limit);
-    color: var(--iui-color-foreground-primary);
+  padding: 0;
+  border: none;
+  @include themed {
+    color: t(iui-color-foreground-primary);
   }
 
-  @at-root .iui-breadcrumbs-item-current {
-    .iui-button-label {
-      color: var(--iui-text-color);
+  &[aria-current] {
+    @include themed {
+      color: t(iui-text-color);
+    }
+  }
+}
+
+@mixin iui-breadcrumbs-separator {
+  display: flex;
+  margin: 0 $iui-xxs;
+
+  svg {
+    width: $iui-icons-small;
+    height: $iui-icons-small;
+    display: flex; // needed for vertical alignment of webcomponents
+    @include themed {
+      fill: t(iui-icons-color);
+    }
+    @media (forced-colors: active) {
+      fill: CanvasText;
     }
   }
 }

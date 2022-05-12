@@ -7,8 +7,8 @@
 @mixin iui-popover {
   &.tippy-box {
     &[data-reference-hidden] {
-      visibility: visible;
-      pointer-events: auto;
+      visibility: hidden;
+      pointer-events: none;
     }
 
     // Resets tippy.js default stylings that interfere with our own

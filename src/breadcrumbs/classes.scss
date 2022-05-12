@@ -4,20 +4,28 @@
 
 .iui-breadcrumbs {
   @include iui-breadcrumbs;
+}
 
-  &-list {
-    @include iui-breadcrumbs-list;
-  }
+.iui-breadcrumbs-list {
+  @include iui-breadcrumbs-list;
+}
 
-  &-item {
-    @include iui-breadcrumbs-item;
-  }
+.iui-breadcrumbs-item {
+  @include iui-breadcrumbs-item;
+}
 
-  &-text {
-    @include iui-breadcrumbs-text;
-  }
+.iui-breadcrumbs-item-overrides {
+  @include iui-breadcrumbs-item-overrides;
+}
 
-  &-button {
-    @include iui-breadcrumbs-button;
-  }
+.iui-breadcrumbs-text {
+  @include iui-breadcrumbs-text;
+}
+
+.iui-breadcrumbs-button {
+  @include iui-breadcrumbs-button;
+}
+
+.iui-breadcrumbs-separator {
+  @include iui-breadcrumbs-separator;
 }

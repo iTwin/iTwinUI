@@ -28,7 +28,7 @@
 
   &-breadcrumb {
     &-item {
-      @include iui-breadcrumbs-item($breadcrumbs-height: 100%);
+      @include iui-breadcrumbs-item;
     }
 
     &-button {

@@ -37,6 +37,8 @@
 
   .iui-cell:not(.iui-slot) {
     @include iui-focus;
+    flex-wrap: wrap;
+    column-gap: $iui-xs;
 
     &.iui-actionable {
       cursor: pointer;
@@ -46,8 +48,7 @@
       cursor: grabbing;
     }
 
-    > .iui-filter-button {
-      margin-left: $iui-xs;
+    .iui-filter-button {
       margin-right: $iui-s;
 
       &:not(.iui-active) {
@@ -155,6 +156,12 @@
   }
 }
 
+@mixin iui-table-header-actions-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
 @mixin iui-table-body {
   overflow-y: scroll;
   overflow: overlay;
@@ -196,12 +203,12 @@
         }
       }
 
-      > .iui-slot > .iui-more-options {
+      > .iui-slot:not(.iui-disabled) > .iui-more-options {
         visibility: visible;
       }
     }
 
-    &:not(.iui-disabled):focus-within > .iui-slot > .iui-more-options {
+    &:focus-within > .iui-slot:not(.iui-disabled) > .iui-more-options {
       visibility: visible;
     }
 
@@ -295,15 +302,15 @@
       }
     }
 
-    &.iui-disabled,
-    &.iui-disabled + .iui-expanded-content {
+    .iui-cell.iui-disabled,
+    &.iui-expanded-content.iui-disabled {
       font-style: italic;
       cursor: not-allowed;
       @include themed {
         color: t(iui-text-color-muted);
       }
 
-      &:hover > .iui-slot > .iui-more-options {
+      &.iui-slot:hover > .iui-more-options {
         visibility: hidden;
       }
 

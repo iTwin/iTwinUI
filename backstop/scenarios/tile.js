@@ -1,4 +1,10 @@
-const { scenario, hover, focus } = require('../scenarioHelper');
+const { scenario: _scenario, hover, focus } = require('../scenarioHelper');
+
+/**
+ * @type import('../scenarioHelper').Scenario
+ */
+const scenario = (name, options) =>
+  _scenario(name, { ...options, hideSelectors: ['.demo-photo', '.demo-map', ...(options.hideSelectors ?? [])] });
 
 module.exports = [
   // Tile types
@@ -21,12 +27,12 @@ module.exports = [
   // Hover states
   //// Tile
   scenario('State hover', {
-    actions: [hover('#test-tile-1')],
-    selectors: ['#test-tile-1'],
+    actions: [hover('#test-tile-4')],
+    selectors: ['#demo-default'],
   }),
   scenario('State hover with thumbnail', {
-    actions: [hover('#test-tile-2')],
-    selectors: ['#test-tile-2'],
+    actions: [hover('#test-tile-5')],
+    selectors: ['#demo-default'],
   }),
 
   //// Type Indicator hover
@@ -69,12 +75,12 @@ module.exports = [
   // Focus states
   //// Tile
   scenario('State focus', {
-    actions: [focus('#test-tile-1')],
-    selectors: ['#test-tile-1'],
+    actions: [focus('#test-tile-4')],
+    selectors: ['#test-tile-4'],
   }),
   scenario('State focus with thumbnail', {
-    actions: [focus('#test-tile-2')],
-    selectors: ['#test-tile-2'],
+    actions: [focus('#test-tile-5')],
+    selectors: ['#test-tile-5'],
   }),
 
   //// Type Indicator focus

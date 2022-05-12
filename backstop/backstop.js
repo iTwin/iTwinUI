@@ -4,6 +4,7 @@ const config = {
   id: 'iTwinUI',
   engineOptions: {
     args: ['--no-sandbox'],
+    executablePath: '/usr/bin/chromium',
     ignoreDefaultArgs: ['--hide-scrollbars'],
   },
   viewports: [
@@ -30,7 +31,7 @@ const config = {
   debug: false,
   debugWindow: false,
   dockerCommandTemplate:
-    'docker run --rm -i --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
+    'docker run --rm -i --mount type=bind,source="{cwd}",target=/src itwinui/backstopjs:latest {backstopCommand} {args}',
 };
 
 module.exports = config;

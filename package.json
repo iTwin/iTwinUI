@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.53.1",
+  "version": "0.57.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -55,7 +55,8 @@
     "test:ci": "backstop --config=./backstop/backstop.js test --docker",
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
-    "audit:ci": "audit-ci --moderate --report-type=full"
+    "audit:ci": "audit-ci --moderate --report-type=full",
+    "build-docker": "node scripts/buildDocker.js"
   },
   "devDependencies": {
     "audit-ci": "^4.0.0",
@@ -85,6 +86,7 @@
     "jpeg-js": "^0.4.3",
     "set-value": "^4.1.0",
     "ansi-regex": "^5.0.1",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "async": "^3.2.2"
   }
 }

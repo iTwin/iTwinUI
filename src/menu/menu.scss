@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../text/index';
 
 $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
@@ -124,6 +125,32 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
           fill: t(iui-icons-color-actionable-disabled);
         }
       }
+    }
+  }
+
+  &-skeleton {
+    --iui-menu-item-content-skeleton-max-width: 30%;
+    cursor: auto;
+
+    .iui-content {
+      max-width: var(--iui-menu-item-content-skeleton-max-width);
+    }
+
+    .iui-menu-label {
+      width: 100%;
+      height: $iui-font-size;
+      vertical-align: middle;
+    }
+
+    .iui-menu-description {
+      width: 70%;
+      height: $iui-font-size-small;
+      vertical-align: middle;
+      margin-top: $iui-xs;
+    }
+
+    &:hover {
+      background-color: unset;
     }
   }
 }

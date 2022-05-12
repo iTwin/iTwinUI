@@ -1,5 +1,76 @@
 # Changelog
 
+## [0.57.0](https://www.github.com/iTwin/iTwinUI/compare/v0.56.0...v0.57.0) (2022-05-09)
+
+### What's new
+
+* **Breadcrumbs:** Class name & specificity refactor ([#568](https://www.github.com/iTwin/iTwinUI/issues/568)) ([1dec25a](https://www.github.com/iTwin/iTwinUI/commit/1dec25adf55fd2e279f48c8987d57a39e191c17d))
+
+### Fixes
+
+* **RadioTile:** Use icon class name selector for regular svgs ([#630](https://github.com/iTwin/iTwinUI/pull/630))
+
+## [0.56.0](https://www.github.com/iTwin/iTwinUI/compare/v0.55.0...v0.56.0) (2022-04-29)
+
+### What's new
+
+* **RadioTile:** Class names changes and specificity improvements ([#598](https://www.github.com/iTwin/iTwinUI/issues/598)) ([c9bae1a](https://www.github.com/iTwin/iTwinUI/commit/c9bae1adc7c54d3878b5ad586774ab31665040bc))
+
+### Fixes
+
+* **Checkbox:** Add border to disabled checkbox ([#594](https://www.github.com/iTwin/iTwinUI/issues/594)) ([67e0db8](https://www.github.com/iTwin/iTwinUI/commit/67e0db801ad474f2c600615f58c85474aa1160ee))
+* **Select:** Fix arrow color ([#601](https://www.github.com/iTwin/iTwinUI/issues/601)) ([d45a257](https://www.github.com/iTwin/iTwinUI/commit/d45a257d379232ea1a121ec4fc7fddc378b5cf06))
+* **Tabs:** Fix description color ([#601](https://www.github.com/iTwin/iTwinUI/issues/601)) ([d45a257](https://www.github.com/iTwin/iTwinUI/commit/d45a257d379232ea1a121ec4fc7fddc378b5cf06))
+* **Toast:** Increase z-index of toast wrapper ([#597](https://www.github.com/iTwin/iTwinUI/issues/597)) ([a39adfc](https://www.github.com/iTwin/iTwinUI/commit/a39adfc354db225c5dad3500ddb5128e41f5afa8))
+* **ToggleSwitch:** Add `forced-colors` support ([#588](https://www.github.com/iTwin/iTwinUI/issues/588)) ([9d6ca88](https://www.github.com/iTwin/iTwinUI/commit/9d6ca88b4561ef8cb57f76e16c0f65e3a0f1d9fd))
+* **Typography:** Accessible skeleton text ([#587](https://www.github.com/iTwin/iTwinUI/issues/587)) ([235758d](https://www.github.com/iTwin/iTwinUI/commit/235758d9d7181c816d5cd2f8828cbac3b87ba7eb))
+
+## [0.55.0](https://www.github.com/iTwin/iTwinUI/compare/v0.54.1...v0.55.0) (2022-04-19)
+
+### What's new
+
+* **Menu:** Skeleton menu items ([#577](https://www.github.com/iTwin/iTwinUI/issues/577)) ([8cd710b](https://www.github.com/iTwin/iTwinUI/commit/8cd710b7a26745dbc0673f12b328a3552131db54))
+* **Tag:** Classes change and specificity improvement ([#561](https://www.github.com/iTwin/iTwinUI/issues/561)) ([0d3608f](https://www.github.com/iTwin/iTwinUI/commit/0d3608f54efe0b327a4224c9fc7295e1d9029fec))
+* **Tile:** Add hover effect ([#579](https://www.github.com/iTwin/iTwinUI/issues/579)) ([f665779](https://www.github.com/iTwin/iTwinUI/commit/f6657791d42d6818760728615ae4cc45f4a0edb9))
+
+### Fixes
+
+* **Header:** Adjust header buttons spacing ([#585](https://www.github.com/iTwin/iTwinUI/issues/585)) ([f16bc31](https://www.github.com/iTwin/iTwinUI/commit/f16bc31d82f86606be8069507fe2ffc374130201))
+* **Menu:** Improved skeleton menu item accessibility ([#593](https://www.github.com/iTwin/iTwinUI/issues/593)) ([367731b](https://www.github.com/iTwin/iTwinUI/commit/367731b8d13308a20b2ee31dcaff385c2a2df9a8))
+* **Popover:** Hiding popover when parent element is not visible ([#589](https://www.github.com/iTwin/iTwinUI/issues/589)) ([7a87dda](https://www.github.com/iTwin/iTwinUI/commit/7a87dda47bf8ee2de925bdcb0eac2fb1dd941d77))
+
+### [0.54.1](https://www.github.com/iTwin/iTwinUI/compare/v0.54.0...v0.54.1) (2022-04-11)
+
+### Fixes
+
+* **Anchor:** Bringing Anchor back to global.scss ([#580](https://www.github.com/iTwin/iTwinUI/issues/580)) ([a5f1962](https://www.github.com/iTwin/iTwinUI/commit/a5f1962a4ffe7393f465f78d5a6a5cd31f8b74bf))
+
+## [0.54.0](https://www.github.com/iTwin/iTwinUI/compare/v0.53.3...v0.54.0) (2022-04-07)
+
+### What's new
+
+* **Anchor:** Add anchor component ([#525](https://www.github.com/iTwin/iTwinUI/issues/525)) ([ca6a85f](https://www.github.com/iTwin/iTwinUI/commit/ca6a85f08779150b349c942babed4409e9ca882c))
+* **Table:** Allows to disable any column in a row ([#575](https://www.github.com/iTwin/iTwinUI/issues/575)) ([f8cf32a](https://www.github.com/iTwin/iTwinUI/commit/f8cf32a517eae9a50972d08773483b9f485c15d1))
+
+
+### Fixes
+
+* **SkipToContent:** Fix Overlapping Visibility Bug ([#572](https://www.github.com/iTwin/iTwinUI/issues/572)) ([de3f966](https://www.github.com/iTwin/iTwinUI/commit/de3f9662ab723e44ed139627d26fbf5b2340c265))
+
+### [0.53.3](https://www.github.com/iTwin/iTwinUI/compare/v0.53.2...v0.53.3) (2022-04-05)
+
+### Fixes
+
+* **ColorPicker:** Add `forced-colors` support. ([#569](https://www.github.com/iTwin/iTwinUI/issues/569)) ([d997651](https://www.github.com/iTwin/iTwinUI/commit/d9976519a919c0a3793829fb217245f7466364fb))
+* **Tree:** Fix spacing for tree node icon ([#570](https://www.github.com/iTwin/iTwinUI/issues/570)) ([d98d363](https://www.github.com/iTwin/iTwinUI/commit/d98d363b2a411b7eba8568439e3565d3aed4bfb0))
+
+### [0.53.2](https://www.github.com/iTwin/iTwinUI/compare/v0.53.1...v0.53.2) (2022-03-30)
+
+### Fixes
+
+* **Modal:** Update animation speed ([#564](https://www.github.com/iTwin/iTwinUI/issues/564)) ([7c3fe48](https://www.github.com/iTwin/iTwinUI/commit/7c3fe48cf5a2022c6c81c0a96dc7b3831aee60e8))
+* **SkipToContent:** Hide skip-to-content link when not focused ([#558](https://www.github.com/iTwin/iTwinUI/issues/558)) ([2b3add7](https://www.github.com/iTwin/iTwinUI/commit/2b3add7c3fc3559bfe609587e72b8c367376dba7))
+
 ### [0.53.1](https://www.github.com/iTwin/iTwinUI/compare/v0.53.0...v0.53.1) (2022-03-29)
 
 ### Fixes

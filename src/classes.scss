@@ -3,6 +3,7 @@
 @import './style/index';
 @import './style/global';
 @import './alert/classes';
+@import './anchor/classes';
 @import './badge/classes';
 @import './blockquote/classes';
 @import './breadcrumbs/classes';
@@ -11,6 +12,7 @@
 @import './code/classes';
 @import './color-picker/classes';
 @import './date-picker/classes';
+@import './dialog/classes';
 @import './expandable-block/classes';
 @import './fieldset/classes';
 @import './file-upload/classes';
@@ -22,13 +24,15 @@
 @import './keyboard/classes';
 @import './location-marker/classes';
 @import './menu/classes';
-@import './modal/classes';
 @import './non-ideal-state/classes';
 @import './notification-marker/classes';
 @import './popover/classes';
 @import './progress-indicator/classes';
+@import './radio-tile/classes';
 @import './side-navigation/classes';
+@import './skip-to-content/classes';
 @import './slider/classes';
+@import './surface/classes';
 @import './table/classes';
 @import './tabs/classes';
 @import './tag/classes';
@@ -41,5 +45,3 @@
 @import './tree/classes';
 @import './user-icon/classes';
 @import './wizard/classes';
-@import './skip-to-content/classes';
-@import './surface/classes';
