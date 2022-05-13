@@ -10,6 +10,7 @@
 @import './breadcrumbs/classes';
 @import './button/classes';
 @import './carousel/classes';
+@import './checkbox/classes';
 @import './code/classes';
 @import './color-picker/classes';
 @import './date-picker/classes';
@@ -21,7 +22,8 @@
 @import './header/classes';
 @import './icon/classes';
 @import './information-panel/classes';
-@import './inputs/classes';
+@import './input/classes';
+@import './input-container/classes';
 @import './keyboard/classes';
 @import './location-marker/classes';
 @import './menu/classes';
@@ -29,7 +31,9 @@
 @import './notification-marker/classes';
 @import './popover/classes';
 @import './progress-indicator/classes';
+@import './radio/classes';
 @import './radio-tile/classes';
+@import './select/classes';
 @import './side-navigation/classes';
 @import './skip-to-content/classes';
 @import './slider/classes';
@@ -38,6 +42,7 @@
 @import './tabs/classes';
 @import './tag/classes';
 @import './text/classes';
+@import './textarea/classes';
 @import './tile/classes';
 @import './time-picker/classes';
 @import './toast-notification/classes';
