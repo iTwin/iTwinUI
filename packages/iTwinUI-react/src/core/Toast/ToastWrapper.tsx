@@ -8,13 +8,26 @@ import cx from 'classnames';
 import Toast, { ToastProps } from './Toast';
 import { ToasterSettings } from './Toaster';
 
-type ToastWrapperProps = {
-  toasts: ToastProps[];
-} & Pick<ToasterSettings, 'placement'>;
+type ToastPlacement = NonNullable<ToasterSettings['placement']>;
 
-export const ToastWrapper = (props: ToastWrapperProps) => {
-  const { toasts, placement = 'top' } = props;
+export type ToastWrapperHandle = {
+  setToasts: (toasts: ToastProps[]) => void;
+  setPlacement: (placement: ToastPlacement) => void;
+};
+
+export const ToastWrapper = React.forwardRef<ToastWrapperHandle>((_, ref) => {
+  const [toasts, setToasts] = React.useState<ToastProps[]>([]);
+  const [placement, setPlacement] = React.useState<ToastPlacement>('top');
   const placementPosition = placement.startsWith('top') ? 'top' : 'bottom';
+
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      setToasts,
+      setPlacement,
+    }),
+    [],
+  );
 
   return (
     <span className={cx(`iui-toast-wrapper`, `iui-placement-${placement}`)}>
@@ -29,4 +42,4 @@ export const ToastWrapper = (props: ToastWrapperProps) => {
       })}
     </span>
   );
-};
+});

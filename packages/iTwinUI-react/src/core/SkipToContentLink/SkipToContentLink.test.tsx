@@ -43,7 +43,6 @@ it('should propagate misc props in link', () => {
   const link = container.querySelector(
     '.iui-skip-to-content-link',
   ) as HTMLElement;
-  console.log(link);
   expect(link).toHaveAttribute('href', '#main-content-id');
   expect(link).toHaveClass('test-class');
   expect(link).toHaveStyle('color: red');

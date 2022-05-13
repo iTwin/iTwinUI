@@ -2,6 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import { act } from '@testing-library/react';
 import toaster from '.';
 import { ToastCategory, ToastProps } from './Toast';
 import { ToastOptions } from './Toaster';
@@ -63,34 +64,48 @@ afterEach(() => {
 });
 
 it('should add toast with success', () => {
-  toaster.positive('mockContent', mockedOptions());
+  act(() => {
+    toaster.positive('mockContent', mockedOptions());
+  });
   expect(toaster['toasts'].length).toBe(1);
   assertAddedToast(toaster['toasts'][0], 'positive', 'mockContent', 1);
 });
 
 it('should add toast with negative', () => {
-  toaster.negative('mockContent', mockedOptions());
+  act(() => {
+    toaster.negative('mockContent', mockedOptions());
+  });
   assertAddedToast(toaster['toasts'][0], 'negative', 'mockContent', 1);
 });
 
 it('should add toast with informational', () => {
-  toaster.informational('mockContent', mockedOptions());
+  act(() => {
+    toaster.informational('mockContent', mockedOptions());
+  });
   assertAddedToast(toaster['toasts'][0], 'informational', 'mockContent', 1);
 });
 
 it('should add toast with warning', () => {
-  toaster.warning('mockContent', mockedOptions());
+  act(() => {
+    toaster.warning('mockContent', mockedOptions());
+  });
   assertAddedToast(toaster['toasts'][0], 'warning', 'mockContent', 1);
 });
 
 it('should add toasts and remove all', () => {
-  toaster.informational('mockContent', mockedOptions());
+  act(() => {
+    toaster.informational('mockContent', mockedOptions());
+  });
   assertAddedToast(toaster['toasts'][0], 'informational', 'mockContent', 1);
 
-  toaster.positive('mockContent', mockedOptions());
+  act(() => {
+    toaster.positive('mockContent', mockedOptions());
+  });
   assertAddedToast(toaster['toasts'][0], 'positive', 'mockContent', 2);
 
-  toaster.closeAll();
+  act(() => {
+    toaster.closeAll();
+  });
   assertRemovedToast(toaster['toasts'][1], 'informational', 'mockContent', 1);
   assertRemovedToast(toaster['toasts'][0], 'positive', 'mockContent', 2);
 
@@ -100,9 +115,12 @@ it('should add toasts and remove all', () => {
 });
 
 it('should add toast and remove using return function', () => {
-  const { close } = toaster.informational('mockContent', {
-    ...mockedOptions(),
-    type: 'persisting',
+  let close: () => void = () => {};
+  act(() => {
+    ({ close } = toaster.informational('mockContent', {
+      ...mockedOptions(),
+      type: 'persisting',
+    }));
   });
   assertAddedToast(
     toaster['toasts'][0],
@@ -116,7 +134,9 @@ it('should add toast and remove using return function', () => {
     },
   );
 
-  close();
+  act(() => {
+    close();
+  });
   assertRemovedToast(
     toaster['toasts'][0],
     'informational',
@@ -135,11 +155,15 @@ it('should add toast and remove using return function', () => {
 });
 
 it('should change order to bottom to top', () => {
-  toaster.setSettings({ placement: 'top', order: 'ascending' });
-  toaster.informational('mockContent', mockedOptions());
+  act(() => {
+    toaster.setSettings({ placement: 'top', order: 'ascending' });
+    toaster.informational('mockContent', mockedOptions());
+  });
   assertAddedToast(toaster['toasts'][0], 'informational', 'mockContent', 1);
 
-  toaster.positive('mockContent', mockedOptions());
+  act(() => {
+    toaster.positive('mockContent', mockedOptions());
+  });
   assertAddedToast(toaster['toasts'][1], 'positive', 'mockContent', 2);
 });
 
@@ -151,10 +175,12 @@ it.each([
   'bottom',
   'bottom-end',
 ] as const)('should change placement to %s', (placement) => {
-  toaster.setSettings({
-    placement: placement,
+  act(() => {
+    toaster.setSettings({
+      placement: placement,
+    });
+    toaster.informational('mockContent', mockedOptions());
   });
-  toaster.informational('mockContent', mockedOptions());
   expect(document.querySelector('.iui-toast-wrapper')).toHaveClass(
     `iui-placement-${placement}`,
   );

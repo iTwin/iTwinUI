@@ -3,11 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 
-import { ToastWrapper } from './ToastWrapper';
+import { ToastWrapper, ToastWrapperHandle } from './ToastWrapper';
 import { ToastProps } from './Toast';
-import { act } from 'react-dom/test-utils';
 
 const mockToastObject1 = {
   category: 'informational',
@@ -24,12 +23,19 @@ const mockToastObject2 = {
   isVisible: true,
 } as ToastProps;
 
-it('should render toasts', () => {
-  const { container } = render(
-    <ToastWrapper toasts={[mockToastObject1, mockToastObject2]} />,
-  );
+let ref: React.RefObject<ToastWrapperHandle>;
 
+beforeEach(() => {
+  ref = React.createRef<ToastWrapperHandle>();
+});
+
+it('should render toasts', () => {
+  const { container } = render(<ToastWrapper ref={ref} />);
   expect(container.querySelector('.iui-toast-wrapper')).toBeTruthy();
+
+  act(() => {
+    ref.current?.setToasts([mockToastObject1, mockToastObject2]);
+  });
 
   const toasts = container.querySelectorAll('.iui-toast');
   expect(toasts.length).toBe(2);
@@ -41,9 +47,10 @@ it('should render toasts', () => {
 
 it('should remove toast with close icon click', () => {
   jest.useFakeTimers();
-  const { container } = render(
-    <ToastWrapper toasts={[mockToastObject1, mockToastObject2]} />,
-  );
+  const { container } = render(<ToastWrapper ref={ref} />);
+  act(() => {
+    ref.current?.setToasts([mockToastObject1, mockToastObject2]);
+  });
 
   expect(container.querySelector('.iui-toast-wrapper')).toBeTruthy();
 
@@ -63,17 +70,18 @@ it('should remove toast with close icon click', () => {
 
 it('should remove all toasts', () => {
   jest.useFakeTimers();
-  const { container, rerender } = render(
-    <ToastWrapper toasts={[mockToastObject1, mockToastObject2]} />,
-  );
-
+  const { container } = render(<ToastWrapper ref={ref} />);
+  act(() => {
+    ref.current?.setToasts([mockToastObject1, mockToastObject2]);
+  });
   expect(container.querySelector('.iui-toast-wrapper')).toBeTruthy();
 
   let toasts = container.querySelectorAll('.iui-toast');
   expect(toasts.length).toBe(2);
   act(() => {
-    rerender(<ToastWrapper toasts={[]} />);
+    ref.current?.setToasts([]);
   });
+
   jest.advanceTimersByTime(400);
   toasts = container.querySelectorAll('.iui-toast');
   expect(toasts.length).toBe(0);
@@ -88,12 +96,12 @@ it.each([
   'bottom',
   'bottom-end',
 ] as const)('should change placement to %s', (placement) => {
-  const { container } = render(
-    <ToastWrapper
-      toasts={[mockToastObject1, mockToastObject2]}
-      placement={placement}
-    />,
-  );
+  const { container } = render(<ToastWrapper ref={ref} />);
+
+  act(() => {
+    ref.current?.setToasts([mockToastObject1, mockToastObject2]);
+    ref.current?.setPlacement(placement);
+  });
 
   expect(container.querySelector('.iui-toast-wrapper')).toBeTruthy();
   expect(

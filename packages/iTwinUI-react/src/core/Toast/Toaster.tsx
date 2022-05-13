@@ -6,7 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { getContainer } from '../utils';
 import { ToastCategory, ToastProps } from './Toast';
-import { ToastWrapper } from './ToastWrapper';
+import { ToastWrapper, ToastWrapperHandle } from './ToastWrapper';
 
 const TOASTS_CONTAINER_ID = 'iui-toasts-container';
 
@@ -44,6 +44,16 @@ export default class Toaster {
     order: 'descending',
     placement: 'top',
   };
+  private toastsRef = React.createRef<ToastWrapperHandle>();
+
+  constructor() {
+    const container = getContainer(TOASTS_CONTAINER_ID);
+    if (!container) {
+      return;
+    }
+
+    ReactDOM.render(<ToastWrapper ref={this.toastsRef} />, container);
+  }
 
   /**
    * Set global Toaster settings for toasts order and placement.
@@ -55,6 +65,7 @@ export default class Toaster {
       ? 'ascending'
       : 'descending';
     this.settings = newSettings;
+    this.toastsRef.current?.setPlacement(this.settings.placement ?? 'top');
   }
 
   public positive(content: React.ReactNode, options?: ToastOptions) {
@@ -105,15 +116,7 @@ export default class Toaster {
   }
 
   private updateView() {
-    const container = getContainer(TOASTS_CONTAINER_ID);
-    if (!container) {
-      return;
-    }
-
-    ReactDOM.render(
-      <ToastWrapper toasts={this.toasts} placement={this.settings.placement} />,
-      container,
-    );
+    this.toastsRef.current?.setToasts(this.toasts);
   }
 
   private closeToast(toastId: number): void {
