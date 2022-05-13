@@ -507,7 +507,7 @@ export const Table = <
     {} as Record<string, string>,
   );
 
-  const areFiltersSet = allColumns.some((column) => !!column.filterValue);
+  const areFiltersSet = allColumns.some((column) => column.filterValue != null && column.filterValue !== '');
 
   const onRowClickHandler = React.useCallback(
     (event: React.MouseEvent, row: Row<T>) => {
