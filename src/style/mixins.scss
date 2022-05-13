@@ -214,11 +214,11 @@
     opacity: var(--iui-opacity-3);
 
     @at-root .iui-active & {
-      opacity: 1;
+      opacity: var(--iui-opacity-1);
     }
 
     @at-root [aria-current] & {
-      opacity: 1;
+      opacity: var(--iui-opacity-1);
     }
   }
 }

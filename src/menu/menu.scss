@@ -45,13 +45,28 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     margin-top: -1px;
   }
 
+  .iui-content,
+  .iui-menu-label,
+  .iui-menu-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .iui-content {
-    @include iui-label-with-sublabel;
     flex: 1 1 auto;
 
     + .iui-icon {
       margin-right: 0;
       margin-left: $iui-s;
+    }
+  }
+
+  .iui-menu-description {
+    display: none;
+    font-size: $iui-font-size-small;
+    @include themed {
+      opacity: t(iui-opacity-3);
     }
   }
 
@@ -79,6 +94,10 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
   &.iui-large {
     height: $iui-component-height-large;
+
+    .iui-menu-description {
+      display: block;
+    }
   }
 
   &.iui-active {
@@ -90,6 +109,10 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
         outline: $iui-active-outline;
         outline-offset: -1px;
       }
+    }
+
+    .iui-menu-description {
+      opacity: 1;
     }
 
     > .iui-icon {
