@@ -5,7 +5,73 @@
 
 @mixin iui-checkbox {
   &-wrapper {
-    @include iui-inputs-checkbox-radio;
+    @include iui-reset;
+    display: flex;
+    align-items: center;
+    font-size: $iui-font-size;
+    width: fit-content;
+    user-select: none;
+    position: relative;
+    cursor: pointer;
+    @include themed {
+      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
+
+    gap: $iui-s;
+
+    // #region flex gap fallback
+    > * + * {
+      margin-left: $iui-s;
+      @supports (gap: $iui-s) {
+        margin-left: 0;
+      }
+    }
+    // #endregion
+
+    &.iui-loading {
+      cursor: wait;
+      color: var(--iui-text-color-muted);
+    }
+
+    > .iui-checkbox-label,
+    > .iui-radio-label {
+      display: flex;
+      align-items: center;
+
+      svg {
+        width: $iui-icons-default;
+        height: $iui-icons-default;
+        vertical-align: middle;
+        fill: currentColor;
+      }
+    }
+
+    &.iui-disabled {
+      cursor: not-allowed;
+      color: var(--iui-text-color-muted);
+
+      svg {
+        fill: var(--iui-icons-color-actionable-disabled);
+      }
+    }
+
+    &.iui-positive {
+      @include themed {
+        color: t(iui-color-foreground-positive);
+      }
+    }
+
+    &.iui-warning {
+      @include themed {
+        color: t(iui-color-foreground-warning);
+      }
+    }
+
+    &.iui-negative {
+      @include themed {
+        color: t(iui-color-foreground-negative);
+      }
+    }
   }
 
   --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m6.5 12.5-4.5-4.5 1.5-1.5 3 3 6-6 1.5 1.5z" /></svg>');
