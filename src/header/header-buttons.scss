@@ -109,7 +109,7 @@
     // Disabled active state
     &[aria-current] {
       box-shadow: none;
-      background-color: var(--iui-color-background-disabled);
+      background-color: var(--iui-color-background-2);
 
       @media (forced-colors: active) {
         border-bottom: 3px solid GrayText;
