@@ -5,10 +5,11 @@
 @import '../button/borderless';
 @import '../icon/index';
 
-@mixin iui-breadcrumbs {
+@mixin iui-breadcrumbs($breadcrumbs-height: $iui-component-height) {
   @include iui-reset;
   display: flex;
   align-items: center;
+  height: $breadcrumbs-height;
 }
 
 @mixin iui-breadcrumbs-list {
@@ -17,13 +18,13 @@
   align-items: center;
   list-style-type: none;
   user-select: none;
+  height: 100%;
 }
 
-@mixin iui-breadcrumbs-item($breadcrumbs-height: $iui-component-height) {
+@mixin iui-breadcrumbs-item {
   display: flex;
   align-items: center;
-  line-height: $iui-component-height;
-  height: $breadcrumbs-height;
+  height: 100%;
 
   > * {
     max-width: 26ch;
@@ -46,6 +47,7 @@
 
   > :any-link {
     @include iui-anchor;
+    line-height: $iui-component-height;
 
     &:focus {
       outline-offset: -1px;
@@ -80,6 +82,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  line-height: $iui-component-height;
 
   @at-root a#{&} {
     @include iui-anchor;

@@ -34,13 +34,16 @@
   @include iui-header-brand-label;
 }
 
-.iui-breadcrumbs,
-.iui-breadcrumbs-list {
-  height: 100%;
+.iui-header-breadcrumbs {
+  @include iui-breadcrumbs($breadcrumbs-height: 100%);
+}
+
+.iui-header-breadcrumbs-list {
+  @include iui-breadcrumbs-list;
 }
 
 .iui-header-breadcrumb-item {
-  @include iui-breadcrumbs-item($breadcrumbs-height: 100%);
+  @include iui-breadcrumbs-item;
 }
 
 .iui-header-breadcrumb-button {
