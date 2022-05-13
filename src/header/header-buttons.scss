@@ -109,14 +109,16 @@
     // Disabled active state
     &[aria-current] {
       box-shadow: none;
-      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+      background-color: var(--iui-color-background-disabled);
+
+      @media (forced-colors: active) {
+        border-bottom: 3px solid GrayText;
+      }
     }
   }
 }
 
 @mixin iui-header-breadcrumb-button {
-  --_iui-header-breadcrumb-button-dropdown-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m4.8067 6h6.3953a.27961.27961 0 0 1 .24043.44321l-3.1736 3.45707a.33969.33969 0 0 1 -.48085 0l-3.2217-3.45707a.26909.26909 0 0 1 .24042-.44321z' /></svg>");
-
   @include iui-reset;
   @include iui-focus;
   display: inline-flex;
@@ -128,7 +130,7 @@
   max-width: 25vw;
   overflow: hidden;
   padding-left: $iui-sm;
-  padding-right: $iui-s;
+  padding-right: $iui-sm;
   box-sizing: border-box;
   font-family: inherit;
   -webkit-tap-highlight-color: transparent;
@@ -152,16 +154,6 @@
     background-color: transparent;
   }
 
-  // Dropdown icon
-  &:last-of-type::after {
-    content: '';
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    background-color: currentColor;
-    flex-shrink: 0;
-    mask: var(--_iui-header-breadcrumb-button-dropdown-svg);
-  }
-
   // Disabled state
   &.iui-disabled,
   &:disabled,
@@ -173,12 +165,40 @@
 @mixin iui-header-breadcrumb-button-dropdown {
   padding: 0 $iui-xs;
 
-  &:hover:enabled {
+  &:hover {
     background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
   }
 
-  @at-root [aria-current] &:hover:enabled {
+  @at-root [aria-current] &:hover {
     background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+  }
+
+  &.iui-disabled,
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-dropdown-icon {
+  width: $iui-icons-default;
+  height: $iui-icons-default;
+  fill: currentColor;
+  flex-shrink: 0;
+  margin-right: -4px;
+
+  @at-root .iui-header-breadcrumb-button-dropdown & {
+    margin-right: 0;
+  }
+
+  @at-root .iui-disabled & {
+    @media (forced-colors: active) {
+      fill: GrayText;
+    }
   }
 }
 
@@ -196,6 +216,10 @@
   @include iui-thumbnail-or-icon;
   will-change: transform;
 
+  @media (forced-colors: active) {
+    fill: LinkText;
+  }
+
   @at-root .iui-slim & {
     transform: scale(0.66666);
   }
@@ -203,10 +227,10 @@
   @at-root .iui-disabled & {
     background-color: var(--iui-color-background-2);
     fill: var(--iui-icons-color-actionable-disabled);
-  }
 
-  @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed-fast ease-out;
+    @media (forced-colors: active) {
+      fill: GrayText;
+    }
   }
 
   @media (max-width: 767px) {

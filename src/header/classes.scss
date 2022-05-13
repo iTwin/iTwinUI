@@ -59,6 +59,10 @@
   @include iui-header-breadcrumb-button-icon;
 }
 
+.iui-header-breadcrumb-button-dropdown-icon {
+  @include iui-header-breadcrumb-button-dropdown-icon;
+}
+
 .iui-header-breadcrumb-button-label {
   @include iui-header-breadcrumb-button-label;
 }
