@@ -2,16 +2,11 @@
 
 ## [0.58.0](https://www.github.com/iTwin/iTwinUI/compare/v0.57.0...v0.58.0) (2022-05-11)
 
-
 ### What's new
 
 * **Dialog:** Add draggable dialog and rename existing Modal ([#602](https://www.github.com/iTwin/iTwinUI/issues/602)) ([dcfc8aa](https://www.github.com/iTwin/iTwinUI/commit/dcfc8aa8ad5867911a9343f16f60ca862dcb4158))
 * **Table:** Add container over column actions for wrapping ([#626](https://www.github.com/iTwin/iTwinUI/issues/626)) ([f45aa37](https://www.github.com/iTwin/iTwinUI/commit/f45aa37f5f48f2bfa5aec0cd2b2b21f8cc57219d))
-
-
-### Fixes
-
-* **Breadcrumbs:** `color` is not updating ([#635](https://www.github.com/iTwin/iTwinUI/issues/635)) ([8417ed7](https://www.github.com/iTwin/iTwinUI/commit/8417ed719c82c1ec4b962cb2a5a474d4c45f17e1))
+* **Breadcrumbs:** Add new `iui-breadcrumbs-item-overrides` class to fix `color` is not updating ([#635](https://www.github.com/iTwin/iTwinUI/issues/635)) ([8417ed7](https://www.github.com/iTwin/iTwinUI/commit/8417ed719c82c1ec4b962cb2a5a474d4c45f17e1))
 
 ## [0.57.0](https://www.github.com/iTwin/iTwinUI/compare/v0.56.0...v0.57.0) (2022-05-09)
 
