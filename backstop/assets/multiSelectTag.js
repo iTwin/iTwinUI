@@ -9,6 +9,7 @@ class MultiSelectTag extends HTMLElement {
 
   connectedCallback() {
     const value = this.getAttribute('value');
+    const dismissible = this.hasAttribute('dismissible');
 
     const innerHtml = `
     <span
@@ -21,17 +22,13 @@ class MultiSelectTag extends HTMLElement {
       >
         ${value}
       </span>
-      <button
-        class="iui-multi-select-tag-button"
-        aria-label="Delete tag"
-        type="button"
-        tabindex="-1"
-      >
-        <svg-close-small
-          class="iui-multi-select-tag-button-icon"
-          aria-hidden="true"
-        ></svg-close-small>
-      </button>
+      ${
+        dismissible
+          ? `<button class="iui-multi-select-tag-button" aria-label="Delete tag" type="button" tabindex="-1">
+            <svg-close-small class="iui-multi-select-tag-button-icon" aria-hidden="true"></svg-close-small>
+          </button>`
+          : ''
+      }
     </span>
     `;
     this.parentElement.insertAdjacentHTML('beforeend', innerHtml);

@@ -75,7 +75,7 @@
   display: flex;
   align-items: center;
   gap: $iui-xs;
-  overflow-x: auto;
+  overflow: hidden;
 
   > * + * {
     margin-left: $iui-xs;
