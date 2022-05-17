@@ -226,7 +226,6 @@
   }
 
   ~ .iui-thumbnail-icon {
-    z-index: 1;
     cursor: pointer;
     @media (prefers-reduced-motion: no-preference) {
       transition: fill $iui-speed-fast ease;
