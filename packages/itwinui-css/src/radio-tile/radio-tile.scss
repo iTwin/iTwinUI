@@ -59,7 +59,7 @@
   user-select: none;
   // Create stacking context
   position: relative;
-  z-index: 0;
+  isolation: isolate;
 }
 
 @mixin iui-radio-tile-input {

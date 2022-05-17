@@ -29,6 +29,7 @@ $tick-height: $iui-baseline; // 11px
   flex-grow: 1;
   cursor: pointer;
   touch-action: pan-y;
+  isolation: isolate;
 
   &.iui-grabbing {
     cursor: grabbing;
