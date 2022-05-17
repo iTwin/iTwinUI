@@ -8,6 +8,7 @@
   @include iui-reset;
   display: flex;
   flex-direction: column;
+  isolation: isolate;
 
   * {
     box-sizing: border-box;
