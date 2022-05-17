@@ -84,7 +84,7 @@
     overflow: hidden;
     justify-content: flex-start;
 
-    // Adds stripe to the left of active button
+    // Adds stripe to the right of active button
     --_iui-button-active-stripe-inset: 0 0 0 calc(100% - #{$iui-xxs});
 
     &:not(.iui-expand) {
