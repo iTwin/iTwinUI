@@ -1,0 +1,78 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>GDPR banner | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script src="../assets/theme.js"></script>
+
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close"
+    ></script>
+
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>GDPR banner</h1>
+    <hr />
+
+    <section id="demo-default">
+
+      <div class="iui-gdpr-banner">
+        <div class="iui-gdpr-banner-title-bar">
+          <div class="iui-gdpr-banner-title">Cookie Consent</div>
+          <button
+            aria-label="Close"
+            type="button"
+            class="iui-button iui-borderless iui-small"
+          >
+            <svg-close
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close>
+          </button>
+        </div>
+        <div class="iui-gdpr-banner-content">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+        <div class="iui-gdpr-banner-button-bar">
+          <button class="iui-button iui-high-visibility">
+            <span class="iui-button-label">Proceed</span>
+          </button>
+          <button class="iui-button iui-default">
+            <span class="iui-button-label">Cancel</span>
+          </button>
+        </div>
+      </div>
+
+
+    </section>
+  </body>
+</html>

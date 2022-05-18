@@ -1,0 +1,31 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../dialog/index';
+
+@mixin iui-gdpr-banner {
+  @include iui-dialog;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: var(--iui-color-background-5);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin iui-gdpr-banner-title {
+  @include iui-dialog-title;
+}
+
+@mixin iui-gdpr-banner-title-bar {
+  @include iui-dialog-title-bar;
+}
+
+@mixin iui-gdpr-banner-content {
+  @include iui-dialog-content;
+}
+
+@mixin iui-gdpr-banner-button-bar {
+  @include iui-dialog-button-bar;
+} ;
