@@ -10,12 +10,15 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "lint:copyright": "node packages/configs/copyrightLinter.js",
+    "prepare": "husky install",
     "format": "turbo run format",
-    "test": "turbo run test",
-    "lint-staged": "turbo run lint-staged"
+    "test": "turbo run test"
   },
   "devDependencies": {
     "cpy-cli": "^3.1.1",
+    "husky": "8",
+    "lint-staged": "12",
     "rimraf": "^3.0.2",
     "turbo": "~1.2.4",
     "webpack": "5"
@@ -27,6 +30,12 @@
     "ansi-regex": "^5.0.1",
     "postcss": "8",
     "nanoid": "^3.1.31"
+  },
+  "lint-staged": {
+    "*.{tsx,ts,jsx,js}": [
+      "prettier --write",
+      "node packages/configs/copyrightLinter.js --fix"
+    ]
   },
   "engines": {
     "npm": ">=7.0.0",

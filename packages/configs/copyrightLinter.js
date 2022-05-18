@@ -5,13 +5,23 @@
 const fs = require('fs');
 const fg = require('fast-glob');
 
-const pattern = process.argv.slice(2).filter((x) => x !== '--fix');
+let pattern = process.argv
+  .slice(2)
+  .flatMap((x) => (x !== '--fix' ? x.replaceAll('\\', '/') : []));
+
+// if no pattern is specified, then lint everything
+if (pattern.length === 0) {
+  pattern = '**/*.{ts,tsx,js}';
+}
+
 const filePaths = fg.sync(pattern, {
   dot: true,
   ignore: [
     '**/node_modules/**/*',
     '**/coverage/**/*',
-    '**/lib/**/*',
+    '**/esm/**/*',
+    '**/cjs/**/*',
+    '**/dist/**/*',
     '**/storybook-static/**/*',
   ],
 });
