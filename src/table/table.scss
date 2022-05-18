@@ -535,12 +535,12 @@
   @include iui-table-cell-shadow-base;
   left: 0;
   transform: translate(-100%);
-  box-shadow: inset -10px 0 8px -8px hsla(200, 12%, 0%, 0.25);
+  box-shadow: inset -10px 0 5px -10px hsla(200, 12%, 0%, 0.25);
 }
 
 @mixin iui-table-cell-shadow-right {
   @include iui-table-cell-shadow-base;
   right: 0;
   transform: translate(100%);
-  box-shadow: inset 10px 0 8px -8px hsla(200, 12%, 0%, 0.25);
+  box-shadow: inset 10px 0 5px -10px hsla(200, 12%, 0%, 0.25);
 }
