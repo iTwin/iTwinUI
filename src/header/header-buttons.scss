@@ -71,7 +71,7 @@
   }
 }
 
-@mixin iui-header-breadcrumb-button-container($active-color: primary) {
+@mixin iui-header-breadcrumb-button-container {
   max-width: 25vw;
   transition: background-color $iui-speed-fast ease-out;
   height: 100%;
@@ -92,9 +92,9 @@
 
   // Active state
   &[aria-current] {
-    background-color: rgba(var(--iui-color-foreground-#{$active-color}-rgb), var(--iui-opacity-6));
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
     box-shadow: 0 $iui-xxs 0 0 currentColor;
-    color: var(--iui-color-foreground-#{$active-color});
+    color: var(--iui-color-foreground-primary);
     pointer-events: none; // Removes hover effect, reduces specificity
     @media (forced-colors: active) {
       color: LinkText;
