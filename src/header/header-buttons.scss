@@ -37,6 +37,10 @@
       }
     }
   }
+
+  @at-root a#{&} {
+    text-decoration: none;
+  }
 }
 
 @mixin iui-header-brand-icon {
