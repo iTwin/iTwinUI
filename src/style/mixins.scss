@@ -213,12 +213,11 @@
     font-size: $sublabel-font-size;
     opacity: var(--iui-opacity-3);
 
-    @at-root .iui-active & {
-      opacity: var(--iui-opacity-1);
-    }
-
-    @at-root [aria-current] & {
-      opacity: var(--iui-opacity-1);
+    @at-root {
+      .iui-active &,
+      [aria-current] & {
+        opacity: var(--iui-opacity-1);
+      }
     }
   }
 }
@@ -252,14 +251,12 @@
     }
   }
 
-  @at-root .iui-active & {
-    background-color: var(--iui-color-background-1);
-    fill: currentColor;
-  }
-
-  @at-root [aria-current] & {
-    background-color: var(--iui-color-background-1);
-    fill: currentColor;
+  @at-root {
+    .iui-active &,
+    [aria-current] & {
+      background-color: var(--iui-color-background-1);
+      fill: currentColor;
+    }
   }
 
   @at-root .iui-disabled img#{&} {

@@ -199,9 +199,13 @@
     margin-right: 0;
   }
 
-  @at-root .iui-disabled & {
-    @media (forced-colors: active) {
-      fill: GrayText;
+  @at-root {
+    .iui-disabled &,
+    :disabled &,
+    [aria-disabled='true'] & {
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
     }
   }
 }
@@ -228,12 +232,16 @@
     transform: scale(0.66666);
   }
 
-  @at-root .iui-disabled & {
-    background-color: var(--iui-color-background-2);
-    fill: var(--iui-icons-color-actionable-disabled);
+  @at-root {
+    .iui-disabled &,
+    :disabled &,
+    [aria-disabled='true'] & {
+      background-color: var(--iui-color-background-2);
+      fill: var(--iui-icons-color-actionable-disabled);
 
-    @media (forced-colors: active) {
-      fill: GrayText;
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
     }
   }
 
