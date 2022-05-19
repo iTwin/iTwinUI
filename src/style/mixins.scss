@@ -206,7 +206,6 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    color: inherit;
   }
 
   &-sublabel {
@@ -237,7 +236,6 @@
   box-sizing: border-box;
   padding: $iui-xs;
   fill: var(--iui-icons-color);
-  color: inherit;
   @media (prefers-reduced-motion: no-preference) {
     transition: transform $iui-speed-fast ease-out;
   }
