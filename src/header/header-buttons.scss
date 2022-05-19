@@ -75,6 +75,7 @@
   max-width: 25vw;
   transition: background-color $iui-speed-fast ease-out;
   height: 100%;
+  display: flex;
   overflow: hidden;
   position: relative;
   color: var(--iui-text-color);
