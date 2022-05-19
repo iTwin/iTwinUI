@@ -195,7 +195,7 @@
     min-width: 100%;
     display: flex;
 
-    &:not(.iui-expanded-content) .iui-cell {
+    .iui-cell {
       border-top: solid 1px transparent;
       border-bottom: solid 1px transparent;
       @media (prefers-reduced-motion: no-preference) {
@@ -216,7 +216,7 @@
     }
 
     &:hover:not(.iui-disabled) {
-      &:not(.iui-expanded-content) .iui-cell {
+      .iui-cell {
         @include themed {
           background: linear-gradient(
             rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
