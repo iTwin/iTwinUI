@@ -13,7 +13,7 @@ import {
   getDocument,
   FocusTrap,
 } from '../utils';
-import '@itwin/itwinui-css/css/modal.css';
+import '@itwin/itwinui-css/css/dialog.css';
 import { IconButton } from '../Buttons/IconButton';
 import { CSSTransition } from 'react-transition-group';
 
@@ -179,16 +179,17 @@ export const Modal = (props: ModalProps) => {
     ReactDOM.createPortal(
       <CSSTransition
         in={isOpen}
-        classNames='iui-modal-animation'
+        classNames='iui-dialog-animation'
         timeout={{ exit: 600 }}
         unmountOnExit={true}
       >
         <FocusTrap>
           <div
             className={cx(
-              'iui-modal',
-              { 'iui-modal-full-page': styleType === 'fullPage' },
-              { 'iui-modal-visible': isOpen },
+              'iui-dialog-backdrop',
+              { 'iui-dialog-default': styleType === 'default' },
+              { 'iui-dialog-full-page': styleType === 'fullPage' },
+              { 'iui-dialog-visible': isOpen },
               className,
             )}
             tabIndex={-1}
@@ -198,14 +199,14 @@ export const Modal = (props: ModalProps) => {
             {...rest}
           >
             <div
-              className='iui-modal-dialog'
+              className='iui-dialog'
               id={id}
               style={style}
               role='dialog'
               aria-modal='true'
             >
-              <div className='iui-title-bar'>
-                <div className='iui-title'>{title}</div>
+              <div className='iui-dialog-title-bar'>
+                <div className='iui-dialog-title'>{title}</div>
                 {isDismissible && (
                   <IconButton
                     size='small'

@@ -37,10 +37,8 @@ const assertBaseElement = (
     expect(item).toBeTruthy();
 
     if (index === currentIndex) {
-      expect(breadcrumb.classList).toContain('iui-current');
       expect(item?.getAttribute('aria-current')).toEqual('location');
     } else {
-      expect(breadcrumb.classList).not.toContain('iui-current');
       expect(item?.getAttribute('aria-current')).toBeFalsy();
     }
   });

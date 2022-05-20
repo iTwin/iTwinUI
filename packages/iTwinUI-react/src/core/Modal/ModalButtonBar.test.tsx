@@ -15,7 +15,7 @@ it('should render in its most basic state', () => {
       <Button>TestBtn2</Button>
     </ModalButtonBar>,
   );
-  expect(container.querySelector('.iui-button-bar')).toBeTruthy();
+  expect(container.querySelector('.iui-dialog-button-bar')).toBeTruthy();
   screen.getByText('TestBtn1');
   screen.getByText('TestBtn2');
 });
@@ -28,7 +28,9 @@ it('should propagate miscellaneous props', () => {
     </ModalButtonBar>,
   );
 
-  const buttonBar = container.querySelector('.iui-button-bar') as HTMLElement;
+  const buttonBar = container.querySelector(
+    '.iui-dialog-button-bar',
+  ) as HTMLElement;
   expect(buttonBar).toHaveClass('test-class');
   expect(buttonBar).toHaveStyle('gap: 8px;');
   expect(buttonBar.id).toEqual('test-id');

@@ -2,11 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
 import cx from 'classnames';
 import React from 'react';
 import { useMergedRefs, useTheme } from '../utils';
-import '@itwin/itwinui-css/css/inputs.css';
+import '@itwin/itwinui-css/css/radio-tile.css';
 
 export type RadioTileProps = {
   /**
@@ -57,16 +56,22 @@ export const RadioTile = React.forwardRef<HTMLInputElement, RadioTileProps>(
     }, [setFocus]);
 
     return (
-      <label className={className} style={style}>
-        <input type='radio' ref={refs} {...rest} />
-        <div className='iui-radio-tile'>
-          <SvgCheckmark className='iui-checkmark' aria-hidden />
+      <label className={cx('iui-radio-tile', className)} style={style}>
+        <input
+          className='iui-radio-tile-input'
+          type='radio'
+          ref={refs}
+          {...rest}
+        />
+        <div className='iui-radio-tile-content'>
           {icon &&
             React.cloneElement(icon, {
-              className: cx('iui-icon', icon.props.className),
+              className: cx('iui-radio-tile-icon', icon.props.className),
             })}
-          {label && <div className='iui-label'>{label}</div>}
-          {description && <div className='iui-description'>{description}</div>}
+          {label && <div className='iui-radio-tile-label'>{label}</div>}
+          {description && (
+            <div className='iui-radio-tile-sublabel'>{description}</div>
+          )}
         </div>
       </label>
     );

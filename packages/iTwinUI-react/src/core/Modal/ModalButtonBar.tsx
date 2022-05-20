@@ -5,7 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { CommonProps, useTheme } from '../utils';
-import '@itwin/itwinui-css/css/modal.css';
+import '@itwin/itwinui-css/css/dialog.css';
 
 export type ModalButtonBarProps = {
   /**
@@ -22,7 +22,7 @@ export const ModalButtonBar = (props: ModalButtonBarProps) => {
 
   useTheme();
   return (
-    <div className={cx('iui-button-bar', className)} {...rest}>
+    <div className={cx('iui-dialog-button-bar', className)} {...rest}>
       {children}
     </div>
   );

@@ -12,10 +12,10 @@ function assertBaseElement(
   { isDismissible = true } = {},
 ) {
   expect(overlay).toBeTruthy();
-  const dialog = overlay.querySelector('.iui-modal-dialog') as HTMLElement;
+  const dialog = overlay.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
 
-  const title = dialog.querySelector('.iui-title-bar') as HTMLElement;
+  const title = dialog.querySelector('.iui-dialog-title-bar') as HTMLElement;
   expect(title).toBeTruthy();
   expect(title.textContent).toEqual('Modal Title');
 
@@ -41,7 +41,7 @@ it('should render in basic form', () => {
   renderComponent();
 
   const overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
 });
@@ -50,7 +50,7 @@ it('should render in full page form', () => {
   renderComponent({ styleType: 'fullPage' });
 
   const overlay = document.querySelector(
-    '.iui-modal.iui-modal-full-page.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-full-page.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
 });
@@ -58,7 +58,9 @@ it('should render in full page form', () => {
 it('should not render modal when closed', () => {
   renderComponent({ isOpen: false });
 
-  const overlay = document.querySelector('.iui-modal.iui-modal-visible');
+  const overlay = document.querySelector(
+    '.iui-dialog-backdrop.iui-dialog-visible',
+  );
   expect(overlay).toBeFalsy();
 });
 
@@ -67,14 +69,14 @@ it('should close on overlay mouse down', () => {
   renderComponent({ onClose });
 
   let overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
 
   fireEvent.mouseDown(overlay);
   expect(onClose).toHaveBeenCalled();
   overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
 });
@@ -84,7 +86,7 @@ it('should not close on overlay mouse down when closeOnExternalClick is false', 
   renderComponent({ onClose, closeOnExternalClick: false });
 
   let overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
 
@@ -92,7 +94,7 @@ it('should not close on overlay mouse down when closeOnExternalClick is false', 
   expect(onClose).not.toHaveBeenCalled();
 
   overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
 });
@@ -106,7 +108,7 @@ it('should close on Esc click and move focus back', () => {
   const { rerender } = renderComponent({ onClose });
 
   let overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
   expect(document.activeElement).toEqual(overlay);
@@ -115,7 +117,7 @@ it('should close on Esc click and move focus back', () => {
   expect(onClose).toHaveBeenCalled();
 
   overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
   rerender(
@@ -131,7 +133,7 @@ it('should not close on Esc click when closeOnEsc is false', () => {
   renderComponent({ onClose, closeOnEsc: false });
 
   let overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
 
@@ -139,7 +141,7 @@ it('should not close on Esc click when closeOnEsc is false', () => {
   expect(onClose).not.toHaveBeenCalled();
 
   overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
 });
@@ -149,7 +151,7 @@ it('should not close when isDismissible is false', () => {
   renderComponent({ onClose, isDismissible: false });
 
   let overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay, { isDismissible: false });
 
@@ -159,7 +161,7 @@ it('should not close when isDismissible is false', () => {
   expect(onClose).not.toHaveBeenCalled();
 
   overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay, { isDismissible: false });
 });
@@ -169,7 +171,7 @@ it('should call onKeyDown when pressed any key inside modal', () => {
   renderComponent({ onKeyDown });
 
   const overlay = document.querySelector(
-    '.iui-modal.iui-modal-visible',
+    '.iui-dialog-backdrop.iui-dialog-visible',
   ) as HTMLElement;
   assertBaseElement(overlay);
 

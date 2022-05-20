@@ -71,11 +71,7 @@ export const Breadcrumbs = React.forwardRef(
     const ListItem = ({ index }: { index: number }) => {
       const item = items[index];
       return (
-        <li
-          className={cx('iui-breadcrumbs-item', {
-            'iui-current': currentIndex === index,
-          })}
-        >
+        <li className={'iui-breadcrumbs-item iui-breadcrumbs-item-overrides'}>
           {React.isValidElement(item)
             ? React.cloneElement(item, {
                 'aria-current':
@@ -104,8 +100,8 @@ export const Breadcrumbs = React.forwardRef(
           )}
           {items.length - visibleCount > 0 && (
             <>
-              <li className='iui-breadcrumbs-item'>
-                <span>…</span>
+              <li className='iui-breadcrumbs-item iui-breadcrumbs-item-overrides'>
+                <span className='iui-breadcrumbs-text'>…</span>
               </li>
               <Separator />
             </>
