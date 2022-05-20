@@ -166,7 +166,7 @@
   }
 }
 
-@mixin iui-header-breadcrumb-button-dropdown {
+@mixin iui-header-breadcrumb-button-split {
   padding: 0 $iui-xs;
 
   &:hover {
@@ -195,7 +195,7 @@
   flex-shrink: 0;
   margin-right: -4px;
 
-  @at-root .iui-header-breadcrumb-button-dropdown & {
+  @at-root .iui-header-breadcrumb-button-split & {
     margin-right: 0;
   }
 
