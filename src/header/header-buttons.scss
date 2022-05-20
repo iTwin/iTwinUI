@@ -210,7 +210,7 @@
   }
 }
 
-@mixin iui-header-breadcrumb-button-label {
+@mixin iui-header-breadcrumb-button-text {
   @include iui-label-with-sublabel;
 
   &-sublabel {
