@@ -187,18 +187,13 @@
   }
 }
 
-@mixin iui-label-with-sublabel(
-  $label-font-size: $iui-font-size,
-  $sublabel-font-size: $iui-font-size-small,
-  $label-gap: 0
-) {
+@mixin iui-label-with-sublabel($label-font-size: $iui-font-size, $sublabel-font-size: $iui-font-size-small) {
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: $label-font-size;
   text-align: left;
   overflow: hidden;
-  row-gap: $label-gap;
   transition: color $iui-speed-fast ease-out;
 
   &-label,
