@@ -193,7 +193,7 @@
   height: $iui-icons-default;
   fill: currentColor;
   flex-shrink: 0;
-  margin-right: -4px;
+  margin-right: -#{$iui-xs};
 
   @at-root .iui-header-breadcrumb-button-split & {
     margin-right: 0;
