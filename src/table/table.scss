@@ -8,6 +8,7 @@
   @include iui-reset;
   display: flex;
   flex-direction: column;
+  isolation: isolate;
 
   * {
     box-sizing: border-box;
@@ -16,23 +17,32 @@
   @include iui-table-cell-icon;
 }
 
-@mixin iui-table-header {
-  user-select: none;
+@mixin iui-table-header-wrapper {
   overflow: hidden;
   // Fix for Firefox columns misalignment
   @supports not (overflow: overlay) {
     overflow-y: scroll;
   }
+  display: flex;
   flex-shrink: 0;
-  @include themed {
-    background-color: t(iui-color-background-3);
-  }
+}
+
+@mixin iui-table-header {
+  display: flex;
+  user-select: none;
+  min-width: 100%;
+  flex-shrink: 0;
 
   .iui-row {
     display: flex;
     flex-grow: 1;
-    border-left: solid 1px transparent;
-    border-right: solid 1px transparent;
+  }
+
+  .iui-cell {
+    min-height: $iui-baseline * 5;
+    @include themed {
+      background-color: t(iui-color-background-3);
+    }
   }
 
   .iui-cell:not(.iui-slot) {
@@ -184,12 +194,21 @@
   .iui-row {
     min-width: 100%;
     display: flex;
-    border: solid 1px transparent;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: border $iui-speed-fast ease-out;
-    }
-    @include themed {
-      border-bottom-color: t(iui-color-background-border);
+
+    .iui-cell {
+      border-top: solid 1px transparent;
+      border-bottom: solid 1px transparent;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: border $iui-speed-fast ease-out;
+      }
+
+      @include themed {
+        border-bottom-color: t(iui-color-background-border);
+      }
+
+      @include themed {
+        background-color: t(iui-color-background-1);
+      }
     }
 
     > .iui-slot > .iui-more-options {
@@ -197,9 +216,13 @@
     }
 
     &:hover:not(.iui-disabled) {
-      &:not(.iui-expanded-content) {
+      .iui-cell {
         @include themed {
-          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+          background: linear-gradient(
+            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+          ),
+            linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
         }
       }
 
@@ -220,9 +243,12 @@
 
     &.iui-row-expanded {
       overflow: hidden;
-      @include themed {
-        border-left-color: t(iui-color-background-4);
-        border-right-color: t(iui-color-background-4);
+
+      .iui-cell {
+        @include themed {
+          border-left-color: t(iui-color-background-4);
+          border-right-color: t(iui-color-background-4);
+        }
         border-bottom-color: transparent;
       }
 
@@ -240,36 +266,47 @@
 
     &.iui-expanded-content {
       overflow: hidden;
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      @include themed {
+        border-bottom: 1px solid t(iui-color-background-border);
+      }
       @include iui-transition-group;
     }
 
     // #region Selection
-    &:not(.iui-selected) + .iui-selected,
-    &.iui-selected:first-child {
+    &:not(.iui-selected) + .iui-selected .iui-cell,
+    &.iui-selected:first-child .iui-cell {
       border-bottom-color: transparent;
     }
 
     &.iui-selected {
-      @include themed {
-        border-color: t(iui-color-foreground-primary);
-        background: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      .iui-cell {
+        @include themed {
+          border-color: t(iui-color-foreground-primary);
+          background: linear-gradient(
+            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+          ),
+            linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+        }
       }
 
-      + .iui-selected {
+      + .iui-selected .iui-cell {
         border-bottom-color: transparent;
         @include themed {
           border-top-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
         }
       }
 
-      &:last-child {
+      &:last-child .iui-cell {
         @include themed {
           border-bottom-color: t(iui-color-foreground-primary);
         }
       }
 
-      + :not(.iui-selected),
-      + .iui-expanded-content + :not(.iui-selected) {
+      + :not(.iui-selected) .iui-cell,
+      + .iui-expanded-content + .iui-row:not(.iui-selected) .iui-cell {
         @include themed {
           border-top-color: t(iui-color-foreground-primary);
         }
@@ -357,11 +394,19 @@
   display: flex;
   flex-grow: 1;
   min-width: $iui-xxl;
-  min-height: $iui-baseline * 5;
+  min-height: $iui-baseline * 5 + 2px; // +2px for border
   padding-left: $iui-m;
   flex-basis: $iui-xxl;
   position: relative;
   word-break: break-word;
+
+  &:first-of-type {
+    border-left: solid 1px transparent;
+  }
+
+  &:last-of-type {
+    border-right: solid 1px transparent;
+  }
 
   &.iui-slot {
     width: $iui-l * 2;
@@ -372,6 +417,13 @@
     justify-content: center;
     align-items: center;
     flex-basis: $iui-l * 2;
+  }
+
+  &.iui-cell-sticky {
+    position: sticky;
+    z-index: 1;
+    left: var(--iui-table-sticky-left, initial);
+    right: var(--iui-table-sticky-right, initial);
   }
 
   &:not(.iui-slot):last-child {
@@ -409,7 +461,7 @@
 }
 
 @mixin iui-table-row-status($status) {
-  &,
+  .iui-cell:first-of-type,
   + .iui-expanded-content {
     @include themed {
       box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-#{$status});
@@ -427,7 +479,11 @@
 
 @mixin iui-table-cell-status($status) {
   @include themed {
-    background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6));
+    background: linear-gradient(
+      rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6)),
+      rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6))
+    ),
+      linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
   }
 
   @include iui-text-selection($status);
@@ -458,4 +514,33 @@
     margin-right: $iui-sm;
     margin-left: auto;
   }
+}
+
+@mixin iui-table-cell-shadow-base {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  width: $iui-l;
+  pointer-events: none;
+
+  // Prevents scrollbar from appearing because `top: -1px` and `bottom: -1px`
+  // makes content to overflow
+  @at-root .iui-table-header & {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+@mixin iui-table-cell-shadow-left {
+  @include iui-table-cell-shadow-base;
+  left: 0;
+  transform: translate(-100%);
+  box-shadow: inset -10px 0 5px -10px hsla(200, 12%, 0%, 0.25);
+}
+
+@mixin iui-table-cell-shadow-right {
+  @include iui-table-cell-shadow-base;
+  right: 0;
+  transform: translate(100%);
+  box-shadow: inset 10px 0 5px -10px hsla(200, 12%, 0%, 0.25);
 }

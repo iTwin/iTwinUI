@@ -5,8 +5,11 @@
 
 @mixin iui-table-condensed {
   .iui-table-header .iui-cell,
-  .iui-row .iui-cell,
   .iui-paginator {
     min-height: $iui-baseline * 4;
+  }
+
+  .iui-row .iui-cell {
+    min-height: $iui-baseline * 4 + 2px;
   }
 }
