@@ -4,8 +4,6 @@
 @import '../icon/index';
 @import '../text/index';
 
-$iui-side-navigation-icon-margins: $iui-icons-large;
-
 @mixin iui-side-navigation {
   display: inline-flex;
   flex: 0 0 auto;
