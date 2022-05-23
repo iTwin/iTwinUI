@@ -45,15 +45,7 @@ export default class Toaster {
     placement: 'top',
   };
   private toastsRef = React.createRef<ToastWrapperHandle>();
-
-  constructor() {
-    const container = getContainer(TOASTS_CONTAINER_ID);
-    if (!container) {
-      return;
-    }
-
-    ReactDOM.render(<ToastWrapper ref={this.toastsRef} />, container);
-  }
+  private isInitialized = false;
 
   /**
    * Set global Toaster settings for toasts order and placement.
@@ -115,8 +107,26 @@ export default class Toaster {
     this.updateView();
   }
 
+  // Create container on demand.
+  // Cannot do it in constructor, because SSG/SSR apps would fail.
+  private async createContainer() {
+    const container = getContainer(TOASTS_CONTAINER_ID);
+    if (!container) {
+      return;
+    }
+
+    ReactDOM.render(<ToastWrapper ref={this.toastsRef} />, container);
+  }
+
   private updateView() {
-    this.toastsRef.current?.setToasts(this.toasts);
+    if (!this.isInitialized) {
+      this.createContainer().then(() => {
+        this.isInitialized = true;
+        this.toastsRef.current?.setToasts(this.toasts);
+      });
+    } else {
+      this.toastsRef.current?.setToasts(this.toasts);
+    }
   }
 
   private closeToast(toastId: number): void {
