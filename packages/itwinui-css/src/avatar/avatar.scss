@@ -3,7 +3,7 @@
 @import '../style/index';
 @import '../text/mixins';
 
-@mixin iui-user-icon {
+@mixin iui-avatar {
   @include iui-reset;
   display: inline-flex;
   align-items: center;
@@ -92,8 +92,8 @@
 
     &::after {
       content: '';
-      width: var(--_iui-user-icon-status-size, $iui-s);
-      height: var(--_iui-user-icon-status-size, $iui-s);
+      width: var(--_iui-avatar-status-size, $iui-s);
+      height: var(--_iui-avatar-status-size, $iui-s);
     }
 
     &.iui-online {
@@ -150,7 +150,7 @@
     }
   }
 
-  &.iui-user-icon-count {
+  &.iui-avatar-count {
     > .iui-initials {
       @include themed {
         background-color: t(iui-color-background-3);
@@ -182,14 +182,14 @@
   }
 }
 
-@mixin iui-user-icon-list {
+@mixin iui-avatar-list {
   display: inline-flex;
   flex-wrap: wrap;
 
-  @include iui-user-icon-margins;
+  @include iui-avatar-margins;
 
   &.iui-stacked {
-    .iui-user-icon:not(:first-child) {
+    .iui-avatar:not(:first-child) {
       margin-left: -$iui-xs;
 
       .iui-initials {
@@ -219,20 +219,20 @@
 
     &.iui-animated {
       @media (prefers-reduced-motion: no-preference) {
-        .iui-user-icon {
+        .iui-avatar {
           transition: margin-left $iui-speed ease-out;
         }
       }
 
       &:hover {
-        @include iui-user-icon-margins;
+        @include iui-avatar-margins;
       }
     }
   }
 }
 
-@mixin iui-user-icon-margins {
-  .iui-user-icon:not(:first-child) {
+@mixin iui-avatar-margins {
+  .iui-avatar:not(:first-child) {
     margin-left: $iui-xs;
 
     &.iui-small {
