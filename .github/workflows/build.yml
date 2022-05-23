@@ -21,13 +21,13 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ hashFiles('backstop/docker/Dockerfile') }}
+          key: ${{ runner.os }}-buildx-${{ hashFiles('packages/itwinui-css/backstop/docker/Dockerfile') }}
           restore-keys: |
             ${{ runner.os }}-buildx-
 
       - uses: docker/build-push-action@v2
         with:
-          file: backstop/docker/Dockerfile
+          file: packages/itwinui-css/backstop/docker/Dockerfile
           platforms: linux/amd64
           tags: itwinui/backstopjs:latest
           cache-from: type=local,src=/tmp/.buildx-cache
