@@ -22,9 +22,7 @@
   display: flex;
   flex-direction: column;
   @include iui-text(small);
-  @include themed {
-    color: t(iui-color-background-positive);
-  }
+  color: var(--iui-color-background-positive);
 
   // Completed steps
   .iui-stepper-circle {
@@ -38,11 +36,9 @@
     user-select: none;
     transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out,
       color $iui-speed-fast ease-out;
-    @include themed {
-      border: 1px solid t(iui-color-foreground-positive);
-      background-color: t(iui-color-background-1);
-      color: t(iui-color-foreground-positive);
-    }
+    border: 1px solid var(--iui-color-foreground-positive);
+    background-color: var(--iui-color-background-1);
+    color: var(--iui-color-foreground-positive);
   }
 
   // Current step
@@ -50,47 +46,35 @@
     font-weight: $iui-font-weight-semibold;
 
     .iui-stepper-step-name {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
+      color: var(--iui-color-foreground-positive);
     }
 
     .iui-stepper-circle {
-      @include themed {
-        color: t(iui-color-foreground-accessory);
-        border-color: t(iui-color-background-positive);
-        background-color: t(iui-color-background-positive);
-      }
+      color: var(--iui-color-foreground-accessory);
+      border-color: var(--iui-color-background-positive);
+      background-color: var(--iui-color-background-positive);
     }
 
     .iui-stepper-track-content::after {
-      @include themed {
-        background-color: t(iui-color-background-5);
-      }
+      background-color: var(--iui-color-background-5);
     }
   }
 
   // Future steps
   &.iui-current ~ & {
     .iui-stepper-circle {
-      @include themed {
-        border: 1px solid t(iui-color-background-border);
-        background-color: t(iui-color-background-1);
-        color: t(iui-text-color-muted);
-      }
+      border: 1px solid var(--iui-color-background-border);
+      background-color: var(--iui-color-background-1);
+      color: var(--iui-text-color-muted);
     }
 
     .iui-stepper-step-name {
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+      color: var(--iui-text-color-muted);
     }
 
     .iui-stepper-track-content::before,
     &:not(:last-of-type) .iui-stepper-track-content::after {
-      @include themed {
-        background-color: t(iui-color-background-5);
-      }
+      background-color: var(--iui-color-background-5);
     }
   }
 
@@ -103,11 +87,9 @@
       }
 
       &:hover {
-        @include themed {
-          color: t(iui-color-foreground-accessory);
-          border: 1px solid t(iui-color-background-positive);
-          background-color: t(iui-color-background-positive);
-        }
+        color: var(--iui-color-foreground-accessory);
+        border: 1px solid var(--iui-color-background-positive);
+        background-color: var(--iui-color-background-positive);
       }
     }
 
@@ -115,9 +97,7 @@
       outline: 0;
 
       .iui-stepper-circle {
-        @include themed {
-          outline: 2px solid t(iui-color-foreground-positive);
-        }
+        outline: 2px solid var(--iui-color-foreground-positive);
         outline-offset: -1px;
       }
     }
@@ -145,16 +125,12 @@
     content: '';
     height: $iui-xxs;
     flex: 1 2 auto;
-    @include themed {
-      background-color: t(iui-color-foreground-positive);
-    }
+    background-color: var(--iui-color-foreground-positive);
   }
 }
 
 @mixin iui-stepper-step-name {
   text-align: center;
   user-select: all;
-  @include themed {
-    color: t(iui-color-foreground-positive);
-  }
+  color: var(--iui-color-foreground-positive);
 }

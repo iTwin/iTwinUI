@@ -15,19 +15,14 @@
   text-transform: uppercase;
   user-select: none;
   cursor: default;
+  background-color: var(--iui-color-background-1);
+  border: 1px solid var(--iui-color-background-5);
+  box-shadow: 0 1px 1px var(--iui-color-background-5), 0 1px 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;
   @media (prefers-reduced-motion: no-preference) {
     transition: box-shadow $iui-speed-fast ease-out;
   }
 
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border: 1px solid t(iui-color-background-5);
-    box-shadow: 0 1px 1px t(iui-color-background-5), 0 1px 0 0 rgba(255, 255, 255, t(iui-opacity-5)) inset;
-  }
-
   &:hover {
-    @include themed {
-      box-shadow: 0 0 0 t(iui-color-background-5), 0 0 0 0 rgba(255, 255, 255, t(iui-opacity-5)) inset;
-    }
+    box-shadow: 0 0 0 var(--iui-color-background-5), 0 0 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;
   }
 }
