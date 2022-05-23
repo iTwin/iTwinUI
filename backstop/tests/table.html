@@ -3916,5 +3916,29 @@
         column.classList.remove('iui-reorder-column-left');
       };
     </script>
+
+    <script>
+      const setMargin = (actionsContainer) => {
+        const filterButton = actionsContainer.querySelector('.iui-filter-button');
+        if (!filterButton) {
+          return;
+        }
+        if (actionsContainer.clientHeight > 28) {
+          filterButton.style.marginRight = null;
+
+        } else {
+          filterButton.style.marginRight = 'auto';
+        }
+      };
+      const resizeObserver = new ResizeObserver((entries) => {
+        entries.forEach((entry) => {
+          setMargin(entry.target);
+        });
+      });
+      document.querySelectorAll('.iui-table-header-actions-container').forEach((actionsContainer) => {
+        resizeObserver.observe(actionsContainer);
+        setMargin(actionsContainer);
+      });
+    </script>
   </body>
 </html>
