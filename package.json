@@ -2,6 +2,9 @@
   "name": "itwinui-monorepo",
   "version": "0.0.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -43,7 +46,8 @@
     "rimraf": "^3.0.2",
     "sass-embedded": "^1.49.9",
     "stylelint": "^14.2.0",
-    "stylelint-config-sass-guidelines": "^9.0.1"
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "turbo": "~1.2.11"
   },
   "resolutions": {
     "braces": "^2.3.1",

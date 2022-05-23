@@ -4,7 +4,8 @@ backstop/results/*
 !backstop/results/bitmaps_reference
 
 # Built Files
-lib
+scss
+css
 
 # Minified Files
 backstop/minified
@@ -15,3 +16,6 @@ yarn-error.log
 
 # MacOS
 **/.DS_Store
+
+# turbo
+.turbo
