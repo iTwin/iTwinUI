@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.38.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.38.0...v1.38.1) (2022-05-23)
+
+### Fixes
+
+* **Toaster:** Fix initial position setting ([#687](https://www.github.com/iTwin/iTwinUI-react/issues/687)) ([c58b747](https://www.github.com/iTwin/iTwinUI-react/commit/c58b74786bf90a165993afb2eec926f74b37a1eb))
+
 ## [1.38.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.37.3...v1.38.0) (2022-05-23)
 
 ### What's new
