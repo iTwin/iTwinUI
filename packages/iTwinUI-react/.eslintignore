@@ -3,9 +3,7 @@ public
 coverage
 dist
 .turbo
-storybook-static
 scripts
 cjs
 esm
 *.d.ts
-tests

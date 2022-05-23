@@ -1,0 +1,10 @@
+{
+  "fixturesFolder": false,
+  "integrationFolder": "src",
+  "testFiles": "**/*.test.{js,ts,jsx,tsx}",
+  "baseUrl": "http://localhost:6006",
+  "video": false,
+  "retries": { "runMode": 3 },
+  "viewportHeight": 768,
+  "viewportWidth": 1024
+}

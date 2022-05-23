@@ -85,8 +85,11 @@ export const useOverflow = <T extends HTMLElement>(
       );
       const avgItemSize = childrenSize / visibleCount;
       const visibleItems = Math.floor(availableSize / avgItemSize);
-      // Doubling the visible items to overflow the container. Just to be safe.
-      setVisibleCount(Math.min(items.length, visibleItems * 2));
+
+      if (!isNaN(visibleItems)) {
+        // Doubling the visible items to overflow the container. Just to be safe.
+        setVisibleCount(Math.min(items.length, visibleItems * 2));
+      }
     }
     needsFullRerender.current = false;
   }, [containerSize, visibleCount, disabled, items.length, orientation]);

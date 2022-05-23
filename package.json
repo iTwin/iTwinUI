@@ -15,13 +15,13 @@
     "format": "turbo run format",
     "test": "turbo run test"
   },
+  "dependencies": {},
   "devDependencies": {
     "cpy-cli": "^3.1.1",
     "husky": "8",
     "lint-staged": "12",
     "rimraf": "^3.0.2",
-    "turbo": "~1.2.4",
-    "webpack": "5"
+    "turbo": "~1.2.4"
   },
   "resolutions": {
     "trim": "^0.0.3",

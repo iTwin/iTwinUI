@@ -1,0 +1,24 @@
+// copying full contents from `configs/` package because cypress fails when using `extends`
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "declaration": true,
+    "esModuleInterop": true,
+    "sourceMap": false,
+    "allowJs": false,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "traceResolution": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "importHelpers": false,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true
+  },
+  "include": ["src", "cypress", "overrides.d.ts"]
+}
