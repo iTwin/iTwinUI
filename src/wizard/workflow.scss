@@ -2,13 +2,13 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-stepper-workflow {
+@mixin iui-wizard-workflow {
   > ol {
     align-items: center;
   }
 
-  .iui-stepper-step {
-    .iui-stepper-circle {
+  .iui-wizard-step {
+    .iui-wizard-circle {
       padding-left: $iui-m;
       padding-right: $iui-m;
       height: 100%;
@@ -21,8 +21,8 @@
       color: var(--iui-color-foreground-accessory);
     }
 
-    &:first-of-type .iui-stepper-circle,
-    &:last-of-type .iui-stepper-circle {
+    &:first-of-type .iui-wizard-circle,
+    &:last-of-type .iui-wizard-circle {
       border-radius: $iui-sm;
       background-color: var(--iui-color-background-1);
       border-color: var(--iui-color-foreground-positive);
@@ -30,8 +30,8 @@
     }
   }
 
-  .iui-stepper-track-content::before,
-  .iui-stepper-track-content::after {
+  .iui-wizard-track-content::before,
+  .iui-wizard-track-content::after {
     background-color: var(--iui-color-foreground-positive);
   }
 }
