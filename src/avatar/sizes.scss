@@ -3,16 +3,16 @@
 @import '../style/index';
 @import '../text/mixins';
 
-@mixin iui-user-icon-size($size: $iui-icons-xl, $font-size: $iui-font-size-leading) {
+@mixin iui-avatar-size($size: $iui-icons-xl, $font-size: $iui-font-size-leading) {
   width: $size;
   height: $size;
 
   @if ($size == $iui-icons-xl) {
-    --_iui-user-icon-status-size: #{$iui-xs * 1.5};
+    --_iui-avatar-status-size: #{$iui-xs * 1.5};
   } @else if ($size == $iui-icons-xxl) {
-    --_iui-user-icon-status-size: #{$iui-s};
+    --_iui-avatar-status-size: #{$iui-s};
   } @else {
-    --_iui-user-icon-status-size: #{$iui-sm};
+    --_iui-avatar-status-size: #{$iui-sm};
   }
 
   > .iui-initials {

@@ -1,0 +1,27 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-stepper {
+  @include iui-stepper;
+
+  &.iui-long {
+    @include iui-stepper-long;
+  }
+
+  &.iui-workflow {
+    @include iui-stepper-workflow;
+  }
+}
+
+.iui-stepper-step {
+  @include iui-stepper-step;
+}
+
+.iui-stepper-track-content {
+  @include iui-stepper-track-content;
+}
+
+.iui-stepper-step-name {
+  @include iui-stepper-step-name;
+}
