@@ -32,6 +32,13 @@
   height: 100%;
 }
 
+@mixin iui-page-header-left {
+  overflow: hidden;
+  box-sizing: content-box;
+  margin-bottom: -$iui-xs;
+  padding-bottom: $iui-xs;
+}
+
 @mixin iui-page-header-right {
   .iui-button {
     height: 100%;

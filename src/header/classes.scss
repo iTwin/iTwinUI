@@ -38,6 +38,16 @@
   @include iui-breadcrumbs($breadcrumbs-height: 100%);
 }
 
+.iui-header-breadcrumbs-list {
+  @include iui-breadcrumbs-list;
+}
+
+.iui-page-header-left,
+.iui-header-breadcrumbs,
+.iui-header-breadcrumbs-list {
+  @include iui-page-header-left;
+}
+
 .iui-header-breadcrumb-button {
   @include iui-header-breadcrumb-button;
 }

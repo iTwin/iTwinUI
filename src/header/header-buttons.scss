@@ -167,6 +167,7 @@
 
 @mixin iui-header-breadcrumb-button-split {
   padding: 0 $iui-xs;
+  flex-shrink: 0;
 
   &:hover {
     background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
