@@ -47,6 +47,25 @@ export default class Toaster {
   private toastsRef = React.createRef<ToastWrapperHandle>();
   private isInitialized = false;
 
+  // Create container on demand.
+  // Cannot do it in constructor, because SSG/SSR apps would fail.
+  private asyncInit = new Promise<void>((resolve) => {
+    if (this.isInitialized) {
+      resolve();
+      return;
+    }
+    const container = getContainer(TOASTS_CONTAINER_ID);
+    if (!container) {
+      // should never happen
+      resolve();
+      return;
+    }
+    this.isInitialized = true;
+
+    ReactDOM.render(<ToastWrapper ref={this.toastsRef} />, container);
+    resolve();
+  });
+
   /**
    * Set global Toaster settings for toasts order and placement.
    * Settings will be applied to new toasts on the page.
@@ -57,7 +76,9 @@ export default class Toaster {
       ? 'ascending'
       : 'descending';
     this.settings = newSettings;
-    this.toastsRef.current?.setPlacement(this.settings.placement ?? 'top');
+    this.asyncInit.then(() => {
+      this.toastsRef.current?.setPlacement(this.settings.placement ?? 'top');
+    });
   }
 
   public positive(content: React.ReactNode, options?: ToastOptions) {
@@ -107,26 +128,10 @@ export default class Toaster {
     this.updateView();
   }
 
-  // Create container on demand.
-  // Cannot do it in constructor, because SSG/SSR apps would fail.
-  private async createContainer() {
-    const container = getContainer(TOASTS_CONTAINER_ID);
-    if (!container) {
-      return;
-    }
-
-    ReactDOM.render(<ToastWrapper ref={this.toastsRef} />, container);
-  }
-
   private updateView() {
-    if (!this.isInitialized) {
-      this.createContainer().then(() => {
-        this.isInitialized = true;
-        this.toastsRef.current?.setToasts(this.toasts);
-      });
-    } else {
+    this.asyncInit.then(() => {
       this.toastsRef.current?.setToasts(this.toasts);
-    }
+    });
   }
 
   private closeToast(toastId: number): void {
