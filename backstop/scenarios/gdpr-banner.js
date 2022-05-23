@@ -6,7 +6,6 @@ const { scenario } = require('../scenarioHelper');
 
 module.exports = [
   scenario('State default', {
-    selectors: ['#demo-default'],
-    viewports: [{ width: 800, height: 600 }],
+    selectors: ['.iui-body'],
   }),
 ];
