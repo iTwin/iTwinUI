@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../user-icon/index';
+@import '../avatar/index';
 @import '../icon/index';
 @import '../button/index';
 
@@ -65,7 +65,7 @@
     justify-content: flex-end;
 
     @media (prefers-reduced-motion: no-preference) {
-      .iui-user-icon {
+      .iui-avatar {
         &,
         * {
           transition: all $iui-speed-fast ease-out;
@@ -110,8 +110,8 @@
     }
 
     > .iui-right {
-      .iui-user-icon {
-        @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
+      .iui-avatar {
+        @include iui-avatar-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
       }
     }
   }
