@@ -84,6 +84,13 @@ export type ComboBoxProps<T> = {
       index: number;
     },
   ) => JSX.Element;
+  /**
+   * If enabled, virtualization is used for the scrollable dropdown list.
+   * Use it if you expect a very long list of items.
+   * @default false
+   * @beta
+   */
+  enableVirtualization?: boolean;
 } & Pick<InputContainerProps, 'status'> &
   Omit<CommonProps, 'title'>;
 
@@ -115,6 +122,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     dropdownMenuProps,
     emptyStateMessage = 'No options found',
     itemRenderer,
+    enableVirtualization = false,
     ...rest
   } = props;
 
@@ -274,8 +282,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           }),
           'data-iui-index': __originalIndex,
           ref: mergeRefs(customItem.props.ref, (el: HTMLLIElement | null) => {
-            // will need to check for virtualization here too
-            if (focusedIndex === __originalIndex) {
+            if (!enableVirtualization && focusedIndex === __originalIndex) {
               el?.scrollIntoView({ block: 'nearest' });
             }
           }),
@@ -293,7 +300,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         </ComboBoxMenuItem>
       );
     },
-    [focusedIndex, id, itemRenderer, selectedIndex],
+    [enableVirtualization, focusedIndex, id, itemRenderer, selectedIndex],
   );
 
   return (
@@ -302,7 +309,15 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     >
       <ComboBoxActionContext.Provider value={dispatch}>
         <ComboBoxStateContext.Provider
-          value={{ id, minWidth, isOpen, focusedIndex }}
+          value={{
+            id,
+            minWidth,
+            isOpen,
+            focusedIndex,
+            enableVirtualization,
+            filteredOptions,
+            getMenuItem,
+          }}
         >
           <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
             <ComboBoxInput
@@ -314,7 +329,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           </ComboBoxInputContainer>
           <ComboBoxDropdown {...dropdownMenuProps}>
             <ComboBoxMenu>
-              {filteredOptions.length > 0 ? (
+              {filteredOptions.length > 0 && !enableVirtualization ? (
                 filteredOptions.map(getMenuItem)
               ) : (
                 <MenuExtraContent>

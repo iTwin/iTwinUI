@@ -27,7 +27,7 @@ export default {
   },
   decorators: [
     (Story) => (
-      <div style={{ maxWidth: 'clamp(300px, 50%, 100%)', minHeight: 350 }}>
+      <div style={{ maxWidth: 'clamp(300px, 50%, 100%)', minHeight: 380 }}>
         <Story />
       </div>
     ),
@@ -35,7 +35,7 @@ export default {
   parameters: {
     docs: { source: { excludeDecorators: true } },
     creevey: {
-      skip: { stories: ['Disabled Items'] },
+      skip: { stories: ['Disabled Items', 'Virtualized'] },
       tests: {
         async open() {
           const closed = await this.takeScreenshot();
@@ -496,4 +496,25 @@ WithCustomMessageIcon.args = {
   message: (
     <StatusMessage startIcon={<SvgCamera />}>This is a message</StatusMessage>
   ),
+};
+
+export const Virtualized: Story<Partial<ComboBoxProps<string>>> = (args) => {
+  const options = React.useMemo(() => countriesList, []);
+
+  return (
+    <ComboBox
+      options={options}
+      inputProps={{ placeholder: 'Select a country' }}
+      onChange={(value: string) => action(value ?? '')()}
+      enableVirtualization
+      {...args}
+    />
+  );
+};
+Virtualized.args = {
+  inputProps: { placeholder: 'Select a country' },
+  enableVirtualization: true,
+} as ComboBoxProps<string>;
+Virtualized.argTypes = {
+  value: { control: { disable: true } },
 };

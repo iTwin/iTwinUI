@@ -29,11 +29,12 @@ export const ComboBoxMenuItem = React.memo(
         ...rest
       } = props;
 
-      const { focusedIndex } = useSafeContext(ComboBoxStateContext);
+      const { focusedIndex, enableVirtualization } = useSafeContext(
+        ComboBoxStateContext,
+      );
 
       const focusRef = (el: HTMLLIElement | null) => {
-        // will need to check for virtualization here too
-        if (focusedIndex === index) {
+        if (!enableVirtualization && focusedIndex === index) {
           el?.scrollIntoView({ block: 'nearest' });
         }
       };

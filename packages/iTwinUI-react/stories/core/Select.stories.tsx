@@ -22,6 +22,18 @@ export default {
     menuStyle: { control: { disable: true } },
     menuClassName: { control: { disable: true } },
   },
+  decorators: [
+    (Story, context) =>
+      context.story.includes('Truncate Middle Text') ? (
+        <div style={{ minHeight: 365, width: 300 }}>
+          <Story />
+        </div>
+      ) : (
+        <div style={{ minHeight: 365 }}>
+          <Story />
+        </div>
+      ),
+  ],
   parameters: {
     creevey: {
       skip: {
@@ -70,15 +82,13 @@ export const Basic: Story<SelectProps<number>> = (args) => {
   } = args;
   const [value, setValue] = useState<number | undefined>(undefined);
   return (
-    <div style={{ minHeight: 350 }}>
-      <Select<number>
-        {...rest}
-        options={options}
-        value={value}
-        onChange={setValue}
-        placeholder={placeholder}
-      />
-    </div>
+    <Select<number>
+      {...rest}
+      options={options}
+      value={value}
+      onChange={setValue}
+      placeholder={placeholder}
+    />
   );
 };
 
@@ -103,15 +113,13 @@ export const WithIcons: Story<SelectProps<string>> = (args) => {
   } = args;
   const [value, setValue] = useState<string | undefined>(undefined);
   return (
-    <div style={{ minHeight: 350 }}>
-      <Select<string>
-        {...rest}
-        options={options}
-        value={value}
-        onChange={setValue}
-        placeholder={placeholder}
-      />
-    </div>
+    <Select<string>
+      {...rest}
+      options={options}
+      value={value}
+      onChange={setValue}
+      placeholder={placeholder}
+    />
   );
 };
 
@@ -136,16 +144,14 @@ export const WithSelectedValue: Story<SelectProps<number>> = (args) => {
   } = args;
   const [value, setValue] = useState<number>(2);
   return (
-    <div style={{ minHeight: 350 }}>
-      <Select<number>
-        options={options}
-        value={value}
-        onChange={setValue}
-        placeholder={placeholder}
-        popoverProps={{ visible: true }}
-        {...rest}
-      />
-    </div>
+    <Select<number>
+      options={options}
+      value={value}
+      onChange={setValue}
+      placeholder={placeholder}
+      popoverProps={{ visible: true }}
+      {...rest}
+    />
   );
 };
 
@@ -243,21 +249,19 @@ export const ManyItems: Story<SelectProps<number>> = (args) => {
   const { placeholder = 'Placeholder text', options, ...rest } = args;
   const [value, setValue] = useState<number | undefined>(undefined);
   return (
-    <div style={{ minHeight: 350 }}>
-      <Select<number>
-        {...rest}
-        options={
-          options ||
-          [...Array(20).fill(null)].map((_, index) => ({
-            label: `Item #${index}`,
-            value: index,
-          }))
-        }
-        value={value}
-        onChange={setValue}
-        placeholder={placeholder}
-      />
-    </div>
+    <Select<number>
+      {...rest}
+      options={
+        options ||
+        [...Array(20).fill(null)].map((_, index) => ({
+          label: `Item #${index}`,
+          value: index,
+        }))
+      }
+      value={value}
+      onChange={setValue}
+      placeholder={placeholder}
+    />
   );
 };
 
@@ -282,16 +286,14 @@ export const Sublabels: Story<SelectProps<number>> = (args) => {
   } = args;
   const [value, setValue] = useState<number | undefined>(undefined);
   return (
-    <div style={{ minHeight: 350 }}>
-      <Select<number>
-        {...rest}
-        options={options}
-        value={value}
-        onChange={setValue}
-        placeholder={placeholder}
-        size={size}
-      />
-    </div>
+    <Select<number>
+      {...rest}
+      options={options}
+      value={value}
+      onChange={setValue}
+      placeholder={placeholder}
+      size={size}
+    />
   );
 };
 
@@ -319,21 +321,19 @@ export const Custom: Story<SelectProps<string>> = (args) => {
     undefined,
   );
   return (
-    <div style={{ minHeight: 350 }}>
-      <Select<string>
-        {...rest}
-        options={options}
-        value={selectedValue}
-        onChange={setSelectedValue}
-        placeholder={placeholder}
-        itemRenderer={(option) => (
-          <MenuItem style={{ color: option.value }}>{option.label}</MenuItem>
-        )}
-        selectedItemRenderer={(option) => (
-          <span style={{ backgroundColor: option.value }}>{option.label}</span>
-        )}
-      />
-    </div>
+    <Select<string>
+      {...rest}
+      options={options}
+      value={selectedValue}
+      onChange={setSelectedValue}
+      placeholder={placeholder}
+      itemRenderer={(option) => (
+        <MenuItem style={{ color: option.value }}>{option.label}</MenuItem>
+      )}
+      selectedItemRenderer={(option) => (
+        <span style={{ backgroundColor: option.value }}>{option.label}</span>
+      )}
+    />
   );
 };
 
@@ -365,22 +365,20 @@ export const TruncateMiddleText: Story<SelectProps<string>> = (args) => {
     options[0].value,
   );
   return (
-    <div style={{ minHeight: 350, width: 300 }}>
-      <Select<string>
-        {...rest}
-        options={options}
-        value={selectedValue}
-        onChange={setSelectedValue}
-        placeholder={placeholder}
-        itemRenderer={(option) => (
-          <MenuItem>
-            <MiddleTextTruncation text={option.label} />
-          </MenuItem>
-        )}
-        selectedItemRenderer={(option) => (
+    <Select<string>
+      {...rest}
+      options={options}
+      value={selectedValue}
+      onChange={setSelectedValue}
+      placeholder={placeholder}
+      itemRenderer={(option) => (
+        <MenuItem>
           <MiddleTextTruncation text={option.label} />
-        )}
-      />
-    </div>
+        </MenuItem>
+      )}
+      selectedItemRenderer={(option) => (
+        <MiddleTextTruncation text={option.label} />
+      )}
+    />
   );
 };

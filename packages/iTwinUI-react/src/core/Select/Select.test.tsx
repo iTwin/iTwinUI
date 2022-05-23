@@ -28,7 +28,7 @@ function assertSelect(
 function assertMenu(
   menu: HTMLUListElement,
   {
-    maxHeight = '300px',
+    maxHeight = '315px',
     hasIcon = false,
     selectedIndex = -1,
     disabledIndex = -1,

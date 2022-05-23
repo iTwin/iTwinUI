@@ -289,7 +289,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         style={{
           minWidth,
           maxWidth: `min(${minWidth * 2}px, 90vw)`,
-          maxHeight: `300px`,
+          maxHeight: 315,
           ...menuStyle,
         }}
         role='listbox'
