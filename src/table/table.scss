@@ -169,6 +169,14 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   margin-right: $iui-sm;
+
+  .iui-cell-end-icon {
+    // Hardcoded size of the borderless button so that the icons are centered
+    width: 28px;
+    height: 28px;
+    margin-right: initial;
+    margin-left: initial;
+  }
 }
 
 @mixin iui-table-body {
@@ -508,9 +516,10 @@
   }
 
   .iui-cell-end-icon {
-    // Hardcoded size of the borderless button so that the icons are centered
-    width: 28px;
-    height: 28px;
+    width: $iui-l;
+    height: $iui-l;
+    margin-right: $iui-sm;
+    margin-left: auto;
   }
 }
 
