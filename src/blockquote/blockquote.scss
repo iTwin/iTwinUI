@@ -11,12 +11,18 @@
   text-align: justify;
   box-shadow: $iui-elevation-2;
   border-radius: $iui-border-radius;
-  background-color: var(--iui-color-background-1);
-  border-left: $iui-s solid var(--iui-color-foreground-primary);
+
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border-left: $iui-s solid t(iui-color-foreground-primary);
+  }
 
   > footer {
     text-align: right;
-    color: var(--iui-text-color-muted);
+
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
 
     > cite {
       font-style: normal;

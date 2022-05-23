@@ -17,9 +17,12 @@
   user-select: none;
   position: relative;
   overflow: hidden;
-  color: var(--iui-text-color);
-  background-color: var(--iui-color-background-1);
-  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+
+  @include themed {
+    color: t(iui-text-color);
+    background-color: t(iui-color-background-1);
+    border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+  }
 
   &.iui-small {
     padding-top: $iui-component-padding-vertical-small;
@@ -35,8 +38,10 @@
   }
 
   &.iui-disabled {
-    background-color: var(--iui-color-background-disabled);
-    border-color: var(--iui-color-background-disabled);
+    @include themed {
+      background-color: t(iui-color-background-disabled);
+      border-color: t(iui-color-background-disabled);
+    }
     --_hover-color: var(--iui-color-background-disabled);
     cursor: not-allowed;
   }
@@ -53,6 +58,8 @@
   }
 
   &.iui-placeholder {
-    color: var(--iui-text-color-placeholder);
+    @include themed {
+      color: t(iui-text-color-placeholder);
+    }
   }
 }

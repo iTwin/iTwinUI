@@ -21,7 +21,10 @@
     transition: visibility $iui-speed-instant $iui-speed-fast ease-in, transform $iui-speed-fast ease-out,
       opacity $iui-speed-fast ease;
   }
-  background-color: var(--iui-color-background-1);
+
+  @include themed {
+    background-color: t(iui-color-background-1);
+  }
 
   > .iui-resizer {
     display: none;
@@ -29,11 +32,15 @@
     touch-action: none;
 
     > .iui-resizer-bar {
-      background-color: var(--iui-color-background-border);
+      @include themed {
+        background-color: t(iui-color-background-border);
+      }
     }
 
     &:hover > .iui-resizer-bar {
-      background-color: var(--iui-color-foreground-primary);
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
+      }
     }
   }
 
@@ -50,7 +57,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--iui-color-background-3);
+    @include themed {
+      background-color: t(iui-color-background-3);
+    }
 
     .iui-information-header-label {
       display: flex;
@@ -70,7 +79,9 @@
         height: $iui-icons-large;
         margin-right: $iui-s;
         flex-shrink: 0;
-        fill: var(--iui-icons-color);
+        @include themed {
+          fill: t(iui-icons-color);
+        }
       }
     }
 
@@ -89,7 +100,9 @@
     overflow-y: overlay;
 
     > hr {
-      border-color: var(--iui-color-background-border);
+      @include themed {
+        border-color: t(iui-color-background-border);
+      }
     }
   }
 }
@@ -192,7 +205,9 @@
 
   .iui-input-label {
     font-weight: $iui-font-weight-normal;
-    color: var(--iui-text-color-muted);
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
   }
 
   &:not(.iui-inline) {

@@ -25,8 +25,10 @@
     box-sizing: border-box;
     user-select: none;
     padding: round($iui-baseline * 0.5) $iui-sm;
-    background-color: var(--iui-color-background-2);
-    border: 1px solid var(--iui-color-background-2);
+    @include themed {
+      background-color: t(iui-color-background-2);
+      border: 1px solid t(iui-color-background-2);
+    }
 
     .iui-browse-input {
       width: 0.1px;
@@ -49,8 +51,10 @@
       flex-direction: row;
 
       &:focus-within {
-        outline: 2px solid var(--iui-color-foreground-primary);
-        outline-offset: -2px;
+        @include themed {
+          outline: 2px solid t(iui-color-foreground-primary);
+          outline-offset: -2px;
+        }
       }
     }
 
@@ -64,18 +68,22 @@
   }
 
   &.iui-drag > .iui-content {
-    background: linear-gradient(
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-    ),
-      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
-    border-color: var(--iui-color-foreground-primary);
-    color: var(--iui-color-foreground-primary);
+    @include themed {
+      background: linear-gradient(
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+      ),
+        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+      border-color: t(iui-color-foreground-primary);
+      color: t(iui-color-foreground-primary);
+    }
     visibility: visible;
 
     > svg,
     .iui-template-icon {
-      fill: var(--iui-icons-color-primary);
+      @include themed {
+        fill: t(iui-icons-color-primary);
+      }
     }
   }
 }

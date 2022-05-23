@@ -4,7 +4,7 @@
 @import '../icon/index';
 @import '../text/index';
 
-$iui-active-outline: thin solid var(--iui-color-foreground-primary);
+$iui-active-outline: thin solid t(iui-color-foreground-primary);
 
 @mixin iui-list-menu {
   @include iui-reset;
@@ -65,7 +65,9 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   .iui-menu-description {
     display: none;
     font-size: $iui-font-size-small;
-    opacity: var(--iui-opacity-3);
+    @include themed {
+      opacity: t(iui-opacity-3);
+    }
   }
 
   > .iui-icon {
@@ -73,13 +75,17 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   }
 
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+    }
   }
 
   &:focus,
   &.iui-focused {
-    outline: $iui-active-outline;
-    outline-offset: -1px;
+    @include themed {
+      outline: $iui-active-outline;
+      outline-offset: -1px;
+    }
   }
 
   &:focus:not(:focus-visible) {
@@ -97,10 +103,12 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   &.iui-active {
     &,
     &:hover {
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-      color: var(--iui-color-foreground-primary);
-      outline: $iui-active-outline;
-      outline-offset: -1px;
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        color: t(iui-color-foreground-primary);
+        outline: $iui-active-outline;
+        outline-offset: -1px;
+      }
     }
 
     .iui-menu-description {
@@ -108,7 +116,9 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
     }
 
     > .iui-icon {
-      fill: var(--iui-icons-color-primary);
+      @include themed {
+        fill: t(iui-icons-color-primary);
+      }
     }
 
     &:focus,
@@ -128,11 +138,15 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
     &:hover {
       cursor: not-allowed;
       outline: none;
-      background-color: var(--iui-color-background-1);
-      color: var(--iui-text-color-placeholder);
+      @include themed {
+        background-color: t(iui-color-background-1);
+        color: t(iui-text-color-placeholder);
+      }
 
       > .iui-icon {
-        fill: var(--iui-icons-color-actionable-disabled);
+        @include themed {
+          fill: t(iui-icons-color-actionable-disabled);
+        }
       }
     }
   }
@@ -172,14 +186,18 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   height: 1px;
   width: calc(100% - #{$iui-l});
   margin: 1px auto;
-  background-color: var(--iui-color-background-border);
+  @include themed {
+    background-color: t(iui-color-background-border);
+  }
 }
 
 @mixin iui-menu-icon {
   width: $iui-icons-default;
   height: $iui-icons-default;
   flex: 0 0 auto;
-  fill: var(--iui-icons-color-actionable);
+  @include themed {
+    fill: t(iui-icons-color-actionable);
+  }
 
   + .iui-content {
     margin-left: $iui-s;
