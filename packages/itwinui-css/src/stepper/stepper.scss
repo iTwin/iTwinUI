@@ -3,7 +3,7 @@
 @import '../style/index';
 @import '../text/index';
 
-@mixin iui-wizard {
+@mixin iui-stepper {
   @include iui-reset;
 
   > ol {
@@ -16,7 +16,7 @@
   }
 }
 
-@mixin iui-wizard-step {
+@mixin iui-stepper-step {
   flex: 1;
   align-items: center;
   display: flex;
@@ -27,7 +27,7 @@
   }
 
   // Completed steps
-  .iui-wizard-circle {
+  .iui-stepper-circle {
     align-items: center;
     border-radius: 50%;
     display: flex;
@@ -49,13 +49,13 @@
   &.iui-current {
     font-weight: $iui-font-weight-semibold;
 
-    .iui-wizard-step-name {
+    .iui-stepper-step-name {
       @include themed {
         color: t(iui-color-foreground-positive);
       }
     }
 
-    .iui-wizard-circle {
+    .iui-stepper-circle {
       @include themed {
         color: t(iui-color-foreground-accessory);
         border-color: t(iui-color-background-positive);
@@ -63,7 +63,7 @@
       }
     }
 
-    .iui-wizard-track-content::after {
+    .iui-stepper-track-content::after {
       @include themed {
         background-color: t(iui-color-background-5);
       }
@@ -72,7 +72,7 @@
 
   // Future steps
   &.iui-current ~ & {
-    .iui-wizard-circle {
+    .iui-stepper-circle {
       @include themed {
         border: 1px solid t(iui-color-background-border);
         background-color: t(iui-color-background-1);
@@ -80,14 +80,14 @@
       }
     }
 
-    .iui-wizard-step-name {
+    .iui-stepper-step-name {
       @include themed {
         color: t(iui-text-color-muted);
       }
     }
 
-    .iui-wizard-track-content::before,
-    &:not(:last-of-type) .iui-wizard-track-content::after {
+    .iui-stepper-track-content::before,
+    &:not(:last-of-type) .iui-stepper-track-content::after {
       @include themed {
         background-color: t(iui-color-background-5);
       }
@@ -96,7 +96,7 @@
 
   // Clickable steps
   &.iui-clickable {
-    .iui-wizard-circle {
+    .iui-stepper-circle {
       cursor: pointer;
       @media (prefers-reduced-motion: no-preference) {
         transition: background-color $iui-speed-fast ease-out;
@@ -114,7 +114,7 @@
     &:focus {
       outline: 0;
 
-      .iui-wizard-circle {
+      .iui-stepper-circle {
         @include themed {
           outline: 2px solid t(iui-color-foreground-positive);
         }
@@ -123,19 +123,19 @@
     }
 
     &:focus:not(:focus-visible) {
-      .iui-wizard-circle {
+      .iui-stepper-circle {
         outline: none;
       }
     }
   }
 
-  &:first-of-type .iui-wizard-track-content::before,
-  &:last-of-type .iui-wizard-track-content::after {
+  &:first-of-type .iui-stepper-track-content::before,
+  &:last-of-type .iui-stepper-track-content::after {
     background-color: transparent;
   }
 }
 
-@mixin iui-wizard-track-content {
+@mixin iui-stepper-track-content {
   display: flex;
   align-items: center;
   width: 100%;
@@ -151,7 +151,7 @@
   }
 }
 
-@mixin iui-wizard-step-name {
+@mixin iui-stepper-step-name {
   text-align: center;
   user-select: all;
   @include themed {

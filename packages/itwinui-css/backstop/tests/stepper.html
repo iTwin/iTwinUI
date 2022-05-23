@@ -1,0 +1,195 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Stepper | iTwinUI</title>
+    <script type="module">
+      import "./assets/theme.js";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      section[id^='demo'] {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Stepper</h1>
+    <hr />
+
+    <h2>Default</h2>
+    <section id="demo-default">
+
+      <div class="iui-stepper">
+        <ol aria-label="Progress">
+          <li
+            class="iui-stepper-step iui-clickable"
+            tabindex="0"
+          >
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">1</span>
+            </div>
+            <div class="iui-stepper-step-name">First step</div>
+          </li>
+
+          <li
+            class="iui-stepper-step iui-clickable"
+            tabindex="0"
+          >
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">2</span>
+            </div>
+            <div class="iui-stepper-step-name">Completed step</div>
+          </li>
+
+          <li
+            class="iui-stepper-step iui-current"
+            aria-current="step"
+          >
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">3</span>
+            </div>
+            <div class="iui-stepper-step-name">Current step</div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">4</span>
+            </div>
+            <div class="iui-stepper-step-name">Next step</div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">5</span>
+            </div>
+            <div class="iui-stepper-step-name">Last step</div>
+          </li>
+        </ol>
+      </div>
+
+    </section>
+
+    <hr />
+
+    <h2>Long</h2>
+    <section id="demo-long">
+
+      <div class="iui-stepper iui-long">
+        <ol aria-label="Progress">
+          <li
+            class="iui-stepper-step iui-clickable"
+            tabindex="0"
+          >
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">1</span>
+            </div>
+          </li>
+
+          <li
+            class="iui-stepper-step iui-clickable"
+            tabindex="0"
+          >
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">2</span>
+            </div>
+          </li>
+
+          <li
+            class="iui-stepper-step iui-current"
+            aria-current="step"
+          >
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">3</span>
+            </div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">4</span>
+            </div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">5</span>
+            </div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">6</span>
+            </div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">7</span>
+            </div>
+          </li>
+        </ol>
+
+        <div class="iui-stepper-steps-label">
+          <span class="iui-steps-count">Step 3 of 7:</span>
+          Name of current step
+        </div>
+      </div>
+
+    </section>
+
+    <hr />
+
+    <h2>Workflow diagram</h2>
+    <section id="demo-workflow">
+
+      <div class="iui-stepper iui-workflow">
+        <ol>
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">Start</span>
+            </div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">Set parameters</span>
+            </div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">Invite collaborators</span>
+            </div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">Review & approve</span>
+            </div>
+          </li>
+
+          <li class="iui-stepper-step">
+            <div class="iui-stepper-track-content">
+              <span class="iui-stepper-circle">Complete</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+
+    </section>
+  </body>
+</html>

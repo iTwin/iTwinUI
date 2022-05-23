@@ -55,11 +55,11 @@
     style='height: 90vh;'
   >
     <theme-button></theme-button>
-    <h1>Toast notification</h1>
+    <h1>Toast</h1>
     <hr />
     <div style="display: grid; grid-template-rows: auto 1fr; gap: 11px; height: 100%;">
       <div class="placement-control">
-        <h3>Toast notifications placement:</h3>
+        <h3>Toast placement:</h3>
         <label
           class="placement-choice"
           id='top-start-option'
@@ -131,12 +131,12 @@
 
       <div
         style="position: relative; border: 1px solid;"
-        id='toast-notifications-test'
+        id='toast-test'
       >
         <div
           class="iui-toast-wrapper iui-placement-top"
           style="position: absolute;"
-          id='toast-notifications-click'
+          id='toast-click'
         >
           <div
             class="iui-toast iui-positive"
@@ -310,11 +310,11 @@
     </div>
 
     <script>
-      const notifications = document.querySelector('#toast-notifications-click');
+      const toasts = document.querySelector('#toast-click');
       // Clicking on menu-item should toggle selection
       document.querySelectorAll('input').forEach((item) => {
         item.addEventListener('click', () => {
-          notifications.classList.value = `iui-toast-wrapper iui-placement-${item.value}`;
+          toasts.classList.value = `iui-toast-wrapper iui-placement-${item.value}`;
         });
       });
     </script>
