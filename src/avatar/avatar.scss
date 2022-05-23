@@ -22,9 +22,7 @@
     margin: 0;
     border-radius: 50%;
     box-sizing: border-box;
-    @include themed {
-      box-shadow: inset 0 0 0 $iui-xxs rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-    }
+    box-shadow: inset 0 0 0 $iui-xxs rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
   }
 
   > .iui-initials {
@@ -45,9 +43,7 @@
     text-transform: uppercase;
     background-color: $iui-color-dataviz-celery;
     overflow: hidden;
-    @include themed {
-      color: t(iui-color-foreground-accessory);
-    }
+    color: var(--iui-color-foreground-accessory);
   }
 
   > .iui-icon {
@@ -55,9 +51,7 @@
     width: 50%;
     height: 50%;
     position: absolute;
-    @include themed {
-      fill: t(iui-color-foreground-accessory);
-    }
+    fill: var(--iui-color-foreground-accessory);
   }
 
   > img {
@@ -70,9 +64,7 @@
     height: 100%;
     border-width: 0;
     border-radius: 50%;
-    @include themed {
-      background-color: t(iui-color-background-1);
-    }
+    background-color: var(--iui-color-background-1);
   }
 
   > .iui-status {
@@ -85,10 +77,8 @@
     width: 25%;
     height: 25%;
     border-radius: 50%;
-    @include themed {
-      border: $iui-xxs solid t(iui-color-background-1);
-      background-color: t(iui-color-background-5);
-    }
+    border: $iui-xxs solid var(--iui-color-background-1);
+    background-color: var(--iui-color-background-5);
 
     &::after {
       content: '';
@@ -97,74 +87,54 @@
     }
 
     &.iui-online {
-      @include themed {
-        background-color: t(iui-color-background-positive);
-      }
+      background-color: var(--iui-color-background-positive);
 
       &::after {
         mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
-        @include themed {
-          background-color: t(iui-color-foreground-accessory);
-        }
+        background-color: var(--iui-color-foreground-accessory);
       }
     }
 
     &.iui-away {
-      @include themed {
-        background-color: t(iui-color-background-warning);
-      }
+      background-color: var(--iui-color-background-warning);
 
       &::after {
         mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
-        @include themed {
-          background-color: t(iui-color-foreground-accessory);
-        }
+        background-color: var(--iui-color-foreground-accessory);
       }
     }
 
     &.iui-busy {
-      @include themed {
-        background-color: t(iui-color-background-negative);
-      }
+      background-color: var(--iui-color-background-negative);
 
       &::after {
         mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
-        @include themed {
-          background-color: t(iui-color-foreground-accessory);
-        }
+        background-color: var(--iui-color-foreground-accessory);
       }
     }
 
     &.iui-offline {
-      @include themed {
-        background-color: t(iui-color-background-1);
-        box-shadow: inset 0 0 0 1px rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
-      }
+      background-color: var(--iui-color-background-1);
+      box-shadow: inset 0 0 0 1px rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));
 
       &::after {
         mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
-        @include themed {
-          background-color: t(iui-icons-color);
-        }
+        background-color: var(--iui-icons-color);
       }
     }
   }
 
   &.iui-avatar-count {
     > .iui-initials {
-      @include themed {
-        background-color: t(iui-color-background-3);
-        color: t(iui-text-color-muted);
-      }
+      background-color: var(--iui-color-background-3);
+      color: var(--iui-text-color-muted);
     }
 
     &:focus {
       outline: none;
 
       > .iui-stroke {
-        @include themed {
-          box-shadow: t(iui-focus-box-shadow);
-        }
+        box-shadow: var(--iui-focus-box-shadow);
       }
     }
 
@@ -174,9 +144,7 @@
 
     &:focus:not(:focus-visible) {
       > .iui-stroke {
-        @include themed {
-          box-shadow: inset 0 0 0 $iui-xxs rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-        }
+        box-shadow: inset 0 0 0 $iui-xxs rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
       }
     }
   }
@@ -193,18 +161,14 @@
       margin-left: -$iui-xs;
 
       .iui-initials {
-        @include themed {
-          box-shadow: 0 0 0 $iui-xs t(iui-color-background-1);
-        }
+        box-shadow: 0 0 0 $iui-xs var(--iui-color-background-1);
       }
 
       &.iui-small {
         margin-left: -$iui-xxs;
 
         .iui-initials {
-          @include themed {
-            box-shadow: 0 0 0 $iui-xxs t(iui-color-background-1);
-          }
+          box-shadow: 0 0 0 $iui-xxs var(--iui-color-background-1);
         }
       }
 

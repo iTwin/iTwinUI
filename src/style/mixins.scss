@@ -4,18 +4,13 @@
 
 @mixin no-link {
   text-decoration: none;
-
-  @include themed {
-    color: t(iui-text-color);
-  }
+  color: var(--iui-text-color);
 
   &:link,
   &:visited,
   &:hover,
   &:active {
-    @include themed {
-      color: t(iui-text-color);
-    }
+    color: var(--iui-text-color);
     text-decoration: none;
   }
 }
@@ -49,17 +44,13 @@
 @mixin iui-text-selection($status: primary) {
   &::selection,
   *::selection {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-5));
-    }
+    background-color: rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-5));
   }
 }
 
 @mixin iui-scrollbar {
-  @include themed {
-    scrollbar-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4)) transparent;
-    scrollbar-width: thin;
-  }
+  scrollbar-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4)) transparent;
+  scrollbar-width: thin;
 
   &::-webkit-scrollbar {
     width: $iui-s;
@@ -67,15 +58,11 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-    }
+    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
     border-radius: $iui-s * 0.5;
 
     &:hover {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
-      }
+      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));
     }
   }
 
@@ -100,9 +87,7 @@
 
 @mixin iui-blur($opacity: 4) {
   // Blur fallback
-  @include themed {
-    background-color: rgba(0, 0, 0, t(iui-opacity-#{$opacity - 1}));
-  }
+  background-color: rgba(0, 0, 0, var(--iui-opacity-#{$opacity - 1}));
 
   // With blur
   @supports (backdrop-filter: $iui-blur-filter) {
