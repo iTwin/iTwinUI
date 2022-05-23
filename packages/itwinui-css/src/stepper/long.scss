@@ -2,8 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-wizard-long {
-  .iui-wizard-steps-label {
+@mixin iui-stepper-long {
+  .iui-stepper-steps-label {
     display: block;
     font-size: $iui-font-size-subheading;
     text-align: center;
