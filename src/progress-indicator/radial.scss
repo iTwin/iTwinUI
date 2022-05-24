@@ -2,46 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-progress-indicator-radial-ie {
-  @include iui-reset;
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-
-  @include themed {
-    color: t(iui-color-foreground-primary);
-  }
-
-  &::after {
-    position: relative;
-    box-sizing: border-box;
-    content: '';
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    border: 3px solid currentColor;
-    border-radius: 100%;
-    background-color: transparent;
-    animation: dash $iui-speed-slow linear infinite;
-
-    @include themed {
-      border-bottom-color: t(iui-color-background-border);
-    }
-  }
-
-  @keyframes dash {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
-
 @mixin iui-progress-indicator-radial {
   position: relative;
   display: inline-block;
@@ -118,20 +78,6 @@
         fill: t(iui-icons-color-positive);
       }
     }
-
-    .iui-progress-indicator-radial-ie {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
-
-      &::after {
-        animation: none;
-
-        @include themed {
-          border-bottom-color: t(iui-color-foreground-positive);
-        }
-      }
-    }
   }
 
   &.iui-negative {
@@ -148,20 +94,6 @@
     .iui-inner-content svg {
       @include themed {
         fill: t(iui-icons-color-negative);
-      }
-    }
-
-    .iui-progress-indicator-radial-ie {
-      @include themed {
-        color: t(iui-color-foreground-negative);
-      }
-
-      &::after {
-        animation: none;
-
-        @include themed {
-          border-bottom-color: t(iui-color-foreground-negative);
-        }
       }
     }
   }

@@ -192,22 +192,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
+  column-gap: $iui-s;
   @at-root .iui-dialog-draggable & {
     padding: 0 $iui-m $iui-baseline $iui-m;
   }
 
-  // #region IE support
   > .iui-button:not(:last-child) {
-    margin-right: $iui-s;
+    margin-right: 0;
   }
-
-  @supports (column-gap: $iui-s) {
-    column-gap: $iui-s;
-
-    > .iui-button:not(:last-child) {
-      margin-right: 0;
-    }
-  }
-  // #endregion IE support
 }
