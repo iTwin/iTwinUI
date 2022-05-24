@@ -1249,7 +1249,11 @@
       const section = toggle.parentElement.parentElement.nextElementSibling;
       toggle.addEventListener('change', (e) => {
         section.querySelectorAll('.iui-header-breadcrumb-button-container').forEach((breadcrumb) => {
-          breadcrumb.classList.toggle('iui-disabled');
+          if (breadcrumb.getAttribute('aria-disabled')) {
+            breadcrumb.removeAttribute('aria-disabled');
+          } else {
+            breadcrumb.setAttribute('aria-disabled', 'true');
+          }
           breadcrumb.querySelectorAll('button').forEach((button) => button.toggleAttribute('disabled'));
         });
       });
