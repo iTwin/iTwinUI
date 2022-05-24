@@ -62,23 +62,30 @@ export const Carousel = Object.assign(
     useTheme();
 
     const isManuallyUpdating = React.useRef(false);
-    const scrollInstantly = React.useRef(false);
     const carouselRef = React.useRef<HTMLElement>(null);
     const refs = useMergedRefs(carouselRef, ref);
 
-    const [currentIndex, _setCurrentIndex] = React.useState(userActiveIndex);
-    React.useEffect(() => {
-      _setCurrentIndex(userActiveIndex);
-    }, [userActiveIndex]);
+    const [currentIndex, setCurrentIndex] = React.useState(userActiveIndex);
 
-    const setCurrentIndex = React.useCallback(
-      (index: number | ((old: number) => number)) => {
-        _setCurrentIndex(index);
-        isManuallyUpdating.current = true;
-        carouselRef.current?.focus();
-      },
-      [],
-    );
+    const scrollToSlide = React.useRef<
+      (index?: number, options?: { instant?: boolean }) => void
+    >(() => {}); // stub function populated in CarouselSlider
+
+    const justMounted = React.useRef(true);
+    React.useEffect(() => {
+      setCurrentIndex(userActiveIndex);
+      scrollToSlide.current(userActiveIndex, {
+        instant: justMounted.current,
+      });
+
+      // re-focus the carousel for keyboard nav, but not on first mount
+      // because it shows outline and might interfere with other components
+      if (!justMounted.current) {
+        carouselRef.current?.focus({ preventScroll: true });
+      }
+
+      justMounted.current = false;
+    }, [userActiveIndex]);
 
     const [slideCount, setSlideCount] = React.useState(0);
 
@@ -100,12 +107,16 @@ export const Carousel = Object.assign(
       switch (event.key) {
         case 'ArrowLeft': {
           setKeysPressed((old) => ({ ...old, ArrowLeft: false }));
-          setCurrentIndex((old) => (slideCount + old - 1) % slideCount);
+          const prevIndex = (slideCount + currentIndex - 1) % slideCount;
+          scrollToSlide.current(prevIndex);
+          setCurrentIndex(prevIndex);
           break;
         }
         case 'ArrowRight': {
           setKeysPressed((old) => ({ ...old, ArrowRight: false }));
-          setCurrentIndex((old) => (slideCount + old + 1) % slideCount);
+          const nextIndex = (slideCount + currentIndex + 1) % slideCount;
+          scrollToSlide.current(nextIndex);
+          setCurrentIndex(nextIndex);
           break;
         }
       }
@@ -136,7 +147,7 @@ export const Carousel = Object.assign(
             keysPressed,
             idPrefix: id,
             isManuallyUpdating,
-            scrollInstantly,
+            scrollToSlide,
           }}
         >
           {children}

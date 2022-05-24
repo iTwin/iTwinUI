@@ -32,18 +32,14 @@ export const CarouselSlide = React.forwardRef<
     throw new Error('CarouselSlide must be used within Carousel');
   }
 
-  const { currentIndex, isManuallyUpdating, setCurrentIndex } = context;
+  const { isManuallyUpdating, setCurrentIndex } = context;
 
   const updateActiveIndexOnScroll = React.useCallback(() => {
     // only update index if scroll was triggered by browser
-    if (!isManuallyUpdating.current && currentIndex !== index) {
+    if (!isManuallyUpdating.current) {
       setCurrentIndex(index);
     }
-    // when manual scroll completes, reset the state of `isManuallyUpdating` so that it's ready for future actions
-    if (currentIndex === index) {
-      isManuallyUpdating.current = false;
-    }
-  }, [currentIndex, index, isManuallyUpdating, setCurrentIndex]);
+  }, [index, isManuallyUpdating, setCurrentIndex]);
 
   const intersectionRef = useIntersection(
     updateActiveIndexOnScroll,

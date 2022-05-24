@@ -20,9 +20,10 @@ const PreviousButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 
     const {
       slideCount,
+      currentIndex,
       setCurrentIndex,
       keysPressed,
-      scrollInstantly,
+      scrollToSlide,
     } = context;
 
     return (
@@ -34,10 +35,9 @@ const PreviousButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         {...props}
         onClick={(e) => {
-          if (e.detail > 3) {
-            scrollInstantly.current = true;
-          }
-          setCurrentIndex((old) => (slideCount + old - 1) % slideCount);
+          const prevIndex = (slideCount + currentIndex - 1) % slideCount;
+          setCurrentIndex(prevIndex);
+          scrollToSlide.current(prevIndex, { instant: e.detail > 3 });
           props?.onClick?.(e);
         }}
       >
@@ -57,9 +57,10 @@ const NextButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 
     const {
       slideCount,
+      currentIndex,
       setCurrentIndex,
       keysPressed,
-      scrollInstantly,
+      scrollToSlide,
     } = context;
 
     return (
@@ -71,10 +72,9 @@ const NextButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         {...props}
         onClick={(e) => {
-          if (e.detail > 3) {
-            scrollInstantly.current = true;
-          }
-          setCurrentIndex((old) => (slideCount + old + 1) % slideCount);
+          const nextIndex = (slideCount + currentIndex + 1) % slideCount;
+          setCurrentIndex(nextIndex);
+          scrollToSlide.current(nextIndex, { instant: e.detail > 3 });
           props?.onClick?.(e);
         }}
       >

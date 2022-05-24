@@ -5,7 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { CarouselContext } from './CarouselContext';
-import { getWindow, useMergedRefs, useResizeObserver } from '../utils';
+import { getWindow, useMergedRefs } from '../utils';
 
 /**
  * `CarouselSlider` is the scrollable list that should consist of `CarouselSlide` components.
@@ -22,11 +22,10 @@ export const CarouselSlider = React.forwardRef<
   }
 
   const {
-    currentIndex,
     setSlideCount,
     idPrefix,
+    scrollToSlide,
     isManuallyUpdating,
-    scrollInstantly,
   } = context;
 
   const items = React.useMemo(
@@ -46,31 +45,21 @@ export const CarouselSlider = React.forwardRef<
     setSlideCount(items.length);
   }, [items.length, setSlideCount]);
 
-  const [width, setWidth] = React.useState<number>();
-  const [resizeRef] = useResizeObserver(({ width }) => setWidth(width));
-
   const sliderRef = React.useRef<HTMLOListElement>(null);
-  const refs = useMergedRefs(sliderRef, resizeRef, ref);
-  const justMounted = React.useRef(true);
+  const refs = useMergedRefs(sliderRef, ref);
 
-  const previousWidth = React.useRef<number>();
-  React.useLayoutEffect(() => {
-    const slideToShow = sliderRef.current?.children.item(currentIndex) as
+  scrollToSlide.current = (
+    slideIndex: number,
+    { instant }: { instant?: boolean } = {},
+  ) => {
+    isManuallyUpdating.current = true; // start manual update
+
+    const slideToShow = sliderRef.current?.children.item(slideIndex) as
       | HTMLElement
       | undefined;
 
-    if (
-      !sliderRef.current ||
-      !slideToShow ||
-      (!isManuallyUpdating.current && previousWidth.current === width)
-    ) {
+    if (!sliderRef.current || !slideToShow) {
       return;
-    }
-
-    // instant scroll on first mount
-    if (justMounted.current) {
-      scrollInstantly.current = true;
-      justMounted.current = false;
     }
 
     const motionOk = getWindow()?.matchMedia(
@@ -79,20 +68,29 @@ export const CarouselSlider = React.forwardRef<
 
     sliderRef.current.scrollTo({
       left: slideToShow.offsetLeft - sliderRef.current.offsetLeft,
-      behavior: (scrollInstantly.current || !motionOk
-        ? 'instant'
-        : 'smooth') as ScrollBehavior, // scrollTo accepts 'instant' but ScrollBehavior type is wrong
+      behavior: (instant || !motionOk ? 'instant' : 'smooth') as ScrollBehavior, // scrollTo accepts 'instant' but ScrollBehavior type is wrong
     });
+  };
 
-    scrollInstantly.current = false;
-    previousWidth.current = width;
-  }, [currentIndex, isManuallyUpdating, scrollInstantly, width]);
+  const scrollTimeout = React.useRef<number>();
+
+  // reset isManuallyUpdating.current to false after the last scroll event
+  const handleOnScroll = React.useCallback(() => {
+    if (scrollTimeout.current) {
+      getWindow()?.clearTimeout(scrollTimeout.current);
+    }
+
+    scrollTimeout.current = getWindow()?.setTimeout(() => {
+      isManuallyUpdating.current = false;
+    }, 100);
+  }, [isManuallyUpdating]);
 
   return (
     <ol
       aria-live='polite'
       className={cx('iui-carousel-slider', className)}
       ref={refs}
+      onScroll={handleOnScroll}
       {...rest}
     >
       {items}

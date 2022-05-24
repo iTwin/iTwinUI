@@ -71,6 +71,7 @@ export const CarouselDotsList = React.forwardRef<
     (index: number) => {
       if (context) {
         context.setCurrentIndex(index);
+        context.scrollToSlide.current(index);
       }
       onSlideChange?.(index);
     },

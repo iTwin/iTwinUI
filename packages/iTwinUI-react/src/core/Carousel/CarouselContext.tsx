@@ -37,9 +37,11 @@ export const CarouselContext = React.createContext<
        */
       isManuallyUpdating: React.MutableRefObject<boolean>;
       /**
-       * Ref object used to skip smooth scrolling when button is clicked too many times.
+       * Function that scrolls to the current slide. Should be called on all managed events (clicks and keydowns).
        */
-      scrollInstantly: React.MutableRefObject<boolean>;
+      scrollToSlide: React.MutableRefObject<
+        (slideIndex: number, options?: { instant?: boolean }) => void
+      >;
     }
   | undefined
 >(undefined);
