@@ -31,15 +31,11 @@ $iui-button-padding-large: $iui-xs * 6;
   cursor: pointer;
   white-space: nowrap;
   border: 1px solid transparent;
+  color: var(--_iui-button-text-color);
   @media (prefers-reduced-motion: no-preference) {
     transition: color $iui-speed-fast ease-out, background-color $iui-speed-fast ease-out,
       border-color $iui-speed-fast ease-out;
   }
-
-  @include themed {
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-  }
-  color: var(--_iui-button-text-color);
 
   &:hover {
     --_iui-button-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));

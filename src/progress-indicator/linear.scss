@@ -11,19 +11,13 @@
     width: 100%;
     height: $height;
     overflow: hidden;
-
-    @include themed {
-      background-color: t(iui-color-background-border);
-    }
+    background-color: var(--iui-color-background-border);
 
     > .iui-fill {
       display: inline-block;
       height: 100%;
       vertical-align: top;
-
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-      }
+      background-color: var(--iui-color-foreground-primary);
     }
   }
 
@@ -54,20 +48,14 @@
   &.iui-positive {
     > .iui-track,
     > .iui-track > * {
-      @include themed {
-        background-color: t(iui-color-foreground-positive);
-      }
+      background-color: var(--iui-color-foreground-positive);
     }
 
     > .iui-label {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
+      color: var(--iui-color-foreground-positive);
 
       svg {
-        @include themed {
-          fill: t(iui-icons-color-positive);
-        }
+        fill: var(--iui-icons-color-positive);
       }
 
       > span {
@@ -79,21 +67,14 @@
   &.iui-negative {
     > .iui-track > * {
       width: 100%;
-
-      @include themed {
-        background-color: t(iui-color-foreground-negative);
-      }
+      background-color: var(--iui-color-foreground-negative);
     }
 
     > .iui-label {
-      @include themed {
-        color: t(iui-color-foreground-negative);
-      }
+      color: var(--iui-color-foreground-negative);
 
       svg {
-        @include themed {
-          fill: t(iui-icons-color-negative);
-        }
+        fill: var(--iui-icons-color-negative);
       }
 
       > span {

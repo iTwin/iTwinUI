@@ -170,9 +170,7 @@
     &::after {
       content: '*';
       margin-left: $iui-xs;
-      @include themed {
-        color: t(iui-color-foreground-negative);
-      }
+      color: var(--iui-color-foreground-negative);
     }
   }
 }
@@ -215,9 +213,7 @@
   font-size: $iui-font-size-small;
   grid-area: message;
   margin-top: $iui-component-offset;
-  @include themed {
-    color: t(iui-text-color-muted);
-  }
+  color: var(--iui-text-color-muted);
 
   a {
     user-select: none;
@@ -231,9 +227,7 @@
   width: $iui-icons-default;
   height: $iui-icons-default;
   align-self: center;
-  @include themed {
-    fill: t(iui-icons-color);
-  }
+  fill: var(--iui-icons-color);
 
   &:not(:last-child) {
     margin-right: $iui-xs;
@@ -277,9 +271,7 @@
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
     svg {
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
+      fill: var(--iui-icons-color-actionable);
       transition: transform $iui-speed-fast ease-out;
     }
 
@@ -292,9 +284,7 @@
     cursor: not-allowed;
 
     svg {
-      @include themed {
-        fill: t(iui-icons-color-actionable-disabled);
-      }
+      fill: var(--iui-icons-color-actionable-disabled);
     }
   }
 }
@@ -307,29 +297,19 @@
   @include iui-text-selection($status);
 
   #{$iconSelector} {
-    @include themed {
-      fill: t(iui-color-foreground-#{$status});
-    }
+    fill: var(--iui-color-foreground-#{$status});
   }
 
   #{$textSelector} {
-    @include themed {
-      color: t(iui-color-foreground-#{$status});
-    }
+    color: var(--iui-color-foreground-#{$status});
 
     a {
       text-decoration: underline;
-
-      @include themed {
-        color: t(iui-color-foreground-#{$status});
-      }
+      color: var(--iui-color-foreground-#{$status});
 
       &:hover {
         text-decoration: none;
-
-        @include themed {
-          color: t(iui-color-foreground-#{$status}-overlay);
-        }
+        color: var(--iui-color-foreground-#{$status}-overlay);
       }
     }
   }
@@ -346,16 +326,12 @@
       padding-bottom: $iui-component-padding-vertical-large - 1px;
     }
 
-    @include themed {
-      border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
-    }
+    border-bottom: $iui-xxs solid var(--iui-color-foreground-#{$status});
 
     &:focus {
-      @include themed {
-        border-bottom: $iui-xxs solid t(iui-color-foreground-#{$status});
-        outline: 2px solid t(iui-color-foreground-#{$status});
-        outline-offset: -2px;
-      }
+      border-bottom: $iui-xxs solid var(--iui-color-foreground-#{$status});
+      outline: 2px solid var(--iui-color-foreground-#{$status});
+      outline-offset: -2px;
     }
   }
 
@@ -374,9 +350,7 @@
       bottom: 0;
       left: 0;
       height: $iui-xxs;
-      @include themed {
-        background-color: t(iui-color-foreground-#{$status});
-      }
+      background-color: var(--iui-color-foreground-#{$status});
     }
   }
 }

@@ -16,28 +16,22 @@
       border-radius: 0;
       font-weight: $iui-font-weight-normal;
       text-align: center;
-      @include themed {
-        background-color: t(iui-color-background-positive);
-        border-color: t(iui-color-background-positive);
-        color: t(iui-color-foreground-accessory);
-      }
+      background-color: var(--iui-color-background-positive);
+      border-color: var(--iui-color-background-positive);
+      color: var(--iui-color-foreground-accessory);
     }
 
     &:first-of-type .iui-stepper-circle,
     &:last-of-type .iui-stepper-circle {
       border-radius: $iui-sm;
-      @include themed {
-        background-color: t(iui-color-background-1);
-        border-color: t(iui-color-foreground-positive);
-        color: t(iui-color-foreground-positive);
-      }
+      background-color: var(--iui-color-background-1);
+      border-color: var(--iui-color-foreground-positive);
+      color: var(--iui-color-foreground-positive);
     }
   }
 
   .iui-stepper-track-content::before,
   .iui-stepper-track-content::after {
-    @include themed {
-      background-color: t(iui-color-foreground-positive);
-    }
+    background-color: var(--iui-color-foreground-positive);
   }
 }

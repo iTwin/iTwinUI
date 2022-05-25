@@ -12,11 +12,9 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  @include themed {
-    border: 1px solid t(iui-color-background-5);
-    color: t(iui-text-color);
-    background-color: t(iui-color-background-1);
-  }
+  border: 1px solid var(--iui-color-background-5);
+  color: var(--iui-text-color);
+  background-color: var(--iui-color-background-1);
   @media (forced-colors: active) {
     background-color: Canvas;
   }
@@ -67,19 +65,15 @@
 /// @arg $rootSelector Selector of the root alert element. Defaults to .iui-alert
 @mixin iui-alert-category($statusColor, $rootSelector: '.iui-alert') {
   @include iui-alert;
-  @include themed {
-    background: linear-gradient(
-      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6)),
-      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6))
-    ),
-      linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-    border-color: t(iui-color-foreground-#{$statusColor});
-  }
+  background: linear-gradient(
+    rgba(var(--iui-color-foreground-#{$statusColor}-rgb), var(--iui-opacity-6)),
+    rgba(var(--iui-color-foreground-#{$statusColor}-rgb), var(--iui-opacity-6))
+  ),
+    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+  border-color: var(--iui-color-foreground-#{$statusColor});
 
   #{$rootSelector}-icon {
-    @include themed {
-      fill: t(iui-icons-color-#{$statusColor});
-    }
+    fill: var(--iui-icons-color-#{$statusColor});
   }
 
   #{$rootSelector}-message {
