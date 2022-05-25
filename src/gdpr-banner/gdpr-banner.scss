@@ -28,4 +28,8 @@
 
 @mixin iui-gdpr-banner-button-bar {
   @include iui-dialog-button-bar;
-} ;
+}
+
+.iui-gdpr-banner-cookie-policy {
+  color: var(--iui-color-foreground-primary);
+}

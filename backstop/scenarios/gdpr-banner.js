@@ -6,6 +6,6 @@ const { scenario } = require('../scenarioHelper');
 
 module.exports = [
   scenario('State default', {
-    selectors: ['.iui-body'],
+    selectors: ['.iui-gdpr-banner'],
   }),
 ];
