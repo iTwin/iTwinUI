@@ -167,7 +167,7 @@
 @mixin iui-information-panel-right {
   @include iui-information-panel-vertical;
   transform: translateX(100%); // hide off screen
-  box-shadow: -1px 0 14px rgba(0, 0, 0, 0.25);
+  box-shadow: -1px 0 10px $iui-elevation-color;
   clip-path: inset(0 0 0 -15px); // show box-shadow only on the left
 
   > .iui-resizer {
@@ -178,7 +178,7 @@
 @mixin iui-information-panel-bottom {
   @include iui-information-panel-horizontal;
   transform: translateY(100%); // hide off screen
-  box-shadow: 0 -1px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 -1px 10px $iui-elevation-color;
   clip-path: inset(-15px 0 0 0); // show box-shadow only on top
 
   > .iui-resizer {

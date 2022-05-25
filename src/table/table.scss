@@ -17,21 +17,31 @@
   @include iui-table-cell-icon;
 }
 
-@mixin iui-table-header {
-  user-select: none;
+@mixin iui-table-header-wrapper {
   overflow: hidden;
   // Fix for Firefox columns misalignment
   @supports not (overflow: overlay) {
     overflow-y: scroll;
   }
+  display: flex;
   flex-shrink: 0;
-  background-color: var(--iui-color-background-3);
+}
+
+@mixin iui-table-header {
+  display: flex;
+  user-select: none;
+  min-width: 100%;
+  flex-shrink: 0;
 
   .iui-row {
     display: flex;
     flex-grow: 1;
-    border-left: solid 1px transparent;
-    border-right: solid 1px transparent;
+    min-width: 100%;
+  }
+
+  .iui-cell {
+    min-height: $iui-baseline * 5;
+    background-color: var(--iui-color-background-3);
   }
 
   .iui-cell:not(.iui-slot) {
@@ -165,10 +175,15 @@
   .iui-row {
     min-width: 100%;
     display: flex;
-    border: solid 1px transparent;
-    border-bottom-color: var(--iui-color-background-border);
-    @media (prefers-reduced-motion: no-preference) {
-      transition: border $iui-speed-fast ease-out;
+
+    .iui-cell {
+      border-top: solid 1px transparent;
+      border-bottom: solid 1px transparent;
+      border-bottom-color: var(--iui-color-background-border);
+      background-color: var(--iui-color-background-1);
+      @media (prefers-reduced-motion: no-preference) {
+        transition: border $iui-speed-fast ease-out;
+      }
     }
 
     > .iui-slot > .iui-more-options {
@@ -176,8 +191,12 @@
     }
 
     &:hover:not(.iui-disabled) {
-      &:not(.iui-expanded-content) {
-        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      .iui-cell {
+        background: linear-gradient(
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+        ),
+          linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
       }
 
       > .iui-slot:not(.iui-disabled) > .iui-more-options {
@@ -197,9 +216,12 @@
 
     &.iui-row-expanded {
       overflow: hidden;
-      border-left-color: var(--iui-color-background-4);
-      border-right-color: var(--iui-color-background-4);
-      border-bottom-color: transparent;
+
+      .iui-cell {
+        border-left-color: var(--iui-color-background-4);
+        border-right-color: var(--iui-color-background-4);
+        border-bottom-color: transparent;
+      }
 
       .iui-row-expander > .iui-button-icon {
         transform: rotate(90deg);
@@ -213,30 +235,39 @@
 
     &.iui-expanded-content {
       overflow: hidden;
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      border-bottom: 1px solid var(--iui-color-background-border);
       @include iui-transition-group;
     }
 
     // #region Selection
-    &:not(.iui-selected) + .iui-selected,
-    &.iui-selected:first-child {
+    &:not(.iui-selected) + .iui-selected .iui-cell,
+    &.iui-selected:first-child .iui-cell {
       border-bottom-color: transparent;
     }
 
     &.iui-selected {
-      border-color: var(--iui-color-foreground-primary);
-      background: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      .iui-cell {
+        border-color: var(--iui-color-foreground-primary);
+        background: linear-gradient(
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+        ),
+          linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+      }
 
-      + .iui-selected {
+      + .iui-selected .iui-cell {
         border-bottom-color: transparent;
         border-top-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
       }
 
-      &:last-child {
+      &:last-child .iui-cell {
         border-bottom-color: var(--iui-color-foreground-primary);
       }
 
-      + :not(.iui-selected),
-      + .iui-expanded-content + :not(.iui-selected) {
+      + :not(.iui-selected) .iui-cell,
+      + .iui-expanded-content + .iui-row:not(.iui-selected) .iui-cell {
         border-top-color: var(--iui-color-foreground-primary);
       }
 
@@ -314,11 +345,19 @@
   display: flex;
   flex-grow: 1;
   min-width: $iui-xxl;
-  min-height: $iui-baseline * 5;
+  min-height: $iui-baseline * 5 + 2px; // +2px for border
   padding-left: $iui-m;
   flex-basis: $iui-xxl;
   position: relative;
   word-break: break-word;
+
+  &:first-of-type {
+    border-left: solid 1px transparent;
+  }
+
+  &:last-of-type {
+    border-right: solid 1px transparent;
+  }
 
   &.iui-slot {
     width: $iui-l * 2;
@@ -329,6 +368,13 @@
     justify-content: center;
     align-items: center;
     flex-basis: $iui-l * 2;
+  }
+
+  &.iui-cell-sticky {
+    position: sticky;
+    z-index: 1;
+    left: var(--iui-table-sticky-left, initial);
+    right: var(--iui-table-sticky-right, initial);
   }
 
   &:not(.iui-slot):last-child {
@@ -362,7 +408,7 @@
 }
 
 @mixin iui-table-row-status($status) {
-  &,
+  .iui-cell:first-of-type,
   + .iui-expanded-content {
     box-shadow: inset $iui-xxs 0 0 0 var(--iui-icons-color-#{$status});
 
@@ -375,8 +421,11 @@
 }
 
 @mixin iui-table-cell-status($status) {
-  background-color: rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6));
-
+  background: linear-gradient(
+    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6)),
+    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6))
+  ),
+    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
   @include iui-text-selection($status);
 }
 
@@ -405,4 +454,33 @@
     margin-right: $iui-sm;
     margin-left: auto;
   }
+}
+
+@mixin iui-table-cell-shadow-base {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  width: $iui-l;
+  pointer-events: none;
+
+  // Prevents scrollbar from appearing because `top: -1px` and `bottom: -1px`
+  // makes content to overflow
+  @at-root .iui-table-header & {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+@mixin iui-table-cell-shadow-left {
+  @include iui-table-cell-shadow-base;
+  left: 0;
+  transform: translate(-100%);
+  box-shadow: inset -10px 0 5px -10px $iui-elevation-color;
+}
+
+@mixin iui-table-cell-shadow-right {
+  @include iui-table-cell-shadow-base;
+  right: 0;
+  transform: translate(100%);
+  box-shadow: inset 10px 0 5px -10px $iui-elevation-color;
 }
