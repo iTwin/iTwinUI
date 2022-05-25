@@ -32,9 +32,7 @@
   align-items: center;
   height: $iui-baseline * 3;
   box-sizing: border-box;
-  @include themed {
-    border-top: $iui-xxs solid t(iui-color-background-4);
-  }
+  border-top: $iui-xxs solid var(--iui-color-background-4);
 
   &-left,
   &-right {
@@ -44,9 +42,7 @@
 
     button[data-pressed='true'] {
       outline-offset: -1px;
-      @include themed {
-        outline: 1px solid t(iui-color-foreground-primary);
-      }
+      outline: 1px solid var(--iui-color-foreground-primary);
     }
   }
 
@@ -67,9 +63,7 @@
     cursor: pointer;
 
     &:hover::after {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-3));
-      }
+      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));
     }
 
     &::after {
@@ -80,10 +74,8 @@
       border-radius: 50%;
       box-sizing: border-box;
       border: 1px solid transparent;
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-        box-shadow: inset 0 0 0 0 t(iui-color-background-1);
-      }
+      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+      box-shadow: inset 0 0 0 0 var(--iui-color-background-1);
     }
 
     &.iui-first::after {
@@ -95,12 +87,9 @@
     }
 
     &.iui-active::after {
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-        border-color: t(iui-color-foreground-primary);
-        box-shadow: inset 0 0 0 1px t(iui-color-background-1);
-      }
-
+      background-color: var(--iui-color-foreground-primary);
+      border-color: var(--iui-color-foreground-primary);
+      box-shadow: inset 0 0 0 1px var(--iui-color-background-1);
       @media (forced-colors: active) {
         border-width: $iui-icons-small * 0.5;
       }
