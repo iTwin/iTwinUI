@@ -21,14 +21,62 @@ To clone and build iTwinUI-react, you'll need [Git](https://git-scm.com) and [Ya
 If using vscode, our prettier and editor configs will be used.
 Please make sure to install all recommended extensions in [extensions.json](./.vscode/extensions.json).
 
-### Preview using Storybook
-
-We use [Storybook](https://storybook.js.org) to test and demo the components. You can run it locally with `yarn storybook`.
-Be sure to add stories for your newly added component or feature. Read more [here](./stories/README.md) about storybook and how we write stories.
-
 ---
 
 ## Developing
+
+### Monorepo overview
+
+We use [Turborepo](https://turborepo.org/) as our monorepo tool to improve the experience of [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/). It allows running commands in parallel and caches build outputs.
+
+The root package.json includes a few commands that use `turbo run` to run the corresponding command in all workspaces.
+
+e.g. to build all workspaces together, run the following command from the root:
+
+```
+yarn build
+```
+
+#### Development environment
+
+To start the development server for all workspaces, run the following command from the root.
+```
+yarn dev
+```
+
+This will automatically build anything that's not already built, and run 3 tasks in parallel watching for changes:
+- `build:watch` in the `@itwin/itwinui-react` package.
+- `vite` dev server in the `itwinui-playground` with HMR.
+- `start-storybook` dev server in the `storybook` workspace with HMR. 
+
+If you only need to run this task for a specific workspace, you can specify turborepo's `--filter` argument. For example, if you only want to start storybook, you could run `yarn dev --filter=storybook`.
+
+### Running bespoke commands
+
+If a script is not available in the root package.json or if you need to pass workspace-specific cli args, then you can specify the workspace as follows:
+```
+# passing Alert as a cli arg to the `test` command in itwinui-react
+yarn workspace @itwin/itwinui-react test Alert
+```
+
+...or you can simply run the command normally from inside the workspace folder instead of the monorepo root.
+```
+# run this from inside packages/iTwinUI-react/ for the same result
+yarn test Alert
+```
+
+Note that this bypasses the turborepo pipeline, so you will need to manually run any dependent tasks first. For example, if the `build` command of `storybook` relies on the `build` command of `@itwin/itwinui-react`, then you will need to manually run the `build` commands in the right order.
+```
+yarn workspace @itwin/itwinui-react build
+yarn workspace storybook build
+```
+
+This is why it's recommended to use the turbo `--filter` syntax whenever possible.
+```
+yarn build --filter=storybook
+```
+
+### Creating components
 
 Before developing, please read our [style guide](./STYLEGUIDE.md).
 
@@ -40,15 +88,13 @@ It ensures all needed imports are added and files are created.
 
 > Note: Every component needs to use `useTheme()` hook to ensure styling (theming) works fine. The `createComponent` script mentioned above adds it automatically.
 
-### Creating components
-
 For a component named `Alert`, the `createComponent` script will add/modify the following files:
 
 <details>
 <summary>Directory structure</summary>
 
 ```
-iTwinUI-react
+packages/iTwinUI-react
 |
 + - src
 |   |
@@ -61,11 +107,12 @@ iTwinUI-react
 |       |
 |       + - > index.ts
 |
-+ - stories
+apps/storybook
 |   |
-|   + - core
+|   + - src
 |       |
 |       + - > Alert.stories.tsx
+|.      + - > Alert.test.ts
 ```
 
 </details>
@@ -97,9 +144,13 @@ export type { AlertProps } from './Alert';
 
 > Note: The script will add the exports to index.ts but you will need to manually sort them alphabetically.
 
-stories/core/**Alert.stories.tsx**
+apps/storybook/src/**Alert.stories.tsx**
 
 - Contains common demo states and examples for the component.
+
+apps/storybook/src/**Alert.test.tsx**
+
+- Contains the Cypress test for the component.
 
 ### Documentation
 
@@ -175,42 +226,48 @@ it('should be visible', () => {
 
 ### Visual Testing
 
-We reuse our stories for visual tests (through [Creevey](https://github.com/wKich/creevey)). To run visual tests:
+We reuse our stories for visual tests by taking screenshots of the story iframes in [Cypress](https://cypress.io/).
+
+#### Running visual tests
+
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
-2. Start storybook using `yarn storybook`.
-3. Run `yarn creevey --ui` in a new terminal.
-4. Open the test UI at `localhost:3000` in your browser. Here you can run tests and approve images.
+2. From the monorepo root, run `yarn workspace storybook build-docker` to build and load the `itwinui/cypress` docker image.
+   - This step only needs to be done the very first time. It will persist in docker afterwards.
+3. From the monorepo root, run `yarn test --filter=storybook`. This will build storybook and run all cypress tests in docker.
+   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `yarn workspace storybook test --spec="**/Alert.*"`. Don't forget to build storybook first (yarn build --filter=storybook).
+4. Once the tests finish running, you can approve any failing test images using `yarn workspace storybook test:approve`.
 
-By default, the stories will be rendered as-is, but interaction can be added using the `creevey` parameter of story, where you have access to a [Selenium WebDriver](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) instance.
+#### Writing visual tests
 
-```jsx
-parameters: {
-  creevey: {
-    tests: {
-      async open() {
-        const button = await this.browser.findElement({ css: '.iui-button' });
-        const closed = await this.takeScreenshot();
+Inside the `apps/storybook` workspace, the `src/` directory has a set of `-.stories.tsx` files, each of which is accompanied by a `-.test.ts` file. Here's what a typical test file should look like:
 
-        await button.sendKeys(' ');
-        const opened = await this.takeScreenshot();
-        await this.expect({ closed, opened }).to.matchImages();
-      },
-    },
-  },
-},
+```ts
+describe('Alert', () => {
+  const storyPath = 'Core/Alert';
+  const tests = [
+    'Positive',
+    'Negative',
+    'Warning',
+    'Informational',
+  ];
+
+  tests.forEach((testName) => {
+    it(testName, () => {
+      const id = Cypress.storyId(storyPath, testName);
+      cy.visit('iframe', { qs: { id } });
+      cy.compareSnapshot(testName);
+    });
+  });
+});
 ```
 
-### Linking
+Notice how we do all of these things manually:
+- defining the names of all the stories that need to be tested and excluding the ones that don't.
+- specifying the story iframe url using the custom `storyId` helper.
+- visiting the iframe using `cy.visit`.
+- taking and comparing the screenshot using `cy.compareSnapshot` from [`cypress-image-diff-js`](https://github.com/uktrade/cypress-image-diff).
 
-If you want to test your changes in a local project, you can go into the `lib/` folder (which gets created when running `yarn build` or `yarn build:watch`) and run `yarn link`. Then from your test project, run `yarn link @itwin/itwinui-react`.
-
-You might face an "invalid hook call" error if your test project is using a different version or instance of React. You can fix this by [linking React](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react) or by using [aliases](https://github.com/facebook/react/issues/13991#issuecomment-463486871) in your bundler. If it still doesn't work, you may consider using [`yalc`](https://github.com/wclr/yalc) instead.
-
-#### Yalc instructions
-
-Install yalc globally (`yarn global add yalc`) and run `yalc publish` from the `lib/` folder. Then from your test project, run `yalc add @itwin/itwinui-react`.
-
-Every time you rebuild iTwinUI-react, you will need to run `yalc push`. You might want to automate this with a custom script using `chokidar-cli` or `nodemon`.
+We have full access to the [Cypress API](https://docs.cypress.io/api) so any additional interactions or custom logic can be easily added.
 
 ---
 
