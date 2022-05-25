@@ -9,9 +9,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
+  background-color: var(--iui-color-background-1);
 
   > .iui-header {
     @include iui-focus;
@@ -23,11 +21,9 @@
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color $iui-speed-fast ease-out;
     }
-    @include themed {
-      border: 1px solid t(iui-color-background-3);
-      border-bottom-color: t(iui-color-background-4);
-      background-color: t(iui-color-background-3);
-    }
+    border: 1px solid var(--iui-color-background-3);
+    border-bottom-color: var(--iui-color-background-4);
+    background-color: var(--iui-color-background-3);
 
     > .iui-icon,
     > .iui-status-icon {
@@ -41,9 +37,7 @@
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
+      fill: var(--iui-icons-color-actionable);
     }
 
     > .iui-status-icon {
@@ -60,9 +54,7 @@
       @media (prefers-reduced-motion: no-preference) {
         transition: color $iui-speed-fast ease;
       }
-      @include themed {
-        color: t(iui-text-color);
-      }
+      color: var(--iui-text-color);
     }
 
     .iui-title,
@@ -78,9 +70,7 @@
 
     .iui-caption {
       font-size: $iui-font-size-small;
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+      color: var(--iui-text-color-muted);
     }
 
     @include iui-focus;
@@ -89,12 +79,9 @@
   .iui-expandable-content {
     overflow: hidden;
     box-sizing: border-box;
-
-    @include themed {
-      border-bottom: 1px solid t(iui-color-background-4);
-      border-right: 1px solid t(iui-color-background-4);
-      border-left: 1px solid t(iui-color-background-4);
-    }
+    border-bottom: 1px solid var(--iui-color-background-4);
+    border-right: 1px solid var(--iui-color-background-4);
+    border-left: 1px solid var(--iui-color-background-4);
 
     @include iui-transition-group;
 
@@ -106,21 +93,15 @@
 
   &:hover {
     > .iui-header {
-      @include themed {
-        background-color: t(iui-color-background-4);
-      }
+      background-color: var(--iui-color-background-4);
 
       > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable-hover);
-        }
+        fill: var(--iui-icons-color-actionable-hover);
       }
 
       .iui-caption,
       .iui-title {
-        @include themed {
-          color: t(iui-color-foreground-body);
-        }
+        color: var(--iui-color-foreground-body);
         @media (prefers-reduced-motion: no-preference) {
           transition: color $iui-speed-fast ease;
         }
@@ -130,17 +111,13 @@
 
   &.iui-expanded {
     > .iui-header {
-      @include themed {
-        background-color: t(iui-color-background-3);
-        border-left: 1px solid t(iui-color-background-4);
-        border-top: 1px solid t(iui-color-background-4);
-        border-right: 1px solid t(iui-color-background-4);
+      background-color: var(--iui-color-background-3);
+      border-left: 1px solid var(--iui-color-background-4);
+      border-top: 1px solid var(--iui-color-background-4);
+      border-right: 1px solid var(--iui-color-background-4);
 
-        &:hover {
-          @include themed {
-            background-color: t(iui-color-background-4);
-          }
-        }
+      &:hover {
+        background-color: var(--iui-color-background-4);
       }
 
       > .iui-icon {
@@ -178,9 +155,7 @@
       border-radius: $iui-border-radius;
 
       &:hover {
-        @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-        }
+        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
       }
     }
 

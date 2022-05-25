@@ -16,13 +16,10 @@
   flex-direction: column;
   max-width: 100%;
   max-height: 100%;
+  background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
     transition: visibility $iui-speed-instant $iui-speed-fast ease-in, transform $iui-speed-fast ease-out,
       opacity $iui-speed-fast ease;
-  }
-
-  @include themed {
-    background-color: t(iui-color-background-1);
   }
 
   > .iui-resizer {
@@ -31,15 +28,11 @@
     touch-action: none;
 
     > .iui-resizer-bar {
-      @include themed {
-        background-color: t(iui-color-background-border);
-      }
+      background-color: var(--iui-color-background-border);
     }
 
     &:hover > .iui-resizer-bar {
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-      }
+      background-color: var(--iui-color-foreground-primary);
     }
   }
 
@@ -55,9 +48,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @include themed {
-      background-color: t(iui-color-background-3);
-    }
+    background-color: var(--iui-color-background-3);
 
     .iui-information-header-label {
       display: flex;
@@ -77,9 +68,7 @@
         height: $iui-icons-large;
         margin-right: $iui-s;
         flex-shrink: 0;
-        @include themed {
-          fill: t(iui-icons-color);
-        }
+        fill: var(--iui-icons-color);
       }
     }
 
@@ -98,9 +87,7 @@
     overflow-y: overlay;
 
     > hr {
-      @include themed {
-        border-color: t(iui-color-background-border);
-      }
+      border-color: var(--iui-color-background-border);
     }
   }
 }
@@ -203,9 +190,7 @@
 
   .iui-input-label {
     font-weight: $iui-font-weight-normal;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
   }
 
   &:not(.iui-inline) {
