@@ -274,8 +274,6 @@
       }
     }
 
-    .iui-disabled img#{&},
-    .iui-disabled div#{&},
     :disabled img#{&},
     :disabled div#{&},
     [aria-disabled='true'] img#{&},
