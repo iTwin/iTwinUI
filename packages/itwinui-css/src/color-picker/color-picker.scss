@@ -187,18 +187,16 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
     .iui-slider-rail {
       height: $iui-s;
       forced-color-adjust: none;
-      @include themed {
-        background: linear-gradient(
-          to right,
-          $iui-color-system-red 0%,
-          $iui-color-system-yellow 17%,
-          rgb(0, 255, 0) 33%,
-          rgb(0, 255, 255) 50%,
-          $iui-color-system-blue 67%,
-          $iui-color-system-magenta 83%,
-          $iui-color-system-red 100%
-        );
-      }
+      background: linear-gradient(
+        to right,
+        $iui-color-system-red 0%,
+        $iui-color-system-yellow 17%,
+        rgb(0, 255, 0) 33%,
+        rgb(0, 255, 255) 50%,
+        $iui-color-system-blue 67%,
+        $iui-color-system-magenta 83%,
+        $iui-color-system-red 100%
+      );
     }
 
     .iui-slider-thumb {
@@ -253,22 +251,20 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
 @mixin iui-transparent-background($size: $iui-m) {
   background-position: 0 0, ($size * 0.5) ($size * 0.5);
   background-size: $size $size;
-  @include themed {
-    background-image: repeating-linear-gradient(
-      45deg,
-      t(iui-color-background-3) 25%,
-      transparent 25%,
-      transparent 75%,
-      t(iui-color-background-3) 75%,
-      t(iui-color-background-3)
-    ),
-      repeating-linear-gradient(
-      45deg,
-      t(iui-color-background-3) 25%,
-      t(iui-color-background-5) 25%,
-      t(iui-color-background-5) 75%,
-      t(iui-color-background-3) 75%,
-      t(iui-color-background-3)
-    );
-  }
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--iui-color-background-3) 25%,
+    transparent 25%,
+    transparent 75%,
+    var(--iui-color-background-3) 75%,
+    var(--iui-color-background-3)
+  ),
+    repeating-linear-gradient(
+    45deg,
+    var(--iui-color-background-3) 25%,
+    var(--iui-color-background-5) 25%,
+    var(--iui-color-background-5) 75%,
+    var(--iui-color-background-3) 75%,
+    var(--iui-color-background-3)
+  );
 }

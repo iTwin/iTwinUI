@@ -9,12 +9,10 @@
   flex: 0 0 auto;
   flex-direction: column;
   height: 100%;
+  background-color: var(--iui-color-background-3);
+  border-right: 1px solid var(--iui-color-background-border);
   @media (prefers-reduced-motion: no-preference) {
     transition: max-width $iui-speed-fast ease-out;
-  }
-  @include themed {
-    background-color: t(iui-color-background-3);
-    border-right: 1px solid t(iui-color-background-border);
   }
 
   > .iui-sidenav-content {
@@ -50,9 +48,7 @@
 
     + .iui-sidenav-button.iui-expand {
       border: none;
-      @include themed {
-        border-top: 1px solid t(iui-color-background-border);
-      }
+      border-top: 1px solid var(--iui-color-background-border);
     }
   }
 
@@ -104,9 +100,7 @@
     &,
     &:hover,
     &[disabled] {
-      @include themed {
-        border-color: t(iui-color-background-border);
-      }
+      border-color: var(--iui-color-background-border);
     }
 
     > .iui-button-icon:not(.iui-avatar) {
@@ -116,25 +110,19 @@
     }
 
     &.iui-submenu-open .iui-button-icon {
-      @include themed {
-        fill: t(iui-color-foreground-primary);
-      }
+      fill: var(--iui-color-foreground-primary);
     }
 
     &[disabled],
     &:disabled {
-      @include themed {
-        background-color: t(iui-color-background-2);
-      }
+      background-color: var(--iui-color-background-2);
     }
 
     &.iui-expand {
       height: $iui-line-height;
       justify-content: center;
       border: none;
-      @include themed {
-        border-bottom: 1px solid t(iui-color-background-border);
-      }
+      border-bottom: 1px solid var(--iui-color-background-border);
 
       > .iui-button-icon {
         @include iui-icons-small;
@@ -155,10 +143,8 @@
   overflow-y: auto;
   overflow-y: overlay;
   resize: horizontal;
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border-right: 1px solid t(iui-color-background-border);
-  }
+  background-color: var(--iui-color-background-1);
+  border-right: 1px solid var(--iui-color-background-border);
 
   @include iui-transition-group;
 

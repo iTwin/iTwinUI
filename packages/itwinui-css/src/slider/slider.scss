@@ -38,9 +38,7 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-rail {
   position: absolute;
-  @include themed {
-    background-color: t(iui-color-background-border);
-  }
+  background-color: var(--iui-color-background-border);
   @media (forced-colors: active) {
     background-color: CanvasText;
   }
@@ -54,10 +52,8 @@ $tick-height: $iui-baseline; // 11px
   z-index: 1;
   cursor: grab;
   @include iui-focus($thickness: 2px);
-  @include themed {
-    background: t(iui-color-background-1);
-    border: 1px solid t(iui-color-background-border);
-  }
+  background: var(--iui-color-background-1);
+  border: 1px solid var(--iui-color-background-border);
   @media (forced-colors: active) {
     background: Canvas;
     border: 1px solid CanvasText;
@@ -72,9 +68,7 @@ $tick-height: $iui-baseline; // 11px
   pointer-events: none;
   position: absolute;
   top: $iui-sm;
-  @include themed {
-    background-color: t(iui-color-foreground-primary);
-  }
+  background-color: var(--iui-color-foreground-primary);
   @media (forced-colors: active) {
     background-color: Highlight;
   }
@@ -95,9 +89,7 @@ $tick-height: $iui-baseline; // 11px
     align-items: center;
 
     &::before {
-      @include themed {
-        background-color: t(iui-color-background-4);
-      }
+      background-color: var(--iui-color-background-4);
       @media (forced-colors: active) {
         background-color: CanvasText;
       }
@@ -115,10 +107,8 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-thumb {
     cursor: not-allowed;
-    @include themed {
-      background-color: t(iui-color-background-4);
-      border-color: t(iui-color-background-4);
-    }
+    background-color: var(--iui-color-background-4);
+    border-color: var(--iui-color-background-4);
     @media (forced-colors: active) {
       background-color: GrayText;
       border-color: GrayText;
@@ -126,9 +116,7 @@ $tick-height: $iui-baseline; // 11px
   }
 
   .iui-slider-track {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-    }
+    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
     @media (forced-colors: active) {
       background-color: GrayText;
     }
@@ -138,9 +126,7 @@ $tick-height: $iui-baseline; // 11px
   .iui-slider-max,
   .iui-slider-tick {
     user-select: none;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
     @media (forced-colors: active) {
       color: GrayText;
     }

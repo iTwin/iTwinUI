@@ -14,9 +14,7 @@
   min-height: $iui-baseline * 5;
   padding: 0 $iui-m;
   user-select: none;
-  @include themed {
-    background-color: t(iui-color-background-3);
-  }
+  background-color: var(--iui-color-background-3);
 
   > .iui-left,
   > .iui-center,
@@ -31,9 +29,7 @@
   > .iui-center {
     justify-content: center;
     flex: 2 1;
-    @include themed {
-      color: t(iui-text-color);
-    }
+    color: var(--iui-text-color);
   }
 
   > .iui-right {
@@ -53,9 +49,7 @@
   justify-content: center;
   align-items: center;
   width: $iui-component-height;
-  @include themed {
-    color: t(iui-text-color-muted);
-  }
+  color: var(--iui-text-color-muted);
 
   &-small {
     width: $iui-component-height-small;

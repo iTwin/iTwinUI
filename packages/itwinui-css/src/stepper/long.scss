@@ -12,8 +12,6 @@
   .iui-steps-count {
     user-select: none;
     margin-right: $iui-s;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
   }
 }
