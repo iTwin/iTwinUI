@@ -6,18 +6,14 @@
 
 /// category must be one of: positive, negative, primary (informational), warning
 @mixin iui-toast-category($category) {
-  @include themed {
-    border-color: t(iui-color-foreground-#{$category});
-  }
+  border-color: var(--iui-color-foreground-#{$category});
 
   > .iui-message {
     @include iui-text-selection($category);
   }
 
   > .iui-status-area {
-    @include themed {
-      background-color: t(iui-color-background-#{$category});
-    }
+    background-color: var(--iui-color-background-#{$category});
   }
 
   > .iui-toast-anchor {

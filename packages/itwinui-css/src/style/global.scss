@@ -36,11 +36,8 @@ html {
 }
 
 .iui-body {
-  @include themed {
-    background-color: t(iui-color-background-2);
-    color: t(iui-text-color);
-  }
-
+  background-color: var(--iui-color-background-2);
+  color: var(--iui-text-color);
   font-size: $iui-font-size;
   line-height: $iui-line-height;
 

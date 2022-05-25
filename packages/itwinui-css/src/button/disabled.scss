@@ -5,9 +5,7 @@
 
 @mixin iui-button-disabled {
   cursor: not-allowed;
-  @include themed {
-    background: t(iui-color-background-disabled);
-    border-color: t(iui-color-background-disabled);
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-5));
-  }
+  background: var(--iui-color-background-disabled);
+  border-color: var(--iui-color-background-disabled);
+  color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
 }

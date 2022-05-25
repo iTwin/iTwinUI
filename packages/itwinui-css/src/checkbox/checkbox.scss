@@ -13,10 +13,7 @@
     user-select: none;
     position: relative;
     cursor: pointer;
-    @include themed {
-      color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-    }
-
+    color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
     gap: $iui-s;
 
     // #region flex gap fallback
@@ -56,21 +53,15 @@
     }
 
     &.iui-positive {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
+      color: var(--iui-color-foreground-positive);
     }
 
     &.iui-warning {
-      @include themed {
-        color: t(iui-color-foreground-warning);
-      }
+      color: var(--iui-color-foreground-warning);
     }
 
     &.iui-negative {
-      @include themed {
-        color: t(iui-color-foreground-negative);
-      }
+      color: var(--iui-color-foreground-negative);
     }
   }
 

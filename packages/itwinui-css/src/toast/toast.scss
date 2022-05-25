@@ -13,11 +13,9 @@
   margin: 0 $iui-m $iui-baseline $iui-m;
   min-height: $iui-baseline * 4;
   border-radius: $iui-border-radius;
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border: 1px solid t(iui-color-foreground-body);
-    box-shadow: 0 0 0 1px rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4)), $iui-elevation-24;
-  }
+  background-color: var(--iui-color-background-1);
+  border: 1px solid var(--iui-color-foreground-body);
+  box-shadow: 0 0 0 1px rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4)), $iui-elevation-24;
 
   > .iui-status-area {
     display: flex;
@@ -26,16 +24,12 @@
     align-items: center;
     width: $iui-l * 2;
     flex-shrink: 0;
-    @include themed {
-      background-color: t(iui-color-background-5);
-    }
+    background-color: var(--iui-color-background-5);
 
     > .iui-icon {
       height: $iui-icons-default;
       width: $iui-icons-default;
-      @include themed {
-        fill: t(iui-color-foreground-accessory);
-      }
+      fill: var(--iui-color-foreground-accessory);
     }
   }
 
@@ -49,9 +43,7 @@
     line-height: $iui-line-height;
     font-weight: $iui-font-weight-normal;
     font-style: normal;
-    @include themed {
-      color: t(iui-text-color);
-    }
+    color: var(--iui-text-color);
   }
 
   &-anchor {

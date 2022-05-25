@@ -16,33 +16,24 @@
   @include iui-button-size(medium, borderless);
 
   &:hover {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-      border-color: transparent;
-    }
+    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+    border-color: transparent;
   }
 
   &.iui-active {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      color: t(iui-color-foreground-primary);
-    }
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    color: var(--iui-color-foreground-primary);
     border-color: transparent;
   }
 
   &[disabled],
   &:disabled {
     @include iui-button-disabled;
-
-    @include themed {
-      background-color: transparent;
-      border-color: transparent;
-    }
+    background-color: transparent;
+    border-color: transparent;
 
     &.iui-active {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
-      }
+      background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
     }
   }
 }

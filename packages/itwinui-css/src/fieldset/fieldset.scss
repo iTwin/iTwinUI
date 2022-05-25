@@ -6,29 +6,23 @@
   @include iui-reset;
   padding: $iui-baseline $iui-sm;
   border-radius: $iui-border-radius;
-  @include themed {
-    border: 1px solid t(iui-color-background-border);
-    background-color: t(iui-color-background-1);
-  }
+  border: 1px solid var(--iui-color-background-border);
+  background-color: var(--iui-color-background-1);
 
   legend {
     font-size: $iui-font-size-leading;
     padding: $iui-component-padding-vertical-small $iui-s;
     border-radius: $iui-border-radius;
     user-select: none;
-    @include themed {
-      background-color: t(iui-color-background-4);
-      color: t(iui-text-color);
-    }
+    background-color: var(--iui-color-background-4);
+    color: var(--iui-text-color);
   }
 
   &[disabled] {
     cursor: not-allowed;
 
     legend {
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+      color: var(--iui-text-color-muted);
     }
   }
 }

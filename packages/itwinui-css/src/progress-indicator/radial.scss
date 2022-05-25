@@ -9,10 +9,7 @@
   box-sizing: border-box;
   height: 100%;
   width: 100%;
-
-  @include themed {
-    color: t(iui-color-foreground-primary);
-  }
+  color: var(--iui-color-foreground-primary);
 
   &::after {
     position: relative;
@@ -25,10 +22,7 @@
     border-radius: 100%;
     background-color: transparent;
     animation: dash $iui-speed-slow linear infinite;
-
-    @include themed {
-      border-bottom-color: t(iui-color-background-border);
-    }
+    border-bottom-color: var(--iui-color-background-border);
   }
 
   @keyframes dash {
@@ -52,17 +46,13 @@
     width: 100%;
 
     > circle.iui-fill {
-      @include themed {
-        stroke: t(iui-color-foreground-primary);
-      }
+      stroke: var(--iui-color-foreground-primary);
       fill: none;
       stroke-width: 3.2;
     }
 
     > circle.iui-track {
-      @include themed {
-        stroke: t(iui-color-background-5);
-      }
+      stroke: var(--iui-color-background-5);
       fill: none;
       stroke-width: 3.2;
     }
@@ -87,81 +77,55 @@
       display: flex;
       width: $iui-icons-default;
       height: $iui-icons-default;
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
+      fill: var(--iui-icons-color-actionable);
 
       &:hover {
-        @include themed {
-          fill: t(iui-icons-color-actionable-hover);
-        }
+        fill: var(--iui-icons-color-actionable-hover);
       }
     }
   }
 
   &.iui-positive {
-    @include themed {
-      color: t(iui-color-foreground-positive);
-    }
+    color: var(--iui-color-foreground-positive);
 
     svg.iui-radial {
       circle.iui-fill,
       circle.iui-track {
-        @include themed {
-          stroke: t(iui-color-foreground-positive);
-        }
+        stroke: var(--iui-color-foreground-positive);
       }
     }
 
     .iui-inner-content svg {
-      @include themed {
-        fill: t(iui-icons-color-positive);
-      }
+      fill: var(--iui-icons-color-positive);
     }
 
     .iui-progress-indicator-radial-ie {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
+      color: var(--iui-color-foreground-positive);
 
       &::after {
         animation: none;
-
-        @include themed {
-          border-bottom-color: t(iui-color-foreground-positive);
-        }
+        border-bottom-color: var(--iui-color-foreground-positive);
       }
     }
   }
 
   &.iui-negative {
-    @include themed {
-      color: t(iui-color-foreground-negative);
-    }
+    color: var(--iui-color-foreground-negative);
 
     svg.iui-radial circle.iui-fill {
-      @include themed {
-        stroke: t(iui-color-foreground-negative);
-      }
+      stroke: var(--iui-color-foreground-negative);
     }
 
     .iui-inner-content svg {
-      @include themed {
-        fill: t(iui-icons-color-negative);
-      }
+      fill: var(--iui-icons-color-negative);
     }
 
     .iui-progress-indicator-radial-ie {
-      @include themed {
-        color: t(iui-color-foreground-negative);
-      }
+      color: var(--iui-color-foreground-negative);
 
       &::after {
         animation: none;
-
-        @include themed {
-          border-bottom-color: t(iui-color-foreground-negative);
-        }
+        border-bottom-color: var(--iui-color-foreground-negative);
       }
     }
   }

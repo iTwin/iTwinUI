@@ -3,7 +3,7 @@
 @import '../style/index';
 @import '../icon/index';
 
-$iui-active-outline: thin solid t(iui-color-foreground-primary);
+$iui-active-outline: thin solid var(--iui-color-foreground-primary);
 $iui-expander-inline-padding: $iui-component-offset + $iui-xxs + 1px; // margin + padding + border
 $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding * 2); // icon width + inline padding on both sides
 
@@ -94,45 +94,33 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
 
     &-caption {
       font-size: $iui-font-size-small;
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+      color: var(--iui-text-color-muted);
     }
   }
 
   &:hover {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-    }
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
 
     .iui-tree-node-content-caption {
-      @include themed {
-        color: t(iui-color-foreground-body);
-      }
+      color: var(--iui-color-foreground-body);
       transition: color $iui-speed-fast ease;
     }
   }
 
   &.iui-active {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
-      outline: $iui-active-outline;
-      outline-offset: -1px;
-    }
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
+    outline: $iui-active-outline;
+    outline-offset: -1px;
   }
 
   &.iui-disabled {
     cursor: not-allowed;
     outline: none;
     background-color: transparent;
-    @include themed {
-      color: t(iui-text-color-placeholder);
-    }
+    color: var(--iui-text-color-placeholder);
 
     .iui-tree-node-content-caption {
-      @include themed {
-        color: t(iui-text-color-placeholder);
-      }
+      color: var(--iui-text-color-placeholder);
     }
   }
 }

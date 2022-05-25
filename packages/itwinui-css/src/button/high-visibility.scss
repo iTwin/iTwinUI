@@ -7,21 +7,15 @@
 
 @mixin iui-button-high-visibility {
   --_iui-button-text-color: var(--iui-color-foreground-accessory);
-
-  @include themed {
-    background-color: t(iui-color-background-primary);
-    border-color: t(iui-color-background-primary);
-    color: t(iui-color-foreground-accessory);
-  }
+  background-color: var(--iui-color-background-primary);
+  border-color: var(--iui-color-background-primary);
   color: var(--_iui-button-text-color);
   @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px, $thickness: 1px);
 
   &:hover,
   &:active {
-    @include themed {
-      background-color: t(iui-color-background-primary-overlay);
-      border-color: t(iui-color-background-primary-overlay);
-    }
+    background-color: var(--iui-color-background-primary-overlay);
+    border-color: var(--iui-color-background-primary-overlay);
   }
 
   &[disabled],

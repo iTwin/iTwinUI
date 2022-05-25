@@ -34,14 +34,12 @@
 
   &.iui-selected {
     @include iui-focus($offset: 0, $thickness: $iui-xs);
-    @include themed() {
-      outline: solid 2px t(iui-color-foreground-primary);
-      background: linear-gradient(
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-      ),
-        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-    }
+    outline: solid 2px var(--iui-color-foreground-primary);
+    background: linear-gradient(
+      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+    ),
+      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
   }
 
   &.iui-actionable {
@@ -71,9 +69,7 @@
       height: $iui-baseline * 10;
       flex: 1;
       border-bottom: none;
-      @include themed() {
-        border-right: 1px solid t(iui-color-background-border);
-      }
+      border-right: 1px solid var(--iui-color-background-border);
     }
 
     .iui-tile-content {
@@ -133,9 +129,7 @@
     font-size: $iui-font-size-leading;
     user-select: all;
     margin-bottom: $iui-baseline * 0.5;
-    @include themed() {
-      color: t(iui-text-color);
-    }
+    color: var(--iui-text-color);
   }
 
   .iui-tile-status-icon {
@@ -156,9 +150,7 @@
     height: 100%;
     max-height: $iui-baseline * 6;
     @include iui-line-clamp(3);
-    @include themed() {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
   }
 
   .iui-tile-metadata {
@@ -171,9 +163,7 @@
     display: flex;
     align-items: center;
     margin-top: auto;
-    @include themed() {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
 
     > svg,
     .iui-tile-metadata-icon {
@@ -199,10 +189,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  @include themed() {
-    background-color: t(iui-color-background-1-overlay);
-    border-bottom: 1px solid t(iui-color-background-border);
-  }
+  background-color: var(--iui-color-background-1-overlay);
+  border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-thumbnail-icon {
     @include iui-icons-3xl;
@@ -230,15 +218,11 @@
     @media (prefers-reduced-motion: no-preference) {
       transition: fill $iui-speed-fast ease;
     }
-    @include themed() {
-      fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
-      filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
-    }
+    fill: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-3));
+    filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));
 
     &:hover {
-      @include themed() {
-        fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
-      }
+      fill: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-2));
     }
   }
 
@@ -247,24 +231,18 @@
     @include iui-blur($opacity: 5);
 
     > .iui-button-icon {
-      @include themed() {
-        fill: t(iui-color-foreground-accessory);
-        filter: drop-shadow(0 2px 1px rgba(0, 0, 0, t(iui-opacity-5)));
-      }
+      fill: var(--iui-color-foreground-accessory);
+      filter: drop-shadow(0 2px 1px rgba(0, 0, 0, var(--iui-opacity-5)));
     }
 
     &:hover,
     &.iui-active:enabled,
     &.iui-active:enabled:hover,
     &.iui-active:active {
-      @include themed() {
-        background-color: rgba(0, 0, 0, t(iui-opacity-4));
-      }
+      background-color: rgba(0, 0, 0, var(--iui-opacity-4));
 
       .iui-button-icon {
-        @include themed() {
-          fill: t(iui-color-foreground-accessory);
-        }
+        fill: var(--iui-color-foreground-accessory);
       }
     }
   }
@@ -324,17 +302,13 @@
 
     &,
     &:hover {
-      @include themed() {
-        border-top: 1px solid t(iui-color-background-border);
-        border-color: t(iui-color-background-border);
-      }
+      border-top: 1px solid var(--iui-color-background-border);
+      border-color: var(--iui-color-background-border);
     }
   }
 
   > button:not(:last-child) {
-    @include themed() {
-      border-right: 1px solid t(iui-color-background-border);
-    }
+    border-right: 1px solid var(--iui-color-background-border);
   }
 }
 
