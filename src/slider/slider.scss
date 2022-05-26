@@ -3,7 +3,7 @@
 @import '../style/index';
 @import '../icon/index';
 
-$thumb-height: $iui-m; // 16px
+$thumb-height: $iui-m + $iui-xxs; // 18px to account for border
 $track-height: $iui-xs; // 4px
 $tick-height: $iui-baseline; // 11px
 

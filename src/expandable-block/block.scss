@@ -8,7 +8,7 @@
   @include iui-reset;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  // box-sizing: border-box;
   width: 100%;
   @include themed {
     background-color: t(iui-color-background-1);
@@ -20,7 +20,7 @@
     align-items: center;
     padding: $iui-baseline $iui-sm;
     cursor: pointer;
-    box-sizing: border-box;
+    // box-sizing: border-box;
     user-select: none;
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color $iui-speed-fast ease-out;
@@ -90,7 +90,7 @@
 
   .iui-expandable-content {
     overflow: hidden;
-    box-sizing: border-box;
+    // box-sizing: border-box;
 
     @include themed {
       border-bottom: 1px solid t(iui-color-background-4);

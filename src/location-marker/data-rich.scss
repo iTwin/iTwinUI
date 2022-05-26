@@ -14,7 +14,7 @@
     font-size: $iui-font-size-leading;
     padding: round($iui-baseline * 0.25) $iui-s;
     filter: drop-shadow($iui-elevation-2);
-    box-sizing: border-box;
+    // box-sizing: border-box;
     position: relative;
 
     @include themed {

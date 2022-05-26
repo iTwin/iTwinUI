@@ -37,10 +37,9 @@
 @mixin iui-dialog {
   border-radius: $iui-border-radius;
   box-shadow: $iui-elevation-24;
-  box-sizing: border-box;
+  // box-sizing: border-box;
   position: absolute;
   padding: $iui-baseline $iui-m;
-  box-sizing: border-box;
   padding: $iui-baseline $iui-m;
   overflow: hidden;
   @include themed {
@@ -156,7 +155,7 @@
   align-items: center;
   margin-bottom: $iui-baseline;
   justify-content: space-between;
-  box-sizing: border-box;
+  // box-sizing: border-box;
   font-size: $iui-font-size-subheading;
 
   @at-root .iui-dialog-draggable & {

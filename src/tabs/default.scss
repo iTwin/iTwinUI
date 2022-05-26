@@ -9,7 +9,7 @@
   .iui-tab {
     height: $iui-component-height;
     padding: 0 $iui-m;
-    box-sizing: border-box;
+    // box-sizing: border-box;
     @include themed {
       background-color: t(iui-color-background-2);
       border: 1px solid t(iui-color-background-5);

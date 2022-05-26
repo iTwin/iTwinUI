@@ -65,7 +65,7 @@
         text-align: right;
         display: inline-block;
         padding: 0 $iui-s;
-        width: $iui-l;
+        width: $iui-xl * 1.25;
 
         @include themed {
           background-color: t(iui-color-background-2);

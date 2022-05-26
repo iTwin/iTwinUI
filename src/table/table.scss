@@ -10,9 +10,9 @@
   flex-direction: column;
   isolation: isolate;
 
-  * {
-    box-sizing: border-box;
-  }
+  // * {
+  //   box-sizing: border-box;
+  // }
 
   @include iui-table-cell-icon;
 }
