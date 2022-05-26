@@ -57,13 +57,14 @@
   }
 
   &.iui-collapsed {
-    min-width: $iui-icons-large * 3;
-    max-width: $iui-icons-large * 3;
+    // `+ 1px` in the following widths accounts for the width of the border
+    min-width: $iui-icons-large * 3 + 1px;
+    max-width: $iui-icons-large * 3 + 1px;
 
     // iPhone notch support
     @supports (min-width: unquote('max(0px)')) {
-      min-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
-      max-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
+      min-width: unquote('max(#{$iui-icons-large} * 3  + 1px, #{$iui-icons-large} * 3 + env(safe-area-inset-left) + 1px)');
+      max-width: unquote('max(#{$iui-icons-large} * 3  + 1px, #{$iui-icons-large} * 3 + env(safe-area-inset-left) + 1px)');
     }
   }
 
@@ -150,7 +151,6 @@
   min-width: $iui-3xl * 2;
   max-width: 50vw;
   height: 100%;
-  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
   overflow-y: overlay;
@@ -170,7 +170,6 @@
   &-content {
     padding: 0 $iui-sm $iui-baseline;
     flex-shrink: 0;
-    box-sizing: border-box;
   }
 
   &-header {

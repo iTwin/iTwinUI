@@ -15,7 +15,6 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   --iui-color-picker-selected-color: initial;
 
   @include iui-surface;
-  box-sizing: border-box;
   border-radius: $iui-border-radius;
   display: inline-flex;
   padding: $iui-baseline $iui-sm;

@@ -46,7 +46,6 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
   &-content {
     display: flex;
     align-items: center;
-    box-sizing: border-box;
     min-height: $iui-baseline * 3;
     margin-left: calc(#{$iui-expander-button-width} * (var(--level, 0)));
     overflow: hidden;
