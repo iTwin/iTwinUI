@@ -8,11 +8,17 @@
   height: $size;
 
   @if ($size == $iui-icons-xl) {
-    --_iui-avatar-status-size: #{$iui-xs * 1.5};
+    --_iui-avatar-status-icon-size: #{$iui-xs * 1.5};
+    --_iui-avatar-status-bubble-size: #{$iui-sm};
+  } @else if ($size == $iui-icons-large) {
+    --_iui-avatar-status-icon-size: #{$iui-xs};
+    --_iui-avatar-status-bubble-size: #{$iui-s * 1.25};
   } @else if ($size == $iui-icons-xxl) {
-    --_iui-avatar-status-size: #{$iui-s};
+    --_iui-avatar-status-icon-size: #{$iui-s};
+    --_iui-avatar-status-bubble-size: #{$iui-m};
   } @else {
-    --_iui-avatar-status-size: #{$iui-sm};
+    --_iui-avatar-status-icon-size: #{$iui-sm};
+    --_iui-avatar-status-bubble-size: #{$iui-m * 1.25};
   }
 
   > .iui-initials {

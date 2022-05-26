@@ -22,7 +22,7 @@
 @mixin iui-radio-tile-content {
   width: $iui-xl * 5;
   height: 100%;
-  box-sizing: border-box;
+  // box-sizing: border-box;
   padding: $iui-s;
   position: relative;
   z-index: 1;

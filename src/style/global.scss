@@ -33,6 +33,14 @@ html {
   &.iui-theme-dark-hc {
     @include theme-variables(dark-hc);
   }
+
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 .iui-body {

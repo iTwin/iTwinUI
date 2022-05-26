@@ -28,9 +28,9 @@ class ThemeButton extends HTMLElement {
         accent-color: var(--iui-color-foreground-primary);
         pointer-events: none;
       }
-      * {
-        box-sizing: border-box;
-      }
+      // * {
+      //   box-sizing: border-box;
+      // }
       .settings-root {
         display: grid;
         justify-items: end;
