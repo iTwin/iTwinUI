@@ -6,7 +6,6 @@
   @include iui-reset;
   display: inline-block;
   position: relative;
-  // box-sizing: border-box;
   height: 100%;
   width: 100%;
 
@@ -16,7 +15,6 @@
 
   &::after {
     position: relative;
-    // box-sizing: border-box;
     content: '';
     width: 100%;
     height: 100%;

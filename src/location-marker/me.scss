@@ -26,7 +26,6 @@
     top: $iui-icons-large * 0.25;
     left: $iui-icons-large * 0.25;
     border-radius: 50%;
-    // box-sizing: border-box;
 
     @include themed {
       border: 1px solid t(iui-color-foreground-accessory);

@@ -22,7 +22,6 @@
   &-item {
     width: 100%;
     flex-shrink: 0;
-    // box-sizing: border-box;
     scroll-snap-align: center;
   }
 }
@@ -31,7 +30,6 @@
   display: flex;
   align-items: center;
   height: $iui-baseline * 3;
-  // box-sizing: border-box;
   @include themed {
     border-top: $iui-xxs solid t(iui-color-background-4);
   }
@@ -78,7 +76,6 @@
       width: $iui-icons-small;
       height: $iui-icons-small;
       border-radius: 50%;
-      // box-sizing: border-box;
       border: 1px solid transparent;
       @include themed {
         background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));

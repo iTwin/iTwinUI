@@ -24,7 +24,6 @@
 @mixin iui-radio-tile-content {
   width: $iui-xl * 5;
   height: 100%;
-  // box-sizing: border-box;
   padding: $iui-s;
   position: relative;
   z-index: 1;
@@ -170,7 +169,7 @@
 
 @mixin iui-radio-tile-icon {
   width: $iui-icons-xl;
-  height: $iui-icons-xl;
+  height: $iui-icons-xl + round($iui-baseline * 0.5) + $iui-baseline; // 49px to account for padding
   display: block;
   margin: 0 auto;
   padding-top: round($iui-baseline * 0.5);

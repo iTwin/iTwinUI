@@ -66,7 +66,6 @@
     width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
     height: auto;
     border-radius: $iui-border-radius-round;
-    // box-sizing: border-box;
     transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
     background-color: var(--iui-color-background-1);
     border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
@@ -206,8 +205,8 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    width: $iui-toggle-switch-handle-size * 0.75;
-    height: $iui-toggle-switch-handle-size * 0.75;
+    width: $iui-toggle-switch-handle-size;
+    height: $iui-toggle-switch-handle-size;
     padding: $iui-toggle-switch-handle-size * 0.125;
     margin: $iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness;
     display: flex;
