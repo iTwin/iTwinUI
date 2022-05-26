@@ -29,8 +29,8 @@
     align-items: center;
     border-radius: 50%;
     display: flex;
-    width: $iui-l;
-    height: $iui-l;
+    width: $iui-l + $iui-xxs; // `+ $iui-xxs` accounts for border width
+    height: $iui-l + $iui-xxs; // `+ $iui-xxs` accounts for border width
     justify-content: center;
     overflow-wrap: break-word;
     user-select: none;
