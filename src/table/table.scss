@@ -189,7 +189,7 @@
     background-color: t(iui-color-background-1);
   }
 
-  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) {
+  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) .iui-cell {
     @include themed {
       background-color: rgba(t(iui-color-foreground-body-rgb), 0.02);
     }
