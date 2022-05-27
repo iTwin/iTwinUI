@@ -10,7 +10,7 @@
 ### Fixes
 
 * **InformationPanel:** Adjust `box-shadow` to look the same as elevation-4 ([#644](https://www.github.com/iTwin/iTwinUI/issues/644)) ([2a3d551](https://www.github.com/iTwin/iTwinUI/commit/2a3d551bf2ce76879aa9fdc63e4d884515577671))
-* **Table:** Improve wrapping of header actions ([#646](https://www.github.com/iTwin/iTwinUI/issues/646)) ([fb39515](https://www.github.com/iTwin/iTwinUI/commit/fb395152e2dd4e5fce452edab455f8850187b295))
+* **Table:** Improve responsive design by wrapping column actions when there is no space ([#646](https://www.github.com/iTwin/iTwinUI/issues/646)) ([fb39515](https://www.github.com/iTwin/iTwinUI/commit/fb395152e2dd4e5fce452edab455f8850187b295))
 
 ## [0.58.0](https://www.github.com/iTwin/iTwinUI/compare/v0.57.0...v0.58.0) (2022-05-11)
 
