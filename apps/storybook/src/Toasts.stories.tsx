@@ -13,6 +13,7 @@ export default {
     content: {
       description:
         'Content of the Toast message. Can be passed in as a string or a jsx element.',
+      type: { required: true, name: 'string' },
     },
     type: {
       options: ['persisting', 'temporary'],

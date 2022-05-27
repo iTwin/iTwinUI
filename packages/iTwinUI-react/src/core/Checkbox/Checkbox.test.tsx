@@ -204,7 +204,7 @@ it('renders correctly with visibility checkbox', () => {
 
 it.each(['', 'not'] as const)(
   'should %s stop propagation correctly if %s used with label',
-  (labelPresent) => {
+  async (labelPresent) => {
     const wrapperOnClick = jest.fn();
     const checkboxOnChange = jest.fn();
     const { container } = render(
@@ -220,7 +220,7 @@ it.each(['', 'not'] as const)(
     const checkboxComponent = container.querySelector(
       '.my-checkbox',
     ) as HTMLElement;
-    userEvent.click(checkboxComponent);
+    await userEvent.click(checkboxComponent);
 
     expect(checkboxOnChange).toBeCalled();
     if (labelPresent) {

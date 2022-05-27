@@ -135,7 +135,7 @@ it('should not render node if any parent above is not expanded', () => {
   expect(treeNodes[0].id).toBe('Node-1');
 });
 
-it('should handle arrow key navigation', () => {
+it('should handle arrow key navigation', async () => {
   const data = [
     {
       id: 'Node-1',
@@ -197,28 +197,28 @@ it('should handle arrow key navigation', () => {
   fireEvent.focus(tree);
 
   // Go Up: Stay on the first node
-  userEvent.keyboard('{ArrowUp}');
+  await userEvent.keyboard('{ArrowUp}');
   expect(document.activeElement?.id).toBe('Node-1');
 
   // Go Left: Do nothing
-  userEvent.keyboard('{ArrowUp}');
+  await userEvent.keyboard('{ArrowUp}');
   expect(document.activeElement?.id).toBe('Node-1');
   expect(onNodeExpanded).not.toHaveBeenCalled();
   expect(onNodeSelected).not.toHaveBeenCalled();
 
   // Go Down: Node-1 -> Node-3 (skip disabled node)
-  userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
   expect(document.activeElement?.id).toBe('Node-3');
 
   // Go Up: Node-3 -> Node-1 (skip disabled node)
-  userEvent.keyboard('{ArrowUp}');
+  await userEvent.keyboard('{ArrowUp}');
   expect(document.activeElement?.id).toBe('Node-1');
 
   // Go Down: Node-1 -> Node-3 (skip disabled node)
-  userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
 
   // Go Down: Node-3 -> Node-3-1
-  userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
   expect(document.activeElement?.id).toBe('Node-3-1');
 
   expect(
@@ -228,17 +228,17 @@ it('should handle arrow key navigation', () => {
   ).toEqual(['Node-3-1', 'Node-3-1-1']);
 
   // Go Right: Focus checkbox
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   expect((document.activeElement as HTMLInputElement)?.type).toBe('checkbox');
 
   // Go Right: Focus expander button
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   expect((document.activeElement as HTMLButtonElement)?.type).toContain(
     'button',
   );
 
   // Go Right: Do nothing
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   expect(
     container.querySelector('#Node-3-1')?.contains(document.activeElement),
   ).toBe(true);
@@ -246,49 +246,49 @@ it('should handle arrow key navigation', () => {
   expect(onNodeSelected).not.toHaveBeenCalled();
 
   // Go Down: Node-3-1 -> Node-3-1-2 (skip disabled sub-node)
-  userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
   expect(document.activeElement?.id).toBe('Node-3-1-2');
 
   // Go Right: Expand Node-3-1-1
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   expect(onNodeExpanded).toHaveBeenNthCalledWith(1, 'Node-3-1-2', true);
 
   // Go Down: Stay on the last node
-  userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
   expect(document.activeElement?.id).toBe('Node-3-1-2');
 
   // Go Left: Node-3-1-2 -> Node-3-1
-  userEvent.keyboard('{ArrowLeft}');
+  await userEvent.keyboard('{ArrowLeft}');
   expect(document.activeElement?.id).toBe('Node-3-1');
 
   // Go Left: Collapse Node-3-1
-  userEvent.keyboard('{ArrowLeft}');
+  await userEvent.keyboard('{ArrowLeft}');
   expect(onNodeExpanded).toHaveBeenNthCalledWith(2, 'Node-3-1', false);
 
   // Press Space: Select Node-3-1
-  userEvent.keyboard('{Enter}');
+  await userEvent.keyboard('{Enter}');
   expect(onNodeSelected).toHaveBeenNthCalledWith(1, 'Node-3-1', true);
 
   // Go Up: Node-3-1 -> Node-3
-  userEvent.keyboard('{ArrowUp}');
+  await userEvent.keyboard('{ArrowUp}');
 
   // Press Enter: Deselect Node-3
-  userEvent.keyboard('{Enter}');
+  await userEvent.keyboard('{Enter}');
   expect(onNodeSelected).toHaveBeenNthCalledWith(2, 'Node-3', false);
 
   // Go to last focusable element inside node - expander button
-  userEvent.keyboard('{ArrowRight}');
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   expect((document.activeElement as HTMLButtonElement)?.type).toContain(
     'button',
   );
 
   // Go Left: Focus checkbox
-  userEvent.keyboard('{ArrowLeft}');
+  await userEvent.keyboard('{ArrowLeft}');
   expect((document.activeElement as HTMLInputElement)?.type).toBe('checkbox');
 
   // Go Left: Focus Node-3
-  userEvent.keyboard('{ArrowLeft}');
+  await userEvent.keyboard('{ArrowLeft}');
   expect(document.activeElement?.id).toBe('Node-3');
 });
 

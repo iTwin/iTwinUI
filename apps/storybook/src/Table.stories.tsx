@@ -3,8 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
-import {
-  actions,
+import type {
   ActionType,
   CellProps,
   CellRendererProps,
@@ -13,6 +12,7 @@ import {
   TableInstance,
   TableState,
 } from 'react-table';
+import { actions } from 'react-table';
 import {
   Checkbox,
   Code,

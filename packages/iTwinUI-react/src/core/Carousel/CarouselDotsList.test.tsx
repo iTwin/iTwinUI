@@ -52,7 +52,7 @@ it('should render in its most basic state without Carousel', () => {
   });
 });
 
-it('should call onSlideChange correctly', () => {
+it('should call onSlideChange correctly', async () => {
   const mockOnSlideChange = jest.fn();
   const { container } = render(
     <CarouselDotsList
@@ -68,13 +68,13 @@ it('should call onSlideChange correctly', () => {
     container.querySelectorAll('.iui-carousel-navigation-dot'),
   );
 
-  userEvent.click(dots[0]);
+  await userEvent.click(dots[0]);
   expect(mockOnSlideChange).toHaveBeenCalledWith(0);
 
-  userEvent.click(dots[9]);
+  await userEvent.click(dots[9]);
   expect(mockOnSlideChange).toHaveBeenCalledWith(9);
 
-  userEvent.click(dots[5]);
+  await userEvent.click(dots[5]);
   expect(mockOnSlideChange).toHaveBeenCalledWith(5);
 });
 

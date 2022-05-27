@@ -6,8 +6,8 @@ import {
   screen,
   render,
   waitForElementToBeRemoved,
+  fireEvent,
 } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Wizard } from './Wizard';
 
@@ -234,15 +234,15 @@ describe('<Wizard />', () => {
 
     expect(document.querySelector('.iui-tooltip')).toBeNull();
     expect(screen.queryByText('Step one tooltip')).toBeNull();
-    userEvent.hover(screen.getByText('Step One'));
+    fireEvent.mouseEnter(screen.getByText('Step One'), { bubbles: true });
     const tooltip = document.querySelector('.iui-tooltip') as HTMLElement;
     expect(tooltip).toBeVisible();
     expect(tooltip).toHaveTextContent('Step one tooltip');
 
-    userEvent.unhover(screen.getByText('Step One'));
+    fireEvent.mouseLeave(screen.getByText('Step One'), { bubbles: true });
     await waitForElementToBeRemoved(tooltip);
 
-    userEvent.hover(screen.getByText('Step Three'));
+    fireEvent.mouseEnter(screen.getByText('Step Three'), { bubbles: true });
     expect(screen.queryByText('Step three tooltip')).toBeNull();
 
     jest.useRealTimers();

@@ -246,7 +246,8 @@ export const TablePaginator = (props: TablePaginatorProps) => {
 
   const hasNoRows = totalPagesCount === 0;
   const showPagesList = totalPagesCount > 1 || isLoading;
-  const showPageSizeList = pageSizeList && onPageSizeChange && !!totalRowsCount;
+  const showPageSizeList =
+    pageSizeList && !!onPageSizeChange && !!totalRowsCount;
 
   const ellipsis = (
     <span

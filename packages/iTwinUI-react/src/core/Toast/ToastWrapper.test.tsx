@@ -7,6 +7,7 @@ import { act, render } from '@testing-library/react';
 
 import { ToastWrapper, ToastWrapperHandle } from './ToastWrapper';
 import { ToastProps } from './Toast';
+import userEvent from '@testing-library/user-event';
 
 const mockToastObject1 = {
   category: 'informational',
@@ -45,7 +46,7 @@ it('should render toasts', () => {
   expect(toasts.item(1).textContent).toBe('mockText2');
 });
 
-it('should remove toast with close icon click', () => {
+it('should remove toast with close icon click', async () => {
   jest.useFakeTimers();
   const { container } = render(<ToastWrapper ref={ref} />);
   act(() => {
@@ -56,13 +57,16 @@ it('should remove toast with close icon click', () => {
 
   let toasts = container.querySelectorAll('.iui-toast');
   expect(toasts.length).toBe(2);
-  act(() => {
+  await act(async () => {
     const closeIcon = container.querySelector(
       '.iui-button[aria-label="Close"]',
     ) as HTMLButtonElement;
-    closeIcon.click();
+    const user = userEvent.setup({ delay: null });
+    await user.click(closeIcon);
   });
-  jest.advanceTimersByTime(400);
+  act(() => {
+    jest.advanceTimersByTime(400);
+  });
   toasts = container.querySelectorAll('.iui-toast');
   expect(toasts.length).toBe(1);
   jest.useRealTimers();

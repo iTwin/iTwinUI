@@ -24,7 +24,12 @@ export const useExpanderCell = <T extends Record<string, unknown>>(
       isDisabled: isRowDisabled,
     });
     return [
-      { ...expanderColumn, Cell: expanderCell ?? expanderColumn.Cell },
+      {
+        ...expanderColumn,
+        Cell: expanderCell
+          ? (cellProps: CellProps<T>) => <>{expanderCell(cellProps)}</>
+          : expanderColumn.Cell,
+      },
       ...columns,
     ];
   });

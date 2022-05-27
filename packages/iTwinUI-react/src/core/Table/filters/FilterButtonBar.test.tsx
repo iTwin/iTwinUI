@@ -78,7 +78,7 @@ it('should call callbacks on clicks', () => {
   expect(clearFilter).toHaveBeenCalled();
 });
 
-it('should consume the click event and stop its propagation', () => {
+it('should consume the click event and stop its propagation', async () => {
   const parentClick = jest.fn();
   render(
     <div onClick={parentClick}>
@@ -88,7 +88,7 @@ it('should consume the click event and stop its propagation', () => {
     </div>,
   );
 
-  userEvent.click(screen.getByText('Filter'));
-  userEvent.click(screen.getByText('Clear'));
+  await userEvent.click(screen.getByText('Filter'));
+  await userEvent.click(screen.getByText('Clear'));
   expect(parentClick).not.toHaveBeenCalled();
 });

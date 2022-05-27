@@ -3,10 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import Select, { SelectProps } from './Select';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import { MenuItem } from '../Menu';
+import userEvent from '@testing-library/user-event';
 
 function assertSelect(
   select: HTMLElement,
@@ -104,7 +105,7 @@ it('should show value with icon inside select', () => {
   assertSelect(select, { text: 'Test1', hasIcon: true });
 });
 
-it('should render disabled select', () => {
+it('should render disabled select', async () => {
   const mockedFn = jest.fn();
   const { container } = renderComponent({
     disabled: true,
@@ -115,7 +116,7 @@ it('should render disabled select', () => {
     '.iui-select-button.iui-disabled',
   ) as HTMLElement;
   expect(selectButton).toBeTruthy();
-  selectButton.click();
+  await userEvent.click(selectButton);
   expect(mockedFn).not.toHaveBeenCalled();
   expect(selectButton.getAttribute('tabIndex')).toBeNull();
   fireEvent.keyDown(selectButton, 'Spacebar');
@@ -230,12 +231,14 @@ it.each(['Enter', ' ', 'Spacebar'])(
     let menu = document.querySelector('.iui-menu') as HTMLUListElement;
     expect(menu).toBeFalsy();
 
-    fireEvent.keyDown(
-      select.querySelector('.iui-select-button') as HTMLElement,
-      {
-        key,
-      },
-    );
+    act(() => {
+      fireEvent.keyDown(
+        select.querySelector('.iui-select-button') as HTMLElement,
+        {
+          key,
+        },
+      );
+    });
     menu = document.querySelector('.iui-menu') as HTMLUListElement;
     assertMenu(menu);
   },
@@ -379,7 +382,7 @@ it.each(['small', 'large'] as const)(
   },
 );
 
-it('should render large SelectOption', () => {
+it('should render large SelectOption', async () => {
   const { container } = renderComponent({
     options: [...new Array(3)].map((_, index) => ({
       label: `Test${index}`,
@@ -391,7 +394,9 @@ it('should render large SelectOption', () => {
   const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
-  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
+  await userEvent.click(
+    select.querySelector('.iui-select-button') as HTMLElement,
+  );
 
   const menuItems = document.querySelectorAll('.iui-menu-item.iui-large');
   expect(menuItems.length).toEqual(3);

@@ -9,6 +9,7 @@ import { SplitButton, SplitButtonProps } from './SplitButton';
 import { MenuItem } from '../../Menu';
 import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
 import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
+import userEvent from '@testing-library/user-event';
 
 function renderComponent(
   onClick?: () => void,
@@ -41,23 +42,23 @@ it('should render in its most basic state', () => {
   expect(container.querySelector('.iui-button-icon')).toBeTruthy();
 });
 
-it('should fire onClick callback', () => {
+it('should fire onClick callback', async () => {
   const onClickMock = jest.fn();
   const { container } = renderComponent(onClickMock);
   expect(container.querySelector('.iui-button-split-menu')).toBeTruthy();
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
-  button.click();
+  await userEvent.click(button);
   expect(onClickMock).toHaveBeenCalledTimes(1);
 
   const dropdownButton = container.querySelectorAll(
     '.iui-button',
   )[1] as HTMLButtonElement;
-  dropdownButton.click();
+  await userEvent.click(dropdownButton);
   expect(onClickMock).toHaveBeenCalledTimes(1);
 });
 
-it('should update icon when menu opens or closes', () => {
+it('should update icon when menu opens or closes', async () => {
   const { container } = renderComponent();
   expect(container.querySelector('.iui-button-split-menu')).toBeTruthy();
   expect(container.querySelector('.iui-button')).toBeTruthy();
@@ -72,17 +73,17 @@ it('should update icon when menu opens or closes', () => {
   } = render(<SvgCaretDownSmall className='iui-button-icon' aria-hidden />);
   expect(container.querySelector('.iui-button-icon')).toEqual(downArrow);
 
-  dropdownButton.click();
+  await userEvent.click(dropdownButton);
   const {
     container: { firstChild: upArrow },
   } = render(<SvgCaretUpSmall className='iui-button-icon' aria-hidden />);
   expect(container.querySelector('.iui-button-icon')).toEqual(upArrow);
 
-  dropdownButton.click();
+  await userEvent.click(dropdownButton);
   expect(container.querySelector('.iui-button-icon')).toEqual(downArrow);
 });
 
-it('should work with menu items', () => {
+it('should work with menu items', async () => {
   const { container } = renderComponent();
   expect(container.querySelector('.iui-button-split-menu')).toBeTruthy();
 
@@ -92,7 +93,7 @@ it('should work with menu items', () => {
   const dropdownButton = container.querySelectorAll(
     '.iui-button',
   )[1] as HTMLButtonElement;
-  dropdownButton.click();
+  await userEvent.click(dropdownButton);
 
   menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeTruthy();
@@ -102,12 +103,12 @@ it('should work with menu items', () => {
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   const menuItem = menu.querySelector('li') as HTMLLIElement;
   expect(menuItem).toBeTruthy();
-  menuItem.click();
+  await userEvent.click(menuItem);
 
   expect(tippy).not.toBeVisible();
 });
 
-it('should support polymorphic `as` prop', () => {
+it('should support polymorphic `as` prop', async () => {
   const { container } = render(
     <SplitButton
       as='a'
@@ -138,6 +139,6 @@ it('should support polymorphic `as` prop', () => {
 
   expect(document.querySelector('.iui-menu')).toBeFalsy();
   const dropdownButton = splitMenu.querySelector('button') as HTMLButtonElement;
-  dropdownButton.click();
+  await userEvent.click(dropdownButton);
   expect(document.querySelector('.iui-menu')).toBeVisible();
 });

@@ -177,11 +177,11 @@ export const Toast = (props: ToastProps) => {
       in={visible}
       appear={true}
       unmountOnExit={true}
-      onEnter={(node) => {
+      onEnter={(node: HTMLElement) => {
         node.style.transform = 'translateY(15%)';
         node.style.transitionTimingFunction = 'ease';
       }}
-      onEntered={(node) => {
+      onEntered={(node: HTMLElement) => {
         node.style.transform = 'translateY(0)';
       }}
       onExiting={(node) => {

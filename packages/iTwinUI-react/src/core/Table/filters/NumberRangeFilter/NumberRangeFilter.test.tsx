@@ -45,7 +45,8 @@ it('should render correctly with set filter value', () => {
   const { container } = renderComponent({
     column: {
       filterValue: [1, 3],
-    } as HeaderGroup,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as HeaderGroup<any>,
   });
 
   const labeledInputs = container.querySelectorAll(

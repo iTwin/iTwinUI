@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { getContainer } from '../utils';
+import * as ReactDOM from 'react-dom';
+import { getContainer, getDocument } from '../utils';
 import { ToastCategory, ToastProps } from './Toast';
 import { ToastWrapper, ToastWrapperHandle } from './ToastWrapper';
 
@@ -49,22 +49,42 @@ export default class Toaster {
 
   // Create container on demand.
   // Cannot do it in constructor, because SSG/SSR apps would fail.
-  private asyncInit = new Promise<void>((resolve) => {
+  private asyncInit = async () => {
     if (this.isInitialized) {
-      resolve();
       return;
     }
-    const container = getContainer(TOASTS_CONTAINER_ID);
+
+    const container = getContainer(TOASTS_CONTAINER_ID) ?? getDocument()?.body;
     if (!container) {
-      // should never happen
-      resolve();
       return;
     }
     this.isInitialized = true;
 
-    ReactDOM.render(<ToastWrapper ref={this.toastsRef} />, container);
-    resolve();
-  });
+    const toastWrapper = <ToastWrapper ref={this.toastsRef} />;
+
+    const _ReactDOM = ReactDOM as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+
+    // v18 mode
+    if (_ReactDOM.createRoot) {
+      const _ReactDOMInternals =
+        _ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+
+      // suppress warning about importing createRoot from react-dom/client
+      if (_ReactDOMInternals) {
+        _ReactDOMInternals.usingClientEntryPoint = true;
+      }
+
+      const root = _ReactDOM.createRoot(container);
+      root.render(toastWrapper);
+      // revert suppression, not to influence users app
+      if (_ReactDOMInternals) {
+        _ReactDOMInternals.usingClientEntryPoint = false;
+      }
+    } else {
+      // v17 and before
+      ReactDOM.render(toastWrapper, container);
+    }
+  };
 
   /**
    * Set global Toaster settings for toasts order and placement.
@@ -76,7 +96,7 @@ export default class Toaster {
       ? 'ascending'
       : 'descending';
     this.settings = newSettings;
-    this.asyncInit.then(() => {
+    this.asyncInit().then(() => {
       this.toastsRef.current?.setPlacement(this.settings.placement ?? 'top');
     });
   }
@@ -129,7 +149,7 @@ export default class Toaster {
   }
 
   private updateView() {
-    this.asyncInit.then(() => {
+    this.asyncInit().then(() => {
       this.toastsRef.current?.setToasts(this.toasts);
     });
   }

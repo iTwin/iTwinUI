@@ -71,7 +71,7 @@ it('should render in its most basic state', () => {
   });
 });
 
-it('should work with uncontrolled activeSlideIndex', () => {
+it('should work with uncontrolled activeSlideIndex', async () => {
   const { container } = render(
     <Carousel activeSlideIndex={1}>
       <Carousel.Slider>
@@ -88,7 +88,7 @@ it('should work with uncontrolled activeSlideIndex', () => {
   );
   expect(dots[1]).toHaveClass('iui-active');
 
-  userEvent.click(
+  await userEvent.click(
     container.querySelector(
       '.iui-carousel-navigation-left > .iui-button', // prev slide button (2 -> 1)
     ) as HTMLButtonElement,
@@ -97,7 +97,7 @@ it('should work with uncontrolled activeSlideIndex', () => {
   expect(dots[1]).not.toHaveClass('iui-active');
   expect(dots[0]).toHaveClass('iui-active');
 
-  userEvent.click(dots[2]); // 1 -> 3
+  await userEvent.click(dots[2]); // 1 -> 3
 
   expect(dots[0]).not.toHaveClass('iui-active');
   expect(dots[2]).toHaveClass('iui-active');
@@ -130,7 +130,7 @@ it('should work with controlled activeSlideIndex', () => {
   expect(dots[activeIndex]).toHaveClass('iui-active');
 });
 
-it('should handle keyboard navigation', () => {
+it('should handle keyboard navigation', async () => {
   const { container } = render(
     <Carousel>
       <Carousel.Slider>
@@ -150,30 +150,30 @@ it('should handle keyboard navigation', () => {
   expect(dots[0]).toHaveClass('iui-active');
 
   // focus carousel
-  userEvent.tab();
+  await userEvent.tab();
 
   // 0 -> 1
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   expect(dots[1]).toHaveClass('iui-active');
 
   // 1 -> 2
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   expect(dots[2]).toHaveClass('iui-active');
 
   // 2 -> 0
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   expect(dots[0]).toHaveClass('iui-active');
 
   // 0 -> 2
-  userEvent.keyboard('{ArrowLeft}');
+  await userEvent.keyboard('{ArrowLeft}');
   expect(dots[2]).toHaveClass('iui-active');
 
   // 2 -> 1
-  userEvent.keyboard('{ArrowLeft}');
+  await userEvent.keyboard('{ArrowLeft}');
   expect(dots[1]).toHaveClass('iui-active');
 });
 
-it('should add data-pressed to prev/next buttons on key down', () => {
+it('should add data-pressed to prev/next buttons on key down', async () => {
   const { container } = render(
     <Carousel>
       <Carousel.Slider>
@@ -196,19 +196,19 @@ it('should add data-pressed to prev/next buttons on key down', () => {
     '.iui-carousel-navigation-right > button',
   );
 
-  userEvent.tab();
+  await userEvent.tab();
 
   // 0 -> 1
-  const keyState1 = userEvent.keyboard('{ArrowRight>}');
+  const keyState1 = await userEvent.keyboard('{ArrowRight>}');
   expect(next).toHaveAttribute('data-pressed', 'true');
-  userEvent.keyboard('{/ArrowRight}', { keyboardState: keyState1 });
+  await userEvent.keyboard('{/ArrowRight}', { keyboardState: keyState1 });
   expect(next).not.toHaveAttribute('data-pressed');
   expect(dots[1]).toHaveClass('iui-active');
 
   // 0 -> 1
-  const keyState2 = userEvent.keyboard('{ArrowLeft>}');
+  const keyState2 = await userEvent.keyboard('{ArrowLeft>}');
   expect(prev).toHaveAttribute('data-pressed', 'true');
-  userEvent.keyboard('{/ArrowLeft}', { keyboardState: keyState2 });
+  await userEvent.keyboard('{/ArrowLeft}', { keyboardState: keyState2 });
   expect(prev).not.toHaveAttribute('data-pressed');
   expect(dots[0]).toHaveClass('iui-active');
 });

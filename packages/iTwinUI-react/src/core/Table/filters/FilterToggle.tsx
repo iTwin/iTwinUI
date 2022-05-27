@@ -42,7 +42,8 @@ export const FilterToggle = <T extends Record<string, unknown>>(
     close();
   }, [close, column]);
 
-  const isColumnFiltered = column.filterValue != null && column.filterValue !== '';
+  const isColumnFiltered =
+    column.filterValue != null && column.filterValue !== '';
 
   return (
     <>

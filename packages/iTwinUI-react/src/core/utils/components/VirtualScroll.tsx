@@ -172,7 +172,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   // because before that calculations are not right
   const [isMounted, setIsMounted] = React.useState(false);
 
-  const onResize = React.useCallback(({ height }) => {
+  const onResize = React.useCallback(({ height }: DOMRectReadOnly) => {
     // Initial value returned by resize observer is 0
     // So wait for the next one
     if (height > 0) {

@@ -102,7 +102,7 @@ it('should render menu with custom style', () => {
   expect(menu.style.color).toEqual('red');
 });
 
-it('should be mounted lazily', () => {
+it('should be mounted lazily', async () => {
   let content: unknown;
   renderComponent({
     onCreate: (i) => {
@@ -114,39 +114,39 @@ it('should be mounted lazily', () => {
   });
   expect((content as Element).children.length).toBe(0);
 
-  screen.getByText('Click here').click();
+  await userEvent.click(screen.getByText('Click here'));
   expect((content as Element).children.length).toBe(1);
 });
 
-it('should focus target after hide', () => {
+it('should focus target after hide', async () => {
   const { container } = renderComponent();
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
 
-  button.click();
+  await userEvent.click(button);
   expect(document.activeElement).not.toEqual(button);
 
-  button.click();
+  await userEvent.click(button);
   expect(document.activeElement).toEqual(button);
 });
 
-it('should close menu on pressing escape or tab key', () => {
+it('should close menu on pressing escape or tab key', async () => {
   const { container } = renderComponent();
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
-  userEvent.click(button);
+  await userEvent.click(button);
 
   let menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertBaseElement(menu);
 
   expect(menu).toBeVisible();
-  userEvent.keyboard('{Escape}');
+  await userEvent.keyboard('{Escape}');
   expect(menu).not.toBeVisible();
 
-  userEvent.click(button);
+  await userEvent.click(button);
   menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeVisible();
 
-  userEvent.tab();
+  await userEvent.tab();
   expect(menu).not.toBeVisible();
 });

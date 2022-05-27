@@ -46,7 +46,7 @@ export const useOverflow = <T extends HTMLElement>(
   const [containerSize, setContainerSize] = React.useState<number>(0);
   const previousContainerSize = React.useRef<number>(0);
   const updateContainerSize = React.useCallback(
-    ({ width, height }) =>
+    ({ width, height }: DOMRectReadOnly) =>
       setContainerSize(orientation === 'horizontal' ? width : height),
     [orientation],
   );

@@ -9,6 +9,7 @@ import {
   ComboBoxActionContext,
   ComboBoxRefsContext,
 } from './helpers';
+import type { Instance, Props } from 'tippy.js';
 
 type ComboBoxDropdownProps = PopoverProps & { children: JSX.Element };
 
@@ -31,7 +32,7 @@ export const ComboBoxDropdown = React.forwardRef(
         placement='bottom-start'
         visible={isOpen}
         onClickOutside={React.useCallback(
-          (_, { target }) => {
+          (_: Instance<Props>, { target }: Event) => {
             if (!toggleButtonRef.current?.contains(target as Element)) {
               dispatch(['close']);
             }

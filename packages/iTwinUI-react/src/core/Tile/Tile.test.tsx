@@ -10,6 +10,7 @@ import { Badge } from '../Badge';
 import { Button, IconButton } from '../Buttons';
 import { MenuItem } from '../Menu';
 import SvgPlaceholder from '@itwin/itwinui-icons-react/cjs/icons/Placeholder';
+import userEvent from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {
   const { container } = render(<Tile name='test-name' />);
@@ -163,7 +164,7 @@ it('should work with icons correctly', () => {
   expect(onClickMock).toBeCalledWith('right');
 });
 
-it('should render options dropdown correctly', () => {
+it('should render options dropdown correctly', async () => {
   const onClickMock = jest.fn();
   const { container } = render(
     <Tile
@@ -186,7 +187,7 @@ it('should render options dropdown correctly', () => {
     '.iui-tile-more-options',
   ) as HTMLButtonElement;
   expect(menuButton).toBeTruthy();
-  menuButton.click();
+  await userEvent.click(menuButton);
 
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeTruthy();
@@ -195,7 +196,7 @@ it('should render options dropdown correctly', () => {
   const menuItem = menu.querySelector('li') as HTMLLIElement;
   expect(menuItem).toBeTruthy();
   expect(menuItem.textContent).toBe('Item 1');
-  menuItem.click();
+  await userEvent.click(menuItem);
   expect(onClickMock).toBeCalledWith('v1');
 });
 

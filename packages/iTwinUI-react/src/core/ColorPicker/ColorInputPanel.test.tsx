@@ -3,12 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { ColorPicker } from './ColorPicker';
 import { ColorInputPanel } from './ColorInputPanel';
 import { ColorValue } from '../utils';
+import userEvent from '@testing-library/user-event';
 
-it('should render ColorInputPanel with input fields', () => {
+it('should render ColorInputPanel with input fields', async () => {
   const { container } = render(
     <ColorPicker>
       <ColorInputPanel defaultColorFormat='hex' />
@@ -33,20 +34,20 @@ it('should render ColorInputPanel with input fields', () => {
   ) as HTMLButtonElement;
   expect(swapButton).toBeTruthy();
 
-  swapButton.click();
+  await userEvent.click(swapButton);
   expect(element.textContent).toBe('HSL');
   expect(container.querySelectorAll('.iui-input-container').length).toBe(3);
 
-  swapButton.click();
+  await userEvent.click(swapButton);
   expect(element.textContent).toBe('RGB');
   expect(container.querySelectorAll('.iui-input-container').length).toBe(3);
 
-  swapButton.click();
+  await userEvent.click(swapButton);
   expect(element.textContent).toBe('HEX');
   expect(container.querySelectorAll('.iui-input-container').length).toBe(1);
 });
 
-it('should render ColorInputPanel with input fields with alpha', () => {
+it('should render ColorInputPanel with input fields with alpha', async () => {
   const { container } = render(
     <ColorPicker showAlpha={true}>
       <ColorInputPanel defaultColorFormat='hex' />
@@ -71,20 +72,20 @@ it('should render ColorInputPanel with input fields with alpha', () => {
   ) as HTMLButtonElement;
   expect(swapButton).toBeTruthy();
 
-  swapButton.click();
+  await userEvent.click(swapButton);
   expect(element.textContent).toBe('HSLA');
   expect(container.querySelectorAll('.iui-input-container').length).toBe(4);
 
-  swapButton.click();
+  await userEvent.click(swapButton);
   expect(element.textContent).toBe('RGBA');
   expect(container.querySelectorAll('.iui-input-container').length).toBe(4);
 
-  swapButton.click();
+  await userEvent.click(swapButton);
   expect(element.textContent).toBe('HEX');
   expect(container.querySelectorAll('.iui-input-container').length).toBe(1);
 });
 
-it('should only show allowed color formats on input panel', () => {
+it('should only show allowed color formats on input panel', async () => {
   const { container } = render(
     <ColorPicker>
       <ColorInputPanel
@@ -108,10 +109,10 @@ it('should only show allowed color formats on input panel', () => {
   ) as HTMLButtonElement;
   expect(swapButton).toBeTruthy();
 
-  swapButton.click();
+  await userEvent.click(swapButton);
   expect(element.textContent).toBe('HSL');
 
-  swapButton.click();
+  await userEvent.click(swapButton);
   expect(element.textContent).toBe('HEX');
 });
 
@@ -349,9 +350,11 @@ it('should handle hex input change with lose focus', () => {
 
   const input = container.querySelectorAll('input')[0] as HTMLInputElement;
   expect(input).toBeTruthy();
-  input.focus();
-  fireEvent.change(input, { target: { value: '#FF6200' } });
-  input.blur();
+  act(() => {
+    input.focus();
+    fireEvent.change(input, { target: { value: '#FF6200' } });
+    input.blur();
+  });
   expect(handleOnChange).toHaveBeenCalledTimes(1);
 });
 
@@ -373,15 +376,17 @@ it('should NOT handle hsl input change with lose focus', () => {
   expect(l).toBeTruthy();
   expect(a).toBeTruthy();
 
-  h.focus();
-  fireEvent.change(h, { target: { value: '100' } });
-  s.focus();
-  fireEvent.change(s, { target: { value: '50' } });
-  l.focus();
-  fireEvent.change(l, { target: { value: '50' } });
-  a.focus();
-  fireEvent.change(a, { target: { value: '.50' } });
-  a.blur();
+  act(() => {
+    h.focus();
+    fireEvent.change(h, { target: { value: '100' } });
+    s.focus();
+    fireEvent.change(s, { target: { value: '50' } });
+    l.focus();
+    fireEvent.change(l, { target: { value: '50' } });
+    a.focus();
+    fireEvent.change(a, { target: { value: '.50' } });
+    a.blur();
+  });
   const hslColorValue = ColorValue.create({ h: 100, s: 50, l: 50, a: 0.5 });
   expect(handleOnChange).toHaveBeenCalledWith(hslColorValue);
   expect(handleOnChange).toHaveBeenCalledTimes(1);
@@ -405,15 +410,17 @@ it('should NOT handle rgb input change with lose focus', () => {
   expect(b).toBeTruthy();
   expect(a).toBeTruthy();
 
-  r.focus();
-  fireEvent.change(r, { target: { value: '100' } });
-  g.focus();
-  fireEvent.change(g, { target: { value: '50' } });
-  b.focus();
-  fireEvent.change(b, { target: { value: '50' } });
-  a.focus();
-  fireEvent.change(a, { target: { value: '.50' } });
-  a.blur();
+  act(() => {
+    r.focus();
+    fireEvent.change(r, { target: { value: '100' } });
+    g.focus();
+    fireEvent.change(g, { target: { value: '50' } });
+    b.focus();
+    fireEvent.change(b, { target: { value: '50' } });
+    a.focus();
+    fireEvent.change(a, { target: { value: '.50' } });
+    a.blur();
+  });
   expect(handleOnChange).toHaveBeenCalledTimes(1);
 });
 

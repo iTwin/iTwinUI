@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import DatePickerInput, { DatePickerInputProps } from './DatePickerInput';
 
@@ -16,7 +17,7 @@ const renderComponent = (initialProps?: Partial<DatePickerInputProps>) => {
   return render(<DatePickerInput {...props} />);
 };
 
-it('should render correctly', () => {
+it('should render correctly', async () => {
   const { container } = renderComponent();
 
   const labeledInput = container.querySelector(
@@ -29,7 +30,7 @@ it('should render correctly', () => {
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
 
-  iconButton.click();
+  await userEvent.click(iconButton);
   const calendar = container.querySelector('.iui-date-picker');
   expect(calendar).toBeTruthy();
 });
@@ -81,7 +82,7 @@ it('should not call onChange with invalid value', () => {
   expect(onChange).not.toHaveBeenCalledWith();
 });
 
-it('should call onChange when selected day from calendar', () => {
+it('should call onChange when selected day from calendar', async () => {
   const onChange = jest.fn();
   const { container } = renderComponent({
     onChange,
@@ -92,18 +93,18 @@ it('should call onChange when selected day from calendar', () => {
     '.iui-input-icon.iui-button.iui-borderless',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
-  iconButton.click();
+  await userEvent.click(iconButton);
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy.style.visibility).toEqual('visible');
-  screen.getByText('7').click();
+  fireEvent.click(screen.getByText('7'));
 
   expect(tippy).not.toBeVisible();
   expect(document.activeElement).toEqual(iconButton);
   expect(onChange).toHaveBeenCalledWith(new Date(2021, 4, 7));
 });
 
-it('should call onChange with undefined when input field is cleared', () => {
+it('should call onChange with undefined when input field is cleared', async () => {
   const onChange = jest.fn();
   const { container } = renderComponent({
     onChange,
@@ -114,9 +115,9 @@ it('should call onChange with undefined when input field is cleared', () => {
     '.iui-input-icon.iui-button.iui-borderless',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
-  iconButton.click();
+  await userEvent.click(iconButton);
 
-  screen.getByText('7').click();
+  await userEvent.click(screen.getByText('7'));
   expect(onChange).toHaveBeenNthCalledWith(1, new Date(2021, 4, 7));
 
   const input = container.querySelector(

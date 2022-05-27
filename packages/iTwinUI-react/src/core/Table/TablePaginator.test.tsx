@@ -7,6 +7,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { TablePaginator, TablePaginatorProps } from './TablePaginator';
 import * as UseOverflow from '../utils/hooks/useOverflow';
 import * as UseContainerWidth from '../utils/hooks/useContainerWidth';
+import userEvent from '@testing-library/user-event';
 
 const renderComponent = (props?: Partial<TablePaginatorProps>) => {
   return render(
@@ -50,7 +51,7 @@ it('should render in its most basic form', () => {
   expect(container.querySelector('.iui-dropdown')).toBeFalsy();
 });
 
-it('should render currently visible rows info and page size selector', () => {
+it('should render currently visible rows info and page size selector', async () => {
   const onPageSizeChange = jest.fn();
   const pageSizeList = [10, 25, 50];
   const { container } = renderComponent({
@@ -69,7 +70,7 @@ it('should render currently visible rows info and page size selector', () => {
   expect(pageSizeSelector).toBeTruthy();
   expect(pageSizeSelector.textContent).toEqual('191-195 of 195');
 
-  pageSizeSelector.click();
+  await userEvent.click(pageSizeSelector);
   const pageSizeSelections = document.querySelectorAll('.iui-menu-item');
   expect(pageSizeSelections).toHaveLength(3);
   pageSizeSelections.forEach((el, index) => {
@@ -77,7 +78,7 @@ it('should render currently visible rows info and page size selector', () => {
     expect(el.classList.contains('iui-active')).toBe(index === 0);
   });
 
-  fireEvent.click(pageSizeSelections[1]);
+  await userEvent.click(pageSizeSelections[1]);
   expect(onPageSizeChange).toHaveBeenCalledWith(25);
 });
 
@@ -159,7 +160,7 @@ it('should render loading state when there is no data', () => {
   expect(container.querySelector('.iui-dropdown')).toBeFalsy();
 });
 
-it('should handle clicks', () => {
+it('should handle clicks', async () => {
   const onPageChange = jest.fn();
   const { container } = renderComponent({ currentPage: 5, onPageChange });
 
@@ -178,11 +179,11 @@ it('should handle clicks', () => {
   ) as HTMLButtonElement;
   expect(nextPageButton.disabled).toBe(false);
 
-  pages[10].click();
+  await userEvent.click(pages[10]);
   expect(onPageChange).toHaveBeenCalledWith(10);
-  previousPageButton.click();
+  await userEvent.click(previousPageButton);
   expect(onPageChange).toHaveBeenCalledWith(4);
-  nextPageButton.click();
+  await userEvent.click(nextPageButton);
   expect(onPageChange).toHaveBeenCalledWith(6);
 });
 
@@ -289,7 +290,7 @@ it('should render elements in small size', () => {
   expect(ellipsis).toHaveLength(2);
 });
 
-it('should render with custom localization', () => {
+it('should render with custom localization', async () => {
   jest
     .spyOn(UseContainerWidth, 'useContainerWidth')
     .mockImplementation(() => [jest.fn(), 2000]);
@@ -318,7 +319,7 @@ it('should render with custom localization', () => {
     container.querySelector('.iui-paginator-page-size-label'),
   ).toHaveTextContent('Items per test page');
 
-  pageSizeSelector.click();
+  await userEvent.click(pageSizeSelector);
   const pageSizeSelections = document.querySelectorAll('.iui-menu-item');
   expect(pageSizeSelections).toHaveLength(3);
   pageSizeSelections.forEach((el, index) => {

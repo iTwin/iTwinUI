@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { DatePicker } from './DatePicker';
 
@@ -63,7 +64,7 @@ it('should display today', () => {
   expect(day.textContent).toBe(today.getDate().toString());
 });
 
-it('should return selected date', () => {
+it('should return selected date', async () => {
   const onClick = jest.fn();
   const { container, getByText } = render(
     <DatePicker date={new Date(2020, 5, 5)} onChange={onClick} />,
@@ -72,7 +73,7 @@ it('should return selected date', () => {
   let selectedDay = container.querySelector(selectedDaySelector) as HTMLElement;
   expect(selectedDay.textContent).toBe('5');
   const day = getByText('15');
-  day.click();
+  await userEvent.click(day);
   expect(onClick).toHaveBeenCalledWith(new Date(2020, 5, 15));
   selectedDay = container.querySelector(selectedDaySelector) as HTMLElement;
   expect(selectedDay.textContent).toBe('15');
@@ -162,7 +163,7 @@ it('should show localized string', () => {
   });
 });
 
-it('should switch to other month if day selected from other month', () => {
+it('should switch to other month if day selected from other month', async () => {
   const { container, getAllByText } = render(
     <DatePicker date={new Date(2020, 0, 10)} />,
   );
@@ -172,7 +173,7 @@ it('should switch to other month if day selected from other month', () => {
   expect(day.textContent).toBe('10');
 
   const days = getAllByText('30');
-  days[0].click();
+  await userEvent.click(days[0]);
   assertMonthYear(container, 'December', '2019');
   day = container.querySelector(selectedDaySelector) as HTMLElement;
   expect(day).toBeTruthy();

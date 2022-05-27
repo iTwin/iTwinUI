@@ -43,7 +43,8 @@ it('should render correctly with set filter value', () => {
   const { container } = renderComponent({
     column: {
       filterValue: [new Date(2021, 4, 1), new Date(2021, 4, 3)],
-    } as HeaderGroup,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as HeaderGroup<any>,
   });
 
   const labeledInputs = container.querySelectorAll(
@@ -177,7 +178,8 @@ it('should set filter and keep time from existing dates', () => {
         new Date(2021, 4, 1, 10, 20, 30, 400),
         new Date(2021, 4, 3, 20, 30, 40, 500),
       ],
-    } as HeaderGroup,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as HeaderGroup<any>,
   });
 
   const labeledInputs = container.querySelectorAll(

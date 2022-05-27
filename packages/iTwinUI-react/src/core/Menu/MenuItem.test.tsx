@@ -226,7 +226,7 @@ it('should show sub menu on hover', () => {
   expect(subSubMenu).not.toBeVisible();
 });
 
-it('should handle key press with sub menus', () => {
+it('should handle key press with sub menus', async () => {
   const mockedSubOnClick = jest.fn();
   const { container } = render(
     <MenuItem
@@ -246,25 +246,25 @@ it('should handle key press with sub menus', () => {
 
   // go right to open sub menu
   menuItem.focus();
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   const subTippy = container.querySelector('[data-tippy-root]') as HTMLElement;
   const subMenu = subTippy.querySelector('.iui-menu-item') as HTMLLIElement;
   expect(subMenu.textContent).toBe('Test sub');
   expect(container.ownerDocument.activeElement).toEqual(subMenu);
 
   // go left to close sub menu
-  userEvent.keyboard('{ArrowLeft}');
+  await userEvent.keyboard('{ArrowLeft}');
   expect(subTippy).not.toBeVisible();
 
   // go right to open sub menu
-  userEvent.keyboard('{ArrowRight}');
+  await userEvent.keyboard('{ArrowRight}');
   expect(subTippy).toBeVisible();
 
   // click
-  userEvent.keyboard('{Enter}');
+  await userEvent.keyboard('{Enter}');
   expect(mockedSubOnClick).toHaveBeenNthCalledWith(1, 'test_value_sub');
-  userEvent.keyboard(' ');
+  await userEvent.keyboard(' ');
   expect(mockedSubOnClick).toHaveBeenNthCalledWith(2, 'test_value_sub');
-  userEvent.keyboard('{Spacebar}');
+  await userEvent.keyboard('{Spacebar}');
   expect(mockedSubOnClick).toHaveBeenNthCalledWith(3, 'test_value_sub');
 });

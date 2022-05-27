@@ -9,6 +9,7 @@ import { SideNavigation, SideNavigationProps } from './SideNavigation';
 import { SidenavButton } from './SidenavButton';
 import { SidenavSubmenu } from './SidenavSubmenu';
 import { SvgPlaceholder, SvgChevronRight } from '@itwin/itwinui-icons-react/';
+import userEvent from '@testing-library/user-event';
 
 function renderComponent(props?: Partial<SideNavigationProps>) {
   return render(
@@ -123,7 +124,7 @@ it('should render expand button svg correctly', () => {
   );
 });
 
-it('should handle clicking on expand button', () => {
+it('should handle clicking on expand button', async () => {
   const mockFn = jest.fn();
   const { container } = renderComponent({ onExpanderClick: mockFn });
   expect(
@@ -131,13 +132,13 @@ it('should handle clicking on expand button', () => {
   ).toBeTruthy();
 
   const expandButton = container.querySelector('.iui-expand') as HTMLElement;
-  expandButton.click();
+  await userEvent.click(expandButton);
   expect(mockFn).toHaveBeenCalledTimes(1);
   expect(
     container.querySelector('.iui-side-navigation.iui-expanded'),
   ).toBeTruthy();
 
-  expandButton.click();
+  await userEvent.click(expandButton);
   expect(mockFn).toHaveBeenCalledTimes(2);
   expect(
     container.querySelector('.iui-side-navigation.iui-collapsed'),
@@ -156,7 +157,7 @@ it('should work with controlled isExpanded prop', () => {
   ).toBeTruthy();
 });
 
-it('should only add tooltips to items when collapsed', () => {
+it('should only add tooltips to items when collapsed', async () => {
   // collapsed
   const { container, getByText, queryByText } = renderComponent();
   expect(container.querySelector('.iui-side-navigation')).toBeTruthy();
@@ -173,7 +174,7 @@ it('should only add tooltips to items when collapsed', () => {
 
   // expanded
   const expandButton = container.querySelector('.iui-expand') as HTMLElement;
-  expandButton.click();
+  await userEvent.click(expandButton);
   expect(queryByText('mockbutton 0', { selector: '.iui-tooltip' })).toBeFalsy();
 });
 

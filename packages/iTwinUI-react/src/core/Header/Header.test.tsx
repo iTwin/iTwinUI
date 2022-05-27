@@ -7,6 +7,7 @@ import { render } from '@testing-library/react';
 
 import { Header } from './Header';
 import { MenuItem } from '../Menu';
+import userEvent from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {
   const { container } = render(
@@ -89,7 +90,7 @@ it('renders userIcon alone correctly', () => {
   expect(userIcon).toBeTruthy();
   expect(userIcon?.textContent).toEqual('UserIconContent');
 });
-it('renders moreMenu alone correctly', () => {
+it('renders moreMenu alone correctly', async () => {
   // Summarized, as this is partly based on DropdownMenu, which is tested independently.
   const itemOneOnClick = jest.fn();
 
@@ -124,7 +125,7 @@ it('renders moreMenu alone correctly', () => {
   let menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeFalsy();
 
-  button.click();
+  await userEvent.click(button);
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy.style.visibility).toEqual('visible');
@@ -136,7 +137,7 @@ it('renders moreMenu alone correctly', () => {
 
   const menuItem = menu.querySelector('li') as HTMLLIElement;
   expect(menuItem).toBeTruthy();
-  menuItem.click();
+  await userEvent.click(menuItem);
 
   expect(tippy).not.toBeVisible();
 

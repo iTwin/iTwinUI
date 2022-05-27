@@ -34,7 +34,7 @@ export const useContainerWidth = <T extends HTMLElement>(
   }, []);
 
   const updateWidth = React.useCallback(
-    ({ width }) => setContentWidth(width),
+    ({ width }: DOMRectReadOnly) => setContentWidth(width),
     [],
   );
 
