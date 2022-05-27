@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.59.1](https://www.github.com/iTwin/iTwinUI/compare/v0.59.0...v0.59.1) (2022-05-27)
+
+
+### Fixes
+
+* **Table:** Bringing back zebra style ([#658](https://www.github.com/iTwin/iTwinUI/issues/658)) ([91e0a4c](https://www.github.com/iTwin/iTwinUI/commit/91e0a4ca9b5246abfbd97526b1492e2bc9ce48b4))
+
 ## [0.59.0](https://www.github.com/iTwin/iTwinUI/compare/v0.58.0...v0.59.0) (2022-05-27)
 
 ### What's new
