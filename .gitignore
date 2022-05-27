@@ -1,15 +1,3 @@
-
-# Test Reference Files
-backstop/results/*
-!backstop/results/bitmaps_reference
-
-# Built Files
-scss
-css
-
-# Minified Files
-minified
-
 # Node
 node_modules
 yarn-error.log
