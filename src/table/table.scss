@@ -175,8 +175,10 @@
   @include iui-scroll-snapping('.iui-row');
   background-color: var(--iui-color-background-1);
 
-  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), 0.02);
+  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) .iui-cell {
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), 0.02);
+    }
   }
 
   .iui-row {
