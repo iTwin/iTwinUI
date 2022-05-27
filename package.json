@@ -30,7 +30,8 @@
     "ansi-regex": "^5.0.1",
     "postcss": "8",
     "nanoid": "^3.1.31",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "trim-newlines": "^3.0.1"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
