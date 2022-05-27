@@ -2,18 +2,15 @@
 
 ## [0.59.0](https://www.github.com/iTwin/iTwinUI/compare/v0.58.0...v0.59.0) (2022-05-27)
 
-
 ### What's new
 
 * **SideNavigation:** Change stripe location ([#636](https://www.github.com/iTwin/iTwinUI/issues/636)) ([6c94ffb](https://www.github.com/iTwin/iTwinUI/commit/6c94ffbb7e93049dc6d1c81049ddf55e57418c68))
-* **Table:** Sticky columns ([#621](https://www.github.com/iTwin/iTwinUI/issues/621)) ([07ba65d](https://www.github.com/iTwin/iTwinUI/commit/07ba65dff20da05c4fdfc17fd931549c1126ed90))
-
+* **Table:** Add sticky columns ([#621](https://www.github.com/iTwin/iTwinUI/issues/621)) ([07ba65d](https://www.github.com/iTwin/iTwinUI/commit/07ba65dff20da05c4fdfc17fd931549c1126ed90))
 
 ### Fixes
 
-* **InformationPanel:** Adjusted `box-shadow` to look the same as elevation-4 ([#644](https://www.github.com/iTwin/iTwinUI/issues/644)) ([2a3d551](https://www.github.com/iTwin/iTwinUI/commit/2a3d551bf2ce76879aa9fdc63e4d884515577671))
-* **Table:** Allows to resize table header as before ([#647](https://www.github.com/iTwin/iTwinUI/issues/647)) ([6b8ec38](https://www.github.com/iTwin/iTwinUI/commit/6b8ec381a0f87d4046705603eb35fb4d853eb59a))
-* **Table:** Wrap header actions conditionally ([#646](https://www.github.com/iTwin/iTwinUI/issues/646)) ([fb39515](https://www.github.com/iTwin/iTwinUI/commit/fb395152e2dd4e5fce452edab455f8850187b295))
+* **InformationPanel:** Adjust `box-shadow` to look the same as elevation-4 ([#644](https://www.github.com/iTwin/iTwinUI/issues/644)) ([2a3d551](https://www.github.com/iTwin/iTwinUI/commit/2a3d551bf2ce76879aa9fdc63e4d884515577671))
+* **Table:** Improve wrapping of header actions ([#646](https://www.github.com/iTwin/iTwinUI/issues/646)) ([fb39515](https://www.github.com/iTwin/iTwinUI/commit/fb395152e2dd4e5fce452edab455f8850187b295))
 
 ## [0.58.0](https://www.github.com/iTwin/iTwinUI/compare/v0.57.0...v0.58.0) (2022-05-11)
 
