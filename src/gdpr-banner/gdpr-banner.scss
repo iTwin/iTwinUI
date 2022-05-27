@@ -7,7 +7,7 @@
   @include iui-dialog;
   border-radius: 0;
   box-shadow: none;
-  background-color: var(--iui-color-background-3);
+  background-color: var(--iui-color-background-1);
   border-top: 1px solid var(--iui-color-background-border);
   position: fixed;
   bottom: 0;
@@ -30,11 +30,3 @@
 @mixin iui-gdpr-banner-button-bar {
   @include iui-dialog-button-bar;
 }
-
-//@mixin iui-anchor {
-//  @include iui-anchor;
-//}
-
-//.iui-gdpr-banner-cookie-policy {
-// color: var(--iui-color-foreground-primary);
-//}
