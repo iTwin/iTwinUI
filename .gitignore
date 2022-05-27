@@ -8,7 +8,7 @@ scss
 css
 
 # Minified Files
-backstop/minified
+minified
 
 # Node
 node_modules
