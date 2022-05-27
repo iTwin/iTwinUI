@@ -12,4 +12,8 @@
   .iui-row .iui-cell {
     min-height: $iui-baseline * 3 + 2px;
   }
+
+  .iui-table-header .iui-cell {
+    padding-block: $iui-baseline * 0.25;
+  }
 }
