@@ -46,8 +46,8 @@
 
   .iui-cell:not(.iui-slot) {
     @include iui-focus;
-    flex-wrap: wrap;
     column-gap: $iui-xs;
+    padding-block: $iui-baseline * 0.5;
 
     &.iui-actionable {
       cursor: pointer;
@@ -57,12 +57,8 @@
       cursor: grabbing;
     }
 
-    .iui-filter-button {
-      margin-right: $iui-s;
-
-      &:not(.iui-active) {
-        visibility: hidden;
-      }
+    .iui-filter-button:not(.iui-active) {
+      visibility: hidden;
     }
 
     > .iui-resizer {
@@ -155,6 +151,17 @@
   display: flex;
   flex-grow: 1;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: $iui-sm;
+
+  .iui-cell-end-icon {
+    // Hardcoded size of the borderless button so that the icons are centered
+    width: 28px;
+    height: 28px;
+    margin-right: initial;
+    margin-left: auto;
+  }
 }
 
 @mixin iui-table-body {
