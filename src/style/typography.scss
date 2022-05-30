@@ -47,7 +47,6 @@ $iui-font-loaded-class: null !default;
 @mixin iui-font-family {
   @if $iui-font-loaded-class {
     font-family: $iui-sans-fallback;
-    font-variation-settings: 'wdth' 100;
 
     &.#{ $iui-font-loaded-class } {
       font-family: $iui-font-family;
@@ -60,6 +59,5 @@ $iui-font-loaded-class: null !default;
     }
   } @else {
     font-family: $iui-font-family;
-    font-variation-settings: 'wdth' 100;
   }
 }
