@@ -1,7 +1,45 @@
-@font-face {
+/* @font-face {
   font-family: 'Noto Sans Display';
   src: url('fonts/NotoSansDisplay-VariableFont_wdth\,wght.ttf') format('truetype');
+} */
+@font-face {
+  font-family: 'Noto Sans Mono';
+  src: url('fonts/NotoSansMono-VariableFont_wdth\,wght.ttf') format('truetype');
 }
+@font-face{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: url('fonts/NotoSans-Light.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/NotoSans-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: url('fonts/NotoSans-SemiBold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('fonts/NotoSans-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Noto Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: url('fonts/NotoSans-Italic.ttf') format('truetype');
+  }
 h1,
 h2,
 h3,
@@ -13,7 +51,7 @@ p {
   margin: 0;
   padding: 0;
   border: none;
-  font-family: 'Noto Sans Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
 }
 
