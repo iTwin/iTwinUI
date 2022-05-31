@@ -105,7 +105,7 @@
     }
   }
 
-  &:focus-visible {
+  @include focus-visible {
     border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
   }
   // #endregion Unchecked toggle switch
@@ -140,8 +140,10 @@
     opacity: var(--iui-opacity-1);
   }
 
-  &:focus-visible::after {
-    opacity: var(--iui-opacity-1);
+  @include focus-visible {
+    &::after {
+      opacity: var(--iui-opacity-1);
+    }
   }
   // #endregion Focused or hovered toggle switch
 

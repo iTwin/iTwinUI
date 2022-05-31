@@ -196,8 +196,4 @@
   @at-root .iui-dialog-draggable & {
     padding: 0 $iui-m $iui-baseline $iui-m;
   }
-
-  > .iui-button:not(:last-child) {
-    margin-right: 0;
-  }
 }

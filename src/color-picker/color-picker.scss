@@ -27,10 +27,6 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
     overflow-y: overlay;
   }
   row-gap: $iui-baseline;
-
-  > div:not(:last-child) {
-    margin-bottom: 0;
-  }
 }
 
 @mixin iui-color-swatch {
@@ -40,8 +36,6 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   width: $iui-l;
   cursor: pointer;
   border-radius: $iui-color-swatch-border-radius;
-  margin-bottom: 0;
-  margin-right: 0;
   position: relative;
   background-color: var(--iui-color-swatch-background);
   forced-color-adjust: none;
@@ -117,10 +111,6 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
 
     > * {
       flex-grow: 1;
-    }
-
-    > *:not(:last-child) {
-      margin-right: 0;
     }
 
     input {

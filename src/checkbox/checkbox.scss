@@ -16,12 +16,7 @@
     @include themed {
       color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
     }
-
     gap: $iui-s;
-
-    > * + * {
-      margin-left: 0;
-    }
 
     &.iui-loading {
       cursor: wait;

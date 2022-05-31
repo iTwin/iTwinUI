@@ -69,13 +69,15 @@
   opacity: 0;
   position: absolute;
 
-  &:focus-visible + * {
-    outline-offset: -4px;
-    @media (forced-colors: active) {
-      outline-color: Highlight;
-    }
-    @include themed {
-      outline: 2px solid t(iui-color-foreground-primary);
+  @include focus-visible {
+    + * {
+      outline-offset: -4px;
+      @media (forced-colors: active) {
+        outline-color: Highlight;
+      }
+      @include themed {
+        outline: 2px solid t(iui-color-foreground-primary);
+      }
     }
   }
 

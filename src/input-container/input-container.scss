@@ -76,12 +76,6 @@
       display: flex;
       gap: $iui-m;
 
-      > .iui-checkbox-wrapper,
-      > .iui-radio-wrapper,
-      > .iui-toggle-switch-wrapper {
-        margin-right: 0;
-      }
-
       &:not(:last-child) {
         margin-right: $iui-m;
       }

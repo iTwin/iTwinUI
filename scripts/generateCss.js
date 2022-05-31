@@ -18,10 +18,10 @@ const compileScss = async (path, outFile) => {
   return new Promise(async (resolve, reject) => {
     try {
       const cssResult = await sass.compileAsync(path);
-      const processedCssResult = await postcss([
-        require('autoprefixer')({ grid: 'autoplace' }),
-        require('postcss-discard-comments'),
-      ]).process(cssResult.css, { from: undefined }); // `from` is required
+      const processedCssResult = await postcss([require('autoprefixer'), require('postcss-discard-comments')]).process(
+        cssResult.css,
+        { from: undefined }
+      ); // `from` is required
       fs.writeFileSync(`${outDir}/${outFile}.css`, processedCssResult.css);
       console.log(` Wrote -> ${outFile}.css`);
       resolve();
