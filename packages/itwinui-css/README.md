@@ -77,4 +77,4 @@ Please read our [CONTRIBUTING.md](https://github.com/iTwin/iTwinUI/blob/main/CON
 
 ## Changelog
 
-Read our [CHANGELOG.md](https://github.com/iTwin/iTwinUI/blob/main/CHANGELOG.md) to find recent changes.
+Read our [CHANGELOG.md](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-css/CHANGELOG.md) to find recent changes.

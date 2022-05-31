@@ -1,1 +1,0 @@
-./packages/itwinui-css/CHANGELOG.md
