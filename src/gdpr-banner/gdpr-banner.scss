@@ -9,10 +9,12 @@
   box-shadow: none;
   background-color: var(--iui-color-background-1);
   border-top: 1px solid var(--iui-color-background-border);
+  border-right: 1px solid var(--iui-color-background-border);
+  border-left: 1px solid var(--iui-color-background-border);
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 45ch;
+  right: 45ch;
 }
 
 @mixin iui-gdpr-banner-title {
