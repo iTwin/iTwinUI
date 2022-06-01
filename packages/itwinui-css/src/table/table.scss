@@ -1,0 +1,493 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../icon/index';
+@import './variables';
+
+@mixin iui-table {
+  @include iui-reset;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+
+  @include iui-table-cell-icon;
+}
+
+@mixin iui-table-header-wrapper {
+  overflow: hidden;
+  // Fix for Firefox columns misalignment
+  @supports not (overflow: overlay) {
+    overflow-y: scroll;
+  }
+  display: flex;
+  flex-shrink: 0;
+}
+
+@mixin iui-table-header {
+  display: flex;
+  user-select: none;
+  min-width: 100%;
+  flex-shrink: 0;
+
+  .iui-row {
+    display: flex;
+    flex-grow: 1;
+    min-width: 100%;
+  }
+
+  .iui-cell {
+    min-height: $iui-baseline * 5;
+    background-color: var(--iui-color-background-3);
+  }
+
+  .iui-cell:not(.iui-slot) {
+    @include iui-focus;
+    column-gap: $iui-xs;
+    padding-block: $iui-baseline * 0.5;
+
+    &.iui-actionable {
+      cursor: pointer;
+    }
+
+    &.iui-grabbing {
+      cursor: grabbing;
+    }
+
+    .iui-filter-button:not(.iui-active) {
+      visibility: hidden;
+    }
+
+    > .iui-resizer {
+      height: 100%;
+      width: $iui-m;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateX(50%);
+      touch-action: none;
+      cursor: ew-resize;
+      z-index: 1;
+      opacity: 0;
+
+      > .iui-resizer-bar {
+        height: 100%;
+        width: $iui-xxs;
+        margin: 0 auto;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+        }
+        background-color: var(--iui-color-background-border);
+      }
+
+      &:hover > .iui-resizer-bar {
+        width: $iui-xs;
+        background-color: var(--iui-color-foreground-primary);
+      }
+    }
+
+    &:hover > .iui-resizer {
+      opacity: 1;
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      background-color: var(--iui-color-background-4);
+
+      .iui-sort,
+      .iui-filter-button {
+        visibility: visible;
+      }
+    }
+  }
+
+  .iui-reorder-bar {
+    position: absolute;
+    height: 100%;
+    width: $iui-xxs;
+  }
+
+  .iui-reorder-column-right {
+    > .iui-reorder-bar {
+      right: 0;
+    }
+  }
+
+  .iui-reorder-column-left {
+    > .iui-reorder-bar {
+      left: 0;
+    }
+  }
+
+  .iui-reorder-column-left,
+  .iui-reorder-column-right {
+    > .iui-reorder-bar {
+      background-color: var(--iui-color-foreground-primary);
+    }
+  }
+
+  // Sort icon
+  .iui-sort {
+    visibility: hidden;
+    fill: var(--iui-icons-color);
+  }
+
+  // Sorted column
+  .iui-sorted {
+    background-color: var(--iui-color-background-4);
+
+    .iui-sort {
+      visibility: visible;
+      fill: var(--iui-icons-color-actionable);
+    }
+  }
+}
+
+@mixin iui-table-header-actions-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: $iui-sm;
+
+  .iui-cell-end-icon {
+    // Hardcoded size of the borderless button so that the icons are centered
+    width: 28px;
+    height: 28px;
+    margin-right: initial;
+    margin-left: auto;
+  }
+}
+
+@mixin iui-table-body {
+  overflow-y: scroll;
+  overflow: overlay;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  // Allows columns with static width to take more space than the table width
+  align-items: flex-start;
+  @include iui-scroll-snapping('.iui-row');
+  background-color: var(--iui-color-background-1);
+
+<<<<<<< HEAD:src/table/table.scss
+  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) {
+=======
+  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) .iui-cell {
+>>>>>>> origin/v1.0:packages/itwinui-css/src/table/table.scss
+    background-color: rgba(var(--iui-color-foreground-body-rgb), 0.02);
+  }
+
+  .iui-row {
+    min-width: 100%;
+    display: flex;
+
+    .iui-cell {
+      border-top: solid 1px transparent;
+      border-bottom: solid 1px transparent;
+      border-bottom-color: var(--iui-color-background-border);
+      background-color: var(--iui-color-background-1);
+      @media (prefers-reduced-motion: no-preference) {
+        transition: border $iui-speed-fast ease-out;
+      }
+    }
+
+    > .iui-slot > .iui-more-options {
+      visibility: hidden;
+    }
+
+    &:hover:not(.iui-disabled) {
+      .iui-cell {
+        background: linear-gradient(
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+        ),
+          linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+      }
+
+      > .iui-slot:not(.iui-disabled) > .iui-more-options {
+        visibility: visible;
+      }
+    }
+
+    &:focus-within > .iui-slot:not(.iui-disabled) > .iui-more-options {
+      visibility: visible;
+    }
+
+    .iui-row-expander > .iui-button-icon {
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform $iui-speed-fast ease-out;
+      }
+    }
+
+    &.iui-row-expanded {
+      overflow: hidden;
+
+      .iui-cell {
+        border-left-color: var(--iui-color-background-4);
+        border-right-color: var(--iui-color-background-4);
+        border-bottom-color: transparent;
+      }
+
+      .iui-row-expander > .iui-button-icon {
+        transform: rotate(90deg);
+      }
+
+      + .iui-expanded-content {
+        border-left-color: var(--iui-color-background-4);
+        border-right-color: var(--iui-color-background-4);
+      }
+    }
+
+    &.iui-expanded-content {
+      overflow: hidden;
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      border-bottom: 1px solid var(--iui-color-background-border);
+      @include iui-transition-group;
+    }
+
+    // #region Selection
+    &:not(.iui-selected) + .iui-selected .iui-cell,
+    &.iui-selected:first-child .iui-cell {
+      border-bottom-color: transparent;
+    }
+
+    &.iui-selected {
+      .iui-cell {
+        border-color: var(--iui-color-foreground-primary);
+        background: linear-gradient(
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+        ),
+          linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+      }
+
+      + .iui-selected .iui-cell {
+        border-bottom-color: transparent;
+        border-top-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
+      }
+
+      &:last-child .iui-cell {
+        border-bottom-color: var(--iui-color-foreground-primary);
+      }
+
+      + :not(.iui-selected) .iui-cell,
+      + .iui-expanded-content + .iui-row:not(.iui-selected) .iui-cell {
+        border-top-color: var(--iui-color-foreground-primary);
+      }
+
+      + .iui-expanded-content {
+        border-color: transparent var(--iui-color-foreground-primary);
+
+        &:last-child {
+          border-bottom-color: var(--iui-color-foreground-primary);
+        }
+      }
+    }
+    // #endregion Selection
+
+    // #region Statuses & states
+    &.iui-new {
+      font-weight: $iui-font-weight-semibold;
+
+      > .iui-main-column::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        font-size: $iui-font-size-title;
+        color: var(--iui-color-foreground-positive);
+      }
+    }
+
+    .iui-cell.iui-disabled,
+    &.iui-expanded-content.iui-disabled {
+      font-style: italic;
+      cursor: not-allowed;
+      color: var(--iui-text-color-muted);
+
+      &.iui-slot:hover > .iui-more-options {
+        visibility: hidden;
+      }
+
+      img,
+      svg:not(.iui-radial),
+      .iui-avatar {
+        filter: $iui-icons-color-multicolor-disabled;
+      }
+    }
+
+    &.iui-positive {
+      @include iui-table-row-status($status: positive);
+    }
+
+    &.iui-warning {
+      @include iui-table-row-status($status: warning);
+    }
+
+    &.iui-negative {
+      @include iui-table-row-status($status: negative);
+    }
+    // #endregion Statuses & states
+  }
+
+  // Empty & loading states
+  > .iui-table-empty {
+    text-align: center;
+    padding: $iui-xl;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    align-self: center;
+    color: var(--iui-text-color-muted);
+    background-color: var(--iui-color-background-1);
+  }
+}
+
+@mixin iui-table-cell {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  min-width: $iui-xxl;
+  min-height: $iui-baseline * 5 + 2px; // +2px for border
+  padding-left: $iui-m;
+  flex-basis: $iui-xxl;
+  position: relative;
+  word-break: break-word;
+
+  &:first-of-type {
+    border-left: solid 1px transparent;
+  }
+
+  &:last-of-type {
+    border-right: solid 1px transparent;
+  }
+
+  &.iui-slot {
+    width: $iui-l * 2;
+    padding: 0;
+    flex-grow: 0;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: $iui-l * 2;
+  }
+
+  &.iui-cell-sticky {
+    position: sticky;
+    z-index: 1;
+    left: var(--iui-table-sticky-left, initial);
+    right: var(--iui-table-sticky-right, initial);
+  }
+
+  &:not(.iui-slot):last-child {
+    padding-right: $iui-m;
+  }
+
+  &.iui-positive {
+    @include iui-table-cell-status($status: positive);
+  }
+
+  &.iui-warning {
+    @include iui-table-cell-status($status: warning);
+  }
+
+  &.iui-negative {
+    @include iui-table-cell-status($status: negative);
+  }
+
+  &[contenteditable] {
+    outline-offset: -1px;
+
+    &:focus,
+    &:hover {
+      outline: 1px solid var(--iui-color-foreground-primary);
+    }
+
+    &:focus {
+      background-color: var(--iui-color-background-1);
+    }
+  }
+}
+
+@mixin iui-table-row-status($status) {
+  .iui-cell:first-of-type,
+  + .iui-expanded-content {
+    box-shadow: inset $iui-xxs 0 0 0 var(--iui-icons-color-#{$status});
+
+    @include iui-text-selection($status);
+  }
+
+  .iui-cell-end-icon svg {
+    fill: var(--iui-icons-color-#{$status});
+  }
+}
+
+@mixin iui-table-cell-status($status) {
+  background: linear-gradient(
+    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6)),
+    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6))
+  ),
+    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+  @include iui-text-selection($status);
+}
+
+@mixin iui-table-cell-icon {
+  .iui-cell-end-icon,
+  .iui-cell-start-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg:not(.iui-radial) {
+      display: flex; // needed for vertical alignment of webcomponents
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+    }
+  }
+
+  .iui-cell-start-icon {
+    margin-right: $iui-s;
+  }
+
+  .iui-cell-end-icon {
+    width: $iui-l;
+    height: $iui-l;
+    margin-right: $iui-sm;
+    margin-left: auto;
+  }
+}
+
+@mixin iui-table-cell-shadow-base {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  width: $iui-l;
+  pointer-events: none;
+
+  // Prevents scrollbar from appearing because `top: -1px` and `bottom: -1px`
+  // makes content to overflow
+  @at-root .iui-table-header & {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+@mixin iui-table-cell-shadow-left {
+  @include iui-table-cell-shadow-base;
+  left: 0;
+  transform: translate(-100%);
+  box-shadow: inset -10px 0 5px -10px $iui-elevation-color;
+}
+
+@mixin iui-table-cell-shadow-right {
+  @include iui-table-cell-shadow-base;
+  right: 0;
+  transform: translate(100%);
+  box-shadow: inset 10px 0 5px -10px $iui-elevation-color;
+}

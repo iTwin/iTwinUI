@@ -1,0 +1,33 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import './location-marker';
+
+@mixin iui-location-marker-me {
+  @include iui-location-marker;
+  position: relative;
+  width: $iui-icons-large;
+  height: $iui-icons-large;
+  border-radius: 50%;
+  cursor: default;
+  background: radial-gradient(
+    circle at center,
+    rgba(var(--iui-color-foreground-primary-rgb), 0),
+    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5))
+  );
+
+  > .iui-location-marker-me-dot {
+    width: $iui-icons-large * 0.5;
+    height: $iui-icons-large * 0.5;
+    position: absolute;
+    top: $iui-icons-large * 0.25;
+    left: $iui-icons-large * 0.25;
+    border-radius: 50%;
+<<<<<<< HEAD:src/location-marker/me.scss
+=======
+    box-sizing: border-box;
+>>>>>>> origin/v1.0:packages/itwinui-css/src/location-marker/me.scss
+    border: 1px solid var(--iui-color-foreground-accessory);
+    background-color: var(--iui-color-background-primary);
+  }
+}
