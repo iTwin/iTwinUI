@@ -1,0 +1,10 @@
+# Test Reference Files
+backstop/results/*
+!backstop/results/bitmaps_reference
+
+# Built Files
+scss
+css
+
+# Minified Files
+backstop/minified

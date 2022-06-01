@@ -21,13 +21,13 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ hashFiles('backstop/docker/Dockerfile') }}
+          key: ${{ runner.os }}-buildx-${{ hashFiles('packages/itwinui-css/backstop/docker/Dockerfile') }}
           restore-keys: |
             ${{ runner.os }}-buildx-
 
       - uses: docker/build-push-action@v2
         with:
-          file: backstop/docker/Dockerfile
+          file: packages/itwinui-css/backstop/docker/Dockerfile
           platforms: linux/amd64
           tags: itwinui/backstopjs:latest
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -46,14 +46,14 @@ jobs:
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
       - run: yarn build
-      - run: yarn test:ci
+      - run: yarn test
 
       - name: Publish test results artifact
         if: failure()
         uses: actions/upload-artifact@v2.2.3
         with:
           name: 'backstop_test_results'
-          path: '${{ github.workspace }}/backstop/results/'
+          path: '${{ github.workspace }}/packages/itwinui-css/backstop/results/'
 
       - name: Host test results on gh pages
         continue-on-error: true
@@ -61,7 +61,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/backstop/results
+          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/results
           target-folder: ${{ github.event.number }}
           single-commit: true
           git-config-name: github-actions[bot]
@@ -116,7 +116,7 @@ jobs:
         with:
           branch: gh-pages
           single-commit: true
-          folder: ${{ github.workspace }}/backstop/
+          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/
           target-folder: backstop
           clean-exclude: |
             gh-pages
@@ -133,7 +133,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/lib/css
+          folder: ${{ github.workspace }}/packages/itwinui-css/css
           target-folder: lib/css
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
@@ -142,7 +142,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/backstop/gh-pages/
+          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/gh-pages/
           target-folder: ./
           clean-exclude: |
             backstop
