@@ -25,6 +25,6 @@ jobs:
       - run: yarn build
 
       - run: npm publish --access public
-        working-directory: "./lib"
+        working-directory: './packages/itwinui-css/'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
