@@ -37,7 +37,6 @@ const run = async () => {
   const promiseList = [];
   promiseList.push(compileScss(`${inDir}/classes.scss`, 'all'));
   promiseList.push(compileScss(`${inDir}/style/global.scss`, 'global'));
-  promiseList.push(compileScss(`${inDir}/reset-global-styles.scss`, 'reset-global-styles'));
 
   for (const directory of directories) {
     if (!ignorePaths.includes(directory) && fs.existsSync(path.join(inDir, directory, 'classes.scss'))) {
