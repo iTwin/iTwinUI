@@ -21,10 +21,6 @@
     height: 100%;
     margin: 0;
     border-radius: 50%;
-<<<<<<<< HEAD:src/avatar/avatar.scss
-========
-    box-sizing: border-box;
->>>>>>>> origin/v1.0:packages/itwinui-css/src/avatar/avatar.scss
     box-shadow: inset 0 0 0 $iui-xxs rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
   }
 
@@ -85,13 +81,8 @@
 
     &::after {
       content: '';
-<<<<<<<< HEAD:src/avatar/avatar.scss
       width: var(--_iui-avatar-status-icon-size, $iui-s);
       height: var(--_iui-avatar-status-icon-size, $iui-s);
-========
-      width: var(--_iui-avatar-status-size, $iui-s);
-      height: var(--_iui-avatar-status-size, $iui-s);
->>>>>>>> origin/v1.0:packages/itwinui-css/src/avatar/avatar.scss
     }
 
     &.iui-online {

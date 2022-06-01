@@ -171,11 +171,7 @@
   @include iui-scroll-snapping('.iui-row');
   background-color: var(--iui-color-background-1);
 
-<<<<<<< HEAD:src/table/table.scss
-  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) {
-=======
   &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) .iui-cell {
->>>>>>> origin/v1.0:packages/itwinui-css/src/table/table.scss
     background-color: rgba(var(--iui-color-foreground-body-rgb), 0.02);
   }
 
