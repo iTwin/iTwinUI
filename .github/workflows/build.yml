@@ -147,7 +147,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/backstop/gh-pages/
+          folder: ${{ github.workspace }}/backstop/gh-pages/main
           target-folder: ./
           clean-exclude: |
             v1
@@ -218,8 +218,8 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/backstop/gh-pages/index-v1.html
-          target-folder: v1/index.html
+          folder: ${{ github.workspace }}/backstop/gh-pages/v1
+          target-folder: v1
           clean-exclude: |
             v1
             backstop
