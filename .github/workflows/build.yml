@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "main"
-      - "v1.0"
+      - 'main'
+      - 'v1.0'
   pull_request:
     branches:
-      - "main"
-      - "v1.0"
+      - 'main'
+      - 'v1.0'
 
 jobs:
   build:
@@ -56,8 +56,8 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v2.2.3
         with:
-          name: "backstop_test_results"
-          path: "${{ github.workspace }}/packages/itwinui-css/backstop/results/"
+          name: 'backstop_test_results'
+          path: '${{ github.workspace }}/packages/itwinui-css/backstop/results/'
 
       - name: Host test results on gh pages
         continue-on-error: true
