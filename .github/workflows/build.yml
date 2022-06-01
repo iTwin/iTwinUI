@@ -221,7 +221,6 @@ jobs:
           folder: ${{ github.workspace }}/backstop/gh-pages/v1
           target-folder: v1
           clean-exclude: |
-            v1
             backstop
             lib/css/all.css
             lib/css/global.css
