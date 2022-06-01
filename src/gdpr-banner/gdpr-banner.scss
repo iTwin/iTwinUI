@@ -11,8 +11,9 @@
   border-right: 1px solid var(--iui-color-background-border);
   border-left: 1px solid var(--iui-color-background-border);
   position: fixed;
-  justify-content: center;
   bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
   max-width: 75ch;
 }
 
