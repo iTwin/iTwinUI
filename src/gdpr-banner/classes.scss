@@ -7,17 +7,17 @@
 }
 
 .iui-gdpr-banner-title {
-  @include iui-gdpr-banner-title;
+  @include iui-dialog-title;
 }
 
 .iui-gdpr-banner-title-bar {
-  @include iui-gdpr-banner-title-bar;
+  @include iui-dialog-title-bar;
 }
 
 .iui-gdpr-banner-content {
-  @include iui-gdpr-banner-content;
+  @include iui-dialog-content;
 }
 
 .iui-gdpr-banner-button-bar {
-  @include iui-gdpr-banner-button-bar;
+  @include iui-dialog-button-bar;
 }

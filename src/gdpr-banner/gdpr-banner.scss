@@ -16,19 +16,3 @@
   transform: translate(-50%, 0);
   max-width: 75ch;
 }
-
-@mixin iui-gdpr-banner-title {
-  @include iui-dialog-title;
-}
-
-@mixin iui-gdpr-banner-title-bar {
-  @include iui-dialog-title-bar;
-}
-
-@mixin iui-gdpr-banner-content {
-  @include iui-dialog-content;
-}
-
-@mixin iui-gdpr-banner-button-bar {
-  @include iui-dialog-button-bar;
-}
