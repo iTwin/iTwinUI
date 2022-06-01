@@ -72,9 +72,9 @@
     border-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-1));
     color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-1));
     background: linear-gradient(
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-      ),
+      rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+      rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+    ),
       linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
   }
 }

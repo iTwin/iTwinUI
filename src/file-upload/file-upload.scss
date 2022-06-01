@@ -71,9 +71,9 @@
   &.iui-drag > .iui-content {
     @include themed {
       background: linear-gradient(
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-          rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-        ),
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+      ),
         linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
       border-color: t(iui-color-foreground-primary);
       color: t(iui-color-foreground-primary);
