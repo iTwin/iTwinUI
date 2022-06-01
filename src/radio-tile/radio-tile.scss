@@ -68,7 +68,6 @@
   appearance: none;
   opacity: 0;
   position: absolute;
-
   @include focus-visible {
     + * {
       outline-offset: -4px;

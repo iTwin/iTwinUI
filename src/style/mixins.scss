@@ -19,6 +19,7 @@
     text-decoration: none;
   }
 }
+
 @mixin focus-visible {
   &:focus-visible {
     @content;
@@ -30,6 +31,7 @@
     }
   }
 }
+
 @mixin iui-focus($color: var(--iui-color-foreground-primary), $offset: -1px, $thickness: 1px) {
   @include focus-visible {
     outline: $thickness solid $color;
