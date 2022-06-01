@@ -1,0 +1,62 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../menu/index';
+
+@mixin iui-time-picker {
+  @include iui-reset;
+  user-select: none;
+  text-align: center;
+  height: $iui-baseline * 26;
+  display: inline-flex;
+  background-color: var(--iui-color-background-1);
+
+  &:not(:first-child) {
+    border-left: 1px solid var(--iui-color-background-border);
+  }
+
+  &:first-child {
+    box-shadow: $iui-elevation-2;
+  }
+}
+
+@mixin iui-time-picker-list {
+  padding: $iui-baseline $iui-s;
+  overflow-y: auto;
+  overflow-y: overlay;
+  scrollbar-width: none;
+
+  &:not(:first-child) {
+    border-left: 1px solid var(--iui-color-background-border);
+  }
+
+  > ol {
+    @include iui-reset;
+    list-style: none;
+
+    > li {
+      @include iui-focus;
+      padding: round($iui-baseline * 0.5) $iui-m;
+      border-radius: $iui-border-radius;
+
+      &:hover {
+        cursor: pointer;
+        color: var(--iui-color-foreground-primary);
+        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      }
+
+      &.iui-selected {
+        font-weight: $iui-font-weight-semibold;
+        cursor: default;
+        @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
+        background-color: var(--iui-color-background-primary);
+        color: var(--iui-color-foreground-accessory);
+      }
+    }
+  }
+}
+
+@mixin iui-time-picker-period {
+  display: flex;
+  align-items: center;
+}

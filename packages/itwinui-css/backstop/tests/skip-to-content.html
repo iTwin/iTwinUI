@@ -1,0 +1,217 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Skip to content link | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <style>
+      section {
+        width: auto !important;
+      }
+
+      #demo-skip-to-here {
+        height: 1000px;
+        border: solid 1px var(--iui-color-background-border);
+        padding: 11px 12px;
+      }
+    </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/imodel-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/notification"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/help-circular-hollow"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more-vertical"
+    ></script>
+    <script src="../assets/theme.js"></script>
+    <script src="../assets/avatar.js"></script>
+  </head>
+  <body class="iui-body">
+    <a
+      href="#demo-skip-to-here"
+      class="iui-skip-to-content-link"
+      id="test-1"
+    >Skip to main content</a>
+    <theme-button></theme-button>
+    <h1>Skip to content link</h1>
+    <hr />
+
+    <section id="demo-other-content">
+      <header class="iui-page-header">
+        <div class="iui-left">
+          <!-- Application Button -->
+          <div
+            class="iui-header-logo"
+            role="button"
+            aria-label="App name"
+            aria-expanded="false"
+            tabindex="0"
+          >
+            <svg-imodel-hollow
+              class="iui-header-button-icon"
+              aria-hidden="true"
+            ></svg-imodel-hollow>
+          </div>
+
+          <div class="iui-divider"></div>
+
+          <!-- Project Button -->
+          <nav aria-label="breadcrumbs">
+            <button
+              class="iui-button iui-borderless iui-header-button iui-header-dropdown-button"
+              type="button"
+              aria-label="Project picker"
+              aria-expanded="false"
+            >
+              <span class="iui-button-label">
+                <div class="iui-name">Project Alpha</div>
+              </span>
+              <svg-caret-down-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-caret-down-small>
+            </button>
+
+            <svg-chevron-right
+              class="iui-chevron"
+              aria-hidden="true"
+            ></svg-chevron-right>
+
+            <!-- IModel Button -->
+            <button
+              class="iui-button iui-borderless iui-active iui-header-button iui-header-dropdown-button"
+              type="button"
+              aria-label="Model picker"
+              aria-expanded="false"
+              aria-current="location"
+            >
+              <span class="iui-button-label">
+                <div class="iui-name">Model Beta</div>
+              </span>
+              <svg-caret-down-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-caret-down-small>
+            </button>
+          </nav>
+        </div>
+
+        <div class="iui-right">
+          <!-- Notifications -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Notifications"
+            aria-expanded="false"
+          >
+            <svg-notification
+              class="iui-button-icon iui-notification-positive"
+              aria-hidden="true"
+            ></svg-notification>
+          </button>
+
+          <!-- Help -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="Help"
+            aria-expanded="false"
+          >
+            <svg-help-circular-hollow
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-help-circular-hollow>
+          </button>
+
+          <!-- Profile dropdown button -->
+          <button
+            class="iui-button iui-dropdown iui-borderless"
+            type="button"
+            aria-label="My account"
+            aria-expanded="false"
+          >
+
+            <x-avatar type="2"></x-avatar>
+            </span>
+          </button>
+
+          <!-- More menu -->
+          <button
+            class="iui-button iui-borderless"
+            type="button"
+            aria-label="More options"
+            aria-expanded="false"
+          >
+            <svg-more-vertical
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-more-vertical>
+          </button>
+        </div>
+      </header>
+      <br />
+      <div>
+        <p>
+          This is not the main content. Press&nbsp;<kbd class="iui-keyboard">tab</kbd>&nbsp;to see skip-to-content-link
+          component. You might need to click on the top of the page or the URL first. Press&nbsp;
+          <kbd
+            class="iui-keyboard"
+            title="Return"
+          >
+            &crarr;
+          </kbd>
+          &nbsp;after focusing on skip-to-content-link to skip to the main content below.
+        </p>
+      </div>
+    </section>
+
+    <br />
+
+    <section id="demo-skip-to-here">
+      <p>
+        This is the main content.&nbsp;
+        <a
+          href="#"
+          class="iui-anchor"
+        >
+          This is a link that directs to this page.
+        </a>
+        &nbsp;Tab again to focus on the preceding link.
+      </p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,406 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../avatar/index';
+@import '../icon/index';
+@import '../button/index';
+
+@mixin iui-page-header {
+  @include iui-reset;
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: $iui-baseline * 5 + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
+  user-select: none;
+  box-sizing: border-box;
+  // iPhone notch support
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: height $iui-speed-fast ease-out;
+  }
+  background-color: var(--iui-color-background-1);
+  border-bottom: $iui-xxs solid var(--iui-color-background-border);
+  color: var(--iui-text-color);
+
+  > .iui-left,
+  > .iui-center,
+  > .iui-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  @include iui-header-buttons;
+
+  > .iui-left {
+    > nav {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    &,
+    > nav {
+      overflow: hidden;
+      box-sizing: content-box;
+      margin-bottom: -$iui-xs;
+      padding-bottom: $iui-xs;
+    }
+
+    .iui-chevron {
+      @include iui-icons-small;
+      flex-shrink: 0;
+      margin: 0 $iui-xs;
+    }
+  }
+
+  > .iui-center {
+    justify-content: center;
+  }
+
+  > .iui-right {
+    justify-content: flex-end;
+
+    @media (prefers-reduced-motion: no-preference) {
+      .iui-avatar {
+        &,
+        * {
+          transition: all $iui-speed-fast ease-out;
+        }
+      }
+    }
+  }
+
+  .iui-button {
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .iui-divider {
+    width: 1px;
+    height: $iui-baseline * 2;
+    background-color: var(--iui-color-background-border);
+  }
+
+  &.iui-slim {
+    height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
+
+    > .iui-left {
+      .iui-header-logo {
+        > .iui-label {
+          font-size: $iui-font-size;
+        }
+
+        .iui-header-button-icon {
+          margin: 0 $iui-l + $iui-xs;
+        }
+      }
+
+      .iui-header-button-icon {
+        width: $iui-icons-default;
+        height: $iui-icons-default;
+        margin: 0 $iui-xs;
+        display: inline-flex;
+      }
+    }
+
+    > .iui-right {
+      .iui-avatar {
+        @include iui-avatar-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    &,
+    &.iui-slim {
+      .iui-left {
+        .iui-button {
+          .iui-header-button-icon.iui-header-button-icon {
+            @include iui-display-none;
+          }
+
+          .iui-header-button-icon + .iui-button-label {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .iui-left {
+      .iui-header-logo > .iui-label {
+        display: none;
+      }
+    }
+  }
+}
+
+@mixin iui-header-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
+  width: $size;
+  height: $size;
+  border-radius: $border-radius;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, margin $iui-speed-fast ease-out;
+  }
+}
+
+@mixin iui-header-buttons {
+  .iui-header-button-icon {
+    @include iui-header-button-icon;
+  }
+
+  // boost specificity
+  .iui-header-button.iui-header-button {
+    @include iui-header-button;
+  }
+
+  .iui-header-dropdown-button.iui-header-dropdown-button {
+    @include iui-header-dropdown-button;
+  }
+
+  .iui-header-split-button {
+    @include iui-header-split-button;
+  }
+}
+
+@mixin iui-header-logo {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  height: 100%;
+
+  @at-root {
+    a#{&}, // rendered as anchor element
+    button#{&}, // rendered as button element
+    &[role='button'] {
+      @include iui-header-button-focus;
+      cursor: pointer;
+
+      // #region resets for button
+      @include iui-reset;
+      font-family: inherit;
+      background-color: unset;
+      color: unset;
+      // #endregion
+
+      &:hover {
+        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+
+        &:not(:focus-visible):not(:hover) {
+          background-color: var(--iui-color-background-1);
+        }
+      }
+    }
+  }
+
+  .iui-header-button-icon {
+    margin: 0 $iui-l;
+    fill: var(--iui-icons-color-actionable);
+  }
+
+  > .iui-label {
+    margin-right: $iui-sm;
+    font-size: $iui-font-size-leading;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: font-size $iui-speed-fast ease-out;
+    }
+  }
+}
+
+@mixin iui-header-button-focus {
+  &:focus {
+    box-shadow: none;
+    outline-offset: -1px;
+    outline: 1px solid var(--iui-color-foreground-primary);
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: 0;
+  }
+}
+
+@mixin iui-header-button {
+  @include iui-button-size(large, borderless);
+
+  gap: 0;
+  max-width: 25vw;
+  height: 100%;
+  border-radius: 0;
+  overflow: hidden;
+
+  @include iui-header-button-focus;
+
+  > .iui-button-label {
+    text-align: left;
+    font-size: $iui-font-size;
+    overflow: hidden;
+
+    > div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .iui-description {
+    height: $iui-baseline * 2;
+    font-size: $iui-font-size-small;
+    opacity: var(--iui-opacity-3);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: all $iui-speed-fast ease;
+    }
+  }
+
+  > .iui-button-icon {
+    flex-shrink: 0;
+  }
+
+  > * + * {
+    margin-left: $iui-sm;
+  }
+
+  .iui-header-button-icon {
+    padding: $iui-xs;
+    @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
+    background-color: var(--iui-color-background-3);
+    fill: var(--iui-icons-color);
+  }
+
+  &.iui-active {
+    @include iui-header-button-active;
+  }
+
+  &:disabled {
+    .iui-header-button-icon {
+      filter: grayscale(1) opacity(0.7);
+    }
+  }
+
+  @at-root {
+    .iui-page-header.iui-slim {
+      > .iui-left {
+        .iui-button {
+          .iui-header-button-icon.iui-header-button-icon {
+            width: $iui-icons-small;
+            height: $iui-icons-small;
+            padding: $iui-xxs;
+          }
+        }
+
+        .iui-button-label {
+          .iui-description {
+            @include iui-display-none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin iui-header-dropdown-button {
+  padding-right: $iui-s;
+}
+
+@mixin iui-header-split-button {
+  &,
+  > * {
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+  }
+
+  max-width: 25vw;
+
+  .iui-button {
+    @include iui-header-button;
+    padding: 0 $iui-xs;
+  }
+
+  > *:first-child {
+    .iui-button {
+      padding-left: $iui-sm;
+    }
+  }
+
+  &.iui-active {
+    @include iui-header-button-active;
+
+    // Removing button hovers and backgrounds and adding last child hover
+    .iui-button {
+      &.iui-borderless {
+        &,
+        &:hover {
+          background-color: transparent;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    > *:last-child {
+      > .iui-button:hover {
+        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      }
+    }
+
+    &.iui-disabled {
+      .iui-button {
+        &:last-child:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+@mixin iui-header-button-active {
+  // Blue icons
+  svg {
+    fill: var(--iui-icons-color-primary);
+  }
+
+  .iui-description {
+    opacity: 1;
+  }
+
+  &,
+  &:hover {
+    // Blue background and darker blue bottom line
+    box-shadow: 0 $iui-xxs 0 0 var(--iui-color-foreground-primary);
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+
+    .iui-header-button-icon {
+      fill: var(--iui-icons-color-primary);
+      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    }
+  }
+
+  // Blue text
+  .iui-button-label {
+    color: var(--iui-color-foreground-primary);
+  }
+
+  // Disabled state
+  &.iui-disabled,
+  &:disabled {
+    background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
+    box-shadow: 0 $iui-xxs 0 0 rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+
+    .iui-button-label {
+      color: var(--iui-icons-color-actionable-disabled);
+    }
+
+    .iui-button-icon,
+    svg {
+      fill: var(--iui-icons-color-actionable-disabled);
+    }
+
+    .iui-header-button-icon {
+      background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
+    }
+  }
+}

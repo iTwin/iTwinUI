@@ -1,0 +1,51 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import './button';
+@import './button-icon';
+@import '../notification-marker/index';
+@import './disabled';
+
+@mixin iui-button-default {
+  background-color: var(--iui-color-background-1);
+  border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  @include iui-focus($offset: -2px, $thickness: 2px);
+
+  &:hover,
+  &:active {
+    background-color: var(--iui-color-background-1-overlay);
+    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
+    @include iui-notification-marker-hover;
+  }
+
+  &.iui-dropdown {
+    padding-right: $iui-s;
+
+    // Sizes
+    &.iui-small {
+      padding-right: $iui-xs;
+    }
+
+    &.iui-large {
+      padding-right: $iui-sm;
+    }
+  }
+
+  &.iui-active:enabled {
+    position: relative;
+    color: var(--iui-color-foreground-primary);
+
+    // Used for combining overlay background color with base background
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    }
+  }
+
+  &[disabled],
+  &:disabled {
+    @include iui-button-disabled;
+  }
+}

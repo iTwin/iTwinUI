@@ -1,0 +1,19 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import './location-marker';
+
+@mixin iui-location-marker-default {
+  @include iui-location-marker;
+  width: $iui-icons-large;
+  height: $iui-icons-large;
+  cursor: pointer;
+
+  > .iui-location-marker-default-pin {
+    filter: drop-shadow($iui-elevation-2);
+
+    > .iui-location-marker-default-pin-dot {
+      fill: var(--iui-color-foreground-accessory);
+    }
+  }
+}

@@ -1,17 +1,9 @@
-
-# Test Reference Files
-backstop/results/*
-!backstop/results/bitmaps_reference
-
-# Built Files
-lib
-
-# Minified Files
-backstop/minified
-
 # Node
 node_modules
 yarn-error.log
 
 # MacOS
 **/.DS_Store
+
+# turbo
+.turbo

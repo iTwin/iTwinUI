@@ -1,0 +1,39 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import './button';
+@import './disabled';
+@import './button-icon';
+
+@mixin iui-button-borderless {
+  border-color: transparent;
+  background-color: transparent;
+
+  > .iui-button-icon:only-child {
+    margin-left: $iui-component-offset;
+    margin-right: $iui-component-offset;
+  }
+  @include iui-button-size(medium, borderless);
+
+  &:hover {
+    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+    border-color: transparent;
+  }
+
+  &.iui-active {
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    color: var(--iui-color-foreground-primary);
+    border-color: transparent;
+  }
+
+  &[disabled],
+  &:disabled {
+    @include iui-button-disabled;
+    background-color: transparent;
+    border-color: transparent;
+
+    &.iui-active {
+      background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
+    }
+  }
+}

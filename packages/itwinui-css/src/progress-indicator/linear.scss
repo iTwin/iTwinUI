@@ -1,0 +1,107 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-progress-indicator-linear($height: 4px) {
+  @include iui-reset;
+  text-align: left;
+  display: block;
+
+  > .iui-track {
+    width: 100%;
+    height: $height;
+    overflow: hidden;
+    background-color: var(--iui-color-background-border);
+
+    > .iui-fill {
+      display: inline-block;
+      height: 100%;
+      vertical-align: top;
+      background-color: var(--iui-color-foreground-primary);
+    }
+  }
+
+  > .iui-label {
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    margin-top: $iui-xs;
+    display: flex;
+    font-size: $iui-font-size-small;
+    justify-content: space-between;
+
+    > :only-child {
+      margin: 0 auto;
+    }
+
+    > :last-child:not(:first-child) {
+      user-select: none;
+    }
+
+    svg {
+      display: flex; // needed for vertical alignment of webcomponents
+      width: $iui-icons-default;
+      height: $iui-icons-default;
+    }
+  }
+
+  &.iui-positive {
+    > .iui-track,
+    > .iui-track > * {
+      background-color: var(--iui-color-foreground-positive);
+    }
+
+    > .iui-label {
+      color: var(--iui-color-foreground-positive);
+
+      svg {
+        fill: var(--iui-icons-color-positive);
+      }
+
+      > span {
+        @include iui-text-selection(positive);
+      }
+    }
+  }
+
+  &.iui-negative {
+    > .iui-track > * {
+      width: 100%;
+      background-color: var(--iui-color-foreground-negative);
+    }
+
+    > .iui-label {
+      color: var(--iui-color-foreground-negative);
+
+      svg {
+        fill: var(--iui-icons-color-negative);
+      }
+
+      > span {
+        @include iui-text-selection(negative);
+      }
+    }
+  }
+}
+
+@mixin iui-progress-indicator-linear-determinate($speed: 2s) {
+  transition: width $speed ease-in-out;
+}
+
+@mixin iui-progress-indicator-linear-indeterminate() {
+  @keyframes iui-progress-indicator-linear-animate-indeterminate {
+    0% {
+      transform: translateX(-60%) scaleX(0);
+    }
+
+    40% {
+      transform: translateX(-40%) scaleX(0.4);
+    }
+
+    100% {
+      transform: translateX(100%) scaleX(0.5);
+    }
+  }
+  width: 100%;
+  animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
+}
