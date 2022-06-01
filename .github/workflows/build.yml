@@ -3,11 +3,11 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches: 
+    branches:
       - 'main'
       - 'v1.0'
   pull_request:
-    branches: 
+    branches:
       - 'main'
       - 'v1.0'
 
@@ -157,8 +157,8 @@ jobs:
             ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
-          
-  deploy:
+
+  deploy2:
     name: Deploy v1 demo html pages
     if: github.ref == 'refs/heads/v1.0'
     runs-on: ubuntu-latest
