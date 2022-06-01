@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
-      - 'v1.0'
+      - "main"
+      - "v1.0"
   pull_request:
     branches:
-      - 'main'
-      - 'v1.0'
+      - "main"
+      - "v1.0"
 
 jobs:
   build:
@@ -56,8 +56,8 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v2.2.3
         with:
-          name: 'backstop_test_results'
-          path: '${{ github.workspace }}/packages/itwinui-css/backstop/results/'
+          name: "backstop_test_results"
+          path: "${{ github.workspace }}/packages/itwinui-css/backstop/results/"
 
       - name: Host test results on gh pages
         continue-on-error: true
@@ -139,7 +139,7 @@ jobs:
         with:
           branch: gh-pages
           folder: ${{ github.workspace }}/packages/itwinui-css/css
-          target-folder: lib/css
+          target-folder: css
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
@@ -152,8 +152,8 @@ jobs:
           clean-exclude: |
             v1
             backstop
-            lib/css/all.css
-            lib/css/global.css
+            css/all.css
+            css/global.css
             ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
@@ -210,7 +210,7 @@ jobs:
         with:
           branch: gh-pages
           folder: ${{ github.workspace }}/packages/itwinui-css/css
-          target-folder: v1/lib/css
+          target-folder: v1/css
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
@@ -223,8 +223,8 @@ jobs:
           clean-exclude: |
             v1
             backstop
-            lib/css/all.css
-            lib/css/global.css
+            css/all.css
+            css/global.css
             ${{ steps.open_prs.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
