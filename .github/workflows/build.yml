@@ -195,7 +195,6 @@ jobs:
           folder: ${{ github.workspace }}/backstop/
           target-folder: v1/backstop
           clean-exclude: |
-            v1
             gh-pages
             ./*.ts
             ./*.js
