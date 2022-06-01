@@ -4,19 +4,19 @@
 
 ### Fixes
 
-- **Table:** Fix zebra striping color ([#658](https://www.github.com/iTwin/iTwinUI/issues/658)) ([91e0a4c](https://www.github.com/iTwin/iTwinUI/commit/91e0a4ca9b5246abfbd97526b1492e2bc9ce48b4))
+* **Table:** Fix zebra striping color ([#658](https://www.github.com/iTwin/iTwinUI/issues/658)) ([91e0a4c](https://www.github.com/iTwin/iTwinUI/commit/91e0a4ca9b5246abfbd97526b1492e2bc9ce48b4))
 
 ## [0.59.0](https://www.github.com/iTwin/iTwinUI/compare/v0.58.0...v0.59.0) (2022-05-27)
 
 ### What's new
 
-- **SideNavigation:** Change stripe location ([#636](https://www.github.com/iTwin/iTwinUI/issues/636)) ([6c94ffb](https://www.github.com/iTwin/iTwinUI/commit/6c94ffbb7e93049dc6d1c81049ddf55e57418c68))
-- **Table:** Add sticky columns ([#621](https://www.github.com/iTwin/iTwinUI/issues/621)) ([07ba65d](https://www.github.com/iTwin/iTwinUI/commit/07ba65dff20da05c4fdfc17fd931549c1126ed90))
+* **SideNavigation:** Change stripe location ([#636](https://www.github.com/iTwin/iTwinUI/issues/636)) ([6c94ffb](https://www.github.com/iTwin/iTwinUI/commit/6c94ffbb7e93049dc6d1c81049ddf55e57418c68))
+* **Table:** Add sticky columns ([#621](https://www.github.com/iTwin/iTwinUI/issues/621)) ([07ba65d](https://www.github.com/iTwin/iTwinUI/commit/07ba65dff20da05c4fdfc17fd931549c1126ed90))
 
 ### Fixes
 
-- **InformationPanel:** Adjust `box-shadow` to look the same as elevation-4 ([#644](https://www.github.com/iTwin/iTwinUI/issues/644)) ([2a3d551](https://www.github.com/iTwin/iTwinUI/commit/2a3d551bf2ce76879aa9fdc63e4d884515577671))
-- **Table:** Improve responsive design by wrapping column actions when there is no space ([#646](https://www.github.com/iTwin/iTwinUI/issues/646)) ([fb39515](https://www.github.com/iTwin/iTwinUI/commit/fb395152e2dd4e5fce452edab455f8850187b295))
+* **InformationPanel:** Adjust `box-shadow` to look the same as elevation-4 ([#644](https://www.github.com/iTwin/iTwinUI/issues/644)) ([2a3d551](https://www.github.com/iTwin/iTwinUI/commit/2a3d551bf2ce76879aa9fdc63e4d884515577671))
+* **Table:** Improve responsive design by wrapping column actions when there is no space ([#646](https://www.github.com/iTwin/iTwinUI/issues/646)) ([fb39515](https://www.github.com/iTwin/iTwinUI/commit/fb395152e2dd4e5fce452edab455f8850187b295))
 
 ## [0.58.0](https://www.github.com/iTwin/iTwinUI/compare/v0.57.0...v0.58.0) (2022-05-11)
 
