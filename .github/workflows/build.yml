@@ -192,7 +192,7 @@ jobs:
         with:
           branch: gh-pages
           single-commit: true
-          folder: ${{ github.workspace }}/backstop/
+          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/
           target-folder: v1/backstop
           clean-exclude: |
             gh-pages
@@ -209,7 +209,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/lib/css
+          folder: ${{ github.workspace }}/packages/itwinui-css/css
           target-folder: v1/lib/css
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
