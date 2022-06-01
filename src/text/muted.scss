@@ -3,5 +3,7 @@
 @import '../style/index';
 
 @mixin iui-text-muted {
-  color: var(--iui-text-color-muted);
+  @include themed {
+    color: t(iui-text-color-muted);
+  }
 }

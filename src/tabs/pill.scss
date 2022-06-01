@@ -16,7 +16,9 @@
   }
 
   &.iui-green .iui-tab:hover {
-    background-color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-6));
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-positive-rgb), t(iui-opacity-6));
+    }
   }
 
   .iui-tab {
@@ -32,11 +34,15 @@
     }
 
     &:hover {
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      }
     }
 
     &[disabled]:hover {
-      background-color: transparent;
+      @include themed {
+        background-color: transparent;
+      }
     }
   }
 }

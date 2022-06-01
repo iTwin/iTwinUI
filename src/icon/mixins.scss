@@ -45,21 +45,31 @@
 }
 
 @mixin iui-icons-color {
-  fill: var(--iui-icons-color);
+  @include themed {
+    fill: t(iui-icons-color);
+  }
 
   &.iui-informational {
-    fill: var(--iui-icons-color-primary);
+    @include themed {
+      fill: t(iui-icons-color-primary);
+    }
   }
 
   &.iui-positive {
-    fill: var(--iui-icons-color-positive);
+    @include themed {
+      fill: t(iui-icons-color-positive);
+    }
   }
 
   &.iui-warning {
-    fill: var(--iui-icons-color-warning);
+    @include themed {
+      fill: t(iui-icons-color-warning);
+    }
   }
 
   &.iui-negative {
-    fill: var(--iui-icons-color-negative);
+    @include themed {
+      fill: t(iui-icons-color-negative);
+    }
   }
 }

@@ -13,7 +13,9 @@
   user-select: none;
   cursor: pointer;
   isolation: isolate;
-  color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+  @include themed {
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
 
   > * + * {
     margin-left: $iui-s;
@@ -25,7 +27,9 @@
   // Disabled
   &.iui-disabled {
     cursor: not-allowed;
-    color: var(--iui-text-color-muted);
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
     @media (forced-colors: active) {
       color: GrayText;
     }

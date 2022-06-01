@@ -1,7 +1,7 @@
 /**
- * Web component for avatar. Use in other components examples to simplify html. Choose between 2 predefined types/people.
- * <x-avatar size="small" type="2"></x-avatar>
- * <x-avatar size="x-large" type="1" status="online" showPlaceholder="true"></x-avatar>
+ * Web component for user icon. Use in other components examples to simplify html. Choose between 2 predefined types/people.
+ * <user-icon size="small" type="2"></user-icon>
+ * <user-icon size="x-large" type="1" status="online" showPlaceholder="true"></user-icon>
  */
 const persons = {
   1: {
@@ -16,7 +16,7 @@ const persons = {
   },
 };
 
-class Avatar extends HTMLElement {
+class UserIcon extends HTMLElement {
   constructor() {
     super();
   }
@@ -29,7 +29,7 @@ class Avatar extends HTMLElement {
 
     const innerHtml = `
     <span
-      class="iui-avatar iui-${size}"
+      class="iui-user-icon iui-${size}"
       title="${person.title}"
     >
       <abbr
@@ -61,4 +61,4 @@ class Avatar extends HTMLElement {
     this.remove();
   }
 }
-customElements.define('x-avatar', Avatar); //custom html elements must have a "-" to avoid potential conflicts with native html elements
+customElements.define('user-icon', UserIcon);

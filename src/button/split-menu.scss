@@ -6,7 +6,9 @@
   @include iui-button-group;
 
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+    }
   }
 
   > * {
@@ -35,20 +37,26 @@
     &:first-child {
       > .iui-high-visibility,
       > .iui-cta {
-        border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
+        @include themed {
+          border-right-color: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4));
+        }
       }
     }
 
     &:last-child {
       > .iui-high-visibility,
       > .iui-cta {
-        border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
+        @include themed {
+          border-left-color: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4));
+        }
       }
     }
   }
 
   &.iui-disabled {
-    background-color: transparent;
+    @include themed {
+      background-color: transparent;
+    }
   }
 
   &[disabled],
