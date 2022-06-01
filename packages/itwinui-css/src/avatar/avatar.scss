@@ -73,8 +73,8 @@
     position: absolute;
     right: -$iui-xxs;
     bottom: -$iui-xxs;
-    width: 25%;
-    height: 25%;
+    width: var(--_iui-avatar-status-bubble-size);
+    height: var(--_iui-avatar-status-bubble-size);
     border-radius: 50%;
     border: $iui-xxs solid var(--iui-color-background-1);
     background-color: var(--iui-color-background-5);
