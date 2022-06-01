@@ -1,0 +1,787 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Tag | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <style>
+      /* Forces grouped tags to display on 1 line, can be set by the dev team. */
+      section .iui-tag-container {
+        max-width: 444px;
+      }
+      section#demo-basic .iui-tag-container {
+        max-width: 420px;
+      }
+    </style>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
+    ></script>
+    <script src="../assets/theme.js"></script>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Tag</h1>
+    <hr />
+
+    <h2>Default</h2>
+    <section id="demo-default">
+      <span
+        class="iui-tag"
+        id="test-tag-1"
+      >
+        <span
+          class="iui-tag-label"
+          title="Tag"
+        >
+          Tag
+        </span>
+        <button
+          class="iui-button iui-borderless iui-small iui-tag-button"
+          aria-label="Delete tag"
+          type="button"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-close-small>
+        </button>
+      </span>
+
+      <br />
+
+      <span
+        class="iui-tag"
+        title="Overflowing tag"
+        style="max-width: 125px;"
+      >
+        <span class="iui-tag-label">Overflowing tag</span>
+        <button
+          class="iui-button iui-borderless iui-small iui-tag-button"
+          aria-label="Delete tag"
+          type="button"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-close-small>
+        </button>
+      </span>
+
+      <br />
+
+      <span
+        class="iui-tag"
+        title="Tag with no button"
+      >
+        <span class="iui-tag-label">No button</span>
+      </span>
+    </section>
+
+    <hr />
+
+    <h2>Default tag containers</h2>
+    <section id="demo-default-container">
+
+      <div class="iui-tag-container iui-visible">
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+      </div>
+
+      <br />
+
+
+      <div class="iui-tag-container iui-visible iui-truncate">
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+      </div>
+
+      <br />
+
+      <div class="iui-tag-container iui-visible iui-scroll">
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Long tag"
+          >
+            Long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very long tag"
+          >
+            Very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+
+        <span class="iui-tag">
+          <span
+            class="iui-tag-label"
+            title="Very very long tag"
+          >
+            Very very long tag
+          </span>
+          <button
+            class="iui-button iui-borderless iui-small iui-tag-button"
+            aria-label="Delete tag"
+            type="button"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-close-small>
+          </button>
+        </span>
+      </div>
+
+    </section>
+
+    <hr />
+
+    <h2>Basic tag containers</h2>
+    <section id="demo-basic">
+      <div class="iui-tag-container iui-truncate">
+        <span class="iui-tag-basic">tags</span>
+        <span class="iui-tag-basic">go</span>
+        <span class="iui-tag-basic">here</span>
+        <span class="iui-tag-basic">tags</span>
+        <span class="iui-tag-basic">go</span>
+        <span class="iui-tag-basic">here</span>
+        <span class="iui-tag-basic">tags</span>
+        <span class="iui-tag-basic">go</span>
+        <span class="iui-tag-basic">here</span>
+        <span class="iui-tag-basic">tags</span>
+        <span class="iui-tag-basic">go</span>
+        <span class="iui-tag-basic">here</span>
+        <span class="iui-tag-basic">tags</span>
+        <span class="iui-tag-basic">go</span>
+        <span class="iui-tag-basic">here</span>
+        <span class="iui-tag-basic">tags</span>
+        <span class="iui-tag-basic">go</span>
+        <span class="iui-tag-basic">here</span>
+      </div>
+
+      <div class="iui-tag-container iui-truncate">
+        <a
+          href="#"
+          class="iui-tag-basic"
+          id="test-tag"
+        >
+          tags
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          go
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          here
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          tags
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          go
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          here
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          tags
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          go
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          here
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          tags
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          go
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          here
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          tags
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          go
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          here
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          tags
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          go
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          here
+        </a>
+      </div>
+    </section>
+  </body>
+</html>
