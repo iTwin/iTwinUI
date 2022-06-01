@@ -30,7 +30,6 @@
   display: flex;
   align-items: center;
   height: $iui-baseline * 3;
-  box-sizing: border-box;
   border-top: $iui-xxs solid var(--iui-color-background-4);
 
   &-left,
