@@ -3,9 +3,13 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches:
+      - 'main'
+      - 'v1.0'
   pull_request:
-    branches: [main]
+    branches:
+      - 'main'
+      - 'v1.0'
 
 jobs:
   build:
@@ -119,6 +123,7 @@ jobs:
           folder: ${{ github.workspace }}/packages/itwinui-css/backstop/
           target-folder: backstop
           clean-exclude: |
+            v1
             gh-pages
             ./*.ts
             ./*.js
@@ -142,9 +147,81 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/gh-pages/
+          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/gh-pages/main
           target-folder: ./
           clean-exclude: |
+            v1
+            backstop
+            lib/css/all.css
+            lib/css/global.css
+            ${{ steps.open_prs.outputs.result }}
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+  deploy-v1:
+    name: Deploy v1 demo html pages
+    if: github.ref == 'refs/heads/v1.0'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+
+      - name: List open pull requests
+        id: open_prs
+        uses: actions/github-script@v4
+        with:
+          result-encoding: string
+          script: |
+            return ((await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            })).data.map(pr => pr.number).join('\n'))
+
+      - name: Host backstop folder on gh pages
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          branch: gh-pages
+          single-commit: true
+          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/
+          target-folder: v1/backstop
+          clean-exclude: |
+            gh-pages
+            ./*.ts
+            ./*.js
+            tests
+            scenarios
+            results
+            engine_scripts
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+      - name: Host css on gh pages
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/packages/itwinui-css/css
+          target-folder: v1/lib/css
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+      - name: Host index file on gh pages
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/gh-pages/v1
+          target-folder: v1
+          clean-exclude: |
+            v1
             backstop
             lib/css/all.css
             lib/css/global.css
