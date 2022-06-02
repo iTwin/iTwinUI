@@ -5,6 +5,9 @@
 
 .iui-page-header {
   @include iui-page-header;
+}
+
+.iui-page-header-slim {
   @include iui-page-header-slim;
 }
 
