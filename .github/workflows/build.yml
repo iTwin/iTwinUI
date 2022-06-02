@@ -159,6 +159,7 @@ jobs:
 
   deploy-v1:
     name: Deploy v1 demo html pages
+    if: github.ref == 'v1.0'
     runs-on: ubuntu-latest
 
     steps:
