@@ -51,11 +51,48 @@
   }
 }
 
+@mixin iui-dialog-position {
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -33%);
+
+  &[data-position] {
+    position: fixed;
+    top: auto;
+    left: auto;
+    transform: none;
+  }
+
+  &[data-position='centered'] {
+    position: fixed;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -33%);
+  }
+
+  &[data-position='top-left'] {
+    top: $iui-baseline;
+    left: $iui-m;
+  }
+
+  &[data-position='top-right'] {
+    top: $iui-baseline;
+    right: $iui-m;
+  }
+
+  &[data-position='bottom-left'] {
+    bottom: $iui-baseline;
+    left: $iui-m;
+  }
+
+  &[data-position='bottom-right'] {
+    bottom: $iui-baseline;
+    right: $iui-m;
+  }
+}
+
 @mixin iui-dialog-default {
   .iui-dialog {
-    left: 50%;
-    top: 33%;
-    transform: translate(-50%, -33%);
     max-width: 50%;
     min-width: 380px;
     max-height: 100vh;
@@ -74,6 +111,7 @@
   }
 
   .iui-dialog {
+    position: relative;
     border-radius: 0;
     height: 100vh;
     width: 100vw;
