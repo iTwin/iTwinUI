@@ -5,10 +5,10 @@ on:
   push:
     branches:
       - 'main'
+      - 'greta/fix-v1-deploy'
   pull_request:
     branches:
       - 'main'
-      - 'v1.0'
 
 jobs:
   build:
@@ -159,7 +159,7 @@ jobs:
 
   deploy-v1:
     name: Deploy v1 demo html pages
-    if: github.ref == 'v1.0'
+    if: github.ref == 'refs/heads/greta/fix-v1-deploy'
     runs-on: ubuntu-latest
 
     steps:
