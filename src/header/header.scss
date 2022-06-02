@@ -4,6 +4,8 @@
 @import '../breadcrumbs/index';
 
 @mixin iui-page-header {
+  --_iui-header-icon-scale: none;
+
   @include iui-reset;
   display: flex;
   justify-content: space-between;
@@ -21,6 +23,8 @@
 }
 
 @mixin iui-page-header-slim {
+  --_iui-header-icon-scale: scale(0.66666);
+
   height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
 }
 

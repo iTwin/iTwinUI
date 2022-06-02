@@ -48,11 +48,9 @@
   margin: 0 $iui-side-navigation-icon-margins;
   fill: var(--iui-icons-color-actionable);
   will-change: transform;
+  transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
     transition: transform $iui-speed-fast ease-out;
-  }
-  @at-root .iui-page-header-slim & {
-    transform: scale(0.66666);
   }
 }
 
@@ -219,10 +217,7 @@
 @mixin iui-header-breadcrumb-button-icon {
   @include iui-thumbnail-or-icon;
   will-change: transform;
-
-  @at-root .iui-page-header-slim & {
-    transform: scale(0.66666);
-  }
+  transform: var(--_iui-header-icon-scale);
 
   @media (max-width: 768px) {
     display: none;
