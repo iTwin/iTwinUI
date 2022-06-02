@@ -41,6 +41,58 @@
     <h1>Dialog</h1>
     <hr />
 
+    <div class="iui-input-container iui-inline-label">
+      <div class="iui-label">Dialog Placement</div>
+      <div class="iui-input-group">
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="centered"
+            checked
+          />
+          <span class="iui-radio-label">Centered</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="top-left"
+          />
+          <span class="iui-radio-label">Top-left</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="top-right"
+          />
+          <span class="iui-radio-label">Top-right</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="bottom-left"
+          />
+          <span class="iui-radio-label">Bottom-left</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="bottom-right"
+          />
+          <span class="iui-radio-label">Bottom-right</span>
+        </label>
+      </div>
+    </div>
+
     <button
       aria-label="Open dialog"
       id="open-dialog"
@@ -79,7 +131,11 @@
       class="iui-dialog-backdrop iui-dialog-default"
       id="default-dialog"
     >
-      <div class="iui-dialog">
+      <div
+        class="iui-dialog"
+        data-position="centered"
+        id="dialog-click"
+      >
         <div class="iui-dialog-title-bar">
           <div class="iui-dialog-title">Title</div>
           <button
@@ -275,12 +331,20 @@
       </div>
     </div>
 
-
     <script>
       function toggleDialog(dialogId) {
         let element = document.getElementById(dialogId);
         element.classList.toggle('iui-dialog-visible');
       }
+
+      const dialog = document.querySelector('#dialog-click');
+      // Clicking on menu-item should toggle selection
+      document.querySelectorAll('input').forEach((item) => {
+        item.addEventListener('click', () => {
+          // dialog.classList.value = `iui-toast-wrapper iui-placement-${item.value}`;
+          dialog.setAttribute('data-position', item.value);
+        });
+      });
 
       const dragItem = document.querySelector('#draggable-dialog .iui-dialog');
       dragElement(dragItem);
@@ -339,6 +403,7 @@
           }
         }
       }
+
     </script>
   </body>
 </html>
