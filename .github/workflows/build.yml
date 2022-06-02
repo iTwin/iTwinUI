@@ -5,10 +5,10 @@ on:
   push:
     branches:
       - 'main'
-      - 'greta/fix-v1-deploy'
   pull_request:
     branches:
       - 'main'
+      - 'greta/fix-v1-deploy'
 
 jobs:
   build:
