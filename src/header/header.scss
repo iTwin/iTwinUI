@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../breadcrumbs/index';
 
 @mixin iui-page-header {
   @include iui-reset;
@@ -61,4 +62,8 @@
   @media (forced-colors: active) {
     display: none;
   }
+}
+
+@mixin iui-page-header-breadcrumbs {
+  @include iui-breadcrumbs($breadcrumbs-height: 100%);
 }

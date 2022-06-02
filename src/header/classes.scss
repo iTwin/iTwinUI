@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
-@import '../breadcrumbs/index';
 
 .iui-page-header {
   @include iui-page-header;
@@ -25,6 +24,10 @@
   @include iui-page-header-divider;
 }
 
+.iui-header-breadcrumbs {
+  @include iui-page-header-breadcrumbs;
+}
+
 .iui-header-brand {
   @include iui-header-brand;
 }
@@ -35,10 +38,6 @@
 
 .iui-header-brand-label {
   @include iui-header-brand-label;
-}
-
-.iui-header-breadcrumbs {
-  @include iui-breadcrumbs($breadcrumbs-height: 100%);
 }
 
 .iui-header-breadcrumbs-list {
