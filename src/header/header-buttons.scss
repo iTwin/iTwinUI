@@ -70,7 +70,7 @@
   }
 }
 
-@mixin iui-header-breadcrumb-button-container {
+@mixin iui-header-breadcrumb-button-wrapper {
   max-width: 25vw;
   transition: background-color $iui-speed-fast ease-out;
   height: 100%;
