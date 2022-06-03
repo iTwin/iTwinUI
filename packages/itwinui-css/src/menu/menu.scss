@@ -38,7 +38,6 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   padding: 0 ($iui-component-padding-horizontal + 1px);
   height: $iui-component-height;
   cursor: pointer;
-  box-sizing: border-box;
   line-height: normal;
 
   + #{&} {

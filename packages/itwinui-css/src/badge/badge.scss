@@ -24,7 +24,7 @@ $iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-3--l
   color: var(--_iui-badge-text-color);
   text-transform: uppercase;
   user-select: none;
-  max-width: 20ch;
+  max-width: calc(20ch + 12px); // `+ 12px` accounts for padding
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

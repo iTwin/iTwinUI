@@ -62,7 +62,6 @@
     width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
     height: auto;
     border-radius: $iui-border-radius-round;
-    box-sizing: border-box;
     transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
     background-color: var(--iui-color-background-1);
     border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
