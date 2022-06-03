@@ -159,7 +159,7 @@ jobs:
 
   deploy-v1:
     name: Deploy v1 demo html pages
-    if: github.head_ref == 'refs/heads/greta/fix-v1-deploy'
+    if: github.head_ref == 'greta/fix-v1-deploy'
     runs-on: ubuntu-latest
 
     steps:
