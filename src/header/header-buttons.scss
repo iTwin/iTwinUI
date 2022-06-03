@@ -202,9 +202,32 @@
 }
 
 @mixin iui-header-breadcrumb-button-text {
-  @include iui-label-with-sublabel;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: $iui-font-size;
+  text-align: left;
+  overflow: hidden;
+  transition: color $iui-speed-fast ease-out;
+
+  &-label,
+  &-sublabel {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 
   &-sublabel {
+    font-size: $iui-font-size-small;
+    opacity: var(--iui-opacity-3);
+
+    @at-root {
+      .iui-active &,
+      [aria-current] & {
+        opacity: var(--iui-opacity-1);
+      }
+    }
+
     @at-root .iui-page-header-slim & {
       display: none;
     }
@@ -212,9 +235,67 @@
 }
 
 @mixin iui-header-breadcrumb-button-icon {
-  @include iui-thumbnail-or-icon;
+  width: $iui-icons-large;
+  height: $iui-icons-large;
+  background-color: var(--iui-color-background-3);
+  border-radius: $iui-border-radius;
+  display: inline-flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: $iui-xs;
+  fill: var(--iui-icons-color);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed-fast ease-out;
+  }
+  @media (forced-colors: active) {
+    fill: LinkText;
+  }
+
+  @at-root {
+    img#{&},
+    div#{&} {
+      padding: 0;
+      transition: filter $iui-speed-fast ease-out;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: filter $iui-speed-fast ease-out, transform $iui-speed-fast ease-out;
+      }
+    }
+
+    img#{&} {
+      object-fit: cover;
+    }
+
+    div#{&} {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .iui-active &,
+    [aria-current] & {
+      background-color: var(--iui-color-background-1);
+      fill: currentColor;
+    }
+
+    :disabled &,
+    [aria-disabled='true'] & {
+      background-color: var(--iui-color-background-2);
+      fill: var(--iui-icons-color-actionable-disabled);
+
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
+    }
+
+    :disabled img#{&},
+    :disabled div#{&},
+    [aria-disabled='true'] img#{&},
+    [aria-disabled='true'] div#{&} {
+      filter: grayscale(1) opacity(0.7);
+    }
+  }
 
   @media (max-width: 768px) {
     display: none;
