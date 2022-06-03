@@ -165,6 +165,7 @@ jobs:
 
     steps:
       - run: echo ${{ github.ref }}
+      - run: echo ${{ github.head_ref }}
 
       - uses: actions/checkout@v2
 
