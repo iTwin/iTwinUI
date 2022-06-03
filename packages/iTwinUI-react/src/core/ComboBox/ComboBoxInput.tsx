@@ -17,7 +17,9 @@ export const ComboBoxInput = React.forwardRef(
   (props: ComboBoxInputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
     const { onKeyDown: onKeyDownProp, onFocus: onFocusProp, ...rest } = props;
 
-    const { isOpen, id, focusedIndex } = useSafeContext(ComboBoxStateContext);
+    const { isOpen, id, focusedIndex, enableVirtualization } = useSafeContext(
+      ComboBoxStateContext,
+    );
     const dispatch = useSafeContext(ComboBoxActionContext);
     const { inputRef, menuRef, optionsExtraInfoRef } = useSafeContext(
       ComboBoxRefsContext,
@@ -52,11 +54,23 @@ export const ComboBoxInput = React.forwardRef(
             }
 
             if (focusedIndexRef.current === -1) {
+              const currentElement = menuRef.current?.querySelector(
+                '[data-iui-index]',
+              );
               return dispatch([
                 'focus',
-                Object.values(optionsExtraInfoRef.current)?.[0]
-                  .__originalIndex ?? -1,
+                Number(currentElement?.getAttribute('data-iui-index') ?? 0),
               ]);
+            }
+
+            // If virtualization is enabled, dont let round scrolling
+            if (
+              enableVirtualization &&
+              !menuRef.current?.querySelector(
+                `[data-iui-index="${focusedIndexRef.current}"]`,
+              )?.nextElementSibling
+            ) {
+              return;
             }
 
             let nextIndex = focusedIndexRef.current;
@@ -82,6 +96,16 @@ export const ComboBoxInput = React.forwardRef(
             }
 
             if (length === 0) {
+              return;
+            }
+
+            // If virtualization is enabled, dont let round scrolling
+            if (
+              enableVirtualization &&
+              !menuRef.current?.querySelector(
+                `[data-iui-index="${focusedIndexRef.current}"]`,
+              )?.previousElementSibling
+            ) {
               return;
             }
 
@@ -128,7 +152,14 @@ export const ComboBoxInput = React.forwardRef(
             break;
         }
       },
-      [dispatch, isOpen, menuRef, onKeyDownProp, optionsExtraInfoRef],
+      [
+        dispatch,
+        enableVirtualization,
+        isOpen,
+        menuRef,
+        onKeyDownProp,
+        optionsExtraInfoRef,
+      ],
     );
 
     const handleFocus = React.useCallback(

@@ -35,17 +35,30 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     const virtualItemRenderer = React.useCallback(
       (index: number) =>
         filteredOptions.length > 0
-          ? getMenuItem(filteredOptions[index])
+          ? getMenuItem(filteredOptions[index], index)
           : (children as JSX.Element), // Here is expected empty state content
       [filteredOptions, getMenuItem, children],
     );
+
+    const focusedVisibleIndex = React.useMemo(() => {
+      const currentElement = menuRef.current?.querySelector(
+        `[data-iui-index="${focusedIndex}"]`,
+      );
+      if (!currentElement) {
+        return focusedIndex;
+      }
+
+      return Number(
+        currentElement.getAttribute('data-iui-filtered-index') ?? focusedIndex,
+      );
+    }, [focusedIndex, menuRef]);
 
     const { outerProps, innerProps, visibleChildren } = useVirtualization({
       // 'Fool' VirtualScroll by passing length 1
       // whenever there is no elements, to show empty state message
       itemsLength: filteredOptions.length || 1,
       itemRenderer: virtualItemRenderer,
-      scrollToIndex: focusedIndex,
+      scrollToIndex: focusedVisibleIndex,
     });
 
     const overflowY = getWindow()?.CSS?.supports?.('overflow-x: overlay')
