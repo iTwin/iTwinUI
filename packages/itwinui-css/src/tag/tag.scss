@@ -59,6 +59,7 @@
 
 @mixin iui-tag-container {
   color: var(--iui-text-color-muted);
+  column-gap: $iui-xs;
 
   > a.iui-tag-basic {
     margin: $iui-xxs;
