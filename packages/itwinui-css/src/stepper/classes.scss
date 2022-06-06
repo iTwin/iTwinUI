@@ -5,3 +5,23 @@
 .iui-stepper {
   @include iui-stepper;
 }
+
+.iui-stepper-list {
+  @include iui-stepper-list;
+}
+
+.iui-stepper-step {
+  @include iui-stepper-step;
+}
+
+.iui-stepper-step-name {
+  @include iui-stepper-step-name;
+}
+
+.iui-stepper-label {
+  @include iui-stepper-label;
+}
+
+.iui-stepper-count {
+  @include iui-stepper-count;
+}

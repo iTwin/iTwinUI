@@ -5,158 +5,154 @@
 
 @mixin iui-stepper {
   --iui-stepper-circle-size: #{$iui-l};
+}
 
-  &-list {
-    @include iui-reset;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+@mixin iui-stepper-list {
+  @include iui-reset;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+}
+
+@mixin iui-stepper-step {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  color: var(--iui-color-foreground-positive);
+  position: relative;
+  counter-increment: section;
+  @include iui-text(small);
+
+  // Track
+  &::before {
+    --_iui-stepper-track-first-half: var(--iui-color-foreground-positive);
+    --_iui-stepper-track-second-half: var(--iui-color-foreground-positive);
+
+    content: '';
     width: 100%;
+    height: $iui-xxs;
+    position: absolute;
+    top: calc(var(--iui-stepper-circle-size) * 0.5);
+    background: linear-gradient(
+      90deg,
+      var(--_iui-stepper-track-first-half) 50%,
+      var(--_iui-stepper-track-second-half) 50%
+    );
   }
 
-  &-step {
+  // Step
+  &::after {
+    content: counter(section);
     display: flex;
-    flex: 1;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    width: var(--iui-stepper-circle-size);
+    height: var(--iui-stepper-circle-size);
+    border-radius: $iui-border-radius-round;
+    overflow-wrap: break-word;
+    user-select: none;
+    transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out,
+      color $iui-speed-fast ease-out;
+    border: 1px solid;
+    position: absolute;
+    top: 0;
+    color: inherit;
+  }
+
+  // Completed steps
+  &::after {
+    background-color: var(--iui-color-background-1);
+    border-color: var(--iui-color-foreground-positive);
     color: var(--iui-color-foreground-positive);
-    position: relative;
-    counter-increment: section;
-    @include iui-text(small);
+  }
 
-    // Step name
-    &-name {
-      margin-top: calc(var(--iui-stepper-circle-size) + $iui-xxs);
-      text-align: center;
-      user-select: all;
-      color: inherit;
-    }
+  // Current step
+  &.iui-current {
+    color: var(--iui-color-foreground-positive);
+    font-weight: $iui-font-weight-semibold;
 
-    // Track
     &::before {
       --_iui-stepper-track-first-half: var(--iui-color-foreground-positive);
-      --_iui-stepper-track-second-half: var(--iui-color-foreground-positive);
-
-      content: '';
-      width: 100%;
-      height: $iui-xxs;
-      position: absolute;
-      top: calc(var(--iui-stepper-circle-size) * 0.5);
-      background: linear-gradient(
-        90deg,
-        var(--_iui-stepper-track-first-half) 50%,
-        var(--_iui-stepper-track-second-half) 50%
-      );
+      --_iui-stepper-track-second-half: var(--iui-color-background-5);
     }
 
-    // Step
     &::after {
-      content: counter(section);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-variant-numeric: tabular-nums;
-      width: var(--iui-stepper-circle-size);
-      height: var(--iui-stepper-circle-size);
-      border-radius: $iui-border-radius-round;
-      overflow-wrap: break-word;
-      user-select: none;
-      transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out,
-        color $iui-speed-fast ease-out;
-      border: 1px solid;
-      position: absolute;
-      top: 0;
+      color: var(--iui-color-foreground-accessory);
+      border-color: var(--iui-color-background-positive);
+      background-color: var(--iui-color-background-positive);
+    }
+  }
+
+  // Future steps
+  &.iui-current ~ & {
+    color: var(--iui-text-color-muted);
+
+    &::before {
+      --_iui-stepper-track-first-half: var(--iui-color-background-5);
+      --_iui-stepper-track-second-half: var(--iui-color-background-5);
+    }
+
+    &::after {
+      border-color: var(--iui-color-background-5);
       color: inherit;
     }
+  }
 
-    // Completed steps
-    &::after {
-      border-color: var(--iui-color-foreground-positive);
-      background-color: var(--iui-color-background-1);
-      color: var(--iui-color-foreground-positive);
+  // First step
+  &:first-of-type::before {
+    --_iui-stepper-track-first-half: transparent;
+  }
+
+  // Last step
+  &:last-of-type::before {
+    --_iui-stepper-track-second-half: transparent !important;
+  }
+
+  // Clickable steps
+  &.iui-clickable {
+    cursor: pointer;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background-color $iui-speed-fast ease-out;
     }
 
-    // Current step
-    &.iui-current {
-      color: var(--iui-color-foreground-positive);
-      font-weight: $iui-font-weight-semibold;
+    &:hover::after {
+      color: var(--iui-color-foreground-accessory);
+      border: 1px solid var(--iui-color-background-positive);
+      background-color: var(--iui-color-background-positive);
+    }
 
-      &::before {
-        --_iui-stepper-track-first-half: var(--iui-color-foreground-positive);
-        --_iui-stepper-track-second-half: var(--iui-color-background-5);
-      }
+    @include focus-visible {
+      outline: 0;
 
       &::after {
-        color: var(--iui-color-foreground-accessory);
-        border-color: var(--iui-color-background-positive);
-        background-color: var(--iui-color-background-positive);
-      }
-    }
-
-    // Future steps
-    &.iui-current ~ & {
-      color: var(--iui-text-color-muted);
-
-      &::before {
-        --_iui-stepper-track-first-half: var(--iui-color-background-5);
-        --_iui-stepper-track-second-half: var(--iui-color-background-5);
-      }
-
-      &::after {
-        border-color: var(--iui-color-background-5);
-        color: inherit;
-      }
-    }
-
-    // First step
-    &:first-of-type::before {
-      --_iui-stepper-track-first-half: transparent;
-    }
-
-    // Last step
-    &:last-of-type::before {
-      --_iui-stepper-track-second-half: transparent !important;
-    }
-
-    // Clickable steps
-    &.iui-clickable {
-      cursor: pointer;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast ease-out;
-      }
-
-      &:hover::after {
-        color: var(--iui-color-foreground-accessory);
-        border: 1px solid var(--iui-color-background-positive);
-        background-color: var(--iui-color-background-positive);
-      }
-
-      @include focus-visible {
-        outline: 0;
-
-        &::after {
-          outline: $iui-xxs solid var(--iui-color-foreground-positive);
-          outline-offset: -1px;
-        }
+        outline: $iui-xxs solid var(--iui-color-foreground-positive);
+        outline-offset: -1px;
       }
     }
   }
+}
 
-  // #region Long stepper specific
-  &-label {
-    display: block;
-    font-size: $iui-font-size-subheading;
-    text-align: center;
-    margin-top: calc(var(--iui-stepper-circle-size) + 8px);
-  }
+@mixin iui-stepper-step-name {
+  color: inherit;
+  line-height: $iui-line-height * 0.75;
+  margin-top: calc(var(--iui-stepper-circle-size) + $iui-xxs);
+  text-align: center;
+  user-select: all;
+}
 
-  &-count {
-    user-select: none;
-    margin-right: $iui-s;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
-  }
-  // #endregion Long stepper specific
+@mixin iui-stepper-label {
+  display: block;
+  font-size: $iui-font-size-subheading;
+  margin-top: calc(var(--iui-stepper-circle-size) + 8px);
+  text-align: center;
+}
+
+@mixin iui-stepper-count {
+  color: var(--iui-text-color-muted);
+  margin-right: $iui-s;
+  user-select: none;
 }
