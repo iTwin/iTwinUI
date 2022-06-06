@@ -32,6 +32,16 @@
     }
   }
 
+  &.iui-negative {
+    .iui-thumbnail-icon {
+      fill: var(--iui-icons-color-negative);
+    }
+
+    .iui-tile-name {
+      color: var(--iui-color-foreground-negative);
+    }
+  }
+
   &.iui-selected {
     @include iui-focus($offset: 0, $thickness: $iui-xs);
     @include themed() {
@@ -121,6 +131,10 @@
     text-overflow: ellipsis;
   }
 
+  .iui-tile-uploading {
+    font-style: italic;
+  }
+
   .iui-tile-description {
     margin-bottom: $iui-baseline;
     font-size: $iui-font-size;
@@ -177,6 +191,10 @@
 
   .iui-thumbnail-icon {
     @include iui-icons-3xl;
+  }
+
+  &.iui-negative {
+    box-shadow: 4px solid t(--iui-color-foreground-negative);
   }
 }
 
