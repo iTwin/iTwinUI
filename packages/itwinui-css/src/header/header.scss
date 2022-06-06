@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: $iui-baseline * 5;// + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
+  height: $iui-baseline * 5;
   user-select: none;
   // iPhone notch support
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
@@ -83,7 +83,7 @@
   }
 
   &.iui-slim {
-    height: round($iui-baseline * 2.5);// + $iui-xxs;
+    height: $iui-baseline * 3;
 
     > .iui-left {
       .iui-header-logo {

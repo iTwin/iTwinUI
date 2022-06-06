@@ -53,6 +53,7 @@
   }
 
   &.iui-collapsed {
+    box-sizing: content-box;
     min-width: $iui-icons-large * 3;
     max-width: $iui-icons-large * 3;
 
