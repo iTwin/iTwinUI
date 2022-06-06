@@ -67,22 +67,23 @@
   }
 
   > .iui-status {
+    box-sizing: content-box;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     right: -$iui-xxs;
     bottom: -$iui-xxs;
-    width: var(--_iui-avatar-status-bubble-size);
-    height: var(--_iui-avatar-status-bubble-size);
+    width: 25%;
+    height: 25%;
     border-radius: 50%;
     border: $iui-xxs solid var(--iui-color-background-1);
     background-color: var(--iui-color-background-5);
 
     &::after {
       content: '';
-      width: var(--_iui-avatar-status-icon-size, $iui-s);
-      height: var(--_iui-avatar-status-icon-size, $iui-s);
+      width: var(--_iui-avatar-status-size, $iui-s);
+      height: var(--_iui-avatar-status-size, $iui-s);
     }
 
     &.iui-online {

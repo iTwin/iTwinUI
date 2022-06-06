@@ -143,11 +143,11 @@
 
 @mixin iui-radio-tile-icon {
   width: $iui-icons-xl;
-  height: $iui-icons-xl + round($iui-baseline * 0.5) + $iui-baseline; // 49px to account for padding
+  height: $iui-icons-xl;
   display: block;
   margin: 0 auto;
-  padding-top: round($iui-baseline * 0.5);
-  padding-bottom: $iui-baseline;
+  margin-top: round($iui-baseline * 0.5);
+  margin-bottom: $iui-baseline;
   fill: var(--iui-icons-color);
   @media (prefers-reduced-motion: no-preference) {
     transition: fill $iui-speed-fast ease-out;
