@@ -28,7 +28,7 @@ $iui-dialog-width: 380px;
   padding: $iui-baseline $iui-m;
   overflow: hidden;
   pointer-events: auto;
-  background-color: #fff; // IE fallback
+  background-color: #FFF; // IE fallback
   background-color: var(--iui-color-background-1);
   @media (forced-colors: active) {
     border: 1px solid;
