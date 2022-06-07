@@ -74,30 +74,39 @@
     color: var(--iui-color-foreground-positive);
   }
 
-  // Current step
-  &[aria-current] {
-    color: var(--iui-color-foreground-positive);
-    font-weight: $iui-font-weight-semibold;
+  // First step
+  &:first-of-type::before {
+    --_iui-stepper-track-first-half: transparent;
+  }
 
-    &::before {
-      --_iui-stepper-track-first-half: var(--iui-color-foreground-positive);
-      --_iui-stepper-track-second-half: var(--iui-color-background-5);
-    }
+  // Last step
+  &:last-of-type::before {
+    --_iui-stepper-track-second-half: transparent !important;
+  }
+}
 
-    &::after {
-      color: var(--iui-color-foreground-accessory);
-      border-color: var(--iui-color-background-positive);
-      background-color: var(--iui-color-background-positive);
-      @media (forced-colors: active) {
-        background-color: CanvasText;
-        border-color: CanvasText;
-        color: Canvas;
-      }
+@mixin iui-stepper-step-current {
+  color: var(--iui-color-foreground-positive);
+  font-weight: $iui-font-weight-semibold;
+
+  &::before {
+    --_iui-stepper-track-first-half: var(--iui-color-foreground-positive);
+    --_iui-stepper-track-second-half: var(--iui-color-background-5);
+  }
+
+  &::after {
+    color: var(--iui-color-foreground-accessory);
+    border-color: var(--iui-color-background-positive);
+    background-color: var(--iui-color-background-positive);
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+      border-color: CanvasText;
+      color: Canvas;
     }
   }
 
   // Future steps
-  &[aria-current] ~ & {
+  ~ .iui-stepper-step {
     color: var(--iui-text-color-muted);
 
     &::before {
@@ -109,16 +118,6 @@
       border-color: var(--iui-color-background-5);
       color: inherit;
     }
-  }
-
-  // First step
-  &:first-of-type::before {
-    --_iui-stepper-track-first-half: transparent;
-  }
-
-  // Last step
-  &:last-of-type::before {
-    --_iui-stepper-track-second-half: transparent !important;
   }
 }
 
