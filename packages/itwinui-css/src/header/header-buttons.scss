@@ -89,7 +89,6 @@
     background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
     box-shadow: 0 $iui-xxs 0 0 currentColor;
     color: var(--iui-color-foreground-primary);
-    pointer-events: none; // Removes hover effect, reduces specificity
     @media (forced-colors: active) {
       color: LinkText;
       border-bottom: 3px solid LinkText;
@@ -101,7 +100,6 @@
     cursor: not-allowed;
     background-color: transparent;
     color: var(--iui-text-color-placeholder);
-    pointer-events: none; // Removes hover effect
 
     // Disabled active state
     &[aria-current] {
@@ -134,7 +132,6 @@
   transition: background-color $iui-speed-fast ease-out;
   color: inherit;
   gap: $iui-sm;
-  pointer-events: auto; // Reverts change from parent element
   cursor: pointer;
   @media (forced-colors: active) {
     border: 1px solid transparent;
