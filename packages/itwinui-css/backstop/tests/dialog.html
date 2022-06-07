@@ -341,7 +341,6 @@
       // Clicking on menu-item should toggle selection
       document.querySelectorAll('input').forEach((item) => {
         item.addEventListener('click', () => {
-          // dialog.classList.value = `iui-toast-wrapper iui-placement-${item.value}`;
           dialog.setAttribute('data-position', item.value);
         });
       });
