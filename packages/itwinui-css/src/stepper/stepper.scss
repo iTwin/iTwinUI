@@ -120,27 +120,26 @@
   &:last-of-type::before {
     --_iui-stepper-track-second-half: transparent !important;
   }
+}
 
-  // Clickable steps
-  &[tabindex] {
-    cursor: pointer;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: background-color $iui-speed-fast ease-out;
-    }
+@mixin iui-stepper-step-clickable {
+  cursor: pointer;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: background-color $iui-speed-fast ease-out;
+  }
 
-    &:hover::after {
-      color: var(--iui-color-foreground-accessory);
-      border: 1px solid var(--iui-color-background-positive);
-      background-color: var(--iui-color-background-positive);
-    }
+  &:hover::after {
+    color: var(--iui-color-foreground-accessory);
+    border: 1px solid var(--iui-color-background-positive);
+    background-color: var(--iui-color-background-positive);
+  }
 
-    @include focus-visible {
-      outline: 0;
+  @include focus-visible {
+    outline: 0;
 
-      &::after {
-        outline: $iui-xxs solid var(--iui-color-foreground-positive);
-        outline-offset: -1px;
-      }
+    &::after {
+      outline: $iui-xxs solid var(--iui-color-foreground-positive);
+      outline-offset: -1px;
     }
   }
 }
