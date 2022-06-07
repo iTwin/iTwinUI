@@ -275,10 +275,7 @@
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-
-  > .iui-badge:not(:last-child) {
-    margin-right: $iui-xs;
-  }
+  gap: $iui-xs;
 }
 
 @mixin iui-tile-buttons {

@@ -19,7 +19,7 @@ const compileScss = async (path, outFile) => {
     try {
       const cssResult = await sass.compileAsync(path);
       const processedCssResult = await postcss([
-        require('autoprefixer')({ grid: 'autoplace' }),
+        require('autoprefixer'),
         require('postcss-discard-comments'),
       ]).process(cssResult.css, { from: undefined }); // `from` is required
       fs.writeFileSync(`${outDir}/${outFile}.css`, processedCssResult.css);
