@@ -218,8 +218,8 @@
     font-size: $iui-font-size-small;
     opacity: var(--iui-opacity-3);
     @media (prefers-reduced-motion: no-preference) {
-      transition: visibility 0s linear 0s, width $iui-speed-fast ease, height $iui-speed-fast ease,
-        opacity $iui-speed-fast ease;
+      transition: visibility 0s linear 0s, width $iui-speed-fast ease-out, height $iui-speed-fast ease-out,
+        opacity $iui-speed-fast ease-out;
     }
 
     @at-root {
@@ -231,7 +231,9 @@
 
     @at-root .iui-page-header-slim & {
       visibility: hidden;
-      @include iui-display-none;
+      opacity: 0;
+      height: 0;
+      width: 0;
     }
   }
 }
