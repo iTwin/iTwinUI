@@ -13,14 +13,14 @@ module.exports = [
 
   // Hover states
   scenario('State default hover on complete', {
-    actions: [hover('#demo-default .iui-clickable:first-child')],
+    actions: [hover('#demo-default .iui-stepper-step:first-child')],
     selectors: ['#demo-default'],
     viewports: [{ width: 800, height: 600 }],
   }),
 
   // Focus states
   scenario('State long focus on complete', {
-    actions: [focus('#demo-long .iui-clickable:first-child')],
+    actions: [focus('#demo-long .iui-stepper-step:first-child')],
     selectors: ['#demo-long'],
     viewports: [{ width: 800, height: 600 }],
   }),

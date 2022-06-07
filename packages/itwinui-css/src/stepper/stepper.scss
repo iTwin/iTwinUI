@@ -75,7 +75,7 @@
   }
 
   // Current step
-  &.iui-current {
+  &[aria-current] {
     color: var(--iui-color-foreground-positive);
     font-weight: $iui-font-weight-semibold;
 
@@ -97,7 +97,7 @@
   }
 
   // Future steps
-  &.iui-current ~ & {
+  &[aria-current] ~ & {
     color: var(--iui-text-color-muted);
 
     &::before {
@@ -122,7 +122,7 @@
   }
 
   // Clickable steps
-  &.iui-clickable {
+  &[tabindex] {
     cursor: pointer;
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color $iui-speed-fast ease-out;
