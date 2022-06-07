@@ -4,7 +4,7 @@
 @import '../text/index';
 
 @mixin iui-stepper {
-  --iui-stepper-circle-size: #{$iui-l};
+  --_iui-stepper-circle-size: #{$iui-l};
 }
 
 @mixin iui-stepper-list {
@@ -34,12 +34,16 @@
     width: 100%;
     height: $iui-xxs;
     position: absolute;
-    top: calc(var(--iui-stepper-circle-size) * 0.5);
+    top: calc(var(--_iui-stepper-circle-size) * 0.5);
     background: linear-gradient(
       90deg,
       var(--_iui-stepper-track-first-half) 50%,
       var(--_iui-stepper-track-second-half) 50%
     );
+
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+    }
   }
 
   // Step
@@ -50,8 +54,8 @@
     justify-content: center;
     text-align: center;
     font-variant-numeric: tabular-nums;
-    width: var(--iui-stepper-circle-size);
-    height: var(--iui-stepper-circle-size);
+    width: var(--_iui-stepper-circle-size);
+    height: var(--_iui-stepper-circle-size);
     border-radius: $iui-border-radius-round;
     overflow-wrap: break-word;
     user-select: none;
@@ -84,6 +88,11 @@
       color: var(--iui-color-foreground-accessory);
       border-color: var(--iui-color-background-positive);
       background-color: var(--iui-color-background-positive);
+      @media (forced-colors: active) {
+        background-color: CanvasText;
+        border-color: CanvasText;
+        color: Canvas;
+      }
     }
   }
 
@@ -138,8 +147,7 @@
 
 @mixin iui-stepper-step-name {
   color: inherit;
-  line-height: $iui-line-height * 0.75;
-  margin-top: calc(var(--iui-stepper-circle-size) + $iui-xxs);
+  margin-top: calc(var(--_iui-stepper-circle-size) + $iui-xxs);
   text-align: center;
   user-select: all;
 }
@@ -147,7 +155,7 @@
 @mixin iui-stepper-label {
   display: block;
   font-size: $iui-font-size-subheading;
-  margin-top: calc(var(--iui-stepper-circle-size) + 8px);
+  margin-top: calc(var(--_iui-stepper-circle-size) + 8px);
   text-align: center;
 }
 

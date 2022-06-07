@@ -1,0 +1,68 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Workflow diagram | iTwinUI</title>
+    <link
+      rel="stylesheet"
+      href="../../css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/demo.css"
+    />
+    <script src="../assets/theme.js"></script>
+    <style>
+      section[id^='demo'] {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Workflow diagram</h1>
+    <hr />
+
+    <section id="demo-default">
+
+      <div class="iui-workflow-diagram">
+        <ol
+          class="iui-workflow-diagram-list"
+          aria-label="Workflow"
+        >
+          <li class="iui-workflow-diagram-step">
+            <div class="iui-workflow-diagram-step-name">Start</div>
+          </li>
+
+          <li class="iui-workflow-diagram-step">
+            <div class="iui-workflow-diagram-step-name">Set parameters</div>
+          </li>
+
+          <li class="iui-workflow-diagram-step">
+            <div class="iui-workflow-diagram-step-name">Invite collaborators</div>
+          </li>
+
+          <li class="iui-workflow-diagram-step">
+            <div class="iui-workflow-diagram-step-name">Review & approve</div>
+          </li>
+
+          <li class="iui-workflow-diagram-step">
+            <div class="iui-workflow-diagram-step-name">Complete</div>
+          </li>
+        </ol>
+      </div>
+
+    </section>
+  </body>
+</html>

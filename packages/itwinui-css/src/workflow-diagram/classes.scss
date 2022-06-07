@@ -1,0 +1,19 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-workflow-diagram {
+  @include iui-workflow-diagram;
+}
+
+.iui-workflow-diagram-list {
+  @include iui-workflow-diagram-list;
+}
+
+.iui-workflow-diagram-step {
+  @include iui-workflow-diagram-step;
+}
+
+.iui-workflow-diagram-step-name {
+  @include iui-workflow-diagram-step-name;
+}

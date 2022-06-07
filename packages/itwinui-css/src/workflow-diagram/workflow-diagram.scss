@@ -1,0 +1,90 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../text/index';
+
+@mixin iui-workflow-diagram {
+  --_iui-workflow-diagram-min-height: #{$iui-l};
+  isolation: isolate;
+}
+
+@mixin iui-workflow-diagram-list {
+  @include iui-reset;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+@mixin iui-workflow-diagram-step {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  color: var(--iui-color-foreground-positive);
+  position: relative;
+  @include iui-text(small);
+
+  // Track
+  &::before {
+    --_iui-stepper-track-first-half: var(--iui-color-foreground-positive);
+    --_iui-stepper-track-second-half: var(--iui-color-foreground-positive);
+
+    content: '';
+    width: 100%;
+    height: $iui-xxs;
+    position: absolute;
+    top: calc(50% - ($iui-xxs * 0.5));
+    background: linear-gradient(
+      90deg,
+      var(--_iui-stepper-track-first-half) 50%,
+      var(--_iui-stepper-track-second-half) 50%
+    );
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+    }
+  }
+
+  // First step
+  &:first-of-type::before {
+    --_iui-stepper-track-first-half: transparent;
+  }
+
+  // Last step
+  &:last-of-type::before {
+    --_iui-stepper-track-second-half: transparent;
+  }
+}
+
+@mixin iui-workflow-diagram-step-name {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: $iui-m;
+  padding-right: $iui-m;
+  background-color: var(--_iui-workflow-diagram-step-background-color);
+  border: 1px solid var(--_iui-workflow-diagram-step-border-color);
+  color: var(--_iui-workflow-diagram-step-color);
+  border-radius: var(--_iui-workflow-diagram-step-border-radius);
+  user-select: none;
+  margin: 0 $iui-xs;
+  text-align: center;
+  line-height: $iui-line-height * 0.75;
+  min-height: var(--_iui-workflow-diagram-min-height);
+  z-index: 1;
+
+  @at-root .iui-workflow-diagram-step {
+    --_iui-workflow-diagram-step-background-color: var(--iui-color-background-positive);
+    --_iui-workflow-diagram-step-border-color: var(--iui-color-background-positive);
+    --_iui-workflow-diagram-step-border-radius: 0;
+    --_iui-workflow-diagram-step-color: var(--iui-color-foreground-accessory);
+
+    &:first-of-type,
+    &:last-of-type {
+      --_iui-workflow-diagram-step-background-color: var(--iui-color-background-1);
+      --_iui-workflow-diagram-step-border-color: var(--iui-color-foreground-positive);
+      --_iui-workflow-diagram-step-border-radius: #{$iui-border-radius-round};
+      --_iui-workflow-diagram-step-color: var(--iui-color-foreground-positive);
+    }
+  }
+}
