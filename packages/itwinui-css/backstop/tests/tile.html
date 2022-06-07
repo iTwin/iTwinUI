@@ -101,10 +101,7 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
     ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/imodel"
-    ></script>
+
     <script src="../assets/theme.js"></script>
     <script src="../assets/userIcon.js"></script>
   </head>
@@ -544,7 +541,7 @@
       </div>
 
       <div
-        class="iui-tile iui-new"
+        class="iui-tile"
         id="test-tile-8"
       >
         <div class="iui-tile-thumbnail">
@@ -615,65 +612,20 @@
             culpa qui officia deserunt mollit anim id est laborum.
           </div>
 
-          <div class="iui-tile-more-options">
-            <button
-              aria-label="More options"
-              type="button"
-              class="iui-button iui-borderless iui-small"
-              id="test-button"
-            >
-              <svg-more
-                class="iui-button-icon"
-                aria-hidden="true"
-              ></svg-more>
-            </button>
-          </div>
         </div>
 
       </div>
 
       <div
-        class="iui-tile iui-new"
+        class="iui-tile"
         id="test-tile-9"
+        disabled
       >
         <div class="iui-tile-thumbnail">
 
-          <div class="iui-progress-indicator-radial iui-determinate iui-thumbnail-icon"><svg
-              class="iui-radial"
-              viewBox="0 0 40 40"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="20"
-                cy="20"
-                r="15.91549"
-              ></circle>
-              <circle
-                class="iui-fill"
-                cx="20"
-                cy="20"
-                r="15.91549"
-                style="stroke-dashoffset: 20"
-              ></circle>
-            </svg></div>
+          <div class="iui-progress-indicator-radial iui-determinate iui-thumbnail-icon">
 
-          <!--  <button
-            aria-label="Type indicator"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
-          >
-            <svg-placeholder
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-placeholder>
-          </button>
-        -->
-        </div>
-
-        <div class="iui-tile-content ">
-          <div class="iui-tile-name">
-            <div class="iui-tile-status-icon">
+            <div class="iui-tile-status-icon iui-disabled iui-table iui-thumbnail-icon">
               <svg-filetype-imodel aria-hidden="true"><svg viewBox="0 0 16 16">
                   <path
                     d="m11 3v-3h-9v16h12v-13z"
@@ -688,33 +640,46 @@
                     fill="#448136"
                   ></path>
                 </svg></svg-filetype-imodel>
-
             </div>
-            <span class="iui-tile-uploading">Upload in progress...</span>
+
+          </div>
+
+          <!--  <button
+            aria-label="Type indicator"
+            type="button"
+            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
+          >
+            <svg-placeholder
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-placeholder>
+          </button>
+        -->
+        </div>
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-name">
+            <div class="iui-tile-status-icon iui-disabled iui-table">
+              <svg-filetype-imodel aria-hidden="true"><svg viewBox="0 0 16 16">
+                  <path
+                    d="m11 3v-3h-9v16h12v-13z"
+                    fill="#5ebb47"
+                  ></path>
+                  <path
+                    d="m11.44286 5.71608-2.85715-1.6996a1.15613 1.15613 0 0 0 -1.17142 0l-2.85715 1.6996a1.13938 1.13938 0 0 0 -.55714.97731v3.47012a1.15714 1.15714 0 0 0 .55714.97714l2.85715 1.69966a1.15618 1.15618 0 0 0 1.17142 0l2.85715-1.69966a1.1393 1.1393 0 0 0 .55714-.97714v-3.48429a1.11623 1.11623 0 0 0 -.55714-.96314zm-3.44286-.00195a.60711.60711 0 1 1 -.00006 0zm1.71429 5.25109a.14287.14287 0 0 1 -.06978.12274l-1.55714.92737a.14282.14282 0 0 1 -.14571 0l-1.58572-.936a.14289.14289 0 0 1 -.07023-.123v-.82337a.14287.14287 0 0 1 .21589-.12275l.927.51355v-1.96l-.5016-.3196a.14289.14289 0 0 1 -.06983-.123v-.82623a.14285.14285 0 0 1 .21617-.12262l1.42858.79034a.14287.14287 0 0 1 .06954.12257v2.43846l.927-.51349a.14286.14286 0 0 1 .21589.12269z"
+                    fill="#fff"
+                  ></path>
+                  <path
+                    d="m11 0 3 3h-3z"
+                    fill="#448136"
+                  ></path>
+                </svg></svg-filetype-imodel>
+            </div>
+            <span class="iui-tile-name-label iui-disabled">Disabled</span>
           </div>
           <div class="iui-tile-description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
           </div>
 
-          <div class="iui-tile-more-options">
-            <button
-              aria-label="More options"
-              type="button"
-              class="iui-button iui-borderless iui-small"
-              id="test-button"
-            >
-              <svg-more
-                class="iui-button-icon"
-                aria-hidden="true"
-              ></svg-more>
-            </button>
-          </div>
         </div>
 
       </div>

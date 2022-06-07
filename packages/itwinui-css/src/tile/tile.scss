@@ -123,12 +123,22 @@
     @include iui-icons-default;
     margin-right: $iui-s;
     flex-shrink: 0;
+
+    &.iui-disabled {
+      filter: grayscale(100%);
+      cursor: not-allowed;
+    }
   }
 
   .iui-tile-name-label {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    &.iui-disabled {
+      color: t(iui-text-color-muted);
+      cursor: not-allowed;
+    }
   }
 
   .iui-tile-uploading {
@@ -191,6 +201,11 @@
 
   .iui-thumbnail-icon {
     @include iui-icons-3xl;
+
+    &.iui-disabled {
+      filter: grayscale(100%);
+      cursor: not-allowed;
+    }
   }
 
   &.iui-negative {
