@@ -6,13 +6,10 @@
 
 @mixin iui-tabs-pill {
   justify-content: space-evenly;
+  gap: $iui-xxs;
 
   > li {
     flex: 1 1 0;
-
-    &:not(:last-child) {
-      margin-right: $iui-xxs;
-    }
   }
 
   &.iui-green .iui-tab:hover {

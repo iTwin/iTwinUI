@@ -26,16 +26,7 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   @supports (overflow-y: overlay) {
     overflow-y: overlay;
   }
-  @supports (row-gap: $iui-baseline) {
-    row-gap: $iui-baseline;
-  }
-
-  > div:not(:last-child) {
-    margin-bottom: $iui-baseline;
-    @supports (row-gap: $iui-baseline) {
-      margin-bottom: 0;
-    }
-  }
+  row-gap: $iui-baseline;
 }
 
 @mixin iui-color-swatch {
@@ -45,16 +36,10 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   width: $iui-l;
   cursor: pointer;
   border-radius: $iui-color-swatch-border-radius;
-  margin-bottom: $iui-xs;
-  margin-right: $iui-xs;
   position: relative;
   background-color: var(--iui-color-swatch-background);
   forced-color-adjust: none;
   @include iui-transparent-background;
-  @supports (gap: $iui-s) {
-    margin-bottom: 0;
-    margin-right: 0;
-  }
 
   &::after {
     content: '';
@@ -90,9 +75,7 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   align-content: flex-start;
   min-height: $iui-l;
   min-width: $iui-l;
-  @supports (gap: $iui-s) {
-    gap: $iui-s;
-  }
+  gap: $iui-s;
 
   button.iui-button.iui-borderless {
     height: $iui-l;
@@ -128,13 +111,6 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
 
     > * {
       flex-grow: 1;
-    }
-
-    > *:not(:last-child) {
-      margin-right: $iui-xxs;
-      @supports (gap: $iui-xxs) {
-        margin-right: 0;
-      }
     }
 
     input {
