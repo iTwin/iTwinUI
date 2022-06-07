@@ -28,7 +28,7 @@ import { useTheme, CommonProps, useResizeObserver } from '../utils';
 import '@itwin/itwinui-css/css/table.css';
 import SvgSortDown from '@itwin/itwinui-icons-react/cjs/icons/SortDown';
 import SvgSortUp from '@itwin/itwinui-icons-react/cjs/icons/SortUp';
-import { getCellStyle } from './utils';
+import { getCellStyle, getStickyStyle } from './utils';
 import { TableRowMemoized } from './TableRowMemoized';
 import { FilterToggle, TableFilterValue } from './filters';
 import { customFilterFunctions } from './filters/customFilterFunctions';
@@ -39,6 +39,7 @@ import {
   useSubRowSelection,
   useResizeColumns,
   useColumnDragAndDrop,
+  useStickyColumns,
 } from './hooks';
 import {
   onExpandHandler,
@@ -479,6 +480,7 @@ export const Table = <
     useSelectionCell(isSelectable, selectionMode, isRowDisabled),
     useColumnOrder,
     useColumnDragAndDrop(enableColumnReordering),
+    useStickyColumns,
   );
 
   const {
@@ -495,6 +497,7 @@ export const Table = <
     gotoPage,
     setPageSize,
     flatHeaders,
+    visibleColumns,
   } = instance;
 
   const ariaDataAttributes = Object.entries(rest).reduce(
@@ -664,6 +667,34 @@ export const Table = <
     [getPreparedRow],
   );
 
+  const updateStickyState = () => {
+    if (!bodyRef.current || flatHeaders.every((header) => !header.sticky)) {
+      return;
+    }
+
+    if (bodyRef.current.scrollLeft !== 0) {
+      dispatch({ type: TableActions.setScrolledRight, value: true });
+    } else {
+      dispatch({ type: TableActions.setScrolledRight, value: false });
+    }
+
+    // If scrolled a bit to the left looking from the right side
+    if (
+      bodyRef.current.scrollLeft !==
+      bodyRef.current.scrollWidth - bodyRef.current.clientWidth
+    ) {
+      dispatch({ type: TableActions.setScrolledLeft, value: true });
+    } else {
+      dispatch({ type: TableActions.setScrolledLeft, value: false });
+    }
+  };
+
+  React.useEffect(() => {
+    updateStickyState();
+    // Call only on init
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <div
@@ -697,11 +728,18 @@ export const Table = <
                       ...column.getSortByToggleProps(),
                       className: cx(
                         'iui-cell',
-                        { 'iui-actionable': column.canSort },
-                        { 'iui-sorted': column.isSorted },
+                        {
+                          'iui-actionable': column.canSort,
+                          'iui-sorted': column.isSorted,
+                          'iui-cell-sticky': !!column.sticky,
+                        },
                         column.columnClassName,
                       ),
-                      style: getCellStyle(column, !!state.isTableResizing),
+                      style: {
+                        ...getCellStyle(column, !!state.isTableResizing),
+                        ...getStickyStyle(column, visibleColumns),
+                        flexWrap: 'unset',
+                      },
                     });
                     return (
                       <div
@@ -710,7 +748,7 @@ export const Table = <
                         key={columnProps.key}
                         title={undefined}
                         ref={(el) => {
-                          if (el && isResizable) {
+                          if (el) {
                             columnRefs.current[column.id] = el;
                             column.resizeWidth = el.getBoundingClientRect().width;
                           }
@@ -757,6 +795,14 @@ export const Table = <
                           !column.disableReordering && (
                             <div className='iui-reorder-bar' />
                           )}
+                        {column.sticky === 'left' &&
+                          state.sticky.isScrolledToRight && (
+                            <div className='iui-cell-shadow-right' />
+                          )}
+                        {column.sticky === 'right' &&
+                          state.sticky.isScrolledToLeft && (
+                            <div className='iui-cell-shadow-left' />
+                          )}
                       </div>
                     );
                   })}
@@ -776,6 +822,7 @@ export const Table = <
           onScroll={() => {
             if (headerRef.current && bodyRef.current) {
               headerRef.current.scrollLeft = bodyRef.current.scrollLeft;
+              updateStickyState();
             }
           }}
           tabIndex={-1}

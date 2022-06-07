@@ -157,5 +157,9 @@ export const TableRowMemoized = React.memo(
     prevProp.tableHasSubRows === nextProp.tableHasSubRows &&
     prevProp.state.columnOrder === nextProp.state.columnOrder &&
     !nextProp.state.columnResizing.isResizingColumn &&
-    prevProp.state.isTableResizing === nextProp.state.isTableResizing,
+    prevProp.state.isTableResizing === nextProp.state.isTableResizing &&
+    prevProp.state.sticky.isScrolledToLeft ===
+      nextProp.state.sticky.isScrolledToLeft &&
+    prevProp.state.sticky.isScrolledToRight ===
+      nextProp.state.sticky.isScrolledToRight,
 ) as typeof TableRow;

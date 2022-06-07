@@ -5,7 +5,7 @@
 import React from 'react';
 import { Cell, CellProps, CellRendererProps, TableInstance } from 'react-table';
 import cx from 'classnames';
-import { getCellStyle } from './utils';
+import { getCellStyle, getStickyStyle } from './utils';
 import { SubRowExpander } from './SubRowExpander';
 import { SELECTION_CELL_ID } from './columns';
 import { DefaultCell } from './cells';
@@ -47,10 +47,13 @@ export const TableCell = <T extends Record<string, unknown>>(
   };
 
   const cellElementProps = cell.getCellProps({
-    className: cx('iui-cell', cell.column.cellClassName),
+    className: cx('iui-cell', cell.column.cellClassName, {
+      'iui-cell-sticky': !!cell.column.sticky,
+    }),
     style: {
       ...getCellStyle(cell.column, !!tableInstance.state.isTableResizing),
       ...getSubRowStyle(),
+      ...getStickyStyle(cell.column, tableInstance.visibleColumns),
     },
   });
 
@@ -76,7 +79,19 @@ export const TableCell = <T extends Record<string, unknown>>(
   const cellRendererProps: CellRendererProps<T> = {
     cellElementProps,
     cellProps,
-    children: cellContent,
+    children: (
+      <>
+        {cellContent}
+        {cell.column.sticky === 'left' &&
+          tableInstance.state.sticky.isScrolledToRight && (
+            <div className='iui-cell-shadow-right' />
+          )}
+        {cell.column.sticky === 'right' &&
+          tableInstance.state.sticky.isScrolledToLeft && (
+            <div className='iui-cell-shadow-left' />
+          )}
+      </>
+    ),
   };
 
   return (

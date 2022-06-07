@@ -29,3 +29,35 @@ export const getCellStyle = <T extends Record<string, unknown>>(
   }
   return style;
 };
+
+export const getStickyStyle = <T extends Record<string, unknown>>(
+  column: ColumnInstance<T>,
+  columnList: ColumnInstance<T>[],
+): React.CSSProperties => {
+  if (!column.sticky) {
+    return {};
+  }
+
+  let left = 0;
+  for (const col of columnList) {
+    if (col.id === column.id) {
+      break;
+    }
+    left += Number(col.width || col.resizeWidth || 0);
+  }
+
+  let right = 0;
+  for (const col of [...columnList].reverse()) {
+    if (col.id === column.id) {
+      break;
+    }
+    right += Number(col.width || col.resizeWidth || 0);
+  }
+
+  return {
+    '--iui-table-sticky-left':
+      column.sticky === 'left' ? `${left}px` : undefined,
+    '--iui-table-sticky-right':
+      column.sticky === 'right' ? `${right}px` : undefined,
+  } as React.CSSProperties;
+};
