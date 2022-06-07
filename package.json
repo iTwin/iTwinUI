@@ -1,25 +1,9 @@
 {
-  "name": "@itwin/itwinui-css",
-  "version": "0.57.0",
-  "author": "Bentley Systems",
-  "license": "MIT",
-  "main": "src/index.scss",
-  "description": "CSS (Sass/SCSS) library for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications.",
-  "homepage": "https://github.com/iTwin/iTwinUI",
-  "keywords": [
-    "css",
-    "sass",
-    "scss",
-    "html",
-    "react",
-    "ui",
-    "ux",
-    "standards",
-    "theme",
-    "light",
-    "dark",
-    "bentley systems",
-    "itwin"
+  "name": "itwinui-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
   "husky": {
     "hooks": {
@@ -38,44 +22,23 @@
     ]
   },
   "scripts": {
-    "build": "yarn clean && yarn build:scss && yarn build:css && yarn lint:copyright --fix lib/css/* && yarn build:html && yarn copy-files",
-    "build:scss": "cpx \"./src/**/*.scss\" ./lib/scss",
-    "build:css": "node ./scripts/generateCss.js src lib/css",
-    "build:html": "node ./scripts/generateHtml.js backstop/tests backstop/minified",
-    "build:watch": "yarn build && concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn build:watch:html\"",
-    "build:watch:scss": "chokidar \"src/**/*\" -c \"yarn build:scss && yarn build:css\"",
-    "build:watch:html": "chokidar \"backstop/tests/**/*\" -c \"yarn build:html\"",
-    "copy-files": "cpx package.json lib && cpx README.md lib",
-    "createComponent": "node ./scripts/createComponent.js",
-    "clean": "rimraf ./lib ./backstop/results/bitmaps_test",
-    "lint": "stylelint \"src/**/*.scss\"",
-    "lint:copyright": "node scripts/copyrightLinter.js",
-    "approve": "backstop --config=./backstop/backstop.js approve",
-    "test": "yarn build && yarn test:ci",
-    "test:ci": "backstop --config=./backstop/backstop.js test --docker",
-    "clean:images": "node scripts/removeOldTestImages.js",
-    "print": "node scripts/print.js",
-    "audit:ci": "audit-ci --moderate --report-type=full",
-    "build-docker": "node scripts/buildDocker.js"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "lint:copyright": "node packages/shared/copyrightLinter.js"
   },
+  "dependencies": {},
   "devDependencies": {
     "audit-ci": "^4.0.0",
-    "autoprefixer": "^10.4.1",
-    "backstopjs": "~6.0.4",
     "chokidar-cli": "^2.1.0",
     "concurrently": "^6.0.0",
     "cpx": "^1.5.0",
-    "html-minifier": "^4.0.0",
     "husky": "=4",
     "lint-staged": "^11.2.6",
-    "postcss": "^8.4.5",
-    "postcss-discard-comments": "^5.0.1",
-    "postcss-scss": "^4.0.3",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
-    "sass-embedded": "^1.49.9",
-    "stylelint": "^14.2.0",
-    "stylelint-config-sass-guidelines": "^9.0.1"
+    "turbo": "~1.2.11"
   },
   "resolutions": {
     "braces": "^2.3.1",

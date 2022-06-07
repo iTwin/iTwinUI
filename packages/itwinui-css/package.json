@@ -1,0 +1,61 @@
+{
+  "name": "@itwin/itwinui-css",
+  "version": "0.59.1",
+  "author": "Bentley Systems",
+  "license": "MIT",
+  "main": "src/index.scss",
+  "files": [
+    "css",
+    "scss",
+    "CHANGELOG.md",
+    "LICENSE.md"
+  ],
+  "description": "CSS (Sass/SCSS) library for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications.",
+  "homepage": "https://github.com/iTwin/iTwinUI",
+  "keywords": [
+    "css",
+    "sass",
+    "scss",
+    "html",
+    "react",
+    "ui",
+    "ux",
+    "standards",
+    "theme",
+    "light",
+    "dark",
+    "bentley systems",
+    "itwin"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^10.4.1",
+    "backstopjs": "~6.0.4",
+    "html-minifier": "^4.0.0",
+    "postcss": "^8.4.5",
+    "postcss-discard-comments": "^5.0.1",
+    "postcss-scss": "^4.0.3",
+    "sass-embedded": "^1.49.9",
+    "stylelint": "^14.2.0",
+    "stylelint-config-sass-guidelines": "^9.0.1"
+  },
+  "scripts": {
+    "build": "yarn clean && yarn build:scss && yarn build:css && node ../shared/copyrightLinter.js --fix css/* && yarn build:html",
+    "build:scss": "cpx \"./src/**/*.scss\" ./scss",
+    "build:css": "node ./scripts/generateCss.js src css",
+    "build:html": "node ./scripts/generateHtml.js backstop/tests backstop/minified",
+    "build:watch": "yarn build && concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn build:watch:html\"",
+    "build:watch:scss": "chokidar \"src/**/*\" -c \"yarn build:scss && yarn build:css\"",
+    "build:watch:html": "chokidar \"backstop/tests/**/*\" -c \"yarn build:html\"",
+    "createComponent": "node ./scripts/createComponent.js",
+    "clean": "rimraf ./css ./scss ./backstop/results/bitmaps_test",
+    "dev": "yarn build:watch",
+    "lint": "stylelint \"src/**/*.scss\"",
+    "approve": "backstop --config=./backstop/backstop.js approve",
+    "test": "backstop --config=./backstop/backstop.js test --docker",
+    "clean:images": "node scripts/removeOldTestImages.js",
+    "print": "node scripts/print.js",
+    "audit:ci": "audit-ci --moderate --report-type=full",
+    "build-docker": "node scripts/buildDocker.js"
+  }
+}
