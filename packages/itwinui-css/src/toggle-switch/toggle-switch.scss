@@ -15,13 +15,6 @@
   isolation: isolate;
   color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
 
-  > * + * {
-    margin-left: $iui-s;
-    @supports (gap: $iui-s) {
-      margin-left: 0;
-    }
-  }
-
   // Disabled
   &.iui-disabled {
     cursor: not-allowed;
@@ -53,21 +46,12 @@
   display: flex;
   position: relative;
   cursor: pointer;
-
-  // #region IE solution
-  width: $iui-toggle-switch-handle-size;
-  height: $iui-toggle-switch-handle-size;
-  @supports (appearance: none) {
-    appearance: none;
-    width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
-    height: auto;
-    border-radius: $iui-border-radius-round;
-    box-sizing: border-box;
-    transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
-    background-color: var(--iui-color-background-1);
-    border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  }
-  // #endregion IE solution
+  appearance: none;
+  width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
+  border-radius: $iui-border-radius-round;
+  transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
+  background-color: var(--iui-color-background-1);
+  border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
 
   &-label {
     grid-area: label;
