@@ -41,6 +41,7 @@ $tick-height: $iui-baseline; // 11px
   flex-grow: 1;
   cursor: pointer;
   touch-action: pan-y;
+  isolation: isolate;
 
   &.iui-grabbing {
     cursor: grabbing;
@@ -52,9 +53,7 @@ $tick-height: $iui-baseline; // 11px
   width: 100%;
   height: $track-height;
   top: $iui-sm;
-  @include themed {
-    background-color: t(iui-color-background-border);
-  }
+  background-color: var(--iui-color-background-border);
 }
 
 @mixin iui-slider-thumb {
@@ -69,10 +68,8 @@ $tick-height: $iui-baseline; // 11px
   z-index: 1;
   cursor: grab;
   @include iui-focus($thickness: 2px);
-  @include themed {
-    background: t(iui-color-background-1);
-    border: 1px solid t(iui-color-background-border);
-  }
+  background: var(--iui-color-background-1);
+  border: 1px solid var(--iui-color-background-border);
 
   &:active {
     cursor: grabbing;
@@ -85,9 +82,7 @@ $tick-height: $iui-baseline; // 11px
   height: $track-height;
   left: 0;
   top: $iui-sm;
-  @include themed {
-    background-color: t(iui-color-foreground-primary);
-  }
+  background-color: var(--iui-color-foreground-primary);
 }
 
 @mixin iui-slider-ticks {
@@ -107,9 +102,7 @@ $tick-height: $iui-baseline; // 11px
     height: $tick-height;
     line-height: $tick-height * 4;
     margin-bottom: $tick-height * 2;
-    @include themed {
-      background-color: t(iui-color-background-4);
-    }
+    background-color: var(--iui-color-background-4);
   }
 }
 
@@ -123,24 +116,18 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-thumb {
     cursor: not-allowed;
-    @include themed {
-      background-color: t(iui-color-background-4);
-      border-color: t(iui-color-background-4);
-    }
+    background-color: var(--iui-color-background-4);
+    border-color: var(--iui-color-background-4);
   }
 
   .iui-slider-track {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-    }
+    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
   }
 
   .iui-slider-min,
   .iui-slider-max,
   .iui-slider-tick {
     user-select: none;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
   }
 }
