@@ -25,20 +25,14 @@
       user-select: none;
       white-space: nowrap;
       word-break: keep-all;
-
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+      color: var(--iui-text-color-muted);
 
       .iui-separator {
         margin: 0 $iui-s;
         width: 1px;
         height: $iui-baseline;
         display: inline-table;
-
-        @include themed {
-          background-color: t(iui-text-color-muted);
-        }
+        background-color: var(--iui-text-color-muted);
       }
 
       > a {
@@ -46,9 +40,7 @@
 
         &,
         &:hover {
-          @include themed {
-            color: t(iui-text-color-muted);
-          }
+          color: var(--iui-text-color-muted);
         }
       }
     }
@@ -57,9 +49,6 @@
   > .iui-legal-footer-developer {
     display: block;
     user-select: all;
-
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
   }
 }

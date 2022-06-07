@@ -10,10 +10,8 @@
     height: $iui-component-height;
     padding: 0 $iui-m;
     box-sizing: border-box;
-    @include themed {
-      background-color: t(iui-color-background-2);
-      border: 1px solid t(iui-color-background-5);
-    }
+    background-color: var(--iui-color-background-2);
+    border: 1px solid var(--iui-color-background-5);
 
     &::after {
       top: 0;
@@ -21,21 +19,15 @@
     }
 
     &:hover {
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
+      background-color: var(--iui-color-background-1);
     }
 
     &.iui-active {
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
+      background-color: var(--iui-color-background-1);
     }
 
     &[disabled] {
-      @include themed {
-        background-color: t(iui-color-background-3);
-      }
+      background-color: var(--iui-color-background-3);
     }
 
     &:focus {
@@ -87,17 +79,13 @@
   }
 
   &.iui-green .iui-tab::after {
-    @include themed {
-      background-color: t(iui-color-foreground-positive);
-    }
+    background-color: var(--iui-color-foreground-positive);
   }
 
   ~ .iui-tabs-content {
     padding-left: $iui-m;
     padding-right: $iui-m;
-    @include themed {
-      background-color: t(iui-color-background-1);
-      border: 1px solid t(iui-color-background-5);
-    }
+    background-color: var(--iui-color-background-1);
+    border: 1px solid var(--iui-color-background-5);
   }
 }

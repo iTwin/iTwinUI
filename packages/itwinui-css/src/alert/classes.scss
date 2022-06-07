@@ -4,10 +4,30 @@
 
 .iui-alert {
   @include iui-alert;
+}
 
-  @each $status in positive, negative, warning, informational {
-    &.iui-#{$status} {
-      @include iui-alert-category($statusColor: if($status == informational, 'primary', $status));
-    }
+@each $status in positive, negative, warning, informational {
+  .iui-alert-#{$status} {
+    @include iui-alert-category($statusColor: if($status == informational, 'primary', $status));
   }
+}
+
+.iui-alert-icon {
+  @include iui-alert-icon;
+}
+
+.iui-alert-message {
+  @include iui-alert-message;
+}
+
+.iui-alert-link {
+  @include iui-alert-link;
+}
+
+.iui-alert-button {
+  @include iui-alert-button;
+}
+
+.iui-alert-button-icon {
+  @include iui-alert-button-icon;
 }
