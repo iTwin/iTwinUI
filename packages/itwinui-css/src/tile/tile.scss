@@ -139,6 +139,11 @@
       color: t(iui-text-color-muted);
       cursor: not-allowed;
     }
+
+    &.iui-positive {
+      color: var(--iui-icons-color-positive);
+      cursor: not-allowed;
+    }
   }
 
   .iui-tile-uploading {
