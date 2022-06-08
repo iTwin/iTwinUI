@@ -5,7 +5,7 @@
 @mixin iui-tabs {
   @include iui-reset;
   position: relative;
-  align-items: center;
+  align-items: stretch;
   list-style: none;
   user-select: none;
 
@@ -16,6 +16,8 @@
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
+    min-height: $iui-component-height;
+    height: 100%;
     cursor: pointer;
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color $iui-speed-fast ease-out;
@@ -61,6 +63,7 @@
   .iui-tab-icon {
     width: $iui-icons-default;
     height: $iui-icons-default;
+    flex-shrink: 0;
     @media (prefers-reduced-motion: no-preference) {
       transition: fill $iui-speed-fast ease-out;
     }

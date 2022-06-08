@@ -7,8 +7,7 @@
   @include iui-tab-not-animated;
 
   .iui-tab {
-    height: $iui-component-height;
-    padding: 0 $iui-m;
+    padding: $iui-xs $iui-m;
     box-sizing: border-box;
     @include themed {
       background-color: t(iui-color-background-2);
@@ -78,7 +77,7 @@
 
   &.iui-large {
     .iui-tab {
-      height: $iui-component-height-large;
+      min-height: $iui-component-height-large;
     }
 
     .iui-tab-description {
