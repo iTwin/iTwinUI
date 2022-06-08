@@ -1,5 +1,11 @@
 # Changelog
 
+### [0.59.2](https://www.github.com/iTwin/iTwinUI/compare/v0.59.1...v0.59.2) (2022-06-08)
+
+### Fixes
+
+* **Code:** Fix codeblock copy button with icon gap ([#680](https://www.github.com/iTwin/iTwinUI/issues/680)) ([516e462](https://www.github.com/iTwin/iTwinUI/commit/516e462171afebe3e195741dfafca36c27c09fc2))
+
 ### [0.59.1](https://www.github.com/iTwin/iTwinUI/compare/v0.59.0...v0.59.1) (2022-05-27)
 
 ### Fixes
