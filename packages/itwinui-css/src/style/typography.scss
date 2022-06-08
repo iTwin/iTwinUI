@@ -4,10 +4,11 @@
 @import './theme';
 
 /// Constants ------------------------------------------------------------------
-
-$iui-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-$iui-sans: 'Open Sans';
-$iui-monospace: ui-monospace, Menlo, 'Segoe UI Mono', Consolas, 'Roboto Mono', 'Courier New', monospace;
+$iui-sans-fallback: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial,
+  sans-serif;
+$iui-sans: 'Noto Sans';
+$iui-monospace: 'Noto Sans Mono', ui-monospace, Menlo, 'Segoe UI Mono', Consolas, 'Roboto Mono', 'Courier New',
+  monospace;
 
 $iui-font-family: $iui-sans, $iui-sans-fallback;
 
