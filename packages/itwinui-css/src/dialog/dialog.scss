@@ -52,42 +52,35 @@
 }
 
 @mixin iui-dialog-position {
-  top: 33%;
-  left: 50%;
-  transform: translate(-50%, -33%);
-
-  &[data-position] {
-    position: fixed;
-    top: auto;
-    left: auto;
-    transform: none;
-  }
-
-  &[data-position='centered'] {
-    position: fixed;
-    top: 33%;
-    left: 50%;
-    transform: translate(-50%, -33%);
-  }
+  position: fixed;
+  right: auto;
+  left: auto;
+  top: auto;
+  bottom: auto;
+  transform: translate(50%, 150%);
 
   &[data-position='top-left'] {
     top: $iui-baseline;
     left: $iui-m;
+    transform: translate(0, 0);
   }
 
   &[data-position='top-right'] {
     top: $iui-baseline;
     right: $iui-m;
+    transform: translate(0, 0);
   }
 
   &[data-position='bottom-left'] {
     bottom: $iui-baseline;
     left: $iui-m;
+    transform: translate(0, 0);
   }
 
   &[data-position='bottom-right'] {
     bottom: $iui-baseline;
     right: $iui-m;
+    transform: translate(0, 0);
   }
 }
 
