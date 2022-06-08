@@ -7,6 +7,7 @@
   "style": "index.css",
   "files": [
     "index.css",
+    "mixins.scss",
     "LICENSE.md"
   ],
   "description": "CSS variables for the iTwinUI design system",
@@ -26,7 +27,7 @@
     "sass": "^1.52.2"
   },
   "scripts": {
-    "build": "sass index.scss index.css",
+    "build": "sass --no-source-map index.scss index.css",
     "dev": "sass index.scss index.css --watch"
   }
 }
