@@ -53,8 +53,8 @@
         content: counter(section);
         text-align: right;
         display: inline-block;
-        padding-right: $iui-s;
-        width: $iui-xl;
+        padding: 0 $iui-s;
+        width: $iui-l;
         background-color: var(--iui-color-background-2);
         color: var(--iui-text-color-muted);
       }
