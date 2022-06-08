@@ -13,13 +13,6 @@
     'label label'
     'inputs inputs' / auto 1fr;
 
-  &.iui-inline-icon:not(.iui-inline-label) > .iui-input-icon {
-    // stylelint-disable -- fix position in IE
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    // stylelint-enable
-  }
-
   &.iui-inline-icon {
     > .iui-input,
     > .iui-textarea {
@@ -48,11 +41,6 @@
   .iui-textarea,
   .iui-input-group {
     grid-area: inputs;
-    // stylelint-disable -- fix position in IE
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
-    // stylelint-enable
   }
 
   .iui-input-group .iui-toggle-switch-wrapper {
@@ -78,65 +66,15 @@
   &.iui-inline-label {
     grid-template: 'label inputs icon' / auto 1fr auto;
 
-    // IE fix icon position for inline checkboxes/radios group
-    @at-root {
-      div#{&} {
-        // stylelint-disable -- fix position in IE
-        -ms-grid-columns: auto min-content auto;
-        // stylelint-enable
-      }
-    }
-
-    .iui-input,
-    .iui-input-with-icon,
-    .iui-textarea,
-    .iui-input-group {
-      // stylelint-disable -- fix position in IE
-      -ms-grid-row: 1;
-      -ms-grid-column: 2;
-      // stylelint-enable
-    }
-
-    .iui-input-icon {
-      // stylelint-disable -- fix position in IE
-      -ms-grid-row: 1;
-      -ms-grid-column: 3;
-      // stylelint-enable
-    }
-
     &.iui-with-message {
       grid-template:
         'label inputs inputs'
         '. icon message' / auto auto 1fr;
-
-      &:not(.iui-inline-icon) > .iui-input-icon {
-        // stylelint-disable -- fix position in IE
-        -ms-grid-row: 2;
-        -ms-grid-column: 2;
-        // stylelint-enable
-      }
-
-      .iui-message {
-        // stylelint-disable -- fix position in IE
-        -ms-grid-row: 2;
-        -ms-grid-column: 3;
-        // stylelint-enable
-      }
     }
 
     > .iui-input-group {
       display: flex;
       gap: $iui-m;
-
-      > .iui-checkbox-wrapper,
-      > .iui-radio-wrapper,
-      > .iui-toggle-switch-wrapper {
-        margin-right: $iui-m;
-
-        @supports (gap: $iui-m) {
-          margin-right: 0;
-        }
-      }
 
       &:not(:last-child) {
         margin-right: $iui-m;
@@ -178,9 +116,6 @@
 /// Modifier on iui-input-label-styling to place it inline.
 @mixin iui-input-label-inline {
   margin: 0 $iui-m 0 0;
-  // stylelint-disable -- fix position in IE
-  -ms-grid-column-span: 1;
-  // stylelint-enable
 
   &.iui-required {
     margin-right: $iui-xs * 1.5;
@@ -236,11 +171,6 @@
 
 /// Modifier on iui-input-icon to place it at the end of input.
 @mixin iui-input-icon-inline {
-  // stylelint-disable -- fix position in IE
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-  // stylelint-enable
-
   grid-area: inputs;
   justify-self: end;
   margin: 0 ($iui-sm + $iui-xxs) 0 0;
