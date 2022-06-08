@@ -5,7 +5,6 @@
 @mixin iui-tabs {
   @include iui-reset;
   position: relative;
-  align-items: stretch;
   list-style: none;
   user-select: none;
 
@@ -134,8 +133,6 @@
 
 @mixin iui-tabs-vertical {
   .iui-tabs {
-    flex-direction: column;
-
     li,
     .iui-tab {
       width: 100%;
