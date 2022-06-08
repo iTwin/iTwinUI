@@ -1,69 +1,94 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @mixin light-variables {
-  --iui-color-background-1-rgb: 255, 255, 255;
-  --iui-color-background-1: rgb(var(--iui-color-background-1-rgb));
-  --iui-color-background-2-rgb: 249, 249, 251;
-  --iui-color-background-2: rgb(var(--iui-color-background-2-rgb));
-  --iui-color-background-3-rgb: 237, 239, 242;
-  --iui-color-background-3: rgb(var(--iui-color-background-3-rgb));
-  --iui-color-background-4-rgb: 221, 225, 228;
-  --iui-color-background-4: rgb(var(--iui-color-background-4-rgb));
-  --iui-color-background-5-rgb: 199, 204, 209;
-  --iui-color-background-5: rgb(var(--iui-color-background-5-rgb));
-  --iui-color-background-primary-rgb: 0, 138, 224;
-  --iui-color-background-primary: rgb(var(--iui-color-background-primary-rgb));
-  --iui-color-background-positive-rgb: 83, 162, 26;
-  --iui-color-background-positive: rgb(var(--iui-color-background-positive-rgb));
-  --iui-color-background-warning-rgb: 241, 141, 19;
-  --iui-color-background-warning: rgb(var(--iui-color-background-warning-rgb));
-  --iui-color-background-negative-rgb: 209, 10, 10;
-  --iui-color-background-negative: rgb(var(--iui-color-background-negative-rgb));
-  --iui-color-background-disabled-rgb: 237, 239, 242;
-  --iui-color-background-disabled: rgb(var(--iui-color-background-disabled-rgb));
-  --iui-color-background-border-rgb: 199, 204, 209;
-  --iui-color-background-border: rgb(var(--iui-color-background-border-rgb));
-  --iui-color-foreground-body-rgb: 0, 0, 0;
-  --iui-color-foreground-body: rgb(var(--iui-color-foreground-body-rgb));
-  --iui-color-foreground-body-invert-rgb: 255, 255, 255;
-  --iui-color-foreground-body-invert: rgb(var(--iui-color-foreground-body-invert-rgb));
-  --iui-color-foreground-accessory-rgb: 255, 255, 255;
-  --iui-color-foreground-accessory: rgb(var(--iui-color-foreground-accessory-rgb));
-  --iui-color-foreground-primary-rgb: 0, 138, 224;
-  --iui-color-foreground-primary: rgb(var(--iui-color-foreground-primary-rgb));
-  --iui-color-foreground-positive-rgb: 83, 162, 26;
-  --iui-color-foreground-positive: rgb(var(--iui-color-foreground-positive-rgb));
-  --iui-color-foreground-warning-rgb: 241, 141, 19;
-  --iui-color-foreground-warning: rgb(var(--iui-color-foreground-warning-rgb));
-  --iui-color-foreground-negative-rgb: 209, 10, 10;
-  --iui-color-foreground-negative: rgb(var(--iui-color-foreground-negative-rgb));
-  --iui-color-background-1-overlay-rgb: 242, 242, 242;
-  --iui-color-background-1-overlay: rgb(var(--iui-color-background-1-overlay-rgb));
-  --iui-color-background-primary-overlay-rgb: 0, 107, 173;
-  --iui-color-background-primary-overlay: rgb(var(--iui-color-background-primary-overlay-rgb));
-  --iui-color-background-positive-overlay-rgb: 61, 118, 19;
-  --iui-color-background-positive-overlay: rgb(var(--iui-color-background-positive-overlay-rgb));
-  --iui-color-foreground-primary-overlay-rgb: 0, 107, 173;
-  --iui-color-foreground-primary-overlay: rgb(var(--iui-color-foreground-primary-overlay-rgb));
-  --iui-color-foreground-positive-overlay-rgb: 61, 118, 19;
-  --iui-color-foreground-positive-overlay: rgb(var(--iui-color-foreground-positive-overlay-rgb));
-  --iui-color-foreground-warning-overlay-rgb: 198, 114, 12;
-  --iui-color-foreground-warning-overlay: rgb(var(--iui-color-foreground-warning-overlay-rgb));
-  --iui-color-foreground-negative-overlay-rgb: 161, 8, 8;
-  --iui-color-foreground-negative-overlay: rgb(var(--iui-color-foreground-negative-overlay-rgb));
+  --iui-color-background-1-hsl: 0 0% 100%;
+  --iui-color-background-1: hsl(var(--iui-color-background-1-hsl));
+
+  --iui-color-background-2-hsl: 220 27% 98%;
+  --iui-color-background-2: hsl(var(--iui-color-background-2-hsl));
+
+  --iui-color-background-3-hsl: 216 17% 94%;
+  --iui-color-background-3: hsl(var(--iui-color-background-3-hsl));
+
+  --iui-color-background-4-hsl: 206 11% 88%;
+  --iui-color-background-4: hsl(var(--iui-color-background-4-hsl));
+
+  --iui-color-background-5-hsl: 210 10% 80%;
+  --iui-color-background-5: hsl(var(--iui-color-background-5-hsl));
+
+  --iui-color-background-primary-hsl: 203 100% 44%;
+  --iui-color-background-primary: hsl(var(--iui-color-background-primary-hsl));
+
+  --iui-color-background-positive-hsl: 95 72% 37%;
+  --iui-color-background-positive: hsl(var(--iui-color-background-positive-hsl));
+
+  --iui-color-background-warning-hsl: 33 89% 51%;
+  --iui-color-background-warning: hsl(var(--iui-color-background-warning-hsl));
+
+  --iui-color-background-negative-hsl: 0 91% 43%;
+  --iui-color-background-negative: hsl(var(--iui-color-background-negative-hsl));
+
+  --iui-color-background-disabled: var(--iui-color-background-3);
+  --iui-color-background-border: var(--iui-color-background-5);
+
+  --iui-color-foreground-body-hsl: 0 0% 0%;
+  --iui-color-foreground-body: hsl(var(--iui-color-foreground-body-hsl));
+
+  --iui-color-foreground-body-invert-hsl: 0 0% 100%;
+  --iui-color-foreground-body-invert: hsl(var(--iui-color-foreground-body-invert-hsl));
+
+  --iui-color-foreground-accessory-hsl: 0 0% 100%;
+  --iui-color-foreground-accessory: hsl(var(--iui-color-foreground-accessory-hsl));
+
+  --iui-color-foreground-primary-hsl: 203 100% 44%;
+  --iui-color-foreground-primary: hsl(var(--iui-color-foreground-primary-hsl));
+
+  --iui-color-foreground-positive-hsl: 95 72% 37%;
+  --iui-color-foreground-positive: hsl(var(--iui-color-foreground-positive-hsl));
+
+  --iui-color-foreground-warning-hsl: 33 89% 51%;
+  --iui-color-foreground-warning: hsl(var(--iui-color-foreground-warning-hsl));
+
+  --iui-color-foreground-negative-hsl: 0 91% 43%;
+  --iui-color-foreground-negative: hsl(var(--iui-color-foreground-negative-hsl));
+
+  // TODO: fix these
+  --iui-color-background-1-overlay-hsl: 242, 242, 242;
+  --iui-color-background-1-overlay: hsl(var(--iui-color-background-1-overlay-hsl));
+
+  --iui-color-background-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-background-primary-overlay: hsl(var(--iui-color-background-primary-overlay-hsl));
+
+  --iui-color-background-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-background-positive-overlay: hsl(var(--iui-color-background-positive-overlay-hsl));
+
+  --iui-color-foreground-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-foreground-primary-overlay: hsl(var(--iui-color-foreground-primary-overlay-hsl));
+
+  --iui-color-foreground-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-foreground-positive-overlay: hsl(var(--iui-color-foreground-positive-overlay-hsl));
+
+  --iui-color-foreground-warning-overlay-hsl: 198, 114, 12;
+  --iui-color-foreground-warning-overlay: hsl(var(--iui-color-foreground-warning-overlay-hsl));
+
+  --iui-color-foreground-negative-overlay-hsl: 161, 8, 8;
+  --iui-color-foreground-negative-overlay: hsl(var(--iui-color-foreground-negative-overlay-hsl));
+
   --iui-opacity-1: 1;
   --iui-opacity-2: 0.8;
   --iui-opacity-3: 0.6;
   --iui-opacity-4: 0.4;
   --iui-opacity-5: 0.2;
   --iui-opacity-6: 0.1;
-  --iui-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-  --iui-text-color-muted: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  --iui-text-color-placeholder: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
-  --iui-icons-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  --iui-icons-color-actionable: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-  --iui-icons-color-actionable-hover: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
-  --iui-icons-color-actionable-disabled: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
+
+  --iui-text-color: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
+  --iui-text-color-muted: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-4));
+  --iui-text-color-placeholder: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
+
+  --iui-icons-color: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-4));
+  --iui-icons-color-actionable: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
+  --iui-icons-color-actionable-hover: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-1));
+  --iui-icons-color-actionable-disabled: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
   --iui-icons-color-primary: var(--iui-color-foreground-primary);
   --iui-icons-color-positive: var(--iui-color-foreground-positive);
   --iui-icons-color-warning: var(--iui-color-foreground-warning);
@@ -71,69 +96,94 @@
 }
 
 @mixin dark-variables {
-  --iui-color-background-1-rgb: 90, 104, 114;
-  --iui-color-background-1: rgb(var(--iui-color-background-1-rgb));
-  --iui-color-background-2-rgb: 79, 92, 100;
-  --iui-color-background-2: rgb(var(--iui-color-background-2-rgb));
-  --iui-color-background-3-rgb: 69, 81, 89;
-  --iui-color-background-3: rgb(var(--iui-color-background-3-rgb));
-  --iui-color-background-4-rgb: 55, 67, 73;
-  --iui-color-background-4: rgb(var(--iui-color-background-4-rgb));
-  --iui-color-background-5-rgb: 46, 56, 61;
-  --iui-color-background-5: rgb(var(--iui-color-background-5-rgb));
-  --iui-color-background-primary-rgb: 0, 138, 224;
-  --iui-color-background-primary: rgb(var(--iui-color-background-primary-rgb));
-  --iui-color-background-positive-rgb: 83, 162, 26;
-  --iui-color-background-positive: rgb(var(--iui-color-background-positive-rgb));
-  --iui-color-background-warning-rgb: 241, 141, 19;
-  --iui-color-background-warning: rgb(var(--iui-color-background-warning-rgb));
-  --iui-color-background-negative-rgb: 209, 10, 10;
-  --iui-color-background-negative: rgb(var(--iui-color-background-negative-rgb));
-  --iui-color-background-disabled-rgb: 69, 81, 89;
-  --iui-color-background-disabled: rgb(var(--iui-color-background-disabled-rgb));
-  --iui-color-background-border-rgb: 46, 56, 61;
-  --iui-color-background-border: rgb(var(--iui-color-background-border-rgb));
-  --iui-color-foreground-body-rgb: 255, 255, 255;
-  --iui-color-foreground-body: rgb(var(--iui-color-foreground-body-rgb));
-  --iui-color-foreground-body-invert-rgb: 0, 0, 0;
-  --iui-color-foreground-body-invert: rgb(var(--iui-color-foreground-body-invert-rgb));
-  --iui-color-foreground-accessory-rgb: 255, 255, 255;
-  --iui-color-foreground-accessory: rgb(var(--iui-color-foreground-accessory-rgb));
-  --iui-color-foreground-primary-rgb: 163, 214, 245;
-  --iui-color-foreground-primary: rgb(var(--iui-color-foreground-primary-rgb));
-  --iui-color-foreground-positive-rgb: 194, 224, 174;
-  --iui-color-foreground-positive: rgb(var(--iui-color-foreground-positive-rgb));
-  --iui-color-foreground-warning-rgb: 249, 214, 169;
-  --iui-color-foreground-warning: rgb(var(--iui-color-foreground-warning-rgb));
-  --iui-color-foreground-negative-rgb: 239, 169, 169;
-  --iui-color-foreground-negative: rgb(var(--iui-color-foreground-negative-rgb));
-  --iui-color-background-1-overlay-rgb: 101, 118, 129;
-  --iui-color-background-1-overlay: rgb(var(--iui-color-background-1-overlay-rgb));
-  --iui-color-background-primary-overlay-rgb: 0, 154, 250;
-  --iui-color-background-primary-overlay: rgb(var(--iui-color-background-primary-overlay-rgb));
-  --iui-color-background-positive-overlay-rgb: 94, 184, 30;
-  --iui-color-background-positive-overlay: rgb(var(--iui-color-background-positive-overlay-rgb));
-  --iui-color-foreground-primary-overlay-rgb: 209, 234, 250;
-  --iui-color-foreground-primary-overlay: rgb(var(--iui-color-foreground-primary-overlay-rgb));
-  --iui-color-foreground-positive-overlay-rgb: 222, 238, 211;
-  --iui-color-foreground-positive-overlay: rgb(var(--iui-color-foreground-positive-overlay-rgb));
-  --iui-color-foreground-warning-overlay-rgb: 252, 237, 217;
-  --iui-color-foreground-warning-overlay: rgb(var(--iui-color-foreground-warning-overlay-rgb));
-  --iui-color-foreground-negative-overlay-rgb: 247, 212, 212;
-  --iui-color-foreground-negative-overlay: rgb(var(--iui-color-foreground-negative-overlay-rgb));
+  --iui-color-background-1-hsl: 204 12% 40%;
+  --iui-color-background-1: hsl(var(--iui-color-background-1-hsl));
+
+  --iui-color-background-2-hsl: 202 12% 35%;
+  --iui-color-background-2: hsl(var(--iui-color-background-2-hsl));
+
+  --iui-color-background-3-hsl: 204 13% 31%;
+  --iui-color-background-3: hsl(var(--iui-color-background-3-hsl));
+
+  --iui-color-background-4-hsl: 200 14% 25%;
+  --iui-color-background-4: hsl(var(--iui-color-background-4-hsl));
+
+  --iui-color-background-5-hsl: 200 14% 21%;
+  --iui-color-background-5: hsl(var(--iui-color-background-5-hsl));
+
+  --iui-color-background-primary-hsl: 203 100% 44%;
+  --iui-color-background-primary: hsl(var(--iui-color-background-primary-hsl));
+
+  --iui-color-background-positive-hsl: 95 72% 37%;
+  --iui-color-background-positive: hsl(var(--iui-color-background-positive-hsl));
+
+  --iui-color-background-warning-hsl: 33 89% 51%;
+  --iui-color-background-warning: hsl(var(--iui-color-background-warning-hsl));
+
+  --iui-color-background-negative-hsl: 0 91% 43%;
+  --iui-color-background-negative: hsl(var(--iui-color-background-negative-hsl));
+
+  --iui-color-background-disabled: var(--iui-color-background-3);
+  --iui-color-background-border: var(--iui-color-background-5);
+
+  --iui-color-foreground-body-hsl: 0 0% 100%;
+  --iui-color-foreground-body: hsl(var(--iui-color-foreground-body-hsl));
+
+  --iui-color-foreground-body-invert-hsl: 0 0 0%;
+  --iui-color-foreground-body-invert: hsl(var(--iui-color-foreground-body-invert-hsl));
+
+  --iui-color-foreground-accessory-hsl: 0 0% 100%;
+  --iui-color-foreground-accessory: hsl(var(--iui-color-foreground-accessory-hsl));
+
+  --iui-color-foreground-primary-hsl: 203 80% 80%;
+  --iui-color-foreground-primary: hsl(var(--iui-color-foreground-primary-hsl));
+
+  --iui-color-foreground-positive-hsl: 96 45% 78%;
+  --iui-color-foreground-positive: hsl(var(--iui-color-foreground-positive-hsl));
+
+  --iui-color-foreground-warning-hsl: 34 87% 82%;
+  --iui-color-foreground-warning: hsl(var(--iui-color-foreground-warning-hsl));
+
+  --iui-color-foreground-negative-hsl: 0 69% 80%;
+  --iui-color-foreground-negative: hsl(var(--iui-color-foreground-negative-hsl));
+
+  --iui-color-background-1-overlay-hsl: 101, 118, 129;
+  --iui-color-background-1-overlay: hsl(var(--iui-color-background-1-overlay-hsl));
+
+  // TODO: fix these
+  --iui-color-background-primary-overlay-hsl: 0, 154, 250;
+  --iui-color-background-primary-overlay: hsl(var(--iui-color-background-primary-overlay-hsl));
+
+  --iui-color-background-positive-overlay-hsl: 94, 184, 30;
+  --iui-color-background-positive-overlay: hsl(var(--iui-color-background-positive-overlay-hsl));
+
+  --iui-color-foreground-primary-overlay-hsl: 209, 234, 250;
+  --iui-color-foreground-primary-overlay: hsl(var(--iui-color-foreground-primary-overlay-hsl));
+
+  --iui-color-foreground-positive-overlay-hsl: 222, 238, 211;
+  --iui-color-foreground-positive-overlay: hsl(var(--iui-color-foreground-positive-overlay-hsl));
+
+  --iui-color-foreground-warning-overlay-hsl: 252, 237, 217;
+  --iui-color-foreground-warning-overlay: hsl(var(--iui-color-foreground-warning-overlay-hsl));
+
+  --iui-color-foreground-negative-overlay-hsl: 247, 212, 212;
+  --iui-color-foreground-negative-overlay: hsl(var(--iui-color-foreground-negative-overlay-hsl));
+
   --iui-opacity-1: 1;
   --iui-opacity-2: 0.85;
   --iui-opacity-3: 0.65;
   --iui-opacity-4: 0.45;
   --iui-opacity-5: 0.25;
   --iui-opacity-6: 0.1;
-  --iui-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-  --iui-text-color-muted: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  --iui-text-color-placeholder: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
-  --iui-icons-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  --iui-icons-color-actionable: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-  --iui-icons-color-actionable-hover: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
-  --iui-icons-color-actionable-disabled: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
+
+  --iui-text-color: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
+  --iui-text-color-muted: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-4));
+  --iui-text-color-placeholder: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
+
+  --iui-icons-color: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-4));
+  --iui-icons-color-actionable: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
+  --iui-icons-color-actionable-hover: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-1));
+  --iui-icons-color-actionable-disabled: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
   --iui-icons-color-primary: var(--iui-color-foreground-primary);
   --iui-icons-color-positive: var(--iui-color-foreground-positive);
   --iui-icons-color-warning: var(--iui-color-foreground-warning);
@@ -141,66 +191,94 @@
 }
 
 @mixin light-hc-variables {
-  --iui-color-background-1-rgb: 255, 255, 255;
-  --iui-color-background-1: rgb(var(--iui-color-background-1-rgb));
-  --iui-color-background-2-rgb: 249, 250, 251;
-  --iui-color-background-2: rgb(var(--iui-color-background-2-rgb));
-  --iui-color-background-3-rgb: 238, 240, 242;
-  --iui-color-background-3: rgb(var(--iui-color-background-3-rgb));
-  --iui-color-background-4-rgb: 221, 226, 228;
-  --iui-color-background-4: rgb(var(--iui-color-background-4-rgb));
-  --iui-color-background-5-rgb: 198, 206, 210;
-  --iui-color-background-5: rgb(var(--iui-color-background-5-rgb));
-  --iui-color-background-primary-rgb: 0, 88, 133;
-  --iui-color-background-primary: rgb(var(--iui-color-background-primary-rgb));
-  --iui-color-background-positive-rgb: 0, 97, 32;
-  --iui-color-background-positive: rgb(var(--iui-color-background-positive-rgb));
-  --iui-color-background-warning-rgb: 112, 84, 0;
-  --iui-color-background-warning: rgb(var(--iui-color-background-warning-rgb));
-  --iui-color-background-negative-rgb: 158, 0, 0;
-  --iui-color-background-negative: rgb(var(--iui-color-background-negative-rgb));
-  --iui-color-background-disabled-rgb: 238, 240, 242;
-  --iui-color-background-disabled: rgb(var(--iui-color-background-disabled-rgb));
-  --iui-color-background-border: rgba(0, 0, 0, 0.3);
-  --iui-color-foreground-body-rgb: 0, 0, 0;
-  --iui-color-foreground-body: rgb(var(--iui-color-foreground-body-rgb));
-  --iui-color-foreground-accessory-rgb: 255, 255, 255;
-  --iui-color-foreground-accessory: rgb(var(--iui-color-foreground-accessory-rgb));
-  --iui-color-foreground-primary-rgb: 0, 78, 117;
-  --iui-color-foreground-primary: rgb(var(--iui-color-foreground-primary-rgb));
-  --iui-color-foreground-positive-rgb: 0, 82, 27;
-  --iui-color-foreground-positive: rgb(var(--iui-color-foreground-positive-rgb));
-  --iui-color-foreground-warning-rgb: 97, 73, 0;
-  --iui-color-foreground-warning: rgb(var(--iui-color-foreground-warning-rgb));
-  --iui-color-foreground-negative-rgb: 143, 0, 0;
-  --iui-color-foreground-negative: rgb(var(--iui-color-foreground-negative-rgb));
-  --iui-color-background-1-overlay-rgb: 226, 231, 233;
-  --iui-color-background-1-overlay: rgb(var(--iui-color-background-1-overlay-rgb));
-  --iui-color-background-primary-overlay-rgb: 0, 54, 82;
-  --iui-color-background-primary-overlay: rgb(var(--iui-color-background-primary-overlay-rgb));
-  --iui-color-background-positive-overlay-rgb: 0, 46, 15;
-  --iui-color-background-positive-overlay: rgb(var(--iui-color-background-positive-overlay-rgb));
-  --iui-color-foreground-primary-overlay-rgb: 0, 44, 66;
-  --iui-color-foreground-primary-overlay: rgb(var(--iui-color-foreground-primary-overlay-rgb));
-  --iui-color-foreground-positive-overlay-rgb: 0, 31, 10;
-  --iui-color-foreground-positive-overlay: rgb(var(--iui-color-foreground-positive-overlay-rgb));
-  --iui-color-foreground-warning-overlay-rgb: 46, 34, 0;
-  --iui-color-foreground-warning-overlay: rgb(var(--iui-color-foreground-warning-overlay-rgb));
-  --iui-color-foreground-negative-overlay-rgb: 92, 0, 0;
-  --iui-color-foreground-negative-overlay: rgb(var(--iui-color-foreground-negative-overlay-rgb));
+  --iui-color-background-1-hsl: 200 12% 100%;
+  --iui-color-background-1: hsl(var(--iui-color-background-1-hsl));
+
+  --iui-color-background-2-hsl: 200 12% 98%;
+  --iui-color-background-2: hsl(var(--iui-color-background-2-hsl));
+
+  --iui-color-background-3-hsl: 200 12% 94%;
+  --iui-color-background-3: hsl(var(--iui-color-background-3-hsl));
+
+  --iui-color-background-4-hsl: 200 12% 88%;
+  --iui-color-background-4: hsl(var(--iui-color-background-4-hsl));
+
+  --iui-color-background-5-hsl: 200 12% 80%;
+  --iui-color-background-5: hsl(var(--iui-color-background-5-hsl));
+
+  --iui-color-background-primary-hsl: 200 100% 26%;
+  --iui-color-background-primary: hsl(var(--iui-color-background-primary-hsl));
+
+  --iui-color-background-positive-hsl: 140 100% 19%;
+  --iui-color-background-positive: hsl(var(--iui-color-background-positive-hsl));
+
+  --iui-color-background-warning-hsl: 45 100% 22%;
+  --iui-color-background-warning: hsl(var(--iui-color-background-warning-hsl));
+
+  --iui-color-background-negative-hsl: 0 100% 31%;
+  --iui-color-background-negative: hsl(var(--iui-color-background-negative-hsl));
+
+  --iui-color-background-disabled: var(--iui-color-background-3);
+  --iui-color-background-border: hsl(0 0% 0% / 0.3);
+
+  --iui-color-foreground-body-hsl: 0 0% 0%;
+  --iui-color-foreground-body: hsl(var(--iui-color-foreground-body-hsl));
+
+  --iui-color-foreground-body-invert-hsl: 0 0% 100%;
+  --iui-color-foreground-body-invert: hsl(var(--iui-color-foreground-body-invert-hsl));
+
+  --iui-color-foreground-accessory-hsl: 0 0% 100%;
+  --iui-color-foreground-accessory: hsl(var(--iui-color-foreground-accessory-hsl));
+
+  --iui-color-foreground-primary-hsl: 200 100% 23%;
+  --iui-color-foreground-primary: hsl(var(--iui-color-foreground-primary-hsl));
+
+  --iui-color-foreground-positive-hsl: 140 100% 16%;
+  --iui-color-foreground-positive: hsl(var(--iui-color-foreground-positive-hsl));
+
+  --iui-color-foreground-warning-hsl: 45 100% 19%;
+  --iui-color-foreground-warning: hsl(var(--iui-color-foreground-warning-hsl));
+
+  --iui-color-foreground-negative-hsl: 0 100% 28%;
+  --iui-color-foreground-negative: hsl(var(--iui-color-foreground-negative-hsl));
+
+  // TODO: fix these
+  --iui-color-background-1-overlay-hsl: 242, 242, 242;
+  --iui-color-background-1-overlay: hsl(var(--iui-color-background-1-overlay-hsl));
+
+  --iui-color-background-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-background-primary-overlay: hsl(var(--iui-color-background-primary-overlay-hsl));
+
+  --iui-color-background-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-background-positive-overlay: hsl(var(--iui-color-background-positive-overlay-hsl));
+
+  --iui-color-foreground-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-foreground-primary-overlay: hsl(var(--iui-color-foreground-primary-overlay-hsl));
+
+  --iui-color-foreground-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-foreground-positive-overlay: hsl(var(--iui-color-foreground-positive-overlay-hsl));
+
+  --iui-color-foreground-warning-overlay-hsl: 198, 114, 12;
+  --iui-color-foreground-warning-overlay: hsl(var(--iui-color-foreground-warning-overlay-hsl));
+
+  --iui-color-foreground-negative-overlay-hsl: 161, 8, 8;
+  --iui-color-foreground-negative-overlay: hsl(var(--iui-color-foreground-negative-overlay-hsl));
+
   --iui-opacity-1: 1;
   --iui-opacity-2: 0.86;
   --iui-opacity-3: 0.72;
   --iui-opacity-4: 0.67;
   --iui-opacity-5: 0.3;
   --iui-opacity-6: 0.06;
-  --iui-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-  --iui-text-color-muted: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  --iui-text-color-placeholder: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
-  --iui-icons-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  --iui-icons-color-actionable: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-  --iui-icons-color-actionable-hover: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
-  --iui-icons-color-actionable-disabled: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
+
+  --iui-text-color: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
+  --iui-text-color-muted: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-4));
+  --iui-text-color-placeholder: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
+
+  --iui-icons-color: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-4));
+  --iui-icons-color-actionable: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
+  --iui-icons-color-actionable-hover: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-1));
+  --iui-icons-color-actionable-disabled: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
   --iui-icons-color-primary: var(--iui-color-foreground-primary);
   --iui-icons-color-positive: var(--iui-color-foreground-positive);
   --iui-icons-color-warning: var(--iui-color-foreground-warning);
@@ -208,66 +286,94 @@
 }
 
 @mixin dark-hc-variables {
-  --iui-color-background-1-rgb: 45, 53, 57;
-  --iui-color-background-1: rgb(var(--iui-color-background-1-rgb));
-  --iui-color-background-2-rgb: 34, 40, 43;
-  --iui-color-background-2: rgb(var(--iui-color-background-2-rgb));
-  --iui-color-background-3-rgb: 22, 27, 29;
-  --iui-color-background-3: rgb(var(--iui-color-background-3-rgb));
-  --iui-color-background-4-rgb: 56, 66, 71;
-  --iui-color-background-4: rgb(var(--iui-color-background-4-rgb));
-  --iui-color-background-5-rgb: 67, 80, 86;
-  --iui-color-background-5: rgb(var(--iui-color-background-5-rgb));
-  --iui-color-background-primary-rgb: 0, 88, 133;
-  --iui-color-background-primary: rgb(var(--iui-color-background-primary-rgb));
-  --iui-color-background-positive-rgb: 0, 97, 32;
-  --iui-color-background-positive: rgb(var(--iui-color-background-positive-rgb));
-  --iui-color-background-warning-rgb: 112, 84, 0;
-  --iui-color-background-warning: rgb(var(--iui-color-background-warning-rgb));
-  --iui-color-background-negative-rgb: 158, 0, 0;
-  --iui-color-background-negative: rgb(var(--iui-color-background-negative-rgb));
-  --iui-color-background-disabled-rgb: 56, 66, 71;
-  --iui-color-background-disabled: rgb(var(--iui-color-background-disabled-rgb));
-  --iui-color-background-border: rgba(255, 255, 255, 0.34);
-  --iui-color-foreground-body-rgb: 255, 255, 255;
-  --iui-color-foreground-body: rgb(var(--iui-color-foreground-body-rgb));
-  --iui-color-foreground-accessory-rgb: 255, 255, 255;
-  --iui-color-foreground-accessory: rgb(var(--iui-color-foreground-accessory-rgb));
-  --iui-color-foreground-primary-rgb: 148, 219, 255;
-  --iui-color-foreground-primary: rgb(var(--iui-color-foreground-primary-rgb));
-  --iui-color-foreground-positive-rgb: 112, 255, 160;
-  --iui-color-foreground-positive: rgb(var(--iui-color-foreground-positive-rgb));
-  --iui-color-foreground-warning-rgb: 255, 223, 128;
-  --iui-color-foreground-warning: rgb(var(--iui-color-foreground-warning-rgb));
-  --iui-color-foreground-negative-rgb: 255, 194, 194;
-  --iui-color-foreground-negative: rgb(var(--iui-color-foreground-negative-rgb));
-  --iui-color-background-1-overlay-rgb: 67, 80, 86;
-  --iui-color-background-1-overlay: rgb(var(--iui-color-background-1-overlay-rgb));
-  --iui-color-background-primary-overlay-rgb: 0, 122, 184;
-  --iui-color-background-primary-overlay: rgb(var(--iui-color-background-primary-overlay-rgb));
-  --iui-color-background-positive-overlay-rgb: 0, 148, 49;
-  --iui-color-background-positive-overlay: rgb(var(--iui-color-background-positive-overlay-rgb));
-  --iui-color-foreground-primary-overlay-rgb: 199, 236, 255;
-  --iui-color-foreground-primary-overlay: rgb(var(--iui-color-foreground-primary-overlay-rgb));
-  --iui-color-foreground-positive-overlay-rgb: 163, 255, 194;
-  --iui-color-foreground-positive-overlay: rgb(var(--iui-color-foreground-positive-overlay-rgb));
-  --iui-color-foreground-warning-overlay-rgb: 255, 236, 179;
-  --iui-color-foreground-warning-overlay: rgb(var(--iui-color-foreground-warning-overlay-rgb));
-  --iui-color-foreground-negative-overlay-rgb: 255, 245, 245;
-  --iui-color-foreground-negative-overlay: rgb(var(--iui-color-foreground-negative-overlay-rgb));
+  --iui-color-background-1-hsl: 200 12% 20%;
+  --iui-color-background-1: hsl(var(--iui-color-background-1-hsl));
+
+  --iui-color-background-2-hsl: 200 12% 15%;
+  --iui-color-background-2: hsl(var(--iui-color-background-2-hsl));
+
+  --iui-color-background-3-hsl: 200 12% 10%;
+  --iui-color-background-3: hsl(var(--iui-color-background-3-hsl));
+
+  --iui-color-background-4-hsl: 200 12% 25%;
+  --iui-color-background-4: hsl(var(--iui-color-background-4-hsl));
+
+  --iui-color-background-5-hsl: 200 12% 30%;
+  --iui-color-background-5: hsl(var(--iui-color-background-5-hsl));
+
+  --iui-color-background-primary-hsl: 200 100% 26%;
+  --iui-color-background-primary: hsl(var(--iui-color-background-primary-hsl));
+
+  --iui-color-background-positive-hsl: 140 100% 19%;
+  --iui-color-background-positive: hsl(var(--iui-color-background-positive-hsl));
+
+  --iui-color-background-warning-hsl: 45 100% 22%;
+  --iui-color-background-warning: hsl(var(--iui-color-background-warning-hsl));
+
+  --iui-color-background-negative-hsl: 0 100% 31%;
+  --iui-color-background-negative: hsl(var(--iui-color-background-negative-hsl));
+
+  --iui-color-background-disabled: var(--iui-color-background-4);
+  --iui-color-background-border: hsl(0 0% 0% / 0.34);
+
+  --iui-color-foreground-body-hsl: 0 0% 100%;
+  --iui-color-foreground-body: hsl(var(--iui-color-foreground-body-hsl));
+
+  --iui-color-foreground-body-invert-hsl: 0 0% 0%;
+  --iui-color-foreground-body-invert: hsl(var(--iui-color-foreground-body-invert-hsl));
+
+  --iui-color-foreground-accessory-hsl: 0 0% 100%;
+  --iui-color-foreground-accessory: hsl(var(--iui-color-foreground-accessory-hsl));
+
+  --iui-color-foreground-primary-hsl: 200 100% 79%;
+  --iui-color-foreground-primary: hsl(var(--iui-color-foreground-primary-hsl));
+
+  --iui-color-foreground-positive-hsl: 140 100% 72%;
+  --iui-color-foreground-positive: hsl(var(--iui-color-foreground-positive-hsl));
+
+  --iui-color-foreground-warning-hsl: 45 100% 75%;
+  --iui-color-foreground-warning: hsl(var(--iui-color-foreground-warning-hsl));
+
+  --iui-color-foreground-negative-hsl: 0 100% 88%;
+  --iui-color-foreground-negative: hsl(var(--iui-color-foreground-negative-hsl));
+
+  // TODO: fix these
+  --iui-color-background-1-overlay-hsl: 242, 242, 242;
+  --iui-color-background-1-overlay: hsl(var(--iui-color-background-1-overlay-hsl));
+
+  --iui-color-background-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-background-primary-overlay: hsl(var(--iui-color-background-primary-overlay-hsl));
+
+  --iui-color-background-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-background-positive-overlay: hsl(var(--iui-color-background-positive-overlay-hsl));
+
+  --iui-color-foreground-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-foreground-primary-overlay: hsl(var(--iui-color-foreground-primary-overlay-hsl));
+
+  --iui-color-foreground-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-foreground-positive-overlay: hsl(var(--iui-color-foreground-positive-overlay-hsl));
+
+  --iui-color-foreground-warning-overlay-hsl: 198, 114, 12;
+  --iui-color-foreground-warning-overlay: hsl(var(--iui-color-foreground-warning-overlay-hsl));
+
+  --iui-color-foreground-negative-overlay-hsl: 161, 8, 8;
+  --iui-color-foreground-negative-overlay: hsl(var(--iui-color-foreground-negative-overlay-hsl));
+
   --iui-opacity-1: 1;
   --iui-opacity-2: 0.94;
   --iui-opacity-3: 0.88;
   --iui-opacity-4: 0.76;
   --iui-opacity-5: 0.34;
   --iui-opacity-6: 0.07;
-  --iui-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-  --iui-text-color-muted: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  --iui-text-color-placeholder: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
-  --iui-icons-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  --iui-icons-color-actionable: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-  --iui-icons-color-actionable-hover: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
-  --iui-icons-color-actionable-disabled: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
+
+  --iui-text-color: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
+  --iui-text-color-muted: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-4));
+  --iui-text-color-placeholder: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
+
+  --iui-icons-color: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-4));
+  --iui-icons-color-actionable: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
+  --iui-icons-color-actionable-hover: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-1));
+  --iui-icons-color-actionable-disabled: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
   --iui-icons-color-primary: var(--iui-color-foreground-primary);
   --iui-icons-color-positive: var(--iui-color-foreground-positive);
   --iui-icons-color-warning: var(--iui-color-foreground-warning);
