@@ -67,8 +67,7 @@ html {
 }
 
 [class*='iui-'],
-[class*='iui-'] *,
-[class*='iui-'] *::before,
-[class*='iui-'] *::after {
+[class*='iui-']::before,
+[class*='iui-']::after {
   box-sizing: border-box;
 }
