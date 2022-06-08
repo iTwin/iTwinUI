@@ -74,15 +74,10 @@
 
 @mixin iui-line-clamp($lines: 1) {
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
-
-  @supports (-webkit-line-clamp: 1) {
-    white-space: unset;
-    display: -webkit-box; /* stylelint-disable-line */
-    -webkit-line-clamp: $lines;
-    -webkit-box-orient: vertical; /* stylelint-disable-line */
-  }
+  display: -webkit-box; /* stylelint-disable-line */
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical; /* stylelint-disable-line */
 }
 
 @mixin iui-blur($opacity: 4) {
