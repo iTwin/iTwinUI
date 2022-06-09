@@ -11,7 +11,7 @@ $iui-notification-marker-border-width: $iui-xxs;
     content: '';
     position: absolute;
     width: $iui-s + $iui-notification-marker-border-width * 2;
-    height: $iui-s + 4px; // `+ 4px accounts for borders
+    height: $iui-s + $iui-notification-marker-border-width * 2;
     top: $iui-sm * -0.5;
     right: $iui-sm * -0.5;
     border-radius: 100%;
