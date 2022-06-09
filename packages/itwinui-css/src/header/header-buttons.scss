@@ -156,7 +156,8 @@
 }
 
 @mixin iui-header-breadcrumb-button-split {
-  padding: 0 $iui-xs;
+  padding: 0 $iui-s;
+  margin-left: -$iui-s;
   flex-shrink: 0;
 
   &:hover {
