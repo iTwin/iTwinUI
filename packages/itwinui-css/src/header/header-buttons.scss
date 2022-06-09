@@ -20,7 +20,8 @@
       -webkit-tap-highlight-color: transparent;
       transition: background-color $iui-speed-fast ease-out;
       @media (forced-colors: active) {
-        border: 1px solid transparent;
+        border: 1px solid CanvasText;
+        border-top-width: 0;
         border-bottom-width: 0;
       }
 
@@ -134,7 +135,8 @@
   gap: $iui-sm;
   cursor: pointer;
   @media (forced-colors: active) {
-    border: 1px solid transparent;
+    border: 1px solid;
+    border-top-width: 0;
     border-bottom-width: 0;
 
     &:not(:last-child) {

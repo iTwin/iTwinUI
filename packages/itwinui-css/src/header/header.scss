@@ -48,6 +48,7 @@
     border-radius: 0;
     flex-shrink: 0;
     @media (forced-colors: active) {
+      border-top-width: 0;
       border-bottom-width: 0;
     }
   }
