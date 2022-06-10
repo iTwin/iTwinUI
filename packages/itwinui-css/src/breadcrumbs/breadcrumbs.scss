@@ -53,7 +53,6 @@
   .iui-button {
     &.iui-button {
       @include iui-button-borderless;
-      @include iui-focus;
       border: none;
     }
 

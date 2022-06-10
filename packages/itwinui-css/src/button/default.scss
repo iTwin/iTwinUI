@@ -2,50 +2,35 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import './button';
-@import './button-icon';
 @import '../notification-marker/index';
-@import './disabled';
 
 @mixin iui-button-default {
-  background-color: var(--iui-color-background-1);
-  border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  --_iui-button-text-color: var(--iui-text-color);
+  --_iui-button-background-color: var(--iui-color-background-1);
+  --_iui-button-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  --_iui-notification-marker-border-color: var(--_iui-button-background-color);
+
   @include iui-focus($offset: -2px, $thickness: 2px);
 
   &:hover,
   &:active {
-    background-color: var(--iui-color-background-1-overlay);
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
-    @include iui-notification-marker-hover;
+    --_iui-button-text-color: var(--iui-color-foreground-body);
+    --_iui-button-background-color: var(--iui-color-background-1-overlay);
+    --_iui-button-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
   }
 
-  &.iui-dropdown {
-    padding-right: $iui-s;
+  &.iui-active {
+    // Background will be use a CSS variable after #675 passes.
+    background: linear-gradient(
+      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+    ),
+      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
 
-    // Sizes
-    &.iui-small {
-      padding-right: $iui-xs;
+    &[disabled],
+    &:disabled {
+      // This will be cleaned up once line 25 is using a CSS variable.
+      background: var(--iui-color-background-disabled);
     }
-
-    &.iui-large {
-      padding-right: $iui-sm;
-    }
-  }
-
-  &.iui-active:enabled {
-    position: relative;
-    color: var(--iui-color-foreground-primary);
-
-    // Used for combining overlay background color with base background
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-    }
-  }
-
-  &[disabled],
-  &:disabled {
-    @include iui-button-disabled;
   }
 }

@@ -329,7 +329,7 @@
 
     // Removing button hovers and backgrounds and adding last child hover
     .iui-button {
-      &.iui-borderless {
+      &.iui-button-borderless {
         &,
         &:hover {
           background-color: transparent;

@@ -4,49 +4,38 @@
 
 .iui-button {
   @include iui-button;
-  @include iui-button-size;
-
-  &.iui-active {
-    @include iui-button-active;
-  }
-
-  &.iui-default {
-    @include iui-button-default;
-  }
-
-  &.iui-high-visibility {
-    @include iui-button-high-visibility;
-  }
-
-  &.iui-cta {
-    @include iui-button-cta;
-  }
 
   &.iui-idea {
     @include iui-button-idea;
   }
+}
 
-  &.iui-borderless {
-    @include iui-button-borderless;
-  }
+.iui-button-label {
+  @include iui-button-label;
+}
 
-  @include iui-button-size(medium);
+.iui-button-icon {
+  @include iui-button-icon;
+}
 
-  &.iui-small {
-    @include iui-button-size(small);
+.iui-button-default {
+  @include iui-button-default;
+}
 
-    &.iui-borderless {
-      @include iui-button-size(small, borderless);
-    }
-  }
+.iui-button-high-visibility {
+  @include iui-button-status-color(primary);
+}
 
-  &.iui-large {
-    @include iui-button-size(large);
+.iui-button-cta {
+  @include iui-button-status-color(positive);
+}
 
-    &.iui-borderless {
-      @include iui-button-size(large, borderless);
-    }
-  }
+.iui-button-borderless {
+  @include iui-button-borderless;
+}
+
+.iui-button-dropdown {
+  @include iui-button-dropdown;
 }
 
 .iui-button-group {
@@ -63,8 +52,4 @@
 
 .iui-button-split-menu {
   @include iui-button-split-menu;
-}
-
-.iui-button-icon {
-  @include iui-button-icon;
 }

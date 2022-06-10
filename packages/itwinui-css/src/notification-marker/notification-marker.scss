@@ -14,7 +14,8 @@
     right: $iui-sm * -0.5;
     border-radius: 100%;
     background-color: var(--iui-color-foreground-#{$status});
-    border: 2px solid var(--iui-color-background-1);
+    border: 2px solid var(--iui-color-background-1); // Fallback border color incase user forgets to set var(--_iui-notification-marker-border-color) on parent.
+    border-color: var(--_iui-notification-marker-border-color);
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
     }
@@ -40,14 +41,5 @@
         box-shadow: 0 0 0 0 rgba(var(--iui-color-foreground-#{$status}-rgb), 0);
       }
     }
-  }
-}
-
-@mixin iui-notification-marker-hover {
-  .iui-notification-primary::before,
-  .iui-notification-positive::before,
-  .iui-notification-warning::before,
-  .iui-notification-negative::before {
-    border-color: var(--iui-color-background-1-overlay);
   }
 }

@@ -10,11 +10,11 @@
   }
 
   > * {
-    &:first-child {
-      > .iui-borderless:hover {
-        background-color: transparent;
-      }
-    }
+    // &:first-child {
+    //   > .iui-button-borderless:hover {
+    //     background-color: transparent;
+    //   }
+    // }
 
     // Sizes
     &:last-child {
@@ -33,15 +33,15 @@
 
     // Border between buttons for high-visibility and cta
     &:first-child {
-      > .iui-high-visibility,
-      > .iui-cta {
+      > .iui-button-high-visibility,
+      > .iui-button-cta {
         border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
       }
     }
 
     &:last-child {
-      > .iui-high-visibility,
-      > .iui-cta {
+      > .iui-button-high-visibility,
+      > .iui-button-cta {
         border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
       }
     }
@@ -49,10 +49,5 @@
 
   &.iui-disabled {
     background-color: transparent;
-  }
-
-  &[disabled],
-  &:disabled {
-    @include iui-button-disabled;
   }
 }
