@@ -1,4 +1,4 @@
-// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// Copyright (c) Bentley Systems Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @mixin light-variables {
   --iui-color-background-1-hsl: 0 0% 100%;
@@ -52,26 +52,25 @@
   --iui-color-foreground-negative-hsl: 0 91% 43%;
   --iui-color-foreground-negative: hsl(var(--iui-color-foreground-negative-hsl));
 
-  // TODO: fix these
-  --iui-color-background-1-overlay-hsl: 242, 242, 242;
+  --iui-color-background-1-overlay-hsl: 242 242 242;
   --iui-color-background-1-overlay: hsl(var(--iui-color-background-1-overlay-hsl));
 
-  --iui-color-background-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-background-primary-overlay-hsl: 0 107 173;
   --iui-color-background-primary-overlay: hsl(var(--iui-color-background-primary-overlay-hsl));
 
-  --iui-color-background-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-background-positive-overlay-hsl: 61 118 19;
   --iui-color-background-positive-overlay: hsl(var(--iui-color-background-positive-overlay-hsl));
 
-  --iui-color-foreground-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-foreground-primary-overlay-hsl: 0 107 173;
   --iui-color-foreground-primary-overlay: hsl(var(--iui-color-foreground-primary-overlay-hsl));
 
-  --iui-color-foreground-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-foreground-positive-overlay-hsl: 61 118 19;
   --iui-color-foreground-positive-overlay: hsl(var(--iui-color-foreground-positive-overlay-hsl));
 
-  --iui-color-foreground-warning-overlay-hsl: 198, 114, 12;
+  --iui-color-foreground-warning-overlay-hsl: 198 114 12;
   --iui-color-foreground-warning-overlay: hsl(var(--iui-color-foreground-warning-overlay-hsl));
 
-  --iui-color-foreground-negative-overlay-hsl: 161, 8, 8;
+  --iui-color-foreground-negative-overlay-hsl: 161 8 8;
   --iui-color-foreground-negative-overlay: hsl(var(--iui-color-foreground-negative-overlay-hsl));
 
   --iui-opacity-1: 1;
@@ -89,10 +88,6 @@
   --iui-icons-color-actionable: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
   --iui-icons-color-actionable-hover: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-1));
   --iui-icons-color-actionable-disabled: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
-  --iui-icons-color-primary: var(--iui-color-foreground-primary);
-  --iui-icons-color-positive: var(--iui-color-foreground-positive);
-  --iui-icons-color-warning: var(--iui-color-foreground-warning);
-  --iui-icons-color-negative: var(--iui-color-foreground-negative);
 }
 
 @mixin dark-variables {
@@ -147,26 +142,25 @@
   --iui-color-foreground-negative-hsl: 0 69% 80%;
   --iui-color-foreground-negative: hsl(var(--iui-color-foreground-negative-hsl));
 
-  --iui-color-background-1-overlay-hsl: 101, 118, 129;
+  --iui-color-background-1-overlay-hsl: 101 118 129;
   --iui-color-background-1-overlay: hsl(var(--iui-color-background-1-overlay-hsl));
 
-  // TODO: fix these
-  --iui-color-background-primary-overlay-hsl: 0, 154, 250;
+  --iui-color-background-primary-overlay-hsl: 0 154 250;
   --iui-color-background-primary-overlay: hsl(var(--iui-color-background-primary-overlay-hsl));
 
-  --iui-color-background-positive-overlay-hsl: 94, 184, 30;
+  --iui-color-background-positive-overlay-hsl: 94 184 30;
   --iui-color-background-positive-overlay: hsl(var(--iui-color-background-positive-overlay-hsl));
 
-  --iui-color-foreground-primary-overlay-hsl: 209, 234, 250;
+  --iui-color-foreground-primary-overlay-hsl: 209 234 250;
   --iui-color-foreground-primary-overlay: hsl(var(--iui-color-foreground-primary-overlay-hsl));
 
-  --iui-color-foreground-positive-overlay-hsl: 222, 238, 211;
+  --iui-color-foreground-positive-overlay-hsl: 222 238 211;
   --iui-color-foreground-positive-overlay: hsl(var(--iui-color-foreground-positive-overlay-hsl));
 
-  --iui-color-foreground-warning-overlay-hsl: 252, 237, 217;
+  --iui-color-foreground-warning-overlay-hsl: 252 237 217;
   --iui-color-foreground-warning-overlay: hsl(var(--iui-color-foreground-warning-overlay-hsl));
 
-  --iui-color-foreground-negative-overlay-hsl: 247, 212, 212;
+  --iui-color-foreground-negative-overlay-hsl: 247 212 212;
   --iui-color-foreground-negative-overlay: hsl(var(--iui-color-foreground-negative-overlay-hsl));
 
   --iui-opacity-1: 1;
@@ -184,10 +178,6 @@
   --iui-icons-color-actionable: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
   --iui-icons-color-actionable-hover: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-1));
   --iui-icons-color-actionable-disabled: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
-  --iui-icons-color-primary: var(--iui-color-foreground-primary);
-  --iui-icons-color-positive: var(--iui-color-foreground-positive);
-  --iui-icons-color-warning: var(--iui-color-foreground-warning);
-  --iui-icons-color-negative: var(--iui-color-foreground-negative);
 }
 
 @mixin light-hc-variables {
@@ -242,26 +232,25 @@
   --iui-color-foreground-negative-hsl: 0 100% 28%;
   --iui-color-foreground-negative: hsl(var(--iui-color-foreground-negative-hsl));
 
-  // TODO: fix these
-  --iui-color-background-1-overlay-hsl: 242, 242, 242;
+  --iui-color-background-1-overlay-hsl: 242 242 242;
   --iui-color-background-1-overlay: hsl(var(--iui-color-background-1-overlay-hsl));
 
-  --iui-color-background-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-background-primary-overlay-hsl: 0 107 173;
   --iui-color-background-primary-overlay: hsl(var(--iui-color-background-primary-overlay-hsl));
 
-  --iui-color-background-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-background-positive-overlay-hsl: 61 118 19;
   --iui-color-background-positive-overlay: hsl(var(--iui-color-background-positive-overlay-hsl));
 
-  --iui-color-foreground-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-foreground-primary-overlay-hsl: 0 107 173;
   --iui-color-foreground-primary-overlay: hsl(var(--iui-color-foreground-primary-overlay-hsl));
 
-  --iui-color-foreground-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-foreground-positive-overlay-hsl: 61 118 19;
   --iui-color-foreground-positive-overlay: hsl(var(--iui-color-foreground-positive-overlay-hsl));
 
-  --iui-color-foreground-warning-overlay-hsl: 198, 114, 12;
+  --iui-color-foreground-warning-overlay-hsl: 198 114 12;
   --iui-color-foreground-warning-overlay: hsl(var(--iui-color-foreground-warning-overlay-hsl));
 
-  --iui-color-foreground-negative-overlay-hsl: 161, 8, 8;
+  --iui-color-foreground-negative-overlay-hsl: 161 8 8;
   --iui-color-foreground-negative-overlay: hsl(var(--iui-color-foreground-negative-overlay-hsl));
 
   --iui-opacity-1: 1;
@@ -279,10 +268,6 @@
   --iui-icons-color-actionable: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
   --iui-icons-color-actionable-hover: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-1));
   --iui-icons-color-actionable-disabled: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
-  --iui-icons-color-primary: var(--iui-color-foreground-primary);
-  --iui-icons-color-positive: var(--iui-color-foreground-positive);
-  --iui-icons-color-warning: var(--iui-color-foreground-warning);
-  --iui-icons-color-negative: var(--iui-color-foreground-negative);
 }
 
 @mixin dark-hc-variables {
@@ -337,26 +322,25 @@
   --iui-color-foreground-negative-hsl: 0 100% 88%;
   --iui-color-foreground-negative: hsl(var(--iui-color-foreground-negative-hsl));
 
-  // TODO: fix these
-  --iui-color-background-1-overlay-hsl: 242, 242, 242;
+  --iui-color-background-1-overlay-hsl: 242 242 242;
   --iui-color-background-1-overlay: hsl(var(--iui-color-background-1-overlay-hsl));
 
-  --iui-color-background-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-background-primary-overlay-hsl: 0 107 173;
   --iui-color-background-primary-overlay: hsl(var(--iui-color-background-primary-overlay-hsl));
 
-  --iui-color-background-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-background-positive-overlay-hsl: 61 118 19;
   --iui-color-background-positive-overlay: hsl(var(--iui-color-background-positive-overlay-hsl));
 
-  --iui-color-foreground-primary-overlay-hsl: 0, 107, 173;
+  --iui-color-foreground-primary-overlay-hsl: 0 107 173;
   --iui-color-foreground-primary-overlay: hsl(var(--iui-color-foreground-primary-overlay-hsl));
 
-  --iui-color-foreground-positive-overlay-hsl: 61, 118, 19;
+  --iui-color-foreground-positive-overlay-hsl: 61 118 19;
   --iui-color-foreground-positive-overlay: hsl(var(--iui-color-foreground-positive-overlay-hsl));
 
-  --iui-color-foreground-warning-overlay-hsl: 198, 114, 12;
+  --iui-color-foreground-warning-overlay-hsl: 198 114 12;
   --iui-color-foreground-warning-overlay: hsl(var(--iui-color-foreground-warning-overlay-hsl));
 
-  --iui-color-foreground-negative-overlay-hsl: 161, 8, 8;
+  --iui-color-foreground-negative-overlay-hsl: 161 8 8;
   --iui-color-foreground-negative-overlay: hsl(var(--iui-color-foreground-negative-overlay-hsl));
 
   --iui-opacity-1: 1;
@@ -374,8 +358,4 @@
   --iui-icons-color-actionable: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-2));
   --iui-icons-color-actionable-hover: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-1));
   --iui-icons-color-actionable-disabled: hsl(var(--iui-color-foreground-body-hsl) / var(--iui-opacity-5));
-  --iui-icons-color-primary: var(--iui-color-foreground-primary);
-  --iui-icons-color-positive: var(--iui-color-foreground-positive);
-  --iui-icons-color-warning: var(--iui-color-foreground-warning);
-  --iui-icons-color-negative: var(--iui-color-foreground-negative);
 }

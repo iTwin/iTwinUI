@@ -1,0 +1,18 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@mixin sizes {
+  --iui-size-3xs: calc(2 / 16 * 1rem);
+  --iui-size-2xs: calc(4 / 16 * 1rem);
+  --iui-size-xs: calc(8 / 16 * 1rem);
+  --iui-size-s: calc(12 / 16 * 1rem);
+  --iui-size-m: calc(16 / 16 * 1rem);
+  --iui-size-l: calc(24 / 16 * 1rem);
+  --iui-size-xl: calc(32 / 16 * 1rem);
+  --iui-size-2xl: calc(64 / 16 * 1rem);
+  --iui-size-3xl: calc(96 / 16 * 1rem);
+}
+
+@mixin border-radii {
+  --iui-border-radius-1: 3px;
+  --iui-border-radius-round: 9999px;
+}
