@@ -711,7 +711,10 @@ export const Table = <
             { [`iui-${density}`]: density !== 'default' },
             className,
           ),
-          style,
+          style: {
+            minWidth: 0, // Overrides the min-width set by the react-table but when we support horizontal scroll it is not needed
+            ...style,
+          },
         })}
         {...ariaDataAttributes}
       >
