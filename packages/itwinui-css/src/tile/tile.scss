@@ -32,16 +32,6 @@
     }
   }
 
-  &.iui-negative {
-    .iui-thumbnail-icon {
-      fill: var(--iui-icons-color-negative);
-    }
-
-    .iui-tile-name {
-      color: var(--iui-color-foreground-negative);
-    }
-  }
-
   &.iui-selected {
     @include iui-focus($offset: 0, $thickness: $iui-xs);
     @include themed() {
@@ -107,6 +97,23 @@
   flex-grow: 2;
   min-width: 0;
 
+  .iui-disabled {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+  }
+
+  .iui-negative {
+    color: var(--iui-icons-color-negative);
+  }
+
+  .iui-positive {
+    color: var(--iui-icons-color-positive);
+  }
+
+  .iui-warning {
+    color: var(--iui-icons-color-warning);
+  }
+
   .iui-tile-name {
     display: flex;
     flex-shrink: 0;
@@ -123,27 +130,12 @@
     @include iui-icons-default;
     margin-right: $iui-s;
     flex-shrink: 0;
-
-    &.iui-disabled {
-      filter: grayscale(100%);
-      cursor: not-allowed;
-    }
   }
 
   .iui-tile-name-label {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-
-    &.iui-disabled {
-      color: t(iui-text-color-muted);
-      cursor: not-allowed;
-    }
-
-    &.iui-positive {
-      color: var(--iui-icons-color-positive);
-      cursor: not-allowed;
-    }
   }
 
   .iui-tile-uploading {
@@ -204,17 +196,30 @@
     border-bottom: 1px solid t(iui-color-background-border);
   }
 
+  &.iui-disabled {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+    border-bottom: 4px solid t(iui-color-background-border);
+  }
+
   .iui-thumbnail-icon {
     @include iui-icons-3xl;
-
-    &.iui-disabled {
-      filter: grayscale(100%);
-      cursor: not-allowed;
-    }
   }
 
   &.iui-negative {
-    box-shadow: 4px solid t(--iui-color-foreground-negative);
+    border-bottom: 4px solid var(--iui-icons-color-negative);
+  }
+
+  &.iui-positive {
+    border-bottom: 4px solid var(--iui-icons-color-positive);
+  }
+
+  &.iui-warning {
+    border-bottom: 4px solid var(--iui-icons-color-warning);
+  }
+
+  &.iui-tile-uploading {
+    border-bottom: 4px solid var(--iui-color-background-primary);
   }
 }
 

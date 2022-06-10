@@ -517,10 +517,10 @@
         id="test-tile-3"
       >
 
-        <div class="iui-tile-thumbnail">
+        <div class="iui-tile-thumbnail iui-negative">
 
           <svg-status-error
-            class="iui-thumbnail-icon"
+            class="iui-thumbnail-icon iui-negative"
             aria-hidden="true"
           ></svg-status-error>
 
@@ -528,7 +528,13 @@
 
         <div class="iui-tile-content">
           <div class="iui-tile-name">
-            <span class="iui-tile-name-label">Upload failed!</span>
+
+            <svg-status-error
+              class="iui-determinate iui-tile-status-icon iui-negative"
+              aria-hidden="true"
+            ></svg-status-error>
+
+            <span class="iui-tile-name-label iui-negative">Upload failed!</span>
           </div>
 
         </div>
@@ -539,7 +545,7 @@
         class="iui-tile"
         id="test-tile-8"
       >
-        <div class="iui-tile-thumbnail">
+        <div class="iui-tile-thumbnail iui-tile-uploading">
 
           <div class="iui-progress-indicator-radial iui-determinate iui-thumbnail-icon"><svg
               class="iui-radial"
@@ -559,19 +565,10 @@
                 r="15.91549"
                 style="stroke-dashoffset: 20"
               ></circle>
-            </svg></div>
+            </svg>
 
-          <!--  <button
-            aria-label="Type indicator"
-            type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
-          >
-            <svg-placeholder
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-placeholder>
-          </button>
-        -->
+          </div>
+
         </div>
 
         <div class="iui-tile-content ">
@@ -596,15 +593,7 @@
                 ></circle>
               </svg></div>
             <span class="iui-tile-uploading">Upload in progress...</span>
-          </div>
-          <div class="iui-tile-description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+
           </div>
 
         </div>
@@ -616,7 +605,7 @@
         id="test-tile-9"
         disabled
       >
-        <div class="iui-tile-thumbnail">
+        <div class="iui-tile-thumbnail iui-disabled">
 
           <div class="iui-progress-indicator-radial iui-determinate iui-thumbnail-icon">
 
@@ -661,7 +650,46 @@
             </div>
             <span class="iui-tile-name-label iui-disabled">Disabled</span>
           </div>
-          <div class="iui-tile-description">
+          <div class="iui-tile-description iui-disabled">
+            Bentley Systems, Incorporated, is an American-based software
+            development company that develops, manufactures, licenses, sells and
+            supports computer software and services for the design,
+            construction, and operation of infrastructure.
+          </div>
+          <div class="iui-tile-metadata iui-disabled">
+            <svg-tag
+              class="iui-tile-metadata-icon"
+              aria-hidden="true"
+            ><svg
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="m9 0-9 9 7 7 9-9v-7zm3.5 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1 -1.5 1.5z"></path>
+              </svg></svg-tag>
+            <div class="iui-tag-container">
+              <span class="iui-tag-basic">tags</span>
+              <span class="iui-tag-basic">go</span>
+              <span class="iui-tag-basic">here</span>
+            </div>
+          </div>
+          <div class="iui-tile-more-options iui-disabled">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small iui-disabled"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ><svg
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+                  ></path>
+                </svg></svg-more>
+            </button>
           </div>
 
         </div>
@@ -670,12 +698,15 @@
 
 
       <div
-        class="iui-tile"
+        class="iui-tile iui-actionable"
         id="test-tile-10"
       >
-        <div class="iui-tile-thumbnail">
-
-          <div class="iui-progress-indicator-radial iui-determinate iui-thumbnail-icon">
+        <div class="iui-tile-thumbnail iui-positive">
+          <!-- I like the way the icon looks with the hover actionable, put top/left styling directly in html just for simplicity (malik)-->
+          <div
+            class="iui-progress-indicator-radial iui-determinate iui-thumbnail-icon iui-tile-thumbnail-picture"
+            style="top:auto; left:auto;"
+          >
 
             <svg-status-success
               class="iui-thumbnail-icon iui-positive"
@@ -715,13 +746,155 @@
             </div>
             <span class="iui-tile-name-label iui-positive">Uploaded successfully</span>
           </div>
+
           <div class="iui-tile-description">
+            Bentley Systems, Incorporated, is an American-based software
+            development company that develops, manufactures, licenses, sells and
+            supports computer software and services for the design,
+            construction, and operation of infrastructure.
+          </div>
+
+          <div class="iui-tile-metadata">
+            <svg-tag
+              class="iui-tile-metadata-icon"
+              aria-hidden="true"
+            ><svg
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="m9 0-9 9 7 7 9-9v-7zm3.5 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1 -1.5 1.5z"></path>
+              </svg></svg-tag>
+            <div class="iui-tag-container">
+              <span class="iui-tag-basic">tags</span>
+              <span class="iui-tag-basic">go</span>
+              <span class="iui-tag-basic">here</span>
+            </div>
+          </div>
+
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ><svg
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+                  ></path>
+                </svg></svg-more>
+            </button>
           </div>
 
         </div>
 
       </div>
 
+      <div
+        class="iui-tile iui-actionable"
+        id="test-tile-11"
+      >
+
+        <div class="iui-tile-thumbnail iui-warning">
+          <!-- I like the way the icon looks with the hover actionable, put top/left styling directly in html just for simplicity (malik)-->
+          <svg-status-warning
+            class="iui-button-icon iui-thumbnail-icon iui-warning iui-tile-thumbnail-picture"
+            style="top: auto; left: auto;"
+            aria-hidden="true"
+          ><svg
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
+              ></path>
+            </svg></svg-status-warning>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-name">
+
+            <svg-status-warning
+              class="iui-button-icon iui-tile-status-icon iui-warning"
+              aria-hidden="true"
+            ><svg
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m15.86807 13.26721-6.77-11.62a1.15 1.15 0 0 0 -1.1-.67 1.17 1.17 0 0 0 -1.1.69l-6.77 11.59a1.2 1.2 0 0 0 1.1 1.72h13.45a1.19 1.19 0 0 0 1.19-1.71zm-6.87-.29h-2v-2h2zm0-3h-2v-5h2z"
+                ></path>
+              </svg></svg-status-warning>
+
+            <span class="iui-tile-name-label iui-warning">Upload warning</span>
+
+
+
+
+
+
+          </div>
+
+          <div class="iui-tile-description">
+            Bentley Systems, Incorporated, is an American-based software
+            development company that develops, manufactures, licenses, sells and
+            supports computer software and services for the design,
+            construction, and operation of infrastructure.
+          </div>
+
+          <div class="iui-tile-metadata">
+            <svg-tag
+              class="iui-tile-metadata-icon"
+              aria-hidden="true"
+            ><svg
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="m9 0-9 9 7 7 9-9v-7zm3.5 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1 -1.5 1.5z"></path>
+              </svg></svg-tag>
+            <div class="iui-tag-container">
+              <span class="iui-tag-basic">tags</span>
+              <span class="iui-tag-basic">go</span>
+              <span class="iui-tag-basic">here</span>
+            </div>
+          </div>
+
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button iui-borderless iui-small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ><svg
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m4 8a2 2 0 1 1 -2-2 2 2 0 0 1 2 2zm4-2a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm6 0a2 2 0 1 0 2 2 2 2 0 0 0 -2-2z"
+                  ></path>
+                </svg></svg-more>
+            </button>
+          </div>
+
+
+        </div>
+
+      </div>
 
     </section>
 
