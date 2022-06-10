@@ -145,9 +145,7 @@
   width: $iui-icons-xl;
   height: $iui-icons-xl;
   display: block;
-  margin: 0 auto;
-  margin-top: round($iui-baseline * 0.5);
-  margin-bottom: $iui-baseline;
+  margin: round($iui-baseline * 0.5) auto $iui-baseline;
   fill: var(--iui-icons-color);
   @media (prefers-reduced-motion: no-preference) {
     transition: fill $iui-speed-fast ease-out;
