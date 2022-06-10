@@ -21,7 +21,6 @@ export const comboBoxReducer = (
     case 'select': {
       return {
         ...state,
-        isOpen: false,
         selectedIndex: value ?? state.selectedIndex,
         focusedIndex: value ?? state.focusedIndex,
       };

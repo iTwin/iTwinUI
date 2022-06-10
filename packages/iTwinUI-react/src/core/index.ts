@@ -127,12 +127,19 @@ export type { LabeledSelectProps } from './LabeledSelect';
 export { LabeledTextarea } from './LabeledTextarea';
 export type { LabeledTextareaProps } from './LabeledTextarea';
 
-export { Menu, MenuItem, MenuDivider, MenuExtraContent } from './Menu';
+export {
+  Menu,
+  MenuItem,
+  MenuDivider,
+  MenuExtraContent,
+  MenuItemSkeleton,
+} from './Menu';
 export type {
   MenuProps,
   MenuItemProps,
   MenuDividerProps,
   MenuExtraContentProps,
+  MenuItemSkeletonProps,
 } from './Menu';
 
 export { Modal, ModalButtonBar, ModalContent } from './Modal';

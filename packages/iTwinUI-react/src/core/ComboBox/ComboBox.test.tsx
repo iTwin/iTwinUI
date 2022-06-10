@@ -622,7 +622,45 @@ it('should use the latest onChange prop', async () => {
   expect(mockOnChange1).toHaveBeenNthCalledWith(1, 1);
 
   rerender(<ComboBox options={options} onChange={mockOnChange2} />);
+  await userEvent.tab({ shift: true }); // reopen menu
   await userEvent.click(screen.getByText('Item 2'));
   expect(mockOnChange2).toHaveBeenNthCalledWith(1, 2);
   expect(mockOnChange1).toHaveBeenCalledTimes(1);
+});
+
+it('should call onExpand and onCollapse when dropdown is opened and closed', async () => {
+  const onExpand = jest.fn();
+  const onCollapse = jest.fn();
+  const { container } = renderComponent({
+    onShow: onExpand,
+    onHide: onCollapse,
+  });
+
+  const icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
+  await userEvent.click(icon);
+  const list = document.querySelector('.iui-menu') as HTMLUListElement;
+  expect(list).toBeVisible();
+  expect(onExpand).toHaveBeenCalled();
+
+  await userEvent.click(icon);
+  expect(list).not.toBeVisible();
+  expect(onCollapse).toHaveBeenCalled();
+});
+
+it('should accept ReactNode in emptyStateMessage', async () => {
+  const { container } = renderComponent({
+    emptyStateMessage: <div className='test-class'>Custom message</div>,
+  });
+
+  const input = assertBaseElement(container);
+  await userEvent.tab();
+  await userEvent.type(input, 'Invalid input');
+
+  const emptyMessage = document.querySelector(
+    '.iui-menu .test-class',
+  ) as HTMLElement;
+  expect(emptyMessage).toHaveTextContent('Custom message');
+
+  // Should not wrap with MenuExtraContent
+  expect(document.querySelector('.iui-menu .iui-menu-content')).toBeFalsy();
 });

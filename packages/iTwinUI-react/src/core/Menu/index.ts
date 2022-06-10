@@ -13,3 +13,6 @@ export type { MenuDividerProps } from './MenuDivider';
 
 export { MenuExtraContent } from './MenuExtraContent';
 export type { MenuExtraContentProps } from './MenuExtraContent';
+
+export { MenuItemSkeleton } from './MenuItemSkeleton';
+export type { MenuItemSkeletonProps } from './MenuItemSkeleton';

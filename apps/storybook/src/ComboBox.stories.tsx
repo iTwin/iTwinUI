@@ -12,6 +12,7 @@ import {
   MenuItem,
   StatusMessage,
   SelectOption,
+  MenuItemSkeleton,
 } from '@itwin/itwinui-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
 
@@ -283,6 +284,28 @@ const countriesList = [
   { label: 'Zimbabwe', value: 'ZW' },
 ];
 
+const fetchOptions = async (): Promise<SelectOption<string>[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(
+        countriesList.map((country) => ({
+          ...country,
+          sublabel: country.value,
+          icon: (
+            <img
+              loading='lazy'
+              style={{ width: 20, height: 15 }}
+              src={`https://flagcdn.com/w20/${country.value.toLowerCase()}.png`}
+              srcSet={`https://flagcdn.com/w40/${country.value.toLowerCase()}.png 2x`}
+              alt=''
+            />
+          ),
+        })),
+      );
+    }, 2000);
+  });
+};
+
 export const Basic: Story<Partial<ComboBoxProps<string>>> = (args) => {
   const options = React.useMemo(() => countriesList, []);
 
@@ -476,6 +499,60 @@ WithCustomMessageIcon.args = {
   message: (
     <StatusMessage startIcon={<SvgCamera />}>This is a message</StatusMessage>
   ),
+};
+
+export const Loading: Story<Partial<ComboBoxProps<string>>> = (args) => {
+  const [options, setOptions] = React.useState<SelectOption<string>[]>([]);
+  const [selectedValue, setSelectedValue] = React.useState<string>();
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  const onChange = React.useCallback((value: string) => {
+    action(value ?? '')();
+    setSelectedValue(value);
+  }, []);
+
+  const emptyContent = React.useMemo(() => {
+    return isLoading ? (
+      <>
+        {new Array(6).fill(null).map((_, index) => {
+          return (
+            <MenuItemSkeleton
+              key={index}
+              hasIcon
+              hasSublabel
+              contentWidth={`${Math.min(
+                Math.max(Math.random() * 100, 25),
+                60,
+              )}%`}
+            />
+          );
+        })}
+      </>
+    ) : (
+      'No options found'
+    );
+  }, [isLoading]);
+
+  return (
+    <ComboBox
+      inputProps={{ placeholder: 'Select a country' }}
+      value={selectedValue}
+      onChange={onChange}
+      {...args}
+      emptyStateMessage={emptyContent}
+      options={options}
+      onShow={React.useCallback(async () => {
+        if (!isLoading) {
+          return;
+        }
+        setOptions(await fetchOptions());
+        setIsLoading(false);
+      }, [isLoading])}
+    />
+  );
+};
+Loading.args = {
+  inputProps: { placeholder: 'Select a country' },
 };
 
 export const Virtualized: Story<Partial<ComboBoxProps<string>>> = (args) => {

@@ -137,6 +137,7 @@ export const ComboBoxInput = React.forwardRef(
             event.preventDefault();
             if (isOpen) {
               dispatch(['select', focusedIndexRef.current]);
+              dispatch(['close']);
             } else {
               dispatch(['open']);
             }
