@@ -1,3 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utilities/anchor'; // Reimports anchor from global styles
+@import './anchor';
+@import './mixins';
+@import './ripple';

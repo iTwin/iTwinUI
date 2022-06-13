@@ -1,19 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './color';
-
-@mixin no-link {
-  text-decoration: none;
-  color: var(--iui-text-color);
-
-  &:link,
-  &:visited,
-  &:hover,
-  &:active {
-    color: var(--iui-text-color);
-    text-decoration: none;
-  }
-}
+@import '../style/color';
 
 @mixin focus-visible {
   &:focus-visible {
