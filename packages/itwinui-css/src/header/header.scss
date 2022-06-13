@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: $iui-baseline * 5 + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
+  height: $iui-baseline * 5;
   user-select: none;
   box-sizing: border-box;
   background-color: var(--iui-color-background-1);
@@ -27,7 +27,7 @@
   --_iui-header-icon-scale: scale(0.66666);
   --_iui-header-brand-label-font-size: #{$iui-font-size};
 
-  height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
+  height: $iui-baseline * 3;
 }
 
 @mixin iui-page-header-zone {
