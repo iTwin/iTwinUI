@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../utils/notification-marker/index';
 @import './button';
 @import './button-icon';
+@import '../utils/notification-marker/index';
 @import './disabled';
 
 @mixin iui-button-default {

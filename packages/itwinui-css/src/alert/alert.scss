@@ -3,8 +3,8 @@
 @import '../style/index';
 @import '../anchor/index';
 @import '../icon/index';
-@import '../button/index';
 @import '../utils/mixins';
+@import '../button/index';
 
 @mixin iui-alert {
   @include iui-reset;

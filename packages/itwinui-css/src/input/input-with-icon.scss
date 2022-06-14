@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../utils/input-container/index';
+
 // Mixin to have inputs combined with icon (eg. select)
 @mixin iui-input-with-icon {
   display: grid;
