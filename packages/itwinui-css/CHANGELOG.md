@@ -2,7 +2,6 @@
 
 ## [0.60.0](https://www.github.com/iTwin/iTwinUI/compare/v0.59.2...v0.60.0) (2022-06-14)
 
-
 ### What's new
 
 * Separate out `Backdrop` from `Dialog` ([#670](https://www.github.com/iTwin/iTwinUI/issues/670)) ([ce0f56c](https://www.github.com/iTwin/iTwinUI/commit/ce0f56c98105d8e4974f1971055ffe0dc597d3d0))
