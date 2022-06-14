@@ -3,8 +3,8 @@
 @import '../utils/index';
 @import '../icon/index';
 @import '../button/index';
-@import '../text/index';
-@import './variables';
+@import '../utils/index';
+@import '../style/index';
 
 @mixin iui-paginator {
   @include iui-reset;
