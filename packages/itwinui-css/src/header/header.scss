@@ -1,9 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@import '../style/index';
 @import '../avatar/index';
 @import '../icon/index';
 @import '../button/index';
+@import '../utils/mixins';
 
 @mixin iui-page-header {
   @include iui-reset;

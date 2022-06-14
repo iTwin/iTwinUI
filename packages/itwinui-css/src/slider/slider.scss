@@ -1,7 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@import '../style/index';
 @import '../icon/index';
+@import '../utils/mixins';
+@import '../utils/mixins';
 
 $thumb-height: $iui-m; // 16px
 $track-height: $iui-xs; // 4px

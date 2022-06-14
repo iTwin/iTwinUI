@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
-@import '../icon/index';
+@import '../style/index';
 @import './disabled';
 @import './button-icon';
+@import '../utils/mixins';
 
 $iui-button-padding: $iui-xs * 4;
 $iui-button-padding-small: $iui-xs * 2;

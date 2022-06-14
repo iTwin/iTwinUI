@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../menu/index';
+@import '../utils/mixins';
 
 @mixin iui-select-button {
   @include iui-focus($offset: -2px, $thickness: 2px);
