@@ -1,35 +1,47 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './mixins';
+@import './space';
+@import './typography';
+@import './shadows';
+@import './colors';
+
+@mixin common {
+  @include sizes;
+  @include border-radii;
+  @include typography;
+  @include shadows;
+  @include soft-backgrounds;
+}
 
 :root {
-  @include light-variables;
+  @include common;
+  @include light-theme;
 
   @media (prefers-color-scheme: dark) {
-    @include dark-variables;
+    @include dark-theme;
   }
 
   @media (prefers-color-scheme: light) and (prefers-contrast: more) {
-    @include light-hc-variables;
+    @include light-hc-theme;
   }
 
   @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
-    @include dark-hc-variables;
+    @include dark-hc-theme;
   }
 }
 
 [data-iui-theme='light'] {
-  @include light-variables;
+  @include light-theme;
 }
 
 [data-iui-theme='dark'] {
-  @include dark-variables;
+  @include dark-theme;
 }
 
 [data-iui-theme='light-hc'] {
-  @include light-hc-variables;
+  @include light-hc-theme;
 }
 
 [data-iui-theme='dark-hc'] {
-  @include dark-hc-variables;
+  @include dark-hc-theme;
 }
