@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-button-split-menu {
+@mixin iui-button-split {
   @include iui-button-group;
 
   &:hover {
