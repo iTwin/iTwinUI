@@ -120,7 +120,7 @@ $iui-dialog-width: 380px;
   font-size: $iui-font-size-subheading;
 }
 
-@mixin iui-dialog-title-bar-draggable {
+@mixin iui-dialog-title-bar-filled {
   font-size: $iui-font-size-leading;
   padding: round($iui-baseline * 0.5) $iui-m;
   margin: -#{$iui-baseline} -#{$iui-m} $iui-baseline -#{$iui-m}; // negative margin to counteract dialog padding
