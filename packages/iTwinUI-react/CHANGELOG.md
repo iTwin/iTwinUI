@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.40.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.39.0...v1.40.0) (2022-06-10)
+
+### What's new
+
+* **Combobox:** Loading state with skeletons ([#655](https://www.github.com/iTwin/iTwinUI-react/issues/655)) ([cc1c7fb](https://www.github.com/iTwin/iTwinUI-react/commit/cc1c7fb6b5c494c94c01fe06483b788e0a27ec36))
+* **Table:** Add sticky columns feature ([#695](https://www.github.com/iTwin/iTwinUI-react/issues/695)) ([eb6b0c0](https://www.github.com/iTwin/iTwinUI-react/commit/eb6b0c03e83b6e1417a444901c033a52545de186))
+
+### Fixes
+
+* **Table:** Overriding min-width for the whole table ([#706](https://www.github.com/iTwin/iTwinUI-react/issues/706)) ([ad8173b](https://www.github.com/iTwin/iTwinUI-react/commit/ad8173b5764277a06a4b87a408e80affb2271749))
+* **Table:** Removed title from selection checkboxes ([#704](https://www.github.com/iTwin/iTwinUI-react/issues/704)) ([5f72e59](https://www.github.com/iTwin/iTwinUI-react/commit/5f72e59a6d6e66b5f69c30ad82f7b37017242df6))
+
 ## [1.39.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.38.0...v1.39.0) (2022-06-03)
 
 ### What's new
