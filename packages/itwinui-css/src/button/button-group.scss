@@ -17,7 +17,7 @@
   }
 
   $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
-  $childBorderSelector: '.iui-input, .iui-button:where(:not(.iui-button-borderless))';
+  $childBorderSelector: '.iui-input, .iui-button:where(:not([data-iui-button-variant="borderless"]))';
   $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
   > * {
@@ -98,7 +98,7 @@
     }
 
     // Add slight border between disabled items
-    &:not(:first-child) :where(.iui-button.iui-button-default) {
+    &:not(:first-child) :where([data-iui-button-variant='default']) {
       #{$disabledSelector} {
         @if $orientation == 'horizontal' {
           border-left-color: var(--iui-color-background-4);

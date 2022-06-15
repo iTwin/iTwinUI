@@ -14,11 +14,11 @@
   // #region Sizing
   @include iui-button-size(medium, borderless);
 
-  &.iui-small {
+  &[data-iui-button-size='small'] {
     @include iui-button-size(small, borderless);
   }
 
-  &.iui-large {
+  &[data-iui-button-size='large'] {
     @include iui-button-size(large, borderless);
   }
   // #endregion Sizing

@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 @mixin iui-button-idea {
+  @include iui-button-status-color(primary);
   border-radius: $iui-border-radius-round;
   box-shadow: $iui-elevation-24;
   position: fixed;

@@ -4,10 +4,6 @@
 
 .iui-button {
   @include iui-button;
-
-  &.iui-idea {
-    @include iui-button-idea;
-  }
 }
 
 .iui-button-label {
@@ -18,24 +14,34 @@
   @include iui-button-icon;
 }
 
-.iui-button-default {
+// #region Button variants
+[data-iui-button-variant='default'] {
   @include iui-button-default;
 }
 
-.iui-button-high-visibility {
-  @include iui-button-status-color(primary);
-}
-
-.iui-button-cta {
-  @include iui-button-status-color(positive);
-}
-
-.iui-button-borderless {
+[data-iui-button-variant='borderless'] {
   @include iui-button-borderless;
 }
 
+[data-iui-button-variant='high-visibility'] {
+  @include iui-button-status-color(primary);
+}
+
+[data-iui-button-variant='cta'] {
+  @include iui-button-status-color(positive);
+}
+
+[data-iui-button-variant='idea'] {
+  @include iui-button-idea;
+}
+// #endregion Button variants
+
 .iui-button-dropdown {
   @include iui-button-dropdown;
+}
+
+.iui-button-split {
+  @include iui-button-split;
 }
 
 .iui-button-group {
@@ -48,8 +54,4 @@
   &-overflow-x {
     @include iui-button-group-overflow-x;
   }
-}
-
-.iui-button-split {
-  @include iui-button-split;
 }

@@ -26,6 +26,6 @@ module.exports = [
     selectors: ['#demo-combo-group'],
   }),
   scenario('Type Ideas', {
-    selectors: ['.iui-idea'],
+    selectors: ['#demo-ideas'],
   }),
 ];

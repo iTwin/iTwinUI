@@ -38,11 +38,11 @@ $iui-button-padding-large: $iui-xs * 6;
   // #region Sizing
   @include iui-button-size;
 
-  &.iui-small {
+  &[data-iui-button-size='small'] {
     @include iui-button-size(small);
   }
 
-  &.iui-large {
+  &[data-iui-button-size='large'] {
     @include iui-button-size(large);
   }
   // #endregion Sizing
@@ -88,7 +88,7 @@ $iui-button-padding-large: $iui-xs * 6;
   transition: fill $iui-speed-fast ease-out;
   fill: currentColor;
 
-  @at-root .iui-button-borderless &:only-child {
+  @at-root [data-iui-button-variant='borderless'] &:only-child {
     margin-left: $iui-component-offset;
     margin-right: $iui-component-offset;
   }
@@ -97,15 +97,15 @@ $iui-button-padding-large: $iui-xs * 6;
 @mixin iui-button-dropdown {
   padding-right: $iui-s;
 
-  &.iui-small {
+  &[data-iui-button-size='small'] {
     padding-right: $iui-xs;
 
-    &.iui-button-borderless {
+    &[data-iui-button-variant='borderless'] {
       padding-right: $iui-xxs;
     }
   }
 
-  &.iui-large {
+  &[data-iui-button-size='large'] {
     padding-right: $iui-sm;
   }
 }

@@ -11,7 +11,7 @@
 
   > * {
     // &:first-child {
-    //   > .iui-button-borderless:hover {
+    //   > [data-iui-button-variant='borderless']:hover {
     //     background-color: transparent;
     //   }
     // }
@@ -22,26 +22,26 @@
         padding: $iui-xs;
       }
 
-      > .iui-small {
+      > [data-iui-button-size='small'] {
         padding: $iui-xxs;
       }
 
-      > .iui-large {
+      > [data-iui-button-size='large'] {
         padding: $iui-s;
       }
     }
 
     // Border between buttons for high-visibility and cta
     &:first-child {
-      > .iui-button-high-visibility,
-      > .iui-button-cta {
+      > [data-iui-button-variant='high-visibility'],
+      > [data-iui-button-variant='cta'] {
         border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
       }
     }
 
     &:last-child {
-      > .iui-button-high-visibility,
-      > .iui-button-cta {
+      > [data-iui-button-variant='high-visibility'],
+      > [data-iui-button-variant='cta'] {
         border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
       }
     }
