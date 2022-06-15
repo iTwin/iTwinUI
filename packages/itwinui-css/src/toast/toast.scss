@@ -8,7 +8,6 @@
   @include iui-reset;
   display: inline-flex;
   align-items: center;
-  box-sizing: border-box;
   pointer-events: all;
   margin: 0 $iui-m $iui-baseline $iui-m;
   min-height: $iui-baseline * 4;

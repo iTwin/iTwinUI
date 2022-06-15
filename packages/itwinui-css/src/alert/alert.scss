@@ -9,7 +9,6 @@
 @mixin iui-alert {
   @include iui-reset;
   border-radius: $iui-border-radius;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   border: 1px solid var(--iui-color-background-5);

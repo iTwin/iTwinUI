@@ -9,6 +9,8 @@
 
   @if ($size == $iui-icons-xl) {
     --_iui-avatar-status-size: #{$iui-xs * 1.5};
+  } @else if ($size == $iui-icons-large) {
+    --_iui-avatar-status-size: #{$iui-xs};
   } @else if ($size == $iui-icons-xxl) {
     --_iui-avatar-status-size: #{$iui-s};
   } @else {

@@ -5,7 +5,6 @@
 @mixin iui-anchor {
   @include iui-anchor-status('primary');
   border-radius: $iui-border-radius;
-  box-sizing: border-box;
   cursor: pointer;
 
   @include iui-anchor-underline('on-hover');

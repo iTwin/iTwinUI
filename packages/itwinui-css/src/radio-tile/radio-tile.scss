@@ -22,7 +22,6 @@
 @mixin iui-radio-tile-content {
   width: $iui-xl * 5;
   height: 100%;
-  box-sizing: border-box;
   padding: $iui-s;
   position: relative;
   z-index: 1;
@@ -146,9 +145,7 @@
   width: $iui-icons-xl;
   height: $iui-icons-xl;
   display: block;
-  margin: 0 auto;
-  padding-top: round($iui-baseline * 0.5);
-  padding-bottom: $iui-baseline;
+  margin: round($iui-baseline * 0.5) auto $iui-baseline;
   fill: var(--iui-icons-color);
   @media (prefers-reduced-motion: no-preference) {
     transition: fill $iui-speed-fast ease-out;

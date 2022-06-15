@@ -45,6 +45,7 @@ $tick-height: $iui-baseline; // 11px
 }
 
 @mixin iui-slider-thumb {
+  box-sizing: content-box;
   position: absolute;
   height: $thumb-height;
   width: $thumb-height;
