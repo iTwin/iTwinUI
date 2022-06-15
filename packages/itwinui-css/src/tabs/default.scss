@@ -81,10 +81,7 @@
     }
 
     .iui-tab-description {
-      display: block;
-      @supports (-webkit-line-clamp: 1) {
-        display: -webkit-box; /* stylelint-disable-line */
-      }
+      display: -webkit-box; /* stylelint-disable-line */
     }
   }
 
