@@ -18,9 +18,7 @@
     min-height: $iui-component-height;
     height: 100%;
     cursor: pointer;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: background-color $iui-speed-fast ease-out;
-    }
+    transition: background-color $iui-speed-fast ease-out;
     @include themed {
       color: t(iui-text-color);
     }
@@ -63,9 +61,7 @@
     width: $iui-icons-default;
     height: $iui-icons-default;
     flex-shrink: 0;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: fill $iui-speed-fast ease-out;
-    }
+    transition: fill $iui-speed-fast ease-out;
     @include themed {
       fill: t(iui-icons-color-actionable);
     }
