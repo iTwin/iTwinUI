@@ -44,6 +44,7 @@
 
   > :any-link {
     @include iui-anchor;
+    box-sizing: border-box;
 
     &:focus {
       outline-offset: -1px;
