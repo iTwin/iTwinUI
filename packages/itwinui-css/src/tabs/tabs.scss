@@ -77,6 +77,10 @@
 
   .iui-tab-label {
     text-align: left;
+
+    > * {
+      @include iui-line-clamp(3);
+    }
   }
 
   .iui-tab-description {
