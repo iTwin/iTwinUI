@@ -3,6 +3,7 @@
 @import '../../style/index';
 @import '../mixins';
 @import '../ripple';
+
 /// Container for grouping inputs with a label, an icon and a status message.
 /// Supported modifiers: .iui-inline-label, .iui-inline-icon and .iui-with-message
 @mixin iui-input-container {
