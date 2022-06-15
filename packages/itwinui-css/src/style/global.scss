@@ -65,3 +65,9 @@ html {
   // Scrollbar
   @include iui-scrollbar;
 }
+
+[class*=iui-]:where(:not(.iui-body)),
+[class*=iui-]:where(:not(.iui-body))::before,
+[class*=iui-]:where(:not(.iui-body))::after {
+  box-sizing: border-box;
+}
