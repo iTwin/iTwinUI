@@ -21,7 +21,6 @@
     height: 100%;
     margin: 0;
     border-radius: 50%;
-    box-sizing: border-box;
     box-shadow: inset 0 0 0 $iui-xxs rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
   }
 
@@ -68,6 +67,7 @@
   }
 
   > .iui-status {
+    box-sizing: content-box;
     display: flex;
     align-items: center;
     justify-content: center;

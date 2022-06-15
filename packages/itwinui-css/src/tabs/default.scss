@@ -7,8 +7,8 @@
   @include iui-tab-not-animated;
 
   .iui-tab {
-    padding: $iui-xs $iui-m;
-    box-sizing: border-box;
+    height: $iui-component-height;
+    padding: 0 $iui-m;
     background-color: var(--iui-color-background-2);
     border: 1px solid var(--iui-color-background-5);
 

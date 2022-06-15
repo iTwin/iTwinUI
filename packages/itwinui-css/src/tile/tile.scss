@@ -181,6 +181,7 @@
 }
 
 @mixin iui-tile-thumbnail {
+  box-sizing: content-box;
   width: 100%;
   height: $iui-baseline * 14;
   flex-shrink: 0;

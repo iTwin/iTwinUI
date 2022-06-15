@@ -11,9 +11,8 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: $iui-baseline * 5 + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
+  height: $iui-baseline * 5;
   user-select: none;
-  box-sizing: border-box;
   // iPhone notch support
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
   @media (prefers-reduced-motion: no-preference) {
@@ -84,7 +83,7 @@
   }
 
   &.iui-slim {
-    height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
+    height: $iui-baseline * 3;
 
     > .iui-left {
       .iui-header-logo {
@@ -262,6 +261,7 @@
   }
 
   .iui-header-button-icon {
+    box-sizing: content-box;
     padding: $iui-xs;
     @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
     background-color: var(--iui-color-background-3);
