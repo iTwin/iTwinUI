@@ -7,26 +7,29 @@
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
 
-  &:first-of-type > .iui-radio-tile-content {
-    border-radius: $iui-border-radius 0 0 $iui-border-radius;
-  }
+  // &:first-of-type > .iui-radio-tile-content {
+  //   border-radius: $iui-border-radius 0 0 $iui-border-radius;
+  // }
 
-  &:last-of-type > .iui-radio-tile-content {
-    border-radius: 0 $iui-border-radius $iui-border-radius 0;
-  }
+  // &:last-of-type > .iui-radio-tile-content {
+  //   border-radius: 0 $iui-border-radius $iui-border-radius 0;
+  // }
 
-  &:not(:first-of-type) > .iui-radio-tile-content {
-    margin-left: -1px;
-  }
+  // &:not(:first-of-type) > .iui-radio-tile-content {
+  //   margin-left: -1px;
+  // }
 }
+
 @mixin iui-radio-tile-content {
+  // margin: 0 0 0 -1px;
   width: $iui-xl * 5;
   height: 100%;
   box-sizing: border-box;
   padding: $iui-s;
   position: relative;
   z-index: 1;
-  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  // border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  outline: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
   background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
     transition: border-color $iui-speed-fast ease-out;
@@ -34,7 +37,8 @@
 
   &:hover {
     z-index: 2;
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    // border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    outline-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
 
     .iui-radio-tile-icon {
       fill: var(--iui-icons-color-actionable);
@@ -73,9 +77,11 @@
   &:checked + * {
     padding: $iui-s - 1;
     z-index: 3;
-    border: 2px solid var(--iui-color-foreground-primary);
+    // border: 2px solid var(--iui-color-foreground-primary);
+    outline: 2px solid var(--iui-color-foreground-primary);
     @media (forced-colors: active) {
-      border-color: Highlight;
+      // border-color: Highlight;
+      outline-color: Highlight;
     }
 
     .iui-radio-tile-icon {
@@ -103,7 +109,8 @@
   &:disabled + * {
     cursor: not-allowed;
     z-index: 0;
-    border-color: var(--iui-color-background-disabled);
+    // border-color: var(--iui-color-background-disabled);
+    outline-color: var(--iui-color-background-disabled);
     background-color: var(--iui-color-background-disabled);
 
     &::after {
@@ -135,9 +142,11 @@
 
   &:disabled:checked + * {
     z-index: 3;
-    border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    // border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    outline: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
     @media (forced-colors: active) {
-      border-color: GrayText;
+      // border-color: GrayText;
+      outline-color: GrayText;
     }
   }
 }
