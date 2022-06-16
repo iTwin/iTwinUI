@@ -186,8 +186,8 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    width: $iui-toggle-switch-handle-size * 0.75;
-    height: $iui-toggle-switch-handle-size * 0.75;
+    width: $iui-toggle-switch-handle-size;
+    height: $iui-toggle-switch-handle-size;
     padding: $iui-toggle-switch-handle-size * 0.125;
     margin: $iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness;
     display: flex;

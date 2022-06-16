@@ -26,7 +26,6 @@ $iui-date-picker-today-circle-size: 32px;
   align-items: center;
   justify-content: space-between;
   padding: 0 $iui-xs;
-  box-sizing: border-box;
   font-weight: $iui-font-weight-bold;
   gap: $iui-xs;
 
@@ -102,7 +101,6 @@ $iui-date-picker-today-circle-size: 32px;
     width: $iui-date-picker-today-circle-size;
     height: $iui-date-picker-today-circle-size;
     border-radius: $iui-border-radius-round;
-    box-sizing: border-box;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

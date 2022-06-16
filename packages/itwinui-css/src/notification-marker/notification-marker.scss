@@ -2,19 +2,21 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
+$iui-notification-marker-border-width: $iui-xxs;
+
 @mixin iui-notification-marker($status: primary) {
   position: relative;
 
   &::before {
     content: '';
     position: absolute;
-    width: $iui-s;
-    height: $iui-s;
+    width: $iui-s + $iui-notification-marker-border-width * 2;
+    height: $iui-s + $iui-notification-marker-border-width * 2;
     top: $iui-sm * -0.5;
     right: $iui-sm * -0.5;
     border-radius: 100%;
     background-color: var(--iui-color-foreground-#{$status});
-    border: 2px solid var(--iui-color-background-1);
+    border: $iui-notification-marker-border-width solid var(--iui-color-background-1);
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
     }
