@@ -46,24 +46,13 @@ $iui-button-padding-large: $iui-xs * 6;
   }
   // #endregion Sizing
 
-  &.iui-active {
-    &,
-    &:hover,
-    &:active {
-      --_iui-button-text-color: var(--iui-color-foreground-primary);
-    }
-
-    // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
-    &::after {
-      content: '';
-      position: absolute;
-      inset: var(--_iui-button-active-stripe-inset);
-      background-color: currentColor;
-    }
+  &[aria-disabled='true'] {
+    @include iui-focus;
   }
 
   &[disabled],
-  &:disabled {
+  &:disabled,
+  &[aria-disabled='true'] {
     cursor: not-allowed;
 
     &,
@@ -90,6 +79,22 @@ $iui-button-padding-large: $iui-xs * 6;
   @at-root [data-iui-button-variant='borderless'] &:only-child {
     margin-left: $iui-component-offset;
     margin-right: $iui-component-offset;
+  }
+}
+
+@mixin iui-button-active {
+  &,
+  &:hover,
+  &:active {
+    --_iui-button-text-color: var(--iui-color-foreground-primary);
+  }
+
+  // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
+  &::after {
+    content: '';
+    position: absolute;
+    inset: var(--_iui-button-active-stripe-inset);
+    background-color: currentColor;
   }
 }
 

@@ -30,11 +30,13 @@
   }
 
   &.iui-active {
+    @include iui-button-active;
     --_iui-button-background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
   }
 
   &[disabled],
-  &:disabled {
+  &:disabled,
+  &[aria-disabled='true'] {
     &,
     &:hover,
     &:active {
