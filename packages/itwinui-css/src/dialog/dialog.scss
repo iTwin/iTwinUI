@@ -47,9 +47,13 @@ $iui-dialog-width: 380px;
   }
 }
 
-@mixin iui-dialog-position {
-  position: fixed;
-  transform: translate(50%, 100%);
+@mixin iui-dialog-default {
+  left: 50%;
+  top: 33%;
+  transform: translate(-50%, -33%);
+  max-width: Max(50%, $iui-dialog-width);
+  min-width: $iui-dialog-width;
+  max-height: 100vh;
 
   &[data-position='top-left'] {
     top: 0;
@@ -84,12 +88,6 @@ $iui-dialog-width: 380px;
   }
 }
 
-@mixin iui-dialog-default {
-  max-width: Max(50%, $iui-dialog-width);
-  min-width: $iui-dialog-width;
-  max-height: 100vh;
-}
-
 @mixin iui-dialog-full-page {
   border-radius: 0;
   height: 100vh;
@@ -100,7 +98,6 @@ $iui-dialog-width: 380px;
   display: flex;
   flex-direction: column;
   will-change: transform;
-  position: relative;
 
   &:not(.iui-dialog-visible) {
     transform: translateY(100%);
