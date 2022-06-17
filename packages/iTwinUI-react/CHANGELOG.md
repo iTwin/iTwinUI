@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.40.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.40.0...v1.40.1) (2022-06-17)
+
+### Fixes
+
+* **Table:** Horizontal scroll is working when virtual scroll is enabled ([#711](https://www.github.com/iTwin/iTwinUI-react/issues/711)) ([d3db504](https://www.github.com/iTwin/iTwinUI-react/commit/d3db504d3a44a4da2c1f34a392f99aae478ef2a3))
+
 ## [1.40.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.39.0...v1.40.0) (2022-06-10)
 
 ### What's new
