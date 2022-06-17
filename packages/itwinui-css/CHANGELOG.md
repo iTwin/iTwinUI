@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.60.0](https://www.github.com/iTwin/iTwinUI/compare/v0.59.2...v0.60.0) (2022-06-14)
+
+### What's new
+
+* Separate out `Backdrop` from `Dialog` ([#670](https://www.github.com/iTwin/iTwinUI/issues/670)) ([ce0f56c](https://www.github.com/iTwin/iTwinUI/commit/ce0f56c98105d8e4974f1971055ffe0dc597d3d0))
+
+### [0.59.2](https://www.github.com/iTwin/iTwinUI/compare/v0.59.1...v0.59.2) (2022-06-08)
+
+### Fixes
+
+* **Code:** Fix codeblock copy button with icon gap ([#680](https://www.github.com/iTwin/iTwinUI/issues/680)) ([516e462](https://www.github.com/iTwin/iTwinUI/commit/516e462171afebe3e195741dfafca36c27c09fc2))
+
 ### [0.59.1](https://www.github.com/iTwin/iTwinUI/compare/v0.59.0...v0.59.1) (2022-05-27)
 
 ### Fixes

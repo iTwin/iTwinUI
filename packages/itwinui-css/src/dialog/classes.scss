@@ -2,12 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-dialog-backdrop {
-  @include iui-dialog-backdrop;
-
-  &.iui-dialog-backdrop-relative {
-    @include iui-dialog-backdrop-relative;
-  }
+.iui-dialog-wrapper {
+  @include iui-dialog-wrapper;
 }
 
 .iui-dialog {
@@ -33,6 +29,10 @@
 
 .iui-dialog-title-bar {
   @include iui-dialog-title-bar;
+}
+
+.iui-dialog-title-bar-filled {
+  @include iui-dialog-title-bar-filled;
 }
 
 .iui-dialog-content {

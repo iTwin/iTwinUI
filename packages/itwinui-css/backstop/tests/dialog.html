@@ -127,14 +127,9 @@
       Toggle draggable dialog
     </button>
 
-    <div
-      class="iui-dialog-backdrop iui-dialog-default"
-      id="default-dialog"
-    >
-      <div
-        class="iui-dialog"
-        id="dialog-click"
-      >
+    <div id="default-dialog">
+      <div class="iui-backdrop"></div>
+      <div class="iui-dialog iui-dialog-default">
         <div class="iui-dialog-title-bar">
           <div class="iui-dialog-title">Title</div>
           <button
@@ -177,11 +172,9 @@
       </div>
     </div>
 
-    <div
-      class="iui-dialog-backdrop iui-dialog-full-page"
-      id="full-page-dialog"
-    >
-      <div class="iui-dialog">
+    <div id="full-page-dialog">
+      <div class="iui-backdrop"></div>
+      <div class="iui-dialog iui-dialog-full-page">
         <div class="iui-dialog-title-bar">
           <div class="iui-dialog-title">Title</div>
           <button
@@ -224,12 +217,9 @@
       </div>
     </div>
 
-    <div
-      class="iui-dialog-backdrop iui-dialog-default iui-dialog-draggable"
-      id="draggable-dialog"
-    >
-      <div class="iui-dialog">
-        <div class="iui-dialog-title-bar">
+    <div id="draggable-dialog">
+      <div class="iui-dialog iui-dialog-default iui-dialog-draggable">
+        <div class="iui-dialog-title-bar iui-dialog-title-bar-filled">
           <div class="iui-dialog-title">Title</div>
           <button
             aria-label="Close"
@@ -283,11 +273,11 @@
         Open relative to container dialog
       </button>
       <div
-        class="iui-dialog-backdrop iui-dialog-default iui-dialog-draggable iui-dialog-backdrop-relative"
+        class="iui-dialog-wrapper"
         id="draggable-dialog-relative"
       >
-        <div class="iui-dialog">
-          <div class="iui-dialog-title-bar">
+        <div class="iui-dialog iui-dialog-default iui-dialog-draggable">
+          <div class="iui-dialog-title-bar iui-dialog-title-bar-filled">
             <div class="iui-dialog-title">Title</div>
             <button
               aria-label="Close"
@@ -332,8 +322,14 @@
 
     <script>
       function toggleDialog(dialogId) {
-        let element = document.getElementById(dialogId);
-        element.classList.toggle('iui-dialog-visible');
+        let _backdrop = document.querySelector(`#${dialogId} .iui-backdrop`);
+        let _dialog = document.querySelector(`#${dialogId} .iui-dialog`);
+
+        _dialog.classList.toggle('iui-dialog-visible');
+
+        if (_backdrop) {
+          _backdrop.classList.toggle('iui-backdrop-visible');
+        }
       }
 
       const dialog = document.querySelector('#dialog-click');
