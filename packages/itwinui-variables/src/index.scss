@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@use './themes/index' as themes;
 @import './space';
 @import './typography';
 @import './shadows';
@@ -14,34 +15,25 @@
 }
 
 :root {
+  // global vars shared between all themes
   @include common;
-  @include light-theme;
 
-  @media (prefers-color-scheme: dark) {
-    @include dark-theme;
-  }
-
-  @media (prefers-color-scheme: light) and (prefers-contrast: more) {
-    @include light-hc-theme;
-  }
-
-  @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
-    @include dark-hc-theme;
-  }
+  // default to light theme if data attribute not set anywhere
+  @include themes.light-theme;
 }
 
 [data-iui-theme='light'] {
-  @include light-theme;
+  @include themes.light-theme;
 }
 
 [data-iui-theme='dark'] {
-  @include dark-theme;
+  @include themes.dark-theme;
 }
 
 [data-iui-theme='light-hc'] {
-  @include light-hc-theme;
+  @include themes.light-hc-theme;
 }
 
 [data-iui-theme='dark-hc'] {
-  @include dark-hc-theme;
+  @include themes.dark-hc-theme;
 }

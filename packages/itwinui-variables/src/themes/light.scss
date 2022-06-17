@@ -1,0 +1,62 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use 'sass:color';
+@use 'sass:map';
+@import '../utils/hex';
+
+$base-colors: (
+  background-1: hsl(0 0% 100%),
+  background-2: hsl(220 27% 98%),
+  background-3: hsl(216 17% 94%),
+  background-4: hsl(206 11% 88%),
+  background-5: hsl(210 10% 80%),
+  background-primary: hsl(203 100% 44%),
+  background-positive: hsl(95 72% 37%),
+  background-warning: hsl(33 89% 51%),
+  background-negative: hsl(0 91% 43%),
+  foreground-body: hsl(0 0% 0%),
+  foreground-body-invert: hsl(0 0% 100%),
+  foreground-accessory: hsl(0 0% 100%),
+  foreground-primary: hsl(203 100% 44%),
+  foreground-positive: hsl(95 72% 37%),
+  foreground-warning: hsl(33 89% 51%),
+  foreground-negative: hsl(0 91% 43%),
+  background-1-overlay: hsl(0 0% 95%),
+  background-primary-overlay: hsl(203 100% 34%),
+  background-positive-overlay: hsl(95 72% 27%),
+  foreground-primary-overlay: hsl(203 100% 34%),
+  foreground-positive-overlay: hsl(95 72% 27%),
+  foreground-warning-overlay: hsl(33 89% 41%),
+  foreground-negative-overlay: hsl(0 91% 33%),
+);
+
+$opacities: (
+  1: 1,
+  2: 0.8,
+  3: 0.6,
+  4: 0.4,
+  5: 0.2,
+  6: 0.1,
+);
+
+@mixin theme {
+  @each $color, $value in $base-colors {
+    --iui-#{$color}: #{hex($value)};
+  }
+
+  @each $level, $value in $opacities {
+    --iui-opacity-#{$level}: #{$value};
+  }
+
+  --iui-color-background-disabled: #{map.get($base-colors, background-3)};
+  --iui-color-background-border: #{map.get($base-colors, background-5)};
+
+  --iui-text-color: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 2))};
+  --iui-text-color-muted: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 4))};
+  --iui-text-color-placeholder: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 5))};
+
+  // --iui-icons-color: hsl(#{color-foreground-body-hsl} / var(--iui-opacity-4));
+  // --iui-icons-color-actionable: hsl(#{color-foreground-body-hsl} / var(--iui-opacity-2));
+  // --iui-icons-color-actionable-hover: hsl(#{color-foreground-body-hsl} / var(--iui-opacity-1));
+  // --iui-icons-color-actionable-disabled: hsl(#{color-foreground-body-hsl} / var(--iui-opacity-5));
+}

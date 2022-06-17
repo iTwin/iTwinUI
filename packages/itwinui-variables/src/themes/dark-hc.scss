@@ -1,0 +1,57 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use 'sass:color';
+@use 'sass:map';
+@import '../utils/hex';
+
+$base-colors: (
+  background-1: hsl(200 12% 20%),
+  background-2: hsl(200 12% 15%),
+  background-3: hsl(200 12% 10%),
+  background-4: hsl(200 12% 25%),
+  background-5: hsl(200 12% 30%),
+  background-primary: hsl(200 100% 26%),
+  background-positive: hsl(140 100% 19%),
+  background-warning: hsl(45 100% 22%),
+  background-negative: hsl(0 100% 31%),
+  foreground-body: hsl(0 0% 100%),
+  foreground-body-invert: hsl(0 0% 0%),
+  foreground-accessory: hsl(0 0% 100%),
+  foreground-primary: hsl(200 100% 79%),
+  foreground-positive: hsl(140 100% 72%),
+  foreground-warning: hsl(45 100% 75%),
+  foreground-negative: hsl(0 100% 88%),
+  background-1-overlay: hsl(0 0% 95%),
+  background-primary-overlay: hsl(203 100% 34%),
+  background-positive-overlay: hsl(95 72% 27%),
+  foreground-primary-overlay: hsl(203 100% 34%),
+  foreground-positive-overlay: hsl(95 72% 27%),
+  foreground-warning-overlay: hsl(33 89% 41%),
+  foreground-negative-overlay: hsl(0 91% 33%),
+);
+
+$opacities: (
+  1: 1,
+  2: 0.94,
+  3: 0.88,
+  4: 0.76,
+  5: 0.34,
+  6: 0.07,
+);
+
+@mixin theme {
+  @each $color, $value in $base-colors {
+    --iui-#{$color}: #{hex($value)};
+  }
+
+  @each $level, $value in $opacities {
+    --iui-opacity-#{$level}: #{$value};
+  }
+
+  --iui-color-background-disabled: #{map.get($base-colors, background-4)};
+  --iui-color-background-border: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 5))};
+
+  --iui-text-color: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 2))};
+  --iui-text-color-muted: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 4))};
+  --iui-text-color-placeholder: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 5))};
+}

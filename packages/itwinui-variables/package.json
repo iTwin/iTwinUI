@@ -7,6 +7,7 @@
   "style": "index.css",
   "files": [
     "index.css",
+    "os.css",
     "LICENSE.md"
   ],
   "description": "CSS variables for the iTwinUI design system",
@@ -24,7 +25,7 @@
     "sass": "^1.52.2"
   },
   "scripts": {
-    "build": "sass --no-source-map src/index.scss index.css",
-    "dev": "sass src/index.scss index.css --watch"
+    "build": "sass --no-source-map src/index.scss:index.css src/os.scss:os.css",
+    "dev": "sass src/index.scss:index.css src/os.scss:os.css --watch"
   }
 }
