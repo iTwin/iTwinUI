@@ -18,4 +18,12 @@ module.exports = [
     selectors: ['document'],
     hideSelectors: ['body > :not(:is(#default-dialog, #full-page-dialog, #draggable-dialog))'],
   }),
+
+  ...['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((placement) =>
+    scenario(`dialog-${placement}`, {
+      actions: [click(`input[value=${placement}`), click('#open-dialog')],
+      selectors: ['document'],
+      hideSelectors: ['body > :not(:is(#default-dialog, #full-page-dialog, #draggable-dialog))'],
+    })
+  ),
 ];
