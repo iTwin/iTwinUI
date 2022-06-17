@@ -339,7 +339,7 @@
       // Clicking on menu-item should toggle selection
       document.querySelectorAll('input').forEach((item) => {
         item.addEventListener('click', () => {
-          dialog.setAttribute('data-position', item.value);
+          dialog.setAttribute('data-iui-placement', item.value);
         });
       });
 
