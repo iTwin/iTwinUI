@@ -1413,7 +1413,7 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
 
   const data = useMemo(
     () =>
-      Array(25)
+      Array(100)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
@@ -1529,6 +1529,7 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
       {...args}
       data={data}
       style={{ height: '100%' }}
+      enableVirtualization
     />
   );
 };
