@@ -8,6 +8,9 @@ module.exports = [
   scenario('default', {
     selectors: ['#demo-default'],
   }),
+  scenario('alternative layouts', {
+    selectors: ['#demo-alternative-layouts'],
+  }),
   // Hover
   scenario('State hover', {
     actions: [hover('#test-radio-tile-content')],

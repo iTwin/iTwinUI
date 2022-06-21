@@ -3,11 +3,11 @@
 @import '../style/index';
 @import '../icon/index';
 
-$default-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-$hover-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+$default-border-color: var(--iui-icons-color); //rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+$hover-border-color: var(--iui-icons-color-actionable); //rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
 $checked-border-color: var(--iui-color-foreground-primary);
 $disabled-border-color: var(--iui-color-background-disabled);
-$disabled-checked-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+$disabled-checked-border-color: var(--iui-icons-color); //rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
 
 @mixin iui-radio-tile {
   cursor: pointer;
@@ -27,15 +27,17 @@ $disabled-checked-border-color: rgba(var(--iui-color-foreground-body-rgb), var(-
 }
 
 @mixin iui-radio-tile-content {
-  // margin: 0 -1px 0 0;
+  // box-sizing: content-box;
+  // margin: 0 -1px -1px 0;
   width: $iui-xl * 5;
   height: 100%;
   padding: $iui-s;
   position: relative;
   z-index: 1;
   // border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  // outline: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  box-shadow: 1px 0 0 0 $default-border-color, 0 1px 0 0 $default-border-color, 1px 1px 0 0 $default-border-color, 1px 0 0 0 $default-border-color inset, 0 1px 0 0 $default-border-color inset;
+  outline: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  // box-shadow: 1px 0 0 0 $default-border-color, 0 1px 0 0 $default-border-color, 1px 1px 0 0 $default-border-color, 1px 0 0 0 $default-border-color inset, 0 1px 0 0 $default-border-color inset;
+  // box-shadow: 0 0 0 1px $default-border-color;
   background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
     transition: border-color $iui-speed-fast ease-out;
@@ -44,8 +46,9 @@ $disabled-checked-border-color: rgba(var(--iui-color-foreground-body-rgb), var(-
   &:hover {
     z-index: 2;
     // border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-    // outline-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-    box-shadow: 1px 0 0 0 $hover-border-color, 0 1px 0 0 $hover-border-color, 1px 1px 0 0 $hover-border-color, 1px 0 0 0 $hover-border-color inset, 0 1px 0 0 $hover-border-color inset;
+    outline-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    // box-shadow: 1px 0 0 0 $hover-border-color, 0 1px 0 0 $hover-border-color, 1px 1px 0 0 $hover-border-color, 1px 0 0 0 $hover-border-color inset, 0 1px 0 0 $hover-border-color inset;
+    // box-shadow: 0 0 0 1px $hover-border-color;
 
     .iui-radio-tile-icon {
       fill: var(--iui-icons-color-actionable);
@@ -85,11 +88,12 @@ $disabled-checked-border-color: rgba(var(--iui-color-foreground-body-rgb), var(-
     padding: $iui-s - 1;
     z-index: 3;
     // border: 2px solid var(--iui-color-foreground-primary);
-    // outline: 2px solid var(--iui-color-foreground-primary);
-    box-shadow: 2px 0 0 0 $checked-border-color, 0 2px 0 0 $checked-border-color, 2px 2px 0 0 $checked-border-color, 2px 0 0 0 $checked-border-color inset, 0 2px 0 0 $checked-border-color inset;
+    outline: 2px solid var(--iui-color-foreground-primary);
+    // box-shadow: 2px 0 0 0 $checked-border-color, 0 2px 0 0 $checked-border-color, 2px 2px 0 0 $checked-border-color, 2px 0 0 0 $checked-border-color inset, 0 2px 0 0 $checked-border-color inset;
+    // box-shadow: 0 0 0 1px $checked-border-color;
 
     @media (forced-colors: active) {
-      // border-color: Highlight;
+      border-color: Highlight;
       // outline-color: Highlight;
     }
 
@@ -119,8 +123,9 @@ $disabled-checked-border-color: rgba(var(--iui-color-foreground-body-rgb), var(-
     cursor: not-allowed;
     z-index: 0;
     // border-color: var(--iui-color-background-disabled);
-    // outline-color: var(--iui-color-background-disabled);
-    box-shadow: 1px 0 0 0 $disabled-border-color, 0 1px 0 0 $disabled-border-color, 1px 1px 0 0 $disabled-border-color, 1px 0 0 0 $disabled-border-color inset, 0 1px 0 0 $disabled-border-color inset;
+    outline-color: var(--iui-color-background-disabled);
+    // box-shadow: 1px 0 0 0 $disabled-border-color, 0 1px 0 0 $disabled-border-color, 1px 1px 0 0 $disabled-border-color, 1px 0 0 0 $disabled-border-color inset, 0 1px 0 0 $disabled-border-color inset;
+    // box-shadow: 0 0 0 1px $disabled-border-color;
     background-color: var(--iui-color-background-disabled);
 
     &::after {
@@ -153,12 +158,14 @@ $disabled-checked-border-color: rgba(var(--iui-color-foreground-body-rgb), var(-
   &:disabled:checked + * {
     z-index: 3;
     // border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-    // outline: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-    box-shadow: 2px 0 0 0 $disabled-checked-border-color, 0 2px 0 0 $disabled-checked-border-color, 2px 2px 0 0 $disabled-checked-border-color, 2px 0 0 0 $disabled-checked-border-color inset, 0 2px 0 0 $disabled-checked-border-color inset;
+    outline: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    // box-shadow: 2px 0 0 0 $disabled-checked-border-color, 0 2px 0 0 $disabled-checked-border-color, 2px 2px 0 0 $disabled-checked-border-color, 2px 0 0 0 $disabled-checked-border-color inset, 0 2px 0 0 $disabled-checked-border-color inset;
+    // box-shadow: 0 0 0 1px $disabled-checked-border-color;
     @media (forced-colors: active) {
       // border-color: GrayText;
-      // outline-color: GrayText;
-      box-shadow: 2px 0 0 0 GrayText, 0 2px 0 0 GrayText, 2px 2px 0 0 GrayText, 2px 0 0 0 GrayText inset, 0 2px 0 0 GrayText inset;
+      outline-color: GrayText;
+      // box-shadow: 2px 0 0 0 GrayText, 0 2px 0 0 GrayText, 2px 2px 0 0 GrayText, 2px 0 0 0 GrayText inset, 0 2px 0 0 GrayText inset;
+      // box-shadow: 0 0 0 1px GrayText;
     }
   }
 }

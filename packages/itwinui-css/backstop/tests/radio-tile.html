@@ -27,6 +27,12 @@
         display: flex;
         flex-direction: column;
         gap: 11px;
+        margin-bottom: 11px;
+      }
+      .right {
+        top: 0;
+        left: 100%;
+        margin-left: 5px;
       }
     </style>
     <script
@@ -45,6 +51,34 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/windows"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/heart"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-happy-very"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-happy"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-neutral"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-sad"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-sad-very"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/remove"
+    ></script>
     <script src="../assets/theme.js"></script>
   </head>
 
@@ -54,7 +88,6 @@
     <hr />
 
     <section id="demo-default">
-
       <div class="iui-input-container">
         <div class="iui-label iui-required">Radio tile label</div>
         <div class="iui-radio-tile-container">
@@ -73,7 +106,7 @@
               ></svg-network>
               <div class="iui-radio-tile-label">Web</div>
               <div class="iui-radio-tile-sublabel">
-                Dimensions in px and % CSS and HTML exports, PNG and SVG assets
+                Dimensions in px and %, CSS and HTML exports, PNG and SVG assets
               </div>
             </div>
           </label>
@@ -343,7 +376,7 @@
               ></svg-network>
               <div class="iui-radio-tile-label">Web</div>
               <div class="iui-radio-tile-sublabel">
-                Dimensions in px and % CSS and HTML exports, PNG and SVG assets
+                Dimensions in px and %, CSS and HTML exports, PNG and SVG assets
               </div>
             </div>
           </label>
@@ -524,92 +557,101 @@
           </label>
         </div>
       </div>
+    </section>
 
+    <section id="demo-alternative-layouts">
       <div
         class="iui-input-container"
-        style="width: 200px;"
+        style="width: 300px;"
       >
-        <div class="iui-label">Radio tile label vertical</div>
-        <div class="iui-radio-tile-container">
-          <label class="iui-radio-tile">
-            <input
-              class="iui-radio-tile-input"
-              type="radio"
-              name="radio-tile-demo-1"
-              value="Web"
-            />
-            <div class="iui-radio-tile-content">
-              <svg-network
-                class="iui-radio-tile-icon"
-                aria-hidden="true"
-              ></svg-network>
-              <div class="iui-radio-tile-label">Web</div>
-              <div class="iui-radio-tile-sublabel">
-                Dimensions in px and % CSS and HTML exports, PNG and SVG assets
-              </div>
-            </div>
-          </label>
+        <div class="iui-label">Radio tile vertical with tooltips</div>
+        <div
+          class="iui-radio-tile-container"
+          id="radio-tile-with-tooltips"
+        >
 
-          <label class="iui-radio-tile">
-            <input
-              class="iui-radio-tile-input"
-              type="radio"
-              name="radio-tile-demo-1"
-              value="iOS"
-            />
-            <div class="iui-radio-tile-content">
-              <svg-apple
-                class="iui-radio-tile-icon"
-                aria-hidden="true"
-              ></svg-apple>
-              <div class="iui-radio-tile-label">iOS</div>
-              <div class="iui-radio-tile-sublabel">
-                Dimensions in pt, Objective-C/Swift export, PNG and PDF assets
+          <div class="iui-tooltip-container">
+            <label class="iui-radio-tile">
+              <input
+                class="iui-radio-tile-input"
+                type="radio"
+                name="radio-tile-demo-6"
+                value="Web"
+              />
+              <div class="iui-radio-tile-content">
+                <svg-network
+                  class="iui-radio-tile-icon"
+                  aria-hidden="true"
+                ></svg-network>
+                <div class="iui-radio-tile-label">Web</div>
               </div>
-            </div>
-          </label>
+            </label>
+            <span class="iui-tooltip right">Dimensions in px and %,<br />CSS and HTML exports,<br />PNG and SVG
+              assets</span>
+          </div>
 
-          <label class="iui-radio-tile">
-            <input
-              class="iui-radio-tile-input"
-              type="radio"
-              name="radio-tile-demo-1"
-              value="Android"
-              id="test-radio-tile-input"
-            />
-            <div
-              class="iui-radio-tile-content"
-              id="test-radio-tile-content"
-            >
-              <svg-android
-                class="iui-radio-tile-icon"
-                aria-hidden="true"
-              ></svg-android>
-              <div class="iui-radio-tile-label">Android</div>
-              <div class="iui-radio-tile-sublabel">
-                Dimensions in dp/sp, XML export, PNG and SVG assets
+          <div class="iui-tooltip-container">
+            <label class="iui-radio-tile">
+              <input
+                class="iui-radio-tile-input"
+                type="radio"
+                name="radio-tile-demo-6"
+                value="iOS"
+              />
+              <div class="iui-radio-tile-content">
+                <svg-apple
+                  class="iui-radio-tile-icon"
+                  aria-hidden="true"
+                ></svg-apple>
+                <div class="iui-radio-tile-label">iOS</div>
               </div>
-            </div>
-          </label>
+            </label>
+            <span class="iui-tooltip right">Dimensions in pt,<br />Objective-C/Swift export,<br />PNG and PDF
+              assets</span>
+          </div>
 
-          <label class="iui-radio-tile">
-            <input
-              class="iui-radio-tile-input"
-              type="radio"
-              name="radio-tile-demo-1"
-              value="Windows Phone"
-            />
-            <div class="iui-radio-tile-content">
-              <svg-windows
-                class="iui-radio-tile-icon"
-                aria-hidden="true"
-              ></svg-windows>
-              <div class="iui-radio-tile-label">Windows Phone</div>
-              <div class="iui-radio-tile-sublabel">
-                Windows Phone is no longer supported
+          <div class="iui-tooltip-container">
+            <label class="iui-radio-tile">
+              <input
+                class="iui-radio-tile-input"
+                type="radio"
+                name="radio-tile-demo-6"
+                value="Android"
+                id="test-radio-tile-input"
+              />
+              <div
+                class="iui-radio-tile-content"
+                id="test-radio-tile-content"
+              >
+                <svg-android
+                  class="iui-radio-tile-icon"
+                  aria-hidden="true"
+                ></svg-android>
+                <div class="iui-radio-tile-label">Android</div>
               </div>
-            </div>
-          </label>
+            </label>
+            <span class="iui-tooltip right">Dimensions in dp/sp,<br />XML export,<br />PNG and SVG assets</span>
+          </div>
+
+          <div class="iui-tooltip-container">
+            <label class="iui-radio-tile">
+              <input
+                class="iui-radio-tile-input"
+                type="radio"
+                name="radio-tile-demo-6"
+                value="Windows Phone"
+              />
+              <div class="iui-radio-tile-content">
+                <svg-windows
+                  class="iui-radio-tile-icon"
+                  aria-hidden="true"
+                ></svg-windows>
+                <div class="iui-radio-tile-label">Windows Phone</div>
+              </div>
+            </label>
+            <span class="iui-tooltip right">Windows phone is<br />no longer supported</span>
+          </div>
+
         </div>
       </div>
 
@@ -623,7 +665,7 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
+              name="radio-tile-demo-7"
               value="Web"
             />
             <div class="iui-radio-tile-content">
@@ -633,7 +675,7 @@
               ></svg-network>
               <div class="iui-radio-tile-label">Web</div>
               <div class="iui-radio-tile-sublabel">
-                Dimensions in px and % CSS and HTML exports, PNG and SVG assets
+                Dimensions in px and %, CSS and HTML exports, PNG and SVG assets
               </div>
             </div>
           </label>
@@ -642,7 +684,7 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
+              name="radio-tile-demo-7"
               value="iOS"
             />
             <div class="iui-radio-tile-content">
@@ -661,7 +703,7 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
+              name="radio-tile-demo-7"
               value="Android"
               id="test-radio-tile-input"
             />
@@ -684,7 +726,7 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
+              name="radio-tile-demo-7"
               value="Windows Phone"
             />
             <div class="iui-radio-tile-content">
@@ -703,26 +745,23 @@
 
       <div
         class="iui-input-container"
-        style="width: 75vw; max-width: 1000px;"
+        style="width: 75vw; max-width: 1000px; min-width: 400px"
       >
-        <div class="iui-label">Radio tile label stacked - odd number</div>
+        <div class="iui-label">Radio tile stacked - odd number</div>
         <div class="iui-radio-tile-container">
           <label class="iui-radio-tile">
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
-              value="Web"
+              name="radio-tile-demo-8"
+              value="Love"
             />
             <div class="iui-radio-tile-content">
-              <svg-network
+              <svg-heart
                 class="iui-radio-tile-icon"
                 aria-hidden="true"
-              ></svg-network>
-              <div class="iui-radio-tile-label">Web</div>
-              <div class="iui-radio-tile-sublabel">
-                Dimensions in px and % CSS and HTML exports, PNG and SVG assets
-              </div>
+              ></svg-heart>
+              <div class="iui-radio-tile-label">Love</div>
             </div>
           </label>
 
@@ -730,18 +769,15 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
-              value="iOS"
+              name="radio-tile-demo-8"
+              value="Very Happy"
             />
             <div class="iui-radio-tile-content">
-              <svg-apple
+              <svg-smiley-happy-very
                 class="iui-radio-tile-icon"
                 aria-hidden="true"
-              ></svg-apple>
-              <div class="iui-radio-tile-label">iOS</div>
-              <div class="iui-radio-tile-sublabel">
-                Dimensions in pt, Objective-C/Swift export, PNG and PDF assets
-              </div>
+              ></svg-smiley-happy-very>
+              <div class="iui-radio-tile-label">Very Happy</div>
             </div>
           </label>
 
@@ -749,22 +785,19 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
-              value="Android"
+              name="radio-tile-demo-8"
+              value="Happy"
               id="test-radio-tile-input"
             />
             <div
               class="iui-radio-tile-content"
               id="test-radio-tile-content"
             >
-              <svg-android
+              <svg-smiley-happy
                 class="iui-radio-tile-icon"
                 aria-hidden="true"
-              ></svg-android>
-              <div class="iui-radio-tile-label">Android</div>
-              <div class="iui-radio-tile-sublabel">
-                Dimensions in dp/sp, XML export, PNG and SVG assets
-              </div>
+              ></svg-smiley-happy>
+              <div class="iui-radio-tile-label">Happy</div>
             </div>
           </label>
 
@@ -772,18 +805,15 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
-              value="Windows Phone"
+              name="radio-tile-demo-8"
+              value="Neutral"
             />
             <div class="iui-radio-tile-content">
-              <svg-windows
+              <svg-smiley-neutral
                 class="iui-radio-tile-icon"
                 aria-hidden="true"
-              ></svg-windows>
-              <div class="iui-radio-tile-label">Windows Phone</div>
-              <div class="iui-radio-tile-sublabel">
-                Windows Phone is no longer supported
-              </div>
+              ></svg-smiley-neutral>
+              <div class="iui-radio-tile-label">Neutral</div>
             </div>
           </label>
 
@@ -791,18 +821,15 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
-              value="Web"
+              name="radio-tile-demo-8"
+              value="Sad"
             />
             <div class="iui-radio-tile-content">
-              <svg-network
+              <svg-smiley-sad
                 class="iui-radio-tile-icon"
                 aria-hidden="true"
-              ></svg-network>
-              <div class="iui-radio-tile-label">Web</div>
-              <div class="iui-radio-tile-sublabel">
-                Dimensions in px and % CSS and HTML exports, PNG and SVG assets
-              </div>
+              ></svg-smiley-sad>
+              <div class="iui-radio-tile-label">Sad</div>
             </div>
           </label>
 
@@ -810,18 +837,15 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
-              value="iOS"
+              name="radio-tile-demo-8"
+              value="Very Sad"
             />
             <div class="iui-radio-tile-content">
-              <svg-apple
+              <svg-smiley-sad-very
                 class="iui-radio-tile-icon"
                 aria-hidden="true"
-              ></svg-apple>
-              <div class="iui-radio-tile-label">iOS</div>
-              <div class="iui-radio-tile-sublabel">
-                Dimensions in pt, Objective-C/Swift export, PNG and PDF assets
-              </div>
+              ></svg-smiley-sad-very>
+              <div class="iui-radio-tile-label">Very Sad</div>
             </div>
           </label>
 
@@ -829,22 +853,19 @@
             <input
               class="iui-radio-tile-input"
               type="radio"
-              name="radio-tile-demo-1"
-              value="Android"
+              name="radio-tile-demo-8"
+              value="Hate"
               id="test-radio-tile-input"
             />
             <div
               class="iui-radio-tile-content"
               id="test-radio-tile-content"
             >
-              <svg-android
+              <svg-remove
                 class="iui-radio-tile-icon"
                 aria-hidden="true"
-              ></svg-android>
-              <div class="iui-radio-tile-label">Android</div>
-              <div class="iui-radio-tile-sublabel">
-                Dimensions in dp/sp, XML export, PNG and SVG assets
-              </div>
+              ></svg-remove>
+              <div class="iui-radio-tile-label">Hate</div>
             </div>
           </label>
         </div>
