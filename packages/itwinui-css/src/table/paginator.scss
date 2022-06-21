@@ -4,7 +4,6 @@
 @import '../icon/index';
 @import '../button/index';
 @import '../text/index';
-@import './variables';
 
 @mixin iui-paginator {
   @include iui-reset;

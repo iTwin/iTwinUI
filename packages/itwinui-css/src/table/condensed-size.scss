@@ -1,0 +1,28 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-table-condensed-size($condensedSize) {
+  @if ($condensedSize == condensed) {
+    --_iui-table-condensed-header-size: #{$iui-baseline * 4};
+    --_iui-table-condensed-row-size: #{$iui-baseline * 4 + 2px};
+  } @else {
+    --_iui-table-condensed-header-size: #{$iui-baseline * 3};
+    --_iui-table-condensed-row-size: #{$iui-baseline * 3 + 2px};
+  }
+
+  .iui-table-header .iui-cell,
+  .iui-paginator {
+    min-height: var(--_iui-table-condensed-header-size);
+  }
+
+  .iui-row .iui-cell {
+    min-height: var(--_iui-table-condensed-row-size);
+  }
+
+  @if ($condensedSize == extra-condensed) {
+    .iui-table-header .iui-cell {
+      padding-block: $iui-baseline * 0.25;
+    }
+  }
+}

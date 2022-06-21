@@ -2,7 +2,13 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
-@import './variables';
+
+$iui-table-density-vertical: $iui-baseline * 1.5;
+$iui-table-density-vertical-condensed: $iui-baseline;
+$iui-table-density-vertical-extra-condensed: $iui-baseline * 0.5;
+$iui-table-density: $iui-table-density-vertical $iui-m;
+$iui-table-density-condensed: $iui-table-density-vertical-condensed $iui-m;
+$iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed $iui-m;
 
 @mixin iui-table {
   @include iui-reset;
@@ -77,9 +83,7 @@
         height: 100%;
         width: $iui-xxs;
         margin: 0 auto;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
-        }
+        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
         background-color: var(--iui-color-background-border);
       }
 
@@ -188,9 +192,7 @@
       border-bottom: solid 1px transparent;
       border-bottom-color: var(--iui-color-background-border);
       background-color: var(--iui-color-background-1);
-      @media (prefers-reduced-motion: no-preference) {
-        transition: border $iui-speed-fast ease-out;
-      }
+      transition: border $iui-speed-fast ease-out;
     }
 
     > .iui-slot > .iui-more-options {
