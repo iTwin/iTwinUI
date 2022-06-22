@@ -39,6 +39,8 @@ $opacities: (
   6: 0.06,
 );
 
+$foreground-body: map.get($base-colors, foreground-body);
+
 @mixin theme {
   @each $color, $value in $base-colors {
     --iui-#{$color}: #{hex($value)};
@@ -49,9 +51,9 @@ $opacities: (
   }
 
   --iui-color-background-disabled: #{map.get($base-colors, background-3)};
-  --iui-color-background-border: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 3))};
+  --iui-color-background-border: #{rgba($foreground-body, map.get($opacities, 3))};
 
-  --iui-text-color: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 2))};
-  --iui-text-color-muted: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 4))};
-  --iui-text-color-placeholder: #{color.change(map.get($base-colors, foreground-body), $alpha: map.get($opacities, 5))};
+  --iui-text-color: #{rgba($foreground-body, map.get($opacities, 2))};
+  --iui-text-color-muted: #{rgba($foreground-body, map.get($opacities, 4))};
+  --iui-text-color-placeholder: #{rgba($foreground-body, map.get($opacities, 5))};
 }
