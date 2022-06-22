@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:color';
 @use 'sass:map';
-@import '../utils/hex';
+@use '../utils/hex' as *;
 
 $base-colors: (
   background-1: hsl(204 12% 40%),
