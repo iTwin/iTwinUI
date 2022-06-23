@@ -67,7 +67,7 @@
   }
 }
 
-@mixin iui-multi-select-tag-container {
+@mixin iui-select-tag-container {
   position: absolute;
   // align wth Select's padding
   inset: 0 $iui-icons-default + $iui-l 0 $iui-sm;
@@ -85,7 +85,7 @@
   }
 }
 
-@mixin iui-multi-select-tag {
+@mixin iui-select-tag {
   @include iui-tag;
   // Override hardcoded Tag margin
   margin-top: 0;
@@ -96,7 +96,7 @@
   max-height: $iui-baseline * 3;
 }
 
-@mixin iui-multi-select-tag-label {
+@mixin iui-select-tag-label {
   @include iui-tag-label;
   display: inline-flex;
   align-items: center;
@@ -107,7 +107,7 @@
   }
 }
 
-@mixin iui-multi-select-tag-button {
+@mixin iui-select-tag-button {
   @include iui-button;
   @include iui-button-borderless;
   @include iui-tag-button;
@@ -121,7 +121,7 @@
   }
 }
 
-@mixin iui-multi-select-tag-button-icon {
+@mixin iui-select-tag-button-icon {
   @include iui-button-icon;
   flex-shrink: 0;
 

@@ -46,24 +46,24 @@
   @include iui-select-button;
 }
 
-.iui-multi-select-tag-container {
-  @include iui-multi-select-tag-container;
+.iui-select-tag-container {
+  @include iui-select-tag-container;
 }
 
-.iui-multi-select-tag {
-  @include iui-multi-select-tag;
+.iui-select-tag {
+  @include iui-select-tag;
 }
 
-.iui-multi-select-tag-label {
-  @include iui-multi-select-tag-label;
+.iui-select-tag-label {
+  @include iui-select-tag-label;
 }
 
-.iui-multi-select-tag-button {
-  @include iui-multi-select-tag-button;
+.iui-select-tag-button {
+  @include iui-select-tag-button;
 }
 
-.iui-multi-select-tag-button-icon {
-  @include iui-multi-select-tag-button-icon;
+.iui-select-tag-button-icon {
+  @include iui-select-tag-button-icon;
 }
 
 .iui-textarea {

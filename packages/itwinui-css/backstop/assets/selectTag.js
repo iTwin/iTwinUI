@@ -2,7 +2,7 @@
  * Web component for multi select tag. Use in other components examples to simplify html.
  * <multi-select-tag value="Option 1"></multi-select-tag>
  */
-class MultiSelectTag extends HTMLElement {
+class SelectTag extends HTMLElement {
   constructor() {
     super();
   }
@@ -13,19 +13,19 @@ class MultiSelectTag extends HTMLElement {
 
     const innerHtml = `
     <span
-      class="iui-multi-select-tag"
+      class="iui-select-tag"
       tabindex="0"
     >
       <span
-        class="iui-multi-select-tag-label"
+        class="iui-select-tag-label"
         title="${value}"
       >
         ${value}
       </span>
       ${
         dismissible
-          ? `<button class="iui-multi-select-tag-button" aria-label="Delete tag" type="button" tabindex="-1">
-            <svg-close-small class="iui-multi-select-tag-button-icon" aria-hidden="true"></svg-close-small>
+          ? `<button class="iui-select-tag-button" aria-label="Delete tag" type="button" tabindex="-1">
+            <svg-close-small class="iui-select-tag-button-icon" aria-hidden="true"></svg-close-small>
           </button>`
           : ''
       }
@@ -35,4 +35,4 @@ class MultiSelectTag extends HTMLElement {
     this.remove();
   }
 }
-customElements.define('multi-select-tag', MultiSelectTag);
+customElements.define('multi-select-tag', SelectTag);
