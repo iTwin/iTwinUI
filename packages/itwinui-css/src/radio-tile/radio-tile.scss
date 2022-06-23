@@ -62,6 +62,7 @@ $disabled-checked-border-color: var(--iui-icons-color); //rgba(var(--iui-color-f
 @mixin iui-radio-tile-container {
   display: inline-flex;
   flex-wrap: wrap;
+  gap: 0.75px; // prevent overlapping from outline
   user-select: none;
   // Create stacking context
   position: relative;
@@ -85,7 +86,7 @@ $disabled-checked-border-color: var(--iui-icons-color); //rgba(var(--iui-color-f
   }
 
   &:checked + * {
-    padding: $iui-s - 1;
+    padding: $iui-s;
     z-index: 3;
     // border: 2px solid var(--iui-color-foreground-primary);
     outline: 2px solid var(--iui-color-foreground-primary);
