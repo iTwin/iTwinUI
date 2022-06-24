@@ -53,6 +53,9 @@
     + * { // outline for checkmark
       outline-offset: -4px;
       outline: 2px solid var(--iui-color-foreground-primary);
+      // border: 2px solid red;//var(--iui-color-foreground-primary);
+      // outline: 1px solid red;
+      // outline-offset: -1px;
       @media (forced-colors: active) {
         outline-color: Highlight;
       }
