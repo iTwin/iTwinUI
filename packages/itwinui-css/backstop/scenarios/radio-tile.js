@@ -18,7 +18,12 @@ module.exports = [
   }),
   // Focus
   scenario('State focus', {
-    actions: [focus('#test-radio-tile-input')],
+    actions: [focus('#test-radio-tile-input-1')],
+    selectors: ['#demo-default'],
+  }),
+  // Focus and checked
+  scenario('State focus and checked', {
+    actions: [focus('#test-radio-tile-input-0')],
     selectors: ['#demo-default'],
   }),
 ];
