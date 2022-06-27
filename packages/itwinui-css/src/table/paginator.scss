@@ -3,6 +3,7 @@
 @import '../style/index';
 @import '../utils/index';
 @import '../button/index';
+@import '../text/muted';
 
 @mixin iui-paginator {
   @include iui-reset;

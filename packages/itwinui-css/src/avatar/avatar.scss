@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../utils/mixins';
-@import '../utils/avatar-sizes';
+@import './avatar-sizes';
 
 @mixin iui-avatar {
   @include iui-reset;

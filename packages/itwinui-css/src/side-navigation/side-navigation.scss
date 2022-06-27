@@ -3,6 +3,7 @@
 @import '../style/index';
 @import '../icon/index';
 @import '../utils/index';
+@import '../text/mixins';
 
 @mixin iui-side-navigation {
   display: inline-flex;

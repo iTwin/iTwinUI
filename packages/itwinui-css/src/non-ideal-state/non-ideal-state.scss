@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../utils/index';
+@import '../text/mixins';
 
 @mixin iui-non-ideal-state {
   @include iui-reset;

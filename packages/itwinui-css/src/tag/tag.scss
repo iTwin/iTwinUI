@@ -3,6 +3,7 @@
 @import '../style/index';
 @import '../utils/index';
 @import '../button/index';
+@import '../text/mixins';
 
 @mixin iui-tag-base {
   @include iui-reset;
