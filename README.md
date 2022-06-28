@@ -53,7 +53,10 @@ You need to add `iui-body` class to your `<body>` element in order to get recomm
 
 .my-class {
   padding: $iui-m;
-  color: var(--iui-text-color);
+
+  @include themed {
+    color: t(iui-text-color);
+  }
 }
 ```
 

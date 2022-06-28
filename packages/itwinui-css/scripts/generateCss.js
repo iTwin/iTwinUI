@@ -19,7 +19,7 @@ const compileScss = async (path, outFile) => {
     try {
       const cssResult = await sass.compileAsync(path);
       const processedCssResult = await postcss([
-        require('autoprefixer'),
+        require('autoprefixer')({ grid: 'autoplace' }),
         require('postcss-discard-comments'),
       ]).process(cssResult.css, { from: undefined }); // `from` is required
       fs.writeFileSync(`${outDir}/${outFile}.css`, processedCssResult.css);
@@ -37,6 +37,7 @@ const run = async () => {
   const promiseList = [];
   promiseList.push(compileScss(`${inDir}/classes.scss`, 'all'));
   promiseList.push(compileScss(`${inDir}/style/global.scss`, 'global'));
+  promiseList.push(compileScss(`${inDir}/reset-global-styles.scss`, 'reset-global-styles'));
 
   for (const directory of directories) {
     if (!ignorePaths.includes(directory) && fs.existsSync(path.join(inDir, directory, 'classes.scss'))) {
