@@ -34,13 +34,13 @@
   > .iui-right {
     justify-content: flex-end;
   }
+}
 
-  &-page-size-label {
-    @include iui-text-muted;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+@mixin iui-paginator-page-size-label {
+  @include iui-text-muted;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @mixin iui-paginator-ellipsis {
