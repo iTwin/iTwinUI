@@ -2,13 +2,11 @@
 
 ## [0.61.0](https://www.github.com/iTwin/iTwinUI/compare/v0.60.0...v0.61.0) (2022-06-28)
 
-
 ### What's new
 
-* **Dialog:** add positioning to dialog ([#679](https://www.github.com/iTwin/iTwinUI/issues/679)) ([d03e345](https://www.github.com/iTwin/iTwinUI/commit/d03e345f332bf005d5559708d9fbb95b5afc460a))
+* **Dialog:** Add positioning to dialog ([#679](https://www.github.com/iTwin/iTwinUI/issues/679)) ([d03e345](https://www.github.com/iTwin/iTwinUI/commit/d03e345f332bf005d5559708d9fbb95b5afc460a))
 * **Select:** Multi select support ([#619](https://www.github.com/iTwin/iTwinUI/issues/619)) ([b909726](https://www.github.com/iTwin/iTwinUI/commit/b909726ec37f2ef8f0f62716671ac424f4a3f3ba))
-* **style:** Border radius change ([#688](https://www.github.com/iTwin/iTwinUI/issues/688)) ([853e4d9](https://www.github.com/iTwin/iTwinUI/commit/853e4d9916f5eb4cac13f9d3fc1a9721a6b75a2e))
-
+* **style:** Border radius increased by 1px ([#688](https://www.github.com/iTwin/iTwinUI/issues/688)) ([853e4d9](https://www.github.com/iTwin/iTwinUI/commit/853e4d9916f5eb4cac13f9d3fc1a9721a6b75a2e))
 
 ### Fixes
 
