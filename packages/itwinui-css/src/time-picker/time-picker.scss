@@ -9,10 +9,14 @@
   text-align: center;
   height: $iui-baseline * 26;
   display: inline-flex;
-  background-color: var(--iui-color-background-1);
+  @include themed {
+    background-color: t(iui-color-background-1);
+  }
 
   &:not(:first-child) {
-    border-left: 1px solid var(--iui-color-background-border);
+    @include themed {
+      border-left: 1px solid t(iui-color-background-border);
+    }
   }
 
   &:first-child {
@@ -27,7 +31,9 @@
   scrollbar-width: none;
 
   &:not(:first-child) {
-    border-left: 1px solid var(--iui-color-background-border);
+    @include themed {
+      border-left: 1px solid t(iui-color-background-border);
+    }
   }
 
   > ol {
@@ -41,16 +47,20 @@
 
       &:hover {
         cursor: pointer;
-        color: var(--iui-color-foreground-primary);
-        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+        @include themed {
+          color: t(iui-color-foreground-primary);
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        }
       }
 
       &.iui-selected {
         font-weight: $iui-font-weight-semibold;
         cursor: default;
         @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
-        background-color: var(--iui-color-background-primary);
-        color: var(--iui-color-foreground-accessory);
+        @include themed {
+          background-color: t(iui-color-background-primary);
+          color: t(iui-color-foreground-accessory);
+        }
       }
     }
   }

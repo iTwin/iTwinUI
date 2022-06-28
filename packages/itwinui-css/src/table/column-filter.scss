@@ -23,11 +23,14 @@
     display: flex;
     width: 100%;
     align-content: center;
-    gap: $iui-s;
 
     > .iui-button {
       &:first-of-type {
         margin-left: auto;
+      }
+
+      &:not(:last-child) {
+        margin-right: $iui-s;
       }
     }
   }

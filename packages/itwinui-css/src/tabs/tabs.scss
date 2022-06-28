@@ -17,29 +17,41 @@
     align-items: center;
     font-size: $iui-font-size;
     cursor: pointer;
-    color: var(--iui-text-color);
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color $iui-speed-fast ease-out;
     }
+    @include themed {
+      color: t(iui-text-color);
+    }
 
     &.iui-active {
-      color: var(--iui-color-foreground-primary);
+      @include themed {
+        color: t(iui-color-foreground-primary);
+      }
 
       .iui-tab-icon {
-        fill: var(--iui-icons-color-primary);
+        @include themed {
+          fill: t(iui-icons-color-primary);
+        }
       }
 
       .iui-tab-description {
-        opacity: var(--iui-opacity-1);
+        @include themed {
+          opacity: t(iui-opacity-1);
+        }
       }
     }
 
     &[disabled] {
       cursor: not-allowed;
-      color: var(--iui-text-color-muted);
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
 
       .iui-tab-icon {
-        fill: var(--iui-icons-color-actionable-disabled);
+        @include themed {
+          fill: t(iui-icons-color-actionable-disabled);
+        }
       }
     }
 
@@ -49,9 +61,11 @@
   .iui-tab-icon {
     width: $iui-icons-default;
     height: $iui-icons-default;
-    fill: var(--iui-icons-color-actionable);
     @media (prefers-reduced-motion: no-preference) {
       transition: fill $iui-speed-fast ease-out;
+    }
+    @include themed {
+      fill: t(iui-icons-color-actionable);
     }
 
     + .iui-tab-label {
@@ -66,19 +80,25 @@
   .iui-tab-description {
     display: none;
     font-size: $iui-font-size-small;
-    opacity: var(--iui-opacity-3);
+    @include themed {
+      opacity: t(iui-opacity-3);
+    }
   }
 
   &.iui-green .iui-tab {
     &:focus {
-      outline-color: var(--iui-color-foreground-positive);
+      outline-color: t(iui-color-foreground-positive);
     }
 
     &.iui-active {
-      color: var(--iui-color-foreground-positive);
+      @include themed {
+        color: t(iui-color-foreground-positive);
+      }
 
       .iui-tab-icon {
-        fill: var(--iui-icons-color-positive);
+        @include themed {
+          fill: t(iui-icons-color-positive);
+        }
       }
     }
   }
@@ -86,6 +106,7 @@
   ~ .iui-tabs-content {
     padding-top: $iui-baseline;
     padding-bottom: $iui-baseline;
+    box-sizing: border-box;
   }
 }
 
@@ -139,7 +160,9 @@
   .iui-tab::after {
     content: '';
     position: absolute;
-    background-color: var(--iui-color-foreground-primary);
+    @include themed {
+      background-color: t(iui-color-foreground-primary);
+    }
   }
 
   .iui-active::after {
@@ -149,7 +172,9 @@
   }
 
   &.iui-green .iui-tab::after {
-    background-color: var(--iui-color-foreground-positive);
+    @include themed {
+      background-color: t(iui-color-foreground-positive);
+    }
   }
 }
 
@@ -157,11 +182,15 @@
   &::after {
     position: absolute;
     content: ' ';
-    background-color: var(--iui-color-foreground-primary);
+    @include themed {
+      background-color: t(iui-color-foreground-primary);
+    }
   }
 
   &.iui-green::after {
-    background-color: var(--iui-color-foreground-positive);
+    @include themed {
+      background-color: t(iui-color-foreground-positive);
+    }
   }
 
   @at-root {

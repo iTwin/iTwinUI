@@ -39,6 +39,8 @@ $iui-dialog-width: 380px;
   box-shadow: $iui-elevation-24;
   position: absolute;
   padding: $iui-baseline $iui-m;
+  box-sizing: border-box;
+  padding: $iui-baseline $iui-m;
   overflow: hidden;
   background-color: var(--iui-color-background-1);
   @media (forced-colors: active) {
@@ -168,6 +170,7 @@ $iui-dialog-width: 380px;
   align-items: center;
   margin-bottom: $iui-baseline;
   justify-content: space-between;
+  box-sizing: border-box;
   font-size: $iui-font-size-subheading;
 }
 

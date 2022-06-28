@@ -36,8 +36,11 @@ html {
 }
 
 .iui-body {
-  background-color: var(--iui-color-background-2);
-  color: var(--iui-text-color);
+  @include themed {
+    background-color: t(iui-color-background-2);
+    color: t(iui-text-color);
+  }
+
   font-size: $iui-font-size;
   line-height: $iui-line-height;
 
@@ -64,10 +67,4 @@ html {
 
   // Scrollbar
   @include iui-scrollbar;
-}
-
-[class*=iui-]:where(:not(.iui-body)),
-[class*=iui-]:where(:not(.iui-body))::before,
-[class*=iui-]:where(:not(.iui-body))::after {
-  box-sizing: border-box;
 }

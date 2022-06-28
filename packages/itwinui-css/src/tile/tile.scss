@@ -34,12 +34,14 @@
 
   &.iui-selected {
     @include iui-focus($offset: 0, $thickness: $iui-xs);
-    outline: solid 2px var(--iui-color-foreground-primary);
-    background: linear-gradient(
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-    ),
-      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+    @include themed() {
+      outline: solid 2px t(iui-color-foreground-primary);
+      background: linear-gradient(
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
+        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
+      ),
+        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
+    }
   }
 
   &.iui-actionable {
@@ -69,7 +71,9 @@
       height: $iui-baseline * 10;
       flex: 1;
       border-bottom: none;
-      border-right: 1px solid var(--iui-color-background-border);
+      @include themed() {
+        border-right: 1px solid t(iui-color-background-border);
+      }
     }
 
     .iui-tile-content {
@@ -100,7 +104,9 @@
     font-size: $iui-font-size-leading;
     user-select: all;
     margin-bottom: $iui-baseline * 0.5;
-    color: var(--iui-text-color);
+    @include themed() {
+      color: t(iui-text-color);
+    }
   }
 
   .iui-tile-status-icon {
@@ -121,7 +127,9 @@
     height: 100%;
     max-height: $iui-baseline * 6;
     @include iui-line-clamp(3);
-    color: var(--iui-text-color-muted);
+    @include themed() {
+      color: t(iui-text-color-muted);
+    }
   }
 
   .iui-tile-metadata {
@@ -134,7 +142,9 @@
     display: flex;
     align-items: center;
     margin-top: auto;
-    color: var(--iui-text-color-muted);
+    @include themed() {
+      color: t(iui-text-color-muted);
+    }
 
     > svg,
     .iui-tile-metadata-icon {
@@ -152,7 +162,6 @@
 }
 
 @mixin iui-tile-thumbnail {
-  box-sizing: content-box;
   width: 100%;
   height: $iui-baseline * 14;
   flex-shrink: 0;
@@ -161,8 +170,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--iui-color-background-1-overlay);
-  border-bottom: 1px solid var(--iui-color-background-border);
+  @include themed() {
+    background-color: t(iui-color-background-1-overlay);
+    border-bottom: 1px solid t(iui-color-background-border);
+  }
 
   .iui-thumbnail-icon {
     @include iui-icons-3xl;
@@ -186,15 +197,20 @@
   }
 
   ~ .iui-thumbnail-icon {
+    z-index: 1;
     cursor: pointer;
     @media (prefers-reduced-motion: no-preference) {
       transition: fill $iui-speed-fast ease;
     }
-    fill: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-3));
-    filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));
+    @include themed() {
+      fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
+      filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
+    }
 
     &:hover {
-      fill: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-2));
+      @include themed() {
+        fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
+      }
     }
   }
 
@@ -203,18 +219,24 @@
     @include iui-blur($opacity: 5);
 
     > .iui-button-icon {
-      fill: var(--iui-color-foreground-accessory);
-      filter: drop-shadow(0 2px 1px rgba(0, 0, 0, var(--iui-opacity-5)));
+      @include themed() {
+        fill: t(iui-color-foreground-accessory);
+        filter: drop-shadow(0 2px 1px rgba(0, 0, 0, t(iui-opacity-5)));
+      }
     }
 
     &:hover,
     &.iui-active:enabled,
     &.iui-active:enabled:hover,
     &.iui-active:active {
-      background-color: rgba(0, 0, 0, var(--iui-opacity-4));
+      @include themed() {
+        background-color: rgba(0, 0, 0, t(iui-opacity-4));
+      }
 
       .iui-button-icon {
-        fill: var(--iui-color-foreground-accessory);
+        @include themed() {
+          fill: t(iui-color-foreground-accessory);
+        }
       }
     }
   }
@@ -247,7 +269,10 @@
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-  gap: $iui-xs;
+
+  > .iui-badge:not(:last-child) {
+    margin-right: $iui-xs;
+  }
 }
 
 @mixin iui-tile-buttons {
@@ -271,13 +296,17 @@
 
     &,
     &:hover {
-      border-top: 1px solid var(--iui-color-background-border);
-      border-color: var(--iui-color-background-border);
+      @include themed() {
+        border-top: 1px solid t(iui-color-background-border);
+        border-color: t(iui-color-background-border);
+      }
     }
   }
 
   > button:not(:last-child) {
-    border-right: 1px solid var(--iui-color-background-border);
+    @include themed() {
+      border-right: 1px solid t(iui-color-background-border);
+    }
   }
 }
 

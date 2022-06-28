@@ -38,13 +38,14 @@
     text-overflow: ellipsis;
 
     &:not(.iui-button) {
-      color: var(--iui-text-color);
+      @include themed {
+        color: t(iui-text-color);
+      }
     }
   }
 
   > :any-link {
     @include iui-anchor;
-    box-sizing: border-box;
 
     &:focus {
       outline-offset: -1px;
@@ -94,10 +95,14 @@
   @include iui-button-borderless;
   padding: 0;
   border: none;
-  color: var(--iui-color-foreground-primary);
+  @include themed {
+    color: t(iui-color-foreground-primary);
+  }
 
   &[aria-current] {
-    color: var(--iui-text-color);
+    @include themed {
+      color: t(iui-text-color);
+    }
   }
 }
 
@@ -109,7 +114,9 @@
     width: $iui-icons-small;
     height: $iui-icons-small;
     display: flex; // needed for vertical alignment of webcomponents
-    fill: var(--iui-icons-color);
+    @include themed {
+      fill: t(iui-icons-color);
+    }
     @media (forced-colors: active) {
       fill: CanvasText;
     }

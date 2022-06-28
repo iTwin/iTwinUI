@@ -13,12 +13,23 @@
   user-select: none;
   cursor: pointer;
   isolation: isolate;
-  color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+  @include themed {
+    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+  }
+
+  > * + * {
+    margin-left: $iui-s;
+    @supports (gap: $iui-s) {
+      margin-left: 0;
+    }
+  }
 
   // Disabled
   &.iui-disabled {
     cursor: not-allowed;
-    color: var(--iui-text-color-muted);
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
     @media (forced-colors: active) {
       color: GrayText;
     }
@@ -46,12 +57,21 @@
   display: flex;
   position: relative;
   cursor: pointer;
-  appearance: none;
-  width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
-  border-radius: $iui-border-radius-round;
-  transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
-  background-color: var(--iui-color-background-1);
-  border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+
+  // #region IE solution
+  width: $iui-toggle-switch-handle-size;
+  height: $iui-toggle-switch-handle-size;
+  @supports (appearance: none) {
+    appearance: none;
+    width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
+    height: auto;
+    border-radius: $iui-border-radius-round;
+    box-sizing: border-box;
+    transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
+    background-color: var(--iui-color-background-1);
+    border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  }
+  // #endregion IE solution
 
   &-label {
     grid-area: label;
@@ -186,8 +206,8 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    width: $iui-toggle-switch-handle-size;
-    height: $iui-toggle-switch-handle-size;
+    width: $iui-toggle-switch-handle-size * 0.75;
+    height: $iui-toggle-switch-handle-size * 0.75;
     padding: $iui-toggle-switch-handle-size * 0.125;
     margin: $iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness;
     display: flex;

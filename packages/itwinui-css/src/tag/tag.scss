@@ -14,7 +14,9 @@
   @include iui-tag-base;
 
   &:not(a) {
-    color: var(--iui-text-color-muted);
+    @include themed {
+      color: t(iui-text-color-muted);
+    }
   }
 }
 
@@ -24,6 +26,7 @@
   margin-top: $iui-component-offset;
   margin-bottom: $iui-component-offset;
   border-radius: $iui-border-radius-round;
+  box-sizing: border-box;
   padding: 0 $iui-xxs;
   align-items: center;
   transition: border-color $iui-speed-fast ease-out;
@@ -31,12 +34,16 @@
   text-transform: none;
   cursor: default;
   -webkit-tap-highlight-color: transparent;
-  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  background-color: var(--iui-color-background-1);
-  color: var(--iui-text-color);
+  @include themed {
+    border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    background-color: t(iui-color-background-1);
+    color: t(iui-text-color);
+  }
 
   &:hover {
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    }
   }
 }
 
@@ -57,7 +64,9 @@
 }
 
 @mixin iui-tag-container {
-  color: var(--iui-text-color-muted);
+  @include themed {
+    color: t(iui-text-color-muted);
+  }
 
   > a.iui-tag-basic {
     margin: $iui-xxs;
@@ -83,6 +92,8 @@
   &.iui-visible {
     border-radius: $iui-border-radius;
     padding: $iui-component-offset $iui-sm;
-    background-color: var(--iui-color-background-3);
+    @include themed {
+      background-color: t(iui-color-background-3);
+    }
   }
 }

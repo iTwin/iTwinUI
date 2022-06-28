@@ -3,7 +3,7 @@
 @import '../style/index';
 @import '../icon/index';
 
-$iui-active-outline: thin solid var(--iui-color-foreground-primary);
+$iui-active-outline: thin solid t(iui-color-foreground-primary);
 $iui-expander-inline-padding: $iui-component-offset + $iui-xxs + 1px; // margin + padding + border
 $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding * 2); // icon width + inline padding on both sides
 
@@ -46,6 +46,7 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
   &-content {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     min-height: $iui-baseline * 3;
     margin-left: calc(#{$iui-expander-button-width} * (var(--level, 0)));
     overflow: hidden;
@@ -93,33 +94,45 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
 
     &-caption {
       font-size: $iui-font-size-small;
-      color: var(--iui-text-color-muted);
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
     }
   }
 
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+    }
 
     .iui-tree-node-content-caption {
-      color: var(--iui-color-foreground-body);
+      @include themed {
+        color: t(iui-color-foreground-body);
+      }
       transition: color $iui-speed-fast ease;
     }
   }
 
   &.iui-active {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
-    outline: $iui-active-outline;
-    outline-offset: -1px;
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5));
+      outline: $iui-active-outline;
+      outline-offset: -1px;
+    }
   }
 
   &.iui-disabled {
     cursor: not-allowed;
     outline: none;
     background-color: transparent;
-    color: var(--iui-text-color-placeholder);
+    @include themed {
+      color: t(iui-text-color-placeholder);
+    }
 
     .iui-tree-node-content-caption {
-      color: var(--iui-text-color-placeholder);
+      @include themed {
+        color: t(iui-text-color-placeholder);
+      }
     }
   }
 }

@@ -5,7 +5,9 @@
 
 @mixin iui-radio-tile {
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+  @include themed {
+    -webkit-tap-highlight-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+  }
 
   &:first-of-type > .iui-radio-tile-content {
     border-radius: $iui-border-radius 0 0 $iui-border-radius;
@@ -22,23 +24,30 @@
 @mixin iui-radio-tile-content {
   width: $iui-xl * 5;
   height: 100%;
+  box-sizing: border-box;
   padding: $iui-s;
   position: relative;
   z-index: 1;
-  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
     transition: border-color $iui-speed-fast ease-out;
+  }
+  @include themed {
+    border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    background-color: t(iui-color-background-1);
   }
 
   &:hover {
     z-index: 2;
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    @include themed {
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
+    }
 
     .iui-radio-tile-icon {
-      fill: var(--iui-icons-color-actionable);
       @media (forced-colors: active) {
         fill: CanvasText;
+      }
+      @include themed {
+        fill: t(iui-icons-color-actionable);
       }
     }
   }
@@ -50,7 +59,7 @@
   user-select: none;
   // Create stacking context
   position: relative;
-  isolation: isolate;
+  z-index: 0;
 }
 
 @mixin iui-radio-tile-input {
@@ -62,9 +71,11 @@
   @include focus-visible {
     + * {
       outline-offset: -4px;
-      outline: 2px solid var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
         outline-color: Highlight;
+      }
+      @include themed {
+        outline: 2px solid t(iui-color-foreground-primary);
       }
     }
   }
@@ -72,15 +83,19 @@
   &:checked + * {
     padding: $iui-s - 1;
     z-index: 3;
-    border: 2px solid var(--iui-color-foreground-primary);
     @media (forced-colors: active) {
       border-color: Highlight;
     }
+    @include themed {
+      border: 2px solid t(iui-color-foreground-primary);
+    }
 
     .iui-radio-tile-icon {
-      fill: var(--iui-icons-color-primary);
       @media (forced-colors: active) {
         fill: Highlight;
+      }
+      @include themed {
+        fill: t(iui-icons-color-primary);
       }
     }
 
@@ -92,9 +107,11 @@
       top: $iui-s;
       right: $iui-s;
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" /></svg>');
-      background-color: var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
         background-color: Highlight;
+      }
+      @include themed {
+        background-color: t(iui-color-foreground-primary);
       }
     }
   }
@@ -102,21 +119,27 @@
   &:disabled + * {
     cursor: not-allowed;
     z-index: 0;
-    border-color: var(--iui-color-background-disabled);
-    background-color: var(--iui-color-background-disabled);
+    @include themed {
+      border-color: t(iui-color-background-disabled);
+      background-color: t(iui-color-background-disabled);
+    }
 
     &::after {
-      background-color: var(--iui-icons-color-actionable-disabled);
       @media (forced-colors: active) {
         background-color: GrayText;
+      }
+      @include themed {
+        background-color: t(iui-icons-color-actionable-disabled);
       }
     }
 
     .iui-radio-tile-icon {
       filter: $iui-icons-color-multicolor-disabled;
-      fill: var(--iui-icons-color-actionable-disabled);
       @media (forced-colors: active) {
         fill: GrayText;
+      }
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
       }
     }
 
@@ -128,15 +151,19 @@
     }
 
     .iui-radio-tile-label {
-      color: var(--iui-text-color-muted);
+      @include themed {
+        color: t(iui-text-color-muted);
+      }
     }
   }
 
   &:disabled:checked + * {
     z-index: 3;
-    border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
     @media (forced-colors: active) {
       border-color: GrayText;
+    }
+    @include themed {
+      border: 2px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
     }
   }
 }
@@ -145,13 +172,18 @@
   width: $iui-icons-xl;
   height: $iui-icons-xl;
   display: block;
-  margin: round($iui-baseline * 0.5) auto $iui-baseline;
-  fill: var(--iui-icons-color);
+  margin: 0 auto;
+  padding-top: round($iui-baseline * 0.5);
+  padding-bottom: $iui-baseline;
+
   @media (prefers-reduced-motion: no-preference) {
     transition: fill $iui-speed-fast ease-out;
   }
   @media (forced-colors: active) {
     fill: CanvasText;
+  }
+  @include themed {
+    fill: t(iui-icons-color);
   }
 }
 
@@ -161,7 +193,9 @@
   line-height: $iui-line-height;
   text-align: center;
   word-break: break-word;
-  color: var(--iui-text-color);
+  @include themed {
+    color: t(iui-text-color);
+  }
 }
 
 @mixin iui-radio-tile-sublabel {
@@ -169,5 +203,7 @@
   line-height: round($iui-baseline * 1.375);
   text-align: center;
   word-break: break-word;
-  color: var(--iui-text-color-muted);
+  @include themed {
+    color: t(iui-text-color-muted);
+  }
 }

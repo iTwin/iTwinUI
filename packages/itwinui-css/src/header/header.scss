@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../avatar/index';
+@import '../user-icon/index';
 @import '../icon/index';
 @import '../button/index';
 
@@ -11,16 +11,19 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: $iui-baseline * 5;
+  height: $iui-baseline * 5 + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
   user-select: none;
+  box-sizing: border-box;
   // iPhone notch support
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
   @media (prefers-reduced-motion: no-preference) {
     transition: height $iui-speed-fast ease-out;
   }
-  background-color: var(--iui-color-background-1);
-  border-bottom: $iui-xxs solid var(--iui-color-background-border);
-  color: var(--iui-text-color);
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border-bottom: $iui-xxs solid t(iui-color-background-border);
+    color: t(iui-text-color);
+  }
 
   > .iui-left,
   > .iui-center,
@@ -62,7 +65,7 @@
     justify-content: flex-end;
 
     @media (prefers-reduced-motion: no-preference) {
-      .iui-avatar {
+      .iui-user-icon {
         &,
         * {
           transition: all $iui-speed-fast ease-out;
@@ -79,11 +82,13 @@
   .iui-divider {
     width: 1px;
     height: $iui-baseline * 2;
-    background-color: var(--iui-color-background-border);
+    @include themed {
+      background-color: t(iui-color-background-border);
+    }
   }
 
   &.iui-slim {
-    height: $iui-baseline * 3;
+    height: round($iui-baseline * 2.5) + $iui-xxs; // Remove `+ $iui-xxs` when box-sizing: border-box is applied to all elements.
 
     > .iui-left {
       .iui-header-logo {
@@ -105,8 +110,8 @@
     }
 
     > .iui-right {
-      .iui-avatar {
-        @include iui-avatar-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
+      .iui-user-icon {
+        @include iui-user-icon-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
       }
     }
   }
@@ -186,10 +191,14 @@
       // #endregion
 
       &:hover {
-        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
+        }
 
         &:not(:focus-visible):not(:hover) {
-          background-color: var(--iui-color-background-1);
+          @include themed {
+            background-color: t(iui-color-background-1);
+          }
         }
       }
     }
@@ -197,7 +206,9 @@
 
   .iui-header-button-icon {
     margin: 0 $iui-l;
-    fill: var(--iui-icons-color-actionable);
+    @include themed {
+      fill: t(iui-icons-color-actionable);
+    }
   }
 
   > .iui-label {
@@ -213,7 +224,10 @@
   &:focus {
     box-shadow: none;
     outline-offset: -1px;
-    outline: 1px solid var(--iui-color-foreground-primary);
+
+    @include themed {
+      outline: 1px solid t(iui-color-foreground-primary);
+    }
   }
 
   &:focus:not(:focus-visible) {
@@ -246,9 +260,11 @@
   .iui-description {
     height: $iui-baseline * 2;
     font-size: $iui-font-size-small;
-    opacity: var(--iui-opacity-3);
     @media (prefers-reduced-motion: no-preference) {
       transition: all $iui-speed-fast ease;
+    }
+    @include themed {
+      opacity: t(iui-opacity-3);
     }
   }
 
@@ -261,11 +277,12 @@
   }
 
   .iui-header-button-icon {
-    box-sizing: content-box;
     padding: $iui-xs;
     @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
-    background-color: var(--iui-color-background-3);
-    fill: var(--iui-icons-color);
+    @include themed {
+      background-color: t(iui-color-background-3);
+      fill: t(iui-icons-color);
+    }
   }
 
   &.iui-active {
@@ -343,14 +360,18 @@
 
     > *:last-child {
       > .iui-button:hover {
-        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+        @include themed {
+          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+        }
       }
     }
 
     &.iui-disabled {
       .iui-button {
         &:last-child:hover {
-          background-color: transparent;
+          @include themed {
+            background-color: transparent;
+          }
         }
       }
     }
@@ -360,7 +381,9 @@
 @mixin iui-header-button-active {
   // Blue icons
   svg {
-    fill: var(--iui-icons-color-primary);
+    @include themed {
+      fill: t(iui-icons-color-primary);
+    }
   }
 
   .iui-description {
@@ -370,37 +393,51 @@
   &,
   &:hover {
     // Blue background and darker blue bottom line
-    box-shadow: 0 $iui-xxs 0 0 var(--iui-color-foreground-primary);
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    @include themed {
+      box-shadow: 0 $iui-xxs 0 0 t(iui-color-foreground-primary);
+      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+    }
 
     .iui-header-button-icon {
-      fill: var(--iui-icons-color-primary);
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      @include themed {
+        fill: t(iui-icons-color-primary);
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      }
     }
   }
 
   // Blue text
   .iui-button-label {
-    color: var(--iui-color-foreground-primary);
+    @include themed {
+      color: t(iui-color-foreground-primary);
+    }
   }
 
   // Disabled state
   &.iui-disabled,
   &:disabled {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
-    box-shadow: 0 $iui-xxs 0 0 rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    @include themed {
+      background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+      box-shadow: 0 $iui-xxs 0 0 rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    }
 
     .iui-button-label {
-      color: var(--iui-icons-color-actionable-disabled);
+      @include themed {
+        color: t(iui-icons-color-actionable-disabled);
+      }
     }
 
     .iui-button-icon,
     svg {
-      fill: var(--iui-icons-color-actionable-disabled);
+      @include themed {
+        fill: t(iui-icons-color-actionable-disabled);
+      }
     }
 
     .iui-header-button-icon {
-      background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
+      }
     }
   }
 }

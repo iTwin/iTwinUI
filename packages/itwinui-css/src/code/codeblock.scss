@@ -11,7 +11,10 @@
     display: flex;
     align-items: center;
     border-radius: $iui-border-radius $iui-border-radius 0 0;
-    background-color: var(--iui-color-background-3);
+
+    @include themed {
+      background-color: t(iui-color-background-3);
+    }
 
     > .iui-title {
       margin-left: $iui-sm;
@@ -29,8 +32,12 @@
     overflow-y: auto;
     border-radius: 0 0 $iui-border-radius $iui-border-radius;
     white-space: normal;
-    border: 1px solid var(--iui-color-background-3);
+
     @include iui-focus;
+
+    @include themed {
+      border: 1px solid t(iui-color-background-3);
+    }
 
     > code {
       display: block;
@@ -39,10 +46,14 @@
       hyphens: auto;
       counter-increment: section;
       font-family: $iui-monospace;
-      background-color: var(--iui-color-background-1);
+      @include themed {
+        background-color: t(iui-color-background-1);
+      }
 
       &:nth-child(even) {
-        background: rgba(var(--iui-color-foreground-body-rgb), 0.02);
+        @include themed {
+          background: rgba(t(iui-color-foreground-body-rgb), 0.02);
+        }
       }
 
       &::before {
@@ -51,8 +62,11 @@
         display: inline-block;
         padding: 0 $iui-s;
         width: $iui-l;
-        background-color: var(--iui-color-background-2);
-        color: var(--iui-text-color-muted);
+
+        @include themed {
+          background-color: t(iui-color-background-2);
+          color: t(iui-text-color-muted);
+        }
       }
     }
   }

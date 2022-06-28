@@ -7,14 +7,18 @@
 @import './disabled';
 
 @mixin iui-button-default {
-  background-color: var(--iui-color-background-1);
-  border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  @include themed {
+    background-color: t(iui-color-background-1);
+    border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+  }
   @include iui-focus($offset: -2px, $thickness: 2px);
 
   &:hover,
   &:active {
-    background-color: var(--iui-color-background-1-overlay);
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
+    @include themed {
+      background-color: t(iui-color-background-1-overlay);
+      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
+    }
     @include iui-notification-marker-hover;
   }
 
@@ -33,14 +37,18 @@
 
   &.iui-active:enabled {
     position: relative;
-    color: var(--iui-color-foreground-primary);
+    @include themed {
+      color: t(iui-color-foreground-primary);
+    }
 
     // Used for combining overlay background color with base background
     &::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      @include themed {
+        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
+      }
     }
   }
 
