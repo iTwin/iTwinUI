@@ -1,7 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './mixins';
-@import './ripple';
+@import './font-family';
 @import './input-container/index';
+@import './mixins';
 @import './notification-marker/index';
 @import './popover/index';
+@import './ripple';
+@import './theme';

@@ -1,0 +1,25 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+
+/// Font loading helpers -------------------------------------------------------
+/// See: https://www.zachleat.com/web/comprehensive-webfonts
+
+$iui-font-loaded-class: null !default;
+
+@mixin iui-font-family {
+  @if $iui-font-loaded-class {
+    font-family: $iui-sans-fallback;
+
+    &.#{ $iui-font-loaded-class } {
+      font-family: $iui-font-family;
+    }
+
+    @at-root {
+      body.#{ $iui-font-loaded-class } & {
+        font-family: $iui-font-family;
+      }
+    }
+  } @else {
+    font-family: $iui-font-family;
+  }
+}
