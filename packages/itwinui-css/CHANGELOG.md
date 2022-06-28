@@ -7,7 +7,7 @@
 * **Dialog:** Add 4 new placement options ([#679](https://www.github.com/iTwin/iTwinUI/issues/679)) ([d03e345](https://www.github.com/iTwin/iTwinUI/commit/d03e345f332bf005d5559708d9fbb95b5afc460a))
   - `top-left`, `top-right`, `bottom-left`, `bottom-right` positions are supported through `data-iui-placement` attribute.
 * **Select:** Add multiple selection design ([#619](https://www.github.com/iTwin/iTwinUI/issues/619)) ([b909726](https://www.github.com/iTwin/iTwinUI/commit/b909726ec37f2ef8f0f62716671ac424f4a3f3ba))
-  - Using Tag to show selected items in the input.
+  - Using `SelectTag` to show selected items in the input.
 * Border radius of all components increased by 1px ([#688](https://www.github.com/iTwin/iTwinUI/issues/688)) ([853e4d9](https://www.github.com/iTwin/iTwinUI/commit/853e4d9916f5eb4cac13f9d3fc1a9721a6b75a2e))
 
 ### Fixes
