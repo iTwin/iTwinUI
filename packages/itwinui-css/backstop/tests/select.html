@@ -68,7 +68,12 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
+    ></script>
     <script src="../assets/theme.js"></script>
+    <script src="../assets/selectTag.js"></script>
   </head>
 
   <body class="iui-body">
@@ -347,6 +352,128 @@
       <button class="iui-button iui-default">
         <span class="iui-button-label">Add</span>
       </button>
+    </section>
+
+    <hr />
+
+    <h2>Multi select</h2>
+
+    <section id="demo-multi">
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          class="iui-select-button iui-small"
+        >
+          <span class="iui-content">
+            <div class="iui-select-tag-container">
+              <multi-select-tag
+                value="Option 1"
+                dismissible
+              ></multi-select-tag>
+              <multi-select-tag
+                value="Option 2"
+                dismissible
+              ></multi-select-tag>
+              <multi-select-tag
+                value="Option 3"
+                dismissible
+              ></multi-select-tag>
+            </div>
+          </span>
+        </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-actionable"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          class="iui-select-button"
+        >
+          <span class="iui-content">
+            <div class="iui-select-tag-container">
+              <multi-select-tag
+                value="Option 1"
+                dismissible
+              ></multi-select-tag>
+              <multi-select-tag
+                value="Option 2"
+                dismissible
+              ></multi-select-tag>
+              <multi-select-tag
+                value="Option 3"
+                dismissible
+              ></multi-select-tag>
+            </div>
+          </span>
+        </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-actionable"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          class="iui-select-button iui-large"
+        >
+          <span class="iui-content">
+            <div class="iui-select-tag-container">
+              <multi-select-tag
+                value="Option 1"
+                dismissible
+              ></multi-select-tag>
+              <multi-select-tag
+                value="Option 2"
+                dismissible
+              ></multi-select-tag>
+              <multi-select-tag
+                value="Option 3"
+                dismissible
+              ></multi-select-tag>
+            </div>
+          </span>
+        </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-actionable"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div
+        class="iui-input-with-icon"
+        style="width: 470px"
+      >
+        <div
+          tabindex="0"
+          class="iui-select-button iui-large"
+        >
+          <span class="iui-content">
+            <div class="iui-select-tag-container">
+              <multi-select-tag
+                value="Option 1"
+                dismissible
+              ></multi-select-tag>
+              <multi-select-tag
+                value="Option 2"
+                dismissible
+              ></multi-select-tag>
+              <multi-select-tag
+                value="Option 3"
+                dismissible
+              ></multi-select-tag>
+              <multi-select-tag value="+5 more"></multi-select-tag>
+            </div>
+          </span>
+        </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-actionable"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
     </section>
   </body>
 </html>
