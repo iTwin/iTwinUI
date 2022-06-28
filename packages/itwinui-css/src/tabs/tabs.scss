@@ -106,6 +106,7 @@
 
 @mixin iui-tab-label {
   text-align: left;
+  max-width: 60ch;
 
   > * {
     @include iui-line-clamp(3);
