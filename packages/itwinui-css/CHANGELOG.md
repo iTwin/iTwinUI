@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.61.0](https://www.github.com/iTwin/iTwinUI/compare/v0.60.0...v0.61.0) (2022-06-28)
+
+
+### What's new
+
+* **Dialog:** add positioning to dialog ([#679](https://www.github.com/iTwin/iTwinUI/issues/679)) ([d03e345](https://www.github.com/iTwin/iTwinUI/commit/d03e345f332bf005d5559708d9fbb95b5afc460a))
+* **Select:** Multi select support ([#619](https://www.github.com/iTwin/iTwinUI/issues/619)) ([b909726](https://www.github.com/iTwin/iTwinUI/commit/b909726ec37f2ef8f0f62716671ac424f4a3f3ba))
+* **style:** Border radius change ([#688](https://www.github.com/iTwin/iTwinUI/issues/688)) ([853e4d9](https://www.github.com/iTwin/iTwinUI/commit/853e4d9916f5eb4cac13f9d3fc1a9721a6b75a2e))
+
+
+### Fixes
+
+* **Tabs:** Improve visuals with wrapped labels ([#681](https://www.github.com/iTwin/iTwinUI/issues/681)) ([28e12ee](https://www.github.com/iTwin/iTwinUI/commit/28e12ee0bb1e2d4087098ebfde124d765896c7b5))
+
 ## [0.60.0](https://www.github.com/iTwin/iTwinUI/compare/v0.59.2...v0.60.0) (2022-06-14)
 
 ### What's new
