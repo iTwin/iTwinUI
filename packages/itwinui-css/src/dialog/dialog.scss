@@ -3,133 +3,98 @@
 @import '../style/index';
 @import '../icon/index';
 
-@mixin iui-dialog-backdrop {
-  @include iui-reset;
-  z-index: 999;
-  isolation: isolate;
-  position: fixed;
+$iui-dialog-width: 380px;
+
+@mixin iui-dialog-wrapper {
+  position: relative;
+  overflow: hidden;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, var(--iui-opacity-4));
-
-  // Small/Resizable Dialog Animations for CSS
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
-
-  &.iui-dialog-visible {
-    visibility: visible;
-    opacity: 1;
-    // remove delay for entry animation so dialog is instantly visible
-    transition-delay: $iui-speed-instant;
-  }
-}
-
-@mixin iui-dialog-backdrop-relative {
-  position: relative;
-  overflow: hidden;
+  pointer-events: none;
+  transform: translateX(0); // creates containing block for position: fixed
 }
 
 @mixin iui-dialog {
+  z-index: 999;
+  isolation: isolate;
   border-radius: $iui-border-radius;
   box-shadow: $iui-elevation-24;
-  position: absolute;
+  position: fixed;
   padding: $iui-baseline $iui-m;
   overflow: hidden;
+  pointer-events: auto;
   background-color: var(--iui-color-background-1);
   @media (forced-colors: active) {
     border: 1px solid;
   }
+
+  &:not(.iui-dialog-visible) {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  transition: visibility $iui-speed-instant linear, opacity $iui-speed-fast ease-out;
+  transition-delay: $iui-speed-fast, $iui-speed-instant;
+
+  &.iui-dialog-visible {
+    transition-delay: $iui-speed-instant; // remove delay for entry animation
+  }
 }
 
 @mixin iui-dialog-default {
-  .iui-dialog {
-    left: 50%;
-    top: 33%;
-    transform: translate(-50%, -33%);
-    max-width: 50%;
-    min-width: 380px;
-    max-height: 100vh;
-
-    @media screen and (max-width: 400px) {
-      max-width: 95%;
-      width: 95%;
-      min-width: 95%;
-    }
-  }
+  left: 50%;
+  top: 33%;
+  transform: translate(-50%, -33%);
+  max-width: Max(50%, $iui-dialog-width);
+  min-width: $iui-dialog-width;
+  max-height: 100vh;
 }
 
 @mixin iui-dialog-full-page {
+  border-radius: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+
+  &:not(.iui-dialog-visible) {
+    transform: translateY(100%);
+  }
+
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed-slow, opacity $iui-speed ease-out $iui-speed-fast;
-  }
+    transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
+      transform $iui-speed-fast ease-in;
 
-  .iui-dialog {
-    border-radius: 0;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    max-width: initial;
-    min-width: initial;
-    display: flex;
-    flex-direction: column;
-    will-change: transform;
-    @media (prefers-reduced-motion: no-preference) {
-      transform: translateY(100%);
-      transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
-        transform $iui-speed-fast ease-in;
-    }
-  }
-
-  &.iui-dialog-visible .iui-dialog {
-    transform: translateY(0);
-    @media (prefers-reduced-motion: no-preference) {
+    &.iui-dialog-visible {
       transition: transform $iui-speed ease-out;
     }
   }
 }
 
 @mixin iui-dialog-draggable {
-  background-color: transparent;
-  pointer-events: none;
-  z-index: 998;
-
-  .iui-dialog {
-    pointer-events: initial;
-    max-width: 100vw;
-    max-height: 100vh;
-    min-width: 380px;
-    min-height: 144px;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    border: 1px solid var(--iui-color-background-border);
-  }
+  max-width: 100%;
+  max-height: 100vh;
+  min-width: $iui-dialog-width;
+  min-height: 144px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--iui-color-background-border);
 }
 
 @mixin iui-dialog-animation {
-  // Full Page Dialog Animations for React
-  &-enter .iui-dialog-full-page .iui-dialog {
+  &-enter {
     transform: translateY(100%);
     opacity: 0;
   }
 
-  &-enter-active .iui-dialog-full-page .iui-dialog {
+  &-enter-active {
     transform: translateY(0);
-    opacity: 1;
-  }
-
-  // Small Dialog Animations for React
-  &-enter .iui-dialog-backdrop {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  &-enter-active .iui-dialog-backdrop {
-    visibility: visible;
     opacity: 1;
   }
 }
@@ -148,18 +113,18 @@
   margin-bottom: $iui-baseline;
   justify-content: space-between;
   font-size: $iui-font-size-subheading;
+}
 
-  @at-root .iui-dialog-draggable & {
-    user-select: none;
-    font-size: $iui-font-size-leading;
-    padding: round($iui-baseline * 0.5) $iui-m;
-    cursor: grab;
-    background-color: var(--iui-color-background-3);
-    border-bottom: 1px solid var(--iui-color-background-border);
+@mixin iui-dialog-title-bar-filled {
+  font-size: $iui-font-size-leading;
+  padding: round($iui-baseline * 0.5) $iui-m;
+  margin: -#{$iui-baseline} -#{$iui-m} $iui-baseline -#{$iui-m}; // negative margin to counteract dialog padding
+  cursor: grab;
+  background-color: var(--iui-color-background-3);
+  border-bottom: 1px solid var(--iui-color-background-border);
 
-    &:active {
-      cursor: grabbing;
-    }
+  &:active {
+    cursor: grabbing;
   }
 }
 
@@ -169,10 +134,6 @@
   padding: 0 $iui-m;
   overflow-y: auto;
   overflow-y: overlay;
-
-  @at-root .iui-dialog-draggable & {
-    margin: 0;
-  }
 }
 
 @mixin iui-dialog-button-bar {
@@ -180,8 +141,5 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  column-gap: $iui-s;
-  @at-root .iui-dialog-draggable & {
-    padding: 0 $iui-m $iui-baseline $iui-m;
-  }
+  gap: $iui-s;
 }
