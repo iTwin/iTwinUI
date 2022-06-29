@@ -114,6 +114,10 @@
     color: var(--iui-icons-color-warning);
   }
 
+  .iui-informational {
+    font-style: italic;
+  }
+
   .iui-tile-name {
     display: flex;
     flex-shrink: 0;
@@ -136,10 +140,6 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-  }
-
-  .iui-tile-uploading {
-    font-style: italic;
   }
 
   .iui-tile-description {
@@ -199,7 +199,7 @@
   &.iui-disabled {
     filter: grayscale(100%);
     cursor: not-allowed;
-    border-bottom: 4px solid t(iui-color-background-border);
+    border-bottom: $iui-xs solid t(iui-color-background-border);
   }
 
   .iui-thumbnail-icon {
@@ -207,19 +207,19 @@
   }
 
   &.iui-negative {
-    border-bottom: 4px solid var(--iui-icons-color-negative);
+    border-bottom: $iui-xs solid var(--iui-icons-color-negative);
   }
 
   &.iui-positive {
-    border-bottom: 4px solid var(--iui-icons-color-positive);
+    border-bottom: $iui-xs solid var(--iui-icons-color-positive);
   }
 
   &.iui-warning {
-    border-bottom: 4px solid var(--iui-icons-color-warning);
+    border-bottom: $iui-xs solid var(--iui-icons-color-warning);
   }
 
-  &.iui-tile-uploading {
-    border-bottom: 4px solid var(--iui-color-background-primary);
+  &.iui-informational {
+    border-bottom: $iui-xs solid var(--iui-color-background-primary);
   }
 }
 
