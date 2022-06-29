@@ -53,7 +53,7 @@
   &:checked + * {
     padding: $iui-s;
     z-index: 3;
-    outline: 2px solid var(--iui-color-foreground-primary);
+    outline: $iui-xxs solid var(--iui-color-foreground-primary);
     outline-offset: -1px;
 
     @media (forced-colors: active) {
@@ -117,7 +117,7 @@
 
   &:disabled:checked + * {
     z-index: 3;
-    outline: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    outline: $iui-xxs solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
     @media (forced-colors: active) {
       outline-color: GrayText;
     }
@@ -126,8 +126,8 @@
   @include focus-visible {
     + * { // outline for checkmark
       z-index: 2;
-      outline-offset: -2px;
-      outline: 3px solid var(--iui-color-foreground-primary);
+      outline-offset: -$iui-xxs;
+      outline: $iui-xxs + 1 solid var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
         outline-color: Highlight;
       }
