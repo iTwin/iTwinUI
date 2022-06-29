@@ -41,6 +41,58 @@
     <h1>Dialog</h1>
     <hr />
 
+    <div class="iui-input-container iui-inline-label">
+      <div class="iui-label">Dialog Placement</div>
+      <div class="iui-input-group">
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value=""
+            checked
+          />
+          <span class="iui-radio-label">Centered</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="top-left"
+          />
+          <span class="iui-radio-label">Top-left</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="top-right"
+          />
+          <span class="iui-radio-label">Top-right</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="bottom-left"
+          />
+          <span class="iui-radio-label">Bottom-left</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="bottom-right"
+          />
+          <span class="iui-radio-label">Bottom-right</span>
+        </label>
+      </div>
+    </div>
+
     <button
       aria-label="Open dialog"
       id="open-dialog"
@@ -77,7 +129,10 @@
 
     <div id="default-dialog">
       <div class="iui-backdrop"></div>
-      <div class="iui-dialog iui-dialog-default">
+      <div
+        class="iui-dialog iui-dialog-default"
+        id="dialog-click"
+      >
         <div class="iui-dialog-title-bar">
           <div class="iui-dialog-title">Title</div>
           <button
@@ -279,6 +334,17 @@
           _backdrop.classList.toggle('iui-backdrop-visible');
         }
       }
+
+      const dialog = document.querySelector('#dialog-click');
+      // Clicking on menu-item should toggle selection
+      document.querySelectorAll('input').forEach((item) => {
+        item.addEventListener('click', () => {
+          dialog.setAttribute('data-iui-placement', item.value);
+          if (!item.value) {
+            dialog.removeAttribute('data-iui-placement');
+          }
+        });
+      });
 
       const dragItem = document.querySelector('#draggable-dialog .iui-dialog');
       dragElement(dragItem);

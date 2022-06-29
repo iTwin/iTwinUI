@@ -5,7 +5,6 @@
 @import '../button/index';
 
 @mixin iui-tag-base {
-  @include iui-reset;
   user-select: all;
   text-transform: lowercase;
   display: inline-flex;
@@ -24,7 +23,8 @@
 @mixin iui-tag {
   @include iui-tag-base;
   height: $iui-baseline * 3;
-  margin: $iui-component-offset 0;
+  margin-top: $iui-component-offset;
+  margin-bottom: $iui-component-offset;
   border-radius: $iui-border-radius-round;
   box-sizing: border-box;
   padding: 0 $iui-xxs;

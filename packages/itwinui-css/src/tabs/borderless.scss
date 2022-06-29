@@ -5,8 +5,7 @@
 
 @mixin iui-tabs-borderless {
   .iui-tab {
-    height: $iui-component-height;
-    padding: 0 ($iui-component-padding-horizontal * 2);
+    padding: $iui-xs ($iui-component-padding-horizontal * 2);
     background-color: transparent;
 
     &::after {
@@ -56,11 +55,11 @@
 
   &.iui-large {
     .iui-tab {
-      height: $iui-component-height-large;
+      min-height: $iui-component-height-large;
     }
 
     .iui-tab-description {
-      display: block;
+      display: -webkit-box; /* stylelint-disable-line */
     }
   }
 

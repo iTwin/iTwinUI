@@ -30,4 +30,10 @@ module.exports = [
     selectors: ['#demo-inline-combo'],
     viewports: [{ width: 800, height: 600 }],
   }),
+
+  // Multi demo
+  scenario('Type Multi', {
+    selectors: ['#demo-multi'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
 ];
