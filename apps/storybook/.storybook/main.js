@@ -42,6 +42,9 @@ module.exports = {
           ignored: ['cypress-visual-report', 'cypress-visual-report/**'],
         },
       },
+      build: {
+        sourcemap: configType === 'DEVELOPMENT',
+      },
     });
   },
 };
