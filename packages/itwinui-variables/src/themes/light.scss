@@ -14,8 +14,10 @@ $base-colors: (
   background-positive: hsl(95 72% 37%),
   background-warning: hsl(33 89% 51%),
   background-negative: hsl(0 91% 43%),
-  foreground-body: hsl(0 0% 0%),
-  foreground-body-invert: hsl(0 0% 100%),
+  foreground-1: hsl(0 0% 0%),
+  foreground-2: hsl(0 0% 20%),
+  foreground-3: hsl(0 0% 60%),
+  foreground-4: hsl(0 0% 80%),
   foreground-accessory: hsl(0 0% 100%),
   foreground-primary: hsl(203 100% 44%),
   foreground-positive: hsl(95 72% 37%),
@@ -39,8 +41,6 @@ $opacities: (
   6: 0.1,
 );
 
-$foreground-body: map.get($base-colors, foreground-body);
-
 @mixin theme {
   @each $color, $value in $base-colors {
     --iui-#{$color}: #{hex($value)};
@@ -52,13 +52,4 @@ $foreground-body: map.get($base-colors, foreground-body);
 
   --iui-color-background-disabled: #{map.get($base-colors, background-3)};
   --iui-color-background-border: #{map.get($base-colors, background-5)};
-
-  --iui-text-color: #{rgba($foreground-body, map.get($opacities, 2))};
-  --iui-text-color-muted: #{rgba($foreground-body, map.get($opacities, 4))};
-  --iui-text-color-placeholder: #{rgba($foreground-body, map.get($opacities, 5))};
-
-  // --iui-icons-color: hsl(#{color-foreground-body-hsl} / var(--iui-opacity-4));
-  // --iui-icons-color-actionable: hsl(#{color-foreground-body-hsl} / var(--iui-opacity-2));
-  // --iui-icons-color-actionable-hover: hsl(#{color-foreground-body-hsl} / var(--iui-opacity-1));
-  // --iui-icons-color-actionable-disabled: hsl(#{color-foreground-body-hsl} / var(--iui-opacity-5));
 }
