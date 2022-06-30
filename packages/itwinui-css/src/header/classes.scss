@@ -6,7 +6,7 @@
   @include iui-page-header;
 }
 
-.iui-page-header-slim {
+[data-iui-header-size='slim'] {
   @include iui-page-header-slim;
 }
 

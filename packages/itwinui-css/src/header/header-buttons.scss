@@ -232,7 +232,7 @@
       }
     }
 
-    @at-root .iui-page-header-slim & {
+    @at-root [data-iui-header-size='slim'] & {
       visibility: hidden;
       opacity: 0;
       height: 0;

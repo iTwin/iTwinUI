@@ -415,7 +415,10 @@
       <h2>Slim</h2>
       <section id="demo-slim">
 
-        <header class="iui-page-header iui-page-header-slim">
+        <header
+          class="iui-page-header"
+          data-iui-header-size="slim"
+        >
           <div class="iui-page-header-left">
             <!-- Application Button -->
             <a
@@ -555,7 +558,10 @@
 
         <br />
 
-        <header class="iui-page-header iui-page-header-slim">
+        <header
+          class="iui-page-header"
+          data-iui-header-size="slim"
+        >
           <div class="iui-page-header-left">
             <!-- Application Button -->
             <a
@@ -699,7 +705,10 @@
 
       <section id="demo-split">
 
-        <header class="iui-page-header iui-page-header-slim">
+        <header
+          class="iui-page-header"
+          data-iui-header-size="slim"
+        >
           <div class="iui-page-header-left">
             <!-- Application Button -->
             <div
@@ -1280,7 +1289,14 @@
     });
 
     document.querySelector('#demo-slim-toggle input[type=checkbox]').addEventListener('change', (e) => {
-      document.querySelector('#demo-slim-toggle .iui-page-header').classList.toggle('iui-page-header-slim');
+      document.querySelectorAll('#demo-slim-toggle .iui-page-header').forEach((headerSize) => {
+        if (headerSize.getAttribute('data-iui-header-size')) {
+          headerSize.removeAttribute("data-iui-header-size");
+        } else {
+          headerSize.setAttribute("data-iui-header-size", "slim");
+        }
+      });
+
       document.querySelector('#demo-slim-toggle .iui-avatar').classList.toggle('iui-small');
     });
   </script>
