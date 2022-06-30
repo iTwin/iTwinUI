@@ -402,6 +402,122 @@
         </div>
       </div>
 
+      <br />
+
+      <div class="iui-tabs-wrapper iui-horizontal">
+        <ul
+          class="iui-tabs iui-default iui-large"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>This is a very long 'Active' tab content, which hopefully will wrap if all tab headers content is
+                  pretty long and cannot fit in viewport width</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">This is a very long 'Left' tab sublabel, which hopefully will wrap if
+                  all tab headers content is
+                  pretty long and cannot fit in viewport width</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
+          <li>
+            <button class="iui-button iui-borderless iui-large">
+              <svg-add-circular
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-add-circular>
+            </button>
+          </li>
+        </ul>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
+      </div>
+
     </section>
 
     <br />
@@ -967,6 +1083,116 @@
         </div>
       </div>
 
+      <br />
+
+      <div class="iui-tabs-wrapper iui-horizontal">
+        <ul
+          class="iui-tabs iui-borderless iui-large iui-animated"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>This is a very long 'Active' tab content, which hopefully will wrap if all tab headers content is
+                  pretty long and cannot fit in viewport width</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">This is a very long 'Left' tab sublabel, which hopefully will wrap if
+                  all tab headers content is
+                  pretty long and cannot fit in viewport width</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+              id="test-tab-4"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
+        </ul>
+
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
+      </div>
+
     </section>
 
     <br />
@@ -1337,6 +1563,114 @@
               ></svg-placeholder>
               <span class="iui-tab-label">
                 <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
+        </ul>
+
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
+      </div>
+
+      <br />
+
+      <div class="iui-tabs-wrapper iui-horizontal">
+        <ul
+          class="iui-tabs iui-pill iui-green iui-not-animated"
+          role="tablist"
+          aria-label="Tab group name"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>This is a very long 'Active' tab content, which hopefully will wrap if all tab headers content is
+                  pretty long and cannot fit in viewport width</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>This is a very long 'Left' tab content, which hopefully will wrap if all tab headers content is
+                  pretty long and cannot fit in viewport width</div>
                 <div class="iui-tab-description">Sublabel</div>
               </span>
             </button>

@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.61.0](https://www.github.com/iTwin/iTwinUI/compare/v0.60.0...v0.61.0) (2022-06-28)
+
+### What's new
+
+* **Dialog:** Add 4 new placement options ([#679](https://www.github.com/iTwin/iTwinUI/issues/679)) ([d03e345](https://www.github.com/iTwin/iTwinUI/commit/d03e345f332bf005d5559708d9fbb95b5afc460a))
+  - `top-left`, `top-right`, `bottom-left`, `bottom-right` positions are supported through `data-iui-placement` attribute.
+* **Select:** Add multiple selection design ([#619](https://www.github.com/iTwin/iTwinUI/issues/619)) ([b909726](https://www.github.com/iTwin/iTwinUI/commit/b909726ec37f2ef8f0f62716671ac424f4a3f3ba))
+  - Using `SelectTag` to show selected items in the input.
+* Border radius of all components increased by 1px ([#688](https://www.github.com/iTwin/iTwinUI/issues/688)) ([853e4d9](https://www.github.com/iTwin/iTwinUI/commit/853e4d9916f5eb4cac13f9d3fc1a9721a6b75a2e))
+  - This fixes unexpected artifacts appearing on buttons corners in certain screen sizes.
+
+### Fixes
+
+* **Tabs:** Improve visuals with wrapped labels ([#681](https://www.github.com/iTwin/iTwinUI/issues/681)) ([28e12ee](https://www.github.com/iTwin/iTwinUI/commit/28e12ee0bb1e2d4087098ebfde124d765896c7b5))
+
+## [0.60.0](https://www.github.com/iTwin/iTwinUI/compare/v0.59.2...v0.60.0) (2022-06-14)
+
+### What's new
+
+* Separate out `Backdrop` from `Dialog` ([#670](https://www.github.com/iTwin/iTwinUI/issues/670)) ([ce0f56c](https://www.github.com/iTwin/iTwinUI/commit/ce0f56c98105d8e4974f1971055ffe0dc597d3d0))
+
+### [0.59.2](https://www.github.com/iTwin/iTwinUI/compare/v0.59.1...v0.59.2) (2022-06-08)
+
+### Fixes
+
+* **Code:** Fix codeblock copy button with icon gap ([#680](https://www.github.com/iTwin/iTwinUI/issues/680)) ([516e462](https://www.github.com/iTwin/iTwinUI/commit/516e462171afebe3e195741dfafca36c27c09fc2))
+
 ### [0.59.1](https://www.github.com/iTwin/iTwinUI/compare/v0.59.0...v0.59.1) (2022-05-27)
 
 ### Fixes
