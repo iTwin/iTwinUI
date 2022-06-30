@@ -103,15 +103,15 @@
       }
     }
 
+    .iui-radio-tile-label {
+      color: var(--iui-text-color-muted);
+    }
+
     .iui-radio-tile-label,
     .iui-radio-tile-sublabel {
       @media (forced-colors: active) {
         color: GrayText;
       }
-    }
-
-    .iui-radio-tile-label {
-      color: var(--iui-text-color-muted);
     }
   }
 
