@@ -45,6 +45,7 @@
 
   > :any-link {
     @include iui-anchor;
+    box-sizing: border-box;
     line-height: $iui-component-height;
 
     &:focus {

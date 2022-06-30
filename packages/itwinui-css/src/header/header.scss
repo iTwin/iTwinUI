@@ -4,16 +4,16 @@
 @import '../breadcrumbs/index';
 
 @mixin iui-page-header {
-  --_iui-header-icon-scale: none;
   --_iui-header-brand-label-font-size: #{$iui-font-size-leading};
+  --_iui-header-height: #{$iui-baseline * 5};
+  --_iui-header-icon-scale: none;
 
   @include iui-reset;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: $iui-baseline * 5;
+  height: var(--_iui-header-height);
   user-select: none;
-  box-sizing: border-box;
   background-color: var(--iui-color-background-1);
   border-bottom: $iui-xxs solid var(--iui-color-background-border);
   color: var(--iui-text-color);
@@ -24,10 +24,9 @@
 }
 
 @mixin iui-page-header-slim {
-  --_iui-header-icon-scale: scale(0.66666);
   --_iui-header-brand-label-font-size: #{$iui-font-size};
-
-  height: $iui-baseline * 3;
+  --_iui-header-height: #{$iui-baseline * 3};
+  --_iui-header-icon-scale: scale(0.66666);
 }
 
 @mixin iui-page-header-zone {
@@ -54,7 +53,7 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .iui-user-icon {
+    .iui-avatar {
       &,
       * {
         transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;

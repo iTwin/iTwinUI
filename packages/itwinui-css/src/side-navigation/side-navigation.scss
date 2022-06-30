@@ -53,6 +53,7 @@
   }
 
   &.iui-collapsed {
+    box-sizing: content-box;
     min-width: $iui-icons-large + $iui-side-navigation-icon-margins * 2;
     max-width: $iui-icons-large + $iui-side-navigation-icon-margins * 2;
 
