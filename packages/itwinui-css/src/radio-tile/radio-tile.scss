@@ -6,34 +6,23 @@
 @mixin iui-radio-tile {
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-
-  &:first-of-type > .iui-radio-tile-content {
-    border-radius: $iui-border-radius 0 0 $iui-border-radius;
-  }
-
-  &:last-of-type > .iui-radio-tile-content {
-    border-radius: 0 $iui-border-radius $iui-border-radius 0;
-  }
-
-  &:not(:first-of-type) > .iui-radio-tile-content {
-    margin-left: -1px;
-  }
 }
+
 @mixin iui-radio-tile-content {
   width: $iui-xl * 5;
   height: 100%;
   padding: $iui-s;
   position: relative;
   z-index: 1;
-  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  outline: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
   background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
-    transition: border-color $iui-speed-fast ease-out;
+    transition: outline-color $iui-speed-fast ease-out;
   }
 
   &:hover {
     z-index: 2;
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    outline-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
 
     .iui-radio-tile-icon {
       fill: var(--iui-icons-color-actionable);
@@ -47,6 +36,7 @@
 @mixin iui-radio-tile-container {
   display: inline-flex;
   flex-wrap: wrap;
+  gap: 1px; // prevent overlapping from outline
   user-select: none;
   // Create stacking context
   position: relative;
@@ -59,22 +49,15 @@
   appearance: none;
   opacity: 0;
   position: absolute;
-  @include focus-visible {
-    + * {
-      outline-offset: -4px;
-      outline: 2px solid var(--iui-color-foreground-primary);
-      @media (forced-colors: active) {
-        outline-color: Highlight;
-      }
-    }
-  }
 
   &:checked + * {
-    padding: $iui-s - 1;
+    padding: $iui-s;
     z-index: 3;
-    border: 2px solid var(--iui-color-foreground-primary);
+    outline: $iui-xxs solid var(--iui-color-foreground-primary);
+    outline-offset: -1px;
+
     @media (forced-colors: active) {
-      border-color: Highlight;
+      outline-color: Highlight;
     }
 
     .iui-radio-tile-icon {
@@ -102,7 +85,7 @@
   &:disabled + * {
     cursor: not-allowed;
     z-index: 0;
-    border-color: var(--iui-color-background-disabled);
+    outline-color: var(--iui-color-background-disabled);
     background-color: var(--iui-color-background-disabled);
 
     &::after {
@@ -120,23 +103,34 @@
       }
     }
 
+    .iui-radio-tile-label {
+      color: var(--iui-text-color-muted);
+    }
+
     .iui-radio-tile-label,
     .iui-radio-tile-sublabel {
       @media (forced-colors: active) {
         color: GrayText;
       }
     }
-
-    .iui-radio-tile-label {
-      color: var(--iui-text-color-muted);
-    }
   }
 
   &:disabled:checked + * {
     z-index: 3;
-    border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    outline: $iui-xxs solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
     @media (forced-colors: active) {
-      border-color: GrayText;
+      outline-color: GrayText;
+    }
+  }
+
+  @include focus-visible {
+    + * { // outline for checkmark
+      z-index: 2;
+      outline-offset: -$iui-xxs;
+      outline: 3px solid var(--iui-color-foreground-primary);
+      @media (forced-colors: active) {
+        outline-color: Highlight;
+      }
     }
   }
 }
