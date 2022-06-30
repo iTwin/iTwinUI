@@ -41,6 +41,58 @@
     <h1>Dialog</h1>
     <hr />
 
+    <div class="iui-input-container iui-inline-label">
+      <div class="iui-label">Dialog Placement</div>
+      <div class="iui-input-group">
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value=""
+            checked
+          />
+          <span class="iui-radio-label">Centered</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="top-left"
+          />
+          <span class="iui-radio-label">Top-left</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="top-right"
+          />
+          <span class="iui-radio-label">Top-right</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="bottom-left"
+          />
+          <span class="iui-radio-label">Bottom-left</span>
+        </label>
+        <label class="iui-radio-wrapper">
+          <input
+            class="iui-radio"
+            type="radio"
+            name="dialog-placement"
+            value="bottom-right"
+          />
+          <span class="iui-radio-label">Bottom-right</span>
+        </label>
+      </div>
+    </div>
+
     <button
       aria-label="Open dialog"
       id="open-dialog"
@@ -75,11 +127,12 @@
       Toggle draggable dialog
     </button>
 
-    <div
-      class="iui-dialog-backdrop iui-dialog-default"
-      id="default-dialog"
-    >
-      <div class="iui-dialog">
+    <div id="default-dialog">
+      <div class="iui-backdrop"></div>
+      <div
+        class="iui-dialog iui-dialog-default"
+        id="dialog-click"
+      >
         <div class="iui-dialog-title-bar">
           <div class="iui-dialog-title">Title</div>
           <button
@@ -122,11 +175,9 @@
       </div>
     </div>
 
-    <div
-      class="iui-dialog-backdrop iui-dialog-full-page"
-      id="full-page-dialog"
-    >
-      <div class="iui-dialog">
+    <div id="full-page-dialog">
+      <div class="iui-backdrop"></div>
+      <div class="iui-dialog iui-dialog-full-page">
         <div class="iui-dialog-title-bar">
           <div class="iui-dialog-title">Title</div>
           <button
@@ -169,12 +220,9 @@
       </div>
     </div>
 
-    <div
-      class="iui-dialog-backdrop iui-dialog-default iui-dialog-draggable"
-      id="draggable-dialog"
-    >
-      <div class="iui-dialog">
-        <div class="iui-dialog-title-bar">
+    <div id="draggable-dialog">
+      <div class="iui-dialog iui-dialog-default iui-dialog-draggable">
+        <div class="iui-dialog-title-bar iui-dialog-title-bar-filled">
           <div class="iui-dialog-title">Title</div>
           <button
             aria-label="Close"
@@ -228,11 +276,11 @@
         Open relative to container dialog
       </button>
       <div
-        class="iui-dialog-backdrop iui-dialog-default iui-dialog-draggable iui-dialog-backdrop-relative"
+        class="iui-dialog-wrapper"
         id="draggable-dialog-relative"
       >
-        <div class="iui-dialog">
-          <div class="iui-dialog-title-bar">
+        <div class="iui-dialog iui-dialog-default iui-dialog-draggable">
+          <div class="iui-dialog-title-bar iui-dialog-title-bar-filled">
             <div class="iui-dialog-title">Title</div>
             <button
               aria-label="Close"
@@ -275,12 +323,28 @@
       </div>
     </div>
 
-
     <script>
       function toggleDialog(dialogId) {
-        let element = document.getElementById(dialogId);
-        element.classList.toggle('iui-dialog-visible');
+        let _backdrop = document.querySelector(`#${dialogId} .iui-backdrop`);
+        let _dialog = document.querySelector(`#${dialogId} .iui-dialog`);
+
+        _dialog.classList.toggle('iui-dialog-visible');
+
+        if (_backdrop) {
+          _backdrop.classList.toggle('iui-backdrop-visible');
+        }
       }
+
+      const dialog = document.querySelector('#dialog-click');
+      // Clicking on menu-item should toggle selection
+      document.querySelectorAll('input').forEach((item) => {
+        item.addEventListener('click', () => {
+          dialog.setAttribute('data-iui-placement', item.value);
+          if (!item.value) {
+            dialog.removeAttribute('data-iui-placement');
+          }
+        });
+      });
 
       const dragItem = document.querySelector('#draggable-dialog .iui-dialog');
       dragElement(dragItem);

@@ -14,7 +14,6 @@
     font-size: $iui-font-size-leading;
     padding: round($iui-baseline * 0.25) $iui-s;
     filter: drop-shadow($iui-elevation-2);
-    box-sizing: border-box;
     position: relative;
     border: solid 1px var(--iui-color-foreground-accessory);
     background-color: var(--iui-color-foreground-accessory);

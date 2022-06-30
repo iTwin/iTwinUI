@@ -144,7 +144,6 @@
   min-width: $iui-3xl * 2;
   max-width: 50vw;
   height: 100%;
-  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
   overflow-y: overlay;
@@ -162,7 +161,6 @@
   &-content {
     padding: 0 $iui-sm $iui-baseline;
     flex-shrink: 0;
-    box-sizing: border-box;
   }
 
   &-header {
