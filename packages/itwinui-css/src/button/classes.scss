@@ -46,12 +46,12 @@
 
 .iui-button-group {
   @include iui-button-group;
+}
 
-  &-vertical {
-    @include iui-button-group(vertical);
-  }
+.iui-button-group-vertical {
+  @include iui-button-group(vertical);
+}
 
-  &-overflow-x {
-    @include iui-button-group-overflow-x;
-  }
+.iui-button-group-overflow-x {
+  @include iui-button-group-overflow-x;
 }
