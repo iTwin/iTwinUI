@@ -127,7 +127,7 @@
     + * { // outline for checkmark
       z-index: 2;
       outline-offset: -$iui-xxs;
-      outline: $iui-xxs + 1 solid var(--iui-color-foreground-primary);
+      outline: 3px solid var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
         outline-color: Highlight;
       }
