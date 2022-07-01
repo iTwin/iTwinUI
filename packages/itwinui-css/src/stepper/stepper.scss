@@ -4,13 +4,16 @@
 @import '../text/index';
 
 @mixin iui-stepper {
+  display: flex;
+  flex-direction: column;
+  row-gap: $iui-baseline * 0.5;
+
   > ol {
     @include iui-reset;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     width: 100%;
-    margin-bottom: $iui-baseline * 0.5;
   }
 }
 
