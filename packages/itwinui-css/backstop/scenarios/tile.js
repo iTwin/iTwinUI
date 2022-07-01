@@ -14,6 +14,9 @@ module.exports = [
   scenario('Type Default', {
     selectors: ['#demo-default'],
   }),
+  scenario('Type Action States', {
+    selectors: ['#demo-action-states'],
+  }),
   scenario('Type User', {
     selectors: ['#demo-user'],
   }),
