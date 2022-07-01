@@ -54,6 +54,7 @@ $opacities: (
     --iui-opacity-#{$level}: #{$value};
   }
 
+  --iui-color-background-transparent-hover: #{rgba(#FFF, map.get($opacities, 6))};
   --iui-color-background-disabled: #{hex(map.get($base-colors, background-4))};
   --iui-color-background-border: #{hex(map.get($base-colors, foreground-4))};
 }
