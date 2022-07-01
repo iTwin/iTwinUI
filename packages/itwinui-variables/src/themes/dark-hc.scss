@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use 'sass:color';
 @use 'sass:map';
 @use '../utils/hex' as *;
 
@@ -50,6 +49,6 @@ $opacities: (
     --iui-opacity-#{$level}: #{$value};
   }
 
-  --iui-color-background-disabled: #{map.get($base-colors, background-4)};
-  --iui-color-background-border: #{map.get($base-colors, foreground-4)};
+  --iui-color-background-disabled: #{hex(map.get($base-colors, background-4))};
+  --iui-color-background-border: #{hex(map.get($base-colors, foreground-4))};
 }
