@@ -4,31 +4,33 @@
 @use '../utils/hex' as *;
 
 $base-colors: (
+  // Background colors - default
   background-1: hsl(200 12% 20%),
   background-2: hsl(200 12% 15%),
   background-3: hsl(200 12% 10%),
   background-4: hsl(200 12% 25%),
   background-5: hsl(200 12% 30%),
-  background-primary: hsl(200 100% 26%),
-  background-positive: hsl(140 100% 19%),
-  background-warning: hsl(45 100% 22%),
-  background-negative: hsl(0 100% 31%),
+  background-1-hover: hsl(0 0% 95%),
+  // Background colors - statuses subtle
+  background-subtle-primary: hsl(204 14% 44%),
+  background-subtle-positive: hsl(192 9% 43%),
+  background-subtle-warning: hsl(201 6% 44%),
+  background-subtle-negative: hsl(216 7% 44%),
+  // Foreground colors - default
   foreground-1: hsl(0 0% 100%),
   foreground-2: hsl(0 0% 95%),
-  foreground-3: hsl(200 3% 81%),
-  foreground-4: hsl(195 3% 47%),
-  foreground-accessory: hsl(0 0% 100%),
+  foreground-3: hsl(210 4% 90%),
+  foreground-4: hsl(200 3% 81%),
+  foreground-5: hsl(195 3% 47%),
+  // Foreground colors - statuses
   foreground-primary: hsl(200 100% 79%),
   foreground-positive: hsl(140 100% 72%),
   foreground-warning: hsl(45 100% 75%),
   foreground-negative: hsl(0 100% 88%),
-  background-1-overlay: hsl(0 0% 95%),
-  background-primary-overlay: hsl(203 100% 34%),
-  background-positive-overlay: hsl(95 72% 27%),
-  foreground-primary-overlay: hsl(203 100% 34%),
-  foreground-positive-overlay: hsl(95 72% 27%),
-  foreground-warning-overlay: hsl(33 89% 41%),
-  foreground-negative-overlay: hsl(0 91% 33%),
+  foreground-primary-hover: hsl(203 100% 34%),
+  foreground-positive-hover: hsl(95 72% 27%),
+  foreground-warning-hover: hsl(33 89% 41%),
+  foreground-negative-hover: hsl(0 91% 33%)
 );
 
 $opacities: (
@@ -42,7 +44,7 @@ $opacities: (
 
 @mixin theme {
   @each $color, $value in $base-colors {
-    --iui-#{$color}: #{hex($value)};
+    --iui-color-#{$color}: #{hex($value)};
   }
 
   @each $level, $value in $opacities {

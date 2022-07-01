@@ -4,14 +4,15 @@
 @use './space' as *;
 @use './typography' as *;
 @use './shadows' as *;
-@use './colors' as *;
+@use './colors';
 
 @mixin common {
   @include sizes;
   @include border-radii;
   @include typography;
   @include shadows;
-  @include soft-backgrounds;
+  @include colors.soft-backgrounds;
+  @include colors.unthemed;
 }
 
 :root {
@@ -24,16 +25,20 @@
 
 [data-iui-theme='light'] {
   @include themes.light-theme;
+
+  &[data-iui-contrast='high'] {
+    @include themes.light-hc-theme;
+  }
 }
 
 [data-iui-theme='dark'] {
   @include themes.dark-theme;
+
+  &[data-iui-contrast='high'] {
+    @include themes.dark-hc-theme;
+  }
 }
 
-[data-iui-theme='light-hc'] {
-  @include themes.light-hc-theme;
-}
-
-[data-iui-theme='dark-hc'] {
-  @include themes.dark-hc-theme;
+[data-iui-contrast='high'] {
+  @include colors.unthemed($contrast: 'high');
 }
