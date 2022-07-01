@@ -88,78 +88,34 @@
     }
   }
 
-  .iui-positive {
-    &.iui-tile-thumbnail {
-      border-bottom: $iui-xs solid var(--iui-icons-color-positive);
-    }
-
-    &.iui-tile-name-label {
-      color: var(--iui-icons-color-positive);
-    }
-
-    &.iui-thumbnail-icon {
-      fill: var(--iui-icons-color-positive);
-    }
+  //#region Statuses
+  &.iui-uploading {
+    cursor: progress;
+    font-style: italic;
   }
 
-  .iui-warning {
-    &.iui-tile-thumbnail {
-      border-bottom: $iui-xs solid var(--iui-icons-color-warning);
-    }
-
-    &.iui-tile-name-label {
-      color: var(--iui-icons-color-warning);
-    }
-
-    &.iui-thumbnail-icon {
-      fill: var(--iui-icons-color-warning);
-    }
-  }
-
-  .iui-negative {
-    &.iui-tile-thumbnail {
-      border-bottom: $iui-xs solid var(--iui-icons-color-negative);
-    }
-
-    &.iui-tile-name-label {
-      color: var(--iui-icons-color-negative);
-    }
-
-    &.iui-thumbnail-icon {
-      fill: var(--iui-icons-color-negative);
-    }
-  }
-
-  .iui-informational {
-    &.iui-tile-thumbnail {
-      border-bottom: $iui-xs solid var(--iui-color-background-primary);
-    }
-
-    &.iui-tile-name-label {
-      font-style: italic;
-    }
-
-    &.iui-thumbnail-icon {
-      stroke: var(--iui-color-background-primary);
-    }
-  }
-
-  .iui-disabled {
+  &[aria-disabled='true'] {
     cursor: not-allowed;
 
-    &.iui-tile-thumbnail {
-      border-bottom: $iui-xs solid var(--iui-color-background-border);
-    }
-
-    &.iui-tile-name-label {
+    .iui-tile-name-label {
       color: var(--iui-text-color-muted);
     }
 
-    &.iui-thumbnail-icon,
-    &.iui-tile-status-icon {
+    .iui-thumbnail-icon,
+    .iui-tile-thumbnail-picture {
       filter: grayscale(100%);
     }
+
+    &:hover .iui-tile-thumbnail-picture,
+    &:focus-within .iui-tile-thumbnail-picture {
+      transform: none;
+    }
+
+    .iui-tile-more-options {
+      display: none;
+    }
   }
+  //#endregion Statuses
 }
 
 @mixin iui-tile-content {
@@ -390,5 +346,21 @@
 
   &:not(.iui-visible) {
     @include visually-hidden;
+  }
+}
+
+@mixin iui-tile-status($status) {
+  @include iui-text-selection($status);
+
+  .iui-tile-thumbnail {
+    box-shadow: 0 $iui-xs 0 var(--iui-color-foreground-#{$status});
+  }
+
+  .iui-tile-name-label {
+    color: var(--iui-color-foreground-#{$status});
+  }
+
+  .iui-tile-status-icon {
+    fill: var(--iui-color-foreground-#{$status});
   }
 }
