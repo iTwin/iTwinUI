@@ -1,10 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use './themes/index' as themes;
+@use './colors';
 
 :root {
   @media (prefers-color-scheme: dark) {
     @include themes.dark-theme;
+  }
+
+  @media (prefers-contrast: more) {
+    @include colors.unthemed($contrast: 'high');
   }
 
   @media (prefers-color-scheme: light) and (prefers-contrast: more) {
