@@ -25,3 +25,12 @@
 .iui-icons-3xl {
   @include iui-icons-3xl;
 }
+
+.iui-icons-color {
+  @include iui-icons-color;
+}
+
+.iui-icons-color-status {
+  @include iui-icons-color;
+  @include iui-icons-color-status;
+}

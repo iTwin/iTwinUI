@@ -38,6 +38,7 @@
     > svg,
     .iui-template-icon {
       @include iui-icons-3xl;
+      @include iui-icons-color;
       margin-top: $iui-baseline;
       margin-bottom: $iui-baseline;
     }
