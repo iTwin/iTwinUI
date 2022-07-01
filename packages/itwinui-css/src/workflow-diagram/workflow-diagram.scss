@@ -31,10 +31,7 @@
 }
 
 @mixin iui-workflow-diagram-circle {
-  padding-left: $iui-m;
-  padding-right: $iui-m;
-  height: 100%;
-  width: auto;
+  padding: 0 $iui-m;
   font-weight: $iui-font-weight-normal;
   text-align: center;
   background-color: var(--_iui-workflow-diagram-circle-background-color);
