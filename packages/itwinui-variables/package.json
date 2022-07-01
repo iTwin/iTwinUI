@@ -22,7 +22,7 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "sass": "^1.52.2"
+    "sass": "^1.53.0"
   },
   "scripts": {
     "build": "sass --no-source-map src/index.scss:index.css src/os.scss:os.css",
