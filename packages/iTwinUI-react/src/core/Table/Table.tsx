@@ -24,7 +24,7 @@ import {
   Column,
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators';
-import { useTheme, CommonProps, useResizeObserver } from '../utils';
+import { useTheme, CommonProps, useResizeObserver, mergeRefs } from '../utils';
 import '@itwin/itwinui-css/css/table.css';
 import SvgSortDown from '@itwin/itwinui-icons-react/cjs/icons/SortDown';
 import SvgSortUp from '@itwin/itwinui-icons-react/cjs/icons/SortUp';
@@ -623,6 +623,10 @@ export const Table = <
 
   const headerRef = React.useRef<HTMLDivElement>(null);
   const bodyRef = React.useRef<HTMLDivElement>(null);
+  // Using `useState` to rerender rows when table body ref is available
+  const [bodyRefState, setBodyRefState] = React.useState<HTMLDivElement | null>(
+    null,
+  );
 
   const getPreparedRow = React.useCallback(
     (index: number) => {
@@ -644,21 +648,23 @@ export const Table = <
           tableHasSubRows={hasAnySubRows}
           tableInstance={instance}
           expanderCell={expanderCell}
+          bodyRef={bodyRefState}
         />
       );
     },
     [
       page,
-      expanderCell,
-      hasAnySubRows,
-      instance,
-      intersectionMargin,
-      isRowDisabled,
-      onRowClickHandler,
       prepareRow,
       rowProps,
+      intersectionMargin,
       state,
+      onRowClickHandler,
       subComponent,
+      isRowDisabled,
+      hasAnySubRows,
+      instance,
+      expanderCell,
+      bodyRefState,
     ],
   );
 
@@ -821,7 +827,7 @@ export const Table = <
             }),
             style: { outline: 0 },
           })}
-          ref={bodyRef}
+          ref={mergeRefs(bodyRef, setBodyRefState)}
           onScroll={() => {
             if (headerRef.current && bodyRef.current) {
               headerRef.current.scrollLeft = bodyRef.current.scrollLeft;

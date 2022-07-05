@@ -33,7 +33,8 @@ const intersectionCallbacks = new Map<Element, () => void>();
 jest
   .spyOn(IntersectionHooks, 'useIntersection')
   .mockImplementation((onIntersect) => {
-    return (el: HTMLElement) => intersectionCallbacks.set(el, onIntersect);
+    return (el: HTMLElement) =>
+      el && intersectionCallbacks.set(el, onIntersect);
   });
 
 const mockIntersection = (element: Element) => {

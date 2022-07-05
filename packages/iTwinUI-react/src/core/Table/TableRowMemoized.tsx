@@ -28,6 +28,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
   tableHasSubRows: boolean;
   tableInstance: TableInstance<T>;
   expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
+  bodyRef: HTMLDivElement | null;
 }) => {
   const {
     row,
@@ -42,6 +43,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     tableHasSubRows,
     tableInstance,
     expanderCell,
+    bodyRef,
   } = props;
 
   const onIntersect = React.useCallback(() => {
@@ -49,8 +51,21 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     isLast && onBottomReached.current?.();
   }, [isLast, onBottomReached, onRowInViewport, row.original]);
 
-  const rowRef = useIntersection(onIntersect, {
+  const intersectionRoot = React.useMemo(() => {
+    const isTableBodyScrollable =
+      (bodyRef?.scrollHeight ?? 0) > (bodyRef?.offsetHeight ?? 0);
+    // If table body is scrollable, make it the intersection root
+    if (isTableBodyScrollable) {
+      return bodyRef;
+    }
+
+    // Otherwise, make the viewport the intersection root
+    return undefined;
+  }, [bodyRef]);
+
+  const intersectionRef = useIntersection(onIntersect, {
     rootMargin: `${intersectionMargin}px`,
+    root: intersectionRoot,
   });
 
   const userRowProps = rowProps?.(row);
@@ -70,7 +85,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     },
   };
 
-  const refs = useMergedRefs(rowRef, mergedProps.ref);
+  const refs = useMergedRefs(intersectionRef, mergedProps.ref);
 
   return (
     <>
@@ -155,6 +170,7 @@ export const TableRowMemoized = React.memo(
     prevProp.rowProps === nextProp.rowProps &&
     prevProp.expanderCell === nextProp.expanderCell &&
     prevProp.tableHasSubRows === nextProp.tableHasSubRows &&
+    prevProp.bodyRef === nextProp.bodyRef &&
     prevProp.state.columnOrder === nextProp.state.columnOrder &&
     !nextProp.state.columnResizing.isResizingColumn &&
     prevProp.state.isTableResizing === nextProp.state.isTableResizing &&
