@@ -5,7 +5,6 @@
 @mixin iui-tabs {
   @include iui-reset;
   position: relative;
-  align-items: center;
   list-style: none;
   user-select: none;
 
@@ -16,10 +15,10 @@
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
+    min-height: $iui-component-height;
+    height: 100%;
     cursor: pointer;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: background-color $iui-speed-fast ease-out;
-    }
+    transition: background-color $iui-speed-fast ease-out;
     @include themed {
       color: t(iui-text-color);
     }
@@ -61,9 +60,8 @@
   .iui-tab-icon {
     width: $iui-icons-default;
     height: $iui-icons-default;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: fill $iui-speed-fast ease-out;
-    }
+    flex-shrink: 0;
+    transition: fill $iui-speed-fast ease-out;
     @include themed {
       fill: t(iui-icons-color-actionable);
     }
@@ -71,10 +69,6 @@
     + .iui-tab-label {
       margin-left: $iui-s;
     }
-  }
-
-  .iui-tab-label {
-    text-align: left;
   }
 
   .iui-tab-description {
@@ -110,6 +104,15 @@
   }
 }
 
+@mixin iui-tab-label {
+  text-align: left;
+  max-width: 60ch;
+
+  > * {
+    @include iui-line-clamp(3);
+  }
+}
+
 @mixin iui-tabs-horizontal {
   flex-direction: column;
 
@@ -131,8 +134,6 @@
 
 @mixin iui-tabs-vertical {
   .iui-tabs {
-    flex-direction: column;
-
     li,
     .iui-tab {
       width: 100%;
