@@ -33,10 +33,7 @@ $iui-button-padding-large: $iui-xs * 6;
   padding-right: var(--_iui-button-padding-x);
   transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
   -webkit-tap-highlight-color: transparent;
-
-  @at-root a#{&} {
-    text-decoration: none;
-  }
+  text-decoration: none;
 
   // #region Sizing
   @include iui-button-size;
