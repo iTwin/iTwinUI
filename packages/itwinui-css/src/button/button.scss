@@ -65,7 +65,7 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 }
 
-@mixin iui-button-label {
+@mixin iui-button-text {
   white-space: nowrap;
   color: inherit;
 }
