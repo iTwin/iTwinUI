@@ -80,9 +80,9 @@ $iui-button-padding-large: $iui-xs * 6;
   transition: fill $iui-speed-fast ease-out;
   fill: currentColor;
 
-  @at-root [data-iui-button-variant='borderless'] &:only-child {
-    margin-left: $iui-component-offset;
-    margin-right: $iui-component-offset;
+  &:only-child {
+    margin-left: var(--_iui-button-icon-margin-x);
+    margin-right: var(--_iui-button-icon-margin-x);
   }
 }
 
