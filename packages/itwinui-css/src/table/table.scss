@@ -39,12 +39,6 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   min-width: 100%;
   flex-shrink: 0;
 
-  .iui-row {
-    display: flex;
-    flex-grow: 1;
-    min-width: 100%;
-  }
-
   .iui-cell {
     min-height: $iui-baseline * 5;
     background-color: var(--iui-color-background-3);
@@ -151,42 +145,14 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   }
 }
 
-@mixin iui-table-header-actions-container {
+@mixin iui-row {
+  min-width: 100%;
   display: flex;
-  flex-grow: 1;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  margin-right: $iui-sm;
 
-  .iui-cell-end-icon {
-    // Hardcoded size of the borderless button so that the icons are centered
-    width: 28px;
-    height: 28px;
-    margin-right: initial;
-    margin-left: auto;
+  @at-root .iui-table-header & {
+    flex-grow: 1;
   }
-}
-
-@mixin iui-table-body {
-  overflow-y: scroll;
-  overflow: overlay;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  // Allows columns with static width to take more space than the table width
-  align-items: flex-start;
-  @include iui-scroll-snapping('.iui-row');
-  background-color: var(--iui-color-background-1);
-
-  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) .iui-cell {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), 0.02);
-  }
-
-  .iui-row {
-    min-width: 100%;
-    display: flex;
-
+  @at-root .iui-table-body & {
     .iui-cell {
       border-top: solid 1px transparent;
       border-bottom: solid 1px transparent;
@@ -332,6 +298,39 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
       @include iui-table-row-status($status: negative);
     }
     // #endregion Statuses & states
+  }
+}
+
+@mixin iui-table-header-actions-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: $iui-sm;
+
+  .iui-cell-end-icon {
+    // Hardcoded size of the borderless button so that the icons are centered
+    width: 28px;
+    height: 28px;
+    margin-right: initial;
+    margin-left: auto;
+  }
+}
+
+@mixin iui-table-body {
+  overflow-y: scroll;
+  overflow: overlay;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  // Allows columns with static width to take more space than the table width
+  align-items: flex-start;
+  @include iui-scroll-snapping('.iui-row');
+  background-color: var(--iui-color-background-1);
+
+  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) .iui-cell {
+    background-color: rgba(var(--iui-color-foreground-body-rgb), 0.02);
   }
 
   // Empty & loading states

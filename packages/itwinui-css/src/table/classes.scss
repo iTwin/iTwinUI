@@ -20,6 +20,10 @@
   @include iui-table-header;
 }
 
+.iui-row {
+  @include iui-row;
+}
+
 .iui-table-header-actions-container {
   @include iui-table-header-actions-container;
 }
