@@ -3,15 +3,15 @@
 @import '../style/index';
 @import './button';
 
-@mixin iui-button-status-color($button-color) {
+@mixin iui-button-variant($variant) {
   --_iui-button-text-color: var(--iui-color-foreground-accessory);
-  --_iui-button-background-color: var(--iui-color-background-#{$button-color});
+  --_iui-button-background-color: var(--iui-color-background-#{$variant});
   --_iui-button-border-color: var(--_iui-button-background-color);
 
   @include iui-focus($color: var(--_iui-button-text-color), $offset: -3px, $thickness: 1px);
 
   &:hover,
   &:active {
-    --_iui-button-background-color: var(--iui-color-background-#{$button-color}-overlay);
+    --_iui-button-background-color: var(--iui-color-background-#{$variant}-overlay);
   }
 }

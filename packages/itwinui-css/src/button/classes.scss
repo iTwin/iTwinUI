@@ -24,11 +24,11 @@
 }
 
 [data-iui-button-variant='high-visibility'] {
-  @include iui-button-status-color(primary);
+  @include iui-button-variant(primary);
 }
 
 [data-iui-button-variant='cta'] {
-  @include iui-button-status-color(positive);
+  @include iui-button-variant(positive);
 }
 
 [data-iui-button-variant='idea'] {
