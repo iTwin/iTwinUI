@@ -27,6 +27,10 @@ $iui-button-padding-large: $iui-xs * 6;
   border: 1px solid var(--_iui-button-border-color);
   background-color: var(--_iui-button-background-color);
   color: var(--_iui-button-text-color);
+  gap: var(--_iui-button-gap);
+  height: var(--_iui-button-height);
+  padding-left: var(--_iui-button-padding-x);
+  padding-right: var(--_iui-button-padding-x);
   transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
   -webkit-tap-highlight-color: transparent;
 
@@ -119,21 +123,34 @@ $iui-button-padding-large: $iui-xs * 6;
 /// @arg styleType - must be one of: default, borderless
 @mixin iui-button-size($size: medium, $styleType: default) {
   @if $size == medium {
-    padding: if($styleType == 'borderless', 0 $iui-s, 0 $iui-button-padding);
-    height: $iui-component-height;
-    gap: $iui-s;
+    --_iui-button-gap: #{$iui-s};
+    --_iui-button-height: #{$iui-component-height};
+    --_iui-button-padding-x: #{$iui-button-padding};
+
+    @if $styleType == borderless {
+      --_iui-button-padding-x: #{$iui-s};
+    }
   }
 
   @if $size == small {
-    padding: if($styleType == 'borderless', 0 $iui-xxs, 0 $iui-button-padding-small);
-    height: $iui-component-height-small;
-    gap: $iui-xs;
+    --_iui-button-gap: #{$iui-xs};
+    --_iui-button-height: #{$iui-component-height-small};
+    --_iui-button-padding-x: #{$iui-button-padding-small};
+
+    @if $styleType == borderless {
+      --_iui-button-padding-x: #{$iui-xxs};
+    }
   }
 
   @if $size == large {
-    padding: if($styleType == 'borderless', 0 $iui-sm, 0 $iui-button-padding-large);
-    height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
-    gap: $iui-sm;
+
+    --_iui-button-gap: #{$iui-sm};
+    --_iui-button-height: #{$iui-component-height-large};
+    --_iui-button-padding-x: #{$iui-button-padding-large};
+
+    @if $styleType == borderless {
+      --_iui-button-padding-x: #{$iui-sm};
+    }
   }
 }
