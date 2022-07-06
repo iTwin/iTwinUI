@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:math';
 
-@mixin sizes {
+@mixin spacing {
   --iui-size-3xs: #{math.div(2, 16)}rem;
   --iui-size-2xs: #{math.div(4, 16)}rem;
   --iui-size-xs: #{math.div(8, 16)}rem;

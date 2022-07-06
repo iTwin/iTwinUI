@@ -1,13 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use './themes/index' as themes;
-@use './space' as *;
+@use './sizes' as *;
 @use './typography' as *;
 @use './shadows' as *;
 @use './colors';
 
 @mixin common {
-  @include sizes;
+  @include spacing;
   @include border-radii;
   @include typography;
   @include shadows;
