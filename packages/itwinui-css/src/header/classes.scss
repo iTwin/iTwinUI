@@ -58,6 +58,10 @@
   @include iui-header-breadcrumb-button-split;
 }
 
+.iui-header-breadcrumbs-item {
+  @include iui-header-breadcrumbs-item;
+}
+
 .iui-header-breadcrumb-button-wrapper {
   @include iui-header-breadcrumb-button-wrapper;
 }
