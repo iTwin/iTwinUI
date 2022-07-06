@@ -8,7 +8,6 @@
   --_iui-button-text-color: var(--iui-text-color);
   --_iui-button-background-color: var(--iui-color-background-1);
   --_iui-button-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  --_iui-notification-marker-border-color: var(--_iui-button-background-color);
 
   @include iui-focus($offset: -2px, $thickness: 2px);
 
@@ -17,6 +16,7 @@
     --_iui-button-text-color: var(--iui-color-foreground-body);
     --_iui-button-background-color: var(--iui-color-background-1-overlay);
     --_iui-button-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
+    @include iui-notification-marker-hover;
   }
 
   &.iui-active {
