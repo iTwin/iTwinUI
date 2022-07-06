@@ -55,7 +55,6 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
       @include iui-icons-default;
       @include iui-icons-color;
       margin: 0 $iui-expander-inline-padding;
-      flex-shrink: 0;
 
       &:first-child {
         margin-left: $iui-expander-button-width + $iui-expander-inline-padding;

@@ -50,7 +50,6 @@
     .iui-chevron {
       @include iui-icons-small;
       @include iui-icons-color;
-      flex-shrink: 0;
       margin: 0 $iui-xs;
     }
   }

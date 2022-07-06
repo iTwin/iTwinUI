@@ -28,7 +28,6 @@
 
 @mixin iui-alert-icon {
   @include iui-icons-default;
-  flex-shrink: 0;
   margin-left: $iui-m;
 }
 

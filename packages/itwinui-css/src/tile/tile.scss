@@ -107,7 +107,6 @@
     @include iui-icons-default;
     @include iui-icons-color-status;
     margin-right: $iui-s;
-    flex-shrink: 0;
   }
 
   .iui-tile-name-label {
@@ -142,7 +141,6 @@
       @include iui-icons-default;
       @include iui-icons-color;
       margin-right: $iui-s;
-      flex-shrink: 0;
     }
 
     > * {
