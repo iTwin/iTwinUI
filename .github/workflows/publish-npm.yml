@@ -37,6 +37,6 @@ jobs:
       - run: yarn build
 
       - run: npm publish --access public
-        working-directory: "./packages/${{ env.INPUT_PACKAGE }}/"
+        working-directory: './packages/${{ env.INPUT_PACKAGE }}/'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
