@@ -18,10 +18,14 @@ const makeDir = (path) => {
 };
 
 const writeFile = (obj) => {
-  fs.writeFile(obj.path, obj.template, (error) => {
-    if (error) throw new Error(error.message);
-    console.log('Successfully wrote', obj.path);
-  });
+  if (!fs.existsSync(obj.path)) {
+    fs.writeFile(obj.path, obj.template, (error) => {
+      if (error) {
+        throw new Error(error.message);
+      }
+      console.log('Successfully wrote', obj.path);
+    });
+  }
 };
 
 const appendFile = (obj) => {
@@ -38,7 +42,9 @@ const appendFile = (obj) => {
     }
 
     fs.appendFile(obj.path, obj.template, (error) => {
-      if (error) throw new Error(error.message);
+      if (error) {
+        throw new Error(error.message);
+      }
       console.log('Successfully appended', obj.path);
     });
   } else {
@@ -81,7 +87,7 @@ const storiesFactory = (directory, name) => {
     template: `${copyrightHeader}
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { ${name}, ${name}Props } from '../../src/core';
+import { ${name}, ${name}Props } from '@itwin/itwinui-react';
 
 export default {
   component: ${name},
@@ -95,6 +101,26 @@ export default {
 export const Basic: Story<${name}Props> = (args) => {
   return <${name} {...args} />;
 };
+`,
+  };
+};
+
+const storyTestsFactory = (directory, name) => {
+  return {
+    path: `${directory}/${name}.test.ts`,
+    template: `${copyrightHeader}
+describe('${name}', () => {
+  const storyPath = 'Core/${name}';
+  const tests = ['Basic'];
+
+  tests.forEach((testName) => {
+    it(testName, function () {
+      const id = Cypress.storyId(storyPath, testName);
+      cy.visit('iframe', { qs: { id } });
+      cy.compareSnapshot(testName);
+    });
+  });
+});    
 `,
   };
 };
@@ -153,11 +179,20 @@ inquirer
     },
   ])
   .then(({ component }) => {
-    console.log();
-    let directory = 'src/core';
+    const currentDirectory = process.cwd();
+    const isInPackage = currentDirectory.includes('packages');
+
+    let directory = '';
+    let storyDirectory = '';
     let levels = [];
 
-    directory += `/${component}`;
+    if (isInPackage) {
+      directory = `src/core/${component}`;
+      storyDirectory = '../../apps/storybook/src';
+    } else {
+      directory = `packages/iTwinUI-react/src/core/${component}`;
+      storyDirectory = 'apps/storybook/src';
+    }
     levels.push(directory);
 
     let componentOut = componentFactory(directory, component);
@@ -175,5 +210,6 @@ inquirer
     writeFile(componentTest);
     writeFile(componentIndex);
 
-    writeFile(storiesFactory('stories/core', component));
+    writeFile(storiesFactory(storyDirectory, component));
+    writeFile(storyTestsFactory(storyDirectory, component));
   });

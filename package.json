@@ -13,7 +13,8 @@
     "lint:copyright": "node packages/configs/copyrightLinter.js",
     "prepare": "husky install",
     "format": "turbo run format",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "createComponent": "node scripts/createComponent.js"
   },
   "dependencies": {},
   "devDependencies": {
@@ -21,7 +22,8 @@
     "husky": "8",
     "lint-staged": "12",
     "rimraf": "^3.0.2",
-    "turbo": "~1.2.4"
+    "turbo": "~1.2.4",
+    "configs": "*"
   },
   "resolutions": {
     "trim": "^0.0.3",
@@ -43,5 +45,6 @@
     "npm": ">=7.0.0",
     "node": ">=16.0.0"
   },
-  "packageManager": "yarn@1.22.18"
+  "packageManager": "yarn@1.22.18",
+  "prettier": "configs/prettier-config"
 }
