@@ -5,8 +5,7 @@
 
 /// Mixin for button icons
 @mixin iui-button-icon {
-  width: $iui-icons-default;
-  height: $iui-icons-default;
+  @include iui-icons-default;
   transition: fill $iui-speed-fast ease-out;
   fill: currentColor;
 }

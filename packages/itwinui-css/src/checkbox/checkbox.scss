@@ -27,8 +27,7 @@
       align-items: center;
 
       svg {
-        width: $iui-icons-default;
-        height: $iui-icons-default;
+        @include iui-icons-default;
         vertical-align: middle;
         fill: currentColor;
       }
@@ -67,8 +66,7 @@
 
   appearance: none; // disable default browser styles
   margin: 0;
-  width: $iui-icons-default;
-  height: $iui-icons-default;
+  @include iui-icons-default;
   position: relative;
   border-radius: $iui-border-radius;
   background-color: var(--_iui-checkbox-background-color);

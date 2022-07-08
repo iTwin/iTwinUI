@@ -106,10 +106,9 @@
   margin: 0 $iui-xxs;
 
   svg {
-    width: $iui-icons-small;
-    height: $iui-icons-small;
+    @include iui-icons-small;
+    @include iui-icons-color;
     display: flex; // needed for vertical alignment of webcomponents
-    fill: var(--iui-icons-color);
     @media (forced-colors: active) {
       fill: CanvasText;
     }

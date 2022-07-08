@@ -19,6 +19,7 @@ $tick-height: $iui-baseline; // 11px
     svg {
       @include iui-icons-default;
       @include iui-icons-color;
+      @include iui-icons-display;
       margin-top: $iui-xs;
     }
   }

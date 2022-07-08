@@ -5,9 +5,8 @@
 
 @mixin iui-location-marker-me {
   @include iui-location-marker;
+  @include iui-icons-large;
   position: relative;
-  width: $iui-icons-large;
-  height: $iui-icons-large;
   border-radius: 50%;
   cursor: default;
   background: radial-gradient(

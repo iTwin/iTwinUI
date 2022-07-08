@@ -26,6 +26,10 @@
   @include iui-icons-3xl;
 }
 
+.iui-icons-display {
+  @include iui-icons-display;
+}
+
 .iui-icons-color {
   @include iui-icons-color;
 }

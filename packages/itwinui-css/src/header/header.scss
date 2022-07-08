@@ -50,6 +50,7 @@
     .iui-chevron {
       @include iui-icons-small;
       @include iui-icons-color;
+      @include iui-icons-display;
       margin: 0 $iui-xs;
     }
   }
@@ -97,10 +98,9 @@
       }
 
       .iui-header-button-icon {
-        width: $iui-icons-default;
-        height: $iui-icons-default;
+        @include iui-icons-default;
+        @include iui-icons-display;
         margin: 0 $iui-xs;
-        display: inline-flex;
       }
     }
 
@@ -261,11 +261,11 @@
   }
 
   .iui-header-button-icon {
+    @include iui-icons-color;
     box-sizing: content-box;
     padding: $iui-xs;
     @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
     background-color: var(--iui-color-background-3);
-    fill: var(--iui-icons-color);
   }
 
   &.iui-active {
@@ -283,8 +283,7 @@
       > .iui-left {
         .iui-button {
           .iui-header-button-icon.iui-header-button-icon {
-            width: $iui-icons-small;
-            height: $iui-icons-small;
+            @include iui-icons-small;
             padding: $iui-xxs;
           }
         }

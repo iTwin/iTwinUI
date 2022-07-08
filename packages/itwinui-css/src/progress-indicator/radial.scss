@@ -40,9 +40,8 @@
 
     svg,
     img {
+      @include iui-icons-default;
       display: flex;
-      width: $iui-icons-default;
-      height: $iui-icons-default;
       fill: var(--iui-icons-color-actionable);
 
       &:hover {
@@ -98,8 +97,7 @@
 
       svg,
       img {
-        width: $iui-icons-large;
-        height: $iui-icons-large;
+        @include iui-icons-large;
       }
     }
   }

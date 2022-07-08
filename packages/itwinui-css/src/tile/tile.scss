@@ -106,6 +106,7 @@
   .iui-tile-status-icon {
     @include iui-icons-default;
     @include iui-icons-color-status;
+    @include iui-icons-display;
     margin-right: $iui-s;
   }
 
@@ -140,6 +141,7 @@
     .iui-tile-metadata-icon {
       @include iui-icons-default;
       @include iui-icons-color;
+      @include iui-icons-display;
       margin-right: $iui-s;
     }
 
@@ -167,6 +169,7 @@
   .iui-thumbnail-icon {
     @include iui-icons-3xl;
     @include iui-icons-color;
+    @include iui-icons-display;
   }
 }
 

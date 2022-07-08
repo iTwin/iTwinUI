@@ -28,6 +28,7 @@
 
 @mixin iui-alert-icon {
   @include iui-icons-default;
+  @include iui-icons-display;
   margin-left: $iui-m;
 }
 

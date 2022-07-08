@@ -128,8 +128,8 @@
 
   // Sort icon
   .iui-sort {
+    @include iui-icons-color;
     visibility: hidden;
-    fill: var(--iui-icons-color);
   }
 
   // Sorted column
@@ -441,9 +441,8 @@
     justify-content: center;
 
     svg:not(.iui-radial) {
+      @include iui-icons-default;
       display: flex; // needed for vertical alignment of webcomponents
-      width: $iui-icons-default;
-      height: $iui-icons-default;
     }
   }
 

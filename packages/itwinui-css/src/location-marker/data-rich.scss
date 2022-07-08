@@ -35,9 +35,8 @@
     }
 
     > .iui-location-marker-data-rich-icon {
+      @include iui-icons-default;
       display: inline-block;
-      width: $iui-icons-default;
-      height: $iui-icons-default;
       font-size: inherit;
       vertical-align: -2px;
 
