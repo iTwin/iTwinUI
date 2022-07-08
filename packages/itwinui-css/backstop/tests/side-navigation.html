@@ -118,9 +118,10 @@
         >
           <div class="iui-top">
             <button
-              class="iui-button iui-sidenav-button iui-active"
+              class="iui-button iui-sidenav-button"
               data-iui-button-variant="default"
               data-iui-button-size="large"
+              data-iui-button-active="true"
               role="tab"
               aria-selected="true"
               aria-label="Home"
@@ -256,9 +257,10 @@
           >
             <div class="iui-top">
               <button
-                class="iui-button iui-sidenav-button iui-active"
+                class="iui-button iui-sidenav-button"
                 data-iui-button-variant="default"
                 data-iui-button-size="large"
+                data-iui-button-active="true"
                 role="tab"
                 aria-selected="false"
                 aria-label="Home"
@@ -527,9 +529,9 @@
     <script>
       function toggleActiveState(el) {
         el.parentElement.parentElement.querySelectorAll('.iui-sidenav-button').forEach(button => {
-          button.classList.remove('iui-active');
+          button.removeAttribute('data-iui-button-active');
         });
-        el.classList.add('iui-active');
+        el.setAttribute('data-iui-button-active', 'true');
       }
     </script>
 

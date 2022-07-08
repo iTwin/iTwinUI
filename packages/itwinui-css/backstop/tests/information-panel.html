@@ -260,8 +260,9 @@
           <div>
             <button
               title="List view"
-              class="iui-button iui-active"
+              class="iui-button"
               data-iui-button-variant="default"
+              data-iui-button-active="true"
             >
               <svg-list
                 class="iui-button-icon"
@@ -1194,8 +1195,9 @@
 
             <div class="iui-information-header-actions">
               <button
-                class="iui-button iui-active"
+                class="iui-button"
                 data-iui-button-variant="borderless"
+                data-iui-button-active="true"
               >
                 <svg-edit
                   class="iui-button-icon"
@@ -1518,7 +1520,11 @@
     <!-- Show / hide the info panel -->
     <script>
       function openInfoPanel(button) {
-        button.classList.toggle('iui-active');
+        if (button.getAttribute('data-iui-button-active')) {
+          button.removeAttribute('data-iui-button-active');
+        } else {
+          button.setAttribute('data-iui-button-active', 'true');
+        }
         document.getElementById('myOpeningInfoPanel').classList.toggle('iui-visible');
       }
     </script>

@@ -13,10 +13,18 @@
 // #region Button variants
 [data-iui-button-variant='default'] {
   @include iui-button-default;
+
+  &[data-iui-button-active='true'] {
+    @include iui-button-default-active;
+  }
 }
 
 [data-iui-button-variant='borderless'] {
   @include iui-button-borderless;
+
+  &[data-iui-button-active='true'] {
+    @include iui-button-borderless-active;
+  }
 }
 
 [data-iui-button-variant='high-visibility'] {

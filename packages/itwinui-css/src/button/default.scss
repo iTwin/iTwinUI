@@ -18,23 +18,21 @@
     --_iui-button-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
     @include iui-notification-marker-hover;
   }
+}
 
-  &.iui-active {
-    @include iui-button-active;
-    // Background will be use a CSS variable after #675 passes.
-    background: linear-gradient(
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-    ),
-      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+@mixin iui-button-default-active {
+  @include iui-button-active;
+  // Background will be use a CSS variable after #675 passes.
+  background: linear-gradient(
+    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+  ),
+    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
 
-    &[disabled],
-    &:disabled,
-    &[aria-disabled='true'] {
-      --_iui-button-text-color: var(--iui-text-color-placeholder);
-
-      // This will be cleaned up once line 25 is using a CSS variable.
-      background: var(--iui-color-background-disabled);
-    }
+  &[disabled],
+  &:disabled,
+  &[aria-disabled='true'] {
+    // This will be cleaned up once line 25 is using a CSS variable.
+    background: var(--iui-color-background-disabled);
   }
 }

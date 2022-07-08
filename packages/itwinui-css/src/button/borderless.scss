@@ -29,11 +29,6 @@
     --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
   }
 
-  &.iui-active {
-    @include iui-button-active;
-    --_iui-button-background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-  }
-
   &[disabled],
   &:disabled,
   &[aria-disabled='true'] {
@@ -44,9 +39,16 @@
       --_iui-button-background-color: transparent;
       --_iui-button-border-color: transparent;
     }
+  }
+}
 
-    &.iui-active {
-      --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
-    }
+@mixin iui-button-borderless-active {
+  @include iui-button-active;
+  --_iui-button-background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+
+  &[disabled],
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
   }
 }
