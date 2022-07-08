@@ -3,8 +3,8 @@
 @import '../style/index';
 @import '../button/index';
 @import '../surface/index';
-@import '../utils/mixins';
-@import '../utils/icon/index';
+@import '../utils/index';
+@import '../icon/index';
 
 @mixin iui-tile {
   @include iui-reset;

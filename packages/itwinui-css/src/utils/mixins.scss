@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/color';
+@import '../style/speed';
 
 @mixin focus-visible {
   &:focus-visible {
@@ -151,5 +152,20 @@
     #{$selector} {
       scroll-snap-align: start none;
     }
+  }
+}
+
+@mixin iui-ripple($hoverColor, $rippleColor) {
+  background-position: center;
+  transition: background $iui-speed ease-out;
+
+  &:hover {
+    background: $hoverColor radial-gradient(circle, transparent 1%, #{$hoverColor} 1%) center/15000%;
+  }
+
+  &:active {
+    background-color: $rippleColor;
+    background-size: 100%;
+    transition: background $iui-speed-instant;
   }
 }
