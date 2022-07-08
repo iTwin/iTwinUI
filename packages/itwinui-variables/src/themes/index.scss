@@ -1,0 +1,6 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@forward './light' as light-*;
+@forward './dark' as dark-*;
+@forward './light-hc' as light-hc-*;
+@forward './dark-hc' as dark-hc-*;

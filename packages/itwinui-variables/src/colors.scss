@@ -1,0 +1,52 @@
+// Copyright (c) Bentley Systems Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use './utils/hex' as *;
+
+/// Soft backgrounds used for highlighting something: e.g. avatar, badge, etc.
+/// Currently these stay the same between themes.
+@mixin soft-backgrounds {
+  --iui-color-background-skyblue: #{hex(hsl(197 71% 83%))};
+  --iui-color-background-celery: #{hex(hsl(72 51% 66%))};
+  --iui-color-background-froly: #{hex(hsl(2 90% 83%))};
+  --iui-color-background-steelblue: #{hex(hsl(207 44% 73%))};
+  --iui-color-background-sunglow: #{hex(hsl(42 100% 70%))};
+  --iui-color-background-seabuckthorn: #{hex(hsl(29 92% 71%))};
+  --iui-color-background-montecarlo: #{hex(hsl(176 43% 72%))};
+  --iui-color-background-poloblue: #{hex(hsl(211 44% 77%))};
+  --iui-color-background-bouquet: #{hex(hsl(305 19% 75%))};
+  --iui-color-background-ash: #{hex(hsl(42 15% 85%))};
+  --iui-color-background-oak: #{hex(hsl(27 32% 72%))};
+}
+
+/// Colors that don't change between light and dark themes
+/// but do change between default and high contrast.
+/// @arg $contrast - default or high
+@mixin unthemed($contrast: default) {
+  --iui-color-foreground-accessory: #{hex(hsl(0 0% 100%))};
+
+  $background-statuses: null;
+
+  @if $contrast == default {
+    $background-statuses: (
+      background-primary: hsl(203 100% 44%),
+      background-positive: hsl(95 72% 37%),
+      background-warning: hsl(33 89% 51%),
+      background-negative: hsl(0 91% 43%),
+      background-primary-hover: hsl(203 100% 34%),
+      background-positive-hover: hsl(95 72% 27%),
+    );
+  } @else {
+    $background-statuses: (
+      background-primary: hsl(200 100% 26%),
+      background-positive: hsl(140 100% 19%),
+      background-warning: hsl(45 100% 22%),
+      background-negative: hsl(0 100% 31%),
+      background-primary-hover: hsl(203 100% 34%),
+      background-positive-hover: hsl(95 72% 27%),
+    );
+  }
+
+  @each $color, $value in $background-statuses {
+    --iui-color-#{$color}: #{hex($value)};
+  }
+}
