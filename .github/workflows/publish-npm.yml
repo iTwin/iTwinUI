@@ -4,14 +4,16 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: "Which package to publish? e.g. itwinui-css or itwinui-variables"
+        description: "Which package to publish?"
         required: true
-        type: string
+        type: choice
         default: itwinui-css
+        options:
+          - itwinui-css
+          - itwinui-variables
   workflow_call:
     inputs:
       package:
-        description: "Which package to publish? e.g. itwinui-css or itwinui-variables"
         required: true
         type: string
         default: itwinui-css
@@ -37,6 +39,6 @@ jobs:
       - run: yarn build
 
       - run: npm publish --access public
-        working-directory: './packages/${{ env.INPUT_PACKAGE }}/'
+        working-directory: './packages/${{ github.event.inputs.package }}/'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
