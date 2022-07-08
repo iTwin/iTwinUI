@@ -1,13 +1,20 @@
 name: Publish to npm
-inputs:
-  package:
-    description: 'Which package to publish? e.g. itwinui-css or itwinui-variables'
-    required: true
-    default: itwinui-css
 
 on:
   workflow_dispatch:
+    inputs:
+      package:
+        description: "Which package to publish? e.g. itwinui-css or itwinui-variables"
+        required: true
+        type: string
+        default: itwinui-css
   workflow_call:
+    inputs:
+      package:
+        description: "Which package to publish? e.g. itwinui-css or itwinui-variables"
+        required: true
+        type: string
+        default: itwinui-css
     secrets:
       NPMJS_PUBLISH_ITWIN:
         required: true
@@ -30,6 +37,6 @@ jobs:
       - run: yarn build
 
       - run: npm publish --access public
-        working-directory: './packages/${{ env.INPUT_PACKAGE }}/'
+        working-directory: "./packages/${{ env.INPUT_PACKAGE }}/"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
