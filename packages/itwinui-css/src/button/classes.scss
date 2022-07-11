@@ -28,11 +28,11 @@
 }
 
 [data-iui-button-variant='high-visibility'] {
-  @include iui-button-variant(primary);
+  @include iui-button-variant(high-visibility);
 }
 
 [data-iui-button-variant='cta'] {
-  @include iui-button-variant(positive);
+  @include iui-button-variant(cta);
 }
 
 [data-iui-button-variant='idea'] {

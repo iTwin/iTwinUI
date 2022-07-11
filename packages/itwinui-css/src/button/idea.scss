@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @mixin iui-button-idea {
-  @include iui-button-variant(primary);
+  @include iui-button-variant(high-visibility);
   border-radius: $iui-border-radius-round;
   box-shadow: $iui-elevation-24;
   position: fixed;

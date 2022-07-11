@@ -1,17 +1,28 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import './button';
 
+/// @arg $variant Can be one of: cta, high-visibility
 @mixin iui-button-variant($variant) {
-  --_iui-button-text-color: var(--iui-color-foreground-accessory);
-  --_iui-button-background-color: var(--iui-color-background-#{$variant});
-  --_iui-button-border-color: var(--_iui-button-background-color);
+  @if $variant == cta {
+    --_iui-button-background-color: var(--iui-color-background-positive);
 
-  @include iui-focus($color: var(--_iui-button-text-color), $offset: -3px, $thickness: 1px);
-
-  &:hover,
-  &:active {
-    --_iui-button-background-color: var(--iui-color-background-#{$variant}-overlay);
+    &:hover,
+    &:active {
+      --_iui-button-background-color: var(--iui-color-background-positive-overlay);
+    }
   }
+
+  @if $variant == high-visibility {
+    --_iui-button-background-color: var(--iui-color-background-primary);
+
+    &:hover,
+    &:active {
+      --_iui-button-background-color: var(--iui-color-background-primary-overlay);
+    }
+  }
+
+  --_iui-button-text-color: var(--iui-color-foreground-accessory);
+  --_iui-button-border-color: var(--_iui-button-background-color);
+  @include iui-focus($color: var(--_iui-button-text-color), $offset: -3px, $thickness: 1px);
 }
