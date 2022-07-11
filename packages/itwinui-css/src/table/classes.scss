@@ -20,8 +20,8 @@
   @include iui-table-header;
 }
 
-.iui-row {
-  @include iui-row;
+.iui-table-row {
+  @include iui-table-row;
 }
 
 .iui-table-header-actions-container {
@@ -32,15 +32,15 @@
   @include iui-table-body;
 }
 
-.iui-cell {
+.iui-table-cell {
   @include iui-table-cell;
 }
 
-.iui-cell-shadow-left {
+.iui-table-cell-shadow-left {
   @include iui-table-cell-shadow-left;
 }
 
-.iui-cell-shadow-right {
+.iui-table-cell-shadow-right {
   @include iui-table-cell-shadow-right;
 }
 

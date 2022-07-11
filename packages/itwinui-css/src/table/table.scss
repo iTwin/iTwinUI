@@ -39,12 +39,12 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   min-width: 100%;
   flex-shrink: 0;
 
-  .iui-cell {
+  .iui-table-cell {
     min-height: $iui-baseline * 5;
     background-color: var(--iui-color-background-3);
   }
 
-  .iui-cell:not(.iui-slot) {
+  .iui-table-cell:not(.iui-slot) {
     @include iui-focus;
     column-gap: $iui-xs;
     padding-block: $iui-baseline * 0.5;
@@ -145,7 +145,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   }
 }
 
-@mixin iui-row {
+@mixin iui-table-row {
   min-width: 100%;
   display: flex;
 
@@ -153,7 +153,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
     flex-grow: 1;
   }
   @at-root .iui-table-body & {
-    .iui-cell {
+    .iui-table-cell {
       border-top: solid 1px transparent;
       border-bottom: solid 1px transparent;
       border-bottom-color: var(--iui-color-background-border);
@@ -166,7 +166,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
     }
 
     &:hover:not(.iui-disabled) {
-      .iui-cell {
+      .iui-table-cell {
         background: linear-gradient(
           rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
           rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
@@ -183,22 +183,22 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
       visibility: visible;
     }
 
-    .iui-row-expander > .iui-button-icon {
+    .iui-table-row-expander > .iui-button-icon {
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
     }
 
-    &.iui-row-expanded {
+    &.iui-table-row-expanded {
       overflow: hidden;
 
-      .iui-cell {
+      .iui-table-cell {
         border-left-color: var(--iui-color-background-4);
         border-right-color: var(--iui-color-background-4);
         border-bottom-color: transparent;
       }
 
-      .iui-row-expander > .iui-button-icon {
+      .iui-table-row-expander > .iui-button-icon {
         transform: rotate(90deg);
       }
 
@@ -217,13 +217,13 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
     }
 
     // #region Selection
-    &:not(.iui-selected) + .iui-selected .iui-cell,
-    &.iui-selected:first-child .iui-cell {
+    &:not(.iui-selected) + .iui-selected .iui-table-cell,
+    &.iui-selected:first-child .iui-table-cell {
       border-bottom-color: transparent;
     }
 
     &.iui-selected {
-      .iui-cell {
+      .iui-table-cell {
         border-color: var(--iui-color-foreground-primary);
         background: linear-gradient(
           rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
@@ -232,17 +232,17 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
           linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
       }
 
-      + .iui-selected .iui-cell {
+      + .iui-selected .iui-table-cell {
         border-bottom-color: transparent;
         border-top-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
       }
 
-      &:last-child .iui-cell {
+      &:last-child .iui-table-cell {
         border-bottom-color: var(--iui-color-foreground-primary);
       }
 
-      + :not(.iui-selected) .iui-cell,
-      + .iui-expanded-content + .iui-row:not(.iui-selected) .iui-cell {
+      + :not(.iui-selected) .iui-table-cell,
+      + .iui-expanded-content + .iui-table-row:not(.iui-selected) .iui-table-cell {
         border-top-color: var(--iui-color-foreground-primary);
       }
 
@@ -269,7 +269,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
       }
     }
 
-    .iui-cell.iui-disabled,
+    .iui-table-cell.iui-disabled,
     &.iui-expanded-content.iui-disabled {
       font-style: italic;
       cursor: not-allowed;
@@ -309,7 +309,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   justify-content: flex-end;
   margin-right: $iui-sm;
 
-  .iui-cell-end-icon {
+  .iui-table-cell-end-icon {
     // Hardcoded size of the borderless button so that the icons are centered
     width: 28px;
     height: 28px;
@@ -326,10 +326,10 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   flex-grow: 1;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
-  @include iui-scroll-snapping('.iui-row');
+  @include iui-scroll-snapping('.iui-table-row');
   background-color: var(--iui-color-background-1);
 
-  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) .iui-cell {
+  &.iui-zebra-striping .iui-table-row:nth-child(even):not(.iui-selected) .iui-table-cell {
     background-color: rgba(var(--iui-color-foreground-body-rgb), 0.02);
   }
 
@@ -378,7 +378,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
     flex-basis: $iui-l * 2;
   }
 
-  &.iui-cell-sticky {
+  &.iui-table-cell-sticky {
     position: sticky;
     z-index: 1;
     left: var(--iui-table-sticky-left, initial);
@@ -416,14 +416,14 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
 }
 
 @mixin iui-table-row-status($status) {
-  .iui-cell:first-of-type,
+  .iui-table-cell:first-of-type,
   + .iui-expanded-content {
     box-shadow: inset $iui-xxs 0 0 0 var(--iui-icons-color-#{$status});
 
     @include iui-text-selection($status);
   }
 
-  .iui-cell-end-icon svg {
+  .iui-table-cell-end-icon svg {
     fill: var(--iui-icons-color-#{$status});
   }
 }
@@ -438,8 +438,8 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
 }
 
 @mixin iui-table-cell-icon {
-  .iui-cell-end-icon,
-  .iui-cell-start-icon {
+  .iui-table-cell-end-icon,
+  .iui-table-cell-start-icon {
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -452,11 +452,11 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
     }
   }
 
-  .iui-cell-start-icon {
+  .iui-table-cell-start-icon {
     margin-right: $iui-s;
   }
 
-  .iui-cell-end-icon {
+  .iui-table-cell-end-icon {
     width: $iui-l;
     height: $iui-l;
     margin-right: $iui-sm;
