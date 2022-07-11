@@ -1775,6 +1775,12 @@ it('should edit cell data', async () => {
   });
   fireEvent.blur(editableCells[1]);
   expect(onCellEdit).toHaveBeenCalledWith('name', 'test data', mockedData()[1]);
+
+  fireEvent.input(editableCells[2], {
+    target: { innerText: '' },
+  });
+  fireEvent.blur(editableCells[2]);
+  expect(onCellEdit).toHaveBeenCalledWith('name', '', mockedData()[2]);
 });
 
 it('should handle unwanted actions on editable cell', async () => {
