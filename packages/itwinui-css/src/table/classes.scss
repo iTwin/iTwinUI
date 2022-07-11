@@ -4,12 +4,7 @@
 
 .iui-table {
   @include iui-table;
-
-  @each $condensedSize in condensed, extra-condensed {
-    &.iui-#{$condensedSize} {
-      @include iui-table-condensed-size($condensedSize: $condensedSize);
-    }
-  }
+  @include iui-table-condensed-size;
 }
 
 .iui-table-header-wrapper {
