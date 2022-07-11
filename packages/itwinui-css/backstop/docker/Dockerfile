@@ -3,7 +3,7 @@ FROM node:16.14.2-bullseye
 ENV BACKSTOPJS_VERSION=6.0.4
 
 # from https://packages.debian.org/bullseye/chromium
-ENV CHROMIUM_VERSION=99.0.4844.74-1~deb11u1
+ENV CHROMIUM_VERSION=103.0.5060.53-1~deb11u1
 
 RUN apt-get update && apt-get install -y git sudo software-properties-common
 
