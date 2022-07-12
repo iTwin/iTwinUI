@@ -9,12 +9,16 @@
   row-gap: $iui-baseline * 0.5;
 
   > ol {
-    @include iui-reset;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    width: 100%;
+    @include iui-stepper-list;
   }
+}
+
+@mixin iui-stepper-list {
+  @include iui-reset;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
 }
 
 @mixin iui-stepper-step {

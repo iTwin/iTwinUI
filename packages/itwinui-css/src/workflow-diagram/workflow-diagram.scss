@@ -4,11 +4,8 @@
 @import '../stepper/index';
 
 @mixin iui-workflow-diagram {
-  @include iui-stepper;
-
-  > ol {
-    align-items: center;
-  }
+  @include iui-stepper-list;
+  align-items: center;
 }
 
 @mixin iui-workflow-diagram-step {
