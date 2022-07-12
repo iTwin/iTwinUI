@@ -401,6 +401,58 @@
       </div>
     </section>
 
+    <br />
+
+    <h2>Default vertical</h2>
+    <section id="demo-default-vertical">
+      <div class="iui-input-container">
+        <div class="iui-label">Volume</div>
+
+        <div
+          class="iui-slider-component-container iui-vertical iui-input-group"
+          style="height: 500px;"
+        >
+          <span class="iui-slider-min">
+            <svg-sound-mute
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-sound-mute>
+          </span>
+          <div class="iui-slider-container iui-progress-slider">
+            <div class="iui-slider-rail"></div>
+            <div
+              class="iui-slider-track"
+              style="bottom: 50%;"
+            ></div>
+            <div
+              style="bottom: 50%;"
+              class="iui-slider-thumb"
+              role="slider"
+              tabindex="0"
+              aria-label="Volume Setting"
+              aria-valuemin="0"
+              aria-valuenow="50"
+              aria-valuemax="100"
+              id="test-slider-1"
+            ></div>
+            <output
+              class="iui-tooltip"
+              style="bottom: 50%;"
+            >
+              50
+            </output>
+          </div>
+          <span class="iui-slider-max">
+            <svg-sound-loud
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-sound-loud>
+          </span>
+        </div>
+
+      </div>
+    </section>
+
     <script>
 
       function setTooltip(percent, tooltip) {
@@ -485,6 +537,49 @@
         event.stopPropagation();
       }
 
+      function moveSliderVertical(event, thumb, track, progress, mode, toolTip, otherThumb) {
+        var min = getMinValueFromThumb(thumb);
+        var limitMin = getMinLimitValueFromThumb(thumb);
+        var max = getMaxValueFromThumb(thumb);
+        var limitMax = getMaxLimitValueFromThumb(thumb);
+        var rect = track.getBoundingClientRect();
+        // var trackWidth = rect.width;
+        var trackHeight = rect.height;
+        // var diffX = event.pageX - rect.left;
+        var diffY = event.pageY - rect.top;
+        if (diffY > rect.height)
+          diffY = rect.height;
+        if (diffY < 0)
+          diffY = 0;
+
+        var percent = parseInt(((max - min) * diffY) / trackHeight);
+        if (percent < limitMin)
+          percent = limitMin;
+        if (percent > limitMax)
+          percent = limitMax;
+
+        thumb.setAttribute("aria-valuenow", percent);
+        setTooltip(percent, toolTip);
+        if (mode === "progress") {
+          thumb.style.top = `${percent}%`;
+          var progressPercent = 100 - percent;
+          progress.style.bottom = `${progressPercent}%`;
+        }
+        // else if (mode === "range-left") {
+        //   otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
+        //   thumb.style.left = `${percent}%`;
+        //   progress.style.left = `${percent}%`;
+        // } else if (mode === "range-right") {
+        //   otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
+        //   thumb.style.left = `${percent}%`;
+        //   var progressPercent = 100 - percent;
+        //   progress.style.right = `${progressPercent}%`;
+        // }
+
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
       function getOtherRangeThumb(thumb) {
         var parent = thumb.parentNode;
         const allThumbs = parent.querySelectorAll(".iui-slider-thumb");
@@ -537,7 +632,8 @@
           var ownerDoc = thumb.ownerDocument;
           var track = sliderContainer.querySelector(".iui-slider-rail");
           var handleMouseMove = function (event) {
-            moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb);
+            // moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb);
+            moveSliderVertical(event, thumb, track, progress, mode, toolTip, otherThumb);
           };
 
           var handleMouseUp = function (event) {
