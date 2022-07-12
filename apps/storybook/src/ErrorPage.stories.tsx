@@ -23,6 +23,20 @@ export default {
   },
 } as Meta<ErrorPageProps>;
 
+export const Redirect: Story<ErrorPageProps> = (props) => (
+  <ErrorPage {...props} />
+);
+Redirect.args = {
+  errorType: '301',
+  errorMessage: (
+    <>
+      Requested page has been moved permanently.
+      <br />
+      Unable to fulfill request.
+    </>
+  ),
+};
+
 export const Unauthorized: Story<ErrorPageProps> = (props) => (
   <ErrorPage {...props} />
 );
@@ -61,6 +75,20 @@ PageNotFound.args = {
       We can not find the iModel that you are looking for or it does not exist.
       <br />
       Visit the iModel HUB or contact our support team.
+    </>
+  ),
+};
+
+export const TimeOut: Story<ErrorPageProps> = (props) => (
+  <ErrorPage {...props} />
+);
+TimeOut.args = {
+  errorType: '408',
+  errorMessage: (
+    <>
+      Your request timed out.
+      <br />
+      Please try again.
     </>
   ),
 };
@@ -135,6 +163,8 @@ TranslatedMessages.args = {
     "We can't find the iModel that you are looking for or it does not exist. Visit the iModel HUB or contact our support team.",
   translatedErrorMessages: {
     unauthorized: 'uNaUtHoRiZeD',
+    redirect: 'rEdIReCt',
+    timedOut: 'tImEoUt',
     forbidden: 'fOrBiDdEn',
     pageNotFound: 'pAgE nOt FoUnD',
     internalServerError: 'iNtErNaL sErVeR eRrOr',
