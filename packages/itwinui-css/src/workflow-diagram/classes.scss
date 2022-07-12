@@ -10,10 +10,6 @@
   @include iui-workflow-diagram-step;
 }
 
-.iui-workflow-diagram-track-content {
-  @include iui-stepper-track-content;
-}
-
-.iui-workflow-diagram-circle {
-  @include iui-workflow-diagram-circle;
+.iui-workflow-diagram-content {
+  @include iui-workflow-diagram-content;
 }
