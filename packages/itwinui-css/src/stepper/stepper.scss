@@ -73,7 +73,7 @@
 
 @mixin iui-stepper-circle {
   align-items: center;
-  border-radius: 50%;
+  border-radius: $iui-border-radius-round;
   display: flex;
   width: $iui-l;
   height: $iui-l;
