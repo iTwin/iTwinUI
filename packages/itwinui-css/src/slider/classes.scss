@@ -25,11 +25,3 @@
 .iui-slider-track {
   @include iui-slider-track;
 }
-
-.iui-slider-min {
-  @include iui-slider-endpoints(min);
-}
-
-.iui-slider-max {
-  @include iui-slider-endpoints(max);
-}

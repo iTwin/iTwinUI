@@ -11,48 +11,32 @@ $tick-height: $iui-baseline; // 11px
   display: flex;
   min-height: $iui-baseline * 2;
 
+  .iui-slider-min,
+  .iui-slider-max {
+    user-select: all;
+    margin-top: $iui-xxs;
+
+    svg {
+      @include iui-icons-default;
+      margin-top: $iui-xs;
+    }
+  }
+
+  .iui-slider-min {
+    margin-right: $iui-sm;
+    text-align: right;
+  }
+
+  .iui-slider-max {
+    margin-left: $iui-sm;
+  }
+
   &.iui-disabled {
     @include iui-slider-disabled;
   }
 
   &.iui-vertical {
     flex-direction: column;
-    min-height: auto;
-    min-width: $iui-baseline * 2;
-  }
-}
-
-/// @arg $endpoints Can be one of: min, max
-@mixin iui-slider-endpoints($endpoints) {
-  user-select: all;
-  margin-top: $iui-xxs;
-
-  @at-root .iui-vertical & {
-    margin: 0;
-    margin-left: $iui-xxs;
-    text-align: center;
-  }
-
-  @if $endpoints == min {
-    margin-right: $iui-sm;
-    text-align: right;
-
-    @at-root .iui-vertical & {
-      margin-bottom: $iui-sm;
-    }
-  }
-
-  @if $endpoints == max {
-    margin-left: $iui-sm;
-
-    @at-root .iui-vertical & {
-      margin-top: $iui-sm;
-    }
-  }
-
-  svg {
-    @include iui-icons-default;
-    margin-top: $iui-xs;
   }
 }
 
@@ -75,13 +59,6 @@ $tick-height: $iui-baseline; // 11px
   @include themed {
     background-color: t(iui-color-background-border);
   }
-
-  @at-root .iui-vertical & {
-    width: $track-height;
-    height: 100%;
-    top: unset;
-    left: $iui-sm;
-  }
 }
 
 @mixin iui-slider-thumb {
@@ -101,14 +78,6 @@ $tick-height: $iui-baseline; // 11px
     border: 1px solid t(iui-color-background-border);
   }
 
-  @at-root .iui-vertical & {
-    top: unset;
-    left: $track-height + 1; // position center of thumb in center of track
-    transform: translateY(
-      (-$thumb-height - 2) * 0.5
-    ); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
-  }
-
   &:active {
     cursor: grabbing;
   }
@@ -122,12 +91,6 @@ $tick-height: $iui-baseline; // 11px
   top: $iui-sm;
   @include themed {
     background-color: t(iui-color-foreground-primary);
-  }
-
-  @at-root .iui-vertical & {
-    width: $track-height;
-    top: unset;
-    left: $iui-sm;
   }
 }
 
