@@ -10,28 +10,29 @@
   }
 
   > * {
-    // &:first-child {
-    //   > [data-iui-button-variant='borderless']:hover {
-    //     background-color: transparent;
-    //   }
-    // }
-
-    // Sizes
-    &:last-child {
-      > .iui-button {
-        padding: $iui-xs;
-      }
-
-      > [data-iui-button-size='small'] {
-        padding: $iui-xxs;
-      }
-
-      > [data-iui-button-size='large'] {
-        padding: $iui-s;
+    &:first-child {
+      > [data-iui-button-variant='borderless']:hover {
+        background-color: transparent;
       }
     }
 
-    // Border between buttons for high-visibility and cta
+    // #region Sizing
+    &:last-child {
+      > .iui-button {
+        --_iui-button-padding-x: #{$iui-xs};
+      }
+
+      > [data-iui-button-size='small'] {
+        --_iui-button-padding-x: #{$iui-xxs};
+      }
+
+      > [data-iui-button-size='large'] {
+        --_iui-button-padding-x: #{$iui-s};
+      }
+    }
+    // #endregion Sizing
+
+    // #region Border between buttons for high-visibility and cta
     &:first-child {
       > [data-iui-button-variant='high-visibility'],
       > [data-iui-button-variant='cta'] {
@@ -45,9 +46,6 @@
         border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
       }
     }
-  }
-
-  &.iui-disabled {
-    background-color: transparent;
+    // #endregion Border between buttons for high-visibility and cta
   }
 }
