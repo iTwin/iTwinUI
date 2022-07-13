@@ -1,5 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
 @mixin iui-button-idea {
   @include iui-button-high-visibility;
   border-radius: $iui-line-height;

@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
+@import '../style/baseline';
+@import '../style/space';
 
 $iui-table-density-vertical: $iui-baseline * 1.5;
 $iui-table-density-vertical-condensed: $iui-baseline;

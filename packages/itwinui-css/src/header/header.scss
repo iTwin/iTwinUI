@@ -2,8 +2,9 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../avatar/index';
-@import '../icon/index';
 @import '../button/index';
+@import '../utils/index';
+@import '../icon/index';
 
 @mixin iui-page-header {
   @include iui-reset;
