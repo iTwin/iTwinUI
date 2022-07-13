@@ -664,3 +664,21 @@ it('should accept ReactNode in emptyStateMessage', async () => {
   // Should not wrap with MenuExtraContent
   expect(document.querySelector('.iui-menu .iui-menu-content')).toBeFalsy();
 });
+
+it('should programmatically clear value', async () => {
+  const mockOnChange = jest.fn();
+  const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
+
+  const { rerender } = render(
+    <ComboBox options={options} onChange={mockOnChange} value={1} />,
+  );
+
+  await userEvent.tab();
+  await userEvent.click(screen.getByText('Item 2'));
+  expect(mockOnChange).toHaveBeenCalledWith(2);
+
+  rerender(
+    <ComboBox options={options} onChange={mockOnChange} value={undefined} />,
+  );
+  expect(mockOnChange).toHaveBeenCalledWith(undefined);
+});

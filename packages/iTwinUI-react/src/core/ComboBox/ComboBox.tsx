@@ -151,6 +151,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const menuRef = React.useRef<HTMLUListElement>(null);
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
+  const mounted = React.useRef(false);
 
   // Latest value of the onChange prop
   const onChangeProp = React.useRef(onChange);
@@ -185,7 +186,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     comboBoxReducer,
     {
       isOpen: false,
-      selectedIndex: -1,
+      selectedIndex: valueProp
+        ? options.findIndex((option) => option.value === valueProp)
+        : -1,
       focusedIndex: -1,
     },
   );
@@ -270,14 +273,14 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
 
   // Call user-defined onChange when the value actually changes
   React.useEffect(() => {
-    if (selectedIndex != undefined && selectedIndex >= 0) {
-      const value = options[selectedIndex]?.value;
-      if (value === valueProp) {
-        return;
-      }
-      onChangeProp.current?.(value);
+    // Prevent user-defined onChange to be called on mount
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
     }
-  }, [options, selectedIndex, valueProp]);
+    const value = options[selectedIndex]?.value;
+    onChangeProp.current?.(value);
+  }, [options, selectedIndex]);
 
   const getMenuItem = React.useCallback(
     (option: SelectOption<T>, filteredIndex?: number) => {
