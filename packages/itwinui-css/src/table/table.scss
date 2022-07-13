@@ -40,7 +40,6 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   flex-shrink: 0;
 
   .iui-table-cell {
-    min-height: $iui-baseline * 5;
     background-color: var(--iui-color-background-3);
   }
 
@@ -353,7 +352,6 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   display: flex;
   flex-grow: 1;
   min-width: $iui-xxl;
-  min-height: $iui-baseline * 5 + 2px; // +2px for border
   padding-left: $iui-m;
   flex-basis: $iui-xxl;
   position: relative;

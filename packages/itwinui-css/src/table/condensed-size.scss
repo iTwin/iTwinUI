@@ -3,29 +3,29 @@
 @import '../style/index';
 
 @mixin iui-table-condensed-size {
+  --_iui-table-header-size: #{$iui-baseline * 5};
+  --_iui-table-row-size: #{$iui-baseline * 5 + 2px};
+
   &.iui-condensed {
-    --_iui-table-condensed-header-size: #{$iui-baseline * 4};
-    --_iui-table-condensed-row-size: #{$iui-baseline * 4 + 2px};
+    --_iui-table-header-size: #{$iui-baseline * 4};
+    --_iui-table-row-size: #{$iui-baseline * 4 + 2px};
   }
 
   &.iui-extra-condensed {
-    --_iui-table-condensed-header-size: #{$iui-baseline * 3};
-    --_iui-table-condensed-row-size: #{$iui-baseline * 3 + 2px};
+    --_iui-table-header-size: #{$iui-baseline * 3};
+    --_iui-table-row-size: #{$iui-baseline * 3 + 2px};
 
     .iui-table-header .iui-table-cell {
       padding-block: $iui-baseline * 0.25;
     }
   }
 
-  &.iui-condensed,
-  &.iui-extra-condensed {
-    .iui-table-header .iui-table-cell,
-    .iui-paginator {
-      min-height: var(--_iui-table-condensed-header-size);
-    }
+  .iui-table-header .iui-table-cell,
+  .iui-paginator {
+    min-height: var(--_iui-table-header-size);
+  }
 
-    .iui-table-row .iui-table-cell {
-      min-height: var(--_iui-table-condensed-row-size);
-    }
+  .iui-table-cell {
+    min-height: var(--_iui-table-row-size);
   }
 }
