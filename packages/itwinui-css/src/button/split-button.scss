@@ -19,15 +19,15 @@
     // #region Sizing
     &:last-child {
       > .iui-button {
-        --_iui-button-padding-x: #{$iui-xs};
+        --_iui-button-padding-inline: #{$iui-xs};
       }
 
       > [data-iui-button-size='small'] {
-        --_iui-button-padding-x: #{$iui-xxs};
+        --_iui-button-padding-inline: #{$iui-xxs};
       }
 
       > [data-iui-button-size='large'] {
-        --_iui-button-padding-x: #{$iui-s};
+        --_iui-button-padding-inline: #{$iui-s};
       }
     }
     // #endregion Sizing

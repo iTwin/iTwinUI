@@ -24,5 +24,17 @@
 
   --_iui-button-text-color: var(--iui-color-foreground-accessory);
   --_iui-button-border-color: var(--_iui-button-background-color);
-  @include iui-focus($color: var(--_iui-button-text-color), $offset: -3px, $thickness: 1px);
+
+  &:focus {
+    outline-color: var(--iui-color-foreground-accessory);
+    outline-offset: -3px;
+    outline-width: 1px;
+  }
+
+  &[disabled],
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_iui-button-background-color: var(--iui-color-background-disabled);
+    --_iui-button-text-color: var(--iui-text-color-placeholder);
+  }
 }

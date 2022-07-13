@@ -4,44 +4,63 @@
 
 .iui-button {
   @include iui-button;
+  @include iui-button-default;
+
+  &[data-iui-button-size='small'] {
+    @include iui-button-size(small);
+  }
+
+  &[data-iui-button-size='large'] {
+    @include iui-button-size(large);
+  }
+
+  &[data-iui-button-variant='borderless'] {
+    @include iui-button-borderless;
+
+    &[data-iui-button-size='small'] {
+      @include iui-button-size(small, borderless);
+    }
+
+    &[data-iui-button-size='large'] {
+      @include iui-button-size(large, borderless);
+    }
+  }
+
+  &[data-iui-button-active='true'] {
+    @include iui-button-default-active;
+
+    &[data-iui-button-variant='borderless'] {
+      @include iui-button-borderless-active;
+    }
+  }
+
+  &[data-iui-button-variant='high-visibility'] {
+    @include iui-button-variant(high-visibility);
+  }
+
+  &[data-iui-button-variant='cta'] {
+    @include iui-button-variant(cta);
+  }
+
+  &[data-iui-button-variant='idea'] {
+    @include iui-button-idea;
+  }
 }
 
 .iui-button-icon {
   @include iui-button-icon;
 }
 
-// #region Button variants
-[data-iui-button-variant='default'] {
-  @include iui-button-default;
-
-  &[data-iui-button-active='true'] {
-    @include iui-button-default-active;
-  }
-}
-
-[data-iui-button-variant='borderless'] {
-  @include iui-button-borderless;
-
-  &[data-iui-button-active='true'] {
-    @include iui-button-borderless-active;
-  }
-}
-
-[data-iui-button-variant='high-visibility'] {
-  @include iui-button-variant(high-visibility);
-}
-
-[data-iui-button-variant='cta'] {
-  @include iui-button-variant(cta);
-}
-
-[data-iui-button-variant='idea'] {
-  @include iui-button-idea;
-}
-// #endregion Button variants
-
 .iui-button-dropdown {
   @include iui-button-dropdown;
+
+  &[data-iui-button-size='small'] {
+    @include iui-button-dropdown(small);
+  }
+
+  &[data-iui-button-size='large'] {
+    @include iui-button-dropdown(large);
+  }
 }
 
 .iui-button-split {
