@@ -56,11 +56,11 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
       cursor: grabbing;
     }
 
-    .iui-filter-button:not(.iui-active) {
+    .iui-table-filter-button:not(.iui-active) {
       visibility: hidden;
     }
 
-    > .iui-resizer {
+    > .iui-table-resizer {
       height: 100%;
       width: $iui-m;
       position: absolute;
@@ -72,7 +72,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
       z-index: 1;
       opacity: 0;
 
-      > .iui-resizer-bar {
+      > .iui-table-resizer-bar {
         height: 100%;
         width: $iui-xxs;
         margin: 0 auto;
@@ -80,13 +80,13 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
         background-color: var(--iui-color-background-border);
       }
 
-      &:hover > .iui-resizer-bar {
+      &:hover > .iui-table-resizer-bar {
         width: $iui-xs;
         background-color: var(--iui-color-foreground-primary);
       }
     }
 
-    &:hover > .iui-resizer {
+    &:hover > .iui-table-resizer {
       opacity: 1;
     }
 
@@ -95,40 +95,40 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
     &:focus-within {
       background-color: var(--iui-color-background-4);
 
-      .iui-sort,
-      .iui-filter-button {
+      .iui-table-sort,
+      .iui-table-filter-button {
         visibility: visible;
       }
     }
   }
 
-  .iui-reorder-bar {
+  .iui-table-reorder-bar {
     position: absolute;
     height: 100%;
     width: $iui-xxs;
   }
 
-  .iui-reorder-column-right {
-    > .iui-reorder-bar {
+  .iui-table-reorder-column-right {
+    > .iui-table-reorder-bar {
       right: 0;
     }
   }
 
-  .iui-reorder-column-left {
-    > .iui-reorder-bar {
+  .iui-table-reorder-column-left {
+    > .iui-table-reorder-bar {
       left: 0;
     }
   }
 
-  .iui-reorder-column-left,
-  .iui-reorder-column-right {
-    > .iui-reorder-bar {
+  .iui-table-reorder-column-left,
+  .iui-table-reorder-column-right {
+    > .iui-table-reorder-bar {
       background-color: var(--iui-color-foreground-primary);
     }
   }
 
   // Sort icon
-  .iui-sort {
+  .iui-table-sort {
     visibility: hidden;
     fill: var(--iui-icons-color);
   }
@@ -137,7 +137,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   .iui-sorted {
     background-color: var(--iui-color-background-4);
 
-    .iui-sort {
+    .iui-table-sort {
       visibility: visible;
       fill: var(--iui-icons-color-actionable);
     }
@@ -160,7 +160,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
       transition: border $iui-speed-fast ease-out;
     }
 
-    > .iui-slot > .iui-more-options {
+    > .iui-slot > .iui-table-more-options {
       visibility: hidden;
     }
 
@@ -173,12 +173,12 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
           linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
       }
 
-      > .iui-slot:not(.iui-disabled) > .iui-more-options {
+      > .iui-slot:not(.iui-disabled) > .iui-table-more-options {
         visibility: visible;
       }
     }
 
-    &:focus-within > .iui-slot:not(.iui-disabled) > .iui-more-options {
+    &:focus-within > .iui-slot:not(.iui-disabled) > .iui-table-more-options {
       visibility: visible;
     }
 
@@ -201,13 +201,13 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
         transform: rotate(90deg);
       }
 
-      + .iui-expanded-content {
+      + .iui-table-expanded-content {
         border-left-color: var(--iui-color-background-4);
         border-right-color: var(--iui-color-background-4);
       }
     }
 
-    &.iui-expanded-content {
+    &.iui-table-expanded-content {
       overflow: hidden;
       border-left: 1px solid transparent;
       border-right: 1px solid transparent;
@@ -241,11 +241,11 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
       }
 
       + :not(.iui-selected) .iui-table-cell,
-      + .iui-expanded-content + .iui-table-row:not(.iui-selected) .iui-table-cell {
+      + .iui-table-expanded-content + .iui-table-row:not(.iui-selected) .iui-table-cell {
         border-top-color: var(--iui-color-foreground-primary);
       }
 
-      + .iui-expanded-content {
+      + .iui-table-expanded-content {
         border-color: transparent var(--iui-color-foreground-primary);
 
         &:last-child {
@@ -269,12 +269,12 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
     }
 
     .iui-table-cell.iui-disabled,
-    &.iui-expanded-content.iui-disabled {
+    &.iui-table-expanded-content.iui-disabled {
       font-style: italic;
       cursor: not-allowed;
       color: var(--iui-text-color-muted);
 
-      &.iui-slot:hover > .iui-more-options {
+      &.iui-slot:hover > .iui-table-more-options {
         visibility: hidden;
       }
 
@@ -415,7 +415,7 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
 
 @mixin iui-table-row-status($status) {
   .iui-table-cell:first-of-type,
-  + .iui-expanded-content {
+  + .iui-table-expanded-content {
     box-shadow: inset $iui-xxs 0 0 0 var(--iui-icons-color-#{$status});
 
     @include iui-text-selection($status);
