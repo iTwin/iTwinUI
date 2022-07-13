@@ -120,7 +120,7 @@
             @include iui-display-none;
           }
 
-          .iui-header-button-icon + .iui-button-text {
+          .iui-header-button-icon + span {
             margin-left: 0;
           }
         }
@@ -232,7 +232,7 @@
 
   @include iui-header-button-focus;
 
-  > .iui-button-text {
+  > span {
     text-align: left;
     font-size: $iui-font-size;
     overflow: hidden;
@@ -289,7 +289,7 @@
           }
         }
 
-        .iui-button-text {
+        span {
           .iui-description {
             @include iui-display-none;
           }
@@ -380,7 +380,7 @@
   }
 
   // Blue text
-  .iui-button-text {
+  span {
     color: var(--iui-color-foreground-primary);
   }
 
@@ -390,7 +390,7 @@
     background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
     box-shadow: 0 $iui-xxs 0 0 rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
 
-    .iui-button-text {
+    span {
       color: var(--iui-icons-color-actionable-disabled);
     }
 
