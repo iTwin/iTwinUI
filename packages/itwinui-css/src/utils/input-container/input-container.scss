@@ -1,8 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
-@import '../icon/index';
-@import '../style/ripple';
+@import '../../style/index';
+@import '../mixins';
 
 /// Container for grouping inputs with a label, an icon and a status message.
 /// Supported modifiers: .iui-inline-label, .iui-inline-icon and .iui-with-message

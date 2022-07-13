@@ -3,6 +3,7 @@
 @import '../style/index';
 @import '../surface/index';
 @import '../button/borderless';
+@import '../utils/index';
 
 $iui-color-picker-content-width: ($iui-l * 9) + ($iui-s * 8); // (9 swatches per row) + (gaps)
 $iui-color-picker-max-width: ($iui-l * 10) + ($iui-s * 9); // (10 swatches per row) + (gaps)

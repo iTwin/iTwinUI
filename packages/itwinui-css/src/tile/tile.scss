@@ -2,8 +2,9 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../button/index';
-@import '../icon/index';
 @import '../surface/index';
+@import '../utils/index';
+@import '../icon/index';
 
 @mixin iui-tile {
   @include iui-reset;
