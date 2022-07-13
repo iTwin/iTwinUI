@@ -1,8 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
-@import './variables';
+@import '../utils/index';
 
 @mixin iui-table {
   @include iui-reset;
