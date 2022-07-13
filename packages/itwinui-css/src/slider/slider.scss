@@ -103,7 +103,9 @@ $tick-height: $iui-baseline; // 11px
 
   @at-root .iui-vertical & {
     top: unset;
-    left: $track-height + 1; // position center of thumb in center of track
+    // left: $track-height + 1; // position center of thumb in center of track
+    // left: ;
+    left: $track-height + 1;
     transform: translateY(
       (-$thumb-height - 2) * 0.5
     ); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
@@ -126,6 +128,7 @@ $tick-height: $iui-baseline; // 11px
 
   @at-root .iui-vertical & {
     width: $track-height;
+    // width: 50px;
     // top: 0;
     top: 0;
     // height: 100%;
