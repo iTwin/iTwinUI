@@ -98,7 +98,7 @@
     }
 
     // Add slight border between disabled items
-    &:not(:first-child) :where([data-iui-variant='default']) {
+    &:not(:first-child) :not([data-iui-variant='borderless']) {
       #{$disabledSelector} {
         @if $orientation == 'horizontal' {
           border-left-color: var(--iui-color-background-4);
