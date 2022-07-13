@@ -126,8 +126,12 @@ $tick-height: $iui-baseline; // 11px
 
   @at-root .iui-vertical & {
     width: $track-height;
-    top: unset;
+    // top: 0;
+    top: 0;
+    // height: 100%;
+    height: unset;
     left: $iui-sm;
+    // height: 100%;
   }
 }
 

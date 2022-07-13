@@ -22,6 +22,11 @@
     color: t(iui-color-foreground-accessory);
     border: 1px solid rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4));
   }
+
+  @at-root .iui-vertical & {
+    width: unset;
+    height: max-content;
+  }
 }
 
 @mixin iui-tooltip-hidden {
