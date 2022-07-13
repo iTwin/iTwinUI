@@ -16,7 +16,7 @@ $tick-height: $iui-baseline; // 11px
   }
 
   &.iui-vertical {
-    flex-direction: column;
+    flex-direction: column-reverse;
     min-height: auto;
     min-width: $iui-baseline * 2;
   }
@@ -33,7 +33,7 @@ $tick-height: $iui-baseline; // 11px
     text-align: center;
   }
 
-  @if $endpoints == min {
+  @if $endpoints == max {
     margin-right: $iui-sm;
     text-align: right;
 
@@ -42,7 +42,7 @@ $tick-height: $iui-baseline; // 11px
     }
   }
 
-  @if $endpoints == max {
+  @if $endpoints == min {
     margin-left: $iui-sm;
 
     @at-root .iui-vertical & {
@@ -130,7 +130,8 @@ $tick-height: $iui-baseline; // 11px
     width: $track-height;
     // width: 50px;
     // top: 0;
-    top: 0;
+    // top: 0;
+    bottom: 0;
     // height: 100%;
     height: unset;
     left: $iui-sm;

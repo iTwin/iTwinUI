@@ -92,7 +92,7 @@
               tabindex="0"
               aria-label="Volume Setting"
               aria-valuemin="0"
-              aria-valuenow="50"
+              aria-valuenow="20"
               aria-valuemax="100"
               id="test-slider-1"
             ></div>
@@ -128,7 +128,7 @@
         // return;
 
         if (tooltip) {
-          tooltip.style.top = `${percent}%`;
+          tooltip.style.bottom = `${percent}%`;
           tooltip.innerHTML = `${percent}`;
         }
       }
@@ -239,7 +239,7 @@
         if (diffY < 0)
           diffY = 0;
 
-        var percent = parseInt(((max - min) * diffY) / trackHeight);
+        var percent = 100 - parseInt(((max - min) * diffY) / trackHeight);
         if (percent < limitMin)
           percent = limitMin;
         if (percent > limitMax)
@@ -249,9 +249,9 @@
         thumb.setAttribute("aria-valuenow", percent);
         setTooltipVertical(percent, toolTip);
         if (mode === "progress") {
-          thumb.style.top = `${percent}%`;
+          thumb.style.top = `${100 - percent}%`;
           var progressPercent = 100 - percent;
-          progress.style.bottom = `${progressPercent}%`;
+          progress.style.top = `${progressPercent}%`;
         }
         // else if (mode === "range-left") {
         //   otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
@@ -295,10 +295,12 @@
 
         if (mode === "progress") {
           // thumb.style.left = `${percent}%`;
-          thumb.style.top = `${percent}%`;
+          thumb.style.top = `${100 - percent}%`;
           progress = sliderContainer.querySelector(".iui-slider-track");
           progressPercent = 100 - percent;
-          progress.style.bottom = `${progressPercent}%`;
+          progress.style.top = `${progressPercent}%`;
+          // progress.style.top = `78%`;
+          // progress.style.bottom = `0%`;
         }
         // else if (mode === "range-left") {
         //   thumb.style.left = `${percent}%`;
