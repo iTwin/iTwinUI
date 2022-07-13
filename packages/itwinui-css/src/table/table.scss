@@ -16,10 +16,6 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
   flex-direction: column;
   isolation: isolate;
 
-  * {
-    box-sizing: border-box;
-  }
-
   @include iui-table-cell-icon;
 }
 
@@ -167,9 +163,9 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
     &:hover:not(.iui-disabled) {
       .iui-table-cell {
         background: linear-gradient(
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-        ),
+            rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+            rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+          ),
           linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
       }
 
@@ -225,9 +221,9 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
       .iui-table-cell {
         border-color: var(--iui-color-foreground-primary);
         background: linear-gradient(
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-        ),
+            rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+            rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+          ),
           linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
       }
 
@@ -428,9 +424,9 @@ $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed 
 
 @mixin iui-table-cell-status($status) {
   background: linear-gradient(
-    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6)),
-    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6))
-  ),
+      rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6)),
+      rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6))
+    ),
     linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
   @include iui-text-selection($status);
 }

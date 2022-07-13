@@ -36,9 +36,9 @@
     @include iui-focus($offset: 0, $thickness: $iui-xs);
     outline: solid 2px var(--iui-color-foreground-primary);
     background: linear-gradient(
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-    ),
+        rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+        rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+      ),
       linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
   }
 
@@ -152,6 +152,7 @@
 }
 
 @mixin iui-tile-thumbnail {
+  box-sizing: content-box;
   width: 100%;
   height: $iui-baseline * 14;
   flex-shrink: 0;
