@@ -3,7 +3,7 @@
 @import '../style/index';
 @import '../surface/index';
 
-@mixin iui-column-filter {
+@mixin iui-table-column-filter {
   @include iui-surface;
   padding: $iui-baseline $iui-sm;
   display: inline-flex;

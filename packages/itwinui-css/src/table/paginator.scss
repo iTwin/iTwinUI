@@ -5,7 +5,7 @@
 @import '../button/index';
 @import '../text/index';
 
-@mixin iui-paginator {
+@mixin iui-table-paginator {
   @include iui-reset;
   display: flex;
   justify-content: space-between;
@@ -35,14 +35,14 @@
   }
 }
 
-@mixin iui-paginator-page-size-label {
+@mixin iui-table-paginator-page-size-label {
   @include iui-text-muted;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-@mixin iui-paginator-ellipsis {
+@mixin iui-table-paginator-ellipsis {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,13 +54,13 @@
   }
 }
 
-@mixin iui-paginator-pages-group {
+@mixin iui-table-paginator-pages-group {
   display: inline-flex;
   align-items: center;
   margin: 0 $iui-s;
 }
 
-@mixin iui-paginator-page-button {
+@mixin iui-table-paginator-page-button {
   @include iui-button;
   @include iui-button-borderless;
   width: $iui-component-height;

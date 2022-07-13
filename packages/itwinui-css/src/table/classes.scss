@@ -39,26 +39,26 @@
   @include iui-table-cell-shadow-right;
 }
 
-.iui-paginator {
-  @include iui-paginator;
+.iui-table-paginator {
+  @include iui-table-paginator;
 }
 
-.iui-paginator-page-size-label {
-  @include iui-paginator-page-size-label;
+.iui-table-paginator-page-size-label {
+  @include iui-table-paginator-page-size-label;
 }
 
-.iui-paginator-ellipsis {
-  @include iui-paginator-ellipsis;
+.iui-table-paginator-ellipsis {
+  @include iui-table-paginator-ellipsis;
 }
 
-.iui-paginator-pages-group {
-  @include iui-paginator-pages-group;
+.iui-table-paginator-pages-group {
+  @include iui-table-paginator-pages-group;
 }
 
-.iui-paginator-page-button {
-  @include iui-paginator-page-button;
+.iui-table-paginator-page-button {
+  @include iui-table-paginator-page-button;
 }
 
-.iui-column-filter {
-  @include iui-column-filter;
+.iui-table-column-filter {
+  @include iui-table-column-filter;
 }
