@@ -72,7 +72,7 @@
     width: $iui-component-height-small;
   }
 
-  &[data-iui-button-active='true'] {
+  &[data-iui-active='true'] {
     @include iui-button-default-active;
     @include iui-button-borderless-active;
     // Adds stripe above active button

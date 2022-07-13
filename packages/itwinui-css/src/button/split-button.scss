@@ -11,7 +11,7 @@
 
   > * {
     &:first-child {
-      > [data-iui-button-variant='borderless']:hover {
+      > [data-iui-variant='borderless']:hover {
         background-color: transparent;
       }
     }
@@ -22,11 +22,11 @@
         --_iui-button-padding-inline: #{$iui-xs};
       }
 
-      > [data-iui-button-size='small'] {
+      > [data-iui-size='small'] {
         --_iui-button-padding-inline: #{$iui-xxs};
       }
 
-      > [data-iui-button-size='large'] {
+      > [data-iui-size='large'] {
         --_iui-button-padding-inline: #{$iui-s};
       }
     }
@@ -34,15 +34,15 @@
 
     // #region Border between buttons for high-visibility and cta
     &:first-child {
-      > [data-iui-button-variant='high-visibility'],
-      > [data-iui-button-variant='cta'] {
+      > [data-iui-variant='high-visibility'],
+      > [data-iui-variant='cta'] {
         border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
       }
     }
 
     &:last-child {
-      > [data-iui-button-variant='high-visibility'],
-      > [data-iui-button-variant='cta'] {
+      > [data-iui-variant='high-visibility'],
+      > [data-iui-variant='cta'] {
         border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
       }
     }

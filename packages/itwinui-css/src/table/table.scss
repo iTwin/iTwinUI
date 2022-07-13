@@ -53,7 +53,7 @@
       cursor: grabbing;
     }
 
-    .iui-filter-button:not([data-iui-button-active='true']) {
+    .iui-filter-button:not([data-iui-active='true']) {
       visibility: hidden;
     }
 
