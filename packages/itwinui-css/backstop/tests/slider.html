@@ -66,20 +66,21 @@
 
     <h2>Ranges Vertical</h2>
     <section id="demo-range-vertical">
-      <div class="iui-input-container">
+      <div class="iui-input-container ">
         <div class="iui-label">Price range</div>
 
-        <div class="iui-slider-component-container iui-input-group">
+        <div
+          class="iui-slider-component-container iui-vertical iui-input-group"
+          style="height: 500px;"
+        >
           <span class="iui-slider-min">0</span>
           <div class="
               iui-slider-container iui-range-slider">
             <div class="iui-slider-rail"></div>
+            <div class="iui-slider-track">
+              <!-- style="left: 20%; right: 20%;" -->
+            </div>
             <div
-              class="iui-slider-track"
-              style="left: 20%; right: 20%;"
-            ></div>
-            <div
-              style="left: 20%;"
               class="iui-slider-thumb"
               role="slider"
               tabindex="0"
@@ -88,15 +89,14 @@
               aria-valuenow="20"
               aria-valuemax="79"
               data-range-max="100"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 20%;"
             >
+              <!-- style="left: 20%;" -->
+            </div>
+            <output class="iui-tooltip">
+              <!-- style="left: 20%;" -->
               20
             </output>
             <div
-              style="left: 80%;"
               class="iui-slider-thumb"
               role="slider"
               tabindex="0"
@@ -105,11 +105,11 @@
               aria-valuenow="80"
               aria-valuemax="100"
               data-range-min="0"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 80%;"
             >
+              <!-- style="left: 80%;" -->
+            </div>
+            <output class="iui-tooltip">
+              <!-- style="left: 80%;" -->
               80
             </output>
           </div>
@@ -349,6 +349,8 @@
         event.stopPropagation();
       }
 
+      // TODO: Make sure moveSliderVertical has similar code to the initialize method for consistency
+      // TODO: See if moveSliderVertical and moveSlider can be combined when code is similar to avoid code duplication
       function moveSliderVertical(event, thumb, track, progress, mode, toolTip, otherThumb) {
         // console.log("event.pageY", event.pageY);
 
@@ -394,16 +396,16 @@
           var progressPercent = 100 - percent;
           progress.style.top = `${progressPercent}%`;
         }
-        // else if (mode === "range-left") {
-        //   otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
-        //   thumb.style.left = `${percent}%`;
-        //   progress.style.left = `${percent}%`;
-        // } else if (mode === "range-right") {
-        //   otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
-        //   thumb.style.left = `${percent}%`;
-        //   var progressPercent = 100 - percent;
-        //   progress.style.right = `${progressPercent}%`;
-        // }
+        else if (mode === "range-left") {
+          otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
+          thumb.style.bottom = `${percent}%`;
+          progress.style.bottom = `${percent}%`;
+        } else if (mode === "range-right") {
+          otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
+          thumb.style.top = `${100 - percent}%`;
+          var progressPercent = 100 - percent;
+          progress.style.top = `${progressPercent}%`;
+        }
 
         event.preventDefault();
         event.stopPropagation();
@@ -443,16 +445,17 @@
           // progress.style.top = `78%`;
           // progress.style.bottom = `0%`;
         }
-        // else if (mode === "range-left") {
-        //   thumb.style.left = `${percent}%`;
-        //   progress = sliderContainer.querySelector(".iui-slider-track");
-        //   progress.style.left = `${percent}%`;
-        // } else if (mode === "range-right") {
-        //   thumb.style.left = `${percent}%`;
-        //   progress = sliderContainer.querySelector(".iui-slider-track");
-        //   progressPercent = 100 - percent;
-        //   progress.style.right = `${progressPercent}%`;
-        // }
+        else if (mode === "range-left") {
+          thumb.style.bottom = `${percent}%`;
+          progress = sliderContainer.querySelector(".iui-slider-track");
+          progress.style.bottom = `${percent}%`;
+          // thumb.style.left = "100px";
+        } else if (mode === "range-right") {
+          thumb.style.top = `${100 - percent}%`;
+          progress = sliderContainer.querySelector(".iui-slider-track");
+          progressPercent = 100 - percent;
+          progress.style.top = `${progressPercent}%`;
+        }
 
         // setTooltip(percent, toolTip);
         setTooltipVertical(percent, toolTip);
