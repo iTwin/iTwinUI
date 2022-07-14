@@ -64,8 +64,62 @@
     <hr />
     <br>
 
-    <h2>Default vertical</h2>
+    <h2>Ranges Vertical</h2>
+    <section id="demo-range-vertical">
+      <div class="iui-input-container">
+        <div class="iui-label">Price range</div>
 
+        <div class="iui-slider-component-container iui-input-group">
+          <span class="iui-slider-min">0</span>
+          <div class="
+              iui-slider-container iui-range-slider">
+            <div class="iui-slider-rail"></div>
+            <div
+              class="iui-slider-track"
+              style="left: 20%; right: 20%;"
+            ></div>
+            <div
+              style="left: 20%;"
+              class="iui-slider-thumb"
+              role="slider"
+              tabindex="0"
+              aria-label="Start Value"
+              aria-valuemin="0"
+              aria-valuenow="20"
+              aria-valuemax="79"
+              data-range-max="100"
+            ></div>
+            <output
+              class="iui-tooltip"
+              style="left: 20%;"
+            >
+              20
+            </output>
+            <div
+              style="left: 80%;"
+              class="iui-slider-thumb"
+              role="slider"
+              tabindex="0"
+              aria-label="End Value"
+              aria-valuemin="21"
+              aria-valuenow="80"
+              aria-valuemax="100"
+              data-range-min="0"
+            ></div>
+            <output
+              class="iui-tooltip"
+              style="left: 80%;"
+            >
+              80
+            </output>
+          </div>
+          <span class="iui-slider-max">100</span>
+        </div>
+
+      </div>
+    </section>
+
+    <h2>Default vertical</h2>
     <section id="demo-default-vertical">
       <div class="iui-input-container">
         <div class="iui-label">Volume</div>
@@ -111,6 +165,8 @@
         </div>
 
       </div>
+
+      <br /><br />
 
       <div class="iui-input-container">
         <div class="iui-label">Slider with ticks</div>
