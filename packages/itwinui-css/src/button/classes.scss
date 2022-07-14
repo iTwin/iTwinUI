@@ -45,10 +45,6 @@
   &[data-iui-variant='idea'] {
     @include iui-button-idea;
   }
-
-  &[aria-disabled='true']:focus {
-    @include iui-button-aria-disabled-focus;
-  }
 }
 
 .iui-button-icon {

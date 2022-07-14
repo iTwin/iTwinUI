@@ -29,6 +29,9 @@
     --_iui-button-border-color: var(--iui-color-background-disabled);
 
     cursor: not-allowed;
+    outline-offset: -1px;
+    outline-width: 1px;
+    outline-color: var(--iui-color-foreground-primary);
   }
 }
 

@@ -67,12 +67,6 @@ $iui-button-padding-large: $iui-xs * 6;
   }
 }
 
-@mixin iui-button-aria-disabled-focus {
-  outline-offset: -1px;
-  outline-width: 1px;
-  outline-color: var(--iui-color-foreground-primary);
-}
-
 @mixin iui-button-dropdown($size: default) {
   @if $size == default {
     --_iui-button-padding-inline: #{$iui-button-padding} #{$iui-s};

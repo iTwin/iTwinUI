@@ -36,5 +36,9 @@
   &[aria-disabled='true'] {
     --_iui-button-background-color: var(--iui-color-background-disabled);
     --_iui-button-text-color: var(--iui-text-color-placeholder);
+
+    outline-offset: -1px;
+    outline-width: 1px;
+    outline-color: var(--iui-color-foreground-primary);
   }
 }
