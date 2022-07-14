@@ -41,13 +41,16 @@
         z-index: 1;
       }
 
-      &:focus,
-      &:focus-within {
-        z-index: 2;
-      }
-
       #{$disabledSelector} {
         z-index: -1;
+      }
+
+      &:focus,
+      &:focus-within {
+        &,
+        &:where([aria-disabled='true']) {
+          z-index: 2;
+        }
       }
     }
 
