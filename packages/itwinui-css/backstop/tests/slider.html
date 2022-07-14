@@ -247,7 +247,7 @@
               tabindex="0"
               aria-label="Volume Setting"
               aria-valuemin="0"
-              aria-valuenow="20"
+              aria-valuenow="50"
               aria-valuemax="100"
               id="test-slider-1"
             ></div>
@@ -489,7 +489,6 @@
           percent = limitMin;
         if (percent > limitMax)
           percent = limitMax;
-        // console.log(`${percent} %`);
 
         thumb.setAttribute("aria-valuenow", percent);
         setTooltipVertical(percent, toolTip);
@@ -497,16 +496,19 @@
           thumb.style.top = `${100 - percent}%`;
           var progressPercent = 100 - percent;
           progress.style.top = `${progressPercent}%`;
+          console.log(`${percent}%`);
         }
         else if (mode === "range-left") {
           otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
           thumb.style.bottom = `${percent}%`;
           progress.style.bottom = `${percent}%`;
+          console.log(`${percent}% - ${otherThumb.getAttribute("aria-valuenow")}%`);
         } else if (mode === "range-right") {
           otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
           thumb.style.top = `${100 - percent}%`;
           var progressPercent = 100 - percent;
           progress.style.top = `${progressPercent}%`;
+          console.log(`${otherThumb.getAttribute("aria-valuenow")}% - ${percent}%`);
         }
 
         event.preventDefault();
