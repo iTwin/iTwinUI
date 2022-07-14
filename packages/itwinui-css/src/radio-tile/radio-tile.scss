@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
+@import '../utils/index';
 
 @mixin iui-radio-tile {
   cursor: pointer;
@@ -124,7 +124,8 @@
   }
 
   @include focus-visible {
-    + * { // outline for checkmark
+    + * {
+      // outline for checkmark
       z-index: 2;
       outline-offset: -$iui-xxs;
       outline: 3px solid var(--iui-color-foreground-primary);

@@ -1,8 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
-@import './variables';
+@import '../utils/index';
 
 @mixin iui-table {
   @include iui-reset;
@@ -196,9 +195,9 @@
     &:hover:not(.iui-disabled) {
       .iui-cell {
         background: linear-gradient(
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-        ),
+            rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+            rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+          ),
           linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
       }
 
@@ -254,9 +253,9 @@
       .iui-cell {
         border-color: var(--iui-color-foreground-primary);
         background: linear-gradient(
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-        ),
+            rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+            rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+          ),
           linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
       }
 
@@ -425,9 +424,9 @@
 
 @mixin iui-table-cell-status($status) {
   background: linear-gradient(
-    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6)),
-    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6))
-  ),
+      rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6)),
+      rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6))
+    ),
     linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
   @include iui-text-selection($status);
 }

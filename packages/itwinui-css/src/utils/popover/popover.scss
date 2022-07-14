@@ -1,7 +1,6 @@
 /* stylelint-disable selector-class-pattern */
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 
 // tippy.js helper class to hide Popover when it is scrolled out of view
 @mixin iui-popover {
