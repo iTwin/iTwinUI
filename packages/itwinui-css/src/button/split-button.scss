@@ -11,7 +11,7 @@
 
   > * {
     &:first-child {
-      > [data-iui-variant='borderless']:hover {
+      > :where([data-iui-variant='borderless']:hover) {
         background-color: transparent;
       }
     }
