@@ -56,6 +56,11 @@ $tick-height: $iui-baseline; // 11px
   }
 }
 
+@mixin demo-default-vertical {
+  display: flex;
+  gap: 2rem;
+}
+
 @mixin iui-slider-container {
   position: relative;
   flex-grow: 1;

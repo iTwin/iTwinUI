@@ -6,6 +6,11 @@
   @include iui-slider-component-container;
 }
 
+// See if this is the correct place for non-iui related selectors
+#demo-default-vertical {
+  @include demo-default-vertical;
+}
+
 .iui-slider-container {
   @include iui-slider-container;
 }
