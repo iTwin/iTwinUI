@@ -1139,8 +1139,8 @@
         </div>
 
         <div class="iui-information-panel iui-right iui-visible">
-          <div class="iui-table-resizer">
-            <div class="iui-table-resizer-bar"></div>
+          <div class="iui-resizer">
+            <div class="iui-resizer-bar"></div>
           </div>
 
           <div class="iui-information-header">
@@ -1343,8 +1343,8 @@
           class="iui-information-panel iui-right iui-visible"
           id="myOrientingInfoPanel"
         >
-          <div class="iui-table-resizer">
-            <div class="iui-table-resizer-bar"></div>
+          <div class="iui-resizer">
+            <div class="iui-resizer-bar"></div>
           </div>
 
           <div class="iui-information-header">
@@ -1486,7 +1486,7 @@
 
     <!-- Resizer -->
     <script>
-      document.querySelectorAll('.iui-table-resizer').forEach((resizer) => {
+      document.querySelectorAll('.iui-resizer').forEach((resizer) => {
         const infoPanel = resizer.parentElement;
         const contentBlocks = infoPanel.querySelectorAll('.iui-information-body-content');
         const resizeFn = (e) => {

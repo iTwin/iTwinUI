@@ -22,16 +22,16 @@
       opacity $iui-speed-fast ease;
   }
 
-  > .iui-table-resizer {
+  > .iui-resizer {
     display: none;
     position: absolute;
     touch-action: none;
 
-    > .iui-table-resizer-bar {
+    > .iui-resizer-bar {
       background-color: var(--iui-color-background-border);
     }
 
-    &:hover > .iui-table-resizer-bar {
+    &:hover > .iui-resizer-bar {
       background-color: var(--iui-color-foreground-primary);
     }
   }
@@ -101,7 +101,7 @@
     transition: transform $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
   }
 
-  > .iui-table-resizer {
+  > .iui-resizer {
     display: flex;
   }
 }
@@ -113,14 +113,14 @@
   min-width: $iui-3xl * 2;
   height: 100%;
 
-  > .iui-table-resizer {
+  > .iui-resizer {
     height: 100%;
     width: $iui-m;
     top: 0;
     cursor: ew-resize;
     justify-content: center;
 
-    > .iui-table-resizer-bar {
+    > .iui-resizer-bar {
       height: 100%;
       width: 1px;
       @media (prefers-reduced-motion: no-preference) {
@@ -128,7 +128,7 @@
       }
     }
 
-    &:hover > .iui-table-resizer-bar {
+    &:hover > .iui-resizer-bar {
       width: $iui-xs;
     }
   }
@@ -141,14 +141,14 @@
   min-height: $iui-3xl * 2;
   width: 100%;
 
-  > .iui-table-resizer {
+  > .iui-resizer {
     width: 100%;
     height: $iui-m;
     left: 0;
     cursor: ns-resize;
     align-items: center;
 
-    > .iui-table-resizer-bar {
+    > .iui-resizer-bar {
       width: 100%;
       height: 1px;
       @media (prefers-reduced-motion: no-preference) {
@@ -156,7 +156,7 @@
       }
     }
 
-    &:hover > .iui-table-resizer-bar {
+    &:hover > .iui-resizer-bar {
       height: $iui-xs;
     }
   }
@@ -168,7 +168,7 @@
   box-shadow: -1px 0 10px $iui-elevation-color;
   clip-path: inset(0 0 0 -15px); // show box-shadow only on the left
 
-  > .iui-table-resizer {
+  > .iui-resizer {
     left: $iui-m * -0.5;
   }
 }
@@ -179,7 +179,7 @@
   box-shadow: 0 -1px 10px $iui-elevation-color;
   clip-path: inset(-15px 0 0 0); // show box-shadow only on top
 
-  > .iui-table-resizer {
+  > .iui-resizer {
     top: $iui-m * -0.5;
   }
 }
