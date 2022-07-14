@@ -52,6 +52,7 @@ $tick-height: $iui-baseline; // 11px
 
   svg {
     @include iui-icons-default;
+    // TODO: Confirm why this padding was there
     margin-top: $iui-xs;
   }
 }
