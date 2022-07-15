@@ -11,15 +11,15 @@ $tick-height: $iui-baseline; // 11px
   display: flex;
   min-height: $iui-baseline * 2;
 
-  &.iui-disabled {
-    @include iui-slider-disabled;
-  }
-
   &.iui-vertical {
     flex-direction: column-reverse;
     min-height: auto;
     min-width: $iui-baseline * 2;
     height: 100%;
+  }
+
+  &.iui-disabled {
+    @include iui-slider-disabled;
   }
 }
 
@@ -28,32 +28,32 @@ $tick-height: $iui-baseline; // 11px
   user-select: all;
   margin-top: $iui-xxs;
 
+  svg {
+    @include iui-icons-default;
+    margin-top: $iui-xs;
+  }
+
   @at-root .iui-vertical & {
     margin: 0;
     margin-left: $iui-xxs;
     text-align: center;
   }
 
-  @if $endpoints == max {
+  @if $endpoints == min {
     margin-right: $iui-sm;
     text-align: right;
-
-    @at-root .iui-vertical & {
-      margin-bottom: $iui-sm;
-    }
-  }
-
-  @if $endpoints == min {
-    margin-left: $iui-sm;
 
     @at-root .iui-vertical & {
       margin-top: $iui-sm;
     }
   }
 
-  svg {
-    @include iui-icons-default;
-    margin-top: $iui-xs;
+  @if $endpoints == max {
+    margin-left: $iui-sm;
+
+    @at-root .iui-vertical & {
+      margin-bottom: $iui-sm;
+    }
   }
 }
 
