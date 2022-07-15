@@ -10,10 +10,6 @@ module.exports = [
     selectors: ['#demo-long'],
     viewports: [{ width: 800, height: 600 }],
   }),
-  scenario('Type workflow', {
-    selectors: ['#demo-workflow'],
-    viewports: [{ width: 800, height: 600 }],
-  }),
 
   // Hover states
   scenario('State default hover on complete', {
