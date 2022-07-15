@@ -1089,7 +1089,7 @@
         // var diffY = event.offsetY - rect.top;
         // var diffY = event.offsetY;
         // var diffY = event.pageX - rect.left;
-        var diffY = event.pageY - rect.top;
+        var diffY = event.pageY - (rect.top + window.scrollY);
         // console.log(rect.top, rect.bottom, event.pageY);
 
         // console.log("VALUES: ", event.pageY, rect.top, diffY, event.offsetY, event.screenY);
@@ -1101,6 +1101,7 @@
         if (diffY < 0)
           diffY = 0;
 
+        // TODO: Try to make percent = ... instead of 100 - ...
         var percent = 100 - parseInt(((max - min) * diffY) / trackHeight);
         if (percent < limitMin)
           percent = limitMin;
@@ -1117,7 +1118,7 @@
         }
         else if (mode === "range-left") {
           otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
-          thumb.style.bottom = `${percent}%`;
+          thumb.style.top = `${100 - percent}%`;
           progress.style.bottom = `${percent}%`;
           console.log(`${percent}% - ${otherThumb.getAttribute("aria-valuenow")}%`);
         } else if (mode === "range-right") {
@@ -1174,7 +1175,7 @@
             // progress.style.bottom = `0%`;
           }
           else if (mode === "range-left") {
-            thumb.style.bottom = `${percent}%`;
+            thumb.style.top = `${100 - percent}%`;
             progress = sliderContainer.querySelector(".iui-slider-track");
             progress.style.bottom = `${percent}%`;
             // thumb.style.left = "100px";
