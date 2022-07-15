@@ -1152,34 +1152,60 @@
         return tooltips[0];
       }
 
+      // TODO: Confirm if calculating this every mousemove has a negligible cost. Or do it just once and save it as a data property in the slider container (instead of its parent)
+      function getIsVerticalSlider(sliderContainer) {
+        return sliderContainer.parentNode.classList.contains("iui-vertical");
+      }
+
       function initializeThumbProcessing(thumb, sliderContainer, mode) {
         const percent = getPercentFromThumb(thumb);
         let progress;
         const toolTip = getToolTip(thumb, mode);
+        const isVerticalSlider = getIsVerticalSlider(sliderContainer);
 
-        if (mode === "progress") {
-          // thumb.style.left = `${percent}%`;
-          thumb.style.top = `${100 - percent}%`;
-          progress = sliderContainer.querySelector(".iui-slider-track");
-          progressPercent = 100 - percent;
-          progress.style.top = `${progressPercent}%`;
-          // progress.style.top = `78%`;
-          // progress.style.bottom = `0%`;
-        }
-        else if (mode === "range-left") {
-          thumb.style.bottom = `${percent}%`;
-          progress = sliderContainer.querySelector(".iui-slider-track");
-          progress.style.bottom = `${percent}%`;
-          // thumb.style.left = "100px";
-        } else if (mode === "range-right") {
-          thumb.style.top = `${100 - percent}%`;
-          progress = sliderContainer.querySelector(".iui-slider-track");
-          progressPercent = 100 - percent;
-          progress.style.top = `${progressPercent}%`;
-        }
+        if (isVerticalSlider) {
+          if (mode === "progress") {
+            // thumb.style.left = `${percent}%`;
+            thumb.style.top = `${100 - percent}%`;
+            progress = sliderContainer.querySelector(".iui-slider-track");
+            progressPercent = 100 - percent;
+            progress.style.top = `${progressPercent}%`;
+            // progress.style.top = `78%`;
+            // progress.style.bottom = `0%`;
+          }
+          else if (mode === "range-left") {
+            thumb.style.bottom = `${percent}%`;
+            progress = sliderContainer.querySelector(".iui-slider-track");
+            progress.style.bottom = `${percent}%`;
+            // thumb.style.left = "100px";
+          } else if (mode === "range-right") {
+            thumb.style.top = `${100 - percent}%`;
+            progress = sliderContainer.querySelector(".iui-slider-track");
+            progressPercent = 100 - percent;
+            progress.style.top = `${progressPercent}%`;
+          }
 
-        // setTooltip(percent, toolTip);
-        setTooltipVertical(percent, toolTip);
+          // setTooltip(percent, toolTip);
+          setTooltipVertical(percent, toolTip);
+        } else {
+          if (mode === "progress") {
+            thumb.style.left = `${percent}%`;
+            progress = sliderContainer.querySelector(".iui-slider-track");
+            progressPercent = 100 - percent;
+            progress.style.right = `${progressPercent}%`;
+          } else if (mode === "range-left") {
+            thumb.style.left = `${percent}%`;
+            progress = sliderContainer.querySelector(".iui-slider-track");
+            progress.style.left = `${percent}%`;
+          } else if (mode === "range-right") {
+            thumb.style.left = `${percent}%`;
+            progress = sliderContainer.querySelector(".iui-slider-track");
+            progressPercent = 100 - percent;
+            progress.style.right = `${progressPercent}%`;
+          }
+
+          setTooltip(percent, toolTip);
+        }
 
         // window.addEventListener("mousedown", function () {
         //   var handleMouseMove = function (event) {
@@ -1203,8 +1229,11 @@
           var ownerDoc = thumb.ownerDocument;
           var track = sliderContainer.querySelector(".iui-slider-rail");
           var handleMouseMove = function (event) {
-            // moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb);
-            moveSliderVertical(event, thumb, track, progress, mode, toolTip, otherThumb);
+            if (getIsVerticalSlider(sliderContainer)) {
+              moveSliderVertical(event, thumb, track, progress, mode, toolTip, otherThumb);
+            } else {
+              moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb);
+            }
           };
 
           var handleMouseUp = function (event) {
