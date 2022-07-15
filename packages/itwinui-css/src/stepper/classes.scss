@@ -4,18 +4,15 @@
 
 .iui-stepper {
   @include iui-stepper;
-
-  &.iui-long {
-    @include iui-stepper-long;
-  }
-
-  &.iui-workflow {
-    @include iui-stepper-workflow;
-  }
 }
 
 .iui-stepper-step {
   @include iui-stepper-step;
+  @include iui-stepper-step-modifiers;
+}
+
+.iui-stepper-circle {
+  @include iui-stepper-circle;
 }
 
 .iui-stepper-track-content {
@@ -24,4 +21,12 @@
 
 .iui-stepper-step-name {
   @include iui-stepper-step-name;
+}
+
+.iui-stepper-steps-label {
+  @include iui-stepper-steps-label;
+}
+
+.iui-stepper-steps-label-count {
+  @include iui-stepper-steps-label-count;
 }
