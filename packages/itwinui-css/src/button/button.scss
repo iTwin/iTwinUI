@@ -1,18 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../utils/index';
-@import './disabled';
-@import './button-icon';
 
 $iui-button-padding: $iui-xs * 4;
 $iui-button-padding-small: $iui-xs * 2;
 $iui-button-padding-large: $iui-xs * 6;
 
 @mixin iui-button {
-  --_iui-button-active-stripe-inset: initial;
-  --_iui-button-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-
   @include iui-reset;
   font-family: inherit;
   display: inline-flex;
@@ -22,48 +16,68 @@ $iui-button-padding-large: $iui-xs * 6;
   position: relative;
   border-radius: $iui-border-radius;
   line-height: $iui-line-height;
-  box-shadow: none;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
-  text-decoration: none;
   user-select: none;
   cursor: pointer;
   white-space: nowrap;
-  border: 1px solid transparent;
+  border: 1px solid var(--_iui-button-border-color);
+  background: var(--_iui-button-background-color);
   color: var(--_iui-button-text-color);
-  @media (prefers-reduced-motion: no-preference) {
-    transition: color $iui-speed-fast ease-out, background-color $iui-speed-fast ease-out,
-      border-color $iui-speed-fast ease-out;
-  }
-
-  &:hover {
-    --_iui-button-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
-
-    text-decoration: none;
-  }
-
+  gap: var(--_iui-button-gap);
+  height: var(--_iui-button-height);
+  padding-inline: var(--_iui-button-padding-inline);
+  transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  @include iui-button-size;
   @include iui-focus;
+}
 
-  &[disabled],
-  &:disabled {
-    @include iui-button-disabled;
+@mixin iui-button-icon {
+  width: $iui-icons-default;
+  height: $iui-icons-default;
+  transition: fill $iui-speed-fast ease-out;
+  fill: currentColor;
+
+  &:only-child {
+    margin-left: var(--_iui-button-icon-margin-x);
+    margin-right: var(--_iui-button-icon-margin-x);
   }
 }
 
 @mixin iui-button-active {
+  --_iui-button-active-stripe-inset: initial;
+  --_iui-button-active-stripe-color: var(--iui-color-foreground-primary);
+  --_iui-button-text-color: var(--iui-color-foreground-primary);
+
   // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
   &::after {
     content: '';
     position: absolute;
     inset: var(--_iui-button-active-stripe-inset);
-    background-color: var(--iui-color-foreground-primary);
+    background-color: var(--_iui-button-active-stripe-color);
   }
 
   &[disabled],
-  &:disabled {
-    &::after {
-      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
-    }
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_iui-button-active-stripe-color: var(--iui-text-color-placeholder);
+    --_iui-button-text-color: var(--iui-text-color-placeholder);
+  }
+}
+
+@mixin iui-button-dropdown($size: default) {
+  @if $size == default {
+    --_iui-button-padding-inline: #{$iui-button-padding} #{$iui-s};
+  }
+
+  @if $size == small {
+    --_iui-button-padding-inline: #{$iui-button-padding-small} #{$iui-xs};
+  }
+
+  @if $size == large {
+    --_iui-button-padding-inline: #{$iui-button-padding-large} #{$iui-sm};
   }
 }
 
@@ -72,21 +86,34 @@ $iui-button-padding-large: $iui-xs * 6;
 /// @arg styleType - must be one of: default, borderless
 @mixin iui-button-size($size: medium, $styleType: default) {
   @if $size == medium {
-    padding: if($styleType == 'borderless', 0 $iui-s, 0 $iui-button-padding);
-    height: $iui-component-height;
-    gap: $iui-s;
+    --_iui-button-gap: #{$iui-s};
+    --_iui-button-height: #{$iui-component-height};
+    --_iui-button-padding-inline: #{$iui-button-padding};
+
+    @if $styleType == borderless {
+      --_iui-button-padding-inline: #{$iui-s};
+    }
   }
 
   @if $size == small {
-    padding: if($styleType == 'borderless', 0 $iui-xxs, 0 $iui-button-padding-small);
-    height: $iui-component-height-small;
-    gap: $iui-xs;
+    --_iui-button-gap: #{$iui-xs};
+    --_iui-button-height: #{$iui-component-height-small};
+    --_iui-button-padding-inline: #{$iui-button-padding-small};
+
+    @if $styleType == borderless {
+      --_iui-button-padding-inline: #{$iui-xxs};
+    }
   }
 
   @if $size == large {
-    padding: if($styleType == 'borderless', 0 $iui-sm, 0 $iui-button-padding-large);
-    height: $iui-component-height-large;
     font-size: $iui-font-size-leading;
-    gap: $iui-sm;
+
+    --_iui-button-gap: #{$iui-sm};
+    --_iui-button-height: #{$iui-component-height-large};
+    --_iui-button-padding-inline: #{$iui-button-padding-large};
+
+    @if $styleType == borderless {
+      --_iui-button-padding-inline: #{$iui-sm};
+    }
   }
 }

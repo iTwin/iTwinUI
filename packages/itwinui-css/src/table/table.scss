@@ -52,7 +52,7 @@
       cursor: grabbing;
     }
 
-    .iui-filter-button:not(.iui-active) {
+    .iui-filter-button:not([data-iui-active='true']) {
       visibility: hidden;
     }
 
