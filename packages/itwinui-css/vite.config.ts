@@ -4,6 +4,7 @@ import { resolve } from 'path';
 import { minify } from 'html-minifier';
 
 export default defineConfig({
+  base: './',
   build: {
     rollupOptions: {
       input: Object.fromEntries(
