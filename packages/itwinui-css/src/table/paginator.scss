@@ -66,15 +66,15 @@
   @include iui-button-borderless;
   width: $iui-component-height;
 
-  &.iui-active {
-    @include iui-button-active;
-  }
-
-  // Adds stripe above active button
-  --_iui-button-active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
-
   &-small {
     @include iui-button-size(small);
     width: $iui-component-height-small;
+  }
+
+  &[data-iui-active='true'] {
+    @include iui-button-default-active;
+    @include iui-button-borderless-active;
+    // Adds stripe above active button
+    --_iui-button-active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
   }
 }

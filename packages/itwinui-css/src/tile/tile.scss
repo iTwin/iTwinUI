@@ -227,45 +227,43 @@
       fill: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-2));
     }
   }
+}
 
-  ~ .iui-tile-thumbnail-type-indicator,
-  ~ .iui-tile-thumbnail-quick-action {
+/// @arg $variant Can be either: type-indicator, quick-action
+@mixin iui-tile-thumbnail-button($variant) {
+  @include iui-button-borderless;
+  @include iui-button-size(small, borderless);
+  position: absolute;
+  border-radius: 50%;
+  top: round($iui-baseline * 0.5);
+
+  @if $variant == type-indicator {
+    left: $iui-s;
+  }
+  @if $variant == quick-action {
+    right: $iui-s;
+  }
+
+  &[data-iui-active='true'] {
+    --_iui-button-text-color: var(--iui-color-foreground-primary);
+    --_iui-button-background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+  }
+
+  @at-root .iui-tile-thumbnail-picture ~ & {
     @include iui-blur($opacity: 5);
+    --_iui-button-text-color: var(--iui-color-foreground-accessory);
 
     > .iui-button-icon {
-      fill: var(--iui-color-foreground-accessory);
       filter: drop-shadow(0 2px 1px rgba(0, 0, 0, var(--iui-opacity-5)));
     }
 
     &:hover,
-    &.iui-active:enabled,
-    &.iui-active:enabled:hover,
-    &.iui-active:active {
+    &[data-iui-active='true']:enabled,
+    &[data-iui-active='true']:enabled:hover,
+    &[data-iui-active='true']:active {
       background-color: rgba(0, 0, 0, var(--iui-opacity-4));
-
-      .iui-button-icon {
-        fill: var(--iui-color-foreground-accessory);
-      }
     }
   }
-}
-
-@mixin iui-tile-thumbnail-type-indicator {
-  @include iui-button-borderless;
-  @include iui-button-size(small, borderless);
-  position: absolute;
-  border-radius: 50%;
-  top: round($iui-baseline * 0.5);
-  left: $iui-s;
-}
-
-@mixin iui-tile-thumbnail-quick-action {
-  @include iui-button-borderless;
-  @include iui-button-size(small, borderless);
-  position: absolute;
-  border-radius: 50%;
-  top: round($iui-baseline * 0.5);
-  right: $iui-s;
 }
 
 @mixin iui-tile-thumbnail-badge {

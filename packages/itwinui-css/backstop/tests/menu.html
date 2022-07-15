@@ -610,7 +610,8 @@
           <nav aria-label="breadcrumbs">
             <!-- Project Button -->
             <button
-              class="iui-button iui-borderless iui-large iui-header-button iui-header-dropdown-button"
+              class="iui-button iui-header-button iui-header-dropdown-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Project picker"
               aria-expanded="false"
@@ -618,7 +619,7 @@
               id="test-button-1"
             >
               <div class="iui-button-icon iui-header-button-icon demo-picture"></div>
-              <span class="iui-button-label">
+              <span>
                 <div>Project Alpha</div>
                 <div class="iui-description">0x0123456789</div>
               </span>
@@ -635,7 +636,8 @@
 
             <!-- IModel Button -->
             <button
-              class="iui-button iui-borderless iui-active iui-large iui-header-button iui-header-dropdown-button"
+              class="iui-button iui-header-button iui-header-dropdown-button iui-active"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Model picker"
               aria-expanded="true"
@@ -647,7 +649,7 @@
                 class="iui-button-icon iui-header-button-icon"
                 aria-hidden="true"
               ></svg-model>
-              <span class="iui-button-label">
+              <span>
                 <div>Model Beta</div>
                 <div class="iui-description">0x0123456789</div>
               </span>
@@ -746,7 +748,8 @@
           <nav aria-label="breadcrumbs">
             <!-- Project Button -->
             <button
-              class="iui-button iui-borderless iui-large iui-header-button iui-header-dropdown-button"
+              class="iui-button iui-header-button iui-header-dropdown-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Project picker"
               aria-expanded="false"
@@ -754,7 +757,7 @@
               id="test-button-1"
             >
               <div class="iui-button-icon iui-header-button-icon demo-picture"></div>
-              <span class="iui-button-label">
+              <span>
                 <div>Project Alpha</div>
                 <div class="iui-description">0x0123456789</div>
               </span>
@@ -771,7 +774,8 @@
 
             <!-- IModel Button -->
             <button
-              class="iui-button iui-borderless iui-active iui-large iui-header-button iui-header-dropdown-button"
+              class="iui-button iui-header-button iui-header-dropdown-button iui-active"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Model picker"
               aria-expanded="true"
@@ -783,7 +787,7 @@
                 class="iui-button-icon iui-header-button-icon"
                 aria-hidden="true"
               ></svg-model>
-              <span class="iui-button-label">
+              <span>
                 <div>Model Beta</div>
                 <div class="iui-description">0x0123456789</div>
               </span>
@@ -1179,12 +1183,15 @@
     <h3>Default button</h3>
     <section id="demo-button">
 
-      <button class="iui-button iui-default iui-small iui-dropdown">
+      <button
+        class="iui-button iui-button-dropdown"
+        data-iui-size="small"
+      >
         <svg-placeholder
           class="iui-button-icon"
           aria-hidden="true"
         ></svg-placeholder>
-        <span class="iui-button-label">Small dropdown</span>
+        <span>Small dropdown</span>
         <svg-caret-down-small
           class="iui-button-icon"
           aria-hidden="true"
@@ -1278,12 +1285,12 @@
       </ul>
       <br />
 
-      <button class="iui-button iui-default iui-dropdown">
+      <button class="iui-button iui-button-dropdown">
         <svg-placeholder
           class="iui-button-icon"
           aria-hidden="true"
         ></svg-placeholder>
-        <span class="iui-button-label">Default dropdown</span>
+        <span>Default dropdown</span>
         <svg-caret-down-small
           class="iui-button-icon"
           aria-hidden="true"
@@ -1377,12 +1384,15 @@
       </ul>
       <br />
 
-      <button class="iui-button iui-default iui-large iui-dropdown">
+      <button
+        class="iui-button iui-button-dropdown"
+        data-iui-size="large"
+      >
         <svg-placeholder
           class="iui-button-icon"
           aria-hidden="true"
         ></svg-placeholder>
-        <span class="iui-button-label">Large dropdown</span>
+        <span>Large dropdown</span>
         <svg-caret-down-small
           class="iui-button-icon"
           aria-hidden="true"
@@ -1480,12 +1490,16 @@
     <h3>Borderless button</h3>
     <section id="demo-borderless-button">
 
-      <button class="iui-button iui-borderless iui-small iui-dropdown">
+      <button
+        class="iui-button iui-button-dropdown"
+        data-iui-variant="borderless"
+        data-iui-size="small"
+      >
         <svg-placeholder
           class="iui-button-icon"
           aria-hidden="true"
         ></svg-placeholder>
-        <span class="iui-button-label">Small dropdown</span>
+        <span>Small dropdown</span>
         <svg-caret-down-small
           class="iui-button-icon"
           aria-hidden="true"
@@ -1579,12 +1593,15 @@
       </ul>
       <br />
 
-      <button class="iui-button iui-borderless iui-dropdown">
+      <button
+        class="iui-button iui-button-dropdown"
+        data-iui-variant="borderless"
+      >
         <svg-placeholder
           class="iui-button-icon"
           aria-hidden="true"
         ></svg-placeholder>
-        <span class="iui-button-label">Default dropdown</span>
+        <span>Default dropdown</span>
         <svg-caret-down-small
           class="iui-button-icon"
           aria-hidden="true"
@@ -1678,12 +1695,16 @@
       </ul>
       <br />
 
-      <button class="iui-button iui-borderless iui-large iui-dropdown">
+      <button
+        class="iui-button iui-button-dropdown"
+        data-iui-variant="borderless"
+        data-iui-size="large"
+      >
         <svg-placeholder
           class="iui-button-icon"
           aria-hidden="true"
         ></svg-placeholder>
-        <span class="iui-button-label">Large dropdown</span>
+        <span>Large dropdown</span>
         <svg-caret-down-small
           class="iui-button-icon"
           aria-hidden="true"

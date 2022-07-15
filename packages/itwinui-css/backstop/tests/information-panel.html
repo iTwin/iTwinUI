@@ -126,12 +126,15 @@
     <section id="demo-default">
 
       <div class="demo-button-bar">
-        <button class="iui-button iui-high-visibility">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+        >
           <svg-add
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-add>
-          <span class="iui-button-label">New</span>
+          <span>New</span>
         </button>
 
         <span
@@ -141,7 +144,7 @@
           <div>
             <button
               title="Download"
-              class="iui-button iui-default"
+              class="iui-button"
             >
               <svg-download
                 class="iui-button-icon"
@@ -152,7 +155,7 @@
           <div>
             <button
               title="Move"
-              class="iui-button iui-default"
+              class="iui-button"
             >
               <svg-arrow-right
                 class="iui-button-icon"
@@ -163,7 +166,7 @@
           <div>
             <button
               title="Delete"
-              class="iui-button iui-default"
+              class="iui-button"
               disabled
             >
               <svg-delete
@@ -175,7 +178,7 @@
           <div>
             <button
               title="Rename"
-              class="iui-button iui-default"
+              class="iui-button"
             >
               <svg-rename
                 class="iui-button-icon"
@@ -186,7 +189,7 @@
           <div>
             <button
               title="More options&mldr;"
-              class="iui-button iui-default"
+              class="iui-button"
             >
               <svg-more
                 class="iui-button-icon"
@@ -200,7 +203,8 @@
           <div>
             <button
               title="List view"
-              class="iui-button iui-default iui-active"
+              class="iui-button"
+              data-iui-active="true"
             >
               <svg-list
                 class="iui-button-icon"
@@ -211,7 +215,7 @@
           <div>
             <button
               title="Tile view"
-              class="iui-button iui-default"
+              class="iui-button"
             >
               <svg-thumbnails
                 class="iui-button-icon"
@@ -223,7 +227,7 @@
 
         <button
           title="View info"
-          class="iui-button iui-default"
+          class="iui-button"
           onclick="openInfoPanel(this)"
         >
           <svg-info
@@ -254,7 +258,9 @@
                   Name
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -281,7 +287,9 @@
                   Modified
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -308,7 +316,9 @@
                   Modified by
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Modify filter"
                       type="button"
                     >
@@ -335,7 +345,9 @@
                   Size
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -354,7 +366,8 @@
                 </div>
                 <div class="iui-cell iui-slot">
                   <button
-                    class="iui-button iui-borderless"
+                    class="iui-button"
+                    data-iui-variant="borderless"
                     aria-label="Modify columns"
                     type="button"
                   >
@@ -399,7 +412,8 @@
               <div class="iui-cell demo-right-align">20 MB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -441,7 +455,8 @@
               <div class="iui-cell demo-right-align">10 MB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -482,7 +497,8 @@
               <div class="iui-cell demo-right-align">10 MB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -523,7 +539,8 @@
               <div class="iui-cell demo-right-align">963 MB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -564,7 +581,8 @@
               <div class="iui-cell demo-right-align">64 KB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -593,14 +611,18 @@
             </span>
 
             <div class="iui-information-header-actions">
-              <button class="iui-button iui-borderless">
+              <button
+                class="iui-button"
+                data-iui-variant="borderless"
+              >
                 <svg-edit
                   class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-edit>
               </button>
               <button
-                class="iui-button iui-borderless"
+                class="iui-button"
+                data-iui-variant="borderless"
                 onclick="openInfoPanel()"
               >
                 <svg-close-small
@@ -751,7 +773,9 @@
                   Name
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -778,7 +802,9 @@
                   Modified
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -805,7 +831,9 @@
                   Modified by
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Modify filter"
                       type="button"
                     >
@@ -832,7 +860,9 @@
                   Size
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -851,7 +881,8 @@
                 </div>
                 <div class="iui-cell iui-slot">
                   <button
-                    class="iui-button iui-borderless"
+                    class="iui-button"
+                    data-iui-variant="borderless"
                     aria-label="Modify columns"
                     type="button"
                   >
@@ -896,7 +927,8 @@
               <div class="iui-cell demo-right-align">20 MB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -938,7 +970,8 @@
               <div class="iui-cell demo-right-align">10 MB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -979,7 +1012,8 @@
               <div class="iui-cell demo-right-align">10 MB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -1020,7 +1054,8 @@
               <div class="iui-cell demo-right-align">963 MB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -1061,7 +1096,8 @@
               <div class="iui-cell demo-right-align">64 KB</div>
               <div class="iui-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -1087,13 +1123,20 @@
             </span>
 
             <div class="iui-information-header-actions">
-              <button class="iui-button iui-borderless iui-active">
+              <button
+                class="iui-button"
+                data-iui-variant="borderless"
+                data-iui-active="true"
+              >
                 <svg-edit
                   class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-edit>
               </button>
-              <button class="iui-button iui-borderless">
+              <button
+                class="iui-button"
+                data-iui-variant="borderless"
+              >
                 <svg-close-small
                   class="iui-button-icon"
                   aria-hidden="true"
@@ -1292,7 +1335,8 @@
 
             <div class="iui-information-header-actions">
               <button
-                class="iui-button iui-borderless"
+                class="iui-button"
+                data-iui-variant="borderless"
                 onclick="switchInfoPanelOrientation(this);"
               >
                 <!-- Docked right -->
@@ -1304,7 +1348,10 @@
                   <path d="m0 2v12h16v-12zm11 11h-10v-10h10z" />
                 </svg>
               </button>
-              <button class="iui-button iui-borderless">
+              <button
+                class="iui-button"
+                data-iui-variant="borderless"
+              >
                 <svg-close-small
                   class="iui-button-icon"
                   aria-hidden="true"
@@ -1402,7 +1449,11 @@
     <!-- Show / hide the info panel -->
     <script>
       function openInfoPanel(button) {
-        button.classList.toggle('iui-active');
+        if (button.getAttribute('data-iui-active')) {
+          button.removeAttribute('data-iui-active');
+        } else {
+          button.setAttribute('data-iui-active', 'true');
+        }
         document.getElementById('myOpeningInfoPanel').classList.toggle('iui-visible');
       }
     </script>
