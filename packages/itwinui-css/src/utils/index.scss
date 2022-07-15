@@ -1,11 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
-
-@mixin iui-location-marker {
-  @include iui-reset;
-
-  display: inline-block;
-  user-select: none;
-  position: relative;
-}
+@import './input-container/index';
+@import './mixins';
+@import './notification-marker/index';
+@import './popover/index';

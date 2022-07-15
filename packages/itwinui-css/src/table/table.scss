@@ -1,14 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
-
-$iui-table-density-vertical: $iui-baseline * 1.5;
-$iui-table-density-vertical-condensed: $iui-baseline;
-$iui-table-density-vertical-extra-condensed: $iui-baseline * 0.5;
-$iui-table-density: $iui-table-density-vertical $iui-m;
-$iui-table-density-condensed: $iui-table-density-vertical-condensed $iui-m;
-$iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed $iui-m;
+@import '../utils/index';
 
 @mixin iui-table {
   @include iui-reset;

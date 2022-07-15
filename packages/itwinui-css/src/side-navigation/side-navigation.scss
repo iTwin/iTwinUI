@@ -1,8 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../utils/index';
+@import '../text/mixins';
 @import '../icon/index';
-@import '../text/index';
 
 @mixin iui-side-navigation {
   display: inline-flex;
