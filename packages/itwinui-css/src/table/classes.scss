@@ -4,7 +4,7 @@
 
 .iui-table {
   @include iui-table;
-  @include iui-table-condensed-size;
+  @include iui-table-sizes;
 }
 
 .iui-table-header-wrapper {

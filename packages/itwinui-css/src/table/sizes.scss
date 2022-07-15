@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-table-condensed-size {
+@mixin iui-table-sizes {
   --_iui-table-header-size: #{$iui-baseline * 5};
   --_iui-table-row-size: #{$iui-baseline * 5 + 2px};
 
