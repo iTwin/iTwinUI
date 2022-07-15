@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-button-split-menu {
+@mixin iui-button-split {
   @include iui-button-group;
 
   &:hover {
@@ -11,48 +11,41 @@
 
   > * {
     &:first-child {
-      > .iui-borderless:hover {
+      > :where([data-iui-variant='borderless']:hover) {
         background-color: transparent;
       }
     }
 
-    // Sizes
+    // #region Sizing
     &:last-child {
       > .iui-button {
-        padding: $iui-xs;
+        --_iui-button-padding-inline: #{$iui-xs};
       }
 
-      > .iui-small {
-        padding: $iui-xxs;
+      > [data-iui-size='small'] {
+        --_iui-button-padding-inline: #{$iui-xxs};
       }
 
-      > .iui-large {
-        padding: $iui-s;
+      > [data-iui-size='large'] {
+        --_iui-button-padding-inline: #{$iui-s};
       }
     }
+    // #endregion Sizing
 
-    // Border between buttons for high-visibility and cta
+    // #region Border between buttons for high-visibility and cta
     &:first-child {
-      > .iui-high-visibility,
-      > .iui-cta {
+      > [data-iui-variant='high-visibility'],
+      > [data-iui-variant='cta'] {
         border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
       }
     }
 
     &:last-child {
-      > .iui-high-visibility,
-      > .iui-cta {
+      > [data-iui-variant='high-visibility'],
+      > [data-iui-variant='cta'] {
         border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
       }
     }
-  }
-
-  &.iui-disabled {
-    background-color: transparent;
-  }
-
-  &[disabled],
-  &:disabled {
-    @include iui-button-disabled;
+    // #endregion Border between buttons for high-visibility and cta
   }
 }
