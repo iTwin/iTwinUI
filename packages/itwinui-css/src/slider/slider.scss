@@ -112,7 +112,7 @@ $tick-height: $iui-baseline; // 11px
     // left: ;
     left: $track-height + 1;
     transform: translateY(
-      -50%
+      50%
     ); // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
   }
 

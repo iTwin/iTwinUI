@@ -896,17 +896,55 @@
 
     <script>
 
-      function setTooltip(percent, tooltip) {
-        if (tooltip) {
-          tooltip.style.left = `${percent}%`;
-          tooltip.innerHTML = `${percent}`;
+      function setTooltip(percent, tooltip, sliderContainer) {
+        if (getIsVerticalSlider(sliderContainer)) {
+          if (tooltip) {
+            tooltip.style.bottom = `${percent}%`;
+            tooltip.innerHTML = `${percent}`;
+          }
+        } else {
+          if (tooltip) {
+            tooltip.style.left = `${percent}%`;
+            tooltip.innerHTML = `${percent}`;
+          }
         }
       }
 
-      function setTooltipVertical(percent, tooltip) {
-        if (tooltip) {
-          tooltip.style.bottom = `${percent}%`;
-          tooltip.innerHTML = `${percent}`;
+      function setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode) {
+        if (getIsVerticalSlider(sliderContainer)) {
+          if (mode === "progress") {
+            thumb.style.bottom = `${percent}%`;
+            var progressPercent = 100 - percent;
+            progress.style.top = `${progressPercent}%`;
+            console.log(`${percent}%`);
+          }
+          else if (mode === "range-left") {
+            otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
+            thumb.style.bottom = `${percent}%`;
+            progress.style.bottom = `${percent}%`;
+            console.log(`${percent}% - ${otherThumb.getAttribute("aria-valuenow")}%`);
+          } else if (mode === "range-right") {
+            otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
+            thumb.style.bottom = `${percent}%`;
+            var progressPercent = 100 - percent;
+            progress.style.top = `${progressPercent}%`;
+            console.log(`${otherThumb.getAttribute("aria-valuenow")}% - ${percent}%`);
+          }
+        } else {
+          if (mode === "progress") {
+            thumb.style.left = `${percent}%`;
+            var progressPercent = 100 - percent;
+            progress.style.right = `${progressPercent}%`;
+          } else if (mode === "range-left") {
+            otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
+            thumb.style.left = `${percent}%`;
+            progress.style.left = `${percent}%`;
+          } else if (mode === "range-right") {
+            otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
+            thumb.style.left = `${percent}%`;
+            var progressPercent = 100 - percent;
+            progress.style.right = `${progressPercent}%`;
+          }
         }
       }
 
@@ -945,87 +983,39 @@
         return percent;
       }
 
-      function moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb) {
+      function moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb, sliderContainer) {
         var min = getMinValueFromThumb(thumb);
         var limitMin = getMinLimitValueFromThumb(thumb);
         var max = getMaxValueFromThumb(thumb);
         var limitMax = getMaxLimitValueFromThumb(thumb);
         var rect = track.getBoundingClientRect();
-        var trackWidth = rect.width;
-        var diffX = event.pageX - rect.left;
-        if (diffX > rect.width)
-          diffX = rect.width;
-        if (diffX < 0)
-          diffX = 0;
+        var diff;
+        var trackLength;
+        if (getIsVerticalSlider(sliderContainer)) {
+          trackLength = rect.height;
+          diff = - (event.pageY - (rect.bottom + window.scrollY));
+          if (diff > rect.height)
+            diff = rect.height;
+          if (diff < 0)
+            diff = 0;
+        } else {
+          trackLength = rect.width;
+          diff = event.pageX - rect.left;
+          if (diff > rect.width)
+            diff = rect.width;
+          if (diff < 0)
+            diff = 0;
+        }
 
-        var percent = parseInt(((max - min) * diffX) / trackWidth);
+        var percent = parseInt(((max - min) * diff) / trackLength);
         if (percent < limitMin)
           percent = limitMin;
         if (percent > limitMax)
           percent = limitMax;
 
         thumb.setAttribute("aria-valuenow", percent);
-        setTooltip(percent, toolTip);
-        if (mode === "progress") {
-          thumb.style.left = `${percent}%`;
-          var progressPercent = 100 - percent;
-          progress.style.right = `${progressPercent}%`;
-        } else if (mode === "range-left") {
-          otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
-          thumb.style.left = `${percent}%`;
-          progress.style.left = `${percent}%`;
-        } else if (mode === "range-right") {
-          otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
-          thumb.style.left = `${percent}%`;
-          var progressPercent = 100 - percent;
-          progress.style.right = `${progressPercent}%`;
-        }
-
-        event.preventDefault();
-        event.stopPropagation();
-      }
-
-      // TODO: Make sure moveSliderVertical has similar code to the initialize method for consistency
-      // TODO: See if moveSliderVertical and moveSlider can be combined when code is similar to avoid code duplication
-      function moveSliderVertical(event, thumb, track, progress, mode, toolTip, otherThumb) {
-        var min = getMinValueFromThumb(thumb);
-        var limitMin = getMinLimitValueFromThumb(thumb);
-        var max = getMaxValueFromThumb(thumb);
-        var limitMax = getMaxLimitValueFromThumb(thumb);
-        var rect = track.getBoundingClientRect();
-        var trackHeight = rect.height;
-        var diffY = - (event.pageY - (rect.bottom + window.scrollY));
-        if (diffY > rect.height)
-          diffY = rect.height;
-        if (diffY < 0)
-          diffY = 0;
-
-        var percent = parseInt(((max - min) * diffY) / trackHeight);
-        if (percent < limitMin)
-          percent = limitMin;
-        if (percent > limitMax)
-          percent = limitMax;
-
-        thumb.setAttribute("aria-valuenow", percent);
-        setTooltipVertical(percent, toolTip);
-        if (mode === "progress") {
-          thumb.style.top = `${100 - percent}%`;
-          var progressPercent = 100 - percent;
-          progress.style.top = `${progressPercent}%`;
-          console.log(`${percent}%`);
-        }
-        else if (mode === "range-left") {
-          otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
-          thumb.style.top = `${100 - percent}%`;
-          progress.style.bottom = `${percent}%`;
-          console.log(`${percent}% - ${otherThumb.getAttribute("aria-valuenow")}%`);
-        } else if (mode === "range-right") {
-          otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
-          thumb.style.top = `${100 - percent}%`;
-          var progressPercent = 100 - percent;
-          progress.style.top = `${progressPercent}%`;
-          console.log(`${otherThumb.getAttribute("aria-valuenow")}% - ${percent}%`);
-        }
+        setTooltip(percent, toolTip, sliderContainer);
+        setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode);
 
         event.preventDefault();
         event.stopPropagation();
@@ -1058,81 +1048,22 @@
 
       function initializeThumbProcessing(thumb, sliderContainer, mode) {
         const percent = getPercentFromThumb(thumb);
-        let progress;
+        let progress = sliderContainer.querySelector(".iui-slider-track");
+        let otherThumb = getOtherRangeThumb(thumb);
         const toolTip = getToolTip(thumb, mode);
-        const isVerticalSlider = getIsVerticalSlider(sliderContainer);
 
-        if (isVerticalSlider) {
-          if (mode === "progress") {
-            // thumb.style.left = `${percent}%`;
-            thumb.style.top = `${100 - percent}%`;
-            progress = sliderContainer.querySelector(".iui-slider-track");
-            progressPercent = 100 - percent;
-            progress.style.top = `${progressPercent}%`;
-            // progress.style.top = `78%`;
-            // progress.style.bottom = `0%`;
-          }
-          else if (mode === "range-left") {
-            thumb.style.top = `${100 - percent}%`;
-            progress = sliderContainer.querySelector(".iui-slider-track");
-            progress.style.bottom = `${percent}%`;
-            // thumb.style.left = "100px";
-          } else if (mode === "range-right") {
-            thumb.style.top = `${100 - percent}%`;
-            progress = sliderContainer.querySelector(".iui-slider-track");
-            progressPercent = 100 - percent;
-            progress.style.top = `${progressPercent}%`;
-          }
-
-          // setTooltip(percent, toolTip);
-          setTooltipVertical(percent, toolTip);
-        } else {
-          if (mode === "progress") {
-            thumb.style.left = `${percent}%`;
-            progress = sliderContainer.querySelector(".iui-slider-track");
-            progressPercent = 100 - percent;
-            progress.style.right = `${progressPercent}%`;
-          } else if (mode === "range-left") {
-            thumb.style.left = `${percent}%`;
-            progress = sliderContainer.querySelector(".iui-slider-track");
-            progress.style.left = `${percent}%`;
-          } else if (mode === "range-right") {
-            thumb.style.left = `${percent}%`;
-            progress = sliderContainer.querySelector(".iui-slider-track");
-            progressPercent = 100 - percent;
-            progress.style.right = `${progressPercent}%`;
-          }
-
-          setTooltip(percent, toolTip);
-        }
-
-        // window.addEventListener("mousedown", function () {
-        //   var handleMouseMove = function (event) {
-        //     var track = sliderContainer.querySelector(".iui-slider-rail");
-        //     console.log(track.getBoundingClientRect());
-        //     console.log(event.pageX, event.pageY);
-        //   };
-
-        //   window.addEventListener("mousemove", handleMouseMove);
-        //   window.addEventListener("mouseup", function () {
-        //     window.removeEventListener("mousemove", handleMouseMove);
-        //   });
-        // });
+        setTooltip(percent, toolTip, sliderContainer);
+        setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode);
 
         thumb.addEventListener("mousedown", function () {
           if (sliderContainer.parentElement.classList.contains('iui-disabled'))
             return;
           thumb.classList.add("iui-active");
           sliderContainer.classList.add("iui-grabbing");
-          var otherThumb = getOtherRangeThumb(thumb);
           var ownerDoc = thumb.ownerDocument;
           var track = sliderContainer.querySelector(".iui-slider-rail");
           var handleMouseMove = function (event) {
-            if (getIsVerticalSlider(sliderContainer)) {
-              moveSliderVertical(event, thumb, track, progress, mode, toolTip, otherThumb);
-            } else {
-              moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb);
-            }
+            moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb, sliderContainer);
           };
 
           var handleMouseUp = function (event) {
