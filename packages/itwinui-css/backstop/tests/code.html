@@ -14,14 +14,14 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Code | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="./assets/demo.css"
-    />
+
     <script type="module">
-      // import "@itwin/itwinui-variables";
-      import "@itwin/itwinui-css/css/all.css";
+      import "./assets/theme.js";
     </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+    </style>
     <script
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/copy"
@@ -77,7 +77,7 @@
     <h2>Inline</h2>
     <section id="demo-inline">
       <p>
-        The<code class="iui-code">push()</code>method adds one or more elements to the end of an array and
+        The&nbsp;<code class="iui-code">push()</code>&nbsp;method adds one or more elements to the end of an array and
         returns
         the new length of the array.
       </p>
