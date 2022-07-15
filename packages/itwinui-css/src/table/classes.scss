@@ -32,11 +32,11 @@
 }
 
 .iui-table-cell-shadow-left {
-  @include iui-table-cell-shadow-left;
+  @include iui-table-cell-shadow(left);
 }
 
 .iui-table-cell-shadow-right {
-  @include iui-table-cell-shadow-right;
+  @include iui-table-cell-shadow(right);
 }
 
 .iui-table-paginator {

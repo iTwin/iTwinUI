@@ -466,16 +466,17 @@
   }
 }
 
-@mixin iui-table-cell-shadow-left {
+/// @arg side - must be one of: left, right
+@mixin iui-table-cell-shadow($side) {
   @include iui-table-cell-shadow-base;
-  left: 0;
-  transform: translate(-100%);
-  box-shadow: inset -10px 0 5px -10px $iui-elevation-color;
-}
-
-@mixin iui-table-cell-shadow-right {
-  @include iui-table-cell-shadow-base;
-  right: 0;
-  transform: translate(100%);
-  box-shadow: inset 10px 0 5px -10px $iui-elevation-color;
+  @if $side == left {
+    left: 0;
+    transform: translate(-100%);
+    box-shadow: inset -10px 0 5px -10px $iui-elevation-color;
+  }
+  @if $side == right {
+    right: 0;
+    transform: translate(100%);
+    box-shadow: inset 10px 0 5px -10px $iui-elevation-color;
+  }
 }
