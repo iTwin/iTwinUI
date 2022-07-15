@@ -97,7 +97,7 @@
       aria-label="Open dialog"
       id="open-dialog"
       type="button"
-      class="iui-button iui-default"
+      class="iui-button"
       onclick="toggleDialog('default-dialog')"
     >
       Open dialog
@@ -109,7 +109,7 @@
       aria-label="Open full page dialog"
       id="open-full-page-dialog"
       type="button"
-      class="iui-button iui-default"
+      class="iui-button"
       onclick="toggleDialog('full-page-dialog')"
     >
       Open full page dialog
@@ -121,7 +121,7 @@
       aria-label="Toggle draggable dialog"
       id="toggle-draggable-dialog"
       type="button"
-      class="iui-button iui-default"
+      class="iui-button"
       onclick="toggleDialog('draggable-dialog')"
     >
       Toggle draggable dialog
@@ -138,7 +138,9 @@
           <button
             aria-label="Close"
             type="button"
-            class="iui-button iui-borderless iui-small"
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-size="small"
             onclick="toggleDialog('default-dialog')"
           >
             <svg-close
@@ -160,16 +162,17 @@
         </div>
         <div class="iui-dialog-button-bar">
           <button
-            class="iui-button iui-high-visibility"
+            class="iui-button"
+            data-iui-variant="high-visibility"
             onclick="toggleDialog('default-dialog')"
           >
-            <span class="iui-button-label">Proceed</span>
+            <span>Proceed</span>
           </button>
           <button
-            class="iui-button iui-default"
+            class="iui-button"
             onclick="toggleDialog('default-dialog')"
           >
-            <span class="iui-button-label">Cancel</span>
+            <span>Cancel</span>
           </button>
         </div>
       </div>
@@ -183,7 +186,9 @@
           <button
             aria-label="Close"
             type="button"
-            class="iui-button iui-borderless iui-small"
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-size="small"
             onclick="toggleDialog('full-page-dialog')"
           >
             <svg-close
@@ -205,16 +210,17 @@
         </div>
         <div class="iui-dialog-button-bar">
           <button
-            class="iui-button iui-high-visibility"
+            class="iui-button"
+            data-iui-variant="high-visibility"
             onclick="toggleDialog('full-page-dialog')"
           >
-            <span class="iui-button-label">Proceed</span>
+            <span>Proceed</span>
           </button>
           <button
-            class="iui-button iui-default"
+            class="iui-button"
             onclick="toggleDialog('full-page-dialog')"
           >
-            <span class="iui-button-label">Cancel</span>
+            <span>Cancel</span>
           </button>
         </div>
       </div>
@@ -227,7 +233,9 @@
           <button
             aria-label="Close"
             type="button"
-            class="iui-button iui-borderless iui-small"
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-size="small"
             onclick="toggleDialog('draggable-dialog')"
           >
             <svg-close
@@ -249,16 +257,17 @@
         </div>
         <div class="iui-dialog-button-bar">
           <button
-            class="iui-button iui-high-visibility"
+            class="iui-button"
+            data-iui-variant="high-visibility"
             onclick="toggleDialog('draggable-dialog')"
           >
-            <span class="iui-button-label">Proceed</span>
+            <span>Proceed</span>
           </button>
           <button
-            class="iui-button iui-default"
+            class="iui-button"
             onclick="toggleDialog('draggable-dialog')"
           >
-            <span class="iui-button-label">Cancel</span>
+            <span>Cancel</span>
           </button>
         </div>
       </div>
@@ -269,7 +278,7 @@
         aria-label="Open relative to container dialog"
         id="open-relative-to-container-dialog"
         type="button"
-        class="iui-button iui-default"
+        class="iui-button"
         onclick="toggleDialog('draggable-dialog-relative')"
         style="position: absolute;"
       >
@@ -285,7 +294,9 @@
             <button
               aria-label="Close"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
               onclick="toggleDialog('draggable-dialog-relative')"
             >
               <svg-close
@@ -307,16 +318,17 @@
           </div>
           <div class="iui-dialog-button-bar">
             <button
-              class="iui-button iui-high-visibility"
+              class="iui-button"
+              data-iui-variant="high-visibility"
               onclick="toggleDialog('draggable-dialog-relative')"
             >
-              <span class="iui-button-label">Proceed</span>
+              <span>Proceed</span>
             </button>
             <button
-              class="iui-button iui-default"
+              class="iui-button"
               onclick="toggleDialog('draggable-dialog-relative')"
             >
-              <span class="iui-button-label">Cancel</span>
+              <span>Cancel</span>
             </button>
           </div>
         </div>

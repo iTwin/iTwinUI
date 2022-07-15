@@ -1,0 +1,31 @@
+{
+  "name": "@itwin/itwinui-variables",
+  "version": "0.1.0",
+  "author": "Bentley Systems",
+  "license": "MIT",
+  "main": "index.css",
+  "style": "index.css",
+  "files": [
+    "index.css",
+    "os.css",
+    "LICENSE.md"
+  ],
+  "description": "CSS variables for the iTwinUI design system",
+  "homepage": "https://github.com/iTwin/iTwinUI",
+  "keywords": [
+    "css",
+    "theme",
+    "itwinui",
+    "itwin",
+    "design system",
+    "design token"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "sass": "^1.53.0"
+  },
+  "scripts": {
+    "build": "sass --no-source-map src/index.scss:index.css src/os.scss:os.css",
+    "dev": "sass src/index.scss:index.css src/os.scss:os.css --watch"
+  }
+}

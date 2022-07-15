@@ -1,0 +1,60 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use 'sass:map';
+@use '../utils/hex' as *;
+
+$base-colors: (
+  // Background colors - default
+  background-1: hsl(204 12% 40%),
+  background-2: hsl(202 12% 35%),
+  background-3: hsl(204 13% 31%),
+  background-4: hsl(200 14% 25%),
+  background-5: hsl(200 14% 21%),
+  background-1-hover: hsl(204 12% 45%),
+  //
+  // Background colors - statuses subtle
+  background-subtle-primary: hsl(204 14% 44%),
+  background-subtle-positive: hsl(192 9% 43%),
+  background-subtle-warning: hsl(201 6% 44%),
+  background-subtle-negative: hsl(216 7% 44%),
+  //
+  // Foreground colors - default
+  foreground-1: hsl(0 0% 100%),
+  foreground-2: hsl(210 9% 91%),
+  foreground-3: hsl(207 8% 79%),
+  foreground-4: hsl(206 8% 67%),
+  foreground-5: hsl(205 7% 55%),
+  //
+  // Foreground colors - statuses
+  foreground-primary: hsl(203 80% 80%),
+  foreground-positive: hsl(96 45% 78%),
+  foreground-warning: hsl(34 87% 82%),
+  foreground-negative: hsl(0 69% 80%),
+  foreground-primary-hover: hsl(203 80% 90%),
+  foreground-positive-hover: hsl(96 44% 88%),
+  foreground-warning-hover: hsl(34 85% 92%),
+  foreground-negative-hover: hsl(0 69% 90%)
+);
+
+$opacities: (
+  1: 1,
+  2: 0.85,
+  3: 0.65,
+  4: 0.45,
+  5: 0.25,
+  6: 0.1,
+);
+
+@mixin theme {
+  @each $color, $value in $base-colors {
+    --iui-color-#{$color}: #{hex($value)};
+  }
+
+  @each $level, $value in $opacities {
+    --iui-opacity-#{$level}: #{$value};
+  }
+
+  --iui-color-background-transparent-hover: #{rgba(#FFF, map.get($opacities, 6))};
+  --iui-color-background-disabled: #{hex(map.get($base-colors, background-3))};
+  --iui-color-background-border: #{hex(map.get($base-colors, background-5))};
+}

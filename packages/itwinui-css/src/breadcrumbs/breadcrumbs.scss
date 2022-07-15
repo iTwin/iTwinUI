@@ -3,7 +3,7 @@
 @import '../style/index';
 @import '../anchor/index';
 @import '../button/borderless';
-@import '../icon/index';
+@import '../utils/index';
 
 @mixin iui-breadcrumbs($breadcrumbs-height: $iui-component-height) {
   @include iui-reset;
@@ -56,11 +56,10 @@
   .iui-button {
     &.iui-button {
       @include iui-button-borderless;
-      @include iui-focus;
       border: none;
     }
 
-    &-label {
+    > span {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
