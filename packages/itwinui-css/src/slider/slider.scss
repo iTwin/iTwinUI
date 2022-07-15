@@ -148,14 +148,19 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-ticks {
   position: relative;
-  padding-left: $iui-m;
+  padding-top: $iui-m;
   display: flex;
-  flex-direction: column-reverse;
   pointer-events: none;
   justify-content: space-between;
-  align-items: flex-start;
   user-select: none;
-  height: 100%;
+
+  @at-root .iui-vertical & {
+    padding-top: unset;
+    padding-left: $iui-m;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    height: 100%;
+  }
 
   .iui-slider-tick {
     // TODO: Implement for horizontal and vertical (Using @at-root, etc.)
@@ -163,16 +168,26 @@ $tick-height: $iui-baseline; // 11px
     display: flex;
     pointer-events: none;
     justify-content: center;
-    // line-height: $tick-height * 4;
+    line-height: $tick-height * 4;
     // margin-bottom: $tick-height * 2;
     align-items: center;
     // gap: $tick-height * 2; // TODO: Confirm if gap value is okay for column (horizontal slider too)
 
+    @at-root .iui-vertical & {
+      line-height: unset;
+      margin-bottom: unset;
+    }
+
     .iui-slider-tick-mark {
       display: inline-block;
-      width: $tick-height;
-      height: 1px;
+      width: 1px;
+      height: $tick-height;
       margin-right: 4px; // TODO: Confirm if margin value is okay for column (horizontal slider too)
+
+      @at-root .iui-vertical & {
+        width: $tick-height;
+        height: 1px;
+      }
 
       @include themed {
         background-color: t(iui-color-background-4);
@@ -181,8 +196,14 @@ $tick-height: $iui-baseline; // 11px
 
     .iui-slider-tick-number {
       position: absolute;
-      left: $tick-height * 2;
+      top: $tick-height * 2;
       font-weight: normal;
+      line-height: 0;
+
+      @at-root .iui-vertical & {
+        top: unset;
+        left: $tick-height * 2;
+      }
     }
   }
 }
