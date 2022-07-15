@@ -16,12 +16,13 @@
     <title>Text field | iTwinUI</title>
     <link
       rel="stylesheet"
-      href="../../css/all.css"
+      href="./assets/demo.css"
     />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+    <script type="module">
+      import "@itwin/itwinui-css/css/all.css";
+      // import "@itwin/itwinui-variables";
+      import "./assets/theme.js";
+    </script>
     <style>
       section[id^='demo'] {
         width: auto;
@@ -65,7 +66,6 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/info-circular"
     ></script>
-    <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>

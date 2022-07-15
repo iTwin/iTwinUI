@@ -16,12 +16,13 @@
     <title>Checkbox | iTwinUI</title>
     <link
       rel="stylesheet"
-      href="../../css/all.css"
+      href="./assets/demo.css"
     />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+    <script type="module">
+      import "@itwin/itwinui-css/css/all.css";
+      // import "@itwin/itwinui-variables";
+      import "./assets/theme.js";
+    </script>
     <style>
       section[id^='demo'] {
         display: flex;
@@ -57,7 +58,6 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-sad-very"
     ></script>
-    <script src="../assets/theme.js"></script>
   </head>
 
   <body class="iui-body">
@@ -685,7 +685,6 @@
             type="checkbox"
             name="indeterminate"
           />
-          </span>
         </label>
 
         <label class="iui-checkbox-wrapper">
@@ -695,7 +694,6 @@
             type="checkbox"
             checked
           />
-          </span>
         </label>
 
         <label class="iui-checkbox-wrapper iui-loading">
@@ -737,7 +735,6 @@
             type="checkbox"
             disabled
           />
-          </span>
         </label>
 
         <label class="iui-checkbox-wrapper iui-disabled">
@@ -748,7 +745,6 @@
             name="indeterminate"
             disabled
           />
-          </span>
         </label>
 
         <label class="iui-checkbox-wrapper iui-disabled">
@@ -759,7 +755,6 @@
             checked
             disabled
           />
-          </span>
         </label>
 
         <label class="iui-checkbox-wrapper iui-positive">
@@ -768,7 +763,6 @@
             class="iui-checkbox"
             type="checkbox"
           />
-          </span>
         </label>
 
         <label class="iui-checkbox-wrapper iui-negative">
@@ -777,7 +771,6 @@
             class="iui-checkbox"
             type="checkbox"
           />
-          </span>
         </label>
 
         <label class="iui-checkbox-wrapper iui-warning">
@@ -786,7 +779,6 @@
             class="iui-checkbox"
             type="checkbox"
           />
-          </span>
         </label>
       </div>
 

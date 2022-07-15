@@ -29,10 +29,10 @@ const metaContent = (fileName) => `
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:url" content="https://itwin.github.io/iTwinUI/backstop/minified/${fileName}">
-  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-  <link rel="alternate icon" href="../assets/favicon.ico" sizes="any" />
-  <link rel="apple-touch-icon" href="../assets/pwa-icon.png" />
-  <link rel="manifest" href="../assets/manifest.json">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="./assets/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="./assets/pwa-icon.png" />
+  <link rel="manifest" href="./assets/manifest.json">
 `;
 
 /** skypack production optimized url for itwinui-icons-elements from https://cdn.skypack.dev/@itwin/itwinui-icons-elements@latest */

@@ -16,12 +16,14 @@
     <title>File upload | iTwinUI</title>
     <link
       rel="stylesheet"
-      href="../../css/all.css"
+      href="./assets/demo.css"
     />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+    <script type="module">
+      import "@itwin/itwinui-css/css/all.css";
+      // import "@itwin/itwinui-variables";
+      import "./assets/theme.js";
+      import "./assets/userIcon.js";
+    </script>
     <style>
       .iui-input-container,
       .iui-table,
@@ -80,8 +82,6 @@
         }
       });
     </script>
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/userIcon.js"></script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>

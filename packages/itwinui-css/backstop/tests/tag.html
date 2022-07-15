@@ -16,12 +16,13 @@
     <title>Tag | iTwinUI</title>
     <link
       rel="stylesheet"
-      href="../../css/all.css"
+      href="./assets/demo.css"
     />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+    <script type="module">
+      import "@itwin/itwinui-css/css/all.css";
+      // import "@itwin/itwinui-variables";
+      import "./assets/theme.js";
+    </script>
     <style>
       /* Forces grouped tags to display on 1 line, can be set by the dev team. */
       section .iui-tag-container {
@@ -32,7 +33,6 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
     ></script>
-    <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>

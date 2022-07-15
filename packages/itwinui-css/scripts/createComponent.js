@@ -101,13 +101,13 @@ const demoHtmlFactory = (directory) => {
     <title>${componentName} | iTwinUI</title>
     <link
       rel="stylesheet"
-      href="../../css/all.css"
+      href="./assets/demo.css"
     />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
-    <script src="../assets/theme.js"></script>
+    <script type="module">
+      import "@itwin/itwinui-css/css/all.css";
+      // import "@itwin/itwinui-variables";
+      import "./assets/theme.js";
+    </script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>

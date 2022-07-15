@@ -16,12 +16,13 @@
     <title>Surface | iTwinUI</title>
     <link
       rel="stylesheet"
-      href="../../css/all.css"
+      href="./assets/demo.css"
     />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+    <script type="module">
+      import "@itwin/itwinui-css/css/all.css";
+      // import "@itwin/itwinui-variables";
+      import "./assets/theme.js";
+    </script>
     <style>
       /* Demo elevations replicate /styles/elevation.scss SASS variables. */
       :root {
@@ -58,7 +59,6 @@
         align-items: center;
       }
     </style>
-    <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>

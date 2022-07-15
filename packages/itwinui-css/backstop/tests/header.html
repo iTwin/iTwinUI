@@ -16,15 +16,17 @@
     <title>Header | iTwinUI</title>
     <link
       rel="stylesheet"
-      href="../../css/all.css"
+      href="./assets/demo.css"
     />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+    <script type="module">
+      import "@itwin/itwinui-css/css/all.css";
+      // import "@itwin/itwinui-variables";
+      import "./assets/theme.js";
+      import "./assets/userIcon.js";
+    </script>
     <style>
       div.demo-picture {
-        background-image: url('../assets/image-test.jpg');
+        background-image: url('./assets/image-test.jpg');
         background-position: center;
         background-size: cover;
       }
@@ -93,8 +95,6 @@
       type="module"
       src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/placeholder"
     ></script>
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/userIcon.js"></script>
   </head>
 
   <body class="iui-body">
@@ -372,7 +372,6 @@
             >
 
               <user-icon type="2"></user-icon>
-              </span>
             </button>
 
             <!-- More menu -->
