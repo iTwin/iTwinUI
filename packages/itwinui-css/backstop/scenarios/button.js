@@ -19,13 +19,13 @@ module.exports = [
   scenario('Grouped Borderless', {
     selectors: ['#demo-grouped-borderless'],
   }),
-  scenario('Type Split Menu', {
-    selectors: ['#demo-split-menu'],
+  scenario('Type Split', {
+    selectors: ['#demo-split'],
   }),
   scenario('Type Input Button Combo', {
     selectors: ['#demo-combo-group'],
   }),
   scenario('Type Ideas', {
-    selectors: ['.iui-idea'],
+    selectors: ['#demo-ideas'],
   }),
 ];

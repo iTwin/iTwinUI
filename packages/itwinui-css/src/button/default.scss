@@ -1,51 +1,51 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import './button';
-@import './button-icon';
 @import '../utils/index';
-@import './disabled';
 
 @mixin iui-button-default {
-  background-color: var(--iui-color-background-1);
-  border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  @include iui-focus($offset: -2px, $thickness: 2px);
+  --_iui-button-text-color: var(--iui-text-color);
+  --_iui-button-background-color: var(--iui-color-background-1);
+  --_iui-button-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
 
   &:hover,
   &:active {
-    background-color: var(--iui-color-background-1-overlay);
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
+    --_iui-button-text-color: var(--iui-color-foreground-body);
+    --_iui-button-background-color: var(--iui-color-background-1-overlay);
+    --_iui-button-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
     @include iui-notification-marker-hover;
   }
 
-  &.iui-dropdown {
-    padding-right: $iui-s;
-
-    // Sizes
-    &.iui-small {
-      padding-right: $iui-xs;
-    }
-
-    &.iui-large {
-      padding-right: $iui-sm;
-    }
-  }
-
-  &.iui-active:enabled {
-    position: relative;
-    color: var(--iui-color-foreground-primary);
-
-    // Used for combining overlay background color with base background
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-    }
+  &:focus {
+    outline-offset: -2px;
+    outline-width: 2px;
   }
 
   &[disabled],
-  &:disabled {
-    @include iui-button-disabled;
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_iui-button-text-color: var(--iui-text-color-placeholder);
+    --_iui-button-background-color: var(--iui-color-background-disabled);
+    --_iui-button-border-color: var(--iui-color-background-disabled);
+
+    cursor: not-allowed;
+    outline-offset: -1px;
+    outline-width: 1px;
+    outline-color: var(--iui-color-foreground-primary);
+  }
+}
+
+@mixin iui-button-default-active {
+  @include iui-button-active;
+  --_iui-button-background-color: linear-gradient(
+    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+  ),
+    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+
+  &[disabled],
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_iui-button-background-color: var(--iui-color-background-disabled);
   }
 }
