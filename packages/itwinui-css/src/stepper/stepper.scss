@@ -5,114 +5,109 @@
 @import '../text/mixins';
 
 @mixin iui-stepper {
-  @include iui-reset;
+  display: flex;
+  flex-direction: column;
+  row-gap: $iui-baseline * 0.5;
 
   > ol {
-    @include iui-reset;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    width: 100%;
-    margin-bottom: $iui-baseline * 0.5;
+    @include iui-stepper-list;
   }
 }
 
+@mixin iui-stepper-list {
+  @include iui-reset;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+}
+
 @mixin iui-stepper-step {
+  --_iui-stepper-step-background-color: var(--iui-color-background-1);
+  --_iui-stepper-step-border-color: var(--iui-color-foreground-positive);
+  --_iui-stepper-step-number-color: var(--iui-color-foreground-positive);
+  --_iui-stepper-step-text-color: var(--iui-color-foreground-positive);
+  --_iui-stepper-step-track-before-color: var(--iui-color-foreground-positive);
+  --_iui-stepper-step-track-after-color: var(--iui-color-foreground-positive);
+
   flex: 1;
   align-items: center;
   display: flex;
   flex-direction: column;
   @include iui-text(small);
-  color: var(--iui-color-background-positive);
+  color: var(--_iui-stepper-step-text-color);
 
-  // Completed steps
-  .iui-stepper-circle {
-    align-items: center;
-    border-radius: 50%;
-    display: flex;
-    width: $iui-l;
-    height: $iui-l;
-    justify-content: center;
-    overflow-wrap: break-word;
-    user-select: none;
-    transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out,
-      color $iui-speed-fast ease-out;
-    border: 1px solid var(--iui-color-foreground-positive);
-    background-color: var(--iui-color-background-1);
-    color: var(--iui-color-foreground-positive);
+  &:first-of-type {
+    --_iui-stepper-step-track-before-color: transparent;
   }
 
+  &:last-of-type {
+    --_iui-stepper-step-track-after-color: transparent;
+  }
+}
+
+@mixin iui-stepper-step-modifiers {
   // Current step
   &.iui-current {
+    --_iui-stepper-step-background-color: var(--iui-color-background-positive);
+    --_iui-stepper-step-border-color: var(--iui-color-background-positive);
+    --_iui-stepper-step-number-color: var(--iui-color-foreground-accessory);
+    --_iui-stepper-step-track-after-color: var(--iui-color-background-border);
+
     font-weight: $iui-font-weight-semibold;
-
-    .iui-stepper-step-name {
-      color: var(--iui-color-foreground-positive);
-    }
-
-    .iui-stepper-circle {
-      color: var(--iui-color-foreground-accessory);
-      border-color: var(--iui-color-background-positive);
-      background-color: var(--iui-color-background-positive);
-    }
-
-    .iui-stepper-track-content::after {
-      background-color: var(--iui-color-background-5);
-    }
   }
 
   // Future steps
   &.iui-current ~ & {
-    .iui-stepper-circle {
-      border: 1px solid var(--iui-color-background-border);
-      background-color: var(--iui-color-background-1);
-      color: var(--iui-text-color-muted);
-    }
+    --_iui-stepper-step-background-color: var(--iui-color-background-1);
+    --_iui-stepper-step-border-color: var(--iui-color-background-border);
+    --_iui-stepper-step-number-color: var(--iui-text-color-muted);
+    --_iui-stepper-step-text-color: var(--iui-text-color-muted);
+    --_iui-stepper-step-track-before-color: var(--iui-color-background-5);
 
-    .iui-stepper-step-name {
-      color: var(--iui-text-color-muted);
-    }
-
-    .iui-stepper-track-content::before,
-    &:not(:last-of-type) .iui-stepper-track-content::after {
-      background-color: var(--iui-color-background-5);
+    &:not(:last-of-type) {
+      --_iui-stepper-step-track-after-color: var(--iui-color-background-5);
     }
   }
 
   // Clickable steps
-  &.iui-clickable {
-    .iui-stepper-circle {
-      cursor: pointer;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast ease-out;
-      }
+  &.iui-clickable:focus {
+    outline: 0;
+  }
+}
 
-      &:hover {
-        color: var(--iui-color-foreground-accessory);
-        border: 1px solid var(--iui-color-background-positive);
-        background-color: var(--iui-color-background-positive);
-      }
-    }
+@mixin iui-stepper-circle {
+  align-items: center;
+  border-radius: $iui-border-radius-round;
+  display: flex;
+  width: $iui-l;
+  height: $iui-l;
+  justify-content: center;
+  overflow-wrap: break-word;
+  user-select: none;
+  border: 1px solid var(--_iui-stepper-step-border-color);
+  background-color: var(--_iui-stepper-step-background-color);
+  color: var(--_iui-stepper-step-number-color);
 
-    &:focus {
-      outline: 0;
+  @at-root .iui-clickable & {
+    cursor: pointer;
+    transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out,
+      color $iui-speed-fast ease-out;
 
-      .iui-stepper-circle {
-        outline: 2px solid var(--iui-color-foreground-positive);
-        outline-offset: -1px;
-      }
-    }
-
-    &:focus:not(:focus-visible) {
-      .iui-stepper-circle {
-        outline: none;
-      }
+    &:hover {
+      --_iui-stepper-step-background-color: var(--iui-color-background-positive);
+      --_iui-stepper-step-border-color: var(--iui-color-background-positive);
+      --_iui-stepper-step-number-color: var(--iui-color-foreground-accessory);
     }
   }
 
-  &:first-of-type .iui-stepper-track-content::before,
-  &:last-of-type .iui-stepper-track-content::after {
-    background-color: transparent;
+  @at-root .iui-clickable:focus & {
+    outline: 2px solid var(--iui-color-foreground-positive);
+    outline-offset: -1px;
+  }
+
+  @at-root .iui-clickable:focus:not(:focus-visible) & {
+    outline: none;
   }
 }
 
@@ -126,12 +121,31 @@
     content: '';
     height: $iui-xxs;
     flex: 1 2 auto;
-    background-color: var(--iui-color-foreground-positive);
+  }
+
+  &::before {
+    background-color: var(--_iui-stepper-step-track-before-color);
+  }
+
+  &::after {
+    background-color: var(--_iui-stepper-step-track-after-color);
   }
 }
 
 @mixin iui-stepper-step-name {
   text-align: center;
   user-select: all;
-  color: var(--iui-color-foreground-positive);
+  color: var(--_iui-stepper-step-text-color);
+}
+
+@mixin iui-stepper-steps-label {
+  display: block;
+  font-size: $iui-font-size-subheading;
+  text-align: center;
+}
+
+@mixin iui-stepper-steps-label-count {
+  user-select: none;
+  margin-right: $iui-s;
+  color: var(--iui-text-color-muted);
 }
