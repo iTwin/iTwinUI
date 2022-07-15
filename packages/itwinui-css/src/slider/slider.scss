@@ -182,12 +182,10 @@ $tick-height: $iui-baseline; // 11px
       display: inline-block;
       width: 1px;
       height: $tick-height;
-      // margin-bottom: 4px; // TODO: Confirm if hardcoded px margins are okay, or use something like rems, or use one of the iui variables
 
       @at-root .iui-vertical & {
         width: $tick-height;
         height: 1px;
-        // margin-right: 4px;
       }
 
       @include themed {
