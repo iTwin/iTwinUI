@@ -57,7 +57,7 @@ class UserIcon extends HTMLElement {
       }
     </span>
     `;
-    this.parentElement.insertAdjacentHTML('beforeend', innerHtml);
+    this.insertAdjacentHTML('afterend', innerHtml);
     this.remove();
   }
 }
