@@ -13,6 +13,7 @@ export default defineConfig({
       output: {
         dir: './backstop/minified',
         compact: true,
+        assetFileNames: `assets/[name].[ext]`
       },
     },
   },
