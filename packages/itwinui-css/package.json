@@ -38,6 +38,7 @@
     "postcss-discard-comments": "^5.0.1",
     "postcss-scss": "^4.0.3",
     "sass-embedded": "^1.49.9",
+    "serve": "^14.0.1",
     "stylelint": "^14.2.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "vite": "^3.0.0"
@@ -51,7 +52,7 @@
     "createComponent": "node ./scripts/createComponent.js",
     "clean": "rimraf ./css ./scss ./backstop/results/bitmaps_test",
     "dev": "concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn vite backstop/tests --config vite.config.ts\"",
-    "preview": "npx --yes serve backstop/minified",
+    "preview": "serve backstop/minified",
     "lint": "stylelint \"src/**/*.scss\"",
     "approve": "backstop --config=./backstop/backstop.js approve",
     "test:only": "backstop --config=./backstop/backstop.js test --docker",
