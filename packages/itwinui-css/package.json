@@ -40,8 +40,7 @@
     "sass-embedded": "^1.49.9",
     "stylelint": "^14.2.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
-    "vite": "^3.0.0",
-    "vite-plugin-html": "^3.2.0"
+    "vite": "^3.0.0"
   },
   "scripts": {
     "build": "yarn clean && yarn build:scss && yarn build:css && node ../shared/copyrightLinter.js --fix css/* && yarn build:html",
