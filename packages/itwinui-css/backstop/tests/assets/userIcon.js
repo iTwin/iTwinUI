@@ -41,7 +41,7 @@ class UserIcon extends HTMLElement {
       ${
         showPlaceholder
           ? `<img
-              src="./assets//user-placeholder.png"
+              src="./user-placeholder.png"
               alt="${person.title}"
             />`
           : ''
