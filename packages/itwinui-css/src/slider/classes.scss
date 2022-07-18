@@ -6,13 +6,6 @@
   @include iui-slider-component-container;
 }
 
-// TODO: See if this is the correct place for non-iui related selectors
-#demo-default-vertical,
-#demo-range-vertical {
-  display: flex;
-  gap: 2rem;
-}
-
 .iui-slider-container {
   @include iui-slider-container;
 }
