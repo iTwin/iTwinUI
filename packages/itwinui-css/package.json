@@ -53,7 +53,7 @@
     "preview": "npx --yes serve backstop/minified",
     "lint": "stylelint \"src/**/*.scss\"",
     "approve": "backstop --config=./backstop/backstop.js approve",
-    "test": "yarn preview && backstop --config=./backstop/backstop.js test --docker",
+    "test": "yarn preview & backstop --config=./backstop/backstop.js test --docker",
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
     "audit:ci": "audit-ci --moderate --report-type=full",
