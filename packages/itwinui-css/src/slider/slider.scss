@@ -154,6 +154,7 @@ $tick-height: $iui-baseline; // 11px
     justify-content: center;
     line-height: $tick-height * 4;
     align-items: center;
+    margin-bottom: $tick-height * 2;
 
     @at-root .iui-vertical & {
       line-height: unset;
