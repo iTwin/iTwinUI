@@ -82,7 +82,7 @@ jobs:
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
-      - name: Post gh pages link under Checks
+      - name: Post gh pages links under Checks
         if: github.ref != 'refs/heads/main' && always()
         uses: actions/github-script@v6
         with:
@@ -95,4 +95,13 @@ jobs:
               context: 'Test results',
               ...(context.job.status !== 'success' && { description: 'Backstop html report' }),
               ...(context.job.status !== 'success' && { target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/results/html_report/' }),
+            })
+            github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: '${{ github.event.pull_request.head.sha }}',
+              state: '${{ job.status }}',
+              context: 'Deploy preview',
+              description: 'Live preview of the current branch',
+              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}',
             })
