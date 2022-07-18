@@ -246,7 +246,7 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
               class="iui-button"
               data-iui-variant="borderless"
@@ -388,7 +388,7 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
               class="iui-button"
               data-iui-variant="borderless"
@@ -426,7 +426,7 @@
 
         <header
           class="iui-page-header"
-          data-iui-header-size="slim"
+          data-iui-size="slim"
         >
           <div class="iui-page-header-left">
             <!-- Application Button -->
@@ -539,7 +539,7 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
               class="iui-button"
               data-iui-variant="borderless"
@@ -573,7 +573,7 @@
 
         <header
           class="iui-page-header"
-          data-iui-header-size="slim"
+          data-iui-size="slim"
         >
           <div class="iui-page-header-left">
             <!-- Application Button -->
@@ -670,7 +670,7 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
               class="iui-button"
               data-iui-variant="borderless"
@@ -724,7 +724,7 @@
 
         <header
           class="iui-page-header"
-          data-iui-header-size="slim"
+          data-iui-size="slim"
         >
           <div class="iui-page-header-left">
             <!-- Application Button -->
@@ -884,7 +884,7 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
               class="iui-button"
               data-iui-variant="borderless"
@@ -1070,7 +1070,7 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
               class="iui-button"
               data-iui-variant="borderless"
@@ -1226,7 +1226,7 @@
             ></svg-help-circular-hollow>
           </button>
 
-          <!-- Profile dropdown button -->
+          <!-- Profile -->
           <button
             class="iui-button"
             data-iui-variant="borderless"
@@ -1268,45 +1268,40 @@
         >
           <div class="iui-top">
             <button
-              class="iui-button iui-default iui-large iui-active iui-sidenav-button"
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
+              data-iui-active="true"
               role="tab"
               aria-selected="true"
-              aria-label="Home"
-              aria-controls="home-tab"
             >
               <svg-placeholder
                 class="iui-button-icon"
                 aria-hidden="true"
               ></svg-placeholder>
-              <span class="iui-button-label">Home</span>
             </button>
 
             <button
-              class="iui-button iui-default iui-large iui-sidenav-button"
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
               role="tab"
               aria-selected="false"
-              aria-label="Documents"
-              aria-controls="documents-tab"
             >
               <svg-placeholder
                 class="iui-button-icon"
                 aria-hidden="true"
               ></svg-placeholder>
-              <span class="iui-button-label">Documents</span>
             </button>
 
             <button
-              class="iui-button iui-default iui-large iui-sidenav-button"
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
               role="tab"
               aria-selected="false"
-              aria-label="Map"
-              aria-controls="map-tab"
             >
               <svg-placeholder
                 class="iui-button-icon"
                 aria-hidden="true"
               ></svg-placeholder>
-              <span class="iui-button-label">Map</span>
             </button>
           </div>
         </div>
@@ -1331,10 +1326,10 @@
 
     document.querySelector('#demo-slim-toggle input[type=checkbox]').addEventListener('change', (e) => {
       document.querySelectorAll('#demo-slim-toggle .iui-page-header').forEach((headerSize) => {
-        if (headerSize.getAttribute('data-iui-header-size')) {
-          headerSize.removeAttribute("data-iui-header-size");
+        if (headerSize.getAttribute('data-iui-size')) {
+          headerSize.removeAttribute("data-iui-size");
         } else {
-          headerSize.setAttribute("data-iui-header-size", "slim");
+          headerSize.setAttribute("data-iui-size", "slim");
         }
       });
 

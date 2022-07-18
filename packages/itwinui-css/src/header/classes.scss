@@ -4,10 +4,10 @@
 
 .iui-page-header {
   @include iui-page-header;
-}
 
-[data-iui-header-size='slim'] {
-  @include iui-page-header-slim;
+  &[data-iui-size='slim'] {
+    @include iui-page-header-slim;
+  }
 }
 
 .iui-page-header-left,

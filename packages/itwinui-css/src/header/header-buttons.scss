@@ -238,7 +238,7 @@
       }
     }
 
-    @at-root [data-iui-header-size='slim'] & {
+    @at-root [data-iui-size='slim'] & {
       visibility: hidden;
       opacity: 0;
       height: 0;
