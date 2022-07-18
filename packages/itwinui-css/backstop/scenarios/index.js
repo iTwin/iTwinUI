@@ -10,7 +10,7 @@ fs.readdirSync('backstop/scenarios/').forEach((file) => {
   const newScenarios = require(`./${fileName}`);
   newScenarios.forEach((scenario) => {
     scenario.label = `${fileName}_${scenario.label}`;
-    scenario.url = `./backstop/minified/${fileName}.html`;
+    scenario.url = `http://host.docker.internal:3000/${fileName}.html`;
   });
   scenarios = scenarios.concat(newScenarios);
 });
