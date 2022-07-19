@@ -153,7 +153,7 @@
       visibility: hidden;
     }
 
-    &:hover:not(.iui-disabled) {
+    &:hover:not([aria-disabled='true']) {
       .iui-table-cell {
         background: linear-gradient(
           rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
@@ -162,12 +162,12 @@
           linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
       }
 
-      > .iui-slot:not(.iui-disabled) > .iui-table-more-options {
+      > .iui-slot:not([aria-disabled='true']) > .iui-table-more-options {
         visibility: visible;
       }
     }
 
-    &:focus-within > .iui-slot:not(.iui-disabled) > .iui-table-more-options {
+    &:focus-within > .iui-slot:not([aria-disabled='true']) > .iui-table-more-options {
       visibility: visible;
     }
 
@@ -205,12 +205,12 @@
     }
 
     // #region Selection
-    &:not(.iui-selected) + .iui-selected .iui-table-cell,
-    &.iui-selected:first-child .iui-table-cell {
+    &:not([aria-selected='true']) + [aria-selected='true'] .iui-table-cell,
+    &[aria-selected='true']:first-child .iui-table-cell {
       border-bottom-color: transparent;
     }
 
-    &.iui-selected {
+    &[aria-selected='true'] {
       .iui-table-cell {
         border-color: var(--iui-color-foreground-primary);
         background: linear-gradient(
@@ -220,7 +220,7 @@
           linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
       }
 
-      + .iui-selected .iui-table-cell {
+      + [aria-selected='true'] .iui-table-cell {
         border-bottom-color: transparent;
         border-top-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
       }
@@ -229,8 +229,8 @@
         border-bottom-color: var(--iui-color-foreground-primary);
       }
 
-      + :not(.iui-selected) .iui-table-cell,
-      + .iui-table-expanded-content + .iui-table-row:not(.iui-selected) .iui-table-cell {
+      + :not([aria-selected='true']) .iui-table-cell,
+      + .iui-table-expanded-content + .iui-table-row:not([aria-selected='true']) .iui-table-cell {
         border-top-color: var(--iui-color-foreground-primary);
       }
 
@@ -257,8 +257,8 @@
       }
     }
 
-    .iui-table-cell.iui-disabled,
-    &.iui-table-expanded-content.iui-disabled {
+    .iui-table-cell[aria-disabled='true'],
+    &.iui-table-expanded-content[aria-disabled='true'] {
       font-style: italic;
       cursor: not-allowed;
       color: var(--iui-text-color-muted);
@@ -274,15 +274,15 @@
       }
     }
 
-    &.iui-positive {
+    &[data-iui-status='positive'] {
       @include iui-table-row-status($status: positive);
     }
 
-    &.iui-warning {
+    &[data-iui-status='warning'] {
       @include iui-table-row-status($status: warning);
     }
 
-    &.iui-negative {
+    &[data-iui-status='negative'] {
       @include iui-table-row-status($status: negative);
     }
     // #endregion Statuses & states
@@ -317,7 +317,7 @@
   @include iui-scroll-snapping('.iui-table-row');
   background-color: var(--iui-color-background-1);
 
-  &.iui-zebra-striping .iui-table-row:nth-child(even):not(.iui-selected) .iui-table-cell {
+  &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
     background-color: rgba(var(--iui-color-foreground-body-rgb), 0.02);
   }
 
@@ -376,15 +376,15 @@
     padding-right: $iui-m;
   }
 
-  &.iui-positive {
+  &[data-iui-status='positive'] {
     @include iui-table-cell-status($status: positive);
   }
 
-  &.iui-warning {
+  &[data-iui-status='warning'] {
     @include iui-table-cell-status($status: warning);
   }
 
-  &.iui-negative {
+  &[data-iui-status='negative'] {
     @include iui-table-cell-status($status: negative);
   }
 

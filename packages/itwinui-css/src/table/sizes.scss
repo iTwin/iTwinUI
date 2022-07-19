@@ -6,12 +6,12 @@
   --_iui-table-header-size: #{$iui-baseline * 5};
   --_iui-table-row-size: #{$iui-baseline * 5 + 2px};
 
-  &.iui-condensed {
+  &[data-iui-size='condensed'] {
     --_iui-table-header-size: #{$iui-baseline * 4};
     --_iui-table-row-size: #{$iui-baseline * 4 + 2px};
   }
 
-  &.iui-extra-condensed {
+  &[data-iui-size='extra-condensed'] {
     --_iui-table-header-size: #{$iui-baseline * 3};
     --_iui-table-row-size: #{$iui-baseline * 3 + 2px};
 
