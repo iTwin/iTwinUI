@@ -54,11 +54,10 @@
   .iui-button {
     &.iui-button {
       @include iui-button-borderless;
-      @include iui-focus;
       border: none;
     }
 
-    &-label {
+    > span {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

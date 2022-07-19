@@ -45,7 +45,7 @@
       cursor: grabbing;
     }
 
-    .iui-table-filter-button:not(.iui-active) {
+    .iui-table-filter-button:not([data-iui-active='true']) {
       visibility: hidden;
     }
 

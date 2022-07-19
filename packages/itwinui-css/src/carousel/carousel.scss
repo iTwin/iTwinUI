@@ -59,6 +59,9 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    height: var(--_iui-button-height);
+    padding-left: var(--_iui-button-padding-inline);
+    padding-right: var(--_iui-button-padding-inline);
 
     &:hover::after {
       background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));

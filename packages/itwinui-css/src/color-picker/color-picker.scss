@@ -77,10 +77,9 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   min-width: $iui-l;
   gap: $iui-s;
 
-  button.iui-button.iui-borderless {
-    height: $iui-l;
-    width: $iui-l;
-    padding: 0;
+  button[data-iui-variant='borderless'] {
+    --_iui-button-height: #{$iui-l};
+    --_iui-button-padding-inline: 0;
   }
 
   &-wrapper {
