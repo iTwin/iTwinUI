@@ -11,10 +11,10 @@ $tick-height: $iui-baseline; // 11px
   &.iui-slider-component-container {
     display: flex;
     min-height: $iui-baseline * 2;
-  }
 
-  &.iui-disabled {
-    @include iui-slider-disabled;
+    &.iui-disabled {
+      @include iui-slider-disabled;
+    }
   }
 
   .iui-slider-rail {
@@ -25,6 +25,31 @@ $tick-height: $iui-baseline; // 11px
     @include themed {
       background-color: t(iui-color-background-border);
     }
+  }
+
+  .iui-slider-track {
+    pointer-events: none;
+    position: absolute;
+    height: $track-height;
+    left: 0;
+    top: $iui-sm;
+    @include themed {
+      background-color: t(iui-color-foreground-primary);
+    }
+  }
+
+  .iui-slider-min,
+  .iui-slider-max {
+    @include iui-slider-endpoints();
+  }
+
+  .iui-slider-min {
+    margin-right: $iui-sm;
+    text-align: right;
+  }
+
+  .iui-slider-max {
+    margin-left: $iui-sm;
   }
 
   .iui-slider-ticks {
@@ -71,10 +96,10 @@ $tick-height: $iui-baseline; // 11px
     min-height: auto;
     min-width: $iui-baseline * 2;
     height: 100%;
-  }
 
-  &.iui-disabled {
-    @include iui-slider-disabled;
+    &.iui-disabled {
+      @include iui-slider-disabled;
+    }
   }
 
   .iui-slider-rail {
@@ -99,6 +124,22 @@ $tick-height: $iui-baseline; // 11px
     @include themed {
       background-color: t(iui-color-foreground-primary);
     }
+  }
+
+  .iui-slider-min,
+  .iui-slider-max {
+    @include iui-slider-endpoints();
+    margin: 0;
+    margin-left: $iui-xxs;
+    text-align: center;
+  }
+
+  .iui-slider-min {
+    margin-top: $iui-sm;
+  }
+
+  .iui-slider-max {
+    margin-bottom: $iui-sm;
   }
 
   .iui-slider-ticks {
@@ -139,38 +180,13 @@ $tick-height: $iui-baseline; // 11px
   }
 }
 
-// TODO: Try to separate this also into horizontal and vertical
-/// @arg $endpoints Can be one of: min, max
-@mixin iui-slider-endpoints($endpoints) {
+@mixin iui-slider-endpoints {
   user-select: all;
   margin-top: $iui-xxs;
 
   svg {
     @include iui-icons-default;
     margin-top: $iui-xs;
-  }
-
-  @at-root .iui-vertical & {
-    margin: 0;
-    margin-left: $iui-xxs;
-    text-align: center;
-  }
-
-  @if $endpoints == min {
-    margin-right: $iui-sm;
-    text-align: right;
-
-    @at-root .iui-vertical & {
-      margin-top: $iui-sm;
-    }
-  }
-
-  @if $endpoints == max {
-    margin-left: $iui-sm;
-
-    @at-root .iui-vertical & {
-      margin-bottom: $iui-sm;
-    }
   }
 }
 
