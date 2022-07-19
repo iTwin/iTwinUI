@@ -183,45 +183,49 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
 }
 
 @mixin iui-hue-slider {
-  .iui-slider-rail {
-    height: $iui-s;
-    forced-color-adjust: none;
-    @include themed {
-      background: linear-gradient(
-        to right,
-        $iui-color-system-red 0%,
-        $iui-color-system-yellow 17%,
-        rgb(0, 255, 0) 33%,
-        rgb(0, 255, 255) 50%,
-        $iui-color-system-blue 67%,
-        $iui-color-system-magenta 83%,
-        $iui-color-system-red 100%
-      );
+  .iui-slider-container {
+    .iui-slider-rail {
+      height: $iui-s;
+      forced-color-adjust: none;
+      @include themed {
+        background: linear-gradient(
+          to right,
+          $iui-color-system-red 0%,
+          $iui-color-system-yellow 17%,
+          rgb(0, 255, 0) 33%,
+          rgb(0, 255, 255) 50%,
+          $iui-color-system-blue 67%,
+          $iui-color-system-magenta 83%,
+          $iui-color-system-red 100%
+        );
+      }
     }
-  }
 
-  .iui-slider-thumb {
-    top: 7px;
+    .iui-slider-container .iui-slider-thumb {
+      top: 7px;
+    }
   }
 }
 
 @mixin iui-opacity-slider {
-  .iui-slider-rail {
-    height: $iui-s;
-    forced-color-adjust: none;
-    @include iui-transparent-background($size: $iui-s);
+  .iui-slider-container {
+    .iui-slider-rail {
+      height: $iui-s;
+      forced-color-adjust: none;
+      @include iui-transparent-background($size: $iui-s);
 
-    &::before {
-      display: block;
-      content: '';
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%);
+      &::before {
+        display: block;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%);
+      }
     }
-  }
 
-  .iui-slider-thumb {
-    top: 7px;
+    .iui-slider-thumb {
+      top: 7px;
+    }
   }
 }
 
