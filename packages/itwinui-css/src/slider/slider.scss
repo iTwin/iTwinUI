@@ -4,8 +4,8 @@
 @import '../icon/index';
 
 $thumb-height: $iui-m; // 16px
-$track-height: $iui-xs; // 4px
-$tick-height: $iui-baseline; // 11px
+$track-thickness: $iui-xs; // 4px
+$tick-length: $iui-baseline; // 11px
 
 @mixin iui-slider-horizontal {
   &.iui-slider-component-container {
@@ -20,7 +20,7 @@ $tick-height: $iui-baseline; // 11px
   .iui-slider-rail {
     position: absolute;
     width: 100%;
-    height: $track-height;
+    height: $track-thickness;
     top: $iui-sm;
     @include themed {
       background-color: t(iui-color-background-border);
@@ -30,7 +30,7 @@ $tick-height: $iui-baseline; // 11px
   .iui-slider-track {
     pointer-events: none;
     position: absolute;
-    height: $track-height;
+    height: $track-thickness;
     left: 0;
     top: $iui-sm;
     @include themed {
@@ -40,7 +40,7 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-thumb {
     @include iui-slider-thumb();
-    top: $track-height + 1; // position center of thumb in center of track
+    top: $track-thickness + 1; // position center of thumb in center of track
   }
 
   .iui-slider-min,
@@ -70,14 +70,14 @@ $tick-height: $iui-baseline; // 11px
       display: flex;
       pointer-events: none;
       justify-content: center;
-      line-height: $tick-height * 4;
+      line-height: $tick-length * 4;
       align-items: center;
-      margin-bottom: $tick-height * 2;
+      margin-bottom: $tick-length * 2;
 
       .iui-slider-tick-mark {
         display: inline-block;
         width: 1px;
-        height: $tick-height;
+        height: $tick-length;
 
         @include themed {
           background-color: t(iui-color-background-4);
@@ -86,7 +86,7 @@ $tick-height: $iui-baseline; // 11px
 
       .iui-slider-tick-number {
         position: absolute;
-        top: $tick-height * 2;
+        top: $tick-length * 2;
         font-weight: normal;
         line-height: 0;
       }
@@ -109,7 +109,7 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-rail {
     position: absolute;
-    width: $track-height;
+    width: $track-thickness;
     height: 100%;
     left: $iui-sm;
     @include themed {
@@ -124,7 +124,7 @@ $tick-height: $iui-baseline; // 11px
   .iui-slider-track {
     pointer-events: none;
     position: absolute;
-    width: $track-height;
+    width: $track-thickness;
     left: $iui-sm;
     top: $iui-sm;
     bottom: 0;
@@ -135,7 +135,7 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-thumb {
     @include iui-slider-thumb();
-    left: $track-height + 1;
+    left: $track-thickness + 1;
     transform: translateY(50%);
   }
 
@@ -176,7 +176,7 @@ $tick-height: $iui-baseline; // 11px
 
     .iui-slider-tick-mark {
       display: inline-block;
-      width: $tick-height;
+      width: $tick-length;
       height: 1px;
 
       @include themed {
@@ -188,7 +188,7 @@ $tick-height: $iui-baseline; // 11px
       position: absolute;
       font-weight: normal;
       line-height: 0;
-      left: $tick-height * 2;
+      left: $tick-length * 2;
     }
   }
 }
