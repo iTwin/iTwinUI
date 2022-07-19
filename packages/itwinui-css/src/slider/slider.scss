@@ -38,6 +38,11 @@ $tick-height: $iui-baseline; // 11px
     }
   }
 
+  .iui-slider-thumb {
+    @include iui-slider-thumb();
+    top: $track-height + 1; // position center of thumb in center of track
+  }
+
   .iui-slider-min,
   .iui-slider-max {
     @include iui-slider-endpoints();
@@ -114,6 +119,8 @@ $tick-height: $iui-baseline; // 11px
 
   // TODO: Confirm if replaced some actual; values with the unset
   // TODO: Confirm if all the attributes transitioned well
+  // TODO: Confirm that the new order of mixins, etc. are similar to the old order
+
   .iui-slider-track {
     pointer-events: none;
     position: absolute;
@@ -124,6 +131,12 @@ $tick-height: $iui-baseline; // 11px
     @include themed {
       background-color: t(iui-color-foreground-primary);
     }
+  }
+
+  .iui-slider-thumb {
+    @include iui-slider-thumb();
+    left: $track-height + 1;
+    transform: translateY(50%);
   }
 
   .iui-slider-min,
@@ -206,7 +219,6 @@ $tick-height: $iui-baseline; // 11px
   height: $thumb-height;
   width: $thumb-height;
   border-radius: 100%;
-  top: $track-height + 1; // position center of thumb in center of track
   transform: translateX(-50%); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
   z-index: 1;
   cursor: grab;
@@ -216,34 +228,8 @@ $tick-height: $iui-baseline; // 11px
     border: 1px solid t(iui-color-background-border);
   }
 
-  @at-root .iui-vertical & {
-    top: unset;
-    left: $track-height + 1;
-
-    // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
-    transform: translateY(50%);
-  }
-
   &:active {
     cursor: grabbing;
-  }
-}
-
-@mixin iui-slider-track {
-  pointer-events: none;
-  position: absolute;
-  height: $track-height;
-  left: 0;
-  top: $iui-sm;
-  @include themed {
-    background-color: t(iui-color-foreground-primary);
-  }
-
-  @at-root .iui-vertical & {
-    width: $track-height;
-    bottom: 0;
-    height: unset;
-    left: $iui-sm;
   }
 }
 
