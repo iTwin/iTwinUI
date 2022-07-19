@@ -17,8 +17,6 @@ $tick-height: $iui-baseline; // 11px
     @include iui-slider-disabled;
   }
 
-  // @include iui-slider-container();
-
   .iui-slider-rail {
     position: absolute;
     width: 100%;
@@ -28,9 +26,6 @@ $tick-height: $iui-baseline; // 11px
       background-color: t(iui-color-background-border);
     }
   }
-
-  // // TODO: Not sure if we need it here or just having it in classes.scss is enough
-  // @include iui-slider-thumb();
 
   .iui-slider-ticks {
     position: relative;
@@ -82,25 +77,21 @@ $tick-height: $iui-baseline; // 11px
     @include iui-slider-disabled;
   }
 
-  // @include iui-slider-container();
-
   .iui-slider-rail {
     position: absolute;
     width: $track-height;
     height: 100%;
-    // top: unset;
     left: $iui-sm;
     @include themed {
       background-color: t(iui-color-background-border);
     }
   }
 
-  // @include iui-slider-thumb();
-
+  // TODO: Confirm if replaced some actual; values with the unset
+  // TODO: Confirm if all the attributes transitioned well
   .iui-slider-track {
     pointer-events: none;
     position: absolute;
-    // height: unset; // TODO: Confirm if replaced some actual; values with the unset
     width: $track-height;
     left: $iui-sm;
     top: $iui-sm;
@@ -194,7 +185,6 @@ $tick-height: $iui-baseline; // 11px
   }
 }
 
-// Not changing this since horizontal and vertical have many common attributes
 @mixin iui-slider-thumb {
   position: absolute;
   height: $thumb-height;
