@@ -70,37 +70,37 @@ $tick-height: $iui-baseline; // 11px
 }
 
 @mixin iui-slider-vertical {
-  .iui-slider-component-container {
+  &.iui-slider-component-container {
     display: flex;
     flex-direction: column-reverse;
     min-height: auto;
     min-width: $iui-baseline * 2;
     height: 100%;
-
-    &.iui-disabled {
-      @include iui-slider-disabled;
-    }
   }
 
-  @include iui-slider-container();
+  &.iui-disabled {
+    @include iui-slider-disabled;
+  }
+
+  // @include iui-slider-container();
 
   .iui-slider-rail {
     position: absolute;
     width: $track-height;
     height: 100%;
-    top: unset;
+    // top: unset;
     left: $iui-sm;
     @include themed {
       background-color: t(iui-color-background-border);
     }
   }
 
-  @include iui-slider-thumb();
+  // @include iui-slider-thumb();
 
   .iui-slider-track {
     pointer-events: none;
     position: absolute;
-    height: unset; // TODO: Confirm if replaced some actual; values with the unset
+    // height: unset; // TODO: Confirm if replaced some actual; values with the unset
     width: $track-height;
     left: $iui-sm;
     top: $iui-sm;
@@ -112,7 +112,6 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-ticks {
     position: relative;
-    padding-top: $iui-m;
     display: flex;
     pointer-events: none;
     justify-content: space-between;
