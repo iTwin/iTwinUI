@@ -27,7 +27,7 @@
   },
   "resolutions": {
     "trim": "^0.0.3",
-    "glob-parent": "^5.1.2",
+    "glob-parent": "^6.0.1",
     "set-value": "^4.1.0",
     "ansi-regex": "^5.0.1",
     "postcss": "8",
