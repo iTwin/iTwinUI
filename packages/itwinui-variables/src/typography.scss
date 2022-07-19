@@ -1,0 +1,20 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use 'sass:math';
+
+@mixin typography {
+  --iui-font-sans: 'Noto Sans', 'Open Sans', system-ui, sans-serif;
+  --iui-font-mono: 'Noto Sans Mono', ui-monospace, 'Segoe UI Mono', Consolas, 'Roboto Mono', monospace;
+
+  --iui-font-size-0: #{math.div(12, 16)}rem;
+  --iui-font-size-1: #{math.div(14, 16)}rem;
+  --iui-font-size-2: #{math.div(16, 16)}rem;
+  --iui-font-size-3: #{math.div(18, 16)}rem;
+  --iui-font-size-4: #{math.div(24, 16)}rem;
+  --iui-font-size-5: #{math.div(32, 16)}rem;
+
+  --iui-font-weight-light: 300;
+  --iui-font-weight-normal: 400;
+  --iui-font-weight-semibold: 500;
+  --iui-font-weight-bold: 700;
+}

@@ -9,6 +9,7 @@
   display: inline-flex;
   align-items: center;
   isolation: isolate;
+  pointer-events: none;
 
   @if $orientation != 'horizontal' {
     flex-direction: column;
@@ -16,11 +17,15 @@
   }
 
   $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
-  $childBorderSelector: '.iui-input, .iui-button:where(:not(.iui-borderless))';
+  $childBorderSelector: '.iui-input, .iui-button:where(:not([data-iui-variant="borderless"]))';
   $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
   > * {
     display: flex;
+
+    > * {
+      pointer-events: all;
+    }
 
     #{$childZindexSelector} {
       position: relative;
@@ -36,13 +41,16 @@
         z-index: 1;
       }
 
-      &:focus,
-      &:focus-within {
-        z-index: 2;
-      }
-
       #{$disabledSelector} {
         z-index: -1;
+      }
+
+      &:focus,
+      &:focus-within {
+        &,
+        &:where([aria-disabled='true']) {
+          z-index: 2;
+        }
       }
     }
 
@@ -93,7 +101,7 @@
     }
 
     // Add slight border between disabled items
-    &:not(:first-child) :where(.iui-button.iui-default) {
+    &:not(:first-child) :not([data-iui-variant='borderless']) {
       #{$disabledSelector} {
         @if $orientation == 'horizontal' {
           border-left-color: var(--iui-color-background-4);

@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../utils/index';
 
 @mixin iui-tabs {
   @include iui-reset;
   position: relative;
-  align-items: center;
   list-style: none;
   user-select: none;
 
@@ -16,11 +16,11 @@
     display: flex;
     align-items: center;
     font-size: $iui-font-size;
+    min-height: $iui-component-height;
+    height: 100%;
     cursor: pointer;
     color: var(--iui-text-color);
-    @media (prefers-reduced-motion: no-preference) {
-      transition: background-color $iui-speed-fast ease-out;
-    }
+    transition: background-color $iui-speed-fast ease-out;
 
     &.iui-active {
       color: var(--iui-color-foreground-primary);
@@ -48,18 +48,13 @@
 
   .iui-tab-icon {
     @include iui-icons-default;
+    flex-shrink: 0;
     fill: var(--iui-icons-color-actionable);
-    @media (prefers-reduced-motion: no-preference) {
-      transition: fill $iui-speed-fast ease-out;
-    }
+    transition: fill $iui-speed-fast ease-out;
 
     + .iui-tab-label {
       margin-left: $iui-s;
     }
-  }
-
-  .iui-tab-label {
-    text-align: left;
   }
 
   .iui-tab-description {
@@ -88,6 +83,15 @@
   }
 }
 
+@mixin iui-tab-label {
+  text-align: left;
+  max-width: 60ch;
+
+  > * {
+    @include iui-line-clamp(3);
+  }
+}
+
 @mixin iui-tabs-horizontal {
   flex-direction: column;
 
@@ -109,8 +113,6 @@
 
 @mixin iui-tabs-vertical {
   .iui-tabs {
-    flex-direction: column;
-
     li,
     .iui-tab {
       width: 100%;

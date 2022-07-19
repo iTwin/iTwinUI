@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../anchor/index';
-@import '../icon/index';
+@import '../utils/index';
 
 @mixin iui-toast {
   @include iui-reset;

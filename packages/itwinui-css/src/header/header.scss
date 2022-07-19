@@ -2,8 +2,9 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../avatar/index';
-@import '../icon/index';
 @import '../button/index';
+@import '../utils/index';
+@import '../icon/index';
 
 @mixin iui-page-header {
   @include iui-reset;
@@ -120,7 +121,7 @@
             @include iui-display-none;
           }
 
-          .iui-header-button-icon + .iui-button-label {
+          .iui-header-button-icon + span {
             margin-left: 0;
           }
         }
@@ -232,7 +233,7 @@
 
   @include iui-header-button-focus;
 
-  > .iui-button-label {
+  > span {
     text-align: left;
     font-size: $iui-font-size;
     overflow: hidden;
@@ -288,7 +289,7 @@
           }
         }
 
-        .iui-button-label {
+        span {
           .iui-description {
             @include iui-display-none;
           }
@@ -328,7 +329,7 @@
 
     // Removing button hovers and backgrounds and adding last child hover
     .iui-button {
-      &.iui-borderless {
+      &[data-iui-variant='borderless'] {
         &,
         &:hover {
           background-color: transparent;
@@ -379,7 +380,7 @@
   }
 
   // Blue text
-  .iui-button-label {
+  span {
     color: var(--iui-color-foreground-primary);
   }
 
@@ -389,7 +390,7 @@
     background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
     box-shadow: 0 $iui-xxs 0 0 rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
 
-    .iui-button-label {
+    span {
       color: var(--iui-icons-color-actionable-disabled);
     }
 

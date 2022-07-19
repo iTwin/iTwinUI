@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../icon/index';
+@import '../utils/index';
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
 $iui-expander-inline-padding: $iui-component-offset + $iui-xxs + 1px; // margin + padding + border
