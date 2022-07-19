@@ -7,22 +7,149 @@ $thumb-height: $iui-m; // 16px
 $track-height: $iui-xs; // 4px
 $tick-height: $iui-baseline; // 11px
 
-@mixin iui-slider-component-container {
-  display: flex;
-  min-height: $iui-baseline * 2;
-
-  &.iui-vertical {
-    flex-direction: column-reverse;
-    min-height: auto;
-    min-width: $iui-baseline * 2;
-    height: 100%;
+@mixin iui-slider-horizontal {
+  &.iui-slider-component-container {
+    display: flex;
+    min-height: $iui-baseline * 2;
   }
 
   &.iui-disabled {
     @include iui-slider-disabled;
   }
+
+  // @include iui-slider-container();
+
+  .iui-slider-rail {
+    position: absolute;
+    width: 100%;
+    height: $track-height;
+    top: $iui-sm;
+    @include themed {
+      background-color: t(iui-color-background-border);
+    }
+  }
+
+  // // TODO: Not sure if we need it here or just having it in classes.scss is enough
+  // @include iui-slider-thumb();
+
+  .iui-slider-ticks {
+    position: relative;
+    padding-top: $iui-m;
+    display: flex;
+    pointer-events: none;
+    justify-content: space-between;
+    user-select: none;
+
+    .iui-slider-tick {
+      position: relative;
+      display: flex;
+      pointer-events: none;
+      justify-content: center;
+      line-height: $tick-height * 4;
+      align-items: center;
+      margin-bottom: $tick-height * 2;
+
+      .iui-slider-tick-mark {
+        display: inline-block;
+        width: 1px;
+        height: $tick-height;
+
+        @include themed {
+          background-color: t(iui-color-background-4);
+        }
+      }
+
+      .iui-slider-tick-number {
+        position: absolute;
+        top: $tick-height * 2;
+        font-weight: normal;
+        line-height: 0;
+      }
+    }
+  }
 }
 
+@mixin iui-slider-vertical {
+  .iui-slider-component-container {
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: auto;
+    min-width: $iui-baseline * 2;
+    height: 100%;
+
+    &.iui-disabled {
+      @include iui-slider-disabled;
+    }
+  }
+
+  @include iui-slider-container();
+
+  .iui-slider-rail {
+    position: absolute;
+    width: $track-height;
+    height: 100%;
+    top: unset;
+    left: $iui-sm;
+    @include themed {
+      background-color: t(iui-color-background-border);
+    }
+  }
+
+  @include iui-slider-thumb();
+
+  .iui-slider-track {
+    pointer-events: none;
+    position: absolute;
+    height: unset; // TODO: Confirm if replaced some actual; values with the unset
+    width: $track-height;
+    left: $iui-sm;
+    top: $iui-sm;
+    bottom: 0;
+    @include themed {
+      background-color: t(iui-color-foreground-primary);
+    }
+  }
+
+  .iui-slider-ticks {
+    position: relative;
+    padding-top: $iui-m;
+    display: flex;
+    pointer-events: none;
+    justify-content: space-between;
+    user-select: none;
+    padding-left: $iui-m;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    height: 100%;
+  }
+
+  .iui-slider-tick {
+    position: relative;
+    display: flex;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+
+    .iui-slider-tick-mark {
+      display: inline-block;
+      width: $tick-height;
+      height: 1px;
+
+      @include themed {
+        background-color: t(iui-color-background-4);
+      }
+    }
+
+    .iui-slider-tick-number {
+      position: absolute;
+      font-weight: normal;
+      line-height: 0;
+      left: $tick-height * 2;
+    }
+  }
+}
+
+// TODO: Try to separate this also into horizontal and vertical
 /// @arg $endpoints Can be one of: min, max
 @mixin iui-slider-endpoints($endpoints) {
   user-select: all;
@@ -68,23 +195,7 @@ $tick-height: $iui-baseline; // 11px
   }
 }
 
-@mixin iui-slider-rail {
-  position: absolute;
-  width: 100%;
-  height: $track-height;
-  top: $iui-sm;
-  @include themed {
-    background-color: t(iui-color-background-border);
-  }
-
-  @at-root .iui-vertical & {
-    width: $track-height;
-    height: 100%;
-    top: unset;
-    left: $iui-sm;
-  }
-}
-
+// Not changing this since horizontal and vertical have many common attributes
 @mixin iui-slider-thumb {
   position: absolute;
   height: $thumb-height;
@@ -128,65 +239,6 @@ $tick-height: $iui-baseline; // 11px
     bottom: 0;
     height: unset;
     left: $iui-sm;
-  }
-}
-
-@mixin iui-slider-ticks {
-  position: relative;
-  padding-top: $iui-m;
-  display: flex;
-  pointer-events: none;
-  justify-content: space-between;
-  user-select: none;
-
-  @at-root .iui-vertical & {
-    padding-top: unset;
-    padding-left: $iui-m;
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    height: 100%;
-  }
-
-  .iui-slider-tick {
-    position: relative;
-    display: flex;
-    pointer-events: none;
-    justify-content: center;
-    line-height: $tick-height * 4;
-    align-items: center;
-    margin-bottom: $tick-height * 2;
-
-    @at-root .iui-vertical & {
-      line-height: unset;
-      margin-bottom: unset;
-    }
-
-    .iui-slider-tick-mark {
-      display: inline-block;
-      width: 1px;
-      height: $tick-height;
-
-      @at-root .iui-vertical & {
-        width: $tick-height;
-        height: 1px;
-      }
-
-      @include themed {
-        background-color: t(iui-color-background-4);
-      }
-    }
-
-    .iui-slider-tick-number {
-      position: absolute;
-      top: $tick-height * 2;
-      font-weight: normal;
-      line-height: 0;
-
-      @at-root .iui-vertical & {
-        top: unset;
-        left: $tick-height * 2;
-      }
-    }
   }
 }
 

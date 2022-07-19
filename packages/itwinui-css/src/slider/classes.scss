@@ -2,21 +2,29 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-slider-component-container {
-  @include iui-slider-component-container;
+// .iui-slider-component-container {
+//   @include iui-slider-component-container;
+// }
+
+.iui-horizontal {
+  @include iui-slider-horizontal;
+}
+
+.iui-vertical {
+  @include iui-slider-vertical;
 }
 
 .iui-slider-container {
   @include iui-slider-container;
 }
 
-.iui-slider-ticks {
-  @include iui-slider-ticks;
-}
+// .iui-slider-ticks {
+//   @include iui-slider-ticks;
+// }
 
-.iui-slider-rail {
-  @include iui-slider-rail;
-}
+// .iui-slider-rail {
+//   @include iui-slider-rail;
+// }
 
 .iui-slider-thumb {
   @include iui-slider-thumb;
