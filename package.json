@@ -26,7 +26,8 @@
     "dev": "turbo run dev",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "lint:copyright": "node packages/shared/copyrightLinter.js"
+    "lint:copyright": "node packages/shared/copyrightLinter.js",
+    "build-docker": "cd packages/itwinui-css && node scripts/buildDocker.js"
   },
   "dependencies": {},
   "devDependencies": {
