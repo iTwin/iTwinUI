@@ -294,8 +294,8 @@
         <div class="iui-table">
           <div class="iui-table-header-wrapper">
             <div class="iui-table-header">
-              <div class="iui-row">
-                <div class="iui-cell iui-slot">
+              <div class="iui-table-row">
+                <div class="iui-table-cell iui-slot">
 
                   <input
                     type="checkbox"
@@ -304,13 +304,13 @@
                   />
                 </div>
                 <div
-                  class="iui-cell iui-actionable iui-sorted"
+                  class="iui-table-cell iui-actionable iui-sorted"
                   tabindex="0"
                 >
                   Name
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-filter-button"
+                      class="iui-button iui-table-filter-button"
                       data-iui-variant="borderless"
                       data-iui-size="small"
                       aria-label="Apply filter"
@@ -321,25 +321,25 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-up
-                        class="iui-button-icon iui-sort"
+                        class="iui-button-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-up>
                     </div>
                   </div>
-                  <div class="iui-resizer">
-                    <div class="iui-resizer-bar"></div>
+                  <div class="iui-table-resizer">
+                    <div class="iui-table-resizer-bar"></div>
                   </div>
                 </div>
                 <div
-                  class="iui-cell iui-actionable"
+                  class="iui-table-cell iui-actionable"
                   tabindex="0"
                 >
                   Modified
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-filter-button"
+                      class="iui-button iui-table-filter-button"
                       data-iui-variant="borderless"
                       data-iui-size="small"
                       aria-label="Apply filter"
@@ -350,25 +350,25 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-up
-                        class="iui-button-icon iui-sort"
+                        class="iui-button-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-up>
                     </div>
                   </div>
-                  <div class="iui-resizer">
-                    <div class="iui-resizer-bar"></div>
+                  <div class="iui-table-resizer">
+                    <div class="iui-table-resizer-bar"></div>
                   </div>
                 </div>
                 <div
-                  class="iui-cell iui-actionable"
+                  class="iui-table-cell iui-actionable"
                   tabindex="0"
                 >
                   Modified by
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-filter-button"
+                      class="iui-button iui-table-filter-button"
                       data-iui-variant="borderless"
                       data-iui-size="small"
                       aria-label="Modify filter"
@@ -379,25 +379,25 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-up
-                        class="iui-button-icon iui-sort"
+                        class="iui-button-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-up>
                     </div>
                   </div>
-                  <div class="iui-resizer">
-                    <div class="iui-resizer-bar"></div>
+                  <div class="iui-table-resizer">
+                    <div class="iui-table-resizer-bar"></div>
                   </div>
                 </div>
                 <div
-                  class="iui-cell iui-actionable"
+                  class="iui-table-cell iui-actionable"
                   tabindex="0"
                 >
                   Size
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-filter-button"
+                      class="iui-button iui-table-filter-button"
                       data-iui-variant="borderless"
                       data-iui-size="small"
                       aria-label="Apply filter"
@@ -408,15 +408,15 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-up
-                        class="iui-button-icon iui-sort"
+                        class="iui-button-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-up>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell iui-slot">
+                <div class="iui-table-cell iui-slot">
                   <button
                     class="iui-button"
                     data-iui-variant="borderless"
@@ -433,10 +433,13 @@
             </div>
           </div>
 
-          <div class="iui-table-body">
+          <div
+            class="iui-table-body"
+            aria-multiselectable="true"
+          >
 
-            <div class="iui-row">
-              <div class="iui-cell iui-slot">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -445,15 +448,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
                 </div>
                 alpha.dgn
               </div>
-              <div class="iui-cell">Jan 13, 2021 12:26 PM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Jan 13, 2021 12:26 PM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="2"
@@ -462,10 +465,10 @@
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">20 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">20 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
@@ -478,8 +481,11 @@
               </div>
             </div>
 
-            <div class="iui-row iui-selected">
-              <div class="iui-cell iui-slot">
+            <div
+              class="iui-table-row"
+              aria-selected="true"
+            >
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -489,15 +495,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-audio aria-hidden="true"></svg-filetype-audio>
                 </div>
                 beta.mp3
               </div>
-              <div class="iui-cell">Aug 10, 2021 2:26 PM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Aug 10, 2021 2:26 PM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="1"
@@ -506,10 +512,10 @@
                 </div>
                 Robin Mercer
               </div>
-              <div class="iui-cell demo-right-align">10 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">10 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
@@ -522,8 +528,8 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-slot">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -532,15 +538,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
                 </div>
                 charlie.pdf
               </div>
-              <div class="iui-cell">Mar 1, 2020 8:00 PM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Mar 1, 2020 8:00 PM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="2"
@@ -549,10 +555,10 @@
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">10 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">10 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
@@ -565,8 +571,8 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-slot">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -575,15 +581,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-image aria-hidden="true"></svg-filetype-image>
                 </div>
                 delta.jpg
               </div>
-              <div class="iui-cell">Sep 7, 2015 11:30 AM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Sep 7, 2015 11:30 AM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="2"
@@ -592,10 +598,10 @@
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">963 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">963 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
@@ -608,8 +614,8 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-slot">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -618,15 +624,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
                 </div>
                 echo.svg
               </div>
-              <div class="iui-cell">Apr 14, 2019 11:59 PM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Apr 14, 2019 11:59 PM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="2"
@@ -635,10 +641,10 @@
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">64 KB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">64 KB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
@@ -657,8 +663,8 @@
           class="iui-information-panel iui-right"
           id="myOpeningInfoPanel"
         >
-          <div class="iui-resizer">
-            <div class="iui-resizer-bar"></div>
+          <div class="iui-table-resizer">
+            <div class="iui-table-resizer-bar"></div>
           </div>
 
           <div class="iui-information-header">
@@ -816,8 +822,8 @@
         <div class="iui-table">
           <div class="iui-table-header-wrapper">
             <div class="iui-table-header">
-              <div class="iui-row">
-                <div class="iui-cell iui-slot">
+              <div class="iui-table-row">
+                <div class="iui-table-cell iui-slot">
                   <input
                     type="checkbox"
                     class="iui-checkbox"
@@ -825,13 +831,13 @@
                   />
                 </div>
                 <div
-                  class="iui-cell iui-actionable iui-sorted"
+                  class="iui-table-cell iui-actionable iui-sorted"
                   tabindex="0"
                 >
                   Name
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-filter-button"
+                      class="iui-button iui-table-filter-button"
                       data-iui-variant="borderless"
                       data-iui-size="small"
                       aria-label="Apply filter"
@@ -842,25 +848,25 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-up
-                        class="iui-button-icon iui-sort"
+                        class="iui-button-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-up>
                     </div>
                   </div>
-                  <div class="iui-resizer">
-                    <div class="iui-resizer-bar"></div>
+                  <div class="iui-table-resizer">
+                    <div class="iui-table-resizer-bar"></div>
                   </div>
                 </div>
                 <div
-                  class="iui-cell iui-actionable"
+                  class="iui-table-cell iui-actionable"
                   tabindex="0"
                 >
                   Modified
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-filter-button"
+                      class="iui-button iui-table-filter-button"
                       data-iui-variant="borderless"
                       data-iui-size="small"
                       aria-label="Apply filter"
@@ -871,25 +877,25 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-up
-                        class="iui-button-icon iui-sort"
+                        class="iui-button-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-up>
                     </div>
                   </div>
-                  <div class="iui-resizer">
-                    <div class="iui-resizer-bar"></div>
+                  <div class="iui-table-resizer">
+                    <div class="iui-table-resizer-bar"></div>
                   </div>
                 </div>
                 <div
-                  class="iui-cell iui-actionable"
+                  class="iui-table-cell iui-actionable"
                   tabindex="0"
                 >
                   Modified by
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-filter-button"
+                      class="iui-button iui-table-filter-button"
                       data-iui-variant="borderless"
                       data-iui-size="small"
                       aria-label="Modify filter"
@@ -900,25 +906,25 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-up
-                        class="iui-button-icon iui-sort"
+                        class="iui-button-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-up>
                     </div>
                   </div>
-                  <div class="iui-resizer">
-                    <div class="iui-resizer-bar"></div>
+                  <div class="iui-table-resizer">
+                    <div class="iui-table-resizer-bar"></div>
                   </div>
                 </div>
                 <div
-                  class="iui-cell iui-actionable"
+                  class="iui-table-cell iui-actionable"
                   tabindex="0"
                 >
                   Size
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-filter-button"
+                      class="iui-button iui-table-filter-button"
                       data-iui-variant="borderless"
                       data-iui-size="small"
                       aria-label="Apply filter"
@@ -929,15 +935,15 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-up
-                        class="iui-button-icon iui-sort"
+                        class="iui-button-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-up>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell iui-slot">
+                <div class="iui-table-cell iui-slot">
                   <button
                     class="iui-button"
                     data-iui-variant="borderless"
@@ -954,10 +960,13 @@
             </div>
           </div>
 
-          <div class="iui-table-body">
+          <div
+            class="iui-table-body"
+            aria-multiselectable="true"
+          >
 
-            <div class="iui-row">
-              <div class="iui-cell iui-slot">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -966,15 +975,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
                 </div>
                 alpha.dgn
               </div>
-              <div class="iui-cell">Jan 13, 2021 12:26 PM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Jan 13, 2021 12:26 PM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="2"
@@ -983,10 +992,10 @@
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">20 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">20 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
@@ -999,8 +1008,11 @@
               </div>
             </div>
 
-            <div class="iui-row iui-selected">
-              <div class="iui-cell iui-slot">
+            <div
+              class="iui-table-row"
+              aria-selected="true"
+            >
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -1010,15 +1022,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-audio aria-hidden="true"></svg-filetype-audio>
                 </div>
                 beta ipsum dolor sit amet.mp3
               </div>
-              <div class="iui-cell">Aug 10, 2021 2:26 PM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Aug 10, 2021 2:26 PM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="1"
@@ -1027,10 +1039,10 @@
                 </div>
                 Robin Mercer
               </div>
-              <div class="iui-cell demo-right-align">10 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">10 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
@@ -1043,8 +1055,8 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-slot">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -1053,15 +1065,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
                 </div>
                 charlie.pdf
               </div>
-              <div class="iui-cell">Mar 1, 2020 8:00 PM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Mar 1, 2020 8:00 PM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="2"
@@ -1070,10 +1082,10 @@
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">10 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">10 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
@@ -1086,8 +1098,8 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-slot">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -1096,15 +1108,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-image aria-hidden="true"></svg-filetype-image>
                 </div>
                 delta.jpg
               </div>
-              <div class="iui-cell">Sep 7, 2015 11:30 AM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Sep 7, 2015 11:30 AM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="2"
@@ -1113,10 +1125,10 @@
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">963 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">963 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
@@ -1129,8 +1141,8 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-slot">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-slot">
 
                 <input
                   type="checkbox"
@@ -1139,15 +1151,15 @@
                 />
                 </span>
               </div>
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
                 </div>
                 echo.svg
               </div>
-              <div class="iui-cell">Apr 14, 2019 11:59 PM</div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
+              <div class="iui-table-cell">Apr 14, 2019 11:59 PM</div>
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
                   <x-avatar
                     size="small"
                     type="2"
@@ -1156,10 +1168,10 @@
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">64 KB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">64 KB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-more-options"
+                  class="iui-button iui-table-more-options"
                   data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
