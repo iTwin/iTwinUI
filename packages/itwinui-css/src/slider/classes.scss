@@ -2,11 +2,11 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-horizontal {
+.iui-slider-horizontal {
   @include iui-slider-horizontal;
 }
 
-.iui-vertical {
+.iui-slider-vertical {
   @include iui-slider-vertical;
 }
 

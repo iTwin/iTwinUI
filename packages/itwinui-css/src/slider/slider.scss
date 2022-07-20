@@ -26,7 +26,7 @@ $tick-height: $iui-baseline; // 11px
     margin-top: $iui-xs;
   }
 
-  @at-root .iui-vertical & {
+  @at-root .iui-slider-vertical & {
     margin: 0;
     margin-left: $iui-xxs;
     text-align: center;
@@ -34,9 +34,9 @@ $tick-height: $iui-baseline; // 11px
 
   @if $endpoints == min {
     margin-right: $iui-sm;
-    text-align: right;
+    text-align: right; // TODO: Can we remove this?
 
-    @at-root .iui-vertical & {
+    @at-root .iui-slider-vertical & {
       margin-top: $iui-sm;
     }
   }
@@ -44,7 +44,7 @@ $tick-height: $iui-baseline; // 11px
   @if $endpoints == max {
     margin-left: $iui-sm;
 
-    @at-root .iui-vertical & {
+    @at-root .iui-slider-vertical & {
       margin-bottom: $iui-sm;
     }
   }

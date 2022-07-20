@@ -75,7 +75,7 @@
       <div class="iui-input-container">
         <div class="iui-label">Volume</div>
 
-        <div class="iui-slider-component-container iui-horizontal iui-input-group">
+        <div class="iui-slider-component-container iui-slider-horizontal iui-input-group">
           <span class="iui-slider-min">
             <svg-sound-mute
               class="iui-icon"
@@ -130,7 +130,7 @@
       <div class="iui-input-container">
         <div class="iui-label">Slider with ticks</div>
 
-        <div class="iui-slider-component-container iui-horizontal iui-input-group">
+        <div class="iui-slider-component-container iui-slider-horizontal iui-input-group">
           <span class="iui-slider-min">0</span>
           <div class="iui-slider-container iui-progress-slider">
             <div class="iui-slider-rail"></div>
@@ -199,10 +199,10 @@
 
       <br /><br />
 
-      <div class="iui-input-container iui-horizontal iui-disabled">
+      <div class="iui-input-container iui-disabled">
         <div class="iui-label">Disabled slider</div>
 
-        <div class="iui-slider-component-container iui-horizontal iui-input-group iui-disabled">
+        <div class="iui-slider-component-container iui-slider-horizontal iui-input-group iui-disabled">
           <span class="iui-slider-min">0</span>
           <div class="iui-slider-container iui-progress-slider">
             <div class="iui-slider-rail"></div>
@@ -276,7 +276,7 @@
       <div class="iui-input-container">
         <div class="iui-label">Price range</div>
 
-        <div class="iui-slider-component-container iui-horizontal iui-input-group">
+        <div class="iui-slider-component-container iui-slider-horizontal iui-input-group">
           <span class="iui-slider-min">0</span>
           <div class="
               iui-slider-container iui-range-slider">
@@ -330,7 +330,7 @@
       <div class="iui-input-container">
         <div class="iui-label">Range with ticks</div>
 
-        <div class="iui-slider-component-container iui-horizontal iui-input-group">
+        <div class="iui-slider-component-container iui-slider-horizontal iui-input-group">
           <span class="iui-slider-min">0</span>
           <div class="
             iui-slider-container iui-range-slider">
@@ -420,7 +420,7 @@
       <div class="iui-input-container iui-disabled">
         <div class="iui-label">Disabled range</div>
 
-        <div class="iui-slider-component-container iui-horizontal iui-input-group iui-disabled">
+        <div class="iui-slider-component-container iui-slider-horizontal iui-input-group iui-disabled">
           <span class="iui-slider-min">0</span>
           <div class="
             iui-slider-container iui-range-slider">
@@ -512,7 +512,7 @@
         <div class="iui-label">Volume</div>
 
         <div
-          class="iui-slider-component-container iui-vertical iui-input-group"
+          class="iui-slider-component-container iui-slider-vertical iui-input-group"
           style="height: 500px;"
         >
           <span class="iui-slider-min">
@@ -558,7 +558,7 @@
         <div class="iui-label">Slider with ticks</div>
 
         <div
-          class="iui-slider-component-container iui-vertical iui-input-group"
+          class="iui-slider-component-container iui-slider-vertical iui-input-group"
           style="height: 500px;"
         >
           <span class="iui-slider-min">0</span>
@@ -626,7 +626,7 @@
         <div class="iui-label">Disabled slider</div>
 
         <div
-          class="iui-slider-component-container iui-vertical iui-input-group iui-disabled"
+          class="iui-slider-component-container iui-slider-vertical iui-input-group iui-disabled"
           style="height: 500px;"
         >
           <span class="iui-slider-min">0</span>
@@ -699,7 +699,7 @@
         <div class="iui-label">Price range</div>
 
         <div
-          class="iui-slider-component-container iui-vertical iui-input-group"
+          class="iui-slider-component-container iui-slider-vertical iui-input-group"
           style="height: 500px;"
         >
           <span class="iui-slider-min">0</span>
@@ -746,7 +746,7 @@
         <div class="iui-label">Range with ticks</div>
 
         <div
-          class="iui-slider-component-container iui-vertical iui-input-group"
+          class="iui-slider-component-container iui-slider-vertical iui-input-group"
           style="height: 500px;"
         >
           <span class="iui-slider-min">0</span>
@@ -830,7 +830,7 @@
         <div class="iui-label">Disabled range</div>
 
         <div
-          class="iui-slider-component-container iui-vertical iui-input-group iui-disabled"
+          class="iui-slider-component-container iui-slider-vertical iui-input-group iui-disabled"
           style="height: 500px;"
         >
           <span class="iui-slider-min">0</span>
@@ -1058,7 +1058,7 @@
 
       // TODO: Confirm if calculating this every mousemove has a negligible cost. Or do it just once and save it as a data property in the slider container (instead of its parent)
       function getIsVerticalSlider(sliderContainer) {
-        return sliderContainer.parentNode.classList.contains("iui-vertical");
+        return sliderContainer.parentNode.classList.contains("iui-slider-vertical");
       }
 
       function initializeThumbProcessing(thumb, sliderContainer, mode) {
