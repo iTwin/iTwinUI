@@ -9,20 +9,13 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-component-container {
   display: flex;
-  min-height: $iui-baseline * 2;
-
-  &.iui-vertical {
-    flex-direction: column-reverse;
-    min-height: auto;
-    min-width: $iui-baseline * 2;
-    height: 100%;
-  }
 
   &.iui-disabled {
     @include iui-slider-disabled;
   }
 }
 
+// TODO: Transition this to the new format
 /// @arg $endpoints Can be one of: min, max
 @mixin iui-slider-endpoints($endpoints) {
   user-select: all;
@@ -70,18 +63,8 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-rail {
   position: absolute;
-  width: 100%;
-  height: $track-height;
-  top: $iui-sm;
   @include themed {
     background-color: t(iui-color-background-border);
-  }
-
-  @at-root .iui-vertical & {
-    width: $track-height;
-    height: 100%;
-    top: unset;
-    left: $iui-sm;
   }
 }
 
@@ -90,7 +73,6 @@ $tick-height: $iui-baseline; // 11px
   height: $thumb-height;
   width: $thumb-height;
   border-radius: 100%;
-  top: $track-height + 1; // position center of thumb in center of track
   transform: translateX(-50%); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
   z-index: 1;
   cursor: grab;
@@ -98,14 +80,6 @@ $tick-height: $iui-baseline; // 11px
   @include themed {
     background: t(iui-color-background-1);
     border: 1px solid t(iui-color-background-border);
-  }
-
-  @at-root .iui-vertical & {
-    top: unset;
-    left: $track-height + 1;
-
-    // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
-    transform: translateY(50%);
   }
 
   &:active {
@@ -116,60 +90,28 @@ $tick-height: $iui-baseline; // 11px
 @mixin iui-slider-track {
   pointer-events: none;
   position: absolute;
-  height: $track-height;
-  left: 0;
   top: $iui-sm;
   @include themed {
     background-color: t(iui-color-foreground-primary);
-  }
-
-  @at-root .iui-vertical & {
-    width: $track-height;
-    bottom: 0;
-    height: unset;
-    left: $iui-sm;
   }
 }
 
 @mixin iui-slider-ticks {
   position: relative;
-  padding-top: $iui-m;
   display: flex;
   pointer-events: none;
   justify-content: space-between;
   user-select: none;
-
-  @at-root .iui-vertical & {
-    padding-top: unset;
-    padding-left: $iui-m;
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    height: 100%;
-  }
 
   .iui-slider-tick {
     position: relative;
     display: flex;
     pointer-events: none;
     justify-content: center;
-    line-height: $tick-height * 4;
     align-items: center;
-    margin-bottom: $tick-height * 2;
-
-    @at-root .iui-vertical & {
-      line-height: unset;
-      margin-bottom: unset;
-    }
 
     .iui-slider-tick-mark {
       display: inline-block;
-      width: 1px;
-      height: $tick-height;
-
-      @at-root .iui-vertical & {
-        width: $tick-height;
-        height: 1px;
-      }
 
       @include themed {
         background-color: t(iui-color-background-4);
@@ -178,14 +120,8 @@ $tick-height: $iui-baseline; // 11px
 
     .iui-slider-tick-number {
       position: absolute;
-      top: $tick-height * 2;
       font-weight: normal;
       line-height: 0;
-
-      @at-root .iui-vertical & {
-        top: unset;
-        left: $tick-height * 2;
-      }
     }
   }
 }
@@ -218,6 +154,93 @@ $tick-height: $iui-baseline; // 11px
     user-select: none;
     @include themed {
       color: t(iui-text-color-muted);
+    }
+  }
+}
+
+@mixin iui-slider-horizontal {
+  // TODO: Vilius said this selector might not be needed and we can directly write the attributes. It works, but confirm if that is okay
+  // &.iui-slider-component-container {
+  min-height: $iui-baseline * 2;
+  // }
+
+  .iui-slider-rail {
+    width: 100%;
+    height: $track-height;
+    top: $iui-sm;
+  }
+
+  .iui-slider-thumb {
+    top: $track-height + 1; // position center of thumb in center of track
+  }
+
+  .iui-slider-track {
+    height: $track-height;
+    left: 0;
+  }
+
+  .iui-slider-ticks {
+    padding-top: $iui-m;
+
+    .iui-slider-tick {
+      line-height: $tick-height * 4;
+      margin-bottom: $tick-height * 2;
+
+      .iui-slider-tick-mark {
+        width: 1px;
+        height: $tick-height;
+      }
+
+      .iui-slider-tick-number {
+        top: $tick-height * 2;
+      }
+    }
+  }
+}
+
+@mixin iui-slider-vertical {
+  // TODO: Vilius said this selector might not be needed and we can directly write the attributes. It works, but confirm if that is okay
+  // &.iui-slider-component-container {
+  flex-direction: column-reverse;
+  min-height: auto;
+  min-width: $iui-baseline * 2;
+  height: 100%;
+  // }
+
+  .iui-slider-rail {
+    width: $track-height;
+    height: 100%;
+    left: $iui-sm;
+  }
+
+  .iui-slider-thumb {
+    left: $track-height + 1;
+
+    // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
+    transform: translateY(50%);
+  }
+
+  .iui-slider-track {
+    width: $track-height;
+    bottom: 0;
+    left: $iui-sm;
+  }
+
+  .iui-slider-ticks {
+    padding-left: $iui-m;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    height: 100%;
+
+    .iui-slider-tick {
+      .iui-slider-tick-mark {
+        width: $tick-height;
+        height: 1px;
+      }
+
+      .iui-slider-tick-number {
+        left: $tick-height * 2;
+      }
     }
   }
 }
