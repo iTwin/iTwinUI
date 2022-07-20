@@ -15,38 +15,12 @@ $tick-height: $iui-baseline; // 11px
   }
 }
 
-// TODO: Transition this to the new format
-/// @arg $endpoints Can be one of: min, max
-@mixin iui-slider-endpoints($endpoints) {
+@mixin iui-slider-endpoints {
   user-select: all;
-  margin-top: $iui-xxs;
 
   svg {
     @include iui-icons-default;
     margin-top: $iui-xs;
-  }
-
-  @at-root .iui-slider-vertical & {
-    margin: 0;
-    margin-left: $iui-xxs;
-    text-align: center;
-  }
-
-  @if $endpoints == min {
-    margin-right: $iui-sm;
-    text-align: right; // TODO: Can we remove this?
-
-    @at-root .iui-slider-vertical & {
-      margin-top: $iui-sm;
-    }
-  }
-
-  @if $endpoints == max {
-    margin-left: $iui-sm;
-
-    @at-root .iui-slider-vertical & {
-      margin-bottom: $iui-sm;
-    }
   }
 }
 
@@ -196,6 +170,20 @@ $tick-height: $iui-baseline; // 11px
       }
     }
   }
+
+  .iui-slider-min,
+  .iui-slider-max {
+    margin-top: $iui-xxs;
+  }
+
+  .iui-slider-min {
+    margin-right: $iui-sm;
+    text-align: right;
+  }
+
+  .iui-slider-max {
+    margin-left: $iui-sm;
+  }
 }
 
 @mixin iui-slider-vertical {
@@ -242,5 +230,19 @@ $tick-height: $iui-baseline; // 11px
         left: $tick-height * 2;
       }
     }
+  }
+
+  .iui-slider-min,
+  .iui-slider-max {
+    margin-left: $iui-xxs;
+    text-align: center;
+  }
+
+  .iui-slider-min {
+    margin-top: $iui-sm;
+  }
+
+  .iui-slider-max {
+    margin-bottom: $iui-sm;
   }
 }
