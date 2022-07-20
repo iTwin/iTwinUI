@@ -52,7 +52,7 @@
     "createComponent": "node ./scripts/createComponent.js",
     "clean": "rimraf ./css ./scss ./backstop/results/bitmaps_test",
     "dev": "concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn vite backstop/tests --config vite.config.ts\"",
-    "preview": "serve backstop/minified",
+    "preview": "serve backstop/minified -p 3050",
     "lint": "stylelint \"src/**/*.scss\"",
     "approve": "backstop --config=./backstop/backstop.js approve",
     "test:only": "backstop --config=./backstop/backstop.js test --docker",
