@@ -2,42 +2,34 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-// .iui-slider-component-container {
-//   @include iui-slider-component-container;
-// }
-
-.iui-horizontal {
-  @include iui-slider-horizontal;
-}
-
-.iui-vertical {
-  @include iui-slider-vertical;
+.iui-slider-component-container {
+  @include iui-slider-component-container;
 }
 
 .iui-slider-container {
   @include iui-slider-container;
 }
 
-// .iui-slider-ticks {
-//   @include iui-slider-ticks;
-// }
+.iui-slider-ticks {
+  @include iui-slider-ticks;
+}
 
-// .iui-slider-rail {
-//   @include iui-slider-rail;
-// }
+.iui-slider-rail {
+  @include iui-slider-rail;
+}
 
-// .iui-slider-thumb {
-//   @include iui-slider-thumb;
-// }
+.iui-slider-thumb {
+  @include iui-slider-thumb;
+}
 
-// .iui-slider-track {
-//   @include iui-slider-track;
-// }
+.iui-slider-track {
+  @include iui-slider-track;
+}
 
-// .iui-slider-min {
-//   @include iui-slider-endpoints(min);
-// }
+.iui-slider-min {
+  @include iui-slider-endpoints(min);
+}
 
-// .iui-slider-max {
-//   @include iui-slider-endpoints(max);
-// }
+.iui-slider-max {
+  @include iui-slider-endpoints(max);
+}
