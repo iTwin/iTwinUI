@@ -81,7 +81,8 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 
 #### How to set up Docker:
 
-- Download and install [Docker](https://www.docker.com/products/docker-desktop) and make sure Docker is running
+- Make sure Docker is running
+
 - Create the docker image needed for testing by running `yarn build-docker` from the `/packages/itwinui-css/` folder
 
 #### How to run tests:
