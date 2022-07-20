@@ -26,6 +26,7 @@ $iui-button-padding-large: $iui-xs * 6;
   color: var(--_iui-button-text-color);
   gap: var(--_iui-button-gap);
   height: var(--_iui-button-height);
+  min-width: var(--_iui-button-min-width);
   padding-inline: var(--_iui-button-padding-inline);
   transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
   -webkit-tap-highlight-color: transparent;
@@ -35,15 +36,11 @@ $iui-button-padding-large: $iui-xs * 6;
 }
 
 @mixin iui-button-icon {
+  display: inline-flex;
   width: $iui-icons-default;
   height: $iui-icons-default;
   transition: fill $iui-speed-fast ease-out;
   fill: currentColor;
-
-  &:only-child {
-    margin-left: var(--_iui-button-icon-margin-x);
-    margin-right: var(--_iui-button-icon-margin-x);
-  }
 }
 
 @mixin iui-button-active {
