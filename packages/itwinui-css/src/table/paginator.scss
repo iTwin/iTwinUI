@@ -5,12 +5,11 @@
 @import '../button/index';
 @import '../text/muted';
 
-@mixin iui-paginator {
+@mixin iui-table-paginator {
   @include iui-reset;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: $iui-baseline * 5;
   padding: 0 $iui-m;
   user-select: none;
   background-color: var(--iui-color-background-3);
@@ -34,16 +33,16 @@
   > .iui-right {
     justify-content: flex-end;
   }
-
-  &-page-size-label {
-    @include iui-text-muted;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 }
 
-@mixin iui-paginator-ellipsis {
+@mixin iui-table-paginator-page-size-label {
+  @include iui-text-muted;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin iui-table-paginator-ellipsis {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,13 +54,13 @@
   }
 }
 
-@mixin iui-paginator-pages-group {
+@mixin iui-table-paginator-pages-group {
   display: inline-flex;
   align-items: center;
   margin: 0 $iui-s;
 }
 
-@mixin iui-paginator-page-button {
+@mixin iui-table-paginator-page-button {
   @include iui-button;
   @include iui-button-borderless;
   width: $iui-component-height;
