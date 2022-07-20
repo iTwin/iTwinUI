@@ -4,6 +4,18 @@
 
 .iui-tile {
   @include iui-tile;
+
+  &.iui-positive {
+    @include iui-tile-status(positive);
+  }
+
+  &.iui-warning {
+    @include iui-tile-status(warning);
+  }
+
+  &.iui-negative {
+    @include iui-tile-status(negative);
+  }
 }
 
 .iui-tile-thumbnail-type-indicator {
