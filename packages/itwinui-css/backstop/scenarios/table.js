@@ -21,8 +21,8 @@ module.exports = [
   // Editable cell
   scenario('Editable cell', {
     actions: [
-      focus('#demo-default .iui-row:nth-child(1) .iui-cell[contenteditable]'),
-      hover('#demo-default .iui-row:nth-child(2) .iui-cell[contenteditable]'),
+      focus('#demo-default .iui-table-row:nth-child(1) .iui-table-cell[contenteditable]'),
+      hover('#demo-default .iui-table-row:nth-child(2) .iui-table-cell[contenteditable]'),
     ],
     selectors: ['#demo-default .iui-table:nth-child(1)'],
   }),
