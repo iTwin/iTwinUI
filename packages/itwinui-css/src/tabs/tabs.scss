@@ -47,7 +47,7 @@
   }
 
   .iui-tab-icon {
-    @include iui-icons-default;
+    @include iui-icons-size('m');
     flex-shrink: 0;
     fill: var(--iui-icons-color-actionable);
     transition: fill $iui-speed-fast ease-out;

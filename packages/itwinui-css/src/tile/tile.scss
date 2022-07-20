@@ -4,7 +4,6 @@
 @import '../button/index';
 @import '../surface/index';
 @import '../utils/index';
-@import '../icon/index';
 
 @mixin iui-tile {
   @include iui-reset;
@@ -105,7 +104,7 @@
   }
 
   .iui-tile-status-icon {
-    @include iui-icons-default;
+    @include iui-icons-size('m');
     @include iui-icons-color-status;
     @include iui-icons-display;
     margin-right: $iui-s;
@@ -140,7 +139,7 @@
 
     > svg,
     .iui-tile-metadata-icon {
-      @include iui-icons-default;
+      @include iui-icons-size('m');
       @include iui-icons-color;
       @include iui-icons-display;
       margin-right: $iui-s;
@@ -168,7 +167,7 @@
   border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-thumbnail-icon {
-    @include iui-icons-3xl;
+    @include iui-icons-size('3xl');
     @include iui-icons-color;
     @include iui-icons-display;
   }

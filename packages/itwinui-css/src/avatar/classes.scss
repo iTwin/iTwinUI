@@ -14,7 +14,7 @@
   }
 
   &.iui-large {
-    @include iui-avatar-size($size: $iui-icons-xxl, $font-size: $iui-font-size-subheading);
+    @include iui-avatar-size($size: $iui-icons-2xl, $font-size: $iui-font-size-subheading);
   }
 
   &.iui-x-large {

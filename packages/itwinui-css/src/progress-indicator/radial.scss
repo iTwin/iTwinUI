@@ -40,7 +40,7 @@
 
     svg,
     img {
-      @include iui-icons-default;
+      @include iui-icons-size('m');
       display: flex;
       fill: var(--iui-icons-color-actionable);
 
@@ -90,14 +90,14 @@
   }
 
   &.iui-large {
-    @include iui-progress-indicator-radial-size($size: $iui-icons-xxl);
+    @include iui-progress-indicator-radial-size($size: $iui-icons-2xl);
 
     .iui-inner-content {
       font-size: $iui-font-size-leading;
 
       svg,
       img {
-        @include iui-icons-large;
+        @include iui-icons-size('l');
       }
     }
   }

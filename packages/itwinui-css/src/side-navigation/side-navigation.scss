@@ -3,7 +3,6 @@
 @import '../style/index';
 @import '../utils/index';
 @import '../text/mixins';
-@import '../icon/index';
 
 @mixin iui-side-navigation {
   display: inline-flex;
@@ -106,7 +105,7 @@
     }
 
     > .iui-button-icon:not(.iui-avatar) {
-      @include iui-icons-large;
+      @include iui-icons-size('l');
       flex-shrink: 0;
     }
 
@@ -126,7 +125,7 @@
       border-bottom: 1px solid var(--iui-color-background-border);
 
       > .iui-button-icon {
-        @include iui-icons-small;
+        @include iui-icons-size('s');
         @include iui-icons-color;
         @include iui-icons-display;
         @media (prefers-reduced-motion: no-preference) {

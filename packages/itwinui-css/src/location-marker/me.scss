@@ -5,7 +5,7 @@
 
 @mixin iui-location-marker-me {
   @include iui-location-marker;
-  @include iui-icons-large;
+  @include iui-icons-size('l');
   position: relative;
   border-radius: 50%;
   cursor: default;

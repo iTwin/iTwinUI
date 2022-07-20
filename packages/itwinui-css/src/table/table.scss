@@ -440,7 +440,7 @@
     justify-content: center;
 
     svg:not(.iui-radial) {
-      @include iui-icons-default;
+      @include iui-icons-size('m');
       display: flex; // needed for vertical alignment of webcomponents
     }
   }

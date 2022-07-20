@@ -4,7 +4,6 @@
 @import '../avatar/index';
 @import '../button/index';
 @import '../utils/index';
-@import '../icon/index';
 
 @mixin iui-page-header {
   @include iui-reset;
@@ -49,7 +48,7 @@
     }
 
     .iui-chevron {
-      @include iui-icons-small;
+      @include iui-icons-size('s');
       @include iui-icons-color;
       @include iui-icons-display;
       margin: 0 $iui-xs;
@@ -99,7 +98,7 @@
       }
 
       .iui-header-button-icon {
-        @include iui-icons-default;
+        @include iui-icons-size('m');
         @include iui-icons-display;
         margin: 0 $iui-xs;
       }
@@ -284,7 +283,7 @@
       > .iui-left {
         .iui-button {
           .iui-header-button-icon.iui-header-button-icon {
-            @include iui-icons-small;
+            @include iui-icons-size('s');
             padding: $iui-xxs;
           }
         }

@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../utils/index';
-@import '../icon/index';
 
 @mixin iui-file-upload {
   @include iui-reset;
@@ -37,7 +36,7 @@
 
     > svg,
     .iui-template-icon {
-      @include iui-icons-3xl;
+      @include iui-icons-size('3xl');
       @include iui-icons-color;
       @include iui-icons-display;
       margin-top: $iui-baseline;

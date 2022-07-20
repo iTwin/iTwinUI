@@ -1,0 +1,58 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../../style/index';
+
+/// @arg $size Can be one of: s, m, l, xl, 2xl, 3xl
+@mixin iui-icons-size($size: 'm') {
+  @if $size == 's' {
+    width: $iui-icons-small;
+    height: $iui-icons-small;
+  }
+  @if $size == 'm' {
+    width: $iui-icons-default;
+    height: $iui-icons-default;
+  }
+  @if $size == 'l' {
+    width: $iui-icons-large;
+    height: $iui-icons-large;
+  }
+  @if $size == 'xl' {
+    width: $iui-icons-xl;
+    height: $iui-icons-xl;
+  }
+  @if $size == '2xl' {
+    width: $iui-icons-2xl;
+    height: $iui-icons-2xl;
+  }
+  @if $size == '3xl' {
+    width: $iui-icons-3xl;
+    height: $iui-icons-3xl;
+  }
+}
+
+@mixin iui-icons-display {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+@mixin iui-icons-color {
+  fill: var(--iui-icons-color);
+}
+
+@mixin iui-icons-color-status {
+  &.iui-informational {
+    fill: var(--iui-icons-color-primary);
+  }
+
+  &.iui-positive {
+    fill: var(--iui-icons-color-positive);
+  }
+
+  &.iui-warning {
+    fill: var(--iui-icons-color-warning);
+  }
+
+  &.iui-negative {
+    fill: var(--iui-icons-color-negative);
+  }
+}

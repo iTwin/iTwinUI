@@ -35,7 +35,7 @@ $iui-button-padding-large: $iui-xs * 6;
 }
 
 @mixin iui-button-icon {
-  @include iui-icons-default;
+  @include iui-icons-size('m');
   transition: fill $iui-speed-fast ease-out;
   fill: currentColor;
 

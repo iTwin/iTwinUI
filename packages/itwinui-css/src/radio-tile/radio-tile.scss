@@ -68,7 +68,7 @@
     }
 
     &::after {
-      @include iui-icons-default;
+      @include iui-icons-size('m');
       content: '';
       position: absolute;
       top: $iui-s;
@@ -135,7 +135,7 @@
 }
 
 @mixin iui-radio-tile-icon {
-  @include iui-icons-xl;
+  @include iui-icons-size('xl');
   @include iui-icons-color;
   display: block;
   margin: round($iui-baseline * 0.5) auto $iui-baseline;

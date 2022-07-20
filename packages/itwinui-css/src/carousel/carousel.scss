@@ -70,7 +70,7 @@
     &::after {
       content: '';
       display: block;
-      @include iui-icons-small;
+      @include iui-icons-size('s');
       border-radius: 50%;
       border: 1px solid transparent;
       background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));

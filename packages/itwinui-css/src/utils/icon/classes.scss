@@ -1,0 +1,44 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-icons-size {
+  @include iui-icons-size;
+}
+
+.iui-icons-size-s {
+  @include iui-icons-size($size: 's');
+}
+
+.iui-icons-size-m {
+  @include iui-icons-size($size: 'm');
+}
+
+.iui-icons-size-l {
+  @include iui-icons-size($size: 'l');
+}
+
+.iui-icons-size-xl {
+  @include iui-icons-size($size: 'xl');
+}
+
+.iui-icons-size-2xl {
+  @include iui-icons-size($size: '2xl');
+}
+
+.iui-icons-size-3xl {
+  @include iui-icons-size($size: '3xl');
+}
+
+.iui-icons-display {
+  @include iui-icons-display;
+}
+
+.iui-icons-color {
+  @include iui-icons-color;
+}
+
+.iui-icons-color-status {
+  @include iui-icons-color;
+  @include iui-icons-color-status;
+}
