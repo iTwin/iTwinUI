@@ -26,8 +26,8 @@
 }
 
 @mixin iui-alert-icon {
-  @include iui-icons-size('m');
-  @include iui-icons-display;
+  @include iui-icon-size('m');
+  @include iui-icon-display;
   margin-left: $iui-m;
 }
 
@@ -71,7 +71,7 @@
   border-color: var(--iui-color-foreground-#{$statusColor});
 
   #{$rootSelector}-icon {
-    fill: var(--iui-icons-color-#{$statusColor});
+    fill: var(--iui-icon-color-#{$statusColor});
   }
 
   #{$rootSelector}-message {

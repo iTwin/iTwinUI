@@ -104,9 +104,9 @@
   }
 
   .iui-tile-status-icon {
-    @include iui-icons-size('m');
-    @include iui-icons-color-status;
-    @include iui-icons-display;
+    @include iui-icon-size('m');
+    @include iui-icon-color-status;
+    @include iui-icon-display;
     margin-right: $iui-s;
   }
 
@@ -139,9 +139,9 @@
 
     > svg,
     .iui-tile-metadata-icon {
-      @include iui-icons-size('m');
-      @include iui-icons-color;
-      @include iui-icons-display;
+      @include iui-icon-size('m');
+      @include iui-icon-color;
+      @include iui-icon-display;
       margin-right: $iui-s;
     }
 
@@ -167,9 +167,9 @@
   border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-thumbnail-icon {
-    @include iui-icons-size('3xl');
-    @include iui-icons-color;
-    @include iui-icons-display;
+    @include iui-icon-size('3xl');
+    @include iui-icon-color;
+    @include iui-icon-display;
   }
 }
 

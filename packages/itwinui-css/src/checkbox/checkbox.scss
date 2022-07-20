@@ -27,7 +27,7 @@
       align-items: center;
 
       svg {
-        @include iui-icons-size('m');
+        @include iui-icon-size('m');
         vertical-align: middle;
         fill: currentColor;
       }
@@ -38,7 +38,7 @@
       color: var(--iui-text-color-muted);
 
       svg {
-        fill: var(--iui-icons-color-actionable-disabled);
+        fill: var(--iui-icon-color-actionable-disabled);
       }
     }
 
@@ -66,7 +66,7 @@
 
   appearance: none; // disable default browser styles
   margin: 0;
-  @include iui-icons-size('m');
+  @include iui-icon-size('m');
   position: relative;
   border-radius: $iui-border-radius;
   background-color: var(--_iui-checkbox-background-color);
@@ -113,7 +113,7 @@
   @include iui-focus($thickness: 2px);
 
   &:disabled {
-    --_iui-checkbox-svg-color: var(--iui-icons-color-actionable-disabled);
+    --_iui-checkbox-svg-color: var(--iui-icon-color-actionable-disabled);
     --_iui-checkbox-border-color: var(--iui-color-background-border);
     --_iui-checkbox-background-color: var(--iui-color-background-disabled);
     cursor: not-allowed;
@@ -128,7 +128,7 @@
     --_iui-checkbox-background-color: transparent;
 
     &:where(:not(:checked):not(:indeterminate)) {
-      --_iui-checkbox-svg-color: var(--iui-icons-color-actionable);
+      --_iui-checkbox-svg-color: var(--iui-icon-color-actionable);
     }
 
     &:where(:hover) {
@@ -137,7 +137,7 @@
     }
 
     &:where(:disabled) {
-      --_iui-checkbox-svg-color: var(--iui-icons-color-actionable-disabled);
+      --_iui-checkbox-svg-color: var(--iui-icon-color-actionable-disabled);
       --_iui-checkbox-background-color: var(--iui-color-background-disabled);
     }
   }

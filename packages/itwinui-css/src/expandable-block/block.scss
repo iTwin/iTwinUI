@@ -26,20 +26,20 @@
 
     > .iui-icon,
     > .iui-status-icon {
-      @include iui-icons-size('m');
-      @include iui-icons-display;
+      @include iui-icon-size('m');
+      @include iui-icon-display;
     }
 
     > .iui-icon {
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-icon-color-actionable);
     }
 
     > .iui-status-icon {
       margin-left: $iui-sm;
-      @include iui-icons-color-status;
+      @include iui-icon-color-status;
     }
 
     .iui-expandable-block-label {
@@ -92,7 +92,7 @@
       background-color: var(--iui-color-background-4);
 
       > .iui-icon {
-        fill: var(--iui-icons-color-actionable-hover);
+        fill: var(--iui-icon-color-actionable-hover);
       }
 
       .iui-caption,
@@ -126,7 +126,7 @@
     padding: ($iui-baseline * 0.5) $iui-s;
 
     > .iui-icon {
-      @include iui-icons-size('s');
+      @include iui-icon-size('s');
     }
 
     > .iui-expandable-block-label {

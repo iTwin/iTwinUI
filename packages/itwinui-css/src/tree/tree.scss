@@ -5,7 +5,7 @@
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
 $iui-expander-inline-padding: $iui-component-offset + $iui-xxs + 1px; // margin + padding + border
-$iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding * 2); // icon width + inline padding on both sides
+$iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding * 2); // icon width + inline padding on both sides
 
 @mixin iui-tree {
   @include iui-reset;
@@ -52,9 +52,9 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     padding-left: $iui-xxs;
 
     &-icon {
-      @include iui-icons-size('m');
-      @include iui-icons-color;
-      @include iui-icons-display;
+      @include iui-icon-size('m');
+      @include iui-icon-color;
+      @include iui-icon-display;
       margin: 0 $iui-expander-inline-padding;
 
       &:first-child {

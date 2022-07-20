@@ -63,8 +63,8 @@
       }
 
       svg {
-        @include iui-icons-size('l');
-        @include iui-icons-color;
+        @include iui-icon-size('l');
+        @include iui-icon-color;
         margin-right: $iui-s;
         display: flex;
         flex-shrink: 0;

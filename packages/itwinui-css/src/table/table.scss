@@ -127,7 +127,7 @@
 
   // Sort icon
   .iui-sort {
-    @include iui-icons-color;
+    @include iui-icon-color;
     visibility: hidden;
   }
 
@@ -137,7 +137,7 @@
 
     .iui-sort {
       visibility: visible;
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-icon-color-actionable);
     }
   }
 }
@@ -309,7 +309,7 @@
       img,
       svg:not(.iui-radial),
       .iui-avatar {
-        filter: $iui-icons-color-multicolor-disabled;
+        filter: $iui-icon-color-multicolor-disabled;
       }
     }
 
@@ -412,13 +412,13 @@
 @mixin iui-table-row-status($status) {
   .iui-cell:first-of-type,
   + .iui-expanded-content {
-    box-shadow: inset $iui-xxs 0 0 0 var(--iui-icons-color-#{$status});
+    box-shadow: inset $iui-xxs 0 0 0 var(--iui-icon-color-#{$status});
 
     @include iui-text-selection($status);
   }
 
   .iui-cell-end-icon svg {
-    fill: var(--iui-icons-color-#{$status});
+    fill: var(--iui-icon-color-#{$status});
   }
 }
 
@@ -440,7 +440,7 @@
     justify-content: center;
 
     svg:not(.iui-radial) {
-      @include iui-icons-size('m');
+      @include iui-icon-size('m');
       display: flex; // needed for vertical alignment of webcomponents
     }
   }

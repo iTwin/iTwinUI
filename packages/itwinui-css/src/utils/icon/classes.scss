@@ -2,43 +2,39 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-icons-size {
-  @include iui-icons-size;
+.iui-icon-size-s {
+  @include iui-icon-size('s');
 }
 
-.iui-icons-size-s {
-  @include iui-icons-size($size: 's');
+.iui-icon-size-m {
+  @include iui-icon-size('m');
 }
 
-.iui-icons-size-m {
-  @include iui-icons-size($size: 'm');
+.iui-icon-size-l {
+  @include iui-icon-size('l');
 }
 
-.iui-icons-size-l {
-  @include iui-icons-size($size: 'l');
+.iui-icon-size-xl {
+  @include iui-icon-size('xl');
 }
 
-.iui-icons-size-xl {
-  @include iui-icons-size($size: 'xl');
+.iui-icon-size-2xl {
+  @include iui-icon-size('2xl');
 }
 
-.iui-icons-size-2xl {
-  @include iui-icons-size($size: '2xl');
+.iui-icon-size-3xl {
+  @include iui-icon-size('3xl');
 }
 
-.iui-icons-size-3xl {
-  @include iui-icons-size($size: '3xl');
+.iui-icon-display {
+  @include iui-icon-display;
 }
 
-.iui-icons-display {
-  @include iui-icons-display;
+.iui-icon-color {
+  @include iui-icon-color;
 }
 
-.iui-icons-color {
-  @include iui-icons-color;
-}
-
-.iui-icons-color-status {
-  @include iui-icons-color;
-  @include iui-icons-color-status;
+.iui-icon-color-status {
+  @include iui-icon-color;
+  @include iui-icon-color-status;
 }

@@ -15,7 +15,7 @@
   &.iui-inline-icon {
     > .iui-input,
     > .iui-textarea {
-      padding-right: $iui-icons-default + $iui-l;
+      padding-right: $iui-icon-default + $iui-l;
 
       &:last-child {
         padding-right: $iui-sm;
@@ -156,8 +156,8 @@
 
 /// Icon to be shown near a message.
 @mixin iui-input-icon {
-  @include iui-icons-size('m');
-  @include iui-icons-color;
+  @include iui-icon-size('m');
+  @include iui-icon-color;
   display: flex;
   grid-area: icon;
   align-self: center;
@@ -175,7 +175,7 @@
   position: relative;
 
   svg {
-    @include iui-icons-size('m');
+    @include iui-icon-size('m');
   }
 
   &.iui-button {
@@ -198,7 +198,7 @@
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
     svg {
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-icon-color-actionable);
       transition: transform $iui-speed-fast ease-out;
     }
 
@@ -211,7 +211,7 @@
     cursor: not-allowed;
 
     svg {
-      fill: var(--iui-icons-color-actionable-disabled);
+      fill: var(--iui-icon-color-actionable-disabled);
     }
   }
 }

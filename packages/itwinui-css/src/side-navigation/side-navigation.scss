@@ -54,13 +54,13 @@
 
   &.iui-collapsed {
     box-sizing: content-box;
-    min-width: $iui-icons-large * 3;
-    max-width: $iui-icons-large * 3;
+    min-width: $iui-icon-large * 3;
+    max-width: $iui-icon-large * 3;
 
     // iPhone notch support
     @supports (min-width: unquote('max(0px)')) {
-      min-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
-      max-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
+      min-width: unquote('max(#{$iui-icon-large} * 3, #{$iui-icon-large} * 3 + env(safe-area-inset-left))');
+      max-width: unquote('max(#{$iui-icon-large} * 3, #{$iui-icon-large} * 3 + env(safe-area-inset-left))');
     }
   }
 
@@ -74,7 +74,7 @@
   }
 
   .iui-sidenav-button {
-    gap: $iui-icons-large;
+    gap: $iui-icon-large;
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -88,7 +88,7 @@
       height: $iui-baseline * 5;
       // iPhone notch support
       @supports (padding: unquote('max(0px)')) {
-        padding-left: unquote('max(#{$iui-icons-large}, #{$iui-icons-large} + env(safe-area-inset-left))');
+        padding-left: unquote('max(#{$iui-icon-large}, #{$iui-icon-large} + env(safe-area-inset-left))');
       }
     }
 
@@ -105,7 +105,7 @@
     }
 
     > .iui-button-icon:not(.iui-avatar) {
-      @include iui-icons-size('l');
+      @include iui-icon-size('l');
       flex-shrink: 0;
     }
 
@@ -125,9 +125,9 @@
       border-bottom: 1px solid var(--iui-color-background-border);
 
       > .iui-button-icon {
-        @include iui-icons-size('s');
-        @include iui-icons-color;
-        @include iui-icons-display;
+        @include iui-icon-size('s');
+        @include iui-icon-color;
+        @include iui-icon-display;
         @media (prefers-reduced-motion: no-preference) {
           transition: transform $iui-speed ease-out;
         }

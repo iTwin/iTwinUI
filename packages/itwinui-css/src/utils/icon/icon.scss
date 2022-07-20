@@ -3,56 +3,56 @@
 @import '../../style/index';
 
 /// @arg $size Can be one of: s, m, l, xl, 2xl, 3xl
-@mixin iui-icons-size($size: 'm') {
+@mixin iui-icon-size($size: 'm') {
   @if $size == 's' {
-    width: $iui-icons-small;
-    height: $iui-icons-small;
+    width: $iui-icon-small;
+    height: $iui-icon-small;
   }
   @if $size == 'm' {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
+    width: $iui-icon-default;
+    height: $iui-icon-default;
   }
   @if $size == 'l' {
-    width: $iui-icons-large;
-    height: $iui-icons-large;
+    width: $iui-icon-large;
+    height: $iui-icon-large;
   }
   @if $size == 'xl' {
-    width: $iui-icons-xl;
-    height: $iui-icons-xl;
+    width: $iui-icon-xl;
+    height: $iui-icon-xl;
   }
   @if $size == '2xl' {
-    width: $iui-icons-2xl;
-    height: $iui-icons-2xl;
+    width: $iui-icon-2xl;
+    height: $iui-icon-2xl;
   }
   @if $size == '3xl' {
-    width: $iui-icons-3xl;
-    height: $iui-icons-3xl;
+    width: $iui-icon-3xl;
+    height: $iui-icon-3xl;
   }
 }
 
-@mixin iui-icons-display {
+@mixin iui-icon-display {
   display: inline-flex;
   flex-shrink: 0;
 }
 
-@mixin iui-icons-color {
-  fill: var(--iui-icons-color);
+@mixin iui-icon-color {
+  fill: var(--iui-icon-color);
 }
 
-@mixin iui-icons-color-status {
+@mixin iui-icon-color-status {
   &.iui-informational {
-    fill: var(--iui-icons-color-primary);
+    fill: var(--iui-icon-color-primary);
   }
 
   &.iui-positive {
-    fill: var(--iui-icons-color-positive);
+    fill: var(--iui-icon-color-positive);
   }
 
   &.iui-warning {
-    fill: var(--iui-icons-color-warning);
+    fill: var(--iui-icon-color-warning);
   }
 
   &.iui-negative {
-    fill: var(--iui-icons-color-negative);
+    fill: var(--iui-icon-color-negative);
   }
 }

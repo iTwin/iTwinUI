@@ -37,7 +37,7 @@
 }
 
 @mixin iui-toggle-switch {
-  $iui-toggle-switch-handle-size: $iui-icons-default;
+  $iui-toggle-switch-handle-size: $iui-icon-default;
   $iui-toggle-switch-handle-offset: $iui-component-offset;
   $iui-toggle-switch-border-thickness: 1px;
 
@@ -159,7 +159,7 @@
 
     ~ .iui-toggle-switch-icon {
       opacity: 0;
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-icon-color-actionable);
     }
 
     &:checked {
