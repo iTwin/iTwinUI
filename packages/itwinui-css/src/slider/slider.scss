@@ -187,7 +187,6 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-vertical {
   flex-direction: column-reverse;
-  min-height: auto;
   min-width: $iui-baseline * 2;
   height: 100%;
 
