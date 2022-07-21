@@ -47,7 +47,6 @@ $tick-height: $iui-baseline; // 11px
   height: $thumb-height;
   width: $thumb-height;
   border-radius: 100%;
-  transform: translateX(-50%); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
   z-index: 1;
   cursor: grab;
   @include iui-focus($thickness: 2px);
@@ -146,6 +145,9 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-thumb {
     top: $track-height + 1; // position center of thumb in center of track
+    transform: translateX(
+      -50%
+    ); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
   }
 
   .iui-slider-track {
@@ -202,10 +204,10 @@ $tick-height: $iui-baseline; // 11px
   }
 
   .iui-slider-thumb {
+    transform: translateY(
+      50%
+    ); // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
     left: $track-height + 1;
-
-    // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
-    transform: translateY(50%);
   }
 
   .iui-slider-track {
