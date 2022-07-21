@@ -79,14 +79,6 @@ We provide a script that can automatically create all the necessary files for yo
 
 For running tests you will need [Docker](https://www.docker.com/products/docker-desktop). It helps to avoid cross-platform rendering differences.
 
-#### How to set up Docker:
-
-- Make sure Docker is running.
-
-- Create the docker image needed for testing by running `yarn build-docker` from the root folder.
-
-#### How to run tests:
-
 - To run tests for a specific component, use this command:
 
   `yarn test --filter=[component_name]` (e.g. `yarn test --filter=side-navigation`)
