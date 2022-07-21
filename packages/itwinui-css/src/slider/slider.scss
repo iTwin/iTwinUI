@@ -132,10 +132,7 @@ $tick-height: $iui-baseline; // 11px
 }
 
 @mixin iui-slider-horizontal {
-  // TODO: Vilius said this selector might not be needed and we can directly write the attributes. It works, but confirm if that is okay
-  // &.iui-slider-component-container {
   min-height: $iui-baseline * 2;
-  // }
 
   .iui-slider-rail {
     width: 100%;
@@ -189,13 +186,10 @@ $tick-height: $iui-baseline; // 11px
 }
 
 @mixin iui-slider-vertical {
-  // TODO: Vilius said this selector might not be needed and we can directly write the attributes. It works, but confirm if that is okay
-  // &.iui-slider-component-container {
   flex-direction: column-reverse;
   min-height: auto;
   min-width: $iui-baseline * 2;
   height: 100%;
-  // }
 
   .iui-slider-rail {
     width: $track-height;
