@@ -30,7 +30,7 @@ Install the recommended [plugins](./.vscode/extensions.json) for linter warnings
 
 `yarn build`
 
-You can also use `yarn build:watch` to rebuild automatically when files change.
+You can also use `yarn build:watch` from the root or `packages/itwinui-css` folders to rebuild automatically when files change.
 
 ### To preview
 
