@@ -3,7 +3,9 @@
 @import '../../style/index';
 
 /// @arg $size Can be one of: s, m, l, xl, 2xl, 3xl
-@mixin iui-icon-size($size: 'm') {
+@mixin iui-icon-style($size: 'm') {
+  display: flex;
+  flex-shrink: 0;
   @if $size == 's' {
     width: $iui-icon-small;
     height: $iui-icon-small;
@@ -28,11 +30,6 @@
     width: $iui-icon-3xl;
     height: $iui-icon-3xl;
   }
-}
-
-@mixin iui-icon-display {
-  display: inline-flex;
-  flex-shrink: 0;
 }
 
 @mixin iui-icon-color {

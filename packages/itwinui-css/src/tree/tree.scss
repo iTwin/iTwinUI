@@ -52,9 +52,8 @@ $iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding 
     padding-left: $iui-xxs;
 
     &-icon {
-      @include iui-icon-size('m');
+      @include iui-icon-style('m');
       @include iui-icon-color;
-      @include iui-icon-display;
       margin: 0 $iui-expander-inline-padding;
 
       &:first-child {

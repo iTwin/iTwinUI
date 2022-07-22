@@ -26,8 +26,7 @@
 
     > .iui-icon,
     > .iui-status-icon {
-      @include iui-icon-size('m');
-      @include iui-icon-display;
+      @include iui-icon-style('m');
     }
 
     > .iui-icon {
@@ -126,7 +125,7 @@
     padding: ($iui-baseline * 0.5) $iui-s;
 
     > .iui-icon {
-      @include iui-icon-size('s');
+      @include iui-icon-style('s');
     }
 
     > .iui-expandable-block-label {

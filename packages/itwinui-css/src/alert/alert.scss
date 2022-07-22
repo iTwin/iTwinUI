@@ -26,8 +26,7 @@
 }
 
 @mixin iui-alert-icon {
-  @include iui-icon-size('m');
-  @include iui-icon-display;
+  @include iui-icon-style('m');
   margin-left: $iui-m;
 }
 

@@ -35,7 +35,7 @@
     }
 
     > .iui-location-marker-data-rich-icon {
-      @include iui-icon-size('m');
+      @include iui-icon-style('m');
       display: inline-block;
       font-size: inherit;
       vertical-align: -2px;

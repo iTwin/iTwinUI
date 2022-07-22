@@ -133,9 +133,8 @@
   }
 
   .iui-tile-status-icon {
-    @include iui-icon-size('m');
+    @include iui-icon-style('m');
     @include iui-icon-color-status;
-    @include iui-icon-display;
     margin-right: $iui-s;
   }
 
@@ -168,9 +167,8 @@
 
     > svg,
     .iui-tile-metadata-icon {
-      @include iui-icon-size('m');
+      @include iui-icon-style('m');
       @include iui-icon-color;
-      @include iui-icon-display;
       margin-right: $iui-s;
     }
 
@@ -196,9 +194,8 @@
   border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-thumbnail-icon {
-    @include iui-icon-size('3xl');
+    @include iui-icon-style('3xl');
     @include iui-icon-color;
-    @include iui-icon-display;
   }
 }
 
