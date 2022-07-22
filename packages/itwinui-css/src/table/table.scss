@@ -268,7 +268,7 @@
       }
 
       img,
-      svg:not(.iui-radial),
+      svg:not(.iui-progress-radial),
       .iui-avatar {
         filter: $iui-icons-color-multicolor-disabled;
       }
@@ -432,7 +432,7 @@
     align-items: center;
     justify-content: center;
 
-    svg:not(.iui-radial) {
+    svg:not(.iui-progress-radial) {
       display: flex; // needed for vertical alignment of webcomponents
       width: $iui-icons-default;
       height: $iui-icons-default;
