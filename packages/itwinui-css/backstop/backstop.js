@@ -31,7 +31,7 @@ const config = {
   debug: false,
   debugWindow: false,
   dockerCommandTemplate:
-    'docker run --rm -i --mount type=bind,source="{cwd}",target=/src itwinui/backstopjs:latest {backstopCommand} {args}',
+    'docker run --rm -i --mount type=bind,source="{cwd}",target=/src bentleysystemsinc/itwinui:backstop {backstopCommand} {args}',
 };
 
 module.exports = config;
