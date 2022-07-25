@@ -14,15 +14,18 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Progress indicator | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/status-success-hollow";
+      import "@itwin/itwinui-icons-elements/status-error-hollow";
+      import "@itwin/itwinui-icons-elements/pause";
+      import "@itwin/itwinui-icons-elements/checkmark-small";
+      import "@itwin/itwinui-icons-elements/important-small";
+    </script>
     <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         width: 33vw;
         min-width: 300px;
@@ -39,27 +42,6 @@
         margin-bottom: 11px;
       }
     </style>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success-hollow"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error-hollow"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/pause"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/checkmark-small"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/important-small"
-    ></script>
-    <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>

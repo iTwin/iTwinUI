@@ -30,11 +30,9 @@ Install the recommended [plugins](./.vscode/extensions.json) for linter warnings
 
 `yarn build`
 
-You can also use `yarn build:watch` to rebuild automatically when files change.
+### To open development server
 
-### To preview
-
-The minified html files are outputted into the `backstop/minified/` folder and can be opened directly in your browser. You may want to use a local http server (e.g. with the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)).
+`yarn dev`
 
 ### To run visual tests
 
