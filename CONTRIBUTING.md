@@ -75,13 +75,11 @@ We provide a script that can automatically create all the necessary files for yo
 
 ### Testing
 
-#### How to set up Docker:
-
-- Make sure Docker is running.
-
 #### How to run tests:
 
 For running tests you will need [Docker](https://www.docker.com/products/docker-desktop). It helps to avoid cross-platform rendering differences.
+
+- Make sure Docker is running.
 
 - To run tests for a specific component, use this command:
 
