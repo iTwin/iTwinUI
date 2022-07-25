@@ -79,8 +79,6 @@ We provide a script that can automatically create all the necessary files for yo
 
 - Make sure Docker is running.
 
-- Create the docker image needed for testing by running `yarn build-docker` from the root folder.
-
 #### How to run tests:
 
 For running tests you will need [Docker](https://www.docker.com/products/docker-desktop). It helps to avoid cross-platform rendering differences.
