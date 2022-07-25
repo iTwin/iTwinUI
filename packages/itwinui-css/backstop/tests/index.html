@@ -54,25 +54,22 @@
     />
     <link
       rel="alternate icon"
-      href="backstop/assets/favicon.ico"
+      href="./assets/favicon.ico"
       sizes="any"
     />
     <link
       rel="apple-touch-icon"
-      href="backstop/assets/apple-touch-icon.png"
+      href="./assets/apple-touch-icon.png"
     />
     <link
       rel="manifest"
-      href="backstop/assets/manifest.json"
+      href="./assets/manifest.json"
     />
-    <link
-      rel="stylesheet"
-      href="css/global.css"
-    />
-    <link
-      rel="stylesheet"
-      href="backstop/assets/demo.css"
-    />
+
+    <style>
+      @import url("./assets/demo.css");
+      @import url("@itwin/itwinui-css/css/global.css");
+    </style>
 
     <style>
     hr {
@@ -161,12 +158,8 @@
     </a>
 
     <hr />
-    <section></section>
-    <script>(async () => {
-        const contents = await fetch('https://api.github.com/repos/itwin/itwinui/contents/packages/itwinui-css/backstop/tests?ref=v1.0');
-        const fileNames = (await contents.json()).map(file => file.name).filter(fileName => fileName !== 'index.html');
-        let htmlString = `<ul>${fileNames.map(fileName => `<li><a class="iui-anchor" href="./backstop/minified/${fileName}">${fileName}</a></li>`).join('')}</ul>`;
-        document.getElementsByTagName('section')[0].innerHTML = htmlString;
-      })();</script>
+    <main>
+      %PUT_CONTENT_HERE%
+    </main>
   </body>
 </html>
