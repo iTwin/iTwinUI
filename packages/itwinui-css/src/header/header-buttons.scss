@@ -1,0 +1,316 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+@mixin iui-header-brand {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+  background-color: transparent;
+  box-sizing: border-box;
+
+  @at-root {
+    a#{&}, // rendered as anchor element
+    button#{&}, // rendered as button element
+    &[role='button'] {
+      @include iui-focus;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color $iui-speed-fast ease-out;
+      @media (forced-colors: active) {
+        border: 1px solid CanvasText;
+        border-top-width: 0;
+        border-bottom-width: 0;
+      }
+
+      // #region resets for button
+      @include iui-reset;
+      font-family: inherit;
+      background-color: unset;
+      color: unset;
+      // #endregion
+
+      &:hover {
+        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+      }
+    }
+  }
+
+  @at-root a#{&} {
+    text-decoration: none;
+  }
+}
+
+@mixin iui-header-brand-icon {
+  width: $iui-icons-large;
+  height: $iui-icons-large;
+  margin: 0 $iui-side-navigation-icon-margins;
+  fill: var(--iui-icons-color-actionable);
+  will-change: transform;
+  transform: var(--_iui-header-icon-scale);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed-fast ease-out;
+  }
+}
+
+@mixin iui-header-brand-label {
+  margin-right: $iui-sm;
+  font-size: var(--_iui-header-brand-label-font-size);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: font-size $iui-speed-fast ease-out;
+  }
+  @media (max-width: 991px) {
+    display: none;
+  }
+}
+
+@mixin iui-header-breadcrumb-item {
+  max-width: 25vw;
+  transition: background-color $iui-speed-fast ease-out;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  color: var(--iui-text-color);
+  box-sizing: border-box;
+  @media (forced-colors: active) {
+    color: LinkText;
+    border: none;
+  }
+
+  // Hover state
+  &:hover {
+    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+  }
+
+  // Active state
+  &[aria-current] {
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    box-shadow: 0 $iui-xxs 0 0 currentColor;
+    color: var(--iui-color-foreground-primary);
+    @media (forced-colors: active) {
+      color: LinkText;
+      border-bottom: 3px solid LinkText;
+    }
+  }
+
+  // Disabled state
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    background-color: transparent;
+    color: var(--iui-text-color-placeholder);
+
+    // Disabled active state
+    &[aria-current] {
+      box-shadow: none;
+      background-color: var(--iui-color-background-2);
+
+      @media (forced-colors: active) {
+        border-bottom: 3px solid GrayText;
+      }
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-wrapper {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+@mixin iui-header-breadcrumb-button {
+  @include iui-reset;
+  @include iui-focus;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  height: 100%;
+  border-radius: 0;
+  max-width: 25vw;
+  overflow: hidden;
+  padding-left: $iui-sm;
+  padding-right: $iui-sm;
+  box-sizing: border-box;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color $iui-speed-fast ease-out;
+  color: inherit;
+  gap: $iui-sm;
+  cursor: pointer;
+  @media (forced-colors: active) {
+    border: 1px solid;
+    border-top-width: 0;
+    border-bottom-width: 0;
+
+    &:not(:last-child) {
+      border-right-width: 0;
+    }
+  }
+
+  // Default & hover state
+  &,
+  &:hover {
+    background-color: transparent;
+  }
+
+  // Disabled state
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+}
+
+@mixin iui-header-breadcrumb-button-split {
+  padding: 0 $iui-s;
+  margin-left: -$iui-s;
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+  }
+
+  @at-root [aria-current] &:hover {
+    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-dropdown-icon {
+  width: $iui-icons-default;
+  height: $iui-icons-default;
+  fill: currentColor;
+  flex-shrink: 0;
+  margin-right: -#{$iui-xs};
+
+  @at-root .iui-header-breadcrumb-button-split & {
+    margin-right: 0;
+  }
+
+  @at-root {
+    :disabled &,
+    [aria-disabled='true'] & {
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: $iui-font-size;
+  text-align: left;
+  overflow: hidden;
+  transition: color $iui-speed-fast ease-out;
+
+  &-label,
+  &-sublabel {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &-sublabel {
+    font-size: $iui-font-size-small;
+    opacity: var(--iui-opacity-3);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: visibility 0s linear 0s, width $iui-speed-fast ease-out, height $iui-speed-fast ease-out,
+        opacity $iui-speed-fast ease-out;
+    }
+
+    @at-root {
+      .iui-active &,
+      [aria-current] & {
+        opacity: var(--iui-opacity-1);
+      }
+    }
+
+    @at-root [data-iui-size='slim'] & {
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-icon {
+  width: $iui-icons-large;
+  height: $iui-icons-large;
+  background-color: var(--iui-color-background-3);
+  border-radius: $iui-border-radius;
+  display: inline-flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: $iui-xs;
+  fill: var(--iui-icons-color);
+  will-change: transform;
+  transform: var(--_iui-header-icon-scale);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $iui-speed-fast ease-out;
+  }
+  @media (forced-colors: active) {
+    fill: LinkText;
+  }
+
+  @at-root {
+    img#{&},
+    div#{&} {
+      padding: 0;
+      transition: filter $iui-speed-fast ease-out;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: filter $iui-speed-fast ease-out, transform $iui-speed-fast ease-out;
+      }
+    }
+
+    img#{&} {
+      object-fit: cover;
+    }
+
+    div#{&} {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .iui-active &,
+    [aria-current] & {
+      background-color: var(--iui-color-background-1);
+      fill: currentColor;
+    }
+
+    :disabled &,
+    [aria-disabled='true'] & {
+      background-color: var(--iui-color-background-2);
+      fill: var(--iui-icons-color-actionable-disabled);
+
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
+    }
+
+    :disabled img#{&},
+    :disabled div#{&},
+    [aria-disabled='true'] img#{&},
+    [aria-disabled='true'] div#{&} {
+      filter: grayscale(1) opacity(0.7);
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

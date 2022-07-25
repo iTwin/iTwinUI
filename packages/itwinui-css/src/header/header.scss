@@ -1,407 +1,75 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../avatar/index';
-@import '../button/index';
-@import '../utils/index';
-@import '../icon/index';
+@import '../breadcrumbs/index';
 
 @mixin iui-page-header {
-  @include iui-reset;
+  --_iui-header-brand-label-font-size: #{$iui-font-size-leading};
+  --_iui-header-height: #{$iui-baseline * 5};
+  --_iui-header-icon-scale: none;
 
+  @include iui-reset;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: $iui-baseline * 5;
+  height: var(--_iui-header-height);
   user-select: none;
-  // iPhone notch support
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
-  @media (prefers-reduced-motion: no-preference) {
-    transition: height $iui-speed-fast ease-out;
-  }
   background-color: var(--iui-color-background-1);
   border-bottom: $iui-xxs solid var(--iui-color-background-border);
   color: var(--iui-text-color);
-
-  > .iui-left,
-  > .iui-center,
-  > .iui-right {
-    display: flex;
-    align-items: center;
-    height: 100%;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left); // iPhone notch support
+  @media (prefers-reduced-motion: no-preference) {
+    transition: height $iui-speed-fast ease-out;
   }
+}
 
-  @include iui-header-buttons;
+@mixin iui-page-header-slim {
+  --_iui-header-brand-label-font-size: #{$iui-font-size};
+  --_iui-header-height: #{$iui-baseline * 3};
+  --_iui-header-icon-scale: scale(0.66666);
+}
 
-  > .iui-left {
-    > nav {
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
+@mixin iui-page-header-zone {
+  display: flex;
+  align-items: center;
+}
 
-    &,
-    > nav {
-      overflow: hidden;
-      box-sizing: content-box;
-      margin-bottom: -$iui-xs;
-      padding-bottom: $iui-xs;
-    }
+@mixin iui-page-header-left {
+  overflow: hidden;
+  box-sizing: content-box;
+  margin-bottom: -$iui-xs;
+  padding-bottom: $iui-xs;
+}
 
-    .iui-chevron {
-      @include iui-icons-small;
-      flex-shrink: 0;
-      margin: 0 $iui-xs;
-    }
-  }
-
-  > .iui-center {
-    justify-content: center;
-  }
-
-  > .iui-right {
-    justify-content: flex-end;
-
-    @media (prefers-reduced-motion: no-preference) {
-      .iui-avatar {
-        &,
-        * {
-          transition: all $iui-speed-fast ease-out;
-        }
-      }
-    }
-  }
-
+@mixin iui-page-header-right {
   .iui-button {
     height: 100%;
     border-radius: 0;
-  }
-
-  .iui-divider {
-    width: 1px;
-    height: $iui-baseline * 2;
-    background-color: var(--iui-color-background-border);
-  }
-
-  &.iui-slim {
-    height: $iui-baseline * 3;
-
-    > .iui-left {
-      .iui-header-logo {
-        > .iui-label {
-          font-size: $iui-font-size;
-        }
-
-        .iui-header-button-icon {
-          margin: 0 $iui-l + $iui-xs;
-        }
-      }
-
-      .iui-header-button-icon {
-        width: $iui-icons-default;
-        height: $iui-icons-default;
-        margin: 0 $iui-xs;
-        display: inline-flex;
-      }
-    }
-
-    > .iui-right {
-      .iui-avatar {
-        @include iui-avatar-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
-    &,
-    &.iui-slim {
-      .iui-left {
-        .iui-button {
-          .iui-header-button-icon.iui-header-button-icon {
-            @include iui-display-none;
-          }
-
-          .iui-header-button-icon + span {
-            margin-left: 0;
-          }
-        }
-      }
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .iui-left {
-      .iui-header-logo > .iui-label {
-        display: none;
-      }
-    }
-  }
-}
-
-@mixin iui-header-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
-  width: $size;
-  height: $size;
-  border-radius: $border-radius;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, margin $iui-speed-fast ease-out;
-  }
-}
-
-@mixin iui-header-buttons {
-  .iui-header-button-icon {
-    @include iui-header-button-icon;
-  }
-
-  // boost specificity
-  .iui-header-button.iui-header-button {
-    @include iui-header-button;
-  }
-
-  .iui-header-dropdown-button.iui-header-dropdown-button {
-    @include iui-header-dropdown-button;
-  }
-
-  .iui-header-split-button {
-    @include iui-header-split-button;
-  }
-}
-
-@mixin iui-header-logo {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  height: 100%;
-
-  @at-root {
-    a#{&}, // rendered as anchor element
-    button#{&}, // rendered as button element
-    &[role='button'] {
-      @include iui-header-button-focus;
-      cursor: pointer;
-
-      // #region resets for button
-      @include iui-reset;
-      font-family: inherit;
-      background-color: unset;
-      color: unset;
-      // #endregion
-
-      &:hover {
-        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
-
-        &:not(:focus-visible):not(:hover) {
-          background-color: var(--iui-color-background-1);
-        }
-      }
-    }
-  }
-
-  .iui-header-button-icon {
-    margin: 0 $iui-l;
-    fill: var(--iui-icons-color-actionable);
-  }
-
-  > .iui-label {
-    margin-right: $iui-sm;
-    font-size: $iui-font-size-leading;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: font-size $iui-speed-fast ease-out;
-    }
-  }
-}
-
-@mixin iui-header-button-focus {
-  &:focus {
-    box-shadow: none;
-    outline-offset: -1px;
-    outline: 1px solid var(--iui-color-foreground-primary);
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: 0;
-  }
-}
-
-@mixin iui-header-button {
-  @include iui-button-size(large, borderless);
-
-  gap: 0;
-  max-width: 25vw;
-  height: 100%;
-  border-radius: 0;
-  overflow: hidden;
-
-  @include iui-header-button-focus;
-
-  > span {
-    text-align: left;
-    font-size: $iui-font-size;
-    overflow: hidden;
-
-    > div {
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-
-  .iui-description {
-    height: $iui-baseline * 2;
-    font-size: $iui-font-size-small;
-    opacity: var(--iui-opacity-3);
-    @media (prefers-reduced-motion: no-preference) {
-      transition: all $iui-speed-fast ease;
-    }
-  }
-
-  > .iui-button-icon {
     flex-shrink: 0;
-  }
-
-  > * + * {
-    margin-left: $iui-sm;
-  }
-
-  .iui-header-button-icon {
-    box-sizing: content-box;
-    padding: $iui-xs;
-    @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
-    background-color: var(--iui-color-background-3);
-    fill: var(--iui-icons-color);
-  }
-
-  &.iui-active {
-    @include iui-header-button-active;
-  }
-
-  &:disabled {
-    .iui-header-button-icon {
-      filter: grayscale(1) opacity(0.7);
+    @media (forced-colors: active) {
+      border-top-width: 0;
+      border-bottom-width: 0;
     }
   }
 
-  @at-root {
-    .iui-page-header.iui-slim {
-      > .iui-left {
-        .iui-button {
-          .iui-header-button-icon.iui-header-button-icon {
-            width: $iui-icons-small;
-            height: $iui-icons-small;
-            padding: $iui-xxs;
-          }
-        }
-
-        span {
-          .iui-description {
-            @include iui-display-none;
-          }
-        }
+  @media (prefers-reduced-motion: no-preference) {
+    .iui-avatar {
+      &,
+      * {
+        transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
       }
     }
   }
 }
 
-@mixin iui-header-dropdown-button {
-  padding-right: $iui-s;
-}
-
-@mixin iui-header-split-button {
-  &,
-  > * {
-    height: 100%;
-    display: flex;
-    overflow: hidden;
-  }
-
-  max-width: 25vw;
-
-  .iui-button {
-    @include iui-header-button;
-    padding: 0 $iui-xs;
-  }
-
-  > *:first-child {
-    .iui-button {
-      padding-left: $iui-sm;
-    }
-  }
-
-  &.iui-active {
-    @include iui-header-button-active;
-
-    // Removing button hovers and backgrounds and adding last child hover
-    .iui-button {
-      &[data-iui-variant='borderless'] {
-        &,
-        &:hover {
-          background-color: transparent;
-        }
-
-        &::after {
-          display: none;
-        }
-      }
-    }
-
-    > *:last-child {
-      > .iui-button:hover {
-        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-      }
-    }
-
-    &.iui-disabled {
-      .iui-button {
-        &:last-child:hover {
-          background-color: transparent;
-        }
-      }
-    }
+@mixin iui-page-header-divider {
+  height: $iui-baseline * 2;
+  border-left: 1px solid var(--iui-color-background-border);
+  @media (forced-colors: active) {
+    display: none;
   }
 }
 
-@mixin iui-header-button-active {
-  // Blue icons
-  svg {
-    fill: var(--iui-icons-color-primary);
-  }
-
-  .iui-description {
-    opacity: 1;
-  }
-
-  &,
-  &:hover {
-    // Blue background and darker blue bottom line
-    box-shadow: 0 $iui-xxs 0 0 var(--iui-color-foreground-primary);
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-
-    .iui-header-button-icon {
-      fill: var(--iui-icons-color-primary);
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-    }
-  }
-
-  // Blue text
-  span {
-    color: var(--iui-color-foreground-primary);
-  }
-
-  // Disabled state
-  &.iui-disabled,
-  &:disabled {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
-    box-shadow: 0 $iui-xxs 0 0 rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-
-    span {
-      color: var(--iui-icons-color-actionable-disabled);
-    }
-
-    .iui-button-icon,
-    svg {
-      fill: var(--iui-icons-color-actionable-disabled);
-    }
-
-    .iui-header-button-icon {
-      background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
-    }
-  }
+@mixin iui-page-header-breadcrumbs {
+  @include iui-breadcrumbs($breadcrumbs-height: 100%);
 }

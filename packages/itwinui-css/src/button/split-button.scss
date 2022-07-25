@@ -10,12 +10,6 @@
   }
 
   > * {
-    &:first-child {
-      > :where([data-iui-variant='borderless']:hover) {
-        background-color: transparent;
-      }
-    }
-
     // #region Sizing
     &:last-child {
       > .iui-button {
