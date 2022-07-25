@@ -1056,7 +1056,6 @@
         return tooltips[0];
       }
 
-      // TODO: Confirm if calculating this every mousemove has a negligible cost. Or do it just once and save it as a data property in the slider container (instead of its parent)
       function getIsVerticalSlider(sliderContainer) {
         return sliderContainer.parentNode.classList.contains("iui-slider-vertical");
       }
