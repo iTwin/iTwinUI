@@ -148,8 +148,6 @@ $tick-height: $iui-baseline; // 11px
     padding-top: $iui-m;
 
     .iui-slider-tick {
-      // line-height: $tick-height * 4;
-      // margin-bottom: $tick-height * 2;
       flex-direction: column;
       width: 1px;
 
@@ -157,12 +155,7 @@ $tick-height: $iui-baseline; // 11px
         content: '';
         width: 1px;
         height: $tick-height;
-        // background-color: green;
       }
-
-      // .iui-slider-tick-number {
-      //   top: $tick-height * 2;
-      // }
     }
   }
 
@@ -212,7 +205,7 @@ $tick-height: $iui-baseline; // 11px
     height: 100%;
 
     .iui-slider-tick {
-      // flex: row;
+      flex: row;
       height: 1px;
 
       &::before {
