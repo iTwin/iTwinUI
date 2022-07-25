@@ -32,9 +32,14 @@
 
       // Adds stripe to active button
       @if $orientation == 'horizontal' {
-        --_iui-button-active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
+        --_iui-button-active-stripe-inset: #{var(--iui-size-3xs)}
+          #{var(--iui-size-3xs)}
+          calc(100% - #{var(--iui-size-2xs)});
       } @else {
-        --_iui-button-active-stripe-inset: #{$iui-xxs} calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
+        --_iui-button-active-stripe-inset: #{var(--iui-size-3xs)}
+          calc(100% - #{var(--iui-size-2xs)})
+          #{var(--iui-size-3xs)}
+          #{var(--iui-size-3xs)};
       }
 
       &:hover {
@@ -69,24 +74,24 @@
     // Add rounded corners to first and last items
     &:first-child {
       #{$childBorderSelector} {
-        border-top-left-radius: $iui-border-radius;
+        border-top-left-radius: var(--iui-border-radius-1);
 
         @if $orientation == 'horizontal' {
-          border-bottom-left-radius: $iui-border-radius;
+          border-bottom-left-radius: var(--iui-border-radius-1);
         } @else {
-          border-top-right-radius: $iui-border-radius;
+          border-top-right-radius: var(--iui-border-radius-1);
         }
       }
     }
 
     &:last-child {
       #{$childBorderSelector} {
-        border-bottom-right-radius: $iui-border-radius;
+        border-bottom-right-radius: var(--iui-border-radius-1);
 
         @if $orientation == 'horizontal' {
-          border-top-right-radius: $iui-border-radius;
+          border-top-right-radius: var(--iui-border-radius-1);
         } @else {
-          border-bottom-left-radius: $iui-border-radius;
+          border-bottom-left-radius: var(--iui-border-radius-1);
         }
       }
     }

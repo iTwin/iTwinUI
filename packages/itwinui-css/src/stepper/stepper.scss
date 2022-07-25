@@ -54,15 +54,15 @@
     --_iui-stepper-step-number-color: var(--iui-color-foreground-accessory);
     --_iui-stepper-step-track-after-color: var(--iui-color-background-border);
 
-    font-weight: $iui-font-weight-semibold;
+    font-weight: var(--iui-font-weight-semibold);
   }
 
   // Future steps
   &.iui-current ~ & {
     --_iui-stepper-step-background-color: var(--iui-color-background-1);
     --_iui-stepper-step-border-color: var(--iui-color-background-border);
-    --_iui-stepper-step-number-color: var(--iui-text-color-muted);
-    --_iui-stepper-step-text-color: var(--iui-text-color-muted);
+    --_iui-stepper-step-number-color: var(--iui-color-foreground-4);
+    --_iui-stepper-step-text-color: var(--iui-color-foreground-4);
     --_iui-stepper-step-track-before-color: var(--iui-color-background-5);
 
     &:not(:last-of-type) {
@@ -78,10 +78,10 @@
 
 @mixin iui-stepper-circle {
   align-items: center;
-  border-radius: $iui-border-radius-round;
+  border-radius: var(--iui-border-radius-round);
   display: flex;
-  width: $iui-l;
-  height: $iui-l;
+  width: var(--iui-size-l);
+  height: var(--iui-size-l);
   justify-content: center;
   overflow-wrap: break-word;
   user-select: none;
@@ -119,7 +119,7 @@
   &::before,
   &::after {
     content: '';
-    height: $iui-xxs;
+    height: var(--iui-size-3xs);
     flex: 1 2 auto;
   }
 
@@ -140,12 +140,12 @@
 
 @mixin iui-stepper-steps-label {
   display: block;
-  font-size: $iui-font-size-subheading;
+  font-size: var(--iui-font-size-3);
   text-align: center;
 }
 
 @mixin iui-stepper-steps-label-count {
   user-select: none;
-  margin-right: $iui-s;
-  color: var(--iui-text-color-muted);
+  margin-right: var(--iui-size-xs);
+  color: var(--iui-color-foreground-4);
 }

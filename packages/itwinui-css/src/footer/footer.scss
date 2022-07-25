@@ -10,7 +10,7 @@
   text-align: center;
   width: 100%;
   padding: $iui-baseline 0;
-  font-size: $iui-font-size-small;
+  font-size: var(--iui-font-size-0);
 
   > ul {
     list-style-type: none;
@@ -26,14 +26,14 @@
       user-select: none;
       white-space: nowrap;
       word-break: keep-all;
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
 
       .iui-separator {
-        margin: 0 $iui-s;
+        margin: 0 var(--iui-size-xs);
         width: 1px;
         height: $iui-baseline;
         display: inline-table;
-        background-color: var(--iui-text-color-muted);
+        background-color: var(--iui-color-foreground-4);
       }
 
       > a {
@@ -41,7 +41,7 @@
 
         &,
         &:hover {
-          color: var(--iui-text-color-muted);
+          color: var(--iui-color-foreground-4);
         }
       }
     }
@@ -50,6 +50,6 @@
   > .iui-legal-footer-developer {
     display: block;
     user-select: all;
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
   }
 }

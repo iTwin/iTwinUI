@@ -19,10 +19,10 @@ $iui-dialog-width: 380px;
 @mixin iui-dialog {
   z-index: 999;
   isolation: isolate;
-  border-radius: $iui-border-radius;
-  box-shadow: $iui-elevation-24;
+  border-radius: var(--iui-border-radius-1);
+  box-shadow: var(--iui-shadow-5);
   position: fixed;
-  padding: $iui-baseline $iui-m;
+  padding: $iui-baseline var(--iui-size-m);
   overflow: hidden;
   pointer-events: auto;
   background-color: var(--iui-color-background-1);
@@ -60,28 +60,28 @@ $iui-dialog-width: 380px;
     top: 0;
     left: 0;
     margin-left: $iui-baseline;
-    margin-top: $iui-m;
+    margin-top: var(--iui-size-m);
   }
 
   &[data-iui-placement='top-right'] {
     top: 0;
     right: 0;
     margin-right: $iui-baseline;
-    margin-top: $iui-m;
+    margin-top: var(--iui-size-m);
   }
 
   &[data-iui-placement='bottom-left'] {
     bottom: 0;
     left: 0;
     margin-left: $iui-baseline;
-    margin-bottom: $iui-m;
+    margin-bottom: var(--iui-size-m);
   }
 
   &[data-iui-placement='bottom-right'] {
     bottom: 0;
     right: 0;
     margin-right: $iui-baseline;
-    margin-bottom: $iui-m;
+    margin-bottom: var(--iui-size-m);
   }
 }
 
@@ -145,13 +145,13 @@ $iui-dialog-width: 380px;
   align-items: center;
   margin-bottom: $iui-baseline;
   justify-content: space-between;
-  font-size: $iui-font-size-subheading;
+  font-size: var(--iui-font-size-3);
 }
 
 @mixin iui-dialog-title-bar-filled {
-  font-size: $iui-font-size-leading;
-  padding: round($iui-baseline * 0.5) $iui-m;
-  margin: -#{$iui-baseline} -#{$iui-m} $iui-baseline -#{$iui-m}; // negative margin to counteract dialog padding
+  font-size: var(--iui-font-size-2);
+  padding: round($iui-baseline * 0.5) var(--iui-size-m);
+  margin: calc(0px - #{$iui-baseline}) calc(0px - var(--iui-size-m)) $iui-baseline calc(0px - var(--iui-size-m)); // negative margin to counteract dialog padding
   cursor: grab;
   background-color: var(--iui-color-background-3);
   border-bottom: 1px solid var(--iui-color-background-border);
@@ -163,8 +163,8 @@ $iui-dialog-width: 380px;
 
 @mixin iui-dialog-content {
   flex-grow: 2;
-  margin: 0 -#{$iui-m};
-  padding: 0 $iui-m;
+  margin: 0 calc(0px - var(--iui-size-m));
+  padding: 0 var(--iui-size-m);
   overflow-y: auto;
   overflow-y: overlay;
 }
@@ -174,5 +174,5 @@ $iui-dialog-width: 380px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: $iui-s;
+  gap: var(--iui-size-xs);
 }

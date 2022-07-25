@@ -25,9 +25,9 @@ $iui-date-picker-today-circle-size: 32px;
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 0 $iui-xs;
-  font-weight: $iui-font-weight-bold;
-  gap: $iui-xs;
+  padding: 0 var(--iui-size-2xs);
+  font-weight: var(--iui-font-weight-bold);
+  gap: var(--iui-size-2xs);
 
   > span {
     width: 156px;
@@ -51,8 +51,8 @@ $iui-date-picker-today-circle-size: 32px;
 @mixin iui-calendar-weekdays {
   line-height: $iui-date-picker-cell-height;
   display: flex;
-  padding: 0 $iui-s;
-  font-weight: $iui-font-weight-bold;
+  padding: 0 var(--iui-size-xs);
+  font-weight: var(--iui-font-weight-bold);
   background-color: var(--iui-color-background-2);
 
   > div {
@@ -67,8 +67,8 @@ $iui-date-picker-today-circle-size: 32px;
   white-space: nowrap;
   line-height: $iui-date-picker-cell-height;
   display: flex;
-  padding: 0 $iui-s;
-  margin-bottom: $iui-xxs;
+  padding: 0 var(--iui-size-xs);
+  margin-bottom: var(--iui-size-3xs);
 }
 
 //#region Helper mixins
@@ -78,13 +78,13 @@ $iui-date-picker-today-circle-size: 32px;
   text-align: center;
   width: $iui-date-picker-cell-width;
   height: $iui-date-picker-cell-height;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   font-variant-numeric: tabular-nums;
 }
 
 @mixin iui-calendar-day-base-hover {
   &:hover {
-    font-weight: $iui-font-weight-semibold;
+    font-weight: var(--iui-font-weight-semibold);
     color: var(--iui-color-foreground-primary);
     background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
   }
@@ -92,7 +92,7 @@ $iui-date-picker-today-circle-size: 32px;
 
 @mixin iui-calendar-day-today-base {
   position: relative;
-  font-weight: $iui-font-weight-semibold;
+  font-weight: var(--iui-font-weight-semibold);
 
   &::before {
     content: '';
@@ -100,11 +100,11 @@ $iui-date-picker-today-circle-size: 32px;
     display: block;
     width: $iui-date-picker-today-circle-size;
     height: $iui-date-picker-today-circle-size;
-    border-radius: $iui-border-radius-round;
+    border-radius: var(--iui-border-radius-round);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5));
+    border: 2px solid var(--iui-color-foreground-5);
   }
 
   &:hover {
@@ -118,7 +118,7 @@ $iui-date-picker-today-circle-size: 32px;
 }
 
 @mixin iui-calendar-day-selected-base {
-  font-weight: $iui-font-weight-semibold;
+  font-weight: var(--iui-font-weight-semibold);
   background-color: var(--iui-color-background-primary);
   color: var(--iui-color-foreground-accessory);
   @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
@@ -206,10 +206,10 @@ $iui-date-picker-today-circle-size: 32px;
 
     border-radius: 0;
     background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
-    color: var(--iui-text-color);
+    color: var(--iui-color-foreground-2);
 
     &:hover {
-      font-weight: $iui-font-weight-semibold;
+      font-weight: var(--iui-font-weight-semibold);
       background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
     }
   }
@@ -219,7 +219,7 @@ $iui-date-picker-today-circle-size: 32px;
 
     &:hover {
       background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
-      color: var(--iui-text-color);
+      color: var(--iui-color-foreground-2);
 
       &::before {
         background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
@@ -237,7 +237,7 @@ $iui-date-picker-today-circle-size: 32px;
   &-today {
     @include iui-calendar-day-base;
     @include iui-calendar-day-base-hover;
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
   }
 
   &-today {

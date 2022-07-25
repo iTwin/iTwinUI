@@ -6,7 +6,7 @@
   bottom: 0;
 
   .iui-toast {
-    margin: $iui-baseline $iui-m 0 $iui-m;
+    margin: $iui-baseline var(--iui-size-m) 0 var(--iui-size-m);
   }
 }
 

@@ -8,17 +8,17 @@
     @include iui-reset;
     display: flex;
     align-items: center;
-    font-size: $iui-font-size;
+    font-size: var(--iui-font-size-1);
     width: fit-content;
     user-select: none;
     position: relative;
     cursor: pointer;
-    color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
-    gap: $iui-s;
+    color: var(--iui-color-foreground-2);
+    gap: var(--iui-size-xs);
 
     &.iui-loading {
       cursor: wait;
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
     }
 
     > .iui-checkbox-label,
@@ -36,10 +36,10 @@
 
     &.iui-disabled {
       cursor: not-allowed;
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
 
       svg {
-        fill: var(--iui-icons-color-actionable-disabled);
+        fill: var(--iui-color-foreground-5);
       }
     }
 
@@ -61,7 +61,7 @@
   --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16"></svg>');
 
   --_iui-checkbox-svg-color: var(--iui-color-foreground-primary);
-  --_iui-checkbox-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  --_iui-checkbox-border-color: var(--iui-color-foreground-4);
   --_iui-checkbox-background-color: var(--iui-color-background-1);
   --_iui-checkbox-mask-image: initial;
 
@@ -70,7 +70,7 @@
   width: $iui-icons-default;
   height: $iui-icons-default;
   position: relative;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   background-color: var(--_iui-checkbox-background-color);
   flex-shrink: 0;
   cursor: pointer;
@@ -99,23 +99,23 @@
   }
 
   &:checked {
-    --_iui-checkbox-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));
+    --_iui-checkbox-border-color: var(--iui-color-foreground-3);
     --_iui-checkbox-mask-image: var(--_iui-checkbox-checkmark-svg);
   }
 
   &:indeterminate {
-    --_iui-checkbox-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));
+    --_iui-checkbox-border-color: var(--iui-color-foreground-3);
     --_iui-checkbox-mask-image: var(--_iui-checkbox-indeterminate-svg);
   }
 
   &:hover {
-    --_iui-checkbox-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    --_iui-checkbox-border-color: var(--iui-color-foreground-2);
   }
 
   @include iui-focus($thickness: 2px);
 
   &:disabled {
-    --_iui-checkbox-svg-color: var(--iui-icons-color-actionable-disabled);
+    --_iui-checkbox-svg-color: var(--iui-color-foreground-5);
     --_iui-checkbox-border-color: var(--iui-color-background-border);
     --_iui-checkbox-background-color: var(--iui-color-background-disabled);
     cursor: not-allowed;
@@ -130,7 +130,7 @@
     --_iui-checkbox-background-color: transparent;
 
     &:where(:not(:checked):not(:indeterminate)) {
-      --_iui-checkbox-svg-color: var(--iui-icons-color-actionable);
+      --_iui-checkbox-svg-color: var(--iui-color-foreground-2);
     }
 
     &:where(:hover) {
@@ -139,7 +139,7 @@
     }
 
     &:where(:disabled) {
-      --_iui-checkbox-svg-color: var(--iui-icons-color-actionable-disabled);
+      --_iui-checkbox-svg-color: var(--iui-color-foreground-5);
       --_iui-checkbox-background-color: var(--iui-color-background-disabled);
     }
   }

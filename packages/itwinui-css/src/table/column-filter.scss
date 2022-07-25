@@ -5,7 +5,7 @@
 
 @mixin iui-table-column-filter {
   @include iui-surface;
-  padding: $iui-baseline $iui-sm;
+  padding: $iui-baseline var(--iui-size-s);
   display: inline-flex;
   flex-direction: column;
   align-items: flex-end;
@@ -23,7 +23,7 @@
     display: flex;
     width: 100%;
     align-content: center;
-    gap: $iui-s;
+    gap: var(--iui-size-xs);
 
     > .iui-button {
       &:first-of-type {

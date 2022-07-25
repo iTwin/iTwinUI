@@ -10,7 +10,7 @@
   @include iui-focus($offset: -2px, $thickness: 2px);
   width: 100%;
   margin: 0;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   padding: $iui-component-padding-vertical $iui-component-padding-horizontal;
   min-height: $iui-component-height;
   transition: border-color $iui-speed-fast ease-out;
@@ -19,9 +19,9 @@
   user-select: none;
   position: relative;
   overflow: hidden;
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
   background-color: var(--iui-color-background-1);
-  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  border: 1px solid var(--iui-color-foreground-4);
 
   &.iui-small {
     padding-top: $iui-component-padding-vertical-small;
@@ -33,7 +33,7 @@
     padding-top: $iui-component-padding-vertical-large;
     padding-bottom: $iui-component-padding-vertical-large;
     min-height: $iui-component-height-large;
-    font-size: $iui-font-size-leading;
+    font-size: var(--iui-font-size-2);
   }
 
   &.iui-disabled {
@@ -55,23 +55,23 @@
   }
 
   &.iui-placeholder {
-    color: var(--iui-text-color-placeholder);
+    color: var(--iui-color-foreground-5);
   }
 }
 
 @mixin iui-select-tag-container {
   position: absolute;
   // align wth Select's padding
-  inset: 0 $iui-icons-default + $iui-l 0 $iui-sm;
+  inset: 0 calc(var(--iui-size-m) + var(--iui-size-l)) 0 var(--iui-size-s);
   height: 100%;
   display: flex;
   align-items: center;
-  gap: $iui-xs;
+  gap: var(--iui-size-2xs);
   overflow: hidden;
 
   > * + * {
-    margin-left: $iui-xs;
-    @supports (gap: $iui-xs) {
+    margin-left: var(--iui-size-2xs);
+    @supports (gap: var(--iui-size-2xs)) {
       margin-left: 0;
     }
   }
@@ -94,7 +94,7 @@
   align-items: center;
 
   @at-root .iui-select-button.iui-small & {
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     line-height: floor($iui-baseline * 1.5);
   }
 }
@@ -103,12 +103,12 @@
   @include iui-button;
   @include iui-button-borderless;
   @include iui-tag-button;
-  padding: 0 $iui-xs;
+  padding: 0 var(--iui-size-2xs);
   height: 100%;
   aspect-ratio: 1 / 1;
 
   @at-root .iui-select-button.iui-small & {
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     line-height: floor($iui-baseline * 1.5);
   }
 }

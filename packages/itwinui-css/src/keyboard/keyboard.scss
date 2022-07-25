@@ -5,13 +5,13 @@
 
 @mixin iui-keyboard {
   @include iui-reset;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   display: inline-block;
-  font-size: $iui-font-size-small;
-  font-weight: $iui-font-weight-semibold;
-  font-family: $iui-monospace;
+  font-size: var(--iui-font-size-0);
+  font-weight: var(--iui-font-weight-semibold);
+  font-family: var(--iui-size-m) onospace;
   line-height: 1;
-  padding: round($iui-baseline * 0.33) $iui-s;
+  padding: round($iui-baseline * 0.33) var(--iui-size-xs);
   white-space: nowrap;
   text-transform: uppercase;
   user-select: none;

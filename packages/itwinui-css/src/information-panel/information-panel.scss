@@ -38,8 +38,8 @@
 
   .iui-information-header,
   .iui-information-body {
-    padding-left: $iui-sm;
-    padding-right: $iui-sm;
+    padding-left: var(--iui-size-s);
+    padding-right: var(--iui-size-s);
   }
 
   .iui-information-header {
@@ -66,15 +66,15 @@
         display: flex;
         width: $iui-icons-large;
         height: $iui-icons-large;
-        margin-right: $iui-s;
+        margin-right: var(--iui-size-xs);
         flex-shrink: 0;
-        fill: var(--iui-icons-color);
+        fill: var(--iui-color-foreground-4);
       }
     }
 
     .iui-information-header-actions {
       flex-shrink: 0;
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
   }
 
@@ -109,13 +109,13 @@
 @mixin iui-information-panel-vertical {
   top: 0;
   right: 0;
-  width: $iui-3xl * 4;
-  min-width: $iui-3xl * 2;
+  width: calc(var(--iui-size-3xl) * 4);
+  min-width: calc(var(--iui-size-3xl) * 2);
   height: 100%;
 
   > .iui-resizer {
     height: 100%;
-    width: $iui-m;
+    width: var(--iui-size-m);
     top: 0;
     cursor: ew-resize;
     justify-content: center;
@@ -129,7 +129,7 @@
     }
 
     &:hover > .iui-resizer-bar {
-      width: $iui-xs;
+      width: var(--iui-size-2xs);
     }
   }
 }
@@ -137,13 +137,13 @@
 @mixin iui-information-panel-horizontal {
   left: 0;
   bottom: 0;
-  height: $iui-3xl * 4;
-  min-height: $iui-3xl * 2;
+  height: calc(var(--iui-size-3xl) * 4);
+  min-height: calc(var(--iui-size-3xl) * 2);
   width: 100%;
 
   > .iui-resizer {
     width: 100%;
-    height: $iui-m;
+    height: var(--iui-size-m);
     left: 0;
     cursor: ns-resize;
     align-items: center;
@@ -157,7 +157,7 @@
     }
 
     &:hover > .iui-resizer-bar {
-      height: $iui-xs;
+      height: var(--iui-size-2xs);
     }
   }
 }
@@ -165,22 +165,22 @@
 @mixin iui-information-panel-right {
   @include iui-information-panel-vertical;
   transform: translateX(100%); // hide off screen
-  box-shadow: -1px 0 10px $iui-elevation-color;
+  box-shadow: -1px 0 10px var(--iui-shadow-color);
   clip-path: inset(0 0 0 -15px); // show box-shadow only on the left
 
   > .iui-resizer {
-    left: $iui-m * -0.5;
+    left: calc(var(--iui-size-m) * -0.5);
   }
 }
 
 @mixin iui-information-panel-bottom {
   @include iui-information-panel-horizontal;
   transform: translateY(100%); // hide off screen
-  box-shadow: 0 -1px 10px $iui-elevation-color;
+  box-shadow: 0 -1px 10px var(--iui-shadow-color);
   clip-path: inset(-15px 0 0 0); // show box-shadow only on top
 
   > .iui-resizer {
-    top: $iui-m * -0.5;
+    top: calc(var(--iui-size-m) * -0.5);
   }
 }
 
@@ -189,8 +189,8 @@
   display: grid;
 
   .iui-input-label {
-    font-weight: $iui-font-weight-normal;
-    color: var(--iui-text-color-muted);
+    font-weight: var(--iui-font-weight-normal);
+    color: var(--iui-color-foreground-4);
   }
 
   &:not(.iui-inline) {

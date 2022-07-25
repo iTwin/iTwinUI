@@ -15,10 +15,10 @@
   &.iui-inline-icon {
     > .iui-input,
     > .iui-textarea {
-      padding-right: $iui-icons-default + $iui-l;
+      padding-right: calc(var(--iui-size-m) + var(--iui-size-l));
 
       &:last-child {
-        padding-right: $iui-sm;
+        padding-right: var(--iui-size-s);
       }
     }
   }
@@ -73,10 +73,10 @@
 
     > .iui-input-group {
       display: flex;
-      gap: $iui-m;
+      gap: var(--iui-size-m);
 
       &:not(:last-child) {
-        margin-right: $iui-m;
+        margin-right: var(--iui-size-m);
       }
     }
   }
@@ -100,13 +100,13 @@
 /// Text label for an input.
 /// Supports .iui-required modifier to show red asterisk.
 @mixin iui-input-label-styling {
-  font-weight: $iui-font-weight-semibold;
+  font-weight: var(--iui-font-weight-semibold);
   margin-bottom: $iui-component-offset;
 
   &.iui-required {
     &::after {
       content: '*';
-      margin-left: $iui-xs;
+      margin-left: var(--iui-size-2xs);
       color: var(--iui-color-foreground-negative);
     }
   }
@@ -114,10 +114,10 @@
 
 /// Modifier on iui-input-label-styling to place it inline.
 @mixin iui-input-label-inline {
-  margin: 0 $iui-m 0 0;
+  margin: 0 var(--iui-size-m) 0 0;
 
   &.iui-required {
-    margin-right: $iui-xs * 1.5;
+    margin-right: calc(var(--iui-size-2xs) * 1.5);
   }
 }
 
@@ -144,10 +144,10 @@
 
 /// Message shown below input
 @mixin iui-input-message {
-  font-size: $iui-font-size-small;
+  font-size: var(--iui-font-size-0);
   grid-area: message;
   margin-top: $iui-component-offset;
-  color: var(--iui-text-color-muted);
+  color: var(--iui-color-foreground-4);
 
   a {
     user-select: none;
@@ -161,10 +161,10 @@
   width: $iui-icons-default;
   height: $iui-icons-default;
   align-self: center;
-  fill: var(--iui-icons-color);
+  fill: var(--iui-color-foreground-4);
 
   &:not(:last-child) {
-    margin-right: $iui-xs;
+    margin-right: var(--iui-size-2xs);
   }
 }
 
@@ -172,7 +172,7 @@
 @mixin iui-input-icon-inline {
   grid-area: inputs;
   justify-self: end;
-  margin: 0 ($iui-sm + $iui-xxs) 0 0;
+  margin: 0 calc(var(--iui-size-s) + var(--iui-size-3xs)) 0 0;
   position: relative;
 
   svg {
@@ -193,14 +193,14 @@
   &.iui-actionable {
     align-items: center;
     height: 90%;
-    margin-right: $iui-xxs;
-    padding: 0 $iui-sm;
+    margin-right: var(--iui-size-3xs);
+    padding: 0 var(--iui-size-s);
     cursor: pointer;
 
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
     svg {
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-color-foreground-2);
       transition: transform $iui-speed-fast ease-out;
     }
 
@@ -213,7 +213,7 @@
     cursor: not-allowed;
 
     svg {
-      fill: var(--iui-icons-color-actionable-disabled);
+      fill: var(--iui-color-foreground-5);
     }
   }
 }
@@ -238,7 +238,7 @@
 
       &:hover {
         text-decoration: none;
-        color: var(--iui-color-foreground-#{$status}-overlay);
+        color: var(--iui-color-foreground-#{$status}-hover);
       }
     }
   }
@@ -255,10 +255,10 @@
       padding-bottom: $iui-component-padding-vertical-large - 1px;
     }
 
-    border-bottom: $iui-xxs solid var(--iui-color-foreground-#{$status});
+    border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});
 
     &:focus {
-      border-bottom: $iui-xxs solid var(--iui-color-foreground-#{$status});
+      border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});
       outline: 2px solid var(--iui-color-foreground-#{$status});
       outline-offset: -2px;
     }
@@ -278,7 +278,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      height: $iui-xxs;
+      height: var(--iui-size-3xs);
       background-color: var(--iui-color-foreground-#{$status});
     }
   }

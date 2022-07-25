@@ -9,12 +9,12 @@
 }
 
 @mixin iui-radio-tile-content {
-  width: $iui-xl * 5;
+  width: calc(var(--iui-size-xl) * 5);
   height: 100%;
-  padding: $iui-s;
+  padding: var(--iui-size-xs);
   position: relative;
   z-index: 1;
-  outline: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  outline: 1px solid var(--iui-color-foreground-4);
   background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
     transition: outline-color $iui-speed-fast ease-out;
@@ -22,10 +22,10 @@
 
   &:hover {
     z-index: 2;
-    outline-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    outline-color: var(--iui-color-foreground-2);
 
     .iui-radio-tile-icon {
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-color-foreground-2);
       @media (forced-colors: active) {
         fill: CanvasText;
       }
@@ -51,9 +51,9 @@
   position: absolute;
 
   &:checked + * {
-    padding: $iui-s;
+    padding: var(--iui-size-xs);
     z-index: 3;
-    outline: $iui-xxs solid var(--iui-color-foreground-primary);
+    outline: var(--iui-size-3xs) solid var(--iui-color-foreground-primary);
     outline-offset: -1px;
 
     @media (forced-colors: active) {
@@ -61,7 +61,7 @@
     }
 
     .iui-radio-tile-icon {
-      fill: var(--iui-icons-color-primary);
+      fill: var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
         fill: Highlight;
       }
@@ -72,8 +72,8 @@
       width: $iui-icons-default;
       height: $iui-icons-default;
       position: absolute;
-      top: $iui-s;
-      right: $iui-s;
+      top: var(--iui-size-xs);
+      right: var(--iui-size-xs);
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" /></svg>');
       background-color: var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
@@ -89,7 +89,7 @@
     background-color: var(--iui-color-background-disabled);
 
     &::after {
-      background-color: var(--iui-icons-color-actionable-disabled);
+      background-color: var(--iui-color-foreground-5);
       @media (forced-colors: active) {
         background-color: GrayText;
       }
@@ -97,14 +97,14 @@
 
     .iui-radio-tile-icon {
       filter: $iui-icons-color-multicolor-disabled;
-      fill: var(--iui-icons-color-actionable-disabled);
+      fill: var(--iui-color-foreground-5);
       @media (forced-colors: active) {
         fill: GrayText;
       }
     }
 
     .iui-radio-tile-label {
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
     }
 
     .iui-radio-tile-label,
@@ -117,16 +117,17 @@
 
   &:disabled:checked + * {
     z-index: 3;
-    outline: $iui-xxs solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    outline: var(--iui-size-3xs) solid var(--iui-color-foreground-4);
     @media (forced-colors: active) {
       outline-color: GrayText;
     }
   }
 
   @include focus-visible {
-    + * { // outline for checkmark
+    + * {
+      // outline for checkmark
       z-index: 2;
-      outline-offset: -$iui-xxs;
+      outline-offset: calc(0px - var(--iui-size-3xs));
       outline: 3px solid var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
         outline-color: Highlight;
@@ -140,7 +141,7 @@
   height: $iui-icons-xl;
   display: block;
   margin: round($iui-baseline * 0.5) auto $iui-baseline;
-  fill: var(--iui-icons-color);
+  fill: var(--iui-color-foreground-4);
   @media (prefers-reduced-motion: no-preference) {
     transition: fill $iui-speed-fast ease-out;
   }
@@ -150,18 +151,18 @@
 }
 
 @mixin iui-radio-tile-label {
-  font-size: $iui-font-size;
-  font-weight: $iui-font-weight-semibold;
+  font-size: var(--iui-font-size-1);
+  font-weight: var(--iui-font-weight-semibold);
   line-height: $iui-line-height;
   text-align: center;
   word-break: break-word;
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
 }
 
 @mixin iui-radio-tile-sublabel {
-  font-size: $iui-font-size-small;
+  font-size: var(--iui-font-size-0);
   line-height: round($iui-baseline * 1.375);
   text-align: center;
   word-break: break-word;
-  color: var(--iui-text-color-muted);
+  color: var(--iui-color-foreground-4);
 }

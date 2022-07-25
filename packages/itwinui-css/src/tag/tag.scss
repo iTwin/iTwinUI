@@ -15,7 +15,7 @@
   @include iui-tag-base;
 
   &:not(a) {
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
   }
 }
 
@@ -24,20 +24,20 @@
   height: $iui-baseline * 3;
   margin-top: $iui-component-offset;
   margin-bottom: $iui-component-offset;
-  border-radius: $iui-border-radius-round;
-  padding: 0 $iui-xxs;
+  border-radius: var(--iui-border-radius-round);
+  padding: 0 var(--iui-size-3xs);
   align-items: center;
   transition: border-color $iui-speed-fast ease-out;
-  font-size: $iui-font-size;
+  font-size: var(--iui-font-size-1);
   text-transform: none;
   cursor: default;
   -webkit-tap-highlight-color: transparent;
-  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  border: 1px solid var(--iui-color-foreground-4);
   background-color: var(--iui-color-background-1);
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
 
   &:hover {
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
+    border-color: var(--iui-color-foreground-1);
   }
 }
 
@@ -46,10 +46,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  margin: 0 $iui-xs 0 $iui-s;
+  margin: 0 var(--iui-size-2xs) 0 var(--iui-size-xs);
 
   &:only-child {
-    margin: 0 $iui-s;
+    margin: 0 var(--iui-size-xs);
   }
 }
 
@@ -58,14 +58,14 @@
 }
 
 @mixin iui-tag-container {
-  color: var(--iui-text-color-muted);
+  color: var(--iui-color-foreground-4);
 
   > a.iui-tag-basic {
-    margin: $iui-xxs;
+    margin: var(--iui-size-3xs);
   }
 
   > *:not(last-child) {
-    margin-right: $iui-xs;
+    margin-right: var(--iui-size-2xs);
   }
 
   > .iui-tag-basic:not(:last-child)::after {
@@ -82,8 +82,8 @@
   }
 
   &.iui-visible {
-    border-radius: $iui-border-radius;
-    padding: $iui-component-offset $iui-sm;
+    border-radius: var(--iui-border-radius-1);
+    padding: $iui-component-offset var(--iui-size-s);
     background-color: var(--iui-color-background-3);
   }
 }

@@ -20,8 +20,8 @@
     transition: height $iui-speed-fast ease-out;
   }
   background-color: var(--iui-color-background-1);
-  border-bottom: $iui-xxs solid var(--iui-color-background-border);
-  color: var(--iui-text-color);
+  border-bottom: var(--iui-size-3xs) solid var(--iui-color-background-border);
+  color: var(--iui-color-foreground-2);
 
   > .iui-left,
   > .iui-center,
@@ -44,14 +44,14 @@
     > nav {
       overflow: hidden;
       box-sizing: content-box;
-      margin-bottom: -$iui-xs;
-      padding-bottom: $iui-xs;
+      margin-bottom: calc(0px - var(--iui-size-2xs));
+      padding-bottom: var(--iui-size-2xs);
     }
 
     .iui-chevron {
       @include iui-icons-small;
       flex-shrink: 0;
-      margin: 0 $iui-xs;
+      margin: 0 var(--iui-size-2xs);
     }
   }
 
@@ -89,25 +89,25 @@
     > .iui-left {
       .iui-header-logo {
         > .iui-label {
-          font-size: $iui-font-size;
+          font-size: var(--iui-font-size-1);
         }
 
         .iui-header-button-icon {
-          margin: 0 $iui-l + $iui-xs;
+          margin: 0 calc(var(--iui-size-l) + var(--iui-size-2xs));
         }
       }
 
       .iui-header-button-icon {
         width: $iui-icons-default;
         height: $iui-icons-default;
-        margin: 0 $iui-xs;
+        margin: 0 var(--iui-size-2xs);
         display: inline-flex;
       }
     }
 
     > .iui-right {
       .iui-avatar {
-        @include iui-avatar-size($size: $iui-icons-large, $font-size: $iui-font-size-small);
+        @include iui-avatar-size($size: $iui-icons-large, $font-size: var(--iui-font-size-0));
       }
     }
   }
@@ -138,7 +138,7 @@
   }
 }
 
-@mixin iui-header-button-icon($size: $iui-icons-large, $border-radius: $iui-border-radius) {
+@mixin iui-header-button-icon($size: $iui-icons-large, $border-radius: var(--iui-border-radius-1)) {
   width: $size;
   height: $size;
   border-radius: $border-radius;
@@ -197,13 +197,13 @@
   }
 
   .iui-header-button-icon {
-    margin: 0 $iui-l;
-    fill: var(--iui-icons-color-actionable);
+    margin: 0 var(--iui-size-l);
+    fill: var(--iui-color-foreground-2);
   }
 
   > .iui-label {
-    margin-right: $iui-sm;
-    font-size: $iui-font-size-leading;
+    margin-right: var(--iui-size-s);
+    font-size: var(--iui-font-size-2);
     @media (prefers-reduced-motion: no-preference) {
       transition: font-size $iui-speed-fast ease-out;
     }
@@ -235,7 +235,7 @@
 
   > span {
     text-align: left;
-    font-size: $iui-font-size;
+    font-size: var(--iui-font-size-1);
     overflow: hidden;
 
     > div {
@@ -246,7 +246,7 @@
 
   .iui-description {
     height: $iui-baseline * 2;
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     opacity: var(--iui-opacity-3);
     @media (prefers-reduced-motion: no-preference) {
       transition: all $iui-speed-fast ease;
@@ -258,15 +258,15 @@
   }
 
   > * + * {
-    margin-left: $iui-sm;
+    margin-left: var(--iui-size-s);
   }
 
   .iui-header-button-icon {
     box-sizing: content-box;
-    padding: $iui-xs;
-    @include iui-header-button-icon($iui-icons-default, $iui-border-radius);
+    padding: var(--iui-size-2xs);
+    @include iui-header-button-icon($iui-icons-default, var(--iui-border-radius-1));
     background-color: var(--iui-color-background-3);
-    fill: var(--iui-icons-color);
+    fill: var(--iui-color-foreground-4);
   }
 
   &.iui-active {
@@ -286,7 +286,7 @@
           .iui-header-button-icon.iui-header-button-icon {
             width: $iui-icons-small;
             height: $iui-icons-small;
-            padding: $iui-xxs;
+            padding: var(--iui-size-3xs);
           }
         }
 
@@ -301,7 +301,7 @@
 }
 
 @mixin iui-header-dropdown-button {
-  padding-right: $iui-s;
+  padding-right: var(--iui-size-xs);
 }
 
 @mixin iui-header-split-button {
@@ -316,12 +316,12 @@
 
   .iui-button {
     @include iui-header-button;
-    padding: 0 $iui-xs;
+    padding: 0 var(--iui-size-2xs);
   }
 
   > *:first-child {
     .iui-button {
-      padding-left: $iui-sm;
+      padding-left: var(--iui-size-s);
     }
   }
 
@@ -361,7 +361,7 @@
 @mixin iui-header-button-active {
   // Blue icons
   svg {
-    fill: var(--iui-icons-color-primary);
+    fill: var(--iui-color-foreground-primary);
   }
 
   .iui-description {
@@ -371,11 +371,11 @@
   &,
   &:hover {
     // Blue background and darker blue bottom line
-    box-shadow: 0 $iui-xxs 0 0 var(--iui-color-foreground-primary);
+    box-shadow: 0 var(--iui-size-3xs) 0 0 var(--iui-color-foreground-primary);
     background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
 
     .iui-header-button-icon {
-      fill: var(--iui-icons-color-primary);
+      fill: var(--iui-color-foreground-primary);
       background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
     }
   }
@@ -389,15 +389,15 @@
   &.iui-disabled,
   &:disabled {
     background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
-    box-shadow: 0 $iui-xxs 0 0 rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    box-shadow: 0 var(--iui-size-3xs) 0 0 var(--iui-color-foreground-4);
 
     span {
-      color: var(--iui-icons-color-actionable-disabled);
+      color: var(--iui-color-foreground-5);
     }
 
     .iui-button-icon,
     svg {
-      fill: var(--iui-icons-color-actionable-disabled);
+      fill: var(--iui-color-foreground-5);
     }
 
     .iui-header-button-icon {

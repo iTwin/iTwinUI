@@ -9,7 +9,7 @@
 
     &:hover,
     &:active {
-      --_iui-button-background-color: var(--iui-color-background-positive-overlay);
+      --_iui-button-background-color: var(--iui-color-background-positive-hover);
     }
   }
 
@@ -18,7 +18,7 @@
 
     &:hover,
     &:active {
-      --_iui-button-background-color: var(--iui-color-background-primary-overlay);
+      --_iui-button-background-color: var(--iui-color-background-primary-hover);
     }
   }
 
@@ -35,7 +35,7 @@
   &:disabled,
   &[aria-disabled='true'] {
     --_iui-button-background-color: var(--iui-color-background-disabled);
-    --_iui-button-text-color: var(--iui-text-color-placeholder);
+    --_iui-button-text-color: var(--iui-color-foreground-5);
 
     outline-offset: -1px;
     outline-width: 1px;

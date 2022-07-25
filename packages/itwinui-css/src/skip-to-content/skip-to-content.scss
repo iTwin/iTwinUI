@@ -7,10 +7,10 @@
   @include iui-blur($opacity: 3);
   @include iui-focus($offset: 2px, $thickness: 2px);
   color: var(--iui-color-foreground-accessory);
-  border-radius: $iui-border-radius-round;
+  border-radius: var(--iui-border-radius-round);
   text-decoration: none;
   user-select: none;
-  padding: ($iui-baseline * 0.75) $iui-m;
+  padding: ($iui-baseline * 0.75) var(--iui-size-m);
   position: fixed;
   text-align: center;
   left: 50%;
@@ -31,7 +31,7 @@
   &:focus {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
-    box-shadow: $iui-elevation-16;
+    box-shadow: var(--iui-shadow-4);
     @media (prefers-reduced-motion: no-preference) {
       transition: opacity $iui-speed-instant ease-in-out, background-color $iui-speed-fast ease-in-out,
         transform $iui-speed-fast ease-in-out, box-shadow $iui-speed-fast ease-in-out;

@@ -4,15 +4,15 @@
 @import '../utils/index';
 
 @mixin iui-button-default {
-  --_iui-button-text-color: var(--iui-text-color);
+  --_iui-button-text-color: var(--iui-color-foreground-2);
   --_iui-button-background-color: var(--iui-color-background-1);
-  --_iui-button-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  --_iui-button-border-color: var(--iui-color-foreground-4);
 
   &:hover,
   &:active {
-    --_iui-button-text-color: var(--iui-color-foreground-body);
-    --_iui-button-background-color: var(--iui-color-background-1-overlay);
-    --_iui-button-border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1));
+    --_iui-button-text-color: var(--iui-color-foreground-1);
+    --_iui-button-background-color: var(--iui-color-background-1-hover);
+    --_iui-button-border-color: var(--iui-color-foreground-1);
     @include iui-notification-marker-hover;
   }
 
@@ -24,7 +24,7 @@
   &[disabled],
   &:disabled,
   &[aria-disabled='true'] {
-    --_iui-button-text-color: var(--iui-text-color-placeholder);
+    --_iui-button-text-color: var(--iui-color-foreground-5);
     --_iui-button-background-color: var(--iui-color-background-disabled);
     --_iui-button-border-color: var(--iui-color-background-disabled);
 
@@ -37,11 +37,7 @@
 
 @mixin iui-button-default-active {
   @include iui-button-active;
-  --_iui-button-background-color: linear-gradient(
-    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-  ),
-    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+  --_iui-button-background-color: var(--iui-color-background-subtle-primary);
 
   &[disabled],
   &:disabled,

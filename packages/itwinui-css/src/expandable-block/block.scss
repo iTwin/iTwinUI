@@ -15,7 +15,7 @@
     @include iui-focus;
     display: flex;
     align-items: center;
-    padding: $iui-baseline $iui-sm;
+    padding: $iui-baseline var(--iui-size-s);
     cursor: pointer;
     user-select: none;
     @media (prefers-reduced-motion: no-preference) {
@@ -37,11 +37,11 @@
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-color-foreground-2);
     }
 
     > .iui-status-icon {
-      margin-left: $iui-sm;
+      margin-left: var(--iui-size-s);
       @include iui-icons-color;
     }
 
@@ -50,11 +50,11 @@
       flex-direction: column;
       flex: auto;
       min-width: 0;
-      margin-left: $iui-sm;
+      margin-left: var(--iui-size-s);
       @media (prefers-reduced-motion: no-preference) {
         transition: color $iui-speed-fast ease;
       }
-      color: var(--iui-text-color);
+      color: var(--iui-color-foreground-2);
     }
 
     .iui-title,
@@ -65,12 +65,12 @@
     }
 
     .iui-title {
-      font-size: $iui-font-size-leading;
+      font-size: var(--iui-font-size-2);
     }
 
     .iui-caption {
-      font-size: $iui-font-size-small;
-      color: var(--iui-text-color-muted);
+      font-size: var(--iui-font-size-0);
+      color: var(--iui-color-foreground-4);
     }
 
     @include iui-focus;
@@ -86,7 +86,7 @@
 
     // padding should be in a separate div because otherwise it messes up height transition
     > div {
-      padding: $iui-baseline $iui-sm;
+      padding: $iui-baseline var(--iui-size-s);
     }
   }
 
@@ -95,12 +95,12 @@
       background-color: var(--iui-color-background-4);
 
       > .iui-icon {
-        fill: var(--iui-icons-color-actionable-hover);
+        fill: var(--iui-color-foreground-1);
       }
 
       .iui-caption,
       .iui-title {
-        color: var(--iui-color-foreground-body);
+        color: var(--iui-color-foreground-1);
         @media (prefers-reduced-motion: no-preference) {
           transition: color $iui-speed-fast ease;
         }
@@ -126,7 +126,7 @@
   }
 
   &.iui-small .iui-header {
-    padding: ($iui-baseline * 0.5) $iui-s;
+    padding: ($iui-baseline * 0.5) var(--iui-size-xs);
 
     > .iui-icon {
       width: $iui-icons-small;
@@ -134,11 +134,11 @@
     }
 
     > .iui-expandable-block-label {
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
 
     > .iui-status-icon {
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
   }
 
@@ -151,7 +151,7 @@
     }
 
     .iui-header {
-      border-radius: $iui-border-radius;
+      border-radius: var(--iui-border-radius-1);
 
       &:hover {
         background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));

@@ -26,14 +26,14 @@
   &:last-of-type {
     --_iui-workflow-diagram-circle-background-color: var(--iui-color-background-1);
     --_iui-workflow-diagram-circle-border-color: var(--iui-color-foreground-positive);
-    --_iui-workflow-diagram-circle-border-radius: #{$iui-sm};
+    --_iui-workflow-diagram-circle-border-radius: #{var(--iui-size-s)};
     --_iui-workflow-diagram-circle-text-color: var(--iui-color-foreground-positive);
   }
 
   &::before,
   &::after {
     content: '';
-    height: $iui-xxs;
+    height: var(--iui-size-3xs);
     flex: 1 2 auto;
   }
 
@@ -55,8 +55,8 @@
 }
 
 @mixin iui-workflow-diagram-content {
-  padding: 0 $iui-m;
-  font-weight: $iui-font-weight-normal;
+  padding: 0 var(--iui-size-m);
+  font-weight: var(--iui-font-weight-normal);
   text-align: center;
   background-color: var(--_iui-workflow-diagram-circle-background-color);
   border: 1px solid var(--_iui-workflow-diagram-circle-border-color);

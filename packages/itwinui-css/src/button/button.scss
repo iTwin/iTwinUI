@@ -2,9 +2,9 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-$iui-button-padding: $iui-xs * 4;
-$iui-button-padding-small: $iui-xs * 2;
-$iui-button-padding-large: $iui-xs * 6;
+$iui-button-padding: calc(var(--iui-size-2xs) * 4);
+$iui-button-padding-small: calc(var(--iui-size-2xs) * 2);
+$iui-button-padding-large: calc(var(--iui-size-2xs) * 6);
 
 @mixin iui-button {
   @include iui-reset;
@@ -14,10 +14,10 @@ $iui-button-padding-large: $iui-xs * 6;
   vertical-align: middle;
   justify-content: center;
   position: relative;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   line-height: $iui-line-height;
-  font-size: $iui-font-size;
-  font-weight: $iui-font-weight-normal;
+  font-size: var(--iui-font-size-1);
+  font-weight: var(--iui-font-weight-normal);
   user-select: none;
   cursor: pointer;
   white-space: nowrap;
@@ -62,22 +62,22 @@ $iui-button-padding-large: $iui-xs * 6;
   &[disabled],
   &:disabled,
   &[aria-disabled='true'] {
-    --_iui-button-active-stripe-color: var(--iui-text-color-placeholder);
-    --_iui-button-text-color: var(--iui-text-color-placeholder);
+    --_iui-button-active-stripe-color: var(--iui-color-foreground-5);
+    --_iui-button-text-color: var(--iui-color-foreground-5);
   }
 }
 
 @mixin iui-button-dropdown($size: default) {
   @if $size == default {
-    --_iui-button-padding-inline: #{$iui-button-padding} #{$iui-s};
+    --_iui-button-padding-inline: #{$iui-button-padding} #{var(--iui-size-xs)};
   }
 
   @if $size == small {
-    --_iui-button-padding-inline: #{$iui-button-padding-small} #{$iui-xs};
+    --_iui-button-padding-inline: #{$iui-button-padding-small} #{var(--iui-size-2xs)};
   }
 
   @if $size == large {
-    --_iui-button-padding-inline: #{$iui-button-padding-large} #{$iui-sm};
+    --_iui-button-padding-inline: #{$iui-button-padding-large} #{var(--iui-size-s)};
   }
 }
 
@@ -86,34 +86,34 @@ $iui-button-padding-large: $iui-xs * 6;
 /// @arg styleType - must be one of: default, borderless
 @mixin iui-button-size($size: medium, $styleType: default) {
   @if $size == medium {
-    --_iui-button-gap: #{$iui-s};
+    --_iui-button-gap: #{var(--iui-size-xs)};
     --_iui-button-height: #{$iui-component-height};
     --_iui-button-padding-inline: #{$iui-button-padding};
 
     @if $styleType == borderless {
-      --_iui-button-padding-inline: #{$iui-s};
+      --_iui-button-padding-inline: #{var(--iui-size-xs)};
     }
   }
 
   @if $size == small {
-    --_iui-button-gap: #{$iui-xs};
+    --_iui-button-gap: #{var(--iui-size-2xs)};
     --_iui-button-height: #{$iui-component-height-small};
     --_iui-button-padding-inline: #{$iui-button-padding-small};
 
     @if $styleType == borderless {
-      --_iui-button-padding-inline: #{$iui-xxs};
+      --_iui-button-padding-inline: #{var(--iui-size-3xs)};
     }
   }
 
   @if $size == large {
-    font-size: $iui-font-size-leading;
+    font-size: var(--iui-font-size-2);
 
-    --_iui-button-gap: #{$iui-sm};
+    --_iui-button-gap: #{var(--iui-size-s)};
     --_iui-button-height: #{$iui-component-height-large};
     --_iui-button-padding-inline: #{$iui-button-padding-large};
 
     @if $styleType == borderless {
-      --_iui-button-padding-inline: #{$iui-sm};
+      --_iui-button-padding-inline: #{var(--iui-size-s)};
     }
   }
 }

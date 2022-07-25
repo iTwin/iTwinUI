@@ -10,7 +10,7 @@
   cursor: pointer;
 
   > .iui-location-marker-default-pin {
-    filter: drop-shadow($iui-elevation-2);
+    filter: drop-shadow(var(--iui-shadow-1));
 
     > .iui-location-marker-default-pin-dot {
       fill: var(--iui-color-foreground-accessory);

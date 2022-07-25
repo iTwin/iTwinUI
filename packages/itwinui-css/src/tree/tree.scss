@@ -5,8 +5,10 @@
 @import '../utils/index';
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
-$iui-expander-inline-padding: $iui-component-offset + $iui-xxs + 1px; // margin + padding + border
-$iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding * 2); // icon width + inline padding on both sides
+$iui-expander-inline-padding: calc(#{$iui-component-offset} + var(--iui-size-3xs) + 1px); // margin + padding + border
+$iui-expander-button-width: calc(
+  var(--iui-size-m) + calc($iui-expander-inline-padding * 2)
+); // icon width + inline padding on both sides
 
 @mixin iui-tree {
   @include iui-reset;
@@ -37,11 +39,11 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
 @mixin iui-tree-node {
   display: flex;
   cursor: pointer;
-  padding: 0 $iui-s;
+  padding: 0 var(--iui-size-xs);
   align-items: center;
 
   &-checkbox {
-    margin-right: $iui-s;
+    margin-right: var(--iui-size-xs);
   }
 
   &-content {
@@ -50,7 +52,7 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     min-height: $iui-baseline * 3;
     margin-left: calc(#{$iui-expander-button-width} * (var(--level, 0)));
     overflow: hidden;
-    padding-left: $iui-xxs;
+    padding-left: var(--iui-size-3xs);
 
     &-icon {
       @include iui-icons-default;
@@ -58,7 +60,7 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
       flex-shrink: 0;
 
       &:first-child {
-        margin-left: $iui-expander-button-width + $iui-expander-inline-padding;
+        margin-left: calc($iui-expander-button-width + $iui-expander-inline-padding);
       }
     }
 
@@ -89,12 +91,12 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     }
 
     &-title {
-      font-size: $iui-font-size;
+      font-size: var(--iui-font-size-1);
     }
 
     &-caption {
-      font-size: $iui-font-size-small;
-      color: var(--iui-text-color-muted);
+      font-size: var(--iui-font-size-0);
+      color: var(--iui-color-foreground-4);
     }
   }
 
@@ -102,7 +104,7 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
 
     .iui-tree-node-content-caption {
-      color: var(--iui-color-foreground-body);
+      color: var(--iui-color-foreground-1);
       transition: color $iui-speed-fast ease;
     }
   }
@@ -117,10 +119,10 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     cursor: not-allowed;
     outline: none;
     background-color: transparent;
-    color: var(--iui-text-color-placeholder);
+    color: var(--iui-color-foreground-5);
 
     .iui-tree-node-content-caption {
-      color: var(--iui-text-color-placeholder);
+      color: var(--iui-color-foreground-5);
     }
   }
 }

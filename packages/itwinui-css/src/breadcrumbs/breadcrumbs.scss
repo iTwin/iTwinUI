@@ -32,13 +32,13 @@
 
 @mixin iui-breadcrumbs-item-overrides {
   > * {
-    padding: 0 $iui-s;
+    padding: 0 var(--iui-size-xs);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 
     &:not(.iui-button) {
-      color: var(--iui-text-color);
+      color: var(--iui-color-foreground-2);
     }
   }
 
@@ -74,7 +74,7 @@
 }
 
 @mixin iui-breadcrumbs-text {
-  padding: 0 $iui-s;
+  padding: 0 var(--iui-size-xs);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -96,19 +96,19 @@
   color: var(--iui-color-foreground-primary);
 
   &[aria-current] {
-    color: var(--iui-text-color);
+    color: var(--iui-color-foreground-2);
   }
 }
 
 @mixin iui-breadcrumbs-separator {
   display: flex;
-  margin: 0 $iui-xxs;
+  margin: 0 var(--iui-size-3xs);
 
   svg {
     width: $iui-icons-small;
     height: $iui-icons-small;
     display: flex; // needed for vertical alignment of webcomponents
-    fill: var(--iui-icons-color);
+    fill: var(--iui-color-foreground-4);
     @media (forced-colors: active) {
       fill: CanvasText;
     }

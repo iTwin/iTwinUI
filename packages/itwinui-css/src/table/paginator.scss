@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 $iui-m;
+  padding: 0 var(--iui-size-m);
   user-select: none;
   background-color: var(--iui-color-background-3);
 
@@ -27,7 +27,7 @@
   > .iui-center {
     justify-content: center;
     flex: 2 1;
-    color: var(--iui-text-color);
+    color: var(--iui-color-foreground-2);
   }
 
   > .iui-right {
@@ -47,7 +47,7 @@
   justify-content: center;
   align-items: center;
   width: $iui-component-height;
-  color: var(--iui-text-color-muted);
+  color: var(--iui-color-foreground-4);
 
   &-small {
     width: $iui-component-height-small;
@@ -57,7 +57,7 @@
 @mixin iui-table-paginator-pages-group {
   display: inline-flex;
   align-items: center;
-  margin: 0 $iui-s;
+  margin: 0 var(--iui-size-xs);
 }
 
 @mixin iui-table-paginator-page-button {
@@ -74,6 +74,6 @@
     @include iui-button-default-active;
     @include iui-button-borderless-active;
     // Adds stripe above active button
-    --_iui-button-active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
+    --_iui-button-active-stripe-inset: calc(100% - #{var(--iui-size-2xs)}) #{var(--iui-size-3xs)} #{var(--iui-size-3xs)};
   }
 }

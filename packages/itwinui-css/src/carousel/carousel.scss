@@ -7,12 +7,12 @@
 @mixin iui-carousel {
   overflow: hidden;
   @include iui-focus($offset: 4px);
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-carousel-slider {
   display: flex;
-  gap: $iui-s;
+  gap: var(--iui-size-xs);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   height: $iui-baseline * 3;
-  border-top: $iui-xxs solid var(--iui-color-background-4);
+  border-top: var(--iui-size-3xs) solid var(--iui-color-background-4);
 
   &-left,
   &-right {
@@ -48,8 +48,8 @@
     @include iui-reset;
     @include iui-focus;
     flex: 2;
-    max-width: $iui-xxl * 4;
-    border-radius: $iui-border-radius;
+    max-width: calc(var(--iui-size-2xl) * 4);
+    border-radius: var(--iui-border-radius-1);
     white-space: nowrap;
     @include hide-scrollbar;
   }
@@ -64,7 +64,7 @@
     padding-right: var(--_iui-button-padding-inline);
 
     &:hover::after {
-      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));
+      background-color: var(--iui-color-foreground-3);
     }
 
     &::after {
@@ -74,7 +74,7 @@
       height: $iui-icons-small;
       border-radius: 50%;
       border: 1px solid transparent;
-      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+      background-color: var(--iui-color-foreground-4);
       box-shadow: inset 0 0 0 0 var(--iui-color-background-1);
     }
 

@@ -17,12 +17,12 @@
   }
 
   &:first-child {
-    box-shadow: $iui-elevation-2;
+    box-shadow: var(--iui-shadow-1);
   }
 }
 
 @mixin iui-time-picker-list {
-  padding: $iui-baseline $iui-s;
+  padding: $iui-baseline var(--iui-size-xs);
   overflow-y: auto;
   overflow-y: overlay;
   scrollbar-width: none;
@@ -37,8 +37,8 @@
 
     > li {
       @include iui-focus;
-      padding: round($iui-baseline * 0.5) $iui-m;
-      border-radius: $iui-border-radius;
+      padding: round($iui-baseline * 0.5) var(--iui-size-m);
+      border-radius: var(--iui-border-radius-1);
 
       &:hover {
         cursor: pointer;
@@ -47,7 +47,7 @@
       }
 
       &.iui-selected {
-        font-weight: $iui-font-weight-semibold;
+        font-weight: var(--iui-font-weight-semibold);
         cursor: default;
         @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
         background-color: var(--iui-color-background-primary);

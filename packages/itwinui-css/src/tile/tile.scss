@@ -11,7 +11,7 @@
   @include iui-surface;
   display: inline-flex;
   flex-direction: column;
-  width: $iui-3xl * 3;
+  width: calc(var(--iui-size-3xl) * 3);
   backface-visibility: hidden;
 
   &:hover,
@@ -22,34 +22,30 @@
     }
 
     .iui-tile-metadata:not(:last-child) {
-      width: calc(100% - #{$iui-xl});
+      width: calc(100% - #{var(--iui-size-xl)});
     }
   }
 
   &.iui-new {
     .iui-tile-name,
     .iui-tile-description {
-      font-weight: $iui-font-weight-semibold;
+      font-weight: var(--iui-font-weight-semibold);
     }
   }
 
   &.iui-selected {
-    @include iui-focus($offset: 0, $thickness: $iui-xs);
+    @include iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
     outline: solid 2px var(--iui-color-foreground-primary);
-    background: linear-gradient(
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-    ),
-      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+    background-color: var(--iui-color-background-subtle-primary);
   }
 
   &.iui-actionable {
-    @include iui-focus($offset: $iui-xxs, $thickness: $iui-xxs);
+    @include iui-focus($offset: var(--iui-size-3xs), $thickness: var(--iui-size-3xs));
     cursor: pointer;
     transition: box-shadow $iui-speed-fast ease-in-out;
 
     &:hover {
-      box-shadow: $iui-elevation-8;
+      box-shadow: var(--iui-shadow-3);
     }
 
     &:hover,
@@ -95,7 +91,7 @@
     cursor: not-allowed;
 
     .iui-tile-name-label {
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
     }
 
     .iui-thumbnail-icon,
@@ -116,7 +112,7 @@
 }
 
 @mixin iui-tile-content {
-  padding: $iui-baseline $iui-sm;
+  padding: $iui-baseline var(--iui-size-s);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -127,15 +123,15 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    font-size: $iui-font-size-leading;
+    font-size: var(--iui-font-size-2);
     user-select: all;
     margin-bottom: $iui-baseline * 0.5;
-    color: var(--iui-text-color);
+    color: var(--iui-color-foreground-2);
   }
 
   .iui-tile-status-icon {
     @include iui-icons-default;
-    margin-right: $iui-s;
+    margin-right: var(--iui-size-xs);
     flex-shrink: 0;
   }
 
@@ -147,15 +143,15 @@
 
   .iui-tile-description {
     margin-bottom: $iui-baseline;
-    font-size: $iui-font-size;
+    font-size: var(--iui-font-size-1);
     height: 100%;
     max-height: $iui-baseline * 6;
     @include iui-line-clamp(3);
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
   }
 
   .iui-tile-metadata {
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     flex-shrink: 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -164,12 +160,12 @@
     display: flex;
     align-items: center;
     margin-top: auto;
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
 
     > svg,
     .iui-tile-metadata-icon {
       @include iui-icons-default;
-      margin-right: $iui-s;
+      margin-right: var(--iui-size-xs);
       flex-shrink: 0;
     }
 
@@ -191,7 +187,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--iui-color-background-1-overlay);
+  background-color: var(--iui-color-background-1-hover);
   border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-thumbnail-icon {
@@ -238,10 +234,10 @@
   top: round($iui-baseline * 0.5);
 
   @if $variant == type-indicator {
-    left: $iui-s;
+    left: var(--iui-size-xs);
   }
   @if $variant == quick-action {
-    right: $iui-s;
+    right: var(--iui-size-xs);
   }
 
   &[data-iui-active='true'] {
@@ -269,13 +265,13 @@
 @mixin iui-tile-thumbnail-badge {
   position: absolute;
   bottom: round($iui-baseline * 0.5);
-  width: calc(100% - 2 * #{$iui-sm});
+  width: calc(100% - 2 * #{var(--iui-size-s)});
   height: auto;
-  right: $iui-sm;
+  right: var(--iui-size-s);
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-  gap: $iui-xs;
+  gap: var(--iui-size-2xs);
 }
 
 @mixin iui-tile-buttons {
@@ -285,10 +281,10 @@
   white-space: nowrap;
 
   > .iui-button {
-    font-size: $iui-font-size;
+    font-size: var(--iui-font-size-1);
     flex: 1;
     height: auto;
-    padding: $iui-baseline $iui-sm;
+    padding: $iui-baseline var(--iui-size-s);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -312,7 +308,7 @@
 @mixin iui-tile-more-options {
   position: absolute;
   bottom: $iui-baseline * 0.5;
-  right: $iui-s;
+  right: var(--iui-size-xs);
 
   &:not(.iui-visible) {
     @include visually-hidden;
@@ -323,11 +319,11 @@
   @include iui-text-selection($status);
 
   .iui-tile-thumbnail {
-    box-shadow: 0 $iui-xs 0 var(--iui-color-foreground-#{$status});
+    box-shadow: 0 var(--iui-size-2xs) 0 var(--iui-color-foreground-#{$status});
   }
 
   @at-root &.iui-folder .iui-tile-thumbnail {
-    box-shadow: $iui-xs 0 0 var(--iui-color-foreground-#{$status});
+    box-shadow: var(--iui-size-2xs) 0 0 var(--iui-color-foreground-#{$status});
   }
 
   .iui-tile-name-label {
