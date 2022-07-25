@@ -83,18 +83,10 @@ $tick-height: $iui-baseline; // 11px
     justify-content: center;
     align-items: center;
 
-    .iui-slider-tick-mark {
-      display: inline-block;
-
+    &::before {
       @include themed {
         background-color: t(iui-color-background-4);
       }
-    }
-
-    .iui-slider-tick-number {
-      position: absolute;
-      font-weight: normal;
-      line-height: 0;
     }
   }
 }
@@ -156,17 +148,21 @@ $tick-height: $iui-baseline; // 11px
     padding-top: $iui-m;
 
     .iui-slider-tick {
-      line-height: $tick-height * 4;
-      margin-bottom: $tick-height * 2;
+      // line-height: $tick-height * 4;
+      // margin-bottom: $tick-height * 2;
+      flex-direction: column;
+      width: 1px;
 
-      .iui-slider-tick-mark {
+      &::before {
+        content: '';
         width: 1px;
         height: $tick-height;
+        // background-color: green;
       }
 
-      .iui-slider-tick-number {
-        top: $tick-height * 2;
-      }
+      // .iui-slider-tick-number {
+      //   top: $tick-height * 2;
+      // }
     }
   }
 
@@ -216,13 +212,14 @@ $tick-height: $iui-baseline; // 11px
     height: 100%;
 
     .iui-slider-tick {
-      .iui-slider-tick-mark {
+      // flex: row;
+      height: 1px;
+
+      &::before {
+        content: '';
         width: $tick-height;
         height: 1px;
-      }
-
-      .iui-slider-tick-number {
-        left: $tick-height * 2;
+        margin-right: $tick-height * 1;
       }
     }
   }
