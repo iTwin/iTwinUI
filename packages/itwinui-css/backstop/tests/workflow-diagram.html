@@ -14,16 +14,12 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Workflow diagram | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
-    <script src="../assets/theme.js"></script>
+    <script type="module">
+      import "./assets/theme.js";
+    </script>
     <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         width: 100%;
       }
