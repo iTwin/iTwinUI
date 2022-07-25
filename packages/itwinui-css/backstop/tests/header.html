@@ -14,17 +14,26 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Header | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "./assets/avatar.js";
+      import "@itwin/itwinui-icons-elements/imodel-hollow";
+      import "@itwin/itwinui-icons-elements/caret-down-small";
+      import "@itwin/itwinui-icons-elements/chevron-right";
+      import "@itwin/itwinui-icons-elements/model";
+      import "@itwin/itwinui-icons-elements/notification";
+      import "@itwin/itwinui-icons-elements/help-circular-hollow";
+      import "@itwin/itwinui-icons-elements/more-vertical";
+      import "@itwin/itwinui-icons-elements/placeholder";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+    </style>
     <style>
       div.demo-picture {
-        background-image: url('../assets/image-test.jpg');
+        background-image: url('./assets/image-test.jpg');
         background-position: center;
         background-size: cover;
       }
@@ -61,40 +70,6 @@
         width: auto !important;
       }
     </style>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/imodel-hollow"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/model"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/notification"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/help-circular-hollow"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more-vertical"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/placeholder"
-    ></script>
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/avatar.js"></script>
   </head>
 
   <body class="iui-body">
@@ -384,8 +359,16 @@
               aria-expanded="false"
             >
 
-              <x-avatar type="2"></x-avatar>
-              </span>
+              <<<<<<<
+                HEAD
+                <x-avatar
+                type="2"
+              >
+                </x-avatar>
+                </span>
+                =======
+                <user-icon type="2"></user-icon>
+                >>>>>>> main
             </button>
 
             <!-- More menu -->

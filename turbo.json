@@ -5,14 +5,14 @@
       "outputs": ["css/**", "scss/**"]
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["build"],
       "outputs": []
     },
     "lint": {
       "outputs": []
     },
     "dev": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["build"],
       "cache": false
     }
   }
