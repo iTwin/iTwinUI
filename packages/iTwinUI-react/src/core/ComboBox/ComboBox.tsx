@@ -15,6 +15,7 @@ import {
   getRandomValue,
   InputContainerProps,
   mergeRefs,
+  useLatestRef,
 } from '../utils';
 import 'tippy.js/animations/shift-away.css';
 import {
@@ -153,11 +154,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
   const mounted = React.useRef(false);
 
-  // Latest value of the onChange prop
-  const onChangeProp = React.useRef(onChange);
-  React.useEffect(() => {
-    onChangeProp.current = onChange;
-  }, [onChange]);
+  const valuePropRef = useLatestRef(valueProp);
+  const onChangeProp = useLatestRef(onChange);
+  const optionsRef = useLatestRef(options);
 
   // Record to store all extra information (e.g. original indexes), where the key is the id of the option
   const optionsExtraInfoRef = React.useRef<
@@ -187,7 +186,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     {
       isOpen: false,
       selectedIndex: valueProp
-        ? options.findIndex((option) => option.value === valueProp)
+        ? optionsRef.current.findIndex((option) => option.value === valueProp)
         : -1,
       focusedIndex: -1,
     },
@@ -197,22 +196,21 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     // When the dropdown opens
     if (isOpen) {
       inputRef.current?.focus(); // Focus the input
-      setFilteredOptions(options); // Reset the filtered list
+      setFilteredOptions(optionsRef.current); // Reset the filtered list
       dispatch(['focus']);
     }
     // When the dropdown closes
     else {
       // Reset the focused index
       dispatch(['focus']);
-
       // Reset the input value
       setInputValue(
         selectedIndex != undefined && selectedIndex >= 0
-          ? options[selectedIndex]?.label
+          ? optionsRef.current[selectedIndex]?.label
           : '',
       );
     }
-  }, [isOpen, options, selectedIndex]);
+  }, [isOpen, optionsRef, selectedIndex]);
 
   // Set min-width of menu to be same as input
   const [minWidth, setMinWidth] = React.useState(0);
@@ -250,8 +248,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       setInputValue(value);
       dispatch(['open']); // reopen when typing
       setFilteredOptions(
-        filterFunction?.(options, value) ??
-          options.filter((option) =>
+        filterFunction?.(optionsRef.current, value) ??
+          optionsRef.current.filter((option) =>
             option.label.toLowerCase().includes(value.toLowerCase()),
           ),
       );
@@ -260,7 +258,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       }
       inputProps?.onChange?.(event);
     },
-    [filterFunction, focusedIndex, inputProps, options],
+    [filterFunction, focusedIndex, inputProps, optionsRef],
   );
 
   // When the value prop changes, update the selectedIndex
@@ -278,9 +276,13 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       mounted.current = true;
       return;
     }
-    const value = options[selectedIndex]?.value;
-    onChangeProp.current?.(value);
-  }, [options, selectedIndex]);
+    const currentValue = optionsRef.current[selectedIndex]?.value;
+
+    if (currentValue === valuePropRef.current || selectedIndex === -1) {
+      return;
+    }
+    onChangeProp.current?.(currentValue);
+  }, [onChangeProp, optionsRef, selectedIndex, valuePropRef]);
 
   const getMenuItem = React.useCallback(
     (option: SelectOption<T>, filteredIndex?: number) => {
