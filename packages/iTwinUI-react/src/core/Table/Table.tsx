@@ -39,6 +39,7 @@ import {
   useSubRowSelection,
   useResizeColumns,
   useColumnDragAndDrop,
+  useScrollToRow,
   useStickyColumns,
 } from './hooks';
 import {
@@ -243,6 +244,29 @@ export type TableProps<
    * @default false
    */
   enableColumnReordering?: boolean;
+  /**
+   * Function that returns index of the row that you want to scroll to.
+   *
+   * It doesn't work with paginated tables and with lazy-loading.
+   * @beta
+   * @example
+   * <Table
+   *   scrollToRow={React.useCallback(
+   *     (rows, data) => rows.findIndex((row) => row.original === data[250]),
+   *     []
+   *   )}
+   *   {...restProps}
+   * />
+   * @example
+   * <Table
+   *   scrollToRow={React.useCallback(
+   *     (rows, data) => rows.findIndex((row) => row.original.id === data[250].id),
+   *     []
+   *   )}
+   *   {...restProps}
+   * />
+   */
+  scrollToRow?: (rows: Row<T>[], data: T[]) => number;
 } & Omit<CommonProps, 'title'>;
 
 // Original type for some reason is missing sub-columns
@@ -577,6 +601,7 @@ export const Table = <
     ],
   );
 
+  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
@@ -649,6 +674,7 @@ export const Table = <
           tableInstance={instance}
           expanderCell={expanderCell}
           bodyRef={bodyRefState}
+          tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
         />
       );
     },
@@ -665,6 +691,8 @@ export const Table = <
       instance,
       expanderCell,
       bodyRefState,
+      enableVirtualization,
+      tableRowRef,
     ],
   );
 
@@ -842,6 +870,7 @@ export const Table = <
                 <VirtualScroll
                   itemsLength={page.length}
                   itemRenderer={virtualizedItemRenderer}
+                  scrollToIndex={scrollToIndex}
                 />
               ) : (
                 page.map((_, index) => getPreparedRow(index))

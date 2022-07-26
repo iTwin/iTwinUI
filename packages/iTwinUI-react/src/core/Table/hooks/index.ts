@@ -8,4 +8,5 @@ export { useSubRowFiltering } from './useSubRowFiltering';
 export { useSubRowSelection } from './useSubRowSelection';
 export { useResizeColumns } from './useResizeColumns';
 export { useColumnDragAndDrop } from './useColumnDragAndDrop';
+export { useScrollToRow } from './useScrollToRow';
 export { useStickyColumns } from './useStickyColumns';

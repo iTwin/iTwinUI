@@ -3039,6 +3039,28 @@ it('should not throw on headless table', () => {
   expect(container.querySelector('.iui-table-body')).toBeTruthy();
 });
 
+it('should scroll to selected item in non-virtualized table', async () => {
+  let scrolledElement: HTMLElement | null = null;
+  jest
+    .spyOn(HTMLElement.prototype, 'scrollIntoView')
+    .mockImplementation(function (this: HTMLElement) {
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      scrolledElement = this;
+    });
+
+  const data = mockedData(50);
+  renderComponent({
+    data,
+    scrollToRow: (rows) => rows.findIndex((row) => row.original === data[25]),
+  });
+
+  expect(scrolledElement).toBeTruthy();
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  expect(scrolledElement!.querySelector('.iui-cell')?.textContent).toBe(
+    data[25].name,
+  );
+});
+
 it('should render sticky columns correctly', () => {
   jest
     .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
