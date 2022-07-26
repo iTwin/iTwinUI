@@ -14,19 +14,14 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Avatar | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/user"
-    ></script>
-    <script src="../assets/theme.js"></script>
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/user";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+    </style>
     <style>
       #demo-default > span,
       #demo-status > div > span {
@@ -88,7 +83,7 @@
         </abbr>
         <!-- Using the exact size image to prevent random test failures -->
         <img
-          src="../assets/user-placeholder-24x24.png"
+          src="./assets/user-placeholder-24x24.png"
           alt="Terry Rivers"
         />
         <span class="iui-stroke"></span>
@@ -133,7 +128,7 @@
           TR
         </abbr>
         <img
-          src="../assets/user-placeholder.png"
+          src="./assets/user-placeholder.png"
           alt="Terry Rivers"
         />
         <span class="iui-stroke"></span>
@@ -178,7 +173,7 @@
           TR
         </abbr>
         <img
-          src="../assets/user-placeholder.png"
+          src="./assets/user-placeholder.png"
           alt="Terry Rivers"
         />
         <span class="iui-stroke"></span>
@@ -223,7 +218,7 @@
           TR
         </abbr>
         <img
-          src="../assets/user-placeholder.png"
+          src="./assets/user-placeholder.png"
           alt="Terry Rivers"
         />
         <span class="iui-stroke"></span>
@@ -263,7 +258,7 @@
             TR
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Terry Rivers"
           />
           <span class="iui-stroke"></span>
@@ -301,7 +296,7 @@
             TR
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Terry Rivers"
           />
           <span class="iui-stroke"></span>
@@ -339,7 +334,7 @@
             TR
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Terry Rivers"
           />
           <span class="iui-stroke"></span>
@@ -379,7 +374,7 @@
             RM
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Robin Mercer"
           />
           <span class="iui-stroke"></span>
@@ -417,7 +412,7 @@
             RM
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Robin Mercer"
           />
           <span class="iui-stroke"></span>
@@ -455,7 +450,7 @@
             RM
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Robin Mercer"
           />
           <span class="iui-stroke"></span>
@@ -495,7 +490,7 @@
             RM
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Robin Mercer"
           />
           <span class="iui-stroke"></span>
@@ -533,7 +528,7 @@
             RM
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Robin Mercer"
           />
           <span class="iui-stroke"></span>
@@ -571,7 +566,7 @@
             RM
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Robin Mercer"
           />
           <span class="iui-stroke"></span>
@@ -611,7 +606,7 @@
             TR
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Terry Rivers"
           />
           <span class="iui-stroke"></span>
@@ -649,7 +644,7 @@
             TR
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Terry Rivers"
           />
           <span class="iui-stroke"></span>
@@ -687,7 +682,7 @@
             TR
           </abbr>
           <img
-            src="../assets/user-placeholder.png"
+            src="./assets/user-placeholder.png"
             alt="Terry Rivers"
           />
           <span class="iui-stroke"></span>
@@ -696,7 +691,7 @@
             class="iui-status iui-offline"
           ></span>
         </span>
-
+      </div>
     </section>
 
     <hr />

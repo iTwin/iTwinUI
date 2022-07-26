@@ -14,15 +14,13 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Surface | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+    </script>
     <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       /* Demo elevations replicate /styles/elevation.scss SASS variables. */
       :root {
         --demo-elevation-4: 0 1px 10px rgba(0, 0, 0, 0.25);
@@ -58,7 +56,6 @@
         align-items: center;
       }
     </style>
-    <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>

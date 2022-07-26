@@ -14,18 +14,34 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Tile | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "./assets/avatar.js";
+      import "@itwin/itwinui-icons-elements/placeholder";
+      import "@itwin/itwinui-icons-elements/star";
+      import "@itwin/itwinui-icons-elements/star-hollow";
+      import "@itwin/itwinui-icons-elements/new";
+      import "@itwin/itwinui-icons-elements/more";
+      import "@itwin/itwinui-icons-elements/info";
+      import "@itwin/itwinui-icons-elements/imodel-hollow";
+      import "@itwin/itwinui-icons-elements/tag";
+      import "@itwin/itwinui-icons-elements/checkmark";
+      import "@itwin/itwinui-icons-elements/play-circular";
+      import "@itwin/itwinui-icons-elements/clock";
+      import "@itwin/itwinui-icons-elements/folder";
+      import "@itwin/itwinui-icons-elements/status-success";
+      import "@itwin/itwinui-icons-elements/status-warning";
+      import "@itwin/itwinui-icons-elements/status-error";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+    </style>
     <style>
       /* Set the thumbnail image */
       div.demo-photo {
-        background-image: url('../assets/image-test.jpg');
+        background-image: url('./assets/image-test.jpg');
       }
 
       div.demo-map {
@@ -40,66 +56,6 @@
         gap: 11px 16px;
       }
     </style>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/placeholder"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/star"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/star-hollow"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/new"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/info"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/imodel-hollow"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/tag"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/checkmark"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/play-circular"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/clock"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/folder"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
-    ></script>
     <script>
       customElements.define(
         'svg-filetype-imodel',
@@ -140,9 +96,6 @@
         }
       );
     </script>
-
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/avatar.js"></script>
   </head>
 
   <body class="iui-body">
@@ -539,7 +492,7 @@
           </div>
         </div>
 
-        <div class="iui-tile-content ">
+        <div class="iui-tile-content">
           <div class="iui-tile-name">
             <svg-checkmark
               class="iui-tile-status-icon iui-informational"
@@ -579,6 +532,8 @@
               ></svg-more>
             </button>
           </div>
+        </div>
+      </div>
     </section>
 
     <hr />
@@ -1219,7 +1174,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1274,7 +1231,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1326,7 +1285,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1415,7 +1376,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1460,7 +1423,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1502,7 +1467,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1543,7 +1510,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1580,7 +1549,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1655,7 +1626,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1686,7 +1659,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
