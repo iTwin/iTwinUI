@@ -30,11 +30,9 @@ Install the recommended [plugins](./.vscode/extensions.json) for linter warnings
 
 `yarn build`
 
-You can also use `yarn build:watch` to rebuild automatically when files change.
+### To open development server
 
-### To preview
-
-The minified html files are outputted into the `backstop/minified/` folder and can be opened directly in your browser. You may want to use a local http server (e.g. with the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)).
+`yarn dev`
 
 ### To run visual tests
 
@@ -77,15 +75,11 @@ We provide a script that can automatically create all the necessary files for yo
 
 ### Testing
 
-#### How to set up Docker:
-
-- Make sure Docker is running.
-
-- Create the docker image needed for testing by running `yarn build-docker` from the root folder.
-
 #### How to run tests:
 
 For running tests you will need [Docker](https://www.docker.com/products/docker-desktop). It helps to avoid cross-platform rendering differences.
+
+- Make sure Docker is running.
 
 - To run tests for a specific component, use this command:
 
