@@ -54,13 +54,17 @@
 
   &.iui-collapsed {
     box-sizing: content-box;
-    min-width: $iui-icon-large * 3;
-    max-width: $iui-icon-large * 3;
+    min-width: $iui-icon-large + $iui-side-navigation-icon-margins * 2;
+    max-width: $iui-icon-large + $iui-side-navigation-icon-margins * 2;
 
     // iPhone notch support
     @supports (min-width: unquote('max(0px)')) {
-      min-width: unquote('max(#{$iui-icon-large} * 3, #{$iui-icon-large} * 3 + env(safe-area-inset-left))');
-      max-width: unquote('max(#{$iui-icon-large} * 3, #{$iui-icon-large} * 3 + env(safe-area-inset-left))');
+      min-width: unquote(
+        'max(#{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+      );
+      max-width: unquote(
+        'max(#{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+      );
     }
   }
 
@@ -74,7 +78,7 @@
   }
 
   .iui-sidenav-button {
-    gap: $iui-icon-large;
+    gap: $iui-side-navigation-icon-margins;
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -88,7 +92,9 @@
       height: $iui-baseline * 5;
       // iPhone notch support
       @supports (padding: unquote('max(0px)')) {
-        padding-left: unquote('max(#{$iui-icon-large}, #{$iui-icon-large} + env(safe-area-inset-left))');
+        padding-left: unquote(
+          'max(#{$iui-side-navigation-icon-margins}, #{$iui-side-navigation-icon-margins} + env(safe-area-inset-left))'
+        );
       }
     }
 
