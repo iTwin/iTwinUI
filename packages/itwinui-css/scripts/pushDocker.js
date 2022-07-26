@@ -7,7 +7,7 @@ const { spawn } = require('child_process');
 const VERSION = '1.0.0';
 
 spawn(
-  `docker buildx build backstop/docker --platform linux/arm64/v8,linux/amd64 -t bentleysystemsinc/itwinui-backstop -t bentleysystemsinc/itwinui-backstop:${VERSION} --push`,
+  `docker buildx build backstop/docker --platform linux/arm64/v8,linux/amd64 -t bentleysystemsinc/itwinui-backstop:latest -t bentleysystemsinc/itwinui-backstop:${VERSION} --push`,
   {
     stdio: 'inherit',
     shell: true,
