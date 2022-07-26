@@ -13,15 +13,22 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Side navigation | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/chevron-right";
+      import "@itwin/itwinui-icons-elements/home";
+      import "@itwin/itwinui-icons-elements/document";
+      import "@itwin/itwinui-icons-elements/map";
+      import "@itwin/itwinui-icons-elements/archive";
+      import "@itwin/itwinui-icons-elements/calendar";
+      import "@itwin/itwinui-icons-elements/setup";
+      import "@itwin/itwinui-icons-elements/chevron-left";
+      import "@itwin/itwinui-icons-elements/settings";
+    </script>
     <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section {
         height: 666px;
       }
@@ -43,43 +50,6 @@
         display: none !important;
       }
     </style>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/home"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/document"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/map"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/archive"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/calendar"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/setup"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-left"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/settings"
-    ></script>
-    <script src="../assets/theme.js"></script>
   </head>
 
   <body class="iui-body">

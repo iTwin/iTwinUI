@@ -41,7 +41,7 @@ class Avatar extends HTMLElement {
       ${
         showPlaceholder
           ? `<img
-              src="../assets//user-placeholder.png"
+              src="./assets/user-placeholder.png"
               alt="${person.title}"
             />`
           : ''
@@ -57,7 +57,7 @@ class Avatar extends HTMLElement {
       }
     </span>
     `;
-    this.parentElement.insertAdjacentHTML('beforeend', innerHtml);
+    this.insertAdjacentHTML('afterend', innerHtml);
     this.remove();
   }
 }

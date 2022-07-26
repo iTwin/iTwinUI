@@ -14,15 +14,24 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Radio tile | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/network";
+      import "@itwin/itwinui-icons-elements/apple";
+      import "@itwin/itwinui-icons-elements/android";
+      import "@itwin/itwinui-icons-elements/windows";
+      import "@itwin/itwinui-icons-elements/heart";
+      import "@itwin/itwinui-icons-elements/smiley-happy-very";
+      import "@itwin/itwinui-icons-elements/smiley-happy";
+      import "@itwin/itwinui-icons-elements/smiley-neutral";
+      import "@itwin/itwinui-icons-elements/smiley-sad";
+      import "@itwin/itwinui-icons-elements/smiley-sad-very";
+      import "@itwin/itwinui-icons-elements/remove";
+    </script>
     <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         display: flex;
         flex-direction: column;
@@ -38,51 +47,6 @@
         margin: 2px;
       }
     </style>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/network"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/apple"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/android"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/windows"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/heart"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-happy-very"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-happy"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-neutral"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-sad"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/smiley-sad-very"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/remove"
-    ></script>
-    <script src="../assets/theme.js"></script>
   </head>
 
   <body class="iui-body">
