@@ -57,6 +57,10 @@ $tick-height: $iui-baseline; // 11px
     background: t(iui-color-background-1);
     border: 1px solid t(iui-color-background-border);
   }
+  @media (forced-colors: active) {
+    background: Canvas;
+    border: 1px solid CanvasText;
+  }
 
   &:active {
     cursor: grabbing;
@@ -93,6 +97,9 @@ $tick-height: $iui-baseline; // 11px
       @include themed {
         background-color: t(iui-color-background-4);
       }
+      @media (forced-colors: active) {
+        background-color: CanvasText;
+      }
     }
   }
 }
@@ -111,6 +118,10 @@ $tick-height: $iui-baseline; // 11px
       background-color: t(iui-color-background-4);
       border-color: t(iui-color-background-4);
     }
+    @media (forced-colors: active) {
+      background-color: GrayText;
+      border-color: GrayText;
+    }
   }
 
   .iui-slider-track {
@@ -128,6 +139,9 @@ $tick-height: $iui-baseline; // 11px
     user-select: none;
     @include themed {
       color: t(iui-text-color-muted);
+    }
+    @media (forced-colors: active) {
+      color: GrayText;
     }
   }
 }
