@@ -75,7 +75,7 @@ h3 {
 
 hr {
   border-top: 1px solid var(--iui-color-background-border);
-  margin: 11px 0;
+  margin: 12px 0;
 }
 
 /** For sections in backstop tests */
