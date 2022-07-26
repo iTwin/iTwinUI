@@ -121,6 +121,7 @@ export const TreeNode = (props: TreeNodeProps) => {
     nodeDepth,
     subNodeIds = [],
     parentNodeId,
+    scrollToParent,
     groupSize,
     indexInGroup,
   } = useTreeContext();
@@ -148,10 +149,7 @@ export const TreeNode = (props: TreeNodeProps) => {
             break;
           }
           if (parentNodeId) {
-            const parentNode = nodeRef.current?.ownerDocument.querySelector(
-              `#${parentNodeId}`,
-            ) as HTMLElement;
-            parentNode?.focus();
+            scrollToParent?.();
             break;
           }
           // If it is top level node (doesn't have parent node), then do nothing.

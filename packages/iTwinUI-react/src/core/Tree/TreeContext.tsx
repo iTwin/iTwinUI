@@ -25,6 +25,10 @@ export type TreeContextProps = {
    * Node index in the list of nodes under the same parent node or in the root. Used for an accessibility attribute.
    */
   indexInGroup: number;
+  /**
+   * Function that scrolls to the node's parent node.
+   */
+  scrollToParent?: () => void;
 };
 
 export const TreeContext = React.createContext<TreeContextProps | undefined>(
