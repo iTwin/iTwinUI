@@ -40,6 +40,9 @@ $tick-height: $iui-baseline; // 11px
   @include themed {
     background-color: t(iui-color-background-border);
   }
+  @media (forced-colors: active) {
+    background-color: CanvasText;
+  }
 }
 
 @mixin iui-slider-thumb {
@@ -66,6 +69,9 @@ $tick-height: $iui-baseline; // 11px
   top: $iui-sm;
   @include themed {
     background-color: t(iui-color-foreground-primary);
+  }
+  @media (forced-colors: active) {
+    background-color: Highlight;
   }
 }
 
@@ -110,6 +116,9 @@ $tick-height: $iui-baseline; // 11px
   .iui-slider-track {
     @include themed {
       background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
+    }
+    @media (forced-colors: active) {
+      background-color: GrayText;
     }
   }
 
