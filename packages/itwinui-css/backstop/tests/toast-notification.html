@@ -14,15 +14,18 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Toast notification | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/status-success";
+      import "@itwin/itwinui-icons-elements/status-warning";
+      import "@itwin/itwinui-icons-elements/status-error";
+      import "@itwin/itwinui-icons-elements/info-circular";
+      import "@itwin/itwinui-icons-elements/close-small";
+    </script>
     <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css");
       html {
         color-scheme: light dark;
       }
@@ -46,27 +49,6 @@
         align-items: center;
       }
     </style>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/info-circular"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
-    ></script>
-    <script src="../assets/theme.js"></script>
   </head>
   <body
     class="iui-body"
@@ -99,7 +81,6 @@
             value="top"
             checked
           />
-          </span>
           <span>Top</span>
         </label>
         <label
