@@ -60,6 +60,6 @@
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
     "audit:ci": "audit-ci --moderate --report-type=full",
-    "build-docker": "node scripts/buildDocker.js"
+    "push-docker": "node scripts/pushDocker.js"
   }
 }
