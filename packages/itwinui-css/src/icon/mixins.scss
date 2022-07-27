@@ -48,6 +48,9 @@
   @include themed {
     fill: t(iui-icons-color);
   }
+  @media (forced-colors: active) {
+    fill: CanvasText;
+  }
 
   &.iui-informational {
     @include themed {
