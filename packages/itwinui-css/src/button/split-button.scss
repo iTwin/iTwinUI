@@ -11,19 +11,22 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 
-    &[data-iui-variant='high-visibility'],
+    &[data-iui-variant='high-visibility'] {
+      border-right-color: var(--iui-color-background-primary-overlay);
+    }
+
     &[data-iui-variant='cta'] {
-      border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
+      border-right-color: var(--iui-color-background-positive-overlay);
+    }
+
+    &:hover {
+      z-index: 1;
     }
 
     &[disabled],
     &:disabled,
     &[aria-disabled='true'] {
       border-right-color: var(--iui-color-background-4);
-    }
-
-    &:where(:enabled:hover) {
-      z-index: 1;
     }
   }
 
@@ -34,9 +37,12 @@
     border-bottom-left-radius: 0;
     margin-left: -1px;
 
-    &[data-iui-variant='high-visibility'],
+    &[data-iui-variant='high-visibility'] {
+      border-left-color: var(--iui-color-background-primary-overlay);
+    }
+
     &[data-iui-variant='cta'] {
-      border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
+      border-left-color: var(--iui-color-background-positive-overlay);
     }
 
     &[disabled],
@@ -51,6 +57,15 @@
 
     &[data-iui-size='large'] {
       --_iui-button-padding-inline: #{$iui-s};
+    }
+  }
+
+  :where(.iui-button[disabled]),
+  :where(.iui-button:disabled),
+  :where(.iui-button[aria-disabled='true']) {
+    &,
+    &:hover {
+      z-index: -1;
     }
   }
 }
