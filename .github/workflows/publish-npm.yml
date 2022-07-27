@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: "Which package to publish?"
+        description: 'Which package to publish?'
         required: true
         type: choice
         default: itwinui-css
@@ -38,7 +38,7 @@ jobs:
       - run: yarn install
       - run: yarn build
 
-      - run: npm publish --access public
+      - run: npm publish --access public --tag next
         working-directory: './packages/${{ github.event.inputs.package }}/'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
