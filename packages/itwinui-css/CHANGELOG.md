@@ -2,7 +2,6 @@
 
 ## [0.62.0](https://www.github.com/iTwin/iTwinUI/compare/v0.61.0...v0.62.0) (2022-07-27)
 
-
 ### What's new
 
 * **Slider:** Add vertical slider ([#707](https://www.github.com/iTwin/iTwinUI/issues/707)) ([2e9b150](https://www.github.com/iTwin/iTwinUI/commit/2e9b15026a7201be9e431ec0e6243436bb9d6f2a))
