@@ -118,7 +118,6 @@
   flex-shrink: 0;
 
   @at-root .iui-select-button.iui-small & {
-    width: $iui-icon-small;
-    height: $iui-icon-small;
+    @include iui-icon-style('s');
   }
 }

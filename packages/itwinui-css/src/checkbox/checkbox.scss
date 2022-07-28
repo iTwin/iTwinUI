@@ -70,7 +70,6 @@
   position: relative;
   border-radius: $iui-border-radius;
   background-color: var(--_iui-checkbox-background-color);
-  flex-shrink: 0;
   cursor: pointer;
 
   &::before {

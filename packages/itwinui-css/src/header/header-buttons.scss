@@ -44,8 +44,7 @@
 }
 
 @mixin iui-header-brand-icon {
-  width: $iui-icon-large;
-  height: $iui-icon-large;
+  @include iui-icon-style('l');
   margin: 0 $iui-side-navigation-icon-margins;
   fill: var(--iui-icon-color-actionable);
   will-change: transform;
@@ -187,8 +186,7 @@
 }
 
 @mixin iui-header-breadcrumb-button-dropdown-icon {
-  width: $iui-icon-default;
-  height: $iui-icon-default;
+  @include iui-icon-style('m');
   fill: currentColor;
   flex-shrink: 0;
   margin-right: -#{$iui-xs};
@@ -248,8 +246,7 @@
 }
 
 @mixin iui-header-breadcrumb-button-icon {
-  width: $iui-icon-large;
-  height: $iui-icon-large;
+  @include iui-icon-style('l');
   background-color: var(--iui-color-background-3);
   border-radius: $iui-border-radius;
   display: inline-flex;
