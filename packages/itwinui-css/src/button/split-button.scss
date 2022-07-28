@@ -11,12 +11,9 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 
-    &[data-iui-variant='high-visibility'] {
-      border-right-color: var(--iui-color-background-primary-overlay);
-    }
-
+    &[data-iui-variant='high-visibility'],
     &[data-iui-variant='cta'] {
-      border-right-color: var(--iui-color-background-positive-overlay);
+      border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
     }
 
     &:hover {
@@ -37,12 +34,9 @@
     border-bottom-left-radius: 0;
     margin-left: -1px;
 
-    &[data-iui-variant='high-visibility'] {
-      border-left-color: var(--iui-color-background-primary-overlay);
-    }
-
+    &[data-iui-variant='high-visibility'],
     &[data-iui-variant='cta'] {
-      border-left-color: var(--iui-color-background-positive-overlay);
+      border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
     }
 
     &[disabled],
