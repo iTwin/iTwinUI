@@ -14,14 +14,21 @@
       content="width=device-width, initial-scale=1"
     >
     <title>File upload | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "./assets/userIcon.js";
+      import "@itwin/itwinui-icons-elements/filter";
+      import "@itwin/itwinui-icons-elements/filter-hollow";
+      import "@itwin/itwinui-icons-elements/sort-down";
+      import "@itwin/itwinui-icons-elements/column-manager";
+      import "@itwin/itwinui-icons-elements/more";
+      import "@itwin/itwinui-icons-elements/upload";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+    </style>
     <style>
       .iui-input-container,
       .iui-table,
@@ -34,30 +41,6 @@
       }
     </style>
 
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/filter"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/filter-hollow"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/sort-down"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/column-manager"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/upload"
-    ></script>
 
     <script>
       customElements.define('svg-folder', class extends HTMLElement {
@@ -80,8 +63,6 @@
         }
       });
     </script>
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/userIcon.js"></script>
   </head>
   <body class="iui-body">
     <theme-button></theme-button>

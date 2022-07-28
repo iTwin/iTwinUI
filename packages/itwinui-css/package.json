@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.61.0",
+  "version": "0.62.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -29,33 +29,37 @@
   ],
   "dependencies": {},
   "devDependencies": {
+    "@itwin/itwinui-icons-elements": "0.2.0",
     "autoprefixer": "^10.4.1",
     "backstopjs": "~6.0.4",
     "html-minifier": "^4.0.0",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.5",
     "postcss-discard-comments": "^5.0.1",
     "postcss-scss": "^4.0.3",
     "sass-embedded": "^1.49.9",
+    "serve": "^14.0.1",
     "stylelint": "^14.2.0",
-    "stylelint-config-sass-guidelines": "^9.0.1"
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "vite": "^3.0.0"
   },
   "scripts": {
     "build": "yarn clean && yarn build:scss && yarn build:css && node ../shared/copyrightLinter.js --fix css/* && yarn build:html",
     "build:scss": "cpx \"./src/**/*.scss\" ./scss",
     "build:css": "node ./scripts/generateCss.js src css",
-    "build:html": "node ./scripts/generateHtml.js backstop/tests backstop/minified",
-    "build:watch": "yarn build && concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn build:watch:html\"",
+    "build:html": "vite build backstop/tests --config vite.config.ts",
     "build:watch:scss": "chokidar \"src/**/*\" -c \"yarn build:scss && yarn build:css\"",
-    "build:watch:html": "chokidar \"backstop/tests/**/*\" -c \"yarn build:html\"",
     "createComponent": "node ./scripts/createComponent.js",
     "clean": "rimraf ./css ./scss ./backstop/results/bitmaps_test",
-    "dev": "yarn build:watch",
+    "dev": "concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn vite backstop/tests --config vite.config.ts\"",
+    "preview": "serve backstop/minified -p 3050",
     "lint": "stylelint \"src/**/*.scss\"",
     "approve": "backstop --config=./backstop/backstop.js approve",
-    "test": "backstop --config=./backstop/backstop.js test --docker",
+    "test:only": "backstop --config=./backstop/backstop.js test --docker",
+    "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --",
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
     "audit:ci": "audit-ci --moderate --report-type=full",
-    "build-docker": "node scripts/buildDocker.js"
+    "push-docker": "node scripts/pushDocker.js"
   }
 }

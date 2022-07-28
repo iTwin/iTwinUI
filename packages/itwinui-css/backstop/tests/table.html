@@ -15,14 +15,27 @@
     />
     <meta charset="utf-8" />
     <title>Table | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "./assets/userIcon.js";
+      import "@itwin/itwinui-icons-elements/filter";
+      import "@itwin/itwinui-icons-elements/filter-hollow";
+      import "@itwin/itwinui-icons-elements/sort-up";
+      import "@itwin/itwinui-icons-elements/column-manager";
+      import "@itwin/itwinui-icons-elements/status-success";
+      import "@itwin/itwinui-icons-elements/status-warning";
+      import "@itwin/itwinui-icons-elements/status-error";
+      import "@itwin/itwinui-icons-elements/more";
+      import "@itwin/itwinui-icons-elements/chevron-left";
+      import "@itwin/itwinui-icons-elements/chevron-right";
+      import "@itwin/itwinui-icons-elements/caret-down-small";
+      import "@itwin/itwinui-icons-elements/chevron-right";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+    </style>
     <style>
       section[id^='demo'] {
         width: auto;
@@ -49,54 +62,6 @@
         min-height: 55px;
       }
     </style>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/filter"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/filter-hollow"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/sort-up"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/column-manager"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-success"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-warning"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/status-error"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-left"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/chevron-right"
-    ></script>
 
     <script>
       customElements.define(
@@ -158,10 +123,8 @@
         }
       );
     </script>
-
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/userIcon.js"></script>
   </head>
+
   <body class="iui-body">
     <theme-button></theme-button>
     <h1>Table</h1>

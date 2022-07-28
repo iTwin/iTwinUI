@@ -14,15 +14,14 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Non ideal state | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/caret-down-small";
+    </script>
     <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       html,
       body {
         scroll-snap-type: y mandatory;
@@ -39,11 +38,6 @@
         border-bottom: none;
       }
     </style>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
-    ></script>
-    <script src="../assets/theme.js"></script>
   </head>
   <body class="iui-body">
     <theme-button style="position:fixed"></theme-button>
