@@ -63,10 +63,10 @@
     --_iui-stepper-step-border-color: var(--iui-color-background-border);
     --_iui-stepper-step-number-color: var(--iui-text-color-muted);
     --_iui-stepper-step-text-color: var(--iui-text-color-muted);
-    --_iui-stepper-step-track-before-color: var(--iui-color-background-5);
+    --_iui-stepper-step-track-before-color: var(--iui-color-background-border);
 
     &:not(:last-of-type) {
-      --_iui-stepper-step-track-after-color: var(--iui-color-background-5);
+      --_iui-stepper-step-track-after-color: var(--iui-color-background-border);
     }
   }
 
