@@ -61,12 +61,12 @@ body {
 
 h1 {
   font-size: 32px;
-  margin-bottom: 11px;
+  margin-bottom: 12px;
 }
 
 h2 {
   font-size: 22px;
-  margin-bottom: 11px;
+  margin-bottom: 12px;
 }
 
 h3 {
@@ -75,7 +75,7 @@ h3 {
 
 hr {
   border-top: 1px solid var(--iui-color-background-border);
-  margin: 11px 0;
+  margin: 12px 0;
 }
 
 /** For sections in backstop tests */
