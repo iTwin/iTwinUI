@@ -5,3 +5,19 @@
 .iui-legal-footer {
   @include iui-legal-footer;
 }
+
+.iui-legal-footer-list {
+  @include iui-legal-footer-list;
+}
+
+.iui-legal-footer-item {
+  @include iui-legal-footer-item;
+}
+
+.iui-legal-footer-separator {
+  @include iui-legal-footer-separator;
+}
+
+.iui-legal-footer-developer {
+  @include iui-legal-footer-developer;
+}
