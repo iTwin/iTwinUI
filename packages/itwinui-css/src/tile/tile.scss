@@ -26,6 +26,8 @@
   }
 
   &.iui-new {
+    --_iui-tile-status-icon-fill: var(--iui-color-foreground-positive);
+
     .iui-tile-name,
     .iui-tile-description {
       font-weight: $iui-font-weight-semibold;
@@ -34,6 +36,9 @@
 
   &.iui-selected {
     @include iui-focus($offset: 0, $thickness: $iui-xs);
+
+    --_iui-tile-status-icon-fill: var(--iui-color-foreground-primary);
+
     outline: solid 2px var(--iui-color-foreground-primary);
     background: linear-gradient(
       rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
@@ -135,6 +140,7 @@
   .iui-tile-status-icon {
     @include iui-icon-style('m');
     margin-right: $iui-s;
+    fill: var(--_iui-tile-status-icon-fill);
   }
 
   .iui-tile-name-label {
@@ -320,6 +326,7 @@
 
 @mixin iui-tile-status($status) {
   @include iui-text-selection($status);
+  --_iui-tile-status-icon-fill: var(--iui-color-foreground-#{$status});
 
   .iui-tile-thumbnail {
     box-shadow: 0 $iui-xs 0 var(--iui-color-foreground-#{$status});
@@ -331,9 +338,5 @@
 
   .iui-tile-name-label {
     color: var(--iui-color-foreground-#{$status});
-  }
-
-  .iui-tile-status-icon {
-    fill: var(--iui-color-foreground-#{$status});
   }
 }
