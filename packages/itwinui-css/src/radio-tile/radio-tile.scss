@@ -137,7 +137,8 @@
 @mixin iui-radio-tile-icon {
   @include iui-icon-style('xl');
   @include iui-icon-color;
-  margin: round($iui-baseline * 0.5) auto $iui-baseline;
+  margin: ($iui-baseline * 0.5) auto $iui-baseline;
+  fill: var(--iui-icon-color);
   @media (prefers-reduced-motion: no-preference) {
     transition: fill $iui-speed-fast ease-out;
   }

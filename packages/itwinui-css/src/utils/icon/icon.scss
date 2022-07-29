@@ -37,6 +37,9 @@
 @mixin iui-icon-color($color: 'default') {
   @if $color == 'default' {
     fill: var(--iui-icon-color);
+    @media (forced-colors: active) {
+      fill: CanvasText;
+    }
   }
   @if $color == 'informational' {
     fill: var(--iui-icon-color-primary);
