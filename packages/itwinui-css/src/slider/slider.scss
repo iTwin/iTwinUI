@@ -133,7 +133,7 @@ $tick-height: $iui-baseline; // 12px
 }
 
 @mixin iui-slider-horizontal {
-  min-height: $iui-baseline * 2;
+  min-height: calc($iui-baseline * 2);
 
   .iui-slider-rail {
     width: 100%;
@@ -185,7 +185,7 @@ $tick-height: $iui-baseline; // 12px
 
 @mixin iui-slider-vertical {
   flex-direction: column-reverse;
-  min-width: $iui-baseline * 2;
+  min-width: calc($iui-baseline * 2);
   height: 100%;
 
   .iui-slider-rail {
@@ -198,7 +198,7 @@ $tick-height: $iui-baseline; // 12px
     transform: translateY(
       50%
     ); // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
-    left: $track-height + 1;
+    left: calc($track-height + 1px);
   }
 
   .iui-slider-track {
@@ -221,7 +221,7 @@ $tick-height: $iui-baseline; // 12px
         content: '';
         width: $tick-height;
         height: 1px;
-        margin-right: $tick-height * 1;
+        margin-right: $tick-height;
       }
     }
   }

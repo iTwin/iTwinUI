@@ -5,7 +5,7 @@
 
 @mixin iui-codeblock {
   @include iui-reset;
-  margin: ($iui-baseline * 0.5) 0;
+  margin: calc($iui-baseline * 0.5) 0;
 
   > .iui-title-bar {
     display: flex;

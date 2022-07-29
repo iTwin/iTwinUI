@@ -8,7 +8,7 @@
   @include iui-reset;
   user-select: none;
   text-align: center;
-  height: $iui-baseline * 26;
+  height: calc($iui-baseline * 26);
   display: inline-flex;
   background-color: var(--iui-color-background-1);
 
@@ -37,7 +37,7 @@
 
     > li {
       @include iui-focus;
-      padding: ($iui-baseline * 0.5) var(--iui-size-m);
+      padding: calc($iui-baseline * 0.5) var(--iui-size-m);
       border-radius: var(--iui-border-radius-1);
 
       &:hover {

@@ -126,7 +126,7 @@
   }
 
   &.iui-small .iui-header {
-    padding: ($iui-baseline * 0.5) var(--iui-size-xs);
+    padding: calc($iui-baseline * 0.5) var(--iui-size-xs);
 
     > .iui-icon {
       width: $iui-icons-small;

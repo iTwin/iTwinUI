@@ -140,7 +140,7 @@
   width: $iui-icons-xl;
   height: $iui-icons-xl;
   display: block;
-  margin: ($iui-baseline * 0.5) auto $iui-baseline;
+  margin: calc($iui-baseline * 0.5) auto $iui-baseline;
   fill: var(--iui-color-foreground-4);
   @media (prefers-reduced-motion: no-preference) {
     transition: fill $iui-speed-fast ease-out;
@@ -161,7 +161,7 @@
 
 @mixin iui-radio-tile-sublabel {
   font-size: var(--iui-font-size-0);
-  line-height: round($iui-baseline * 1.375);
+  line-height: calc($iui-baseline * 1.375);
   text-align: center;
   word-break: break-word;
   color: var(--iui-color-foreground-4);

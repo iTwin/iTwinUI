@@ -42,7 +42,7 @@
 }
 
 @mixin iui-legal-footer-separator {
-  margin: 0 $iui-s;
+  margin: 0 var(--iui-size-xs);
   width: 1px;
   height: $iui-baseline;
   background-color: var(--iui-color-foreground-4);

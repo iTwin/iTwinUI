@@ -63,7 +63,7 @@
     flex-wrap: nowrap;
 
     .iui-tile-thumbnail {
-      height: $iui-baseline * 10;
+      height: calc($iui-baseline * 10);
       flex: 1;
       border-bottom: none;
       border-right: 1px solid var(--iui-color-background-border);
@@ -75,7 +75,7 @@
 
     .iui-tile-description {
       height: 100%;
-      max-height: $iui-baseline * 4;
+      max-height: calc($iui-baseline * 4);
       margin-bottom: 0;
       -webkit-line-clamp: 2;
     }
@@ -125,7 +125,7 @@
     align-items: center;
     font-size: var(--iui-font-size-2);
     user-select: all;
-    margin-bottom: $iui-baseline * 0.5;
+    margin-bottom: calc($iui-baseline * 0.5);
     color: var(--iui-color-foreground-2);
   }
 
@@ -145,7 +145,7 @@
     margin-bottom: $iui-baseline;
     font-size: var(--iui-font-size-1);
     height: 100%;
-    max-height: $iui-baseline * 6;
+    max-height: calc($iui-baseline * 6);
     @include iui-line-clamp(3);
     color: var(--iui-color-foreground-4);
   }
@@ -180,7 +180,7 @@
 @mixin iui-tile-thumbnail {
   box-sizing: content-box;
   width: 100%;
-  height: $iui-baseline * 14;
+  height: calc($iui-baseline * 14);
   flex-shrink: 0;
   overflow: hidden;
   position: relative;
@@ -231,7 +231,7 @@
   @include iui-button-size(small, borderless);
   position: absolute;
   border-radius: 50%;
-  top: ($iui-baseline * 0.5);
+  top: calc($iui-baseline * 0.5);
 
   @if $variant == type-indicator {
     left: var(--iui-size-xs);
@@ -264,7 +264,7 @@
 
 @mixin iui-tile-thumbnail-badge {
   position: absolute;
-  bottom: ($iui-baseline * 0.5);
+  bottom: calc($iui-baseline * 0.5);
   width: calc(100% - 2 * #{var(--iui-size-s)});
   height: auto;
   right: var(--iui-size-s);
@@ -307,7 +307,7 @@
 
 @mixin iui-tile-more-options {
   position: absolute;
-  bottom: $iui-baseline * 0.5;
+  bottom: calc($iui-baseline * 0.5);
   right: var(--iui-size-xs);
 
   &:not(.iui-visible) {

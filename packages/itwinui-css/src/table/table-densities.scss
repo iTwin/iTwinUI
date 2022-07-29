@@ -3,9 +3,9 @@
 @import '../style/baseline';
 @import '../style/space';
 
-$iui-table-density-vertical: $iui-baseline * 1.5;
+$iui-table-density-vertical: calc($iui-baseline * 1.5);
 $iui-table-density-vertical-condensed: $iui-baseline;
-$iui-table-density-vertical-extra-condensed: $iui-baseline * 0.5;
+$iui-table-density-vertical-extra-condensed: calc($iui-baseline * 0.5);
 $iui-table-density: $iui-table-density-vertical var(--iui-size-m);
 $iui-table-density-condensed: $iui-table-density-vertical-condensed var(--iui-size-m);
 $iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed var(--iui-size-m);

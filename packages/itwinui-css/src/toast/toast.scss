@@ -10,7 +10,7 @@
   align-items: center;
   pointer-events: all;
   margin: 0 var(--iui-size-m) $iui-baseline var(--iui-size-m);
-  min-height: $iui-baseline * 4;
+  min-height: calc($iui-baseline * 4);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background-1);
   border: 1px solid var(--iui-color-foreground-1);
@@ -35,8 +35,8 @@
   > .iui-message {
     flex-grow: 1;
     font-size: var(--iui-font-size-1);
-    margin-top: $iui-baseline * 0.5;
-    margin-bottom: $iui-baseline * 0.5;
+    margin-top: calc($iui-baseline * 0.5);
+    margin-bottom: calc($iui-baseline * 0.5);
     margin-right: var(--iui-size-l);
     margin-left: var(--iui-size-m);
     line-height: $iui-line-height;

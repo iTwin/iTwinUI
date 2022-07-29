@@ -43,7 +43,7 @@
   }
 
   .iui-input-group .iui-toggle-switch-wrapper {
-    padding: ($iui-baseline * 0.5) 0;
+    padding: calc($iui-baseline * 0.5) 0;
   }
 
   // #region Cursors
@@ -245,14 +245,14 @@
 
   .iui-input,
   .iui-textarea {
-    padding-bottom: $iui-component-padding-vertical - 1px;
+    padding-bottom: calc($iui-component-padding-vertical - 1px);
 
     &.iui-small {
-      padding-bottom: $iui-component-padding-vertical-small - 1px;
+      padding-bottom: calc($iui-component-padding-vertical-small - 1px);
     }
 
     &.iui-large {
-      padding-bottom: $iui-component-padding-vertical-large - 1px;
+      padding-bottom: calc($iui-component-padding-vertical-large - 1px);
     }
 
     border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});

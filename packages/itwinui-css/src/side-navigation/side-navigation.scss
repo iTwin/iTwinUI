@@ -90,7 +90,7 @@
     --_iui-button-active-stripe-inset: 0 0 0 calc(100% - #{var(--iui-size-3xs)});
 
     &:not(.iui-expand) {
-      height: $iui-baseline * 5;
+      height: calc($iui-baseline * 5);
       // iPhone notch support
       @supports (padding: unquote('max(0px)')) {
         padding-left: unquote(
@@ -166,7 +166,7 @@
   }
 
   &-header {
-    height: $iui-baseline * 5;
+    height: calc($iui-baseline * 5);
     display: flex;
     align-items: center;
     justify-content: space-between;

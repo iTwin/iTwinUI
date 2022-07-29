@@ -43,7 +43,7 @@
   }
 
   .iui-information-header {
-    height: $iui-baseline * 5;
+    height: calc($iui-baseline * 5);
     flex-shrink: 0;
     display: flex;
     align-items: center;

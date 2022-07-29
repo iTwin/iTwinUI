@@ -29,9 +29,9 @@
     small: var(--iui-font-weight-normal),
   );
   $line-heights: (
-    headline: 2 * $iui-line-height,
-    title: 1.5 * $iui-line-height,
-    subheading: 1.5 * $iui-line-height,
+    headline: calc(2 * $iui-line-height),
+    title: calc(1.5 * $iui-line-height),
+    subheading: calc(1.5 * $iui-line-height),
     leading: $iui-line-height,
     body: $iui-line-height,
     small: $iui-line-height,
