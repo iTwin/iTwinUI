@@ -20,7 +20,7 @@ $iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-3--l
   display: inline-block;
   font-size: $iui-font-size-small;
   padding: 0 $iui-badge-horizontal-padding;
-  margin: round($iui-baseline * 0.5) 0;
+  margin: ($iui-baseline * 0.5) 0;
   border-radius: $iui-border-radius;
   background-color: var(--iui-badge-background-color);
   color: var(--_iui-badge-text-color);

@@ -235,7 +235,7 @@
   @include iui-button-size(small, borderless);
   position: absolute;
   border-radius: 50%;
-  top: round($iui-baseline * 0.5);
+  top: ($iui-baseline * 0.5);
 
   @if $variant == type-indicator {
     left: $iui-s;
@@ -268,7 +268,7 @@
 
 @mixin iui-tile-thumbnail-badge {
   position: absolute;
-  bottom: round($iui-baseline * 0.5);
+  bottom: ($iui-baseline * 0.5);
   width: calc(100% - 2 * #{$iui-sm});
   height: auto;
   right: $iui-sm;
