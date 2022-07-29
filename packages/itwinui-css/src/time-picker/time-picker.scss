@@ -37,7 +37,7 @@
 
     > li {
       @include iui-focus;
-      padding: round($iui-baseline * 0.5) var(--iui-size-m);
+      padding: ($iui-baseline * 0.5) var(--iui-size-m);
       border-radius: var(--iui-border-radius-1);
 
       &:hover {

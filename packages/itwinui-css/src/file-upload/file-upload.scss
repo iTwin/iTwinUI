@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     user-select: none;
-    padding: round($iui-baseline * 0.5) var(--iui-size-s);
+    padding: ($iui-baseline * 0.5) var(--iui-size-s);
     background-color: var(--iui-color-background-2);
     border: 1px solid var(--iui-color-background-2);
 

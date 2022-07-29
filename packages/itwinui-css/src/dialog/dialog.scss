@@ -150,7 +150,7 @@ $iui-dialog-width: 380px;
 
 @mixin iui-dialog-title-bar-filled {
   font-size: var(--iui-font-size-2);
-  padding: round($iui-baseline * 0.5) var(--iui-size-m);
+  padding: ($iui-baseline * 0.5) var(--iui-size-m);
   margin: calc(0px - #{$iui-baseline}) calc(0px - var(--iui-size-m)) $iui-baseline calc(0px - var(--iui-size-m)); // negative margin to counteract dialog padding
   cursor: grab;
   background-color: var(--iui-color-background-3);
