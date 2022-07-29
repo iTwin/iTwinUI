@@ -6,6 +6,7 @@
 @mixin iui-icon-style($size: 'm') {
   display: flex;
   flex-shrink: 0;
+
   @if $size == 's' {
     width: $iui-icon-small;
     height: $iui-icon-small;
