@@ -402,17 +402,17 @@ $themes: (
 
 // Overrides of $themes used when creating CSS variables
 $cssVariables: (
-  iui-text-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2)),
-  iui-text-color-muted: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4)),
-  iui-text-color-placeholder: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5)),
+  iui-text-color: var(--iui-color-foreground-2),
+  iui-text-color-muted: var(--iui-color-foreground-4),
+  iui-text-color-placeholder: var(--iui-color-foreground-5),
   iui-icons-color-primary: var(--iui-color-foreground-primary),
   iui-icons-color-positive: var(--iui-color-foreground-positive),
   iui-icons-color-warning: var(--iui-color-foreground-warning),
   iui-icons-color-negative: var(--iui-color-foreground-negative),
-  iui-icons-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4)),
-  iui-icons-color-actionable: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2)),
-  iui-icons-color-actionable-hover: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-1)),
-  iui-icons-color-actionable-disabled: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5)),
+  iui-icons-color: var(--iui-color-foreground-4),
+  iui-icons-color-actionable: var(--iui-color-foreground-2),
+  iui-icons-color-actionable-hover: var(--iui-color-foreground-1),
+  iui-icons-color-actionable-disabled: var(--iui-color-foreground-5),
 );
 
 @function hextorgb($hex) {

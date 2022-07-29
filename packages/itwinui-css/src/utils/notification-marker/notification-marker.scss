@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../../style/index';
 
-$iui-notification-marker-border-width: $iui-xxs;
+$iui-notification-marker-border-width: var(--iui-size-3xs);
 
 @mixin iui-notification-marker($status: primary) {
   position: relative;
@@ -10,10 +10,10 @@ $iui-notification-marker-border-width: $iui-xxs;
   &::before {
     content: '';
     position: absolute;
-    width: $iui-s + $iui-notification-marker-border-width * 2;
-    height: $iui-s + $iui-notification-marker-border-width * 2;
-    top: $iui-sm * -0.5;
-    right: $iui-sm * -0.5;
+    width: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
+    height: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
+    top: calc(var(--iui-size-s) * -0.5);
+    right: calc(var(--iui-size-s) * -0.5);
     border-radius: 100%;
     background-color: var(--iui-color-foreground-#{$status});
     border: $iui-notification-marker-border-width solid var(--iui-color-background-1);
@@ -50,6 +50,6 @@ $iui-notification-marker-border-width: $iui-xxs;
   .iui-notification-positive::before,
   .iui-notification-warning::before,
   .iui-notification-negative::before {
-    border-color: var(--iui-color-background-1-overlay);
+    border-color: var(--iui-color-background-1-hover);
   }
 }

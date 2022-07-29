@@ -8,16 +8,16 @@
   @include iui-focus($offset: -2px, $thickness: 2px);
   width: 100%;
   font-family: inherit;
-  font-size: $iui-font-size;
-  font-weight: $iui-font-weight-normal;
+  font-size: var(--iui-font-size-1);
+  font-weight: var(--iui-font-weight-normal);
   line-height: $iui-line-height;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   appearance: none;
   padding: $iui-component-padding-vertical $iui-component-padding-horizontal;
   min-height: $iui-component-height;
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
   background-color: var(--iui-color-background-1);
-  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  border: 1px solid var(--iui-color-foreground-4);
   @media (prefers-reduced-motion: no-preference) {
     transition: border-color $iui-speed-fast ease-out;
   }
@@ -32,12 +32,12 @@
     padding-top: $iui-component-padding-vertical-large;
     padding-bottom: $iui-component-padding-vertical-large;
     min-height: $iui-component-height-large;
-    font-size: $iui-font-size-leading;
+    font-size: var(--iui-font-size-2);
   }
 
   &::placeholder {
     user-select: none;
-    color: var(--iui-text-color-placeholder);
+    color: var(--iui-color-foreground-5);
   }
 
   &:autofill {
@@ -45,7 +45,7 @@
   }
 
   &:hover {
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    border-color: var(--iui-color-foreground-2);
     @media (prefers-reduced-motion: no-preference) {
       transition: border-color $iui-speed-fast ease-out;
     }
@@ -62,9 +62,5 @@
 @mixin iui-input-autofill {
   border-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
   color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
-  background: linear-gradient(
-    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-  ),
-    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+  background-color: var(--iui-color-background-subtle-primary);
 }

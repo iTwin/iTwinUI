@@ -6,15 +6,15 @@
   display: inline-block;
   user-select: none;
   color: transparent;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   cursor: progress;
   background: linear-gradient(
     292deg,
-    var(--iui-text-color-muted),
-    var(--iui-text-color-muted),
-    var(--iui-text-color-placeholder),
-    var(--iui-text-color-muted),
-    var(--iui-text-color-muted)
+    var(--iui-color-foreground-4),
+    var(--iui-color-foreground-4),
+    var(--iui-color-foreground-5),
+    var(--iui-color-foreground-4),
+    var(--iui-color-foreground-4)
   );
   background-size: 200% 100%;
 

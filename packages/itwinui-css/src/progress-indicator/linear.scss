@@ -26,9 +26,9 @@
     align-items: center;
     width: 100%;
     overflow: hidden;
-    margin-top: $iui-xs;
+    margin-top: var(--iui-size-2xs);
     display: flex;
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     justify-content: space-between;
 
     > :only-child {
@@ -56,7 +56,7 @@
       color: var(--iui-color-foreground-positive);
 
       svg {
-        fill: var(--iui-icons-color-positive);
+        fill: var(--iui-color-foreground-positive);
       }
 
       > span {
@@ -75,7 +75,7 @@
       color: var(--iui-color-foreground-negative);
 
       svg {
-        fill: var(--iui-icons-color-negative);
+        fill: var(--iui-color-foreground-negative);
       }
 
       > span {

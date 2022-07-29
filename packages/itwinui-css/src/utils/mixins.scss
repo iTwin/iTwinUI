@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/color';
 @import '../style/speed';
 
 @mixin focus-visible {
@@ -37,20 +36,20 @@
 }
 
 @mixin iui-scrollbar {
-  scrollbar-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4)) transparent;
+  scrollbar-color: var(--iui-color-foreground-4) transparent;
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
-    width: $iui-s;
-    height: $iui-s;
+    width: var(--iui-size-xs);
+    height: var(--iui-size-xs);
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-    border-radius: $iui-s * 0.5;
+    background-color: var(--iui-color-foreground-4);
+    border-radius: var(--iui-border-radius-round);
 
     &:hover {
-      background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));
+      background-color: var(--iui-color-foreground-3);
     }
   }
 

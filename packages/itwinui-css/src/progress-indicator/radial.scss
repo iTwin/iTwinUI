@@ -27,14 +27,14 @@
   .iui-inner-content {
     position: absolute;
     display: flex;
-    width: calc(100% - #{$iui-s});
-    height: calc(100% - #{$iui-s});
+    width: calc(100% - #{var(--iui-size-xs)});
+    height: calc(100% - #{var(--iui-size-xs)});
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     user-select: none;
     overflow: hidden;
 
@@ -43,10 +43,10 @@
       display: flex;
       width: $iui-icons-default;
       height: $iui-icons-default;
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-color-foreground-2);
 
       &:hover {
-        fill: var(--iui-icons-color-actionable-hover);
+        fill: var(--iui-color-foreground-1);
       }
     }
   }
@@ -62,7 +62,7 @@
     }
 
     .iui-inner-content svg {
-      fill: var(--iui-icons-color-positive);
+      fill: var(--iui-color-foreground-positive);
     }
   }
 
@@ -74,7 +74,7 @@
     }
 
     .iui-inner-content svg {
-      fill: var(--iui-icons-color-negative);
+      fill: var(--iui-color-foreground-negative);
     }
   }
 
@@ -94,7 +94,7 @@
     @include iui-progress-indicator-radial-size($size: $iui-icons-xxl);
 
     .iui-inner-content {
-      font-size: $iui-font-size-leading;
+      font-size: var(--iui-font-size-2);
 
       svg,
       img {

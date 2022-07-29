@@ -56,7 +56,7 @@
 }
 
 @mixin iui-header-brand-label {
-  margin-right: $iui-sm;
+  margin-right: var(--iui-size-s);
   font-size: var(--_iui-header-brand-label-font-size);
   @media (prefers-reduced-motion: no-preference) {
     transition: font-size $iui-speed-fast ease-out;
@@ -73,7 +73,7 @@
   display: flex;
   overflow: hidden;
   position: relative;
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
   box-sizing: border-box;
   @media (forced-colors: active) {
     color: LinkText;
@@ -88,7 +88,7 @@
   // Active state
   &[aria-current] {
     background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-    box-shadow: 0 $iui-xxs 0 0 currentColor;
+    box-shadow: 0 var(--iui-size-3xs) 0 0 currentColor;
     color: var(--iui-color-foreground-primary);
     @media (forced-colors: active) {
       color: LinkText;
@@ -100,7 +100,7 @@
   &[aria-disabled='true'] {
     cursor: not-allowed;
     background-color: transparent;
-    color: var(--iui-text-color-placeholder);
+    color: var(--iui-color-foreground-5);
 
     // Disabled active state
     &[aria-current] {
@@ -131,14 +131,14 @@
   border-radius: 0;
   max-width: 25vw;
   overflow: hidden;
-  padding-left: $iui-sm;
-  padding-right: $iui-sm;
+  padding-left: var(--iui-size-s);
+  padding-right: var(--iui-size-s);
   box-sizing: border-box;
   font-family: inherit;
   -webkit-tap-highlight-color: transparent;
   transition: background-color $iui-speed-fast ease-out;
   color: inherit;
-  gap: $iui-sm;
+  gap: var(--iui-size-s);
   cursor: pointer;
   @media (forced-colors: active) {
     border: 1px solid;
@@ -164,8 +164,8 @@
 }
 
 @mixin iui-header-breadcrumb-button-split {
-  padding: 0 $iui-s;
-  margin-left: -$iui-s;
+  padding: 0 var(--iui-size-xs);
+  margin-left: calc(0px - var(--iui-size-xs));
   flex-shrink: 0;
 
   &:hover {
@@ -191,7 +191,7 @@
   height: $iui-icons-default;
   fill: currentColor;
   flex-shrink: 0;
-  margin-right: -#{$iui-xs};
+  margin-right: calc(0px - var(--iui-size-2xs));
 
   @at-root .iui-header-breadcrumb-button-split & {
     margin-right: 0;
@@ -211,7 +211,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: $iui-font-size;
+  font-size: var(--iui-font-size-1);
   text-align: left;
   overflow: hidden;
   transition: color $iui-speed-fast ease-out;
@@ -224,7 +224,7 @@
   }
 
   &-sublabel {
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     opacity: var(--iui-opacity-3);
     @media (prefers-reduced-motion: no-preference) {
       transition: visibility 0s linear 0s, width $iui-speed-fast ease-out, height $iui-speed-fast ease-out,
@@ -251,11 +251,11 @@
   width: $iui-icons-large;
   height: $iui-icons-large;
   background-color: var(--iui-color-background-3);
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   display: inline-flex;
   flex-shrink: 0;
   box-sizing: border-box;
-  padding: $iui-xs;
+  padding: var(--iui-size-2xs);
   fill: var(--iui-icons-color);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);

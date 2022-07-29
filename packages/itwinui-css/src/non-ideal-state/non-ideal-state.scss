@@ -40,17 +40,17 @@
   > .iui-non-ideal-state-actions {
     display: flex;
     align-items: center;
-    margin-bottom: $iui-s;
+    margin-bottom: var(--iui-size-xs);
 
     > .iui-input-container {
       display: inline-block;
       width: 200px;
       text-align: left;
-      margin: 0 $iui-xs 0 0;
+      margin: 0 var(--iui-size-2xs) 0 0;
     }
 
     > .iui-button {
-      margin: 0 $iui-xs;
+      margin: 0 var(--iui-size-2xs);
     }
   }
 }

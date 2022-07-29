@@ -4,14 +4,14 @@
 @import './button';
 
 @mixin iui-button-borderless {
-  --_iui-button-text-color: var(--iui-text-color);
+  --_iui-button-text-color: var(--iui-color-foreground-2);
   --_iui-button-background-color: transparent;
   --_iui-button-border-color: transparent;
   --_iui-button-icon-margin-x: #{$iui-component-offset};
   @include iui-button-size(medium, borderless);
 
   &:where(:hover, :active) {
-    --_iui-button-text-color: var(--iui-color-foreground-body);
+    --_iui-button-text-color: var(--iui-color-foreground-1);
     --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
   }
 
@@ -21,14 +21,14 @@
   }
 
   &:where([disabled], :disabled, [aria-disabled='true']) {
-    --_iui-button-text-color: var(--iui-text-color-placeholder);
+    --_iui-button-text-color: var(--iui-color-foreground-5);
     --_iui-button-background-color: transparent;
     --_iui-button-border-color: transparent;
   }
 }
 
 @mixin iui-button-borderless-active {
-  --_iui-button-background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+  --_iui-button-background-color: var(--iui-color-background-subtle-primary);
 
   &:where([disabled], :disabled, [aria-disabled='true']) {
     --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
