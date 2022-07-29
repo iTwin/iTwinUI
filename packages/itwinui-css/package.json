@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "0.61.0",
+  "version": "0.62.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "src/index.scss",
@@ -60,6 +60,6 @@
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
     "audit:ci": "audit-ci --moderate --report-type=full",
-    "build-docker": "node scripts/buildDocker.js"
+    "push-docker": "node scripts/pushDocker.js"
   }
 }

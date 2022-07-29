@@ -46,6 +46,9 @@
 
 @mixin iui-icons-color {
   fill: var(--iui-color-foreground-4);
+  @media (forced-colors: active) {
+    fill: CanvasText;
+  }
 
   &.iui-informational {
     fill: var(--iui-color-foreground-primary);

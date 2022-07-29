@@ -10,30 +10,18 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-component-container {
   display: flex;
-  min-height: $iui-baseline * 2;
-
-  .iui-slider-min,
-  .iui-slider-max {
-    user-select: all;
-    margin-top: var(--iui-size-3xs);
-
-    svg {
-      @include iui-icons-default;
-      margin-top: var(--iui-size-2xs);
-    }
-  }
-
-  .iui-slider-min {
-    margin-right: var(--iui-size-s);
-    text-align: right;
-  }
-
-  .iui-slider-max {
-    margin-left: var(--iui-size-s);
-  }
 
   &.iui-disabled {
     @include iui-slider-disabled;
+  }
+}
+
+@mixin iui-slider-endpoints {
+  user-select: all;
+
+  svg {
+    @include iui-icons-default;
+    margin-top: var(--iui-size-2xs);
   }
 }
 
@@ -63,8 +51,6 @@ $tick-height: $iui-baseline; // 11px
   height: $thumb-height;
   width: $thumb-height;
   border-radius: 100%;
-  top: calc($track-height + 1px); // position center of thumb in center of track
-  transform: translateX(-50%);
   z-index: 1;
   cursor: grab;
   @include iui-focus($thickness: 2px);
@@ -79,15 +65,12 @@ $tick-height: $iui-baseline; // 11px
 @mixin iui-slider-track {
   pointer-events: none;
   position: absolute;
-  height: $track-height;
-  left: 0;
   top: var(--iui-size-s);
   background-color: var(--iui-color-foreground-primary);
 }
 
 @mixin iui-slider-ticks {
   position: relative;
-  padding-top: var(--iui-size-m);
   display: flex;
   pointer-events: none;
   justify-content: space-between;
@@ -98,11 +81,14 @@ $tick-height: $iui-baseline; // 11px
     display: flex;
     pointer-events: none;
     justify-content: center;
-    width: 1px;
-    height: $tick-height;
-    line-height: $tick-height * 4;
-    margin-bottom: $tick-height * 2;
-    background-color: var(--iui-color-background-4);
+    align-items: center;
+
+    &::before {
+      background-color: var(--iui-color-background-4);
+      @media (forced-colors: active) {
+        background-color: CanvasText;
+      }
+    }
   }
 }
 
@@ -129,5 +115,117 @@ $tick-height: $iui-baseline; // 11px
   .iui-slider-tick {
     user-select: none;
     color: var(--iui-color-foreground-4);
+    @media (forced-colors: active) {
+      color: GrayText;
+    }
+  }
+}
+
+@mixin iui-slider-horizontal {
+  min-height: $iui-baseline * 2;
+
+  .iui-slider-rail {
+    width: 100%;
+    height: $track-height;
+    top: var(--iui-size-s);
+  }
+
+  .iui-slider-thumb {
+    top: $track-height + 1; // position center of thumb in center of track
+    transform: translateX(
+      -50%
+    ); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
+  }
+
+  .iui-slider-track {
+    height: $track-height;
+    left: 0;
+  }
+
+  .iui-slider-ticks {
+    padding-top: var(--iui-size-m);
+
+    .iui-slider-tick {
+      flex-direction: column;
+      width: 1px;
+
+      &::before {
+        content: '';
+        width: 1px;
+        height: $tick-height;
+      }
+    }
+  }
+
+  .iui-slider-min,
+  .iui-slider-max {
+    margin-top: var(--iui-size-3xs);
+  }
+
+  .iui-slider-min {
+    margin-right: var(--iui-size-s);
+    text-align: right;
+  }
+
+  .iui-slider-max {
+    margin-left: var(--iui-size-s);
+  }
+}
+
+@mixin iui-slider-vertical {
+  flex-direction: column-reverse;
+  min-width: $iui-baseline * 2;
+  height: 100%;
+
+  .iui-slider-rail {
+    width: $track-height;
+    height: 100%;
+    left: var(--iui-size-s);
+  }
+
+  .iui-slider-thumb {
+    transform: translateY(
+      50%
+    ); // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
+    left: $track-height + 1;
+  }
+
+  .iui-slider-track {
+    width: $track-height;
+    bottom: 0;
+    left: var(--iui-size-s);
+  }
+
+  .iui-slider-ticks {
+    padding-left: var(--iui-size-m);
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    height: 100%;
+
+    .iui-slider-tick {
+      flex: row;
+      height: 1px;
+
+      &::before {
+        content: '';
+        width: $tick-height;
+        height: 1px;
+        margin-right: $tick-height * 1;
+      }
+    }
+  }
+
+  .iui-slider-min,
+  .iui-slider-max {
+    margin-left: var(--iui-size-3xs);
+    text-align: center;
+  }
+
+  .iui-slider-min {
+    margin-top: var(--iui-size-s);
+  }
+
+  .iui-slider-max {
+    margin-bottom: var(--iui-size-s);
   }
 }

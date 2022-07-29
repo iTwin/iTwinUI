@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './baseline';
+@import './icon-sizes';
 
 $iui-blur-filter: blur(5px);
 
@@ -15,3 +16,5 @@ $iui-component-padding-horizontal: var(--iui-size-s); // 12px
 $iui-component-padding-vertical: (($iui-component-height - $iui-line-height) * 0.5) - 1; // 12.5px
 $iui-component-padding-vertical-small: (($iui-component-height-small - $iui-line-height) * 0.5) - 1; // 7px
 $iui-component-padding-vertical-large: (($iui-component-height-large - $iui-line-height) * 0.5) - 1; // 18px
+
+$iui-side-navigation-icon-margins: $iui-icons-large; // Used to align header brand button & side navigation spacing
