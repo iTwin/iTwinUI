@@ -1,0 +1,1 @@
+import"./theme.24a9b679.js";class e extends HTMLElement{constructor(){super()}connectedCallback(){this.innerHTML='<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m14 0-6 6-6-6-2 2 6 6-6 6 2 2 6-6 6 6 2-2-6-6 6-6"/></svg>'}}customElements.define("svg-close",e);

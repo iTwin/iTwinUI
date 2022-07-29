@@ -1,0 +1,1 @@
+import"./theme.659344b6.js";import"./add-circular.a0daaa79.js";class s extends HTMLElement{constructor(){super()}connectedCallback(){this.innerHTML='<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m5 15-3.78125-3.5 3.78125-3.5v2h8v3h-8zm6-7 3.78125-3.5-3.78125-3.5v2h-8v3h8z"/></svg>'}}customElements.define("svg-swap",s);

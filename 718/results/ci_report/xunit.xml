@@ -1,0 +1,1638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="BackstopJS" tests="460" failures="391" errors="391" skipped="0">
+    <testcase classname="html" name=" ›› alert_Type All">
+      <failure message="Design deviation ›› alert_Type All (html) component"/>
+      <error message="Design deviation ›› alert_Type All (html) component"/>
+    </testcase>
+    <testcase classname="#demo-informational" name=" ›› alert_State hover link in informational"/>
+    <testcase classname="#demo-positive" name=" ›› alert_State hover link in positive"/>
+    <testcase classname="#demo-warning" name=" ›› alert_State hover link in warning"/>
+    <testcase classname="#demo-negative" name=" ›› alert_State hover link in negative"/>
+    <testcase classname="#demo-informational" name=" ›› alert_State focus link in informational"/>
+    <testcase classname="#demo-positive" name=" ›› alert_State focus link in positive"/>
+    <testcase classname="#demo-warning" name=" ›› alert_State focus link in warning"/>
+    <testcase classname="#demo-negative" name=" ›› alert_State focus link in negative"/>
+    <testcase classname="#demo-default" name=" ›› anchor_All"/>
+    <testcase classname="#demo-default" name=" ›› anchor_Hover 1st &amp; focus 2nd"/>
+    <testcase classname="#demo-default" name=" ›› anchor_Hover 2nd &amp; focus 1st"/>
+    <testcase classname="#demo-default" name=" ›› avatar_Type default">
+      <failure message="Design deviation ›› avatar_Type default (#demo-default) component"/>
+      <error message="Design deviation ›› avatar_Type default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-status" name=" ›› avatar_Type online status">
+      <failure message="Design deviation ›› avatar_Type online status (#demo-status) component"/>
+      <error message="Design deviation ›› avatar_Type online status (#demo-status) component"/>
+    </testcase>
+    <testcase classname="#demo-list" name=" ›› avatar_Type list">
+      <failure message="Design deviation ›› avatar_Type list (#demo-list) component"/>
+      <error message="Design deviation ›› avatar_Type list (#demo-list) component"/>
+    </testcase>
+    <testcase classname="#demo-stacked" name=" ›› avatar_Type stacked">
+      <failure message="Design deviation ›› avatar_Type stacked (#demo-stacked) component"/>
+      <error message="Design deviation ›› avatar_Type stacked (#demo-stacked) component"/>
+    </testcase>
+    <testcase classname="#demo-animated" name=" ›› avatar_Type animated">
+      <failure message="Design deviation ›› avatar_Type animated (#demo-animated) component"/>
+      <error message="Design deviation ›› avatar_Type animated (#demo-animated) component"/>
+    </testcase>
+    <testcase classname="#demo" name=" ›› badge_Type all">
+      <failure message="Design deviation ›› badge_Type all (#demo) component"/>
+      <error message="Design deviation ›› badge_Type all (#demo) component"/>
+    </testcase>
+    <testcase classname="html" name=" ›› blockquote_basic"/>
+    <testcase classname="#demo-anchors" name=" ›› breadcrumbs_State hover and focus links"/>
+    <testcase classname="#demo-buttons" name=" ›› breadcrumbs_State hover and focus buttons">
+      <failure message="Design deviation ›› breadcrumbs_State hover and focus buttons (#demo-buttons) component"/>
+      <error message="Design deviation ›› breadcrumbs_State hover and focus buttons (#demo-buttons) component"/>
+    </testcase>
+    <testcase classname="#demo-anchors-2" name=" ›› breadcrumbs_State hover and focus breadcrumb anchors"/>
+    <testcase classname="#demo-buttons-2" name=" ›› breadcrumbs_State hover and focus breadcrumb buttons">
+      <failure message="Design deviation ›› breadcrumbs_State hover and focus breadcrumb buttons (#demo-buttons-2) component"/>
+      <error message="Design deviation ›› breadcrumbs_State hover and focus breadcrumb buttons (#demo-buttons-2) component"/>
+    </testcase>
+    <testcase classname="#demo-high-visibility" name=" ›› button_Type High Visibility"/>
+    <testcase classname="#demo-cta" name=" ›› button_Type CTA"/>
+    <testcase classname="#demo-default" name=" ›› button_Type Default">
+      <failure message="Design deviation ›› button_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› button_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-borderless" name=" ›› button_Type Borderless"/>
+    <testcase classname="#demo-grouped-default" name=" ›› button_Grouped Default">
+      <failure message="Design deviation ›› button_Grouped Default (#demo-grouped-default) component"/>
+      <error message="Design deviation ›› button_Grouped Default (#demo-grouped-default) component"/>
+    </testcase>
+    <testcase classname="#demo-grouped-borderless" name=" ›› button_Grouped Borderless">
+      <failure message="Design deviation ›› button_Grouped Borderless (#demo-grouped-borderless) component"/>
+      <error message="Design deviation ›› button_Grouped Borderless (#demo-grouped-borderless) component"/>
+    </testcase>
+    <testcase classname="#demo-split" name=" ›› button_Type Split">
+      <failure message="Design deviation ›› button_Type Split (#demo-split) component"/>
+      <error message="Design deviation ›› button_Type Split (#demo-split) component"/>
+    </testcase>
+    <testcase classname="#demo-combo-group" name=" ›› button_Type Input Button Combo">
+      <failure message="Design deviation ›› button_Type Input Button Combo (#demo-combo-group) component"/>
+      <error message="Design deviation ›› button_Type Input Button Combo (#demo-combo-group) component"/>
+    </testcase>
+    <testcase classname="#demo-ideas" name=" ›› button_Type Ideas"/>
+    <testcase classname="#demo-default" name=" ›› carousel_Type default"/>
+    <testcase classname="#demo-default" name=" ›› carousel_State hover &amp; focus"/>
+    <testcase classname="#demo-default" name=" ›› checkbox_default">
+      <failure message="Design deviation ›› checkbox_default (#demo-default) component"/>
+      <error message="Design deviation ›› checkbox_default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› checkbox_inline">
+      <failure message="Design deviation ›› checkbox_inline (#demo-inline) component"/>
+      <error message="Design deviation ›› checkbox_inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-no-label" name=" ›› checkbox_no-label">
+      <failure message="Design deviation ›› checkbox_no-label (#demo-no-label) component"/>
+      <error message="Design deviation ›› checkbox_no-label (#demo-no-label) component"/>
+    </testcase>
+    <testcase classname="#demo-special" name=" ›› checkbox_Type specialty"/>
+    <testcase classname="#demo-codeblock" name=" ›› code_Type Codeblock">
+      <failure message="Design deviation ›› code_Type Codeblock (#demo-codeblock) component"/>
+      <error message="Design deviation ›› code_Type Codeblock (#demo-codeblock) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› code_Type Inline">
+      <failure message="Design deviation ›› code_Type Inline (#demo-inline) component"/>
+      <error message="Design deviation ›› code_Type Inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› color-picker_Basic">
+      <failure message="Design deviation ›› color-picker_Basic (#demo-basic) component"/>
+      <error message="Design deviation ›› color-picker_Basic (#demo-basic) component"/>
+    </testcase>
+    <testcase classname="#demo-advanced" name=" ›› color-picker_Advanced">
+      <failure message="Design deviation ›› color-picker_Advanced (#demo-advanced) component"/>
+      <error message="Design deviation ›› color-picker_Advanced (#demo-advanced) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› color-picker_State hover color swatch">
+      <failure message="Design deviation ›› color-picker_State hover color swatch (#demo-basic) component"/>
+      <error message="Design deviation ›› color-picker_State hover color swatch (#demo-basic) component"/>
+    </testcase>
+    <testcase classname="#demo-advanced-interactions" name=" ›› color-picker_State hover color dot">
+      <failure message="Design deviation ›› color-picker_State hover color dot (#demo-advanced-interactions) component"/>
+      <error message="Design deviation ›› color-picker_State hover color dot (#demo-advanced-interactions) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› color-picker_State focus color swatch">
+      <failure message="Design deviation ›› color-picker_State focus color swatch (#demo-basic) component"/>
+      <error message="Design deviation ›› color-picker_State focus color swatch (#demo-basic) component"/>
+    </testcase>
+    <testcase classname="#demo-advanced-interactions" name=" ›› color-picker_State focus color dot">
+      <failure message="Design deviation ›› color-picker_State focus color dot (#demo-advanced-interactions) component"/>
+      <error message="Design deviation ›› color-picker_State focus color dot (#demo-advanced-interactions) component"/>
+    </testcase>
+    <testcase classname="#demo-all" name=" ›› color_Type all">
+      <failure message="Design deviation ›› color_Type all (#demo-all) component"/>
+      <error message="Design deviation ›› color_Type all (#demo-all) component"/>
+    </testcase>
+    <testcase classname="#demo-text" name=" ›› column-filter_Type Text filter">
+      <failure message="Design deviation ›› column-filter_Type Text filter (#demo-text) component"/>
+      <error message="Design deviation ›› column-filter_Type Text filter (#demo-text) component"/>
+    </testcase>
+    <testcase classname="#demo-date" name=" ›› column-filter_Type Date filter">
+      <failure message="Design deviation ›› column-filter_Type Date filter (#demo-date) component"/>
+      <error message="Design deviation ›› column-filter_Type Date filter (#demo-date) component"/>
+    </testcase>
+    <testcase classname="#demo-date" name=" ›› date-picker_Type Date">
+      <failure message="Design deviation ›› date-picker_Type Date (#demo-date) component"/>
+      <error message="Design deviation ›› date-picker_Type Date (#demo-date) component"/>
+    </testcase>
+    <testcase classname="#demo-date-year-skipping" name=" ›› date-picker_Type Date with year skipping buttons">
+      <failure message="Design deviation ›› date-picker_Type Date with year skipping buttons (#demo-date-year-skipping) component"/>
+      <error message="Design deviation ›› date-picker_Type Date with year skipping buttons (#demo-date-year-skipping) component"/>
+    </testcase>
+    <testcase classname="#demo-date-and-time" name=" ›› date-picker_Type Date &amp; Time">
+      <failure message="Design deviation ›› date-picker_Type Date &amp; Time (#demo-date-and-time) component"/>
+      <error message="Design deviation ›› date-picker_Type Date &amp; Time (#demo-date-and-time) component"/>
+    </testcase>
+    <testcase classname="#demo-date-and-time-24h" name=" ›› date-picker_Type Date &amp; Time 24 hour format">
+      <failure message="Design deviation ›› date-picker_Type Date &amp; Time 24 hour format (#demo-date-and-time-24h) component"/>
+      <error message="Design deviation ›› date-picker_Type Date &amp; Time 24 hour format (#demo-date-and-time-24h) component"/>
+    </testcase>
+    <testcase classname="#demo-date-range" name=" ›› date-picker_Type Date Range">
+      <failure message="Design deviation ›› date-picker_Type Date Range (#demo-date-range) component"/>
+      <error message="Design deviation ›› date-picker_Type Date Range (#demo-date-range) component"/>
+    </testcase>
+    <testcase classname="#demo-date" name=" ›› date-picker_State hover date">
+      <failure message="Design deviation ›› date-picker_State hover date (#demo-date) component"/>
+      <error message="Design deviation ›› date-picker_State hover date (#demo-date) component"/>
+    </testcase>
+    <testcase classname="#demo-date-and-time" name=" ›› date-picker_State hover time">
+      <failure message="Design deviation ›› date-picker_State hover time (#demo-date-and-time) component"/>
+      <error message="Design deviation ›› date-picker_State hover time (#demo-date-and-time) component"/>
+    </testcase>
+    <testcase classname="#demo-date" name=" ›› date-picker_State focus date">
+      <failure message="Design deviation ›› date-picker_State focus date (#demo-date) component"/>
+      <error message="Design deviation ›› date-picker_State focus date (#demo-date) component"/>
+    </testcase>
+    <testcase classname="#demo-date-and-time" name=" ›› date-picker_State focus time">
+      <failure message="Design deviation ›› date-picker_State focus time (#demo-date-and-time) component"/>
+      <error message="Design deviation ›› date-picker_State focus time (#demo-date-and-time) component"/>
+    </testcase>
+    <testcase classname="#demo-date-range" name=" ›› date-picker_State focus range">
+      <failure message="Design deviation ›› date-picker_State focus range (#demo-date-range) component"/>
+      <error message="Design deviation ›› date-picker_State focus range (#demo-date-range) component"/>
+    </testcase>
+    <testcase classname="document" name=" ›› dialog_basic"/>
+    <testcase classname="document" name=" ›› dialog_full-page-dialog"/>
+    <testcase classname="document" name=" ›› dialog_draggable-dialog"/>
+    <testcase classname="document" name=" ›› dialog_dialog-top-left"/>
+    <testcase classname="document" name=" ›› dialog_dialog-top-right"/>
+    <testcase classname="document" name=" ›› dialog_dialog-bottom-left"/>
+    <testcase classname="document" name=" ›› dialog_dialog-bottom-right"/>
+    <testcase classname="#demo-default" name=" ›› expandable-block_Type default"/>
+    <testcase classname="#demo-captions" name=" ›› expandable-block_Type with caption"/>
+    <testcase classname="#demo-small" name=" ›› expandable-block_Type small"/>
+    <testcase classname="#demo-borderless" name=" ›› expandable-block_Type borderless"/>
+    <testcase classname="#demo-captions" name=" ›› expandable-block_State hover"/>
+    <testcase classname="#demo-captions" name=" ›› expandable-block_State focus"/>
+    <testcase classname="#demo-default" name=" ›› fieldset_Type Default">
+      <failure message="Design deviation ›› fieldset_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› fieldset_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-text-area" name=" ›› file-upload_Type text area"/>
+    <testcase classname="#demo-table" name=" ›› file-upload_Type table">
+      <failure message="Design deviation ›› file-upload_Type table (#demo-table) component"/>
+      <error message="Design deviation ›› file-upload_Type table (#demo-table) component"/>
+    </testcase>
+    <testcase classname="#demo-no-wrap" name=" ›› file-upload_Type not wrapping anything"/>
+    <testcase classname="viewport" name=" ›› footer_Type hidden below viewport"/>
+    <testcase classname="viewport" name=" ›› footer_Type visible in viewport"/>
+    <testcase classname="viewport" name=" ›› footer_State hover and focus"/>
+    <testcase classname="#demo-default" name=" ›› header_Type Default">
+      <failure message="Design deviation ›› header_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› header_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-slim" name=" ›› header_Type Slim">
+      <failure message="Design deviation ›› header_Type Slim (#demo-slim) component"/>
+      <error message="Design deviation ›› header_Type Slim (#demo-slim) component"/>
+    </testcase>
+    <testcase classname="#demo-slim" name=" ›› header_Type Slim">
+      <failure message="Design deviation ›› header_Type Slim (#demo-slim) component"/>
+      <error message="Design deviation ›› header_Type Slim (#demo-slim) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› header_Type Default State hover &amp; focus">
+      <failure message="Design deviation ›› header_Type Default State hover &amp; focus (#demo-default) component"/>
+      <error message="Design deviation ›› header_Type Default State hover &amp; focus (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-split" name=" ›› header_Type Default State hover &amp; focus">
+      <failure message="Design deviation ›› header_Type Default State hover &amp; focus (#demo-split) component"/>
+      <error message="Design deviation ›› header_Type Default State hover &amp; focus (#demo-split) component"/>
+    </testcase>
+    <testcase classname="#demo-slim" name=" ›› header_Type Slim State hover &amp; focus">
+      <failure message="Design deviation ›› header_Type Slim State hover &amp; focus (#demo-slim) component"/>
+      <error message="Design deviation ›› header_Type Slim State hover &amp; focus (#demo-slim) component"/>
+    </testcase>
+    <testcase classname="#demo-split" name=" ›› header_Type Split State hover &amp; focus">
+      <failure message="Design deviation ›› header_Type Split State hover &amp; focus (#demo-split) component"/>
+      <error message="Design deviation ›› header_Type Split State hover &amp; focus (#demo-split) component"/>
+    </testcase>
+    <testcase classname="#demo-all" name=" ›› header_Type All - narrow screen">
+      <failure message="Design deviation ›› header_Type All - narrow screen (#demo-all) component"/>
+      <error message="Design deviation ›› header_Type All - narrow screen (#demo-all) component"/>
+    </testcase>
+    <testcase classname="#demo-all" name=" ›› header_Type All - narrow screen">
+      <failure message="Design deviation ›› header_Type All - narrow screen (#demo-all) component"/>
+      <error message="Design deviation ›› header_Type All - narrow screen (#demo-all) component"/>
+    </testcase>
+    <testcase classname="#demo-all" name=" ›› header_Type All - narrow screen">
+      <failure message="Design deviation ›› header_Type All - narrow screen (#demo-all) component"/>
+      <error message="Design deviation ›› header_Type All - narrow screen (#demo-all) component"/>
+    </testcase>
+    <testcase classname="html" name=" ›› icon_basic"/>
+    <testcase classname="#demo-edit" name=" ›› information-panel_Type default">
+      <failure message="Design deviation ›› information-panel_Type default (#demo-edit) component"/>
+      <error message="Design deviation ›› information-panel_Type default (#demo-edit) component"/>
+    </testcase>
+    <testcase classname="#demo-docked-bottom" name=" ›› information-panel_Type docked bottom"/>
+    <testcase classname="#demo-default" name=" ›› input_Type Default">
+      <failure message="Design deviation ›› input_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› input_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› input_Type Inline">
+      <failure message="Design deviation ›› input_Type Inline (#demo-inline) component"/>
+      <error message="Design deviation ›› input_Type Inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-hybrid" name=" ›› input_Type Hybrid">
+      <failure message="Design deviation ›› input_Type Hybrid (#demo-hybrid) component"/>
+      <error message="Design deviation ›› input_Type Hybrid (#demo-hybrid) component"/>
+    </testcase>
+    <testcase classname="#demo-no-label" name=" ›› input_Type Without Label">
+      <failure message="Design deviation ›› input_Type Without Label (#demo-no-label) component"/>
+      <error message="Design deviation ›› input_Type Without Label (#demo-no-label) component"/>
+    </testcase>
+    <testcase classname="#demo-no-label.__n1" name=" ›› input_Type Without Label">
+      <failure message="Design deviation ›› input_Type Without Label (#demo-no-label.__n1) component"/>
+      <error message="Design deviation ›› input_Type Without Label (#demo-no-label.__n1) component"/>
+    </testcase>
+    <testcase classname="html" name=" ›› keyboard_basic">
+      <failure message="Design deviation ›› keyboard_basic (html) component"/>
+      <error message="Design deviation ›› keyboard_basic (html) component"/>
+    </testcase>
+    <testcase classname="html" name=" ›› location-marker_basic">
+      <failure message="Design deviation ›› location-marker_basic (html) component"/>
+      <error message="Design deviation ›› location-marker_basic (html) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› menu_Type Default">
+      <failure message="Design deviation ›› menu_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› menu_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-header" name=" ›› menu_Type Header">
+      <failure message="Design deviation ›› menu_Type Header (#demo-header) component"/>
+      <error message="Design deviation ›› menu_Type Header (#demo-header) component"/>
+    </testcase>
+    <testcase classname="#demo-skeleton" name=" ›› menu_Type Skeleton">
+      <failure message="Design deviation ›› menu_Type Skeleton (#demo-skeleton) component"/>
+      <error message="Design deviation ›› menu_Type Skeleton (#demo-skeleton) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› menu_State hover &amp; focus">
+      <failure message="Design deviation ›› menu_State hover &amp; focus (#demo-default) component"/>
+      <error message="Design deviation ›› menu_State hover &amp; focus (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-skeleton" name=" ›› menu_Hover Skeleton">
+      <failure message="Design deviation ›› menu_Hover Skeleton (#demo-skeleton) component"/>
+      <error message="Design deviation ›› menu_Hover Skeleton (#demo-skeleton) component"/>
+    </testcase>
+    <testcase classname="#nis-401 .iui-non-ideal-state" name=" ›› non-ideal-state_401">
+      <failure message="Design deviation ›› non-ideal-state_401 (#nis-401 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_401 (#nis-401 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-403 .iui-non-ideal-state" name=" ›› non-ideal-state_403">
+      <failure message="Design deviation ›› non-ideal-state_403 (#nis-403 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_403 (#nis-403 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-404 .iui-non-ideal-state" name=" ›› non-ideal-state_404">
+      <failure message="Design deviation ›› non-ideal-state_404 (#nis-404 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_404 (#nis-404 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-500 .iui-non-ideal-state" name=" ›› non-ideal-state_500">
+      <failure message="Design deviation ›› non-ideal-state_500 (#nis-500 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_500 (#nis-500 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-502 .iui-non-ideal-state" name=" ›› non-ideal-state_502">
+      <failure message="Design deviation ›› non-ideal-state_502 (#nis-502 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_502 (#nis-502 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-503 .iui-non-ideal-state" name=" ›› non-ideal-state_503">
+      <failure message="Design deviation ›› non-ideal-state_503 (#nis-503 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_503 (#nis-503 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-error .iui-non-ideal-state" name=" ›› non-ideal-state_error">
+      <failure message="Design deviation ›› non-ideal-state_error (#nis-error .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_error (#nis-error .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-timed-out .iui-non-ideal-state" name=" ›› non-ideal-state_timed-out">
+      <failure message="Design deviation ›› non-ideal-state_timed-out (#nis-timed-out .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_timed-out (#nis-timed-out .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-redirect .iui-non-ideal-state" name=" ›› non-ideal-state_redirect">
+      <failure message="Design deviation ›› non-ideal-state_redirect (#nis-redirect .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_redirect (#nis-redirect .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-multi-redirect .iui-non-ideal-state" name=" ›› non-ideal-state_multi-redirect">
+      <failure message="Design deviation ›› non-ideal-state_multi-redirect (#nis-multi-redirect .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› non-ideal-state_multi-redirect (#nis-multi-redirect .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#demo-linear" name=" ›› progress-indicator_linear"/>
+    <testcase classname="#demo-radial" name=" ›› progress-indicator_radial"/>
+    <testcase classname="#demo-overlay" name=" ›› progress-indicator_overlay">
+      <failure message="Design deviation ›› progress-indicator_overlay (#demo-overlay) component"/>
+      <error message="Design deviation ›› progress-indicator_overlay (#demo-overlay) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› radio-tile_default">
+      <failure message="Design deviation ›› radio-tile_default (#demo-default) component"/>
+      <error message="Design deviation ›› radio-tile_default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-alternative-layouts" name=" ›› radio-tile_alternative layouts">
+      <failure message="Design deviation ›› radio-tile_alternative layouts (#demo-alternative-layouts) component"/>
+      <error message="Design deviation ›› radio-tile_alternative layouts (#demo-alternative-layouts) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› radio-tile_State hover">
+      <failure message="Design deviation ›› radio-tile_State hover (#demo-default) component"/>
+      <error message="Design deviation ›› radio-tile_State hover (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› radio-tile_State focus">
+      <failure message="Design deviation ›› radio-tile_State focus (#demo-default) component"/>
+      <error message="Design deviation ›› radio-tile_State focus (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› radio-tile_State focus and checked">
+      <failure message="Design deviation ›› radio-tile_State focus and checked (#demo-default) component"/>
+      <error message="Design deviation ›› radio-tile_State focus and checked (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› radio_default">
+      <failure message="Design deviation ›› radio_default (#demo-default) component"/>
+      <error message="Design deviation ›› radio_default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› radio_inline">
+      <failure message="Design deviation ›› radio_inline (#demo-inline) component"/>
+      <error message="Design deviation ›› radio_inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-label" name=" ›› radio_label"/>
+    <testcase classname="#demo-default" name=" ›› select_Type Default">
+      <failure message="Design deviation ›› select_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› select_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-sizes" name=" ›› select_Sizes">
+      <failure message="Design deviation ›› select_Sizes (#demo-sizes) component"/>
+      <error message="Design deviation ›› select_Sizes (#demo-sizes) component"/>
+    </testcase>
+    <testcase classname="#demo-default-singular" name=" ›› select_State hover">
+      <failure message="Design deviation ›› select_State hover (#demo-default-singular) component"/>
+      <error message="Design deviation ›› select_State hover (#demo-default-singular) component"/>
+    </testcase>
+    <testcase classname="#demo-default-singular" name=" ›› select_State focus">
+      <failure message="Design deviation ›› select_State focus (#demo-default-singular) component"/>
+      <error message="Design deviation ›› select_State focus (#demo-default-singular) component"/>
+    </testcase>
+    <testcase classname="#demo-inline-combo" name=" ›› select_Inline combo">
+      <failure message="Design deviation ›› select_Inline combo (#demo-inline-combo) component"/>
+      <error message="Design deviation ›› select_Inline combo (#demo-inline-combo) component"/>
+    </testcase>
+    <testcase classname="#demo-multi" name=" ›› select_Type Multi">
+      <failure message="Design deviation ›› select_Type Multi (#demo-multi) component"/>
+      <error message="Design deviation ›› select_Type Multi (#demo-multi) component"/>
+    </testcase>
+    <testcase classname="#demo-side-navigation" name=" ›› side-navigation_Type collapsed"/>
+    <testcase classname="#demo-side-navigation" name=" ›› side-navigation_Type expanded"/>
+    <testcase classname="#demo-side-navigation-submenu" name=" ›› side-navigation_Type submenu"/>
+    <testcase classname="#demo-side-navigation" name=" ›› side-navigation_State collapsed hover and focus"/>
+    <testcase classname="#demo-side-navigation" name=" ›› side-navigation_State expanded hover and focus"/>
+    <testcase classname="viewport" name=" ›› skip-to-content_Type focus">
+      <failure message="Design deviation ›› skip-to-content_Type focus (viewport) component"/>
+      <error message="Design deviation ›› skip-to-content_Type focus (viewport) component"/>
+    </testcase>
+    <testcase classname="viewport" name=" ›› skip-to-content_Type focus and hover">
+      <failure message="Design deviation ›› skip-to-content_Type focus and hover (viewport) component"/>
+      <error message="Design deviation ›› skip-to-content_Type focus and hover (viewport) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› slider_Type Default">
+      <failure message="Design deviation ›› slider_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› slider_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-range" name=" ›› slider_Type Range">
+      <failure message="Design deviation ›› slider_Type Range (#demo-range) component"/>
+      <error message="Design deviation ›› slider_Type Range (#demo-range) component"/>
+    </testcase>
+    <testcase classname="#demo-default-vertical" name=" ›› slider_Type Default Vertical">
+      <failure message="Design deviation ›› slider_Type Default Vertical (#demo-default-vertical) component"/>
+      <error message="Design deviation ›› slider_Type Default Vertical (#demo-default-vertical) component"/>
+    </testcase>
+    <testcase classname="#demo-range-vertical" name=" ›› slider_Type Range Vertical">
+      <failure message="Design deviation ›› slider_Type Range Vertical (#demo-range-vertical) component"/>
+      <error message="Design deviation ›› slider_Type Range Vertical (#demo-range-vertical) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› slider_State hover &amp; focus">
+      <failure message="Design deviation ›› slider_State hover &amp; focus (#demo-default) component"/>
+      <error message="Design deviation ›› slider_State hover &amp; focus (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› stepper_Type default">
+      <failure message="Design deviation ›› stepper_Type default (#demo-default) component"/>
+      <error message="Design deviation ›› stepper_Type default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-long" name=" ›› stepper_Type long">
+      <failure message="Design deviation ›› stepper_Type long (#demo-long) component"/>
+      <error message="Design deviation ›› stepper_Type long (#demo-long) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› stepper_State default hover on complete">
+      <failure message="Design deviation ›› stepper_State default hover on complete (#demo-default) component"/>
+      <error message="Design deviation ›› stepper_State default hover on complete (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-long" name=" ›› stepper_State long focus on complete">
+      <failure message="Design deviation ›› stepper_State long focus on complete (#demo-long) component"/>
+      <error message="Design deviation ›› stepper_State long focus on complete (#demo-long) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› surface_Type default"/>
+    <testcase classname="#demo-elevations" name=" ›› surface_Type elevations"/>
+    <testcase classname="#demo-default" name=" ›› table_Type Default">
+      <failure message="Design deviation ›› table_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› table_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-extras" name=" ›› table_Type Extras">
+      <failure message="Design deviation ›› table_Type Extras (#demo-extras) component"/>
+      <error message="Design deviation ›› table_Type Extras (#demo-extras) component"/>
+    </testcase>
+    <testcase classname="#demo-expandable-rows" name=" ›› table_Type Expandable Rows">
+      <failure message="Design deviation ›› table_Type Expandable Rows (#demo-expandable-rows) component"/>
+      <error message="Design deviation ›› table_Type Expandable Rows (#demo-expandable-rows) component"/>
+    </testcase>
+    <testcase classname="#demo-loading" name=" ›› table_Type Loading">
+      <failure message="Design deviation ›› table_Type Loading (#demo-loading) component"/>
+      <error message="Design deviation ›› table_Type Loading (#demo-loading) component"/>
+    </testcase>
+    <testcase classname="#demo-empty-state" name=" ›› table_Type Empty">
+      <failure message="Design deviation ›› table_Type Empty (#demo-empty-state) component"/>
+      <error message="Design deviation ›› table_Type Empty (#demo-empty-state) component"/>
+    </testcase>
+    <testcase classname="#demo-default .iui-table:nth-child(1)" name=" ›› table_Editable cell">
+      <failure message="Design deviation ›› table_Editable cell (#demo-default .iui-table:nth-child(1)) component"/>
+      <error message="Design deviation ›› table_Editable cell (#demo-default .iui-table:nth-child(1)) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› tabs_Type default"/>
+    <testcase classname="#demo-default-vertical" name=" ›› tabs_Type default vertical"/>
+    <testcase classname="#demo-borderless" name=" ›› tabs_Type borderless">
+      <failure message="Design deviation ›› tabs_Type borderless (#demo-borderless) component"/>
+      <error message="Design deviation ›› tabs_Type borderless (#demo-borderless) component"/>
+    </testcase>
+    <testcase classname="#demo-borderless-vertical" name=" ›› tabs_Type borderless vertical">
+      <failure message="Design deviation ›› tabs_Type borderless vertical (#demo-borderless-vertical) component"/>
+      <error message="Design deviation ›› tabs_Type borderless vertical (#demo-borderless-vertical) component"/>
+    </testcase>
+    <testcase classname="#demo-pill" name=" ›› tabs_Type pill"/>
+    <testcase classname="#demo-default-2" name=" ›› tabs_State hover &amp; focus in default"/>
+    <testcase classname="#demo-borderless-2" name=" ›› tabs_State hover &amp; focus in borderless">
+      <failure message="Design deviation ›› tabs_State hover &amp; focus in borderless (#demo-borderless-2) component"/>
+      <error message="Design deviation ›› tabs_State hover &amp; focus in borderless (#demo-borderless-2) component"/>
+    </testcase>
+    <testcase classname="#demo-pill-2" name=" ›› tabs_State hover &amp; focus in pill"/>
+    <testcase classname="#demo-default" name=" ›› tag_Type Default">
+      <failure message="Design deviation ›› tag_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› tag_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› tag_Type Basic"/>
+    <testcase classname="#demo-default-container" name=" ›› tag_Type Container">
+      <failure message="Design deviation ›› tag_Type Container (#demo-default-container) component"/>
+      <error message="Design deviation ›› tag_Type Container (#demo-default-container) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› tag_State hover">
+      <failure message="Design deviation ›› tag_State hover (#demo-default) component"/>
+      <error message="Design deviation ›› tag_State hover (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› tag_State hover basic"/>
+    <testcase classname="#demo-default" name=" ›› textarea_default">
+      <failure message="Design deviation ›› textarea_default (#demo-default) component"/>
+      <error message="Design deviation ›› textarea_default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› textarea_inline">
+      <failure message="Design deviation ›› textarea_inline (#demo-inline) component"/>
+      <error message="Design deviation ›› textarea_inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-everything-turned-on" name=" ›› tile_Type Everything turned on">
+      <failure message="Design deviation ›› tile_Type Everything turned on (#demo-everything-turned-on) component"/>
+      <error message="Design deviation ›› tile_Type Everything turned on (#demo-everything-turned-on) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› tile_Type Default">
+      <failure message="Design deviation ›› tile_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› tile_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-action-states" name=" ›› tile_Type Action States"/>
+    <testcase classname="#demo-action-states-folders" name=" ›› tile_Type Folder Action States"/>
+    <testcase classname="#demo-user" name=" ›› tile_Type User">
+      <failure message="Design deviation ›› tile_Type User (#demo-user) component"/>
+      <error message="Design deviation ›› tile_Type User (#demo-user) component"/>
+    </testcase>
+    <testcase classname="#demo-video" name=" ›› tile_Type Video">
+      <failure message="Design deviation ›› tile_Type Video (#demo-video) component"/>
+      <error message="Design deviation ›› tile_Type Video (#demo-video) component"/>
+    </testcase>
+    <testcase classname="#demo-folder" name=" ›› tile_Type Folder">
+      <failure message="Design deviation ›› tile_Type Folder (#demo-folder) component"/>
+      <error message="Design deviation ›› tile_Type Folder (#demo-folder) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› tile_State hover">
+      <failure message="Design deviation ›› tile_State hover (#demo-default) component"/>
+      <error message="Design deviation ›› tile_State hover (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› tile_State hover with thumbnail">
+      <failure message="Design deviation ›› tile_State hover with thumbnail (#demo-default) component"/>
+      <error message="Design deviation ›› tile_State hover with thumbnail (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› tile_State Type Indicator hover">
+      <failure message="Design deviation ›› tile_State Type Indicator hover (#test-tile-1) component"/>
+      <error message="Design deviation ›› tile_State Type Indicator hover (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› tile_State Type Indicator hover with thumbnail">
+      <failure message="Design deviation ›› tile_State Type Indicator hover with thumbnail (#test-tile-2) component"/>
+      <error message="Design deviation ›› tile_State Type Indicator hover with thumbnail (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› tile_State Quick Action hover">
+      <failure message="Design deviation ›› tile_State Quick Action hover (#test-tile-1) component"/>
+      <error message="Design deviation ›› tile_State Quick Action hover (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› tile_State Quick Action hover with thumbnail">
+      <failure message="Design deviation ›› tile_State Quick Action hover with thumbnail (#test-tile-2) component"/>
+      <error message="Design deviation ›› tile_State Quick Action hover with thumbnail (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› tile_State More Options hover">
+      <failure message="Design deviation ›› tile_State More Options hover (#test-tile-1) component"/>
+      <error message="Design deviation ›› tile_State More Options hover (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› tile_State Double Button hover">
+      <failure message="Design deviation ›› tile_State Double Button hover (#test-tile-1) component"/>
+      <error message="Design deviation ›› tile_State Double Button hover (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› tile_State Single Button hover">
+      <failure message="Design deviation ›› tile_State Single Button hover (#test-tile-2) component"/>
+      <error message="Design deviation ›› tile_State Single Button hover (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-4" name=" ›› tile_State focus">
+      <failure message="Design deviation ›› tile_State focus (#test-tile-4) component"/>
+      <error message="Design deviation ›› tile_State focus (#test-tile-4) component"/>
+    </testcase>
+    <testcase classname="#test-tile-5" name=" ›› tile_State focus with thumbnail">
+      <failure message="Design deviation ›› tile_State focus with thumbnail (#test-tile-5) component"/>
+      <error message="Design deviation ›› tile_State focus with thumbnail (#test-tile-5) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› tile_State Type Indicator focus">
+      <failure message="Design deviation ›› tile_State Type Indicator focus (#test-tile-1) component"/>
+      <error message="Design deviation ›› tile_State Type Indicator focus (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› tile_State Type Indicator focus with thumbnail">
+      <failure message="Design deviation ›› tile_State Type Indicator focus with thumbnail (#test-tile-2) component"/>
+      <error message="Design deviation ›› tile_State Type Indicator focus with thumbnail (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› tile_State Quick Action focus">
+      <failure message="Design deviation ›› tile_State Quick Action focus (#test-tile-1) component"/>
+      <error message="Design deviation ›› tile_State Quick Action focus (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› tile_State Quick Action focus with thumbnail">
+      <failure message="Design deviation ›› tile_State Quick Action focus with thumbnail (#test-tile-2) component"/>
+      <error message="Design deviation ›› tile_State Quick Action focus with thumbnail (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-3" name=" ›› tile_State Play Icon focus with thumbnail">
+      <failure message="Design deviation ›› tile_State Play Icon focus with thumbnail (#test-tile-3) component"/>
+      <error message="Design deviation ›› tile_State Play Icon focus with thumbnail (#test-tile-3) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› tile_State More Options focus">
+      <failure message="Design deviation ›› tile_State More Options focus (#test-tile-1) component"/>
+      <error message="Design deviation ›› tile_State More Options focus (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› tile_State Double Button focus">
+      <failure message="Design deviation ›› tile_State Double Button focus (#test-tile-1) component"/>
+      <error message="Design deviation ›› tile_State Double Button focus (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› tile_State Single Button focus">
+      <failure message="Design deviation ›› tile_State Single Button focus (#test-tile-2) component"/>
+      <error message="Design deviation ›› tile_State Single Button focus (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#demo-time" name=" ›› time-picker_Type Time">
+      <failure message="Design deviation ›› time-picker_Type Time (#demo-time) component"/>
+      <error message="Design deviation ›› time-picker_Type Time (#demo-time) component"/>
+    </testcase>
+    <testcase classname="#demo-time-minutes" name=" ›› time-picker_Type Time with minutes">
+      <failure message="Design deviation ›› time-picker_Type Time with minutes (#demo-time-minutes) component"/>
+      <error message="Design deviation ›› time-picker_Type Time with minutes (#demo-time-minutes) component"/>
+    </testcase>
+    <testcase classname=".iui-toast-wrapper" name=" ›› toast_Type All">
+      <failure message="Design deviation ›› toast_Type All (.iui-toast-wrapper) component"/>
+      <error message="Design deviation ›› toast_Type All (.iui-toast-wrapper) component"/>
+    </testcase>
+    <testcase classname="#demo-informational" name=" ›› toast_State hover link in informational">
+      <failure message="Design deviation ›› toast_State hover link in informational (#demo-informational) component"/>
+      <error message="Design deviation ›› toast_State hover link in informational (#demo-informational) component"/>
+    </testcase>
+    <testcase classname="#demo-positive" name=" ›› toast_State hover link in positive">
+      <failure message="Design deviation ›› toast_State hover link in positive (#demo-positive) component"/>
+      <error message="Design deviation ›› toast_State hover link in positive (#demo-positive) component"/>
+    </testcase>
+    <testcase classname="#demo-negative" name=" ›› toast_State hover link in negative">
+      <failure message="Design deviation ›› toast_State hover link in negative (#demo-negative) component"/>
+      <error message="Design deviation ›› toast_State hover link in negative (#demo-negative) component"/>
+    </testcase>
+    <testcase classname="#demo-warning" name=" ›› toast_State hover link in warning">
+      <failure message="Design deviation ›› toast_State hover link in warning (#demo-warning) component"/>
+      <error message="Design deviation ›› toast_State hover link in warning (#demo-warning) component"/>
+    </testcase>
+    <testcase classname="#demo-informational" name=" ›› toast_State focus link in informational">
+      <failure message="Design deviation ›› toast_State focus link in informational (#demo-informational) component"/>
+      <error message="Design deviation ›› toast_State focus link in informational (#demo-informational) component"/>
+    </testcase>
+    <testcase classname="#demo-positive" name=" ›› toast_State focus link in positive">
+      <failure message="Design deviation ›› toast_State focus link in positive (#demo-positive) component"/>
+      <error message="Design deviation ›› toast_State focus link in positive (#demo-positive) component"/>
+    </testcase>
+    <testcase classname="#demo-negative" name=" ›› toast_State focus link in negative">
+      <failure message="Design deviation ›› toast_State focus link in negative (#demo-negative) component"/>
+      <error message="Design deviation ›› toast_State focus link in negative (#demo-negative) component"/>
+    </testcase>
+    <testcase classname="#demo-warning" name=" ›› toast_State focus link in warning">
+      <failure message="Design deviation ›› toast_State focus link in warning (#demo-warning) component"/>
+      <error message="Design deviation ›› toast_State focus link in warning (#demo-warning) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› toast_Top start placement">
+      <failure message="Design deviation ›› toast_Top start placement (#toast-test) component"/>
+      <error message="Design deviation ›› toast_Top start placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› toast_Top placement">
+      <failure message="Design deviation ›› toast_Top placement (#toast-test) component"/>
+      <error message="Design deviation ›› toast_Top placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› toast_Top end placement">
+      <failure message="Design deviation ›› toast_Top end placement (#toast-test) component"/>
+      <error message="Design deviation ›› toast_Top end placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› toast_Bottom start placement">
+      <failure message="Design deviation ›› toast_Bottom start placement (#toast-test) component"/>
+      <error message="Design deviation ›› toast_Bottom start placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› toast_Bottom placement">
+      <failure message="Design deviation ›› toast_Bottom placement (#toast-test) component"/>
+      <error message="Design deviation ›› toast_Bottom placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› toast_Bottom end placement">
+      <failure message="Design deviation ›› toast_Bottom end placement (#toast-test) component"/>
+      <error message="Design deviation ›› toast_Bottom end placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› toggle-switch_Type Default">
+      <failure message="Design deviation ›› toggle-switch_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› toggle-switch_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-toggle-right" name=" ›› toggle-switch_Type label left">
+      <failure message="Design deviation ›› toggle-switch_Type label left (#demo-toggle-right) component"/>
+      <error message="Design deviation ›› toggle-switch_Type label left (#demo-toggle-right) component"/>
+    </testcase>
+    <testcase classname="#demo-toggle-left" name=" ›› toggle-switch_Type label right">
+      <failure message="Design deviation ›› toggle-switch_Type label right (#demo-toggle-left) component"/>
+      <error message="Design deviation ›› toggle-switch_Type label right (#demo-toggle-left) component"/>
+    </testcase>
+    <testcase classname="#demo-toggle-no-label" name=" ›› toggle-switch_Type label none">
+      <failure message="Design deviation ›› toggle-switch_Type label none (#demo-toggle-no-label) component"/>
+      <error message="Design deviation ›› toggle-switch_Type label none (#demo-toggle-no-label) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› toggle-switch_State hover checked &amp; focus unchecked">
+      <failure message="Design deviation ›› toggle-switch_State hover checked &amp; focus unchecked (#demo-default) component"/>
+      <error message="Design deviation ›› toggle-switch_State hover checked &amp; focus unchecked (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› toggle-switch_State focus checked &amp; hover unchecked">
+      <failure message="Design deviation ›› toggle-switch_State focus checked &amp; hover unchecked (#demo-default) component"/>
+      <error message="Design deviation ›› toggle-switch_State focus checked &amp; hover unchecked (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-tooltip" name=" ›› tooltip_Type All">
+      <failure message="Design deviation ›› tooltip_Type All (#demo-tooltip) component"/>
+      <error message="Design deviation ›› tooltip_Type All (#demo-tooltip) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› tree_Default"/>
+    <testcase classname="#demo-captions" name=" ›› tree_With Captions"/>
+    <testcase classname="#demo-checkbox" name=" ›› tree_With Checkbox"/>
+    <testcase classname="#demo-disabled" name=" ›› tree_Disabled"/>
+    <testcase classname="#demo-icons" name=" ›› tree_With Icons"/>
+    <testcase classname="#demo-captions" name=" ›› tree_State hover tree node">
+      <failure message="Design deviation ›› tree_State hover tree node (#demo-captions) component"/>
+      <error message="Design deviation ›› tree_State hover tree node (#demo-captions) component"/>
+    </testcase>
+    <testcase classname="#demo-captions" name=" ›› tree_State focus tree node"/>
+    <testcase classname="#demo-typography" name=" ›› typography_Type all"/>
+    <testcase classname="#demo-typography" name=" ›› typography_Type skeleton text"/>
+    <testcase classname="#demo-workflow" name=" ›› workflow-diagram_Type workflow"/>
+    <testcase classname="html" name=" ›› dark_alert_Type All">
+      <failure message="Design deviation ›› dark_alert_Type All (html) component"/>
+      <error message="Design deviation ›› dark_alert_Type All (html) component"/>
+    </testcase>
+    <testcase classname="#demo-informational" name=" ›› dark_alert_State hover link in informational">
+      <failure message="Design deviation ›› dark_alert_State hover link in informational (#demo-informational) component"/>
+      <error message="Design deviation ›› dark_alert_State hover link in informational (#demo-informational) component"/>
+    </testcase>
+    <testcase classname="#demo-positive" name=" ›› dark_alert_State hover link in positive">
+      <failure message="Design deviation ›› dark_alert_State hover link in positive (#demo-positive) component"/>
+      <error message="Design deviation ›› dark_alert_State hover link in positive (#demo-positive) component"/>
+    </testcase>
+    <testcase classname="#demo-warning" name=" ›› dark_alert_State hover link in warning">
+      <failure message="Design deviation ›› dark_alert_State hover link in warning (#demo-warning) component"/>
+      <error message="Design deviation ›› dark_alert_State hover link in warning (#demo-warning) component"/>
+    </testcase>
+    <testcase classname="#demo-negative" name=" ›› dark_alert_State hover link in negative">
+      <failure message="Design deviation ›› dark_alert_State hover link in negative (#demo-negative) component"/>
+      <error message="Design deviation ›› dark_alert_State hover link in negative (#demo-negative) component"/>
+    </testcase>
+    <testcase classname="#demo-informational" name=" ›› dark_alert_State focus link in informational">
+      <failure message="Design deviation ›› dark_alert_State focus link in informational (#demo-informational) component"/>
+      <error message="Design deviation ›› dark_alert_State focus link in informational (#demo-informational) component"/>
+    </testcase>
+    <testcase classname="#demo-positive" name=" ›› dark_alert_State focus link in positive">
+      <failure message="Design deviation ›› dark_alert_State focus link in positive (#demo-positive) component"/>
+      <error message="Design deviation ›› dark_alert_State focus link in positive (#demo-positive) component"/>
+    </testcase>
+    <testcase classname="#demo-warning" name=" ›› dark_alert_State focus link in warning">
+      <failure message="Design deviation ›› dark_alert_State focus link in warning (#demo-warning) component"/>
+      <error message="Design deviation ›› dark_alert_State focus link in warning (#demo-warning) component"/>
+    </testcase>
+    <testcase classname="#demo-negative" name=" ›› dark_alert_State focus link in negative">
+      <failure message="Design deviation ›› dark_alert_State focus link in negative (#demo-negative) component"/>
+      <error message="Design deviation ›› dark_alert_State focus link in negative (#demo-negative) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_anchor_All">
+      <failure message="Design deviation ›› dark_anchor_All (#demo-default) component"/>
+      <error message="Design deviation ›› dark_anchor_All (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_anchor_Hover 1st &amp; focus 2nd">
+      <failure message="Design deviation ›› dark_anchor_Hover 1st &amp; focus 2nd (#demo-default) component"/>
+      <error message="Design deviation ›› dark_anchor_Hover 1st &amp; focus 2nd (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_anchor_Hover 2nd &amp; focus 1st">
+      <failure message="Design deviation ›› dark_anchor_Hover 2nd &amp; focus 1st (#demo-default) component"/>
+      <error message="Design deviation ›› dark_anchor_Hover 2nd &amp; focus 1st (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_avatar_Type default">
+      <failure message="Design deviation ›› dark_avatar_Type default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_avatar_Type default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-status" name=" ›› dark_avatar_Type online status">
+      <failure message="Design deviation ›› dark_avatar_Type online status (#demo-status) component"/>
+      <error message="Design deviation ›› dark_avatar_Type online status (#demo-status) component"/>
+    </testcase>
+    <testcase classname="#demo-list" name=" ›› dark_avatar_Type list">
+      <failure message="Design deviation ›› dark_avatar_Type list (#demo-list) component"/>
+      <error message="Design deviation ›› dark_avatar_Type list (#demo-list) component"/>
+    </testcase>
+    <testcase classname="#demo-stacked" name=" ›› dark_avatar_Type stacked">
+      <failure message="Design deviation ›› dark_avatar_Type stacked (#demo-stacked) component"/>
+      <error message="Design deviation ›› dark_avatar_Type stacked (#demo-stacked) component"/>
+    </testcase>
+    <testcase classname="#demo-animated" name=" ›› dark_avatar_Type animated">
+      <failure message="Design deviation ›› dark_avatar_Type animated (#demo-animated) component"/>
+      <error message="Design deviation ›› dark_avatar_Type animated (#demo-animated) component"/>
+    </testcase>
+    <testcase classname="#demo" name=" ›› dark_badge_Type all">
+      <failure message="Design deviation ›› dark_badge_Type all (#demo) component"/>
+      <error message="Design deviation ›› dark_badge_Type all (#demo) component"/>
+    </testcase>
+    <testcase classname="html" name=" ›› dark_blockquote_basic">
+      <failure message="Design deviation ›› dark_blockquote_basic (html) component"/>
+      <error message="Design deviation ›› dark_blockquote_basic (html) component"/>
+    </testcase>
+    <testcase classname="#demo-anchors" name=" ›› dark_breadcrumbs_State hover and focus links">
+      <failure message="Design deviation ›› dark_breadcrumbs_State hover and focus links (#demo-anchors) component"/>
+      <error message="Design deviation ›› dark_breadcrumbs_State hover and focus links (#demo-anchors) component"/>
+    </testcase>
+    <testcase classname="#demo-buttons" name=" ›› dark_breadcrumbs_State hover and focus buttons">
+      <failure message="Design deviation ›› dark_breadcrumbs_State hover and focus buttons (#demo-buttons) component"/>
+      <error message="Design deviation ›› dark_breadcrumbs_State hover and focus buttons (#demo-buttons) component"/>
+    </testcase>
+    <testcase classname="#demo-anchors-2" name=" ›› dark_breadcrumbs_State hover and focus breadcrumb anchors">
+      <failure message="Design deviation ›› dark_breadcrumbs_State hover and focus breadcrumb anchors (#demo-anchors-2) component"/>
+      <error message="Design deviation ›› dark_breadcrumbs_State hover and focus breadcrumb anchors (#demo-anchors-2) component"/>
+    </testcase>
+    <testcase classname="#demo-buttons-2" name=" ›› dark_breadcrumbs_State hover and focus breadcrumb buttons">
+      <failure message="Design deviation ›› dark_breadcrumbs_State hover and focus breadcrumb buttons (#demo-buttons-2) component"/>
+      <error message="Design deviation ›› dark_breadcrumbs_State hover and focus breadcrumb buttons (#demo-buttons-2) component"/>
+    </testcase>
+    <testcase classname="#demo-high-visibility" name=" ›› dark_button_Type High Visibility">
+      <failure message="Design deviation ›› dark_button_Type High Visibility (#demo-high-visibility) component"/>
+      <error message="Design deviation ›› dark_button_Type High Visibility (#demo-high-visibility) component"/>
+    </testcase>
+    <testcase classname="#demo-cta" name=" ›› dark_button_Type CTA">
+      <failure message="Design deviation ›› dark_button_Type CTA (#demo-cta) component"/>
+      <error message="Design deviation ›› dark_button_Type CTA (#demo-cta) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_button_Type Default">
+      <failure message="Design deviation ›› dark_button_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_button_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-borderless" name=" ›› dark_button_Type Borderless">
+      <failure message="Design deviation ›› dark_button_Type Borderless (#demo-borderless) component"/>
+      <error message="Design deviation ›› dark_button_Type Borderless (#demo-borderless) component"/>
+    </testcase>
+    <testcase classname="#demo-grouped-default" name=" ›› dark_button_Grouped Default">
+      <failure message="Design deviation ›› dark_button_Grouped Default (#demo-grouped-default) component"/>
+      <error message="Design deviation ›› dark_button_Grouped Default (#demo-grouped-default) component"/>
+    </testcase>
+    <testcase classname="#demo-grouped-borderless" name=" ›› dark_button_Grouped Borderless">
+      <failure message="Design deviation ›› dark_button_Grouped Borderless (#demo-grouped-borderless) component"/>
+      <error message="Design deviation ›› dark_button_Grouped Borderless (#demo-grouped-borderless) component"/>
+    </testcase>
+    <testcase classname="#demo-split" name=" ›› dark_button_Type Split">
+      <failure message="Design deviation ›› dark_button_Type Split (#demo-split) component"/>
+      <error message="Design deviation ›› dark_button_Type Split (#demo-split) component"/>
+    </testcase>
+    <testcase classname="#demo-combo-group" name=" ›› dark_button_Type Input Button Combo">
+      <failure message="Design deviation ›› dark_button_Type Input Button Combo (#demo-combo-group) component"/>
+      <error message="Design deviation ›› dark_button_Type Input Button Combo (#demo-combo-group) component"/>
+    </testcase>
+    <testcase classname="#demo-ideas" name=" ›› dark_button_Type Ideas">
+      <failure message="Design deviation ›› dark_button_Type Ideas (#demo-ideas) component"/>
+      <error message="Design deviation ›› dark_button_Type Ideas (#demo-ideas) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_carousel_Type default">
+      <failure message="Design deviation ›› dark_carousel_Type default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_carousel_Type default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_carousel_State hover &amp; focus">
+      <failure message="Design deviation ›› dark_carousel_State hover &amp; focus (#demo-default) component"/>
+      <error message="Design deviation ›› dark_carousel_State hover &amp; focus (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_checkbox_default">
+      <failure message="Design deviation ›› dark_checkbox_default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_checkbox_default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› dark_checkbox_inline">
+      <failure message="Design deviation ›› dark_checkbox_inline (#demo-inline) component"/>
+      <error message="Design deviation ›› dark_checkbox_inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-no-label" name=" ›› dark_checkbox_no-label">
+      <failure message="Design deviation ›› dark_checkbox_no-label (#demo-no-label) component"/>
+      <error message="Design deviation ›› dark_checkbox_no-label (#demo-no-label) component"/>
+    </testcase>
+    <testcase classname="#demo-special" name=" ›› dark_checkbox_Type specialty">
+      <failure message="Design deviation ›› dark_checkbox_Type specialty (#demo-special) component"/>
+      <error message="Design deviation ›› dark_checkbox_Type specialty (#demo-special) component"/>
+    </testcase>
+    <testcase classname="#demo-codeblock" name=" ›› dark_code_Type Codeblock">
+      <failure message="Design deviation ›› dark_code_Type Codeblock (#demo-codeblock) component"/>
+      <error message="Design deviation ›› dark_code_Type Codeblock (#demo-codeblock) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› dark_code_Type Inline">
+      <failure message="Design deviation ›› dark_code_Type Inline (#demo-inline) component"/>
+      <error message="Design deviation ›› dark_code_Type Inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› dark_color-picker_Basic">
+      <failure message="Design deviation ›› dark_color-picker_Basic (#demo-basic) component"/>
+      <error message="Design deviation ›› dark_color-picker_Basic (#demo-basic) component"/>
+    </testcase>
+    <testcase classname="#demo-advanced" name=" ›› dark_color-picker_Advanced">
+      <failure message="Design deviation ›› dark_color-picker_Advanced (#demo-advanced) component"/>
+      <error message="Design deviation ›› dark_color-picker_Advanced (#demo-advanced) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› dark_color-picker_State hover color swatch">
+      <failure message="Design deviation ›› dark_color-picker_State hover color swatch (#demo-basic) component"/>
+      <error message="Design deviation ›› dark_color-picker_State hover color swatch (#demo-basic) component"/>
+    </testcase>
+    <testcase classname="#demo-advanced-interactions" name=" ›› dark_color-picker_State hover color dot">
+      <failure message="Design deviation ›› dark_color-picker_State hover color dot (#demo-advanced-interactions) component"/>
+      <error message="Design deviation ›› dark_color-picker_State hover color dot (#demo-advanced-interactions) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› dark_color-picker_State focus color swatch">
+      <failure message="Design deviation ›› dark_color-picker_State focus color swatch (#demo-basic) component"/>
+      <error message="Design deviation ›› dark_color-picker_State focus color swatch (#demo-basic) component"/>
+    </testcase>
+    <testcase classname="#demo-advanced-interactions" name=" ›› dark_color-picker_State focus color dot">
+      <failure message="Design deviation ›› dark_color-picker_State focus color dot (#demo-advanced-interactions) component"/>
+      <error message="Design deviation ›› dark_color-picker_State focus color dot (#demo-advanced-interactions) component"/>
+    </testcase>
+    <testcase classname="#demo-all" name=" ›› dark_color_Type all">
+      <failure message="Design deviation ›› dark_color_Type all (#demo-all) component"/>
+      <error message="Design deviation ›› dark_color_Type all (#demo-all) component"/>
+    </testcase>
+    <testcase classname="#demo-text" name=" ›› dark_column-filter_Type Text filter">
+      <failure message="Design deviation ›› dark_column-filter_Type Text filter (#demo-text) component"/>
+      <error message="Design deviation ›› dark_column-filter_Type Text filter (#demo-text) component"/>
+    </testcase>
+    <testcase classname="#demo-date" name=" ›› dark_column-filter_Type Date filter">
+      <failure message="Design deviation ›› dark_column-filter_Type Date filter (#demo-date) component"/>
+      <error message="Design deviation ›› dark_column-filter_Type Date filter (#demo-date) component"/>
+    </testcase>
+    <testcase classname="#demo-date" name=" ›› dark_date-picker_Type Date">
+      <failure message="Design deviation ›› dark_date-picker_Type Date (#demo-date) component"/>
+      <error message="Design deviation ›› dark_date-picker_Type Date (#demo-date) component"/>
+    </testcase>
+    <testcase classname="#demo-date-year-skipping" name=" ›› dark_date-picker_Type Date with year skipping buttons">
+      <failure message="Design deviation ›› dark_date-picker_Type Date with year skipping buttons (#demo-date-year-skipping) component"/>
+      <error message="Design deviation ›› dark_date-picker_Type Date with year skipping buttons (#demo-date-year-skipping) component"/>
+    </testcase>
+    <testcase classname="#demo-date-and-time" name=" ›› dark_date-picker_Type Date &amp; Time">
+      <failure message="Design deviation ›› dark_date-picker_Type Date &amp; Time (#demo-date-and-time) component"/>
+      <error message="Design deviation ›› dark_date-picker_Type Date &amp; Time (#demo-date-and-time) component"/>
+    </testcase>
+    <testcase classname="#demo-date-and-time-24h" name=" ›› dark_date-picker_Type Date &amp; Time 24 hour format">
+      <failure message="Design deviation ›› dark_date-picker_Type Date &amp; Time 24 hour format (#demo-date-and-time-24h) component"/>
+      <error message="Design deviation ›› dark_date-picker_Type Date &amp; Time 24 hour format (#demo-date-and-time-24h) component"/>
+    </testcase>
+    <testcase classname="#demo-date-range" name=" ›› dark_date-picker_Type Date Range">
+      <failure message="Design deviation ›› dark_date-picker_Type Date Range (#demo-date-range) component"/>
+      <error message="Design deviation ›› dark_date-picker_Type Date Range (#demo-date-range) component"/>
+    </testcase>
+    <testcase classname="#demo-date" name=" ›› dark_date-picker_State hover date">
+      <failure message="Design deviation ›› dark_date-picker_State hover date (#demo-date) component"/>
+      <error message="Design deviation ›› dark_date-picker_State hover date (#demo-date) component"/>
+    </testcase>
+    <testcase classname="#demo-date-and-time" name=" ›› dark_date-picker_State hover time">
+      <failure message="Design deviation ›› dark_date-picker_State hover time (#demo-date-and-time) component"/>
+      <error message="Design deviation ›› dark_date-picker_State hover time (#demo-date-and-time) component"/>
+    </testcase>
+    <testcase classname="#demo-date" name=" ›› dark_date-picker_State focus date">
+      <failure message="Design deviation ›› dark_date-picker_State focus date (#demo-date) component"/>
+      <error message="Design deviation ›› dark_date-picker_State focus date (#demo-date) component"/>
+    </testcase>
+    <testcase classname="#demo-date-and-time" name=" ›› dark_date-picker_State focus time">
+      <failure message="Design deviation ›› dark_date-picker_State focus time (#demo-date-and-time) component"/>
+      <error message="Design deviation ›› dark_date-picker_State focus time (#demo-date-and-time) component"/>
+    </testcase>
+    <testcase classname="#demo-date-range" name=" ›› dark_date-picker_State focus range">
+      <failure message="Design deviation ›› dark_date-picker_State focus range (#demo-date-range) component"/>
+      <error message="Design deviation ›› dark_date-picker_State focus range (#demo-date-range) component"/>
+    </testcase>
+    <testcase classname="document" name=" ›› dark_dialog_basic">
+      <failure message="Design deviation ›› dark_dialog_basic (document) component"/>
+      <error message="Design deviation ›› dark_dialog_basic (document) component"/>
+    </testcase>
+    <testcase classname="document" name=" ›› dark_dialog_full-page-dialog">
+      <failure message="Design deviation ›› dark_dialog_full-page-dialog (document) component"/>
+      <error message="Design deviation ›› dark_dialog_full-page-dialog (document) component"/>
+    </testcase>
+    <testcase classname="document" name=" ›› dark_dialog_draggable-dialog">
+      <failure message="Design deviation ›› dark_dialog_draggable-dialog (document) component"/>
+      <error message="Design deviation ›› dark_dialog_draggable-dialog (document) component"/>
+    </testcase>
+    <testcase classname="document" name=" ›› dark_dialog_dialog-top-left">
+      <failure message="Design deviation ›› dark_dialog_dialog-top-left (document) component"/>
+      <error message="Design deviation ›› dark_dialog_dialog-top-left (document) component"/>
+    </testcase>
+    <testcase classname="document" name=" ›› dark_dialog_dialog-top-right">
+      <failure message="Design deviation ›› dark_dialog_dialog-top-right (document) component"/>
+      <error message="Design deviation ›› dark_dialog_dialog-top-right (document) component"/>
+    </testcase>
+    <testcase classname="document" name=" ›› dark_dialog_dialog-bottom-left">
+      <failure message="Design deviation ›› dark_dialog_dialog-bottom-left (document) component"/>
+      <error message="Design deviation ›› dark_dialog_dialog-bottom-left (document) component"/>
+    </testcase>
+    <testcase classname="document" name=" ›› dark_dialog_dialog-bottom-right">
+      <failure message="Design deviation ›› dark_dialog_dialog-bottom-right (document) component"/>
+      <error message="Design deviation ›› dark_dialog_dialog-bottom-right (document) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_expandable-block_Type default">
+      <failure message="Design deviation ›› dark_expandable-block_Type default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_expandable-block_Type default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-captions" name=" ›› dark_expandable-block_Type with caption">
+      <failure message="Design deviation ›› dark_expandable-block_Type with caption (#demo-captions) component"/>
+      <error message="Design deviation ›› dark_expandable-block_Type with caption (#demo-captions) component"/>
+    </testcase>
+    <testcase classname="#demo-small" name=" ›› dark_expandable-block_Type small">
+      <failure message="Design deviation ›› dark_expandable-block_Type small (#demo-small) component"/>
+      <error message="Design deviation ›› dark_expandable-block_Type small (#demo-small) component"/>
+    </testcase>
+    <testcase classname="#demo-borderless" name=" ›› dark_expandable-block_Type borderless">
+      <failure message="Design deviation ›› dark_expandable-block_Type borderless (#demo-borderless) component"/>
+      <error message="Design deviation ›› dark_expandable-block_Type borderless (#demo-borderless) component"/>
+    </testcase>
+    <testcase classname="#demo-captions" name=" ›› dark_expandable-block_State hover">
+      <failure message="Design deviation ›› dark_expandable-block_State hover (#demo-captions) component"/>
+      <error message="Design deviation ›› dark_expandable-block_State hover (#demo-captions) component"/>
+    </testcase>
+    <testcase classname="#demo-captions" name=" ›› dark_expandable-block_State focus">
+      <failure message="Design deviation ›› dark_expandable-block_State focus (#demo-captions) component"/>
+      <error message="Design deviation ›› dark_expandable-block_State focus (#demo-captions) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_fieldset_Type Default">
+      <failure message="Design deviation ›› dark_fieldset_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_fieldset_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-text-area" name=" ›› dark_file-upload_Type text area">
+      <failure message="Design deviation ›› dark_file-upload_Type text area (#demo-text-area) component"/>
+      <error message="Design deviation ›› dark_file-upload_Type text area (#demo-text-area) component"/>
+    </testcase>
+    <testcase classname="#demo-table" name=" ›› dark_file-upload_Type table">
+      <failure message="Design deviation ›› dark_file-upload_Type table (#demo-table) component"/>
+      <error message="Design deviation ›› dark_file-upload_Type table (#demo-table) component"/>
+    </testcase>
+    <testcase classname="#demo-no-wrap" name=" ›› dark_file-upload_Type not wrapping anything">
+      <failure message="Design deviation ›› dark_file-upload_Type not wrapping anything (#demo-no-wrap) component"/>
+      <error message="Design deviation ›› dark_file-upload_Type not wrapping anything (#demo-no-wrap) component"/>
+    </testcase>
+    <testcase classname="viewport" name=" ›› dark_footer_Type hidden below viewport">
+      <failure message="Design deviation ›› dark_footer_Type hidden below viewport (viewport) component"/>
+      <error message="Design deviation ›› dark_footer_Type hidden below viewport (viewport) component"/>
+    </testcase>
+    <testcase classname="viewport" name=" ›› dark_footer_Type visible in viewport">
+      <failure message="Design deviation ›› dark_footer_Type visible in viewport (viewport) component"/>
+      <error message="Design deviation ›› dark_footer_Type visible in viewport (viewport) component"/>
+    </testcase>
+    <testcase classname="viewport" name=" ›› dark_footer_State hover and focus">
+      <failure message="Design deviation ›› dark_footer_State hover and focus (viewport) component"/>
+      <error message="Design deviation ›› dark_footer_State hover and focus (viewport) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_header_Type Default">
+      <failure message="Design deviation ›› dark_header_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_header_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-slim" name=" ›› dark_header_Type Slim">
+      <failure message="Design deviation ›› dark_header_Type Slim (#demo-slim) component"/>
+      <error message="Design deviation ›› dark_header_Type Slim (#demo-slim) component"/>
+    </testcase>
+    <testcase classname="#demo-slim" name=" ›› dark_header_Type Slim">
+      <failure message="Design deviation ›› dark_header_Type Slim (#demo-slim) component"/>
+      <error message="Design deviation ›› dark_header_Type Slim (#demo-slim) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_header_Type Default State hover &amp; focus">
+      <failure message="Design deviation ›› dark_header_Type Default State hover &amp; focus (#demo-default) component"/>
+      <error message="Design deviation ›› dark_header_Type Default State hover &amp; focus (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-split" name=" ›› dark_header_Type Default State hover &amp; focus">
+      <failure message="Design deviation ›› dark_header_Type Default State hover &amp; focus (#demo-split) component"/>
+      <error message="Design deviation ›› dark_header_Type Default State hover &amp; focus (#demo-split) component"/>
+    </testcase>
+    <testcase classname="#demo-slim" name=" ›› dark_header_Type Slim State hover &amp; focus">
+      <failure message="Design deviation ›› dark_header_Type Slim State hover &amp; focus (#demo-slim) component"/>
+      <error message="Design deviation ›› dark_header_Type Slim State hover &amp; focus (#demo-slim) component"/>
+    </testcase>
+    <testcase classname="#demo-split" name=" ›› dark_header_Type Split State hover &amp; focus">
+      <failure message="Design deviation ›› dark_header_Type Split State hover &amp; focus (#demo-split) component"/>
+      <error message="Design deviation ›› dark_header_Type Split State hover &amp; focus (#demo-split) component"/>
+    </testcase>
+    <testcase classname="#demo-all" name=" ›› dark_header_Type All - narrow screen">
+      <failure message="Design deviation ›› dark_header_Type All - narrow screen (#demo-all) component"/>
+      <error message="Design deviation ›› dark_header_Type All - narrow screen (#demo-all) component"/>
+    </testcase>
+    <testcase classname="#demo-all" name=" ›› dark_header_Type All - narrow screen">
+      <failure message="Design deviation ›› dark_header_Type All - narrow screen (#demo-all) component"/>
+      <error message="Design deviation ›› dark_header_Type All - narrow screen (#demo-all) component"/>
+    </testcase>
+    <testcase classname="#demo-all" name=" ›› dark_header_Type All - narrow screen">
+      <failure message="Design deviation ›› dark_header_Type All - narrow screen (#demo-all) component"/>
+      <error message="Design deviation ›› dark_header_Type All - narrow screen (#demo-all) component"/>
+    </testcase>
+    <testcase classname="html" name=" ›› dark_icon_basic">
+      <failure message="Design deviation ›› dark_icon_basic (html) component"/>
+      <error message="Design deviation ›› dark_icon_basic (html) component"/>
+    </testcase>
+    <testcase classname="#demo-edit" name=" ›› dark_information-panel_Type default">
+      <failure message="Design deviation ›› dark_information-panel_Type default (#demo-edit) component"/>
+      <error message="Design deviation ›› dark_information-panel_Type default (#demo-edit) component"/>
+    </testcase>
+    <testcase classname="#demo-docked-bottom" name=" ›› dark_information-panel_Type docked bottom">
+      <failure message="Design deviation ›› dark_information-panel_Type docked bottom (#demo-docked-bottom) component"/>
+      <error message="Design deviation ›› dark_information-panel_Type docked bottom (#demo-docked-bottom) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_input_Type Default">
+      <failure message="Design deviation ›› dark_input_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_input_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› dark_input_Type Inline">
+      <failure message="Design deviation ›› dark_input_Type Inline (#demo-inline) component"/>
+      <error message="Design deviation ›› dark_input_Type Inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-hybrid" name=" ›› dark_input_Type Hybrid">
+      <failure message="Design deviation ›› dark_input_Type Hybrid (#demo-hybrid) component"/>
+      <error message="Design deviation ›› dark_input_Type Hybrid (#demo-hybrid) component"/>
+    </testcase>
+    <testcase classname="#demo-no-label" name=" ›› dark_input_Type Without Label">
+      <failure message="Design deviation ›› dark_input_Type Without Label (#demo-no-label) component"/>
+      <error message="Design deviation ›› dark_input_Type Without Label (#demo-no-label) component"/>
+    </testcase>
+    <testcase classname="#demo-no-label.__n1" name=" ›› dark_input_Type Without Label">
+      <failure message="Design deviation ›› dark_input_Type Without Label (#demo-no-label.__n1) component"/>
+      <error message="Design deviation ›› dark_input_Type Without Label (#demo-no-label.__n1) component"/>
+    </testcase>
+    <testcase classname="html" name=" ›› dark_keyboard_basic">
+      <failure message="Design deviation ›› dark_keyboard_basic (html) component"/>
+      <error message="Design deviation ›› dark_keyboard_basic (html) component"/>
+    </testcase>
+    <testcase classname="html" name=" ›› dark_location-marker_basic">
+      <failure message="Design deviation ›› dark_location-marker_basic (html) component"/>
+      <error message="Design deviation ›› dark_location-marker_basic (html) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_menu_Type Default">
+      <failure message="Design deviation ›› dark_menu_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_menu_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-header" name=" ›› dark_menu_Type Header">
+      <failure message="Design deviation ›› dark_menu_Type Header (#demo-header) component"/>
+      <error message="Design deviation ›› dark_menu_Type Header (#demo-header) component"/>
+    </testcase>
+    <testcase classname="#demo-skeleton" name=" ›› dark_menu_Type Skeleton">
+      <failure message="Design deviation ›› dark_menu_Type Skeleton (#demo-skeleton) component"/>
+      <error message="Design deviation ›› dark_menu_Type Skeleton (#demo-skeleton) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_menu_State hover &amp; focus">
+      <failure message="Design deviation ›› dark_menu_State hover &amp; focus (#demo-default) component"/>
+      <error message="Design deviation ›› dark_menu_State hover &amp; focus (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-skeleton" name=" ›› dark_menu_Hover Skeleton">
+      <failure message="Design deviation ›› dark_menu_Hover Skeleton (#demo-skeleton) component"/>
+      <error message="Design deviation ›› dark_menu_Hover Skeleton (#demo-skeleton) component"/>
+    </testcase>
+    <testcase classname="#nis-401 .iui-non-ideal-state" name=" ›› dark_non-ideal-state_401">
+      <failure message="Design deviation ›› dark_non-ideal-state_401 (#nis-401 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_401 (#nis-401 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-403 .iui-non-ideal-state" name=" ›› dark_non-ideal-state_403">
+      <failure message="Design deviation ›› dark_non-ideal-state_403 (#nis-403 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_403 (#nis-403 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-404 .iui-non-ideal-state" name=" ›› dark_non-ideal-state_404">
+      <failure message="Design deviation ›› dark_non-ideal-state_404 (#nis-404 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_404 (#nis-404 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-500 .iui-non-ideal-state" name=" ›› dark_non-ideal-state_500">
+      <failure message="Design deviation ›› dark_non-ideal-state_500 (#nis-500 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_500 (#nis-500 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-502 .iui-non-ideal-state" name=" ›› dark_non-ideal-state_502">
+      <failure message="Design deviation ›› dark_non-ideal-state_502 (#nis-502 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_502 (#nis-502 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-503 .iui-non-ideal-state" name=" ›› dark_non-ideal-state_503">
+      <failure message="Design deviation ›› dark_non-ideal-state_503 (#nis-503 .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_503 (#nis-503 .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-error .iui-non-ideal-state" name=" ›› dark_non-ideal-state_error">
+      <failure message="Design deviation ›› dark_non-ideal-state_error (#nis-error .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_error (#nis-error .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-timed-out .iui-non-ideal-state" name=" ›› dark_non-ideal-state_timed-out">
+      <failure message="Design deviation ›› dark_non-ideal-state_timed-out (#nis-timed-out .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_timed-out (#nis-timed-out .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-redirect .iui-non-ideal-state" name=" ›› dark_non-ideal-state_redirect">
+      <failure message="Design deviation ›› dark_non-ideal-state_redirect (#nis-redirect .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_redirect (#nis-redirect .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#nis-multi-redirect .iui-non-ideal-state" name=" ›› dark_non-ideal-state_multi-redirect">
+      <failure message="Design deviation ›› dark_non-ideal-state_multi-redirect (#nis-multi-redirect .iui-non-ideal-state) component"/>
+      <error message="Design deviation ›› dark_non-ideal-state_multi-redirect (#nis-multi-redirect .iui-non-ideal-state) component"/>
+    </testcase>
+    <testcase classname="#demo-linear" name=" ›› dark_progress-indicator_linear">
+      <failure message="Design deviation ›› dark_progress-indicator_linear (#demo-linear) component"/>
+      <error message="Design deviation ›› dark_progress-indicator_linear (#demo-linear) component"/>
+    </testcase>
+    <testcase classname="#demo-radial" name=" ›› dark_progress-indicator_radial">
+      <failure message="Design deviation ›› dark_progress-indicator_radial (#demo-radial) component"/>
+      <error message="Design deviation ›› dark_progress-indicator_radial (#demo-radial) component"/>
+    </testcase>
+    <testcase classname="#demo-overlay" name=" ›› dark_progress-indicator_overlay">
+      <failure message="Design deviation ›› dark_progress-indicator_overlay (#demo-overlay) component"/>
+      <error message="Design deviation ›› dark_progress-indicator_overlay (#demo-overlay) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_radio-tile_default">
+      <failure message="Design deviation ›› dark_radio-tile_default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_radio-tile_default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-alternative-layouts" name=" ›› dark_radio-tile_alternative layouts">
+      <failure message="Design deviation ›› dark_radio-tile_alternative layouts (#demo-alternative-layouts) component"/>
+      <error message="Design deviation ›› dark_radio-tile_alternative layouts (#demo-alternative-layouts) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_radio-tile_State hover">
+      <failure message="Design deviation ›› dark_radio-tile_State hover (#demo-default) component"/>
+      <error message="Design deviation ›› dark_radio-tile_State hover (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_radio-tile_State focus">
+      <failure message="Design deviation ›› dark_radio-tile_State focus (#demo-default) component"/>
+      <error message="Design deviation ›› dark_radio-tile_State focus (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_radio-tile_State focus and checked">
+      <failure message="Design deviation ›› dark_radio-tile_State focus and checked (#demo-default) component"/>
+      <error message="Design deviation ›› dark_radio-tile_State focus and checked (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_radio_default">
+      <failure message="Design deviation ›› dark_radio_default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_radio_default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› dark_radio_inline">
+      <failure message="Design deviation ›› dark_radio_inline (#demo-inline) component"/>
+      <error message="Design deviation ›› dark_radio_inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-label" name=" ›› dark_radio_label">
+      <failure message="Design deviation ›› dark_radio_label (#demo-label) component"/>
+      <error message="Design deviation ›› dark_radio_label (#demo-label) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_select_Type Default">
+      <failure message="Design deviation ›› dark_select_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_select_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-sizes" name=" ›› dark_select_Sizes">
+      <failure message="Design deviation ›› dark_select_Sizes (#demo-sizes) component"/>
+      <error message="Design deviation ›› dark_select_Sizes (#demo-sizes) component"/>
+    </testcase>
+    <testcase classname="#demo-default-singular" name=" ›› dark_select_State hover">
+      <failure message="Design deviation ›› dark_select_State hover (#demo-default-singular) component"/>
+      <error message="Design deviation ›› dark_select_State hover (#demo-default-singular) component"/>
+    </testcase>
+    <testcase classname="#demo-default-singular" name=" ›› dark_select_State focus">
+      <failure message="Design deviation ›› dark_select_State focus (#demo-default-singular) component"/>
+      <error message="Design deviation ›› dark_select_State focus (#demo-default-singular) component"/>
+    </testcase>
+    <testcase classname="#demo-inline-combo" name=" ›› dark_select_Inline combo">
+      <failure message="Design deviation ›› dark_select_Inline combo (#demo-inline-combo) component"/>
+      <error message="Design deviation ›› dark_select_Inline combo (#demo-inline-combo) component"/>
+    </testcase>
+    <testcase classname="#demo-multi" name=" ›› dark_select_Type Multi">
+      <failure message="Design deviation ›› dark_select_Type Multi (#demo-multi) component"/>
+      <error message="Design deviation ›› dark_select_Type Multi (#demo-multi) component"/>
+    </testcase>
+    <testcase classname="#demo-side-navigation" name=" ›› dark_side-navigation_Type collapsed">
+      <failure message="Design deviation ›› dark_side-navigation_Type collapsed (#demo-side-navigation) component"/>
+      <error message="Design deviation ›› dark_side-navigation_Type collapsed (#demo-side-navigation) component"/>
+    </testcase>
+    <testcase classname="#demo-side-navigation" name=" ›› dark_side-navigation_Type expanded">
+      <failure message="Design deviation ›› dark_side-navigation_Type expanded (#demo-side-navigation) component"/>
+      <error message="Design deviation ›› dark_side-navigation_Type expanded (#demo-side-navigation) component"/>
+    </testcase>
+    <testcase classname="#demo-side-navigation-submenu" name=" ›› dark_side-navigation_Type submenu">
+      <failure message="Design deviation ›› dark_side-navigation_Type submenu (#demo-side-navigation-submenu) component"/>
+      <error message="Design deviation ›› dark_side-navigation_Type submenu (#demo-side-navigation-submenu) component"/>
+    </testcase>
+    <testcase classname="#demo-side-navigation" name=" ›› dark_side-navigation_State collapsed hover and focus">
+      <failure message="Design deviation ›› dark_side-navigation_State collapsed hover and focus (#demo-side-navigation) component"/>
+      <error message="Design deviation ›› dark_side-navigation_State collapsed hover and focus (#demo-side-navigation) component"/>
+    </testcase>
+    <testcase classname="#demo-side-navigation" name=" ›› dark_side-navigation_State expanded hover and focus">
+      <failure message="Design deviation ›› dark_side-navigation_State expanded hover and focus (#demo-side-navigation) component"/>
+      <error message="Design deviation ›› dark_side-navigation_State expanded hover and focus (#demo-side-navigation) component"/>
+    </testcase>
+    <testcase classname="viewport" name=" ›› dark_skip-to-content_Type focus">
+      <failure message="Design deviation ›› dark_skip-to-content_Type focus (viewport) component"/>
+      <error message="Design deviation ›› dark_skip-to-content_Type focus (viewport) component"/>
+    </testcase>
+    <testcase classname="viewport" name=" ›› dark_skip-to-content_Type focus and hover">
+      <failure message="Design deviation ›› dark_skip-to-content_Type focus and hover (viewport) component"/>
+      <error message="Design deviation ›› dark_skip-to-content_Type focus and hover (viewport) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_slider_Type Default">
+      <failure message="Design deviation ›› dark_slider_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_slider_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-range" name=" ›› dark_slider_Type Range">
+      <failure message="Design deviation ›› dark_slider_Type Range (#demo-range) component"/>
+      <error message="Design deviation ›› dark_slider_Type Range (#demo-range) component"/>
+    </testcase>
+    <testcase classname="#demo-default-vertical" name=" ›› dark_slider_Type Default Vertical">
+      <failure message="Design deviation ›› dark_slider_Type Default Vertical (#demo-default-vertical) component"/>
+      <error message="Design deviation ›› dark_slider_Type Default Vertical (#demo-default-vertical) component"/>
+    </testcase>
+    <testcase classname="#demo-range-vertical" name=" ›› dark_slider_Type Range Vertical">
+      <failure message="Design deviation ›› dark_slider_Type Range Vertical (#demo-range-vertical) component"/>
+      <error message="Design deviation ›› dark_slider_Type Range Vertical (#demo-range-vertical) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_slider_State hover &amp; focus">
+      <failure message="Design deviation ›› dark_slider_State hover &amp; focus (#demo-default) component"/>
+      <error message="Design deviation ›› dark_slider_State hover &amp; focus (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_stepper_Type default">
+      <failure message="Design deviation ›› dark_stepper_Type default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_stepper_Type default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-long" name=" ›› dark_stepper_Type long">
+      <failure message="Design deviation ›› dark_stepper_Type long (#demo-long) component"/>
+      <error message="Design deviation ›› dark_stepper_Type long (#demo-long) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_stepper_State default hover on complete">
+      <failure message="Design deviation ›› dark_stepper_State default hover on complete (#demo-default) component"/>
+      <error message="Design deviation ›› dark_stepper_State default hover on complete (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-long" name=" ›› dark_stepper_State long focus on complete">
+      <failure message="Design deviation ›› dark_stepper_State long focus on complete (#demo-long) component"/>
+      <error message="Design deviation ›› dark_stepper_State long focus on complete (#demo-long) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_surface_Type default">
+      <failure message="Design deviation ›› dark_surface_Type default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_surface_Type default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-elevations" name=" ›› dark_surface_Type elevations">
+      <failure message="Design deviation ›› dark_surface_Type elevations (#demo-elevations) component"/>
+      <error message="Design deviation ›› dark_surface_Type elevations (#demo-elevations) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_table_Type Default">
+      <failure message="Design deviation ›› dark_table_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_table_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-extras" name=" ›› dark_table_Type Extras">
+      <failure message="Design deviation ›› dark_table_Type Extras (#demo-extras) component"/>
+      <error message="Design deviation ›› dark_table_Type Extras (#demo-extras) component"/>
+    </testcase>
+    <testcase classname="#demo-expandable-rows" name=" ›› dark_table_Type Expandable Rows">
+      <failure message="Design deviation ›› dark_table_Type Expandable Rows (#demo-expandable-rows) component"/>
+      <error message="Design deviation ›› dark_table_Type Expandable Rows (#demo-expandable-rows) component"/>
+    </testcase>
+    <testcase classname="#demo-loading" name=" ›› dark_table_Type Loading">
+      <failure message="Design deviation ›› dark_table_Type Loading (#demo-loading) component"/>
+      <error message="Design deviation ›› dark_table_Type Loading (#demo-loading) component"/>
+    </testcase>
+    <testcase classname="#demo-empty-state" name=" ›› dark_table_Type Empty">
+      <failure message="Design deviation ›› dark_table_Type Empty (#demo-empty-state) component"/>
+      <error message="Design deviation ›› dark_table_Type Empty (#demo-empty-state) component"/>
+    </testcase>
+    <testcase classname="#demo-default .iui-table:nth-child(1)" name=" ›› dark_table_Editable cell">
+      <failure message="Design deviation ›› dark_table_Editable cell (#demo-default .iui-table:nth-child(1)) component"/>
+      <error message="Design deviation ›› dark_table_Editable cell (#demo-default .iui-table:nth-child(1)) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_tabs_Type default">
+      <failure message="Design deviation ›› dark_tabs_Type default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_tabs_Type default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default-vertical" name=" ›› dark_tabs_Type default vertical">
+      <failure message="Design deviation ›› dark_tabs_Type default vertical (#demo-default-vertical) component"/>
+      <error message="Design deviation ›› dark_tabs_Type default vertical (#demo-default-vertical) component"/>
+    </testcase>
+    <testcase classname="#demo-borderless" name=" ›› dark_tabs_Type borderless">
+      <failure message="Design deviation ›› dark_tabs_Type borderless (#demo-borderless) component"/>
+      <error message="Design deviation ›› dark_tabs_Type borderless (#demo-borderless) component"/>
+    </testcase>
+    <testcase classname="#demo-borderless-vertical" name=" ›› dark_tabs_Type borderless vertical">
+      <failure message="Design deviation ›› dark_tabs_Type borderless vertical (#demo-borderless-vertical) component"/>
+      <error message="Design deviation ›› dark_tabs_Type borderless vertical (#demo-borderless-vertical) component"/>
+    </testcase>
+    <testcase classname="#demo-pill" name=" ›› dark_tabs_Type pill">
+      <failure message="Design deviation ›› dark_tabs_Type pill (#demo-pill) component"/>
+      <error message="Design deviation ›› dark_tabs_Type pill (#demo-pill) component"/>
+    </testcase>
+    <testcase classname="#demo-default-2" name=" ›› dark_tabs_State hover &amp; focus in default">
+      <failure message="Design deviation ›› dark_tabs_State hover &amp; focus in default (#demo-default-2) component"/>
+      <error message="Design deviation ›› dark_tabs_State hover &amp; focus in default (#demo-default-2) component"/>
+    </testcase>
+    <testcase classname="#demo-borderless-2" name=" ›› dark_tabs_State hover &amp; focus in borderless">
+      <failure message="Design deviation ›› dark_tabs_State hover &amp; focus in borderless (#demo-borderless-2) component"/>
+      <error message="Design deviation ›› dark_tabs_State hover &amp; focus in borderless (#demo-borderless-2) component"/>
+    </testcase>
+    <testcase classname="#demo-pill-2" name=" ›› dark_tabs_State hover &amp; focus in pill">
+      <failure message="Design deviation ›› dark_tabs_State hover &amp; focus in pill (#demo-pill-2) component"/>
+      <error message="Design deviation ›› dark_tabs_State hover &amp; focus in pill (#demo-pill-2) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_tag_Type Default">
+      <failure message="Design deviation ›› dark_tag_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_tag_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› dark_tag_Type Basic">
+      <failure message="Design deviation ›› dark_tag_Type Basic (#demo-basic) component"/>
+      <error message="Design deviation ›› dark_tag_Type Basic (#demo-basic) component"/>
+    </testcase>
+    <testcase classname="#demo-default-container" name=" ›› dark_tag_Type Container">
+      <failure message="Design deviation ›› dark_tag_Type Container (#demo-default-container) component"/>
+      <error message="Design deviation ›› dark_tag_Type Container (#demo-default-container) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_tag_State hover">
+      <failure message="Design deviation ›› dark_tag_State hover (#demo-default) component"/>
+      <error message="Design deviation ›› dark_tag_State hover (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-basic" name=" ›› dark_tag_State hover basic">
+      <failure message="Design deviation ›› dark_tag_State hover basic (#demo-basic) component"/>
+      <error message="Design deviation ›› dark_tag_State hover basic (#demo-basic) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_textarea_default">
+      <failure message="Design deviation ›› dark_textarea_default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_textarea_default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-inline" name=" ›› dark_textarea_inline">
+      <failure message="Design deviation ›› dark_textarea_inline (#demo-inline) component"/>
+      <error message="Design deviation ›› dark_textarea_inline (#demo-inline) component"/>
+    </testcase>
+    <testcase classname="#demo-everything-turned-on" name=" ›› dark_tile_Type Everything turned on">
+      <failure message="Design deviation ›› dark_tile_Type Everything turned on (#demo-everything-turned-on) component"/>
+      <error message="Design deviation ›› dark_tile_Type Everything turned on (#demo-everything-turned-on) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_tile_Type Default">
+      <failure message="Design deviation ›› dark_tile_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_tile_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-action-states" name=" ›› dark_tile_Type Action States">
+      <failure message="Design deviation ›› dark_tile_Type Action States (#demo-action-states) component"/>
+      <error message="Design deviation ›› dark_tile_Type Action States (#demo-action-states) component"/>
+    </testcase>
+    <testcase classname="#demo-action-states-folders" name=" ›› dark_tile_Type Folder Action States">
+      <failure message="Design deviation ›› dark_tile_Type Folder Action States (#demo-action-states-folders) component"/>
+      <error message="Design deviation ›› dark_tile_Type Folder Action States (#demo-action-states-folders) component"/>
+    </testcase>
+    <testcase classname="#demo-user" name=" ›› dark_tile_Type User">
+      <failure message="Design deviation ›› dark_tile_Type User (#demo-user) component"/>
+      <error message="Design deviation ›› dark_tile_Type User (#demo-user) component"/>
+    </testcase>
+    <testcase classname="#demo-video" name=" ›› dark_tile_Type Video">
+      <failure message="Design deviation ›› dark_tile_Type Video (#demo-video) component"/>
+      <error message="Design deviation ›› dark_tile_Type Video (#demo-video) component"/>
+    </testcase>
+    <testcase classname="#demo-folder" name=" ›› dark_tile_Type Folder">
+      <failure message="Design deviation ›› dark_tile_Type Folder (#demo-folder) component"/>
+      <error message="Design deviation ›› dark_tile_Type Folder (#demo-folder) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_tile_State hover">
+      <failure message="Design deviation ›› dark_tile_State hover (#demo-default) component"/>
+      <error message="Design deviation ›› dark_tile_State hover (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_tile_State hover with thumbnail">
+      <failure message="Design deviation ›› dark_tile_State hover with thumbnail (#demo-default) component"/>
+      <error message="Design deviation ›› dark_tile_State hover with thumbnail (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› dark_tile_State Type Indicator hover">
+      <failure message="Design deviation ›› dark_tile_State Type Indicator hover (#test-tile-1) component"/>
+      <error message="Design deviation ›› dark_tile_State Type Indicator hover (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› dark_tile_State Type Indicator hover with thumbnail">
+      <failure message="Design deviation ›› dark_tile_State Type Indicator hover with thumbnail (#test-tile-2) component"/>
+      <error message="Design deviation ›› dark_tile_State Type Indicator hover with thumbnail (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› dark_tile_State Quick Action hover">
+      <failure message="Design deviation ›› dark_tile_State Quick Action hover (#test-tile-1) component"/>
+      <error message="Design deviation ›› dark_tile_State Quick Action hover (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› dark_tile_State Quick Action hover with thumbnail">
+      <failure message="Design deviation ›› dark_tile_State Quick Action hover with thumbnail (#test-tile-2) component"/>
+      <error message="Design deviation ›› dark_tile_State Quick Action hover with thumbnail (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› dark_tile_State More Options hover">
+      <failure message="Design deviation ›› dark_tile_State More Options hover (#test-tile-1) component"/>
+      <error message="Design deviation ›› dark_tile_State More Options hover (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› dark_tile_State Double Button hover">
+      <failure message="Design deviation ›› dark_tile_State Double Button hover (#test-tile-1) component"/>
+      <error message="Design deviation ›› dark_tile_State Double Button hover (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› dark_tile_State Single Button hover">
+      <failure message="Design deviation ›› dark_tile_State Single Button hover (#test-tile-2) component"/>
+      <error message="Design deviation ›› dark_tile_State Single Button hover (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-4" name=" ›› dark_tile_State focus">
+      <failure message="Design deviation ›› dark_tile_State focus (#test-tile-4) component"/>
+      <error message="Design deviation ›› dark_tile_State focus (#test-tile-4) component"/>
+    </testcase>
+    <testcase classname="#test-tile-5" name=" ›› dark_tile_State focus with thumbnail">
+      <failure message="Design deviation ›› dark_tile_State focus with thumbnail (#test-tile-5) component"/>
+      <error message="Design deviation ›› dark_tile_State focus with thumbnail (#test-tile-5) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› dark_tile_State Type Indicator focus">
+      <failure message="Design deviation ›› dark_tile_State Type Indicator focus (#test-tile-1) component"/>
+      <error message="Design deviation ›› dark_tile_State Type Indicator focus (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› dark_tile_State Type Indicator focus with thumbnail">
+      <failure message="Design deviation ›› dark_tile_State Type Indicator focus with thumbnail (#test-tile-2) component"/>
+      <error message="Design deviation ›› dark_tile_State Type Indicator focus with thumbnail (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› dark_tile_State Quick Action focus">
+      <failure message="Design deviation ›› dark_tile_State Quick Action focus (#test-tile-1) component"/>
+      <error message="Design deviation ›› dark_tile_State Quick Action focus (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› dark_tile_State Quick Action focus with thumbnail">
+      <failure message="Design deviation ›› dark_tile_State Quick Action focus with thumbnail (#test-tile-2) component"/>
+      <error message="Design deviation ›› dark_tile_State Quick Action focus with thumbnail (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#test-tile-3" name=" ›› dark_tile_State Play Icon focus with thumbnail">
+      <failure message="Design deviation ›› dark_tile_State Play Icon focus with thumbnail (#test-tile-3) component"/>
+      <error message="Design deviation ›› dark_tile_State Play Icon focus with thumbnail (#test-tile-3) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› dark_tile_State More Options focus">
+      <failure message="Design deviation ›› dark_tile_State More Options focus (#test-tile-1) component"/>
+      <error message="Design deviation ›› dark_tile_State More Options focus (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-1" name=" ›› dark_tile_State Double Button focus">
+      <failure message="Design deviation ›› dark_tile_State Double Button focus (#test-tile-1) component"/>
+      <error message="Design deviation ›› dark_tile_State Double Button focus (#test-tile-1) component"/>
+    </testcase>
+    <testcase classname="#test-tile-2" name=" ›› dark_tile_State Single Button focus">
+      <failure message="Design deviation ›› dark_tile_State Single Button focus (#test-tile-2) component"/>
+      <error message="Design deviation ›› dark_tile_State Single Button focus (#test-tile-2) component"/>
+    </testcase>
+    <testcase classname="#demo-time" name=" ›› dark_time-picker_Type Time">
+      <failure message="Design deviation ›› dark_time-picker_Type Time (#demo-time) component"/>
+      <error message="Design deviation ›› dark_time-picker_Type Time (#demo-time) component"/>
+    </testcase>
+    <testcase classname="#demo-time-minutes" name=" ›› dark_time-picker_Type Time with minutes">
+      <failure message="Design deviation ›› dark_time-picker_Type Time with minutes (#demo-time-minutes) component"/>
+      <error message="Design deviation ›› dark_time-picker_Type Time with minutes (#demo-time-minutes) component"/>
+    </testcase>
+    <testcase classname=".iui-toast-wrapper" name=" ›› dark_toast_Type All">
+      <failure message="Design deviation ›› dark_toast_Type All (.iui-toast-wrapper) component"/>
+      <error message="Design deviation ›› dark_toast_Type All (.iui-toast-wrapper) component"/>
+    </testcase>
+    <testcase classname="#demo-informational" name=" ›› dark_toast_State hover link in informational">
+      <failure message="Design deviation ›› dark_toast_State hover link in informational (#demo-informational) component"/>
+      <error message="Design deviation ›› dark_toast_State hover link in informational (#demo-informational) component"/>
+    </testcase>
+    <testcase classname="#demo-positive" name=" ›› dark_toast_State hover link in positive">
+      <failure message="Design deviation ›› dark_toast_State hover link in positive (#demo-positive) component"/>
+      <error message="Design deviation ›› dark_toast_State hover link in positive (#demo-positive) component"/>
+    </testcase>
+    <testcase classname="#demo-negative" name=" ›› dark_toast_State hover link in negative">
+      <failure message="Design deviation ›› dark_toast_State hover link in negative (#demo-negative) component"/>
+      <error message="Design deviation ›› dark_toast_State hover link in negative (#demo-negative) component"/>
+    </testcase>
+    <testcase classname="#demo-warning" name=" ›› dark_toast_State hover link in warning">
+      <failure message="Design deviation ›› dark_toast_State hover link in warning (#demo-warning) component"/>
+      <error message="Design deviation ›› dark_toast_State hover link in warning (#demo-warning) component"/>
+    </testcase>
+    <testcase classname="#demo-informational" name=" ›› dark_toast_State focus link in informational">
+      <failure message="Design deviation ›› dark_toast_State focus link in informational (#demo-informational) component"/>
+      <error message="Design deviation ›› dark_toast_State focus link in informational (#demo-informational) component"/>
+    </testcase>
+    <testcase classname="#demo-positive" name=" ›› dark_toast_State focus link in positive">
+      <failure message="Design deviation ›› dark_toast_State focus link in positive (#demo-positive) component"/>
+      <error message="Design deviation ›› dark_toast_State focus link in positive (#demo-positive) component"/>
+    </testcase>
+    <testcase classname="#demo-negative" name=" ›› dark_toast_State focus link in negative">
+      <failure message="Design deviation ›› dark_toast_State focus link in negative (#demo-negative) component"/>
+      <error message="Design deviation ›› dark_toast_State focus link in negative (#demo-negative) component"/>
+    </testcase>
+    <testcase classname="#demo-warning" name=" ›› dark_toast_State focus link in warning">
+      <failure message="Design deviation ›› dark_toast_State focus link in warning (#demo-warning) component"/>
+      <error message="Design deviation ›› dark_toast_State focus link in warning (#demo-warning) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› dark_toast_Top start placement">
+      <failure message="Design deviation ›› dark_toast_Top start placement (#toast-test) component"/>
+      <error message="Design deviation ›› dark_toast_Top start placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› dark_toast_Top placement">
+      <failure message="Design deviation ›› dark_toast_Top placement (#toast-test) component"/>
+      <error message="Design deviation ›› dark_toast_Top placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› dark_toast_Top end placement">
+      <failure message="Design deviation ›› dark_toast_Top end placement (#toast-test) component"/>
+      <error message="Design deviation ›› dark_toast_Top end placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› dark_toast_Bottom start placement">
+      <failure message="Design deviation ›› dark_toast_Bottom start placement (#toast-test) component"/>
+      <error message="Design deviation ›› dark_toast_Bottom start placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› dark_toast_Bottom placement">
+      <failure message="Design deviation ›› dark_toast_Bottom placement (#toast-test) component"/>
+      <error message="Design deviation ›› dark_toast_Bottom placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#toast-test" name=" ›› dark_toast_Bottom end placement">
+      <failure message="Design deviation ›› dark_toast_Bottom end placement (#toast-test) component"/>
+      <error message="Design deviation ›› dark_toast_Bottom end placement (#toast-test) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_toggle-switch_Type Default">
+      <failure message="Design deviation ›› dark_toggle-switch_Type Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_toggle-switch_Type Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-toggle-right" name=" ›› dark_toggle-switch_Type label left">
+      <failure message="Design deviation ›› dark_toggle-switch_Type label left (#demo-toggle-right) component"/>
+      <error message="Design deviation ›› dark_toggle-switch_Type label left (#demo-toggle-right) component"/>
+    </testcase>
+    <testcase classname="#demo-toggle-left" name=" ›› dark_toggle-switch_Type label right">
+      <failure message="Design deviation ›› dark_toggle-switch_Type label right (#demo-toggle-left) component"/>
+      <error message="Design deviation ›› dark_toggle-switch_Type label right (#demo-toggle-left) component"/>
+    </testcase>
+    <testcase classname="#demo-toggle-no-label" name=" ›› dark_toggle-switch_Type label none">
+      <failure message="Design deviation ›› dark_toggle-switch_Type label none (#demo-toggle-no-label) component"/>
+      <error message="Design deviation ›› dark_toggle-switch_Type label none (#demo-toggle-no-label) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_toggle-switch_State hover checked &amp; focus unchecked">
+      <failure message="Design deviation ›› dark_toggle-switch_State hover checked &amp; focus unchecked (#demo-default) component"/>
+      <error message="Design deviation ›› dark_toggle-switch_State hover checked &amp; focus unchecked (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_toggle-switch_State focus checked &amp; hover unchecked">
+      <failure message="Design deviation ›› dark_toggle-switch_State focus checked &amp; hover unchecked (#demo-default) component"/>
+      <error message="Design deviation ›› dark_toggle-switch_State focus checked &amp; hover unchecked (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-tooltip" name=" ›› dark_tooltip_Type All">
+      <failure message="Design deviation ›› dark_tooltip_Type All (#demo-tooltip) component"/>
+      <error message="Design deviation ›› dark_tooltip_Type All (#demo-tooltip) component"/>
+    </testcase>
+    <testcase classname="#demo-default" name=" ›› dark_tree_Default">
+      <failure message="Design deviation ›› dark_tree_Default (#demo-default) component"/>
+      <error message="Design deviation ›› dark_tree_Default (#demo-default) component"/>
+    </testcase>
+    <testcase classname="#demo-captions" name=" ›› dark_tree_With Captions">
+      <failure message="Design deviation ›› dark_tree_With Captions (#demo-captions) component"/>
+      <error message="Design deviation ›› dark_tree_With Captions (#demo-captions) component"/>
+    </testcase>
+    <testcase classname="#demo-checkbox" name=" ›› dark_tree_With Checkbox">
+      <failure message="Design deviation ›› dark_tree_With Checkbox (#demo-checkbox) component"/>
+      <error message="Design deviation ›› dark_tree_With Checkbox (#demo-checkbox) component"/>
+    </testcase>
+    <testcase classname="#demo-disabled" name=" ›› dark_tree_Disabled">
+      <failure message="Design deviation ›› dark_tree_Disabled (#demo-disabled) component"/>
+      <error message="Design deviation ›› dark_tree_Disabled (#demo-disabled) component"/>
+    </testcase>
+    <testcase classname="#demo-icons" name=" ›› dark_tree_With Icons">
+      <failure message="Design deviation ›› dark_tree_With Icons (#demo-icons) component"/>
+      <error message="Design deviation ›› dark_tree_With Icons (#demo-icons) component"/>
+    </testcase>
+    <testcase classname="#demo-captions" name=" ›› dark_tree_State hover tree node">
+      <failure message="Design deviation ›› dark_tree_State hover tree node (#demo-captions) component"/>
+      <error message="Design deviation ›› dark_tree_State hover tree node (#demo-captions) component"/>
+    </testcase>
+    <testcase classname="#demo-captions" name=" ›› dark_tree_State focus tree node">
+      <failure message="Design deviation ›› dark_tree_State focus tree node (#demo-captions) component"/>
+      <error message="Design deviation ›› dark_tree_State focus tree node (#demo-captions) component"/>
+    </testcase>
+    <testcase classname="#demo-typography" name=" ›› dark_typography_Type all">
+      <failure message="Design deviation ›› dark_typography_Type all (#demo-typography) component"/>
+      <error message="Design deviation ›› dark_typography_Type all (#demo-typography) component"/>
+    </testcase>
+    <testcase classname="#demo-typography" name=" ›› dark_typography_Type skeleton text">
+      <failure message="Design deviation ›› dark_typography_Type skeleton text (#demo-typography) component"/>
+      <error message="Design deviation ›› dark_typography_Type skeleton text (#demo-typography) component"/>
+    </testcase>
+    <testcase classname="#demo-workflow" name=" ›› dark_workflow-diagram_Type workflow">
+      <failure message="Design deviation ›› dark_workflow-diagram_Type workflow (#demo-workflow) component"/>
+      <error message="Design deviation ›› dark_workflow-diagram_Type workflow (#demo-workflow) component"/>
+    </testcase>
+  </testsuite>
+</testsuites>
