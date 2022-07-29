@@ -4,14 +4,7 @@
 
 .iui-table {
   @include iui-table;
-
-  &.iui-condensed {
-    @include iui-table-condensed;
-  }
-
-  &.iui-extra-condensed {
-    @include iui-table-extra-condensed;
-  }
+  @include iui-table-sizes;
 }
 
 .iui-table-header-wrapper {
@@ -22,6 +15,10 @@
   @include iui-table-header;
 }
 
+.iui-table-row {
+  @include iui-table-row;
+}
+
 .iui-table-header-actions-container {
   @include iui-table-header-actions-container;
 }
@@ -30,34 +27,38 @@
   @include iui-table-body;
 }
 
-.iui-cell {
+.iui-table-cell {
   @include iui-table-cell;
 }
 
-.iui-cell-shadow-left {
-  @include iui-table-cell-shadow-left;
+.iui-table-cell-shadow-left {
+  @include iui-table-cell-shadow(left);
 }
 
-.iui-cell-shadow-right {
-  @include iui-table-cell-shadow-right;
+.iui-table-cell-shadow-right {
+  @include iui-table-cell-shadow(right);
 }
 
-.iui-paginator {
-  @include iui-paginator;
+.iui-table-paginator {
+  @include iui-table-paginator;
 }
 
-.iui-paginator-ellipsis {
-  @include iui-paginator-ellipsis;
+.iui-table-paginator-page-size-label {
+  @include iui-table-paginator-page-size-label;
 }
 
-.iui-paginator-pages-group {
-  @include iui-paginator-pages-group;
+.iui-table-paginator-ellipsis {
+  @include iui-table-paginator-ellipsis;
 }
 
-.iui-paginator-page-button {
-  @include iui-paginator-page-button;
+.iui-table-paginator-pages-group {
+  @include iui-table-paginator-pages-group;
 }
 
-.iui-column-filter {
-  @include iui-column-filter;
+.iui-table-paginator-page-button {
+  @include iui-table-paginator-page-button;
+}
+
+.iui-table-column-filter {
+  @include iui-table-column-filter;
 }

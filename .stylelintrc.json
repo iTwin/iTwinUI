@@ -12,7 +12,7 @@
     },
     "no-eol-whitespace": true,
     "function-parentheses-space-inside": "never-single-line",
-    "max-nesting-depth": 5,
+    "max-nesting-depth": 4,
     "order/order": null,
     "order/properties-alphabetical-order": null,
     "selector-class-pattern": [
@@ -24,7 +24,7 @@
     ],
     "selector-combinator-space-after": "always",
     "selector-combinator-space-before": "always",
-    "selector-max-compound-selectors": 5,
+    "selector-max-compound-selectors": 4,
     "selector-max-id": 1,
     "selector-no-qualifying-type": null,
     "scss/dollar-variable-pattern": null

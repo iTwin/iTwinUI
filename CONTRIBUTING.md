@@ -65,7 +65,6 @@ We provide a script that can automatically create all the necessary files for yo
 - Add all your component styles in `src/[component-name]/[component-name].scss` file.
   - Break variables and mixins into separate files where possible.
   - Use existing Sass variables for spacing (margin, padding, sizing, etc).
-  - Use [`themed`](https://github.com/iTwin/iTwinUI/blob/main/src/style/theme.scss#L430) mixin wherever color is involved.
 - Define classes for your mixin in `src/[component-name]/classes.scss` file.
   - _Running the `createComponent` command will do this for you._
 - Make sure your component index and classes are imported in `src/index.scss` and `src/classes.scss`.

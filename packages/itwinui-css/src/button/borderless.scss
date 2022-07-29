@@ -2,47 +2,35 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import './button';
-@import './disabled';
-@import './button-icon';
 
 @mixin iui-button-borderless {
-  border-color: transparent;
-  background-color: transparent;
-
-  > .iui-button-icon:only-child {
-    margin-left: $iui-component-offset;
-    margin-right: $iui-component-offset;
-  }
+  --_iui-button-text-color: var(--iui-text-color);
+  --_iui-button-background-color: transparent;
+  --_iui-button-border-color: transparent;
+  --_iui-button-icon-margin-x: #{$iui-component-offset};
   @include iui-button-size(medium, borderless);
 
-  &:hover {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-      border-color: transparent;
-    }
+  &:where(:hover, :active) {
+    --_iui-button-text-color: var(--iui-color-foreground-body);
+    --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
   }
 
-  &.iui-active {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      color: t(iui-color-foreground-primary);
-    }
-    border-color: transparent;
+  &:where(:focus) {
+    outline-offset: -1px;
+    outline-width: 1px;
   }
 
-  &[disabled],
-  &:disabled {
-    @include iui-button-disabled;
+  &:where([disabled], :disabled, [aria-disabled='true']) {
+    --_iui-button-text-color: var(--iui-text-color-placeholder);
+    --_iui-button-background-color: transparent;
+    --_iui-button-border-color: transparent;
+  }
+}
 
-    @include themed {
-      background-color: transparent;
-      border-color: transparent;
-    }
+@mixin iui-button-borderless-active {
+  --_iui-button-background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
 
-    &.iui-active {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-body-rgb), 0.05);
-      }
-    }
+  &:where([disabled], :disabled, [aria-disabled='true']) {
+    --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
   }
 }

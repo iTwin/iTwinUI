@@ -4,8 +4,76 @@
 
 .iui-page-header {
   @include iui-page-header;
+
+  &[data-iui-size='slim'] {
+    @include iui-page-header-slim;
+  }
 }
 
-.iui-header-logo {
-  @include iui-header-logo;
+.iui-page-header-left,
+.iui-page-header-center,
+.iui-page-header-right {
+  @include iui-page-header-zone;
+}
+
+.iui-page-header-right {
+  @include iui-page-header-right;
+}
+
+.iui-page-header-divider {
+  @include iui-page-header-divider;
+}
+
+.iui-header-breadcrumbs {
+  @include iui-page-header-breadcrumbs;
+}
+
+.iui-header-brand {
+  @include iui-header-brand;
+}
+
+.iui-header-brand-icon {
+  @include iui-header-brand-icon;
+}
+
+.iui-header-brand-label {
+  @include iui-header-brand-label;
+}
+
+.iui-header-breadcrumbs-list {
+  @include iui-breadcrumbs-list;
+}
+
+.iui-page-header-left,
+.iui-header-breadcrumbs,
+.iui-header-breadcrumbs-list {
+  @include iui-page-header-left;
+}
+
+.iui-header-breadcrumb-button {
+  @include iui-header-breadcrumb-button;
+}
+
+.iui-header-breadcrumb-button-split {
+  @include iui-header-breadcrumb-button-split;
+}
+
+.iui-header-breadcrumb-item {
+  @include iui-header-breadcrumb-item;
+}
+
+.iui-header-breadcrumb-button-wrapper {
+  @include iui-header-breadcrumb-button-wrapper;
+}
+
+.iui-header-breadcrumb-button-icon {
+  @include iui-header-breadcrumb-button-icon;
+}
+
+.iui-header-breadcrumb-button-dropdown-icon {
+  @include iui-header-breadcrumb-button-dropdown-icon;
+}
+
+.iui-header-breadcrumb-button-text {
+  @include iui-header-breadcrumb-button-text;
 }

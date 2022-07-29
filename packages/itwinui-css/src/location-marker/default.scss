@@ -13,9 +13,7 @@
     filter: drop-shadow($iui-elevation-2);
 
     > .iui-location-marker-default-pin-dot {
-      @include themed {
-        fill: t(iui-color-foreground-accessory);
-      }
+      fill: var(--iui-color-foreground-accessory);
     }
   }
 }

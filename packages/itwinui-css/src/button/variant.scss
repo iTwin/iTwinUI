@@ -1,0 +1,44 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+
+/// @arg $variant Can be one of: cta, high-visibility
+@mixin iui-button-variant($variant) {
+  @if $variant == cta {
+    --_iui-button-background-color: var(--iui-color-background-positive);
+
+    &:hover,
+    &:active {
+      --_iui-button-background-color: var(--iui-color-background-positive-overlay);
+    }
+  }
+
+  @if $variant == high-visibility {
+    --_iui-button-background-color: var(--iui-color-background-primary);
+
+    &:hover,
+    &:active {
+      --_iui-button-background-color: var(--iui-color-background-primary-overlay);
+    }
+  }
+
+  --_iui-button-text-color: var(--iui-color-foreground-accessory);
+  --_iui-button-border-color: var(--_iui-button-background-color);
+
+  &:focus {
+    outline-color: var(--iui-color-foreground-accessory);
+    outline-offset: -3px;
+    outline-width: 1px;
+  }
+
+  &[disabled],
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_iui-button-background-color: var(--iui-color-background-disabled);
+    --_iui-button-text-color: var(--iui-text-color-placeholder);
+
+    outline-offset: -1px;
+    outline-width: 1px;
+    outline-color: var(--iui-color-foreground-primary);
+  }
+}

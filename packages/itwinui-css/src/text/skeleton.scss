@@ -8,17 +8,14 @@
   color: transparent;
   border-radius: $iui-border-radius;
   cursor: progress;
-
-  @include themed {
-    background: linear-gradient(
-      292deg,
-      t(iui-text-color-muted),
-      t(iui-text-color-muted),
-      t(iui-text-color-placeholder),
-      t(iui-text-color-muted),
-      t(iui-text-color-muted)
-    );
-  }
+  background: linear-gradient(
+    292deg,
+    var(--iui-text-color-muted),
+    var(--iui-text-color-muted),
+    var(--iui-text-color-placeholder),
+    var(--iui-text-color-muted),
+    var(--iui-text-color-muted)
+  );
   background-size: 200% 100%;
 
   @media (forced-colors: active) {

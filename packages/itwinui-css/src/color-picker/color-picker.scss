@@ -3,6 +3,7 @@
 @import '../style/index';
 @import '../surface/index';
 @import '../button/borderless';
+@import '../utils/index';
 
 $iui-color-picker-content-width: ($iui-l * 9) + ($iui-s * 8); // (9 swatches per row) + (gaps)
 $iui-color-picker-max-width: ($iui-l * 10) + ($iui-s * 9); // (10 swatches per row) + (gaps)
@@ -15,7 +16,6 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   --iui-color-picker-selected-color: initial;
 
   @include iui-surface;
-  box-sizing: border-box;
   border-radius: $iui-border-radius;
   display: inline-flex;
   padding: $iui-baseline $iui-sm;
@@ -26,16 +26,7 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   @supports (overflow-y: overlay) {
     overflow-y: overlay;
   }
-  @supports (row-gap: $iui-baseline) {
-    row-gap: $iui-baseline;
-  }
-
-  > div:not(:last-child) {
-    margin-bottom: $iui-baseline;
-    @supports (row-gap: $iui-baseline) {
-      margin-bottom: 0;
-    }
-  }
+  row-gap: $iui-baseline;
 }
 
 @mixin iui-color-swatch {
@@ -45,16 +36,10 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   width: $iui-l;
   cursor: pointer;
   border-radius: $iui-color-swatch-border-radius;
-  margin-bottom: $iui-xs;
-  margin-right: $iui-xs;
   position: relative;
   background-color: var(--iui-color-swatch-background);
   forced-color-adjust: none;
   @include iui-transparent-background;
-  @supports (gap: $iui-s) {
-    margin-bottom: 0;
-    margin-right: 0;
-  }
 
   &::after {
     content: '';
@@ -90,14 +75,11 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   align-content: flex-start;
   min-height: $iui-l;
   min-width: $iui-l;
-  @supports (gap: $iui-s) {
-    gap: $iui-s;
-  }
+  gap: $iui-s;
 
-  button.iui-button.iui-borderless {
-    height: $iui-l;
-    width: $iui-l;
-    padding: 0;
+  button[data-iui-variant='borderless'] {
+    --_iui-button-height: #{$iui-l};
+    --_iui-button-padding-inline: 0;
   }
 
   &-wrapper {
@@ -128,13 +110,6 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
 
     > * {
       flex-grow: 1;
-    }
-
-    > *:not(:last-child) {
-      margin-right: $iui-xxs;
-      @supports (gap: $iui-xxs) {
-        margin-right: 0;
-      }
     }
 
     input {
@@ -172,13 +147,13 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
   position: relative;
   cursor: crosshair;
   width: 100%;
-  height: $iui-baseline * 19;
+  height: $iui-baseline * 18;
   forced-color-adjust: none;
   background-image: linear-gradient(0deg, rgb(0, 0, 0), transparent),
     linear-gradient(90deg, rgb(255, 255, 255), var(--iui-color-field-hue));
 
   &:not(:last-child) {
-    margin-bottom: round($iui-baseline * 0.5);
+    margin-bottom: ($iui-baseline * 0.5);
   }
 }
 
@@ -187,18 +162,16 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
     .iui-slider-rail {
       height: $iui-s;
       forced-color-adjust: none;
-      @include themed {
-        background: linear-gradient(
-          to right,
-          $iui-color-system-red 0%,
-          $iui-color-system-yellow 17%,
-          rgb(0, 255, 0) 33%,
-          rgb(0, 255, 255) 50%,
-          $iui-color-system-blue 67%,
-          $iui-color-system-magenta 83%,
-          $iui-color-system-red 100%
-        );
-      }
+      background: linear-gradient(
+        to right,
+        $iui-color-system-red 0%,
+        $iui-color-system-yellow 17%,
+        rgb(0, 255, 0) 33%,
+        rgb(0, 255, 255) 50%,
+        $iui-color-system-blue 67%,
+        $iui-color-system-magenta 83%,
+        $iui-color-system-red 100%
+      );
     }
 
     .iui-slider-thumb {
@@ -253,22 +226,20 @@ $iui-hover-box-shadow: 0 0 1px $iui-xxs + 1 rgba(var(--iui-color-foreground-body
 @mixin iui-transparent-background($size: $iui-m) {
   background-position: 0 0, ($size * 0.5) ($size * 0.5);
   background-size: $size $size;
-  @include themed {
-    background-image: repeating-linear-gradient(
-      45deg,
-      t(iui-color-background-3) 25%,
-      transparent 25%,
-      transparent 75%,
-      t(iui-color-background-3) 75%,
-      t(iui-color-background-3)
-    ),
-      repeating-linear-gradient(
-      45deg,
-      t(iui-color-background-3) 25%,
-      t(iui-color-background-5) 25%,
-      t(iui-color-background-5) 75%,
-      t(iui-color-background-3) 75%,
-      t(iui-color-background-3)
-    );
-  }
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--iui-color-background-3) 25%,
+    transparent 25%,
+    transparent 75%,
+    var(--iui-color-background-3) 75%,
+    var(--iui-color-background-3)
+  ),
+    repeating-linear-gradient(
+    45deg,
+    var(--iui-color-background-3) 25%,
+    var(--iui-color-background-5) 25%,
+    var(--iui-color-background-5) 75%,
+    var(--iui-color-background-3) 75%,
+    var(--iui-color-background-3)
+  );
 }

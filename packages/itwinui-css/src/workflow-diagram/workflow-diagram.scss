@@ -1,0 +1,64 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../stepper/index';
+
+@mixin iui-workflow-diagram {
+  @include iui-stepper-list;
+  align-items: center;
+}
+
+@mixin iui-workflow-diagram-step {
+  --_iui-workflow-diagram-circle-background-color: var(--iui-color-background-positive);
+  --_iui-workflow-diagram-circle-border-color: var(--iui-color-background-positive);
+  --_iui-workflow-diagram-circle-border-radius: 0;
+  --_iui-workflow-diagram-circle-text-color: var(--iui-color-foreground-accessory);
+  --_iui-workflow-diagram-track-before-color: var(--iui-color-foreground-positive);
+  --_iui-workflow-diagram-track-after-color: var(--iui-color-foreground-positive);
+
+  flex: 1;
+  align-items: center;
+  display: flex;
+  @include iui-text(small);
+  color: var(--_iui-workflow-diagram-circle-text-color);
+
+  &:first-of-type,
+  &:last-of-type {
+    --_iui-workflow-diagram-circle-background-color: var(--iui-color-background-1);
+    --_iui-workflow-diagram-circle-border-color: var(--iui-color-foreground-positive);
+    --_iui-workflow-diagram-circle-border-radius: #{$iui-sm};
+    --_iui-workflow-diagram-circle-text-color: var(--iui-color-foreground-positive);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    height: $iui-xxs;
+    flex: 1 2 auto;
+  }
+
+  &::before {
+    background-color: var(--_iui-workflow-diagram-track-before-color);
+  }
+
+  &::after {
+    background-color: var(--_iui-workflow-diagram-track-after-color);
+  }
+
+  &:first-of-type {
+    --_iui-workflow-diagram-track-before-color: transparent;
+  }
+
+  &:last-of-type {
+    --_iui-workflow-diagram-track-after-color: transparent;
+  }
+}
+
+@mixin iui-workflow-diagram-content {
+  padding: 0 $iui-m;
+  font-weight: $iui-font-weight-normal;
+  text-align: center;
+  background-color: var(--_iui-workflow-diagram-circle-background-color);
+  border: 1px solid var(--_iui-workflow-diagram-circle-border-color);
+  border-radius: var(--_iui-workflow-diagram-circle-border-radius);
+}

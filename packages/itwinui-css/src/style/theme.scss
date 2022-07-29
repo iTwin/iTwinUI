@@ -415,20 +415,6 @@ $cssVariables: (
   iui-icons-color-actionable-disabled: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-5)),
 );
 
-@function getfallbackvars() {
-  $theme: map-get($themes, light);
-
-  @each $var, $value in $theme {
-    @if (type-of($value) == color) {
-      $theme: map-merge($theme, (#{$var}-rgb: $value));
-    }
-  }
-
-  @return $theme;
-}
-
-$fallbackvars: getfallbackvars();
-
 @function hextorgb($hex) {
   @return red($hex), green($hex), blue($hex);
 }
@@ -454,29 +440,4 @@ $fallbackvars: getfallbackvars();
       --#{$key}: #{$value};
     }
   }
-}
-
-$fallback: null;
-
-//  Adds a CSS variable with a fallback value.
-//
-//  Usage example:
-//  @include themed {
-//    color: rgba(t(iui-color-background-1-rgb), t(iui-opacity-4));
-//    background-color: t(iui-color-background-2);
-//  }
-@mixin themed($property: null, $var: null) {
-  $fallback: true !global;
-  @content;
-  $fallback: false !global;
-  @content;
-}
-
-// Returns a CSS variable or a fallback value. Can only be used in a `themed` mixin content.
-@function t($var) {
-  @if ($fallback) {
-    @return map-get($fallbackvars, $var);
-  }
-
-  @return var(--#{unquote($var)});
 }

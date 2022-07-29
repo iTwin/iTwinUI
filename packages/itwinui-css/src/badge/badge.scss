@@ -1,12 +1,14 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../utils/index';
 
 $iui-badge-background-default: $iui-color-background-5--light;
 $iui-badge-background-positive: $iui-color-foreground-positive--dark;
 $iui-badge-background-negative: $iui-color-foreground-negative--dark;
 $iui-badge-background-warning: $iui-color-foreground-warning--dark;
 $iui-badge-background-primary: $iui-color-foreground-primary--dark;
+$iui-badge-horizontal-padding: $iui-xs * 1.5;
 
 $iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-3--light);
 
@@ -17,14 +19,14 @@ $iui-badge-text-color: rgba($iui-color-foreground-body--light, $iui-opacity-3--l
   @include iui-reset;
   display: inline-block;
   font-size: $iui-font-size-small;
-  padding: 0 $iui-xs * 1.5;
-  margin: round($iui-baseline * 0.5) 0;
+  padding: 0 $iui-badge-horizontal-padding;
+  margin: ($iui-baseline * 0.5) 0;
   border-radius: $iui-border-radius;
   background-color: var(--iui-badge-background-color);
   color: var(--_iui-badge-text-color);
   text-transform: uppercase;
   user-select: none;
-  max-width: 20ch;
+  max-width: calc(20ch + $iui-badge-horizontal-padding * 2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

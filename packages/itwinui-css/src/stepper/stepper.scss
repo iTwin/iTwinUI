@@ -1,0 +1,151 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../utils/index';
+@import '../text/mixins';
+
+@mixin iui-stepper {
+  display: flex;
+  flex-direction: column;
+  row-gap: $iui-baseline * 0.5;
+
+  > ol {
+    @include iui-stepper-list;
+  }
+}
+
+@mixin iui-stepper-list {
+  @include iui-reset;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+}
+
+@mixin iui-stepper-step {
+  --_iui-stepper-step-background-color: var(--iui-color-background-1);
+  --_iui-stepper-step-border-color: var(--iui-color-foreground-positive);
+  --_iui-stepper-step-number-color: var(--iui-color-foreground-positive);
+  --_iui-stepper-step-text-color: var(--iui-color-foreground-positive);
+  --_iui-stepper-step-track-before-color: var(--iui-color-foreground-positive);
+  --_iui-stepper-step-track-after-color: var(--iui-color-foreground-positive);
+
+  flex: 1;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  @include iui-text(small);
+  color: var(--_iui-stepper-step-text-color);
+
+  &:first-of-type {
+    --_iui-stepper-step-track-before-color: transparent;
+  }
+
+  &:last-of-type {
+    --_iui-stepper-step-track-after-color: transparent;
+  }
+}
+
+@mixin iui-stepper-step-modifiers {
+  // Current step
+  &.iui-current {
+    --_iui-stepper-step-background-color: var(--iui-color-background-positive);
+    --_iui-stepper-step-border-color: var(--iui-color-background-positive);
+    --_iui-stepper-step-number-color: var(--iui-color-foreground-accessory);
+    --_iui-stepper-step-track-after-color: var(--iui-color-background-border);
+
+    font-weight: $iui-font-weight-semibold;
+  }
+
+  // Future steps
+  &.iui-current ~ & {
+    --_iui-stepper-step-background-color: var(--iui-color-background-1);
+    --_iui-stepper-step-border-color: var(--iui-color-background-border);
+    --_iui-stepper-step-number-color: var(--iui-text-color-muted);
+    --_iui-stepper-step-text-color: var(--iui-text-color-muted);
+    --_iui-stepper-step-track-before-color: var(--iui-color-background-border);
+
+    &:not(:last-of-type) {
+      --_iui-stepper-step-track-after-color: var(--iui-color-background-border);
+    }
+  }
+
+  // Clickable steps
+  &.iui-clickable:focus {
+    outline: 0;
+  }
+}
+
+@mixin iui-stepper-circle {
+  align-items: center;
+  border-radius: $iui-border-radius-round;
+  display: flex;
+  width: $iui-l;
+  height: $iui-l;
+  justify-content: center;
+  overflow-wrap: break-word;
+  user-select: none;
+  border: 1px solid var(--_iui-stepper-step-border-color);
+  background-color: var(--_iui-stepper-step-background-color);
+  color: var(--_iui-stepper-step-number-color);
+
+  @at-root .iui-clickable & {
+    cursor: pointer;
+    transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out,
+      color $iui-speed-fast ease-out;
+
+    &:hover {
+      --_iui-stepper-step-background-color: var(--iui-color-background-positive);
+      --_iui-stepper-step-border-color: var(--iui-color-background-positive);
+      --_iui-stepper-step-number-color: var(--iui-color-foreground-accessory);
+    }
+  }
+
+  @at-root .iui-clickable:focus & {
+    outline: 2px solid var(--iui-color-foreground-positive);
+    outline-offset: -1px;
+  }
+
+  @at-root .iui-clickable:focus:not(:focus-visible) & {
+    outline: none;
+  }
+}
+
+@mixin iui-stepper-track-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    height: $iui-xxs;
+    flex: 1 2 auto;
+  }
+
+  &::before {
+    background-color: var(--_iui-stepper-step-track-before-color);
+  }
+
+  &::after {
+    background-color: var(--_iui-stepper-step-track-after-color);
+  }
+}
+
+@mixin iui-stepper-step-name {
+  text-align: center;
+  user-select: all;
+  color: var(--_iui-stepper-step-text-color);
+}
+
+@mixin iui-stepper-steps-label {
+  display: block;
+  font-size: $iui-font-size-subheading;
+  text-align: center;
+}
+
+@mixin iui-stepper-steps-label-count {
+  user-select: none;
+  margin-right: $iui-s;
+  color: var(--iui-text-color-muted);
+}

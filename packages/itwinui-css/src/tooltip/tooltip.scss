@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../utils/index';
 
 @mixin iui-tooltip {
   @include iui-reset;
@@ -17,11 +18,9 @@
   z-index: 999;
   box-shadow: $iui-elevation-8;
   pointer-events: none;
-  @include themed {
-    background-color: rgba(0, 0, 0, t(iui-opacity-3));
-    color: t(iui-color-foreground-accessory);
-    border: 1px solid rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4));
-  }
+  background-color: rgba(0, 0, 0, var(--iui-opacity-3));
+  color: var(--iui-color-foreground-accessory);
+  border: 1px solid rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
 }
 
 @mixin iui-tooltip-hidden {
