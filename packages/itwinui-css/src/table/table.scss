@@ -196,6 +196,11 @@
   &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) .iui-cell {
     @include themed {
       background-color: rgba(t(iui-color-foreground-body-rgb), 0.02);
+      background: linear-gradient(
+        rgba(t(iui-color-foreground-body-rgb), 0.02),
+        rgba(t(iui-color-foreground-body-rgb), 0.02)
+      ),
+        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
     }
   }
 
