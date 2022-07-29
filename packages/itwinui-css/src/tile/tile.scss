@@ -134,7 +134,6 @@
 
   .iui-tile-status-icon {
     @include iui-icon-style('m');
-    @include iui-icon-color-status;
     margin-right: $iui-s;
   }
 

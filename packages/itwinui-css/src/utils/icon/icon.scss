@@ -32,24 +32,21 @@
   }
 }
 
-@mixin iui-icon-color {
-  fill: var(--iui-icon-color);
-}
-
-@mixin iui-icon-color-status {
-  &.iui-informational {
+/// @arg $color Can be one of: default, informational, positive, warning, negative
+@mixin iui-icon-color($color: 'default') {
+  @if $color == 'default' {
+    fill: var(--iui-icon-color);
+  }
+  @if $color == 'informational' {
     fill: var(--iui-icon-color-primary);
   }
-
-  &.iui-positive {
+  @if $color == 'positive' {
     fill: var(--iui-icon-color-positive);
   }
-
-  &.iui-warning {
+  @if $color == 'warning' {
     fill: var(--iui-icon-color-warning);
   }
-
-  &.iui-negative {
+  @if $color == 'negative' {
     fill: var(--iui-icon-color-negative);
   }
 }
