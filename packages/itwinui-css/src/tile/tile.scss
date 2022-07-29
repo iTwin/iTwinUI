@@ -4,7 +4,6 @@
 @import '../button/index';
 @import '../surface/index';
 @import '../utils/index';
-@import '../icon/index';
 
 @mixin iui-tile {
   @include iui-reset;
@@ -27,6 +26,8 @@
   }
 
   &.iui-new {
+    --_iui-tile-status-icon-fill: var(--iui-color-foreground-positive);
+
     .iui-tile-name,
     .iui-tile-description {
       font-weight: $iui-font-weight-semibold;
@@ -35,6 +36,9 @@
 
   &.iui-selected {
     @include iui-focus($offset: 0, $thickness: $iui-xs);
+
+    --_iui-tile-status-icon-fill: var(--iui-color-foreground-primary);
+
     outline: solid 2px var(--iui-color-foreground-primary);
     background: linear-gradient(
       rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
@@ -134,9 +138,9 @@
   }
 
   .iui-tile-status-icon {
-    @include iui-icons-default;
+    @include iui-icon-style('m');
     margin-right: $iui-s;
-    flex-shrink: 0;
+    fill: var(--_iui-tile-status-icon-fill);
   }
 
   .iui-tile-name-label {
@@ -168,9 +172,9 @@
 
     > svg,
     .iui-tile-metadata-icon {
-      @include iui-icons-default;
+      @include iui-icon-style('m');
+      @include iui-icon-color;
       margin-right: $iui-s;
-      flex-shrink: 0;
     }
 
     > * {
@@ -195,7 +199,8 @@
   border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-thumbnail-icon {
-    @include iui-icons-3xl;
+    @include iui-icon-style('3xl');
+    @include iui-icon-color;
   }
 }
 
@@ -321,6 +326,7 @@
 
 @mixin iui-tile-status($status) {
   @include iui-text-selection($status);
+  --_iui-tile-status-icon-fill: var(--iui-color-foreground-#{$status});
 
   .iui-tile-thumbnail {
     box-shadow: 0 $iui-xs 0 var(--iui-color-foreground-#{$status});
@@ -332,9 +338,5 @@
 
   .iui-tile-name-label {
     color: var(--iui-color-foreground-#{$status});
-  }
-
-  .iui-tile-status-icon {
-    fill: var(--iui-color-foreground-#{$status});
   }
 }

@@ -68,10 +68,8 @@
     }
 
     &::after {
+      @include iui-icon-style('s');
       content: '';
-      display: block;
-      width: $iui-icons-small;
-      height: $iui-icons-small;
       border-radius: 50%;
       border: 1px solid transparent;
       background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
@@ -91,7 +89,7 @@
       border-color: var(--iui-color-foreground-primary);
       box-shadow: inset 0 0 0 1px var(--iui-color-background-1);
       @media (forced-colors: active) {
-        border-width: $iui-icons-small * 0.5;
+        border-width: $iui-icon-small * 0.5;
       }
     }
   }

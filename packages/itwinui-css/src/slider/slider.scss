@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
 @import '../utils/index';
 
 $thumb-height: $iui-m; // 16px
@@ -18,7 +17,8 @@ $tick-height: $iui-baseline; // 11px
     margin-top: $iui-xxs;
 
     svg {
-      @include iui-icons-default;
+      @include iui-icon-style('m');
+      @include iui-icon-color;
       margin-top: $iui-xs;
     }
   }
@@ -26,6 +26,10 @@ $tick-height: $iui-baseline; // 11px
   .iui-slider-min {
     margin-right: $iui-sm;
     text-align: right;
+
+    svg {
+      margin-left: auto;
+    }
   }
 
   .iui-slider-max {

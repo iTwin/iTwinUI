@@ -1,12 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
 @import '../utils/index';
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
 $iui-expander-inline-padding: $iui-component-offset + $iui-xxs + 1px; // margin + padding + border
-$iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding * 2); // icon width + inline padding on both sides
+$iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding * 2); // icon width + inline padding on both sides
 
 @mixin iui-tree {
   @include iui-reset;
@@ -53,9 +52,9 @@ $iui-expander-button-width: ($iui-icons-default) + ($iui-expander-inline-padding
     padding-left: $iui-xxs;
 
     &-icon {
-      @include iui-icons-default;
+      @include iui-icon-style('m');
+      @include iui-icon-color;
       margin: 0 $iui-expander-inline-padding;
-      flex-shrink: 0;
 
       &:first-child {
         margin-left: $iui-expander-button-width + $iui-expander-inline-padding;
