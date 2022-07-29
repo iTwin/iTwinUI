@@ -12,7 +12,7 @@
     border-radius: $iui-border-radius;
     text-align: center;
     font-size: $iui-font-size-leading;
-    padding: round($iui-baseline * 0.25) $iui-s;
+    padding: ($iui-baseline * 0.25) $iui-s;
     filter: drop-shadow($iui-elevation-2);
     position: relative;
     border: solid 1px var(--iui-color-foreground-accessory);

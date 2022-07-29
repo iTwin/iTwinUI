@@ -45,7 +45,7 @@
   margin: 0 $iui-s;
   width: 1px;
   height: $iui-baseline;
-  background-color: t(iui-text-color-muted);
+  background-color: var(--iui-text-color-muted);
 }
 
 @mixin iui-legal-footer-developer {
