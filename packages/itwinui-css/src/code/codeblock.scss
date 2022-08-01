@@ -38,7 +38,7 @@
       white-space: nowrap;
       hyphens: auto;
       counter-increment: section;
-      font-family: var(--iui-size-m) onospace;
+      font-family: var(--iui-font-mono);
       background-color: var(--iui-color-background-1);
 
       &:nth-child(even) {

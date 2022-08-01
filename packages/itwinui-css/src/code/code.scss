@@ -6,7 +6,7 @@
 @mixin iui-code {
   @include iui-reset;
   display: inline-block;
-  font-family: var(--iui-size-m) onospace;
+  font-family: var(--iui-font-mono);
   font-size: var(--iui-font-size-0);
   padding: 0 var(--iui-size-2xs);
   border-radius: var(--iui-border-radius-1);
