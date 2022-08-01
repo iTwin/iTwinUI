@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.63.0](https://www.github.com/iTwin/iTwinUI/compare/v0.62.0...v0.63.0) (2022-08-01)
+
+
+### What's new
+
+* **Footer:** Footer refactor for better customization ([#717](https://www.github.com/iTwin/iTwinUI/issues/717)) ([aa04c38](https://www.github.com/iTwin/iTwinUI/commit/aa04c38fabecaafebe35e5ad42934e5544139094))
+
+
+### Fixes
+
+* **Table:** Zebra stripes content no longer goes on top of stick column ([#727](https://www.github.com/iTwin/iTwinUI/issues/727)) ([152bede](https://www.github.com/iTwin/iTwinUI/commit/152bede43af3ae6b922d4b14dc01c693f7c81366))
+
 ## [0.62.0](https://www.github.com/iTwin/iTwinUI/compare/v0.61.0...v0.62.0) (2022-07-27)
 
 ### What's new
