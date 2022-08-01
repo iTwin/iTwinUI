@@ -3,7 +3,7 @@ module.exports = async (page, scenario, vp) => {
   await require('./overrideCss')(page, scenario);
 
   if (scenario.label.startsWith('dark_')) {
-    await page.evaluate(() => document.getElementById('theme').classList.add('iui-theme-dark'));
+    await page.evaluate(() => (document.documentElement.dataset.iuiTheme = 'dark'));
   }
   await require('./browserActionsHelper')(page, scenario);
 
