@@ -33,7 +33,7 @@
 }
 
 @mixin iui-alert-message {
-  margin: $iui-baseline var(--iui-size-m);
+  margin: var(--iui-size-s) var(--iui-size-m);
 }
 
 @mixin iui-alert-link {

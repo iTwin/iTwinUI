@@ -11,7 +11,7 @@
   font-weight: var(--iui-font-weight-semibold);
   font-family: var(--iui-size-m) onospace;
   line-height: 1;
-  padding: calc($iui-baseline * 0.33) var(--iui-size-xs);
+  padding: calc(var(--iui-size-s) * 0.33) var(--iui-size-xs);
   white-space: nowrap;
   text-transform: uppercase;
   user-select: none;

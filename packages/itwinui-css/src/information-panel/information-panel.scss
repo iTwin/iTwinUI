@@ -43,7 +43,7 @@
   }
 
   .iui-information-header {
-    height: calc($iui-baseline * 5);
+    height: calc(var(--iui-size-s) * 5);
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -79,8 +79,8 @@
   }
 
   .iui-information-body {
-    padding-top: $iui-baseline;
-    padding-bottom: $iui-baseline;
+    padding-top: var(--iui-size-s);
+    padding-bottom: var(--iui-size-s);
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -196,12 +196,12 @@
   &:not(.iui-inline) {
     // add bottom margin between pairs of label+input
     > *:nth-child(even):not(:last-child) {
-      margin-bottom: $iui-baseline;
+      margin-bottom: var(--iui-size-s);
     }
   }
 
   &.iui-inline {
-    row-gap: $iui-baseline;
+    row-gap: var(--iui-size-s);
     grid-template-columns: auto 1fr;
     align-items: center;
 

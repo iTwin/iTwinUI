@@ -7,8 +7,8 @@
   @include iui-reset;
   display: block;
   position: relative;
-  padding: $iui-baseline var(--iui-size-m);
-  margin: $iui-baseline 0;
+  padding: var(--iui-size-s) var(--iui-size-m);
+  margin: var(--iui-size-s) 0;
   text-align: justify;
   box-shadow: var(--iui-shadow-1);
   border-radius: var(--iui-border-radius-1);

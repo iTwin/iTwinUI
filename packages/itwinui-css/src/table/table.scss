@@ -35,7 +35,7 @@
   .iui-table-cell:not(.iui-slot) {
     @include iui-focus;
     column-gap: var(--iui-size-2xs);
-    padding-block: calc($iui-baseline * 0.5);
+    padding-block: calc(var(--iui-size-s) * 0.5);
 
     &.iui-actionable {
       cursor: pointer;

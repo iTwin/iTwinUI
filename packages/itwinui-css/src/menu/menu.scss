@@ -163,7 +163,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
 }
 
 @mixin iui-menu-content {
-  padding: $iui-baseline ($iui-component-padding-horizontal + 1px);
+  padding: var(--iui-size-s) ($iui-component-padding-horizontal + 1px);
 }
 
 @mixin iui-menu-divider {

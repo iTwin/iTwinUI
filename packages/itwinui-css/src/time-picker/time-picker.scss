@@ -8,7 +8,7 @@
   @include iui-reset;
   user-select: none;
   text-align: center;
-  height: calc($iui-baseline * 26);
+  height: calc(var(--iui-size-s) * 26);
   display: inline-flex;
   background-color: var(--iui-color-background-1);
 
@@ -22,7 +22,7 @@
 }
 
 @mixin iui-time-picker-list {
-  padding: $iui-baseline var(--iui-size-xs);
+  padding: var(--iui-size-s) var(--iui-size-xs);
   overflow-y: auto;
   overflow-y: overlay;
   scrollbar-width: none;
@@ -37,7 +37,7 @@
 
     > li {
       @include iui-focus;
-      padding: calc($iui-baseline * 0.5) var(--iui-size-m);
+      padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
       border-radius: var(--iui-border-radius-1);
 
       &:hover {

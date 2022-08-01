@@ -6,7 +6,7 @@
 
 $thumb-height: var(--iui-size-m); // 16px
 $track-height: var(--iui-size-2xs); // 4px
-$tick-height: $iui-baseline; // 12px
+$tick-height: var(--iui-size-s); // 12px
 
 @mixin iui-slider-component-container {
   display: flex;
@@ -133,7 +133,7 @@ $tick-height: $iui-baseline; // 12px
 }
 
 @mixin iui-slider-horizontal {
-  min-height: calc($iui-baseline * 2);
+  min-height: calc(var(--iui-size-s) * 2);
 
   .iui-slider-rail {
     width: 100%;
@@ -185,7 +185,7 @@ $tick-height: $iui-baseline; // 12px
 
 @mixin iui-slider-vertical {
   flex-direction: column-reverse;
-  min-width: calc($iui-baseline * 2);
+  min-width: calc(var(--iui-size-s) * 2);
   height: 100%;
 
   .iui-slider-rail {

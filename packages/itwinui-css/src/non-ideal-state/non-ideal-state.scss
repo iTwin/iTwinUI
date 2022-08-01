@@ -20,7 +20,7 @@
   > .iui-non-ideal-state-illustration {
     max-width: 220px;
     max-height: 242px;
-    margin-bottom: $iui-line-height;
+    margin-bottom: var(--iui-size-l);
     text-align: center;
     display: flex;
     justify-content: center;

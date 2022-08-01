@@ -1,20 +1,19 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './baseline';
 @import './icon-sizes';
 
 $iui-blur-filter: blur(5px);
 
 $iui-component-offset: var(--iui-size-2xs);
 
-$iui-component-height-small: calc($iui-baseline * 3 - $iui-component-offset * 2); // 28px
-$iui-component-height: calc($iui-baseline * 4 - $iui-component-offset * 2); // 40px
-$iui-component-height-large: calc($iui-baseline * 5 - $iui-component-offset * 2); // 52px
+$iui-component-height-small: calc(var(--iui-size-s) * 3 - $iui-component-offset * 2); // 28px
+$iui-component-height: calc(var(--iui-size-s) * 4 - $iui-component-offset * 2); // 40px
+$iui-component-height-large: calc(var(--iui-size-s) * 5 - $iui-component-offset * 2); // 52px
 
 $iui-component-padding-horizontal: var(--iui-size-s); // 12px
 
-$iui-component-padding-vertical-small: calc(0.5 * calc($iui-component-height-small - $iui-line-height) - 1px); // 1px
-$iui-component-padding-vertical: calc(0.5 * calc($iui-component-height - $iui-line-height) - 1px); // 7px
-$iui-component-padding-vertical-large: calc(0.5 * calc($iui-component-height-large - $iui-line-height) - 1px); // 13px
+$iui-component-padding-vertical-small: calc(0.5 * calc($iui-component-height-small - var(--iui-size-l)) - 1px); // 1px
+$iui-component-padding-vertical: calc(0.5 * calc($iui-component-height - var(--iui-size-l)) - 1px); // 7px
+$iui-component-padding-vertical-large: calc(0.5 * calc($iui-component-height-large - var(--iui-size-l)) - 1px); // 13px
 
 $iui-side-navigation-icon-margins: $iui-icons-large; // Used to align header brand button & side navigation spacing

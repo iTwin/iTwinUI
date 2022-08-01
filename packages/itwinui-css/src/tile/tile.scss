@@ -63,7 +63,7 @@
     flex-wrap: nowrap;
 
     .iui-tile-thumbnail {
-      height: calc($iui-baseline * 10);
+      height: calc(var(--iui-size-s) * 10);
       flex: 1;
       border-bottom: none;
       border-right: 1px solid var(--iui-color-background-border);
@@ -75,7 +75,7 @@
 
     .iui-tile-description {
       height: 100%;
-      max-height: calc($iui-baseline * 4);
+      max-height: calc(var(--iui-size-s) * 4);
       margin-bottom: 0;
       -webkit-line-clamp: 2;
     }
@@ -112,7 +112,7 @@
 }
 
 @mixin iui-tile-content {
-  padding: $iui-baseline var(--iui-size-s);
+  padding: var(--iui-size-s) var(--iui-size-s);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -125,7 +125,7 @@
     align-items: center;
     font-size: var(--iui-font-size-2);
     user-select: all;
-    margin-bottom: calc($iui-baseline * 0.5);
+    margin-bottom: calc(var(--iui-size-s) * 0.5);
     color: var(--iui-color-foreground-2);
   }
 
@@ -142,10 +142,10 @@
   }
 
   .iui-tile-description {
-    margin-bottom: $iui-baseline;
+    margin-bottom: var(--iui-size-s);
     font-size: var(--iui-font-size-1);
     height: 100%;
-    max-height: calc($iui-baseline * 6);
+    max-height: calc(var(--iui-size-s) * 6);
     @include iui-line-clamp(3);
     color: var(--iui-color-foreground-4);
   }
@@ -155,7 +155,7 @@
     flex-shrink: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: $iui-line-height;
+    height: var(--iui-size-l);
     width: 100%;
     display: flex;
     align-items: center;
@@ -180,7 +180,7 @@
 @mixin iui-tile-thumbnail {
   box-sizing: content-box;
   width: 100%;
-  height: calc($iui-baseline * 14);
+  height: calc(var(--iui-size-s) * 14);
   flex-shrink: 0;
   overflow: hidden;
   position: relative;
@@ -231,7 +231,7 @@
   @include iui-button-size(small, borderless);
   position: absolute;
   border-radius: 50%;
-  top: calc($iui-baseline * 0.5);
+  top: calc(var(--iui-size-s) * 0.5);
 
   @if $variant == type-indicator {
     left: var(--iui-size-xs);
@@ -264,7 +264,7 @@
 
 @mixin iui-tile-thumbnail-badge {
   position: absolute;
-  bottom: calc($iui-baseline * 0.5);
+  bottom: calc(var(--iui-size-s) * 0.5);
   width: calc(100% - 2 * #{var(--iui-size-s)});
   height: auto;
   right: var(--iui-size-s);
@@ -284,7 +284,7 @@
     font-size: var(--iui-font-size-1);
     flex: 1;
     height: auto;
-    padding: $iui-baseline var(--iui-size-s);
+    padding: var(--iui-size-s) var(--iui-size-s);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -307,7 +307,7 @@
 
 @mixin iui-tile-more-options {
   position: absolute;
-  bottom: calc($iui-baseline * 0.5);
+  bottom: calc(var(--iui-size-s) * 0.5);
   right: var(--iui-size-xs);
 
   &:not(.iui-visible) {

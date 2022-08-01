@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     user-select: none;
-    padding: calc($iui-baseline * 0.5) var(--iui-size-s);
+    padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
     background-color: var(--iui-color-background-2);
     border: 1px solid var(--iui-color-background-2);
 
@@ -38,8 +38,8 @@
     > svg,
     .iui-template-icon {
       @include iui-icons-3xl;
-      margin-top: $iui-baseline;
-      margin-bottom: $iui-baseline;
+      margin-top: var(--iui-size-s);
+      margin-bottom: var(--iui-size-s);
     }
 
     &:only-child {

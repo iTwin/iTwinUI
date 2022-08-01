@@ -9,8 +9,8 @@
   display: inline-flex;
   align-items: center;
   pointer-events: all;
-  margin: 0 var(--iui-size-m) $iui-baseline var(--iui-size-m);
-  min-height: calc($iui-baseline * 4);
+  margin: 0 var(--iui-size-m) var(--iui-size-s) var(--iui-size-m);
+  min-height: calc(var(--iui-size-s) * 4);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background-1);
   border: 1px solid var(--iui-color-foreground-1);
@@ -35,11 +35,11 @@
   > .iui-message {
     flex-grow: 1;
     font-size: var(--iui-font-size-1);
-    margin-top: calc($iui-baseline * 0.5);
-    margin-bottom: calc($iui-baseline * 0.5);
+    margin-top: calc(var(--iui-size-s) * 0.5);
+    margin-bottom: calc(var(--iui-size-s) * 0.5);
     margin-right: var(--iui-size-l);
     margin-left: var(--iui-size-m);
-    line-height: $iui-line-height;
+    line-height: var(--iui-size-l);
     font-weight: var(--iui-font-weight-normal);
     font-style: normal;
     color: var(--iui-color-foreground-2);

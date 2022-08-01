@@ -10,11 +10,11 @@
   border-radius: var(--iui-border-radius-round);
   text-decoration: none;
   user-select: none;
-  padding: calc($iui-baseline * 0.75) var(--iui-size-m);
+  padding: calc(var(--iui-size-s) * 0.75) var(--iui-size-m);
   position: fixed;
   text-align: center;
   left: 50%;
-  top: calc($iui-baseline * 2);
+  top: calc(var(--iui-size-s) * 2);
   opacity: 0;
   z-index: 99;
   transform: translateX(-50%) translateY(-170%);

@@ -7,7 +7,7 @@
 @mixin iui-stepper {
   display: flex;
   flex-direction: column;
-  row-gap: calc($iui-baseline * 0.5);
+  row-gap: calc(var(--iui-size-s) * 0.5);
 
   > ol {
     @include iui-stepper-list;

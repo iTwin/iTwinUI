@@ -79,8 +79,8 @@
   }
 
   ~ .iui-tabs-content {
-    padding-top: $iui-baseline;
-    padding-bottom: $iui-baseline;
+    padding-top: var(--iui-size-s);
+    padding-bottom: var(--iui-size-s);
   }
 }
 

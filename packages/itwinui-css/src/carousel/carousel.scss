@@ -29,7 +29,7 @@
 @mixin iui-carousel-navigation {
   display: flex;
   align-items: center;
-  height: calc($iui-baseline * 3);
+  height: calc(var(--iui-size-s) * 3);
   border-top: var(--iui-size-3xs) solid var(--iui-color-background-4);
 
   &-left,

@@ -49,7 +49,7 @@ $iui-expander-button-width: calc(
   &-content {
     display: flex;
     align-items: center;
-    min-height: calc($iui-baseline * 3);
+    min-height: calc(var(--iui-size-s) * 3);
     margin-left: calc(#{$iui-expander-button-width} * (var(--level, 0)));
     overflow: hidden;
     padding-left: var(--iui-size-3xs);

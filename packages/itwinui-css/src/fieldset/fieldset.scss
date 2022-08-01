@@ -5,7 +5,7 @@
 
 @mixin iui-fieldset {
   @include iui-reset;
-  padding: $iui-baseline var(--iui-size-s);
+  padding: var(--iui-size-s) var(--iui-size-s);
   border-radius: var(--iui-border-radius-1);
   border: 1px solid var(--iui-color-background-border);
   background-color: var(--iui-color-background-1);

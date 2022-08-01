@@ -7,7 +7,7 @@
   background-color: var(--iui-color-background-2);
   color: var(--iui-color-foreground-2);
   font-size: var(--iui-font-size-1);
-  line-height: $iui-line-height;
+  line-height: var(--iui-size-l);
   font-family: var(--iui-font-sans);
 
   @include iui-scrollbar;

@@ -90,7 +90,7 @@
     --_iui-button-active-stripe-inset: 0 0 0 calc(100% - #{var(--iui-size-3xs)});
 
     &:not(.iui-expand) {
-      height: calc($iui-baseline * 5);
+      height: calc(var(--iui-size-s) * 5);
       // iPhone notch support
       @supports (padding: unquote('max(0px)')) {
         padding-left: unquote(
@@ -127,7 +127,7 @@
     }
 
     &.iui-expand {
-      height: $iui-line-height;
+      height: var(--iui-size-l);
       justify-content: center;
       border: none;
       border-bottom: 1px solid var(--iui-color-background-border);
@@ -161,12 +161,12 @@
   }
 
   &-content {
-    padding: 0 var(--iui-size-s) $iui-baseline;
+    padding: 0 var(--iui-size-s) var(--iui-size-s);
     flex-shrink: 0;
   }
 
   &-header {
-    height: calc($iui-baseline * 5);
+    height: calc(var(--iui-size-s) * 5);
     display: flex;
     align-items: center;
     justify-content: space-between;

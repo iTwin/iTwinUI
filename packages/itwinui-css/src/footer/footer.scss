@@ -9,7 +9,7 @@
 
   text-align: center;
   width: 100%;
-  padding: $iui-baseline 0;
+  padding: var(--iui-size-s) 0;
   font-size: var(--iui-font-size-0);
 }
 
@@ -44,7 +44,7 @@
 @mixin iui-legal-footer-separator {
   margin: 0 var(--iui-size-xs);
   width: 1px;
-  height: $iui-baseline;
+  height: var(--iui-size-s);
   background-color: var(--iui-color-foreground-4);
 }
 

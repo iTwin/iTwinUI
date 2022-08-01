@@ -21,7 +21,7 @@
 
 @mixin iui-tag {
   @include iui-tag-base;
-  height: calc($iui-baseline * 3);
+  height: calc(var(--iui-size-s) * 3);
   margin-top: $iui-component-offset;
   margin-bottom: $iui-component-offset;
   border-radius: var(--iui-border-radius-round);

@@ -15,7 +15,7 @@
     @include iui-focus;
     display: flex;
     align-items: center;
-    padding: $iui-baseline var(--iui-size-s);
+    padding: var(--iui-size-s) var(--iui-size-s);
     cursor: pointer;
     user-select: none;
     @media (prefers-reduced-motion: no-preference) {
@@ -86,7 +86,7 @@
 
     // padding should be in a separate div because otherwise it messes up height transition
     > div {
-      padding: $iui-baseline var(--iui-size-s);
+      padding: var(--iui-size-s) var(--iui-size-s);
     }
   }
 
@@ -126,7 +126,7 @@
   }
 
   &.iui-small .iui-header {
-    padding: calc($iui-baseline * 0.5) var(--iui-size-xs);
+    padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-xs);
 
     > .iui-icon {
       width: $iui-icons-small;

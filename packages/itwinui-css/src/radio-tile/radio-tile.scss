@@ -140,7 +140,7 @@
   width: $iui-icons-xl;
   height: $iui-icons-xl;
   display: block;
-  margin: calc($iui-baseline * 0.5) auto $iui-baseline;
+  margin: calc(var(--iui-size-s) * 0.5) auto var(--iui-size-s);
   fill: var(--iui-color-foreground-4);
   @media (prefers-reduced-motion: no-preference) {
     transition: fill var(--iui-duration-1) ease-out;
@@ -153,7 +153,7 @@
 @mixin iui-radio-tile-label {
   font-size: var(--iui-font-size-1);
   font-weight: var(--iui-font-weight-semibold);
-  line-height: $iui-line-height;
+  line-height: var(--iui-size-l);
   text-align: center;
   word-break: break-word;
   color: var(--iui-color-foreground-2);
@@ -161,7 +161,7 @@
 
 @mixin iui-radio-tile-sublabel {
   font-size: var(--iui-font-size-0);
-  line-height: calc($iui-baseline * 1.375);
+  line-height: calc(var(--iui-size-s) * 1.375);
   text-align: center;
   word-break: break-word;
   color: var(--iui-color-foreground-4);

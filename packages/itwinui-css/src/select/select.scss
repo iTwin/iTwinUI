@@ -85,7 +85,7 @@
   display: inline-flex;
   align-items: center;
   height: 80%;
-  max-height: calc($iui-baseline * 3);
+  max-height: calc(var(--iui-size-s) * 3);
 }
 
 @mixin iui-select-tag-label {
@@ -95,7 +95,7 @@
 
   @at-root .iui-select-button.iui-small & {
     font-size: var(--iui-font-size-0);
-    line-height: calc($iui-baseline * 1.5);
+    line-height: calc(var(--iui-size-s) * 1.5);
   }
 }
 
@@ -109,7 +109,7 @@
 
   @at-root .iui-select-button.iui-small & {
     font-size: var(--iui-font-size-0);
-    line-height: calc($iui-baseline * 1.5);
+    line-height: calc(var(--iui-size-s) * 1.5);
   }
 }
 
