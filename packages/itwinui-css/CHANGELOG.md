@@ -2,7 +2,6 @@
 
 ## [0.63.0](https://www.github.com/iTwin/iTwinUI/compare/v0.62.0...v0.63.0) (2022-08-01)
 
-
 ### What's new
 
 * **Footer:** Footer refactor for better customization ([#717](https://www.github.com/iTwin/iTwinUI/issues/717)) ([aa04c38](https://www.github.com/iTwin/iTwinUI/commit/aa04c38fabecaafebe35e5ad42934e5544139094))
