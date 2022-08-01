@@ -42,7 +42,7 @@
   &.iui-actionable {
     @include iui-focus($offset: var(--iui-size-3xs), $thickness: var(--iui-size-3xs));
     cursor: pointer;
-    transition: box-shadow $iui-speed-fast ease-in-out;
+    transition: box-shadow var(--iui-duration-1) ease-in-out;
 
     &:hover {
       box-shadow: var(--iui-shadow-3);
@@ -202,7 +202,7 @@
   top: 0;
   left: 0;
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed ease;
+    transition: transform var(--iui-duration-2) ease;
   }
   @at-root {
     div#{&} {
@@ -214,7 +214,7 @@
   ~ .iui-thumbnail-icon {
     cursor: pointer;
     @media (prefers-reduced-motion: no-preference) {
-      transition: fill $iui-speed-fast ease;
+      transition: fill var(--iui-duration-1) ease;
     }
     fill: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-3));
     filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));

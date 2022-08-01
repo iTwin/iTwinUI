@@ -65,7 +65,7 @@
         height: 100%;
         width: var(--iui-size-3xs);
         margin: 0 auto;
-        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+        transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
         background-color: var(--iui-color-background-border);
       }
 
@@ -146,7 +146,7 @@
       border-bottom: solid 1px transparent;
       border-bottom-color: var(--iui-color-background-border);
       background-color: var(--iui-color-background-1);
-      transition: border $iui-speed-fast ease-out;
+      transition: border var(--iui-duration-1) ease-out;
     }
 
     > .iui-slot > .iui-table-more-options {
@@ -169,7 +169,7 @@
 
     .iui-table-row-expander > .iui-button-icon {
       @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed-fast ease-out;
+        transition: transform var(--iui-duration-1) ease-out;
       }
     }
 

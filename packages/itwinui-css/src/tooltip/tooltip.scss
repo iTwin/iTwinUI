@@ -30,7 +30,7 @@
   opacity: 0;
   /// Following this guide for animation on exit hover: https://greywyvern.com/?post=337
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
+    transition: visibility var(--iui-duration-0) linear var(--iui-duration-1), opacity var(--iui-duration-1) ease-out;
   }
 }
 

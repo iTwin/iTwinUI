@@ -18,7 +18,7 @@
       @include iui-focus;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
-      transition: background-color $iui-speed-fast ease-out;
+      transition: background-color var(--iui-duration-1) ease-out;
       @media (forced-colors: active) {
         border: 1px solid CanvasText;
         border-top-width: 0;
@@ -51,7 +51,7 @@
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed-fast ease-out;
+    transition: transform var(--iui-duration-1) ease-out;
   }
 }
 
@@ -59,7 +59,7 @@
   margin-right: var(--iui-size-s);
   font-size: var(--_iui-header-brand-label-font-size);
   @media (prefers-reduced-motion: no-preference) {
-    transition: font-size $iui-speed-fast ease-out;
+    transition: font-size var(--iui-duration-1) ease-out;
   }
   @media (max-width: 991px) {
     display: none;
@@ -68,7 +68,7 @@
 
 @mixin iui-header-breadcrumb-item {
   max-width: 25vw;
-  transition: background-color $iui-speed-fast ease-out;
+  transition: background-color var(--iui-duration-1) ease-out;
   height: 100%;
   display: flex;
   overflow: hidden;
@@ -136,7 +136,7 @@
   box-sizing: border-box;
   font-family: inherit;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color $iui-speed-fast ease-out;
+  transition: background-color var(--iui-duration-1) ease-out;
   color: inherit;
   gap: var(--iui-size-s);
   cursor: pointer;
@@ -214,7 +214,7 @@
   font-size: var(--iui-font-size-1);
   text-align: left;
   overflow: hidden;
-  transition: color $iui-speed-fast ease-out;
+  transition: color var(--iui-duration-1) ease-out;
 
   &-label,
   &-sublabel {
@@ -227,8 +227,8 @@
     font-size: var(--iui-font-size-0);
     opacity: var(--iui-opacity-3);
     @media (prefers-reduced-motion: no-preference) {
-      transition: visibility 0s linear 0s, width $iui-speed-fast ease-out, height $iui-speed-fast ease-out,
-        opacity $iui-speed-fast ease-out;
+      transition: visibility 0s linear 0s, width var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out,
+        opacity var(--iui-duration-1) ease-out;
     }
 
     @at-root {
@@ -260,7 +260,7 @@
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed-fast ease-out;
+    transition: transform var(--iui-duration-1) ease-out;
   }
   @media (forced-colors: active) {
     fill: LinkText;
@@ -270,9 +270,9 @@
     img#{&},
     div#{&} {
       padding: 0;
-      transition: filter $iui-speed-fast ease-out;
+      transition: filter var(--iui-duration-1) ease-out;
       @media (prefers-reduced-motion: no-preference) {
-        transition: filter $iui-speed-fast ease-out, transform $iui-speed-fast ease-out;
+        transition: filter var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
       }
     }
 

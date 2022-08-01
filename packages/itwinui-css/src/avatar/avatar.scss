@@ -185,7 +185,7 @@
     &.iui-animated {
       @media (prefers-reduced-motion: no-preference) {
         .iui-avatar {
-          transition: margin-left $iui-speed ease-out;
+          transition: margin-left var(--iui-duration-2) ease-out;
         }
       }
 

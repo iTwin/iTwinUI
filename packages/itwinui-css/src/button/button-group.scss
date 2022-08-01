@@ -67,7 +67,7 @@
 
       &:hover,
       &:focus {
-        transition-duration: $iui-speed-fast; // re-enable enter animation
+        transition-duration: var(--iui-duration-1); // re-enable enter animation
       }
     }
 

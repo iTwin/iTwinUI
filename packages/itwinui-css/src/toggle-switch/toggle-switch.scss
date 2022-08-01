@@ -50,7 +50,7 @@
   appearance: none;
   width: calc(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset * 2) * 2);
   border-radius: var(--iui-border-radius-round);
-  transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
+  transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
   background-color: var(--iui-color-background-1);
   border: $iui-toggle-switch-border-thickness solid var(--iui-color-foreground-4);
 
@@ -65,11 +65,11 @@
     margin: $iui-toggle-switch-handle-offset;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    transition: background-color $iui-speed-fast ease-out, opacity $iui-speed-fast ease-out;
+    transition: background-color var(--iui-duration-1) ease-out, opacity var(--iui-duration-1) ease-out;
     z-index: 2;
     @media (prefers-reduced-motion: no-preference) {
-      transition: transform $iui-speed-fast ease-out, background-color $iui-speed-fast ease-out,
-        opacity $iui-speed-fast ease-out;
+      transition: transform var(--iui-duration-1) ease-out, background-color var(--iui-duration-1) ease-out,
+        opacity var(--iui-duration-1) ease-out;
     }
   }
 
@@ -193,7 +193,7 @@
     margin: calc($iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness);
     display: flex;
     z-index: 1;
-    transition: opacity $iui-speed-fast ease-out;
+    transition: opacity var(--iui-duration-1) ease-out;
     pointer-events: none;
     fill: var(--iui-color-foreground-accessory);
     @media (forced-colors: active) {

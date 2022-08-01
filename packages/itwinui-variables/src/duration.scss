@@ -1,8 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-/// Animation speed:
-
-$iui-speed-instant: 0s;
-$iui-speed-fast: 0.2s;
-$iui-speed: 0.4s;
-$iui-speed-slow: 0.8s;
+@mixin duration {
+  --iui-duration-0: 0s;
+  --iui-duration-1: 0.2s;
+  --iui-duration-2: 0.4s;
+  --iui-duration-3: 0.8s;
+}

@@ -27,7 +27,7 @@
   border-radius: var(--iui-border-radius-round);
   padding: 0 var(--iui-size-3xs);
   align-items: center;
-  transition: border-color $iui-speed-fast ease-out;
+  transition: border-color var(--iui-duration-1) ease-out;
   font-size: var(--iui-font-size-1);
   text-transform: none;
   cursor: default;

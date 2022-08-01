@@ -201,7 +201,7 @@
 
     svg {
       fill: var(--iui-color-foreground-2);
-      transition: transform $iui-speed-fast ease-out;
+      transition: transform var(--iui-duration-1) ease-out;
     }
 
     &.iui-open svg {

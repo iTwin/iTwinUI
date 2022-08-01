@@ -24,7 +24,7 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    animation: skeleton-shimmer $iui-speed-slow linear infinite;
+    animation: skeleton-shimmer var(--iui-duration-3) linear infinite;
 
     @keyframes skeleton-shimmer {
       0% {

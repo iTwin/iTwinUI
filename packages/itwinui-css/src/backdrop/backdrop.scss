@@ -18,10 +18,10 @@
     opacity: 0;
   }
 
-  transition: visibility $iui-speed-instant linear, opacity $iui-speed-fast ease-out;
-  transition-delay: $iui-speed-fast, $iui-speed-instant;
+  transition: visibility var(--iui-duration-0) linear, opacity var(--iui-duration-1) ease-out;
+  transition-delay: var(--iui-duration-1), var(--iui-duration-0);
 
   &.iui-backdrop-visible {
-    transition-delay: $iui-speed-instant; // remove delay for entry animation
+    transition-delay: var(--iui-duration-0); // remove delay for entry animation
   }
 }

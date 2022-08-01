@@ -66,7 +66,7 @@ $iui-expander-button-width: calc(
 
     &-expander-icon {
       @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed-fast ease-out;
+        transition: transform var(--iui-duration-1) ease-out;
       }
 
       &-expanded {
@@ -105,7 +105,7 @@ $iui-expander-button-width: calc(
 
     .iui-tree-node-content-caption {
       color: var(--iui-color-foreground-1);
-      transition: color $iui-speed-fast ease;
+      transition: color var(--iui-duration-1) ease;
     }
   }
 

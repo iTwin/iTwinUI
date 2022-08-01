@@ -17,7 +17,7 @@
   outline: 1px solid var(--iui-color-foreground-4);
   background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
-    transition: outline-color $iui-speed-fast ease-out;
+    transition: outline-color var(--iui-duration-1) ease-out;
   }
 
   &:hover {
@@ -143,7 +143,7 @@
   margin: calc($iui-baseline * 0.5) auto $iui-baseline;
   fill: var(--iui-color-foreground-4);
   @media (prefers-reduced-motion: no-preference) {
-    transition: fill $iui-speed-fast ease-out;
+    transition: fill var(--iui-duration-1) ease-out;
   }
   @media (forced-colors: active) {
     fill: CanvasText;

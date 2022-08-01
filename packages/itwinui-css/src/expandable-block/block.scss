@@ -19,7 +19,7 @@
     cursor: pointer;
     user-select: none;
     @media (prefers-reduced-motion: no-preference) {
-      transition: background-color $iui-speed-fast ease-out;
+      transition: background-color var(--iui-duration-1) ease-out;
     }
     border: 1px solid var(--iui-color-background-3);
     border-bottom-color: var(--iui-color-background-4);
@@ -35,7 +35,7 @@
 
     > .iui-icon {
       @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed-fast ease-out;
+        transition: transform var(--iui-duration-1) ease-out;
       }
       fill: var(--iui-color-foreground-2);
     }
@@ -52,7 +52,7 @@
       min-width: 0;
       margin-left: var(--iui-size-s);
       @media (prefers-reduced-motion: no-preference) {
-        transition: color $iui-speed-fast ease;
+        transition: color var(--iui-duration-1) ease;
       }
       color: var(--iui-color-foreground-2);
     }
@@ -102,7 +102,7 @@
       .iui-title {
         color: var(--iui-color-foreground-1);
         @media (prefers-reduced-motion: no-preference) {
-          transition: color $iui-speed-fast ease;
+          transition: color var(--iui-duration-1) ease;
         }
       }
     }

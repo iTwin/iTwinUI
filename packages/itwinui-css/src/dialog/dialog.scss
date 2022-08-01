@@ -35,11 +35,11 @@ $iui-dialog-width: 380px;
     opacity: 0;
   }
 
-  transition: visibility $iui-speed-instant linear, opacity $iui-speed-fast ease-out;
-  transition-delay: $iui-speed-fast, $iui-speed-instant;
+  transition: visibility var(--iui-duration-0) linear, opacity var(--iui-duration-1) ease-out;
+  transition-delay: var(--iui-duration-1), var(--iui-duration-0);
 
   &.iui-dialog-visible {
-    transition-delay: $iui-speed-instant; // remove delay for entry animation
+    transition-delay: var(--iui-duration-0); // remove delay for entry animation
   }
 }
 
@@ -101,11 +101,11 @@ $iui-dialog-width: 380px;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
-      transform $iui-speed-fast ease-in;
+    transition: visibility var(--iui-duration-0) linear var(--iui-duration-2),
+      opacity var(--iui-duration-0) linear var(--iui-duration-2), transform var(--iui-duration-1) ease-in;
 
     &.iui-dialog-visible {
-      transition: transform $iui-speed ease-out;
+      transition: transform var(--iui-duration-2) ease-out;
     }
   }
 }
