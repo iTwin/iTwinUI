@@ -3,9 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import cx from 'classnames';
-import { CommonProps, useTheme } from '../utils';
-import '@itwin/itwinui-css/css/dialog.css';
+import { CommonProps } from '../utils';
+import { DialogButtonBar } from '../Dialog/DialogButtonBar';
 
 export type ModalButtonBarProps = {
   /**
@@ -17,15 +16,6 @@ export type ModalButtonBarProps = {
 /**
  * Container for Buttons in modal.
  */
-export const ModalButtonBar = (props: ModalButtonBarProps) => {
-  const { children, className, ...rest } = props;
-
-  useTheme();
-  return (
-    <div className={cx('iui-dialog-button-bar', className)} {...rest}>
-      {children}
-    </div>
-  );
-};
+export const ModalButtonBar = DialogButtonBar;
 
 export default ModalButtonBar;

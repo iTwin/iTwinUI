@@ -6,14 +6,14 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { Button } from '../Buttons';
 
-import { ModalButtonBar } from './ModalButtonBar';
+import { DialogButtonBar } from './DialogButtonBar';
 
 it('should render in its most basic state', () => {
   const { container } = render(
-    <ModalButtonBar>
+    <DialogButtonBar>
       <Button>TestBtn1</Button>
       <Button>TestBtn2</Button>
-    </ModalButtonBar>,
+    </DialogButtonBar>,
   );
   expect(container.querySelector('.iui-dialog-button-bar')).toBeTruthy();
   screen.getByText('TestBtn1');
@@ -22,10 +22,10 @@ it('should render in its most basic state', () => {
 
 it('should propagate miscellaneous props', () => {
   const { container } = render(
-    <ModalButtonBar className='test-class' id='test-id' style={{ gap: 8 }}>
+    <DialogButtonBar className='test-class' id='test-id' style={{ gap: 8 }}>
       <Button>TestBtn1</Button>
       <Button>TestBtn2</Button>
-    </ModalButtonBar>,
+    </DialogButtonBar>,
   );
 
   const buttonBar = container.querySelector(

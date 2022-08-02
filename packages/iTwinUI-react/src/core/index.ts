@@ -5,6 +5,9 @@
 export { Alert } from './Alert';
 export type { AlertProps } from './Alert';
 
+export { Backdrop } from './Backdrop';
+export type { BackdropProps } from './Backdrop';
+
 export { Badge } from './Badge';
 export type { BadgeProps } from './Badge';
 

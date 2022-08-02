@@ -47,7 +47,7 @@ export const FocusTrap = (props: FocusTrapProps) => {
   };
 
   return (
-    <div>
+    <>
       <div tabIndex={0} onFocus={onFirstFocus} aria-hidden />
       {React.cloneElement(children, {
         ref: mergeRefs(
@@ -56,7 +56,7 @@ export const FocusTrap = (props: FocusTrapProps) => {
         ),
       })}
       <div tabIndex={0} onFocus={onLastFocus} aria-hidden />
-    </div>
+    </>
   );
 };
 

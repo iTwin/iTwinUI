@@ -3,9 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import cx from 'classnames';
-import { CommonProps, useTheme } from '../utils';
-import '@itwin/itwinui-css/css/dialog.css';
+import { CommonProps } from '../utils';
+import { DialogContent } from '../Dialog/DialogContent';
 
 export type ModalContentProps = {
   /**
@@ -17,15 +16,6 @@ export type ModalContentProps = {
 /**
  * Container for content in `Modal`.
  */
-export const ModalContent = (props: ModalContentProps) => {
-  const { children, className, ...rest } = props;
-
-  useTheme();
-  return (
-    <div className={cx('iui-dialog-content', className)} {...rest}>
-      {children}
-    </div>
-  );
-};
+export const ModalContent = DialogContent;
 
 export default ModalContent;

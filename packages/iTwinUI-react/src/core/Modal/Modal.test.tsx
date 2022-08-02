@@ -110,14 +110,14 @@ it('should close on Esc click and move focus back', () => {
   const onClose = jest.fn();
   const { rerender } = renderComponent({ onClose });
 
-  const backdrop = document.querySelector('.iui-backdrop') as HTMLElement;
+  const dialog = document.querySelector('.iui-dialog') as HTMLElement;
   assertBaseElement(
-    backdrop,
-    document.querySelector('.iui-dialog') as HTMLElement,
+    document.querySelector('.iui-backdrop') as HTMLElement,
+    dialog,
   );
-  expect(document.activeElement).toEqual(backdrop);
+  expect(document.activeElement).toEqual(dialog);
 
-  fireEvent.keyDown(backdrop, { key: 'Escape' });
+  fireEvent.keyDown(dialog, { key: 'Escape' });
   expect(onClose).toHaveBeenCalled();
 
   rerender(
@@ -180,13 +180,13 @@ it('should call onKeyDown when pressed any key inside modal', () => {
   const onKeyDown = jest.fn();
   renderComponent({ onKeyDown });
 
-  const backdrop = document.querySelector('.iui-backdrop') as HTMLElement;
+  const dialog = document.querySelector('.iui-dialog') as HTMLElement;
   assertBaseElement(
-    backdrop,
-    document.querySelector('.iui-dialog') as HTMLElement,
+    document.querySelector('.iui-backdrop') as HTMLElement,
+    dialog,
   );
 
-  fireEvent.keyDown(backdrop, {
+  fireEvent.keyDown(dialog, {
     key: 'Enter',
   });
 
@@ -200,12 +200,13 @@ it('should work with portal container properly', () => {
 
   let container = document.querySelector('body > #test-id') as HTMLElement;
   expect(container).toBeTruthy();
-  // Backdrop and dialog
-  expect(container.children.length).toBe(2);
+  // 3 elements of FocusTrap and 1 backdrop
+  expect(container.children.length).toBe(4);
 
   renderComponent({ modalRootId: 'test-id' });
   container = document.querySelector('body > #test-id') as HTMLElement;
-  expect(container.children.length).toBe(4);
+  // 2 modals under the same container
+  expect(container.children.length).toBe(8);
 });
 
 it('should reset body overflow on closing and unmounting', () => {
