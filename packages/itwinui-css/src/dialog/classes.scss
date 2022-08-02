@@ -27,6 +27,10 @@
   @include iui-dialog-title;
 }
 
+.iui-dialog-title-close-button {
+  @include iui-dialog-title-close-button;
+}
+
 .iui-dialog-title-bar {
   @include iui-dialog-title-bar;
 }
