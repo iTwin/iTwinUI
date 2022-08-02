@@ -318,7 +318,11 @@
   background-color: var(--iui-color-background-1);
 
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), 0.02);
+    background: linear-gradient(
+      rgba(var(--iui-color-foreground-body-rgb), 0.02),
+      rgba(var(--iui-color-foreground-body-rgb), 0.02)
+    ),
+      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
   }
 
   // Empty & loading states
