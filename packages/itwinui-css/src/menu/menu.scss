@@ -18,9 +18,8 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   }
 
   div.iui-header-menu-icon {
+    @include iui-icon-style('l');
     margin: 0;
-    width: $iui-icons-large;
-    height: $iui-icons-large;
     border-radius: var(--iui-border-radius-1);
   }
 
@@ -174,8 +173,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
 }
 
 @mixin iui-menu-icon {
-  width: $iui-icons-default;
-  height: $iui-icons-default;
+  @include iui-icon-style('m');
   flex: 0 0 auto;
   fill: var(--iui-color-foreground-2);
 

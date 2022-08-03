@@ -156,12 +156,10 @@
 
 /// Icon to be shown near a message.
 @mixin iui-input-icon {
-  display: flex;
+  @include iui-icon-style('m');
+  @include iui-icon-color;
   grid-area: icon;
-  width: $iui-icons-default;
-  height: $iui-icons-default;
   align-self: center;
-  fill: var(--iui-color-foreground-4);
 
   &:not(:last-child) {
     margin-right: var(--iui-size-2xs);
@@ -176,8 +174,7 @@
   position: relative;
 
   svg {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
+    @include iui-icon-style('m');
   }
 
   &.iui-button {

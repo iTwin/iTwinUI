@@ -63,12 +63,9 @@
       }
 
       svg {
-        display: flex;
-        width: $iui-icons-large;
-        height: $iui-icons-large;
+        @include iui-icon-style('l');
+        @include iui-icon-color;
         margin-right: var(--iui-size-xs);
-        flex-shrink: 0;
-        fill: var(--iui-color-foreground-4);
       }
     }
 

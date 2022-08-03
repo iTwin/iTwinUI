@@ -68,9 +68,8 @@
     }
 
     &::after {
+      @include iui-icon-style('m');
       content: '';
-      width: $iui-icons-default;
-      height: $iui-icons-default;
       position: absolute;
       top: var(--iui-size-xs);
       right: var(--iui-size-xs);
@@ -137,9 +136,8 @@
 }
 
 @mixin iui-radio-tile-icon {
-  width: $iui-icons-xl;
-  height: $iui-icons-xl;
-  display: block;
+  @include iui-icon-style('xl');
+  @include iui-icon-color;
   margin: calc(var(--iui-size-s) * 0.5) auto var(--iui-size-s);
   fill: var(--iui-color-foreground-4);
   @media (prefers-reduced-motion: no-preference) {

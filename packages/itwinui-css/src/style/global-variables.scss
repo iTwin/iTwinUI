@@ -16,4 +16,4 @@ $iui-component-padding-vertical-small: calc(0.5 * calc($iui-component-height-sma
 $iui-component-padding-vertical: calc(0.5 * calc($iui-component-height - var(--iui-size-l)) - 1px); // 7px
 $iui-component-padding-vertical-large: calc(0.5 * calc($iui-component-height-large - var(--iui-size-l)) - 1px); // 13px
 
-$iui-side-navigation-icon-margins: $iui-icons-large; // Used to align header brand button & side navigation spacing
+$iui-side-navigation-icon-margins: $iui-icon-large; // Used to align header brand button & side navigation spacing

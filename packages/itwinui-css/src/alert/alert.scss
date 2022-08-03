@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../anchor/index';
-@import '../icon/index';
 @import '../utils/index';
 @import '../button/index';
 
@@ -27,8 +26,7 @@
 }
 
 @mixin iui-alert-icon {
-  @include iui-icons-default;
-  flex-shrink: 0;
+  @include iui-icon-style('m');
   margin-left: var(--iui-size-m);
 }
 

@@ -262,7 +262,7 @@
       img,
       svg:not(.iui-radial),
       .iui-avatar {
-        filter: $iui-icons-color-multicolor-disabled;
+        filter: $iui-icon-color-multicolor-disabled;
       }
     }
 
@@ -425,9 +425,7 @@
     justify-content: center;
 
     svg:not(.iui-radial) {
-      display: flex; // needed for vertical alignment of webcomponents
-      width: $iui-icons-default;
-      height: $iui-icons-default;
+      @include iui-icon-style('m');
     }
   }
 
