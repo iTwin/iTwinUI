@@ -2,8 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './icon-sizes';
 
-$iui-blur-filter: blur(5px);
-
 $iui-component-offset: var(--iui-size-2xs);
 
 $iui-component-height-small: calc(var(--iui-size-s) * 3 - $iui-component-offset * 2); // 28px

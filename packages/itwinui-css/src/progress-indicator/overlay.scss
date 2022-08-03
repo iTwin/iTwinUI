@@ -18,9 +18,10 @@
   background-color: rgba(var(--iui-color-background-1-rgb), var(--iui-opacity-2));
 
   // With blur
-  @supports (backdrop-filter: $iui-blur-filter) {
+  $blur-filter: blur(5px);
+  @supports (backdrop-filter: $blur-filter) {
     background-color: rgba(var(--iui-color-background-1-rgb), var(--iui-opacity-3));
-    backdrop-filter: $iui-blur-filter;
+    backdrop-filter: $blur-filter;
   }
 
   // Focus trap
