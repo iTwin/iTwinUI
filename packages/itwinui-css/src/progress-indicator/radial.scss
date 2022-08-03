@@ -1,11 +1,14 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
+@import '../utils/index';
 
 @mixin iui-progress-indicator-radial {
   position: relative;
   display: inline-block;
-  @include iui-progress-indicator-radial-size($size: $iui-icon-xl);
+  --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, xl)};
+
+  width: var(--_iui-progress-indicator-radial-size);
+  height: var(--_iui-progress-indicator-radial-size);
 
   > .iui-radial {
     height: 100%;
@@ -77,7 +80,7 @@
   }
 
   &.iui-x-small {
-    @include iui-progress-indicator-radial-size($size: $iui-icon-default);
+    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, m)};
 
     .iui-inner-content {
       display: none;
@@ -85,11 +88,11 @@
   }
 
   &.iui-small {
-    @include iui-progress-indicator-radial-size($size: $iui-icon-large);
+    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, l)};
   }
 
   &.iui-large {
-    @include iui-progress-indicator-radial-size($size: $iui-icon-2xl);
+    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, 2xl)};
 
     .iui-inner-content {
       font-size: var(--iui-font-size-2);
@@ -144,9 +147,4 @@
       stroke-dashoffset: -88;
     }
   }
-}
-
-@mixin iui-progress-indicator-radial-size($size) {
-  width: $size;
-  height: $size;
 }

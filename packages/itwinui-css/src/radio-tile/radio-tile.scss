@@ -95,7 +95,7 @@
     }
 
     .iui-radio-tile-icon {
-      filter: $iui-icons-color-multicolor-disabled;
+      filter: $iui-icon-color-multicolor-disabled;
       fill: var(--iui-color-foreground-5);
       @media (forced-colors: active) {
         fill: GrayText;

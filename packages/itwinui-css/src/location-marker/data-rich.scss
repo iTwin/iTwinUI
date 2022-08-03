@@ -8,7 +8,7 @@
   cursor: pointer;
 
   > .iui-location-marker-data-rich-body {
-    min-width: $iui-icons-xl;
+    min-width: var(--iui-size-xl);
     border-radius: var(--iui-border-radius-1);
     text-align: center;
     font-size: var(--iui-font-size-2);

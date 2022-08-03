@@ -46,7 +46,7 @@
 @mixin iui-header-brand-icon {
   @include iui-icon-style('l');
   margin: 0 $iui-side-navigation-icon-margins;
-  fill: var(--iui-icon-color-actionable);
+  fill: var(--iui-color-foreground-2);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -253,7 +253,7 @@
   flex-shrink: 0;
   box-sizing: border-box;
   padding: var(--iui-size-2xs);
-  fill: var(--iui-icon-color);
+  fill: var(--iui-color-foreground-4);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -292,7 +292,7 @@
     :disabled &,
     [aria-disabled='true'] & {
       background-color: var(--iui-color-background-2);
-      fill: var(--iui-icon-color-actionable-disabled);
+      fill: var(--iui-color-foreground-5);
 
       @media (forced-colors: active) {
         fill: GrayText;

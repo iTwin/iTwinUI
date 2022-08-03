@@ -54,16 +54,19 @@
 
   &.iui-collapsed {
     box-sizing: content-box;
-    min-width: $iui-icon-large + $iui-side-navigation-icon-margins * 2;
-    max-width: $iui-icon-large + $iui-side-navigation-icon-margins * 2;
+
+    $icon-large: map-get($iui-icon-sizes, l);
+
+    min-width: calc($icon-large + $iui-side-navigation-icon-margins * 2);
+    max-width: calc($icon-large + $iui-side-navigation-icon-margins * 2);
 
     // iPhone notch support
     @supports (min-width: unquote('max(0px)')) {
       min-width: unquote(
-        'max(#{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+        'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
       );
       max-width: unquote(
-        'max(#{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+        'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
       );
     }
   }
