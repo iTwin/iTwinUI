@@ -25,7 +25,7 @@
     outline-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
 
     .iui-radio-tile-icon {
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-icon-color-actionable);
       @media (forced-colors: active) {
         fill: CanvasText;
       }
@@ -61,16 +61,15 @@
     }
 
     .iui-radio-tile-icon {
-      fill: var(--iui-icons-color-primary);
+      fill: var(--iui-icon-color-primary);
       @media (forced-colors: active) {
         fill: Highlight;
       }
     }
 
     &::after {
+      @include iui-icon-style('m');
       content: '';
-      width: $iui-icons-default;
-      height: $iui-icons-default;
       position: absolute;
       top: $iui-s;
       right: $iui-s;
@@ -89,15 +88,15 @@
     background-color: var(--iui-color-background-disabled);
 
     &::after {
-      background-color: var(--iui-icons-color-actionable-disabled);
+      background-color: var(--iui-icon-color-actionable-disabled);
       @media (forced-colors: active) {
         background-color: GrayText;
       }
     }
 
     .iui-radio-tile-icon {
-      filter: $iui-icons-color-multicolor-disabled;
-      fill: var(--iui-icons-color-actionable-disabled);
+      filter: $iui-icon-color-multicolor-disabled;
+      fill: var(--iui-icon-color-actionable-disabled);
       @media (forced-colors: active) {
         fill: GrayText;
       }
@@ -136,11 +135,10 @@
 }
 
 @mixin iui-radio-tile-icon {
-  width: $iui-icons-xl;
-  height: $iui-icons-xl;
-  display: block;
+  @include iui-icon-style('xl');
+  @include iui-icon-color;
   margin: ($iui-baseline * 0.5) auto $iui-baseline;
-  fill: var(--iui-icons-color);
+  fill: var(--iui-icon-color);
   @media (prefers-reduced-motion: no-preference) {
     transition: fill $iui-speed-fast ease-out;
   }

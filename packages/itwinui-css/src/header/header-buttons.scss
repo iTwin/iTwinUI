@@ -44,10 +44,9 @@
 }
 
 @mixin iui-header-brand-icon {
-  width: $iui-icons-large;
-  height: $iui-icons-large;
+  @include iui-icon-style('l');
   margin: 0 $iui-side-navigation-icon-margins;
-  fill: var(--iui-icons-color-actionable);
+  fill: var(--iui-icon-color-actionable);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -187,8 +186,7 @@
 }
 
 @mixin iui-header-breadcrumb-button-dropdown-icon {
-  width: $iui-icons-default;
-  height: $iui-icons-default;
+  @include iui-icon-style('m');
   fill: currentColor;
   flex-shrink: 0;
   margin-right: -#{$iui-xs};
@@ -248,15 +246,14 @@
 }
 
 @mixin iui-header-breadcrumb-button-icon {
-  width: $iui-icons-large;
-  height: $iui-icons-large;
+  @include iui-icon-style('l');
   background-color: var(--iui-color-background-3);
   border-radius: $iui-border-radius;
   display: inline-flex;
   flex-shrink: 0;
   box-sizing: border-box;
   padding: $iui-xs;
-  fill: var(--iui-icons-color);
+  fill: var(--iui-icon-color);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -295,7 +292,7 @@
     :disabled &,
     [aria-disabled='true'] & {
       background-color: var(--iui-color-background-2);
-      fill: var(--iui-icons-color-actionable-disabled);
+      fill: var(--iui-icon-color-actionable-disabled);
 
       @media (forced-colors: active) {
         fill: GrayText;
