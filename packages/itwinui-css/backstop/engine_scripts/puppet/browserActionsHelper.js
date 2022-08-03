@@ -25,10 +25,13 @@ async function performAction(page, action) {
     case ScenarioActions.Scroll: {
       await page.waitForSelector(action.value.selector);
       await page.evaluate(
-        (selector) =>
-          document.querySelector(selector).innerHTML(`scrollTop: ${action.value.distanceY} <br>
-      scrollLeft: ${action.value.distanceX}`),
-        action.value.selector
+        (selector, distanceX, distanceY) => {
+          document.querySelector(selector).scrollLeft = distanceX;
+          document.querySelector(selector).scrollTop = distanceY;
+        },
+        action.value.selector,
+        action.value.distanceX,
+        action.value.distanceY
       );
       break;
     }

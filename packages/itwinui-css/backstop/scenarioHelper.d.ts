@@ -143,7 +143,7 @@ export declare function keyPress(selector: string, keys: string): Action;
 /**
  * Scrolls on element with provided selector.
  * @param selector CSS selector
- * @param distanceX distance in pixels to scroll horizontally (right is positive)
- * @param distanceY distance in pixels to scroll vertically (down is positive)
+ * @param distanceX distance in pixels to scroll horizontally (scroll to right is positive)
+ * @param distanceY distance in pixels to scroll vertically (scroll down is positive)
  */
 export declare function scroll(selector: string, distanceX: number, distanceY: number): Action;
