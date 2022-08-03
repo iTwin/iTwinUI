@@ -137,15 +137,14 @@ $iui-dialog-width: 380px;
 }
 
 @mixin iui-dialog-title {
+  display: flex;
+  align-items: center;
   font-size: inherit;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.5;
-}
-
-@mixin iui-dialog-title-close-button {
-  margin-left: auto;
+  margin-right: auto;
 }
 
 @mixin iui-dialog-title-bar {
