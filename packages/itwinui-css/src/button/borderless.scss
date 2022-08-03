@@ -12,7 +12,7 @@
 
   &:where(:hover, :active) {
     --_iui-button-text-color: var(--iui-color-foreground-1);
-    --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+    --_iui-button-background-color: var(--iui-color-background-transparent-hover);
   }
 
   &:where(:focus) {

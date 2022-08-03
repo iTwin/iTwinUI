@@ -217,8 +217,8 @@ $iui-hover-box-shadow: 0 0 1px calc(var(--iui-size-3xs) + 1) var(--iui-color-for
   border-radius: 50%;
   transform: translate(calc(0px - var(--iui-size-xs)), calc(0px - var(--iui-size-xs)));
   cursor: crosshair;
-  box-shadow: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-1)) 0 0 0 var(--iui-size-3xs) - 1,
-    inset 0 0 0 var(--iui-size-3xs) - 1 rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-6));
+  box-shadow: rgba(0, 0, 0, var(--iui-opacity-1)) 0 0 0 var(--iui-size-3xs) - 1,
+    inset 0 0 0 var(--iui-size-3xs) - 1 rgba(0, 0, 0, var(--iui-opacity-6));
   background-color: var(--iui-color-picker-selected-color);
 
   &:hover {

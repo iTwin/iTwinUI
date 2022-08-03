@@ -132,7 +132,7 @@
 
     &:where(:hover) {
       --_iui-checkbox-border-color: transparent;
-      --_iui-checkbox-background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+      --_iui-checkbox-background-color: var(--iui-color-background-transparent-hover);
     }
 
     &:where(:disabled) {

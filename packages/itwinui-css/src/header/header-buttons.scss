@@ -33,7 +33,7 @@
       // #endregion
 
       &:hover {
-        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+        background-color: var(--iui-color-background-transparent-hover);
       }
     }
   }
@@ -81,7 +81,7 @@
 
   // Hover state
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-transparent-hover);
   }
 
   // Active state
@@ -168,7 +168,7 @@
   flex-shrink: 0;
 
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-transparent-hover);
   }
 
   @at-root [aria-current] &:hover {
