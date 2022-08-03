@@ -5,8 +5,7 @@
 
 @mixin iui-location-marker-default {
   @include iui-location-marker;
-  width: $iui-icons-large;
-  height: $iui-icons-large;
+  @include iui-icon-style('l');
   cursor: pointer;
 
   > .iui-location-marker-default-pin {
