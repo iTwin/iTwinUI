@@ -5,9 +5,8 @@
 
 @mixin iui-location-marker-me {
   @include iui-location-marker;
+  @include iui-icon-style('l');
   position: relative;
-  width: $iui-icons-large;
-  height: $iui-icons-large;
   border-radius: 50%;
   cursor: default;
   background: radial-gradient(
@@ -17,11 +16,11 @@
   );
 
   > .iui-location-marker-me-dot {
-    width: $iui-icons-large * 0.5;
-    height: $iui-icons-large * 0.5;
+    width: $iui-icon-large * 0.5;
+    height: $iui-icon-large * 0.5;
     position: absolute;
-    top: $iui-icons-large * 0.25;
-    left: $iui-icons-large * 0.25;
+    top: $iui-icon-large * 0.25;
+    left: $iui-icon-large * 0.25;
     border-radius: 50%;
     border: 1px solid var(--iui-color-foreground-accessory);
     background-color: var(--iui-color-background-primary);

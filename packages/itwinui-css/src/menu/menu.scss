@@ -18,9 +18,8 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   }
 
   div.iui-header-menu-icon {
+    @include iui-icon-style('l');
     margin: 0;
-    width: $iui-icons-large;
-    height: $iui-icons-large;
     border-radius: $iui-border-radius;
   }
 
@@ -106,7 +105,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
     }
 
     > .iui-icon {
-      fill: var(--iui-icons-color-primary);
+      fill: var(--iui-icon-color-primary);
     }
 
     &:focus,
@@ -130,7 +129,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
       color: var(--iui-text-color-placeholder);
 
       > .iui-icon {
-        fill: var(--iui-icons-color-actionable-disabled);
+        fill: var(--iui-icon-color-actionable-disabled);
       }
     }
   }
@@ -174,10 +173,9 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
 }
 
 @mixin iui-menu-icon {
-  width: $iui-icons-default;
-  height: $iui-icons-default;
+  @include iui-icon-style('m');
   flex: 0 0 auto;
-  fill: var(--iui-icons-color-actionable);
+  fill: var(--iui-icon-color-actionable);
 
   + .iui-content {
     margin-left: $iui-s;

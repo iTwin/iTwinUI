@@ -62,7 +62,7 @@
 @mixin iui-select-tag-container {
   position: absolute;
   // align wth Select's padding
-  inset: 0 $iui-icons-default + $iui-l 0 $iui-sm;
+  inset: 0 $iui-icon-default + $iui-l 0 $iui-sm;
   height: 100%;
   display: flex;
   align-items: center;
@@ -118,7 +118,6 @@
   flex-shrink: 0;
 
   @at-root .iui-select-button.iui-small & {
-    width: $iui-icons-small;
-    height: $iui-icons-small;
+    @include iui-icon-style('s');
   }
 }

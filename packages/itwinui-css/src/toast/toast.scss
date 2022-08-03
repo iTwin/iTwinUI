@@ -26,8 +26,7 @@
     background-color: var(--iui-color-background-5);
 
     > .iui-icon {
-      height: $iui-icons-default;
-      width: $iui-icons-default;
+      @include iui-icon-style('m');
       fill: var(--iui-color-foreground-accessory);
     }
   }
