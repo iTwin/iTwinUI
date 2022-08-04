@@ -5,6 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Tooltip, TooltipProps } from '../Tooltip';
+import { SliderProps } from './Slider';
 
 export type ThumbProps = {
   /**
@@ -59,7 +60,7 @@ export type ThumbProps = {
    * Additional props for Thumb.
    */
   thumbProps?: React.HTMLAttributes<HTMLDivElement>;
-};
+} & Pick<SliderProps, 'orientation'>;
 
 /**
  * Thumb is a local component used to show and modify the values maintained by the Slider.
@@ -81,6 +82,7 @@ export const Thumb = (props: ThumbProps) => {
     tooltipProps,
     thumbProps,
     disabled,
+    orientation,
   } = props;
   const thumbRef = React.useRef<HTMLDivElement>(null);
   const handleOnKeyDown = React.useCallback(
@@ -126,7 +128,7 @@ export const Thumb = (props: ThumbProps) => {
     }
     return value;
   }, [sliderMax, sliderMin, value]);
-  const leftPercent = React.useMemo(() => {
+  const lowPercent = React.useMemo(() => {
     if (sliderMax === sliderMin) {
       return 0;
     }
@@ -144,7 +146,12 @@ export const Thumb = (props: ThumbProps) => {
         {...rest}
         data-index={index}
         ref={thumbRef}
-        style={{ ...style, left: `${leftPercent}%` }}
+        style={{
+          ...style,
+          ...(orientation === 'horizontal'
+            ? { left: `${lowPercent}%` }
+            : { bottom: `${lowPercent}%` }),
+        }}
         className={cx(
           'iui-slider-thumb',
           { 'iui-active': isActive },

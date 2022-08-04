@@ -24,9 +24,18 @@ export type TrackDisplayMode =
   | 'odd-segments'
   | 'even-segments';
 
-const getPercentageOfRectangle = (rect: DOMRect, pointer: number) => {
-  const position = getBoundedValue(pointer, rect.left, rect.right);
-  return (position - rect.left) / rect.width;
+const getPercentageOfRectangle = (
+  rect: DOMRect,
+  pointerX: number,
+  pointerY: number,
+  orientation: SliderProps['orientation'],
+) => {
+  if (orientation === 'horizontal') {
+    const position = getBoundedValue(pointerX, rect.left, rect.right);
+    return (position - rect.left) / rect.width;
+  }
+  const position = getBoundedValue(pointerY, rect.top, rect.bottom);
+  return (rect.bottom - position) / rect.height;
 };
 
 const getClosestValueIndex = (values: number[], pointerValue: number) => {
@@ -174,6 +183,11 @@ export type SliderProps = {
    * high-volume of updates will occur when dragging.
    */
   onUpdate?: (values: ReadonlyArray<number>) => void;
+  /**
+   * The orientation of slider
+   * @default 'horizontal'
+   */
+  orientation?: 'horizontal' | 'vertical';
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -204,6 +218,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       thumbProps,
       className,
       railContainerProps,
+      orientation = 'horizontal',
       ...rest
     } = props;
 
@@ -273,6 +288,8 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           const percent = getPercentageOfRectangle(
             containerRef.current.getBoundingClientRect(),
             event.clientX,
+            event.clientY,
+            orientation,
           );
           let pointerValue = min + (max - min) * percent;
           pointerValue = roundValueToClosestStep(pointerValue, step, min);
@@ -299,6 +316,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         currentValues,
         onUpdate,
         onChange,
+        orientation,
       ],
     );
 
@@ -351,6 +369,8 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           const percent = getPercentageOfRectangle(
             containerRef.current.getBoundingClientRect(),
             event.clientX,
+            event.clientY,
+            orientation,
           );
           let pointerValue = min + (max - min) * percent;
           pointerValue = roundValueToClosestStep(pointerValue, step, min);
@@ -382,6 +402,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         getAllowableThumbRange,
         onChange,
         onUpdate,
+        orientation,
       ],
     );
 
@@ -437,6 +458,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         ref={ref}
         className={cx(
           'iui-slider-component-container',
+          `iui-slider-${orientation}`,
           { 'iui-disabled': disabled },
           className,
         )}
@@ -473,6 +495,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                 step={step}
                 sliderMin={min}
                 sliderMax={max}
+                orientation={orientation}
               />
             );
           })}
@@ -481,6 +504,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             sliderMin={min}
             sliderMax={max}
             values={currentValues}
+            orientation={orientation}
           />
           {tickMarkArea}
         </div>

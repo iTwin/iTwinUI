@@ -26,12 +26,19 @@ const createBoundingClientRect = (
 /**
  * Setup default size for slider container to be used by all slider tests
  */
-const getBoundingClientRect = Element.prototype.getBoundingClientRect;
-const sliderContainerSize = createBoundingClientRect(10, 0, 1010, 60);
-Element.prototype.getBoundingClientRect = () => sliderContainerSize;
+const getBoundingClientRectMock = jest.spyOn(
+  HTMLElement.prototype,
+  'getBoundingClientRect',
+);
+const sliderContainerHorizontalSize = createBoundingClientRect(10, 0, 1010, 60);
+const sliderContainerVerticalSize = createBoundingClientRect(10, 0, 70, 1000);
+
+beforeEach(() => {
+  getBoundingClientRectMock.mockReturnValue(sliderContainerHorizontalSize);
+});
 
 afterAll(() => {
-  Element.prototype.getBoundingClientRect = getBoundingClientRect;
+  jest.clearAllMocks();
 });
 
 const defaultSingleValue = [50];
@@ -532,6 +539,46 @@ it('should move thumb when pointer down on rail', () => {
   expect(handleOnUpdate).toHaveBeenCalledWith([30]);
 });
 
+it('should move thumb when pointer down on rail (vertical)', () => {
+  getBoundingClientRectMock.mockReturnValue(sliderContainerVerticalSize); // This is to make getBoundingClientRect() return the mocked vertical container dimensions
+
+  const handleOnChange = jest.fn();
+  const handleOnUpdate = jest.fn();
+
+  const { container } = render(
+    <Slider
+      values={defaultSingleValue}
+      tickLabels={<span className='custom-tick-mark'>Custom</span>}
+      onChange={handleOnChange}
+      onUpdate={handleOnUpdate}
+      orientation='vertical'
+    />,
+  );
+
+  assertBaseElement(container);
+  const sliderContainer = container.querySelector(
+    '.iui-slider-container',
+  ) as HTMLDivElement;
+  expect(sliderContainer.getBoundingClientRect().top).toBe(0);
+  expect(sliderContainer.getBoundingClientRect().bottom).toBe(1000);
+  expect(sliderContainer.getBoundingClientRect().height).toBe(1000);
+
+  /* fire a pointer down event 30% down the slider */
+  act(() => {
+    fireEvent.pointerDown(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 300,
+    });
+  });
+
+  const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.getAttribute('aria-valuenow')).toEqual('30');
+
+  expect(handleOnChange).toHaveBeenCalledWith([30]);
+  expect(handleOnUpdate).toHaveBeenCalledWith([30]);
+});
+
 it('should move to closest step when pointer down on rail', () => {
   const { container } = render(
     <Slider
@@ -562,6 +609,39 @@ it('should move to closest step when pointer down on rail', () => {
   expect(thumb.getAttribute('aria-valuenow')).toEqual('0.25');
 });
 
+it('should move to closest step when pointer down on rail (vertical)', () => {
+  getBoundingClientRectMock.mockReturnValue(sliderContainerVerticalSize);
+
+  const { container } = render(
+    <Slider
+      min={0}
+      max={1}
+      values={[0.5]}
+      step={0.25}
+      tickLabels={<span className='custom-tick-mark'>Custom</span>}
+      orientation='vertical'
+    />,
+  );
+
+  assertBaseElement(container);
+  const sliderContainer = container.querySelector(
+    '.iui-slider-container',
+  ) as HTMLDivElement;
+  /* fire a pointer down event 30% down the slider
+   * 0 - .25 - .5 - .75 - 1 so closet to .3 is .25
+   */
+  act(() => {
+    fireEvent.pointerDown(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 300,
+    });
+  });
+
+  const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.getAttribute('aria-valuenow')).toEqual('0.25');
+});
+
 it('should move closest thumb when pointer down on rail', () => {
   const { container } = render(
     <Slider
@@ -580,6 +660,36 @@ it('should move closest thumb when pointer down on rail', () => {
       pointerId: 5,
       buttons: 1,
       clientX: 710,
+    });
+  });
+
+  const thumbs = container.querySelectorAll('.iui-slider-thumb');
+  expect(thumbs.length).toBe(2);
+  expect(thumbs[0].getAttribute('aria-valuenow')).toEqual('10');
+  expect(thumbs[1].getAttribute('aria-valuenow')).toEqual('70');
+});
+
+it('should move closest thumb when pointer down on rail (vertical)', () => {
+  getBoundingClientRectMock.mockReturnValue(sliderContainerVerticalSize);
+
+  const { container } = render(
+    <Slider
+      values={[10, 80]}
+      tickLabels={<span className='custom-tick-mark'>Custom</span>}
+      orientation='vertical'
+    />,
+  );
+
+  assertBaseElement(container);
+  const sliderContainer = container.querySelector(
+    '.iui-slider-container',
+  ) as HTMLDivElement;
+  /* fire a pointer down event 70% down the the slider */
+  act(() => {
+    fireEvent.pointerDown(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 700,
     });
   });
 
@@ -656,6 +766,76 @@ it('should activate thumb on pointerDown and move to closest step on move', () =
   expect(thumbs[1].getAttribute('aria-valuenow')).toEqual('80');
 });
 
+it('should activate thumb on pointerDown and move to closest step on move (vertical)', () => {
+  getBoundingClientRectMock.mockReturnValue(sliderContainerVerticalSize);
+
+  const handleOnUpdate = jest.fn();
+  const handleOnChange = jest.fn();
+
+  const { container } = render(
+    <Slider
+      min={0}
+      max={100}
+      values={[20, 80]}
+      step={1}
+      tickLabels={<span className='custom-tick-mark'>Custom</span>}
+      onUpdate={handleOnUpdate}
+      onChange={handleOnChange}
+      orientation='vertical'
+    />,
+  );
+
+  assertBaseElement(container);
+  const sliderContainer = container.querySelector(
+    '.iui-slider-container',
+  ) as HTMLDivElement;
+  const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.classList).not.toContain('iui-active');
+
+  act(() => {
+    fireEvent.pointerDown(thumb, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 200,
+    });
+  });
+  expect(thumb.classList).toContain('iui-active');
+
+  // moving to same location should not trigger update
+  act(() => {
+    fireEvent.pointerMove(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 200,
+    });
+  });
+
+  /* move thumb to 40 value on slider */
+  act(() => {
+    fireEvent.pointerMove(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 400,
+    });
+  });
+  expect(handleOnUpdate).toHaveBeenCalledTimes(1);
+
+  act(() => {
+    fireEvent.pointerUp(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 400,
+    });
+  });
+
+  expect(handleOnChange).toHaveBeenCalledTimes(1);
+
+  const thumbs = container.querySelectorAll('.iui-slider-thumb');
+  expect(thumbs.length).toBe(2);
+  expect(thumbs[0].getAttribute('aria-valuenow')).toEqual('40');
+  expect(thumbs[1].getAttribute('aria-valuenow')).toEqual('80');
+});
+
 it('should activate thumb on pointerDown and move to closest step on move/ no update handler', () => {
   const { container } = render(
     <Slider
@@ -708,6 +888,70 @@ it('should activate thumb on pointerDown and move to closest step on move/ no up
       pointerId: 5,
       buttons: 1,
       clientX: 410,
+    });
+  });
+
+  const thumbs = container.querySelectorAll('.iui-slider-thumb');
+  expect(thumbs.length).toBe(2);
+  expect(thumbs[0].getAttribute('aria-valuenow')).toEqual('40');
+  expect(thumbs[1].getAttribute('aria-valuenow')).toEqual('80');
+});
+
+it('should activate thumb on pointerDown and move to closest step on move/ no update handler (vertical)', () => {
+  getBoundingClientRectMock.mockReturnValue(sliderContainerVerticalSize);
+
+  const { container } = render(
+    <Slider
+      min={0}
+      max={100}
+      values={[20, 80]}
+      step={1}
+      tickLabels={<span className='custom-tick-mark'>Custom</span>}
+      orientation='vertical'
+    />,
+  );
+
+  assertBaseElement(container);
+  const sliderContainer = container.querySelector(
+    '.iui-slider-container',
+  ) as HTMLDivElement;
+  const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb).toBeTruthy();
+  expect(thumb.classList).not.toContain('iui-active');
+
+  act(() => {
+    fireEvent.pointerDown(thumb, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 200,
+    });
+  });
+  expect(thumb.classList).toContain('iui-active');
+  expect(sliderContainer.classList).toContain('iui-grabbing');
+
+  // moving to same location should not trigger update
+  act(() => {
+    fireEvent.pointerMove(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 200,
+    });
+  });
+
+  /* move thumb to 40 value on slider */
+  act(() => {
+    fireEvent.pointerMove(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 400,
+    });
+  });
+
+  act(() => {
+    fireEvent.pointerUp(sliderContainer, {
+      pointerId: 5,
+      buttons: 1,
+      clientY: 1000 - 400,
     });
   });
 

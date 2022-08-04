@@ -13,6 +13,7 @@ describe('Slider', () => {
     'Multi Thumbs Allow Crossing',
     'Range',
     'With Custom Thumb',
+    'Vertical',
   ];
 
   tests.forEach((testName) => {

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { TrackDisplayMode } from './Slider';
+import { SliderProps, TrackDisplayMode } from './Slider';
 
 function shouldDisplaySegment(segmentIndex: number, mode: TrackDisplayMode) {
   if ('odd-segments' === mode && 0 === (segmentIndex + 1) % 2) {
@@ -46,6 +46,7 @@ export type TrackProps = {
   sliderMin: number;
   sliderMax: number;
   values: number[];
+  orientation: SliderProps['orientation'];
 };
 
 /**
@@ -53,7 +54,7 @@ export type TrackProps = {
  * colorized is based on `trackDisplayMode`.
  */
 export const Track = (props: TrackProps) => {
-  const { trackDisplayMode, sliderMin, sliderMax, values } = props;
+  const { trackDisplayMode, sliderMin, sliderMax, values, orientation } = props;
   const [segments, setSegments] = React.useState(() =>
     generateSegments(values, sliderMin, sliderMax),
   );
@@ -66,11 +67,11 @@ export const Track = (props: TrackProps) => {
     <>
       {'none' !== trackDisplayMode &&
         segments.map((segment, index) => {
-          const leftPercent =
+          const lowPercent =
             segment.left >= sliderMin && sliderMax !== sliderMin
               ? (100.0 * (segment.left - sliderMin)) / (sliderMax - sliderMin)
               : 0;
-          const rightPercent =
+          const highPercent =
             segment.right >= sliderMin && sliderMax !== sliderMin
               ? 100.0 -
                 (100.0 * (segment.right - sliderMin)) / (sliderMax - sliderMin)
@@ -80,7 +81,17 @@ export const Track = (props: TrackProps) => {
               {shouldDisplaySegment(index, trackDisplayMode) ? (
                 <div
                   className='iui-slider-track'
-                  style={{ left: `${leftPercent}%`, right: `${rightPercent}%` }}
+                  style={{
+                    ...(orientation === 'horizontal'
+                      ? {
+                          left: `${lowPercent}%`,
+                          right: `${highPercent}%`,
+                        }
+                      : {
+                          top: `${highPercent}%`,
+                          bottom: `${lowPercent}%`,
+                        }),
+                  }}
                 />
               ) : null}
             </React.Fragment>

@@ -16,11 +16,26 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     id: { control: { disable: true } },
+    orientation: { control: 'radio', options: ['horizontal', 'vertical'] },
   },
   args: {
     thumbMode: 'inhibit-crossing',
     trackDisplayMode: 'auto',
+    orientation: 'horizontal',
   },
+  decorators: [
+    (Story, context) => (
+      <div
+        style={{
+          ...(context.args.orientation == 'vertical'
+            ? { height: 'calc(100vh - 24px)', width: 'fit-content' }
+            : {}),
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } as Meta<SliderProps>;
 
 export const Basic: Story<SliderProps> = (args) => {
@@ -100,6 +115,12 @@ WithCustomThumb.args = {
   railContainerProps: { style: { margin: '0 8px' } },
 };
 
+WithCustomThumb.argTypes = {
+  orientation: {
+    control: false,
+  },
+};
+
 export const Disabled: Story<SliderProps> = (args) => {
   return <Slider {...args} />;
 };
@@ -158,7 +179,12 @@ export const CustomTickNoTooltip: Story<SliderProps> = (args) => {
             marginTop: '20px',
           }}
         >
-          <Body style={{ width: '60px', marginRight: '6px' }}>
+          <Body
+            style={{
+              width: '60px',
+              marginRight: '6px',
+            }}
+          >
             {dateFormatter.format(currentDate)}
           </Body>
         </div>
@@ -177,6 +203,13 @@ CustomTickNoTooltip.args = {
   },
   minLabel: 'Date',
   maxLabel: '',
+  orientation: 'horizontal',
+};
+
+CustomTickNoTooltip.argTypes = {
+  orientation: {
+    control: false,
+  },
 };
 
 export const DecimalIncrement: Story<SliderProps> = (args) => {
@@ -188,4 +221,19 @@ DecimalIncrement.args = {
   max: 50,
   step: 2.5,
   values: [25],
+};
+
+export const Vertical: Story<SliderProps> = (args) => {
+  return <Slider {...args} />;
+};
+
+Vertical.args = {
+  values: [50],
+  orientation: 'vertical',
+};
+
+Vertical.argTypes = {
+  orientation: {
+    control: false,
+  },
 };
