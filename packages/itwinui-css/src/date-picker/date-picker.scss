@@ -135,7 +135,7 @@ $iui-date-picker-today-circle-size: 32px;
   }
 
   &::before {
-    border-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
+    border-color: rgba(0, 0, 0, var(--iui-opacity-4));
   }
 }
 //#endregion Helper mixins

@@ -30,14 +30,14 @@
     &:first-child {
       > [data-iui-variant='high-visibility'],
       > [data-iui-variant='cta'] {
-        border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
+        border-right-color: rgba(0, 0, 0, var(--iui-opacity-4));
       }
     }
 
     &:last-child {
       > [data-iui-variant='high-visibility'],
       > [data-iui-variant='cta'] {
-        border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
+        border-left-color: rgba(0, 0, 0, var(--iui-opacity-4));
       }
     }
     // #endregion Border between buttons for high-visibility and cta
