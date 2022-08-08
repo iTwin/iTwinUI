@@ -3,43 +3,58 @@
 @import '../style/index';
 
 @mixin iui-button-split {
-  @include iui-button-group;
+  $iui-button-split-divider-color: rgba(255, 255, 255, var(--iui-opacity-4));
 
-  &:hover {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+  display: inline-flex;
+  align-items: center;
+  isolation: isolate;
+
+  :where(.iui-button:first-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &[data-iui-variant='high-visibility'],
+    &[data-iui-variant='cta'] {
+      border-right-color: $iui-button-split-divider-color;
+    }
+
+    &:hover {
+      z-index: 1;
+    }
+
+    &[disabled],
+    &:disabled,
+    &[aria-disabled='true'] {
+      border-right-color: var(--iui-color-background-4);
+      z-index: -1;
+    }
   }
 
-  > * {
-    // #region Sizing
-    &:last-child {
-      > .iui-button {
-        --_iui-button-padding-inline: #{$iui-xs};
-      }
+  :where(.iui-button:last-child) {
+    --_iui-button-padding-inline: #{$iui-xs};
 
-      > [data-iui-size='small'] {
-        --_iui-button-padding-inline: #{$iui-xxs};
-      }
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: -1px;
 
-      > [data-iui-size='large'] {
-        --_iui-button-padding-inline: #{$iui-s};
-      }
-    }
-    // #endregion Sizing
-
-    // #region Border between buttons for high-visibility and cta
-    &:first-child {
-      > [data-iui-variant='high-visibility'],
-      > [data-iui-variant='cta'] {
-        border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
-      }
+    &[data-iui-variant='high-visibility'],
+    &[data-iui-variant='cta'] {
+      border-left-color: $iui-button-split-divider-color;
     }
 
-    &:last-child {
-      > [data-iui-variant='high-visibility'],
-      > [data-iui-variant='cta'] {
-        border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
-      }
+    &[disabled],
+    &:disabled,
+    &[aria-disabled='true'] {
+      border-left-color: var(--iui-color-background-4);
+      z-index: -1;
     }
-    // #endregion Border between buttons for high-visibility and cta
+
+    &[data-iui-size='small'] {
+      --_iui-button-padding-inline: #{$iui-xxs};
+    }
+
+    &[data-iui-size='large'] {
+      --_iui-button-padding-inline: #{$iui-s};
+    }
   }
 }

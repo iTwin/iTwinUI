@@ -123,7 +123,8 @@
   }
 
   @include focus-visible {
-    + * { // outline for checkmark
+    + * {
+      // outline for checkmark
       z-index: 2;
       outline-offset: -$iui-xxs;
       outline: 3px solid var(--iui-color-foreground-primary);
