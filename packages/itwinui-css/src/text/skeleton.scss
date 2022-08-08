@@ -17,6 +17,7 @@
     var(--iui-text-color-muted)
   );
   background-size: 200% 100%;
+  background-attachment: fixed;
 
   @media (forced-colors: active) {
     forced-color-adjust: none;
