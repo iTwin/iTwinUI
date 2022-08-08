@@ -3,6 +3,8 @@
 @import '../style/index';
 
 @mixin iui-button-split {
+  --_iui-button-split-divider-color: rgba(255, 255, 255, var(--iui-opacity-4));
+
   display: inline-flex;
   align-items: center;
   isolation: isolate;
@@ -13,7 +15,7 @@
 
     &[data-iui-variant='high-visibility'],
     &[data-iui-variant='cta'] {
-      border-right-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
+      border-right-color: var(--_iui-button-split-divider-color);
     }
 
     &:hover {
@@ -37,7 +39,7 @@
 
     &[data-iui-variant='high-visibility'],
     &[data-iui-variant='cta'] {
-      border-left-color: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4));
+      border-left-color: var(--_iui-button-split-divider-color);
     }
 
     &[disabled],
