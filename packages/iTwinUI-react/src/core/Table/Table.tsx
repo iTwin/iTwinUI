@@ -752,7 +752,16 @@ export const Table = <
         })}
         {...ariaDataAttributes}
       >
-        <div className='iui-table-header-wrapper' ref={headerRef}>
+        <div
+          className='iui-table-header-wrapper'
+          ref={headerRef}
+          onScroll={() => {
+            if (headerRef.current && bodyRef.current) {
+              bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
+              updateStickyState();
+            }
+          }}
+        >
           <div className='iui-table-header'>
             {headerGroups.slice(1).map((headerGroup: HeaderGroup<T>) => {
               const headerGroupProps = headerGroup.getHeaderGroupProps({

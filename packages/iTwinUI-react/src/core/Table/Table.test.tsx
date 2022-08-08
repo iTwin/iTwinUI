@@ -2447,12 +2447,19 @@ it('should sync body horizontal scroll with header scroll', () => {
   expect(header.scrollLeft).toBe(0);
   expect(body.scrollLeft).toBe(0);
 
+  // When body scrolls, header should scroll
   fireEvent.scroll(body, {
     target: { scrollLeft: 100 },
   });
-
   expect(header.scrollLeft).toBe(100);
   expect(body.scrollLeft).toBe(100);
+
+  // When header scrolls, body should scroll
+  fireEvent.scroll(header, {
+    target: { scrollLeft: 0 },
+  });
+  expect(header.scrollLeft).toBe(0);
+  expect(body.scrollLeft).toBe(0);
 });
 
 it.each([
