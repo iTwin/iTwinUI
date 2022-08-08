@@ -24,10 +24,7 @@
     &:disabled,
     &[aria-disabled='true'] {
       border-right-color: var(--iui-color-background-4);
-
-      &:hover {
-        z-index: unset;
-      }
+      z-index: -1;
     }
   }
 
