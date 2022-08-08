@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../utils/index';
-@import '../icon/index';
 
 @mixin iui-expandable-block {
   @include iui-reset;
@@ -27,22 +26,18 @@
 
     > .iui-icon,
     > .iui-status-icon {
-      display: inline-flex;
-      flex-shrink: 0;
-      width: $iui-icons-default;
-      height: $iui-icons-default;
+      @include iui-icon-style('m');
     }
 
     > .iui-icon {
       @media (prefers-reduced-motion: no-preference) {
         transition: transform $iui-speed-fast ease-out;
       }
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-icon-color-actionable);
     }
 
     > .iui-status-icon {
       margin-left: $iui-sm;
-      @include iui-icons-color;
     }
 
     .iui-expandable-block-label {
@@ -95,7 +90,7 @@
       background-color: var(--iui-color-background-4);
 
       > .iui-icon {
-        fill: var(--iui-icons-color-actionable-hover);
+        fill: var(--iui-icon-color-actionable-hover);
       }
 
       .iui-caption,
@@ -129,8 +124,7 @@
     padding: ($iui-baseline * 0.5) $iui-s;
 
     > .iui-icon {
-      width: $iui-icons-small;
-      height: $iui-icons-small;
+      @include iui-icon-style('s');
     }
 
     > .iui-expandable-block-label {

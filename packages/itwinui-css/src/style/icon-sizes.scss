@@ -3,12 +3,12 @@
 
 /// Icon sizes
 
-$iui-icons-default: 16px;
+$iui-icon-default: 16px;
 
-$iui-icons-small: 0.75 * $iui-icons-default; // 12px
-$iui-icons-large: 1.5 * $iui-icons-default; // 24px
-$iui-icons-xl: 2 * $iui-icons-default; // 32px
-$iui-icons-xxl: 3 * $iui-icons-default; // 48px
-$iui-icons-3xl: 4 * $iui-icons-default; // 64px
+$iui-icon-small: 0.75 * $iui-icon-default; // 12px
+$iui-icon-large: 1.5 * $iui-icon-default; // 24px
+$iui-icon-xl: 2 * $iui-icon-default; // 32px
+$iui-icon-2xl: 3 * $iui-icon-default; // 48px
+$iui-icon-3xl: 4 * $iui-icon-default; // 64px
 
-$iui-icons-color-multicolor-disabled: grayscale(100%);
+$iui-icon-color-multicolor-disabled: grayscale(100%);
