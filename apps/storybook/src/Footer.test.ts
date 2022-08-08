@@ -10,6 +10,7 @@ describe('Footer', () => {
     'Appended Custom Elements',
     'Customized Default And Custom Elements',
     'Only Custom Elements',
+    'Custom Content',
   ];
 
   tests.forEach((testName) => {

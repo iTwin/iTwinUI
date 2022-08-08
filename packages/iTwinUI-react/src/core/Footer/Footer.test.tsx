@@ -3,37 +3,18 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-import { Footer, FooterProps, FooterElement } from './Footer';
+import {
+  Footer,
+  FooterProps,
+  FooterElement,
+  defaultFooterElements,
+} from './Footer';
 
 const renderComponent = (props?: Partial<FooterProps>) => {
   return render(<Footer {...props} />);
 };
-
-const urls: FooterElement[] = [
-  {
-    title: 'Terms of service',
-    url:
-      'https://connect-agreementportal.bentley.com/AgreementApp/Home/Eula/view/readonly/BentleyConnect',
-  },
-  {
-    title: 'Privacy',
-    url: 'https://www.bentley.com/en/privacy-policy',
-  },
-  {
-    title: 'Terms of use',
-    url: 'https://www.bentley.com/en/terms-of-use-and-select-online-agreement',
-  },
-  {
-    title: 'Cookies',
-    url: 'https://www.bentley.com/en/cookie-policy',
-  },
-  {
-    title: 'Legal notices',
-    url: 'https://connect.bentley.com/Legal',
-  },
-];
 
 const customUrls: FooterElement[] = [
   {
@@ -45,60 +26,49 @@ const customUrls: FooterElement[] = [
   },
 ];
 
+const assertFooterItems = (
+  items: NodeListOf<HTMLLIElement>,
+  data: FooterElement[],
+) => {
+  items.forEach((element, i) => {
+    // Every second item is a separator
+    if (i % 2 !== 0) {
+      expect(element).toHaveClass('iui-legal-footer-separator');
+      return;
+    }
+
+    const dataIndex = Math.floor(i / 2);
+    expect(element.textContent).toBe(data[dataIndex].title);
+    if (data[dataIndex].url) {
+      expect((element.firstChild as HTMLAnchorElement).href).toBe(
+        data[dataIndex].url,
+      );
+    }
+  });
+};
+
 it('should show all default footer elements', () => {
   const { container } = renderComponent();
-  const copyright = container.querySelector<HTMLLIElement>('li:first-child');
-  const today = new Date();
-  expect(copyright?.textContent).toBe(
-    `© ${today.getFullYear()} Bentley Systems, Incorporated`,
-  );
-  const allLi = container.querySelectorAll<HTMLAnchorElement>('li > a');
-  allLi.forEach((element, i) => {
-    expect(element).toBeTruthy();
-    expect(element.textContent).toBe(urls[i].title);
-    expect(element.href).toBe(urls[i].url);
-    expect((element.previousSibling as HTMLSpanElement).classList).toContain(
-      'iui-separator',
-    );
-  });
+  const allLi = container.querySelectorAll<HTMLLIElement>('li');
+  assertFooterItems(allLi, defaultFooterElements);
 });
 
 it('should show all default and custom footer elements', () => {
   const { container } = renderComponent({ customElements: customUrls });
-  const copyright = container.querySelector<HTMLLIElement>('li:first-child');
-  const today = new Date();
-  expect(copyright?.textContent).toBe(
-    `© ${today.getFullYear()} Bentley Systems, Incorporated`,
-  );
-  const allData = [...urls, ...customUrls];
-  allData.forEach((element) => {
-    const link = screen.getByText(element.title) as HTMLAnchorElement;
-    if (element.url) {
-      expect(link.href).toBe(element.url);
-    }
-  });
+  const allData = [...defaultFooterElements, ...customUrls];
+  const allLi = container.querySelectorAll<HTMLLIElement>('li');
+  assertFooterItems(allLi, allData);
 });
 
 it('should not show default footer elements', () => {
   const { container } = renderComponent({
     customElements: () => customUrls,
   });
-  const allLi = container.querySelectorAll<HTMLAnchorElement>('li > a');
-  allLi.forEach((element, i) => {
-    expect(element).toBeTruthy();
-    expect(element.textContent).toBe(customUrls[i].title);
-    expect(element.href).toBe(customUrls[i].url);
-    if (i > 0) {
-      expect((element.previousSibling as HTMLSpanElement).classList).toContain(
-        'iui-separator',
-      );
-    } else {
-      expect(element.previousSibling as HTMLSpanElement).toBeNull();
-    }
-  });
+  const allLi = container.querySelectorAll<HTMLLIElement>('li');
+  assertFooterItems(allLi, customUrls);
 });
 
-it('should propagate classname and style props correctly', () => {
+it('should propagate className and style props correctly', () => {
   const { container } = renderComponent({
     className: 'custom-class',
     style: { position: 'fixed', bottom: 0 },
@@ -111,4 +81,62 @@ it('should propagate classname and style props correctly', () => {
   expect(footer).toBeTruthy();
   expect(footer.style.position).toEqual('fixed');
   expect(footer.style.bottom).toEqual('0px');
+});
+
+it('should render custom children items', () => {
+  const { container } = renderComponent({
+    children: (
+      <Footer.List>
+        <Footer.Item key='custom-1'>
+          <a href='https://www.bentley.com/'>Custom link 1</a>
+        </Footer.Item>
+        <Footer.Separator key='separator-1' />
+        <Footer.Item key='custom-2'>
+          <a href='https://itwin.github.io/iTwinUI-react/'>Custom link 2</a>
+        </Footer.Item>
+      </Footer.List>
+    ),
+  });
+
+  const footer = container.querySelector('.iui-legal-footer') as HTMLElement;
+  expect(footer).toBeTruthy();
+
+  const allLi = container.querySelectorAll<HTMLLIElement>('li');
+  assertFooterItems(allLi, [
+    { title: 'Custom link 1', url: 'https://www.bentley.com/' },
+    { title: 'Custom link 2', url: 'https://itwin.github.io/iTwinUI-react/' },
+  ]);
+});
+
+it('should render default and custom children items', () => {
+  const { container } = renderComponent({
+    children: (
+      <Footer.List>
+        <Footer.Item key='custom-1'>
+          <a href='https://www.bentley.com/'>Custom link 1</a>
+        </Footer.Item>
+        {defaultFooterElements.map((element, i) => (
+          <React.Fragment key={i}>
+            <Footer.Separator />
+            <Footer.Item>
+              {element.url ? (
+                <a href={element.url}>{element.title}</a>
+              ) : (
+                element.title
+              )}
+            </Footer.Item>
+          </React.Fragment>
+        ))}
+      </Footer.List>
+    ),
+  });
+
+  const footer = container.querySelector('.iui-legal-footer') as HTMLElement;
+  expect(footer).toBeTruthy();
+
+  const allLi = container.querySelectorAll<HTMLLIElement>('li');
+  assertFooterItems(allLi, [
+    { title: 'Custom link 1', url: 'https://www.bentley.com/' },
+    ...defaultFooterElements,
+  ]);
 });

@@ -43,7 +43,7 @@
     "createComponent": "node ../../scripts/createComponent.js"
   },
   "dependencies": {
-    "@itwin/itwinui-css": "^0.62.0",
+    "@itwin/itwinui-css": "^0.63.0",
     "@itwin/itwinui-icons-react": "^1.10.1",
     "@itwin/itwinui-illustrations-react": "^1.3.1",
     "@tippyjs/react": "^4.2.5",

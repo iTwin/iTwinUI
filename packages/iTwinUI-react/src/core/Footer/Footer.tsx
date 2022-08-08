@@ -6,6 +6,9 @@ import React from 'react';
 import cx from 'classnames';
 import { useTheme, StylingProps } from '../utils';
 import '@itwin/itwinui-css/css/footer.css';
+import { FooterItem } from './FooterItem';
+import { FooterSeparator } from './FooterSeparator';
+import { FooterList } from './FooterList';
 
 export type TitleTranslations = {
   termsOfService: string;
@@ -28,6 +31,11 @@ export type FooterProps = {
    * Provide localized strings.
    */
   translatedTitles?: TitleTranslations;
+  /**
+   * Custom footer content. If provided, it will render only what you passed.
+   * Use `defaultFooterElements` to get the default footer elements.
+   */
+  children?: React.ReactNode;
 } & StylingProps;
 
 export type FooterElement = {
@@ -54,6 +62,39 @@ const footerTranslations: TitleTranslations = {
   termsOfUse: 'Terms of use',
 };
 
+export const defaultFooterElements: FooterElement[] = [
+  {
+    key: 'copyright',
+    title: `© ${new Date().getFullYear()} Bentley Systems, Incorporated`,
+  },
+  {
+    key: 'termsOfService',
+    title: footerTranslations.termsOfService,
+    url:
+      'https://connect-agreementportal.bentley.com/AgreementApp/Home/Eula/view/readonly/BentleyConnect',
+  },
+  {
+    key: 'privacy',
+    title: footerTranslations.privacy,
+    url: 'https://www.bentley.com/en/privacy-policy',
+  },
+  {
+    key: 'termsOfUse',
+    title: footerTranslations.termsOfUse,
+    url: 'https://www.bentley.com/en/terms-of-use-and-select-online-agreement',
+  },
+  {
+    key: 'cookies',
+    title: footerTranslations.cookies,
+    url: 'https://www.bentley.com/en/cookie-policy',
+  },
+  {
+    key: 'legalNotices',
+    title: footerTranslations.legalNotices,
+    url: 'https://connect.bentley.com/Legal',
+  },
+];
+
 /**
  * Footer element with all needed legal and info links.
  * Be sure to place it manually at the bottom of your page.
@@ -67,74 +108,72 @@ const footerTranslations: TitleTranslations = {
  * @example <caption>Changing a url</caption>
  * <Footer customElements={(defaultElements) => defaultElements.map(element => ({ ...element, url: element.key === 'privacy' ? customPrivacyUrl : element.url }))} />
  */
-export const Footer = (props: FooterProps) => {
-  const { customElements, translatedTitles, className, ...rest } = props;
+export const Footer = Object.assign(
+  (props: FooterProps) => {
+    const {
+      children,
+      customElements,
+      translatedTitles,
+      className,
+      ...rest
+    } = props;
 
-  useTheme();
+    useTheme();
 
-  const titles = { ...footerTranslations, ...translatedTitles };
-  const defaultElements: FooterElement[] = [
-    {
-      key: 'copyright',
-      title: `© ${new Date().getFullYear()} Bentley Systems, Incorporated`,
-    },
-    {
-      key: 'termsOfService',
-      title: titles.termsOfService,
-      url:
-        'https://connect-agreementportal.bentley.com/AgreementApp/Home/Eula/view/readonly/BentleyConnect',
-    },
-    {
-      key: 'privacy',
-      title: titles.privacy,
-      url: 'https://www.bentley.com/en/privacy-policy',
-    },
-    {
-      key: 'termsOfUse',
-      title: titles.termsOfUse,
-      url:
-        'https://www.bentley.com/en/terms-of-use-and-select-online-agreement',
-    },
-    {
-      key: 'cookies',
-      title: titles.cookies,
-      url: 'https://www.bentley.com/en/cookie-policy',
-    },
-    {
-      key: 'legalNotices',
-      title: titles.legalNotices,
-      url: 'https://connect.bentley.com/Legal',
-    },
-  ];
+    const titles = { ...footerTranslations, ...translatedTitles };
+    const translatedElements = defaultFooterElements.map((element) => {
+      if (element.key && titles.hasOwnProperty(element.key)) {
+        const key = element.key as keyof TitleTranslations;
+        return {
+          ...element,
+          title: titles[key],
+        };
+      }
+      return element;
+    });
 
-  let elements: FooterElement[] = defaultElements;
-  if (customElements) {
-    elements =
-      typeof customElements === 'function'
-        ? customElements(defaultElements)
-        : [...defaultElements, ...customElements];
-  }
+    let elements: FooterElement[] = translatedElements;
+    if (customElements) {
+      elements =
+        typeof customElements === 'function'
+          ? customElements(translatedElements)
+          : [...translatedElements, ...customElements];
+    }
 
-  return (
-    <footer className={cx('iui-legal-footer', className)} {...rest}>
-      <ul>
-        {elements.map((element, index) => {
-          return (
-            <li key={element.key || `${element.title}-${index}`}>
-              {index > 0 && <span className='iui-separator' />}
-              {element.url ? (
-                <a href={element.url} target='_blank' rel='noreferrer'>
-                  {element.title}
-                </a>
-              ) : (
-                element.title
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </footer>
-  );
-};
+    return (
+      <footer className={cx('iui-legal-footer', className)} {...rest}>
+        {children ? (
+          children
+        ) : (
+          <FooterList>
+            {elements.map((element, index) => {
+              return (
+                <React.Fragment
+                  key={element.key || `${element.title}-${index}`}
+                >
+                  {index > 0 && <FooterSeparator />}
+                  <FooterItem>
+                    {element.url ? (
+                      <a href={element.url} target='_blank' rel='noreferrer'>
+                        {element.title}
+                      </a>
+                    ) : (
+                      element.title
+                    )}
+                  </FooterItem>
+                </React.Fragment>
+              );
+            })}
+          </FooterList>
+        )}
+      </footer>
+    );
+  },
+  {
+    List: FooterList,
+    Item: FooterItem,
+    Separator: FooterSeparator,
+  },
+);
 
 export default Footer;
