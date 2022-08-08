@@ -26,7 +26,7 @@
       color: var(--iui-color-foreground-primary);
 
       .iui-tab-icon {
-        fill: var(--iui-icons-color-primary);
+        fill: var(--iui-icon-color-primary);
       }
 
       .iui-tab-description {
@@ -39,7 +39,7 @@
       color: var(--iui-text-color-muted);
 
       .iui-tab-icon {
-        fill: var(--iui-icons-color-actionable-disabled);
+        fill: var(--iui-icon-color-actionable-disabled);
       }
     }
 
@@ -47,10 +47,8 @@
   }
 
   .iui-tab-icon {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    flex-shrink: 0;
-    fill: var(--iui-icons-color-actionable);
+    @include iui-icon-style('m');
+    fill: var(--iui-icon-color-actionable);
     transition: fill $iui-speed-fast ease-out;
 
     + .iui-tab-label {
@@ -73,7 +71,7 @@
       color: var(--iui-color-foreground-positive);
 
       .iui-tab-icon {
-        fill: var(--iui-icons-color-positive);
+        fill: var(--iui-icon-color-positive);
       }
     }
   }

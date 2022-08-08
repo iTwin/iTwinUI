@@ -1,0 +1,56 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../../style/index';
+
+/// @arg $size Can be one of: s, m, l, xl, 2xl, 3xl
+@mixin iui-icon-style($size: 'm') {
+  display: flex;
+  flex-shrink: 0;
+
+  @if $size == 's' {
+    width: $iui-icon-small;
+    height: $iui-icon-small;
+  }
+  @if $size == 'm' {
+    width: $iui-icon-default;
+    height: $iui-icon-default;
+  }
+  @if $size == 'l' {
+    width: $iui-icon-large;
+    height: $iui-icon-large;
+  }
+  @if $size == 'xl' {
+    width: $iui-icon-xl;
+    height: $iui-icon-xl;
+  }
+  @if $size == '2xl' {
+    width: $iui-icon-2xl;
+    height: $iui-icon-2xl;
+  }
+  @if $size == '3xl' {
+    width: $iui-icon-3xl;
+    height: $iui-icon-3xl;
+  }
+}
+
+/// @arg $color Can be one of: default, informational, positive, warning, negative
+@mixin iui-icon-color($color: 'default') {
+  @if $color == 'default' {
+    fill: var(--iui-icon-color);
+    @media (forced-colors: active) {
+      fill: CanvasText;
+    }
+  }
+  @if $color == 'informational' {
+    fill: var(--iui-icon-color-primary);
+  }
+  @if $color == 'positive' {
+    fill: var(--iui-icon-color-positive);
+  }
+  @if $color == 'warning' {
+    fill: var(--iui-icon-color-warning);
+  }
+  @if $color == 'negative' {
+    fill: var(--iui-icon-color-negative);
+  }
+}

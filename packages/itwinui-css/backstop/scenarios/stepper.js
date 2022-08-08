@@ -13,7 +13,7 @@ module.exports = [
 
   // Hover states
   scenario('State default hover on complete', {
-    actions: [hover('#demo-default .iui-clickable:first-child')],
+    actions: [hover('#demo-default .iui-clickable:first-child .iui-stepper-circle')],
     selectors: ['#demo-default'],
     viewports: [{ width: 800, height: 600 }],
   }),

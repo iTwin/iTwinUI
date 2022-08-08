@@ -8,11 +8,11 @@
   cursor: pointer;
 
   > .iui-location-marker-data-rich-body {
-    min-width: $iui-icons-xl;
+    min-width: $iui-icon-xl;
     border-radius: $iui-border-radius;
     text-align: center;
     font-size: $iui-font-size-leading;
-    padding: round($iui-baseline * 0.25) $iui-s;
+    padding: ($iui-baseline * 0.25) $iui-s;
     filter: drop-shadow($iui-elevation-2);
     position: relative;
     border: solid 1px var(--iui-color-foreground-accessory);
@@ -35,9 +35,8 @@
     }
 
     > .iui-location-marker-data-rich-icon {
+      @include iui-icon-style('m');
       display: inline-block;
-      width: $iui-icons-default;
-      height: $iui-icons-default;
       font-size: inherit;
       vertical-align: -2px;
 

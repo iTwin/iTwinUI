@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
 @import '../utils/index';
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
@@ -53,9 +52,9 @@ $iui-expander-button-width: $iui-component-height-small; // width of small borde
     padding-left: $iui-xxs;
 
     &-icon {
-      @include iui-icons-default;
+      @include iui-icon-style('m');
+      @include iui-icon-color;
       margin: 0 $iui-expander-inline-padding;
-      flex-shrink: 0;
 
       &:first-child {
         margin-left: $iui-expander-button-width + $iui-expander-inline-padding;

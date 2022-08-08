@@ -8,16 +8,16 @@ $iui-border-radius: 4px;
 $iui-border-radius-round: 9999px;
 $iui-blur-filter: blur(5px);
 
-$iui-component-offset: 3px;
+$iui-component-offset: 4px;
 
-$iui-component-height: $iui-baseline * 4 - $iui-component-offset * 2; // 38px
-$iui-component-height-small: $iui-baseline * 3 - $iui-component-offset * 2; // 27px
-$iui-component-height-large: $iui-baseline * 5 - $iui-component-offset * 2; // 49px
+$iui-component-height-small: $iui-baseline * 3 - $iui-component-offset * 2; // 28px
+$iui-component-height: $iui-baseline * 4 - $iui-component-offset * 2; // 40px
+$iui-component-height-large: $iui-baseline * 5 - $iui-component-offset * 2; // 52px
 
 $iui-component-padding-horizontal: $iui-sm; // 12px
 
-$iui-component-padding-vertical: (($iui-component-height - $iui-line-height) * 0.5) - 1; // 12.5px
-$iui-component-padding-vertical-small: (($iui-component-height-small - $iui-line-height) * 0.5) - 1; // 7px
-$iui-component-padding-vertical-large: (($iui-component-height-large - $iui-line-height) * 0.5) - 1; // 18px
+$iui-component-padding-vertical-small: (($iui-component-height-small - $iui-line-height) * 0.5) - 1; // 1px
+$iui-component-padding-vertical: (($iui-component-height - $iui-line-height) * 0.5) - 1; // 7px
+$iui-component-padding-vertical-large: (($iui-component-height-large - $iui-line-height) * 0.5) - 1; // 13px
 
-$iui-side-navigation-icon-margins: $iui-icons-large; // Used to align header brand button & side navigation spacing
+$iui-side-navigation-icon-margins: $iui-icon-large; // Used to align header brand button & side navigation spacing

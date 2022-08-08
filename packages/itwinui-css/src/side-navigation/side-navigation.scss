@@ -3,7 +3,6 @@
 @import '../style/index';
 @import '../utils/index';
 @import '../text/mixins';
-@import '../icon/index';
 
 @mixin iui-side-navigation {
   display: inline-flex;
@@ -55,16 +54,16 @@
 
   &.iui-collapsed {
     box-sizing: content-box;
-    min-width: $iui-icons-large + $iui-side-navigation-icon-margins * 2;
-    max-width: $iui-icons-large + $iui-side-navigation-icon-margins * 2;
+    min-width: $iui-icon-large + $iui-side-navigation-icon-margins * 2;
+    max-width: $iui-icon-large + $iui-side-navigation-icon-margins * 2;
 
     // iPhone notch support
     @supports (min-width: unquote('max(0px)')) {
       min-width: unquote(
-        'max(#{$iui-icons-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icons-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+        'max(#{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
       );
       max-width: unquote(
-        'max(#{$iui-icons-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icons-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+        'max(#{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
       );
     }
   }
@@ -112,9 +111,7 @@
     }
 
     > .iui-button-icon:not(.iui-avatar) {
-      width: $iui-icons-large;
-      height: $iui-icons-large;
-      flex-shrink: 0;
+      @include iui-icon-style('l');
     }
 
     &.iui-submenu-open .iui-button-icon {
@@ -133,7 +130,8 @@
       border-bottom: 1px solid var(--iui-color-background-border);
 
       > .iui-button-icon {
-        @include iui-icons-small;
+        @include iui-icon-style('s');
+        @include iui-icon-color;
         @media (prefers-reduced-motion: no-preference) {
           transition: transform $iui-speed ease-out;
         }
