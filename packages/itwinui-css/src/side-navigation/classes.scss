@@ -2,13 +2,65 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+// #region Side navigation
 .iui-side-navigation {
   @include iui-side-navigation;
+
+  &.iui-collapsed {
+    @include iui-side-navigation-state(collapsed);
+  }
+
+  &.iui-expanded {
+    @include iui-side-navigation-state(expanded);
+  }
 }
 
+.iui-side-navigation-content {
+  @include iui-side-navigation-content;
+}
+
+.iui-side-navigation-expander-button {
+  @include iui-side-navigation-expander-button;
+}
+
+.iui-side-navigation-expander-button-icon {
+  @include iui-side-navigation-expander-button-icon;
+}
+
+.iui-side-navigation-button {
+  @include iui-side-navigation-button;
+}
+
+.iui-side-navigation-button-icon {
+  @include iui-side-navigation-button-icon;
+}
+
+.iui-side-navigation-button-label {
+  @include iui-side-navigation-button-label;
+}
+// #endregion Side navigation
+
+// #region Side navigation submenu
 .iui-side-navigation-submenu {
   @include iui-side-navigation-submenu;
 }
+
+.iui-side-navigation-submenu-header {
+  @include iui-side-navigation-submenu-header;
+}
+
+.iui-side-navigation-submenu-header-label {
+  @include iui-side-navigation-submenu-header-label;
+}
+
+.iui-side-navigation-submenu-header-actions {
+  @include iui-side-navigation-submenu-header-actions;
+}
+
+.iui-side-navigation-submenu-content {
+  @include iui-side-navigation-submenu-content;
+}
+// #endregion Side navigation submenu
 
 .iui-side-navigation-wrapper {
   @include iui-side-navigation-wrapper;

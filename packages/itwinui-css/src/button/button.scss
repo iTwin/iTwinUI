@@ -8,13 +8,17 @@ $iui-button-padding-large: $iui-xs * 6;
 
 @mixin iui-button {
   @include iui-reset;
+
+  --_iui-button-border-radius: #{$iui-border-radius};
+
   font-family: inherit;
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   vertical-align: middle;
   justify-content: center;
   position: relative;
-  border-radius: $iui-border-radius;
+  border-radius: var(--_iui-button-border-radius);
   line-height: $iui-line-height;
   font-size: $iui-font-size;
   font-weight: $iui-font-weight-normal;
