@@ -1,0 +1,20 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use 'sass:math';
+
+@mixin spacing {
+  --iui-size-3xs: #{math.div(2, 16)}rem;
+  --iui-size-2xs: #{math.div(4, 16)}rem;
+  --iui-size-xs: #{math.div(8, 16)}rem;
+  --iui-size-s: #{math.div(12, 16)}rem;
+  --iui-size-m: #{math.div(16, 16)}rem;
+  --iui-size-l: #{math.div(24, 16)}rem;
+  --iui-size-xl: #{math.div(32, 16)}rem;
+  --iui-size-2xl: #{math.div(64, 16)}rem;
+  --iui-size-3xl: #{math.div(96, 16)}rem;
+}
+
+@mixin border-radii {
+  --iui-border-radius-1: 4px;
+  --iui-border-radius-round: 9999px;
+}

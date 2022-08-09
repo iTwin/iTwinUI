@@ -113,10 +113,7 @@ export interface ViewportLegacy {
  * @param testCase Name of the test case
  * @param options Custom options
  */
-export declare function scenario(
-  testCase: string,
-  options: Scenario = {},
-): Scenario;
+export declare function scenario(testCase: string, options: Scenario = {}): Scenario;
 
 /**
  * Performs click on element with provided selector.
@@ -142,3 +139,11 @@ export declare function focus(selector: string): Action;
  * @param keys Key clicks to be pressed
  */
 export declare function keyPress(selector: string, keys: string): Action;
+
+/**
+ * Scrolls on element with provided selector.
+ * @param selector CSS selector
+ * @param distanceX distance in pixels to scroll horizontally (scroll to right is positive)
+ * @param distanceY distance in pixels to scroll vertically (scroll down is positive)
+ */
+export declare function scroll(selector: string, distanceX: number, distanceY: number): Action;

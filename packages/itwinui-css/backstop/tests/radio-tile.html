@@ -14,38 +14,23 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Radio tile | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/network";
+      import "@itwin/itwinui-icons-elements/apple";
+      import "@itwin/itwinui-icons-elements/android";
+      import "@itwin/itwinui-icons-elements/windows";
+    </script>
     <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         display: flex;
         flex-direction: column;
         gap: 11px;
       }
     </style>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/network"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/apple"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/android"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/windows"
-    ></script>
-    <script src="../assets/theme.js"></script>
   </head>
 
   <body class="iui-body">

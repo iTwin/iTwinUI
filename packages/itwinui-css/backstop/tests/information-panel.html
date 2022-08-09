@@ -14,82 +14,32 @@
       content="width=device-width, initial-scale=1"
     >
     <title>Information panel | iTwinUI</title>
-    <link
-      rel="stylesheet"
-      href="../../css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/demo.css"
-    />
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/add"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/download"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/arrow-right"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/delete"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/rename"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/more-vertical"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/list"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/thumbnails"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/info"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/sort-up"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/filter-hollow"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/column-manager"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/edit"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/item"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/close-small"
-    ></script>
-    <script
-      type="module"
-      src="https://cdn.skypack.dev/@itwin/itwinui-icons-elements/caret-down-small"
-    ></script>
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "./assets/userIcon.js";
+      import "@itwin/itwinui-icons-elements/add";
+      import "@itwin/itwinui-icons-elements/download";
+      import "@itwin/itwinui-icons-elements/arrow-right";
+      import "@itwin/itwinui-icons-elements/delete";
+      import "@itwin/itwinui-icons-elements/rename";
+      import "@itwin/itwinui-icons-elements/more";
+      import "@itwin/itwinui-icons-elements/more-vertical";
+      import "@itwin/itwinui-icons-elements/list";
+      import "@itwin/itwinui-icons-elements/thumbnails";
+      import "@itwin/itwinui-icons-elements/info";
+      import "@itwin/itwinui-icons-elements/sort-up";
+      import "@itwin/itwinui-icons-elements/filter-hollow";
+      import "@itwin/itwinui-icons-elements/column-manager";
+      import "@itwin/itwinui-icons-elements/edit";
+      import "@itwin/itwinui-icons-elements/item";
+      import "@itwin/itwinui-icons-elements/close-small";
+      import "@itwin/itwinui-icons-elements/caret-down-small";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+    </style>
     <script>
       customElements.define('svg-filetype-imodel', class extends HTMLElement {
         connectedCallback() {
@@ -166,8 +116,6 @@
       /* Fixes display bug when using web components */
       .iui-input-icon svg { display: flex; }
     </style>
-    <script src="../assets/theme.js"></script>
-    <script src="../assets/userIcon.js"></script>
   </head>
 
   <body class="iui-body">
@@ -430,7 +378,6 @@
                   class="iui-checkbox"
                   id="active-row"
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -473,7 +420,6 @@
                   id="active-row"
                   checked
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -515,7 +461,6 @@
                   class="iui-checkbox"
                   id="active-row"
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -557,7 +502,6 @@
                   class="iui-checkbox"
                   id="active-row"
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -599,7 +543,6 @@
                   class="iui-checkbox"
                   id="active-row"
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -777,11 +720,10 @@
               </span>
               <span>2021</span>
 
-              </span>
-
             </div>
-
-            </span>
+          </div>
+        </div>
+      </div>
 
     </section>
 
@@ -933,7 +875,6 @@
                   class="iui-checkbox"
                   id="active-row"
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -976,7 +917,6 @@
                   id="active-row"
                   checked
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -1018,7 +958,6 @@
                   class="iui-checkbox"
                   id="active-row"
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -1060,7 +999,6 @@
                   class="iui-checkbox"
                   id="active-row"
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
@@ -1102,7 +1040,6 @@
                   class="iui-checkbox"
                   id="active-row"
                 />
-                </span>
               </div>
               <div class="iui-cell iui-main-column">
                 <div class="iui-cell-start-icon">
