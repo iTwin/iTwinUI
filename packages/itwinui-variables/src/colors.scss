@@ -28,12 +28,12 @@
 
   @if $contrast == default {
     $background-statuses: (
-      background-primary: hsl(203 100% 44%),
-      background-positive: hsl(95 72% 37%),
-      background-warning: hsl(33 89% 45%),
+      background-primary: hsl(203 100% 39%),
+      background-positive: hsl(95 72% 30%),
+      background-warning: hsl(33 89% 36%),
       background-negative: hsl(0 91% 43%),
-      background-primary-hover: hsl(203 100% 34%),
-      background-positive-hover: hsl(95 72% 27%),
+      background-primary-hover: hsl(203 100% 29%),
+      background-positive-hover: hsl(95 72% 20%),
     );
   } @else {
     $background-statuses: (
