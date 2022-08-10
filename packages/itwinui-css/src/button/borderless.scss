@@ -7,7 +7,6 @@
   --_iui-button-text-color: var(--iui-color-foreground-2);
   --_iui-button-background-color: transparent;
   --_iui-button-border-color: transparent;
-  --_iui-button-icon-margin-x: #{$iui-component-offset};
   @include iui-button-size(medium, borderless);
 
   &:where(:hover, :active) {

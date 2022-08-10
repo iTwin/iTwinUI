@@ -33,8 +33,9 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   display: flex;
   align-items: center;
   font-size: var(--iui-font-size-1);
-  padding: 0 ($iui-component-padding-horizontal + 1px);
-  height: $iui-component-height;
+  padding-block: var(--iui-size-2xs);
+  padding-inline: calc(var(--iui-size-s) + 1px);
+  min-height: $iui-component-height;
   cursor: pointer;
   line-height: normal;
 
@@ -84,7 +85,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   }
 
   &.iui-large {
-    height: $iui-component-height-large;
+    min-height: $iui-component-height-large;
 
     .iui-menu-description {
       display: block;
@@ -162,7 +163,11 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
 }
 
 @mixin iui-menu-content {
-  padding: var(--iui-size-s) ($iui-component-padding-horizontal + 1px);
+  padding-block: var(--iui-size-xs);
+  padding-inline: calc(var(--iui-size-m) + 1px);
+  min-height: $iui-component-height;
+  display: grid;
+  align-items: center;
 }
 
 @mixin iui-menu-divider {

@@ -1,17 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
-$iui-component-offset: var(--iui-size-2xs); // 4px
-
-$iui-component-height-small: calc(var(--iui-size-s) * 3 - $iui-component-offset * 2); // 28px
-$iui-component-height: calc(var(--iui-size-s) * 4 - $iui-component-offset * 2); // 40px
-$iui-component-height-large: calc(var(--iui-size-s) * 5 - $iui-component-offset * 2); // 52px
-
-$iui-component-padding-horizontal: var(--iui-size-s); // 12px
-
-$iui-component-padding-vertical-small: calc(0.5 * calc($iui-component-height-small - var(--iui-size-l)) - 1px); // 1px
-$iui-component-padding-vertical: calc(0.5 * calc($iui-component-height - var(--iui-size-l)) - 1px); // 7px
-$iui-component-padding-vertical-large: calc(0.5 * calc($iui-component-height-large - var(--iui-size-l)) - 1px); // 13px
+$iui-component-height-small: calc(var(--iui-size-s) * 2);
+$iui-component-height: calc(var(--iui-size-s) * 3);
+$iui-component-height-large: calc(var(--iui-size-s) * 4);
 
 // Used to align header brand button & side navigation spacing
 $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));

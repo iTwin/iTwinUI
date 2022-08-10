@@ -2,14 +2,11 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-$iui-button-padding: calc(var(--iui-size-2xs) * 4);
-$iui-button-padding-small: calc(var(--iui-size-2xs) * 2);
-$iui-button-padding-large: calc(var(--iui-size-2xs) * 6);
-
 @mixin iui-button {
   @include iui-reset;
   font-family: inherit;
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   vertical-align: middle;
   justify-content: center;
@@ -25,7 +22,9 @@ $iui-button-padding-large: calc(var(--iui-size-2xs) * 6);
   background: var(--_iui-button-background-color);
   color: var(--_iui-button-text-color);
   gap: var(--_iui-button-gap);
-  height: var(--_iui-button-height);
+  min-height: var(--_iui-button-min-height);
+  min-width: var(--_iui-button-min-height);
+  padding-block: var(--_iui-button-padding-block);
   padding-inline: var(--_iui-button-padding-inline);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
   -webkit-tap-highlight-color: transparent;
@@ -38,11 +37,7 @@ $iui-button-padding-large: calc(var(--iui-size-2xs) * 6);
   @include iui-icon-style('m');
   transition: fill var(--iui-duration-1) ease-out;
   fill: currentColor;
-
-  &:only-child {
-    margin-left: var(--_iui-button-icon-margin-x);
-    margin-right: var(--_iui-button-icon-margin-x);
-  }
+  margin-block: var(--iui-size-2xs);
 }
 
 @mixin iui-button-active {
@@ -67,16 +62,16 @@ $iui-button-padding-large: calc(var(--iui-size-2xs) * 6);
 }
 
 @mixin iui-button-dropdown($size: default) {
-  @if $size == default {
-    --_iui-button-padding-inline: #{$iui-button-padding} #{var(--iui-size-xs)};
+  @if $size == small {
+    padding-right: calc(var(--iui-size-2xs) - 1px);
   }
 
-  @if $size == small {
-    --_iui-button-padding-inline: #{$iui-button-padding-small} #{var(--iui-size-2xs)};
+  @if $size == default {
+    padding-right: calc(var(--iui-size-xs) - 1px);
   }
 
   @if $size == large {
-    --_iui-button-padding-inline: #{$iui-button-padding-large} #{var(--iui-size-s)};
+    padding-right: calc(var(--iui-size-s) - 1px);
   }
 }
 
@@ -84,35 +79,38 @@ $iui-button-padding-large: calc(var(--iui-size-2xs) * 6);
 /// @arg size - must be one of: small, medium, large
 /// @arg styleType - must be one of: default, borderless
 @mixin iui-button-size($size: medium, $styleType: default) {
-  @if $size == medium {
-    --_iui-button-gap: #{var(--iui-size-xs)};
-    --_iui-button-height: #{$iui-component-height};
-    --_iui-button-padding-inline: #{$iui-button-padding};
+  @if $size == small {
+    --_iui-button-gap: var(--iui-size-2xs);
+    --_iui-button-padding-block: 0;
+    --_iui-button-padding-inline: var(--iui-size-xs);
+    --_iui-button-min-height: #{$iui-component-height-small};
 
     @if $styleType == borderless {
-      --_iui-button-padding-inline: #{var(--iui-size-xs)};
+      --_iui-button-padding-inline: var(--iui-size-2xs);
     }
   }
 
-  @if $size == small {
-    --_iui-button-gap: #{var(--iui-size-2xs)};
-    --_iui-button-height: #{$iui-component-height-small};
-    --_iui-button-padding-inline: #{$iui-button-padding-small};
+  @if $size == medium {
+    --_iui-button-gap: var(--iui-size-xs);
+    --_iui-button-padding-block: var(--iui-size-2xs);
+    --_iui-button-padding-inline: var(--iui-size-m);
+    --_iui-button-min-height: #{$iui-component-height};
 
     @if $styleType == borderless {
-      --_iui-button-padding-inline: #{var(--iui-size-3xs)};
+      --_iui-button-padding-inline: var(--iui-size-xs);
     }
   }
 
   @if $size == large {
     font-size: var(--iui-font-size-2);
 
-    --_iui-button-gap: #{var(--iui-size-s)};
-    --_iui-button-height: #{$iui-component-height-large};
-    --_iui-button-padding-inline: #{$iui-button-padding-large};
+    --_iui-button-gap: var(--iui-size-s);
+    --_iui-button-padding-block: var(--iui-size-xs);
+    --_iui-button-padding-inline: var(--iui-size-l);
+    --_iui-button-min-height: #{$iui-component-height-large};
 
     @if $styleType == borderless {
-      --_iui-button-padding-inline: #{var(--iui-size-s)};
+      --_iui-button-padding-inline: var(--iui-size-s);
     }
   }
 }

@@ -15,7 +15,7 @@
   &.iui-inline-icon {
     > .iui-input,
     > .iui-textarea {
-      padding-right: calc(var(--iui-size-m) + var(--iui-size-l));
+      padding-right: $iui-component-height;
 
       &:last-child {
         padding-right: var(--iui-size-s);
@@ -31,7 +31,7 @@
 
     // add margin to the icon if it is below input
     &:not(.iui-inline-icon) > .iui-input-icon {
-      margin-top: $iui-component-offset;
+      margin-top: var(--iui-size-2xs);
     }
   }
 
@@ -101,7 +101,7 @@
 /// Supports .iui-required modifier to show red asterisk.
 @mixin iui-input-label-styling {
   font-weight: var(--iui-font-weight-semibold);
-  margin-bottom: $iui-component-offset;
+  margin-bottom: var(--iui-size-2xs);
 
   &.iui-required {
     &::after {
@@ -146,7 +146,7 @@
 @mixin iui-input-message {
   font-size: var(--iui-font-size-0);
   grid-area: message;
-  margin-top: $iui-component-offset;
+  margin-top: var(--iui-size-2xs);
   color: var(--iui-color-foreground-4);
 
   a {
@@ -170,7 +170,7 @@
 @mixin iui-input-icon-inline {
   grid-area: inputs;
   justify-self: end;
-  margin: 0 calc(var(--iui-size-s) + var(--iui-size-3xs)) 0 0;
+  margin: 0 calc(var(--iui-size-xs) + 1px) 0 0;
   position: relative;
 
   svg {
@@ -190,8 +190,8 @@
   &.iui-actionable {
     align-items: center;
     height: 90%;
-    margin-right: var(--iui-size-3xs);
-    padding: 0 var(--iui-size-s);
+    margin-right: 1px;
+    padding-inline: calc(var(--iui-size-xs) + 1px);
     cursor: pointer;
 
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
@@ -242,15 +242,17 @@
 
   .iui-input,
   .iui-textarea {
-    padding-bottom: calc($iui-component-padding-vertical - 1px);
+    // #region Bottom padding to accomodate for status stripe
+    padding-bottom: calc(var(--iui-size-2xs) - 1px);
 
     &.iui-small {
-      padding-bottom: calc($iui-component-padding-vertical-small - 1px);
+      padding-bottom: 0;
     }
 
     &.iui-large {
-      padding-bottom: calc($iui-component-padding-vertical-large - 1px);
+      padding-bottom: calc(var(--iui-size-xs) - 1px);
     }
+    // #endregion
 
     border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});
 
