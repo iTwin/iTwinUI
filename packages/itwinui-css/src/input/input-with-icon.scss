@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 // Mixin to have inputs combined with icon (eg. select)
@@ -11,7 +10,7 @@
 
   > :first-child {
     grid-area: 1 / -1;
-    padding-right: $iui-component-height; // Width of the end-icon button
+    padding-right: var(--iui-component-height); // Width of the end-icon button
   }
 
   &:focus-within {

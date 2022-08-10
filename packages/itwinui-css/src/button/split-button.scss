@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 
 @mixin iui-button-split {
   $iui-button-split-divider-color: rgba(255, 255, 255, var(--iui-opacity-4));

@@ -9,6 +9,7 @@
 
 @mixin common {
   @include spacing;
+  @include component-heights;
   @include border-radii;
   @include typography;
   @include shadows;

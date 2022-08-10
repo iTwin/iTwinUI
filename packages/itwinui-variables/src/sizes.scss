@@ -18,3 +18,10 @@
   --iui-border-radius-1: 4px;
   --iui-border-radius-round: 9999px;
 }
+
+// These variables are used for aligning things like inputs and buttons.
+@mixin component-heights {
+  --iui-component-height-small: calc(var(--iui-size-s) * 2);
+  --iui-component-height: calc(var(--iui-size-s) * 3);
+  --iui-component-height-large: calc(var(--iui-size-s) * 4);
+}

@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-input {
@@ -61,17 +60,17 @@
 @mixin iui-input-size($size: medium) {
   @if $size == small {
     --_iui-input-padding-block: 0;
-    --_iui-input-min-height: #{$iui-component-height-small};
+    --_iui-input-min-height: var(--iui-component-height-small);
   }
 
   @if $size == medium {
     --_iui-input-padding-block: var(--iui-size-2xs);
-    --_iui-input-min-height: #{$iui-component-height};
+    --_iui-input-min-height: var(--iui-component-height);
   }
 
   @if $size == large {
     --_iui-input-padding-block: var(--iui-size-xs);
-    --_iui-input-min-height: #{$iui-component-height-large};
+    --_iui-input-min-height: var(--iui-component-height-large);
     font-size: var(--iui-font-size-2);
   }
 }

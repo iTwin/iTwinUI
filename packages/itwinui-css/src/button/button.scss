@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 
 @mixin iui-button {
   @include iui-reset;
@@ -83,7 +82,7 @@
     --_iui-button-gap: var(--iui-size-2xs);
     --_iui-button-padding-block: 0;
     --_iui-button-padding-inline: var(--iui-size-xs);
-    --_iui-button-min-height: #{$iui-component-height-small};
+    --_iui-button-min-height: var(--iui-component-height-small);
 
     @if $styleType == borderless {
       --_iui-button-padding-inline: var(--iui-size-2xs);
@@ -94,7 +93,7 @@
     --_iui-button-gap: var(--iui-size-xs);
     --_iui-button-padding-block: var(--iui-size-2xs);
     --_iui-button-padding-inline: var(--iui-size-m);
-    --_iui-button-min-height: #{$iui-component-height};
+    --_iui-button-min-height: var(--iui-component-height);
 
     @if $styleType == borderless {
       --_iui-button-padding-inline: var(--iui-size-xs);
@@ -107,7 +106,7 @@
     --_iui-button-gap: var(--iui-size-s);
     --_iui-button-padding-block: var(--iui-size-xs);
     --_iui-button-padding-inline: var(--iui-size-l);
-    --_iui-button-min-height: #{$iui-component-height-large};
+    --_iui-button-min-height: var(--iui-component-height-large);
 
     @if $styleType == borderless {
       --_iui-button-padding-inline: var(--iui-size-s);
