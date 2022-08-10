@@ -60,7 +60,6 @@
 }
 
 @mixin iui-input-autofill {
-  border-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
-  color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
+  border-color: var(--iui-color-foreground-primary);
   background-color: var(--iui-color-background-subtle-primary);
 }

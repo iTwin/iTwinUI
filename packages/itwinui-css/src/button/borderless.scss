@@ -31,6 +31,6 @@
   --_iui-button-background-color: var(--iui-color-background-subtle-primary);
 
   &:where([disabled], :disabled, [aria-disabled='true']) {
-    --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
+    --_iui-button-background-color: var(--iui-color-background-disabled);
   }
 }

@@ -31,7 +31,7 @@
   }
 
   :where(.iui-button:last-child) {
-    --_iui-button-padding-inline: #{$iui-xs};
+    --_iui-button-padding-inline: var(--iui-size-2xs);
 
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -50,11 +50,11 @@
     }
 
     &[data-iui-size='small'] {
-      --_iui-button-padding-inline: #{$iui-xxs};
+      --_iui-button-padding-inline: var(--iui-size-3xs);
     }
 
     &[data-iui-size='large'] {
-      --_iui-button-padding-inline: #{$iui-s};
+      --_iui-button-padding-inline: var(--iui-size-xs);
     }
   }
 }

@@ -100,7 +100,7 @@ $iui-expander-button-width: calc(
   }
 
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-transparent-hover);
 
     .iui-tree-node-content-caption {
       color: var(--iui-color-foreground-1);
@@ -109,7 +109,7 @@ $iui-expander-button-width: calc(
   }
 
   &.iui-active {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
+    background-color: var(--iui-color-background-subtle-primary);
     outline: $iui-active-outline;
     outline-offset: -1px;
   }

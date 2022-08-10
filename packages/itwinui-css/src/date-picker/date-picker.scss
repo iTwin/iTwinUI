@@ -85,8 +85,7 @@ $iui-date-picker-today-circle-size: 32px;
 @mixin iui-calendar-day-base-hover {
   &:hover {
     font-weight: var(--iui-font-weight-semibold);
-    color: var(--iui-color-foreground-primary);
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-transparent-hover);
   }
 }
 
@@ -108,12 +107,7 @@ $iui-date-picker-today-circle-size: 32px;
   }
 
   &:hover {
-    background-color: initial;
-    color: var(--iui-color-foreground-primary);
-  }
-
-  &:hover::before {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-transparent-hover);
   }
 }
 
@@ -135,7 +129,7 @@ $iui-date-picker-today-circle-size: 32px;
   }
 
   &::before {
-    border-color: rgba(0, 0, 0, var(--iui-opacity-4));
+    border-color: rgba(255, 255, 255, var(--iui-opacity-4));
   }
 }
 //#endregion Helper mixins
@@ -205,12 +199,12 @@ $iui-date-picker-today-circle-size: 32px;
     @include iui-calendar-day-base;
 
     border-radius: 0;
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
+    background-color: var(--iui-color-background-subtle-primary);
     color: var(--iui-color-foreground-2);
 
     &:hover {
       font-weight: var(--iui-font-weight-semibold);
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
+      background-color: var(--iui-color-background-transparent-hover);
     }
   }
 
@@ -218,16 +212,12 @@ $iui-date-picker-today-circle-size: 32px;
     @include iui-calendar-day-today-base;
 
     &:hover {
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
+      background-color: var(--iui-color-background-transparent-hover);
       color: var(--iui-color-foreground-2);
-
-      &::before {
-        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
-      }
     }
 
     &::before {
-      border-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
+      border-color: var(--iui-color-foreground-primary);
     }
   }
 }

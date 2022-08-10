@@ -70,7 +70,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   }
 
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-transparent-hover);
   }
 
   &:focus,
@@ -94,7 +94,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   &.iui-active {
     &,
     &:hover {
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      background-color: var(--iui-color-background-subtle-primary);
       color: var(--iui-color-foreground-primary);
       outline: $iui-active-outline;
       outline-offset: -1px;

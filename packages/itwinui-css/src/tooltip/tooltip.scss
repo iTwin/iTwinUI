@@ -20,7 +20,7 @@
   pointer-events: none;
   background-color: rgba(0, 0, 0, var(--iui-opacity-3));
   color: var(--iui-color-foreground-accessory);
-  border: 1px solid rgba(0, 0, 0, var(--iui-opacity-4));
+  border: 1px solid rgba(255, 255, 255, var(--iui-opacity-4));
 }
 
 @mixin iui-tooltip-hidden {

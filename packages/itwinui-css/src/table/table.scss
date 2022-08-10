@@ -214,7 +214,7 @@
 
       + [aria-selected='true'] .iui-table-cell {
         border-bottom-color: transparent;
-        border-top-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
+        border-top-color: var(--iui-color-foreground-primary);
       }
 
       &:last-child .iui-table-cell {
@@ -310,11 +310,7 @@
   background-color: var(--iui-color-background-1);
 
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
-    background: linear-gradient(
-      rgba(var(--iui-color-foreground-body-rgb), 0.02),
-      rgba(var(--iui-color-foreground-body-rgb), 0.02)
-    ),
-      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+    background-color: var(--iui-color-background-1-hover);
   }
 
   // Empty & loading states
