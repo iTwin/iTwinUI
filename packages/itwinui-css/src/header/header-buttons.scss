@@ -86,7 +86,7 @@
 
   // Active state
   &[aria-current] {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-subtle-primary);
     box-shadow: 0 var(--iui-size-3xs) 0 0 currentColor;
     color: var(--iui-color-foreground-primary);
     @media (forced-colors: active) {
@@ -166,13 +166,16 @@
   padding: 0 var(--iui-size-xs);
   margin-left: calc(0px - var(--iui-size-xs));
   flex-shrink: 0;
+  position: relative;
 
-  &:hover {
-    background-color: var(--iui-color-background-transparent-hover);
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
   }
 
-  @at-root [aria-current] &:hover {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+  &:hover::before {
+    background-color: var(--iui-color-background-transparent-hover);
   }
 
   &:disabled,

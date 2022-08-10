@@ -68,7 +68,7 @@
 
   &.iui-large {
     .iui-tab {
-      min-height: $iui-component-height-large;
+      min-height: calc(var(--iui-size-m) * 3.5);
     }
 
     .iui-tab-description {

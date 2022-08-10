@@ -7,7 +7,6 @@
   --_iui-button-text-color: var(--iui-color-foreground-2);
   --_iui-button-background-color: transparent;
   --_iui-button-border-color: transparent;
-  --_iui-button-icon-margin-x: #{$iui-component-offset};
   @include iui-button-size(medium, borderless);
 
   &:where(:hover, :active) {
@@ -31,6 +30,6 @@
   --_iui-button-background-color: var(--iui-color-background-subtle-primary);
 
   &:where([disabled], :disabled, [aria-disabled='true']) {
-    --_iui-button-background-color: rgba(var(--iui-color-foreground-body-rgb), 0.05);
+    --_iui-button-background-color: var(--iui-color-background-disabled);
   }
 }

@@ -29,7 +29,7 @@
 @mixin iui-text-selection($status: primary) {
   &::selection,
   *::selection {
-    background-color: rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-5));
+    background-color: var(--iui-color-background-subtle-#{$status});
   }
 }
 

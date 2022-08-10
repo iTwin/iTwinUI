@@ -5,7 +5,8 @@
 
 @mixin iui-tabs-borderless {
   .iui-tab {
-    padding: var(--iui-size-2xs) calc($iui-component-padding-horizontal * 2);
+    padding-block: var(--iui-size-2xs);
+    padding-inline: calc(var(--iui-size-s) * 2);
     background-color: transparent;
 
     &::after {
@@ -14,11 +15,11 @@
     }
 
     &:hover {
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      background-color: var(--iui-color-background-transparent-hover);
     }
 
     &.iui-active {
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      background-color: var(--iui-color-background-subtle-primary);
     }
   }
 
@@ -38,14 +39,19 @@
     }
   }
 
-  &.iui-green .iui-active,
-  &.iui-green .iui-tab:hover {
-    background-color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-6));
+  &.iui-green {
+    .iui-active {
+      background-color: var(--iui-color-background-subtle-positive);
+    }
+
+    .iui-tab:hover {
+      background-color: var(--iui-color-background-transparent-hover);
+    }
   }
 
   &.iui-large {
     .iui-tab {
-      min-height: $iui-component-height-large;
+      min-height: calc(var(--iui-size-m) * 3.5);
     }
 
     .iui-tab-description {

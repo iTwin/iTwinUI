@@ -50,7 +50,6 @@
 @mixin iui-anchor-status($status: primary) {
   @include iui-focus($color: var(--iui-color-foreground-#{$status}), $offset: 1px);
   color: var(--iui-color-foreground-#{$status});
-  -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-5));
   @if $status != primary {
     @include iui-text-selection($status);
   }

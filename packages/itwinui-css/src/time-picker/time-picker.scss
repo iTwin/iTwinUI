@@ -42,8 +42,7 @@
 
       &:hover {
         cursor: pointer;
-        color: var(--iui-color-foreground-primary);
-        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+        background-color: var(--iui-color-background-transparent-hover);
       }
 
       &.iui-selected {

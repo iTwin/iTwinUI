@@ -5,7 +5,6 @@
 
 @mixin iui-radio-tile {
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
 }
 
 @mixin iui-radio-tile-content {

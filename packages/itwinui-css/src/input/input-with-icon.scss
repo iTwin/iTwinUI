@@ -11,7 +11,7 @@
 
   > :first-child {
     grid-area: 1 / -1;
-    padding-right: calc(var(--iui-size-m) + var(--iui-size-l));
+    padding-right: $iui-component-height; // Width of the end-icon button
   }
 
   &:focus-within {

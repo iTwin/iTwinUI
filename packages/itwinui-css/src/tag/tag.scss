@@ -22,8 +22,7 @@
 @mixin iui-tag {
   @include iui-tag-base;
   height: calc(var(--iui-size-s) * 3);
-  margin-top: $iui-component-offset;
-  margin-bottom: $iui-component-offset;
+  margin-block: var(--iui-size-2xs);
   border-radius: var(--iui-border-radius-round);
   padding: 0 var(--iui-size-3xs);
   align-items: center;
@@ -83,7 +82,7 @@
 
   &.iui-visible {
     border-radius: var(--iui-border-radius-1);
-    padding: $iui-component-offset var(--iui-size-s);
+    padding: var(--iui-size-2xs) var(--iui-size-s);
     background-color: var(--iui-color-background-3);
   }
 }

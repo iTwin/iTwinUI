@@ -11,8 +11,14 @@
     flex: 1 1 0;
   }
 
-  &.iui-green .iui-tab:hover {
-    background-color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-6));
+  &.iui-green .iui-tab {
+    &:hover {
+      background-color: var(--iui-color-background-transparent-hover);
+    }
+
+    &.iui-active:hover {
+      background-color: var(--iui-color-background-subtle-positive);
+    }
   }
 
   .iui-tab {
@@ -28,7 +34,11 @@
     }
 
     &:hover {
-      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+      background-color: var(--iui-color-background-transparent-hover);
+    }
+
+    &.iui-active:hover {
+      background-color: var(--iui-color-background-subtle-primary);
     }
 
     &[disabled]:hover {

@@ -42,7 +42,7 @@
       background-color: var(--iui-color-background-1);
 
       &:nth-child(even) {
-        background: rgba(var(--iui-color-foreground-body-rgb), 0.02);
+        background: var(--iui-color-background-1-hover);
       }
 
       &::before {

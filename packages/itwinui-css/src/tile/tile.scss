@@ -194,7 +194,7 @@
   border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-thumbnail-icon {
-    @include iui-icon-style('3xl');
+    @include iui-icon-style(3xl);
     @include iui-icon-color;
   }
 }
@@ -220,11 +220,11 @@
     @media (prefers-reduced-motion: no-preference) {
       transition: fill var(--iui-duration-1) ease;
     }
-    fill: rgba(0, 0, 0, var(--iui-opacity-3));
+    fill: rgba(255, 255, 255, var(--iui-opacity-3));
     filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));
 
     &:hover {
-      fill: rgba(0, 0, 0, var(--iui-opacity-2));
+      fill: rgba(255, 255, 255, var(--iui-opacity-2));
     }
   }
 }
@@ -245,8 +245,10 @@
   }
 
   &[data-iui-active='true'] {
-    --_iui-button-text-color: var(--iui-color-foreground-primary);
-    --_iui-button-background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    // background-color: var(--iui-color-foreground-primary);
+    // color: var(--iui-color-background-1-hover);
+    --_iui-button-border-color: var(--iui-color-foreground-primary);
+    outline-offset: 2px;
   }
 
   @at-root .iui-tile-thumbnail-picture ~ & {
@@ -262,6 +264,7 @@
     &[data-iui-active='true']:enabled:hover,
     &[data-iui-active='true']:active {
       background-color: rgba(0, 0, 0, var(--iui-opacity-4));
+      --_iui-button-border-color: transparent;
     }
   }
 }

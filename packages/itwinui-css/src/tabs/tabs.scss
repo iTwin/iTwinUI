@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     font-size: var(--iui-font-size-1);
-    min-height: $iui-component-height;
+    min-height: calc(var(--iui-size-m) * 2.5);
     height: 100%;
     cursor: pointer;
     color: var(--iui-color-foreground-2);

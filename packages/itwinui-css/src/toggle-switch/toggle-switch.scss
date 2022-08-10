@@ -38,7 +38,7 @@
 
 @mixin iui-toggle-switch {
   $iui-toggle-switch-handle-size: var(--iui-size-m);
-  $iui-toggle-switch-handle-offset: $iui-component-offset;
+  $iui-toggle-switch-handle-offset: var(--iui-size-2xs);
   $iui-toggle-switch-border-thickness: 1px;
 
   @include iui-reset;

@@ -53,8 +53,6 @@
 
 @mixin iui-alert-button-icon {
   @include iui-button-icon;
-  margin-left: $iui-component-offset;
-  margin-right: $iui-component-offset;
 }
 
 /// Modifier mixin to categorize the alert

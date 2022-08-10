@@ -9,11 +9,16 @@
   position: relative;
   border-radius: 50%;
   cursor: default;
-  background: radial-gradient(
-    circle at center,
-    rgba(var(--iui-color-foreground-primary-rgb), 0),
-    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5))
-  );
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: var(--iui-opacity-5);
+    background-color: var(--iui-color-foreground-primary);
+    border-radius: inherit;
+  }
 
   > .iui-location-marker-me-dot {
     width: var(--iui-size-s);

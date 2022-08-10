@@ -4,10 +4,12 @@
 @import '../utils/index';
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
-$iui-expander-inline-padding: calc(#{$iui-component-offset} + var(--iui-size-3xs) + 1px); // margin + padding + border
+$iui-expander-inline-padding: calc(
+  var(--iui-size-2xs) + 1px
+); // padding of small borderless button + 1px transparent border
 $iui-expander-button-width: calc(
-  var(--iui-size-m) + calc($iui-expander-inline-padding * 2)
-); // icon width + inline padding on both sides
+  $iui-component-height-small + 2px
+); // width of small borderless button (button is 1:1 ratio)
 
 @mixin iui-tree {
   @include iui-reset;
@@ -100,7 +102,7 @@ $iui-expander-button-width: calc(
   }
 
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-transparent-hover);
 
     .iui-tree-node-content-caption {
       color: var(--iui-color-foreground-1);
@@ -109,7 +111,7 @@ $iui-expander-button-width: calc(
   }
 
   &.iui-active {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
+    background-color: var(--iui-color-background-subtle-primary);
     outline: $iui-active-outline;
     outline-offset: -1px;
   }

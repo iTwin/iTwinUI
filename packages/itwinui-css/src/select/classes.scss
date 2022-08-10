@@ -4,6 +4,14 @@
 
 .iui-select-button {
   @include iui-select-button;
+
+  &[data-iui-size='small'] {
+    @include iui-select-size(small);
+  }
+
+  &[data-iui-size='large'] {
+    @include iui-select-size(large);
+  }
 }
 
 .iui-select-tag-container {

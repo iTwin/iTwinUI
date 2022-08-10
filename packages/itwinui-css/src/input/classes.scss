@@ -4,6 +4,14 @@
 
 .iui-input {
   @include iui-input;
+
+  &[data-iui-size='small'] {
+    @include iui-input-size(small);
+  }
+
+  &[data-iui-size='large'] {
+    @include iui-input-size(large);
+  }
 }
 
 .iui-input-with-icon.iui-input-with-icon {
