@@ -24,6 +24,7 @@
 
   > .iui-codeblock-content {
     margin: 0;
+    display: grid;
     overflow-x: auto;
     overflow-y: auto;
     border-radius: 0 0 var(--iui-border-radius-1) var(--iui-border-radius-1);
