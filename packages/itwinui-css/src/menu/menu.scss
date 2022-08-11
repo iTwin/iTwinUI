@@ -25,9 +25,10 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     border-radius: $iui-border-radius;
   }
 
-  &.iui-scroll {
+  &:where(.iui-scroll) {
     overflow-y: auto;
     overflow-y: overlay;
+    max-height: var(--iui-menu-max-height);
   }
 }
 
