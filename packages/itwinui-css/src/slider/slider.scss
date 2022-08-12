@@ -19,6 +19,7 @@ $tick-height: var(--iui-size-s); // 12px
 
   svg {
     @include iui-icon-style('m');
+    @include iui-icon-color;
     margin-top: var(--iui-size-2xs);
   }
 }
@@ -140,10 +141,8 @@ $tick-height: var(--iui-size-s); // 12px
   }
 
   .iui-slider-thumb {
-    top: $track-height + 1; // position center of thumb in center of track
-    transform: translateX(
-      -50%
-    ); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
+    top: calc($track-height + 1px); // position center of thumb in center of track
+    transform: translateX(-50%);
   }
 
   .iui-slider-track {
@@ -193,9 +192,7 @@ $tick-height: var(--iui-size-s); // 12px
   }
 
   .iui-slider-thumb {
-    transform: translateY(
-      50%
-    ); // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
+    transform: translateY(50%);
     left: calc($track-height + 1px);
   }
 
