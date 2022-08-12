@@ -154,7 +154,7 @@
 
     &:hover:not([aria-disabled='true']) {
       .iui-table-cell {
-        background-color: var(--iui-color-background-subtle-primary);
+        background-color: var(--iui-color-background-transparent-hover);
       }
 
       > .iui-slot:not([aria-disabled='true']) > .iui-table-more-options {
