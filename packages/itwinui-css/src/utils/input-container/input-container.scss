@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../../style/index';
 @import '../mixins';
 
 /// Container for grouping inputs with a label, an icon and a status message.
@@ -15,7 +14,7 @@
   &.iui-inline-icon {
     > .iui-input,
     > .iui-textarea {
-      padding-right: $iui-component-height;
+      padding-right: var(--iui-component-height);
 
       &:last-child {
         padding-right: var(--iui-size-s);

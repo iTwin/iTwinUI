@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
@@ -8,7 +7,7 @@ $iui-expander-inline-padding: calc(
   var(--iui-size-2xs) + 1px
 ); // padding of small borderless button + 1px transparent border
 $iui-expander-button-width: calc(
-  $iui-component-height-small + 2px
+  var(--iui-component-height-large) + 2px
 ); // width of small borderless button (button is 1:1 ratio)
 
 @mixin iui-tree {

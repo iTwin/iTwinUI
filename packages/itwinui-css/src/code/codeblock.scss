@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-codeblock {
@@ -25,6 +24,7 @@
 
   > .iui-codeblock-content {
     margin: 0;
+    display: grid;
     overflow-x: auto;
     overflow-y: auto;
     border-radius: 0 0 var(--iui-border-radius-1) var(--iui-border-radius-1);

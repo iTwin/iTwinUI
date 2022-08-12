@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 $iui-dialog-width: 380px;
@@ -133,18 +132,21 @@ $iui-dialog-width: 380px;
 }
 
 @mixin iui-dialog-title {
+  display: flex;
+  align-items: center;
   font-size: inherit;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.5;
+  margin-right: auto;
 }
 
 @mixin iui-dialog-title-bar {
   display: flex;
   align-items: center;
   margin-bottom: var(--iui-size-s);
-  justify-content: space-between;
+  box-sizing: border-box;
   font-size: var(--iui-font-size-3);
 }
 

@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
@@ -35,7 +34,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   font-size: var(--iui-font-size-1);
   padding-block: var(--iui-size-2xs);
   padding-inline: calc(var(--iui-size-s) + 1px);
-  min-height: $iui-component-height;
+  min-height: var(--iui-component-height);
   cursor: pointer;
   line-height: normal;
 
@@ -85,7 +84,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   }
 
   &.iui-large {
-    min-height: $iui-component-height-large;
+    min-height: var(--iui-component-height-large);
 
     .iui-menu-description {
       display: block;
@@ -165,7 +164,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
 @mixin iui-menu-content {
   padding-block: var(--iui-size-xs);
   padding-inline: calc(var(--iui-size-m) + 1px);
-  min-height: $iui-component-height;
+  min-height: var(--iui-component-height);
   display: grid;
   align-items: center;
 }

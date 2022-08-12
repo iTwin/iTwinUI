@@ -1,11 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../anchor/index';
 @import '../button/borderless';
 @import '../utils/index';
 
-@mixin iui-breadcrumbs($breadcrumbs-height: $iui-component-height) {
+@mixin iui-breadcrumbs($breadcrumbs-height: var(--iui-component-height)) {
   --_iui-breadcrumbs-height: #{$breadcrumbs-height};
 
   @include iui-reset;
