@@ -247,7 +247,8 @@ export type TableProps<
   /**
    * Function that returns index of the row that you want to scroll to.
    *
-   * It doesn't work with paginated tables and with lazy-loading.
+   * When using with lazy-loading table, you need to take care that row is already loaded.
+   * It doesn't work with paginated tables.
    * @beta
    * @example
    * <Table
