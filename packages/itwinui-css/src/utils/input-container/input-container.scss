@@ -244,11 +244,11 @@
     // #region Bottom padding to accomodate for status stripe
     padding-bottom: calc(var(--iui-size-2xs) - 1px);
 
-    &.iui-small {
+    &[data-iui-size='small'] {
       padding-bottom: 0;
     }
 
-    &.iui-large {
+    &[data-iui-size='large'] {
       padding-bottom: calc(var(--iui-size-xs) - 1px);
     }
     // #endregion
