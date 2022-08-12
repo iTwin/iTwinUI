@@ -18,6 +18,14 @@ $base-colors: (
   background-subtle-warning: hsl(180 1% 26%),
   background-subtle-negative: hsl(285 3% 25%),
   //
+  // Background colors - statuses
+  background-primary: hsl(203 100% 39%),
+  background-positive: hsl(95 72% 30%),
+  background-warning: hsl(33 89% 36%),
+  background-negative: hsl(0 91% 43%),
+  background-primary-hover: hsl(203 100% 49%),
+  background-positive-hover: hsl(95 72% 40%),
+  //
   // Foreground colors - default
   foreground-1: hsl(0 0% 100%),
   foreground-2: hsl(210 9% 90%),

@@ -40,7 +40,3 @@
     @include themes.dark-hc-theme;
   }
 }
-
-[data-iui-contrast='high'] {
-  @include colors.unthemed($contrast: 'high');
-}
