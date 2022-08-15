@@ -72,14 +72,10 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-foreground-4); 
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  align-items: center;
   min-height: var(--iui-size-l);
   min-width: var(--iui-size-l);
   gap: var(--iui-size-xs);
-
-  button[data-iui-variant='borderless'] {
-    --_iui-button-height: #{var(--iui-size-l)};
-    --_iui-button-padding-inline: 0;
-  }
 
   &-wrapper {
     max-width: $iui-color-picker-content-width;
