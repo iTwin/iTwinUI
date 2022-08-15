@@ -3,12 +3,12 @@
 @import '../utils/index';
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
-$iui-expander-inline-padding: calc(
-  var(--iui-size-2xs) + 1px
-); // padding of small borderless button + 1px transparent border
-$iui-expander-button-width: calc(
-  var(--iui-component-height-large) + 2px
-); // width of small borderless button (button is 1:1 ratio)
+
+// padding of small borderless button + 1px transparent border
+$iui-expander-inline-padding: calc(var(--iui-size-2xs) + 1px);
+
+// width of small borderless button (button is 1:1 ratio)
+$iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
 @mixin iui-tree {
   @include iui-reset;
