@@ -128,7 +128,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
 
     &.iui-expand {
-      height: var(--iui-size-l);
+      --_iui-button-padding-block: 0;
+      --_iui-button-min-height: var(--iui-size-l);
       justify-content: center;
       border: none;
       border-bottom: 1px solid var(--iui-color-background-border);

@@ -35,6 +35,7 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     margin-left: -1px;
+    min-width: unset;
 
     &[data-iui-variant='high-visibility'],
     &[data-iui-variant='cta'] {
