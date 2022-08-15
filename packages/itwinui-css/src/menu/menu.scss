@@ -7,6 +7,8 @@
 $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
 @mixin iui-list-menu {
+  max-height: var(--iui-menu-max-height);
+
   @include iui-reset;
   list-style-type: none;
   user-select: none;
@@ -28,7 +30,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   &:where(.iui-scroll) {
     overflow-y: auto;
     overflow-y: overlay;
-    max-height: var(--iui-menu-max-height);
+    --iui-menu-max-height: 315px;
   }
 }
 
