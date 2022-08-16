@@ -10,6 +10,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); // IE fallback
   background-color: rgba(0, 0, 0, var(--iui-opacity-4));
 
   &:not(.iui-backdrop-visible) {
