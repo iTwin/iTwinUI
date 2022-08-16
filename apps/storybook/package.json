@@ -37,7 +37,7 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",
     "test:approve": "cypress-image-diff -u",
-    "build-docker": "node scripts/build-docker.js",
+    "push-docker": "node scripts/push-docker.js",
     "cy": "cypress open",
     "cy:run": "cypress run"
   },

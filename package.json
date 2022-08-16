@@ -14,7 +14,8 @@
     "prepare": "husky install",
     "format": "turbo run format",
     "test": "turbo run test",
-    "createComponent": "node scripts/createComponent.js"
+    "createComponent": "node scripts/createComponent.js",
+    "push-docker": "yarn workspace storybook push-docker"
   },
   "dependencies": {},
   "devDependencies": {

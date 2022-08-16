@@ -11,9 +11,12 @@ const platform = os.arch().includes('arm') ? 'linux/arm64/v8' : 'linux/amd64';
 const binaryPath = os.arch().includes('arm')
   ? '/tmp/cypress-build/linux/build/linux-arm64-unpacked'
   : '/tmp/cypress-build/linux/build/linux-unpacked';
+const imagePlatformName = os.arch().includes('arm') ? 'arm' : 'amd';
+// Change this before new image push
+const VERSION = '1.0.0';
 
 spawn(
-  `docker buildx build ${dockerfilePath} --platform ${platform} --build-arg BINARY_PATH=${binaryPath} -t itwinui/cypress:latest --load`,
+  `docker buildx build ${dockerfilePath} --platform ${platform} --build-arg BINARY_PATH=${binaryPath} -t bentleysystemsinc/itwinui-cypress:${imagePlatformName} -t bentleysystemsinc/itwinui-cypress:${VERSION}-${imagePlatformName} --push`,
   {
     stdio: 'inherit',
     shell: true,

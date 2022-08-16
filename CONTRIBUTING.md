@@ -231,11 +231,9 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 #### Running visual tests
 
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
-2. From the monorepo root, run `yarn workspace storybook build-docker` to build and load the `itwinui/cypress` docker image.
-   - This step only needs to be done the very first time. It will persist in docker afterwards.
-3. From the monorepo root, run `yarn test --filter=storybook`. This will build storybook and run all cypress tests in docker.
+2. From the monorepo root, run `yarn test --filter=storybook`. This will build storybook and run all cypress tests in docker.
    -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `yarn workspace storybook test --spec="**/Alert.*"`. Don't forget to build storybook first (yarn build --filter=storybook).
-4. Once the tests finish running, you can approve any failing test images using `yarn workspace storybook test:approve`.
+3. Once the tests finish running, you can approve any failing test images using `yarn workspace storybook test:approve`.
 
 #### Writing visual tests
 
