@@ -39,7 +39,8 @@
     "test:approve": "cypress-image-diff -u",
     "push-docker": "node scripts/push-docker.js",
     "cy": "cypress open",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "clean": "rimraf .turbo && rimraf node_modules && rimraf storybook-static"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [

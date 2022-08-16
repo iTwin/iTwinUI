@@ -31,6 +31,10 @@
     },
     "format": {
       "outputs": []
+    },
+    "clean": {
+      "outputs": [],
+      "cache": false
     }
   }
 }

@@ -10,6 +10,9 @@
     "prettier-config.js",
     "tsconfig.base.json"
   ],
+  "scripts": {
+    "clean": "rimraf .turbo && rimraf node_modules"
+  },
   "dependencies": {
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.3.0",
