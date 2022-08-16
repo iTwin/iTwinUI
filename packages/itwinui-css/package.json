@@ -3,12 +3,12 @@
   "version": "0.63.1",
   "author": "Bentley Systems",
   "license": "MIT",
+  "main": "css/all.css",
   "files": [
     "css",
     "CHANGELOG.md",
     "LICENSE.md"
   ],
-  "main": "css/all.css",
   "description": "CSS library for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications.",
   "homepage": "https://github.com/iTwin/iTwinUI",
   "keywords": [
@@ -24,6 +24,7 @@
     "bentley systems",
     "itwin"
   ],
+  "dependencies": {},
   "devDependencies": {
     "@itwin/itwinui-icons-elements": "0.2.0",
     "autoprefixer": "^10.4.1",
