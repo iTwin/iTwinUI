@@ -12,8 +12,7 @@
     'inputs inputs' / auto 1fr;
 
   &.iui-inline-icon {
-    > .iui-input,
-    > .iui-textarea {
+    > .iui-input {
       padding-right: var(--iui-component-height);
 
       &:last-child {
@@ -36,7 +35,6 @@
 
   .iui-input,
   .iui-input-with-icon,
-  .iui-textarea,
   .iui-input-group {
     grid-area: inputs;
   }
@@ -239,8 +237,7 @@
     }
   }
 
-  .iui-input,
-  .iui-textarea {
+  .iui-input {
     // #region Bottom padding to accomodate for status stripe
     padding-bottom: calc(var(--iui-size-2xs) - 1px);
 

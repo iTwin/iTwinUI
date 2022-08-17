@@ -48,6 +48,10 @@
     --_hover-color: var(--iui-color-background-disabled); // RENAME
     cursor: not-allowed;
   }
+
+  @at-root :where(textarea#{&}) {
+    @include textarea;
+  }
 }
 
 @mixin iui-input-autofill {
@@ -72,5 +76,14 @@
     --_iui-input-padding-block: var(--iui-size-xs);
     --_iui-input-min-height: var(--iui-component-height-large);
     font-size: var(--iui-font-size-2);
+  }
+}
+
+@mixin textarea {
+  resize: vertical;
+
+  &[disabled],
+  &[readonly] {
+    resize: none;
   }
 }
