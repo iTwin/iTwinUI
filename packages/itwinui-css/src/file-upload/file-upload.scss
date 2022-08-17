@@ -25,6 +25,7 @@
     padding: ($iui-baseline * 0.5) $iui-sm;
     background-color: var(--iui-color-background-2);
     border: 1px solid var(--iui-color-background-2);
+    border-radius: $iui-border-radius;
 
     .iui-browse-input {
       width: 0.1px;

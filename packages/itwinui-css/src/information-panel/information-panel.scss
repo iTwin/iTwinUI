@@ -6,6 +6,7 @@
 @mixin iui-information-panel-wrapper {
   position: relative;
   overflow: hidden;
+  border-radius: $iui-border-radius;
 }
 
 @mixin iui-information-panel {

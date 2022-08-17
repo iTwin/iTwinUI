@@ -11,6 +11,7 @@
   height: $iui-baseline * 26;
   display: inline-flex;
   background-color: var(--iui-color-background-1);
+  border-radius: $iui-border-radius;
 
   &:not(:first-child) {
     border-left: 1px solid var(--iui-color-background-border);
