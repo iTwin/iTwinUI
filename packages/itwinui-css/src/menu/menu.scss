@@ -40,7 +40,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   cursor: pointer;
   box-sizing: border-box;
   line-height: normal;
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
 
   + #{&} {
     margin-top: -1px;
