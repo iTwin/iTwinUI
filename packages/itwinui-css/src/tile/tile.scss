@@ -244,8 +244,6 @@
   }
 
   &[data-iui-active='true'] {
-    // background-color: var(--iui-color-foreground-primary);
-    // color: var(--iui-color-background-1-hover);
     --_iui-button-border-color: var(--iui-color-foreground-primary);
     outline-offset: 2px;
   }
