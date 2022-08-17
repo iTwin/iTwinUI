@@ -13,8 +13,7 @@
     'inputs inputs' / auto 1fr;
 
   &.iui-inline-icon {
-    > .iui-input,
-    > .iui-textarea {
+    > .iui-input {
       padding-right: $iui-icon-default + $iui-l;
 
       &:last-child {
@@ -37,7 +36,6 @@
 
   .iui-input,
   .iui-input-with-icon,
-  .iui-textarea,
   .iui-input-group {
     grid-area: inputs;
   }
@@ -240,8 +238,7 @@
     }
   }
 
-  .iui-input,
-  .iui-textarea {
+  .iui-input {
     padding-bottom: $iui-component-padding-vertical - 1px;
 
     &.iui-small {
