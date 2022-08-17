@@ -114,7 +114,7 @@
   margin: 0 var(--iui-size-m) 0 0;
 
   &.iui-required {
-    margin-right: calc(var(--iui-size-2xs) * 1.5);
+    margin-right: calc(var(--iui-size-2xs) * 1.5 - 1px);
   }
 }
 
