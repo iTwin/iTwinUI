@@ -33,10 +33,10 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
 
   const truncatedText = React.useMemo(() => {
     if (visibleCount < text.length) {
-      return `${text.substr(
+      return `${text.substring(
         0,
         visibleCount - endCharsCount - ELLIPSIS_CHAR.length,
-      )}${ELLIPSIS_CHAR}${text.substr(text.length - endCharsCount)}`;
+      )}${ELLIPSIS_CHAR}${text.substring(text.length - endCharsCount)}`;
     } else {
       return text;
     }

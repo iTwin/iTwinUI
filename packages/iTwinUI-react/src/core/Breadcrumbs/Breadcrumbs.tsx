@@ -62,28 +62,6 @@ export const Breadcrumbs = React.forwardRef(
     const [overflowRef, visibleCount] = useOverflow(items);
     const refs = useMergedRefs(overflowRef, ref);
 
-    const Separator = () => (
-      <li className='iui-breadcrumbs-separator' aria-hidden>
-        {separator ?? <SvgChevronRight />}
-      </li>
-    );
-
-    const ListItem = ({ index }: { index: number }) => {
-      const item = items[index];
-      return (
-        <li className={'iui-breadcrumbs-item iui-breadcrumbs-item-overrides'}>
-          {React.isValidElement(item)
-            ? React.cloneElement(item, {
-                'aria-current':
-                  item.props['aria-current'] ?? currentIndex === index
-                    ? 'location'
-                    : undefined,
-              })
-            : item}
-        </li>
-      );
-    };
-
     return (
       <nav
         className={cx('iui-breadcrumbs', className)}
@@ -94,8 +72,8 @@ export const Breadcrumbs = React.forwardRef(
         <ol className='iui-breadcrumbs-list'>
           {visibleCount > 1 && (
             <>
-              <ListItem index={0} />
-              <Separator />
+              <ListItem item={items[0]} isActive={currentIndex === 0} />
+              <Separator separator={separator} />
             </>
           )}
           {items.length - visibleCount > 0 && (
@@ -103,7 +81,7 @@ export const Breadcrumbs = React.forwardRef(
               <li className='iui-breadcrumbs-item iui-breadcrumbs-item-overrides'>
                 <span className='iui-breadcrumbs-text'>…</span>
               </li>
-              <Separator />
+              <Separator separator={separator} />
             </>
           )}
           {items
@@ -119,8 +97,13 @@ export const Breadcrumbs = React.forwardRef(
                   : items.length - 1;
               return (
                 <React.Fragment key={index}>
-                  <ListItem index={index} />
-                  {index < items.length - 1 && <Separator />}
+                  <ListItem
+                    item={items[index]}
+                    isActive={currentIndex === index}
+                  />
+                  {index < items.length - 1 && (
+                    <Separator separator={separator} />
+                  )}
                 </React.Fragment>
               );
             })}
@@ -128,6 +111,31 @@ export const Breadcrumbs = React.forwardRef(
       </nav>
     );
   },
+);
+
+const ListItem = ({
+  item,
+  isActive,
+}: {
+  item: React.ReactNode;
+  isActive: boolean;
+}) => {
+  return (
+    <li className={'iui-breadcrumbs-item iui-breadcrumbs-item-overrides'}>
+      {React.isValidElement(item)
+        ? React.cloneElement(item, {
+            'aria-current':
+              item.props['aria-current'] ?? isActive ? 'location' : undefined,
+          })
+        : item}
+    </li>
+  );
+};
+
+const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
+  <li className='iui-breadcrumbs-separator' aria-hidden>
+    {separator ?? <SvgChevronRight />}
+  </li>
 );
 
 export default Breadcrumbs;
