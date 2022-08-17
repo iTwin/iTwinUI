@@ -58,7 +58,9 @@
     --_hover-color: var(--iui-color-background-disabled);
   }
 
-  @include textarea;
+  @at-root :where(textarea#{&}) {
+    @include textarea;
+  }
 }
 
 @mixin iui-input-autofill {
