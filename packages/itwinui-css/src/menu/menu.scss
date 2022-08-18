@@ -12,6 +12,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   width: 100%;
   margin: 0;
   padding: 0;
+  max-height: var(--iui-menu-max-height);
   border-radius: $iui-border-radius;
 
   .iui-header-menu-icon {
@@ -27,6 +28,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   &.iui-scroll {
     overflow-y: auto;
     overflow-y: overlay;
+    --iui-menu-max-height: 315px;
   }
 }
 
