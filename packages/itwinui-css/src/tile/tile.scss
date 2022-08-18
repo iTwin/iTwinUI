@@ -7,12 +7,11 @@
 
 @mixin iui-tile {
   @include iui-reset;
-  @include iui-surface;
+  @include iui-surface($border-radius: $iui-border-radius);
   display: inline-flex;
   flex-direction: column;
   width: $iui-3xl * 3;
   backface-visibility: hidden;
-  border-radius: $iui-border-radius;
 
   &:where(:not(.iui-folder)) {
     > :where(:first-child) {
