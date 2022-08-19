@@ -39,6 +39,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   height: $iui-component-height;
   cursor: pointer;
   line-height: normal;
+  color: var(--iui-color-foreground-2);
 
   + #{&} {
     margin-top: -1px;
