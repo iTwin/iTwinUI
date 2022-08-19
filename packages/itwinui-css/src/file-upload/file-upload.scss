@@ -64,9 +64,9 @@
 
   &.iui-drag > .iui-content {
     background: linear-gradient(
-        rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-        rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-      ),
+      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+    ),
       linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
     border-color: var(--iui-color-foreground-primary);
     color: var(--iui-color-foreground-primary);
