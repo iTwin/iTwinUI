@@ -22,6 +22,19 @@ async function performAction(page, action) {
       await page.type(action.value.selector, action.value.keys);
       break;
     }
+    case ScenarioActions.Scroll: {
+      await page.waitForSelector(action.value.selector);
+      await page.evaluate(
+        (selector, distanceX, distanceY) => {
+          document.querySelector(selector).scrollLeft = distanceX;
+          document.querySelector(selector).scrollTop = distanceY;
+        },
+        action.value.selector,
+        action.value.distanceX,
+        action.value.distanceY
+      );
+      break;
+    }
     default:
       throw `Unknown action type: ${action.type}`;
   }

@@ -13,9 +13,8 @@
     'inputs inputs' / auto 1fr;
 
   &.iui-inline-icon {
-    > .iui-input,
-    > .iui-textarea {
-      padding-right: $iui-icons-default + $iui-l;
+    > .iui-input {
+      padding-right: $iui-icon-default + $iui-l;
 
       &:last-child {
         padding-right: $iui-sm;
@@ -37,13 +36,12 @@
 
   .iui-input,
   .iui-input-with-icon,
-  .iui-textarea,
   .iui-input-group {
     grid-area: inputs;
   }
 
   .iui-input-group .iui-toggle-switch-wrapper {
-    padding: round($iui-baseline * 0.5) 0;
+    padding: ($iui-baseline * 0.5) 0;
   }
 
   // #region Cursors
@@ -156,12 +154,10 @@
 
 /// Icon to be shown near a message.
 @mixin iui-input-icon {
-  display: flex;
+  @include iui-icon-style('m');
+  @include iui-icon-color;
   grid-area: icon;
-  width: $iui-icons-default;
-  height: $iui-icons-default;
   align-self: center;
-  fill: var(--iui-icons-color);
 
   &:not(:last-child) {
     margin-right: $iui-xs;
@@ -176,8 +172,7 @@
   position: relative;
 
   svg {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
+    @include iui-icon-style('m');
   }
 
   &.iui-button {
@@ -200,7 +195,7 @@
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
     svg {
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-icon-color-actionable);
       transition: transform $iui-speed-fast ease-out;
     }
 
@@ -213,7 +208,7 @@
     cursor: not-allowed;
 
     svg {
-      fill: var(--iui-icons-color-actionable-disabled);
+      fill: var(--iui-icon-color-actionable-disabled);
     }
   }
 }
@@ -243,8 +238,7 @@
     }
   }
 
-  .iui-input,
-  .iui-textarea {
+  .iui-input {
     padding-bottom: $iui-component-padding-vertical - 1px;
 
     &.iui-small {

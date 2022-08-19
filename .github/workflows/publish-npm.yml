@@ -39,6 +39,6 @@ jobs:
       - run: yarn build
 
       - run: npm publish --access public --tag dev
-        working-directory: './packages/${{ github.event.inputs.package }}/'
+        working-directory: './packages/${{ inputs.package }}/'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}

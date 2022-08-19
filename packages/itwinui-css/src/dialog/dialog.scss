@@ -133,24 +133,27 @@ $iui-dialog-width: 380px;
 }
 
 @mixin iui-dialog-title {
+  display: flex;
+  align-items: center;
   font-size: inherit;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.5;
+  margin-right: auto;
 }
 
 @mixin iui-dialog-title-bar {
   display: flex;
   align-items: center;
   margin-bottom: $iui-baseline;
-  justify-content: space-between;
+  box-sizing: border-box;
   font-size: $iui-font-size-subheading;
 }
 
 @mixin iui-dialog-title-bar-filled {
   font-size: $iui-font-size-leading;
-  padding: round($iui-baseline * 0.5) $iui-m;
+  padding: ($iui-baseline * 0.5) $iui-m;
   margin: -#{$iui-baseline} -#{$iui-m} $iui-baseline -#{$iui-m}; // negative margin to counteract dialog padding
   cursor: grab;
   background-color: var(--iui-color-background-3);

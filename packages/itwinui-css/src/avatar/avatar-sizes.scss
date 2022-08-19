@@ -2,15 +2,15 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-avatar-size($size: $iui-icons-xl, $font-size: $iui-font-size-leading) {
+@mixin iui-avatar-size($size: $iui-icon-xl, $font-size: $iui-font-size-leading) {
   width: $size;
   height: $size;
 
-  @if ($size == $iui-icons-xl) {
+  @if ($size == $iui-icon-xl) {
     --_iui-avatar-status-size: #{$iui-xs * 1.5};
-  } @else if ($size == $iui-icons-large) {
+  } @else if ($size == $iui-icon-large) {
     --_iui-avatar-status-size: #{$iui-xs};
-  } @else if ($size == $iui-icons-xxl) {
+  } @else if ($size == $iui-icon-2xl) {
     --_iui-avatar-status-size: #{$iui-s};
   } @else {
     --_iui-avatar-status-size: #{$iui-sm};

@@ -47,6 +47,10 @@
       ~ .iui-tabs-content {
         margin-top: -1px;
       }
+
+      :where(.iui-button) {
+        height: 100%;
+      }
     }
   }
 
@@ -62,6 +66,10 @@
 
       ~ .iui-tabs-content {
         margin-left: -1px;
+      }
+
+      :where(.iui-button) {
+        width: 100%;
       }
     }
   }

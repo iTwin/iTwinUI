@@ -2,15 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const os = require('os');
 const { spawn } = require('child_process');
+// Change this before new image push
+const VERSION = '1.0.0';
 
-const platform = os.arch().includes('arm') ? 'linux/arm64/v8' : 'linux/amd64';
-
-spawn(`docker buildx build backstop/docker --platform ${platform} -t itwinui/backstopjs:latest --load`, {
-  stdio: 'inherit',
-  shell: true,
-})
+spawn(
+  `docker buildx build backstop/docker --platform linux/arm64/v8,linux/amd64 -t bentleysystemsinc/itwinui-backstop:latest -t bentleysystemsinc/itwinui-backstop:${VERSION} --push`,
+  {
+    stdio: 'inherit',
+    shell: true,
+  }
+)
   .on('error', (error) => {
     process.exitCode = 1;
     console.error(`docker buildx failed with error: ${error}`);

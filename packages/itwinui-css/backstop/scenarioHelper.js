@@ -18,7 +18,7 @@ function scenario(testCase, options = {}) {
       misMatchThreshold: 0.001,
       requireSameDimensions: true,
     },
-    options,
+    options
   );
 }
 
@@ -27,6 +27,7 @@ const ScenarioActions = {
   Hover: 'Hover',
   Focus: 'Focus',
   KeyPress: 'KeyPress',
+  Scroll: 'Scroll',
 };
 
 function click(selector) {
@@ -60,6 +61,17 @@ function keyPress(selector, keys) {
   };
 }
 
+function scroll(selector, distanceX, distanceY) {
+  return {
+    type: ScenarioActions.Scroll,
+    value: {
+      selector,
+      distanceX,
+      distanceY,
+    },
+  };
+}
+
 module.exports = {
   scenario,
   ScenarioActions,
@@ -67,4 +79,5 @@ module.exports = {
   hover,
   focus,
   keyPress,
+  scroll,
 };

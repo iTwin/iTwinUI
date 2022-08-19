@@ -1,39 +1,26 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
 @import '../utils/index';
 
 $thumb-height: $iui-m; // 16px
 $track-height: $iui-xs; // 4px
-$tick-height: $iui-baseline; // 11px
+$tick-height: $iui-baseline; // 12px
 
 @mixin iui-slider-component-container {
   display: flex;
-  min-height: $iui-baseline * 2;
-
-  .iui-slider-min,
-  .iui-slider-max {
-    user-select: all;
-    margin-top: $iui-xxs;
-
-    svg {
-      @include iui-icons-default;
-      margin-top: $iui-xs;
-    }
-  }
-
-  .iui-slider-min {
-    margin-right: $iui-sm;
-    text-align: right;
-  }
-
-  .iui-slider-max {
-    margin-left: $iui-sm;
-  }
 
   &.iui-disabled {
     @include iui-slider-disabled;
+  }
+}
+
+@mixin iui-slider-endpoints {
+  user-select: all;
+
+  svg {
+    @include iui-icon-style('m');
+    margin-top: $iui-xs;
   }
 }
 
@@ -53,7 +40,6 @@ $tick-height: $iui-baseline; // 11px
   position: absolute;
   width: 100%;
   height: $track-height;
-  top: $iui-sm;
   background-color: var(--iui-color-background-border);
 }
 
@@ -63,10 +49,6 @@ $tick-height: $iui-baseline; // 11px
   height: $thumb-height;
   width: $thumb-height;
   border-radius: 100%;
-  top: $track-height + 1; // position center of thumb in center of track
-  transform: translateX(
-    (-$thumb-height - 2) * 0.5
-  ); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
   z-index: 1;
   cursor: grab;
   @include iui-focus($thickness: 2px);
@@ -81,15 +63,12 @@ $tick-height: $iui-baseline; // 11px
 @mixin iui-slider-track {
   pointer-events: none;
   position: absolute;
-  height: $track-height;
-  left: 0;
   top: $iui-sm;
   background-color: var(--iui-color-foreground-primary);
 }
 
 @mixin iui-slider-ticks {
   position: relative;
-  padding-top: $iui-m;
   display: flex;
   pointer-events: none;
   justify-content: space-between;
@@ -100,11 +79,14 @@ $tick-height: $iui-baseline; // 11px
     display: flex;
     pointer-events: none;
     justify-content: center;
-    width: 1px;
-    height: $tick-height;
-    line-height: $tick-height * 4;
-    margin-bottom: $tick-height * 2;
-    background-color: var(--iui-color-background-4);
+    align-items: center;
+
+    &::before {
+      background-color: var(--iui-color-background-4);
+      @media (forced-colors: active) {
+        background-color: CanvasText;
+      }
+    }
   }
 }
 
@@ -131,5 +113,117 @@ $tick-height: $iui-baseline; // 11px
   .iui-slider-tick {
     user-select: none;
     color: var(--iui-text-color-muted);
+    @media (forced-colors: active) {
+      color: GrayText;
+    }
+  }
+}
+
+@mixin iui-slider-horizontal {
+  min-height: $iui-baseline * 2;
+
+  .iui-slider-rail {
+    width: 100%;
+    height: $track-height;
+    top: $iui-sm;
+  }
+
+  .iui-slider-thumb {
+    top: $track-height + 1; // position center of thumb in center of track
+    transform: translateX(
+      -50%
+    ); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
+  }
+
+  .iui-slider-track {
+    height: $track-height;
+    left: 0;
+  }
+
+  .iui-slider-ticks {
+    padding-top: $iui-m;
+
+    .iui-slider-tick {
+      flex-direction: column;
+      width: 1px;
+
+      &::before {
+        content: '';
+        width: 1px;
+        height: $tick-height;
+      }
+    }
+  }
+
+  .iui-slider-min,
+  .iui-slider-max {
+    margin-top: $iui-xxs;
+  }
+
+  .iui-slider-min {
+    margin-right: $iui-sm;
+    text-align: right;
+  }
+
+  .iui-slider-max {
+    margin-left: $iui-sm;
+  }
+}
+
+@mixin iui-slider-vertical {
+  flex-direction: column-reverse;
+  min-width: $iui-baseline * 2;
+  height: 100%;
+
+  .iui-slider-rail {
+    width: $track-height;
+    height: 100%;
+    left: $iui-sm;
+  }
+
+  .iui-slider-thumb {
+    transform: translateY(
+      50%
+    ); // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
+    left: $track-height + 1;
+  }
+
+  .iui-slider-track {
+    width: $track-height;
+    bottom: 0;
+    left: $iui-sm;
+  }
+
+  .iui-slider-ticks {
+    padding-left: $iui-m;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    height: 100%;
+
+    .iui-slider-tick {
+      flex: row;
+      height: 1px;
+
+      &::before {
+        content: '';
+        width: $tick-height;
+        height: 1px;
+        margin-right: $tick-height * 1;
+      }
+    }
+  }
+
+  .iui-slider-min,
+  .iui-slider-max {
+    margin-left: $iui-xxs;
+    text-align: center;
+  }
+
+  .iui-slider-min {
+    margin-top: $iui-sm;
+  }
+
+  .iui-slider-max {
+    margin-bottom: $iui-sm;
   }
 }

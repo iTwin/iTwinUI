@@ -11,45 +11,43 @@
   width: 100%;
   padding: $iui-baseline 0;
   font-size: $iui-font-size-small;
+}
 
-  > ul {
-    list-style-type: none;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+@mixin iui-legal-footer-list {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-    > li {
-      display: inline-block;
-      user-select: none;
-      white-space: nowrap;
-      word-break: keep-all;
+@mixin iui-legal-footer-item {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  white-space: nowrap;
+  word-break: keep-all;
+  color: var(--iui-text-color-muted);
+
+  > a {
+    @include iui-anchor;
+
+    &,
+    &:hover {
       color: var(--iui-text-color-muted);
-
-      .iui-separator {
-        margin: 0 $iui-s;
-        width: 1px;
-        height: $iui-baseline;
-        display: inline-table;
-        background-color: var(--iui-text-color-muted);
-      }
-
-      > a {
-        @include iui-anchor;
-
-        &,
-        &:hover {
-          color: var(--iui-text-color-muted);
-        }
-      }
     }
   }
+}
 
-  > .iui-legal-footer-developer {
-    display: block;
-    user-select: all;
-    color: var(--iui-text-color-muted);
-  }
+@mixin iui-legal-footer-separator {
+  margin: 0 $iui-s;
+  width: 1px;
+  height: $iui-baseline;
+  background-color: var(--iui-text-color-muted);
+}
+
+@mixin iui-legal-footer-developer {
+  color: var(--iui-text-color-muted);
 }

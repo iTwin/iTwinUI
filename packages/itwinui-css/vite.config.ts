@@ -17,6 +17,9 @@ export default defineConfig({
       },
     },
   },
+  css: {
+    postcss: { plugins: [require('autoprefixer')] }
+  },
   plugins: [generateIndex(), addMetaTags(), minifyHtml()],
   server: {
     open: true,

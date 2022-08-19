@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../utils/index';
-@import '../icon/index';
 
 @mixin iui-file-upload {
   @include iui-reset;
@@ -23,7 +22,7 @@
     justify-content: center;
     align-items: center;
     user-select: none;
-    padding: round($iui-baseline * 0.5) $iui-sm;
+    padding: ($iui-baseline * 0.5) $iui-sm;
     background-color: var(--iui-color-background-2);
     border: 1px solid var(--iui-color-background-2);
 
@@ -37,7 +36,8 @@
 
     > svg,
     .iui-template-icon {
-      @include iui-icons-3xl;
+      @include iui-icon-style('3xl');
+      @include iui-icon-color;
       margin-top: $iui-baseline;
       margin-bottom: $iui-baseline;
     }
@@ -64,9 +64,9 @@
 
   &.iui-drag > .iui-content {
     background: linear-gradient(
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-    ),
+        rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+        rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+      ),
       linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
     border-color: var(--iui-color-foreground-primary);
     color: var(--iui-color-foreground-primary);
@@ -74,7 +74,7 @@
 
     > svg,
     .iui-template-icon {
-      fill: var(--iui-icons-color-primary);
+      fill: var(--iui-icon-color-primary);
     }
   }
 }

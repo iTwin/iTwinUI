@@ -10,6 +10,14 @@ module.exports = [
     selectors: ['#demo-range'],
     viewports: [{ width: 800, height: 600 }],
   }),
+  scenario('Type Default Vertical', {
+    selectors: ['#demo-default-vertical'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
+  scenario('Type Range Vertical', {
+    selectors: ['#demo-range-vertical'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
 
   // Hover & focus states
   scenario('State hover & focus', {
