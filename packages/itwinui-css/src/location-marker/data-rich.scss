@@ -8,20 +8,16 @@
   cursor: pointer;
 
   > .iui-location-marker-data-rich-body {
-    min-width: $iui-icons-xl;
+    min-width: $iui-icon-xl;
     border-radius: $iui-border-radius;
     text-align: center;
     font-size: $iui-font-size-leading;
-    padding: round($iui-baseline * 0.25) $iui-s;
+    padding: ($iui-baseline * 0.25) $iui-s;
     filter: drop-shadow($iui-elevation-2);
-    box-sizing: border-box;
     position: relative;
-
-    @include themed {
-      border: solid 1px t(iui-color-foreground-accessory);
-      background-color: t(iui-color-foreground-accessory);
-      color: t(iui-color-foreground-accessory);
-    }
+    border: solid 1px var(--iui-color-foreground-accessory);
+    background-color: var(--iui-color-foreground-accessory);
+    color: var(--iui-color-foreground-accessory);
 
     &::before {
       content: '';
@@ -35,23 +31,17 @@
       margin: auto;
       border-width: $iui-xs;
       border-style: solid;
-
-      @include themed {
-        border-color: t(iui-color-foreground-accessory) transparent transparent transparent;
-      }
+      border-color: var(--iui-color-foreground-accessory) transparent transparent transparent;
     }
 
     > .iui-location-marker-data-rich-icon {
+      @include iui-icon-style('m');
       display: inline-block;
-      width: $iui-icons-default;
-      height: $iui-icons-default;
       font-size: inherit;
       vertical-align: -2px;
 
       &.iui-location-marker-data-rich-icon-monochrome {
-        @include themed {
-          fill: t(iui-color-foreground-accessory);
-        }
+        fill: var(--iui-color-foreground-accessory);
       }
     }
   }

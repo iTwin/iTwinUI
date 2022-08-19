@@ -14,24 +14,18 @@
     }
 
     &:hover {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
+      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
     }
 
     &.iui-active {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
+      background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
     }
   }
 
   @at-root {
     .iui-horizontal & ~ .iui-tabs-content {
       margin-top: -$iui-xxs;
-      @include themed {
-        border-top: $iui-xxs solid t(iui-color-background-4);
-      }
+      border-top: $iui-xxs solid var(--iui-color-background-4);
     }
   }
 
@@ -40,17 +34,13 @@
       margin-left: -$iui-xxs;
       padding-left: $iui-sm;
       padding-right: $iui-sm;
-      @include themed {
-        border-left: $iui-xxs solid t(iui-color-background-4);
-      }
+      border-left: $iui-xxs solid var(--iui-color-background-4);
     }
   }
 
   &.iui-green .iui-active,
   &.iui-green .iui-tab:hover {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-positive-rgb), t(iui-opacity-6));
-    }
+    background-color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-6));
   }
 
   &.iui-large {
@@ -64,8 +54,6 @@
   }
 
   .iui-tab[disabled]:hover {
-    @include themed {
-      background-color: transparent;
-    }
+    background-color: transparent;
   }
 }

@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 @import '../menu/index';
+@import '../utils/index';
 
 @mixin iui-time-picker {
   @include iui-reset;
@@ -9,14 +10,10 @@
   text-align: center;
   height: $iui-baseline * 26;
   display: inline-flex;
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
+  background-color: var(--iui-color-background-1);
 
   &:not(:first-child) {
-    @include themed {
-      border-left: 1px solid t(iui-color-background-border);
-    }
+    border-left: 1px solid var(--iui-color-background-border);
   }
 
   &:first-child {
@@ -31,9 +28,7 @@
   scrollbar-width: none;
 
   &:not(:first-child) {
-    @include themed {
-      border-left: 1px solid t(iui-color-background-border);
-    }
+    border-left: 1px solid var(--iui-color-background-border);
   }
 
   > ol {
@@ -42,25 +37,21 @@
 
     > li {
       @include iui-focus;
-      padding: round($iui-baseline * 0.5) $iui-m;
+      padding: ($iui-baseline * 0.5) $iui-m;
       border-radius: $iui-border-radius;
 
       &:hover {
         cursor: pointer;
-        @include themed {
-          color: t(iui-color-foreground-primary);
-          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-        }
+        color: var(--iui-color-foreground-primary);
+        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
       }
 
       &.iui-selected {
         font-weight: $iui-font-weight-semibold;
         cursor: default;
         @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
-        @include themed {
-          background-color: t(iui-color-background-primary);
-          color: t(iui-color-foreground-accessory);
-        }
+        background-color: var(--iui-color-background-primary);
+        color: var(--iui-color-foreground-accessory);
       }
     }
   }

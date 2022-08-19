@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.63.1](https://www.github.com/iTwin/iTwinUI/compare/v0.63.0...v0.63.1) (2022-08-11)
+
+### Fixes
+
+* **Codeblock:** Striping with horizontal scroll ([#730](https://www.github.com/iTwin/iTwinUI/issues/730)) ([d2de81c](https://www.github.com/iTwin/iTwinUI/commit/d2de81caa0d77ebe4c3398fa733bdf27295a9981))
+* **Dialog:** Changed `space-between` inside title bar ([#729](https://www.github.com/iTwin/iTwinUI/issues/729)) ([c6e6dc9](https://www.github.com/iTwin/iTwinUI/commit/c6e6dc977c2791d4ac4ef7498b3495cd5ef6d5c6))
+* **Tabs:** Add max size for button within tab list ([#703](https://www.github.com/iTwin/iTwinUI/issues/703)) ([e6d5d1f](https://www.github.com/iTwin/iTwinUI/commit/e6d5d1f660dd4deee808831680915980f4032c57))
+
 ## [0.63.0](https://www.github.com/iTwin/iTwinUI/compare/v0.62.0...v0.63.0) (2022-08-01)
 
 ### What's new

@@ -1,20 +1,17 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
+@import '../utils/index';
 
 @mixin iui-codeblock {
   @include iui-reset;
-  margin: round($iui-baseline * 0.5) 0;
+  margin: ($iui-baseline * 0.5) 0;
 
   > .iui-title-bar {
     display: flex;
     align-items: center;
     border-radius: $iui-border-radius $iui-border-radius 0 0;
-
-    @include themed {
-      background-color: t(iui-color-background-3);
-    }
+    background-color: var(--iui-color-background-3);
 
     > .iui-title {
       margin-left: $iui-sm;
@@ -33,12 +30,8 @@
     overflow-y: auto;
     border-radius: 0 0 $iui-border-radius $iui-border-radius;
     white-space: normal;
-
+    border: 1px solid var(--iui-color-background-3);
     @include iui-focus;
-
-    @include themed {
-      border: 1px solid t(iui-color-background-3);
-    }
 
     > code {
       display: block;
@@ -47,14 +40,10 @@
       hyphens: auto;
       counter-increment: section;
       font-family: $iui-monospace;
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
+      background-color: var(--iui-color-background-1);
 
       &:nth-child(even) {
-        @include themed {
-          background: rgba(t(iui-color-foreground-body-rgb), 0.02);
-        }
+        background: rgba(var(--iui-color-foreground-body-rgb), 0.02);
       }
 
       &::before {
@@ -63,11 +52,8 @@
         display: inline-block;
         padding: 0 $iui-s;
         width: $iui-l;
-
-        @include themed {
-          background-color: t(iui-color-background-2);
-          color: t(iui-text-color-muted);
-        }
+        background-color: var(--iui-color-background-2);
+        color: var(--iui-text-color-muted);
       }
     }
   }

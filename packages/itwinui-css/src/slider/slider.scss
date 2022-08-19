@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
+@import '../utils/index';
 
 $thumb-height: $iui-m; // 16px
 $track-height: $iui-xs; // 4px
-$tick-height: $iui-baseline; // 11px
+$tick-height: $iui-baseline; // 12px
 
 @mixin iui-slider-component-container {
   display: flex;
@@ -19,7 +19,7 @@ $tick-height: $iui-baseline; // 11px
   user-select: all;
 
   svg {
-    @include iui-icons-default;
+    @include iui-icon-style('m');
     margin-top: $iui-xs;
   }
 }
@@ -29,6 +29,7 @@ $tick-height: $iui-baseline; // 11px
   flex-grow: 1;
   cursor: pointer;
   touch-action: pan-y;
+  isolation: isolate;
 
   &.iui-grabbing {
     cursor: grabbing;
@@ -37,15 +38,13 @@ $tick-height: $iui-baseline; // 11px
 
 @mixin iui-slider-rail {
   position: absolute;
-  @include themed {
-    background-color: t(iui-color-background-border);
-  }
-  @media (forced-colors: active) {
-    background-color: CanvasText;
-  }
+  width: 100%;
+  height: $track-height;
+  background-color: var(--iui-color-background-border);
 }
 
 @mixin iui-slider-thumb {
+  box-sizing: content-box;
   position: absolute;
   height: $thumb-height;
   width: $thumb-height;
@@ -53,14 +52,8 @@ $tick-height: $iui-baseline; // 11px
   z-index: 1;
   cursor: grab;
   @include iui-focus($thickness: 2px);
-  @include themed {
-    background: t(iui-color-background-1);
-    border: 1px solid t(iui-color-background-border);
-  }
-  @media (forced-colors: active) {
-    background: Canvas;
-    border: 1px solid CanvasText;
-  }
+  background: var(--iui-color-background-1);
+  border: 1px solid var(--iui-color-background-border);
 
   &:active {
     cursor: grabbing;
@@ -71,12 +64,7 @@ $tick-height: $iui-baseline; // 11px
   pointer-events: none;
   position: absolute;
   top: $iui-sm;
-  @include themed {
-    background-color: t(iui-color-foreground-primary);
-  }
-  @media (forced-colors: active) {
-    background-color: Highlight;
-  }
+  background-color: var(--iui-color-foreground-primary);
 }
 
 @mixin iui-slider-ticks {
@@ -94,9 +82,7 @@ $tick-height: $iui-baseline; // 11px
     align-items: center;
 
     &::before {
-      @include themed {
-        background-color: t(iui-color-background-4);
-      }
+      background-color: var(--iui-color-background-4);
       @media (forced-colors: active) {
         background-color: CanvasText;
       }
@@ -114,32 +100,19 @@ $tick-height: $iui-baseline; // 11px
 
   .iui-slider-thumb {
     cursor: not-allowed;
-    @include themed {
-      background-color: t(iui-color-background-4);
-      border-color: t(iui-color-background-4);
-    }
-    @media (forced-colors: active) {
-      background-color: GrayText;
-      border-color: GrayText;
-    }
+    background-color: var(--iui-color-background-4);
+    border-color: var(--iui-color-background-4);
   }
 
   .iui-slider-track {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-    }
-    @media (forced-colors: active) {
-      background-color: GrayText;
-    }
+    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
   }
 
   .iui-slider-min,
   .iui-slider-max,
   .iui-slider-tick {
     user-select: none;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
     @media (forced-colors: active) {
       color: GrayText;
     }

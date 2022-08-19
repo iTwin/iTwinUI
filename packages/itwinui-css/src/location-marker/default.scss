@@ -5,17 +5,14 @@
 
 @mixin iui-location-marker-default {
   @include iui-location-marker;
-  width: $iui-icons-large;
-  height: $iui-icons-large;
+  @include iui-icon-style('l');
   cursor: pointer;
 
   > .iui-location-marker-default-pin {
     filter: drop-shadow($iui-elevation-2);
 
     > .iui-location-marker-default-pin-dot {
-      @include themed {
-        fill: t(iui-color-foreground-accessory);
-      }
+      fill: var(--iui-color-foreground-accessory);
     }
   }
 }

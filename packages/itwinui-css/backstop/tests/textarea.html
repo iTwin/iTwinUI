@@ -1,0 +1,223 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Textarea | iTwinUI</title>
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/status-success";
+      import "@itwin/itwinui-icons-elements/status-warning";
+      import "@itwin/itwinui-icons-elements/status-error";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      section[id^='demo'] {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+    </style>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Text area</h1>
+    <hr />
+
+    <h2>Default</h2>
+    <section id="demo-default">
+      <label class="iui-input-container iui-with-message">
+        <div class="iui-label iui-required">Textarea label</div>
+        <textarea
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+          required
+        ></textarea>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          class="iui-input"
+          rows="3"
+          spellcheck="false"
+        >
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </textarea>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-disabled">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          disabled
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+        ></textarea>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-disabled">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          disabled
+          class="iui-input"
+          rows="3"
+        >
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </textarea>
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-positive">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+        ></textarea>
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
+        <div class="iui-message">
+          Positive message.
+        </div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-warning">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+        ></textarea>
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
+        <div class="iui-message">
+          Warning message.
+        </div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-negative">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+        ></textarea>
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
+        <div class="iui-message">
+          Negative message.
+        </div>
+      </label>
+    </section>
+
+    <br />
+
+    <h2>Inline</h2>
+    <section id="demo-inline">
+      <label class="iui-input-container iui-with-message iui-inline-label">
+        <div class="iui-label iui-required">Textarea label</div>
+        <textarea
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+          required
+        ></textarea>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-inline-label">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          class="iui-input"
+          rows="3"
+          spellcheck="false"
+        >
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </textarea>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-inline-label iui-disabled">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          disabled
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+        ></textarea>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-inline-label iui-disabled">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          disabled
+          class="iui-input"
+          rows="3"
+        >
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </textarea>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon iui-positive">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+        ></textarea>
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon iui-warning">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+        ></textarea>
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon iui-negative">
+        <div class="iui-label">Textarea label</div>
+        <textarea
+          placeholder="Placeholder…"
+          class="iui-input"
+          rows="3"
+        ></textarea>
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
+      </label>
+    </section>
+  </body>
+</html>

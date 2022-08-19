@@ -1,0 +1,69 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../anchor/index';
+@import '../utils/index';
+
+@mixin iui-toast {
+  @include iui-reset;
+  display: inline-flex;
+  align-items: center;
+  pointer-events: all;
+  margin: 0 $iui-m $iui-baseline $iui-m;
+  min-height: $iui-baseline * 4;
+  border-radius: $iui-border-radius;
+  background-color: var(--iui-color-background-1);
+  border: 1px solid var(--iui-color-foreground-body);
+  box-shadow: 0 0 0 1px rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4)), $iui-elevation-24;
+
+  > .iui-status-area {
+    display: flex;
+    align-self: stretch;
+    justify-content: center;
+    align-items: center;
+    width: $iui-l * 2;
+    flex-shrink: 0;
+    background-color: var(--iui-color-background-5);
+
+    > .iui-icon {
+      @include iui-icon-style('m');
+      fill: var(--iui-color-foreground-accessory);
+    }
+  }
+
+  > .iui-message {
+    flex-grow: 1;
+    font-size: $iui-font-size;
+    margin-top: $iui-baseline * 0.5;
+    margin-bottom: $iui-baseline * 0.5;
+    margin-right: $iui-l;
+    margin-left: $iui-m;
+    line-height: $iui-line-height;
+    font-weight: $iui-font-weight-normal;
+    font-style: normal;
+    color: var(--iui-text-color);
+  }
+
+  &-anchor {
+    @include iui-anchor-underline('on-initial');
+    border-radius: $iui-border-radius;
+    cursor: pointer;
+    font-size: $iui-font-size-small;
+    margin-right: $iui-m;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  > .iui-button {
+    margin-right: $iui-s;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: calc(100vw - 36px);
+  }
+
+  @media screen and (min-width: 401px) {
+    min-width: 400px;
+    max-width: 640px;
+  }
+}

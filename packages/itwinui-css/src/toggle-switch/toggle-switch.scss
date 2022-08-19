@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../utils/index';
 
 @mixin iui-toggle-switch-wrapper {
   @include iui-reset;
@@ -13,23 +14,12 @@
   user-select: none;
   cursor: pointer;
   isolation: isolate;
-  @include themed {
-    color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-2));
-  }
-
-  > * + * {
-    margin-left: $iui-s;
-    @supports (gap: $iui-s) {
-      margin-left: 0;
-    }
-  }
+  color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
 
   // Disabled
   &.iui-disabled {
     cursor: not-allowed;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
     @media (forced-colors: active) {
       color: GrayText;
     }
@@ -47,7 +37,7 @@
 }
 
 @mixin iui-toggle-switch {
-  $iui-toggle-switch-handle-size: $iui-icons-default;
+  $iui-toggle-switch-handle-size: $iui-icon-default;
   $iui-toggle-switch-handle-offset: $iui-component-offset;
   $iui-toggle-switch-border-thickness: 1px;
 
@@ -57,21 +47,12 @@
   display: flex;
   position: relative;
   cursor: pointer;
-
-  // #region IE solution
-  width: $iui-toggle-switch-handle-size;
-  height: $iui-toggle-switch-handle-size;
-  @supports (appearance: none) {
-    appearance: none;
-    width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
-    height: auto;
-    border-radius: $iui-border-radius-round;
-    box-sizing: border-box;
-    transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
-    background-color: var(--iui-color-background-1);
-    border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
-  }
-  // #endregion IE solution
+  appearance: none;
+  width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
+  border-radius: $iui-border-radius-round;
+  transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
+  background-color: var(--iui-color-background-1);
+  border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
 
   &-label {
     grid-area: label;
@@ -178,7 +159,7 @@
 
     ~ .iui-toggle-switch-icon {
       opacity: 0;
-      fill: var(--iui-icons-color-actionable);
+      fill: var(--iui-icon-color-actionable);
     }
 
     &:checked {
@@ -206,8 +187,8 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    width: $iui-toggle-switch-handle-size * 0.75;
-    height: $iui-toggle-switch-handle-size * 0.75;
+    width: $iui-toggle-switch-handle-size;
+    height: $iui-toggle-switch-handle-size;
     padding: $iui-toggle-switch-handle-size * 0.125;
     margin: $iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness;
     display: flex;

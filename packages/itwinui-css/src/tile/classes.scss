@@ -19,11 +19,11 @@
 }
 
 .iui-tile-thumbnail-type-indicator {
-  @include iui-tile-thumbnail-type-indicator;
+  @include iui-tile-thumbnail-button(type-indicator);
 }
 
 .iui-tile-thumbnail-quick-action {
-  @include iui-tile-thumbnail-quick-action;
+  @include iui-tile-thumbnail-button(quick-action);
 }
 
 .iui-tile-thumbnail-badge-container {

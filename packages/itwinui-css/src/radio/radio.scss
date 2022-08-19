@@ -1,0 +1,18 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../checkbox/index';
+
+@mixin iui-radio {
+  @include iui-checkbox;
+
+  border-radius: 50%;
+
+  &:checked {
+    --_iui-checkbox-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" ><circle cx="8" cy="8" r="4" /></svg>');
+  }
+
+  &:not(:checked),
+  &:indeterminate {
+    --_iui-checkbox-mask-image: var(--_iui-checkbox-unchecked-svg);
+  }
+}
