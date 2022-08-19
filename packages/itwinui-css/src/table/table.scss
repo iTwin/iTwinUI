@@ -362,6 +362,7 @@
 
   &:first-of-type {
     border-left: solid 1px transparent;
+    border-bottom-left-radius: inherit;
   }
 
   &:last-of-type {
