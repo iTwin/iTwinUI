@@ -2,10 +2,17 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-backdrop {
+/// Mixin for applying backdrop
+/// @arg $position Can be one of: full-page, contained. Defaults to full-page
+@mixin iui-backdrop($position: full-page) {
+  @if ($position == full-page) {
+    position: fixed;
+  } @else {
+    position: absolute;
+  }
+
   z-index: 998;
   isolation: isolate;
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
