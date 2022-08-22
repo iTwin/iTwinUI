@@ -52,10 +52,6 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
     const menuRef = React.useRef<HTMLUListElement>(null);
     const refs = useMergedRefs(menuRef, ref);
 
-    React.useEffect(() => {
-      setFocusedIndex(null);
-    }, [children]);
-
     const getFocusableNodes = React.useCallback(() => {
       const focusableItems = getFocusableElements(menuRef.current);
       // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor

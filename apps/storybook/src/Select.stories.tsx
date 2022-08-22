@@ -341,3 +341,75 @@ export const TruncateMiddleText: Story<SelectProps<string>> = (args) => {
     />
   );
 };
+
+export const Multi: Story<SelectProps<number>> = (args) => {
+  const { placeholder = 'Placeholder text', ...rest } = args;
+  const [value, setValue] = useState<number[]>([]);
+  return (
+    <div style={{ minHeight: 350 }}>
+      <Select<number>
+        {...rest}
+        options={[...Array(20).fill(null)].map((_, index) => ({
+          label: `Item #${index}`,
+          value: index,
+        }))}
+        value={value}
+        onChange={(val, event) =>
+          setValue((prev) =>
+            event === 'removed'
+              ? prev.filter((value) => val !== value)
+              : [...prev, val],
+          )
+        }
+        placeholder={placeholder}
+        multiple
+      />
+    </div>
+  );
+};
+
+Multi.args = {
+  placeholder: 'Placeholder text',
+};
+
+Multi.argTypes = {
+  options: { control: { disable: true } },
+};
+
+export const MultiCustomRenderer: Story<SelectProps<number>> = (args) => {
+  const { placeholder = 'Placeholder text', ...rest } = args;
+  const [value, setValue] = useState<number[]>([]);
+
+  return (
+    <div style={{ minHeight: 350 }}>
+      <Select<number>
+        {...rest}
+        options={[...Array(20).fill(null)].map((_, index) => ({
+          label: `Item #${index}`,
+          value: index,
+        }))}
+        value={value}
+        onChange={(val, event) =>
+          setValue((prev) =>
+            event === 'removed'
+              ? prev.filter((value) => val !== value)
+              : [...(prev ?? []), val],
+          )
+        }
+        placeholder={placeholder}
+        multiple
+        selectedItemRenderer={(options) => (
+          <>{options.map((option) => option.label).join(', ')}</>
+        )}
+      />
+    </div>
+  );
+};
+
+MultiCustomRenderer.args = {
+  placeholder: 'Placeholder text',
+};
+
+MultiCustomRenderer.argTypes = {
+  options: { control: { disable: true } },
+};

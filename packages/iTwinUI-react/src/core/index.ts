@@ -165,7 +165,12 @@ export { RadioTile, RadioTileGroup } from './RadioTiles';
 export type { RadioTileGroupProps, RadioTileProps } from './RadioTiles';
 
 export { Select } from './Select';
-export type { SelectProps, SelectOption, ItemRendererProps } from './Select';
+export type {
+  SelectProps,
+  SelectOption,
+  ItemRendererProps,
+  SelectValueChangeEvent,
+} from './Select';
 
 export {
   SideNavigation,
