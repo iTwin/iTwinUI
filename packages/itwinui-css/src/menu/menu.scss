@@ -13,6 +13,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   margin: 0;
   padding: 0;
   max-height: var(--iui-menu-max-height);
+  border-radius: $iui-border-radius;
 
   .iui-header-menu-icon {
     margin: 0 $iui-xs;
@@ -40,6 +41,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   cursor: pointer;
   line-height: normal;
   color: var(--iui-color-foreground-2);
+  border-radius: $iui-border-radius;
 
   + #{&} {
     margin-top: -1px;

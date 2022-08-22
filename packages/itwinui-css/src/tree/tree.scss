@@ -10,6 +10,7 @@ $iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding 
 @mixin iui-tree {
   @include iui-reset;
   list-style: none;
+  border-radius: $iui-border-radius;
 }
 
 @mixin iui-sub-tree {
@@ -38,6 +39,7 @@ $iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding 
   cursor: pointer;
   padding: 0 $iui-s;
   align-items: center;
+  border-radius: $iui-border-radius;
 
   &-checkbox {
     margin-right: $iui-s;

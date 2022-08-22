@@ -13,6 +13,8 @@
   padding: 0 $iui-m;
   user-select: none;
   background-color: var(--iui-color-background-3);
+  border-bottom-left-radius: $iui-border-radius;
+  border-bottom-right-radius: $iui-border-radius;
 
   > .iui-left,
   > .iui-center,
