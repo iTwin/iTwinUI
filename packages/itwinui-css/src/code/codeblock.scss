@@ -42,7 +42,7 @@
       background-color: var(--iui-color-background-1);
 
       &:nth-child(even) {
-        background: var(--iui-color-background-1-hover);
+        background-color: hsl(var(--iui-color-foreground-1-hsl) / 0.02);
       }
 
       &::before {

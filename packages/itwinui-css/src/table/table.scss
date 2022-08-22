@@ -158,7 +158,7 @@
       visibility: hidden;
     }
 
-    &:hover:not([aria-disabled='true']) {
+    &:where(:hover:not([aria-disabled='true'])) {
       .iui-table-cell {
         background-color: var(--iui-color-background-transparent-hover);
       }
@@ -320,7 +320,9 @@
   }
 
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
-    background-color: var(--iui-color-background-1-hover);
+    @include pseudo-content {
+      background-color: hsl(var(--iui-color-foreground-1-hsl) / 0.02);
+    }
   }
 
   // Empty & loading states
@@ -420,12 +422,7 @@
 
 @mixin iui-table-cell-status($status) {
   @include iui-text-selection($status);
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+  @include pseudo-content {
     background-color: hsl(var(--iui-color-foreground-#{$status}-hsl) / var(--iui-opacity-6));
   }
 }

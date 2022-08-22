@@ -167,3 +167,14 @@
     transition: background var(--iui-duration-0);
   }
 }
+
+/// Helper mixin to add ::before or ::after pseudo element that will
+/// be absolutely positioned and will have the same size as the parent element.
+@mixin pseudo-content($beforeOrAfter: before) {
+  &::#{$beforeOrAfter} {
+    content: '';
+    position: absolute;
+    inset: 0;
+    @content;
+  }
+}
