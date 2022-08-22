@@ -14,7 +14,7 @@
     @include iui-focus;
     display: flex;
     align-items: center;
-    padding: var(--iui-size-s) var(--iui-size-s);
+    padding: var(--iui-size-s);
     cursor: pointer;
     user-select: none;
     @media (prefers-reduced-motion: no-preference) {
