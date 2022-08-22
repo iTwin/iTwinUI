@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../utils/index';
 
 @mixin iui-tabs {
   @include iui-reset;
@@ -18,39 +19,27 @@
     min-height: $iui-component-height;
     height: 100%;
     cursor: pointer;
+    color: var(--iui-text-color);
     transition: background-color $iui-speed-fast ease-out;
-    @include themed {
-      color: t(iui-text-color);
-    }
 
     &.iui-active {
-      @include themed {
-        color: t(iui-color-foreground-primary);
-      }
+      color: var(--iui-color-foreground-primary);
 
       .iui-tab-icon {
-        @include themed {
-          fill: t(iui-icons-color-primary);
-        }
+        fill: var(--iui-icon-color-primary);
       }
 
       .iui-tab-description {
-        @include themed {
-          opacity: t(iui-opacity-1);
-        }
+        opacity: var(--iui-opacity-1);
       }
     }
 
     &[disabled] {
       cursor: not-allowed;
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+      color: var(--iui-text-color-muted);
 
       .iui-tab-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable-disabled);
-        }
+        fill: var(--iui-icon-color-actionable-disabled);
       }
     }
 
@@ -58,13 +47,9 @@
   }
 
   .iui-tab-icon {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    flex-shrink: 0;
+    @include iui-icon-style('m');
+    fill: var(--iui-icon-color-actionable);
     transition: fill $iui-speed-fast ease-out;
-    @include themed {
-      fill: t(iui-icons-color-actionable);
-    }
 
     + .iui-tab-label {
       margin-left: $iui-s;
@@ -74,25 +59,19 @@
   .iui-tab-description {
     display: none;
     font-size: $iui-font-size-small;
-    @include themed {
-      opacity: t(iui-opacity-3);
-    }
+    opacity: var(--iui-opacity-3);
   }
 
   &.iui-green .iui-tab {
     &:focus {
-      outline-color: t(iui-color-foreground-positive);
+      outline-color: var(--iui-color-foreground-positive);
     }
 
     &.iui-active {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
+      color: var(--iui-color-foreground-positive);
 
       .iui-tab-icon {
-        @include themed {
-          fill: t(iui-icons-color-positive);
-        }
+        fill: var(--iui-icon-color-positive);
       }
     }
   }
@@ -100,7 +79,6 @@
   ~ .iui-tabs-content {
     padding-top: $iui-baseline;
     padding-bottom: $iui-baseline;
-    box-sizing: border-box;
   }
 }
 
@@ -161,9 +139,7 @@
   .iui-tab::after {
     content: '';
     position: absolute;
-    @include themed {
-      background-color: t(iui-color-foreground-primary);
-    }
+    background-color: var(--iui-color-foreground-primary);
   }
 
   .iui-active::after {
@@ -173,9 +149,7 @@
   }
 
   &.iui-green .iui-tab::after {
-    @include themed {
-      background-color: t(iui-color-foreground-positive);
-    }
+    background-color: var(--iui-color-foreground-positive);
   }
 }
 
@@ -183,15 +157,11 @@
   &::after {
     position: absolute;
     content: ' ';
-    @include themed {
-      background-color: t(iui-color-foreground-primary);
-    }
+    background-color: var(--iui-color-foreground-primary);
   }
 
   &.iui-green::after {
-    @include themed {
-      background-color: t(iui-color-foreground-positive);
-    }
+    background-color: var(--iui-color-foreground-positive);
   }
 
   @at-root {

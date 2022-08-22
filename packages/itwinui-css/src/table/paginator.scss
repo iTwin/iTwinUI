@@ -1,22 +1,20 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
+@import '../utils/index';
 @import '../button/index';
-@import '../text/index';
-@import './variables';
+@import '../text/muted';
 
-@mixin iui-paginator {
+@mixin iui-table-paginator {
   @include iui-reset;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: $iui-baseline * 5;
   padding: 0 $iui-m;
   user-select: none;
-  @include themed {
-    background-color: t(iui-color-background-3);
-  }
+  background-color: var(--iui-color-background-3);
+  border-bottom-left-radius: $iui-border-radius;
+  border-bottom-right-radius: $iui-border-radius;
 
   > .iui-left,
   > .iui-center,
@@ -31,57 +29,53 @@
   > .iui-center {
     justify-content: center;
     flex: 2 1;
-    @include themed {
-      color: t(iui-text-color);
-    }
+    color: var(--iui-text-color);
   }
 
   > .iui-right {
     justify-content: flex-end;
   }
-
-  &-page-size-label {
-    @include iui-text-muted;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 }
 
-@mixin iui-paginator-ellipsis {
+@mixin iui-table-paginator-page-size-label {
+  @include iui-text-muted;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin iui-table-paginator-ellipsis {
   display: flex;
   justify-content: center;
   align-items: center;
   width: $iui-component-height;
-  @include themed {
-    color: t(iui-text-color-muted);
-  }
+  color: var(--iui-text-color-muted);
 
   &-small {
     width: $iui-component-height-small;
   }
 }
 
-@mixin iui-paginator-pages-group {
+@mixin iui-table-paginator-pages-group {
   display: inline-flex;
   align-items: center;
   margin: 0 $iui-s;
 }
 
-@mixin iui-paginator-page-button {
+@mixin iui-table-paginator-page-button {
   @include iui-button;
   @include iui-button-borderless;
   width: $iui-component-height;
 
-  &.iui-active {
-    @include iui-button-active;
-  }
-
-  // Adds stripe above active button
-  --_iui-button-active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
-
   &-small {
     @include iui-button-size(small);
     width: $iui-component-height-small;
+  }
+
+  &[data-iui-active='true'] {
+    @include iui-button-default-active;
+    @include iui-button-borderless-active;
+    // Adds stripe above active button
+    --_iui-button-active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
   }
 }

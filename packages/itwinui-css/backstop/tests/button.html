@@ -38,15 +38,15 @@
       #demo-cta button,
       #demo-disabled button,
       #demo-borderless button,
-      #demo-split-menu .iui-button-split-menu {
+      #demo-split .iui-button-split {
         margin-right: 4px;
       }
 
       .demo-container,
       .iui-button-group,
-      .iui-button-split-menu,
+      .iui-button-split,
       h3 {
-        margin-bottom: 11px;
+        margin-bottom: 12px;
       }
 
       .demo-container .iui-button {
@@ -56,7 +56,7 @@
       #demo-default button,
       #demo-borderless button,
       #demo-grouped span {
-        margin-bottom: 11px;
+        margin-bottom: 12px;
       }
     </style>
   </head>
@@ -74,27 +74,32 @@
         id="demo-high-visibility-small"
         class="demo-container"
       >
-        <button class="iui-button iui-high-visibility iui-small">
-          <span class="iui-button-label">Small</span>
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="small"
+        >
+          <span>Small</span>
         </button>
 
-        <button class="iui-button iui-high-visibility iui-small">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="small"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Small left icon</span>
+          <span>Small left icon</span>
         </button>
 
-        <button class="iui-button iui-high-visibility iui-small">
-          <span class="iui-button-label">Small right icon</span>
-          <svg-placeholder
-            class="iui-button-icon"
-            aria-hidden="true"
-          ></svg-placeholder>
-        </button>
-
-        <button class="iui-button iui-high-visibility iui-small">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="small"
+        >
+          <span>Small right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -102,14 +107,27 @@
         </button>
 
         <button
-          class="iui-button iui-high-visibility iui-small"
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="small"
+        >
+          <svg-placeholder
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+        </button>
+
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="small"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Small disabled</span>
+          <span>Small disabled</span>
         </button>
       </div>
 
@@ -117,27 +135,29 @@
         id="demo-high-visibility-normal"
         class="demo-container"
       >
-        <button class="iui-button iui-high-visibility">
-          <span class="iui-button-label">Normal</span>
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+        >
+          <span>Normal</span>
         </button>
 
-        <button class="iui-button iui-high-visibility">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Normal left icon</span>
+          <span>Normal left icon</span>
         </button>
 
-        <button class="iui-button iui-high-visibility">
-          <span class="iui-button-label">Normal right icon</span>
-          <svg-placeholder
-            class="iui-button-icon"
-            aria-hidden="true"
-          ></svg-placeholder>
-        </button>
-
-        <button class="iui-button iui-high-visibility">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+        >
+          <span>Normal right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -145,14 +165,25 @@
         </button>
 
         <button
-          class="iui-button iui-high-visibility"
+          class="iui-button"
+          data-iui-variant="high-visibility"
+        >
+          <svg-placeholder
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+        </button>
+
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Normal disabled</span>
+          <span>Normal disabled</span>
         </button>
       </div>
 
@@ -160,27 +191,32 @@
         id="demo-high-visibility-large"
         class="demo-container"
       >
-        <button class="iui-button iui-high-visibility iui-large">
-          <span class="iui-button-label">Large</span>
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="large"
+        >
+          <span>Large</span>
         </button>
 
-        <button class="iui-button iui-high-visibility iui-large">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="large"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Large left icon</span>
+          <span>Large left icon</span>
         </button>
 
-        <button class="iui-button iui-high-visibility iui-large">
-          <span class="iui-button-label">Large right icon</span>
-          <svg-placeholder
-            class="iui-button-icon"
-            aria-hidden="true"
-          ></svg-placeholder>
-        </button>
-
-        <button class="iui-button iui-high-visibility iui-large">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="large"
+        >
+          <span>Large right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -188,14 +224,27 @@
         </button>
 
         <button
-          class="iui-button iui-high-visibility iui-large"
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="large"
+        >
+          <svg-placeholder
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+        </button>
+
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="large"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Large disabled</span>
+          <span>Large disabled</span>
         </button>
       </div>
     </section>
@@ -206,27 +255,32 @@
         id="demo-cta-small"
         class="demo-container"
       >
-        <button class="iui-button iui-cta iui-small">
-          <span class="iui-button-label">Small</span>
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="small"
+        >
+          <span>Small</span>
         </button>
 
-        <button class="iui-button iui-cta iui-small">
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="small"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Small left icon</span>
+          <span>Small left icon</span>
         </button>
 
-        <button class="iui-button iui-cta iui-small">
-          <span class="iui-button-label">Small right icon</span>
-          <svg-placeholder
-            class="iui-button-icon"
-            aria-hidden="true"
-          ></svg-placeholder>
-        </button>
-
-        <button class="iui-button iui-cta iui-small">
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="small"
+        >
+          <span>Small right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -234,14 +288,27 @@
         </button>
 
         <button
-          class="iui-button iui-cta iui-small"
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="small"
+        >
+          <svg-placeholder
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+        </button>
+
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="small"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Small disabled</span>
+          <span>Small disabled</span>
         </button>
       </div>
 
@@ -249,27 +316,29 @@
         id="demo-cta-medium"
         class="demo-container"
       >
-        <button class="iui-button iui-cta">
-          <span class="iui-button-label">Normal</span>
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+        >
+          <span>Normal</span>
         </button>
 
-        <button class="iui-button iui-cta">
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Normal left icon</span>
+          <span>Normal left icon</span>
         </button>
 
-        <button class="iui-button iui-cta">
-          <span class="iui-button-label">Normal right icon</span>
-          <svg-placeholder
-            class="iui-button-icon"
-            aria-hidden="true"
-          ></svg-placeholder>
-        </button>
-
-        <button class="iui-button iui-cta">
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+        >
+          <span>Normal right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -277,14 +346,25 @@
         </button>
 
         <button
-          class="iui-button iui-cta"
+          class="iui-button"
+          data-iui-variant="cta"
+        >
+          <svg-placeholder
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+        </button>
+
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Normal disabled</span>
+          <span>Normal disabled</span>
         </button>
       </div>
 
@@ -292,27 +372,32 @@
         id="demo-cta-large"
         class="demo-container"
       >
-        <button class="iui-button iui-cta iui-large">
-          <span class="iui-button-label">Large</span>
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="large"
+        >
+          <span>Large</span>
         </button>
 
-        <button class="iui-button iui-cta iui-large">
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="large"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Large left icon</span>
+          <span>Large left icon</span>
         </button>
 
-        <button class="iui-button iui-cta iui-large">
-          <span class="iui-button-label">Large right icon</span>
-          <svg-placeholder
-            class="iui-button-icon"
-            aria-hidden="true"
-          ></svg-placeholder>
-        </button>
-
-        <button class="iui-button iui-cta iui-large">
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="large"
+        >
+          <span>Large right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
@@ -320,14 +405,27 @@
         </button>
 
         <button
-          class="iui-button iui-cta iui-large"
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="large"
+        >
+          <svg-placeholder
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+        </button>
+
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="large"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Large disabled</span>
+          <span>Large disabled</span>
         </button>
       </div>
     </section>
@@ -338,35 +436,50 @@
         id="demo-default-small"
         class="demo-container"
       >
-        <button class="iui-button iui-default iui-small">
-          <span class="iui-button-label">Small</span>
+        <button
+          class="iui-button"
+          data-iui-size="small"
+        >
+          <span>Small</span>
         </button>
 
-        <button class="iui-button iui-default iui-small">
+        <button
+          class="iui-button"
+          data-iui-size="small"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Small left icon</span>
+          <span>Small left icon</span>
         </button>
 
-        <button class="iui-button iui-default iui-small">
-          <span class="iui-button-label">Small right icon</span>
+        <button
+          class="iui-button"
+          data-iui-size="small"
+        >
+          <span>Small right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-default iui-small">
+        <button
+          class="iui-button"
+          data-iui-size="small"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-default iui-small iui-dropdown">
-          <span class="iui-button-label">Small dropdown</span>
+        <button
+          class="iui-button iui-button-dropdown"
+          data-iui-size="small"
+        >
+          <span>Small dropdown</span>
           <svg-caret-down-small
             class="iui-button-icon"
             aria-hidden="true"
@@ -374,14 +487,15 @@
         </button>
 
         <button
-          class="iui-button iui-default iui-small"
+          class="iui-button"
+          data-iui-size="small"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Small disabled</span>
+          <span>Small disabled</span>
         </button>
       </div>
 
@@ -389,35 +503,35 @@
         id="demo-default-medium"
         class="demo-container"
       >
-        <button class="iui-button iui-default">
-          <span class="iui-button-label">Normal</span>
+        <button class="iui-button">
+          <span>Normal</span>
         </button>
 
-        <button class="iui-button iui-default">
+        <button class="iui-button">
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Normal left icon</span>
+          <span>Normal left icon</span>
         </button>
 
-        <button class="iui-button iui-default">
-          <span class="iui-button-label">Normal right icon</span>
-          <svg-placeholder
-            class="iui-button-icon"
-            aria-hidden="true"
-          ></svg-placeholder>
-        </button>
-
-        <button class="iui-button iui-default">
+        <button class="iui-button">
+          <span>Normal right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-default iui-dropdown">
-          <span class="iui-button-label">Normal dropdown</span>
+        <button class="iui-button">
+          <svg-placeholder
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+        </button>
+
+        <button class="iui-button iui-button-dropdown">
+          <span>Normal dropdown</span>
           <svg-caret-down-small
             class="iui-button-icon"
             aria-hidden="true"
@@ -425,14 +539,14 @@
         </button>
 
         <button
-          class="iui-button iui-default"
+          class="iui-button"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Normal disabled</span>
+          <span>Normal disabled</span>
         </button>
       </div>
 
@@ -440,35 +554,50 @@
         id="demo-default-large"
         class="demo-container"
       >
-        <button class="iui-button iui-default iui-large">
-          <span class="iui-button-label">Large</span>
+        <button
+          class="iui-button"
+          data-iui-size="large"
+        >
+          <span>Large</span>
         </button>
 
-        <button class="iui-button iui-default iui-large">
+        <button
+          class="iui-button"
+          data-iui-size="large"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Large left icon</span>
+          <span>Large left icon</span>
         </button>
 
-        <button class="iui-button iui-default iui-large">
-          <span class="iui-button-label">Large right icon</span>
+        <button
+          class="iui-button"
+          data-iui-size="large"
+        >
+          <span>Large right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-default iui-large">
+        <button
+          class="iui-button"
+          data-iui-size="large"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-default iui-large iui-dropdown">
-          <span class="iui-button-label">Large dropdown</span>
+        <button
+          class="iui-button iui-button-dropdown"
+          data-iui-size="large"
+        >
+          <span>Large dropdown</span>
           <svg-caret-down-small
             class="iui-button-icon"
             aria-hidden="true"
@@ -476,14 +605,15 @@
         </button>
 
         <button
-          class="iui-button iui-default iui-large"
+          class="iui-button"
+          data-iui-size="large"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Large disabled</span>
+          <span>Large disabled</span>
         </button>
       </div>
     </section>
@@ -494,35 +624,55 @@
         id="demo-borderless-small"
         class="demo-container"
       >
-        <button class="iui-button iui-borderless iui-small">
-          <span class="iui-button-label">Small</span>
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="small"
+        >
+          <span>Small</span>
         </button>
 
-        <button class="iui-button iui-borderless iui-small">
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="small"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Small left icon</span>
+          <span>Small left icon</span>
         </button>
 
-        <button class="iui-button iui-borderless iui-small">
-          <span class="iui-button-label">Small right icon</span>
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="small"
+        >
+          <span>Small right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-borderless iui-small">
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="small"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-borderless iui-small iui-dropdown">
-          <span class="iui-button-label">Small dropdown</span>
+        <button
+          class="iui-button iui-button-dropdown"
+          data-iui-variant="borderless"
+          data-iui-size="small"
+        >
+          <span>Small dropdown</span>
           <svg-caret-down-small
             class="iui-button-icon"
             aria-hidden="true"
@@ -530,14 +680,16 @@
         </button>
 
         <button
-          class="iui-button iui-borderless iui-small"
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="small"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Small disabled</span>
+          <span>Small disabled</span>
         </button>
       </div>
 
@@ -545,35 +697,50 @@
         id="demo-borderless-medium"
         class="demo-container"
       >
-        <button class="iui-button iui-borderless">
-          <span class="iui-button-label">Normal</span>
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
+          <span>Normal</span>
         </button>
 
-        <button class="iui-button iui-borderless">
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Normal left icon</span>
+          <span>Normal left icon</span>
         </button>
 
-        <button class="iui-button iui-borderless">
-          <span class="iui-button-label">Normal right icon</span>
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
+          <span>Normal right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-borderless">
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-borderless iui-dropdown">
-          <span class="iui-button-label">Normal dropdown</span>
+        <button
+          class="iui-button iui-button-dropdown"
+          data-iui-variant="borderless"
+        >
+          <span>Normal dropdown</span>
           <svg-caret-down-small
             class="iui-button-icon"
             aria-hidden="true"
@@ -581,14 +748,15 @@
         </button>
 
         <button
-          class="iui-button iui-borderless"
+          class="iui-button"
+          data-iui-variant="borderless"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Normal disabled</span>
+          <span>Normal disabled</span>
         </button>
       </div>
 
@@ -596,35 +764,55 @@
         id="demo-borderless-large"
         class="demo-container"
       >
-        <button class="iui-button iui-borderless iui-large">
-          <span class="iui-button-label">Large</span>
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="large"
+        >
+          <span>Large</span>
         </button>
 
-        <button class="iui-button iui-borderless iui-large">
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="large"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Large left icon</span>
+          <span>Large left icon</span>
         </button>
 
-        <button class="iui-button iui-borderless iui-large">
-          <span class="iui-button-label">Large right icon</span>
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="large"
+        >
+          <span>Large right icon</span>
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-borderless iui-large">
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="large"
+        >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
         </button>
 
-        <button class="iui-button iui-borderless iui-large iui-dropdown">
-          <span class="iui-button-label">Large dropdown</span>
+        <button
+          class="iui-button iui-button-dropdown"
+          data-iui-variant="borderless"
+          data-iui-size="large"
+        >
+          <span>Large dropdown</span>
           <svg-caret-down-small
             class="iui-button-icon"
             aria-hidden="true"
@@ -632,14 +820,16 @@
         </button>
 
         <button
-          class="iui-button iui-borderless iui-large"
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="large"
           disabled
         >
           <svg-placeholder
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-placeholder>
-          <span class="iui-button-label">Large disabled</span>
+          <span>Large disabled</span>
         </button>
       </div>
     </section>
@@ -652,38 +842,27 @@
     <section id="demo-grouped-default">
       <span class="iui-button-group">
         <div>
-          <button class="iui-button iui-default iui-small">
-            <span class="iui-button-label">Left</span>
+          <button
+            class="iui-button"
+            data-iui-size="small"
+          >
+            <span>Left</span>
           </button>
         </div>
         <div>
-          <button class="iui-button iui-default iui-small">
-            <span class="iui-button-label">Middle</span>
+          <button
+            class="iui-button"
+            data-iui-size="small"
+          >
+            <span>Middle</span>
           </button>
         </div>
         <div>
-          <button class="iui-button iui-default iui-small">
-            <span class="iui-button-label">Right</span>
-          </button>
-        </div>
-      </span>
-
-      <br />
-
-      <span class="iui-button-group">
-        <div>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Left</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Middle</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Right</span>
+          <button
+            class="iui-button"
+            data-iui-size="small"
+          >
+            <span>Right</span>
           </button>
         </div>
       </span>
@@ -692,18 +871,47 @@
 
       <span class="iui-button-group">
         <div>
-          <button class="iui-button iui-default iui-large">
-            <span class="iui-button-label">Left</span>
+          <button class="iui-button">
+            <span>Left</span>
           </button>
         </div>
         <div>
-          <button class="iui-button iui-default iui-large">
-            <span class="iui-button-label">Middle</span>
+          <button class="iui-button">
+            <span>Middle</span>
           </button>
         </div>
         <div>
-          <button class="iui-button iui-default iui-large">
-            <span class="iui-button-label">Right</span>
+          <button class="iui-button">
+            <span>Right</span>
+          </button>
+        </div>
+      </span>
+
+      <br />
+
+      <span class="iui-button-group">
+        <div>
+          <button
+            class="iui-button"
+            data-iui-size="large"
+          >
+            <span>Left</span>
+          </button>
+        </div>
+        <div>
+          <button
+            class="iui-button"
+            data-iui-size="large"
+          >
+            <span>Middle</span>
+          </button>
+        </div>
+        <div>
+          <button
+            class="iui-button"
+            data-iui-size="large"
+          >
+            <span>Right</span>
           </button>
         </div>
       </span>
@@ -714,7 +922,7 @@
         <div>
           <button
             title="Download"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-download
               class="iui-button-icon"
@@ -725,7 +933,7 @@
         <div>
           <button
             title="Move"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-arrow-right
               class="iui-button-icon"
@@ -736,7 +944,7 @@
         <div>
           <button
             title="Delete"
-            class="iui-button iui-default"
+            class="iui-button"
             disabled
           >
             <svg-delete
@@ -748,7 +956,7 @@
         <div>
           <button
             title="Rename"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-rename
               class="iui-button-icon"
@@ -759,7 +967,7 @@
         <div>
           <button
             title="More options&mldr;"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-more
               class="iui-button-icon"
@@ -776,7 +984,7 @@
           <button
             disabled
             title="Download"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-download
               class="iui-button-icon"
@@ -788,7 +996,7 @@
           <button
             disabled
             title="Move"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-arrow-right
               class="iui-button-icon"
@@ -799,7 +1007,7 @@
         <div>
           <button
             title="Delete"
-            class="iui-button iui-default"
+            class="iui-button"
             disabled
           >
             <svg-delete
@@ -812,7 +1020,7 @@
           <button
             disabled
             title="Rename"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-rename
               class="iui-button-icon"
@@ -824,7 +1032,7 @@
           <button
             disabled
             title="More options&mldr;"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-more
               class="iui-button-icon"
@@ -840,7 +1048,7 @@
         <div>
           <button
             title="List view"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-list
               class="iui-button-icon"
@@ -851,7 +1059,8 @@
         <div>
           <button
             title="Tile view"
-            class="iui-button iui-default iui-active"
+            class="iui-button"
+            data-iui-active="true"
           >
             <svg-thumbnails
               class="iui-button-icon"
@@ -868,7 +1077,7 @@
           <button
             disabled
             title="List view"
-            class="iui-button iui-default"
+            class="iui-button"
           >
             <svg-list
               class="iui-button-icon"
@@ -880,7 +1089,8 @@
           <button
             disabled
             title="Tile view"
-            class="iui-button iui-default iui-active"
+            class="iui-button"
+            data-iui-active="true"
           >
             <svg-thumbnails
               class="iui-button-icon"
@@ -894,7 +1104,7 @@
 
       <span class="iui-button-group-vertical">
         <div>
-          <button class="iui-button iui-default">
+          <button class="iui-button">
             <svg-download
               class="iui-button-icon"
               aria-hidden="true"
@@ -902,7 +1112,7 @@
           </button>
         </div>
         <div>
-          <button class="iui-button iui-default">
+          <button class="iui-button">
             <svg-arrow-right
               class="iui-button-icon"
               aria-hidden="true"
@@ -911,7 +1121,7 @@
         </div>
         <div>
           <button
-            class="iui-button iui-default"
+            class="iui-button"
             disabled
           >
             <svg-delete
@@ -922,7 +1132,7 @@
         </div>
         <div>
           <button
-            class="iui-button iui-default"
+            class="iui-button"
             disabled
           >
             <svg-rename
@@ -932,7 +1142,7 @@
           </button>
         </div>
         <div>
-          <button class="iui-button iui-default">
+          <button class="iui-button">
             <svg-more
               class="iui-button-icon"
               aria-hidden="true"
@@ -945,7 +1155,7 @@
 
       <span class="iui-button-group-vertical">
         <div>
-          <button class="iui-button iui-default">
+          <button class="iui-button">
             <svg-list
               class="iui-button-icon"
               aria-hidden="true"
@@ -953,7 +1163,10 @@
           </button>
         </div>
         <div>
-          <button class="iui-button iui-default iui-active">
+          <button
+            class="iui-button"
+            data-iui-active="true"
+          >
             <svg-thumbnails
               class="iui-button-icon"
               aria-hidden="true"
@@ -970,38 +1183,30 @@
     <section id="demo-grouped-borderless">
       <span class="iui-button-group">
         <div>
-          <button class="iui-button iui-borderless iui-small">
-            <span class="iui-button-label">Left</span>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-size="small"
+          >
+            <span>Left</span>
           </button>
         </div>
         <div>
-          <button class="iui-button iui-borderless iui-small">
-            <span class="iui-button-label">Middle</span>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-size="small"
+          >
+            <span>Middle</span>
           </button>
         </div>
         <div>
-          <button class="iui-button iui-borderless iui-small">
-            <span class="iui-button-label">Right</span>
-          </button>
-        </div>
-      </span>
-
-      <br />
-
-      <span class="iui-button-group">
-        <div>
-          <button class="iui-button iui-borderless">
-            <span class="iui-button-label">Left</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-borderless">
-            <span class="iui-button-label">Middle</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-borderless">
-            <span class="iui-button-label">Right</span>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-size="small"
+          >
+            <span>Right</span>
           </button>
         </div>
       </span>
@@ -1010,18 +1215,59 @@
 
       <span class="iui-button-group">
         <div>
-          <button class="iui-button iui-borderless iui-large">
-            <span class="iui-button-label">Left</span>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+          >
+            <span>Left</span>
           </button>
         </div>
         <div>
-          <button class="iui-button iui-borderless iui-large">
-            <span class="iui-button-label">Middle</span>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+          >
+            <span>Middle</span>
           </button>
         </div>
         <div>
-          <button class="iui-button iui-borderless iui-large">
-            <span class="iui-button-label">Right</span>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+          >
+            <span>Right</span>
+          </button>
+        </div>
+      </span>
+
+      <br />
+
+      <span class="iui-button-group">
+        <div>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-size="large"
+          >
+            <span>Left</span>
+          </button>
+        </div>
+        <div>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-size="large"
+          >
+            <span>Middle</span>
+          </button>
+        </div>
+        <div>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-size="large"
+          >
+            <span>Right</span>
           </button>
         </div>
       </span>
@@ -1032,7 +1278,8 @@
         <div>
           <button
             title="Download"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-download
               class="iui-button-icon"
@@ -1043,7 +1290,8 @@
         <div>
           <button
             title="Move"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-arrow-right
               class="iui-button-icon"
@@ -1054,7 +1302,8 @@
         <div>
           <button
             title="Delete"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
             disabled
           >
             <svg-delete
@@ -1066,7 +1315,8 @@
         <div>
           <button
             title="Rename"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-rename
               class="iui-button-icon"
@@ -1077,7 +1327,8 @@
         <div>
           <button
             title="More options&mldr;"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-more
               class="iui-button-icon"
@@ -1094,7 +1345,8 @@
           <button
             disabled
             title="Download"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-download
               class="iui-button-icon"
@@ -1106,7 +1358,8 @@
           <button
             disabled
             title="Move"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-arrow-right
               class="iui-button-icon"
@@ -1117,7 +1370,8 @@
         <div>
           <button
             title="Delete"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
             disabled
           >
             <svg-delete
@@ -1130,7 +1384,8 @@
           <button
             disabled
             title="Rename"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-rename
               class="iui-button-icon"
@@ -1142,7 +1397,8 @@
           <button
             disabled
             title="More options&mldr;"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-more
               class="iui-button-icon"
@@ -1158,7 +1414,8 @@
         <div>
           <button
             title="List view"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-list
               class="iui-button-icon"
@@ -1169,7 +1426,9 @@
         <div>
           <button
             title="Tile view"
-            class="iui-button iui-borderless iui-active"
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-active="true"
           >
             <svg-thumbnails
               class="iui-button-icon"
@@ -1186,7 +1445,8 @@
           <button
             disabled
             title="List view"
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
           >
             <svg-list
               class="iui-button-icon"
@@ -1198,7 +1458,9 @@
           <button
             disabled
             title="Tile view"
-            class="iui-button iui-borderless iui-active"
+            class="iui-button"
+            data-iui-variant="borderless"
+            data-iui-active="true"
           >
             <svg-thumbnails
               class="iui-button-icon"
@@ -1212,219 +1474,231 @@
     <br />
 
     <h3>Split menu</h3>
-    <section id="demo-split-menu">
-      <span class="iui-button-split-menu">
-        <div>
-          <button class="iui-button iui-small iui-high-visibility">
-            <span class="iui-button-label">Small split menu</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-small iui-high-visibility">
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
+    <section id="demo-split">
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="small"
+        >
+          <span>Small split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="small"
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
       </span>
 
-      <span class="iui-button-split-menu">
-        <div>
-          <button class="iui-button iui-small iui-cta">
-            <span class="iui-button-label">Small split menu</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-small iui-cta">
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="small"
+        >
+          <span>Small split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="small"
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
       </span>
 
-      <span class="iui-button-split-menu">
-        <div>
-          <button class="iui-button iui-default iui-small">
-            <span class="iui-button-label">Small split menu</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-default iui-small">
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-size="small"
+        >
+          <span>Small split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-size="small"
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
       </span>
 
-      <span class="iui-button-split-menu">
-        <div>
-          <button
-            class="iui-button iui-default iui-small"
-            disabled
-          >
-            <span class="iui-button-label">Small split menu</span>
-          </button>
-        </div>
-        <div>
-          <button
-            class="iui-button iui-default iui-small"
-            disabled
-          >
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
-      </span>
-
-      <br />
-
-      <span class="iui-button-split-menu">
-        <div>
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Split menu</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-high-visibility">
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <div>
-          <button class="iui-button iui-cta">
-            <span class="iui-button-label">Split menu</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-cta">
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <div>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Split menu</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-default">
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
-      </span>
-
-      <span class="iui-button-split-menu">
-        <div>
-          <button
-            class="iui-button iui-default"
-            disabled
-          >
-            <span class="iui-button-label">Split menu</span>
-          </button>
-        </div>
-        <div>
-          <button
-            class="iui-button iui-default"
-            disabled
-          >
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-size="small"
+          disabled
+        >
+          <span>Small split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-size="small"
+          disabled
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
       </span>
 
       <br />
 
-      <span class="iui-button-split-menu">
-        <div>
-          <button class="iui-button iui-large iui-high-visibility">
-            <span class="iui-button-label">Large split menu</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-large iui-high-visibility">
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+        >
+          <span>Split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
       </span>
 
-      <span class="iui-button-split-menu">
-        <div>
-          <button class="iui-button iui-large iui-cta">
-            <span class="iui-button-label">Large split menu</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-large iui-cta">
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+        >
+          <span>Split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
       </span>
 
-      <span class="iui-button-split-menu">
-        <div>
-          <button class="iui-button iui-default iui-large">
-            <span class="iui-button-label">Large split menu</span>
-          </button>
-        </div>
-        <div>
-          <button class="iui-button iui-default iui-large">
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
+      <span class="iui-button-split">
+        <button class="iui-button">
+          <span>Split menu</span>
+        </button>
+        <button class="iui-button">
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
       </span>
 
-      <span class="iui-button-split-menu">
-        <div>
-          <button
-            class="iui-button iui-default iui-large"
-            disabled
-          >
-            <span class="iui-button-label">Large split menu</span>
-          </button>
-        </div>
-        <div>
-          <button
-            class="iui-button iui-default iui-large"
-            disabled
-          >
-            <svg-caret-down-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-caret-down-small>
-          </button>
-        </div>
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          disabled
+        >
+          <span>Split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          disabled
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
+      </span>
+
+      <br />
+
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="large"
+        >
+          <span>Large split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-variant="high-visibility"
+          data-iui-size="large"
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
+      </span>
+
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="large"
+        >
+          <span>Large split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-variant="cta"
+          data-iui-size="large"
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
+      </span>
+
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-size="large"
+        >
+          <span>Large split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-size="large"
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
+      </span>
+
+      <span class="iui-button-split">
+        <button
+          class="iui-button"
+          data-iui-size="large"
+          disabled
+        >
+          <span>Large split menu</span>
+        </button>
+        <button
+          class="iui-button"
+          data-iui-size="large"
+          disabled
+        >
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
       </span>
     </section>
 
@@ -1435,13 +1709,17 @@
     <section id="demo-combo-group">
       <div class="iui-button-group">
         <div>
-          <button class="iui-button iui-default"><span class="iui-button-label">Button 1</span></button>
+          <button class="iui-button">
+            <span>Button 1</span>
+          </button>
         </div>
         <div>
           <input class="iui-input" />
         </div>
         <div>
-          <button class="iui-button iui-default"><span class="iui-button-label">Button 2</span></button>
+          <button class="iui-button">
+            <span>Button 2</span>
+          </button>
         </div>
       </div>
 
@@ -1449,7 +1727,9 @@
 
       <div class="iui-button-group">
         <div>
-          <button class="iui-button iui-default"><span class="iui-button-label">Button 1</span></button>
+          <button class="iui-button">
+            <span>Button 1</span>
+          </button>
         </div>
         <div>
           <input
@@ -1459,7 +1739,9 @@
           />
         </div>
         <div>
-          <button class="iui-button iui-default"><span class="iui-button-label">Button 2</span></button>
+          <button class="iui-button">
+            <span>Button 2</span>
+          </button>
         </div>
       </div>
 
@@ -1475,7 +1757,14 @@
             />
           </div>
         </div>
-        <div><button class="iui-button iui-high-visibility">Copy</button></div>
+        <div>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Copy</span>
+          </button>
+        </div>
       </div>
 
       <br />
@@ -1487,7 +1776,10 @@
               class="iui-input"
               value="https://itwin.github.io/iTwinUI"
             />
-            <button class="iui-button iui-borderless iui-input-icon">
+            <button
+              class="iui-button iui-input-icon"
+              data-iui-variant="borderless"
+            >
               <svg-close-small
                 class="iui-button-icon"
                 aria-hidden="true"
@@ -1496,7 +1788,7 @@
           </div>
         </div>
         <div>
-          <button class="iui-button iui-default">
+          <button class="iui-button">
             <svg-more
               class="iui-button-icon"
               aria-hidden="true"
@@ -1511,13 +1803,17 @@
     <h2>Ideas</h2>
     <p class="iui-text-small iui-text-muted">Look to the bottom right of your browser window.</p>
     <br />
-    <section id="demo-ideas">
-      <button class="iui-button iui-idea">
+    <section>
+      <button
+        class="iui-button"
+        data-iui-variant="idea"
+        id="demo-ideas"
+      >
         <svg-smiley-happy
           class="iui-button-icon"
           aria-hidden="true"
         ></svg-smiley-happy>
-        <span class="iui-button-label">Feedback</span>
+        <span>Feedback</span>
       </button>
     </section>
   </body>

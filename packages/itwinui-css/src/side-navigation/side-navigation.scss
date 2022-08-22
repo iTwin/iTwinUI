@@ -1,20 +1,18 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
-@import '../text/index';
+@import '../utils/index';
+@import '../text/mixins';
 
 @mixin iui-side-navigation {
   display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;
   height: 100%;
+  background-color: var(--iui-color-background-3);
+  border-right: 1px solid var(--iui-color-background-border);
   @media (prefers-reduced-motion: no-preference) {
     transition: max-width $iui-speed-fast ease-out;
-  }
-  @include themed {
-    background-color: t(iui-color-background-3);
-    border-right: 1px solid t(iui-color-background-border);
   }
 
   > .iui-sidenav-content {
@@ -50,20 +48,23 @@
 
     + .iui-sidenav-button.iui-expand {
       border: none;
-      @include themed {
-        border-top: 1px solid t(iui-color-background-border);
-      }
+      border-top: 1px solid var(--iui-color-background-border);
     }
   }
 
   &.iui-collapsed {
-    min-width: $iui-icons-large * 3;
-    max-width: $iui-icons-large * 3;
+    box-sizing: content-box;
+    min-width: $iui-icon-large + $iui-side-navigation-icon-margins * 2;
+    max-width: $iui-icon-large + $iui-side-navigation-icon-margins * 2;
 
     // iPhone notch support
     @supports (min-width: unquote('max(0px)')) {
-      min-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
-      max-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
+      min-width: unquote(
+        'max(#{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+      );
+      max-width: unquote(
+        'max(#{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$iui-icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+      );
     }
   }
 
@@ -77,7 +78,7 @@
   }
 
   .iui-sidenav-button {
-    gap: $iui-icons-large;
+    gap: $iui-side-navigation-icon-margins;
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -91,11 +92,13 @@
       height: $iui-baseline * 5;
       // iPhone notch support
       @supports (padding: unquote('max(0px)')) {
-        padding-left: unquote('max(#{$iui-icons-large}, #{$iui-icons-large} + env(safe-area-inset-left))');
+        padding-left: unquote(
+          'max(#{$iui-side-navigation-icon-margins}, #{$iui-side-navigation-icon-margins} + env(safe-area-inset-left))'
+        );
       }
     }
 
-    > .iui-button-label {
+    > span {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -104,40 +107,31 @@
     &,
     &:hover,
     &[disabled] {
-      @include themed {
-        border-color: t(iui-color-background-border);
-      }
+      border-color: var(--iui-color-background-border);
     }
 
-    > .iui-button-icon:not(.iui-user-icon) {
-      width: $iui-icons-large;
-      height: $iui-icons-large;
-      flex-shrink: 0;
+    > .iui-button-icon:not(.iui-avatar) {
+      @include iui-icon-style('l');
     }
 
     &.iui-submenu-open .iui-button-icon {
-      @include themed {
-        fill: t(iui-color-foreground-primary);
-      }
+      fill: var(--iui-color-foreground-primary);
     }
 
     &[disabled],
     &:disabled {
-      @include themed {
-        background-color: t(iui-color-background-2);
-      }
+      background-color: var(--iui-color-background-2);
     }
 
     &.iui-expand {
       height: $iui-line-height;
       justify-content: center;
       border: none;
-      @include themed {
-        border-bottom: 1px solid t(iui-color-background-border);
-      }
+      border-bottom: 1px solid var(--iui-color-background-border);
 
       > .iui-button-icon {
-        @include iui-icons-small;
+        @include iui-icon-style('s');
+        @include iui-icon-color;
         @media (prefers-reduced-motion: no-preference) {
           transition: transform $iui-speed ease-out;
         }
@@ -150,15 +144,12 @@
   min-width: $iui-3xl * 2;
   max-width: 50vw;
   height: 100%;
-  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
   overflow-y: overlay;
   resize: horizontal;
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border-right: 1px solid t(iui-color-background-border);
-  }
+  background-color: var(--iui-color-background-1);
+  border-right: 1px solid var(--iui-color-background-border);
 
   @include iui-transition-group;
 
@@ -170,7 +161,6 @@
   &-content {
     padding: 0 $iui-sm $iui-baseline;
     flex-shrink: 0;
-    box-sizing: border-box;
   }
 
   &-header {

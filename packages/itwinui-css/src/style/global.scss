@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
-@import './anchor';
+@import '../utils/index';
 
 html {
   @include theme-variables(light);
@@ -36,11 +36,8 @@ html {
 }
 
 .iui-body {
-  @include themed {
-    background-color: t(iui-color-background-2);
-    color: t(iui-text-color);
-  }
-
+  background-color: var(--iui-color-background-2);
+  color: var(--iui-text-color);
   font-size: $iui-font-size;
   line-height: $iui-line-height;
 
@@ -50,10 +47,6 @@ html {
   &.iui-no-webfonts {
     font-family: $iui-sans-fallback;
   }
-}
-
-.iui-anchor {
-  @include iui-anchor;
 }
 
 .iui-visually-hidden {
@@ -67,4 +60,10 @@ html {
 
   // Scrollbar
   @include iui-scrollbar;
+}
+
+[class*=iui-]:where(:not(.iui-body)),
+[class*=iui-]:where(:not(.iui-body))::before,
+[class*=iui-]:where(:not(.iui-body))::after {
+  box-sizing: border-box;
 }

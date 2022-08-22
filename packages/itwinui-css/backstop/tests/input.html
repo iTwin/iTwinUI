@@ -1,0 +1,496 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>Input| iTwinUI</title>
+
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/status-success";
+      import "@itwin/itwinui-icons-elements/status-warning";
+      import "@itwin/itwinui-icons-elements/status-error";
+      import "@itwin/itwinui-icons-elements/close-small";
+      import "@itwin/itwinui-icons-elements/info-circular";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      section[id^='demo'] {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      #block-labels > .iui-input-container {
+        margin-bottom: 12px;
+      }
+
+      #inline-labels {
+        display: grid;
+        row-gap: 12px;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+      }
+
+      #inline-labels > .iui-input-label {
+        justify-self: end;
+      }
+    </style>
+  </head>
+  <body class="iui-body">
+    <theme-button></theme-button>
+    <h1>Input</h1>
+    <hr />
+
+    <h2>Default</h2>
+    <section id="demo-default">
+      <label class="iui-input-container iui-with-message">
+        <div class="iui-label iui-required">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+          required
+        />
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message">
+        <div class="iui-label">Input label</div>
+        <input
+          value="A value"
+          class="iui-input"
+        />
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message">
+        <div class="iui-label">Input label</div>
+        <input
+          readonly
+          value="A read-only value"
+          class="iui-input"
+        />
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-disabled">
+        <div class="iui-label">Input label</div>
+        <input
+          disabled
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-disabled">
+        <div class="iui-label">Input label</div>
+        <input
+          disabled
+          value="A value"
+          class="iui-input"
+        />
+        <div class="iui-message">Help message.</div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-positive">
+        <div class="iui-label">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
+        <div class="iui-message">
+          Positive message.
+        </div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-warning">
+        <div class="iui-label">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
+        <div class="iui-message">
+          Warning message.
+        </div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-negative">
+        <div class="iui-label">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
+        <div class="iui-message">
+          Negative message.
+        </div>
+      </label>
+
+    </section>
+
+    <br />
+
+    <h2>Inline</h2>
+    <section id="demo-inline">
+      <label class="iui-input-container iui-inline-label">
+        <div class="iui-label iui-required">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+          required
+        />
+      </label>
+
+      <label class="iui-input-container iui-inline-label">
+        <div class="iui-label">Input label</div>
+        <input
+          value="A value"
+          class="iui-input"
+        />
+      </label>
+
+      <label class="iui-input-container iui-inline-label iui-disabled">
+        <div class="iui-label">Input label</div>
+        <input
+          disabled
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+      </label>
+
+      <label class="iui-input-container iui-inline-label iui-disabled">
+        <div class="iui-label">Input label</div>
+        <input
+          disabled
+          value="A value"
+          class="iui-input"
+        />
+      </label>
+
+      <label class="iui-input-container iui-inline-label iui-inline-icon iui-positive">
+        <div class="iui-label">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
+      </label>
+
+      <label class="iui-input-container iui-inline-label iui-inline-icon iui-warning">
+        <div class="iui-label">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
+      </label>
+
+      <label class="iui-input-container iui-inline-label iui-inline-icon iui-negative">
+        <div class="iui-label">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
+      </label>
+
+      <label class="iui-input-container iui-inline-label iui-inline-icon">
+        <div class="iui-label">Input label</div>
+        <input
+          value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          class="iui-input"
+        />
+        <button
+          class="iui-button iui-input-icon"
+          data-iui-variant="borderless"
+          aria-label="Clear"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-close-small>
+        </button>
+      </label>
+    </section>
+
+    <br />
+
+    <h2>Hybrid layouts</h2>
+    <section id="demo-hybrid">
+      <label class="iui-input-container iui-with-message iui-inline-icon">
+        <div class="iui-label">Input label</div>
+        <input
+          value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          class="iui-input"
+        />
+        <svg-info-circular
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-info-circular>
+        <div class="iui-message">
+          Block layout with inline icon.
+        </div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon">
+        <div class="iui-label">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-info-circular
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-info-circular>
+        <div class="iui-message">
+          Inline label and icon with message below.
+        </div>
+      </label>
+
+      <label class="iui-input-container iui-with-message iui-inline-label">
+        <div class="iui-label">Input label</div>
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-info-circular
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-info-circular>
+        <div class="iui-message">
+          Inline label with icon and message below.
+        </div>
+      </label>
+    </section>
+
+    <br />
+
+    <h2>Without label</h2>
+    <section id="demo-no-label">
+      <div class="iui-input-container">
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+      </div>
+
+      <div class="iui-input-container">
+        <input
+          value="A value"
+          class="iui-input"
+        />
+      </div>
+
+      <div class="iui-input-container iui-disabled">
+        <input
+          disabled
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+      </div>
+
+      <div class="iui-input-container iui-disabled">
+        <input
+          disabled
+          value="A value"
+          class="iui-input"
+        />
+      </div>
+
+      <div class="iui-input-container iui-inline-icon iui-positive">
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-status-success
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-success>
+      </div>
+
+      <div class="iui-input-container iui-inline-icon iui-warning">
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-status-warning
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-warning>
+      </div>
+
+      <div class="iui-input-container iui-inline-icon iui-negative">
+        <input
+          placeholder="Placeholder…"
+          class="iui-input"
+        />
+        <svg-status-error
+          class="iui-input-icon"
+          aria-hidden="true"
+        ></svg-status-error>
+      </div>
+
+      <div class="iui-input-container">
+        <input
+          value="Small"
+          class="iui-input iui-small"
+        />
+      </div>
+
+      <div class="iui-input-container">
+        <input
+          value="Default"
+          class="iui-input"
+        />
+      </div>
+
+      <div class="iui-input-container">
+        <input
+          value="Large"
+          class="iui-input iui-large"
+        />
+      </div>
+    </section>
+
+    <br />
+
+    <h2>Auto-complete demo</h2>
+    <form
+      method="post"
+      action=""
+    >
+      <label
+        for="email"
+        class="iui-input-container"
+      >
+        <div class="iui-label">Email address</div>
+        <input
+          placeholder="email@example.com"
+          type="email"
+          name="email"
+          id="email"
+          autocomplete="on"
+          class="iui-input"
+        />
+      </label>
+    </form>
+
+    <br />
+
+    <h2>No wrapping label</h2>
+    <section id="demo-no-label">
+
+      <div id="block-labels">
+        <label
+          class="iui-input-label"
+          for="test-1"
+        >First name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-1"
+          />
+        </div>
+
+        <label
+          class="iui-input-label iui-disabled"
+          for="test-2"
+        >Middle name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-2"
+            disabled
+          />
+        </div>
+
+        <label
+          class="iui-input-label iui-required"
+          for="test-3"
+        >Last name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-3"
+          />
+        </div>
+      </div>
+
+      <div id="inline-labels">
+        <label
+          class="iui-input-label iui-inline"
+          for="test-4"
+        >First name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-4"
+          />
+        </div>
+
+        <label
+          class="iui-input-label iui-inline iui-disabled"
+          for="test-5"
+        >Middle name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-5"
+            disabled
+          />
+        </div>
+
+        <label
+          class="iui-input-label iui-inline iui-required"
+          for="test-6"
+        >Last name</label>
+        <div class="iui-input-container">
+          <input
+            placeholder="Placeholder…"
+            class="iui-input"
+            id="test-6"
+          />
+        </div>
+      </div>
+
+    </section>
+  </body>
+</html>

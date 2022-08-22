@@ -2,67 +2,23 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-@mixin iui-progress-indicator-radial-ie {
-  @include iui-reset;
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-
-  @include themed {
-    color: t(iui-color-foreground-primary);
-  }
-
-  &::after {
-    position: relative;
-    box-sizing: border-box;
-    content: '';
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    border: 3px solid currentColor;
-    border-radius: 100%;
-    background-color: transparent;
-    animation: dash $iui-speed-slow linear infinite;
-
-    @include themed {
-      border-bottom-color: t(iui-color-background-border);
-    }
-  }
-
-  @keyframes dash {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
-
 @mixin iui-progress-indicator-radial {
   position: relative;
   display: inline-block;
-  @include iui-progress-indicator-radial-size($size: $iui-icons-xl);
+  @include iui-progress-indicator-radial-size($size: $iui-icon-xl);
 
   > .iui-radial {
     height: 100%;
     width: 100%;
 
     > circle.iui-fill {
-      @include themed {
-        stroke: t(iui-color-foreground-primary);
-      }
+      stroke: var(--iui-color-foreground-primary);
       fill: none;
       stroke-width: 3.2;
     }
 
     > circle.iui-track {
-      @include themed {
-        stroke: t(iui-color-background-5);
-      }
+      stroke: var(--iui-color-background-5);
       fill: none;
       stroke-width: 3.2;
     }
@@ -84,90 +40,44 @@
 
     svg,
     img {
-      display: flex;
-      width: $iui-icons-default;
-      height: $iui-icons-default;
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
+      @include iui-icon-style('m');
+      fill: var(--iui-icon-color-actionable);
 
       &:hover {
-        @include themed {
-          fill: t(iui-icons-color-actionable-hover);
-        }
+        fill: var(--iui-icon-color-actionable-hover);
       }
     }
   }
 
   &.iui-positive {
-    @include themed {
-      color: t(iui-color-foreground-positive);
-    }
+    color: var(--iui-color-foreground-positive);
 
     svg.iui-radial {
       circle.iui-fill,
       circle.iui-track {
-        @include themed {
-          stroke: t(iui-color-foreground-positive);
-        }
+        stroke: var(--iui-color-foreground-positive);
       }
     }
 
     .iui-inner-content svg {
-      @include themed {
-        fill: t(iui-icons-color-positive);
-      }
-    }
-
-    .iui-progress-indicator-radial-ie {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
-
-      &::after {
-        animation: none;
-
-        @include themed {
-          border-bottom-color: t(iui-color-foreground-positive);
-        }
-      }
+      fill: var(--iui-icon-color-positive);
     }
   }
 
   &.iui-negative {
-    @include themed {
-      color: t(iui-color-foreground-negative);
-    }
+    color: var(--iui-color-foreground-negative);
 
     svg.iui-radial circle.iui-fill {
-      @include themed {
-        stroke: t(iui-color-foreground-negative);
-      }
+      stroke: var(--iui-color-foreground-negative);
     }
 
     .iui-inner-content svg {
-      @include themed {
-        fill: t(iui-icons-color-negative);
-      }
-    }
-
-    .iui-progress-indicator-radial-ie {
-      @include themed {
-        color: t(iui-color-foreground-negative);
-      }
-
-      &::after {
-        animation: none;
-
-        @include themed {
-          border-bottom-color: t(iui-color-foreground-negative);
-        }
-      }
+      fill: var(--iui-icon-color-negative);
     }
   }
 
   &.iui-x-small {
-    @include iui-progress-indicator-radial-size($size: $iui-icons-default);
+    @include iui-progress-indicator-radial-size($size: $iui-icon-default);
 
     .iui-inner-content {
       display: none;
@@ -175,19 +85,18 @@
   }
 
   &.iui-small {
-    @include iui-progress-indicator-radial-size($size: $iui-icons-large);
+    @include iui-progress-indicator-radial-size($size: $iui-icon-large);
   }
 
   &.iui-large {
-    @include iui-progress-indicator-radial-size($size: $iui-icons-xxl);
+    @include iui-progress-indicator-radial-size($size: $iui-icon-2xl);
 
     .iui-inner-content {
       font-size: $iui-font-size-leading;
 
       svg,
       img {
-        width: $iui-icons-large;
-        height: $iui-icons-large;
+        @include iui-icon-style('l');
       }
     }
   }

@@ -1,0 +1,27 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-select-button {
+  @include iui-select-button;
+}
+
+.iui-select-tag-container {
+  @include iui-select-tag-container;
+}
+
+.iui-select-tag {
+  @include iui-select-tag;
+}
+
+.iui-select-tag-label {
+  @include iui-select-tag-label;
+}
+
+.iui-select-tag-button {
+  @include iui-select-tag-button;
+}
+
+.iui-select-tag-button-icon {
+  @include iui-select-tag-button-icon;
+}

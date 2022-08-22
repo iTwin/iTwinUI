@@ -1,0 +1,123 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../menu/index';
+@import '../utils/index';
+@import '../tag/index';
+@import '../button/index';
+
+@mixin iui-select-button {
+  @include iui-focus($offset: -2px, $thickness: 2px);
+  width: 100%;
+  margin: 0;
+  border-radius: $iui-border-radius;
+  padding: $iui-component-padding-vertical $iui-component-padding-horizontal;
+  min-height: $iui-component-height;
+  transition: border-color $iui-speed-fast ease-out;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  color: var(--iui-text-color);
+  background-color: var(--iui-color-background-1);
+  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+
+  &.iui-small {
+    padding-top: $iui-component-padding-vertical-small;
+    padding-bottom: $iui-component-padding-vertical-small;
+    min-height: $iui-component-height-small;
+  }
+
+  &.iui-large {
+    padding-top: $iui-component-padding-vertical-large;
+    padding-bottom: $iui-component-padding-vertical-large;
+    min-height: $iui-component-height-large;
+    font-size: $iui-font-size-leading;
+  }
+
+  &.iui-disabled {
+    background-color: var(--iui-color-background-disabled);
+    border-color: var(--iui-color-background-disabled);
+    --_hover-color: var(--iui-color-background-disabled);
+    cursor: not-allowed;
+  }
+
+  .iui-icon {
+    @include iui-menu-icon;
+    fill: currentColor;
+  }
+
+  .iui-content {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &.iui-placeholder {
+    color: var(--iui-text-color-placeholder);
+  }
+}
+
+@mixin iui-select-tag-container {
+  position: absolute;
+  // align wth Select's padding
+  inset: 0 $iui-icon-default + $iui-l 0 $iui-sm;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: $iui-xs;
+  overflow: hidden;
+
+  > * + * {
+    margin-left: $iui-xs;
+    @supports (gap: $iui-xs) {
+      margin-left: 0;
+    }
+  }
+}
+
+@mixin iui-select-tag {
+  @include iui-tag;
+  // Override hardcoded Tag margin
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 80%;
+  max-height: $iui-baseline * 3;
+}
+
+@mixin iui-select-tag-label {
+  @include iui-tag-label;
+  display: inline-flex;
+  align-items: center;
+
+  @at-root .iui-select-button.iui-small & {
+    font-size: $iui-font-size-small;
+    line-height: floor($iui-baseline * 1.5);
+  }
+}
+
+@mixin iui-select-tag-button {
+  @include iui-button;
+  @include iui-button-borderless;
+  @include iui-tag-button;
+  padding: 0 $iui-xs;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+
+  @at-root .iui-select-button.iui-small & {
+    font-size: $iui-font-size-small;
+    line-height: floor($iui-baseline * 1.5);
+  }
+}
+
+@mixin iui-select-tag-button-icon {
+  @include iui-button-icon;
+  flex-shrink: 0;
+
+  @at-root .iui-select-button.iui-small & {
+    @include iui-icon-style('s');
+  }
+}

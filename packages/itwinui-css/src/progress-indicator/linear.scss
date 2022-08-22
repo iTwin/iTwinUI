@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../utils/index';
 
 @mixin iui-progress-indicator-linear($height: 4px) {
   @include iui-reset;
@@ -11,19 +12,13 @@
     width: 100%;
     height: $height;
     overflow: hidden;
-
-    @include themed {
-      background-color: t(iui-color-background-border);
-    }
+    background-color: var(--iui-color-background-border);
 
     > .iui-fill {
       display: inline-block;
       height: 100%;
       vertical-align: top;
-
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-      }
+      background-color: var(--iui-color-foreground-primary);
     }
   }
 
@@ -45,29 +40,21 @@
     }
 
     svg {
-      display: flex; // needed for vertical alignment of webcomponents
-      width: $iui-icons-default;
-      height: $iui-icons-default;
+      @include iui-icon-style('m');
     }
   }
 
   &.iui-positive {
     > .iui-track,
     > .iui-track > * {
-      @include themed {
-        background-color: t(iui-color-foreground-positive);
-      }
+      background-color: var(--iui-color-foreground-positive);
     }
 
     > .iui-label {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
+      color: var(--iui-color-foreground-positive);
 
       svg {
-        @include themed {
-          fill: t(iui-icons-color-positive);
-        }
+        fill: var(--iui-icon-color-positive);
       }
 
       > span {
@@ -79,21 +66,14 @@
   &.iui-negative {
     > .iui-track > * {
       width: 100%;
-
-      @include themed {
-        background-color: t(iui-color-foreground-negative);
-      }
+      background-color: var(--iui-color-foreground-negative);
     }
 
     > .iui-label {
-      @include themed {
-        color: t(iui-color-foreground-negative);
-      }
+      color: var(--iui-color-foreground-negative);
 
       svg {
-        @include themed {
-          fill: t(iui-icons-color-negative);
-        }
+        fill: var(--iui-icon-color-negative);
       }
 
       > span {

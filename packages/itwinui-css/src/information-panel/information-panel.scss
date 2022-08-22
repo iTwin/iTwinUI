@@ -1,11 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../inputs/labeled-inputs';
+@import '../utils/index';
 
 @mixin iui-information-panel-wrapper {
   position: relative;
   overflow: hidden;
+  border-radius: $iui-border-radius;
 }
 
 @mixin iui-information-panel {
@@ -14,17 +15,12 @@
   visibility: hidden;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   max-width: 100%;
   max-height: 100%;
-  z-index: 2; // Needs to be higher than table's column resizers.
+  background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
     transition: visibility $iui-speed-instant $iui-speed-fast ease-in, transform $iui-speed-fast ease-out,
       opacity $iui-speed-fast ease;
-  }
-
-  @include themed {
-    background-color: t(iui-color-background-1);
   }
 
   > .iui-resizer {
@@ -33,15 +29,11 @@
     touch-action: none;
 
     > .iui-resizer-bar {
-      @include themed {
-        background-color: t(iui-color-background-border);
-      }
+      background-color: var(--iui-color-background-border);
     }
 
     &:hover > .iui-resizer-bar {
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-      }
+      background-color: var(--iui-color-foreground-primary);
     }
   }
 
@@ -49,7 +41,6 @@
   .iui-information-body {
     padding-left: $iui-sm;
     padding-right: $iui-sm;
-    box-sizing: border-box;
   }
 
   .iui-information-header {
@@ -58,9 +49,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @include themed {
-      background-color: t(iui-color-background-3);
-    }
+    background-color: var(--iui-color-background-3);
 
     .iui-information-header-label {
       display: flex;
@@ -75,14 +64,9 @@
       }
 
       svg {
-        display: flex;
-        width: $iui-icons-large;
-        height: $iui-icons-large;
+        @include iui-icon-style('l');
+        @include iui-icon-color;
         margin-right: $iui-s;
-        flex-shrink: 0;
-        @include themed {
-          fill: t(iui-icons-color);
-        }
       }
     }
 
@@ -101,9 +85,7 @@
     overflow-y: overlay;
 
     > hr {
-      @include themed {
-        border-color: t(iui-color-background-border);
-      }
+      border-color: var(--iui-color-background-border);
     }
   }
 }
@@ -206,9 +188,7 @@
 
   .iui-input-label {
     font-weight: $iui-font-weight-normal;
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
   }
 
   &:not(.iui-inline) {

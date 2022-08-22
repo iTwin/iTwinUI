@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
+@import '../utils/index';
 
 $iui-dialog-width: 380px;
 
@@ -21,14 +21,10 @@ $iui-dialog-width: 380px;
   isolation: isolate;
   border-radius: $iui-border-radius;
   box-shadow: $iui-elevation-24;
-  box-sizing: border-box;
   position: fixed;
-  padding: $iui-baseline $iui-m;
-  box-sizing: border-box;
   padding: $iui-baseline $iui-m;
   overflow: hidden;
   pointer-events: auto;
-  background-color: #FFF; // IE fallback
   background-color: var(--iui-color-background-1);
   @media (forced-colors: active) {
     border: 1px solid;
@@ -157,7 +153,7 @@ $iui-dialog-width: 380px;
 
 @mixin iui-dialog-title-bar-filled {
   font-size: $iui-font-size-leading;
-  padding: round($iui-baseline * 0.5) $iui-m;
+  padding: ($iui-baseline * 0.5) $iui-m;
   margin: -#{$iui-baseline} -#{$iui-m} $iui-baseline -#{$iui-m}; // negative margin to counteract dialog padding
   cursor: grab;
   background-color: var(--iui-color-background-3);

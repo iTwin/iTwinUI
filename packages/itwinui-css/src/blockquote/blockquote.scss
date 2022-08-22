@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
+@import '../utils/index';
 
 @mixin iui-blockquote {
   @include iui-reset;
@@ -11,18 +12,12 @@
   text-align: justify;
   box-shadow: $iui-elevation-2;
   border-radius: $iui-border-radius;
-
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border-left: $iui-s solid t(iui-color-foreground-primary);
-  }
+  background-color: var(--iui-color-background-1);
+  border-left: $iui-s solid var(--iui-color-foreground-primary);
 
   > footer {
     text-align: right;
-
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-text-color-muted);
 
     > cite {
       font-style: normal;

@@ -1,0 +1,83 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../utils/index';
+
+@mixin iui-input {
+  @include iui-reset;
+  @include iui-focus($offset: -2px, $thickness: 2px);
+  width: 100%;
+  font-family: inherit;
+  font-size: $iui-font-size;
+  font-weight: $iui-font-weight-normal;
+  line-height: $iui-line-height;
+  border-radius: $iui-border-radius;
+  appearance: none;
+  padding: $iui-component-padding-vertical $iui-component-padding-horizontal;
+  min-height: $iui-component-height;
+  color: var(--iui-text-color);
+  background-color: var(--iui-color-background-1);
+  border: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  @media (prefers-reduced-motion: no-preference) {
+    transition: border-color $iui-speed-fast ease-out;
+  }
+
+  &.iui-small {
+    padding-top: $iui-component-padding-vertical-small;
+    padding-bottom: $iui-component-padding-vertical-small;
+    min-height: $iui-component-height-small;
+  }
+
+  &.iui-large {
+    padding-top: $iui-component-padding-vertical-large;
+    padding-bottom: $iui-component-padding-vertical-large;
+    min-height: $iui-component-height-large;
+    font-size: $iui-font-size-leading;
+  }
+
+  &::placeholder {
+    user-select: none;
+    color: var(--iui-text-color-placeholder);
+  }
+
+  &:autofill {
+    @include iui-input-autofill;
+  }
+
+  &:hover {
+    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    @media (prefers-reduced-motion: no-preference) {
+      transition: border-color $iui-speed-fast ease-out;
+    }
+  }
+
+  &[disabled] {
+    background-color: var(--iui-color-background-disabled);
+    border-color: var(--iui-color-background-disabled);
+    cursor: not-allowed;
+    --_hover-color: var(--iui-color-background-disabled);
+  }
+
+  @at-root :where(textarea#{&}) {
+    @include textarea;
+  }
+}
+
+@mixin iui-input-autofill {
+  border-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
+  color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
+  background: linear-gradient(
+    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+    rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+  ),
+    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+}
+
+@mixin textarea {
+  resize: vertical;
+
+  &[disabled],
+  &[readonly] {
+    resize: none;
+  }
+}

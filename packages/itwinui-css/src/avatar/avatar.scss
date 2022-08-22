@@ -1,0 +1,215 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../style/index';
+@import '../utils/index';
+@import './avatar-sizes';
+
+@mixin iui-avatar {
+  @include iui-reset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0;
+  user-select: none;
+
+  > .iui-stroke {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 $iui-xxs rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+  }
+
+  > .iui-initials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 50%;
+    font-style: normal;
+    font-weight: $iui-font-weight-semibold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: $iui-color-dataviz-celery;
+    overflow: hidden;
+    color: var(--iui-color-foreground-accessory);
+  }
+
+  > .iui-icon {
+    display: inline-flex;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    fill: var(--iui-color-foreground-accessory);
+  }
+
+  > img {
+    display: block;
+    position: absolute;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-width: 0;
+    border-radius: 50%;
+    background-color: var(--iui-color-background-1);
+  }
+
+  > .iui-status {
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -$iui-xxs;
+    bottom: -$iui-xxs;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    border: $iui-xxs solid var(--iui-color-background-1);
+    background-color: var(--iui-color-background-5);
+
+    &::after {
+      content: '';
+      width: var(--_iui-avatar-status-size, $iui-s);
+      height: var(--_iui-avatar-status-size, $iui-s);
+    }
+
+    &.iui-online {
+      background-color: var(--iui-color-background-positive);
+
+      &::after {
+        mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
+        background-color: var(--iui-color-foreground-accessory);
+      }
+    }
+
+    &.iui-away {
+      background-color: var(--iui-color-background-warning);
+
+      &::after {
+        mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
+        background-color: var(--iui-color-foreground-accessory);
+      }
+    }
+
+    &.iui-busy {
+      background-color: var(--iui-color-background-negative);
+
+      &::after {
+        mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
+        background-color: var(--iui-color-foreground-accessory);
+      }
+    }
+
+    &.iui-offline {
+      background-color: var(--iui-color-background-1);
+      box-shadow: inset 0 0 0 1px rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-3));
+
+      &::after {
+        mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
+        background-color: var(--iui-icon-color);
+      }
+    }
+  }
+
+  &.iui-avatar-count {
+    > .iui-initials {
+      background-color: var(--iui-color-background-3);
+      color: var(--iui-text-color-muted);
+    }
+
+    &:focus {
+      outline: none;
+
+      > .iui-stroke {
+        box-shadow: var(--iui-focus-box-shadow);
+      }
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:focus:not(:focus-visible) {
+      > .iui-stroke {
+        box-shadow: inset 0 0 0 $iui-xxs rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+      }
+    }
+  }
+}
+
+@mixin iui-avatar-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+
+  @include iui-avatar-margins;
+
+  &.iui-stacked {
+    .iui-avatar:not(:first-child) {
+      margin-left: -$iui-xs;
+
+      .iui-initials {
+        box-shadow: 0 0 0 $iui-xs var(--iui-color-background-1);
+      }
+
+      &.iui-small {
+        margin-left: -$iui-xxs;
+
+        .iui-initials {
+          box-shadow: 0 0 0 $iui-xxs var(--iui-color-background-1);
+        }
+      }
+
+      &.iui-large {
+        margin-left: -$iui-s;
+      }
+
+      &.iui-x-large {
+        margin-left: -$iui-sm;
+      }
+    }
+
+    &.iui-animated {
+      @media (prefers-reduced-motion: no-preference) {
+        .iui-avatar {
+          transition: margin-left $iui-speed ease-out;
+        }
+      }
+
+      &:hover {
+        @include iui-avatar-margins;
+      }
+    }
+  }
+}
+
+@mixin iui-avatar-margins {
+  .iui-avatar:not(:first-child) {
+    margin-left: $iui-xs;
+
+    &.iui-small {
+      margin-left: $iui-xxs;
+    }
+
+    &.iui-large {
+      margin-left: $iui-s;
+    }
+
+    &.iui-x-large {
+      margin-left: $iui-sm;
+    }
+  }
+}

@@ -1,18 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
-@import '../icon/index';
-@import './variables';
+@import '../utils/index';
 
 @mixin iui-table {
   @include iui-reset;
   display: flex;
   flex-direction: column;
   isolation: isolate;
-
-  * {
-    box-sizing: border-box;
-  }
 
   @include iui-table-cell-icon;
 }
@@ -25,6 +20,8 @@
   }
   display: flex;
   flex-shrink: 0;
+  border-top-left-radius: $iui-border-radius;
+  border-top-right-radius: $iui-border-radius;
 }
 
 @mixin iui-table-header {
@@ -33,20 +30,11 @@
   min-width: 100%;
   flex-shrink: 0;
 
-  .iui-row {
-    display: flex;
-    flex-grow: 1;
-    min-width: 100%;
+  .iui-table-cell {
+    background-color: var(--iui-color-background-3);
   }
 
-  .iui-cell {
-    min-height: $iui-baseline * 5;
-    @include themed {
-      background-color: t(iui-color-background-3);
-    }
-  }
-
-  .iui-cell:not(.iui-slot) {
+  .iui-table-cell:not(.iui-slot) {
     @include iui-focus;
     column-gap: $iui-xs;
     padding-block: $iui-baseline * 0.5;
@@ -59,11 +47,11 @@
       cursor: grabbing;
     }
 
-    .iui-filter-button:not(.iui-active) {
+    .iui-table-filter-button:not([data-iui-active='true']) {
       visibility: hidden;
     }
 
-    > .iui-resizer {
+    > .iui-table-resizer {
       height: 100%;
       width: $iui-m;
       position: absolute;
@@ -75,91 +63,234 @@
       z-index: 1;
       opacity: 0;
 
-      > .iui-resizer-bar {
+      > .iui-table-resizer-bar {
         height: 100%;
         width: $iui-xxs;
         margin: 0 auto;
-        @media (prefers-reduced-motion: no-preference) {
-          transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
-        }
-        @include themed {
-          background-color: t(iui-color-background-border);
-        }
+        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+        background-color: var(--iui-color-background-border);
       }
 
-      &:hover > .iui-resizer-bar {
+      &:hover > .iui-table-resizer-bar {
         width: $iui-xs;
-        @include themed {
-          background-color: t(iui-color-foreground-primary);
-        }
+        background-color: var(--iui-color-foreground-primary);
       }
     }
 
-    &:hover > .iui-resizer {
+    &:hover > .iui-table-resizer {
       opacity: 1;
     }
 
     &:hover,
     &:focus,
     &:focus-within {
-      @include themed {
-        background-color: t(iui-color-background-4);
-      }
+      background-color: var(--iui-color-background-4);
 
-      .iui-sort,
-      .iui-filter-button {
+      .iui-table-sort,
+      .iui-table-filter-button {
         visibility: visible;
       }
     }
   }
 
-  .iui-reorder-bar {
+  .iui-table-reorder-bar {
     position: absolute;
     height: 100%;
     width: $iui-xxs;
   }
 
-  .iui-reorder-column-right {
-    > .iui-reorder-bar {
+  .iui-table-reorder-column-right {
+    > .iui-table-reorder-bar {
       right: 0;
     }
   }
 
-  .iui-reorder-column-left {
-    > .iui-reorder-bar {
+  .iui-table-reorder-column-left {
+    > .iui-table-reorder-bar {
       left: 0;
     }
   }
 
-  .iui-reorder-column-left,
-  .iui-reorder-column-right {
-    > .iui-reorder-bar {
-      @include themed {
-        background-color: t(iui-color-foreground-primary);
-      }
+  .iui-table-reorder-column-left,
+  .iui-table-reorder-column-right {
+    > .iui-table-reorder-bar {
+      background-color: var(--iui-color-foreground-primary);
     }
   }
 
   // Sort icon
-  .iui-sort {
+  .iui-table-sort {
     visibility: hidden;
-    @include themed {
-      fill: t(iui-icons-color);
-    }
   }
 
   // Sorted column
   .iui-sorted {
-    @include themed {
-      background-color: t(iui-color-background-4);
+    background-color: var(--iui-color-background-4);
+
+    .iui-table-sort {
+      visibility: visible;
+      fill: var(--iui-icon-color-actionable);
+    }
+  }
+}
+
+@mixin iui-table-row {
+  min-width: 100%;
+  display: flex;
+
+  &:last-of-type {
+    border-radius: inherit;
+  }
+
+  @at-root .iui-table-header & {
+    flex-grow: 1;
+  }
+  @at-root .iui-table-body & {
+    .iui-table-cell {
+      border-top: solid 1px transparent;
+      border-bottom: solid 1px transparent;
+      border-bottom-color: var(--iui-color-background-border);
+      background-color: var(--iui-color-background-1);
+      transition: border $iui-speed-fast ease-out;
     }
 
-    .iui-sort {
-      visibility: visible;
-      @include themed {
-        fill: t(iui-icons-color-actionable);
+    > .iui-slot > .iui-table-more-options {
+      visibility: hidden;
+    }
+
+    &:hover:not([aria-disabled='true']) {
+      .iui-table-cell {
+        background: linear-gradient(
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+        ),
+          linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+      }
+
+      > .iui-slot:not([aria-disabled='true']) > .iui-table-more-options {
+        visibility: visible;
       }
     }
+
+    &:focus-within > .iui-slot:not([aria-disabled='true']) > .iui-table-more-options {
+      visibility: visible;
+    }
+
+    .iui-table-row-expander > .iui-button-icon {
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform $iui-speed-fast ease-out;
+      }
+    }
+
+    &.iui-table-row-expanded {
+      overflow: hidden;
+
+      .iui-table-cell {
+        border-left-color: var(--iui-color-background-4);
+        border-right-color: var(--iui-color-background-4);
+        border-bottom-color: transparent;
+      }
+
+      .iui-table-row-expander > .iui-button-icon {
+        transform: rotate(90deg);
+      }
+
+      + .iui-table-expanded-content {
+        border-left-color: var(--iui-color-background-4);
+        border-right-color: var(--iui-color-background-4);
+      }
+    }
+
+    &.iui-table-expanded-content {
+      overflow: hidden;
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      border-bottom: 1px solid var(--iui-color-background-border);
+      @include iui-transition-group;
+    }
+
+    // #region Selection
+    &:not([aria-selected='true']) + [aria-selected='true'] .iui-table-cell,
+    &[aria-selected='true']:first-child .iui-table-cell {
+      border-bottom-color: transparent;
+    }
+
+    &[aria-selected='true'] {
+      .iui-table-cell {
+        border-color: var(--iui-color-foreground-primary);
+        background: linear-gradient(
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
+          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
+        ),
+          linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+      }
+
+      + [aria-selected='true'] .iui-table-cell {
+        border-bottom-color: transparent;
+        border-top-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
+      }
+
+      &:last-child .iui-table-cell {
+        border-bottom-color: var(--iui-color-foreground-primary);
+      }
+
+      + :not([aria-selected='true']) .iui-table-cell,
+      + .iui-table-expanded-content + .iui-table-row:not([aria-selected='true']) .iui-table-cell {
+        border-top-color: var(--iui-color-foreground-primary);
+      }
+
+      + .iui-table-expanded-content {
+        border-color: transparent var(--iui-color-foreground-primary);
+
+        &:last-child {
+          border-bottom-color: var(--iui-color-foreground-primary);
+        }
+      }
+    }
+    // #endregion Selection
+
+    // #region Statuses & states
+    &.iui-new {
+      font-weight: $iui-font-weight-semibold;
+
+      > .iui-main-column::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        font-size: $iui-font-size-title;
+        color: var(--iui-color-foreground-positive);
+      }
+    }
+
+    .iui-table-cell[aria-disabled='true'],
+    &.iui-table-expanded-content[aria-disabled='true'] {
+      font-style: italic;
+      cursor: not-allowed;
+      color: var(--iui-text-color-muted);
+
+      &.iui-slot:hover > .iui-table-more-options {
+        visibility: hidden;
+      }
+
+      img,
+      svg:not(.iui-radial),
+      .iui-avatar {
+        filter: $iui-icon-color-multicolor-disabled;
+      }
+    }
+
+    &[data-iui-status='positive'] {
+      @include iui-table-row-status($status: positive);
+    }
+
+    &[data-iui-status='warning'] {
+      @include iui-table-row-status($status: warning);
+    }
+
+    &[data-iui-status='negative'] {
+      @include iui-table-row-status($status: negative);
+    }
+    // #endregion Statuses & states
   }
 }
 
@@ -171,7 +302,7 @@
   justify-content: flex-end;
   margin-right: $iui-sm;
 
-  .iui-cell-end-icon {
+  .iui-table-cell-end-icon {
     // Hardcoded size of the borderless button so that the icons are centered
     width: 28px;
     height: 28px;
@@ -188,200 +319,20 @@
   flex-grow: 1;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
-  @include iui-scroll-snapping('.iui-row');
-  @include themed {
-    background-color: t(iui-color-background-1);
+  @include iui-scroll-snapping('.iui-table-row');
+  background-color: var(--iui-color-background-1);
+
+  &:last-child {
+    border-bottom-left-radius: $iui-border-radius;
+    border-bottom-right-radius: $iui-border-radius;
   }
 
-  &.iui-zebra-striping .iui-row:nth-child(even):not(.iui-selected) .iui-cell {
-    @include themed {
-      background: linear-gradient(
-        rgba(t(iui-color-foreground-body-rgb), 0.02),
-        rgba(t(iui-color-foreground-body-rgb), 0.02)
-      ),
-        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-    }
-  }
-
-  .iui-row {
-    min-width: 100%;
-    display: flex;
-
-    .iui-cell {
-      border-top: solid 1px transparent;
-      border-bottom: solid 1px transparent;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: border $iui-speed-fast ease-out;
-      }
-
-      @include themed {
-        border-bottom-color: t(iui-color-background-border);
-      }
-
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
-    }
-
-    > .iui-slot > .iui-more-options {
-      visibility: hidden;
-    }
-
-    &:hover:not(.iui-disabled) {
-      .iui-cell {
-        @include themed {
-          background: linear-gradient(
-            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-          ),
-            linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-        }
-      }
-
-      > .iui-slot:not(.iui-disabled) > .iui-more-options {
-        visibility: visible;
-      }
-    }
-
-    &:focus-within > .iui-slot:not(.iui-disabled) > .iui-more-options {
-      visibility: visible;
-    }
-
-    .iui-row-expander > .iui-button-icon {
-      @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed-fast ease-out;
-      }
-    }
-
-    &.iui-row-expanded {
-      overflow: hidden;
-
-      .iui-cell {
-        @include themed {
-          border-left-color: t(iui-color-background-4);
-          border-right-color: t(iui-color-background-4);
-        }
-        border-bottom-color: transparent;
-      }
-
-      .iui-row-expander > .iui-button-icon {
-        transform: rotate(90deg);
-      }
-
-      + .iui-expanded-content {
-        @include themed {
-          border-left-color: t(iui-color-background-4);
-          border-right-color: t(iui-color-background-4);
-        }
-      }
-    }
-
-    &.iui-expanded-content {
-      overflow: hidden;
-      border-left: 1px solid transparent;
-      border-right: 1px solid transparent;
-      @include themed {
-        border-bottom: 1px solid t(iui-color-background-border);
-      }
-      @include iui-transition-group;
-    }
-
-    // #region Selection
-    &:not(.iui-selected) + .iui-selected .iui-cell,
-    &.iui-selected:first-child .iui-cell {
-      border-bottom-color: transparent;
-    }
-
-    &.iui-selected {
-      .iui-cell {
-        @include themed {
-          border-color: t(iui-color-foreground-primary);
-          background: linear-gradient(
-            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-            rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-          ),
-            linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-        }
-      }
-
-      + .iui-selected .iui-cell {
-        border-bottom-color: transparent;
-        @include themed {
-          border-top-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-4));
-        }
-      }
-
-      &:last-child .iui-cell {
-        @include themed {
-          border-bottom-color: t(iui-color-foreground-primary);
-        }
-      }
-
-      + :not(.iui-selected) .iui-cell,
-      + .iui-expanded-content + .iui-row:not(.iui-selected) .iui-cell {
-        @include themed {
-          border-top-color: t(iui-color-foreground-primary);
-        }
-      }
-
-      + .iui-expanded-content {
-        @include themed {
-          border-color: transparent t(iui-color-foreground-primary);
-
-          &:last-child {
-            border-bottom-color: t(iui-color-foreground-primary);
-          }
-        }
-      }
-    }
-    // #endregion Selection
-
-    // #region Statuses & states
-    &.iui-new {
-      font-weight: $iui-font-weight-semibold;
-
-      > .iui-main-column::before {
-        content: '•';
-        position: absolute;
-        left: 0;
-        font-size: $iui-font-size-title;
-        @include themed {
-          color: t(iui-color-foreground-positive);
-        }
-      }
-    }
-
-    .iui-cell.iui-disabled,
-    &.iui-expanded-content.iui-disabled {
-      font-style: italic;
-      cursor: not-allowed;
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
-
-      &.iui-slot:hover > .iui-more-options {
-        visibility: hidden;
-      }
-
-      img,
-      svg:not(.iui-radial),
-      .iui-user-icon {
-        filter: $iui-icons-color-multicolor-disabled;
-      }
-    }
-
-    &.iui-positive {
-      @include iui-table-row-status($status: positive);
-    }
-
-    &.iui-warning {
-      @include iui-table-row-status($status: warning);
-    }
-
-    &.iui-negative {
-      @include iui-table-row-status($status: negative);
-    }
-    // #endregion Statuses & states
+  &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
+    background: linear-gradient(
+      rgba(var(--iui-color-foreground-body-rgb), 0.02),
+      rgba(var(--iui-color-foreground-body-rgb), 0.02)
+    ),
+      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
   }
 
   // Empty & loading states
@@ -394,10 +345,8 @@
     align-items: center;
     flex-grow: 1;
     align-self: center;
-    @include themed {
-      color: t(iui-text-color-muted);
-      background-color: t(iui-color-background-1);
-    }
+    color: var(--iui-text-color-muted);
+    background-color: var(--iui-color-background-1);
   }
 }
 
@@ -406,7 +355,6 @@
   display: flex;
   flex-grow: 1;
   min-width: $iui-xxl;
-  min-height: $iui-baseline * 5 + 2px; // +2px for border
   padding-left: $iui-m;
   flex-basis: $iui-xxl;
   position: relative;
@@ -414,6 +362,7 @@
 
   &:first-of-type {
     border-left: solid 1px transparent;
+    border-bottom-left-radius: inherit;
   }
 
   &:last-of-type {
@@ -431,7 +380,7 @@
     flex-basis: $iui-l * 2;
   }
 
-  &.iui-cell-sticky {
+  &.iui-table-cell-sticky {
     position: sticky;
     z-index: 1;
     left: var(--iui-table-sticky-left, initial);
@@ -442,15 +391,15 @@
     padding-right: $iui-m;
   }
 
-  &.iui-positive {
+  &[data-iui-status='positive'] {
     @include iui-table-cell-status($status: positive);
   }
 
-  &.iui-warning {
+  &[data-iui-status='warning'] {
     @include iui-table-cell-status($status: warning);
   }
 
-  &.iui-negative {
+  &[data-iui-status='negative'] {
     @include iui-table-cell-status($status: negative);
   }
 
@@ -459,68 +408,55 @@
 
     &:focus,
     &:hover {
-      @include themed {
-        outline: 1px solid t(iui-color-foreground-primary);
-      }
+      outline: 1px solid var(--iui-color-foreground-primary);
     }
 
     &:focus {
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
+      background-color: var(--iui-color-background-1);
     }
   }
 }
 
 @mixin iui-table-row-status($status) {
-  .iui-cell:first-of-type,
-  + .iui-expanded-content {
-    @include themed {
-      box-shadow: inset $iui-xxs 0 0 0 t(iui-icons-color-#{$status});
-    }
+  .iui-table-cell:first-of-type,
+  + .iui-table-expanded-content {
+    box-shadow: inset $iui-xxs 0 0 0 var(--iui-icon-color-#{$status});
 
     @include iui-text-selection($status);
   }
 
-  .iui-cell-end-icon svg {
-    @include themed {
-      fill: t(iui-icons-color-#{$status});
-    }
+  .iui-table-cell-end-icon svg {
+    fill: var(--iui-icon-color-#{$status});
   }
 }
 
 @mixin iui-table-cell-status($status) {
-  @include themed {
-    background: linear-gradient(
-      rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6)),
-      rgba(t(iui-color-foreground-#{$status}-rgb), t(iui-opacity-6))
-    ),
-      linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-  }
-
+  background: linear-gradient(
+    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6)),
+    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6))
+  ),
+    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
   @include iui-text-selection($status);
 }
 
 @mixin iui-table-cell-icon {
-  .iui-cell-end-icon,
-  .iui-cell-start-icon {
+  .iui-table-cell-end-icon,
+  .iui-table-cell-start-icon {
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 
     svg:not(.iui-radial) {
-      display: flex; // needed for vertical alignment of webcomponents
-      width: $iui-icons-default;
-      height: $iui-icons-default;
+      @include iui-icon-style('m');
     }
   }
 
-  .iui-cell-start-icon {
+  .iui-table-cell-start-icon {
     margin-right: $iui-s;
   }
 
-  .iui-cell-end-icon {
+  .iui-table-cell-end-icon {
     width: $iui-l;
     height: $iui-l;
     margin-right: $iui-sm;
@@ -543,16 +479,17 @@
   }
 }
 
-@mixin iui-table-cell-shadow-left {
+/// @arg side - must be one of: left, right
+@mixin iui-table-cell-shadow($side) {
   @include iui-table-cell-shadow-base;
-  left: 0;
-  transform: translate(-100%);
-  box-shadow: inset -10px 0 5px -10px $iui-elevation-color;
-}
-
-@mixin iui-table-cell-shadow-right {
-  @include iui-table-cell-shadow-base;
-  right: 0;
-  transform: translate(100%);
-  box-shadow: inset 10px 0 5px -10px $iui-elevation-color;
+  @if $side == left {
+    left: 0;
+    transform: translate(-100%);
+    box-shadow: inset -10px 0 5px -10px $iui-elevation-color;
+  }
+  @if $side == right {
+    right: 0;
+    transform: translate(100%);
+    box-shadow: inset 10px 0 5px -10px $iui-elevation-color;
+  }
 }

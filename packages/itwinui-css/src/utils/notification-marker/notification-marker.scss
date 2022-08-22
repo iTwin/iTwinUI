@@ -1,0 +1,55 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../../style/index';
+
+$iui-notification-marker-border-width: $iui-xxs;
+
+@mixin iui-notification-marker($status: primary) {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: $iui-s + $iui-notification-marker-border-width * 2;
+    height: $iui-s + $iui-notification-marker-border-width * 2;
+    top: $iui-sm * -0.5;
+    right: $iui-sm * -0.5;
+    border-radius: 100%;
+    background-color: var(--iui-color-foreground-#{$status});
+    border: $iui-notification-marker-border-width solid var(--iui-color-background-1);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
+    }
+  }
+
+  &.iui-urgent::before {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: pulse-#{$status} 2s infinite;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes pulse-#{$status} {
+      0% {
+        box-shadow: 0 0 0 0 rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-1));
+      }
+
+      70% {
+        box-shadow: 0 0 0 7px rgba(var(--iui-color-foreground-#{$status}-rgb), 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(var(--iui-color-foreground-#{$status}-rgb), 0);
+      }
+    }
+  }
+}
+
+@mixin iui-notification-marker-hover {
+  .iui-notification-primary::before,
+  .iui-notification-positive::before,
+  .iui-notification-warning::before,
+  .iui-notification-negative::before {
+    border-color: var(--iui-color-background-1-overlay);
+  }
+}

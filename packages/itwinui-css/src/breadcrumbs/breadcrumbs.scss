@@ -3,12 +3,13 @@
 @import '../style/index';
 @import '../anchor/index';
 @import '../button/borderless';
-@import '../icon/index';
+@import '../utils/index';
 
-@mixin iui-breadcrumbs {
+@mixin iui-breadcrumbs($breadcrumbs-height: $iui-component-height) {
   @include iui-reset;
   display: flex;
   align-items: center;
+  height: $breadcrumbs-height;
 }
 
 @mixin iui-breadcrumbs-list {
@@ -17,13 +18,13 @@
   align-items: center;
   list-style-type: none;
   user-select: none;
+  height: 100%;
 }
 
 @mixin iui-breadcrumbs-item {
   display: flex;
   align-items: center;
-  line-height: $iui-component-height;
-  height: $iui-component-height;
+  height: 100%;
 
   > * {
     max-width: 26ch;
@@ -38,14 +39,14 @@
     text-overflow: ellipsis;
 
     &:not(.iui-button) {
-      @include themed {
-        color: t(iui-text-color);
-      }
+      color: var(--iui-text-color);
     }
   }
 
   > :any-link {
     @include iui-anchor;
+    box-sizing: border-box;
+    line-height: $iui-component-height;
 
     &:focus {
       outline-offset: -1px;
@@ -55,11 +56,10 @@
   .iui-button {
     &.iui-button {
       @include iui-button-borderless;
-      @include iui-focus;
       border: none;
     }
 
-    &-label {
+    > span {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -80,6 +80,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  line-height: $iui-component-height;
 
   @at-root a#{&} {
     @include iui-anchor;
@@ -95,14 +96,10 @@
   @include iui-button-borderless;
   padding: 0;
   border: none;
-  @include themed {
-    color: t(iui-color-foreground-primary);
-  }
+  color: var(--iui-color-foreground-primary);
 
   &[aria-current] {
-    @include themed {
-      color: t(iui-text-color);
-    }
+    color: var(--iui-text-color);
   }
 }
 
@@ -111,12 +108,8 @@
   margin: 0 $iui-xxs;
 
   svg {
-    width: $iui-icons-small;
-    height: $iui-icons-small;
-    display: flex; // needed for vertical alignment of webcomponents
-    @include themed {
-      fill: t(iui-icons-color);
-    }
+    @include iui-icon-style('s');
+    @include iui-icon-color;
     @media (forced-colors: active) {
       fill: CanvasText;
     }
