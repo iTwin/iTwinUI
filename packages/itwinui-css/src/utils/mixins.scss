@@ -29,12 +29,12 @@
 @mixin iui-text-selection($status: primary) {
   &::selection,
   *::selection {
-    background-color: var(--iui-color-background-subtle-#{$status});
+    background-color: hsl(var(--iui-color-foreground-#{$status}-hsl) / var(--iui-opacity-5));
   }
 }
 
 @mixin iui-scrollbar {
-  scrollbar-color: var(--iui-color-foreground-4) transparent;
+  scrollbar-color: hsl(var(--iui-color-foreground-1-hsl) / var(--iui-opacity-4)) transparent;
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
@@ -43,11 +43,11 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--iui-color-foreground-4);
+    background-color: hsl(var(--iui-color-foreground-1-hsl) / var(--iui-opacity-4));
     border-radius: var(--iui-border-radius-round);
 
     &:hover {
-      background-color: var(--iui-color-foreground-3);
+      background-color: hsl(var(--iui-color-foreground-1-hsl) / var(--iui-opacity-3));
     }
   }
 
@@ -65,13 +65,13 @@
   -webkit-box-orient: vertical; /* stylelint-disable-line */
 }
 
-@mixin iui-blur($opacity: 4) {
+@mixin iui-blur($hsl: 0 0% 0%, $opacity: 4) {
   // Blur fallback
-  background-color: hsl(var(--iui-color-background-1-hsl) / var(--iui-opacity-#{$opacity - 1}));
+  background-color: Hsl($hsl / var(--iui-opacity-#{$opacity - 1}));
 
   // With blur
   @supports (backdrop-filter: blur(5px)) {
-    background-color: hsl(var(--iui-color-background-1-hsl) / var(--iui-opacity-#{$opacity}));
+    background-color: Hsl($hsl / var(--iui-opacity-#{$opacity}));
     backdrop-filter: blur(5px);
   }
 }

@@ -419,8 +419,15 @@
 }
 
 @mixin iui-table-cell-status($status) {
-  background-color: var(--iui-color-background-subtle-#{status});
   @include iui-text-selection($status);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: hsl(var(--iui-color-foreground-#{$status}-hsl) / var(--iui-opacity-6));
+  }
 }
 
 @mixin iui-table-cell-icon {

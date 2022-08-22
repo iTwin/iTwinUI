@@ -63,4 +63,7 @@ $opacities: (
   --iui-color-background-1-hsl: #{get-hsl(map.get($base-colors, background-1))};
   --iui-color-foreground-1-hsl: #{get-hsl(map.get($base-colors, foreground-1))};
   --iui-color-foreground-primary-hsl: #{get-hsl(map.get($base-colors, foreground-primary))};
+  --iui-color-foreground-positive-hsl: #{get-hsl(map.get($base-colors, foreground-positive))};
+  --iui-color-foreground-warning-hsl: #{get-hsl(map.get($base-colors, foreground-warning))};
+  --iui-color-foreground-negative-hsl: #{get-hsl(map.get($base-colors, foreground-negative))};
 }
