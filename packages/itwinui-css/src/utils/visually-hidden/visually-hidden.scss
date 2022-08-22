@@ -1,0 +1,28 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+/// Visually hides an element but keeps it accessible to screen readers.
+/// Because it applies some potentially invasive styles, use this mixin on a wrapper element for best results.
+/// If it contains a focusable element, make sure to revert/exclude these styles.
+@mixin visually-hidden {
+  clip-path: inset(50%);
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  margin: -1px;
+  border-width: 0;
+}
+
+/// Reverts visually-hidden styles, making it visible again.
+@mixin visually-hidden-revert {
+  clip-path: revert;
+  overflow: visible;
+  position: static;
+  white-space: normal;
+  height: auto;
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
