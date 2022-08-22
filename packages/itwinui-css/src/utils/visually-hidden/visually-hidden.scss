@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+
 /// Visually hides an element but keeps it accessible to screen readers.
 /// Because it applies some potentially invasive styles, use this mixin on a wrapper element for best results.
 /// If it contains a focusable element, make sure to revert/exclude these styles.
