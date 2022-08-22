@@ -23,7 +23,6 @@
   background-color: var(--_iui-input-background-color);
   border: 1px solid var(--_iui-input-border-color);
   transition: border-color var(--iui-duration-1) ease-out;
-  box-sizing: border-box;
   @include iui-input-size;
 
   &::placeholder {
