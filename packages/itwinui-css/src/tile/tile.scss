@@ -7,11 +7,23 @@
 
 @mixin iui-tile {
   @include iui-reset;
-  @include iui-surface;
+  @include iui-surface($border-radius: $iui-border-radius);
   display: inline-flex;
   flex-direction: column;
   width: $iui-3xl * 3;
   backface-visibility: hidden;
+
+  &:where(:not(.iui-folder)) {
+    > :where(:first-child) {
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+
+    > :where(:last-child) {
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
+    }
+  }
 
   &:hover,
   &:focus-within {
@@ -69,6 +81,16 @@
     display: inline-flex;
     flex-direction: row;
     flex-wrap: nowrap;
+
+    > :where(:first-child) {
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+    }
+
+    > :where(:last-child) {
+      border-top-right-radius: inherit;
+      border-bottom-right-radius: inherit;
+    }
 
     .iui-tile-thumbnail {
       height: $iui-baseline * 10;
@@ -288,6 +310,7 @@
   flex-shrink: 0;
   user-select: none;
   white-space: nowrap;
+  overflow: hidden;
 
   > .iui-button {
     font-size: $iui-font-size;
