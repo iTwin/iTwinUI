@@ -11,7 +11,7 @@
 @mixin iui-workflow-diagram-step {
   --_iui-workflow-diagram-circle-background-color: var(--iui-color-background-positive);
   --_iui-workflow-diagram-circle-border-color: var(--iui-color-background-positive);
-  --_iui-workflow-diagram-circle-border-radius: 0;
+  --_iui-workflow-diagram-circle-border-radius: #{$iui-border-radius};
   --_iui-workflow-diagram-circle-text-color: var(--iui-color-foreground-accessory);
   --_iui-workflow-diagram-track-before-color: var(--iui-color-foreground-positive);
   --_iui-workflow-diagram-track-after-color: var(--iui-color-foreground-positive);
