@@ -326,151 +326,155 @@
                 <span>Cancel</span>
               </button>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div
-              style="border: 1px solid var(--iui-color-background-border); width: 50%; height: 500px; position: relative;"
-            >
-              <div class="iui-backdrop-contained"></div>
+      <div style="border: 1px solid var(--iui-color-background-border); width: 50%; height: 500px; position: relative;">
+        <div class="iui-backdrop-contained"></div>
+        <button
+          aria-label="Open with backdrop relative to container dialog"
+          id="open-with-backdrop-relative-to-container-dialog"
+          type="button"
+          class="iui-button"
+          onclick="toggleDialog('relative-dialog-with-backdrop')"
+          style="position: absolute;"
+        >
+          Open with backdrop relative to container dialog
+        </button>
+        <div
+          class="iui-dialog-wrapper"
+          id="relative-dialog-with-backdrop"
+        >
+          <div class="iui-backdrop-contained"></div>
+          <div class="iui-dialog iui-dialog-default">
+            <div class="iui-dialog-title-bar">
+              <div class="iui-dialog-title">Title</div>
               <button
-                aria-label="Open with backdrop relative to container dialog"
-                id="open-with-backdrop-relative-to-container-dialog"
+                aria-label="Close"
                 type="button"
-                class="iui-button iui-default"
+                class="iui-button"
+                data-iui-variant="borderless"
+                data-iui-size="small"
                 onclick="toggleDialog('relative-dialog-with-backdrop')"
-                style="position: absolute;"
               >
-                Open with backdrop relative to container dialog
+                <svg-close
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-close>
               </button>
-              <div
-                class="iui-dialog-wrapper"
-                id="relative-dialog-with-backdrop"
+            </div>
+            <div class="iui-dialog-content">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <div class="iui-dialog-button-bar">
+              <button
+                class="iui-button"
+                data-iui-variant="high-visibility"
+                onclick="toggleDialog('relative-dialog-with-backdrop')"
               >
-                <div class="iui-backdrop-contained"></div>
-                <div class="iui-dialog iui-dialog-default">
-                  <div class="iui-dialog-title-bar">
-                    <div class="iui-dialog-title">Title</div>
-                    <button
-                      aria-label="Close"
-                      type="button"
-                      class="iui-button iui-borderless iui-small"
-                      onclick="toggleDialog('relative-dialog-with-backdrop')"
-                    >
-                      <svg-close
-                        class="iui-button-icon"
-                        aria-hidden="true"
-                      ></svg-close>
-                    </button>
-                  </div>
-                  <div class="iui-dialog-content">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                      minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in
-                      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                      culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                  </div>
-                  <div class="iui-dialog-button-bar">
-                    <button
-                      class="iui-button iui-high-visibility"
-                      onclick="toggleDialog('relative-dialog-with-backdrop')"
-                    >
-                      <span class="iui-button-label">Proceed</span>
-                    </button>
-                    <button
-                      class="iui-button iui-default"
-                      onclick="toggleDialog('relative-dialog-with-backdrop')"
-                    >
-                      <span class="iui-button-label">Cancel</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
+                <span>Proceed</span>
+              </button>
+              <button
+                class="iui-button"
+                onclick="toggleDialog('relative-dialog-with-backdrop')"
+              >
+                <span>Cancel</span>
+              </button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
 
-          <script>
-            function toggleDialog(dialogId) {
-              let _backdrop = document.querySelector(`#${dialogId} .iui-backdrop`) ?? document.querySelector(`#${dialogId} .iui-backdrop-contained`);
-              let _dialog = document.querySelector(`#${dialogId} .iui-dialog`);
+    <script>
+      function toggleDialog(dialogId) {
+        let _backdrop = document.querySelector(`#${dialogId} .iui-backdrop`) ?? document.querySelector(`#${dialogId} .iui-backdrop-contained`);
+        let _dialog = document.querySelector(`#${dialogId} .iui-dialog`);
 
-              _dialog.classList.toggle('iui-dialog-visible');
+        _dialog.classList.toggle('iui-dialog-visible');
 
-              if (_backdrop) {
-                _backdrop.classList.toggle('iui-backdrop-visible');
-              }
-            }
+        if (_backdrop) {
+          _backdrop.classList.toggle('iui-backdrop-visible');
+        }
+      }
 
-            const dialog = document.querySelector('#dialog-click');
-            // Clicking on menu-item should toggle selection
-            document.querySelectorAll('input').forEach((item) => {
-              item.addEventListener('click', () => {
-                dialog.setAttribute('data-iui-placement', item.value);
-                if (!item.value) {
-                  dialog.removeAttribute('data-iui-placement');
-                }
-              });
-            });
+      const dialog = document.querySelector('#dialog-click');
+      // Clicking on menu-item should toggle selection
+      document.querySelectorAll('input').forEach((item) => {
+        item.addEventListener('click', () => {
+          dialog.setAttribute('data-iui-placement', item.value);
+          if (!item.value) {
+            dialog.removeAttribute('data-iui-placement');
+          }
+        });
+      });
 
-            const dragItem = document.querySelector('#draggable-dialog .iui-dialog');
-            dragElement(dragItem);
+      const dragItem = document.querySelector('#draggable-dialog .iui-dialog');
+      dragElement(dragItem);
 
-            const dragItemRelative = document.querySelector('#draggable-dialog-relative .iui-dialog');
-            dragElement(dragItemRelative);
+      const dragItemRelative = document.querySelector('#draggable-dialog-relative .iui-dialog');
+      dragElement(dragItemRelative);
 
-            function dragElement(element) {
-              const titleBar = element.querySelector('.iui-dialog-title-bar');
-              titleBar.onmousedown = dragStart;
+      function dragElement(element) {
+        const titleBar = element.querySelector('.iui-dialog-title-bar');
+        titleBar.onmousedown = dragStart;
 
-              const { width, height } = element.getBoundingClientRect();
+        const { width, height } = element.getBoundingClientRect();
 
-              let active = false;
-              let currentX;
-              let currentY;
-              let initialX;
-              let initialY;
-              let xOffset;
-              let yOffset;
+        let active = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset;
+        let yOffset;
 
-              document.addEventListener("mouseup", dragEnd, false);
-              document.addEventListener("mousemove", drag, false);
+        document.addEventListener("mouseup", dragEnd, false);
+        document.addEventListener("mousemove", drag, false);
 
-              function dragStart(e) {
-                // Workaround for initial drag
-                if (xOffset == null && yOffset == null) {
-                  initialX = e.clientX + width / 2;
-                  initialY = e.clientY + height / 3;
-                } else {
-                  initialX = e.clientX - xOffset;
-                  initialY = e.clientY - yOffset;
-                }
+        function dragStart(e) {
+          // Workaround for initial drag
+          if (xOffset == null && yOffset == null) {
+            initialX = e.clientX + width / 2;
+            initialY = e.clientY + height / 3;
+          } else {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+          }
 
-                active = true;
-              }
+          active = true;
+        }
 
-              function dragEnd(e) {
-                initialX = currentX;
-                initialY = currentY;
+        function dragEnd(e) {
+          initialX = currentX;
+          initialY = currentY;
 
-                active = false;
-              }
+          active = false;
+        }
 
-              function drag(e) {
-                if (active) {
-                  e.preventDefault();
+        function drag(e) {
+          if (active) {
+            e.preventDefault();
 
-                  currentX = e.clientX - initialX;
-                  currentY = e.clientY - initialY;
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
 
-                  xOffset = currentX;
-                  yOffset = currentY;
+            xOffset = currentX;
+            yOffset = currentY;
 
-                  element.style.transform = "translate(" + currentX + "px, " + currentY + "px)";
-                }
-              }
-            }
-          </script>
+            element.style.transform = "translate(" + currentX + "px, " + currentY + "px)";
+          }
+        }
+      }
+    </script>
   </body>
 </html>
