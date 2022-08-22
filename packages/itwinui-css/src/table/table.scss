@@ -267,7 +267,7 @@
       img,
       svg:not(.iui-radial),
       .iui-avatar {
-        filter: $iui-icon-color-multicolor-disabled;
+        filter: grayscale(100%);
       }
     }
 
