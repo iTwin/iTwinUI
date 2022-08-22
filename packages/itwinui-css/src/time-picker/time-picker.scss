@@ -10,6 +10,8 @@
   height: calc(var(--iui-size-s) * 26);
   display: inline-flex;
   background-color: var(--iui-color-background-1);
+  border-top-right-radius: var(--iui-border-radius-1);
+  border-bottom-right-radius: var(--iui-border-radius-1);
 
   &:not(:first-child) {
     border-left: 1px solid var(--iui-color-background-border);
@@ -17,6 +19,8 @@
 
   &:first-child {
     box-shadow: var(--iui-shadow-1);
+    border-top-left-radius: var(--iui-border-radius-1);
+    border-bottom-left-radius: var(--iui-border-radius-1);
   }
 }
 

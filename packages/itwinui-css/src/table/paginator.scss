@@ -12,6 +12,8 @@
   padding: 0 var(--iui-size-m);
   user-select: none;
   background-color: var(--iui-color-background-3);
+  border-bottom-left-radius: var(--iui-border-radius-1);
+  border-bottom-right-radius: var(--iui-border-radius-1);
 
   > .iui-left,
   > .iui-center,

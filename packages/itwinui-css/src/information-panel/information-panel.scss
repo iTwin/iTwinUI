@@ -5,6 +5,7 @@
 @mixin iui-information-panel-wrapper {
   position: relative;
   overflow: hidden;
+  border-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-information-panel {

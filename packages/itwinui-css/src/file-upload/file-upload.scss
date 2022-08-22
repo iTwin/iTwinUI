@@ -24,6 +24,7 @@
     padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
     background-color: var(--iui-color-background-2);
     border: 1px solid var(--iui-color-background-2);
+    border-radius: var(--iui-border-radius-1);
 
     .iui-browse-input {
       width: 0.1px;

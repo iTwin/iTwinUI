@@ -19,6 +19,8 @@
   }
   display: flex;
   flex-shrink: 0;
+  border-top-left-radius: var(--iui-border-radius-1);
+  border-top-right-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-table-header {
@@ -135,6 +137,10 @@
 @mixin iui-table-row {
   min-width: 100%;
   display: flex;
+
+  &:last-of-type {
+    border-radius: inherit;
+  }
 
   @at-root .iui-table-header & {
     flex-grow: 1;
@@ -308,6 +314,11 @@
   @include iui-scroll-snapping('.iui-table-row');
   background-color: var(--iui-color-background-1);
 
+  &:last-child {
+    border-bottom-left-radius: var(--iui-border-radius-1);
+    border-bottom-right-radius: var(--iui-border-radius-1);
+  }
+
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
     background-color: var(--iui-color-background-1-hover);
   }
@@ -339,6 +350,7 @@
 
   &:first-of-type {
     border-left: solid 1px transparent;
+    border-bottom-left-radius: inherit;
   }
 
   &:last-of-type {

@@ -11,6 +11,8 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   width: 100%;
   margin: 0;
   padding: 0;
+  max-height: var(--iui-menu-max-height);
+  border-radius: var(--iui-border-radius-1);
 
   .iui-header-menu-icon {
     margin: 0 var(--iui-size-2xs);
@@ -25,6 +27,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   &.iui-scroll {
     overflow-y: auto;
     overflow-y: overlay;
+    --iui-menu-max-height: 315px;
   }
 }
 
@@ -37,6 +40,8 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   min-height: var(--iui-component-height);
   cursor: pointer;
   line-height: normal;
+  color: var(--iui-color-foreground-2);
+  border-radius: var(--iui-border-radius-1);
 
   + #{&} {
     margin-top: -1px;

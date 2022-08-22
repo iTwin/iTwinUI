@@ -8,6 +8,7 @@
   flex-direction: column;
   width: 100%;
   background-color: var(--iui-color-background-1);
+  border-radius: var(--iui-border-radius-1);
 
   > .iui-header {
     @include iui-focus;
@@ -19,8 +20,8 @@
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color var(--iui-duration-1) ease-out;
     }
+    border-radius: inherit;
     border: 1px solid var(--iui-color-background-3);
-    border-bottom-color: var(--iui-color-background-4);
     background-color: var(--iui-color-background-3);
 
     > .iui-icon,
@@ -75,6 +76,8 @@
     border-bottom: 1px solid var(--iui-color-background-4);
     border-right: 1px solid var(--iui-color-background-4);
     border-left: 1px solid var(--iui-color-background-4);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
 
     @include iui-transition-group;
 
@@ -105,9 +108,9 @@
   &.iui-expanded {
     > .iui-header {
       background-color: var(--iui-color-background-3);
-      border-left: 1px solid var(--iui-color-background-4);
-      border-top: 1px solid var(--iui-color-background-4);
-      border-right: 1px solid var(--iui-color-background-4);
+      border-color: var(--iui-color-background-4);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
 
       &:hover {
         background-color: var(--iui-color-background-4);

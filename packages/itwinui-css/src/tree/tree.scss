@@ -13,6 +13,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 @mixin iui-tree {
   @include iui-reset;
   list-style: none;
+  border-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-sub-tree {
@@ -41,6 +42,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   cursor: pointer;
   padding: 0 var(--iui-size-xs);
   align-items: center;
+  border-radius: var(--iui-border-radius-1);
 
   &-checkbox {
     margin-right: var(--iui-size-xs);
