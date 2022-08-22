@@ -28,10 +28,6 @@
 
   &[data-iui-active='true'] {
     @include iui-button-default-active;
-
-    &[data-iui-variant='borderless'] {
-      @include iui-button-borderless-active;
-    }
   }
 
   &[data-iui-variant='high-visibility'] {

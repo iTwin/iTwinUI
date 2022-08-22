@@ -36,7 +36,7 @@
 
 @mixin iui-button-default-active {
   @include iui-button-active;
-  --_iui-button-background-color: var(--iui-color-background-subtle-primary);
+  --_iui-button-background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
 
   &[disabled],
   &:disabled,

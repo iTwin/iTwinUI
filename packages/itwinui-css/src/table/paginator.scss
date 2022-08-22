@@ -71,7 +71,7 @@
 
   &[data-iui-active='true'] {
     @include iui-button-default-active;
-    @include iui-button-borderless-active;
+
     // Adds stripe above active button
     --_iui-button-active-stripe-inset: calc(100% - #{var(--iui-size-2xs)}) #{var(--iui-size-3xs)} #{var(--iui-size-3xs)};
   }

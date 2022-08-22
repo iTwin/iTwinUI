@@ -24,11 +24,3 @@
     --_iui-button-border-color: transparent;
   }
 }
-
-@mixin iui-button-borderless-active {
-  --_iui-button-background-color: var(--iui-color-background-subtle-primary);
-
-  &:where([disabled], :disabled, [aria-disabled='true']) {
-    --_iui-button-background-color: var(--iui-color-background-disabled);
-  }
-}
