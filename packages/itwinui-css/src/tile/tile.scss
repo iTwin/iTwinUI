@@ -266,8 +266,8 @@
   }
 
   &[data-iui-active='true'] {
-    --_iui-button-border-color: var(--iui-color-foreground-primary);
-    outline-offset: 2px;
+    --_iui-button-text-color: var(--iui-color-foreground-primary);
+    --_iui-button-background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
   }
 
   @at-root .iui-tile-thumbnail-picture ~ & {
@@ -283,7 +283,6 @@
     &[data-iui-active='true']:enabled:hover,
     &[data-iui-active='true']:active {
       background-color: rgba(0, 0, 0, var(--iui-opacity-4));
-      --_iui-button-border-color: transparent;
     }
   }
 }
