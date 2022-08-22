@@ -47,7 +47,7 @@
   > :any-link {
     @include iui-anchor;
     box-sizing: border-box;
-    line-height: var(--_iui-breadcrumbs-height);
+    line-height: var(--iui-component-height);
 
     &:focus {
       outline-offset: -1px;
@@ -81,7 +81,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  line-height: var(--_iui-breadcrumbs-height);
+  line-height: var(--iui-component-height);
 
   @at-root a#{&} {
     @include iui-anchor;
