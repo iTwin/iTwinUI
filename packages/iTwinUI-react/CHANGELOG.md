@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.44.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.43.1...v1.44.0) (2022-08-23)
+
+### What's new
+
+* **Select:** Multiple selection support ([#700](https://www.github.com/iTwin/iTwinUI-react/issues/700)) ([b7d34c1](https://www.github.com/iTwin/iTwinUI-react/commit/b7d34c1702ae416d969bed21098270f7aa7731a9))
+
+### Fixes
+
+* **Table:** Show correct icon on hover for columns with `sortDescFirst` ([#779](https://www.github.com/iTwin/iTwinUI-react/issues/779)) ([acf19a2](https://www.github.com/iTwin/iTwinUI-react/commit/acf19a23d4680e6e1c1789e45b8e76e0848d8166))
+
 ### [1.43.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.43.0...v1.43.1) (2022-08-18)
 
 ### Fixes
