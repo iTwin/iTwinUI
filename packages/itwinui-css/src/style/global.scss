@@ -59,8 +59,11 @@ html {
       }
     }
   }
+}
 
-  // text selection and scrollbar styling on iui-root and all iui- elements under it
+// text selection and scrollbar styling on [data-iui-theme], iui-root and all iui- elements under it
+:where([data-iui-theme]),
+:where(.iui-root) {
   &,
   :where([class*='iui-']) {
     @include iui-text-selection;
