@@ -12,10 +12,6 @@
   @include iui-scrollbar;
 }
 
-.iui-visually-hidden {
-  @include visually-hidden;
-}
-
 [class*='iui-'],
 [class*='iui-'] * {
   // Text highlight
