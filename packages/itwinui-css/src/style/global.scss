@@ -67,7 +67,3 @@ html {
     @include iui-scrollbar;
   }
 }
-
-.iui-visually-hidden {
-  @include visually-hidden;
-}
