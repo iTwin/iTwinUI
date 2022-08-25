@@ -24,3 +24,7 @@
     --_iui-button-border-color: transparent;
   }
 }
+
+@mixin iui-button-borderless-active {
+  --_iui-button-background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
+}
