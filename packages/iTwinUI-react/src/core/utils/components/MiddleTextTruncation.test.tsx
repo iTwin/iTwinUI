@@ -59,3 +59,26 @@ it('should leave original text', () => {
   const containerSpan = container.querySelector('span') as HTMLSpanElement;
   expect(containerSpan.textContent).toBe('No trunc');
 });
+
+it('should render custom text', () => {
+  jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 20]);
+  const text = 'This is some very long text to truncate and expect ellipsis';
+  const { container } = render(
+    <MiddleTextTruncation
+      text={text}
+      textRenderer={(truncatedText) => (
+        <span data-testid='custom-text'>
+          {truncatedText} - some additional text
+        </span>
+      )}
+    />,
+  );
+
+  const containerSpan = container.querySelector('span') as HTMLSpanElement;
+  expect(containerSpan.textContent).toBe(
+    'This is some …lipsis - some additional text',
+  );
+  expect(
+    containerSpan.querySelector('[data-testid="custom-text"]'),
+  ).toBeTruthy();
+});
