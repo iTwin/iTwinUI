@@ -16,7 +16,11 @@ import { TableCell } from './TableCell';
  */
 export const TableRow = <T extends Record<string, unknown>>(props: {
   row: Row<T>;
-  rowProps?: (row: Row<T>) => React.ComponentPropsWithRef<'div'>;
+  rowProps?: (
+    row: Row<T>,
+  ) => React.ComponentPropsWithRef<'div'> & {
+    status?: 'positive' | 'warning' | 'negative';
+  };
   isLast: boolean;
   onRowInViewport: React.MutableRefObject<((rowData: T) => void) | undefined>;
   onBottomReached: React.MutableRefObject<(() => void) | undefined>;
@@ -70,10 +74,11 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     root: intersectionRoot,
   });
 
-  const userRowProps = rowProps?.(row);
+  const userRowProps = rowProps?.(row) ?? {};
+  const { status, ...restUserRowProps } = userRowProps;
   const mergedProps = {
     ...row.getRowProps({ style: { flex: `0 0 auto`, minWidth: '100%' } }),
-    ...userRowProps,
+    ...restUserRowProps,
     ...{
       className: cx(
         'iui-row',
@@ -81,6 +86,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
           'iui-selected': row.isSelected,
           'iui-row-expanded': row.isExpanded && subComponent,
           'iui-disabled': isDisabled,
+          [`iui-${status}`]: !!status,
         },
         userRowProps?.className,
       ),

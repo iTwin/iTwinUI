@@ -38,7 +38,14 @@ import {
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
-import { SvgMore } from '@itwin/itwinui-icons-react';
+import {
+  SvgDetails,
+  SvgMore,
+  SvgSoundLoud,
+  SvgStatusError,
+  SvgStatusSuccess,
+  SvgStatusWarning,
+} from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Table',
@@ -1394,18 +1401,22 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
     quantity: number;
     rating: number;
     deliveryTime: number;
+    status: 'positive' | 'negative' | 'warning' | undefined;
     subRows: TableStoryDataType[];
   };
 
   const generateItem = useCallback(
     (index: number, parentRow = '', depth = 0): TableStoryDataType => {
       const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
+      const rating = (index % 4) + 1;
       return {
         product: `Product ${keyValue}`,
         price: ((index % 10) + 1) * 15,
         quantity: ((index % 10) + 1) * 150,
-        rating: (index % 4) + 1,
+        rating: rating,
         deliveryTime: (index % 15) + 1,
+        status:
+          rating >= 4 ? 'positive' : rating === 3 ? 'warning' : 'negative',
         subRows:
           depth < 2
             ? Array(Math.round(index % 5))
@@ -1486,8 +1497,15 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
             filter: 'between',
             sortType: 'number',
             width: 400,
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return <>{props.value}/5</>;
+            cellRenderer: (props: CellRendererProps<TableStoryDataType>) => {
+              return (
+                <DefaultCell
+                  {...props}
+                  status={props.cellProps.row.original.status}
+                >
+                  {props.cellProps.row.original.rating}/5
+                </DefaultCell>
+              );
             },
           },
           {
@@ -1523,6 +1541,12 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
     [isRowDisabled, menuItems],
   );
 
+  const rowProps = useCallback((row: Row<{ status: string | undefined }>) => {
+    return {
+      status: row.original.status,
+    };
+  }, []);
+
   return (
     <Table
       columns={columns}
@@ -1536,6 +1560,7 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
       data={data}
       style={{ height: '100%' }}
       enableVirtualization
+      rowProps={rowProps}
     />
   );
 };
@@ -3395,3 +3420,128 @@ StickyColumns.decorators = [
     </div>
   ),
 ];
+
+export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            cellRenderer: (
+              props: CellRendererProps<{
+                startIcon: JSX.Element;
+                endIcon: JSX.Element;
+              }>,
+            ) => (
+              <DefaultCell
+                {...props}
+                startIcon={props.cellProps.row.original.startIcon}
+                endIcon={props.cellProps.row.original.endIcon}
+              />
+            ),
+          },
+          {
+            id: 'modified',
+            Header: 'Modified',
+            accessor: 'modified',
+            maxWidth: 200,
+            cellRenderer: (
+              props: CellRendererProps<{
+                status: 'positive' | 'warning' | 'negative' | undefined;
+              }>,
+            ) => {
+              return (
+                <DefaultCell
+                  {...props}
+                  status={props.cellProps.row.original.status}
+                />
+              );
+            },
+          },
+          {
+            id: 'size',
+            Header: 'Size',
+            maxWidth: 200,
+            accessor: 'size',
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const data = useMemo(
+    () => [
+      {
+        name: 'beta.mp3',
+        modified: 'Just now',
+        size: '15 KB',
+        startIcon: <SvgSoundLoud fill='#66c6ff' />,
+      },
+      {
+        name: 'gamma.pdf',
+        modified: 'A few moments ago',
+        size: '9 MB',
+        startIcon: <SvgDetails fill='#dd3e39' />,
+        endIcon: <SvgStatusSuccess />,
+        status: 'positive',
+      },
+      {
+        name: 'delta.jpg',
+        modified: 'A few moments ago',
+        size: '963 MB',
+        startIcon: <SvgDetails fill='#7957a3' />,
+        endIcon: <SvgStatusWarning />,
+        status: 'warning',
+      },
+      {
+        name: 'theta.dgn',
+        modified: 'A few moments ago',
+        size: '64 KB',
+        startIcon: <SvgDetails fill='#d16c00' />,
+        endIcon: <SvgStatusError />,
+        status: 'negative',
+      },
+    ],
+    [],
+  );
+
+  const rowProps = useCallback(
+    (
+      row: Row<{
+        name: string;
+        modified: string;
+        size: string;
+        startIcon: JSX.Element;
+        endIcon: JSX.Element;
+        status: 'positive' | 'negative' | 'warning' | undefined;
+      }>,
+    ) => {
+      return {
+        status: row.original.status,
+      };
+    },
+    [],
+  );
+
+  return (
+    <Table
+      {...args}
+      columns={columns}
+      data={data}
+      emptyTableContent='No data.'
+      selectionMode='multi'
+      isSelectable={true}
+      rowProps={rowProps}
+    />
+  );
+};
+
+StatusAndCellIcons.args = {
+  isSelectable: true,
+  selectionMode: 'multi',
+};

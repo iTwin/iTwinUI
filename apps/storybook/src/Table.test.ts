@@ -29,6 +29,7 @@ describe('Table', () => {
     'With Manual Paginator',
     'With Paginator',
     'Zebra Striped Rows',
+    'Status And Cell Icons',
   ];
 
   tests.forEach((testName) => {

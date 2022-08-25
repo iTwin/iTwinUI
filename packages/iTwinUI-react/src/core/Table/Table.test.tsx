@@ -23,6 +23,8 @@ import { InputGroup } from '../InputGroup';
 import { Radio } from '../Radio';
 import {
   SvgChevronRight,
+  SvgDeveloper,
+  SvgPlaceholder,
   SvgSortUp,
   SvgSortDown,
 } from '@itwin/itwinui-icons-react';
@@ -3747,3 +3749,113 @@ it('should make column sticky and then non-sticky after dragging sticky column a
     expect(cell).not.toHaveStyle('--iui-table-sticky-left: 400px');
   });
 });
+
+it('should render start and end cell icons', () => {
+  const testColumns: Column<TestDataType>[] = [
+    {
+      Header: 'Header name',
+      columns: [
+        {
+          id: 'name',
+          Header: 'Name',
+          accessor: 'name',
+          cellRenderer: (props) => {
+            return <DefaultCell {...props} startIcon={<SvgPlaceholder />} />;
+          },
+        },
+        {
+          id: 'description',
+          Header: 'description',
+          accessor: 'description',
+          cellRenderer: (props) => {
+            return <DefaultCell {...props} endIcon={<SvgDeveloper />} />;
+          },
+        },
+      ],
+    },
+  ];
+  const { container } = renderComponent({
+    columns: testColumns,
+  });
+
+  const {
+    container: { firstChild: placeholderIcon },
+  } = render(<SvgPlaceholder />);
+  const {
+    container: { firstChild: developerIcon },
+  } = render(<SvgDeveloper />);
+
+  const row = container.querySelector(
+    '.iui-table-body .iui-row',
+  ) as HTMLDivElement;
+  const cells = row.querySelectorAll('.iui-cell');
+
+  const startIcon = cells[0].querySelector(
+    '.iui-cell-start-icon',
+  ) as HTMLDivElement;
+  expect(startIcon).toBeTruthy();
+  expect(startIcon.querySelector('svg')).toEqual(placeholderIcon);
+
+  const endIcon = cells[1].querySelector(
+    '.iui-cell-end-icon',
+  ) as HTMLDivElement;
+  expect(endIcon).toBeTruthy();
+  expect(endIcon.querySelector('svg')).toEqual(developerIcon);
+});
+
+it.each(['positive', 'warning', 'negative'] as const)(
+  'should render cell with %s status',
+  (status) => {
+    const columns: Column<TestDataType>[] = [
+      {
+        Header: 'Header name',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            cellRenderer: (props) => {
+              return <DefaultCell {...props} status={status} />;
+            },
+          },
+          {
+            id: 'description',
+            Header: 'description',
+            accessor: 'description',
+          },
+        ],
+      },
+    ];
+    const { container } = renderComponent({
+      columns,
+    });
+
+    const row = container.querySelector(
+      '.iui-table-body .iui-row',
+    ) as HTMLDivElement;
+    const cells = row.querySelectorAll('.iui-cell');
+
+    expect(cells[0]).toHaveClass(`iui-${status}`);
+    expect(cells[1]).not.toHaveClass(`iui-${status}`);
+  },
+);
+
+it.each(['positive', 'warning', 'negative'] as const)(
+  'should render row with %s status',
+  (rowStatus) => {
+    const { container } = renderComponent({
+      rowProps: (row) => {
+        return {
+          status: row.index === 0 ? rowStatus : undefined,
+        };
+      },
+    });
+
+    const tableBody = container.querySelector(
+      '.iui-table-body',
+    ) as HTMLDivElement;
+    const rows = tableBody.querySelectorAll('.iui-row');
+    expect(rows[0]).toHaveClass(`iui-${rowStatus}`);
+    expect(rows[1]).not.toHaveClass(`iui-${rowStatus}`);
+  },
+);
