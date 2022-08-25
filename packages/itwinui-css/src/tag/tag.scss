@@ -52,7 +52,7 @@
 }
 
 @mixin iui-tag-button {
-  border-radius: 50%;
+  border-radius: var(--iui-border-radius-round);
 }
 
 @mixin iui-tag-container {

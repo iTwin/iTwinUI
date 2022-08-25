@@ -112,6 +112,8 @@
   @include iui-button-borderless;
   @include iui-tag-button;
   padding: 0 var(--iui-size-2xs);
+  min-height: unset;
+  min-width: unset;
   height: 100%;
   aspect-ratio: 1 / 1;
 
