@@ -186,10 +186,11 @@
 
   &.iui-actionable {
     align-items: center;
-    height: 90%;
+    height: calc(100% - 4px);
     margin-right: 1px;
     padding-inline: calc(var(--iui-size-xs) + 1px);
     cursor: pointer;
+    box-sizing: content-box;
 
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
