@@ -186,7 +186,7 @@
 
   &.iui-actionable {
     align-items: center;
-    height: calc(100% - 4px);
+    height: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
     margin-right: 1px;
     padding-inline: calc(var(--iui-size-xs) + 1px);
     cursor: pointer;
