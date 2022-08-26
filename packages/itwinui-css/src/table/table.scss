@@ -219,7 +219,7 @@
 
       + [aria-selected='true'] .iui-table-cell {
         border-bottom-color: transparent;
-        border-top-color: var(--iui-color-foreground-primary);
+        border-top-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-4));
       }
 
       &:last-child .iui-table-cell {
