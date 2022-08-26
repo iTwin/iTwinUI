@@ -43,7 +43,7 @@ html {
   @include iui-font-family;
 
   // reset margin and apply background only for <body> element
-  @at-root body#{&} {
+  @at-root :where(body#{&}) {
     margin: 0;
     background-color: var(--iui-color-background-2);
   }
