@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.45.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.44.0...v1.45.0) (2022-08-25)
+
+### What's new
+
+* **MiddleTextTruncation:** Add text renderer for customizing rendered content ([#787](https://www.github.com/iTwin/iTwinUI-react/issues/787)) ([293ebea](https://www.github.com/iTwin/iTwinUI-react/commit/293ebeac844eb540c1d5c7f999e176f3be377d8e))
+* **Table:** Add `Cell` and `Row` status. Icons support in `DefaultCell` ([#788](https://www.github.com/iTwin/iTwinUI-react/issues/788)) ([9b0282e](https://www.github.com/iTwin/iTwinUI-react/commit/9b0282e610434301ff69e296086304afc5648034))
+
 ## [1.44.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.43.1...v1.44.0) (2022-08-23)
 
 ### What's new
