@@ -61,12 +61,10 @@ html {
   }
 }
 
-// text selection and scrollbar styling on [data-iui-theme], iui-root and all iui- elements under it
+// text selection and scrollbar styling on [data-iui-theme], iui-root and all elements under it
 :where([data-iui-theme]),
-:where(.iui-root) {
-  &,
-  :where([class*='iui-']) {
-    @include iui-text-selection;
-    @include iui-scrollbar;
-  }
+:where(.iui-root),
+:where(.iui-root) * {
+  @include iui-text-selection;
+  @include iui-scrollbar;
 }
