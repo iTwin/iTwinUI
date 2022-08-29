@@ -17,10 +17,18 @@ $tick-height: $iui-baseline; // 12px
 
 @mixin iui-slider-endpoints {
   user-select: all;
+  height: 1rem;
+  width: 1rem;
+  // height: 3.5rem;
+  // background-color: red;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
 
   svg {
     @include iui-icon-style('m');
     margin-top: $iui-xs;
+    width: 100%;
   }
 }
 
