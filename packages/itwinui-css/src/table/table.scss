@@ -61,7 +61,7 @@
       touch-action: none;
       cursor: ew-resize;
       z-index: 1;
-      visibility: hidden;
+      opacity: 0;
 
       > .iui-table-resizer-bar {
         height: 100%;
