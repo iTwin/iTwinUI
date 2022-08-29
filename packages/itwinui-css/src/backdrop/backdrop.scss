@@ -2,15 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../style/index';
 
-/// Mixin for applying backdrop
-/// @arg $position Can be one of: full-page, contained. Defaults to full-page
-@mixin iui-backdrop($position: full-page) {
-  @if ($position == full-page) {
-    position: fixed;
-  } @else {
-    position: absolute;
-  }
-
+@mixin iui-backdrop {
+  position: fixed;
   z-index: 998;
   isolation: isolate;
   top: 0;
@@ -30,5 +23,9 @@
 
   &.iui-backdrop-visible {
     transition-delay: $iui-speed-instant; // remove delay for entry animation
+  }
+
+  &.iui-backdrop-contained {
+    position: absolute;
   }
 }

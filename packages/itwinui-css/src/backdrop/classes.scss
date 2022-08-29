@@ -4,8 +4,4 @@
 
 .iui-backdrop {
   @include iui-backdrop;
-
-  &-contained {
-    @include iui-backdrop(contained);
-  }
 }
