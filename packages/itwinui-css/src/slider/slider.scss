@@ -21,7 +21,6 @@ $tick-height: $iui-baseline; // 12px
 
   svg {
     @include iui-icon-style('m');
-    // margin-top: $iui-xs;
   }
 }
 
@@ -159,8 +158,6 @@ $tick-height: $iui-baseline; // 12px
   .iui-slider-min,
   .iui-slider-max {
     margin-top: $iui-xxs;
-    // margin-top: calc($iui-xs + $iui-xxs);
-    // width: 25px;
 
     svg {
       margin-top: $iui-xs;
