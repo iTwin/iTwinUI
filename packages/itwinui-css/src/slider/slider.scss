@@ -20,6 +20,7 @@ $tick-height: $iui-baseline; // 12px
 
   svg {
     @include iui-icon-style('m');
+    margin-top: $iui-xs;
     width: 100%;
   }
 }
@@ -158,10 +159,6 @@ $tick-height: $iui-baseline; // 12px
   .iui-slider-min,
   .iui-slider-max {
     margin-top: $iui-xxs;
-
-    svg {
-      margin-top: $iui-xs;
-    }
   }
 
   .iui-slider-min {
@@ -221,10 +218,6 @@ $tick-height: $iui-baseline; // 12px
   .iui-slider-max {
     margin-left: $iui-xxs;
     text-align: center;
-    height: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
   .iui-slider-min {
