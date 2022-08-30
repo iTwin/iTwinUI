@@ -3,9 +3,9 @@
 @import '../style/index';
 
 @mixin iui-backdrop {
-  position: fixed;
   z-index: 998;
   isolation: isolate;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -25,7 +25,7 @@
     transition-delay: $iui-speed-instant; // remove delay for entry animation
   }
 
-  &.iui-backdrop-contained {
-    position: absolute;
+  &.iui-backdrop-fixed {
+    position: fixed;
   }
 }

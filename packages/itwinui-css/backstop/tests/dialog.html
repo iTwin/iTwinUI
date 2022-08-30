@@ -122,7 +122,7 @@
     </button>
 
     <div id="default-dialog">
-      <div class="iui-backdrop"></div>
+      <div class="iui-backdrop iui-backdrop-fixed"></div>
       <div
         class="iui-dialog iui-dialog-default"
         id="dialog-click"
@@ -173,7 +173,7 @@
     </div>
 
     <div id="full-page-dialog">
-      <div class="iui-backdrop"></div>
+      <div class="iui-backdrop iui-backdrop-fixed"></div>
       <div class="iui-dialog iui-dialog-full-page">
         <div class="iui-dialog-title-bar">
           <div class="iui-dialog-title">Title</div>
@@ -345,7 +345,7 @@
           class="iui-dialog-wrapper"
           id="relative-dialog-with-backdrop"
         >
-          <div class="iui-backdrop iui-backdrop-contained"></div>
+          <div class="iui-backdrop"></div>
           <div class="iui-dialog iui-dialog-default">
             <div class="iui-dialog-title-bar">
               <div class="iui-dialog-title">Title</div>
@@ -396,7 +396,7 @@
 
     <script>
       function toggleDialog(dialogId) {
-        let _backdrop = document.querySelector(`#${dialogId} .iui-backdrop`) ?? document.querySelector(`#${dialogId} .iui-backdrop-contained`);
+        let _backdrop = document.querySelector(`#${dialogId} .iui-backdrop`);
         let _dialog = document.querySelector(`#${dialogId} .iui-dialog`);
 
         _dialog.classList.toggle('iui-dialog-visible');
