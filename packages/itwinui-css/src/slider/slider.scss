@@ -18,12 +18,10 @@ $tick-height: $iui-baseline; // 12px
 
 @mixin iui-slider-endpoints {
   user-select: all;
-  // position: absolute;
 
   svg {
     @include iui-icon-style('m');
     margin-top: $iui-xs;
-    // width: 100%;
   }
 }
 
@@ -218,20 +216,9 @@ $tick-height: $iui-baseline; // 12px
 
   .iui-slider-min,
   .iui-slider-max {
-    // margin-left: $iui-xxs;
-    // margin-left: $iui-sm;
-    // transform: translate(-50%, 0);
-    // display: inline-block;
-    // width: 1px;
-    margin-left: calc($iui-xxs + 12px);
+    margin-left: calc($iui-xxs + $iui-sm);
     text-align: center;
     transform: translate(-50%, 0);
-    // height: 24px;
-
-    // svg {
-    //   height: 100px;
-    // }
-    // width: 100%;
   }
 
   .iui-slider-min {
