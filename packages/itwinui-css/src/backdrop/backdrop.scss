@@ -24,4 +24,8 @@
   &.iui-backdrop-visible {
     transition-delay: $iui-speed-instant; // remove delay for entry animation
   }
+
+  &.iui-backdrop-fixed {
+    position: fixed;
+  }
 }
