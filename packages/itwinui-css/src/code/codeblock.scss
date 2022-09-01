@@ -51,7 +51,7 @@
         text-align: right;
         display: inline-block;
         padding: 0 $iui-s;
-        width: $iui-l;
+        width: calc($iui-l + 2 * $iui-s); // 2 * $iui-s for the padding
         background-color: var(--iui-color-background-2);
         color: var(--iui-text-color-muted);
       }
