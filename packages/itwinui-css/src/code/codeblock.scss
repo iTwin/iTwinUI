@@ -50,7 +50,7 @@
         text-align: right;
         display: inline-block;
         padding: 0 var(--iui-size-xs);
-        width: var(--iui-size-l);
+        width: calc(var(--iui-size-l) + 2 * var(--iui-size-xs)); // 2 * iui-size-xs for the padding
         background-color: var(--iui-color-background-2);
         color: var(--iui-color-foreground-4);
       }
