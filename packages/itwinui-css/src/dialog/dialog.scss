@@ -21,7 +21,7 @@ $iui-dialog-width: 380px;
   isolation: isolate;
   border-radius: $iui-border-radius;
   box-shadow: $iui-elevation-24;
-  position: absolute;
+  position: fixed;
   padding: $iui-baseline $iui-m;
   overflow: hidden;
   pointer-events: auto;
@@ -147,7 +147,6 @@ $iui-dialog-width: 380px;
   display: flex;
   align-items: center;
   margin-bottom: $iui-baseline;
-  justify-content: space-between;
   font-size: $iui-font-size-subheading;
 }
 
