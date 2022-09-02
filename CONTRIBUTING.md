@@ -67,7 +67,7 @@ We provide a script that can automatically create all the necessary files for yo
   - Use existing Sass variables for spacing (margin, padding, sizing, etc).
 - Define classes for your mixin in `src/[component-name]/classes.scss` file.
   - _Running the `createComponent` command will do this for you._
-- Make sure your component index and classes are imported in `src/index.scss` and `src/classes.scss`.
+- Make sure your component index and classes are imported in `src/all.scss`.
   - _Running the `createComponent` command will also do this for you but you need to manually sort the imports alphabetically._
 - Write tests for your new component in `backstop/tests/[component-name].html` and `backstop/scenarios/[component-name].js`. See [Testing](#Testing) section below.
 - After running `yarn build` you can open minified html in browser to check up, how your component looks like from `backstop/minified`.
