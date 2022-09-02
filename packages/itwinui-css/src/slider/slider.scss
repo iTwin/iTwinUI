@@ -160,7 +160,7 @@ $tick-height: $iui-baseline; // 12px
   .iui-slider-min,
   .iui-slider-max {
     margin-top: $iui-xxs;
-    width: 24px;
+    width: $iui-line-height;
     flex-direction: row;
 
     svg {
@@ -226,7 +226,7 @@ $tick-height: $iui-baseline; // 12px
     margin-left: calc($iui-xxs + $iui-sm);
     text-align: center;
     transform: translate(-50%, 0);
-    height: 24px;
+    height: $iui-line-height;
     flex-direction: column;
   }
 
