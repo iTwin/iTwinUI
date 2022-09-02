@@ -1,12 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-information-panel-wrapper {
   position: relative;
   overflow: hidden;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-information-panel {
@@ -19,8 +18,8 @@
   max-height: 100%;
   background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant $iui-speed-fast ease-in, transform $iui-speed-fast ease-out,
-      opacity $iui-speed-fast ease;
+    transition: visibility var(--iui-duration-0) var(--iui-duration-1) ease-in, transform var(--iui-duration-1) ease-out,
+      opacity var(--iui-duration-1) ease;
   }
 
   > .iui-resizer {
@@ -39,12 +38,12 @@
 
   .iui-information-header,
   .iui-information-body {
-    padding-left: $iui-sm;
-    padding-right: $iui-sm;
+    padding-left: var(--iui-size-s);
+    padding-right: var(--iui-size-s);
   }
 
   .iui-information-header {
-    height: $iui-baseline * 5;
+    height: calc(var(--iui-size-s) * 5);
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -66,19 +65,19 @@
       svg {
         @include iui-icon-style('l');
         @include iui-icon-color;
-        margin-right: $iui-s;
+        margin-right: var(--iui-size-xs);
       }
     }
 
     .iui-information-header-actions {
       flex-shrink: 0;
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
   }
 
   .iui-information-body {
-    padding-top: $iui-baseline;
-    padding-bottom: $iui-baseline;
+    padding-top: var(--iui-size-s);
+    padding-bottom: var(--iui-size-s);
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -96,7 +95,7 @@
   transform: translate(0);
 
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed-fast ease-out, opacity $iui-speed-fast ease;
+    transition: transform var(--iui-duration-1) ease-out, opacity var(--iui-duration-1) ease;
   }
 
   > .iui-resizer {
@@ -107,13 +106,13 @@
 @mixin iui-information-panel-vertical {
   top: 0;
   right: 0;
-  width: $iui-3xl * 4;
-  min-width: $iui-3xl * 2;
+  width: calc(var(--iui-size-3xl) * 4);
+  min-width: calc(var(--iui-size-3xl) * 2);
   height: 100%;
 
   > .iui-resizer {
     height: 100%;
-    width: $iui-m;
+    width: var(--iui-size-m);
     top: 0;
     cursor: ew-resize;
     justify-content: center;
@@ -122,12 +121,12 @@
       height: 100%;
       width: 1px;
       @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+        transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
       }
     }
 
     &:hover > .iui-resizer-bar {
-      width: $iui-xs;
+      width: var(--iui-size-2xs);
     }
   }
 }
@@ -135,13 +134,13 @@
 @mixin iui-information-panel-horizontal {
   left: 0;
   bottom: 0;
-  height: $iui-3xl * 4;
-  min-height: $iui-3xl * 2;
+  height: calc(var(--iui-size-3xl) * 4);
+  min-height: calc(var(--iui-size-3xl) * 2);
   width: 100%;
 
   > .iui-resizer {
     width: 100%;
-    height: $iui-m;
+    height: var(--iui-size-m);
     left: 0;
     cursor: ns-resize;
     align-items: center;
@@ -150,12 +149,12 @@
       width: 100%;
       height: 1px;
       @media (prefers-reduced-motion: no-preference) {
-        transition: background-color $iui-speed-fast ease-out, height $iui-speed-fast ease-out;
+        transition: background-color var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out;
       }
     }
 
     &:hover > .iui-resizer-bar {
-      height: $iui-xs;
+      height: var(--iui-size-2xs);
     }
   }
 }
@@ -163,22 +162,22 @@
 @mixin iui-information-panel-right {
   @include iui-information-panel-vertical;
   transform: translateX(100%); // hide off screen
-  box-shadow: -1px 0 10px $iui-elevation-color;
+  box-shadow: -1px 0 10px var(--iui-shadow-color);
   clip-path: inset(0 0 0 -15px); // show box-shadow only on the left
 
   > .iui-resizer {
-    left: $iui-m * -0.5;
+    left: calc(var(--iui-size-m) * -0.5);
   }
 }
 
 @mixin iui-information-panel-bottom {
   @include iui-information-panel-horizontal;
   transform: translateY(100%); // hide off screen
-  box-shadow: 0 -1px 10px $iui-elevation-color;
+  box-shadow: 0 -1px 10px var(--iui-shadow-color);
   clip-path: inset(-15px 0 0 0); // show box-shadow only on top
 
   > .iui-resizer {
-    top: $iui-m * -0.5;
+    top: calc(var(--iui-size-m) * -0.5);
   }
 }
 
@@ -187,19 +186,19 @@
   display: grid;
 
   .iui-input-label {
-    font-weight: $iui-font-weight-normal;
-    color: var(--iui-text-color-muted);
+    font-weight: var(--iui-font-weight-normal);
+    color: var(--iui-color-foreground-4);
   }
 
   &:not(.iui-inline) {
     // add bottom margin between pairs of label+input
     > *:nth-child(even):not(:last-child) {
-      margin-bottom: $iui-baseline;
+      margin-bottom: var(--iui-size-s);
     }
   }
 
   &.iui-inline {
-    row-gap: $iui-baseline;
+    row-gap: var(--iui-size-s);
     grid-template-columns: auto 1fr;
     align-items: center;
 

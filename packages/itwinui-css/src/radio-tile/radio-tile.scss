@@ -1,31 +1,30 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-radio-tile {
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+  -webkit-tap-highlight-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
 }
 
 @mixin iui-radio-tile-content {
-  width: $iui-xl * 5;
+  width: calc(var(--iui-size-xl) * 5);
   height: 100%;
-  padding: $iui-s;
+  padding: var(--iui-size-xs);
   position: relative;
   z-index: 1;
-  outline: 1px solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  outline: 1px solid var(--iui-color-foreground-4);
   background-color: var(--iui-color-background-1);
   @media (prefers-reduced-motion: no-preference) {
-    transition: outline-color $iui-speed-fast ease-out;
+    transition: outline-color var(--iui-duration-1) ease-out;
   }
 
   &:hover {
     z-index: 2;
-    outline-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    outline-color: var(--iui-color-foreground-2);
 
     .iui-radio-tile-icon {
-      fill: var(--iui-icon-color-actionable);
+      fill: var(--iui-color-foreground-2);
       @media (forced-colors: active) {
         fill: CanvasText;
       }
@@ -51,9 +50,9 @@
   position: absolute;
 
   &:checked + * {
-    padding: $iui-s;
+    padding: var(--iui-size-xs);
     z-index: 3;
-    outline: $iui-xxs solid var(--iui-color-foreground-primary);
+    outline: var(--iui-size-3xs) solid var(--iui-color-foreground-primary);
     outline-offset: -1px;
 
     @media (forced-colors: active) {
@@ -61,7 +60,7 @@
     }
 
     .iui-radio-tile-icon {
-      fill: var(--iui-icon-color-primary);
+      fill: var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
         fill: Highlight;
       }
@@ -71,8 +70,8 @@
       @include iui-icon-style('m');
       content: '';
       position: absolute;
-      top: $iui-s;
-      right: $iui-s;
+      top: var(--iui-size-xs);
+      right: var(--iui-size-xs);
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" /></svg>');
       background-color: var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
@@ -88,7 +87,7 @@
     background-color: var(--iui-color-background-disabled);
 
     &::after {
-      background-color: var(--iui-icon-color-actionable-disabled);
+      background-color: var(--iui-color-foreground-5);
       @media (forced-colors: active) {
         background-color: GrayText;
       }
@@ -96,14 +95,14 @@
 
     .iui-radio-tile-icon {
       filter: $iui-icon-color-multicolor-disabled;
-      fill: var(--iui-icon-color-actionable-disabled);
+      fill: var(--iui-color-foreground-5);
       @media (forced-colors: active) {
         fill: GrayText;
       }
     }
 
     .iui-radio-tile-label {
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
     }
 
     .iui-radio-tile-label,
@@ -116,7 +115,7 @@
 
   &:disabled:checked + * {
     z-index: 3;
-    outline: $iui-xxs solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    outline: var(--iui-size-3xs) solid var(--iui-color-foreground-4);
     @media (forced-colors: active) {
       outline-color: GrayText;
     }
@@ -126,7 +125,7 @@
     + * {
       // outline for checkmark
       z-index: 2;
-      outline-offset: -$iui-xxs;
+      outline-offset: calc(0px - var(--iui-size-3xs));
       outline: 3px solid var(--iui-color-foreground-primary);
       @media (forced-colors: active) {
         outline-color: Highlight;
@@ -138,10 +137,10 @@
 @mixin iui-radio-tile-icon {
   @include iui-icon-style('xl');
   @include iui-icon-color;
-  margin: ($iui-baseline * 0.5) auto $iui-baseline;
-  fill: var(--iui-icon-color);
+  margin: calc(var(--iui-size-s) * 0.5) auto var(--iui-size-s);
+  fill: var(--iui-color-foreground-4);
   @media (prefers-reduced-motion: no-preference) {
-    transition: fill $iui-speed-fast ease-out;
+    transition: fill var(--iui-duration-1) ease-out;
   }
   @media (forced-colors: active) {
     fill: CanvasText;
@@ -149,18 +148,18 @@
 }
 
 @mixin iui-radio-tile-label {
-  font-size: $iui-font-size;
-  font-weight: $iui-font-weight-semibold;
-  line-height: $iui-line-height;
+  font-size: var(--iui-font-size-1);
+  font-weight: var(--iui-font-weight-semibold);
+  line-height: var(--iui-size-l);
   text-align: center;
   word-break: break-word;
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
 }
 
 @mixin iui-radio-tile-sublabel {
-  font-size: $iui-font-size-small;
-  line-height: round($iui-baseline * 1.375);
+  font-size: var(--iui-font-size-0);
+  line-height: calc(var(--iui-size-s) * 1.375);
   text-align: center;
   word-break: break-word;
-  color: var(--iui-text-color-muted);
+  color: var(--iui-color-foreground-4);
 }

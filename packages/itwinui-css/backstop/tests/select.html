@@ -27,6 +27,7 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         width: auto;
@@ -267,7 +268,8 @@
       <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button iui-small"
+          class="iui-select-button"
+          data-iui-size="small"
         >
           <span class="iui-content">Small</span>
         </div>
@@ -292,7 +294,8 @@
       <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button iui-large"
+          class="iui-select-button"
+          data-iui-size="large"
         >
           <span class="iui-content">Large</span>
         </div>
@@ -341,7 +344,8 @@
       <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button iui-small"
+          class="iui-select-button"
+          data-iui-size="small"
         >
           <span class="iui-content">
             <div class="iui-select-tag-container">
@@ -397,7 +401,8 @@
       <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button iui-large"
+          class="iui-select-button"
+          data-iui-size="large"
         >
           <span class="iui-content">
             <div class="iui-select-tag-container">
@@ -424,11 +429,12 @@
 
       <div
         class="iui-input-with-icon"
-        style="width: 470px"
+        style="width: 480px"
       >
         <div
           tabindex="0"
-          class="iui-select-button iui-large"
+          class="iui-select-button"
+          data-iui-size="large"
         >
           <span class="iui-content">
             <div class="iui-select-tag-container">

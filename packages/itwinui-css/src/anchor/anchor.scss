@@ -1,11 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-anchor {
   @include iui-anchor-status('primary');
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   cursor: pointer;
 
   @include iui-anchor-underline('on-hover');
@@ -50,13 +49,13 @@
 @mixin iui-anchor-status($status: primary) {
   @include iui-focus($color: var(--iui-color-foreground-#{$status}), $offset: 1px);
   color: var(--iui-color-foreground-#{$status});
-  -webkit-tap-highlight-color: rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-5));
+  -webkit-tap-highlight-color: hsl(var(--iui-color-foreground-#{$status}-hsl) / var(--iui-opacity-6));
   @if $status != primary {
     @include iui-text-selection($status);
   }
 
   &:hover {
-    color: var(--iui-color-foreground-#{$status}-overlay);
+    color: var(--iui-color-foreground-#{$status}-hover);
   }
 }
 

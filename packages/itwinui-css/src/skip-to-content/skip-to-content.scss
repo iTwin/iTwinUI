@@ -1,27 +1,26 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-skip-to-content-link {
   @include iui-blur($opacity: 3);
   @include iui-focus($offset: 2px, $thickness: 2px);
   color: var(--iui-color-foreground-accessory);
-  border-radius: $iui-border-radius-round;
+  border-radius: var(--iui-border-radius-round);
   text-decoration: none;
   user-select: none;
-  padding: ($iui-baseline * 0.75) $iui-m;
+  padding: calc(var(--iui-size-s) * 0.75) var(--iui-size-m);
   position: fixed;
   text-align: center;
   left: 50%;
-  top: $iui-baseline * 2;
+  top: calc(var(--iui-size-s) * 2);
   opacity: 0;
   z-index: 99;
   transform: translateX(-50%) translateY(-170%);
-  transition: background-color $iui-speed-fast ease-in-out;
+  transition: background-color var(--iui-duration-1) ease-in-out;
   @media (prefers-reduced-motion: no-preference) {
-    transition: opacity $iui-speed-slow ease-in-out, background-color $iui-speed-slow ease-in-out,
-      transform $iui-speed-slow ease-in-out, box-shadow $iui-speed-slow ease-in-out;
+    transition: opacity var(--iui-duration-3) ease-in-out, background-color var(--iui-duration-3) ease-in-out,
+      transform var(--iui-duration-3) ease-in-out, box-shadow var(--iui-duration-3) ease-in-out;
   }
 
   &:hover {
@@ -31,10 +30,10 @@
   &:focus {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
-    box-shadow: $iui-elevation-16;
+    box-shadow: var(--iui-shadow-4);
     @media (prefers-reduced-motion: no-preference) {
-      transition: opacity $iui-speed-instant ease-in-out, background-color $iui-speed-fast ease-in-out,
-        transform $iui-speed-fast ease-in-out, box-shadow $iui-speed-fast ease-in-out;
+      transition: opacity var(--iui-duration-0) ease-in-out, background-color var(--iui-duration-1) ease-in-out,
+        transform var(--iui-duration-1) ease-in-out, box-shadow var(--iui-duration-1) ease-in-out;
     }
   }
 }

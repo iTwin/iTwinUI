@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-progress-indicator-linear($height: 4px) {
@@ -26,9 +25,9 @@
     align-items: center;
     width: 100%;
     overflow: hidden;
-    margin-top: $iui-xs;
+    margin-top: var(--iui-size-2xs);
     display: flex;
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     justify-content: space-between;
 
     > :only-child {
@@ -54,7 +53,7 @@
       color: var(--iui-color-foreground-positive);
 
       svg {
-        fill: var(--iui-icon-color-positive);
+        fill: var(--iui-color-foreground-positive);
       }
 
       > span {
@@ -73,7 +72,7 @@
       color: var(--iui-color-foreground-negative);
 
       svg {
-        fill: var(--iui-icon-color-negative);
+        fill: var(--iui-color-foreground-negative);
       }
 
       > span {

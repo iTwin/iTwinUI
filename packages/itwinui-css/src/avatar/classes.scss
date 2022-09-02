@@ -10,15 +10,15 @@
   }
 
   &.iui-small {
-    @include iui-avatar-size($size: $iui-icon-large, $font-size: $iui-font-size-small);
+    @include iui-avatar-size($size: l, $font-size: var(--iui-font-size-0));
   }
 
   &.iui-large {
-    @include iui-avatar-size($size: $iui-icon-2xl, $font-size: $iui-font-size-subheading);
+    @include iui-avatar-size($size: 2xl, $font-size: var(--iui-font-size-3));
   }
 
   &.iui-x-large {
-    @include iui-avatar-size($size: $iui-icon-3xl, $font-size: $iui-font-size-title);
+    @include iui-avatar-size($size: 3xl, $font-size: var(--iui-font-size-4));
   }
 }
 
