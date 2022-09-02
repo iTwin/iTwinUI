@@ -35,31 +35,36 @@ html {
   }
 }
 
-.iui-body {
-  background-color: var(--iui-color-background-2);
+:where(.iui-root) {
   color: var(--iui-text-color);
   font-size: $iui-font-size;
   line-height: $iui-line-height;
 
-  @include iui-scrollbar;
   @include iui-font-family;
 
-  &.iui-no-webfonts {
-    font-family: $iui-sans-fallback;
+  // reset margin and apply background only for <body> element
+  @at-root :where(body#{&}) {
+    margin: 0;
+    background-color: var(--iui-color-background-2);
+  }
+
+  // border-box on all iui- elements and their descendants under iui-root, excluding any nested iui-root elements
+  :where([class*='iui-']) {
+    &:where(:not(.iui-root)),
+    * {
+      &,
+      &::before,
+      &::after {
+        box-sizing: border-box;
+      }
+    }
   }
 }
 
-[class*='iui-'],
-[class*='iui-'] * {
-  // Text highlight
+// text selection and scrollbar styling on [data-iui-theme], iui-root and all elements under it
+:where([data-iui-theme]),
+:where(.iui-root),
+:where(.iui-root) * {
   @include iui-text-selection;
-
-  // Scrollbar
   @include iui-scrollbar;
-}
-
-[class*=iui-]:where(:not(.iui-body)),
-[class*=iui-]:where(:not(.iui-body))::before,
-[class*=iui-]:where(:not(.iui-body))::after {
-  box-sizing: border-box;
 }
