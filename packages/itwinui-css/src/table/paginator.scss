@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 @import '../button/index';
 @import '../text/muted';
@@ -10,9 +9,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 $iui-m;
+  padding: 0 var(--iui-size-m);
   user-select: none;
   background-color: var(--iui-color-background-3);
+  border-bottom-left-radius: var(--iui-border-radius-1);
+  border-bottom-right-radius: var(--iui-border-radius-1);
 
   > .iui-left,
   > .iui-center,
@@ -27,7 +28,7 @@
   > .iui-center {
     justify-content: center;
     flex: 2 1;
-    color: var(--iui-text-color);
+    color: var(--iui-color-foreground-2);
   }
 
   > .iui-right {
@@ -46,34 +47,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: $iui-component-height;
-  color: var(--iui-text-color-muted);
+  padding-inline: var(--iui-size-xs);
+  color: var(--iui-color-foreground-4);
 
   &-small {
-    width: $iui-component-height-small;
+    padding-inline: var(--iui-size-2xs);
   }
 }
 
 @mixin iui-table-paginator-pages-group {
   display: inline-flex;
   align-items: center;
-  margin: 0 $iui-s;
+  margin: 0 var(--iui-size-xs);
 }
 
 @mixin iui-table-paginator-page-button {
   @include iui-button;
   @include iui-button-borderless;
-  width: $iui-component-height;
 
   &-small {
     @include iui-button-size(small);
-    width: $iui-component-height-small;
   }
 
   &[data-iui-active='true'] {
     @include iui-button-default-active;
     @include iui-button-borderless-active;
+
     // Adds stripe above active button
-    --_iui-button-active-stripe-inset: calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
+    --_iui-button-active-stripe-inset: calc(100% - #{var(--iui-size-2xs)}) #{var(--iui-size-3xs)} #{var(--iui-size-3xs)};
   }
 }

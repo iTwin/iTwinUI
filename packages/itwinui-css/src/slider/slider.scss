@@ -1,11 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
-$thumb-height: $iui-m; // 16px
-$track-height: $iui-xs; // 4px
-$tick-height: $iui-baseline; // 12px
+$thumb-height: var(--iui-size-m); // 16px
+$track-height: var(--iui-size-2xs); // 4px
+$tick-height: var(--iui-size-s); // 12px
 
 @mixin iui-slider-component-container {
   display: flex;
@@ -20,7 +19,8 @@ $tick-height: $iui-baseline; // 12px
 
   svg {
     @include iui-icon-style('m');
-    margin-top: $iui-xs;
+    @include iui-icon-color;
+    margin-top: var(--iui-size-2xs);
   }
 }
 
@@ -38,9 +38,10 @@ $tick-height: $iui-baseline; // 12px
 
 @mixin iui-slider-rail {
   position: absolute;
-  width: 100%;
-  height: $track-height;
   background-color: var(--iui-color-background-border);
+  @media (forced-colors: active) {
+    background-color: CanvasText;
+  }
 }
 
 @mixin iui-slider-thumb {
@@ -54,6 +55,10 @@ $tick-height: $iui-baseline; // 12px
   @include iui-focus($thickness: 2px);
   background: var(--iui-color-background-1);
   border: 1px solid var(--iui-color-background-border);
+  @media (forced-colors: active) {
+    background: Canvas;
+    border: 1px solid CanvasText;
+  }
 
   &:active {
     cursor: grabbing;
@@ -63,8 +68,11 @@ $tick-height: $iui-baseline; // 12px
 @mixin iui-slider-track {
   pointer-events: none;
   position: absolute;
-  top: $iui-sm;
+  top: var(--iui-size-s);
   background-color: var(--iui-color-foreground-primary);
+  @media (forced-colors: active) {
+    background-color: Highlight;
+  }
 }
 
 @mixin iui-slider-ticks {
@@ -102,17 +110,21 @@ $tick-height: $iui-baseline; // 12px
     cursor: not-allowed;
     background-color: var(--iui-color-background-4);
     border-color: var(--iui-color-background-4);
+    @media (forced-colors: active) {
+      background-color: GrayText;
+      border-color: GrayText;
+    }
   }
 
   .iui-slider-track {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+    background-color: var(--iui-color-foreground-4);
   }
 
   .iui-slider-min,
   .iui-slider-max,
   .iui-slider-tick {
     user-select: none;
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
     @media (forced-colors: active) {
       color: GrayText;
     }
@@ -120,19 +132,17 @@ $tick-height: $iui-baseline; // 12px
 }
 
 @mixin iui-slider-horizontal {
-  min-height: $iui-baseline * 2;
+  min-height: calc(var(--iui-size-s) * 2);
 
   .iui-slider-rail {
     width: 100%;
     height: $track-height;
-    top: $iui-sm;
+    top: var(--iui-size-s);
   }
 
   .iui-slider-thumb {
-    top: $track-height + 1; // position center of thumb in center of track
-    transform: translateX(
-      -50%
-    ); // Adjust the left (set in code) by radius of thumb so thumb center is at value position
+    top: calc($track-height + 1px); // position center of thumb in center of track
+    transform: translateX(-50%);
   }
 
   .iui-slider-track {
@@ -141,7 +151,7 @@ $tick-height: $iui-baseline; // 12px
   }
 
   .iui-slider-ticks {
-    padding-top: $iui-m;
+    padding-top: var(--iui-size-m);
 
     .iui-slider-tick {
       flex-direction: column;
@@ -157,45 +167,43 @@ $tick-height: $iui-baseline; // 12px
 
   .iui-slider-min,
   .iui-slider-max {
-    margin-top: $iui-xxs;
+    margin-top: var(--iui-size-3xs);
   }
 
   .iui-slider-min {
-    margin-right: $iui-sm;
+    margin-right: var(--iui-size-s);
     text-align: right;
   }
 
   .iui-slider-max {
-    margin-left: $iui-sm;
+    margin-left: var(--iui-size-s);
   }
 }
 
 @mixin iui-slider-vertical {
   flex-direction: column-reverse;
-  min-width: $iui-baseline * 2;
+  min-width: calc(var(--iui-size-s) * 2);
   height: 100%;
 
   .iui-slider-rail {
     width: $track-height;
     height: 100%;
-    left: $iui-sm;
+    left: var(--iui-size-s);
   }
 
   .iui-slider-thumb {
-    transform: translateY(
-      50%
-    ); // Adjust the bottom (set in code) by radius of thumb so thumb center is at value position
-    left: $track-height + 1;
+    transform: translateY(50%);
+    left: calc($track-height + 1px);
   }
 
   .iui-slider-track {
     width: $track-height;
     bottom: 0;
-    left: $iui-sm;
+    left: var(--iui-size-s);
   }
 
   .iui-slider-ticks {
-    padding-left: $iui-m;
+    padding-left: var(--iui-size-m);
     flex-direction: column-reverse;
     align-items: flex-start;
     height: 100%;
@@ -208,22 +216,22 @@ $tick-height: $iui-baseline; // 12px
         content: '';
         width: $tick-height;
         height: 1px;
-        margin-right: $tick-height * 1;
+        margin-right: $tick-height;
       }
     }
   }
 
   .iui-slider-min,
   .iui-slider-max {
-    margin-left: $iui-xxs;
+    margin-left: var(--iui-size-3xs);
     text-align: center;
   }
 
   .iui-slider-min {
-    margin-top: $iui-sm;
+    margin-top: var(--iui-size-s);
   }
 
   .iui-slider-max {
-    margin-bottom: $iui-sm;
+    margin-bottom: var(--iui-size-s);
   }
 }

@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../anchor/index';
 @import '../utils/index';
 
@@ -9,8 +8,8 @@
 
   text-align: center;
   width: 100%;
-  padding: $iui-baseline 0;
-  font-size: $iui-font-size-small;
+  padding: var(--iui-size-s) 0;
+  font-size: var(--iui-font-size-0);
 }
 
 @mixin iui-legal-footer-list {
@@ -29,25 +28,25 @@
   user-select: none;
   white-space: nowrap;
   word-break: keep-all;
-  color: var(--iui-text-color-muted);
+  color: var(--iui-color-foreground-4);
 
   > a {
     @include iui-anchor;
 
     &,
     &:hover {
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
     }
   }
 }
 
 @mixin iui-legal-footer-separator {
-  margin: 0 $iui-s;
+  margin: 0 var(--iui-size-xs);
   width: 1px;
-  height: $iui-baseline;
-  background-color: var(--iui-text-color-muted);
+  height: var(--iui-size-s);
+  background-color: var(--iui-color-foreground-4);
 }
 
 @mixin iui-legal-footer-developer {
-  color: var(--iui-text-color-muted);
+  color: var(--iui-color-foreground-4);
 }

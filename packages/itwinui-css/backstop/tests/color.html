@@ -25,6 +25,7 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         margin: 0 -24px -24px -24px;
@@ -68,56 +69,44 @@
         background-color: var(--iui-color-background-negative);
       }
       .demo-status-overlay-primary {
-        background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+        background-color: var(--iui-color-background-subtle-primary);
       }
       .demo-status-overlay-positive {
-        background-color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-6));
+        background-color: var(--iui-color-background-subtle-positive);
       }
       .demo-status-overlay-warning {
-        background-color: rgba(var(--iui-color-foreground-warning-rgb), var(--iui-opacity-6));
+        background-color: var(--iui-color-background-subtle-warning);
       }
       .demo-status-overlay-negative {
-        background-color: rgba(var(--iui-color-foreground-negative-rgb), var(--iui-opacity-6));
+        background-color: var(--iui-color-background-subtle-negative);
       }
       .demo-text-primary {
         color: var(--iui-color-foreground-primary);
       }
-      .demo-text-primary-muted {
-        color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-3));
+      .demo-text-primary::selection {
+        background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-5));
       }
       .demo-text-positive {
         color: var(--iui-color-foreground-positive);
       }
-      .demo-text-positive-muted {
-        color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-3));
-      }
-      .demo-text-positive::selection,
-      .demo-text-positive-muted::selection {
-        background-color: rgba(var(--iui-color-foreground-positive-rgb), var(--iui-opacity-5));
+      .demo-text-positive::selection {
+        background-color: hsl(var(--iui-color-foreground-positive-hsl) / var(--iui-opacity-5));
       }
       .demo-text-warning {
         color: var(--iui-color-foreground-warning);
       }
-      .demo-text-warning-muted {
-        color: rgba(var(--iui-color-foreground-warning-rgb), var(--iui-opacity-3));
-      }
-      .demo-text-warning::selection,
-      .demo-text-warning-muted::selection {
-        background-color: rgba(var(--iui-color-foreground-warning-rgb), var(--iui-opacity-5));
+      .demo-text-warning::selection {
+        background-color: hsl(var(--iui-color-foreground-warning-hsl) / var(--iui-opacity-5));
       }
       .demo-text-negative {
         color: var(--iui-color-foreground-negative);
       }
-      .demo-text-negative-muted {
-        color: rgba(var(--iui-color-foreground-negative-rgb), var(--iui-opacity-3));
-      }
-      .demo-text-negative::selection,
-      .demo-text-negative-muted::selection {
-        background-color: rgba(var(--iui-color-foreground-negative-rgb), var(--iui-opacity-5));
+      .demo-text-negative::selection {
+        background-color: hsl(var(--iui-color-foreground-negative-hsl) / var(--iui-opacity-5));
       }
     </style>
   </head>
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Color</h1>
 

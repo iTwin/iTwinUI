@@ -1,40 +1,39 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-text-block-spacing {
   padding: 0;
-  margin: 0 0 $iui-line-height;
+  margin: 0 0 var(--iui-size-l);
 }
 
 @mixin iui-text($type: body) {
   @include iui-reset;
 
   $sizes: (
-    headline: $iui-font-size-headline,
-    title: $iui-font-size-title,
-    subheading: $iui-font-size-subheading,
-    leading: $iui-font-size-leading,
-    body: $iui-font-size,
-    small: $iui-font-size-small,
+    headline: var(--iui-font-size-5),
+    title: var(--iui-font-size-4),
+    subheading: var(--iui-font-size-3),
+    leading: var(--iui-font-size-2),
+    body: var(--iui-font-size-1),
+    small: var(--iui-font-size-0),
   );
 
   $weights: (
-    headline: $iui-font-weight-light,
-    title: $iui-font-weight-light,
-    subheading: $iui-font-weight-normal,
-    leading: $iui-font-weight-normal,
-    body: $iui-font-weight-normal,
-    small: $iui-font-weight-normal,
+    headline: var(--iui-font-weight-light),
+    title: var(--iui-font-weight-light),
+    subheading: var(--iui-font-weight-normal),
+    leading: var(--iui-font-weight-normal),
+    body: var(--iui-font-weight-normal),
+    small: var(--iui-font-weight-normal),
   );
   $line-heights: (
-    headline: 2 * $iui-line-height,
-    title: 1.5 * $iui-line-height,
-    subheading: 1.5 * $iui-line-height,
-    leading: $iui-line-height,
-    body: $iui-line-height,
-    small: $iui-line-height,
+    headline: calc(2 * var(--iui-size-l)),
+    title: calc(1.5 * var(--iui-size-l)),
+    subheading: calc(1.5 * var(--iui-size-l)),
+    leading: var(--iui-size-l),
+    body: var(--iui-size-l),
+    small: var(--iui-size-l),
   );
   $type: if(map-has-key($sizes, $type), $type, body);
   font-size: map-get($sizes, $type);

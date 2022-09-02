@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-tabs {
@@ -15,18 +14,18 @@
     position: relative;
     display: flex;
     align-items: center;
-    font-size: $iui-font-size;
-    min-height: $iui-component-height;
+    font-size: var(--iui-font-size-1);
+    min-height: calc(var(--iui-size-m) * 2.5);
     height: 100%;
     cursor: pointer;
-    color: var(--iui-text-color);
-    transition: background-color $iui-speed-fast ease-out;
+    color: var(--iui-color-foreground-2);
+    transition: background-color var(--iui-duration-1) ease-out;
 
     &.iui-active {
       color: var(--iui-color-foreground-primary);
 
       .iui-tab-icon {
-        fill: var(--iui-icon-color-primary);
+        fill: var(--iui-color-foreground-primary);
       }
 
       .iui-tab-description {
@@ -36,10 +35,10 @@
 
     &[disabled] {
       cursor: not-allowed;
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
 
       .iui-tab-icon {
-        fill: var(--iui-icon-color-actionable-disabled);
+        fill: var(--iui-color-foreground-5);
       }
     }
 
@@ -48,17 +47,17 @@
 
   .iui-tab-icon {
     @include iui-icon-style('m');
-    fill: var(--iui-icon-color-actionable);
-    transition: fill $iui-speed-fast ease-out;
+    fill: var(--iui-color-foreground-2);
+    transition: fill var(--iui-duration-1) ease-out;
 
     + .iui-tab-label {
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
   }
 
   .iui-tab-description {
     display: none;
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     opacity: var(--iui-opacity-3);
   }
 
@@ -71,14 +70,14 @@
       color: var(--iui-color-foreground-positive);
 
       .iui-tab-icon {
-        fill: var(--iui-icon-color-positive);
+        fill: var(--iui-color-foreground-positive);
       }
     }
   }
 
   ~ .iui-tabs-content {
-    padding-top: $iui-baseline;
-    padding-bottom: $iui-baseline;
+    padding-top: var(--iui-size-s);
+    padding-bottom: var(--iui-size-s);
   }
 }
 
@@ -105,7 +104,7 @@
     }
 
     &.iui-active::after {
-      height: $iui-xxs;
+      height: var(--iui-size-3xs);
     }
   }
 }
@@ -130,7 +129,7 @@
     }
 
     &.iui-active::after {
-      width: $iui-xxs;
+      width: var(--iui-size-3xs);
     }
   }
 }
@@ -144,7 +143,7 @@
 
   .iui-active::after {
     @media (prefers-reduced-motion: no-preference) {
-      transition: width $iui-speed-fast ease, height $iui-speed-fast ease;
+      transition: width var(--iui-duration-1) ease, height var(--iui-duration-1) ease;
     }
   }
 
@@ -166,24 +165,24 @@
 
   @at-root {
     .iui-horizontal &::after {
-      top: calc(100% - #{$iui-xxs});
-      height: $iui-xxs;
+      top: calc(100% - #{var(--iui-size-3xs)});
+      height: var(--iui-size-3xs);
       left: var(--stripe-left);
       width: var(--stripe-width);
       @media (prefers-reduced-motion: no-preference) {
-        transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
+        transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
       }
     }
   }
 
   @at-root {
     .iui-vertical &::after {
-      left: calc(100% - #{$iui-xxs});
-      width: $iui-xxs;
+      left: calc(100% - #{var(--iui-size-3xs)});
+      width: var(--iui-size-3xs);
       top: var(--stripe-top);
       height: var(--stripe-height);
       @media (prefers-reduced-motion: no-preference) {
-        transition: top $iui-speed-fast ease-out;
+        transition: top var(--iui-duration-1) ease-out;
       }
     }
   }

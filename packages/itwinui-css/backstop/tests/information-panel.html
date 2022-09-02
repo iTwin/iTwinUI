@@ -38,6 +38,7 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
     </style>
     <script>
@@ -118,7 +119,7 @@
     </style>
   </head>
 
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Information panel</h1>
     <hr />
@@ -1224,7 +1225,8 @@
               </label>
               <input
                 value="Beta (Gold Master)"
-                class="iui-input iui-small"
+                class="iui-input"
+                data-iui-size="small"
                 id="title-2"
               />
 
@@ -1234,7 +1236,8 @@
               <input
                 readonly
                 value="03:36"
-                class="iui-input iui-small"
+                class="iui-input"
+                data-iui-size="small"
               />
 
               <label
@@ -1245,7 +1248,8 @@
               </label>
               <input
                 value="DJ Terry"
-                class="iui-input iui-small"
+                class="iui-input"
+                data-iui-size="small"
                 id="authors-2"
               />
 
@@ -1255,7 +1259,8 @@
               <input
                 readonly
                 value="Stereo"
-                class="iui-input iui-small"
+                class="iui-input"
+                data-iui-size="small"
               />
 
               <label class="iui-input-label">
@@ -1264,7 +1269,8 @@
               <input
                 readonly
                 value="44.1 kHz"
-                class="iui-input iui-small"
+                class="iui-input"
+                data-iui-size="small"
               />
 
               <label
@@ -1275,7 +1281,8 @@
               </label>
               <input
                 value="DJ Terry's Super Fire Mixtape"
-                class="iui-input iui-small"
+                class="iui-input"
+                data-iui-size="small"
                 id="album-2"
               />
 
@@ -1287,7 +1294,8 @@
               </label>
               <div class="iui-input-container iui-inline-icon">
                 <input
-                  class="iui-input iui-small"
+                  class="iui-input"
+                  data-iui-size="small"
                   id="musical-genre-2"
                   role="combobox"
                   aria-autocomplete="list"
@@ -1310,7 +1318,8 @@
               </label>
               <input
                 value="2021"
-                class="iui-input iui-small"
+                class="iui-input"
+                data-iui-size="small"
                 id="year-recorded-2"
               />
 

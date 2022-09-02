@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-table {
@@ -20,6 +19,8 @@
   }
   display: flex;
   flex-shrink: 0;
+  border-top-left-radius: var(--iui-border-radius-1);
+  border-top-right-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-table-header {
@@ -34,8 +35,8 @@
 
   .iui-table-cell:not(.iui-slot) {
     @include iui-focus;
-    column-gap: $iui-xs;
-    padding-block: $iui-baseline * 0.5;
+    column-gap: var(--iui-size-2xs);
+    padding-block: calc(var(--iui-size-s) * 0.5);
 
     &.iui-actionable {
       cursor: pointer;
@@ -46,12 +47,12 @@
     }
 
     .iui-table-filter-button:not([data-iui-active='true']) {
-      visibility: hidden;
+      opacity: 0;
     }
 
     > .iui-table-resizer {
       height: 100%;
-      width: $iui-m;
+      width: var(--iui-size-m);
       position: absolute;
       top: 0;
       right: 0;
@@ -63,14 +64,14 @@
 
       > .iui-table-resizer-bar {
         height: 100%;
-        width: $iui-xxs;
+        width: var(--iui-size-3xs);
         margin: 0 auto;
-        transition: background-color $iui-speed-fast ease-out, width $iui-speed-fast ease-out;
+        transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
         background-color: var(--iui-color-background-border);
       }
 
       &:hover > .iui-table-resizer-bar {
-        width: $iui-xs;
+        width: var(--iui-size-2xs);
         background-color: var(--iui-color-foreground-primary);
       }
     }
@@ -86,7 +87,7 @@
 
       .iui-table-sort,
       .iui-table-filter-button {
-        visibility: visible;
+        opacity: 1;
       }
     }
   }
@@ -94,7 +95,7 @@
   .iui-table-reorder-bar {
     position: absolute;
     height: 100%;
-    width: $iui-xxs;
+    width: var(--iui-size-3xs);
   }
 
   .iui-table-reorder-column-right {
@@ -118,7 +119,8 @@
 
   // Sort icon
   .iui-table-sort {
-    visibility: hidden;
+    opacity: 0;
+    fill: var(--iui-color-foreground-4);
   }
 
   // Sorted column
@@ -126,8 +128,8 @@
     background-color: var(--iui-color-background-4);
 
     .iui-table-sort {
-      visibility: visible;
-      fill: var(--iui-icon-color-actionable);
+      opacity: 1;
+      fill: var(--iui-color-foreground-2);
     }
   }
 }
@@ -135,6 +137,10 @@
 @mixin iui-table-row {
   min-width: 100%;
   display: flex;
+
+  &:last-of-type {
+    border-radius: inherit;
+  }
 
   @at-root .iui-table-header & {
     flex-grow: 1;
@@ -145,34 +151,30 @@
       border-bottom: solid 1px transparent;
       border-bottom-color: var(--iui-color-background-border);
       background-color: var(--iui-color-background-1);
-      transition: border $iui-speed-fast ease-out;
+      transition: border var(--iui-duration-1) ease-out;
     }
 
     > .iui-slot > .iui-table-more-options {
-      visibility: hidden;
+      opacity: 0;
     }
 
-    &:hover:not([aria-disabled='true']) {
+    &:where(:hover:not([aria-disabled='true'])) {
       .iui-table-cell {
-        background: linear-gradient(
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-        ),
-          linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+        background-color: var(--iui-color-background-transparent-hover);
       }
 
       > .iui-slot:not([aria-disabled='true']) > .iui-table-more-options {
-        visibility: visible;
+        opacity: 1;
       }
     }
 
     &:focus-within > .iui-slot:not([aria-disabled='true']) > .iui-table-more-options {
-      visibility: visible;
+      opacity: 1;
     }
 
     .iui-table-row-expander > .iui-button-icon {
       @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed-fast ease-out;
+        transition: transform var(--iui-duration-1) ease-out;
       }
     }
 
@@ -212,16 +214,12 @@
     &[aria-selected='true'] {
       .iui-table-cell {
         border-color: var(--iui-color-foreground-primary);
-        background: linear-gradient(
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-          rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-        ),
-          linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+        background-color: var(--iui-color-background-subtle-primary);
       }
 
       + [aria-selected='true'] .iui-table-cell {
         border-bottom-color: transparent;
-        border-top-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-4));
+        border-top-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-4));
       }
 
       &:last-child .iui-table-cell {
@@ -245,13 +243,13 @@
 
     // #region Statuses & states
     &.iui-new {
-      font-weight: $iui-font-weight-semibold;
+      font-weight: var(--iui-font-weight-semibold);
 
       > .iui-main-column::before {
         content: '•';
         position: absolute;
         left: 0;
-        font-size: $iui-font-size-title;
+        font-size: var(--iui-font-size-4);
         color: var(--iui-color-foreground-positive);
       }
     }
@@ -260,16 +258,16 @@
     &.iui-table-expanded-content[aria-disabled='true'] {
       font-style: italic;
       cursor: not-allowed;
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
 
       &.iui-slot:hover > .iui-table-more-options {
-        visibility: hidden;
+        opacity: 0;
       }
 
       img,
       svg:not(.iui-radial),
       .iui-avatar {
-        filter: $iui-icon-color-multicolor-disabled;
+        filter: grayscale(100%);
       }
     }
 
@@ -294,7 +292,7 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-end;
-  margin-right: $iui-sm;
+  margin-right: var(--iui-size-s);
 
   .iui-table-cell-end-icon {
     // Hardcoded size of the borderless button so that the icons are centered
@@ -316,25 +314,28 @@
   @include iui-scroll-snapping('.iui-table-row');
   background-color: var(--iui-color-background-1);
 
+  &:last-child {
+    border-bottom-left-radius: var(--iui-border-radius-1);
+    border-bottom-right-radius: var(--iui-border-radius-1);
+  }
+
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
-    background: linear-gradient(
-      rgba(var(--iui-color-foreground-body-rgb), 0.02),
-      rgba(var(--iui-color-foreground-body-rgb), 0.02)
-    ),
-      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+    @include pseudo-content {
+      background-color: hsl(var(--iui-color-foreground-1-hsl) / 0.02);
+    }
   }
 
   // Empty & loading states
   > .iui-table-empty {
     text-align: center;
-    padding: $iui-xl;
+    padding: var(--iui-size-xl);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
     align-self: center;
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
     background-color: var(--iui-color-background-1);
   }
 }
@@ -343,14 +344,15 @@
   align-items: center;
   display: flex;
   flex-grow: 1;
-  min-width: $iui-xxl;
-  padding-left: $iui-m;
-  flex-basis: $iui-xxl;
+  min-width: var(--iui-size-2xl);
+  padding-left: var(--iui-size-m);
+  flex-basis: var(--iui-size-2xl);
   position: relative;
   word-break: break-word;
 
   &:first-of-type {
     border-left: solid 1px transparent;
+    border-bottom-left-radius: inherit;
   }
 
   &:last-of-type {
@@ -358,14 +360,14 @@
   }
 
   &.iui-slot {
-    width: $iui-l * 2;
+    width: calc(var(--iui-size-l) * 2);
     padding: 0;
     flex-grow: 0;
     min-width: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-basis: $iui-l * 2;
+    flex-basis: calc(var(--iui-size-l) * 2);
   }
 
   &.iui-table-cell-sticky {
@@ -376,7 +378,7 @@
   }
 
   &:not(.iui-slot):last-child {
-    padding-right: $iui-m;
+    padding-right: var(--iui-size-m);
   }
 
   &[data-iui-status='positive'] {
@@ -408,23 +410,21 @@
 @mixin iui-table-row-status($status) {
   .iui-table-cell:first-of-type,
   + .iui-table-expanded-content {
-    box-shadow: inset $iui-xxs 0 0 0 var(--iui-icon-color-#{$status});
+    box-shadow: inset var(--iui-size-3xs) 0 0 0 var(--iui-color-foreground-#{$status});
 
     @include iui-text-selection($status);
   }
 
   .iui-table-cell-end-icon svg {
-    fill: var(--iui-icon-color-#{$status});
+    fill: var(--iui-color-foreground-#{$status});
   }
 }
 
 @mixin iui-table-cell-status($status) {
-  background: linear-gradient(
-    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6)),
-    rgba(var(--iui-color-foreground-#{$status}-rgb), var(--iui-opacity-6))
-  ),
-    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
   @include iui-text-selection($status);
+  @include pseudo-content {
+    background-color: hsl(var(--iui-color-foreground-#{$status}-hsl) / var(--iui-opacity-6));
+  }
 }
 
 @mixin iui-table-cell-icon {
@@ -441,13 +441,13 @@
   }
 
   .iui-table-cell-start-icon {
-    margin-right: $iui-s;
+    margin-right: var(--iui-size-xs);
   }
 
   .iui-table-cell-end-icon {
-    width: $iui-l;
-    height: $iui-l;
-    margin-right: $iui-sm;
+    width: var(--iui-size-l);
+    height: var(--iui-size-l);
+    margin-right: var(--iui-size-s);
     margin-left: auto;
   }
 }
@@ -456,7 +456,7 @@
   position: absolute;
   top: -1px;
   bottom: -1px;
-  width: $iui-l;
+  width: var(--iui-size-l);
   pointer-events: none;
 
   // Prevents scrollbar from appearing because `top: -1px` and `bottom: -1px`
@@ -473,11 +473,11 @@
   @if $side == left {
     left: 0;
     transform: translate(-100%);
-    box-shadow: inset -10px 0 5px -10px $iui-elevation-color;
+    box-shadow: inset -10px 0 5px -10px var(--iui-shadow-color);
   }
   @if $side == right {
     right: 0;
     transform: translate(100%);
-    box-shadow: inset 10px 0 5px -10px $iui-elevation-color;
+    box-shadow: inset 10px 0 5px -10px var(--iui-shadow-color);
   }
 }

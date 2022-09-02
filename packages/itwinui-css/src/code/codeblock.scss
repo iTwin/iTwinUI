@@ -1,20 +1,19 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-codeblock {
   @include iui-reset;
-  margin: ($iui-baseline * 0.5) 0;
+  margin: calc(var(--iui-size-s) * 0.5) 0;
 
   > .iui-title-bar {
     display: flex;
     align-items: center;
-    border-radius: $iui-border-radius $iui-border-radius 0 0;
+    border-radius: var(--iui-border-radius-1) var(--iui-border-radius-1) 0 0;
     background-color: var(--iui-color-background-3);
 
     > .iui-title {
-      margin-left: $iui-sm;
+      margin-left: var(--iui-size-s);
       user-select: all;
     }
 
@@ -28,7 +27,7 @@
     display: grid;
     overflow-x: auto;
     overflow-y: auto;
-    border-radius: 0 0 $iui-border-radius $iui-border-radius;
+    border-radius: 0 0 var(--iui-border-radius-1) var(--iui-border-radius-1);
     white-space: normal;
     border: 1px solid var(--iui-color-background-3);
     @include iui-focus;
@@ -39,21 +38,21 @@
       white-space: nowrap;
       hyphens: auto;
       counter-increment: section;
-      font-family: $iui-monospace;
+      font-family: var(--iui-font-mono);
       background-color: var(--iui-color-background-1);
 
       &:nth-child(even) {
-        background: rgba(var(--iui-color-foreground-body-rgb), 0.02);
+        background-color: hsl(var(--iui-color-foreground-1-hsl) / 0.02);
       }
 
       &::before {
         content: counter(section);
         text-align: right;
         display: inline-block;
-        padding: 0 $iui-s;
-        width: $iui-l;
+        padding: 0 var(--iui-size-xs);
+        width: calc(var(--iui-size-l) + 2 * var(--iui-size-xs)); // 2 * iui-size-xs for the padding
         background-color: var(--iui-color-background-2);
-        color: var(--iui-text-color-muted);
+        color: var(--iui-color-foreground-4);
       }
     }
   }

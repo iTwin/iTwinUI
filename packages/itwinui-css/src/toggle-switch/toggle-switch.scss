@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-toggle-switch-wrapper {
@@ -8,18 +7,18 @@
   display: grid;
   grid-template-areas: 'toggle';
   align-items: center;
-  gap: $iui-s;
-  font-size: $iui-font-size;
+  gap: var(--iui-size-xs);
+  font-size: var(--iui-font-size-1);
   width: fit-content;
   user-select: none;
   cursor: pointer;
   isolation: isolate;
-  color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+  color: var(--iui-color-foreground-2);
 
   // Disabled
   &.iui-disabled {
     cursor: not-allowed;
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
     @media (forced-colors: active) {
       color: GrayText;
     }
@@ -37,8 +36,8 @@
 }
 
 @mixin iui-toggle-switch {
-  $iui-toggle-switch-handle-size: $iui-icon-default;
-  $iui-toggle-switch-handle-offset: $iui-component-offset;
+  $iui-toggle-switch-handle-size: var(--iui-size-m);
+  $iui-toggle-switch-handle-offset: var(--iui-size-2xs);
   $iui-toggle-switch-border-thickness: 1px;
 
   @include iui-reset;
@@ -48,11 +47,11 @@
   position: relative;
   cursor: pointer;
   appearance: none;
-  width: ($iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2)) * 2;
-  border-radius: $iui-border-radius-round;
-  transition: background-color $iui-speed-fast ease-out, border-color $iui-speed-fast ease-out;
+  width: calc(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset * 2) * 2);
+  border-radius: var(--iui-border-radius-round);
+  transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
   background-color: var(--iui-color-background-1);
-  border: $iui-toggle-switch-border-thickness solid rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  border: $iui-toggle-switch-border-thickness solid var(--iui-color-foreground-4);
 
   &-label {
     grid-area: label;
@@ -65,23 +64,23 @@
     margin: $iui-toggle-switch-handle-offset;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    transition: background-color $iui-speed-fast ease-out, opacity $iui-speed-fast ease-out;
+    transition: background-color var(--iui-duration-1) ease-out, opacity var(--iui-duration-1) ease-out;
     z-index: 2;
     @media (prefers-reduced-motion: no-preference) {
-      transition: transform $iui-speed-fast ease-out, background-color $iui-speed-fast ease-out,
-        opacity $iui-speed-fast ease-out;
+      transition: transform var(--iui-duration-1) ease-out, background-color var(--iui-duration-1) ease-out,
+        opacity var(--iui-duration-1) ease-out;
     }
   }
 
   // #region Unchecked toggle switch
   background-color: var(--iui-color-background-1);
-  border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-4));
+  border-color: var(--iui-color-foreground-4);
   @media (forced-colors: active) {
     border-color: CanvasText;
   }
 
   &::after {
-    background-color: var(--iui-color-foreground-body);
+    background-color: var(--iui-color-foreground-1);
     opacity: var(--iui-opacity-2);
     @media (forced-colors: active) {
       background-color: CanvasText;
@@ -90,14 +89,14 @@
   }
 
   &:hover {
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    border-color: var(--iui-color-foreground-2);
     @media (forced-colors: active) {
       border-color: CanvasText;
     }
   }
 
   @include focus-visible {
-    border-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-2));
+    border-color: var(--iui-color-foreground-2);
   }
   // #endregion Unchecked toggle switch
 
@@ -111,7 +110,7 @@
     }
 
     &::after {
-      transform: translateX($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset);
+      transform: translateX(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset));
       background-color: var(--iui-color-foreground-accessory);
       opacity: var(--iui-opacity-2);
       @media (forced-colors: active) {
@@ -148,7 +147,7 @@
     }
 
     &::after {
-      background-color: var(--iui-color-foreground-body);
+      background-color: var(--iui-color-foreground-1);
       opacity: var(--iui-opacity-5);
 
       @media (forced-colors: active) {
@@ -159,7 +158,7 @@
 
     ~ .iui-toggle-switch-icon {
       opacity: 0;
-      fill: var(--iui-icon-color-actionable);
+      fill: var(--iui-color-foreground-2);
     }
 
     &:checked {
@@ -189,11 +188,11 @@
     grid-area: toggle;
     width: $iui-toggle-switch-handle-size;
     height: $iui-toggle-switch-handle-size;
-    padding: $iui-toggle-switch-handle-size * 0.125;
-    margin: $iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness;
+    padding: calc($iui-toggle-switch-handle-size * 0.125);
+    margin: calc($iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness);
     display: flex;
     z-index: 1;
-    transition: opacity $iui-speed-fast ease-out;
+    transition: opacity var(--iui-duration-1) ease-out;
     pointer-events: none;
     fill: var(--iui-color-foreground-accessory);
     @media (forced-colors: active) {

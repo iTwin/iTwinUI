@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../../style/index';
 @import '../mixins';
 
 /// Container for grouping inputs with a label, an icon and a status message.
@@ -14,10 +13,10 @@
 
   &.iui-inline-icon {
     > .iui-input {
-      padding-right: $iui-icon-default + $iui-l;
+      padding-right: var(--iui-component-height);
 
       &:last-child {
-        padding-right: $iui-sm;
+        padding-right: var(--iui-size-s);
       }
     }
   }
@@ -30,7 +29,7 @@
 
     // add margin to the icon if it is below input
     &:not(.iui-inline-icon) > .iui-input-icon {
-      margin-top: $iui-component-offset;
+      margin-top: var(--iui-size-2xs);
     }
   }
 
@@ -41,7 +40,7 @@
   }
 
   .iui-input-group .iui-toggle-switch-wrapper {
-    padding: ($iui-baseline * 0.5) 0;
+    padding: calc(var(--iui-size-s) * 0.5) 0;
   }
 
   // #region Cursors
@@ -57,7 +56,7 @@
   // Appropriate spacing even if no text label is given
   .iui-checkbox-wrapper,
   .iui-radio-wrapper {
-    min-height: $iui-line-height;
+    min-height: var(--iui-size-l);
   }
 
   &.iui-inline-label {
@@ -71,10 +70,10 @@
 
     > .iui-input-group {
       display: flex;
-      gap: $iui-m;
+      gap: var(--iui-size-m);
 
       &:not(:last-child) {
-        margin-right: $iui-m;
+        margin-right: var(--iui-size-m);
       }
     }
   }
@@ -98,13 +97,13 @@
 /// Text label for an input.
 /// Supports .iui-required modifier to show red asterisk.
 @mixin iui-input-label-styling {
-  font-weight: $iui-font-weight-semibold;
-  margin-bottom: $iui-component-offset;
+  font-weight: var(--iui-font-weight-semibold);
+  margin-bottom: var(--iui-size-2xs);
 
   &.iui-required {
     &::after {
       content: '*';
-      margin-left: $iui-xs;
+      margin-left: var(--iui-size-2xs);
       color: var(--iui-color-foreground-negative);
     }
   }
@@ -112,10 +111,10 @@
 
 /// Modifier on iui-input-label-styling to place it inline.
 @mixin iui-input-label-inline {
-  margin: 0 $iui-m 0 0;
+  margin: 0 var(--iui-size-m) 0 0;
 
   &.iui-required {
-    margin-right: $iui-xs * 1.5;
+    margin-right: calc(var(--iui-size-2xs) * 1.5 - 1px);
   }
 }
 
@@ -142,10 +141,10 @@
 
 /// Message shown below input
 @mixin iui-input-message {
-  font-size: $iui-font-size-small;
+  font-size: var(--iui-font-size-0);
   grid-area: message;
-  margin-top: $iui-component-offset;
-  color: var(--iui-text-color-muted);
+  margin-top: var(--iui-size-2xs);
+  color: var(--iui-color-foreground-4);
 
   a {
     user-select: none;
@@ -160,7 +159,7 @@
   align-self: center;
 
   &:not(:last-child) {
-    margin-right: $iui-xs;
+    margin-right: var(--iui-size-2xs);
   }
 }
 
@@ -168,7 +167,7 @@
 @mixin iui-input-icon-inline {
   grid-area: inputs;
   justify-self: end;
-  margin: 0 ($iui-sm + $iui-xxs) 0 0;
+  margin: 0 calc(var(--iui-size-xs) + 1px) 0 0;
   position: relative;
 
   svg {
@@ -187,16 +186,17 @@
 
   &.iui-actionable {
     align-items: center;
-    height: 90%;
-    margin-right: $iui-xxs;
-    padding: 0 $iui-sm;
+    height: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
+    margin-right: 1px;
+    padding-inline: calc(var(--iui-size-xs) + 1px);
     cursor: pointer;
+    box-sizing: content-box;
 
     @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
 
     svg {
-      fill: var(--iui-icon-color-actionable);
-      transition: transform $iui-speed-fast ease-out;
+      fill: var(--iui-color-foreground-2);
+      transition: transform var(--iui-duration-1) ease-out;
     }
 
     &.iui-open svg {
@@ -208,7 +208,7 @@
     cursor: not-allowed;
 
     svg {
-      fill: var(--iui-icon-color-actionable-disabled);
+      fill: var(--iui-color-foreground-5);
     }
   }
 }
@@ -233,33 +233,35 @@
 
       &:hover {
         text-decoration: none;
-        color: var(--iui-color-foreground-#{$status}-overlay);
+        color: var(--iui-color-foreground-#{$status}-hover);
       }
     }
   }
 
   .iui-input {
-    padding-bottom: $iui-component-padding-vertical - 1px;
+    // #region Bottom padding to accomodate for status stripe
+    padding-bottom: calc(var(--iui-size-2xs) - 1px);
 
-    &.iui-small {
-      padding-bottom: $iui-component-padding-vertical-small - 1px;
+    &[data-iui-size='small'] {
+      padding-bottom: 0;
     }
 
-    &.iui-large {
-      padding-bottom: $iui-component-padding-vertical-large - 1px;
+    &[data-iui-size='large'] {
+      padding-bottom: calc(var(--iui-size-xs) - 1px);
     }
+    // #endregion
 
-    border-bottom: $iui-xxs solid var(--iui-color-foreground-#{$status});
+    border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});
 
     &:focus {
-      border-bottom: $iui-xxs solid var(--iui-color-foreground-#{$status});
+      border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});
       outline: 2px solid var(--iui-color-foreground-#{$status});
       outline-offset: -2px;
     }
   }
 
   .iui-input-with-icon {
-    --_hover-color: var(--iui-color-foreground-#{$status});
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-foreground-#{$status});
     --_focus-color: var(--iui-color-foreground-#{$status});
   }
 
@@ -272,7 +274,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      height: $iui-xxs;
+      height: var(--iui-size-3xs);
       background-color: var(--iui-color-foreground-#{$status});
     }
   }

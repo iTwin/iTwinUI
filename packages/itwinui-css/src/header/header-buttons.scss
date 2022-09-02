@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
+@import '../side-navigation/side-navigation';
 
 @mixin iui-header-brand {
   height: 100%;
@@ -18,7 +18,7 @@
       @include iui-focus;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
-      transition: background-color $iui-speed-fast ease-out;
+      transition: background-color var(--iui-duration-1) ease-out;
       @media (forced-colors: active) {
         border: 1px solid CanvasText;
         border-top-width: 0;
@@ -33,7 +33,7 @@
       // #endregion
 
       &:hover {
-        background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+        background-color: var(--iui-color-background-transparent-hover);
       }
     }
   }
@@ -46,19 +46,19 @@
 @mixin iui-header-brand-icon {
   @include iui-icon-style('l');
   margin: 0 $iui-side-navigation-icon-margins;
-  fill: var(--iui-icon-color-actionable);
+  fill: var(--iui-color-foreground-2);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed-fast ease-out;
+    transition: transform var(--iui-duration-1) ease-out;
   }
 }
 
 @mixin iui-header-brand-label {
-  margin-right: $iui-sm;
+  margin-right: var(--iui-size-s);
   font-size: var(--_iui-header-brand-label-font-size);
   @media (prefers-reduced-motion: no-preference) {
-    transition: font-size $iui-speed-fast ease-out;
+    transition: font-size var(--iui-duration-1) ease-out;
   }
   @media (max-width: 991px) {
     display: none;
@@ -67,12 +67,12 @@
 
 @mixin iui-header-breadcrumb-item {
   max-width: 25vw;
-  transition: background-color $iui-speed-fast ease-out;
+  transition: background-color var(--iui-duration-1) ease-out;
   height: 100%;
   display: flex;
   overflow: hidden;
   position: relative;
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
   box-sizing: border-box;
   @media (forced-colors: active) {
     color: LinkText;
@@ -81,13 +81,13 @@
 
   // Hover state
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-transparent-hover);
   }
 
   // Active state
   &[aria-current] {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
-    box-shadow: 0 $iui-xxs 0 0 currentColor;
+    background-color: var(--iui-color-background-subtle-primary);
+    box-shadow: 0 var(--iui-size-3xs) 0 0 currentColor;
     color: var(--iui-color-foreground-primary);
     @media (forced-colors: active) {
       color: LinkText;
@@ -99,7 +99,7 @@
   &[aria-disabled='true'] {
     cursor: not-allowed;
     background-color: transparent;
-    color: var(--iui-text-color-placeholder);
+    color: var(--iui-color-foreground-5);
 
     // Disabled active state
     &[aria-current] {
@@ -130,14 +130,14 @@
   border-radius: 0;
   max-width: 25vw;
   overflow: hidden;
-  padding-left: $iui-sm;
-  padding-right: $iui-sm;
+  padding-left: var(--iui-size-s);
+  padding-right: var(--iui-size-s);
   box-sizing: border-box;
   font-family: inherit;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color $iui-speed-fast ease-out;
+  transition: background-color var(--iui-duration-1) ease-out;
   color: inherit;
-  gap: $iui-sm;
+  gap: var(--iui-size-s);
   cursor: pointer;
   @media (forced-colors: active) {
     border: 1px solid;
@@ -163,16 +163,16 @@
 }
 
 @mixin iui-header-breadcrumb-button-split {
-  padding: 0 $iui-s;
-  margin-left: -$iui-s;
+  padding: 0 var(--iui-size-xs);
+  margin-left: calc(0px - var(--iui-size-xs));
   flex-shrink: 0;
 
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-body-rgb), var(--iui-opacity-6));
+    background-color: hsl(var(--iui-color-foreground-1-hsl) / var(--iui-opacity-6));
   }
 
   @at-root [aria-current] &:hover {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
   }
 
   &:disabled,
@@ -189,7 +189,7 @@
   @include iui-icon-style('m');
   fill: currentColor;
   flex-shrink: 0;
-  margin-right: -#{$iui-xs};
+  margin-right: calc(0px - var(--iui-size-2xs));
 
   @at-root .iui-header-breadcrumb-button-split & {
     margin-right: 0;
@@ -209,10 +209,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: $iui-font-size;
+  font-size: var(--iui-font-size-1);
   text-align: left;
   overflow: hidden;
-  transition: color $iui-speed-fast ease-out;
+  transition: color var(--iui-duration-1) ease-out;
 
   &-label,
   &-sublabel {
@@ -222,11 +222,11 @@
   }
 
   &-sublabel {
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     opacity: var(--iui-opacity-3);
     @media (prefers-reduced-motion: no-preference) {
-      transition: visibility 0s linear 0s, width $iui-speed-fast ease-out, height $iui-speed-fast ease-out,
-        opacity $iui-speed-fast ease-out;
+      transition: visibility 0s linear 0s, width var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out,
+        opacity var(--iui-duration-1) ease-out;
     }
 
     @at-root {
@@ -248,16 +248,16 @@
 @mixin iui-header-breadcrumb-button-icon {
   @include iui-icon-style('l');
   background-color: var(--iui-color-background-3);
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   display: inline-flex;
   flex-shrink: 0;
   box-sizing: border-box;
-  padding: $iui-xs;
-  fill: var(--iui-icon-color);
+  padding: var(--iui-size-2xs);
+  fill: var(--iui-color-foreground-4);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed-fast ease-out;
+    transition: transform var(--iui-duration-1) ease-out;
   }
   @media (forced-colors: active) {
     fill: LinkText;
@@ -267,9 +267,9 @@
     img#{&},
     div#{&} {
       padding: 0;
-      transition: filter $iui-speed-fast ease-out;
+      transition: filter var(--iui-duration-1) ease-out;
       @media (prefers-reduced-motion: no-preference) {
-        transition: filter $iui-speed-fast ease-out, transform $iui-speed-fast ease-out;
+        transition: filter var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
       }
     }
 
@@ -292,7 +292,7 @@
     :disabled &,
     [aria-disabled='true'] & {
       background-color: var(--iui-color-background-2);
-      fill: var(--iui-icon-color-actionable-disabled);
+      fill: var(--iui-color-foreground-5);
 
       @media (forced-colors: active) {
         fill: GrayText;

@@ -1,6 +1,3 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './space';
-
-$iui-baseline: $iui-sm; // 12px
-$iui-line-height: $iui-baseline * 2; // 24px
+@import './visually-hidden';

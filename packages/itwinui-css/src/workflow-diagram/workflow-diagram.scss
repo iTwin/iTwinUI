@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../stepper/index';
 
 @mixin iui-workflow-diagram {
@@ -11,7 +10,7 @@
 @mixin iui-workflow-diagram-step {
   --_iui-workflow-diagram-circle-background-color: var(--iui-color-background-positive);
   --_iui-workflow-diagram-circle-border-color: var(--iui-color-background-positive);
-  --_iui-workflow-diagram-circle-border-radius: 0;
+  --_iui-workflow-diagram-circle-border-radius: #{var(--iui-border-radius-1)};
   --_iui-workflow-diagram-circle-text-color: var(--iui-color-foreground-accessory);
   --_iui-workflow-diagram-track-before-color: var(--iui-color-foreground-positive);
   --_iui-workflow-diagram-track-after-color: var(--iui-color-foreground-positive);
@@ -26,14 +25,14 @@
   &:last-of-type {
     --_iui-workflow-diagram-circle-background-color: var(--iui-color-background-1);
     --_iui-workflow-diagram-circle-border-color: var(--iui-color-foreground-positive);
-    --_iui-workflow-diagram-circle-border-radius: #{$iui-sm};
+    --_iui-workflow-diagram-circle-border-radius: #{var(--iui-size-s)};
     --_iui-workflow-diagram-circle-text-color: var(--iui-color-foreground-positive);
   }
 
   &::before,
   &::after {
     content: '';
-    height: $iui-xxs;
+    height: var(--iui-size-3xs);
     flex: 1 2 auto;
   }
 
@@ -55,8 +54,8 @@
 }
 
 @mixin iui-workflow-diagram-content {
-  padding: 0 $iui-m;
-  font-weight: $iui-font-weight-normal;
+  padding: 0 var(--iui-size-m);
+  font-weight: var(--iui-font-weight-normal);
   text-align: center;
   background-color: var(--_iui-workflow-diagram-circle-background-color);
   border: 1px solid var(--_iui-workflow-diagram-circle-border-color);
