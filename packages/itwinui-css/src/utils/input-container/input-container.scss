@@ -261,7 +261,7 @@
   }
 
   .iui-input-with-icon {
-    --_hover-color: var(--iui-color-foreground-#{$status});
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-foreground-#{$status});
     --_focus-color: var(--iui-color-foreground-#{$status});
   }
 

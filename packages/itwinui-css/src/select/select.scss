@@ -26,7 +26,7 @@
   &.iui-disabled {
     background-color: var(--iui-color-background-disabled);
     border-color: var(--iui-color-background-disabled);
-    --_hover-color: var(--iui-color-background-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-background-disabled);
     cursor: not-allowed;
   }
 

@@ -23,8 +23,8 @@
 
   &:hover {
     > :first-child {
-      // --_hover-color can be used to control this from outside
-      border-color: var(--_hover-color, var(--iui-color-foreground-2));
+      // --_iui-input-with-icon-hover-border-color can be used to control this from outside
+      border-color: var(--_iui-input-with-icon-hover-border-color, var(--iui-color-foreground-2));
     }
   }
 }
