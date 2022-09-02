@@ -18,6 +18,8 @@ $tick-height: $iui-baseline; // 12px
 
 @mixin iui-slider-endpoints {
   user-select: all;
+  display: flex;
+  justify-content: center;
 
   svg {
     @include iui-icon-style('m');
@@ -159,9 +161,7 @@ $tick-height: $iui-baseline; // 12px
   .iui-slider-max {
     margin-top: $iui-xxs;
     width: 24px;
-    display: flex;
     flex-direction: row;
-    justify-content: center;
 
     svg {
       margin-top: $iui-xs;
@@ -227,9 +227,7 @@ $tick-height: $iui-baseline; // 12px
     text-align: center;
     transform: translate(-50%, 0);
     height: 24px;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 
   .iui-slider-min {
