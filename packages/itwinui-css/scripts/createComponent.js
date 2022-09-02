@@ -101,6 +101,7 @@ const demoHtmlFactory = (directory) => {
     <title>${componentName} | iTwinUI</title>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
     </style>
   </head>

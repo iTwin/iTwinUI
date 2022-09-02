@@ -1,16 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-code {
   @include iui-reset;
   display: inline-block;
-  font-family: $iui-monospace;
-  font-size: $iui-font-size-small;
-  padding: 0 $iui-xs;
-  border-radius: $iui-border-radius;
+  font-family: var(--iui-font-mono);
+  font-size: var(--iui-font-size-0);
+  padding: 0 var(--iui-size-2xs);
+  border-radius: var(--iui-border-radius-1);
   user-select: all;
   background-color: var(--iui-color-background-3);
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
 }

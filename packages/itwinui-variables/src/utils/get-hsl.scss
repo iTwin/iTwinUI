@@ -1,0 +1,8 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use 'sass:color';
+
+/// returns the HSL values of a color as a space-separated list
+@function get-hsl($color) {
+  @return color.hue($color) color.saturation($color) color.lightness($color);
+}

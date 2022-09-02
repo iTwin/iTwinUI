@@ -1,11 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/baseline';
-@import '../style/space';
-
-$iui-table-density-vertical: $iui-baseline * 1.5;
-$iui-table-density-vertical-condensed: $iui-baseline;
-$iui-table-density-vertical-extra-condensed: $iui-baseline * 0.5;
-$iui-table-density: $iui-table-density-vertical $iui-m;
-$iui-table-density-condensed: $iui-table-density-vertical-condensed $iui-m;
-$iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed $iui-m;
+$iui-table-density-vertical: calc(var(--iui-size-s) * 1.5);
+$iui-table-density-vertical-condensed: var(--iui-size-s);
+$iui-table-density-vertical-extra-condensed: calc(var(--iui-size-s) * 0.5);
+$iui-table-density: $iui-table-density-vertical var(--iui-size-m);
+$iui-table-density-condensed: $iui-table-density-vertical-condensed var(--iui-size-m);
+$iui-table-density-extra-condensed: $iui-table-density-vertical-extra-condensed var(--iui-size-m);

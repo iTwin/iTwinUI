@@ -1,11 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../breadcrumbs/index';
 
 @mixin iui-page-header {
-  --_iui-header-brand-label-font-size: #{$iui-font-size-leading};
-  --_iui-header-height: #{$iui-baseline * 5};
+  --_iui-header-brand-label-font-size: var(--iui-font-size-2);
+  --_iui-header-height: calc(var(--iui-size-s) * 5);
   --_iui-header-icon-scale: none;
 
   @include iui-reset;
@@ -15,17 +14,17 @@
   height: var(--_iui-header-height);
   user-select: none;
   background-color: var(--iui-color-background-1);
-  border-bottom: $iui-xxs solid var(--iui-color-background-border);
-  color: var(--iui-text-color);
+  border-bottom: var(--iui-size-3xs) solid var(--iui-color-background-border);
+  color: var(--iui-color-foreground-2);
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left); // iPhone notch support
   @media (prefers-reduced-motion: no-preference) {
-    transition: height $iui-speed-fast ease-out;
+    transition: height var(--iui-duration-1) ease-out;
   }
 }
 
 @mixin iui-page-header-slim {
-  --_iui-header-brand-label-font-size: #{$iui-font-size};
-  --_iui-header-height: #{$iui-baseline * 3};
+  --_iui-header-brand-label-font-size: var(--iui-font-size-1);
+  --_iui-header-height: calc(var(--iui-size-s) * 3);
   --_iui-header-icon-scale: scale(0.66666);
 }
 
@@ -37,8 +36,8 @@
 @mixin iui-page-header-left {
   overflow: hidden;
   box-sizing: content-box;
-  margin-bottom: -$iui-xs;
-  padding-bottom: $iui-xs;
+  margin-bottom: calc(0px - var(--iui-size-2xs));
+  padding-bottom: var(--iui-size-2xs);
 }
 
 @mixin iui-page-header-right {
@@ -56,14 +55,15 @@
     .iui-avatar {
       &,
       * {
-        transition: width $iui-speed-fast ease-out, height $iui-speed-fast ease-out, font-size $iui-speed-fast ease-out;
+        transition: width var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out,
+          font-size var(--iui-duration-1) ease-out;
       }
     }
   }
 }
 
 @mixin iui-page-header-divider {
-  height: $iui-baseline * 2;
+  height: calc(var(--iui-size-s) * 2);
   border-left: 1px solid var(--iui-color-background-border);
   @media (forced-colors: active) {
     display: none;

@@ -6,7 +6,7 @@
   bottom: 0;
 
   .iui-toast {
-    margin: $iui-baseline $iui-m 0 $iui-m;
+    margin: var(--iui-size-s) var(--iui-size-m) 0 var(--iui-size-m);
   }
 }
 
@@ -21,13 +21,13 @@
 
   @media screen and (max-width: 400px) {
     width: calc(100vw - 36px);
-    margin-top: $iui-baseline;
+    margin-top: var(--iui-size-s);
   }
 
   @media screen and (min-width: 401px) {
     min-width: 400px;
     max-width: 640px;
-    margin: $iui-line-height 0;
+    margin: var(--iui-size-l) 0;
   }
 
   @media (prefers-reduced-motion: no-preference) {

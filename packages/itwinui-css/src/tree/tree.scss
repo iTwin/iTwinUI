@@ -1,16 +1,19 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 $iui-active-outline: thin solid var(--iui-color-foreground-primary);
-$iui-expander-inline-padding: $iui-component-offset + $iui-xxs + 1px; // margin + padding + border
-$iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding * 2); // icon width + inline padding on both sides
+
+// padding of small borderless button + 1px transparent border
+$iui-expander-inline-padding: calc(var(--iui-size-2xs) + 1px);
+
+// width of small borderless button (button is 1:1 ratio)
+$iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
 @mixin iui-tree {
   @include iui-reset;
   list-style: none;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-sub-tree {
@@ -37,21 +40,21 @@ $iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding 
 @mixin iui-tree-node {
   display: flex;
   cursor: pointer;
-  padding: 0 $iui-s;
+  padding: 0 var(--iui-size-xs);
   align-items: center;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
 
   &-checkbox {
-    margin-right: $iui-s;
+    margin-right: var(--iui-size-xs);
   }
 
   &-content {
     display: flex;
     align-items: center;
-    min-height: $iui-baseline * 3;
+    min-height: calc(var(--iui-size-s) * 3);
     margin-left: calc(#{$iui-expander-button-width} * (var(--level, 0)));
     overflow: hidden;
-    padding-left: $iui-xxs;
+    padding-left: var(--iui-size-3xs);
 
     &-icon {
       @include iui-icon-style('m');
@@ -59,13 +62,13 @@ $iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding 
       margin: 0 $iui-expander-inline-padding;
 
       &:first-child {
-        margin-left: $iui-expander-button-width + $iui-expander-inline-padding;
+        margin-left: calc($iui-expander-button-width + $iui-expander-inline-padding);
       }
     }
 
     &-expander-icon {
       @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed-fast ease-out;
+        transition: transform var(--iui-duration-1) ease-out;
       }
 
       &-expanded {
@@ -90,26 +93,26 @@ $iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding 
     }
 
     &-title {
-      font-size: $iui-font-size;
+      font-size: var(--iui-font-size-1);
     }
 
     &-caption {
-      font-size: $iui-font-size-small;
-      color: var(--iui-text-color-muted);
+      font-size: var(--iui-font-size-0);
+      color: var(--iui-color-foreground-4);
     }
   }
 
   &:hover {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    background-color: var(--iui-color-background-transparent-hover);
 
     .iui-tree-node-content-caption {
-      color: var(--iui-color-foreground-body);
-      transition: color $iui-speed-fast ease;
+      color: var(--iui-color-foreground-1);
+      transition: color var(--iui-duration-1) ease;
     }
   }
 
   &.iui-active {
-    background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-5));
+    background-color: var(--iui-color-background-subtle-primary);
     outline: $iui-active-outline;
     outline-offset: -1px;
   }
@@ -118,10 +121,10 @@ $iui-expander-button-width: ($iui-icon-default) + ($iui-expander-inline-padding 
     cursor: not-allowed;
     outline: none;
     background-color: transparent;
-    color: var(--iui-text-color-placeholder);
+    color: var(--iui-color-foreground-5);
 
     .iui-tree-node-content-caption {
-      color: var(--iui-text-color-placeholder);
+      color: var(--iui-color-foreground-5);
     }
   }
 }

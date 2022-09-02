@@ -1,17 +1,16 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-keyboard {
   @include iui-reset;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   display: inline-block;
-  font-size: $iui-font-size-small;
-  font-weight: $iui-font-weight-semibold;
-  font-family: $iui-monospace;
+  font-size: var(--iui-font-size-0);
+  font-weight: var(--iui-font-weight-semibold);
+  font-family: var(--iui-font-mono);
   line-height: 1;
-  padding: round($iui-baseline * 0.33) $iui-s;
+  padding: calc(var(--iui-size-s) * 0.33) var(--iui-size-xs);
   white-space: nowrap;
   text-transform: uppercase;
   user-select: none;
@@ -19,9 +18,7 @@
   background-color: var(--iui-color-background-1);
   border: 1px solid var(--iui-color-background-5);
   box-shadow: 0 1px 1px var(--iui-color-background-5), 0 1px 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: box-shadow $iui-speed-fast ease-out;
-  }
+  transition: box-shadow var(--iui-duration-1) ease-out;
 
   &:hover {
     box-shadow: 0 0 0 var(--iui-color-background-5), 0 0 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;

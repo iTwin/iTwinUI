@@ -1,22 +1,21 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 
 @mixin iui-table-sizes {
-  --_iui-table-header-size: #{$iui-baseline * 5};
-  --_iui-table-row-size: #{$iui-baseline * 5 + 2px};
+  --_iui-table-header-size: calc(var(--iui-size-s) * 5);
+  --_iui-table-row-size: calc(var(--iui-size-s) * 5 + 2px);
 
   &[data-iui-size='condensed'] {
-    --_iui-table-header-size: #{$iui-baseline * 4};
-    --_iui-table-row-size: #{$iui-baseline * 4 + 2px};
+    --_iui-table-header-size: calc(var(--iui-size-s) * 4);
+    --_iui-table-row-size: calc(var(--iui-size-s) * 4 + 2px);
   }
 
   &[data-iui-size='extra-condensed'] {
-    --_iui-table-header-size: #{$iui-baseline * 3};
-    --_iui-table-row-size: #{$iui-baseline * 3 + 2px};
+    --_iui-table-header-size: calc(var(--iui-size-s) * 3);
+    --_iui-table-row-size: calc(var(--iui-size-s) * 3 + 2px);
 
     .iui-table-header .iui-table-cell {
-      padding-block: $iui-baseline * 0.25;
+      padding-block: calc(var(--iui-size-s) * 0.25);
     }
   }
 
