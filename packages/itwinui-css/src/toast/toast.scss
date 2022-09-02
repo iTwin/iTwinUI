@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../anchor/index';
 @import '../utils/index';
 
@@ -9,19 +8,19 @@
   display: inline-flex;
   align-items: center;
   pointer-events: all;
-  margin: 0 $iui-m $iui-baseline $iui-m;
-  min-height: $iui-baseline * 4;
-  border-radius: $iui-border-radius;
+  margin: 0 var(--iui-size-m) var(--iui-size-s) var(--iui-size-m);
+  min-height: calc(var(--iui-size-s) * 4);
+  border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background-1);
-  border: 1px solid var(--iui-color-foreground-body);
-  box-shadow: 0 0 0 1px rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-4)), $iui-elevation-24;
+  border: 1px solid var(--iui-color-foreground-1);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, var(--iui-opacity-4)), var(--iui-shadow-5);
 
   > .iui-status-area {
     display: flex;
     align-self: stretch;
     justify-content: center;
     align-items: center;
-    width: $iui-l * 2;
+    width: calc(var(--iui-size-l) * 2);
     flex-shrink: 0;
     background-color: var(--iui-color-background-5);
 
@@ -33,29 +32,29 @@
 
   > .iui-message {
     flex-grow: 1;
-    font-size: $iui-font-size;
-    margin-top: $iui-baseline * 0.5;
-    margin-bottom: $iui-baseline * 0.5;
-    margin-right: $iui-l;
-    margin-left: $iui-m;
-    line-height: $iui-line-height;
-    font-weight: $iui-font-weight-normal;
+    font-size: var(--iui-font-size-1);
+    margin-top: calc(var(--iui-size-s) * 0.5);
+    margin-bottom: calc(var(--iui-size-s) * 0.5);
+    margin-right: var(--iui-size-l);
+    margin-left: var(--iui-size-m);
+    line-height: var(--iui-size-l);
+    font-weight: var(--iui-font-weight-normal);
     font-style: normal;
-    color: var(--iui-text-color);
+    color: var(--iui-color-foreground-2);
   }
 
   &-anchor {
     @include iui-anchor-underline('on-initial');
-    border-radius: $iui-border-radius;
+    border-radius: var(--iui-border-radius-1);
     cursor: pointer;
-    font-size: $iui-font-size-small;
-    margin-right: $iui-m;
+    font-size: var(--iui-font-size-0);
+    margin-right: var(--iui-size-m);
     user-select: none;
     white-space: nowrap;
   }
 
   > .iui-button {
-    margin-right: $iui-s;
+    margin-right: var(--iui-size-xs);
   }
 
   @media screen and (max-width: 400px) {

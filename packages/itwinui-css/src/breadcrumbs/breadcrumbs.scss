@@ -1,15 +1,16 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../anchor/index';
 @import '../button/borderless';
 @import '../utils/index';
 
-@mixin iui-breadcrumbs($breadcrumbs-height: $iui-component-height) {
+@mixin iui-breadcrumbs($breadcrumbs-height: var(--iui-component-height)) {
+  --_iui-breadcrumbs-height: #{$breadcrumbs-height};
+
   @include iui-reset;
   display: flex;
   align-items: center;
-  height: $breadcrumbs-height;
+  height: var(--_iui-breadcrumbs-height);
 }
 
 @mixin iui-breadcrumbs-list {
@@ -33,20 +34,20 @@
 
 @mixin iui-breadcrumbs-item-overrides {
   > * {
-    padding: 0 $iui-s;
+    padding: 0 var(--iui-size-xs);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 
     &:not(.iui-button) {
-      color: var(--iui-text-color);
+      color: var(--iui-color-foreground-2);
     }
   }
 
   > :any-link {
     @include iui-anchor;
     box-sizing: border-box;
-    line-height: $iui-component-height;
+    line-height: var(--iui-component-height);
 
     &:focus {
       outline-offset: -1px;
@@ -76,11 +77,11 @@
 }
 
 @mixin iui-breadcrumbs-text {
-  padding: 0 $iui-s;
+  padding: 0 var(--iui-size-xs);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  line-height: $iui-component-height;
+  line-height: var(--iui-component-height);
 
   @at-root a#{&} {
     @include iui-anchor;
@@ -99,13 +100,13 @@
   color: var(--iui-color-foreground-primary);
 
   &[aria-current] {
-    color: var(--iui-text-color);
+    color: var(--iui-color-foreground-2);
   }
 }
 
 @mixin iui-breadcrumbs-separator {
   display: flex;
-  margin: 0 $iui-xxs;
+  margin: 0 var(--iui-size-3xs);
 
   svg {
     @include iui-icon-style('s');

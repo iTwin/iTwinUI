@@ -19,11 +19,11 @@
 }
 
 [data-iui-icon-size='2xl'] {
-  @include iui-icon-style('2xl');
+  @include iui-icon-style(2xl);
 }
 
 [data-iui-icon-size='3xl'] {
-  @include iui-icon-style('3xl');
+  @include iui-icon-style(3xl);
 }
 
 [data-iui-icon-color='default'] {

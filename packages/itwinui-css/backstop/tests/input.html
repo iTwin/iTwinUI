@@ -24,6 +24,7 @@
     <title>Input | iTwinUI</title>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         width: auto;
@@ -365,7 +366,8 @@
       <div class="iui-input-container">
         <input
           value="Small"
-          class="iui-input iui-small"
+          class="iui-input"
+          data-iui-size="small"
         />
       </div>
 
@@ -379,7 +381,8 @@
       <div class="iui-input-container">
         <input
           value="Large"
-          class="iui-input iui-large"
+          class="iui-input"
+          data-iui-size="large"
         />
       </div>
     </section>

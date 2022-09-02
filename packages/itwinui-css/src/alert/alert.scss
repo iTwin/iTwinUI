@@ -1,17 +1,16 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../anchor/index';
 @import '../utils/index';
 @import '../button/index';
 
 @mixin iui-alert {
   @include iui-reset;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   display: flex;
   align-items: center;
   border: 1px solid var(--iui-color-background-5);
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
   background-color: var(--iui-color-background-1);
   @media (forced-colors: active) {
     background-color: Canvas;
@@ -27,18 +26,18 @@
 
 @mixin iui-alert-icon {
   @include iui-icon-style('m');
-  margin-left: $iui-m;
+  margin-left: var(--iui-size-m);
 }
 
 @mixin iui-alert-message {
-  margin: $iui-baseline $iui-m;
+  margin: var(--iui-size-s) var(--iui-size-m);
 }
 
 @mixin iui-alert-link {
   @include iui-anchor-underline('on-initial');
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   cursor: pointer;
-  margin-left: $iui-s;
+  margin-left: var(--iui-size-xs);
   user-select: none;
   white-space: nowrap;
 }
@@ -48,13 +47,11 @@
   @include iui-button-borderless;
   @include iui-button-size(small, borderless);
   margin-left: auto;
-  margin-right: $iui-s;
+  margin-right: var(--iui-size-xs);
 }
 
 @mixin iui-alert-button-icon {
   @include iui-button-icon;
-  margin-left: $iui-component-offset;
-  margin-right: $iui-component-offset;
 }
 
 /// Modifier mixin to categorize the alert
@@ -62,15 +59,11 @@
 /// @arg $rootSelector Selector of the root alert element. Defaults to .iui-alert
 @mixin iui-alert-category($statusColor, $rootSelector: '.iui-alert') {
   @include iui-alert;
-  background: linear-gradient(
-    rgba(var(--iui-color-foreground-#{$statusColor}-rgb), var(--iui-opacity-6)),
-    rgba(var(--iui-color-foreground-#{$statusColor}-rgb), var(--iui-opacity-6))
-  ),
-    linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+  background-color: var(--iui-color-background-subtle-#{$statusColor});
   border-color: var(--iui-color-foreground-#{$statusColor});
 
   #{$rootSelector}-icon {
-    fill: var(--iui-icon-color-#{$statusColor});
+    fill: var(--iui-color-foreground-#{$statusColor});
   }
 
   #{$rootSelector}-message {

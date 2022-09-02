@@ -4,13 +4,16 @@
 @use './sizes' as *;
 @use './typography' as *;
 @use './shadows' as *;
+@use './duration' as *;
 @use './colors';
 
 @mixin common {
   @include spacing;
+  @include component-heights;
   @include border-radii;
   @include typography;
   @include shadows;
+  @include duration;
   @include colors.soft-backgrounds;
   @include colors.unthemed;
 }

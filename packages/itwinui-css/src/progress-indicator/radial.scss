@@ -1,11 +1,14 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
+@import '../utils/index';
 
 @mixin iui-progress-indicator-radial {
   position: relative;
   display: inline-block;
-  @include iui-progress-indicator-radial-size($size: $iui-icon-xl);
+  --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, xl)};
+
+  width: var(--_iui-progress-indicator-radial-size);
+  height: var(--_iui-progress-indicator-radial-size);
 
   > .iui-radial {
     height: 100%;
@@ -27,24 +30,24 @@
   .iui-inner-content {
     position: absolute;
     display: flex;
-    width: calc(100% - #{$iui-s});
-    height: calc(100% - #{$iui-s});
+    width: calc(100% - #{var(--iui-size-xs)});
+    height: calc(100% - #{var(--iui-size-xs)});
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     user-select: none;
     overflow: hidden;
 
     svg,
     img {
       @include iui-icon-style('m');
-      fill: var(--iui-icon-color-actionable);
+      fill: var(--iui-color-foreground-2);
 
       &:hover {
-        fill: var(--iui-icon-color-actionable-hover);
+        fill: var(--iui-color-foreground-1);
       }
     }
   }
@@ -60,7 +63,7 @@
     }
 
     .iui-inner-content svg {
-      fill: var(--iui-icon-color-positive);
+      fill: var(--iui-color-foreground-positive);
     }
   }
 
@@ -72,12 +75,12 @@
     }
 
     .iui-inner-content svg {
-      fill: var(--iui-icon-color-negative);
+      fill: var(--iui-color-foreground-negative);
     }
   }
 
   &.iui-x-small {
-    @include iui-progress-indicator-radial-size($size: $iui-icon-default);
+    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, m)};
 
     .iui-inner-content {
       display: none;
@@ -85,14 +88,14 @@
   }
 
   &.iui-small {
-    @include iui-progress-indicator-radial-size($size: $iui-icon-large);
+    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, l)};
   }
 
   &.iui-large {
-    @include iui-progress-indicator-radial-size($size: $iui-icon-2xl);
+    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, 2xl)};
 
     .iui-inner-content {
-      font-size: $iui-font-size-leading;
+      font-size: var(--iui-font-size-2);
 
       svg,
       img {
@@ -144,9 +147,4 @@
       stroke-dashoffset: -88;
     }
   }
-}
-
-@mixin iui-progress-indicator-radial-size($size) {
-  width: $size;
-  height: $size;
 }

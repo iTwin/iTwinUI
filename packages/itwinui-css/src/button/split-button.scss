@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 
 @mixin iui-button-split {
   $iui-button-split-divider-color: rgba(255, 255, 255, var(--iui-opacity-4));
@@ -31,11 +30,12 @@
   }
 
   :where(.iui-button:last-child) {
-    --_iui-button-padding-inline: #{$iui-xs};
+    --_iui-button-padding-inline: var(--iui-size-2xs);
 
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     margin-left: -1px;
+    min-width: unset;
 
     &[data-iui-variant='high-visibility'],
     &[data-iui-variant='cta'] {
@@ -50,11 +50,11 @@
     }
 
     &[data-iui-size='small'] {
-      --_iui-button-padding-inline: #{$iui-xxs};
+      --_iui-button-padding-inline: var(--iui-size-3xs);
     }
 
     &[data-iui-size='large'] {
-      --_iui-button-padding-inline: #{$iui-s};
+      --_iui-button-padding-inline: var(--iui-size-xs);
     }
   }
 }

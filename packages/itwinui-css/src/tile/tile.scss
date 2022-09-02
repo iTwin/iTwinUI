@@ -1,16 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../button/index';
 @import '../surface/index';
 @import '../utils/index';
 
 @mixin iui-tile {
   @include iui-reset;
-  @include iui-surface($border-radius: $iui-border-radius);
+  @include iui-surface($border-radius: var(--iui-border-radius-1));
   display: inline-flex;
   flex-direction: column;
-  width: $iui-3xl * 3;
+  width: calc(var(--iui-size-3xl) * 3);
   backface-visibility: hidden;
 
   &:where(:not(.iui-folder)) {
@@ -33,7 +32,7 @@
     }
 
     .iui-tile-metadata:not(:last-child) {
-      width: calc(100% - #{$iui-xl});
+      width: calc(100% - #{var(--iui-size-xl)});
     }
   }
 
@@ -42,30 +41,25 @@
 
     .iui-tile-name,
     .iui-tile-description {
-      font-weight: $iui-font-weight-semibold;
+      font-weight: var(--iui-font-weight-semibold);
     }
   }
 
   &.iui-selected {
-    @include iui-focus($offset: 0, $thickness: $iui-xs);
-
+    @include iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
     --_iui-tile-status-icon-fill: var(--iui-color-foreground-primary);
 
     outline: solid 2px var(--iui-color-foreground-primary);
-    background: linear-gradient(
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-    ),
-      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+    background-color: var(--iui-color-background-subtle-primary);
   }
 
   &.iui-actionable {
-    @include iui-focus($offset: $iui-xxs, $thickness: $iui-xxs);
+    @include iui-focus($offset: var(--iui-size-3xs), $thickness: var(--iui-size-3xs));
     cursor: pointer;
-    transition: box-shadow $iui-speed-fast ease-in-out;
+    transition: box-shadow var(--iui-duration-1) ease-in-out;
 
     &:hover {
-      box-shadow: $iui-elevation-8;
+      box-shadow: var(--iui-shadow-3);
     }
 
     &:hover,
@@ -93,7 +87,7 @@
     }
 
     .iui-tile-thumbnail {
-      height: $iui-baseline * 10;
+      height: calc(var(--iui-size-s) * 10);
       flex: 1;
       border-bottom: none;
       border-right: 1px solid var(--iui-color-background-border);
@@ -105,7 +99,7 @@
 
     .iui-tile-description {
       height: 100%;
-      max-height: $iui-baseline * 4;
+      max-height: calc(var(--iui-size-s) * 4);
       margin-bottom: 0;
       -webkit-line-clamp: 2;
     }
@@ -121,7 +115,7 @@
     cursor: not-allowed;
 
     .iui-tile-name-label {
-      color: var(--iui-text-color-muted);
+      color: var(--iui-color-foreground-4);
     }
 
     .iui-thumbnail-icon,
@@ -142,7 +136,7 @@
 }
 
 @mixin iui-tile-content {
-  padding: $iui-baseline $iui-sm;
+  padding: var(--iui-size-s) var(--iui-size-s);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -153,15 +147,15 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    font-size: $iui-font-size-leading;
+    font-size: var(--iui-font-size-2);
     user-select: all;
-    margin-bottom: $iui-baseline * 0.5;
-    color: var(--iui-text-color);
+    margin-bottom: calc(var(--iui-size-s) * 0.5);
+    color: var(--iui-color-foreground-2);
   }
 
   .iui-tile-status-icon {
     @include iui-icon-style('m');
-    margin-right: $iui-s;
+    margin-right: var(--iui-size-xs);
     fill: var(--_iui-tile-status-icon-fill);
   }
 
@@ -172,31 +166,31 @@
   }
 
   .iui-tile-description {
-    margin-bottom: $iui-baseline;
-    font-size: $iui-font-size;
+    margin-bottom: var(--iui-size-s);
+    font-size: var(--iui-font-size-1);
     height: 100%;
-    max-height: $iui-baseline * 6;
+    max-height: calc(var(--iui-size-s) * 6);
     @include iui-line-clamp(3);
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
   }
 
   .iui-tile-metadata {
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     flex-shrink: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: $iui-line-height;
+    height: var(--iui-size-l);
     width: 100%;
     display: flex;
     align-items: center;
     margin-top: auto;
-    color: var(--iui-text-color-muted);
+    color: var(--iui-color-foreground-4);
 
     > svg,
     .iui-tile-metadata-icon {
       @include iui-icon-style('m');
       @include iui-icon-color;
-      margin-right: $iui-s;
+      margin-right: var(--iui-size-xs);
     }
 
     > * {
@@ -210,18 +204,18 @@
 @mixin iui-tile-thumbnail {
   box-sizing: content-box;
   width: 100%;
-  height: $iui-baseline * 14;
+  height: calc(var(--iui-size-s) * 14);
   flex-shrink: 0;
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--iui-color-background-1-overlay);
+  background-color: var(--iui-color-background-1-hover);
   border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-thumbnail-icon {
-    @include iui-icon-style('3xl');
+    @include iui-icon-style(3xl);
     @include iui-icon-color;
   }
 }
@@ -233,7 +227,7 @@
   top: 0;
   left: 0;
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed ease;
+    transition: transform var(--iui-duration-2) ease;
   }
   @at-root {
     div#{&} {
@@ -244,14 +238,12 @@
 
   ~ .iui-thumbnail-icon {
     cursor: pointer;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: fill $iui-speed-fast ease;
-    }
-    fill: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-3));
+    transition: fill var(--iui-duration-1) ease;
+    fill: rgba(255, 255, 255, var(--iui-opacity-3));
     filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));
 
     &:hover {
-      fill: rgba(var(--iui-color-foreground-accessory-rgb), var(--iui-opacity-2));
+      fill: rgba(255, 255, 255, var(--iui-opacity-2));
     }
   }
 }
@@ -262,18 +254,18 @@
   @include iui-button-size(small, borderless);
   position: absolute;
   border-radius: 50%;
-  top: ($iui-baseline * 0.5);
+  top: calc(var(--iui-size-s) * 0.5);
 
   @if $variant == type-indicator {
-    left: $iui-s;
+    left: var(--iui-size-xs);
   }
   @if $variant == quick-action {
-    right: $iui-s;
+    right: var(--iui-size-xs);
   }
 
   &[data-iui-active='true'] {
     --_iui-button-text-color: var(--iui-color-foreground-primary);
-    --_iui-button-background-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6));
+    --_iui-button-background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
   }
 
   @at-root .iui-tile-thumbnail-picture ~ & {
@@ -295,14 +287,14 @@
 
 @mixin iui-tile-thumbnail-badge {
   position: absolute;
-  bottom: ($iui-baseline * 0.5);
-  width: calc(100% - 2 * #{$iui-sm});
+  bottom: calc(var(--iui-size-s) * 0.5);
+  width: calc(100% - 2 * #{var(--iui-size-s)});
   height: auto;
-  right: $iui-sm;
+  right: var(--iui-size-s);
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-  gap: $iui-xs;
+  gap: var(--iui-size-2xs);
 }
 
 @mixin iui-tile-buttons {
@@ -313,10 +305,10 @@
   overflow: hidden;
 
   > .iui-button {
-    font-size: $iui-font-size;
+    font-size: var(--iui-font-size-1);
     flex: 1;
     height: auto;
-    padding: $iui-baseline $iui-sm;
+    padding: var(--iui-size-s) var(--iui-size-s);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -339,8 +331,8 @@
 
 @mixin iui-tile-more-options {
   position: absolute;
-  bottom: $iui-baseline * 0.5;
-  right: $iui-s;
+  bottom: calc(var(--iui-size-s) * 0.5);
+  right: var(--iui-size-xs);
 
   &:not(.iui-visible) {
     @include visually-hidden;
@@ -352,11 +344,11 @@
   --_iui-tile-status-icon-fill: var(--iui-color-foreground-#{$status});
 
   .iui-tile-thumbnail {
-    box-shadow: 0 $iui-xs 0 var(--iui-color-foreground-#{$status});
+    box-shadow: 0 var(--iui-size-2xs) 0 var(--iui-color-foreground-#{$status});
   }
 
   @at-root &.iui-folder .iui-tile-thumbnail {
-    box-shadow: $iui-xs 0 0 var(--iui-color-foreground-#{$status});
+    box-shadow: var(--iui-size-2xs) 0 0 var(--iui-color-foreground-#{$status});
   }
 
   .iui-tile-name-label {

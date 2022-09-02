@@ -1,12 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../utils/index';
 
 @mixin iui-file-upload {
   @include iui-reset;
-  font-size: $iui-font-size;
-  font-weight: $iui-font-weight-normal;
+  font-size: var(--iui-font-size-1);
+  font-weight: var(--iui-font-weight-normal);
   position: relative;
   display: flex;
 
@@ -22,10 +21,10 @@
     justify-content: center;
     align-items: center;
     user-select: none;
-    padding: ($iui-baseline * 0.5) $iui-sm;
+    padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
     background-color: var(--iui-color-background-2);
     border: 1px solid var(--iui-color-background-2);
-    border-radius: $iui-border-radius;
+    border-radius: var(--iui-border-radius-1);
 
     .iui-browse-input {
       width: 0.1px;
@@ -37,10 +36,10 @@
 
     > svg,
     .iui-template-icon {
-      @include iui-icon-style('3xl');
+      @include iui-icon-style(3xl);
       @include iui-icon-color;
-      margin-top: $iui-baseline;
-      margin-bottom: $iui-baseline;
+      margin-top: var(--iui-size-s);
+      margin-bottom: var(--iui-size-s);
     }
 
     &:only-child {
@@ -55,27 +54,23 @@
     }
 
     .iui-template-text {
-      margin-left: $iui-l;
+      margin-left: var(--iui-size-l);
 
       > label {
-        font-weight: $iui-font-weight-bold;
+        font-weight: var(--iui-font-weight-bold);
       }
     }
   }
 
   &.iui-drag > .iui-content {
-    background: linear-gradient(
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6)),
-      rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-6))
-    ),
-      linear-gradient(var(--iui-color-background-1), var(--iui-color-background-1));
+    background-color: var(--iui-color-background-subtle-primary);
     border-color: var(--iui-color-foreground-primary);
     color: var(--iui-color-foreground-primary);
     visibility: visible;
 
     > svg,
     .iui-template-icon {
-      fill: var(--iui-icon-color-primary);
+      fill: var(--iui-color-foreground-primary);
     }
   }
 }

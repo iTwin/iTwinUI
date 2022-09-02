@@ -1,46 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './index';
-@import '../utils/index';
-
-html {
-  @include theme-variables(light);
-
-  @media (prefers-color-scheme: dark) {
-    @include theme-variables(dark);
-  }
-
-  @media (prefers-color-scheme: light) and (prefers-contrast: more) {
-    @include theme-variables(light-hc);
-  }
-
-  @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
-    @include theme-variables(dark-hc);
-  }
-
-  &.iui-theme-light {
-    @include theme-variables(light);
-  }
-
-  &.iui-theme-dark {
-    @include theme-variables(dark);
-  }
-
-  &.iui-theme-light-hc {
-    @include theme-variables(light-hc);
-  }
-
-  &.iui-theme-dark-hc {
-    @include theme-variables(dark-hc);
-  }
-}
+@import './utils/index';
 
 :where(.iui-root) {
-  color: var(--iui-text-color);
-  font-size: $iui-font-size;
-  line-height: $iui-line-height;
-
-  @include iui-font-family;
+  color: var(--iui-color-foreground-2);
+  font-size: var(--iui-font-size-1);
+  line-height: var(--iui-size-l);
+  font-family: var(--iui-font-sans);
 
   // reset margin and apply background only for <body> element
   @at-root :where(body#{&}) {
