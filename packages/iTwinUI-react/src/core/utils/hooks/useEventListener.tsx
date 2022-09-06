@@ -16,7 +16,7 @@ import React from 'react';
 export const useEventListener = (
   eventName: string,
   handler: (event: Event) => void,
-  element: HTMLElement | Document | undefined,
+  element: HTMLElement | Document | Window | undefined,
 ) => {
   // Based on published hook https://usehooks.com/useEventListener/.
   const savedHandler = React.useRef<(event: Event) => void>();

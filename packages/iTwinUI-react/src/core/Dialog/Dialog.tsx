@@ -3,20 +3,23 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import cx from 'classnames';
 import '@itwin/itwinui-css/css/dialog.css';
 import { DialogTitleBar } from './DialogTitleBar';
 import { DialogContent } from './DialogContent';
 import { DialogBackdrop } from './DialogBackdrop';
 import { DialogContext, DialogContextProps } from './DialogContext';
 import { DialogButtonBar } from './DialogButtonBar';
-import DialogMain from './DialogMain';
+import { DialogMain } from './DialogMain';
+import { useMergedRefs } from '../utils';
 
 export type DialogProps = {
   /**
    * Dialog content.
    */
   children: React.ReactNode;
-} & DialogContextProps;
+} & Omit<DialogContextProps, 'dialogRootRef'> &
+  React.ComponentPropsWithRef<'div'>;
 
 /**
  * Dialog component.
@@ -41,34 +44,57 @@ export type DialogProps = {
  * </Dialog>
  */
 export const Dialog = Object.assign(
-  (props: DialogProps) => {
-    const {
-      children,
-      trapFocus = false,
-      preventDocumentScroll = false,
-      isOpen = false,
-      isDismissible = true,
-      closeOnEsc = true,
-      closeOnExternalClick = false,
-      onClose,
-    } = props;
+  React.forwardRef(
+    (props: DialogProps, ref: React.RefObject<HTMLDivElement>) => {
+      const {
+        children,
+        trapFocus = false,
+        preventDocumentScroll = false,
+        isOpen = false,
+        isDismissible = true,
+        closeOnEsc = true,
+        closeOnExternalClick = false,
+        onClose,
+        isDraggable = false,
+        relativeTo = 'viewport',
+        className,
+        style,
+        ...rest
+      } = props;
 
-    return (
-      <DialogContext.Provider
-        value={{
-          isOpen,
-          onClose,
-          closeOnEsc,
-          closeOnExternalClick,
-          isDismissible,
-          preventDocumentScroll,
-          trapFocus,
-        }}
-      >
-        {children}
-      </DialogContext.Provider>
-    );
-  },
+      const dialogRootRef = React.useRef<HTMLDivElement>(null);
+      const refs = useMergedRefs(ref, dialogRootRef);
+
+      return (
+        <DialogContext.Provider
+          value={{
+            isOpen,
+            onClose,
+            closeOnEsc,
+            closeOnExternalClick,
+            isDismissible,
+            preventDocumentScroll,
+            trapFocus,
+            isDraggable,
+            relativeTo,
+            dialogRootRef,
+          }}
+        >
+          <div
+            className={cx('iui-dialog-wrapper', className)}
+            ref={refs}
+            style={{
+              position: relativeTo === 'container' ? 'absolute' : 'fixed',
+              ...style,
+            }}
+            {...rest}
+          >
+            {children}
+          </div>
+        </DialogContext.Provider>
+      );
+    },
+  ),
   {
     Backdrop: DialogBackdrop,
     Main: DialogMain,

@@ -39,6 +39,27 @@ export type DialogContextProps = {
    * @default false
    */
   preventDocumentScroll?: boolean;
+  /**
+   * Flag whether dialog is draggable.
+   *
+   * If you want to make dialog draggable relatively to the container, you should use set `relativeTo` to `container`.
+   *
+   * @default false
+   */
+  isDraggable?: boolean;
+  /**
+   * Whether dialog should be positioned relatively to a container or the viewport.
+   *
+   * Using `'container'` will absolutely position this dialog relative to the closest positioned ancestor.
+   * In other words, you must place the dialog as a child of an element that has `position` set to 
+   * something other than `static`, e.g. `position: relative`.
+   * @default 'viewport'
+   */
+  relativeTo?: 'container' | 'viewport';
+  /**
+   * Dialog root ref. For internal use.
+   */
+  dialogRootRef?: React.RefObject<HTMLDivElement>;
 };
 
 export const DialogContext = React.createContext<

@@ -8,4 +8,5 @@ export type { DialogMainProps } from './DialogMain';
 export type { DialogTitleBarProps } from './DialogTitleBar';
 export type { DialogContentProps } from './DialogContent';
 export type { DialogButtonBarProps } from './DialogButtonBar';
+
 export default './Dialog';

@@ -10,7 +10,7 @@ import { DialogContextProps, useDialogContext } from './DialogContext';
 export type DialogBackdropProps = BackdropProps &
   Pick<
     DialogContextProps,
-    'onClose' | 'isDismissible' | 'closeOnExternalClick'
+    'onClose' | 'isDismissible' | 'closeOnExternalClick' | 'relativeTo'
   >;
 
 /**
@@ -29,7 +29,9 @@ export const DialogBackdrop = React.forwardRef<
     isDismissible = dialogContext.isDismissible,
     onClose = dialogContext.onClose,
     closeOnExternalClick = dialogContext.closeOnExternalClick,
+    relativeTo = dialogContext.relativeTo,
     onMouseDown,
+    style,
     ...rest
   } = props;
 
@@ -53,6 +55,11 @@ export const DialogBackdrop = React.forwardRef<
       isVisible={isVisible}
       ref={refs}
       onMouseDown={handleMouseDown}
+      style={{
+        pointerEvents: 'auto',
+        position: relativeTo === 'container' ? 'absolute' : 'fixed',
+        ...style,
+      }}
       {...rest}
     />
   );

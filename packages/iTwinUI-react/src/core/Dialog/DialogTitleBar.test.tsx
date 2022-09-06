@@ -70,3 +70,14 @@ it('should propagate miscellaneous props', () => {
   expect(titleBar).toHaveStyle('color: red;');
   expect(titleBar.id).toEqual('test-id');
 });
+
+it('should render draggable title bar', () => {
+  const { container } = render(
+    <DialogTitleBar titleText='test-title' isDraggable />,
+  );
+  const titleBar = container.querySelector(
+    '.iui-dialog-title-bar.iui-dialog-title-bar-filled',
+  ) as HTMLElement;
+  expect(titleBar).toBeTruthy();
+  expect(titleBar).toHaveTextContent('test-title');
+});

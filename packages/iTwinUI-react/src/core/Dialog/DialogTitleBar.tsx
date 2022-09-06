@@ -10,6 +10,7 @@ import { IconButton } from '../Buttons';
 import '@itwin/itwinui-css/css/dialog.css';
 import { DialogContextProps, useDialogContext } from './DialogContext';
 import { DialogTitleBarTitle } from './DialogTitleBarTitle';
+import { useDialogDragContext } from './DialogDragContext';
 
 export type DialogTitleBarProps = {
   /**
@@ -20,7 +21,7 @@ export type DialogTitleBarProps = {
    * Dialog title.
    */
   titleText?: React.ReactNode;
-} & Pick<DialogContextProps, 'isDismissible' | 'onClose'> &
+} & Pick<DialogContextProps, 'isDismissible' | 'onClose' | 'isDraggable'> &
   React.ComponentPropsWithRef<'div'>;
 
 /**
@@ -48,14 +49,32 @@ export const DialogTitleBar = Object.assign(
       titleText,
       isDismissible = dialogContext.isDismissible,
       onClose = dialogContext.onClose,
+      isDraggable = dialogContext.isDraggable,
       className,
+      onPointerDown: onPointerDownProp,
       ...rest
     } = props;
+
+    const { onPointerDown } = useDialogDragContext();
+    const handlePointerDown = React.useCallback(
+      (event: React.PointerEvent<HTMLDivElement>) => {
+        onPointerDownProp?.(event);
+        if (!event.defaultPrevented) {
+          onPointerDown?.(event);
+        }
+      },
+      [onPointerDown, onPointerDownProp],
+    );
+
     useTheme();
+
     return (
       <div
-        className={cx('iui-dialog-title-bar', className)}
+        className={cx('iui-dialog-title-bar', className, {
+          'iui-dialog-title-bar-filled': isDraggable,
+        })}
         ref={ref}
+        onPointerDown={handlePointerDown}
         {...rest}
       >
         {children ? (

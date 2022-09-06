@@ -5,6 +5,16 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { DialogMain } from './DialogMain';
+import DialogTitleBar from './DialogTitleBar';
+
+const DOMMatrixMock = jest.fn(() => ({ m41: 0, m42: 0 }));
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as any).DOMMatrix = DOMMatrixMock;
+
+afterAll(() => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (window as any).DOMMatrix = undefined;
+});
 
 it('should render in its most basic state', () => {
   const { container } = render(<DialogMain isOpen>test-content</DialogMain>);
@@ -26,6 +36,21 @@ it('should render full page dialog', () => {
 
   const dialog = container.querySelector(
     '.iui-dialog.iui-dialog-full-page.iui-dialog-visible',
+  ) as HTMLElement;
+  expect(dialog).toBeTruthy();
+  expect(dialog).toHaveTextContent('test-content');
+  expect(dialog.getAttribute('role')).toEqual('dialog');
+});
+
+it('should render draggable dialog', () => {
+  const { container } = render(
+    <DialogMain isOpen isDraggable>
+      test-content
+    </DialogMain>,
+  );
+
+  const dialog = container.querySelector(
+    '.iui-dialog.iui-dialog-draggable.iui-dialog-visible',
   ) as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog).toHaveTextContent('test-content');
@@ -135,4 +160,52 @@ it('should reset body overflow on closing and unmounting', () => {
   // Closing by unmounting/destructing the Modal
   unmount();
   expect(document.body.style.overflow).not.toEqual('hidden');
+});
+
+it('should handle drag', () => {
+  const { container } = render(
+    <DialogMain isOpen isDraggable>
+      <DialogTitleBar title='test title' isDraggable />
+      test-content
+    </DialogMain>,
+  );
+
+  const dialog = container.querySelector(
+    '.iui-dialog.iui-dialog-draggable.iui-dialog-visible',
+  ) as HTMLElement;
+  expect(dialog).toBeTruthy();
+
+  const titleBar = container.querySelector(
+    '.iui-dialog-title-bar',
+  ) as HTMLElement;
+  expect(titleBar).toBeTruthy();
+  fireEvent.pointerDown(titleBar, { clientX: 100, clientY: 100, button: 0 });
+  fireEvent.pointerMove(titleBar, { clientX: 200, clientY: 200 });
+  expect(dialog.style.transform).toBe('translate(100px, 100px)');
+  fireEvent.pointerUp(titleBar);
+  expect(dialog.style.transform).toBe('translate(100px, 100px)');
+});
+
+it('should not handle drag when dialog is not draggable', () => {
+  const { container } = render(
+    <DialogMain isOpen>
+      <DialogTitleBar title='test title' />
+      test-content
+    </DialogMain>,
+  );
+
+  const dialog = container.querySelector(
+    '.iui-dialog.iui-dialog-visible',
+  ) as HTMLElement;
+  expect(dialog).toBeTruthy();
+
+  const titleBar = container.querySelector(
+    '.iui-dialog-title-bar',
+  ) as HTMLElement;
+  expect(titleBar).toBeTruthy();
+  fireEvent.pointerDown(titleBar, { clientX: 100, clientY: 100, button: 0 });
+  fireEvent.pointerMove(titleBar, { clientX: 200, clientY: 200 });
+  expect(dialog.style.transform).toBe('');
+  fireEvent.pointerUp(titleBar);
+  expect(dialog.style.transform).toBe('');
 });

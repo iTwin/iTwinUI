@@ -23,7 +23,7 @@ export const useResizeObserver = <T extends HTMLElement>(
   const resizeObserver = React.useRef<ResizeObserver>();
 
   const elementRef = React.useCallback(
-    (element: T | null) => {
+    (element: T | null | undefined) => {
       if (!getWindow()?.ResizeObserver) {
         return;
       }
