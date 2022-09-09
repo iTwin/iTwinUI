@@ -6,35 +6,43 @@
 
 $base-colors: (
   // Background colors - default
-  background-1: hsl(204 12% 40%),
-  background-2: hsl(202 12% 35%),
-  background-3: hsl(204 13% 31%),
+  background-1: hsl(205, 12%, 20%),
+  background-2: hsl(202 12% 15%),
+  background-3: hsl(204 13% 10%),
   background-4: hsl(200 14% 25%),
-  background-5: hsl(200 14% 21%),
-  background-1-hover: hsl(204 12% 45%),
+  background-5: hsl(200 14% 30%),
+  background-1-hover: hsl(204 12% 25%),
   //
   // Background colors - statuses subtle
-  background-subtle-primary: hsl(204 14% 44%),
-  background-subtle-positive: hsl(192 9% 43%),
-  background-subtle-warning: hsl(201 6% 44%),
-  background-subtle-negative: hsl(216 7% 44%),
+  background-subtle-primary: hsl(204 15% 26%),
+  background-subtle-positive: hsl(158 8% 26%),
+  background-subtle-warning: hsl(180 1% 26%),
+  background-subtle-negative: hsl(285 3% 25%),
+  //
+  // Background colors - statuses
+  background-primary: hsl(203 100% 39%),
+  background-positive: hsl(95 72% 30%),
+  background-warning: hsl(33 89% 36%),
+  background-negative: hsl(0 91% 43%),
+  background-primary-hover: hsl(203 100% 49%),
+  background-positive-hover: hsl(95 72% 40%),
   //
   // Foreground colors - default
   foreground-1: hsl(0 0% 100%),
-  foreground-2: hsl(210 9% 91%),
-  foreground-3: hsl(207 8% 79%),
-  foreground-4: hsl(206 8% 67%),
-  foreground-5: hsl(205 7% 55%),
+  foreground-2: hsl(210 9% 90%),
+  foreground-3: hsl(206 8% 70%),
+  foreground-4: hsl(206 8% 50%),
+  foreground-5: hsl(205 7% 30%),
   //
   // Foreground colors - statuses
-  foreground-primary: hsl(203 80% 80%),
-  foreground-positive: hsl(96 45% 78%),
-  foreground-warning: hsl(34 87% 82%),
-  foreground-negative: hsl(0 69% 80%),
-  foreground-primary-hover: hsl(203 80% 90%),
-  foreground-positive-hover: hsl(96 44% 88%),
-  foreground-warning-hover: hsl(34 85% 92%),
-  foreground-negative-hover: hsl(0 69% 90%)
+  foreground-primary: hsl(203 100% 80%),
+  foreground-positive: hsl(95 72% 78%),
+  foreground-warning: hsl(33 89% 82%),
+  foreground-negative: hsl(0 91% 80%),
+  foreground-primary-hover: hsl(203 100% 90%),
+  foreground-positive-hover: hsl(95 72% 88%),
+  foreground-warning-hover: hsl(33 89% 92%),
+  foreground-negative-hover: hsl(0 91% 90%)
 );
 
 $opacities: (
@@ -55,7 +63,7 @@ $opacities: (
     --iui-opacity-#{$level}: #{$value};
   }
 
-  --iui-color-background-transparent-hover: #{rgba(#fff, map.get($opacities, 6))};
+  --iui-color-background-transparent-hover: #{rgba(#FFF, map.get($opacities, 6))};
   --iui-color-background-disabled: #{hex(map.get($base-colors, background-3))};
   --iui-color-background-border: #{hex(map.get($base-colors, background-5))};
 

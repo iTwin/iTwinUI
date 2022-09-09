@@ -19,21 +19,29 @@ $base-colors: (
   background-subtle-warning: hsl(34 85% 95%),
   background-subtle-negative: hsl(0 67% 94%),
   //
+  // Background colors - statuses
+  background-primary: hsl(203 100% 39%),
+  background-positive: hsl(95 72% 30%),
+  background-warning: hsl(33 89% 36%),
+  background-negative: hsl(0 91% 43%),
+  background-primary-hover: hsl(203 100% 29%),
+  background-positive-hover: hsl(95 72% 20%),
+  //
   // Foreground colors - default
   foreground-1: hsl(0 0% 0%),
   foreground-2: hsl(0 0% 20%),
   foreground-3: hsl(0 0% 40%),
   foreground-4: hsl(0 0% 60%),
-  foreground-5: hsl(0 0% 80%),
+  foreground-5: hsl(0 0% 70%),
   //
   // Foreground colors - statuses
-  foreground-primary: hsl(203 100% 44%),
-  foreground-positive: hsl(95 72% 37%),
-  foreground-warning: hsl(33 89% 51%),
+  foreground-primary: hsl(203 100% 35%),
+  foreground-positive: hsl(95 72% 27%),
+  foreground-warning: hsl(33 89% 33%),
   foreground-negative: hsl(0 91% 43%),
-  foreground-primary-hover: hsl(203 100% 34%),
-  foreground-positive-hover: hsl(95 72% 27%),
-  foreground-warning-hover: hsl(33 89% 41%),
+  foreground-primary-hover: hsl(203 100% 25%),
+  foreground-positive-hover: hsl(95 72% 17%),
+  foreground-warning-hover: hsl(33 89% 23%),
   foreground-negative-hover: hsl(0 91% 33%)
 );
 

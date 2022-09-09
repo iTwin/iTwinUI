@@ -19,34 +19,6 @@
 }
 
 /// Colors that don't change between light and dark themes
-/// but do change between default and high contrast.
-/// @arg $contrast - default or high
 @mixin unthemed($contrast: default) {
   --iui-color-foreground-accessory: #{hex(hsl(0 0% 100%))};
-
-  $background-statuses: null;
-
-  @if $contrast == default {
-    $background-statuses: (
-      background-primary: hsl(203 100% 44%),
-      background-positive: hsl(95 72% 37%),
-      background-warning: hsl(33 89% 51%),
-      background-negative: hsl(0 91% 43%),
-      background-primary-hover: hsl(203 100% 34%),
-      background-positive-hover: hsl(95 72% 27%),
-    );
-  } @else {
-    $background-statuses: (
-      background-primary: hsl(200 100% 26%),
-      background-positive: hsl(140 100% 19%),
-      background-warning: hsl(45 100% 22%),
-      background-negative: hsl(0 100% 31%),
-      background-primary-hover: hsl(203 100% 34%),
-      background-positive-hover: hsl(95 72% 27%),
-    );
-  }
-
-  @each $color, $value in $background-statuses {
-    --iui-color-#{$color}: #{hex($value)};
-  }
 }

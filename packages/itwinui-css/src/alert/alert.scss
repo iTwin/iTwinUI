@@ -74,7 +74,7 @@
     @include iui-anchor-status($statusColor);
   }
 
-  #{$rootSelector}-button {
+  #{$rootSelector}-button:focus-visible {
     outline-color: var(--iui-color-foreground-#{$statusColor});
   }
 }

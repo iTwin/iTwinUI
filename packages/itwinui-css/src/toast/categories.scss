@@ -18,4 +18,8 @@
   > .iui-toast-anchor {
     @include iui-anchor-status($category);
   }
+
+  > .iui-button {
+    outline-color: var(--iui-color-foreground-#{$category});
+  }
 }
