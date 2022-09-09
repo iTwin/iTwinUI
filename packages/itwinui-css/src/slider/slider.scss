@@ -23,7 +23,6 @@ $tick-height: var(--iui-size-s); // 12px
   svg {
     @include iui-icon-style('m');
     @include iui-icon-color;
-    margin-top: var(--iui-size-2xs);
   }
 }
 
