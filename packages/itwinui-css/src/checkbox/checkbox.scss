@@ -16,8 +16,8 @@
     gap: var(--iui-size-xs);
 
     &.iui-loading {
-      cursor: wait;
-      color: var(--iui-color-foreground-4);
+      cursor: progress;
+      font-style: italic;
     }
 
     > .iui-checkbox-label,
@@ -112,7 +112,7 @@
 
   &:disabled {
     --_iui-checkbox-svg-color: var(--iui-color-foreground-5);
-    --_iui-checkbox-border-color: var(--iui-color-background-border);
+    --_iui-checkbox-border-color: var(--iui-color-background-5);
     --_iui-checkbox-background-color: var(--iui-color-background-disabled);
     cursor: not-allowed;
   }

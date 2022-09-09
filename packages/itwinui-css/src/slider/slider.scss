@@ -38,7 +38,7 @@ $tick-height: var(--iui-size-s); // 12px
 
 @mixin iui-slider-rail {
   position: absolute;
-  background-color: var(--iui-color-background-border);
+  background-color: var(--iui-color-background-5);
   @media (forced-colors: active) {
     background-color: CanvasText;
   }

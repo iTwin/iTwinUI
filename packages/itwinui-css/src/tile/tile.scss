@@ -114,6 +114,7 @@
   &[aria-disabled='true'] {
     cursor: not-allowed;
 
+    .iui-tile-content,
     .iui-tile-name-label {
       color: var(--iui-color-foreground-4);
     }
@@ -142,6 +143,7 @@
   flex-direction: column;
   flex-grow: 2;
   min-width: 0;
+  color: var(--iui-color-foreground-3);
 
   .iui-tile-name {
     display: flex;
@@ -171,7 +173,6 @@
     height: 100%;
     max-height: calc(var(--iui-size-s) * 6);
     @include iui-line-clamp(3);
-    color: var(--iui-color-foreground-4);
   }
 
   .iui-tile-metadata {
@@ -184,13 +185,17 @@
     display: flex;
     align-items: center;
     margin-top: auto;
-    color: var(--iui-color-foreground-4);
 
     > svg,
     .iui-tile-metadata-icon {
       @include iui-icon-style('m');
-      @include iui-icon-color;
+      fill: currentColor;
       margin-right: var(--iui-size-xs);
+    }
+
+    .iui-tag-container,
+    .iui-tag-basic {
+      color: inherit;
     }
 
     > * {

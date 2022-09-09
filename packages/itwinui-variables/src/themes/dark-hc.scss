@@ -64,8 +64,8 @@ $opacities: (
   }
 
   --iui-color-background-transparent-hover: #{rgba(#FFF, map.get($opacities, 6))};
-  --iui-color-background-disabled: #{hex(map.get($base-colors, background-4))};
-  --iui-color-background-border: #{hex(map.get($base-colors, foreground-4))};
+  --iui-color-background-disabled: #{hex(map.get($base-colors, background-3))};
+  --iui-color-background-border: #{rgba(#FFF, map.get($opacities, 3))};
 
   // Only HSL channels, for customizing transparency
   --iui-color-background-1-hsl: #{get-hsl(map.get($base-colors, background-1))};

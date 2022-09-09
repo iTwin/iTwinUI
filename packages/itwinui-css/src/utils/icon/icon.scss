@@ -31,7 +31,7 @@ $iui-icon-sizes: (
 /// @arg $color Can be one of: default, informational, positive, warning, negative
 @mixin iui-icon-color($color: 'default') {
   @if $color == 'default' {
-    fill: var(--iui-color-foreground-4);
+    fill: var(--iui-color-foreground-3);
     @media (forced-colors: active) {
       fill: CanvasText;
     }

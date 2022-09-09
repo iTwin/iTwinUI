@@ -99,12 +99,9 @@
       }
     }
 
-    .iui-radio-tile-label {
-      color: var(--iui-color-foreground-4);
-    }
-
     .iui-radio-tile-label,
     .iui-radio-tile-sublabel {
+      color: var(--iui-color-foreground-4);
       @media (forced-colors: active) {
         color: GrayText;
       }
@@ -157,5 +154,5 @@
   line-height: calc(var(--iui-size-s) * 1.25);
   text-align: center;
   word-break: break-word;
-  color: var(--iui-color-foreground-4);
+  color: var(--iui-color-foreground-3);
 }
