@@ -5,7 +5,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './main.css';
-import { styled } from 'linaria/react';
+import styled from '@emotion/styled';
 import { useTheme } from '@itwin/itwinui-react';
 import App from './App';
 
