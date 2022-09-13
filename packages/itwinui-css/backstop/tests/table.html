@@ -4616,8 +4616,33 @@
         }
       };
 
+      const updateRowSelectionCount = (table) => {
+        const checkboxes = [...table.querySelectorAll('.iui-table-body .iui-table-row .iui-checkbox:not(:disabled)')];
+        const numBoxesChecked = checkboxes.filter((checkbox) => checkbox.checked).length;
+        const leftPaginator = table.querySelector('.iui-table-paginator .iui-left');
+        const paginatorCheckboxCount = leftPaginator.querySelector('.iui-table-paginator-selection-count');
+        if (!numBoxesChecked) {
+          if (paginatorCheckboxCount) {
+            leftPaginator.removeChild(paginatorCheckboxCount);
+          }
+          return;
+        }
+        const paginatorCheckboxCountText = numBoxesChecked === 1 ? '1 row selected' : `${numBoxesChecked} rows selected`;
+        if (!paginatorCheckboxCount) {
+          const newPaginatorCheckboxCount = document.createElement('span');
+          newPaginatorCheckboxCount.classList.add('iui-table-paginator-selection-count');
+          newPaginatorCheckboxCount.textContent = paginatorCheckboxCountText;
+          leftPaginator.appendChild(newPaginatorCheckboxCount);
+        }
+        else {
+          paginatorCheckboxCount.textContent = paginatorCheckboxCountText;
+        }
+      };
       document.querySelectorAll('.iui-table-header .iui-checkbox:not(:disabled)').forEach((headerCheckbox) => {
         const table = headerCheckbox.closest('.iui-table');
+        if (table.querySelector('.iui-table-paginator')) {
+          updateRowSelectionCount(table);
+        }
         setTableHeaderCheckbox(table);
         headerCheckbox.addEventListener('change', () => {
           table.querySelectorAll('.iui-table-row .iui-checkbox:not(:disabled)').forEach((checkbox) => {
@@ -4625,13 +4650,20 @@
             toggleRowSelection(checkbox.closest('.iui-table-row'), headerCheckbox.checked);
           });
           setTableHeaderCheckbox(table);
+          if (table.querySelector('.iui-table-paginator')) {
+            updateRowSelectionCount(table);
+          }
         });
       });
 
       document.querySelectorAll('.iui-table .iui-table-body .iui-checkbox').forEach(checkbox => {
         checkbox.addEventListener('change', function (event) {
           toggleRowSelection(this.closest('.iui-table-row'), checkbox.checked);
-          setTableHeaderCheckbox(this.closest('.iui-table'));
+          const table = this.closest('.iui-table');
+          setTableHeaderCheckbox(table);
+          if (table.querySelector('.iui-table-paginator')) {
+            updateRowSelectionCount(table);
+          }
         });
       });
     </script>
