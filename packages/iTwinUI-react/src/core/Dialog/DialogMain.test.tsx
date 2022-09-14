@@ -80,7 +80,7 @@ it('should close on Esc click and move focus back', () => {
 
   const onClose = jest.fn();
   const { container, rerender } = render(
-    <DialogMain isOpen onClose={onClose} isDismissible closeOnEsc>
+    <DialogMain isOpen onClose={onClose} isDismissible closeOnEsc setFocus>
       Here is my dialog content
     </DialogMain>,
   );
@@ -93,11 +93,34 @@ it('should close on Esc click and move focus back', () => {
   expect(document.activeElement).toEqual(dialog);
 
   rerender(
-    <DialogMain isOpen={false} onClose={onClose} isDismissible closeOnEsc>
+    <DialogMain
+      isOpen={false}
+      onClose={onClose}
+      isDismissible
+      closeOnEsc
+      setFocus
+    >
       Here is my dialog content
     </DialogMain>,
   );
   // Bring back focus when dialog is closed
+  expect(document.activeElement).toEqual(button);
+});
+
+it('should not focus dialog when setFocus is false', () => {
+  const { container: buttonContainer } = render(<button>button</button>);
+  const button = buttonContainer.querySelector('button') as HTMLElement;
+  button.focus();
+  expect(document.activeElement).toEqual(button);
+
+  const { container } = render(
+    <DialogMain isOpen setFocus={false}>
+      Here is my dialog content
+    </DialogMain>,
+  );
+
+  const dialog = container.querySelector('.iui-dialog') as HTMLElement;
+  expect(dialog).toBeTruthy();
   expect(document.activeElement).toEqual(button);
 });
 

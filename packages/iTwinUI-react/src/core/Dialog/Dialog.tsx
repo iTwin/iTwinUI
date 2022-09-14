@@ -49,6 +49,7 @@ export const Dialog = Object.assign(
       const {
         children,
         trapFocus = false,
+        setFocus = false,
         preventDocumentScroll = false,
         isOpen = false,
         isDismissible = true,
@@ -75,6 +76,7 @@ export const Dialog = Object.assign(
             isDismissible,
             preventDocumentScroll,
             trapFocus,
+            setFocus,
             isDraggable,
             relativeTo,
             dialogRootRef,

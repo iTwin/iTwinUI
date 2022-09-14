@@ -103,6 +103,7 @@ export const Modal = (props: ModalProps) => {
         onClose={onClose}
         preventDocumentScroll
         trapFocus
+        setFocus
       >
         <Dialog.Backdrop />
         <Dialog.Main aria-modal {...rest}>

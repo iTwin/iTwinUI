@@ -107,6 +107,7 @@ export const Modal: Story = () => {
         closeOnExternalClick
         preventDocumentScroll
         trapFocus
+        setFocus
         isDismissible
       >
         <Dialog.Backdrop onKeyDown={action('onKeyDown', { depth: 1 })} />
