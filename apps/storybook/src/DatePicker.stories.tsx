@@ -38,7 +38,7 @@ export const Basic: Story<DatePickerProps> = (args) => {
     ...rest
   } = args;
   const [opened, setOpened] = React.useState(false);
-  const [currentDate, setCurrentDate] = React.useState(new Date(date));
+  const [currentDate, setCurrentDate] = React.useState(date);
   const onChange = (date: Date) => {
     setCurrentDate(date);
     action(`New date value: ${date}`, { clearOnStoryChange: false })();
@@ -82,7 +82,7 @@ export const WithTime: Story<DatePickerProps> = (args) => {
     ...rest
   } = args;
   const [opened, setOpened] = React.useState(false);
-  const [currentDate, setCurrentDate] = React.useState(new Date(date));
+  const [currentDate, setCurrentDate] = React.useState(date);
   const onChange = (date: Date) => {
     setCurrentDate(date);
     action(`New date value: ${date}`, { clearOnStoryChange: false })();
@@ -128,7 +128,7 @@ export const Localized: Story<DatePickerProps> = (args) => {
     ...rest
   } = args;
   const [opened, setOpened] = React.useState(false);
-  const [currentDate, setCurrentDate] = React.useState(new Date(date));
+  const [currentDate, setCurrentDate] = React.useState(date);
   const onChange = (date: Date) => {
     setCurrentDate(date);
     action(`New date value: ${date}`, { clearOnStoryChange: false })();
@@ -172,7 +172,7 @@ export const WithYear: Story<DatePickerProps> = (args) => {
     ...rest
   } = args;
   const [opened, setOpened] = React.useState(false);
-  const [currentDate, setCurrentDate] = React.useState(new Date(date));
+  const [currentDate, setCurrentDate] = React.useState(date);
   const onChange = (date: Date) => {
     setCurrentDate(date);
     action(`New date value: ${date}`, { clearOnStoryChange: false })();
@@ -207,4 +207,63 @@ export const WithYear: Story<DatePickerProps> = (args) => {
 WithYear.args = {
   date: new Date(2021, 4, 11, 14, 55, 22),
   showYearSelection: true,
+};
+
+export const Range: Story<DatePickerProps> = (args) => {
+  const {
+    setFocus = true,
+    localizedNames,
+    startDate = new Date(2022, 6, 13, 14, 55, 22),
+    endDate = new Date(2022, 6, 27, 14, 55, 22),
+    ...rest
+  } = args;
+  const [opened, setOpened] = React.useState(false);
+  const [currentStartDate, setCurrentStartDate] = React.useState(startDate);
+  const [currentEndDate, setCurrentEndDate] = React.useState(endDate);
+  const onChange = (startDate: Date, endDate?: Date) => {
+    setCurrentStartDate(startDate);
+    endDate && setCurrentEndDate(endDate);
+    action(`New start date value: ${startDate}`, {
+      clearOnStoryChange: false,
+    })();
+    endDate &&
+      action(`New end date value: ${endDate}`, { clearOnStoryChange: false })();
+  };
+
+  React.useEffect(() => {
+    setCurrentStartDate(new Date(startDate));
+    setCurrentEndDate(new Date(endDate));
+    return () => action('', { clearOnStoryChange: true })();
+  }, [startDate, endDate]);
+  return (
+    <>
+      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <SvgCalendar />
+      </IconButton>
+      <span style={{ marginLeft: 16 }}>
+        Start Date: {currentStartDate.toString()}
+      </span>
+      <span style={{ marginLeft: 16 }}>
+        End Date: {currentEndDate.toString()}
+      </span>
+      {opened && (
+        <div style={{ marginTop: 4 }}>
+          <DatePicker
+            {...rest}
+            enableRangeSelect
+            startDate={currentStartDate}
+            endDate={currentEndDate}
+            onChange={onChange}
+            localizedNames={localizedNames}
+            setFocus={setFocus}
+          />
+        </div>
+      )}
+    </>
+  );
+};
+
+Range.args = {
+  startDate: new Date(2022, 6, 13, 14, 55, 22),
+  endDate: new Date(2022, 6, 27, 14, 55, 22),
 };

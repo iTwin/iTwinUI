@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('DatePicker', () => {
   const storyPath = 'Core/DatePicker';
-  const tests = ['Basic', 'Localized', 'With Time', 'With Year'];
+  const tests = ['Basic', 'Localized', 'With Time', 'With Year', 'Range'];
 
   tests.forEach((testName) => {
     it(testName, function () {
