@@ -16,7 +16,8 @@
     gap: var(--iui-size-xs);
 
     &.iui-loading {
-      cursor: wait;
+      cursor: progress;
+      font-style: italic;
       color: var(--iui-color-foreground-4);
     }
 

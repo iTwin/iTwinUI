@@ -5,6 +5,9 @@
 @import '../utils/index';
 
 @mixin iui-tile {
+  --_iui-tile-title-text-color: var(--iui-color-foreground-2);
+  --_iui-tile-body-text-color: var(--iui-color-foreground-4);
+
   @include iui-reset;
   @include iui-surface($border-radius: var(--iui-border-radius-1));
   display: inline-flex;
@@ -106,17 +109,10 @@
   }
 
   //#region Statuses
-  &.iui-progress {
-    cursor: progress;
-    font-style: italic;
-  }
-
+  &.iui-loading,
   &[aria-disabled='true'] {
-    cursor: not-allowed;
-
-    .iui-tile-name-label {
-      color: var(--iui-color-foreground-4);
-    }
+    --_iui-tile-title-text-color: var(--iui-color-foreground-4);
+    --_iui-tile-body-text-color: var(--iui-color-foreground-4);
 
     .iui-thumbnail-icon,
     .iui-tile-thumbnail-picture {
@@ -131,6 +127,15 @@
     .iui-tile-more-options {
       display: none;
     }
+  }
+
+  &.iui-loading {
+    cursor: progress;
+    font-style: italic;
+  }
+
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
   }
   //#endregion Statuses
 }
@@ -150,7 +155,7 @@
     font-size: var(--iui-font-size-2);
     user-select: all;
     margin-bottom: calc(var(--iui-size-s) * 0.5);
-    color: var(--iui-color-foreground-2);
+    color: var(--_iui-tile-title-text-color);
   }
 
   .iui-tile-status-icon {
@@ -171,7 +176,7 @@
     height: 100%;
     max-height: calc(var(--iui-size-s) * 6);
     @include iui-line-clamp(3);
-    color: var(--iui-color-foreground-4);
+    color: var(--_iui-tile-body-text-color);
   }
 
   .iui-tile-metadata {
@@ -184,7 +189,7 @@
     display: flex;
     align-items: center;
     margin-top: auto;
-    color: var(--iui-color-foreground-4);
+    color: var(--_iui-tile-body-text-color);
 
     > svg,
     .iui-tile-metadata-icon {
@@ -342,6 +347,7 @@
 @mixin iui-tile-status($status) {
   @include iui-text-selection($status);
   --_iui-tile-status-icon-fill: var(--iui-color-foreground-#{$status});
+  --_iui-tile-title-text-color: var(--iui-color-foreground-#{$status});
 
   .iui-tile-thumbnail {
     box-shadow: 0 var(--iui-size-2xs) 0 var(--iui-color-foreground-#{$status});
@@ -349,9 +355,5 @@
 
   @at-root &.iui-folder .iui-tile-thumbnail {
     box-shadow: var(--iui-size-2xs) 0 0 var(--iui-color-foreground-#{$status});
-  }
-
-  .iui-tile-name-label {
-    color: var(--iui-color-foreground-#{$status});
   }
 }
