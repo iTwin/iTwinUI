@@ -91,16 +91,27 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
       };
     }, [isOpen, setFocusRef]);
 
-    // Prevents document from scrolling when the dialog is open.
     const originalBodyOverflow = React.useRef('');
     React.useEffect(() => {
+      if (isOpen) {
+        originalBodyOverflow.current = document.body.style.overflow;
+      }
+    }, [isOpen]);
+
+    // Prevents document from scrolling when the dialog is open.
+    React.useEffect(() => {
       const ownerDocument = dialogRef.current?.ownerDocument;
-      if (!ownerDocument || !preventDocumentScroll) {
+      // If there is no `ownerDocument` or `preventDocumentScroll` is false or
+      // document body originally has `overflow: hidden` (possibly from other/parent dialog), then do nothing.
+      if (
+        !ownerDocument ||
+        !preventDocumentScroll ||
+        originalBodyOverflow.current === 'hidden'
+      ) {
         return;
       }
 
       if (isOpen) {
-        originalBodyOverflow.current = ownerDocument.body.style.overflow;
         ownerDocument.body.style.overflow = 'hidden';
       } else {
         ownerDocument.body.style.overflow = originalBodyOverflow.current;
