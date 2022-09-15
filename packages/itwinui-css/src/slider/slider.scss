@@ -8,6 +8,7 @@ $tick-height: var(--iui-size-s); // 12px
 
 @mixin iui-slider-component-container {
   display: flex;
+  align-items: start;
 
   &.iui-disabled {
     @include iui-slider-disabled;
@@ -16,11 +17,12 @@ $tick-height: var(--iui-size-s); // 12px
 
 @mixin iui-slider-endpoints {
   user-select: all;
+  display: flex;
+  justify-content: center;
 
   svg {
     @include iui-icon-style('m');
     @include iui-icon-color;
-    margin-top: var(--iui-size-2xs);
   }
 }
 
@@ -171,6 +173,12 @@ $tick-height: var(--iui-size-s); // 12px
   .iui-slider-min,
   .iui-slider-max {
     margin-top: var(--iui-size-3xs);
+    width: var(--iui-size-l);
+    flex-direction: row;
+
+    svg {
+      margin-top: var(--iui-size-2xs);
+    }
   }
 
   .iui-slider-min {
@@ -226,8 +234,11 @@ $tick-height: var(--iui-size-s); // 12px
 
   .iui-slider-min,
   .iui-slider-max {
-    margin-left: var(--iui-size-3xs);
+    margin-left: calc(var(--iui-size-3xs) + var(--iui-size-s));
     text-align: center;
+    transform: translate(-50%, 0);
+    height: var(--iui-size-l);
+    flex-direction: column;
   }
 
   .iui-slider-min {
