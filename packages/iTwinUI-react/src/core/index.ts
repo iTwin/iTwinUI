@@ -209,6 +209,7 @@ export type { SurfaceProps } from './Surface';
 export {
   Table,
   tableFilters,
+  BaseFilter,
   FilterButtonBar,
   DefaultCell,
   EditableCell,
