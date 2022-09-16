@@ -34,6 +34,7 @@ import {
   Anchor,
   SelectionColumn,
   ExpanderColumn,
+  Input,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
@@ -567,6 +568,96 @@ Filters.args = {
       startDate: new Date('May 3, 2021'),
       endDate: '2021-06-02T21:00:00.000Z',
     },
+  ],
+};
+
+export const GlobalFilter: Story<Partial<TableProps>> = (args) => {
+  type TableStoryDataType = {
+    name: string;
+    description: string;
+  };
+
+  const onClickHandler = (
+    props: CellProps<{ name: string; description: string }>,
+  ) => action(props.row.original.name)();
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Table',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            Filter: tableFilters.TextFilter(),
+          },
+          {
+            id: 'description',
+            Header: 'Description',
+            accessor: 'description',
+            maxWidth: 200,
+            Filter: tableFilters.TextFilter(),
+          },
+          {
+            id: 'click-me',
+            Header: 'Click',
+            width: 100,
+            Cell: (props: CellProps<{ name: string; description: string }>) => {
+              const onClick = () => onClickHandler(props);
+              return <Anchor onClick={onClick}>Click me!</Anchor>;
+            },
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const data = useMemo<TableStoryDataType[]>(
+    () => [
+      { name: 'Name1', description: 'Description7' },
+      { name: 'Name2', description: 'Description7' },
+      { name: 'Name3', description: 'Description8' },
+      { name: 'Name4', description: 'Description8' },
+      { name: 'Name5', description: 'Description9' },
+      { name: 'Name6', description: 'Description9' },
+    ],
+    [],
+  );
+
+  const [globalFilter, setGlobalFilter] = useState('');
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', margin: '8px 0' }}>
+        <Input
+          placeholder='Search...'
+          value={globalFilter}
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setGlobalFilter(e.target.value)
+          }
+        />
+      </div>
+      <Table
+        columns={columns}
+        data={data}
+        emptyTableContent='No data.'
+        globalFilterValue={globalFilter}
+        {...args}
+      />
+    </div>
+  );
+};
+
+GlobalFilter.args = {
+  data: [
+    { name: 'Name1', description: 'Description7' },
+    { name: 'Name2', description: 'Description7' },
+    { name: 'Name3', description: 'Description8' },
+    { name: 'Name4', description: 'Description8' },
+    { name: 'Name5', description: 'Description9' },
+    { name: 'Name6', description: 'Description9' },
   ],
 };
 

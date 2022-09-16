@@ -16,6 +16,7 @@ describe('Table', () => {
     'Expandable',
     'Expandable Subrows',
     'Filters',
+    'Global Filter',
     'Full',
     'Full 2',
     'Horizontal Scroll',
@@ -57,6 +58,10 @@ describe('Table', () => {
         }
         case 'Filters': {
           cy.get('.iui-filter-button').first().click({ force: true }); // force because the button is hidden
+          break;
+        }
+        case 'Global Filter': {
+          cy.get('.iui-input').first().click().type('Description8');
           break;
         }
       }
