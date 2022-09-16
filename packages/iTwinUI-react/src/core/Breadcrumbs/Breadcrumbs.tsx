@@ -23,6 +23,64 @@ export type BreadcrumbsProps = {
    * Defaults to the `SvgChevronRight` icon.
    */
   separator?: React.ReactNode;
+  /**
+   * If specified, this prop will be used to show a custom button when overflow happens,
+   * i.e. when there is not enough space to fit all the breadcrumbs.
+   *
+   * Expects a function that takes the number of items that are visible
+   * and returns the `ReactNode` to render.
+   *
+   * @example <caption>Uses the overflow button to redirect to the previous breadcrumb</caption>
+   *  <Breadcrumbs
+   *    overflowButton={(visibleCount: number) => {
+   *      const previousBreadcrumb = visibleCount > 1 ? items.length - visibleCount : items.length - 2;
+   *      return (
+   *        <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
+   *          <IconButton
+   *            onClick={() => {
+   *              // click on "previousBreadcrumb"
+   *            }}
+   *          >
+   *            <SvgMoreSmall />
+   *          </IconButton>
+   *        </Tooltip>
+   *      );
+   *    }}
+   *  >
+   *    {items}
+   *  </Breadcrumbs>
+   *
+   * @example <caption>Uses the overflow button to add a dropdown that contains hidden breadcrumbs</caption>
+   *  <Breadcrumbs
+   *    overflowButton={(visibleCount) => (
+   *      <DropdownMenu
+   *        menuItems={(close) =>
+   *          Array(items.length - visibleCount)
+   *            .fill(null)
+   *            .map((_, _index) => {
+   *              const index = visibleCount > 1 ? _index + 1 : _index;
+   *              const onClick = () => {
+   *                // click on "index" breadcrumb
+   *                close();
+   *              };
+   *              return (
+   *                <MenuItem key={index} onClick={onClick}>
+   *                  Item {index}
+   *                </MenuItem>
+   *              );
+   *            })
+   *        }
+   *      >
+   *        <IconButton>
+   *          <SvgMoreSmall />
+   *        </IconButton>
+   *      </DropdownMenu>
+   *    )}
+   *  >
+   *    {items}
+   *  </Breadcrumbs>
+   */
+  overflowButton?: (visibleCount: number) => React.ReactNode;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -53,6 +111,7 @@ export const Breadcrumbs = React.forwardRef(
       children: items,
       currentIndex = items.length - 1,
       separator,
+      overflowButton,
       className,
       ...rest
     } = props;
@@ -79,7 +138,11 @@ export const Breadcrumbs = React.forwardRef(
           {items.length - visibleCount > 0 && (
             <>
               <li className='iui-breadcrumbs-item iui-breadcrumbs-item-overrides'>
-                <span className='iui-breadcrumbs-text'>…</span>
+                {overflowButton ? (
+                  overflowButton(visibleCount)
+                ) : (
+                  <span className='iui-breadcrumbs-text'>…</span>
+                )}
               </li>
               <Separator separator={separator} />
             </>

@@ -3,12 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { Breadcrumbs, BreadcrumbsProps } from './Breadcrumbs';
 import { Button } from '../Buttons';
-import { SvgChevronRight } from '@itwin/itwinui-icons-react';
+import { SvgChevronRight, SvgMoreSmall } from '@itwin/itwinui-icons-react';
 import * as UseOverflow from '../utils/hooks/useOverflow';
+import { IconButton } from '../Buttons/IconButton';
 
 const renderComponent = (props?: Partial<BreadcrumbsProps>) => {
   return render(
@@ -97,6 +98,27 @@ it('should overflow when there is not enough space', () => {
   expect(breadcrumbs[1].textContent).toEqual('…');
   expect(breadcrumbs[1].firstElementChild?.textContent).toContain('…');
   expect(breadcrumbs[2].textContent).toEqual('Item 2');
+});
+
+it('should handle overflow when overflowButton is specified', () => {
+  const onClick = jest.fn();
+  useOverflowMock.mockReturnValue([jest.fn(), 2]);
+  const { container } = renderComponent({
+    overflowButton: (visibleCount) => (
+      <IconButton onClick={onClick(visibleCount)}>
+        <SvgMoreSmall />
+      </IconButton>
+    ),
+  });
+
+  expect(container.querySelector('.iui-breadcrumbs')).toBeTruthy();
+  expect(container.querySelector('.iui-breadcrumbs-list')).toBeTruthy();
+
+  const breadcrumbs = container.querySelectorAll('.iui-breadcrumbs-item');
+  expect(breadcrumbs.length).toEqual(3);
+  fireEvent.click(breadcrumbs[1]);
+  expect(onClick).toHaveBeenCalledTimes(1);
+  expect(onClick).toHaveBeenCalledWith(2);
 });
 
 it('should show the last item when only one can be visible', () => {
