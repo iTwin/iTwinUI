@@ -172,33 +172,6 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   // because before that calculations are not right
   const [isMounted, setIsMounted] = React.useState(false);
 
-  const onResize = React.useCallback(({ height }: DOMRectReadOnly) => {
-    // Initial value returned by resize observer is 0
-    // So wait for the next one
-    if (height > 0) {
-      setIsMounted(true);
-    }
-    setScrollContainerHeight(height);
-  }, []);
-  const [resizeRef, resizeObserver] = useResizeObserver(onResize);
-
-  // Find scrollable parent
-  // Needed only on init
-  React.useLayoutEffect(() => {
-    const scrollableParent = getScrollableParent(
-      parentRef.current,
-      parentRef.current?.ownerDocument,
-    );
-    scrollContainer.current = scrollableParent;
-
-    resizeRef(scrollableParent);
-  }, [resizeRef]);
-
-  // Stop watching resize, when virtual scroll is unmounted
-  React.useLayoutEffect(() => {
-    return () => resizeObserver?.disconnect();
-  }, [resizeObserver]);
-
   const getScrollableContainer = () =>
     scrollContainer.current ??
     (parentRef.current?.ownerDocument.scrollingElement as HTMLElement);
@@ -215,8 +188,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     return arr;
   }, [itemsLength, itemRenderer, bufferSize, startNode, visibleNodeCount]);
 
-  // Get child height when children available
-  React.useLayoutEffect(() => {
+  const updateChildHeight = React.useCallback(() => {
     if (!parentRef.current || !visibleChildren.length) {
       return;
     }
@@ -241,6 +213,41 @@ export const useVirtualization = (props: VirtualScrollProps) => {
       ),
     };
   }, [visibleChildren.length]);
+
+  const onResize = React.useCallback(
+    ({ height }: DOMRectReadOnly) => {
+      // Initial value returned by resize observer is 0
+      // So wait for the next one
+      if (height > 0) {
+        setIsMounted(true);
+      }
+      setScrollContainerHeight(height);
+
+      updateChildHeight();
+    },
+    [updateChildHeight],
+  );
+  const [resizeRef, resizeObserver] = useResizeObserver(onResize);
+
+  // Find scrollable parent
+  // Needed only on init
+  React.useLayoutEffect(() => {
+    const scrollableParent = getScrollableParent(
+      parentRef.current,
+      parentRef.current?.ownerDocument,
+    );
+    scrollContainer.current = scrollableParent;
+
+    resizeRef(scrollableParent);
+  }, [resizeRef]);
+
+  // Stop watching resize, when virtual scroll is unmounted
+  React.useLayoutEffect(() => {
+    return () => resizeObserver?.disconnect();
+  }, [resizeObserver]);
+
+  // Get child height when children available
+  React.useLayoutEffect(() => updateChildHeight(), [updateChildHeight]);
 
   const updateVirtualScroll = React.useCallback(() => {
     const scrollableContainer = getScrollableContainer();
