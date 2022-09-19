@@ -79,6 +79,55 @@ it.each(['start', 'end'] as const)(
   },
 );
 
+it.each(['start', 'end'] as const)(
+  'should handle overflow when available space is smaller than one element (%s)',
+  (overflowPlacement) => {
+    const scrollWidthSpy = jest
+      .spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
+      .mockReturnValue(200);
+    const offsetWidthSpy = jest
+      .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+      .mockReturnValue(50);
+
+    const OverflowGroup = () => {
+      const buttons = [...Array(3)].map((_, index) => (
+        <IconButton key={index}>
+          <SvgPlaceholder />
+        </IconButton>
+      ));
+      return (
+        <ButtonGroup
+          overflowButton={() => (
+            <IconButton>
+              <SvgMore />
+            </IconButton>
+          )}
+          overflowPlacement={overflowPlacement}
+        >
+          {buttons}
+        </ButtonGroup>
+      );
+    };
+    const { container } = render(<OverflowGroup />);
+    const {
+      container: { firstChild: moreIconButton },
+    } = render(
+      <IconButton>
+        <SvgMore />
+      </IconButton>,
+    );
+
+    expect(container.querySelector('.iui-button-group')).toBeTruthy();
+
+    const buttons = container.querySelectorAll('.iui-button');
+    expect(buttons).toHaveLength(1);
+    expect(buttons[0]).toEqual(moreIconButton);
+
+    scrollWidthSpy.mockRestore();
+    offsetWidthSpy.mockRestore();
+  },
+);
+
 it('should work in vertical orientation', () => {
   const { container } = render(
     <ButtonGroup orientation='vertical'>

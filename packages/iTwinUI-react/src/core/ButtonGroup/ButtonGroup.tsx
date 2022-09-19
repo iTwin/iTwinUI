@@ -110,7 +110,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
             )}
 
           {visibleCount < items.length
-            ? items.slice(0, visibleCount - 1)
+            ? items.slice(0, Math.max(0, visibleCount - 1))
             : items}
 
           {visibleCount < items.length &&
