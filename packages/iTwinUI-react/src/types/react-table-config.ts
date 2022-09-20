@@ -148,6 +148,7 @@ declare module 'react-table' {
       isScrolledToRight?: boolean;
       isScrolledToLeft?: boolean;
     };
+    lastSelectedRowId?: string;
   }
 
   export interface ColumnInterface<D extends object = {}>
