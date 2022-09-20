@@ -7,7 +7,7 @@ describe('Dialog', () => {
   const tests = [
     'Basic',
     'Modal',
-    'Draggable',
+    'Draggable And Resizable',
     'Draggable Relative To Container',
   ];
 

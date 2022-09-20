@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export * from './Popover';
+export * from './Resizer';
 export * from './FocusTrap';
 export * from './InputContainer';
 export * from './icons';

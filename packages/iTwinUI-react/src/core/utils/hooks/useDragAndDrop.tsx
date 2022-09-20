@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { getWindow } from '../functions';
+import { getTranslateValues, getWindow } from '../functions';
 import { useEventListener } from './useEventListener';
 import { useResizeObserver } from './useResizeObserver';
 
@@ -19,19 +19,6 @@ const getContainerRect = (
   };
 };
 
-const parseTranslate = (ref: React.RefObject<HTMLElement>) => {
-  if (!ref.current) {
-    return [];
-  }
-
-  const transformValue = getComputedStyle(ref.current).getPropertyValue(
-    'transform',
-  );
-  const matrix = new DOMMatrix(transformValue);
-
-  return [matrix.m41, matrix.m42];
-};
-
 /**
  * Helper hook that handles elements drag logic.
  * @param elementRef Element ref that is draggable.
@@ -43,6 +30,7 @@ const parseTranslate = (ref: React.RefObject<HTMLElement>) => {
 export const useDragAndDrop = (
   elementRef: React.RefObject<HTMLElement>,
   containerRef?: React.RefObject<HTMLElement>,
+  enabled = true,
 ) => {
   const grabOffsetX = React.useRef(0);
   const grabOffsetY = React.useRef(0);
@@ -52,12 +40,7 @@ export const useDragAndDrop = (
   const containerRectRef = React.useRef(getContainerRect(containerRef));
 
   const adjustTransform = React.useCallback(() => {
-    containerRectRef.current = getContainerRect(containerRef);
-    if (
-      !elementRef.current ||
-      translateX.current == null ||
-      translateY.current == null
-    ) {
+    if (!elementRef.current || !enabled) {
       return;
     }
 
@@ -68,9 +51,9 @@ export const useDragAndDrop = (
       left,
     } = elementRef.current?.getBoundingClientRect();
 
-    let newTranslateX = translateX.current;
-    let newTranslateY = translateY.current;
+    let [newTranslateX, newTranslateY] = getTranslateValues(elementRef.current);
 
+    containerRectRef.current = getContainerRect(containerRef);
     if (bottom > containerRectRef.current.bottom) {
       newTranslateY -= bottom - containerRectRef.current.bottom;
     }
@@ -88,7 +71,7 @@ export const useDragAndDrop = (
     translateY.current = newTranslateY;
 
     elementRef.current.style.transform = `translate(${newTranslateX}px, ${newTranslateY}px)`;
-  }, [containerRef, elementRef]);
+  }, [containerRef, elementRef, enabled]);
 
   const [resizeRef, resizeObserver] = useResizeObserver(adjustTransform);
   resizeRef(containerRef?.current);
@@ -118,10 +101,10 @@ export const useDragAndDrop = (
       return;
     }
 
-    translateX.current = event.clientX - grabOffsetX.current;
-    translateY.current = event.clientY - grabOffsetY.current;
+    const newTranslateX = event.clientX - grabOffsetX.current;
+    const newTranslateY = event.clientY - grabOffsetY.current;
 
-    elementRef.current.style.transform = `translate(${translateX.current}px, ${translateY.current}px)`;
+    elementRef.current.style.transform = `translate(${newTranslateX}px, ${newTranslateY}px)`;
     adjustTransform();
   });
 
@@ -129,16 +112,13 @@ export const useDragAndDrop = (
 
   const onPointerDown = React.useCallback(
     (e: React.PointerEvent<HTMLElement>) => {
-      if (!elementRef.current || e.button !== 0) {
+      if (!elementRef.current || e.button !== 0 || !enabled) {
         return;
       }
 
-      const [x, y] = parseTranslate(elementRef);
-      translateX.current = x;
-      translateY.current = y;
-
-      grabOffsetX.current = e.clientX - translateX.current;
-      grabOffsetY.current = e.clientY - translateY.current;
+      const [x, y] = getTranslateValues(elementRef.current);
+      grabOffsetX.current = e.clientX - x;
+      grabOffsetY.current = e.clientY - y;
 
       originalUserSelect.current = elementRef.current.style.userSelect;
       // Prevents from selecting inner content when dragging.
@@ -162,7 +142,7 @@ export const useDragAndDrop = (
         { once: true },
       );
     },
-    [elementRef],
+    [elementRef, enabled],
   );
 
   return { onPointerDown, transform };

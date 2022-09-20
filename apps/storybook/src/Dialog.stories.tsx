@@ -134,7 +134,7 @@ export const Modal: Story = () => {
   );
 };
 
-export const Draggable: Story = () => {
+export const DraggableAndResizable: Story = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const closeDialog = () => {
@@ -171,6 +171,7 @@ export const Draggable: Story = () => {
         closeOnEsc
         isDismissible
         isDraggable
+        isResizable
       >
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
@@ -250,6 +251,7 @@ export const DraggableRelativeToContainer: Story = ({ isOpen, ...rest }) => {
         closeOnEsc
         isDismissible
         isDraggable
+        isResizable
         relativeTo='container'
       >
         <Dialog.Main>

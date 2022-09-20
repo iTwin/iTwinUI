@@ -53,6 +53,11 @@ export type DialogContextProps = {
    */
   isDraggable?: boolean;
   /**
+   * Flag whether dialog is resizable.
+   * @default false
+   */
+  isResizable?: boolean;
+  /**
    * Whether dialog should be positioned relatively to a container or the viewport.
    *
    * Using `'container'` will absolutely position this dialog relative to the closest positioned ancestor.
