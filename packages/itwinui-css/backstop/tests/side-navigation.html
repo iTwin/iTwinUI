@@ -54,13 +54,69 @@
   </head>
 
   <body class="iui-root">
+    <svg
+      width="0"
+      height="0"
+      viewBox="0 0 400 300"
+    >
+      <defs>
+        <mask id="mask">
+          <rect
+            fill="#000000"
+            x="0"
+            y="0"
+            width="400"
+            height="300"
+          ></rect>
+          <circle
+            fill="#FFFFFF"
+            cx="150"
+            cy="150"
+            r="100"
+          />
+          <circle
+            fill="#FFFFFF"
+            cx="50"
+            cy="50"
+            r="150"
+          />
+        </mask>
+      </defs>
+    </svg>
+
     <theme-button></theme-button>
     <h1>Side navigation</h1>
 
     <hr />
 
+    <style>
+      #main-image {
+        object-fit: cover;
+        mask-image: url(mask_4.png);
+      }
+      #main-icon {
+        width: 500px;
+        height: 500px;
+        mask-image: url(mask_3.svg);
+        mask-size: 100% 100%;
+      }
+    </style>
+
     <h2>Default</h2>
+
+    <img
+      id="main-image"
+      width="500px"
+      height="500px"
+      src="https://upload.wikimedia.org/wikipedia/commons/2/29/2019-06-11_Marco_Reus_%28cropped%29.jpg"
+    />
     <section id="demo-side-navigation">
+
+      <svg-map
+        id="main-icon"
+        class="iui-button-icon"
+        aria-hidden="true"
+      ></svg-map>
 
       <div
         class="iui-side-navigation iui-collapsed"
