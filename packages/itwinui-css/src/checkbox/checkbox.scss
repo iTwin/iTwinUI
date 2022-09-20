@@ -16,8 +16,8 @@
     gap: var(--iui-size-xs);
 
     &.iui-loading {
-      cursor: progress;
-      font-style: italic;
+      cursor: wait;
+      color: var(--iui-color-foreground-4);
     }
 
     > .iui-checkbox-label,
