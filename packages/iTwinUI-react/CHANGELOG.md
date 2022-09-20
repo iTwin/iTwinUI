@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.46.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.45.0...v1.46.0) (2022-09-20)
+
+### What's new
+
+* **Dialog:** Added new `Dialog` compound component that was previously used by `Modal` internally.
+  - Supports dragging through `isDraggable` and `relativeTo` props ([#771](https://www.github.com/iTwin/iTwinUI-react/issues/771)) ([6e19020](https://www.github.com/iTwin/iTwinUI-react/commit/6e1902011c323485cdf74b64c4778de6309c0820))
+  - Supports resizing through `isResizable` prop ([#823](https://www.github.com/iTwin/iTwinUI-react/issues/823)) ([635de22](https://www.github.com/iTwin/iTwinUI-react/commit/635de226416196b23babe07c455e7571611a993f))
+* **Breadcrumbs:** Add `overflowButton` property ([#814](https://www.github.com/iTwin/iTwinUI-react/issues/814)) ([5a53003](https://www.github.com/iTwin/iTwinUI-react/commit/5a53003ea7c68854f412713edf49ec489505b134))
+* **DatePicker:** Date range support ([#737](https://www.github.com/iTwin/iTwinUI-react/issues/737)) ([33a815a](https://www.github.com/iTwin/iTwinUI-react/commit/33a815a2588251ff48f0f1852ec1b07957970069))
+* **Table:** Enable `useGlobalFilter` ([#810](https://www.github.com/iTwin/iTwinUI-react/issues/810)) ([b5133cc](https://www.github.com/iTwin/iTwinUI-react/commit/b5133cccb624380b1e4734bf3fe75858c046cf7e))
+* **Table:** Now supports shift click to select multiple rows ([#774](https://www.github.com/iTwin/iTwinUI-react/issues/774)) ([e868dc2](https://www.github.com/iTwin/iTwinUI-react/commit/e868dc285975ccf19635ff24edba017fea55d376))
+
+### Fixes
+
+* **ButtonGroup:** Handle overflow when available space is smaller than one element ([#827](https://www.github.com/iTwin/iTwinUI-react/issues/827)) ([f3691d3](https://www.github.com/iTwin/iTwinUI-react/commit/f3691d34306bad9203d85c5708650b524926fb79))
+* **Modal:** Fixed body overflow handling when there is a dialog inside another dialog ([#776](https://www.github.com/iTwin/iTwinUI-react/issues/776)) ([68feac4](https://www.github.com/iTwin/iTwinUI-react/commit/68feac425d335d11d5b0fd306bd35e5815910d17))
+* **Dialog:** Only focus dialog when `setFocus` is `true` ([#809](https://www.github.com/iTwin/iTwinUI-react/issues/809)) ([ddd7a9c](https://www.github.com/iTwin/iTwinUI-react/commit/ddd7a9cbceabaf5699b03b8d9d19b2676b53372f))
+* **Table:** Exposing `BaseFilter` in `index.ts` ([#826](https://www.github.com/iTwin/iTwinUI-react/issues/826)) ([9cddd2c](https://www.github.com/iTwin/iTwinUI-react/commit/9cddd2c8e347e849916637c2c8a60ba24c342a75))
+* **VirtualScroll:** Show all children upon toggling display/visibility ([#811](https://www.github.com/iTwin/iTwinUI-react/issues/811)) ([77810a6](https://www.github.com/iTwin/iTwinUI-react/commit/77810a67745411e235abe31578f3eb265d81a9eb))
+
 ## [1.45.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.44.0...v1.45.0) (2022-08-25)
 
 ### What's new
