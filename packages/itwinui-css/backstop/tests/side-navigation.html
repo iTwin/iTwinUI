@@ -95,10 +95,20 @@
         mask-image: url(mask_4.png);
       }
       #main-icon {
-        width: 500px;
-        height: 500px;
-        mask-image: url(mask_3.svg);
-        mask-size: 100% 100%;
+        width: 100px;
+        height: 100px;
+        mask-image: url(mask_6.svg), url(mask_5.svg);
+        /* mask-image: url(mask_5.svg), url(mask_6.svg); */
+        /* mask-image: url(mask_5.svg); */
+        mask-size: 100% 100%, 50px 50px;
+        /* mask-size: 50px 50px, 100% 100%; */
+        /* mask-type: luminance, alpha; */
+        mask-repeat: no-repeat;
+        /* mask-position: top right, center; */
+        mask-position: center, top right;
+        mask-composite: exclude;
+        
+        /* mask-image: url(mask_7.svg); */
       }
     </style>
 
@@ -112,11 +122,13 @@
     />
     <section id="demo-side-navigation">
 
-      <svg-map
-        id="main-icon"
-        class="iui-button-icon"
-        aria-hidden="true"
-      ></svg-map>
+      <div class="iui-notification-negative">
+        <svg-map
+          id="main-icon"
+          class="iui-button-icon "
+          aria-hidden="true"
+        ></svg-map>
+      </div>
 
       <div
         class="iui-side-navigation iui-collapsed"
