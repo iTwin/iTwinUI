@@ -95,20 +95,19 @@
         mask-image: url(mask_4.png);
       }
       #main-icon {
-        width: 100px;
-        height: 100px;
-        mask-image: url(mask_6.svg), url(mask_5.svg);
-        /* mask-image: url(mask_5.svg), url(mask_6.svg); */
-        /* mask-image: url(mask_5.svg); */
-        mask-size: 100% 100%, 50px 50px;
-        /* mask-size: 50px 50px, 100% 100%; */
-        /* mask-type: luminance, alpha; */
-        mask-repeat: no-repeat;
-        /* mask-position: top right, center; */
-        mask-position: center, top right;
-        mask-composite: exclude;
-        
-        /* mask-image: url(mask_7.svg); */
+        /* width: var(--iui-size-s); */
+        width: 300px;
+        height: 300px;
+        mask-image: url(mask_3.svg);
+        mask-size: 100% 100%;
+
+        mask: radial-gradient(
+          /* top: calc(var(--iui-size-s) * -0.5);
+    right: calc(var(--iui-size-s) * -0.5); */
+          ellipse 15px 15px at 100% 0%,
+          transparent 90%,
+          black 95%
+        );
       }
     </style>
 
@@ -122,7 +121,18 @@
     />
     <section id="demo-side-navigation">
 
-      <div class="iui-notification-negative">
+      <!-- div is not accesible -->
+      <!-- body may even be text, instead of just icon -->
+      <!-- Mask can also be a radial gradient instead of svg -->
+      <!-- Can work the same inside and outside the sidenav -->
+
+      <!-- Maybe there is a property to tell it to not clip (to prevent the cirle from being cliiped) -->
+
+      <!-- radial gradient -->
+      <!-- Has stops. tranparent for all. black for top right -->
+      <!-- Can use shape for gradient. sliipse 30 px from the right -->
+
+      <div class="iui-notification-positive">
         <svg-map
           id="main-icon"
           class="iui-button-icon "

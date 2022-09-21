@@ -6,22 +6,25 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
 @mixin iui-notification-marker($status: primary) {
   position: relative;
 
-  // &::before {
-  //   content: '';
-  //   position: absolute;
-  //   width: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
-  //   height: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
-  //   // width: 20px;
-  //   // height: 20px;
-  //   top: calc(var(--iui-size-s) * -0.5);
-  //   right: calc(var(--iui-size-s) * -0.5);
-  //   border-radius: 100%;
-  //   background-color: var(--iui-color-foreground-#{$status});
-  //   // border: $iui-notification-marker-border-width solid var(--iui-color-background-1);
-  //   @media (prefers-reduced-motion: no-preference) {
-  //     transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
-  //   }
-  // }
+  &::before {
+    content: '';
+    position: absolute;
+    // width: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
+    // height: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
+    width: 20px;
+    height: 20px;
+    top: calc(var(--iui-size-s) * -0.5);
+    right: calc(var(--iui-size-s) * -0.5);
+    // top: -10px;
+    // right: -10px;
+
+    border-radius: 100%;
+    background-color: var(--iui-color-foreground-#{$status});
+    // border: $iui-notification-marker-border-width solid var(--iui-color-background-1);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
+    }
+  }
 
   &.iui-urgent::before {
     @media (prefers-reduced-motion: no-preference) {
