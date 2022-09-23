@@ -3,6 +3,7 @@
 
 $iui-notification-marker-border-width: var(--iui-size-3xs);
 $iui-notification-before-size: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
+// $iui-notification-before-size: calc(var(--iui-size-xs));
 // $iui-notification-before-size: 12px;
 
 @mixin iui-notification-marker($status: primary) {
@@ -11,6 +12,8 @@ $iui-notification-before-size: calc(var(--iui-size-xs) + $iui-notification-marke
   &::before {
     content: '';
     position: absolute;
+    // width: $iui-notification-before-size;
+    // height: $iui-notification-before-size;
     width: calc($iui-notification-before-size - 2 * $iui-notification-marker-border-width);
     height: calc($iui-notification-before-size - 2 * $iui-notification-marker-border-width);
     // width: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
@@ -26,6 +29,7 @@ $iui-notification-before-size: calc(var(--iui-size-xs) + $iui-notification-marke
 
     border-radius: 100%;
     background-color: var(--iui-color-foreground-#{$status});
+    // background-color: transparent;
     // border: $iui-notification-marker-border-width solid var(--iui-color-background-1);
     // border: $iui-notification-marker-border-width solid transparent;
     // padding: $iui-notification-marker-border-width;
@@ -47,12 +51,11 @@ $iui-notification-before-size: calc(var(--iui-size-xs) + $iui-notification-marke
     // ellipse 1px 1px at calc(100% + var(--iui-size-s) * -0.5) calc(-1 * var(--iui-size-s) * -0.5),
     // ellipse 1px 1px at 98% 2%,
     // ellipse calc(10px + $iui-notification-marker-border-width) calc(10px + $iui-notification-marker-border-width) at calc(100% - 10px - var(--iui-size-s) * -0.5) calc(10px + var(--iui-size-s) * -0.5),
+    // ellipse calc($iui-notification-before-size * 0.5) calc($iui-notification-before-size * 0.5) at
     mask: radial-gradient(
-      ellipse calc($iui-notification-before-size * 0.5) calc($iui-notification-before-size * 0.5) at
-      calc(100% - $iui-notification-before-size * 0.5 - var(--iui-size-s) * -0.5)
-      calc($iui-notification-before-size * 0.5 + var(--iui-size-s) * -0.5),
-      transparent 90%,
-      #000 95%
+      ellipse 6px 6px at calc(100% - 6px - var(--iui-size-s) * -0.5) calc(6px + var(--iui-size-s) * -0.5),
+      transparent 95%,
+      #000 100%
     );
   }
 
