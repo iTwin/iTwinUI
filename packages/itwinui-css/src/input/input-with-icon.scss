@@ -7,6 +7,7 @@
   display: grid;
   align-items: center;
   cursor: pointer;
+  position: relative;
 
   > :first-child {
     grid-area: 1 / -1;
@@ -26,6 +27,11 @@
       // --_iui-input-with-icon-hover-border-color can be used to control this from outside
       border-color: var(--_iui-input-with-icon-hover-border-color, var(--iui-color-foreground-2));
     }
+  }
+
+  > .iui-select-tag-container {
+    max-width: 70%;
+    right: unset;
   }
 }
 
