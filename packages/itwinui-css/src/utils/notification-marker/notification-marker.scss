@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 $iui-notification-marker-border-width: var(--iui-size-3xs);
+$iui-notification-before-size: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
+// $iui-notification-before-size: 12px;
 
 @mixin iui-notification-marker($status: primary) {
   position: relative;
@@ -9,12 +11,14 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
   &::before {
     content: '';
     position: absolute;
+    width: calc($iui-notification-before-size - 2 * $iui-notification-marker-border-width);
+    height: calc($iui-notification-before-size - 2 * $iui-notification-marker-border-width);
     // width: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
     // height: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
-    width: 20px;
-    height: 20px;
-    top: calc(10px + var(--iui-size-s) * -0.5);
-    right: calc(10px + var(--iui-size-s) * -0.5);
+    // width: 20px;
+    // height: 20px;
+    top: calc($iui-notification-before-size * 0.5 + var(--iui-size-s) * -0.5);
+    right: calc($iui-notification-before-size * 0.5 + var(--iui-size-s) * -0.5);
     // right: 0;
     transform: translate(50%, -50%);
     // top: -10px;
@@ -23,6 +27,9 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
     border-radius: 100%;
     background-color: var(--iui-color-foreground-#{$status});
     // border: $iui-notification-marker-border-width solid var(--iui-color-background-1);
+    // border: $iui-notification-marker-border-width solid transparent;
+    // padding: $iui-notification-marker-border-width;
+    // box-sizing: content-box;
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
     }
@@ -30,8 +37,8 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
 
   > * {
     /* width: var(--iui-size-s); */
-    width: 300px;
-    height: 300px;
+    // width: 300px;
+    // height: 300px;
     // mask-image: url('mask_3.svg');
     // mask-size: 100% 100%;
 
@@ -39,8 +46,11 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
     // right: calc(var(--iui-size-s) * -0.5);
     // ellipse 1px 1px at calc(100% + var(--iui-size-s) * -0.5) calc(-1 * var(--iui-size-s) * -0.5),
     // ellipse 1px 1px at 98% 2%,
+    // ellipse calc(10px + $iui-notification-marker-border-width) calc(10px + $iui-notification-marker-border-width) at calc(100% - 10px - var(--iui-size-s) * -0.5) calc(10px + var(--iui-size-s) * -0.5),
     mask: radial-gradient(
-      ellipse 12px 12px at calc(100% - 10px - var(--iui-size-s) * -0.5) calc(10px + var(--iui-size-s) * -0.5),
+      ellipse calc($iui-notification-before-size * 0.5) calc($iui-notification-before-size * 0.5) at
+      calc(100% - $iui-notification-before-size * 0.5 - var(--iui-size-s) * -0.5)
+      calc($iui-notification-before-size * 0.5 + var(--iui-size-s) * -0.5),
       transparent 90%,
       #000 95%
     );
