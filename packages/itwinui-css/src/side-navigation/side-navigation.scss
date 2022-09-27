@@ -102,7 +102,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       }
     }
 
-    > span {
+    > span:not(.iui-button-icon) {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -114,7 +114,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       border-color: var(--iui-color-background-border);
     }
 
-    > .iui-button-icon:not(.iui-avatar) {
+    > .iui-button-icon:not(.iui-avatar),
+    > .iui-button-icon:not(.iui-avatar) > * {
       @include iui-icon-style('l');
     }
 

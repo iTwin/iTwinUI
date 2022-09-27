@@ -37,6 +37,10 @@
   transition: fill var(--iui-duration-1) ease-out;
   fill: currentColor;
   margin-block: var(--iui-size-2xs);
+
+  > * {
+    @include iui-icon-style('m');
+  }
 }
 
 @mixin iui-button-active {
