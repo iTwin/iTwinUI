@@ -173,7 +173,7 @@ $tick-height: var(--iui-size-s); // 12px
   .iui-slider-min,
   .iui-slider-max {
     margin-top: var(--iui-size-3xs);
-    width: var(--iui-size-l);
+    min-width: var(--iui-size-l);
     flex-direction: row;
 
     svg {
@@ -237,7 +237,7 @@ $tick-height: var(--iui-size-s); // 12px
     margin-left: calc(var(--iui-size-3xs) + var(--iui-size-s));
     text-align: center;
     transform: translate(-50%, 0);
-    height: var(--iui-size-l);
+    min-height: var(--iui-size-l);
     flex-direction: column;
   }
 
