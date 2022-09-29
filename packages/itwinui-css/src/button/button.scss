@@ -39,7 +39,7 @@
   margin-block: var(--iui-size-2xs);
 
   > * {
-    @include iui-icon-style('m');
+    display: flex;
   }
 }
 
