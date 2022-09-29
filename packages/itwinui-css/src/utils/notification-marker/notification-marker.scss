@@ -1,12 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
-// Spacing between notification marker circle and content
+// $iui-notification-marker-spacing: var(--iui-size-3xs);
+// $iui-notification-marker-size: calc(var(--iui-size-xs) + $iui-notification-marker-spacing * 2); // .5rem + 0.25rem = 0.75rem
+// $iui-notification-marker-radius: calc($iui-notification-marker-size * 0.5); // 0.75/2 = 0.375rem
+
+$iui-notification-marker-size: var(--iui-size-xs);
 $iui-notification-marker-spacing: var(--iui-size-3xs);
-// Size of notification marker circle
-$iui-notification-marker-size: calc(var(--iui-size-xs) + $iui-notification-marker-spacing * 2);
-// Radius of notification marker circle
-$iui-notification-marker-radius: calc($iui-notification-marker-size * 0.5);
+
+$iui-notification-marker-cutout-size: calc($iui-notification-marker-size + 2 * $iui-notification-marker-spacing);
+$iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cutout-size);
 
 @mixin iui-notification-marker($status: primary) {
   position: relative;
@@ -14,10 +17,12 @@ $iui-notification-marker-radius: calc($iui-notification-marker-size * 0.5);
   &::before {
     content: '';
     position: absolute;
-    width: calc($iui-notification-marker-size - 2 * $iui-notification-marker-spacing);
-    height: calc($iui-notification-marker-size - 2 * $iui-notification-marker-spacing);
-    top: calc($iui-notification-marker-radius + var(--iui-size-s) * -0.5);
-    right: calc($iui-notification-marker-radius + var(--iui-size-s) * -0.5);
+    width: $iui-notification-marker-size;
+    height: $iui-notification-marker-size;
+    // top: calc($iui-notification-marker-radius + var(--iui-size-s) * -0.5); // 0.375rem - 3/8 = 0.375 - 0.375 = 0
+    // right: calc($iui-notification-marker-radius + var(--iui-size-s) * -0.5);
+    top: 0;
+    right: 0;
     transform: translate(50%, -50%);
 
     border-radius: 100%;
@@ -28,10 +33,10 @@ $iui-notification-marker-radius: calc($iui-notification-marker-size * 0.5);
   }
 
   > * {
+    // calc(100% - $iui-notification-marker-radius - var(--iui-size-s) * -0.5)
+    // calc($iui-notification-marker-radius + var(--iui-size-s) * -0.5),
     mask: radial-gradient(
-      ellipse $iui-notification-marker-radius $iui-notification-marker-radius at
-      calc(100% - $iui-notification-marker-radius - var(--iui-size-s) * -0.5)
-      calc($iui-notification-marker-radius + var(--iui-size-s) * -0.5),
+      ellipse $iui-notification-marker-cutout-radius $iui-notification-marker-cutout-radius at 100% 0%,
       transparent 95%,
       #000 100%
     );
