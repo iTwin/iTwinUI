@@ -35,6 +35,7 @@ import {
   SelectionColumn,
   ExpanderColumn,
   Input,
+  Radio,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
@@ -2136,15 +2137,42 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
+  const [columnResizeMode, setColumnResizeMode] = React.useState<
+    TableProps['columnResizeMode']
+  >('fit');
+
   return (
-    <Table
-      columns={columns}
-      data={data}
-      emptyTableContent='No data.'
-      isResizable
-      isSortable
-      {...args}
-    />
+    <>
+      <InputGroup
+        label='Resize mode'
+        displayStyle='inline'
+        style={{ marginBottom: 12 }}
+      >
+        <Radio
+          name='choice'
+          value='fit'
+          onChange={() => setColumnResizeMode('fit')}
+          label='fit'
+          checked={columnResizeMode === 'fit'}
+        />
+        <Radio
+          name='choice'
+          value='expand'
+          onChange={() => setColumnResizeMode('expand')}
+          label='expand'
+          checked={columnResizeMode === 'expand'}
+        />
+      </InputGroup>
+      <Table
+        columns={columns}
+        data={data}
+        emptyTableContent='No data.'
+        isResizable
+        isSortable
+        {...args}
+        columnResizeMode={columnResizeMode}
+      />
+    </>
   );
 };
 

@@ -381,6 +381,7 @@ export const Table = <
     paginatorRenderer,
     pageSize = 25,
     isResizable = false,
+    columnResizeMode = 'fit',
     styleType = 'default',
     enableVirtualization = false,
     enableColumnReordering = false,
@@ -555,6 +556,7 @@ export const Table = <
       data,
       getSubRows,
       initialState: { pageSize, ...props.initialState },
+      columnResizeMode,
     },
     useFlexLayout,
     useResizeColumns(ownerDocument),
@@ -685,6 +687,7 @@ export const Table = <
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
+      instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
       }
@@ -706,7 +709,7 @@ export const Table = <
 
       dispatch({ type: tableResizeStartAction });
     },
-    [dispatch, state.columnResizing.columnWidths, flatHeaders],
+    [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
@@ -909,7 +912,8 @@ export const Table = <
                         )}
                         {isResizable &&
                           column.isResizerVisible &&
-                          index !== headerGroup.headers.length - 1 && (
+                          (index !== headerGroup.headers.length - 1 ||
+                            columnResizeMode === 'expand') && (
                             <div
                               {...column.getResizerProps()}
                               className='iui-resizer'
