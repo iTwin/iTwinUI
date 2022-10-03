@@ -8,12 +8,11 @@ import React from 'react';
 import cx from 'classnames';
 import { HeaderGroup } from 'react-table';
 import '@itwin/itwinui-css/css/table.css';
-import { useTheme, Popover, getDocument, StylingProps } from '../../utils';
+import { useTheme, Popover, StylingProps } from '../../utils';
 import { IconButton } from '../../Buttons';
 
 export type FilterToggleProps<T extends Record<string, unknown>> = {
   column: HeaderGroup<T>;
-  ownerDocument?: Document;
 } & StylingProps;
 
 /**
@@ -22,7 +21,7 @@ export type FilterToggleProps<T extends Record<string, unknown>> = {
 export const FilterToggle = <T extends Record<string, unknown>>(
   props: FilterToggleProps<T>,
 ) => {
-  const { column, ownerDocument = getDocument(), className, ...rest } = props;
+  const { column, className, ...rest } = props;
 
   useTheme();
 
@@ -53,7 +52,6 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           placement='bottom-start'
           visible={isVisible}
           onClickOutside={close}
-          appendTo={ownerDocument?.body}
         >
           <IconButton
             styleType='borderless'
