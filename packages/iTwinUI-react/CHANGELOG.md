@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.47.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.46.0...v1.47.0) (2022-10-03)
+
+### What's new
+
+* **Table:** Column resize modes ([#835](https://www.github.com/iTwin/iTwinUI-react/issues/835)) ([771a517](https://www.github.com/iTwin/iTwinUI-react/commit/771a517aa2031d5936521764a09613b6433ff283))
+
+
+### Fixes
+
+* **Table:** Fixed when fast resizing caused Table to throw an error ([#848](https://www.github.com/iTwin/iTwinUI-react/issues/848)) ([058ad3a](https://www.github.com/iTwin/iTwinUI-react/commit/058ad3a7c1bb4a3198a4dde1105cca47a2ef2998))
+
 ## [1.46.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.45.0...v1.46.0) (2022-09-20)
 
 ### What's new
