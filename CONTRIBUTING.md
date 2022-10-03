@@ -12,7 +12,7 @@ Want to contribute by creating a pull request? Great! [Fork iTwinUI-react](https
 
 ## How to setup
 
-To clone and build iTwinUI-react, you'll need [Git](https://git-scm.com) and [Yarn 1](https://yarnpkg.com/getting-started/install) installed on your computer.
+To clone and build iTwinUI-react, you'll need [Git](https://git-scm.com), [Node 16](https://nodejs.org/en/download/), and [Yarn 1](https://classic.yarnpkg.com/en/docs/install) installed on your computer.
 
 1. [Create a local clone](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository) of your forked repository. You can do this from the command line or using the Github Desktop app.
 2. Go to the directory where you cloned iTwinUI-react. e.g. `cd iTwinUI-react`.
