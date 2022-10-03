@@ -120,21 +120,23 @@
   // Sort icon
   .iui-table-sort {
     opacity: 0;
-    fill: var(--iui-color-foreground-4);
   }
 
   // Sorted column
   .iui-sorted {
+    --_iui-table-cell-icon-fill: var(--iui-color-foreground-2);
+
     background-color: var(--iui-color-background-4);
 
     .iui-table-sort {
       opacity: 1;
-      fill: var(--iui-color-foreground-2);
     }
   }
 }
 
 @mixin iui-table-row {
+  --_iui-table-cell-icon-fill: var(--iui-color-foreground-4);
+
   min-width: 100%;
   display: flex;
 
@@ -251,6 +253,8 @@
     &.iui-loading,
     .iui-table-cell[aria-disabled='true'],
     &.iui-table-expanded-content[aria-disabled='true'] {
+      --_iui-table-cell-icon-fill: var(--iui-color-foreground-4);
+
       color: var(--iui-color-foreground-4);
 
       img,
@@ -411,15 +415,13 @@
 }
 
 @mixin iui-table-row-status($status) {
+  --_iui-table-cell-icon-fill: var(--iui-color-foreground-#{$status});
+
   .iui-table-cell:first-of-type,
   + .iui-table-expanded-content {
     box-shadow: inset var(--iui-size-3xs) 0 0 0 var(--iui-color-foreground-#{$status});
 
     @include iui-text-selection($status);
-  }
-
-  .iui-table-cell-end-icon svg {
-    fill: var(--iui-color-foreground-#{$status});
   }
 }
 
@@ -440,6 +442,7 @@
 
     svg:not(.iui-radial) {
       @include iui-icon-style('m');
+      fill: var(--_iui-table-cell-icon-fill);
     }
   }
 
