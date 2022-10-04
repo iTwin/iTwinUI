@@ -254,13 +254,14 @@
     .iui-table-cell[aria-disabled='true'],
     &.iui-table-expanded-content[aria-disabled='true'] {
       --_iui-table-cell-icon-fill: var(--iui-color-foreground-4);
+      --_iui-table-cell-image-filter: grayscale(100%);
 
       color: var(--iui-color-foreground-4);
 
       img,
       svg:not(.iui-radial),
       .iui-avatar {
-        filter: grayscale(100%);
+        filter: var(--_iui-table-cell-image-filter);
       }
     }
 
@@ -415,13 +416,19 @@
 }
 
 @mixin iui-table-row-status($status) {
-  --_iui-table-cell-icon-fill: var(--iui-color-foreground-#{$status});
-
   .iui-table-cell:first-of-type,
   + .iui-table-expanded-content {
     box-shadow: inset var(--iui-size-3xs) 0 0 0 var(--iui-color-foreground-#{$status});
 
     @include iui-text-selection($status);
+  }
+
+  .iui-table-cell-end-icon {
+    --_iui-table-cell-icon-fill: var(--iui-color-foreground-#{$status});
+  }
+
+  .iui-table-cell[aria-disabled='true'] .iui-table-cell-end-icon {
+    --_iui-table-cell-image-filter: none;
   }
 }
 
