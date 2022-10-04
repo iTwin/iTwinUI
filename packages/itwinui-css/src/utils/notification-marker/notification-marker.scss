@@ -56,12 +56,3 @@ $iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cuto
     }
   }
 }
-
-@mixin iui-notification-marker-hover {
-  .iui-notification-primary::before,
-  .iui-notification-positive::before,
-  .iui-notification-warning::before,
-  .iui-notification-negative::before {
-    border-color: var(--iui-color-background-1-hover);
-  }
-}
