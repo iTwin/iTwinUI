@@ -29,6 +29,17 @@
       body > button.iui-button {
         margin: 5px 0;
       }
+      test-container-section {
+        display: flex;
+        gap: 5px;
+      }
+      test-container-section > * {
+        display: block;
+        height: 500px;
+        border: 1px solid var(--iui-color-background-border);
+        width: 50%;
+        position: relative;
+      }
     </style>
   </head>
   <body class="iui-root">
@@ -268,21 +279,21 @@
       </div>
     </div>
 
-    <div style="display: flex; gap: 5px;">
-      <div style="border: 1px solid var(--iui-color-background-border); width: 50%; height: 500px">
+    <test-container-section>
+      <div>
         <button
           aria-label="Open relative to container dialog"
           id="open-relative-to-container-dialog"
           type="button"
           class="iui-button"
           onclick="toggleDialog('draggable-dialog-relative')"
-          style="position: absolute;"
         >
           Open relative to container dialog
         </button>
         <div
           class="iui-dialog-wrapper"
           id="draggable-dialog-relative"
+          data-iui-relative
         >
           <div class="iui-dialog iui-dialog-default iui-dialog-draggable">
             <div class="iui-dialog-title-bar iui-dialog-title-bar-filled">
@@ -331,20 +342,20 @@
         </div>
       </div>
 
-      <div style="border: 1px solid var(--iui-color-background-border); width: 50%; height: 500px; position: relative;">
+      <div>
         <button
           aria-label="Open with backdrop relative to container dialog"
           id="open-with-backdrop-relative-to-container-dialog"
           type="button"
           class="iui-button"
           onclick="toggleDialog('relative-dialog-with-backdrop')"
-          style="position: absolute;"
         >
           Open with backdrop relative to container dialog
         </button>
         <div
           class="iui-dialog-wrapper"
           id="relative-dialog-with-backdrop"
+          data-iui-relative
         >
           <div class="iui-backdrop"></div>
           <div class="iui-dialog iui-dialog-default">
@@ -393,7 +404,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </test-container-section>
 
     <script>
       function toggleDialog(dialogId) {
