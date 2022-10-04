@@ -17,3 +17,31 @@
 .iui-tree-node {
   @include iui-tree-node;
 }
+
+.iui-tree-node-checkbox {
+  @include iui-tree-node-checkbox;
+}
+
+.iui-tree-node-content {
+  @include iui-tree-node-content;
+}
+
+.iui-tree-node-content-icon {
+  @include iui-tree-node-content-icon;
+}
+
+.iui-tree-node-content-expander-icon {
+  @include iui-tree-node-content-expander-icon;
+}
+
+.iui-tree-node-content-label {
+  @include iui-tree-node-content-label;
+}
+
+.iui-tree-node-content-title {
+  @include iui-tree-node-content-title;
+}
+
+.iui-tree-node-content-caption {
+  @include iui-tree-node-content-caption;
+}

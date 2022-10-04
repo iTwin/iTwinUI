@@ -25,7 +25,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   @include focus-visible {
     outline: none;
 
-    > .iui-tree-node {
+    > :where(.iui-tree-node) {
       outline: 1px solid var(--iui-color-foreground-primary);
       outline-offset: -1px;
 
@@ -38,77 +38,19 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 }
 
 @mixin iui-tree-node {
+  --_iui-tree-node-title-color: var(--iui-color-foreground-2);
+  --_iui-tree-node-caption-color: var(--iui-color-foreground-4);
+
   display: flex;
   cursor: pointer;
   padding: 0 var(--iui-size-xs);
   align-items: center;
   border-radius: var(--iui-border-radius-1);
 
-  &-checkbox {
-    margin-right: var(--iui-size-xs);
-  }
-
-  &-content {
-    display: flex;
-    align-items: center;
-    min-height: calc(var(--iui-size-s) * 3);
-    margin-left: calc(#{$iui-expander-button-width} * (var(--level, 0)));
-    overflow: hidden;
-    padding-left: var(--iui-size-3xs);
-
-    &-icon {
-      @include iui-icon-style('m');
-      @include iui-icon-color;
-      margin: 0 $iui-expander-inline-padding;
-
-      &:first-child {
-        margin-left: calc($iui-expander-button-width + $iui-expander-inline-padding);
-      }
-    }
-
-    &-expander-icon {
-      @media (prefers-reduced-motion: no-preference) {
-        transition: transform var(--iui-duration-1) ease-out;
-      }
-
-      &-expanded {
-        transform: rotate(90deg);
-      }
-    }
-
-    &-label {
-      min-width: 0;
-      padding-left: $iui-expander-inline-padding;
-
-      &:first-child {
-        margin-left: $iui-expander-button-width;
-      }
-    }
-
-    &-title,
-    &-caption {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &-title {
-      font-size: var(--iui-font-size-1);
-    }
-
-    &-caption {
-      font-size: var(--iui-font-size-0);
-      color: var(--iui-color-foreground-4);
-    }
-  }
-
   &:hover {
-    background-color: var(--iui-color-background-transparent-hover);
+    --_iui-tree-node-caption-color: var(--iui-color-foreground-1);
 
-    .iui-tree-node-content-caption {
-      color: var(--iui-color-foreground-1);
-      transition: color var(--iui-duration-1) ease;
-    }
+    background-color: var(--iui-color-background-transparent-hover);
   }
 
   &.iui-active {
@@ -118,13 +60,70 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   }
 
   &.iui-disabled {
+    --_iui-tree-node-title-color: var(--iui-color-foreground-5);
+    --_iui-tree-node-caption-color: var(--iui-color-foreground-5);
+
     cursor: not-allowed;
     outline: none;
     background-color: transparent;
-    color: var(--iui-color-foreground-5);
-
-    .iui-tree-node-content-caption {
-      color: var(--iui-color-foreground-5);
-    }
   }
+}
+
+@mixin iui-tree-node-checkbox {
+  margin-right: var(--iui-size-xs);
+}
+
+@mixin iui-tree-node-content {
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--iui-size-s) * 3);
+  margin-left: calc(#{$iui-expander-button-width} * (var(--level, 0)));
+  overflow: hidden;
+  padding-left: var(--iui-size-3xs);
+}
+
+@mixin iui-tree-node-content-icon {
+  @include iui-icon-style('m');
+  @include iui-icon-color;
+  margin: 0 $iui-expander-inline-padding;
+
+  &:first-child {
+    margin-left: calc($iui-expander-button-width + $iui-expander-inline-padding);
+  }
+}
+
+@mixin iui-tree-node-content-expander-icon {
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform var(--iui-duration-1) ease-out;
+  }
+
+  &-expanded {
+    transform: rotate(90deg);
+  }
+}
+
+@mixin iui-tree-node-content-label {
+  min-width: 0;
+  padding-left: $iui-expander-inline-padding;
+
+  &:first-child {
+    margin-left: $iui-expander-button-width;
+  }
+}
+
+@mixin iui-tree-node-content-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--iui-font-size-1);
+  color: var(--_iui-tree-node-title-color);
+}
+
+@mixin iui-tree-node-content-caption {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--iui-font-size-0);
+  color: var(--_iui-tree-node-caption-color);
+  transition: color var(--iui-duration-1) ease;
 }
