@@ -7,7 +7,9 @@ $iui-notification-marker-spacing: var(--iui-size-3xs);
 $iui-notification-marker-cutout-size: calc($iui-notification-marker-size + 2 * $iui-notification-marker-spacing);
 $iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cutout-size);
 
-@mixin iui-notification-marker($status: primary) {
+@mixin iui-notification-marker {
+  @include iui-notification-marker-status;
+
   position: relative;
 
   &::before {
@@ -20,7 +22,7 @@ $iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cuto
     transform: translate(50%, -50%);
 
     border-radius: 100%;
-    background-color: var(--iui-color-foreground-#{$status});
+    background-color: var(--_iui-notification-marker-color);
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
     }
@@ -33,17 +35,19 @@ $iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cuto
       #000 100%
     );
   }
+}
 
-  &.iui-urgent::before {
+@mixin iui-notification-marker-urgent {
+  &::before {
     @media (prefers-reduced-motion: no-preference) {
-      animation: pulse-#{$status} 2s infinite;
+      animation: pulse 2s infinite;
     }
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    @keyframes pulse-#{$status} {
+    @keyframes pulse {
       0% {
-        box-shadow: 0 0 0 0 var(--iui-color-foreground-#{$status});
+        box-shadow: 0 0 0 0 var(--_iui-notification-marker-color);
       }
 
       70% {
@@ -55,4 +59,8 @@ $iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cuto
       }
     }
   }
+}
+
+@mixin iui-notification-marker-status($status: primary) {
+  --_iui-notification-marker-color: var(--iui-color-foreground-#{$status});
 }

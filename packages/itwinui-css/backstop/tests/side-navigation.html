@@ -114,7 +114,11 @@
               aria-controls="documents-tab"
               onclick="toggleActiveState(this)"
             >
-              <span class="iui-button-icon iui-notification-negative iui-urgent">
+              <span
+                class="iui-button-icon iui-notification-marker"
+                data-iui-variant="negative"
+                data-iui-urgent="true"
+              >
                 <svg-document aria-hidden="true"></svg-document>
               </span>
               <span>Documents</span>
@@ -130,7 +134,10 @@
               aria-controls="map-tab"
               onclick="toggleActiveState(this)"
             >
-              <span class="iui-button-icon iui-notification-positive">
+              <span
+                class="iui-button-icon iui-notification-marker"
+                data-iui-variant="positive"
+              >
                 <svg-map aria-hidden="true"></svg-map>
               </span>
               <span>Map</span>
