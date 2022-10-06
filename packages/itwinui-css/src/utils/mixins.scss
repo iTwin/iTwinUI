@@ -38,13 +38,15 @@
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
-    width: var(--iui-size-xs);
-    height: var(--iui-size-xs);
+    width: var(--iui-size-s);
+    height: var(--iui-size-s);
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: hsl(var(--iui-color-foreground-1-hsl) / var(--iui-opacity-4));
     border-radius: var(--iui-border-radius-round);
+    border: var(--iui-size-3xs) solid transparent;
+    background-clip: content-box;
 
     &:hover {
       background-color: hsl(var(--iui-color-foreground-1-hsl) / var(--iui-opacity-3));
