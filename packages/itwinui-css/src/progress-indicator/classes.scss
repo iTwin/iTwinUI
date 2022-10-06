@@ -18,11 +18,11 @@
 .iui-progress-linear {
   @include iui-progress-linear;
 
-  &[value='100'] {
+  &:where([value='100']) {
     @include iui-progress-linear-status(success);
   }
 
-  &[aria-errormessage] {
+  &:where([aria-errormessage]) {
     @include iui-progress-linear-status(error);
   }
 
@@ -46,16 +46,10 @@
 .iui-progress-radial-wrapper {
   @include iui-progress-radial-wrapper;
 
-  &[data-iui-size='l'] {
-    @include iui-progress-radial-size(l);
-  }
-
-  &[data-iui-size='s'] {
-    @include iui-progress-radial-size(s);
-  }
-
-  &[data-iui-size='xs'] {
-    @include iui-progress-radial-size(xs);
+  @each $size in l, s, xs {
+    &[data-iui-size='#{$size}'] {
+      @include iui-progress-radial-size($size);
+    }
   }
 
   &[aria-valuenow] {
