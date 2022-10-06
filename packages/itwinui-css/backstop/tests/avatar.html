@@ -13,6 +13,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1"
     >
+    <title>Avatar | iTwinUI</title>
     <script type="module">
       import "./assets/theme.js";
       import "@itwin/itwinui-icons-elements/user";
@@ -21,12 +22,17 @@
       @import url("./assets/demo.css") layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
-    </style>
-    <title>Avatar | iTwinUI</title>
-    <style>
-      #demo-default > span,
-      #demo-status > div > span {
-        margin-right: 4px;
+
+      #demo-default,
+      #demo-status,
+      #demo-status > div {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+      }
+
+      #demo-status {
+        flex-direction: column;
       }
 
       .demo-right {
@@ -43,186 +49,165 @@
 
     <h2>Default</h2>
     <section id="demo-default">
-
       <span
-        class="iui-avatar iui-small"
+        class="iui-avatar"
+        data-iui-size="s"
         title="User"
+        style="--iui-avatar-background-color: #FFC335;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #FFC335;"
-        ></abbr>
         <svg-user
-          class="iui-icon"
+          class="iui-avatar-icon"
           aria-hidden="true"
         ></svg-user>
-        <span class="iui-stroke"></span>
       </span>
 
       <span
-        class="iui-avatar iui-small"
+        class="iui-avatar"
+        data-iui-size="s"
         title="Terry Rivers"
+        style="--iui-avatar-background-color: #FFC335;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #FFC335;"
-        >
+        <abbr class="iui-avatar-initials">
           TR
         </abbr>
-        <span class="iui-stroke"></span>
       </span>
 
       <span
-        class="iui-avatar iui-small"
+        class="iui-avatar"
+        data-iui-size="s"
         title="Terry Rivers"
+        style="--iui-avatar-background-color: #FFC335;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #FFC335;"
-        >
+        <abbr class="iui-avatar-initials">
           TR
         </abbr>
-        <!-- Using the exact size image to prevent random test failures -->
         <img
-          src="./assets/user-placeholder-24x24.png"
-          alt="Terry Rivers"
+          class="iui-avatar-image"
+          src="../assets/image-test.jpg"
+          loading="lazy"
+          draggable="false"
+          onerror="this.style.display='none'"
         />
-        <span class="iui-stroke"></span>
       </span>
 
       <span
         class="iui-avatar"
         title="User"
+        style="--iui-avatar-background-color: #F7963E;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #F7963E;"
-        ></abbr>
         <svg-user
-          class="iui-icon"
+          class="iui-avatar-icon"
           aria-hidden="true"
         ></svg-user>
-        <span class="iui-stroke"></span>
       </span>
 
       <span
         class="iui-avatar"
         title="Terry Rivers"
+        style="--iui-avatar-background-color: #F7963E;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #F7963E;"
-        >
+        <abbr class="iui-avatar-initials">
           TR
         </abbr>
-        <span class="iui-stroke"></span>
       </span>
 
       <span
         class="iui-avatar"
         title="Terry Rivers"
+        style="--iui-avatar-background-color: #F7963E;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #F7963E;"
-        >
+        <abbr class="iui-avatar-initials">
           TR
         </abbr>
         <img
-          src="./assets/user-placeholder.png"
-          alt="Terry Rivers"
+          class="iui-avatar-image"
+          src="../assets/image-test.jpg"
+          loading="lazy"
+          draggable="false"
+          onerror="this.style.display='none'"
         />
-        <span class="iui-stroke"></span>
       </span>
 
       <span
-        class="iui-avatar iui-large"
+        class="iui-avatar"
+        data-iui-size="l"
         title="User"
+        style="--iui-avatar-background-color: #73C7C1;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #73C7C1;"
-        ></abbr>
         <svg-user
-          class="iui-icon"
+          class="iui-avatar-icon"
           aria-hidden="true"
         ></svg-user>
-        <span class="iui-stroke"></span>
       </span>
 
       <span
-        class="iui-avatar iui-large"
+        class="iui-avatar"
+        data-iui-size="l"
         title="Terry Rivers"
+        style="--iui-avatar-background-color: #73C7C1;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #73C7C1;"
-        >
+        <abbr class="iui-avatar-initials">
           TR
         </abbr>
-        <span class="iui-stroke"></span>
       </span>
 
       <span
-        class="iui-avatar iui-large"
+        class="iui-avatar"
+        data-iui-size="l"
         title="Terry Rivers"
+        style="--iui-avatar-background-color: #73C7C1;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #73C7C1;"
-        >
+        <abbr class="iui-avatar-initials">
           TR
         </abbr>
         <img
-          src="./assets/user-placeholder.png"
-          alt="Terry Rivers"
+          class="iui-avatar-image"
+          src="../assets/image-test.jpg"
+          loading="lazy"
+          draggable="false"
+          onerror="this.style.display='none'"
         />
-        <span class="iui-stroke"></span>
       </span>
 
       <span
-        class="iui-avatar iui-x-large"
+        class="iui-avatar"
+        data-iui-size="xl"
         title="User"
+        style="--iui-avatar-background-color: #85A9CF;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #85A9CF;"
-        ></abbr>
         <svg-user
-          class="iui-icon"
+          class="iui-avatar-icon"
           aria-hidden="true"
         ></svg-user>
-        <span class="iui-stroke"></span>
       </span>
 
       <span
-        class="iui-avatar iui-x-large"
+        class="iui-avatar"
+        data-iui-size="xl"
         title="Terry Rivers"
+        style="--iui-avatar-background-color: #85A9CF;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #85A9CF;"
-        >
+        <abbr class="iui-avatar-initials">
           TR
         </abbr>
-        <span class="iui-stroke"></span>
       </span>
 
       <span
-        class="iui-avatar iui-x-large"
+        class="iui-avatar"
+        data-iui-size="xl"
         title="Terry Rivers"
+        style="--iui-avatar-background-color: #85A9CF;"
       >
-        <abbr
-          class="iui-initials"
-          style="background-color: #85A9CF;"
-        >
+        <abbr class="iui-avatar-initials">
           TR
         </abbr>
         <img
-          src="./assets/user-placeholder.png"
-          alt="Terry Rivers"
+          class="iui-avatar-image"
+          src="../assets/image-test.jpg"
+          loading="lazy"
+          draggable="false"
+          onerror="this.style.display='none'"
         />
-        <span class="iui-stroke"></span>
       </span>
     </section>
 
@@ -234,114 +219,115 @@
         <span
           class="iui-avatar"
           title="Terry Rivers"
+          data-iui-status="online"
+          style="--iui-avatar-background-color: #A3779F;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #A3779F;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Online"
-            class="iui-status iui-online"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Terry Rivers"
+          data-iui-status="online"
+          style="--iui-avatar-background-color: #A3779F;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #A3779F;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Terry Rivers"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Online"
-            class="iui-status iui-online"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
           title="Terry Rivers"
+          data-iui-size="l"
+          data-iui-status="online"
+          style="--iui-avatar-background-color: #C8C2B4;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #C8C2B4;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Online"
-            class="iui-status iui-online"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
           title="Terry Rivers"
+          data-iui-size="l"
+          data-iui-status="online"
+          style="--iui-avatar-background-color: #C8C2B4;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #C8C2B4;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Terry Rivers"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Online"
-            class="iui-status iui-online"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
           title="Terry Rivers"
+          data-iui-size="xl"
+          data-iui-status="online"
+          style="--iui-avatar-background-color: #A47854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #A47854;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Online"
-            class="iui-status iui-online"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
           title="Terry Rivers"
+          data-iui-size="xl"
+          data-iui-status="online"
+          style="--iui-avatar-background-color: #A47854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #A47854;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Terry Rivers"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Online"
-            class="iui-status iui-online"
+            class="iui-avatar-status"
           ></span>
         </span>
       </div>
@@ -350,114 +336,115 @@
         <span
           class="iui-avatar"
           title="Robin Mercer"
+          data-iui-status="away"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Away"
-            class="iui-status iui-away"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Robin Mercer"
+          data-iui-status="away"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Robin Mercer"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Away"
-            class="iui-status iui-away"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
           title="Robin Mercer"
+          data-iui-size="l"
+          data-iui-status="away"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Away"
-            class="iui-status iui-away"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
           title="Robin Mercer"
+          data-iui-size="l"
+          data-iui-status="away"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Robin Mercer"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Away"
-            class="iui-status iui-away"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
           title="Robin Mercer"
+          data-iui-size="xl"
+          data-iui-status="away"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Away"
-            class="iui-status iui-away"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
           title="Robin Mercer"
+          data-iui-size="xl"
+          data-iui-status="away"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Robin Mercer"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Away"
-            class="iui-status iui-away"
+            class="iui-avatar-status"
           ></span>
         </span>
       </div>
@@ -466,114 +453,115 @@
         <span
           class="iui-avatar"
           title="Robin Mercer"
+          data-iui-status="busy"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Busy"
-            class="iui-status iui-busy"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Robin Mercer"
+          data-iui-status="busy"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Robin Mercer"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Busy"
-            class="iui-status iui-busy"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
           title="Robin Mercer"
+          data-iui-size="l"
+          data-iui-status="busy"
+          style="--iui-avatar-background-color: #FFC335;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #FFC335;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Busy"
-            class="iui-status iui-busy"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
           title="Robin Mercer"
+          data-iui-size="l"
+          data-iui-status="busy"
+          style="--iui-avatar-background-color: #FFC335;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #FFC335;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Robin Mercer"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Busy"
-            class="iui-status iui-busy"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
           title="Robin Mercer"
+          data-iui-size="xl"
+          data-iui-status="busy"
+          style="--iui-avatar-background-color: #F7963E;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7963E;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Busy"
-            class="iui-status iui-busy"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
           title="Robin Mercer"
+          data-iui-size="xl"
+          data-iui-status="busy"
+          style="--iui-avatar-background-color: #F7963E;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7963E;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Robin Mercer"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Busy"
-            class="iui-status iui-busy"
+            class="iui-avatar-status"
           ></span>
         </span>
       </div>
@@ -582,183 +570,223 @@
         <span
           class="iui-avatar"
           title="Terry Rivers"
+          data-iui-status="offline"
+          style="--iui-avatar-background-color: #73C7C1;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #73C7C1;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Offline"
-            class="iui-status iui-offline"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Terry Rivers"
+          data-iui-status="offline"
+          style="--iui-avatar-background-color: #73C7C1;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #73C7C1;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Terry Rivers"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Offline"
-            class="iui-status iui-offline"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
           title="Terry Rivers"
+          data-iui-size="l"
+          data-iui-status="offline"
+          style="--iui-avatar-background-color: #85A9CF;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #85A9CF;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Offline"
-            class="iui-status iui-offline"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
           title="Terry Rivers"
+          data-iui-size="l"
+          data-iui-status="offline"
+          style="--iui-avatar-background-color: #85A9CF;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #85A9CF;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Terry Rivers"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Offline"
-            class="iui-status iui-offline"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
           title="Terry Rivers"
+          data-iui-size="xl"
+          data-iui-status="offline"
+          style="--iui-avatar-background-color: #A3779F;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #A3779F;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
           <span
             title="Offline"
-            class="iui-status iui-offline"
+            class="iui-avatar-status"
           ></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
           title="Terry Rivers"
+          data-iui-size="xl"
+          data-iui-status="offline"
+          style="--iui-avatar-background-color: #A3779F;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #A3779F;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
           <img
-            src="./assets/user-placeholder.png"
-            alt="Terry Rivers"
+            class="iui-avatar-image"
+            src="../assets/image-test.jpg"
+            loading="lazy"
+            draggable="false"
+            onerror="this.style.display='none'"
           />
-          <span class="iui-stroke"></span>
           <span
             title="Offline"
-            class="iui-status iui-offline"
+            class="iui-avatar-status"
           ></span>
         </span>
       </div>
+
+    </section>
+
+    <br />
+    <h3>Edge cases</h3>
+    <section id="demo-edge-cases">
+      <span
+        class="iui-avatar"
+        data-iui-size="xl"
+        title="Terry Rivers"
+        style="--iui-avatar-background-color: #85A9CF;"
+      >
+        <abbr class="iui-avatar-initials">
+          TR
+        </abbr>
+        <img
+          class="iui-avatar-image"
+          src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+          loading="lazy"
+          draggable="false"
+          onerror="this.style.display='none'"
+        />
+      </span>
+
+      <span
+        class="iui-avatar"
+        data-iui-size="xl"
+        title="Jerry Givers"
+        style="--iui-avatar-background-color: #85A9CF;"
+      >
+        <abbr class="iui-avatar-initials">
+          JG
+        </abbr>
+        <img
+          class="iui-avatar-image"
+          src="../assets/broken-image.jpg"
+          loading="lazy"
+          draggable="false"
+          onerror="this.style.display='none'"
+        />
+      </span>
     </section>
 
     <hr />
 
-    <h2>User list</h2>
+    <h2>Avatar list</h2>
     <section id="demo-list">
 
       <!-- Small -->
-      <div class="iui-avatar-list">
+      <div
+        class="iui-avatar-list"
+        data-iui-size="s"
+      >
         <span
-          class="iui-avatar iui-small"
+          class="iui-avatar"
+          data-iui-size="s"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-small"
+          class="iui-avatar"
+          data-iui-size="s"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-small"
+          class="iui-avatar"
+          data-iui-size="s"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-small"
+          class="iui-avatar"
+          data-iui-size="s"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
-        <span class="iui-avatar iui-avatar-count iui-small">
-          <abbr class="iui-initials">
+        <span
+          class="iui-avatar iui-avatar-count"
+          data-iui-size="s"
+          tabindex="0"
+        >
+          <abbr class="iui-avatar-initials">
             5
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <div class="iui-tooltip-container">
@@ -775,60 +803,50 @@
         <span
           class="iui-avatar"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
-        <span class="iui-avatar iui-avatar-count">
-          <abbr class="iui-initials">
+        <span
+          class="iui-avatar iui-avatar-count"
+          tabindex="0"
+        >
+          <abbr class="iui-avatar-initials">
             5
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <div class="iui-tooltip-container">
@@ -841,64 +859,62 @@
       <br />
 
       <!-- Large -->
-      <div class="iui-avatar-list">
+      <div
+        class="iui-avatar-list"
+        data-iui-size="l"
+      >
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
+          data-iui-size="l"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
+          data-iui-size="l"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
+          data-iui-size="l"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
+          data-iui-size="l"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
-        <span class="iui-avatar iui-avatar-count iui-large">
-          <abbr class="iui-initials">
+        <span
+          class="iui-avatar iui-avatar-count"
+          data-iui-size="l"
+          tabindex="0"
+        >
+          <abbr class="iui-avatar-initials">
             5
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <div class="iui-tooltip-container">
@@ -911,64 +927,62 @@
       <br />
 
       <!-- X-large -->
-      <div class="iui-avatar-list">
+      <div
+        class="iui-avatar-list"
+        data-iui-size="xl"
+      >
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
+          data-iui-size="xl"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
+          data-iui-size="xl"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
+          data-iui-size="xl"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
+          data-iui-size="xl"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
-        <span class="iui-avatar iui-avatar-count iui-x-large">
-          <abbr class="iui-initials">
+        <span
+          class="iui-avatar iui-avatar-count"
+          data-iui-size="xl"
+          tabindex="0"
+        >
+          <abbr class="iui-avatar-initials">
             5
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <div class="iui-tooltip-container">
@@ -982,259 +996,63 @@
 
     <br />
 
-    <h3>User List Stacked</h3>
+    <h3>Stacked</h3>
     <section id="demo-stacked">
 
       <!-- Small -->
-      <div class="iui-avatar-list iui-stacked">
-        <span
-          class="iui-avatar iui-small"
-          title="Terry Rivers"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
-            TR
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span
-          class="iui-avatar iui-small"
-          title="Robin Mercer"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
-            RM
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span
-          class="iui-avatar iui-small"
-          title="Terry Rivers"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
-            TR
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span
-          class="iui-avatar iui-small"
-          title="Robin Mercer"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
-            RM
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span class="iui-avatar iui-avatar-count iui-small">
-          <abbr class="iui-initials">
-            5
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-      </div>
-
-      <br />
-
-      <!-- Default -->
-      <div class="iui-avatar-list iui-stacked">
+      <div class="iui-avatar-list-stacked">
         <span
           class="iui-avatar"
+          data-iui-size="s"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
           class="iui-avatar"
+          data-iui-size="s"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
           class="iui-avatar"
+          data-iui-size="s"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
           class="iui-avatar"
+          data-iui-size="s"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
-        <span class="iui-avatar iui-avatar-count ">
-          <abbr class="iui-initials">
+        <span
+          class="iui-avatar iui-avatar-count"
+          data-iui-size="s"
+          tabindex="0"
+        >
+          <abbr class="iui-avatar-initials">
             5
           </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-      </div>
-
-      <br />
-
-      <!-- Large -->
-      <div class="iui-avatar-list iui-stacked">
-        <span
-          class="iui-avatar iui-large"
-          title="Terry Rivers"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
-            TR
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span
-          class="iui-avatar iui-large"
-          title="Robin Mercer"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
-            RM
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span
-          class="iui-avatar iui-large"
-          title="Terry Rivers"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
-            TR
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span
-          class="iui-avatar iui-large"
-          title="Robin Mercer"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
-            RM
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-        <span class="iui-avatar iui-avatar-count iui-large">
-          <abbr class="iui-initials">
-            5
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-      </div>
-
-      <br />
-
-      <!-- X-large -->
-      <div class="iui-avatar-list iui-stacked">
-        <span
-          class="iui-avatar iui-x-large"
-          title="Terry Rivers"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
-            TR
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span
-          class="iui-avatar iui-x-large"
-          title="Robin Mercer"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
-            RM
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span
-          class="iui-avatar iui-x-large"
-          title="Terry Rivers"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
-            TR
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span
-          class="iui-avatar iui-x-large"
-          title="Robin Mercer"
-        >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
-            RM
-          </abbr>
-          <span class="iui-stroke"></span>
-        </span>
-
-        <span class="iui-avatar iui-avatar-count iui-x-large">
-          <abbr class="iui-initials">
-            5
-          </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <div class="iui-tooltip-container">
@@ -1242,122 +1060,298 @@
             Mercer<br />Terry
             Rivers</span>
         </div>
-
       </div>
+
+      <br />
+
+      <!-- Default -->
+      <div class="iui-avatar-list-stacked">
+        <span
+          class="iui-avatar"
+          title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
+        >
+          <abbr class="iui-avatar-initials">
+            TR
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar"
+          title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
+        >
+          <abbr class="iui-avatar-initials">
+            RM
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar"
+          title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
+        >
+          <abbr class="iui-avatar-initials">
+            TR
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar"
+          title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
+        >
+          <abbr class="iui-avatar-initials">
+            RM
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar iui-avatar-count"
+          tabindex="0"
+        >
+          <abbr class="iui-avatar-initials">
+            5
+          </abbr>
+        </span>
+
+        <div class="iui-tooltip-container">
+          <span class="iui-tooltip demo-right">Terry Rivers<br />Robin Mercer<br />Terry Rivers<br />Robin
+            Mercer<br />Terry
+            Rivers</span>
+        </div>
+      </div>
+
+      <br />
+
+      <!-- Large -->
+      <div class="iui-avatar-list-stacked">
+        <span
+          class="iui-avatar"
+          data-iui-size="l"
+          title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
+        >
+          <abbr class="iui-avatar-initials">
+            TR
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar"
+          data-iui-size="l"
+          title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
+        >
+          <abbr class="iui-avatar-initials">
+            RM
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar"
+          data-iui-size="l"
+          title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
+        >
+          <abbr class="iui-avatar-initials">
+            TR
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar"
+          data-iui-size="l"
+          title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
+        >
+          <abbr class="iui-avatar-initials">
+            RM
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar iui-avatar-count"
+          data-iui-size="l"
+          tabindex="0"
+        >
+          <abbr class="iui-avatar-initials">
+            5
+          </abbr>
+        </span>
+
+        <div class="iui-tooltip-container">
+          <span class="iui-tooltip demo-right">Terry Rivers<br />Robin Mercer<br />Terry Rivers<br />Robin
+            Mercer<br />Terry
+            Rivers</span>
+        </div>
+      </div>
+
+      <br />
+
+      <!-- X-large -->
+      <div class="iui-avatar-list-stacked">
+        <span
+          class="iui-avatar"
+          data-iui-size="xl"
+          title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
+        >
+          <abbr class="iui-avatar-initials">
+            TR
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar"
+          data-iui-size="xl"
+          title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
+        >
+          <abbr class="iui-avatar-initials">
+            RM
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar"
+          data-iui-size="xl"
+          title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
+        >
+          <abbr class="iui-avatar-initials">
+            TR
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar"
+          data-iui-size="xl"
+          title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
+        >
+          <abbr class="iui-avatar-initials">
+            RM
+          </abbr>
+        </span>
+
+        <span
+          class="iui-avatar iui-avatar-count"
+          data-iui-size="xl"
+          tabindex="0"
+        >
+          <abbr class="iui-avatar-initials">
+            5
+          </abbr>
+        </span>
+
+        <div class="iui-tooltip-container">
+          <span class="iui-tooltip demo-right">Terry Rivers<br />Robin Mercer<br />Terry Rivers<br />Robin
+            Mercer<br />Terry
+            Rivers</span>
+        </div>
+      </div>
+
     </section>
 
     <h3>Animated on hover</h3>
     <section id="demo-animated">
 
       <!-- Small -->
-      <div class="iui-avatar-list iui-stacked iui-animated">
+      <div
+        class="iui-avatar-list-stacked"
+        data-iui-variant="animated"
+      >
         <span
-          class="iui-avatar iui-small"
+          class="iui-avatar"
+          data-iui-size="s"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-small"
+          class="iui-avatar"
+          data-iui-size="s"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-small"
+          class="iui-avatar"
+          data-iui-size="s"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-small"
+          class="iui-avatar"
+          data-iui-size="s"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
       </div>
 
       <br />
 
       <!-- Default -->
-      <div class="iui-avatar-list iui-stacked iui-animated">
+      <div
+        class="iui-avatar-list-stacked"
+        data-iui-variant="animated"
+      >
         <span
           class="iui-avatar"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
           class="iui-avatar"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
       </div>
 
@@ -1365,120 +1359,106 @@
 
       <!-- Large -->
       <div
-        class="iui-avatar-list iui-stacked iui-animated"
-        id="demo-animated-1"
+        class="iui-avatar-list-stacked"
+        data-iui-variant="animated"
       >
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
+          data-iui-size="l"
           title="Terry Rivers"
-          id="test-animated-1"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
+          data-iui-size="l"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
+          data-iui-size="l"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-large"
+          class="iui-avatar"
+          data-iui-size="l"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
       </div>
 
       <br />
 
       <!-- X-large -->
-      <div class="iui-avatar-list iui-stacked iui-animated">
+      <div
+        class="iui-avatar-list-stacked"
+        data-iui-variant="animated"
+      >
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
+          data-iui-size="xl"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #6AB9EC;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #6AB9EC;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
+          data-iui-size="xl"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #B1C854;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #B1C854;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
+          data-iui-size="xl"
           title="Terry Rivers"
+          style="--iui-avatar-background-color: #F7706C;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #F7706C;"
-          >
+          <abbr class="iui-avatar-initials">
             TR
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
 
         <span
-          class="iui-avatar iui-x-large"
+          class="iui-avatar"
+          data-iui-size="xl"
           title="Robin Mercer"
+          style="--iui-avatar-background-color: #4585A5;"
         >
-          <abbr
-            class="iui-initials"
-            style="background-color: #4585A5;"
-          >
+          <abbr class="iui-avatar-initials">
             RM
           </abbr>
-          <span class="iui-stroke"></span>
         </span>
-
       </div>
+
     </section>
 
     <script>

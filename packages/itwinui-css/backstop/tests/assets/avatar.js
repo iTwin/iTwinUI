@@ -1,7 +1,7 @@
 /**
  * Web component for avatar. Use in other components examples to simplify html. Choose between 2 predefined types/people.
- * <x-avatar size="small" type="2"></x-avatar>
- * <x-avatar size="x-large" type="1" status="online" showPlaceholder="true"></x-avatar>
+ * <x-avatar size="s" type="2"></x-avatar>
+ * <x-avatar size="l" type="1" status="online" showPlaceholder="true"></x-avatar>
  */
 const persons = {
   1: {
@@ -29,29 +29,31 @@ class Avatar extends HTMLElement {
 
     const innerHtml = `
     <span
-      class="iui-avatar iui-${size}"
+      class="iui-avatar"
       title="${person.title}"
+      style="--iui-avatar-background-color: ${person.color};"
+      data-iui-size="${size}"
+      ${status ? `data-iui-status="${status}"` : ''}
     >
-      <abbr
-        class="iui-initials"
-        style="background-color: ${person.color};"
-      >
+      <abbr class="iui-avatar-initials">
         ${person.abbr}
       </abbr>
       ${
         showPlaceholder
           ? `<img
+              class="iui-avatar-image"
               src="./assets/user-placeholder.png"
+              loading="lazy"
+              draggable="false"
               alt="${person.title}"
             />`
           : ''
       }
-      <span class="iui-stroke"></span>
       ${
         status
           ? `<span
               title="${status}"
-              class="iui-status iui-${status}"
+              class="iui-avatar-status"
             ></span>`
           : ''
       }

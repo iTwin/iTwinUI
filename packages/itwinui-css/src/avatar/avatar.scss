@@ -1,214 +1,147 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
-@import './avatar-sizes';
 
 @mixin iui-avatar {
-  @include iui-reset;
+  --iui-avatar-background-color: var(--iui-color-background-3);
+  --_iui-avatar-initials-color: var(--iui-color-foreground-accessory);
+  @include iui-avatar-size;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0;
   user-select: none;
+  isolation: isolate;
+  width: var(--_iui-avatar-size);
+  height: var(--_iui-avatar-size);
+  font-size: var(--_iui-avatar-font-size);
+  border-radius: var(--iui-border-radius-round);
+  color: var(--_iui-avatar-initials-color);
+  flex-shrink: 0;
 
-  > .iui-stroke {
+  &::before,
+  &::after {
+    content: '';
     display: block;
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border-radius: 50%;
-    box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--iui-color-background-transparent-hover);
+    border-radius: inherit;
+    inset: 0;
   }
 
-  > .iui-initials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border-radius: 50%;
-    font-style: normal;
-    font-weight: var(--iui-font-weight-semibold);
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    background-color: hsl(72, 51%, 56%);
-    overflow: hidden;
-    color: var(--iui-color-foreground-accessory);
+  &::before {
+    background-color: var(--iui-avatar-background-color);
   }
 
-  > .iui-icon {
-    display: inline-flex;
-    width: 50%;
-    height: 50%;
-    position: absolute;
-    fill: var(--iui-color-foreground-accessory);
-  }
-
-  > img {
-    display: block;
-    position: absolute;
-    object-fit: cover;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    border-width: 0;
-    border-radius: 50%;
-    background-color: var(--iui-color-background-1);
-  }
-
-  > .iui-status {
-    box-sizing: content-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    right: calc(0px - var(--iui-size-3xs));
-    bottom: calc(0px - var(--iui-size-3xs));
-    width: 25%;
-    height: 25%;
-    border-radius: 50%;
-    border: var(--iui-size-3xs) solid var(--iui-color-background-1);
-    background-color: var(--iui-color-background-5);
-
-    &::after {
-      content: '';
-      width: var(--_iui-avatar-status-size, var(--iui-size-xs));
-      height: var(--_iui-avatar-status-size, var(--iui-size-xs));
-    }
-
-    &.iui-online {
-      background-color: var(--iui-color-background-positive);
-
-      &::after {
-        mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
-        background-color: var(--iui-color-foreground-accessory);
-      }
-    }
-
-    &.iui-away {
-      background-color: var(--iui-color-background-warning);
-
-      &::after {
-        mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
-        background-color: var(--iui-color-foreground-accessory);
-      }
-    }
-
-    &.iui-busy {
-      background-color: var(--iui-color-background-negative);
-
-      &::after {
-        mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
-        background-color: var(--iui-color-foreground-accessory);
-      }
-    }
-
-    &.iui-offline {
-      background-color: var(--iui-color-background-1);
-      box-shadow: inset 0 0 0 1px var(--iui-color-foreground-3);
-
-      &::after {
-        mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
-        background-color: var(--iui-color-foreground-4);
-      }
-    }
-  }
-
-  &.iui-avatar-count {
-    > .iui-initials {
-      background-color: var(--iui-color-background-3);
-      color: var(--iui-color-foreground-4);
-    }
-
-    &:focus {
-      outline: none;
-
-      > .iui-stroke {
-        box-shadow: var(--iui-focus-box-shadow);
-      }
-    }
-
-    &:focus-visible {
-      outline: none;
-    }
-
-    &:focus:not(:focus-visible) {
-      > .iui-stroke {
-        box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--iui-color-background-transparent-hover);
-      }
-    }
+  &::after {
+    border: var(--iui-size-3xs) solid var(--iui-color-background-transparent-hover);
   }
 }
 
-@mixin iui-avatar-list {
+@mixin iui-avatar-initials {
   display: inline-flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  font-style: normal;
+  font-weight: var(--iui-font-weight-semibold);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
 
-  @include iui-avatar-margins;
+@mixin iui-avatar-icon {
+  display: inline-flex;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  fill: currentColor;
+}
 
-  &.iui-stacked {
-    .iui-avatar:not(:first-child) {
-      margin-left: calc(0px - var(--iui-size-2xs));
+@mixin iui-avatar-image {
+  display: block;
+  position: absolute;
+  object-fit: cover;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background-color: var(--iui-avatar-background-color);
+}
 
-      .iui-initials {
-        box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background-1);
-      }
+@mixin iui-avatar-status {
+  --_iui-avatar-status-background-color: var(--iui-color-background-5);
 
-      &.iui-small {
-        margin-left: calc(0px - var(--iui-size-3xs));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: calc(var(--iui-size-3xs) - var(--iui-size-2xs));
+  bottom: calc(var(--iui-size-3xs) - var(--iui-size-2xs));
+  width: 25%;
+  height: 25%;
+  border-radius: var(--iui-border-radius-round);
+  z-index: 1;
+  border: var(--iui-size-3xs) solid var(--iui-color-background-1);
+  background-color: var(--_iui-avatar-status-background-color);
+  box-shadow: var(--_iui-avatar-status-box-shadow);
+  box-sizing: content-box;
 
-        .iui-initials {
-          box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background-1);
-        }
-      }
+  &::after {
+    content: '';
+    width: calc(100% / 1.5);
+    height: calc(100% / 1.5);
+    background-color: var(--_iui-avatar-status-symbol-fill);
+    mask: var(--_iui-avatar-status-symbol);
+  }
 
-      &.iui-large {
-        margin-left: calc(0px - var(--iui-size-xs));
-      }
+  @at-root :where(.iui-avatar[data-iui-status='online']) & {
+    --_iui-avatar-status-background-color: var(--iui-color-background-positive);
+    --_iui-avatar-status-symbol: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
+    --_iui-avatar-status-symbol-fill: var(--iui-color-foreground-accessory);
+  }
 
-      &.iui-x-large {
-        margin-left: calc(0px - var(--iui-size-s));
-      }
-    }
+  @at-root :where(.iui-avatar[data-iui-status='away']) & {
+    --_iui-avatar-status-background-color: var(--iui-color-background-warning);
+    --_iui-avatar-status-symbol: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
+    --_iui-avatar-status-symbol-fill: var(--iui-color-foreground-accessory);
+  }
 
-    &.iui-animated {
-      @media (prefers-reduced-motion: no-preference) {
-        .iui-avatar {
-          transition: margin-left var(--iui-duration-2) ease-out;
-        }
-      }
+  @at-root :where(.iui-avatar[data-iui-status='busy']) & {
+    --_iui-avatar-status-background-color: var(--iui-color-background-negative);
+    --_iui-avatar-status-symbol: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
+    --_iui-avatar-status-symbol-fill: var(--iui-color-foreground-accessory);
+  }
 
-      &:hover {
-        @include iui-avatar-margins;
-      }
-    }
+  @at-root :where(.iui-avatar[data-iui-status='offline']) & {
+    --_iui-avatar-status-background-color: var(--iui-color-background-1);
+    --_iui-avatar-status-symbol: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
+    --_iui-avatar-status-symbol-fill: var(--iui-color-foreground-4);
+    --_iui-avatar-status-box-shadow: inset 0 0 0 1px var(--iui-color-foreground-3);
   }
 }
 
-@mixin iui-avatar-margins {
-  .iui-avatar:not(:first-child) {
-    margin-left: var(--iui-size-2xs);
-
-    &.iui-small {
-      margin-left: var(--iui-size-3xs);
-    }
-
-    &.iui-large {
-      margin-left: var(--iui-size-xs);
-    }
-
-    &.iui-x-large {
-      margin-left: var(--iui-size-s);
-    }
+/// @arg $size Can be one of: s, m, l, xl
+@mixin iui-avatar-size($size: m) {
+  @if ($size == s) {
+    --_iui-avatar-size: var(--iui-size-l);
+    --_iui-avatar-font-size: var(--iui-font-size-0);
+  }
+  @if ($size == m) {
+    --_iui-avatar-size: var(--iui-size-xl);
+    --_iui-avatar-font-size: var(--iui-font-size-2);
+  }
+  @if ($size == l) {
+    --_iui-avatar-size: calc(var(--iui-size-l) * 2);
+    --_iui-avatar-font-size: var(--iui-font-size-3);
+  }
+  @if ($size == xl) {
+    --_iui-avatar-size: var(--iui-size-2xl);
+    --_iui-avatar-font-size: var(--iui-font-size-4);
   }
 }

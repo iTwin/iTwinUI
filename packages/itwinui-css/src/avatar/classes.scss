@@ -2,26 +2,48 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+// #region Avatar
 .iui-avatar {
   @include iui-avatar;
 
-  &#{&} {
-    @include iui-avatar-size;
+  @each $size in s, l, xl {
+    &:where([data-iui-size='#{$size}']) {
+      @include iui-avatar-size($size);
+    }
   }
+}
 
-  &.iui-small {
-    @include iui-avatar-size($size: l, $font-size: var(--iui-font-size-0));
-  }
+.iui-avatar-initials {
+  @include iui-avatar-initials;
+}
 
-  &.iui-large {
-    @include iui-avatar-size($size: 2xl, $font-size: var(--iui-font-size-3));
-  }
+.iui-avatar-icon {
+  @include iui-avatar-icon;
+}
 
-  &.iui-x-large {
-    @include iui-avatar-size($size: 3xl, $font-size: var(--iui-font-size-4));
-  }
+.iui-avatar-image {
+  @include iui-avatar-image;
+}
+
+.iui-avatar-status {
+  @include iui-avatar-status;
+}
+// #endregion Avatar
+
+// #region Avatar list
+.iui-avatar-count {
+  @include iui-avatar-count;
 }
 
 .iui-avatar-list {
   @include iui-avatar-list;
 }
+
+.iui-avatar-list-stacked {
+  @include iui-avatar-list-stacked;
+
+  &:where([data-iui-variant='animated']) {
+    @include iui-avatar-list-stacked-animated;
+  }
+}
+// #endregion Avatar list

@@ -1,0 +1,87 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../utils/index';
+
+@mixin iui-avatar-count {
+  --_iui-avatar-initials-color: var(--iui-color-foreground-4);
+
+  @include focus-visible {
+    outline: none;
+
+    &::after {
+      outline: var(--iui-size-3xs) solid var(--iui-color-foreground-primary);
+    }
+  }
+}
+
+@mixin iui-avatar-list {
+  --_iui-avatar-list-gap: var(--iui-size-2xs);
+
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--_iui-avatar-list-gap);
+
+  &:where([data-iui-size='s']) {
+    --_iui-avatar-list-gap: var(--iui-size-3xs);
+  }
+
+  &:where([data-iui-size='l']) {
+    --_iui-avatar-list-gap: var(--iui-size-xs);
+  }
+
+  &:where([data-iui-size='xl']) {
+    --_iui-avatar-list-gap: var(--iui-size-s);
+  }
+}
+
+@mixin iui-avatar-list-stacked {
+  display: inline-flex;
+  flex-wrap: wrap;
+
+  :where(.iui-avatar:not(:first-child)) {
+    --_iui-avatar-list-stacked-gap: calc(var(--iui-size-2xs) * -1);
+    --_iui-avatar-list-stacked-stroke-thickness: var(--iui-size-2xs);
+
+    box-shadow: 0 0 0 var(--_iui-avatar-list-stacked-stroke-thickness) var(--iui-color-background-1);
+    margin-left: var(--_iui-avatar-list-stacked-gap);
+
+    &:where([data-iui-size='s']) {
+      --_iui-avatar-list-stacked-gap: calc(var(--iui-size-3xs) * -1);
+      --_iui-avatar-list-stacked-stroke-thickness: var(--iui-size-3xs);
+    }
+
+    &:where([data-iui-size='l']) {
+      --_iui-avatar-list-stacked-gap: calc(var(--iui-size-xs) * -1);
+    }
+
+    &:where([data-iui-size='xl']) {
+      --_iui-avatar-list-stacked-gap: calc(var(--iui-size-s) * -1);
+    }
+  }
+}
+
+@mixin iui-avatar-list-stacked-animated {
+  @media (prefers-reduced-motion: no-preference) {
+    .iui-avatar {
+      transition: margin-left --iui-duration-2 ease-out;
+    }
+  }
+
+  &:hover {
+    :where(.iui-avatar:not(:first-child)) {
+      --_iui-avatar-list-stacked-gap: var(--iui-size-2xs);
+
+      &:where([data-iui-size='s']) {
+        --_iui-avatar-list-stacked-gap: var(--iui-size-3xs);
+      }
+
+      &:where([data-iui-size='l']) {
+        --_iui-avatar-list-stacked-gap: var(--iui-size-xs);
+      }
+
+      &:where([data-iui-size='xl']) {
+        --_iui-avatar-list-stacked-gap: var(--iui-size-s);
+      }
+    }
+  }
+}
