@@ -17,6 +17,7 @@
 
     <script type="module">
       import "./assets/theme.js";
+      import "./assets/progressRadial.js";
       import "@itwin/itwinui-icons-elements/status-success";
       import "@itwin/itwinui-icons-elements/status-warning";
       import "@itwin/itwinui-icons-elements/status-error";
@@ -567,28 +568,7 @@
             disabled
             tabindex="-1"
           />
-          <div class="iui-progress-indicator-radial iui-indeterminate iui-x-small">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-            </svg>
-          </div>
+          <x-radial size="xs"></x-radial>
           <span class="iui-checkbox-label">Loading checkbox</span>
         </label>
 
@@ -681,28 +661,7 @@
             disabled
             tabindex="-1"
           />
-          <div class="iui-progress-indicator-radial iui-indeterminate iui-x-small">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-            </svg>
-          </div>
+          <x-radial size="xs"></x-radial>
         </label>
 
         <label class="iui-checkbox-wrapper iui-disabled">

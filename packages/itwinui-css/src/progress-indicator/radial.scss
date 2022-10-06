@@ -2,149 +2,162 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
-@mixin iui-progress-indicator-radial {
+@mixin iui-progress-radial-wrapper {
+  --_iui-progress-radial-background-color: var(--iui-color-background-5);
+
   position: relative;
-  display: inline-block;
-  --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, xl)};
+  display: inline-flex;
+  width: var(--_iui-progress-radial-size);
+  height: var(--_iui-progress-radial-size);
+  border-radius: 50%;
+  flex-shrink: 0;
+  @include iui-progress-radial-size(m);
+  @include iui-progress-radial-state;
+}
 
-  width: var(--_iui-progress-indicator-radial-size);
-  height: var(--_iui-progress-indicator-radial-size);
-
-  > .iui-radial {
-    height: 100%;
-    width: 100%;
-
-    > circle.iui-fill {
-      stroke: var(--iui-color-foreground-primary);
-      fill: none;
-      stroke-width: 3.2;
-    }
-
-    > circle.iui-track {
-      stroke: var(--iui-color-background-5);
-      fill: none;
-      stroke-width: 3.2;
-    }
+/// @arg $size Can be one of: l, m, s, xs
+@mixin iui-progress-radial-size($size) {
+  @if $size == 'l' {
+    --_iui-progress-radial-size: calc(var(--iui-size-l) * 2);
+    --_iui-progress-radial-inner-content-font-size: var(--iui-font-size-2);
+    --_iui-progress-radial-inner-content-icon-size: var(--iui-size-xl);
   }
-
-  .iui-inner-content {
-    position: absolute;
-    display: flex;
-    width: calc(100% - #{var(--iui-size-xs)});
-    height: calc(100% - #{var(--iui-size-xs)});
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    align-items: center;
-    justify-content: center;
-    font-size: var(--iui-font-size-0);
-    user-select: none;
-    overflow: hidden;
-
-    svg,
-    img {
-      @include iui-icon-style('m');
-      fill: var(--iui-color-foreground-2);
-
-      &:hover {
-        fill: var(--iui-color-foreground-1);
-      }
-    }
+  @if $size == 'm' {
+    --_iui-progress-radial-size: var(--iui-size-xl);
+    --_iui-progress-radial-inner-content-font-size: var(--iui-font-size-0);
+    --_iui-progress-radial-inner-content-icon-size: var(--iui-size-m);
   }
-
-  &.iui-positive {
-    color: var(--iui-color-foreground-positive);
-
-    svg.iui-radial {
-      circle.iui-fill,
-      circle.iui-track {
-        stroke: var(--iui-color-foreground-positive);
-      }
-    }
-
-    .iui-inner-content svg {
-      fill: var(--iui-color-foreground-positive);
-    }
+  @if $size == 's' {
+    --_iui-progress-radial-size: var(--iui-size-l);
+    --_iui-progress-radial-inner-content-font-size: var(--iui-font-size-0);
+    --_iui-progress-radial-inner-content-icon-size: var(--iui-size-m);
   }
+  @if $size == 'xs' {
+    --_iui-progress-radial-size: var(--iui-size-m);
 
-  &.iui-negative {
-    color: var(--iui-color-foreground-negative);
-
-    svg.iui-radial circle.iui-fill {
-      stroke: var(--iui-color-foreground-negative);
-    }
-
-    .iui-inner-content svg {
-      fill: var(--iui-color-foreground-negative);
-    }
-  }
-
-  &.iui-x-small {
-    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, m)};
-
-    .iui-inner-content {
+    .iui-progress-radial-inner-content {
       display: none;
     }
   }
+}
 
-  &.iui-small {
-    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, l)};
+/// @arg $variant Can be one of: determinate, indeterminate
+@mixin iui-progress-radial-variant($variant) {
+  @if $variant == 'determinate' {
+    .iui-progress-radial {
+      transform: rotate(-90deg);
+
+      .iui-progress-radial-value {
+        // C = 2πR
+        stroke-dasharray: 88;
+        transition: stroke-dashoffset 0.5s ease-in-out;
+      }
+    }
   }
 
-  &.iui-large {
-    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, 2xl)};
+  @if $variant == 'indeterminate' {
+    .iui-progress-radial {
+      animation: rotate-indeterminate 2s linear infinite;
 
-    .iui-inner-content {
-      font-size: var(--iui-font-size-2);
+      .iui-progress-radial-value {
+        animation: dash-indeterminate 1.5s ease-in-out infinite;
+      }
+    }
 
-      svg,
-      img {
-        @include iui-icon-style('l');
+    @keyframes rotate-indeterminate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes dash-indeterminate {
+      0% {
+        stroke-dasharray: 1, 88;
+      }
+
+      50% {
+        stroke-dasharray: 88, 88;
+        stroke-dashoffset: -22;
+      }
+
+      100% {
+        stroke-dasharray: 88, 88;
+        stroke-dashoffset: -88;
       }
     }
   }
 }
 
-@mixin iui-progress-indicator-radial-determinate {
-  svg.iui-radial {
-    transform: rotate(-90deg);
-
-    circle.iui-fill {
-      // C = 2πR
-      stroke-dasharray: 88;
-      transition: stroke-dashoffset 0.5s ease-in-out;
-    }
+/// @arg $state Can be one of: in-progress, complete, error
+@mixin iui-progress-radial-state($state: in-progress) {
+  @if $state == 'in-progress' {
+    --_iui-progress-radial-value-background-color: var(--iui-color-foreground-primary);
+  }
+  @if $state == 'complete' {
+    --_iui-progress-radial-value-background-color: var(--iui-color-foreground-positive);
+    --_iui-progress-radial-inner-content-color: var(--iui-color-foreground-positive);
+  }
+  @if $state == 'error' {
+    --_iui-progress-radial-value-background-color: var(--iui-color-foreground-negative);
+    --_iui-progress-radial-inner-content-color: var(--iui-color-foreground-negative);
   }
 }
 
-@mixin iui-progress-indicator-radial-indeterminate {
-  svg.iui-radial {
-    animation: rotate-indeterminate 2s linear infinite;
+@mixin iui-progress-radial {
+  width: 100%;
+  height: 100%;
+}
 
-    circle.iui-fill {
-      animation: dash-indeterminate 1.5s ease-in-out infinite;
-    }
+/// @arg $type Can be one of: track, value
+@mixin iui-progress-radial-track-or-value($type) {
+  fill: none;
+  stroke-width: 3.2;
+
+  @if $type == 'track' {
+    stroke: var(--_iui-progress-radial-background-color);
   }
-
-  @keyframes rotate-indeterminate {
-    100% {
-      transform: rotate(360deg);
-    }
+  @if $type == 'value' {
+    stroke: var(--_iui-progress-radial-value-background-color);
   }
+}
 
-  @keyframes dash-indeterminate {
-    0% {
-      stroke-dasharray: 1, 88;
-    }
+@mixin iui-progress-radial-inner-content {
+  position: absolute;
+  display: flex;
+  width: calc(100% - var(--iui-size-s));
+  height: calc(100% - var(--iui-size-s));
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  color: var(--_iui-progress-radial-inner-content-color);
+  font-size: var(--_iui-progress-radial-inner-content-font-size);
+  user-select: none;
+}
 
-    50% {
-      stroke-dasharray: 88, 88;
-      stroke-dashoffset: -22;
-    }
+@mixin iui-progress-radial-inner-content-icon {
+  display: flex;
+  fill: currentColor;
+  width: var(--_iui-progress-radial-inner-content-icon-size);
+  height: var(--_iui-progress-radial-inner-content-icon-size);
+}
 
-    100% {
-      stroke-dasharray: 88, 88;
-      stroke-dashoffset: -88;
-    }
+@mixin iui-progress-radial-inner-content-button {
+  @include iui-reset;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--iui-text-color);
+  @include iui-focus($offset: 7px, $thickness: 2px);
+
+  &:hover,
+  &:active {
+    color: var(--iui-color-foreground-body);
   }
 }

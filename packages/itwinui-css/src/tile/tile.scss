@@ -145,6 +145,7 @@
 
   .iui-tile-name {
     display: flex;
+    gap: var(--iui-size-xs);
     flex-shrink: 0;
     align-items: center;
     font-size: var(--iui-font-size-2);
@@ -155,7 +156,6 @@
 
   .iui-tile-status-icon {
     @include iui-icon-style('m');
-    margin-right: var(--iui-size-xs);
     fill: var(--_iui-tile-status-icon-fill);
   }
 

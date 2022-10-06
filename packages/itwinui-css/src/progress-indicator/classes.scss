@@ -2,30 +2,106 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-progress-indicator-linear {
-  @include iui-progress-indicator-linear;
+// #region Linear
+.iui-progress-linear-wrapper {
+  @include iui-progress-linear-wrapper;
+}
 
-  > .iui-track > .iui-determinate {
-    @include iui-progress-indicator-linear-determinate;
+.iui-progress-linear-label {
+  @include iui-progress-linear-label;
+}
+
+.iui-progress-linear-label-icon {
+  @include iui-progress-linear-label-icon;
+}
+
+.iui-progress-linear {
+  @include iui-progress-linear;
+
+  &[value='100'] {
+    @include iui-progress-linear-status(success);
   }
 
-  &:not(.iui-negative):not(.iui-positive) > .iui-track > .iui-indeterminate {
-    @include iui-progress-indicator-linear-indeterminate;
+  &[aria-errormessage] {
+    @include iui-progress-linear-status(error);
+  }
+
+  &[value]::-webkit-progress-value {
+    @include iui-progress-linear-determinate;
+  }
+
+  &:not([value]) {
+    &:not([aria-errormessage])::after {
+      @include iui-progress-linear-indeterminate(in-progress);
+    }
+
+    &[aria-errormessage]::after {
+      @include iui-progress-linear-indeterminate(error);
+    }
+  }
+}
+// #endregion Linear
+
+// #region Radial
+.iui-progress-radial-wrapper {
+  @include iui-progress-radial-wrapper;
+
+  &[data-iui-size='l'] {
+    @include iui-progress-radial-size(l);
+  }
+
+  &[data-iui-size='s'] {
+    @include iui-progress-radial-size(s);
+  }
+
+  &[data-iui-size='xs'] {
+    @include iui-progress-radial-size(xs);
+  }
+
+  &[aria-valuenow] {
+    @include iui-progress-radial-variant(determinate);
+  }
+
+  &:not([aria-valuenow]):not([aria-errormessage]) {
+    @include iui-progress-radial-variant(indeterminate);
+  }
+
+  &[aria-valuenow='100'] {
+    @include iui-progress-radial-state(complete);
+  }
+
+  &[aria-errormessage] {
+    @include iui-progress-radial-state(error);
   }
 }
 
-.iui-progress-indicator-radial {
-  @include iui-progress-indicator-radial;
-
-  &.iui-determinate:not(.iui-positive) {
-    @include iui-progress-indicator-radial-determinate;
-  }
-
-  &.iui-indeterminate:not(.iui-negative):not(.iui-positive) {
-    @include iui-progress-indicator-radial-indeterminate;
-  }
+.iui-progress-radial {
+  @include iui-progress-radial;
 }
 
-.iui-progress-indicator-overlay {
-  @include iui-progress-indicator-overlay;
+.iui-progress-radial-track {
+  @include iui-progress-radial-track-or-value(track);
 }
+
+.iui-progress-radial-value {
+  @include iui-progress-radial-track-or-value(value);
+}
+
+.iui-progress-radial-inner-content {
+  @include iui-progress-radial-inner-content;
+}
+
+.iui-progress-radial-inner-content-icon {
+  @include iui-progress-radial-inner-content-icon;
+}
+
+.iui-progress-radial-inner-content-button {
+  @include iui-progress-radial-inner-content-button;
+}
+// #endregion Radial
+
+// #region Overlay
+.iui-progress-overlay {
+  @include iui-progress-overlay;
+}
+// #endregion Overlay

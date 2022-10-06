@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
-@mixin iui-progress-indicator-overlay {
+@mixin iui-progress-overlay {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -18,11 +18,12 @@
   @include iui-blur($hsl: var(--iui-color-background-1-hsl), $opacity: 3);
 
   // Focus trap
-  &:focus {
+  &:focus,
+  &:focus-visible {
     outline: 0;
   }
 
-  .iui-progress-indicator-linear {
+  .iui-progress-linear-wrapper {
     width: 50%;
     max-width: 33vw;
   }
@@ -39,6 +40,6 @@
   }
 
   .iui-overlay-exiting {
-    animation: closeAnimation var(--iui-duration-1) linear;
+    animation: closeAnimation --iui-duration-1 linear;
   }
 }

@@ -2,104 +2,100 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
-@mixin iui-progress-indicator-linear($height: 4px) {
-  @include iui-reset;
-  text-align: left;
-  display: block;
+@mixin iui-progress-linear-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--iui-size-xs);
+}
 
-  > .iui-track {
-    width: 100%;
-    height: $height;
-    overflow: hidden;
-    background-color: var(--iui-color-background-border);
+@mixin iui-progress-linear($height: var(--iui-size-2xs)) {
+  --_iui-progress-bar-background-color: var(--iui-color-background-5);
+  --_iui-progress-value-background-color: var(--iui-color-foreground-primary);
 
-    > .iui-fill {
-      display: inline-block;
-      height: 100%;
-      vertical-align: top;
-      background-color: var(--iui-color-foreground-primary);
-    }
+  appearance: none;
+  width: 100%;
+  height: $height;
+  position: relative;
+  overflow: hidden;
+
+  &::-webkit-progress-bar {
+    background-color: var(--_iui-progress-bar-background-color);
   }
 
-  > .iui-label {
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
-    margin-top: var(--iui-size-2xs);
-    display: flex;
-    font-size: var(--iui-font-size-0);
-    justify-content: space-between;
+  &::-webkit-progress-value {
+    background-color: var(--_iui-progress-value-background-color);
+  }
+}
 
-    > :only-child {
-      margin: 0 auto;
-    }
+/// @arg $state Can be one of: success, error
+@mixin iui-progress-linear-status($state) {
+  @if $state == 'success' {
+    --_iui-progress-value-background-color: var(--iui-color-foreground-positive);
 
-    > :last-child:not(:first-child) {
-      user-select: none;
-    }
-
-    svg {
-      @include iui-icon-style('m');
+    ~ .iui-progress-linear-label {
+      --_iui-progress-label-color: var(--iui-color-foreground-positive);
+      @include iui-text-selection(positive);
     }
   }
+  @if $state == 'error' {
+    --_iui-progress-value-background-color: var(--iui-color-foreground-negative);
 
-  &.iui-positive {
-    > .iui-track,
-    > .iui-track > * {
-      background-color: var(--iui-color-foreground-positive);
-    }
-
-    > .iui-label {
-      color: var(--iui-color-foreground-positive);
-
-      svg {
-        fill: var(--iui-color-foreground-positive);
-      }
-
-      > span {
-        @include iui-text-selection(positive);
-      }
-    }
-  }
-
-  &.iui-negative {
-    > .iui-track > * {
-      width: 100%;
-      background-color: var(--iui-color-foreground-negative);
-    }
-
-    > .iui-label {
-      color: var(--iui-color-foreground-negative);
-
-      svg {
-        fill: var(--iui-color-foreground-negative);
-      }
-
-      > span {
-        @include iui-text-selection(negative);
-      }
+    ~ .iui-progress-linear-label {
+      --_iui-progress-label-color: var(--iui-color-foreground-negative);
+      @include iui-text-selection(negative);
     }
   }
 }
 
-@mixin iui-progress-indicator-linear-determinate($speed: 2s) {
+@mixin iui-progress-linear-label {
+  align-items: center;
+  display: flex;
+  font-size: var(--iui-font-size-0);
+  justify-content: space-between;
+  color: var(--_iui-progress-label-color);
+
+  > :only-child {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  > :last-child:not(:first-child) {
+    user-select: none;
+  }
+}
+
+@mixin iui-progress-linear-label-icon {
+  @include iui-icon-style;
+  fill: currentColor;
+}
+
+@mixin iui-progress-linear-determinate($speed: 2s) {
   transition: width $speed ease-in-out;
 }
 
-@mixin iui-progress-indicator-linear-indeterminate() {
-  @keyframes iui-progress-indicator-linear-animate-indeterminate {
-    0% {
-      transform: translateX(-60%) scaleX(0);
-    }
-
-    40% {
-      transform: translateX(-40%) scaleX(0.4);
-    }
-
-    100% {
-      transform: translateX(100%) scaleX(0.5);
-    }
-  }
+/// @arg $state Can be one of: in-progress, error
+@mixin iui-progress-linear-indeterminate($state) {
+  content: '';
+  position: absolute;
+  inset: 0;
   width: 100%;
-  animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
+  height: 100%;
+  background-color: var(--_iui-progress-value-background-color);
+
+  @if $state == 'in-progress' {
+    @keyframes iui-progress-linear-animate-indeterminate {
+      0% {
+        transform: translateX(-60%) scaleX(0);
+      }
+
+      40% {
+        transform: translateX(-40%) scaleX(0.4);
+      }
+
+      100% {
+        transform: translateX(100%) scaleX(0.5);
+      }
+    }
+    animation: iui-progress-linear-animate-indeterminate 1.5s infinite linear;
+  }
 }

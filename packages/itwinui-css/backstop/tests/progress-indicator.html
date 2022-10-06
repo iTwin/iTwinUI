@@ -28,19 +28,29 @@
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
-        width: 35vw;
-        min-width: 300px;
+        width: 100%;
       }
 
-      section .iui-progress-indicator-radial {
-        margin-right: 16px;
+      div[id^='linear'],
+      div[id^='radial-determinate'] {
+        display: flex;
+        flex-direction: column;
+        gap: 19px;
+        margin-bottom: 19px;
+      }
+
+      div[id^='radial-size'],
+      div[id='radial-indeterminate'] {
+        display: flex;
+        gap: var(--iui-size-m);
       }
 
       #demo-overlay-content {
-        padding: 12px;
+        padding: var(--iui-size-s);
         border: 1px solid var(--iui-color-background-5);
         position: relative;
-        margin-bottom: 12px;
+        margin-bottom: var(--iui-size-s);
+        user-select: none;
       }
     </style>
   </head>
@@ -54,159 +64,160 @@
 
       <div id="linear-determinate">
         <h3>Determinate</h3>
-        <br />
-        <!-- Determinate without determinate class -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div
-              class="iui-fill"
-              style="width: 25%;"
-            ></div>
-          </div>
-        </div>
-        <br />
 
-        <!-- Determinate with determinate class -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 50%;"
-            ></div>
-          </div>
-        </div>
-        <br />
+        <!-- Determinate in progress -->
+        <progress
+          class="iui-progress-linear"
+          max="100"
+          value="25"
+        ></progress>
 
-        <!-- Determinate with labels -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div
-              class="iui-fill"
-              style="width: 75%;"
-            ></div>
-          </div>
-          <div class="iui-label">
+        <!-- Determinate in progress -->
+        <progress
+          class="iui-progress-linear"
+          max="100"
+          value="50"
+        ></progress>
+
+        <!-- Determinate in progress with labels -->
+        <div class="iui-progress-linear-wrapper">
+          <progress
+            class="iui-progress-linear"
+            id="progress-bar-1"
+            max="100"
+            value="75"
+          ></progress>
+          <label
+            class="iui-progress-linear-label"
+            for="progress-bar-1"
+          >
             <span>Loading iModel</span>
             <span>75%</span>
-          </div>
+          </label>
         </div>
-        <br />
 
         <!-- Determinate with success -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 100%;"
-            ></div>
-          </div>
-        </div>
-        <br />
+        <progress
+          class="iui-progress-linear"
+          max="100"
+          value="100"
+        ></progress>
 
         <!-- Determinate with success & labels -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 100%;"
-            >
-            </div>
-          </div>
-          <div class="iui-label">
+        <div class="iui-progress-linear-wrapper">
+          <progress
+            class="iui-progress-linear"
+            id="progress-bar-2"
+            max="100"
+            value="100"
+          ></progress>
+          <label
+            class="iui-progress-linear-label"
+            for="progress-bar-1"
+          >
             <span>Upload successful!</span>
-            <svg-status-success-hollow aria-hidden="true"></svg-status-success-hollow>
-          </div>
+            <svg-status-success-hollow
+              class="iui-progress-linear-label-icon"
+              aria-hidden="true"
+            ></svg-status-success-hollow>
+          </label>
         </div>
-        <br />
 
         <!-- Determinate with error -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 50%;"
-            >
-            </div>
-          </div>
-        </div>
-        <br />
+        <progress
+          class="iui-progress-linear"
+          max="100"
+          value="50"
+          aria-errormessage="Upload failed"
+        ></progress>
 
         <!-- Determinate with error & labels -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 50%;"
-            >
-            </div>
-          </div>
-          <div class="iui-label">
+        <div class="iui-progress-linear-wrapper">
+          <progress
+            class="iui-progress-linear"
+            id="progress-bar-3"
+            max="100"
+            value="50"
+            aria-errormessage="Upload failed"
+          ></progress>
+          <label
+            class="iui-progress-linear-label"
+            for="progress-bar-3"
+          >
             <span>Upload failed!</span>
-            <svg-status-error-hollow aria-hidden="true"></svg-status-error-hollow>
-          </div>
+            <svg-status-error-hollow
+              class="iui-progress-linear-label-icon"
+              aria-hidden="true"
+            ></svg-status-error-hollow>
+          </label>
         </div>
-        <br />
+
       </div>
 
       <div id="linear-indeterminate">
         <h3>Indeterminate</h3>
-        <br />
+
         <!-- Indeterminate -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-        </div>
-        <br />
+        <progress class="iui-progress-linear"></progress>
 
         <!-- Indeterminate with labels -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-          <div class="iui-label">
+        <div class="iui-progress-linear-wrapper">
+          <progress
+            class="iui-progress-linear"
+            id="progress-bar-4"
+          ></progress>
+          <label
+            class="iui-progress-linear-label"
+            for="progress-bar-4"
+          >
             <span>Loading iModel</span>
-          </div>
+          </label>
         </div>
-        <br />
 
         <!-- Indeterminate with success -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-        </div>
-        <br />
+        <progress
+          class="iui-progress-linear"
+          max="100"
+          value="100"
+        ></progress>
 
         <!-- Indeterminate with success & labels -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-          <div class="iui-label">
+        <div class="iui-progress-linear-wrapper">
+          <progress
+            class="iui-progress-linear"
+            id="progress-bar-5"
+            max="100"
+            value="100"
+          ></progress>
+          <label
+            class="iui-progress-linear-label"
+            for="progress-bar-5"
+          >
             <span>Upload successful!</span>
-          </div>
+          </label>
         </div>
-        <br />
 
         <!-- Indeterminate with error -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-        </div>
-        <br />
+        <progress
+          class="iui-progress-linear"
+          aria-errormessage="Upload failed"
+        ></progress>
 
         <!-- Indeterminate with error & labels -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-          <div class="iui-label">
+        <div class="iui-progress-linear-wrapper">
+          <progress
+            class="iui-progress-linear"
+            id="progress-bar-6"
+            aria-errormessage="Upload failed"
+          ></progress>
+          <label
+            class="iui-progress-linear-label"
+            for="progress-bar-6"
+          >
             <span>Upload failed!</span>
-          </div>
+          </label>
         </div>
-        <br />
+
       </div>
 
     </section>
@@ -226,25 +237,29 @@
           So 25% is stroke-dashoffset: 66; or stroke-dashoffset: calc(88 - 88
           * 25 / 100);
         </p>
-        <br />
 
         <div id="radial-size-large">
-          <!-- Small determinate -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large">
+          <!-- Large determinate -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="l"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -254,22 +269,27 @@
             </svg>
           </div>
 
-          <!-- Determinate with center content -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large">
+          <!-- Large determinate with center content -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="l"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -277,25 +297,30 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">60</span>
+            <span class="iui-progress-radial-inner-content">60</span>
           </div>
 
-          <!-- Small determinate with center icon -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large">
+          <!-- Large determinate with center button -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="l"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -303,27 +328,38 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-pause aria-hidden="true"></svg-pause>
+            <span class="iui-progress-radial-inner-content">
+              <button class="iui-progress-radial-inner-content-button">
+                <svg-pause
+                  class="iui-progress-radial-inner-content-icon"
+                  aria-hidden="true"
+                ></svg-pause>
+              </button>
             </span>
           </div>
 
-          <!-- Small determinate with center icon & success -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large iui-positive">
+          <!-- Large determinate with center icon & success -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="l"
+            aria-valuenow="100"
+            data-iui-complete="true"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -331,27 +367,36 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+            <span class="iui-progress-radial-inner-content">
+              <svg-checkmark-small
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-checkmark-small>
             </span>
           </div>
 
-          <!-- Small determinate with center icon & error -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large iui-negative">
+          <!-- Large determinate with center icon & error -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="l"
+            aria-valuenow="60"
+            aria-errormessage="Upload failed"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -359,31 +404,36 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-important-small aria-hidden="true"></svg-important-small>
+            <span class="iui-progress-radial-inner-content">
+              <svg-important-small
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-important-small>
             </span>
           </div>
         </div>
-
-        <br />
 
         <div id="radial-size-default">
-          <!-- Determinate -->
-          <div class="iui-progress-indicator-radial iui-determinate">
+          <!-- Medium determinate -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -393,22 +443,26 @@
             </svg>
           </div>
 
-          <!-- Determinate with center content -->
-          <div class="iui-progress-indicator-radial iui-determinate">
+          <!-- Medium determinate with center content -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -416,25 +470,29 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">60</span>
+            <span class="iui-progress-radial-inner-content">60</span>
           </div>
 
-          <!-- Determinate with center icon -->
-          <div class="iui-progress-indicator-radial iui-determinate">
+          <!-- Medium determinate with center button -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -442,27 +500,37 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-pause aria-hidden="true"></svg-pause>
+            <span class="iui-progress-radial-inner-content">
+              <button class="iui-progress-radial-inner-content-button">
+                <svg-pause
+                  class="iui-progress-radial-inner-content-icon"
+                  aria-hidden="true"
+                ></svg-pause>
+              </button>
             </span>
           </div>
 
-          <!-- Determinate with center icon & success -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-positive">
+          <!-- Medium determinate with center icon & success -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            aria-valuenow="100"
+            data-iui-complete="true"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -470,27 +538,35 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+            <span class="iui-progress-radial-inner-content">
+              <svg-checkmark-small
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-checkmark-small>
             </span>
           </div>
 
-          <!-- Determinate with center icon & error -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-negative">
+          <!-- Medium determinate with center icon & error -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            aria-valuenow="60"
+            aria-errormessage="Upload failed"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -498,31 +574,37 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-important-small aria-hidden="true"></svg-important-small>
+            <span class="iui-progress-radial-inner-content">
+              <svg-important-small
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-important-small>
             </span>
           </div>
         </div>
-
-        <br />
 
         <div id="radial-size-small">
           <!-- Small determinate -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small">
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="s"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -532,22 +614,27 @@
             </svg>
           </div>
 
-          <!-- Determinate with center content -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small">
+          <!-- Small determinate with center content -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="s"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -555,25 +642,30 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">60</span>
+            <span class="iui-progress-radial-inner-content">60</span>
           </div>
 
-          <!-- Small determinate with center icon -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small">
+          <!-- Small determinate with center button -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="s"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -581,27 +673,38 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-pause aria-hidden="true"></svg-pause>
+            <span class="iui-progress-radial-inner-content">
+              <button class="iui-progress-radial-inner-content-button">
+                <svg-pause
+                  class="iui-progress-radial-inner-content-icon"
+                  aria-hidden="true"
+                ></svg-pause>
+              </button>
             </span>
           </div>
 
           <!-- Small determinate with center icon & success -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small iui-positive">
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="s"
+            aria-valuenow="100"
+            data-iui-complete="true"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -609,27 +712,36 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+            <span class="iui-progress-radial-inner-content">
+              <svg-checkmark-small
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-checkmark-small>
             </span>
           </div>
 
           <!-- Small determinate with center icon & error -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small iui-negative">
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="s"
+            aria-valuenow="60"
+            aria-errormessage="Upload failed"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -637,31 +749,37 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-important-small aria-hidden="true"></svg-important-small>
+            <span class="iui-progress-radial-inner-content">
+              <svg-important-small
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-important-small>
             </span>
           </div>
         </div>
 
-        <br />
-
         <div id="radial-size-x-small">
-          <!-- Small determinate -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small">
+          <!-- Extra small determinate -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="xs"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -671,22 +789,27 @@
             </svg>
           </div>
 
-          <!-- Determinate with center content -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small">
+          <!-- Extra small determinate with center content -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="xs"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -694,25 +817,30 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">60</span>
+            <span class="iui-progress-radial-inner-content">60</span>
           </div>
 
-          <!-- Small determinate with center icon -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small">
+          <!-- Extra small determinate with center button -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="xs"
+            aria-valuenow="60"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -720,27 +848,38 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-pause aria-hidden="true"></svg-pause>
+            <span class="iui-progress-radial-inner-content">
+              <button class="iui-progress-radial-inner-content-button">
+                <svg-pause
+                  class="iui-progress-radial-inner-content-icon"
+                  aria-hidden="true"
+                ></svg-pause>
+              </button>
             </span>
           </div>
 
-          <!-- Small determinate with center icon & success -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small iui-positive">
+          <!-- Extra small determinate with center icon & success -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="xs"
+            aria-valuenow="100"
+            data-iui-complete="true"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -748,27 +887,36 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+            <span class="iui-progress-radial-inner-content">
+              <svg-checkmark-small
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-checkmark-small>
             </span>
           </div>
 
-          <!-- Small determinate with center icon & error -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small iui-negative">
+          <!-- Extra small determinate with center icon & error -->
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-size="xs"
+            aria-valuenow="60"
+            aria-errormessage="Upload failed"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
@@ -776,8 +924,11 @@
               >
               </circle>
             </svg>
-            <span class="iui-inner-content">
-              <svg-important-small aria-hidden="true"></svg-important-small>
+            <span class="iui-progress-radial-inner-content">
+              <svg-important-small
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-important-small>
             </span>
           </div>
         </div>
@@ -788,130 +939,27 @@
     <br />
 
     <section id="demo-radial-not-tested">
+      <h3>Indeterminate</h3>
       <div id="radial-indeterminate">
-        <h3>Indeterminate</h3>
-        <br />
-        <!-- Indeterminate -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
+        <!-- Medium indeterminate -->
+        <div
+          class="iui-progress-radial-wrapper"
+          role="progressbar"
+        >
           <svg
-            class="iui-radial"
+            class="iui-progress-radial"
             viewBox="0 0 32 32"
             aria-hidden="true"
           >
             <circle
-              class="iui-track"
+              class="iui-progress-radial-track"
               cx="16"
               cy="16"
               r="14"
             >
             </circle>
             <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-          </svg>
-        </div>
-
-        <!-- Indeterminate with center content -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">&hellip;</span>
-        </div>
-
-        <!-- Indeterminate with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-pause aria-hidden="true"></svg-pause>
-          </span>
-        </div>
-
-        <!-- Indeterminate with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-positive">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </span>
-        </div>
-
-        <!-- Indeterminate with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-negative">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
+              class="iui-progress-radial-value"
               cx="16"
               cy="16"
               r="14"
@@ -919,107 +967,164 @@
             >
             </circle>
           </svg>
-          <span class="iui-inner-content">
-            <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+
+        <!-- Medium indeterminate with center content -->
+        <div
+          class="iui-progress-radial-wrapper"
+          role="progressbar"
+        >
+          <svg
+            class="iui-progress-radial"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+          >
+            <circle
+              class="iui-progress-radial-track"
+              cx="16"
+              cy="16"
+              r="14"
+            >
+            </circle>
+            <circle
+              class="iui-progress-radial-value"
+              cx="16"
+              cy="16"
+              r="14"
+              style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
+            >
+            </circle>
+          </svg>
+          <span class="iui-progress-radial-inner-content">&hellip;</span>
+        </div>
+
+
+        <!-- Medium indeterminate with center button -->
+        <div
+          class="iui-progress-radial-wrapper"
+          role="progressbar"
+        >
+          <svg
+            class="iui-progress-radial"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+          >
+            <circle
+              class="iui-progress-radial-track"
+              cx="16"
+              cy="16"
+              r="14"
+            >
+            </circle>
+            <circle
+              class="iui-progress-radial-value"
+              cx="16"
+              cy="16"
+              r="14"
+              style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
+            >
+            </circle>
+          </svg>
+          <span class="iui-progress-radial-inner-content">
+            <button class="iui-progress-radial-inner-content-button">
+              <svg-pause
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-pause>
+            </button>
+          </span>
+        </div>
+
+        <!-- Medium indeterminate with center icon & success -->
+        <div
+          class="iui-progress-radial-wrapper"
+          role="progressbar"
+          aria-valuenow="100"
+        >
+          <svg
+            class="iui-progress-radial"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+          >
+            <circle
+              class="iui-progress-radial-track"
+              cx="16"
+              cy="16"
+              r="14"
+            >
+            </circle>
+            <circle
+              class="iui-progress-radial-value"
+              cx="16"
+              cy="16"
+              r="14"
+              style="stroke-dashoffset: calc(0);"
+            >
+            </circle>
+          </svg>
+          <span class="iui-progress-radial-inner-content">
+            <svg-checkmark-small
+              class="iui-progress-radial-inner-content-icon"
+              aria-hidden="true"
+            ></svg-checkmark-small>
+          </span>
+        </div>
+
+        <!-- Medium indeterminate with center icon & error -->
+        <div
+          class="iui-progress-radial-wrapper"
+          role="progressbar"
+          aria-errormessage="Upload failed"
+        >
+          <svg
+            class="iui-progress-radial"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+          >
+            <circle
+              class="iui-progress-radial-track"
+              cx="16"
+              cy="16"
+              r="14"
+            >
+            </circle>
+            <circle
+              class="iui-progress-radial-value"
+              cx="16"
+              cy="16"
+              r="14"
+              style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
+            >
+            </circle>
+          </svg>
+          <span class="iui-progress-radial-inner-content">
+            <svg-important-small
+              class="iui-progress-radial-inner-content-icon"
+              aria-hidden="true"
+            ></svg-important-small>
           </span>
         </div>
 
         <!-- Small indeterminate -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
+        <div
+          class="iui-progress-radial-wrapper"
+          role="progressbar"
+          data-iui-size="s"
+        >
           <svg
-            class="iui-radial"
+            class="iui-progress-radial"
             viewBox="0 0 32 32"
             aria-hidden="true"
           >
             <circle
-              class="iui-track"
+              class="iui-progress-radial-track"
               cx="16"
               cy="16"
               r="14"
             >
             </circle>
             <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-          </svg>
-        </div>
-
-        <!-- Small indeterminate with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-pause aria-hidden="true"></svg-pause>
-          </span>
-        </div>
-
-        <!-- Small indeterminate with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-positive">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </span>
-        </div>
-
-        <!-- Small indeterminate with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-negative">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
+              class="iui-progress-radial-value"
               cx="16"
               cy="16"
               r="14"
@@ -1027,8 +1132,114 @@
             >
             </circle>
           </svg>
-          <span class="iui-inner-content">
-            <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+
+        <!-- Small indeterminate with center button -->
+        <div
+          class="iui-progress-radial-wrapper"
+          role="progressbar"
+          data-iui-size="s"
+        >
+          <svg
+            class="iui-progress-radial"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+          >
+            <circle
+              class="iui-progress-radial-track"
+              cx="16"
+              cy="16"
+              r="14"
+            >
+            </circle>
+            <circle
+              class="iui-progress-radial-value"
+              cx="16"
+              cy="16"
+              r="14"
+              style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
+            >
+            </circle>
+          </svg>
+          <span class="iui-progress-radial-inner-content">
+            <button class="iui-progress-radial-inner-content-button">
+              <svg-pause
+                class="iui-progress-radial-inner-content-icon"
+                aria-hidden="true"
+              ></svg-pause>
+            </button>
+          </span>
+        </div>
+
+        <!-- Small indeterminate with center icon & success -->
+        <div
+          class="iui-progress-radial-wrapper"
+          role="progressbar"
+          data-iui-size="s"
+          aria-valuenow="100"
+        >
+          <svg
+            class="iui-progress-radial"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+          >
+            <circle
+              class="iui-progress-radial-track"
+              cx="16"
+              cy="16"
+              r="14"
+            >
+            </circle>
+            <circle
+              class="iui-progress-radial-value"
+              cx="16"
+              cy="16"
+              r="14"
+              style="stroke-dashoffset: calc(0);"
+            >
+            </circle>
+          </svg>
+          <span class="iui-progress-radial-inner-content">
+            <svg-checkmark-small
+              class="iui-progress-radial-inner-content-icon"
+              aria-hidden="true"
+            ></svg-checkmark-small>
+          </span>
+        </div>
+
+        <!-- Small indeterminate with center icon & error -->
+        <div
+          class="iui-progress-radial-wrapper"
+          role="progressbar"
+          data-iui-size="s"
+          aria-errormessage="Upload failed"
+        >
+          <svg
+            class="iui-progress-radial"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+          >
+            <circle
+              class="iui-progress-radial-track"
+              cx="16"
+              cy="16"
+              r="14"
+            >
+            </circle>
+            <circle
+              class="iui-progress-radial-value"
+              cx="16"
+              cy="16"
+              r="14"
+              style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
+            >
+            </circle>
+          </svg>
+          <span class="iui-progress-radial-inner-content">
+            <svg-important-small
+              class="iui-progress-radial-inner-content-icon"
+              aria-hidden="true"
+            ></svg-important-small>
           </span>
         </div>
       </div>
@@ -1047,17 +1258,21 @@
         laborum.
 
         <div
-          class="iui-progress-indicator-overlay"
+          class="iui-progress-overlay"
           tabindex="0"
         >
           <!-- Linear indeterminate with label -->
-          <div class="iui-progress-indicator-linear">
-            <div class="iui-track">
-              <div class="iui-fill iui-indeterminate"></div>
-            </div>
-            <div class="iui-label">
+          <div class="iui-progress-linear-wrapper">
+            <progress
+              class="iui-progress-linear"
+              id="progress-bar-7"
+            ></progress>
+            <label
+              class="iui-progress-linear-label"
+              for="progress-bar-7"
+            >
               <span>Loading content</span>
-            </div>
+            </label>
           </div>
         </div>
       </div>
@@ -1070,28 +1285,33 @@
         laborum.
 
         <div
-          class="iui-progress-indicator-overlay"
+          class="iui-progress-overlay"
           tabindex="0"
         >
           <!-- Radial indeterminate -->
-          <div class="iui-progress-indicator-radial iui-indeterminate">
+          <div
+            class="iui-progress-radial-wrapper"
+            role="progressbar"
+            data-iui-variant="indeterminate"
+          >
             <svg
-              class="iui-radial"
+              class="iui-progress-radial"
               viewBox="0 0 32 32"
               aria-hidden="true"
             >
               <circle
-                class="iui-track"
+                class="iui-progress-radial-track"
                 cx="16"
                 cy="16"
                 r="14"
               >
               </circle>
               <circle
-                class="iui-fill"
+                class="iui-progress-radial-value"
                 cx="16"
                 cy="16"
                 r="14"
+                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
               >
               </circle>
             </svg>
