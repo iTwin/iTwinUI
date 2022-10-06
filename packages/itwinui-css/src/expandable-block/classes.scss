@@ -4,4 +4,37 @@
 
 .iui-expandable-block {
   @include iui-expandable-block;
+
+  &:where([aria-expanded='true']),
+  &:where(&[open]) {
+    @include iui-expandable-block-expanded;
+  }
+
+  &:where([data-iui-size='small']) {
+    @include iui-expandable-block-size(small);
+  }
+
+  &:where([data-iui-variant='borderless']) {
+    @include iui-expandable-block-variant(borderless);
+  }
+}
+
+.iui-expandable-block-header {
+  @include iui-expandable-block-header;
+}
+
+.iui-expandable-block-header-text {
+  @include iui-expandable-block-header-text;
+}
+
+.iui-expandable-block-header-text-label {
+  @include iui-expandable-block-header-text-type;
+}
+
+.iui-expandable-block-header-text-sublabel {
+  @include iui-expandable-block-header-text-type(sublabel);
+}
+
+.iui-expandable-block-content {
+  @include iui-expandable-block-content;
 }

@@ -24,8 +24,11 @@
       @import url("./assets/demo.css") layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
-      section {
-        max-width: 100%;
+      section[id^='demo'] {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--iui-size-l);
       }
     </style>
     <script>
@@ -44,49 +47,102 @@
     <hr />
 
     <h2>Default</h2>
-    <section id="demo-default">
+    <section id="demo-group-default">
       <div class="iui-expandable-block">
         <div
-          aria-expanded="false"
-          class="iui-header"
+          class="iui-expandable-block-header"
+          role="button"
           tabindex="0"
         >
-          <svg-chevron-right
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-chevron-right>
-          <span class="iui-expandable-block-label">
-            <div class="iui-title">Expandable block title</div>
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Label</span>
           </span>
-          <svg-status-success
-            class="iui-status-icon"
-            data-iui-icon-color="positive"
-            aria-hidden="true"
-          ></svg-status-success>
         </div>
       </div>
 
-      <br />
-
-      <div class="iui-expandable-block iui-expanded">
+      <div
+        class="iui-expandable-block"
+        id="test-01"
+      >
         <div
-          aria-expanded="true"
-          class="iui-header"
+          class="iui-expandable-block-header"
+          role="button"
           tabindex="0"
         >
-          <svg-chevron-right
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-chevron-right>
-          <span class="iui-expandable-block-label">
-            <div class="iui-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Label</span>
+            <span class="iui-expandable-block-header-text-sublabel">Sublabel</span>
           </span>
         </div>
-        <div class="iui-expandable-content">
+      </div>
+
+      <div
+        class="iui-expandable-block"
+        data-iui-size="small"
+      >
+        <div
+          class="iui-expandable-block-header"
+          role="button"
+          tabindex="0"
+        >
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Label</span>
+          </span>
+        </div>
+      </div>
+
+      <div
+        class="iui-expandable-block"
+        aria-disabled="true"
+      >
+        <div
+          class="iui-expandable-block-header"
+          role="button"
+        >
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Disabled label</span>
+            <span class="iui-expandable-block-header-text-sublabel">Disabled sublabel</span>
+          </span>
+        </div>
+      </div>
+
+      <div
+        class="iui-expandable-block"
+        id="test-02"
+        aria-expanded="true"
+      >
+        <div
+          class="iui-expandable-block-header"
+          role="button"
+          aria-controls="demo-expandable-block-1"
+          tabindex="0"
+        >
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+            <span class="iui-expandable-block-header-text-sublabel">Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+              nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+          </span>
+          <span>
+            <svg-status-success
+              data-iui-icon-size="m"
+              data-iui-icon-color="positive"
+              aria-hidden="true"
+            ></svg-status-success>
+          </span>
+        </div>
+        <div
+          class="iui-expandable-block-content"
+          role="region"
+          aria-labelledby="demo-expandable-block-1"
+        >
           <div>
             <expandable-content></expandable-content>
           </div>
@@ -94,174 +150,91 @@
       </div>
     </section>
 
-    <hr />
-
-    <h2>Captions</h2>
-    <section id="demo-captions">
-      <div class="iui-expandable-block">
-        <div
-          aria-expanded="false"
-          class="iui-header"
-          tabindex="0"
-        >
-          <svg-chevron-right
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-chevron-right>
-          <span class="iui-expandable-block-label">
-            <div class="iui-title">Expandable block title</div>
-            <div class="iui-caption">Collapsed block caption</div>
-          </span>
-        </div>
-      </div>
-
-      <br />
-
-      <div class="iui-expandable-block iui-expanded">
-        <div
-          aria-expanded="true"
-          class="iui-header"
-          tabindex="0"
-        >
-          <svg-chevron-right
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-chevron-right>
-          <span class="iui-expandable-block-label">
-            <div class="iui-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.</div>
-            <div class="iui-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
-          </span>
-          <svg-status-success
-            class="iui-status-icon"
-            data-iui-icon-color="positive"
-            aria-hidden="true"
-          ></svg-status-success>
-        </div>
-        <div class="iui-expandable-content">
-          <div>
-            <expandable-content></expandable-content>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr />
-
-    <h2>Small</h2>
-    <section id="demo-small">
-      <div class="iui-expandable-block iui-small">
-        <div
-          aria-expanded="false"
-          class="iui-header"
-          tabindex="0"
-        >
-          <svg-chevron-right
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-chevron-right>
-          <span class="iui-expandable-block-label">
-            <div class="iui-title">Expandable block title</div>
-          </span>
-          <svg-status-success
-            class="iui-status-icon"
-            data-iui-icon-color="positive"
-            aria-hidden="true"
-          ></svg-status-success>
-        </div>
-      </div>
-
-      <br />
-
-      <div class="iui-expandable-block iui-expanded iui-small">
-        <div
-          aria-expanded="true"
-          class="iui-header"
-          tabindex="0"
-        >
-          <svg-chevron-right
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-chevron-right>
-          <span class="iui-expandable-block-label">
-            <div class="iui-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
-          </span>
-          <svg-status-success
-            class="iui-status-icon"
-            data-iui-icon-color="positive"
-            aria-hidden="true"
-          ></svg-status-success>
-        </div>
-        <div class="iui-expandable-content">
-          <div>
-            <expandable-content></expandable-content>
-          </div>
-        </div>
-      </div>
-    </section>
     <hr />
 
     <h2>Borderless</h2>
-    <section id="demo-borderless">
-      <div class="iui-expandable-block iui-borderless">
+    <section id="demo-group-borderless">
+      <div
+        class="iui-expandable-block"
+        data-iui-variant="borderless"
+        id="test-03"
+      >
         <div
-          aria-expanded="false"
-          class="iui-header"
+          class="iui-expandable-block-header"
+          role="button"
           tabindex="0"
         >
-          <svg-chevron-right
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-chevron-right>
-          <span class="iui-expandable-block-label">
-            <div class="iui-title">Expandable block title</div>
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Label</span>
           </span>
-          <svg-status-success
-            class="iui-status-icon"
-            data-iui-icon-color="positive"
-            aria-hidden="true"
-          ></svg-status-success>
         </div>
       </div>
 
-      <br />
-
-      <div class="iui-expandable-block iui-expanded iui-borderless">
+      <div
+        class="iui-expandable-block"
+        data-iui-variant="borderless"
+        data-iui-size="small"
+        id="test-04"
+      >
         <div
-          aria-expanded="true"
-          class="iui-header"
+          class="iui-expandable-block-header"
+          role="button"
           tabindex="0"
         >
-          <svg-chevron-right
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-chevron-right>
-          <span class="iui-expandable-block-label">
-            <div class="iui-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-              qui officia deserunt mollit anim id est laborum.</div>
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Label</span>
           </span>
-          <svg-status-success
-            class="iui-status-icon"
-            data-iui-icon-color="positive"
-            aria-hidden="true"
-          ></svg-status-success>
         </div>
-        <div class="iui-expandable-content">
+      </div>
+
+      <div
+        class="iui-expandable-block"
+        data-iui-variant="borderless"
+        aria-disabled="true"
+      >
+        <div
+          class="iui-expandable-block-header"
+          role="button"
+        >
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Label</span>
+          </span>
+        </div>
+      </div>
+
+      <div
+        class="iui-expandable-block"
+        data-iui-variant="borderless"
+        data-iui-size="small"
+        aria-expanded="true"
+      >
+        <div
+          class="iui-expandable-block-header"
+          role="button"
+          aria-controls="demo-expandable-block-2"
+          tabindex="0"
+        >
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+          </span>
+          <span>
+            <svg-status-success
+              data-iui-icon-size="m"
+              data-iui-icon-color="positive"
+              aria-hidden="true"
+            ></svg-status-success>
+          </span>
+        </div>
+        <div
+          class="iui-expandable-block-content"
+          role="region"
+          aria-labelledby="demo-expandable-block-2"
+        >
           <div>
             <expandable-content></expandable-content>
           </div>
@@ -269,15 +242,86 @@
       </div>
     </section>
 
+    <hr />
+
+    <h2>Native</h2>
+    <section id="demo-group-native">
+      <details
+        class="iui-expandable-block"
+        open
+      >
+        <summary class="iui-expandable-block-header">
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+            <span class="iui-expandable-block-header-text-sublabel">Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+              nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+          </span>
+          <span>
+            <svg-status-success
+              data-iui-icon-size="m"
+              data-iui-icon-color="positive"
+              aria-hidden="true"
+            ></svg-status-success>
+          </span>
+        </summary>
+        <div class="iui-expandable-block-content">
+          <div>
+            <expandable-content></expandable-content>
+          </div>
+        </div>
+      </details>
+
+      <details
+        class="iui-expandable-block"
+        data-iui-variant="borderless"
+        open
+      >
+        <summary class="iui-expandable-block-header">
+          <span class="iui-expandable-block-header-text">
+            <span class="iui-expandable-block-header-text-label">Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+          </span>
+          <span>
+            <svg-status-success
+              data-iui-icon-size="m"
+              data-iui-icon-color="positive"
+              aria-hidden="true"
+            ></svg-status-success>
+          </span>
+        </summary>
+        <div class="iui-expandable-block-content">
+          <div>
+            <expandable-content></expandable-content>
+          </div>
+        </div>
+      </details>
+    </section>
 
     <script>
-      document.querySelectorAll('.iui-header').forEach((el) => {
+      document.querySelectorAll('.iui-expandable-block-header').forEach((el) => {
         el.addEventListener('click', (event) => {
-          event.currentTarget.parentElement.classList.toggle('iui-expanded');
-          if (el.nextElementSibling?.classList.contains('iui-expandable-content')) {
+          if (el.parentElement.getAttribute('aria-expanded')) {
+            el.parentElement.removeAttribute('aria-expanded');
+          } else {
+            el.parentElement.setAttribute('aria-expanded', 'true');
+          }
+
+          if (el.nextElementSibling?.classList.contains('iui-expandable-block-content')) {
             el.nextElementSibling.remove();
           } else {
-            el.insertAdjacentHTML('afterend', '<div class="iui-expandable-content"><div><expandable-content></expandable-content></div></div>');
+            el.insertAdjacentHTML('afterend', '<div class="iui-expandable-block-content" role="region"><div><expandable-content></expandable-content></div></div>');
           }
         });
       });
