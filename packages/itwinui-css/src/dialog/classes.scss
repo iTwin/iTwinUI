@@ -12,10 +12,7 @@
 
 .iui-dialog-default {
   @include iui-dialog-default;
-
-  &:where(:not(.iui-dialog-draggable)) {
-    @include iui-dialog-placement;
-  }
+  @include iui-dialog-placement;
 }
 
 .iui-dialog-full-page {
