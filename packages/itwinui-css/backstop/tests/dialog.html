@@ -442,33 +442,22 @@
         const { width, height } = element.getBoundingClientRect();
 
         let active = false;
-        let currentX;
-        let currentY;
         let initialX;
         let initialY;
-        let xOffset;
-        let yOffset;
+        let initialTransform;
 
         document.addEventListener("mouseup", dragEnd, false);
         document.addEventListener("mousemove", drag, false);
 
         function dragStart(e) {
-          // Workaround for initial drag
-          if (xOffset == null && yOffset == null) {
-            initialX = e.clientX + width / 2;
-            initialY = e.clientY + height / 3;
-          } else {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-          }
-
           active = true;
+
+          initialX = e.clientX;
+          initialY = e.clientY;
+          intialTransform = new DOMMatrix(getComputedStyle(element).transform);
         }
 
         function dragEnd(e) {
-          initialX = currentX;
-          initialY = currentY;
-
           active = false;
         }
 
@@ -476,13 +465,12 @@
           if (active) {
             e.preventDefault();
 
-            currentX = e.clientX - initialX;
-            currentY = e.clientY - initialY;
+            const diffX = e.clientX - initialX;
+            const diffY = e.clientY - initialY;
 
-            xOffset = currentX;
-            yOffset = currentY;
+            const newTranslate = intialTransform.translate(diffX, diffY).transformPoint();
 
-            element.style.transform = "translate(" + currentX + "px, " + currentY + "px)";
+            element.style.transform = `translate(${newTranslate.x}px, ${newTranslate.y}px)`;
           }
         }
       }
