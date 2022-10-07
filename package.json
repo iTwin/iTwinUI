@@ -27,7 +27,8 @@
     "test": "turbo run test --",
     "lint": "turbo run lint",
     "lint:copyright": "node packages/shared/copyrightLinter.js",
-    "push-docker": "yarn workspace @itwin/itwinui-css push-docker"
+    "push-docker": "yarn workspace @itwin/itwinui-css push-docker",
+    "approve": "yarn workspace @itwin/itwinui-css approve"
   },
   "dependencies": {},
   "devDependencies": {
