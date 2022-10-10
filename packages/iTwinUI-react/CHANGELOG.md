@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.47.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.47.0...v1.47.1) (2022-10-10)
+
+### Fixes
+
+* Add `tippy.js` as a direct dependency ([#865](https://www.github.com/iTwin/iTwinUI-react/issues/865)) ([7220ba2](https://www.github.com/iTwin/iTwinUI-react/commit/7220ba278dd34a2ef4bea3e2b25446ad9b0a7d38))
+
 ## [1.47.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.46.0...v1.47.0) (2022-10-03)
 
 ### What's new
