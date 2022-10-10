@@ -36,10 +36,9 @@
   @include iui-icon-style('m');
   transition: fill var(--iui-duration-1) ease-out;
   fill: currentColor;
-  margin-block: var(--iui-size-2xs);
 
-  > * {
-    display: flex;
+  :has(.iui-notification-marker) {
+    margin-block: var(--iui-size-2xs);
   }
 }
 
