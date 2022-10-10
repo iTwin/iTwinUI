@@ -36,9 +36,10 @@
   @include iui-icon-style('m');
   transition: fill var(--iui-duration-1) ease-out;
   fill: currentColor;
+  margin-block: var(--iui-size-2xs);
 
-  :has(.iui-notification-marker) {
-    margin-block: var(--iui-size-2xs);
+  @at-root .iui-notification-marker & {
+    margin-block: unset;
   }
 }
 
