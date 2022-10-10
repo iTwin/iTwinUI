@@ -352,10 +352,10 @@ it('should handle checkbox clicks', async () => {
   expect(onSelect).toHaveBeenCalledWith([mockedData()[1]], expect.any(Object));
 
   await userEvent.click(checkboxCells[0]);
-  expect(onSelect).toHaveBeenCalledWith(mockedData(), expect.any(Object));
+  expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
 
   await userEvent.click(checkboxCells[0]);
-  expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
+  expect(onSelect).toHaveBeenCalledWith(mockedData(), expect.any(Object));
 });
 
 it('should handle row clicks', async () => {
@@ -1853,6 +1853,12 @@ it('should disable row and handle selection accordingly', async () => {
   expect(headerCheckbox.indeterminate).toBe(true);
   expect(headerCheckbox.checked).toBe(false);
 
+  // Deselect all
+  await userEvent.click(checkboxCells[0]);
+  expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
+  expect(headerCheckbox.indeterminate).toBe(false);
+  expect(headerCheckbox.checked).toBe(false);
+
   // Select all
   await userEvent.click(checkboxCells[0]);
   expect(onSelect).toHaveBeenCalledWith(
@@ -1861,12 +1867,6 @@ it('should disable row and handle selection accordingly', async () => {
   );
   expect(headerCheckbox.indeterminate).toBe(false);
   expect(headerCheckbox.checked).toBe(true);
-
-  // Deselect all
-  await userEvent.click(checkboxCells[0]);
-  expect(onSelect).toHaveBeenCalledWith([], expect.any(Object));
-  expect(headerCheckbox.indeterminate).toBe(false);
-  expect(headerCheckbox.checked).toBe(false);
 });
 
 it('should select and filter rows', async () => {
