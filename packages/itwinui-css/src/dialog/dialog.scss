@@ -14,7 +14,7 @@ $iui-dialog-width: 380px;
   pointer-events: none;
   transform: translateX(0); // creates containing block for position: fixed
 
-  &[data-iui-relative] {
+  &[data-iui-relative='true'] {
     position: absolute;
   }
 }
