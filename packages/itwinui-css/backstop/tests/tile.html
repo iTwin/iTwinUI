@@ -97,6 +97,16 @@
         }
       );
     </script>
+    <script>
+      customElements.define(
+        'svg-filetype-video',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m11 3v-3h-9v16h12v-13z" fill="#e64821"/><path d="m7 7.2919 3 1.7081-3 1.756zm5 1.7081a4 4 0 1 1 -4-4 4 4 0 0 1 4 4zm-1 0a3 3 0 1 0 -3 3 3 3 0 0 0 3-3z" fill="#fff"/><path d="m11 0 3 3h-3z" fill="#a13217"/></svg>`;
+          }
+        }
+      );
+    </script>
   </head>
 
   <body class="iui-root">
@@ -1263,7 +1273,7 @@
               aria-hidden="true"
             ></svg-status-error>
             <span
-              class="iui-tile-name-label">MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.dgn</span>
+              class="iui-tile-name-label">MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg</span>
           </div>
           <div class="iui-tile-description">
             Bentley Systems, Incorporated, is an American-based software
@@ -1299,10 +1309,7 @@
         </div>
       </div>
 
-      <div
-        class="iui-tile iui-actionable iui-progress"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-loading">
         <div class="iui-tile-thumbnail">
           <svg-filetype-imodel
             class="iui-thumbnail-icon"
@@ -1333,22 +1340,35 @@
                 ></circle>
               </svg>
             </div>
-            <span class="iui-tile-name-label">Upload in progress&mldr;</span>
+            <span class="iui-tile-name-label">alpha.dgn</span>
+          </div>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
           </div>
         </div>
       </div>
 
       <div
         class="iui-tile"
-        tabindex="0"
         aria-disabled="true"
       >
         <div class="iui-tile-thumbnail">
           <div class="iui-tile-status-icon iui-table iui-thumbnail-icon">
-            <svg-filetype-imodel
+            <svg-filetype-video
               class="iui-thumbnail-icon"
               aria-hidden="true"
-            ></svg-filetype-imodel>
+            ></svg-filetype-video>
           </div>
         </div>
 
@@ -1392,7 +1412,6 @@
 
       <div
         class="iui-tile"
-        tabindex="0"
         aria-disabled="true"
       >
         <div class="iui-tile-thumbnail">
@@ -1563,10 +1582,7 @@
         </div>
       </div>
 
-      <div
-        class="iui-tile iui-folder iui-actionable iui-progress"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-folder iui-loading">
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1597,14 +1613,27 @@
                 ></circle>
               </svg>
             </div>
-            <span class="iui-tile-name-label">Upload in progress&mldr;</span>
+            <span class="iui-tile-name-label">Folder name</span>
+          </div>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
           </div>
         </div>
       </div>
 
       <div
         class="iui-tile iui-folder"
-        tabindex="0"
         aria-disabled="true"
       >
         <div class="iui-tile-thumbnail">
@@ -1642,7 +1671,6 @@
 
       <div
         class="iui-tile iui-folder"
-        tabindex="0"
         aria-disabled="true"
       >
         <div class="iui-tile-thumbnail">

@@ -16,7 +16,8 @@
     gap: var(--iui-size-xs);
 
     &.iui-loading {
-      cursor: wait;
+      cursor: progress;
+      font-style: italic;
       color: var(--iui-color-foreground-4);
     }
 
@@ -124,6 +125,8 @@
 
     --_iui-checkbox-border-color: transparent;
     --_iui-checkbox-background-color: transparent;
+
+    outline-width: 1px;
 
     &:where(:not(:checked):not(:indeterminate)) {
       --_iui-checkbox-svg-color: var(--iui-color-foreground-2);
