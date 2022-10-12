@@ -313,9 +313,16 @@ it('should activate thumb on pointerDown', () => {
 });
 
 it('should process keystrokes when thumb has focus', () => {
+  const handleOnUpdate = jest.fn();
   const handleOnChange = jest.fn();
   const { container } = render(
-    <Slider values={[50]} step={5} setFocus onChange={handleOnChange} />,
+    <Slider
+      values={[50]}
+      step={5}
+      setFocus
+      onUpdate={handleOnUpdate}
+      onChange={handleOnChange}
+    />,
   );
   assertBaseElement(container);
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
@@ -328,33 +335,52 @@ it('should process keystrokes when thumb has focus', () => {
     fireEvent.keyDown(thumb, { key: 'ArrowLeft' });
   });
   expect(thumb.getAttribute('aria-valuenow')).toEqual('45');
+  expect(handleOnUpdate).toHaveBeenCalledTimes(1);
+  expect(handleOnChange).toHaveBeenCalledTimes(0);
 
   act(() => {
     fireEvent.keyDown(thumb, { key: 'ArrowDown' });
   });
   expect(thumb.getAttribute('aria-valuenow')).toEqual('40');
+  expect(handleOnUpdate).toHaveBeenCalledTimes(2);
+  expect(handleOnChange).toHaveBeenCalledTimes(0);
 
   act(() => {
     fireEvent.keyDown(thumb, { key: 'ArrowRight' });
+    fireEvent.keyUp(thumb, { key: 'ArrowRight' });
   });
   expect(thumb.getAttribute('aria-valuenow')).toEqual('45');
+  expect(handleOnUpdate).toHaveBeenCalledTimes(3);
+  expect(handleOnChange).toHaveBeenCalledTimes(1); // onChange called only after all keys released
 
   act(() => {
     fireEvent.keyDown(thumb, { key: 'ArrowUp' });
+    fireEvent.keyUp(thumb, { key: 'ArrowRight' });
   });
   expect(thumb.getAttribute('aria-valuenow')).toEqual('50');
+  expect(handleOnUpdate).toHaveBeenCalledTimes(4);
+  expect(handleOnChange).toHaveBeenCalledTimes(2);
 
   act(() => {
     fireEvent.keyDown(thumb, { key: 'Home' });
   });
   expect(thumb.getAttribute('aria-valuenow')).toEqual('0');
+  expect(handleOnUpdate).toHaveBeenCalledTimes(5);
+  expect(handleOnChange).toHaveBeenCalledTimes(2);
 
   act(() => {
     fireEvent.keyDown(thumb, { key: 'End' });
   });
   expect(thumb.getAttribute('aria-valuenow')).toEqual('100');
-  expect(handleOnChange).toHaveBeenCalledTimes(6);
   expect(document.activeElement).toEqual(thumb);
+  expect(handleOnUpdate).toHaveBeenCalledTimes(6);
+  expect(handleOnChange).toHaveBeenCalledTimes(2);
+
+  act(() => {
+    fireEvent.keyUp(thumb, { key: 'End' });
+  });
+  expect(handleOnUpdate).toHaveBeenCalledTimes(6); // onUpdate not called when key released
+  expect(handleOnChange).toHaveBeenCalledTimes(3);
 });
 
 it('should limit keystrokes processing to adjacent points by default', () => {
@@ -424,13 +450,18 @@ it('should limit keystrokes processing by min max when allow-crossing is set', (
     fireEvent.keyDown(thumb, { key: 'End' });
   });
   expect(thumb.getAttribute('aria-valuenow')).toEqual('100');
-  expect(handleOnChange).toHaveBeenCalledTimes(4);
+  expect(handleOnChange).toHaveBeenCalledTimes(0);
 
   // triggering an update with same value should not trigger callback
   act(() => {
     fireEvent.keyDown(thumb, { key: 'End' });
   });
-  expect(handleOnChange).toHaveBeenCalledTimes(4);
+  expect(handleOnChange).toHaveBeenCalledTimes(0);
+
+  act(() => {
+    fireEvent.keyUp(thumb, { key: 'End' });
+  });
+  expect(handleOnChange).toHaveBeenCalledTimes(1); // onChange called only after all keys released
 });
 
 it('should not process keystrokes when slider is disabled', () => {

@@ -51,7 +51,11 @@ export type ThumbProps = {
   /**
    * Callback to invoke when keyboard is used to modify Thumb value.
    */
-  onThumbValueChanged: (index: number, value: number) => void;
+  onThumbValueChanged: (
+    index: number,
+    value: number,
+    keyboardReleased: boolean,
+  ) => void;
   /**
    * Additional tooltip props.
    */
@@ -85,25 +89,33 @@ export const Thumb = (props: ThumbProps) => {
     orientation,
   } = props;
   const thumbRef = React.useRef<HTMLDivElement>(null);
-  const handleOnKeyDown = React.useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOnKeyboardEvent = React.useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>, keyboardReleased: boolean) => {
       if (disabled || event.altKey) {
         return;
       }
       switch (event.key) {
         case 'ArrowLeft':
         case 'ArrowDown':
-          onThumbValueChanged(index, Math.max(value - step, minVal));
+          onThumbValueChanged(
+            index,
+            Math.max(value - step, minVal),
+            keyboardReleased,
+          );
           break;
         case 'ArrowRight':
         case 'ArrowUp':
-          onThumbValueChanged(index, Math.min(value + step, maxVal));
+          onThumbValueChanged(
+            index,
+            Math.min(value + step, maxVal),
+            keyboardReleased,
+          );
           break;
         case 'Home':
-          onThumbValueChanged(index, minVal);
+          onThumbValueChanged(index, minVal, keyboardReleased);
           break;
         case 'End':
-          onThumbValueChanged(index, maxVal);
+          onThumbValueChanged(index, maxVal, keyboardReleased);
           break;
         default:
           return;
@@ -164,7 +176,8 @@ export const Thumb = (props: ThumbProps) => {
         aria-valuemax={maxVal}
         aria-disabled={disabled}
         onPointerDown={handlePointerDownOnThumb}
-        onKeyDown={handleOnKeyDown}
+        onKeyDown={(event) => handleOnKeyboardEvent(event, false)}
+        onKeyUp={(event) => handleOnKeyboardEvent(event, true)}
         onFocus={() => setHasFocus(true)}
         onBlur={() => setHasFocus(false)}
         onMouseEnter={() => setIsHovered(true)}

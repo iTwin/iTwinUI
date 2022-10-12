@@ -193,7 +193,8 @@ it('should handle arrow key navigation on hue slider dot', () => {
   // Go right
   fireEvent.keyDown(sliderDot, { key: 'ArrowRight' });
   fireEvent.keyDown(sliderDot, { key: 'ArrowRight' });
-  expect(onSelectionChanged).toHaveBeenCalledTimes(2);
+  fireEvent.keyUp(sliderDot, { key: 'ArrowRight' }); // Releasing keyboard triggers calling onChangeCompleted
+  expect(onSelectionChanged).toHaveBeenCalledTimes(1);
   expect(sliderDot.style.getPropertyValue('left')).toEqual(
     '0.5571030640668524%',
   );
@@ -201,7 +202,8 @@ it('should handle arrow key navigation on hue slider dot', () => {
 
   // Go left
   fireEvent.keyDown(sliderDot, { key: 'ArrowLeft' });
-  expect(onSelectionChanged).toHaveBeenCalledTimes(3);
+  fireEvent.keyUp(sliderDot, { key: 'ArrowLeft' });
+  expect(onSelectionChanged).toHaveBeenCalledTimes(2);
   expect(sliderDot.style.getPropertyValue('left')).toEqual(
     '0.2785515320334262%',
   );
@@ -513,6 +515,7 @@ it('should handle arrow key navigation on opacity slider dot', () => {
 
   // Go left
   fireEvent.keyDown(opacityDot, { key: 'ArrowLeft' });
+  fireEvent.keyUp(opacityDot, { key: 'ArrowLeft' }); // Releasing keyboard triggers calling onChangeCompleted
   expect(onSelectionChanged).toHaveBeenNthCalledWith(
     1,
     ColorValue.create({ h: 0, s: 100, l: 50, a: 0.99 }),
@@ -521,6 +524,7 @@ it('should handle arrow key navigation on opacity slider dot', () => {
 
   // Go right
   fireEvent.keyDown(opacityDot, { key: 'ArrowRight' });
+  fireEvent.keyUp(opacityDot, { key: 'ArrowRight' }); // Releasing keyboard triggers calling onChangeCompleted
   expect(onSelectionChanged).toHaveBeenNthCalledWith(
     2,
     ColorValue.create({ h: 0, s: 100, l: 50, a: 1 }),
@@ -560,6 +564,7 @@ it('should render color picker and handle onChangeCompleted when alpha is false'
 
   // Should handle hue slider change
   fireEvent.keyDown(sliderDot, { key: 'ArrowRight' });
+  fireEvent.keyUp(sliderDot, { key: 'ArrowRight' }); // Releasing keyboard triggers calling onChangeCompleted
   expect(handleOnChange).toHaveBeenCalledWith(
     ColorValue.create({ h: 1, s: 100, l: 50 }),
   );
