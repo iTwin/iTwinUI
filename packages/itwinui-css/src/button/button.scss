@@ -11,7 +11,7 @@
   justify-content: center;
   position: relative;
   border-radius: var(--iui-border-radius-1);
-  line-height: var(--iui-size-l);
+  line-height: var(--iui-font-size-1);
   font-size: var(--iui-font-size-1);
   font-weight: var(--iui-font-weight-normal);
   user-select: none;
@@ -30,17 +30,21 @@
   text-decoration: none;
   @include iui-button-size;
   @include iui-focus;
+
+  // > span {
+  //   line-height: var(--iui-size-m);
+  // }
 }
 
 @mixin iui-button-icon {
   @include iui-icon-style('m');
   transition: fill var(--iui-duration-1) ease-out;
   fill: currentColor;
-  margin-block: var(--iui-size-2xs);
+  // margin-block: var(--iui-size-2xs);
 
-  @at-root .iui-notification-marker & {
-    margin-block: unset;
-  }
+  // @at-root .iui-notification-marker & {
+  //   margin-block: unset;
+  // }
 }
 
 @mixin iui-button-active {
