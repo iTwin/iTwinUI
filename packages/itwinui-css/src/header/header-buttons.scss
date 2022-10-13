@@ -99,7 +99,7 @@
   &[aria-disabled='true'] {
     cursor: not-allowed;
     background-color: transparent;
-    color: var(--iui-color-foreground-5);
+    color: var(--iui-color-foreground-disabled);
 
     // Disabled active state
     &[aria-current] {
@@ -223,7 +223,7 @@
 
   &-sublabel {
     font-size: var(--iui-font-size-0);
-    opacity: var(--iui-opacity-3);
+    color: var(--iui-color-foreground-muted);
     @media (prefers-reduced-motion: no-preference) {
       transition: visibility 0s linear 0s, width var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out,
         opacity var(--iui-duration-1) ease-out;
@@ -231,8 +231,9 @@
 
     @at-root {
       .iui-active &,
-      [aria-current] & {
-        opacity: var(--iui-opacity-1);
+      [aria-current] &,
+      [aria-disabled='true'] & {
+        color: inherit;
       }
     }
 
@@ -247,13 +248,13 @@
 
 @mixin iui-header-breadcrumb-button-icon {
   @include iui-icon-style('l');
-  background-color: var(--iui-color-background-3);
+  background-color: var(--iui-color-background-2);
   border-radius: var(--iui-border-radius-1);
   display: inline-flex;
   flex-shrink: 0;
   box-sizing: border-box;
   padding: var(--iui-size-2xs);
-  fill: var(--iui-color-foreground-4);
+  fill: var(--iui-color-foreground-muted);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -292,7 +293,7 @@
     :disabled &,
     [aria-disabled='true'] & {
       background-color: var(--iui-color-background-2);
-      fill: var(--iui-color-foreground-5);
+      fill: var(--iui-color-foreground-disabled);
 
       @media (forced-colors: active) {
         fill: GrayText;

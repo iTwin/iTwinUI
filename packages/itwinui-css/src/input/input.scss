@@ -26,7 +26,7 @@
   @include iui-input-size;
 
   &::placeholder {
-    --_iui-input-text-color: var(--iui-color-foreground-4);
+    --_iui-input-text-color: var(--iui-color-foreground-muted);
     user-select: none;
     color: var(--_iui-input-text-color);
   }

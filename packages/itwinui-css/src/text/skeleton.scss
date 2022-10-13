@@ -9,11 +9,11 @@
   cursor: progress;
   background: linear-gradient(
     292deg,
-    var(--iui-color-foreground-4),
-    var(--iui-color-foreground-4),
-    var(--iui-color-foreground-5),
-    var(--iui-color-foreground-4),
-    var(--iui-color-foreground-4)
+    var(--iui-color-foreground-muted),
+    var(--iui-color-foreground-muted),
+    var(--iui-color-foreground-disabled),
+    var(--iui-color-foreground-muted),
+    var(--iui-color-foreground-muted)
   );
   background-size: 200% 100%;
 

@@ -85,7 +85,7 @@
     background-color: var(--iui-color-background-disabled);
 
     &::after {
-      background-color: var(--iui-color-foreground-5);
+      background-color: var(--iui-color-foreground-disabled);
       @media (forced-colors: active) {
         background-color: GrayText;
       }
@@ -93,7 +93,7 @@
 
     .iui-radio-tile-icon {
       filter: $iui-icon-color-multicolor-disabled;
-      fill: var(--iui-color-foreground-5);
+      fill: var(--iui-color-foreground-disabled);
       @media (forced-colors: active) {
         fill: GrayText;
       }

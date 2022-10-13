@@ -19,8 +19,8 @@
     user-select: none;
     transition: background-color var(--iui-duration-1) ease-out;
     border-radius: inherit;
-    border: 1px solid var(--iui-color-background-3);
-    background-color: var(--iui-color-background-3);
+    border: 1px solid var(--iui-color-background-border);
+    background-color: var(--iui-color-background-1);
 
     > .iui-icon,
     > .iui-status-icon {
@@ -61,7 +61,7 @@
 
     .iui-caption {
       font-size: var(--iui-font-size-0);
-      color: var(--iui-color-foreground-3);
+      color: var(--iui-color-foreground-muted);
     }
 
     @include iui-focus;
@@ -69,9 +69,9 @@
 
   .iui-expandable-content {
     overflow: hidden;
-    border-bottom: 1px solid var(--iui-color-background-4);
-    border-right: 1px solid var(--iui-color-background-4);
-    border-left: 1px solid var(--iui-color-background-4);
+    border-bottom: 1px solid var(--iui-color-background-border);
+    border-right: 1px solid var(--iui-color-background-border);
+    border-left: 1px solid var(--iui-color-background-border);
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
 
@@ -85,7 +85,7 @@
 
   &:hover {
     > .iui-header {
-      background-color: var(--iui-color-background-4);
+      background-color: var(--iui-color-background-1-hover);
 
       > .iui-icon {
         fill: var(--iui-color-foreground-1);
@@ -101,13 +101,13 @@
 
   &.iui-expanded {
     > .iui-header {
-      background-color: var(--iui-color-background-3);
-      border-color: var(--iui-color-background-4);
+      background-color: var(--iui-color-background-1);
+      border-color: var(--iui-color-background-border);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
 
       &:hover {
-        background-color: var(--iui-color-background-4);
+        background-color: var(--iui-color-background-1-hover);
       }
 
       > .iui-icon {

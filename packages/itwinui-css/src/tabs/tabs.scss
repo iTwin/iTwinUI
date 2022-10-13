@@ -29,16 +29,20 @@
       }
 
       .iui-tab-description {
-        opacity: var(--iui-opacity-1);
+        color: inherit;
       }
     }
 
     &[disabled] {
       cursor: not-allowed;
-      color: var(--iui-color-foreground-4);
+      color: var(--iui-color-foreground-disabled);
+
+      .iui-tab-description {
+        color: inherit;
+      }
 
       .iui-tab-icon {
-        fill: var(--iui-color-foreground-5);
+        fill: currentColor;
       }
     }
 
@@ -58,7 +62,7 @@
   .iui-tab-description {
     display: none;
     font-size: var(--iui-font-size-0);
-    opacity: var(--iui-opacity-3);
+    color: var(--iui-color-foreground-muted);
   }
 
   &.iui-green .iui-tab {

@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   height: calc(var(--iui-size-s) * 3);
-  border-top: var(--iui-size-3xs) solid var(--iui-color-background-4);
+  border-top: var(--iui-size-3xs) solid var(--iui-color-background-border);
 
   &-left,
   &-right {
@@ -63,7 +63,7 @@
     padding-right: var(--_iui-button-padding-inline);
 
     &:hover::after {
-      background-color: var(--iui-color-foreground-3);
+      background-color: var(--iui-color-foreground-2);
     }
 
     &::after {
@@ -71,7 +71,7 @@
       content: '';
       border-radius: 50%;
       border: 1px solid transparent;
-      background-color: var(--iui-color-foreground-4);
+      background-color: var(--iui-color-foreground-muted);
       box-shadow: inset 0 0 0 0 var(--iui-color-background-1);
     }
 

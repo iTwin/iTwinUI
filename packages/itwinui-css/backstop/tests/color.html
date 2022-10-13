@@ -75,8 +75,17 @@
       .demo-status-subtle-negative {
         background-color: var(--iui-color-background-subtle-negative);
       }
+      .demo-text-primary,
+      .demo-text-positive,
+      .demo-text-warning,
+      .demo-text-negative {
+        cursor: pointer;
+      }
       .demo-text-primary {
         color: var(--iui-color-foreground-primary);
+      }
+      .demo-text-primary:hover {
+        color: var(--iui-color-foreground-primary-hover);
       }
       .demo-text-primary::selection {
         background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-5));
@@ -84,11 +93,17 @@
       .demo-text-positive {
         color: var(--iui-color-foreground-positive);
       }
+      .demo-text-positive:hover {
+        color: var(--iui-color-foreground-positive-hover);
+      }
       .demo-text-positive::selection {
         background-color: hsl(var(--iui-color-foreground-positive-hsl) / var(--iui-opacity-5));
       }
       .demo-text-warning {
         color: var(--iui-color-foreground-warning);
+      }
+      .demo-text-warning:hover {
+        color: var(--iui-color-foreground-warning-hover);
       }
       .demo-text-warning::selection {
         background-color: hsl(var(--iui-color-foreground-warning-hsl) / var(--iui-opacity-5));
@@ -96,8 +111,52 @@
       .demo-text-negative {
         color: var(--iui-color-foreground-negative);
       }
+      .demo-text-negative:hover {
+        color: var(--iui-color-foreground-negative-hover);
+      }
+      .demo-text-disabled {
+        color: var(--iui-color-foreground-disabled);
+      }
       .demo-text-negative::selection {
         background-color: hsl(var(--iui-color-foreground-negative-hsl) / var(--iui-opacity-5));
+      }
+      .demo-hover-backgrounds {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex: 1;
+      }
+      .demo-text-bg-1-hover,
+      .demo-text-bg-2-hover,
+      .demo-text-bg-primary-hover,
+      .demo-text-bg-positive-hover,
+      .demo-text-bg-warning-hover,
+      .demo-text-bg-negative-hover {
+        flex: 1;
+        text-align: center;
+      }
+      .demo-text-bg-1-hover {
+        background-color: var(--iui-color-background-1-hover);
+      }
+      .demo-text-bg-2-hover {
+        background-color: var(--iui-color-background-2-hover);
+      }
+      .demo-text-bg-primary-hover {
+        background-color: var(--iui-color-background-primary-hover);
+      }
+      .demo-text-bg-positive-hover {
+        background-color: var(--iui-color-background-positive-hover);
+      }
+      .demo-text-bg-warning-hover {
+        background-color: var(--iui-color-background-warning-hover);
+      }
+      .demo-text-bg-negative-hover {
+        background-color: var(--iui-color-background-negative-hover);
+      }
+
+      p {
+        text-align: center;
+        font-style: italic;
       }
     </style>
   </head>
@@ -115,6 +174,12 @@
           <li class="demo-text-positive">Positive</li>
           <li class="demo-text-warning">Warning</li>
           <li class="demo-text-negative">Negative</li>
+          <li class="iui-text-block demo-text-disabled">Disabled <i>(does not need to meet contrast requirements)</i>
+          </li>
+        </ul>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-text-bg-1-hover">Background 1 hover</li>
+          <li class="demo-text-bg-2-hover">Background 2 hover</li>
         </ul>
       </div>
       <div class="demo-background-2">
@@ -126,6 +191,12 @@
           <li class="demo-text-positive">Positive</li>
           <li class="demo-text-warning">Warning</li>
           <li class="demo-text-negative">Negative</li>
+          <li class="iui-text-block demo-text-disabled">Disabled <i>(does not need to meet contrast requirements)</i>
+          </li>
+        </ul>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-text-bg-1-hover">Background 1 hover</li>
+          <li class="demo-text-bg-2-hover">Background 2 hover</li>
         </ul>
       </div>
       <div class="demo-background-3">
@@ -137,18 +208,28 @@
           <li class="demo-text-positive">Positive</li>
           <li class="demo-text-warning">Warning</li>
           <li class="demo-text-negative">Negative</li>
+          <li class="iui-text-block demo-text-disabled">Disabled <i>(does not need to meet contrast requirements)</i>
+          </li>
+        </ul>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-text-bg-1-hover">Background 1 hover</li>
+          <li class="demo-text-bg-2-hover">Background 2 hover</li>
         </ul>
       </div>
       <div class="demo-background-4">
         <h2 class="iui-text-title iui-text-spacing">Background 4</h2>
-        <ul>
-          <li class="iui-text-block">Text</li>
+        <p>Used for borders, no need to check contrast scores above this background color.</p>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-text-bg-1-hover">Background 1 hover</li>
+          <li class="demo-text-bg-2-hover">Background 2 hover</li>
         </ul>
       </div>
       <div class="demo-background-5">
         <h2 class="iui-text-title iui-text-spacing">Background 5</h2>
-        <ul>
-          <li class="iui-text-block">Text</li>
+        <p>Used for borders, no need to check contrast scores above this background color.</p>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-text-bg-1-hover">Background 1 hover</li>
+          <li class="demo-text-bg-2-hover">Background 2 hover</li>
         </ul>
       </div>
 
@@ -157,11 +238,17 @@
         <ul>
           <li class="iui-text-block">Text</li>
         </ul>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-text-bg-primary-hover">Background primary hover</li>
+        </ul>
       </div>
       <div class="demo-status-positive">
         <h2 class="iui-text-title iui-text-spacing">Background positive</h2>
         <ul>
           <li class="iui-text-block">Text</li>
+        </ul>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-text-bg-positive-hover">Background positive hover</li>
         </ul>
       </div>
       <div class="demo-status-warning">
@@ -169,11 +256,17 @@
         <ul>
           <li class="iui-text-block">Text</li>
         </ul>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-text-bg-warning-hover">Background warning hover</li>
+        </ul>
       </div>
       <div class="demo-status-negative">
         <h2 class="iui-text-title iui-text-spacing">Background negative</h2>
         <ul>
           <li class="iui-text-block">Text</li>
+        </ul>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-text-bg-negative-hover">Background negative hover</li>
         </ul>
       </div>
 

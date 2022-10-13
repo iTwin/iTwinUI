@@ -67,7 +67,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   .iui-menu-description {
     display: none;
     font-size: var(--iui-font-size-0);
-    opacity: var(--iui-opacity-3);
+    color: var(--iui-color-foreground-muted);
   }
 
   > .iui-icon {
@@ -106,7 +106,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
     }
 
     .iui-menu-description {
-      opacity: 1;
+      color: inherit;
     }
 
     > .iui-icon {
@@ -131,10 +131,10 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
       cursor: not-allowed;
       outline: none;
       background-color: var(--iui-color-background-1);
-      color: var(--iui-color-foreground-5);
+      color: var(--iui-color-foreground-disabled);
 
       > .iui-icon {
-        fill: var(--iui-color-foreground-5);
+        fill: var(--iui-color-foreground-disabled);
       }
     }
   }

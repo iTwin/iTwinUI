@@ -6,7 +6,7 @@
 
 @mixin iui-tile {
   --_iui-tile-title-text-color: var(--iui-color-foreground-2);
-  --_iui-tile-body-text-color: var(--iui-color-foreground-3);
+  --_iui-tile-body-text-color: var(--iui-color-foreground-muted);
 
   @include iui-reset;
   @include iui-surface($border-radius: var(--iui-border-radius-1));
@@ -111,8 +111,8 @@
   //#region Statuses
   &.iui-loading,
   &[aria-disabled='true'] {
-    --_iui-tile-title-text-color: var(--iui-color-foreground-4);
-    --_iui-tile-body-text-color: var(--iui-color-foreground-4);
+    --_iui-tile-title-text-color: var(--iui-color-foreground-disabled);
+    --_iui-tile-body-text-color: var(--iui-color-foreground-disabled);
 
     .iui-thumbnail-icon,
     .iui-tile-thumbnail-picture {

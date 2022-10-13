@@ -60,8 +60,8 @@
   &.iui-current ~ & {
     --_iui-stepper-step-background-color: var(--iui-color-background-1);
     --_iui-stepper-step-border-color: var(--iui-color-background-border);
-    --_iui-stepper-step-number-color: var(--iui-color-foreground-3);
-    --_iui-stepper-step-text-color: var(--iui-color-foreground-3);
+    --_iui-stepper-step-number-color: var(--iui-color-foreground-muted);
+    --_iui-stepper-step-text-color: var(--iui-color-foreground-muted);
     --_iui-stepper-step-track-before-color: var(--iui-color-background-border);
 
     &:not(:last-of-type) {
@@ -146,5 +146,5 @@
 @mixin iui-stepper-steps-label-count {
   user-select: none;
   margin-right: var(--iui-size-xs);
-  color: var(--iui-color-foreground-3);
+  color: var(--iui-color-foreground-muted);
 }

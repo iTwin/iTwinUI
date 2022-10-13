@@ -10,7 +10,9 @@
     display: flex;
     align-items: center;
     border-radius: var(--iui-border-radius-1) var(--iui-border-radius-1) 0 0;
-    background-color: var(--iui-color-background-3);
+    background-color: var(--iui-color-background-1);
+    border: 1px solid var(--iui-color-background-border);
+    border-bottom: none;
 
     > .iui-title {
       margin-left: var(--iui-size-s);
@@ -29,7 +31,7 @@
     overflow-y: auto;
     border-radius: 0 0 var(--iui-border-radius-1) var(--iui-border-radius-1);
     white-space: normal;
-    border: 1px solid var(--iui-color-background-3);
+    border: 1px solid var(--iui-color-background-border);
     @include iui-focus;
 
     > code {
@@ -42,7 +44,7 @@
       background-color: var(--iui-color-background-1);
 
       &:nth-child(even) {
-        background-color: hsl(var(--iui-color-foreground-1-hsl) / 0.02);
+        background-color: var(--iui-color-background-1-zebra);
       }
 
       &::before {
@@ -52,7 +54,7 @@
         padding: 0 var(--iui-size-xs);
         width: calc(var(--iui-size-l) + 2 * var(--iui-size-xs)); // 2 * iui-size-xs for the padding
         background-color: var(--iui-color-background-2);
-        color: var(--iui-color-foreground-3);
+        color: var(--iui-color-foreground-muted);
       }
     }
   }

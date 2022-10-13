@@ -154,7 +154,7 @@ $iui-dialog-width: 380px;
   padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
   margin: calc(0px - var(--iui-size-s)) calc(0px - var(--iui-size-m)) var(--iui-size-s) calc(0px - var(--iui-size-m)); // negative margin to counteract dialog padding
   cursor: grab;
-  background-color: var(--iui-color-background-3);
+  background-color: var(--iui-color-background-2);
   border-bottom: 1px solid var(--iui-color-background-border);
 
   &:active {

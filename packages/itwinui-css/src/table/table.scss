@@ -28,9 +28,11 @@
   user-select: none;
   min-width: 100%;
   flex-shrink: 0;
+  font-weight: var(--iui-font-weight-semibold);
+  border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-table-cell {
-    background-color: var(--iui-color-background-3);
+    background-color: var(--iui-color-background-1);
   }
 
   .iui-table-cell:not(.iui-slot) {
@@ -83,7 +85,7 @@
     &:hover,
     &:focus,
     &:focus-within {
-      background-color: var(--iui-color-background-4);
+      background-color: var(--iui-color-background-1-hover);
 
       .iui-table-sort,
       .iui-table-filter-button {
@@ -120,12 +122,12 @@
   // Sort icon
   .iui-table-sort {
     opacity: 0;
-    fill: var(--iui-color-foreground-4);
+    fill: var(--iui-color-foreground-muted);
   }
 
   // Sorted column
   .iui-sorted {
-    background-color: var(--iui-color-background-4);
+    background-color: var(--iui-color-background-1-hover);
 
     .iui-table-sort {
       opacity: 1;
@@ -163,7 +165,7 @@
     }
 
     &:where(:hover:not(.iui-loading):not([aria-disabled='true'])) .iui-table-cell {
-      background-color: var(--iui-color-background-transparent-hover);
+      background-color: var(--iui-color-background-1-hover);
     }
 
     .iui-table-row-expander > .iui-button-icon {
@@ -176,8 +178,8 @@
       overflow: hidden;
 
       .iui-table-cell {
-        border-left-color: var(--iui-color-background-4);
-        border-right-color: var(--iui-color-background-4);
+        border-left-color: var(--iui-color-background-border);
+        border-right-color: var(--iui-color-background-border);
         border-bottom-color: transparent;
       }
 
@@ -186,8 +188,8 @@
       }
 
       + .iui-table-expanded-content {
-        border-left-color: var(--iui-color-background-4);
-        border-right-color: var(--iui-color-background-4);
+        border-left-color: var(--iui-color-background-border);
+        border-right-color: var(--iui-color-background-border);
       }
     }
 
@@ -251,7 +253,7 @@
     &.iui-loading,
     .iui-table-cell[aria-disabled='true'],
     &.iui-table-expanded-content[aria-disabled='true'] {
-      color: var(--iui-color-foreground-4);
+      color: var(--iui-color-foreground-disabled);
 
       img,
       svg:not(.iui-radial),
@@ -323,9 +325,11 @@
   }
 
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
-    @include pseudo-content {
-      background-color: hsl(var(--iui-color-foreground-1-hsl) / 0.02);
-    }
+    background-color: var(--iui-color-background-1-zebra);
+  }
+
+  &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']):hover .iui-table-cell {
+    background-color: var(--iui-color-background-1-hover);
   }
 
   // Empty & loading states
@@ -338,7 +342,7 @@
     align-items: center;
     flex-grow: 1;
     align-self: center;
-    color: var(--iui-color-foreground-3);
+    color: var(--iui-color-foreground-muted);
     background-color: var(--iui-color-background-1);
   }
 }

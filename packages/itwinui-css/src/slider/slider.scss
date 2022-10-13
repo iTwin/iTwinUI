@@ -56,7 +56,7 @@ $tick-height: var(--iui-size-s); // 12px
   cursor: grab;
   @include iui-focus($thickness: 2px);
   background: var(--iui-color-background-1);
-  border: 1px solid var(--iui-color-background-border);
+  border: 1px solid var(--iui-color-foreground-4);
   @media (forced-colors: active) {
     background: Canvas;
     border: 1px solid CanvasText;
@@ -92,7 +92,7 @@ $tick-height: var(--iui-size-s); // 12px
     align-items: center;
 
     &::before {
-      background-color: var(--iui-color-background-4);
+      background-color: var(--iui-color-background-border);
       @media (forced-colors: active) {
         background-color: CanvasText;
       }
@@ -108,10 +108,14 @@ $tick-height: var(--iui-size-s); // 12px
     pointer-events: none;
   }
 
+  .iui-slider-rail {
+    background-color: var(--iui-color-background-disabled);
+  }
+
   .iui-slider-thumb {
     cursor: not-allowed;
-    background-color: var(--iui-color-background-4);
-    border-color: var(--iui-color-background-4);
+    background-color: var(--iui-color-background-5);
+    border-color: var(--iui-color-background-5);
     @media (forced-colors: active) {
       background-color: GrayText;
       border-color: GrayText;
@@ -119,7 +123,7 @@ $tick-height: var(--iui-size-s); // 12px
   }
 
   .iui-slider-track {
-    background-color: var(--iui-color-foreground-4);
+    background-color: var(--iui-color-background-4);
     @media (forced-colors: active) {
       background-color: GrayText;
     }
@@ -129,7 +133,7 @@ $tick-height: var(--iui-size-s); // 12px
   .iui-slider-max,
   .iui-slider-tick {
     user-select: none;
-    color: var(--iui-color-foreground-4);
+    color: var(--iui-color-foreground-disabled);
     @media (forced-colors: active) {
       color: GrayText;
     }

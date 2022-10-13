@@ -18,7 +18,7 @@
     &.iui-loading {
       cursor: progress;
       font-style: italic;
-      color: var(--iui-color-foreground-4);
+      color: var(--iui-color-foreground-disabled);
     }
 
     > .iui-checkbox-label,
@@ -35,10 +35,10 @@
 
     &.iui-disabled {
       cursor: not-allowed;
-      color: var(--iui-color-foreground-4);
+      color: var(--iui-color-foreground-disabled);
 
       svg {
-        fill: var(--iui-color-foreground-5);
+        fill: var(--iui-color-foreground-disabled);
       }
     }
 
@@ -112,7 +112,7 @@
   @include iui-focus($thickness: 2px);
 
   &:disabled {
-    --_iui-checkbox-svg-color: var(--iui-color-foreground-5);
+    --_iui-checkbox-svg-color: var(--iui-color-foreground-disabled);
     --_iui-checkbox-border-color: var(--iui-color-background-5);
     --_iui-checkbox-background-color: var(--iui-color-background-disabled);
     cursor: not-allowed;
@@ -136,7 +136,7 @@
     }
 
     &:where(:disabled) {
-      --_iui-checkbox-svg-color: var(--iui-color-foreground-5);
+      --_iui-checkbox-svg-color: var(--iui-color-foreground-disabled);
       --_iui-checkbox-background-color: var(--iui-color-background-disabled);
     }
   }

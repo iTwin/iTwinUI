@@ -48,7 +48,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--iui-color-background-3);
+    background-color: var(--iui-color-background-1);
+    border-bottom: 1px solid var(--iui-color-background-border);
 
     .iui-information-header-label {
       display: flex;
@@ -187,7 +188,7 @@
 
   .iui-input-label {
     font-weight: var(--iui-font-weight-normal);
-    color: var(--iui-color-foreground-3);
+    color: var(--iui-color-foreground-muted);
   }
 
   &:not(.iui-inline) {

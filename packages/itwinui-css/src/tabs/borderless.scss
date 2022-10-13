@@ -25,7 +25,7 @@
   @at-root {
     .iui-horizontal & ~ .iui-tabs-content {
       margin-top: calc(0px - var(--iui-size-3xs));
-      border-top: var(--iui-size-3xs) solid var(--iui-color-background-4);
+      border-top: var(--iui-size-3xs) solid var(--iui-color-background-5);
     }
   }
 
@@ -34,7 +34,7 @@
       margin-left: calc(0px - var(--iui-size-3xs));
       padding-left: var(--iui-size-s);
       padding-right: var(--iui-size-s);
-      border-left: var(--iui-size-3xs) solid var(--iui-color-background-4);
+      border-left: var(--iui-size-3xs) solid var(--iui-color-background-5);
     }
   }
 

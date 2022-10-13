@@ -23,7 +23,7 @@
   &[disabled],
   &:disabled,
   &[aria-disabled='true'] {
-    --_iui-button-text-color: var(--iui-color-foreground-5);
+    --_iui-button-text-color: var(--iui-color-foreground-disabled);
     --_iui-button-background-color: var(--iui-color-background-disabled);
     --_iui-button-border-color: var(--iui-color-background-disabled);
 

@@ -98,7 +98,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
     &-caption {
       font-size: var(--iui-font-size-0);
-      color: var(--iui-color-foreground-3);
+      color: var(--iui-color-foreground-muted);
     }
   }
 
@@ -121,10 +121,10 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     cursor: not-allowed;
     outline: none;
     background-color: transparent;
-    color: var(--iui-color-foreground-5);
+    color: var(--iui-color-foreground-disabled);
 
     .iui-tree-node-content-caption {
-      color: var(--iui-color-foreground-5);
+      color: var(--iui-color-foreground-disabled);
     }
   }
 }

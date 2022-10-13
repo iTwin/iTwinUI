@@ -10,6 +10,7 @@
   padding: 0 var(--iui-size-2xs);
   border-radius: var(--iui-border-radius-1);
   user-select: all;
-  background-color: var(--iui-color-background-3);
+  background-color: var(--iui-color-background-1);
+  border: 1px solid var(--iui-color-background-border);
   color: var(--iui-color-foreground-2);
 }

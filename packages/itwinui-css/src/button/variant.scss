@@ -34,7 +34,7 @@
   &:disabled,
   &[aria-disabled='true'] {
     --_iui-button-background-color: var(--iui-color-background-disabled);
-    --_iui-button-text-color: var(--iui-color-foreground-5);
+    --_iui-button-text-color: var(--iui-color-foreground-disabled);
 
     outline-offset: -1px;
     outline-width: 1px;

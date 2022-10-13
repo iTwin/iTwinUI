@@ -47,6 +47,8 @@
   @include iui-input-label-cursor;
 
   &.iui-disabled {
+    color: var(--iui-color-foreground-disabled);
+
     label {
       cursor: not-allowed;
     }
@@ -144,7 +146,7 @@
   font-size: var(--iui-font-size-0);
   grid-area: message;
   margin-top: var(--iui-size-2xs);
-  color: var(--iui-color-foreground-3);
+  color: var(--iui-color-foreground-muted);
 
   a {
     user-select: none;
@@ -208,7 +210,7 @@
     cursor: not-allowed;
 
     svg {
-      fill: var(--iui-color-foreground-5);
+      fill: var(--iui-color-foreground-disabled);
     }
   }
 }

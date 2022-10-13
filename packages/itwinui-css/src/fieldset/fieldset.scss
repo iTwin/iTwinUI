@@ -14,7 +14,8 @@
     padding-inline: var(--iui-size-xs);
     border-radius: var(--iui-border-radius-1);
     user-select: none;
-    background-color: var(--iui-color-background-4);
+    background-color: var(--iui-color-background-1);
+    border: 2px solid var(--iui-color-background-border);
     color: var(--iui-color-foreground-2);
   }
 
@@ -22,7 +23,7 @@
     cursor: not-allowed;
 
     legend {
-      color: var(--iui-color-foreground-4);
+      color: var(--iui-color-foreground-disabled);
     }
   }
 }

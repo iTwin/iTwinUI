@@ -226,7 +226,7 @@ $iui-date-picker-today-circle-size: 32px;
   &-today {
     @include iui-calendar-day-base;
     @include iui-calendar-day-base-hover;
-    color: var(--iui-color-foreground-4);
+    color: var(--iui-color-foreground-disabled);
   }
 
   &-today {
