@@ -120,21 +120,23 @@
   // Sort icon
   .iui-table-sort {
     opacity: 0;
-    fill: var(--iui-color-foreground-4);
   }
 
   // Sorted column
   .iui-sorted {
+    --_iui-table-cell-icon-fill: var(--iui-color-foreground-2);
+
     background-color: var(--iui-color-background-4);
 
     .iui-table-sort {
       opacity: 1;
-      fill: var(--iui-color-foreground-2);
     }
   }
 }
 
 @mixin iui-table-row {
+  --_iui-table-cell-icon-fill: var(--iui-color-foreground-4);
+
   min-width: 100%;
   display: flex;
 
@@ -251,12 +253,15 @@
     &.iui-loading,
     .iui-table-cell[aria-disabled='true'],
     &.iui-table-expanded-content[aria-disabled='true'] {
+      --_iui-table-cell-icon-fill: var(--iui-color-foreground-4);
+      --_iui-table-cell-image-filter: grayscale(100%);
+
       color: var(--iui-color-foreground-4);
 
       img,
       svg:not(.iui-radial),
       .iui-avatar {
-        filter: grayscale(100%);
+        filter: var(--_iui-table-cell-image-filter);
       }
     }
 
@@ -418,8 +423,12 @@
     @include iui-text-selection($status);
   }
 
-  .iui-table-cell-end-icon svg {
-    fill: var(--iui-color-foreground-#{$status});
+  .iui-table-cell-end-icon {
+    --_iui-table-cell-icon-fill: var(--iui-color-foreground-#{$status});
+  }
+
+  .iui-table-cell[aria-disabled='true'] .iui-table-cell-end-icon {
+    --_iui-table-cell-image-filter: none;
   }
 }
 
@@ -440,6 +449,7 @@
 
     svg:not(.iui-radial) {
       @include iui-icon-style('m');
+      fill: var(--_iui-table-cell-icon-fill);
     }
   }
 
