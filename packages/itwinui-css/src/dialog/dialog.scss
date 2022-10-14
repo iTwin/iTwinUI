@@ -5,7 +5,7 @@
 $iui-dialog-width: 380px;
 
 @mixin iui-dialog-wrapper {
-  position: relative;
+  position: fixed;
   overflow: hidden;
   top: 0;
   left: 0;
@@ -13,6 +13,10 @@ $iui-dialog-width: 380px;
   height: 100%;
   pointer-events: none;
   transform: translateX(0); // creates containing block for position: fixed
+
+  &[data-iui-relative='true'] {
+    position: absolute;
+  }
 }
 
 @mixin iui-dialog {
@@ -22,7 +26,6 @@ $iui-dialog-width: 380px;
   box-shadow: var(--iui-shadow-5);
   position: fixed;
   padding: var(--iui-size-s) var(--iui-size-m);
-  overflow: hidden;
   pointer-events: auto;
   background-color: var(--iui-color-background-1);
   @media (forced-colors: active) {
@@ -110,10 +113,6 @@ $iui-dialog-width: 380px;
 }
 
 @mixin iui-dialog-draggable {
-  max-width: 100%;
-  max-height: 100vh;
-  min-width: $iui-dialog-width;
-  min-height: 144px;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--iui-color-background-border);

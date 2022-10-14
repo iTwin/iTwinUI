@@ -27,7 +27,7 @@ $iui-active-outline: thin solid var(--iui-color-foreground-primary);
   &.iui-scroll {
     overflow-y: auto;
     overflow-y: overlay;
-    --iui-menu-max-height: 315px;
+    --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items in .iui-scroll
   }
 }
 
