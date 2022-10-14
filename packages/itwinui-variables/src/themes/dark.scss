@@ -39,128 +39,47 @@ $dark-foreground-darkest-lightness: 30%;
 $base-colors: (
   // #region Background colors - default
   background-1: hsl($dark-primary-hue, $dark-background-saturation, $dark-background-lightness),
-  background-1-zebra:
-    hsl(
-      $dark-primary-hue $dark-background-saturation
-        calc($dark-background-lightness + $dark-background-lightness-difference / 2)
-    ),
-  background-1-hover:
-    hsl(
-      $dark-primary-hue $dark-background-saturation
-        calc($dark-background-lightness + $dark-background-lightness-difference)
-    ),
-  background-2:
-    hsl(
-      $dark-primary-hue $dark-background-saturation
-        calc($dark-background-lightness - $dark-background-lightness-difference * 2)
-    ),
-  background-2-hover:
-    hsl(
-      $dark-primary-hue $dark-background-saturation
-        calc($dark-background-lightness - $dark-background-lightness-difference)
-    ),
-  background-3:
-    hsl(
-      $dark-primary-hue $dark-background-saturation
-        calc($dark-background-lightness - $dark-background-lightness-difference * 4)
-    ),
-  background-4:
-    hsl(
-      $dark-primary-hue $dark-background-saturation
-        calc($dark-background-lightness + $dark-background-lightness-difference * 2)
-    ),
-  background-5:
-    hsl(
-      $dark-primary-hue $dark-background-saturation
-        calc($dark-background-lightness + $dark-background-lightness-difference * 4)
-    ),
+  background-1-zebra: hsl($dark-primary-hue $dark-background-saturation calc($dark-background-lightness + $dark-background-lightness-difference / 2)),
+  background-1-hover: hsl($dark-primary-hue $dark-background-saturation calc($dark-background-lightness + $dark-background-lightness-difference)),
+  background-2: hsl($dark-primary-hue $dark-background-saturation calc($dark-background-lightness - $dark-background-lightness-difference * 2)),
+  background-2-hover: hsl($dark-primary-hue $dark-background-saturation calc($dark-background-lightness - $dark-background-lightness-difference)),
+  background-3: hsl($dark-primary-hue $dark-background-saturation calc($dark-background-lightness - $dark-background-lightness-difference * 4)),
+  background-4: hsl($dark-primary-hue $dark-background-saturation calc($dark-background-lightness + $dark-background-lightness-difference * 2)),
+  background-5: hsl($dark-primary-hue $dark-background-saturation calc($dark-background-lightness + $dark-background-lightness-difference * 4)),
   // #endregion
   // #region Background colors - statuses subtle
-  background-subtle-primary:
-    hsl(
-      $dark-primary-hue calc($dark-primary-saturation - $dark-subtle-saturation-difference)
-        calc($dark-primary-lightness - $dark-primary-subtle-lightness-difference)
-    ),
-  background-subtle-positive:
-    hsl(
-      $dark-positive-hue calc($dark-positive-saturation - $dark-subtle-saturation-difference)
-        calc($dark-positive-lightness - $dark-positive-subtle-lightness-difference)
-    ),
-  background-subtle-warning:
-    hsl(
-      $dark-warning-hue calc($dark-warning-saturation - $dark-subtle-saturation-difference)
-        calc($dark-warning-lightness - $dark-warning-subtle-lightness-difference)
-    ),
-  background-subtle-negative:
-    hsl(
-      $dark-negative-hue calc($dark-negative-saturation - $dark-subtle-saturation-difference)
-        calc($dark-negative-lightness - $dark-negative-subtle-lightness-difference)
-    ),
+  background-subtle-primary: hsl($dark-primary-hue calc($dark-primary-saturation - $dark-subtle-saturation-difference) calc($dark-primary-lightness - $dark-primary-subtle-lightness-difference)),
+  background-subtle-positive: hsl($dark-positive-hue calc($dark-positive-saturation - $dark-subtle-saturation-difference) calc($dark-positive-lightness - $dark-positive-subtle-lightness-difference)),
+  background-subtle-warning: hsl($dark-warning-hue calc($dark-warning-saturation - $dark-subtle-saturation-difference) calc($dark-warning-lightness - $dark-warning-subtle-lightness-difference)),
+  background-subtle-negative: hsl($dark-negative-hue calc($dark-negative-saturation - $dark-subtle-saturation-difference) calc($dark-negative-lightness - $dark-negative-subtle-lightness-difference)),
   // #endregion
   // #region Background colors - statuses
   background-primary: hsl($dark-primary-hue $dark-primary-saturation $dark-primary-lightness),
-  background-primary-hover:
-    hsl($dark-primary-hue $dark-primary-saturation calc($dark-primary-lightness + $dark-hover-difference)),
+  background-primary-hover: hsl($dark-primary-hue $dark-primary-saturation calc($dark-primary-lightness + $dark-hover-difference)),
   background-positive: hsl($dark-positive-hue $dark-positive-saturation $dark-positive-lightness),
-  background-positive-hover:
-    hsl($dark-positive-hue $dark-positive-saturation calc($dark-positive-lightness + $dark-hover-difference)),
+  background-positive-hover: hsl($dark-positive-hue $dark-positive-saturation calc($dark-positive-lightness + $dark-hover-difference)),
   background-warning: hsl($dark-warning-hue $dark-warning-saturation $dark-warning-lightness),
-  background-warning-hover:
-    hsl($dark-warning-hue $dark-warning-saturation calc($dark-warning-lightness + $dark-hover-difference)),
+  background-warning-hover: hsl($dark-warning-hue $dark-warning-saturation calc($dark-warning-lightness + $dark-hover-difference)),
   background-negative: hsl($dark-negative-hue $dark-negative-saturation $dark-negative-lightness),
-  background-negative-hover:
-    hsl($dark-negative-hue $dark-negative-saturation calc($dark-negative-lightness + $dark-hover-difference)),
+  background-negative-hover: hsl($dark-negative-hue $dark-negative-saturation calc($dark-negative-lightness + $dark-hover-difference)),
   // #endregion
   // #region Foreground colors - default
   foreground-1: hsl(0 0% 100%),
-  foreground-2:
-    hsl(0 0% calc($dark-foreground-darkest-lightness + ((100% - $dark-foreground-darkest-lightness) / 7 * 6))),
-  foreground-3:
-    hsl(0 0% calc($dark-foreground-darkest-lightness + ((100% - $dark-foreground-darkest-lightness) / 7 * 4))),
-  foreground-4:
-    hsl(0 0% calc($dark-foreground-darkest-lightness + ((100% - $dark-foreground-darkest-lightness) / 7 * 2))),
+  foreground-2: hsl(0 0% calc($dark-foreground-darkest-lightness + ((100% - $dark-foreground-darkest-lightness) / 7 * 6))),
+  foreground-3: hsl(0 0% calc($dark-foreground-darkest-lightness + ((100% - $dark-foreground-darkest-lightness) / 7 * 4))),
+  foreground-4: hsl(0 0% calc($dark-foreground-darkest-lightness + ((100% - $dark-foreground-darkest-lightness) / 7 * 2))),
   foreground-5: hsl(0 0% $dark-foreground-darkest-lightness),
   // #endregion
   // #region Foreground colors - statuses
-  foreground-primary:
-    hsl(
-      $dark-primary-hue $dark-primary-saturation calc($dark-primary-lightness + $dark-foreground-lightness-difference)
-    ),
-  foreground-primary-hover:
-    hsl(
-      $dark-primary-hue $dark-primary-saturation
-        calc(($dark-primary-lightness + $dark-foreground-lightness-difference) + $dark-hover-difference)
-    ),
-  foreground-positive:
-    hsl(
-      $dark-positive-hue $dark-positive-saturation
-        calc($dark-positive-lightness + $dark-foreground-lightness-difference)
-    ),
-  foreground-positive-hover:
-    hsl(
-      $dark-positive-hue $dark-positive-saturation
-        calc(($dark-positive-lightness + $dark-foreground-lightness-difference) + $dark-hover-difference)
-    ),
-  foreground-warning:
-    hsl(
-      $dark-warning-hue $dark-warning-saturation calc($dark-warning-lightness + $dark-foreground-lightness-difference)
-    ),
-  foreground-warning-hover:
-    hsl(
-      $dark-warning-hue $dark-warning-saturation
-        calc(($dark-warning-lightness + $dark-foreground-lightness-difference) + $dark-hover-difference)
-    ),
-  foreground-negative:
-    hsl(
-      $dark-negative-hue $dark-negative-saturation
-        calc($dark-negative-lightness + $dark-foreground-lightness-difference)
-    ),
-  foreground-negative-hover:
-    hsl(
-      $dark-negative-hue $dark-negative-saturation
-        calc(($dark-negative-lightness + $dark-foreground-lightness-difference) + $dark-hover-difference)
-    )
-    // #endregion
+  foreground-primary: hsl($dark-primary-hue $dark-primary-saturation calc($dark-primary-lightness + $dark-foreground-lightness-difference)),
+  foreground-primary-hover: hsl($dark-primary-hue $dark-primary-saturation calc(($dark-primary-lightness + $dark-foreground-lightness-difference) + $dark-hover-difference)),
+  foreground-positive: hsl($dark-positive-hue $dark-positive-saturation calc($dark-positive-lightness + $dark-foreground-lightness-difference)),
+  foreground-positive-hover: hsl($dark-positive-hue $dark-positive-saturation calc(($dark-positive-lightness + $dark-foreground-lightness-difference) + $dark-hover-difference)),
+  foreground-warning: hsl($dark-warning-hue $dark-warning-saturation calc($dark-warning-lightness + $dark-foreground-lightness-difference)),
+  foreground-warning-hover: hsl($dark-warning-hue $dark-warning-saturation calc(($dark-warning-lightness + $dark-foreground-lightness-difference) + $dark-hover-difference)),
+  foreground-negative: hsl($dark-negative-hue $dark-negative-saturation calc($dark-negative-lightness + $dark-foreground-lightness-difference)),
+  foreground-negative-hover: hsl($dark-negative-hue $dark-negative-saturation calc(($dark-negative-lightness + $dark-foreground-lightness-difference) + $dark-hover-difference))
+  // #endregion
 );
 
 $opacities: (
