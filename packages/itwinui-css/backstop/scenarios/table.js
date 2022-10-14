@@ -18,6 +18,10 @@ module.exports = [
     selectors: ['#demo-empty-state'],
   }),
 
+  scenario('Type Status', {
+    selectors: ['#demo-status'],
+  }),
+
   // Editable cell
   scenario('Editable cell', {
     actions: [

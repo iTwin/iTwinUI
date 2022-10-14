@@ -31,6 +31,7 @@
       import "@itwin/itwinui-icons-elements/chevron-right";
       import "@itwin/itwinui-icons-elements/caret-down-small";
       import "@itwin/itwinui-icons-elements/chevron-right";
+      import "@itwin/itwinui-icons-elements/camera";
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
@@ -591,10 +592,7 @@
               </div>
               charlie.pdf
               <div class="iui-table-cell-end-icon">
-                <svg-status-success
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-status-success>
+                <svg-status-success aria-hidden="true"></svg-status-success>
               </div>
             </div>
             <div
@@ -647,10 +645,7 @@
               </div>
               delta.jpg
               <div class="iui-table-cell-end-icon">
-                <svg-status-warning
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-status-warning>
+                <svg-status-warning aria-hidden="true"></svg-status-warning>
               </div>
             </div>
             <div
@@ -703,10 +698,7 @@
               </div>
               MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
               <div class="iui-table-cell-end-icon">
-                <svg-status-error
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-status-error>
+                <svg-status-error aria-hidden="true"></svg-status-error>
               </div>
             </div>
             <div
@@ -1239,10 +1231,7 @@
               </div>
               charlie.pdf
               <div class="iui-table-cell-end-icon">
-                <svg-status-success
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-status-success>
+                <svg-status-success aria-hidden="true"></svg-status-success>
               </div>
             </div>
             <div
@@ -1296,10 +1285,7 @@
               </div>
               delta.jpg
               <div class="iui-table-cell-end-icon">
-                <svg-status-warning
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-status-warning>
+                <svg-status-warning aria-hidden="true"></svg-status-warning>
               </div>
             </div>
             <div
@@ -1353,10 +1339,7 @@
               </div>
               MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
               <div class="iui-table-cell-end-icon">
-                <svg-status-error
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-status-error>
+                <svg-status-error aria-hidden="true"></svg-status-error>
               </div>
             </div>
             <div
@@ -1891,10 +1874,7 @@
               </div>
               charlie.pdf
               <div class="iui-table-cell-end-icon">
-                <svg-status-success
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-status-success>
+                <svg-status-success aria-hidden="true"></svg-status-success>
               </div>
             </div>
             <div
@@ -1948,10 +1928,7 @@
               </div>
               delta.jpg
               <div class="iui-table-cell-end-icon">
-                <svg-status-warning
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-status-warning>
+                <svg-status-warning aria-hidden="true"></svg-status-warning>
               </div>
             </div>
             <div
@@ -2005,10 +1982,7 @@
               </div>
               MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
               <div class="iui-table-cell-end-icon">
-                <svg-status-error
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-status-error>
+                <svg-status-error aria-hidden="true"></svg-status-error>
               </div>
             </div>
             <div
@@ -2097,6 +2071,675 @@
                 class="iui-button iui-table-more-options"
                 data-iui-variant="borderless"
                 data-iui-size="small"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <h2>Status rows and cells</h2>
+    <section id="demo-status">
+      <div class="iui-table">
+        <div class="iui-table-header-wrapper">
+          <div class="iui-table-header">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-slot">
+                <input
+                  class="iui-checkbox"
+                  type="checkbox"
+                  id="select-all-checkboxes"
+                />
+              </div>
+              <div
+                class="iui-table-cell iui-actionable iui-sorted"
+                tabindex="0"
+                draggable="true"
+                ondragstart="onDragStart(event)"
+                ondragover="onDragOver(event)"
+                ondragleave="onDragLeave(event)"
+                ondrop="onDragLeave(event)"
+              >
+                Name
+                <div class="iui-table-header-actions-container">
+                  <button
+                    class="iui-button iui-table-filter-button"
+                    data-iui-variant="borderless"
+                    data-iui-size="small"
+                    aria-label="Apply filter"
+                    type="button"
+                  >
+                    <svg-filter-hollow
+                      class="iui-button-icon"
+                      aria-hidden="true"
+                    ></svg-filter-hollow>
+                  </button>
+                  <div class="iui-table-cell-end-icon">
+                    <svg-sort-up
+                      class="iui-button-icon iui-table-sort"
+                      aria-hidden="true"
+                    ></svg-sort-up>
+                  </div>
+                </div>
+                <div class="iui-table-resizer">
+                  <div class="iui-table-resizer-bar"></div>
+                </div>
+                <div class="iui-table-reorder-bar"></div>
+              </div>
+              <div
+                class="iui-table-cell iui-actionable"
+                tabindex="0"
+                draggable="true"
+                ondragstart="onDragStart(event)"
+                ondragover="onDragOver(event)"
+                ondragleave="onDragLeave(event)"
+                ondrop="onDragLeave(event)"
+              >
+                Modified
+                <div class="iui-table-header-actions-container">
+                  <button
+                    class="iui-button iui-table-filter-button"
+                    data-iui-variant="borderless"
+                    data-iui-size="small"
+                    aria-label="Apply filter"
+                    type="button"
+                  >
+                    <svg-filter-hollow
+                      class="iui-button-icon"
+                      aria-hidden="true"
+                    ></svg-filter-hollow>
+                  </button>
+                  <div class="iui-table-cell-end-icon">
+                    <svg-sort-up
+                      class="iui-button-icon iui-table-sort"
+                      aria-hidden="true"
+                    ></svg-sort-up>
+                  </div>
+                </div>
+                <div class="iui-table-resizer">
+                  <div class="iui-table-resizer-bar"></div>
+                </div>
+                <div class="iui-table-reorder-bar"></div>
+              </div>
+              <div
+                class="iui-table-cell iui-actionable"
+                tabindex="0"
+                draggable="true"
+                ondragstart="onDragStart(event)"
+                ondragover="onDragOver(event)"
+                ondragleave="onDragLeave(event)"
+                ondrop="onDragLeave(event)"
+              >
+                Modified by
+                <div class="iui-table-header-actions-container">
+                  <button
+                    class="iui-button iui-table-filter-button"
+                    data-iui-variant="borderless"
+                    data-iui-size="small"
+                    data-iui-active="true"
+                    aria-label="Modify filter"
+                    type="button"
+                  >
+                    <svg-filter
+                      class="iui-button-icon"
+                      aria-hidden="true"
+                    ></svg-filter>
+                  </button>
+                  <div class="iui-table-cell-end-icon">
+                    <svg-sort-up
+                      class="iui-button-icon iui-table-sort"
+                      aria-hidden="true"
+                    ></svg-sort-up>
+                  </div>
+                </div>
+                <div class="iui-table-resizer">
+                  <div class="iui-table-resizer-bar"></div>
+                </div>
+                <div class="iui-table-reorder-bar"></div>
+              </div>
+              <div
+                class="iui-table-cell iui-actionable"
+                tabindex="0"
+                draggable="true"
+                ondragstart="onDragStart(event)"
+                ondragover="onDragOver(event)"
+                ondragleave="onDragLeave(event)"
+                ondrop="onDragLeave(event)"
+              >
+                Size
+                <div class="iui-table-header-actions-container">
+                  <button
+                    class="iui-button iui-table-filter-button"
+                    data-iui-variant="borderless"
+                    data-iui-size="small"
+                    aria-label="Apply filter"
+                    type="button"
+                  >
+                    <svg-filter-hollow
+                      class="iui-button-icon"
+                      aria-hidden="true"
+                    ></svg-filter-hollow>
+                  </button>
+                  <div class="iui-table-cell-end-icon">
+                    <svg-sort-up
+                      class="iui-button-icon iui-table-sort"
+                      aria-hidden="true"
+                    ></svg-sort-up>
+                  </div>
+                </div>
+                <div class="iui-table-reorder-bar"></div>
+              </div>
+              <div class="iui-table-cell iui-slot">
+                <button
+                  class="iui-button"
+                  data-iui-variant="borderless"
+                  aria-label="Modify columns"
+                  type="button"
+                >
+                  <svg-column-manager
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-column-manager>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="iui-table-body"
+          aria-multiselectable="true"
+        >
+          <div class="iui-table-row iui-loading">
+            <div class="iui-table-cell iui-slot">
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                disabled
+              />
+            </div>
+            <div class="iui-table-cell iui-main-column">
+              <div class="iui-table-cell-start-icon">
+                <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
+              </div>
+              alpha.dgn
+              <div class="iui-table-cell-end-icon">
+                <div class="iui-progress-indicator-radial iui-determinate iui-small">
+                  <svg
+                    class="iui-radial"
+                    viewBox="0 0 40 40"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      class="iui-track"
+                      cx="20"
+                      cy="20"
+                      r="15.91549"
+                    ></circle>
+                    <circle
+                      class="iui-fill"
+                      cx="20"
+                      cy="20"
+                      r="15.91549"
+                      style="stroke-dashoffset: 20"
+                    ></circle>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="iui-table-cell">--</div>
+            <div class="iui-table-cell">
+              <div class="iui-table-cell-start-icon">
+                <x-avatar
+                  size="small"
+                  type="2"
+                > </x-avatar>
+              </div>
+              Terry Rivers
+            </div>
+            <div class="iui-table-cell demo-right-align">Calculating&mldr;</div>
+            <div class="iui-table-cell iui-slot">
+              <button
+                class="iui-button iui-table-more-options"
+                data-iui-variant="borderless"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="iui-table-row"
+            data-iui-status="positive"
+          >
+            <div class="iui-table-cell iui-slot">
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
+            </div>
+            <div
+              class="iui-table-cell iui-main-column"
+              contenteditable
+            >
+              <div class="iui-table-cell-start-icon">
+                <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
+              </div>
+              charlie.pdf
+              <div class="iui-table-cell-end-icon">
+                <svg-status-success aria-hidden="true"></svg-status-success>
+              </div>
+            </div>
+            <div
+              class="iui-table-cell"
+              data-iui-status="positive"
+              title="Jul 24, 2020 2:10pm"
+            >A few minutes ago</div>
+            <div class="iui-table-cell">
+              <div class="iui-table-cell-start-icon">
+                <x-avatar
+                  size="small"
+                  type="2"
+                > </x-avatar>
+              </div>
+              Terry Rivers
+            </div>
+            <div class="iui-table-cell demo-right-align">9 MB</div>
+            <div class="iui-table-cell iui-slot">
+              <button
+                class="iui-button iui-table-more-options"
+                data-iui-variant="borderless"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="iui-table-row"
+            data-iui-status="warning"
+          >
+            <div class="iui-table-cell iui-slot">
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
+            </div>
+            <div
+              class="iui-table-cell iui-main-column"
+              contenteditable
+            >
+              <div class="iui-table-cell-start-icon">
+                <svg-filetype-image aria-hidden="true"></svg-filetype-image>
+              </div>
+              delta.jpg
+              <div class="iui-table-cell-end-icon">
+                <svg-status-warning aria-hidden="true"></svg-status-warning>
+              </div>
+            </div>
+            <div
+              class="iui-table-cell"
+              data-iui-status="warning"
+              title="Jul 24, 2020 2:10pm"
+            >A few minutes ago</div>
+            <div class="iui-table-cell">
+              <div class="iui-table-cell-start-icon">
+                <x-avatar
+                  size="small"
+                  type="2"
+                > </x-avatar>
+              </div>
+              Terry Rivers
+            </div>
+            <div class="iui-table-cell demo-right-align">963 MB</div>
+            <div class="iui-table-cell iui-slot">
+              <button
+                class="iui-button iui-table-more-options"
+                data-iui-variant="borderless"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="iui-table-row"
+            data-iui-status="negative"
+          >
+            <div class="iui-table-cell iui-slot">
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+              />
+            </div>
+            <div
+              class="iui-table-cell iui-main-column"
+              contenteditable
+            >
+              <div class="iui-table-cell-start-icon">
+                <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
+              </div>
+              MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg
+              <div class="iui-table-cell-end-icon">
+                <svg-status-error aria-hidden="true"></svg-status-error>
+              </div>
+            </div>
+            <div
+              class="iui-table-cell"
+              data-iui-status="negative"
+              title="Jul 24, 2020 2:10pm"
+            >A few minutes ago</div>
+            <div class="iui-table-cell">
+              <div class="iui-table-cell-start-icon">
+                <x-avatar
+                  size="small"
+                  type="2"
+                > </x-avatar>
+              </div>
+              Terry Rivers
+            </div>
+            <div class="iui-table-cell demo-right-align">64 KB</div>
+            <div class="iui-table-cell iui-slot">
+              <button
+                class="iui-button iui-table-more-options"
+                data-iui-variant="borderless"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="iui-table-row"
+            data-iui-status="positive"
+            aria-disabled="true"
+          >
+            <div
+              class="iui-table-cell iui-slot"
+              aria-disabled="true"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                disabled
+              />
+            </div>
+            <div
+              class="iui-table-cell iui-main-column"
+              aria-disabled="true"
+            >
+              <div class="iui-table-cell-start-icon">
+                <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
+              </div>
+              disabled-positive-row.svg
+              <div class="iui-table-cell-end-icon">
+                <svg-status-success aria-hidden="true"></svg-status-success>
+              </div>
+            </div>
+            <div
+              class="iui-table-cell"
+              aria-disabled="true"
+              data-iui-status="positive"
+            >A few minutes ago</div>
+            <div
+              class="
+                                  iui-table-cell"
+              aria-disabled="true"
+            >
+              <div class="iui-table-cell-start-icon">
+                <x-avatar
+                  size="small"
+                  type="2"
+                > </x-avatar>
+              </div>
+              Terry Rivers
+            </div>
+            <div
+              class="iui-table-cell demo-right-align"
+              aria-disabled="true"
+            >1.9 GB</div>
+            <div
+              class="iui-table-cell iui-slot"
+              aria-disabled="true"
+            >
+              <button
+                class="iui-button iui-table-more-options"
+                data-iui-variant="borderless"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="iui-table-row"
+            data-iui-status="warning"
+            aria-disabled="true"
+          >
+            <div
+              class="iui-table-cell iui-slot"
+              aria-disabled="true"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                disabled
+              />
+            </div>
+            <div
+              class="iui-table-cell iui-main-column"
+              aria-disabled="true"
+            >
+              <div class="iui-table-cell-start-icon">
+                <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
+              </div>
+              disabled-warning-row.svg
+              <div class="iui-table-cell-end-icon">
+                <svg-status-warning aria-hidden="true"></svg-status-warning>
+              </div>
+            </div>
+            <div
+              class="iui-table-cell"
+              aria-disabled="true"
+              data-iui-status="warning"
+            >A few minutes ago</div>
+            <div
+              class="
+              iui-table-cell"
+              aria-disabled="true"
+            >
+              <div class="iui-table-cell-start-icon">
+                <x-avatar
+                  size="small"
+                  type="2"
+                > </x-avatar>
+              </div>
+              Terry Rivers
+            </div>
+            <div
+              class="iui-table-cell demo-right-align"
+              aria-disabled="true"
+            >1.9 GB</div>
+            <div
+              class="iui-table-cell iui-slot"
+              aria-disabled="true"
+            >
+              <button
+                class="iui-button iui-table-more-options"
+                data-iui-variant="borderless"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="iui-table-row"
+            data-iui-status="negative"
+            aria-disabled="true"
+          >
+            <div
+              class="iui-table-cell iui-slot"
+              aria-disabled="true"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                disabled
+              />
+            </div>
+            <div
+              class="iui-table-cell iui-main-column"
+              aria-disabled="true"
+            >
+              <div class="iui-table-cell-start-icon">
+                <svg-filetype-vector aria-hidden="true"></svg-filetype-vector>
+              </div>
+              disabled-negative-row.svg
+              <div class="iui-table-cell-end-icon">
+                <svg-status-error aria-hidden="true"></svg-status-error>
+              </div>
+            </div>
+            <div
+              class="iui-table-cell"
+              aria-disabled="true"
+              data-iui-status="negative"
+            >A few minutes ago</div>
+            <div
+              class="iui-table-cell"
+              aria-disabled="true"
+            >
+              <div class="iui-table-cell-start-icon">
+                <x-avatar
+                  size="small"
+                  type="2"
+                > </x-avatar>
+              </div>
+              Terry Rivers
+            </div>
+            <div
+              class="iui-table-cell demo-right-align"
+              aria-disabled="true"
+            >1.9 GB</div>
+            <div
+              class="iui-table-cell iui-slot"
+              aria-disabled="true"
+            >
+              <button
+                class="iui-button iui-table-more-options"
+                data-iui-variant="borderless"
+                aria-label="More options"
+                type="button"
+              >
+                <svg-more
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-more>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="iui-table-row"
+            aria-disabled="true"
+          >
+            <div
+              class="iui-table-cell iui-slot"
+              aria-disabled="true"
+            >
+              <input
+                class="iui-checkbox"
+                type="checkbox"
+                id="active-row"
+                disabled
+              />
+            </div>
+            <div
+              class="iui-table-cell iui-main-column"
+              aria-disabled="true"
+            >
+              <div class="iui-table-cell-start-icon">
+                <svg-filetype-video aria-hidden="true"></svg-filetype-video>
+              </div>
+              unavailable.mov
+              <div class="iui-table-cell-end-icon">
+                <svg-camera aria-hidden="true">
+                </svg-camera>
+              </div>
+            </div>
+            <div
+              class="iui-table-cell"
+              aria-disabled="true"
+            >A few minutes ago</div>
+            <div
+              class="iui-table-cell"
+              aria-disabled="true"
+            >
+              <div class="iui-table-cell-start-icon">
+                <x-avatar
+                  size="small"
+                  type="2"
+                > </x-avatar>
+              </div>
+              Terry Rivers
+            </div>
+            <div
+              class="iui-table-cell demo-right-align"
+              aria-disabled="true"
+            >1.9 GB</div>
+            <div
+              class="iui-table-cell iui-slot"
+              aria-disabled="true"
+            >
+              <button
+                class="iui-button iui-table-more-options"
+                data-iui-variant="borderless"
                 aria-label="More options"
                 type="button"
               >
