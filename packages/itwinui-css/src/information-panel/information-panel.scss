@@ -49,7 +49,6 @@
     align-items: center;
     justify-content: space-between;
     background-color: var(--iui-color-background-1);
-    border-bottom: 1px solid var(--iui-color-background-border);
 
     .iui-information-header-label {
       display: flex;
@@ -83,6 +82,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     overflow-y: overlay;
+    border-top: 1px solid var(--iui-color-background-border);
 
     > hr {
       border-color: var(--iui-color-background-border);
