@@ -62,7 +62,9 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
           checked={checked && !disabled}
           indeterminate={indeterminate}
           disabled={disabled}
-          onChange={() => toggleAllRowsSelected(!checked && !indeterminate)}
+          onChange={() =>
+            toggleAllRowsSelected(!rows.some((row) => row.isSelected))
+          }
         />
       );
     },
