@@ -135,8 +135,6 @@
 }
 
 @mixin iui-table-row {
-  --_iui-table-cell-icon-fill: var(--iui-color-foreground-4);
-
   min-width: 100%;
   display: flex;
 
@@ -449,7 +447,6 @@
 
     svg:not(.iui-radial) {
       @include iui-icon-style('m');
-      fill: var(--_iui-table-cell-icon-fill);
     }
   }
 
@@ -462,6 +459,10 @@
     height: var(--iui-size-l);
     margin-right: var(--iui-size-s);
     margin-left: auto;
+
+    svg:not(.iui-radial) {
+      fill: var(--_iui-table-cell-icon-fill);
+    }
   }
 }
 
