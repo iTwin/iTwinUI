@@ -438,6 +438,8 @@
 }
 
 @mixin iui-table-cell-icon {
+  fill: var(--iui-color-foreground-4);
+
   .iui-table-cell-end-icon,
   .iui-table-cell-start-icon {
     flex-shrink: 0;
