@@ -19,8 +19,8 @@ class ThemeButton extends HTMLElement {
 
           <fieldset>
             <legend>Background color</legend>
-            <label tabindex="-1"><input type="radio" name="background" value="bg1" onclick="document.body.classList.add('force-background-1');" /><span>Background 1</span></label>
-            <label tabindex="-1"><input type="radio" name="background" value="bg2" onclick="document.body.classList.remove('force-background-1');" checked /><span>Background 2</span></label>
+            <label tabindex="-1"><input type="radio" name="background" value="bg1" /><span>Background 1</span></label>
+            <label tabindex="-1"><input type="radio" name="background" value="bg2" checked /><span>Background 2</span></label>
           </fieldset>
         </article>
       </div>
@@ -151,15 +151,31 @@ class ThemeButton extends HTMLElement {
     `;
   };
 
+  changeBackground = ({ target: { value: _background } }) => {
+    if (_background == 'bg1') {
+      document.body.style.backgroundColor = 'var(--iui-color-background-1)';
+    } else {
+      document.body.removeAttribute('style');
+    }
+  };
+
   connectedCallback() {
     this.shadowRoot.querySelectorAll('input[name="theme"]').forEach((radio) => {
       radio.addEventListener('change', this.changeTheme);
+    });
+
+    this.shadowRoot.querySelectorAll('input[name="background"]').forEach((radio) => {
+      radio.addEventListener('change', this.changeBackground);
     });
   }
 
   disconnectedCallback() {
     this.shadowRoot.querySelectorAll('input[name="theme"]').forEach((radio) => {
       radio.removeEventListener('change', this.changeTheme);
+    });
+
+    this.shadowRoot.querySelectorAll('input[name="background"]').forEach((radio) => {
+      radio.removeEventListener('change', this.changeBackground);
     });
   }
 }

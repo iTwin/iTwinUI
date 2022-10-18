@@ -79,7 +79,3 @@ section[id^='demo'] {
   width: -moz-fit-content; /* stylelint-disable */
   width: fit-content;
 }
-
-.force-background-1 {
-  background-color: var(--iui-color-background-1) !important;
-}
