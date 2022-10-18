@@ -10,6 +10,7 @@ module.exports = [
   scenario('Type visible in viewport', {
     selectors: ['viewport'],
     viewports: [{ width: 800, height: 600 }],
+    hideSelectors: ['theme-button'],
     scrollToSelector: ['.iui-legal-footer'],
   }),
 
@@ -17,6 +18,7 @@ module.exports = [
   scenario('State hover and focus', {
     selectors: ['viewport'],
     viewports: [{ width: 800, height: 600 }],
+    hideSelectors: ['theme-button'],
     scrollToSelector: ['.iui-legal-footer'],
     actions: [hover('#test-link-1'), focus('#test-link-2')],
   }),
