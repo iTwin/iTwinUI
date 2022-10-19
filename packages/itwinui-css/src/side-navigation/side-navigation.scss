@@ -115,7 +115,22 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
 
     .iui-button-icon svg:not(.iui-avatar) {
-      @include iui-icon-style('l');
+      // @at-root :not(#{&}) {
+      //   background-color: red;
+      // }
+
+      // :not(.iui-expand .iui-side-navigation .iui-sidenav-button .iui-button-icon svg:not(.iui-avatar)){
+      //   display:flex;
+      //   flex-shrink:0;
+      //   width:calc(1.5 * var(--iui-size-m));
+      //   height:calc(1.5 * var(--iui-size-m));
+      //   background-color:#123123;
+      // }
+
+      // @at-root & {
+      //   @include iui-icon-style('l');
+      //   background-color: #123123;
+      // }
     }
 
     &.iui-submenu-open .iui-button-icon {
@@ -140,6 +155,27 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
         @media (prefers-reduced-motion: no-preference) {
           transition: transform var(--iui-duration-2) ease-out;
         }
+      }
+    }
+
+    &:not(.iui-expand) {
+      .iui-button-icon svg:not(.iui-avatar) {
+        // @at-root :not(#{&}) {
+        //   background-color: red;
+        // }
+
+        // :not(.iui-expand .iui-side-navigation .iui-sidenav-button .iui-button-icon svg:not(.iui-avatar)){
+        //   display:flex;
+        //   flex-shrink:0;
+        //   width:calc(1.5 * var(--iui-size-m));
+        //   height:calc(1.5 * var(--iui-size-m));
+        //   background-color:#123123;
+        // }
+
+        // @at-root & {
+        @include iui-icon-style('l');
+        // background-color: #123123;
+        // }
       }
     }
   }
