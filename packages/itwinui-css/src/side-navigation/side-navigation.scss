@@ -114,25 +114,6 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       border-color: var(--iui-color-background-border);
     }
 
-    .iui-button-icon svg:not(.iui-avatar) {
-      // @at-root :not(#{&}) {
-      //   background-color: red;
-      // }
-
-      // :not(.iui-expand .iui-side-navigation .iui-sidenav-button .iui-button-icon svg:not(.iui-avatar)){
-      //   display:flex;
-      //   flex-shrink:0;
-      //   width:calc(1.5 * var(--iui-size-m));
-      //   height:calc(1.5 * var(--iui-size-m));
-      //   background-color:#123123;
-      // }
-
-      // @at-root & {
-      //   @include iui-icon-style('l');
-      //   background-color: #123123;
-      // }
-    }
-
     &.iui-submenu-open .iui-button-icon {
       fill: var(--iui-color-foreground-primary);
     }
@@ -160,22 +141,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     &:not(.iui-expand) {
       .iui-button-icon svg:not(.iui-avatar) {
-        // @at-root :not(#{&}) {
-        //   background-color: red;
-        // }
-
-        // :not(.iui-expand .iui-side-navigation .iui-sidenav-button .iui-button-icon svg:not(.iui-avatar)){
-        //   display:flex;
-        //   flex-shrink:0;
-        //   width:calc(1.5 * var(--iui-size-m));
-        //   height:calc(1.5 * var(--iui-size-m));
-        //   background-color:#123123;
-        // }
-
-        // @at-root & {
         @include iui-icon-style('l');
-        // background-color: #123123;
-        // }
       }
     }
   }
