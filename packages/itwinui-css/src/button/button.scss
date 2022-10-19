@@ -33,9 +33,11 @@
 }
 
 @mixin iui-button-icon {
-  @include iui-icon-style('m');
-  transition: fill var(--iui-duration-1) ease-out;
-  fill: currentColor;
+  svg {
+    @include iui-icon-style('m');
+    transition: fill var(--iui-duration-1) ease-out;
+    fill: currentColor;
+  }
   // margin-block: var(--iui-size-2xs);
 
   // @at-root .iui-notification-marker & {
