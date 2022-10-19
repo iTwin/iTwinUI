@@ -152,7 +152,7 @@ class ThemeButton extends HTMLElement {
   };
 
   changeBackground = ({ target: { value: _background } }) => {
-    if (_background == 'bg1') {
+    if (_background === 'bg1') {
       document.body.style.backgroundColor = 'var(--iui-color-background-1)';
     } else {
       document.body.removeAttribute('style');
