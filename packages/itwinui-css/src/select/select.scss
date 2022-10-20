@@ -127,7 +127,7 @@
   @include iui-button-icon;
   flex-shrink: 0;
 
-  @at-root .iui-select-button[data-iui-size='small'] & {
+  @at-root .iui-select-button[data-iui-size='small'] & svg {
     @include iui-icon-style('s');
   }
 }
