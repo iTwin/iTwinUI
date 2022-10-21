@@ -446,10 +446,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    fill: var(--_iui-table-cell-icon-fill);
 
     svg:not(.iui-radial) {
       @include iui-icon-style('m');
-      fill: var(--_iui-table-cell-icon-fill);
     }
   }
 
