@@ -14,6 +14,8 @@ $iui-dialog-width: 380px;
   height: 100%;
   pointer-events: none;
   transform: translateX(0); // creates containing block for position: fixed
+  z-index: 999;
+  isolation: isolate;
 }
 
 @mixin iui-dialog {
