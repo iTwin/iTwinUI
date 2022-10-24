@@ -5,7 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { useTheme, CommonProps } from '../utils';
-import '@itwin/itwinui-css/css/user-icon.css';
+import '@itwin/itwinui-css/css/avatar.css';
 
 export type UserIconGroupProps = {
   /**
@@ -95,7 +95,7 @@ export const UserIconGroup = (props: UserIconGroupProps) => {
     <>
       <div
         className={cx(
-          'iui-user-icon-list',
+          'iui-avatar-list',
           {
             'iui-animated': animated,
             'iui-stacked': stacked,
@@ -112,9 +112,9 @@ export const UserIconGroup = (props: UserIconGroupProps) => {
             <div
               {...countIconProps}
               className={cx(
-                'iui-user-icon',
+                'iui-avatar',
                 { [`iui-${iconSize}`]: iconSize !== 'medium' },
-                'iui-user-icon-count',
+                'iui-avatar-count',
                 countIconProps?.className,
               )}
             >

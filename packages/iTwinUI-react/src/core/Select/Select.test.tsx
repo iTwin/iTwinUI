@@ -28,16 +28,10 @@ function assertSelect(
 
 function assertMenu(
   menu: HTMLUListElement,
-  {
-    maxHeight = '315px',
-    hasIcon = false,
-    selectedIndex = -1,
-    disabledIndex = -1,
-  } = {},
+  { hasIcon = false, selectedIndex = -1, disabledIndex = -1 } = {},
 ) {
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual('listbox');
-  expect(menu.style.maxHeight).toEqual(maxHeight);
   expect(menu.classList).toContain('iui-scroll');
   const menuItems = menu.querySelectorAll('.iui-menu-item');
   expect(menuItems.length).toBe(3);
@@ -378,9 +372,10 @@ it.each(['small', 'large'] as const)(
   'should render small and large sizes',
   (size) => {
     const { container } = renderComponent({ size });
-    expect(
-      container.querySelector(`.iui-select-button.iui-${size}`),
-    ).toBeTruthy();
+    expect(container.querySelector(`.iui-select-button`)).toHaveAttribute(
+      'data-iui-size',
+      size,
+    );
   },
 );
 

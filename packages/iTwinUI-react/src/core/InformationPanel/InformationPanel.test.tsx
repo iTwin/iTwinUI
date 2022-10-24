@@ -97,7 +97,7 @@ it('should render close icon correctly', () => {
   } = render(<SvgCloseSmall className='iui-button-icon' aria-hidden />);
 
   const closeButton = infoPanel.querySelector(
-    '.iui-information-header > .iui-information-header-actions > .iui-button.iui-borderless',
+    '.iui-information-header > .iui-information-header-actions > .iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(closeButton.firstElementChild).toEqual(closeSvg);
   expect(closeButton).toHaveAttribute('aria-label', 'Close');

@@ -47,14 +47,18 @@ it('renders multiple elements with chevrons', () => {
   expect(item1).toBeTruthy();
   expect(item1?.textContent).toEqual('Item1');
 
-  const chevron1 = container.querySelector('svg.iui-chevron:nth-child(2)');
+  const chevron1 = container.querySelector(
+    'li.iui-breadcrumbs-separator:nth-child(2)',
+  );
   expect(chevron1).toBeTruthy();
 
   const item2 = container.querySelector('div:nth-child(3)');
   expect(item2).toBeTruthy();
   expect(item2?.textContent).toEqual('Item2');
 
-  const chevron2 = container.querySelector('svg.iui-chevron:nth-child(4)');
+  const chevron2 = container.querySelector(
+    'li.iui-breadcrumbs-separator:nth-child(4)',
+  );
   expect(chevron2).toBeTruthy();
 
   const item3 = container.querySelector('div:nth-child(5):last-child');

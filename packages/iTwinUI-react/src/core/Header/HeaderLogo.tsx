@@ -47,7 +47,7 @@ export const HeaderLogo = (props: HeaderLogoProps) => {
   useTheme();
   return (
     <div
-      className={cx('iui-header-logo', className)}
+      className={cx('iui-header-brand', className)}
       role={onClick && 'button'}
       tabIndex={onClick && 0}
       onKeyDown={keyDownHandler}
@@ -56,10 +56,10 @@ export const HeaderLogo = (props: HeaderLogoProps) => {
     >
       {React.isValidElement<{ className: string }>(logo)
         ? React.cloneElement(logo, {
-            className: cx('iui-header-button-icon', logo.props.className),
+            className: cx('iui-header-brand-icon', logo.props.className),
           })
         : undefined}
-      {children && <span className='iui-label'>{children}</span>}
+      {children && <span className='iui-header-brand-label'>{children}</span>}
     </div>
   );
 };

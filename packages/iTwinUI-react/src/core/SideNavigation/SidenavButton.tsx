@@ -50,11 +50,11 @@ export const SidenavButton: SideNavButtonComponent = React.forwardRef(
         className={cx(
           'iui-sidenav-button',
           {
-            'iui-active': isActive,
             'iui-submenu-open': isSubmenuOpen,
           },
           className,
         )}
+        data-iui-active={isActive}
         size='large'
         disabled={disabled}
         ref={ref}

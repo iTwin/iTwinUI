@@ -13,10 +13,9 @@ it('renders ideas button correctly', () => {
     <IdeasButton onClick={onClickMock} />,
   );
 
-  const button = container.querySelector(
-    '.iui-button.iui-idea',
-  ) as HTMLButtonElement;
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
+  expect(button).toHaveAttribute('data-iui-variant', 'idea');
   expect(button.type).toBe('button');
   button.click();
   expect(onClickMock).toHaveBeenCalled();
@@ -30,10 +29,9 @@ it('takes localized label', () => {
     <IdeasButton feedbackLabel='my-feedback' onClick={onClickMock} />,
   );
 
-  const button = container.querySelector(
-    '.iui-button.iui-idea',
-  ) as HTMLButtonElement;
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
+  expect(button).toHaveAttribute('data-iui-variant', 'idea');
   expect(button.type).toBe('button');
   button.click();
   expect(onClickMock).toHaveBeenCalled();

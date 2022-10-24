@@ -57,12 +57,12 @@ const defaultGetDragAndDropProps = <T extends Record<string, unknown>>(
     position?: 'left' | 'right',
   ) => {
     const columnElement = event.currentTarget as HTMLElement;
-    columnElement.classList.remove('iui-reorder-column-right');
-    columnElement.classList.remove('iui-reorder-column-left');
+    columnElement.classList.remove('iui-table-reorder-column-right');
+    columnElement.classList.remove('iui-table-reorder-column-left');
     if (position === 'left') {
-      columnElement.classList.add('iui-reorder-column-left');
+      columnElement.classList.add('iui-table-reorder-column-left');
     } else if (position === 'right') {
-      columnElement.classList.add('iui-reorder-column-right');
+      columnElement.classList.add('iui-table-reorder-column-right');
     }
   };
 

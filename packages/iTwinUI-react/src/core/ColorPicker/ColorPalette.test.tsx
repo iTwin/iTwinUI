@@ -10,10 +10,6 @@ import { IconButton } from '../Buttons';
 import { ColorValue } from '../utils';
 import { SvgAdd } from '@itwin/itwinui-icons-react';
 
-beforeAll(() => {
-  window.CSS = { supports: () => true, escape: (i) => i };
-});
-
 it('should render in its most basic state', () => {
   const colors = [
     'hsla(210, 11%, 65%, 1.00)',

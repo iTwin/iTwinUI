@@ -103,7 +103,9 @@ it('renders the close icon correctly', () => {
     />,
   );
 
-  expect(container.querySelector('.iui-button.iui-borderless')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-button[data-iui-variant="borderless"]'),
+  ).toBeTruthy();
 });
 
 it('not render close icon in temporary', () => {
@@ -117,7 +119,9 @@ it('not render close icon in temporary', () => {
     />,
   );
 
-  expect(container.querySelector('.iui-button.iui-borderless')).toBeNull();
+  expect(
+    container.querySelector('.iui-button[data-iui-variant="borderless"]'),
+  ).toBeNull();
 });
 
 it('renders the close icon when hasCloseButton', () => {
@@ -132,7 +136,9 @@ it('renders the close icon when hasCloseButton', () => {
     />,
   );
 
-  expect(container.querySelector('.iui-button.iui-borderless')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-button[data-iui-variant="borderless"]'),
+  ).toBeTruthy();
 });
 
 it('should close temporary toast after 7s', () => {

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { CommonProps, useTheme, getWindow } from '../utils';
+import { CommonProps, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/surface.css';
 
 /**
@@ -50,18 +50,10 @@ export const Surface = React.forwardRef<HTMLDivElement, SurfaceProps>(
     const { elevation = 0, className, style, children, ...rest } = props;
     useTheme();
 
-    const _style = getWindow()?.CSS?.supports?.(
-      `--iui-surface-elevation: ${getSurfaceElevationValue(elevation)}`,
-    )
-      ? {
-          '--iui-surface-elevation': getSurfaceElevationValue(elevation),
-          ...style,
-        }
-      : {
-          boxShadow: getSurfaceElevationValue(elevation),
-          ...style,
-        };
-
+    const _style = {
+      '--iui-surface-elevation': getSurfaceElevationValue(elevation),
+      ...style,
+    };
     return (
       <div
         className={cx('iui-surface', className)}

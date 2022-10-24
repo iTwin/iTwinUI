@@ -5,7 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/color-picker.css';
-import { useTheme, getWindow, ColorValue, ColorType } from '../utils';
+import { useTheme, ColorValue, ColorType } from '../utils';
 import { getColorValue } from './ColorPicker';
 
 export type ColorSwatchProps = {
@@ -38,16 +38,6 @@ export const ColorSwatch = React.forwardRef<HTMLDivElement, ColorSwatchProps>(
       [color],
     );
 
-    const _style = React.useMemo(
-      () =>
-        getWindow()?.CSS?.supports?.(
-          `--iui-color-swatch-background: ${colorString}`,
-        )
-          ? { '--iui-color-swatch-background': colorString, ...style }
-          : { backgroundColor: colorString, ...style },
-      [colorString, style],
-    );
-
     return (
       <div
         className={cx(
@@ -55,7 +45,12 @@ export const ColorSwatch = React.forwardRef<HTMLDivElement, ColorSwatchProps>(
           { 'iui-active': isActive },
           className,
         )}
-        style={_style}
+        style={
+          {
+            '--iui-color-swatch-background': colorString,
+            ...style,
+          } as React.CSSProperties
+        }
         onClick={onClick}
         tabIndex={isActive ? 0 : -1}
         aria-selected={isActive}

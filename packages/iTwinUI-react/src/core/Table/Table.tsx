@@ -145,12 +145,10 @@ export type TableProps<
   onSort?: (state: TableState<T>) => void;
   /**
    * Callback function when scroll reaches bottom. Can be used for lazy-loading the data.
-   * If you want to use it in older browsers e.g. IE, then you need to have IntersectionObserver polyfill.
    */
   onBottomReached?: () => void;
   /**
    * Callback function when row is in viewport.
-   * If you want to use it in older browsers e.g. IE, then you need to have IntersectionObserver polyfill.
    */
   onRowInViewport?: (rowData: T) => void;
   /**
@@ -233,8 +231,6 @@ export type TableProps<
   /**
    * Flag whether columns are resizable.
    * In order to disable resizing for specific column, set `disableResizing: true` for that column.
-   *
-   * If you want to use it in older browsers e.g. IE, then you need to have `ResizeObserver` polyfill.
    * @default false
    */
   isResizable?: boolean;
@@ -815,16 +811,13 @@ export const Table = <
         }}
         id={id}
         {...getTableProps({
-          className: cx(
-            'iui-table',
-            { [`iui-${density}`]: density !== 'default' },
-            className,
-          ),
+          className: cx('iui-table', className),
           style: {
             minWidth: 0, // Overrides the min-width set by the react-table but when we support horizontal scroll it is not needed
             ...style,
           },
         })}
+        data-iui-size={density === 'default' ? undefined : density}
         {...ariaDataAttributes}
       >
         <div
@@ -840,7 +833,7 @@ export const Table = <
           <div className='iui-table-header'>
             {headerGroups.slice(1).map((headerGroup: HeaderGroup<T>) => {
               const headerGroupProps = headerGroup.getHeaderGroupProps({
-                className: 'iui-row',
+                className: 'iui-table-row',
               });
               return (
                 <div {...headerGroupProps} key={headerGroupProps.key}>
@@ -852,11 +845,11 @@ export const Table = <
                     const columnProps = column.getHeaderProps({
                       ...restSortProps,
                       className: cx(
-                        'iui-cell',
+                        'iui-table-cell',
                         {
                           'iui-actionable': column.canSort,
                           'iui-sorted': column.isSorted,
-                          'iui-cell-sticky': !!column.sticky,
+                          'iui-table-cell-sticky': !!column.sticky,
                         },
                         column.columnClassName,
                       ),
@@ -888,6 +881,12 @@ export const Table = <
                             isHeaderDirectClick.current = false;
                           }
                         }}
+                        tabIndex={showSortButton(column) ? 0 : undefined}
+                        onKeyDown={(e) => {
+                          if (e.key == 'Enter' && showSortButton(column)) {
+                            column.toggleSortBy();
+                          }
+                        }}
                       >
                         {column.render('Header')}
                         {(showFilterButton(column) ||
@@ -897,16 +896,16 @@ export const Table = <
                               <FilterToggle column={column} />
                             )}
                             {showSortButton(column) && (
-                              <div className='iui-cell-end-icon'>
+                              <div className='iui-table-cell-end-icon'>
                                 {column.isSortedDesc ||
                                 (!column.isSorted && column.sortDescFirst) ? (
                                   <SvgSortDown
-                                    className='iui-icon iui-sort'
+                                    className='iui-icon iui-table-sort'
                                     aria-hidden
                                   />
                                 ) : (
                                   <SvgSortUp
-                                    className='iui-icon iui-sort'
+                                    className='iui-icon iui-table-sort'
                                     aria-hidden
                                   />
                                 )}
@@ -920,22 +919,22 @@ export const Table = <
                             columnResizeMode === 'expand') && (
                             <div
                               {...column.getResizerProps()}
-                              className='iui-resizer'
+                              className='iui-table-resizer'
                             >
-                              <div className='iui-resizer-bar' />
+                              <div className='iui-table-resizer-bar' />
                             </div>
                           )}
                         {enableColumnReordering &&
                           !column.disableReordering && (
-                            <div className='iui-reorder-bar' />
+                            <div className='iui-table-reorder-bar' />
                           )}
                         {column.sticky === 'left' &&
                           state.sticky.isScrolledToRight && (
-                            <div className='iui-cell-shadow-right' />
+                            <div className='iui-table-cell-shadow-right' />
                           )}
                         {column.sticky === 'right' &&
                           state.sticky.isScrolledToLeft && (
-                            <div className='iui-cell-shadow-left' />
+                            <div className='iui-table-cell-shadow-left' />
                           )}
                       </div>
                     );
@@ -960,6 +959,9 @@ export const Table = <
             }
           }}
           tabIndex={-1}
+          aria-multiselectable={
+            (isSelectable && selectionMode === 'multi') || undefined
+          }
         >
           {data.length !== 0 && (
             <>
@@ -980,8 +982,11 @@ export const Table = <
             </div>
           )}
           {isLoading && data.length !== 0 && (
-            <div className='iui-row'>
-              <div className='iui-cell' style={{ justifyContent: 'center' }}>
+            <div className='iui-table-row'>
+              <div
+                className='iui-table-cell'
+                style={{ justifyContent: 'center' }}
+              >
                 <ProgressRadial
                   indeterminate={true}
                   size='small'

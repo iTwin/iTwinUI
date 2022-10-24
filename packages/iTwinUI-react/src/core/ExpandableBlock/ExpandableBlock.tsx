@@ -137,11 +137,8 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         </span>
         {icon &&
           React.cloneElement(icon, {
-            className: cx(
-              'iui-status-icon',
-              { [`iui-${status}`]: !!status },
-              icon.props.className,
-            ),
+            className: cx('iui-status-icon', icon.props.className),
+            'data-iui-icon-color': status,
           })}
       </div>
       <WithCSSTransition in={expanded}>

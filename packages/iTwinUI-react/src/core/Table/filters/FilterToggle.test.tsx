@@ -32,7 +32,7 @@ it('should display active filter', () => {
   renderComponent({ column });
 
   const filterButton = screen.getByRole('button');
-  expect(filterButton).toHaveClass('iui-active');
+  expect(filterButton).toHaveAttribute('data-iui-active', 'true');
 });
 
 it('should display active filter for false filter value', () => {
@@ -47,7 +47,7 @@ it('should display active filter for false filter value', () => {
   renderComponent({ column });
 
   const filterButton = screen.getByRole('button');
-  expect(filterButton).toHaveClass('iui-active');
+  expect(filterButton).toHaveAttribute('data-iui-active', 'true');
 });
 
 it('should hide active filter when not defined', () => {

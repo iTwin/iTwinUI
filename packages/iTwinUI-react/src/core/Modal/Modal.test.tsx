@@ -24,7 +24,9 @@ function assertBaseElement(
   expect(title).toBeTruthy();
   expect(title.textContent).toEqual('Modal Title');
 
-  const closeButton = dialog.querySelector('.iui-button.iui-borderless');
+  const closeButton = dialog.querySelector(
+    '.iui-button[data-iui-variant="borderless"]',
+  );
   expect(!!closeButton).toBe(isDismissible);
 
   expect(dialog.textContent).toContain('Body');

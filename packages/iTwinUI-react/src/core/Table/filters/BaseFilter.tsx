@@ -36,7 +36,7 @@ export const BaseFilter = (props: BaseFilterProps) => {
 
   return (
     <div
-      className={cx('iui-column-filter', className)}
+      className={cx('iui-table-column-filter', className)}
       style={style}
       // Prevents from triggering sort
       onClick={(e: React.MouseEvent) => {

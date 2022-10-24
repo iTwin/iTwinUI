@@ -128,10 +128,6 @@ export const ActionColumn = <T extends Record<string, unknown>>({
             setIsOpen(true);
             dropdownMenuProps.onShow?.(i);
           }}
-          style={{
-            maxHeight: '315px',
-            ...dropdownMenuProps.style,
-          }}
           className={cx('iui-scroll', dropdownMenuProps.className)}
         >
           <IconButton styleType='borderless' isActive={isOpen} ref={buttonRef}>

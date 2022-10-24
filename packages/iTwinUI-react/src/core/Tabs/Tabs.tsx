@@ -8,7 +8,6 @@ import {
   useTheme,
   useMergedRefs,
   getBoundedValue,
-  getWindow,
   useContainerWidth,
 } from '../utils';
 import '@itwin/itwinui-css/css/tabs.css';
@@ -239,8 +238,6 @@ export const Tabs = (props: TabsProps) => {
     }
   };
 
-  const isIE = !getWindow()?.CSS?.supports?.('--stripe-width', '100px');
-
   return (
     <div
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, wrapperClassName)}
@@ -252,8 +249,7 @@ export const Tabs = (props: TabsProps) => {
           `iui-${type}`,
           {
             'iui-green': color === 'green',
-            'iui-animated': type !== 'default' && !isIE,
-            'iui-not-animated': isIE,
+            'iui-animated': type !== 'default',
             'iui-large': hasSublabel,
           },
           tabsClassName,

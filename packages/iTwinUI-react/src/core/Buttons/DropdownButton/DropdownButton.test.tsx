@@ -34,7 +34,9 @@ function renderComponent(props?: Partial<DropdownButtonProps>) {
 
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
-  expect(container.querySelector('.iui-button.iui-dropdown')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-button.iui-button-dropdown'),
+  ).toBeTruthy();
   expect(container.querySelector('.iui-button-icon')).toBeTruthy();
 });
 
@@ -86,5 +88,7 @@ it('should work with menu items', async () => {
 
 it('should render borderless button correctly', () => {
   const { container } = renderComponent({ styleType: 'borderless' });
-  expect(container.querySelector('.iui-button.iui-borderless')).toBeTruthy();
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
+  expect(button).toBeTruthy();
+  expect(button).toHaveAttribute('data-iui-variant', 'borderless');
 });

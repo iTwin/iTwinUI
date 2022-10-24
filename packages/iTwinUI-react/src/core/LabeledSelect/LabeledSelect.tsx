@@ -8,7 +8,7 @@ import { Select } from '../Select';
 import { SelectProps } from '../Select/Select';
 import { StatusIconMap, useTheme, InputContainer } from '../utils';
 import { LabeledInputProps } from '../LabeledInput';
-import '@itwin/itwinui-css/css/inputs.css';
+import '@itwin/itwinui-css/css/select.css';
 
 export type LabeledSelectProps<T> = {
   /**

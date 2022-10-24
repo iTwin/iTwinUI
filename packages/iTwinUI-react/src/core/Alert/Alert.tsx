@@ -7,7 +7,6 @@ import cx from 'classnames';
 import React from 'react';
 import { CommonProps, useTheme, StatusIconMap } from '../utils';
 import '@itwin/itwinui-css/css/alert.css';
-import { IconButton } from '../Buttons/IconButton';
 
 export type AlertProps = {
   /**
@@ -72,12 +71,7 @@ export const Alert = (props: AlertProps) => {
 
   return (
     <div
-      className={cx(
-        'iui-alert',
-        `iui-${type}`,
-        { 'iui-sticky': isSticky },
-        className,
-      )}
+      className={cx(`iui-alert-${type}`, { 'iui-sticky': isSticky }, className)}
       style={style}
       {...rest}
     >
@@ -96,14 +90,14 @@ export const Alert = (props: AlertProps) => {
       </span>
 
       {onClose && (
-        <IconButton
-          styleType='borderless'
-          size='small'
+        <button
           onClick={onClose}
           aria-label='Close'
+          type='button'
+          className='iui-alert-button'
         >
-          <SvgCloseSmall aria-hidden />
-        </IconButton>
+          <SvgCloseSmall aria-hidden className='iui-alert-button-icon' />
+        </button>
       )}
     </div>
   );

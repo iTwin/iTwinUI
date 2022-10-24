@@ -37,21 +37,25 @@ export const HeaderBreadcrumbs = (props: HeaderBreadcrumbsProps) => {
 
   useTheme();
   return (
-    <nav aria-label='breadcrumbs' {...rest}>
-      {items.reduce(
-        (previous: React.ReactNode[], current, index) => [
-          ...previous,
-          current,
-          index !== items.length - 1 && (
-            <SvgChevronRight
-              key={`chevron${index}`}
-              aria-hidden
-              className='iui-chevron'
-            />
-          ),
-        ],
-        [],
-      )}
+    <nav aria-label='breadcrumbs' className='iui-header-breadcrumbs' {...rest}>
+      <ol className='iui-header-breadcrumbs-list'>
+        {items.reduce(
+          (previous: React.ReactNode[], current, index) => [
+            ...previous,
+            current,
+            index !== items.length - 1 && (
+              <li className='iui-breadcrumbs-separator' key={index}>
+                <SvgChevronRight
+                  key={`chevron${index}`}
+                  aria-hidden
+                  className='iui-chevron'
+                />
+              </li>
+            ),
+          ],
+          [],
+        )}
+      </ol>
     </nav>
   );
 };

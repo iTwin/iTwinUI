@@ -71,14 +71,9 @@ export const Button: ButtonComponent = React.forwardRef((props, ref) => {
   return (
     <Element
       ref={ref}
-      className={cx(
-        'iui-button',
-        `iui-${styleType}`,
-        {
-          [`iui-${size}`]: !!size,
-        },
-        className,
-      )}
+      className={cx('iui-button', className)}
+      data-iui-variant={styleType !== 'default' ? styleType : undefined}
+      data-iui-size={size}
       style={style}
       type={type}
       {...rest}
@@ -88,7 +83,7 @@ export const Button: ButtonComponent = React.forwardRef((props, ref) => {
           className: cx('iui-button-icon', startIcon.props.className),
         })}
 
-      {children && <span className='iui-button-label'>{children}</span>}
+      {children && <span>{children}</span>}
 
       {endIcon &&
         React.cloneElement(endIcon, {

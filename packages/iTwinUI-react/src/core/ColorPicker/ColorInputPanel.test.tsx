@@ -30,7 +30,7 @@ it('should render ColorInputPanel with input fields', async () => {
   expect(container.querySelectorAll('.iui-input-container').length).toBe(1);
 
   const swapButton = container.querySelector(
-    '.iui-button.iui-borderless',
+    '.iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(swapButton).toBeTruthy();
 
@@ -68,7 +68,7 @@ it('should render ColorInputPanel with input fields with alpha', async () => {
   expect(container.querySelectorAll('.iui-input-container').length).toBe(1);
 
   const swapButton = container.querySelector(
-    '.iui-button.iui-borderless',
+    '.iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(swapButton).toBeTruthy();
 
@@ -105,7 +105,7 @@ it('should only show allowed color formats on input panel', async () => {
   expect(element?.textContent).toBe('HEX');
 
   const swapButton = container.querySelector(
-    '.iui-button.iui-borderless',
+    '.iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(swapButton).toBeTruthy();
 
@@ -133,7 +133,7 @@ it('should not show swap button if only 1 color format allowed on input panel', 
   expect(element?.textContent).toBe('HEX');
 
   const swapButton = container.querySelector(
-    '.iui-button.iui-borderless',
+    '.iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(swapButton).toBeFalsy();
 });

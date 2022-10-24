@@ -5,6 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { useTheme } from '../hooks';
+import '@itwin/itwinui-css/css/utils.css';
 
 export type VisuallyHiddenProps = React.ComponentPropsWithRef<'div'>;
 

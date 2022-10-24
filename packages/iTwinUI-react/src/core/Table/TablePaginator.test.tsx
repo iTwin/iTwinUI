@@ -35,9 +35,9 @@ afterEach(() => {
 it('should render in its most basic form', () => {
   const { container } = renderComponent();
 
-  const pages = container.querySelectorAll('.iui-paginator-page-button');
+  const pages = container.querySelectorAll('.iui-table-paginator-page-button');
   expect(pages).toHaveLength(20);
-  expect(pages[0].classList).toContain('iui-active');
+  expect(pages[0]).toHaveAttribute('data-iui-active', 'true');
 
   const previousPageButton = screen.getByLabelText(
     'Previous page',
@@ -60,12 +60,12 @@ it('should render currently visible rows info and page size selector', async () 
     onPageSizeChange,
   });
 
-  const pages = container.querySelectorAll('.iui-paginator-page-button');
+  const pages = container.querySelectorAll('.iui-table-paginator-page-button');
   expect(pages).toHaveLength(20);
-  expect(pages[19].classList).toContain('iui-active');
+  expect(pages[19]).toHaveAttribute('data-iui-active', 'true');
 
   const pageSizeSelector = container.querySelector(
-    '.iui-dropdown',
+    '.iui-button-dropdown',
   ) as HTMLButtonElement;
   expect(pageSizeSelector).toBeTruthy();
   expect(pageSizeSelector.textContent).toEqual('191-195 of 195');
@@ -88,7 +88,7 @@ it('should render without page list', () => {
     pageSizeList: [10, 25, 50],
   });
   const pageSizeSelector = container.querySelector(
-    '.iui-dropdown',
+    '.iui-button-dropdown',
   ) as HTMLButtonElement;
 
   expect(pageSizeSelector).toBeTruthy();
@@ -101,7 +101,9 @@ it('should render without page list', () => {
 it('should render without page list and page size list', () => {
   const { container } = renderComponent({ totalRowsCount: 10 });
 
-  const paginator = container.querySelector('.iui-paginator') as HTMLElement;
+  const paginator = container.querySelector(
+    '.iui-table-paginator',
+  ) as HTMLElement;
   expect(paginator).not.toBeTruthy();
 });
 
@@ -113,10 +115,10 @@ it('should render loading state when there is data', () => {
     isLoading: true,
   });
 
-  const pages = container.querySelectorAll('.iui-paginator-page-button');
+  const pages = container.querySelectorAll('.iui-table-paginator-page-button');
   expect(pages).toHaveLength(20);
-  expect(pages[19].classList).toContain('iui-active');
-  expect(container.querySelector('.iui-paginator-ellipsis')).toBeTruthy();
+  expect(pages[19]).toHaveAttribute('data-iui-active', 'true');
+  expect(container.querySelector('.iui-table-paginator-ellipsis')).toBeTruthy();
   expect(
     container.querySelector('.iui-progress-indicator-radial'),
   ).toBeTruthy();
@@ -126,7 +128,7 @@ it('should render loading state when there is data', () => {
   ) as HTMLButtonElement;
   expect(nextPageButton.disabled).toBe(true);
   const pageSizeSelector = container.querySelector(
-    '.iui-dropdown',
+    '.iui-button-dropdown',
   ) as HTMLButtonElement;
   expect(pageSizeSelector).toBeTruthy();
   expect(pageSizeSelector.textContent).toEqual('191-195…');
@@ -141,7 +143,7 @@ it('should render loading state when there is no data', () => {
   });
 
   const pages = container.querySelectorAll<HTMLButtonElement>(
-    '.iui-paginator-page-button',
+    '.iui-table-paginator-page-button',
   );
   expect(pages).toHaveLength(0);
   expect(
@@ -165,10 +167,10 @@ it('should handle clicks', async () => {
   const { container } = renderComponent({ currentPage: 5, onPageChange });
 
   const pages = container.querySelectorAll<HTMLButtonElement>(
-    '.iui-paginator-page-button',
+    '.iui-table-paginator-page-button',
   );
   expect(pages).toHaveLength(20);
-  expect(pages[5].classList).toContain('iui-active');
+  expect(pages[5]).toHaveAttribute('data-iui-active', 'true');
 
   const previousPageButton = screen.getByLabelText(
     'Previous page',
@@ -191,18 +193,18 @@ it('should render truncated pages list', () => {
   jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 5]);
   const { container } = renderComponent({ currentPage: 10 });
 
-  const pages = container.querySelectorAll('.iui-paginator-page-button');
+  const pages = container.querySelectorAll('.iui-table-paginator-page-button');
   expect(pages).toHaveLength(7);
   expect(pages[0].textContent).toEqual('1');
   expect(pages[1].textContent).toEqual('9');
   expect(pages[2].textContent).toEqual('10');
   expect(pages[3].textContent).toEqual('11');
-  expect(pages[3].classList).toContain('iui-active');
+  expect(pages[3]).toHaveAttribute('data-iui-active', 'true');
   expect(pages[4].textContent).toEqual('12');
   expect(pages[5].textContent).toEqual('13');
   expect(pages[6].textContent).toEqual('20');
 
-  const ellipsis = container.querySelectorAll('.iui-paginator-ellipsis');
+  const ellipsis = container.querySelectorAll('.iui-table-paginator-ellipsis');
   expect(ellipsis).toHaveLength(2);
 });
 
@@ -210,12 +212,12 @@ it('should render only the current page when screen is very small', () => {
   jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 1]);
   const { container } = renderComponent({ currentPage: 10 });
 
-  const pages = container.querySelectorAll('.iui-paginator-page-button');
+  const pages = container.querySelectorAll('.iui-table-paginator-page-button');
   expect(pages).toHaveLength(1);
   expect(pages[0].textContent).toEqual('11');
-  expect(pages[0].classList).toContain('iui-active');
+  expect(pages[0]).toHaveAttribute('data-iui-active', 'true');
 
-  const ellipsis = container.querySelectorAll('.iui-paginator-ellipsis');
+  const ellipsis = container.querySelectorAll('.iui-table-paginator-ellipsis');
   expect(ellipsis).toHaveLength(0);
 });
 
@@ -228,7 +230,7 @@ it('should handle keyboard navigation when focusActivationMode is auto', () => {
   });
 
   const buttonGroup = container.querySelector(
-    '.iui-paginator-pages-group',
+    '.iui-table-paginator-pages-group',
   ) as HTMLElement;
   expect(buttonGroup).toBeTruthy();
 
@@ -250,7 +252,7 @@ it('should handle keyboard navigation when focusActivationMode is manual', () =>
   });
 
   const buttonGroup = container.querySelector(
-    '.iui-paginator-pages-group',
+    '.iui-table-paginator-pages-group',
   ) as HTMLElement;
   expect(buttonGroup).toBeTruthy();
 
@@ -280,13 +282,19 @@ it('should render elements in small size', () => {
 
   const pageSwitchers = container.querySelectorAll('.iui-button');
   expect(
-    Array.from(pageSwitchers).every((p) => p.classList.contains('iui-small')),
+    Array.from(pageSwitchers).every(
+      (p) => p.getAttribute('data-iui-size') === 'small',
+    ),
   ).toBe(true);
 
-  const pages = container.querySelectorAll('.iui-paginator-page-button-small');
+  const pages = container.querySelectorAll(
+    '.iui-table-paginator-page-button-small',
+  );
   expect(pages).toHaveLength(7);
 
-  const ellipsis = container.querySelectorAll('.iui-paginator-ellipsis-small');
+  const ellipsis = container.querySelectorAll(
+    '.iui-table-paginator-ellipsis-small',
+  );
   expect(ellipsis).toHaveLength(2);
 });
 
@@ -310,13 +318,13 @@ it('should render with custom localization', async () => {
   });
 
   const pageSizeSelector = container.querySelector(
-    '.iui-dropdown',
+    '.iui-button-dropdown',
   ) as HTMLButtonElement;
   expect(pageSizeSelector).toBeTruthy();
   expect(pageSizeSelector.textContent).toEqual('1-10 of test 195');
 
   expect(
-    container.querySelector('.iui-paginator-page-size-label'),
+    container.querySelector('.iui-table-paginator-page-size-label'),
   ).toHaveTextContent('Items per test page');
 
   await userEvent.click(pageSizeSelector);
@@ -334,7 +342,9 @@ it('should not show rowsPerPageLabel on narrow widths', () => {
     .mockReturnValue([jest.fn(), 600]);
 
   const { container } = renderComponent();
-  expect(container.querySelector('.iui-paginator-page-size-label')).toBeFalsy();
+  expect(
+    container.querySelector('.iui-table-paginator-page-size-label'),
+  ).toBeFalsy();
 });
 
 it('should hide rowsPerPageLabel if null is passed', () => {
@@ -345,7 +355,9 @@ it('should hide rowsPerPageLabel if null is passed', () => {
   const { container } = renderComponent({
     localization: { rowsPerPageLabel: null },
   });
-  expect(container.querySelector('.iui-paginator-page-size-label')).toBeFalsy();
+  expect(
+    container.querySelector('.iui-table-paginator-page-size-label'),
+  ).toBeFalsy();
 });
 
 it('should render with custom className and style', () => {
@@ -354,7 +366,9 @@ it('should render with custom className and style', () => {
     style: { color: 'red' },
   });
 
-  const paginator = container.querySelector('.iui-paginator') as HTMLElement;
+  const paginator = container.querySelector(
+    '.iui-table-paginator',
+  ) as HTMLElement;
   expect(paginator).toBeTruthy();
   expect(paginator.classList).toContain('test-class');
   expect(paginator.style.color).toEqual('red');

@@ -2,57 +2,21 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import cx from 'classnames';
 import React from 'react';
-import { useTheme } from '../utils';
-import '@itwin/itwinui-css/css/wizard.css';
-import { Step } from './Step';
-
-export type WizardLocalization = {
-  stepsCountLabel: (currentStep: number, totalSteps: number) => string;
-};
+import { Stepper, StepperProps, StepperLocalization } from './Stepper';
+import { WorkflowDiagram } from './WorkflowDiagram';
 
 export type WizardType = 'default' | 'long' | 'workflow';
 
-export type StepProperties = {
-  /**
-   * The title/label of the step.
-   */
-  name: string;
-  /**
-   * A tooltip giving detailed description to this step.
-   */
-  description?: string;
-};
+export type WizardLocalization = StepperLocalization;
 
 export type WizardProps = {
-  /**
-   * Current step index, 0 - based.
-   */
-  currentStep?: number;
-  /**
-   * An array of step objects.
-   */
-  steps: StepProperties[];
   /**
    *  The type of Wizard to display.
    *  @default 'default'
    */
   type?: WizardType;
-  /**
-   *  Option to provide localized strings.
-   */
-  localization?: WizardLocalization;
-  /**
-   *  Click handler on completed step.
-   */
-  onStepClick?: (clickedIndex: number) => void;
-};
-
-const defaultWizardLocalization: WizardLocalization = {
-  stepsCountLabel: (currentStep, totalSteps) =>
-    `Step ${currentStep} of ${totalSteps}:`,
-};
+} & Omit<StepperProps, 'type'>;
 
 /**
  * A wizard displays progress through a sequence of logical and numbered steps.
@@ -73,53 +37,23 @@ export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
       currentStep,
       steps,
       type = 'default',
-      localization = defaultWizardLocalization,
+      localization,
       onStepClick,
       ...rest
     } = props;
 
-    const boundedCurrentStep = Math.min(
-      Math.max(0, currentStep ?? 0),
-      steps.length - 1,
-    );
-
-    useTheme();
-
-    return (
-      <div
-        className={cx('iui-wizard', {
-          'iui-long': type === 'long',
-          'iui-workflow': type === 'workflow',
-        })}
+    return type !== 'workflow' ? (
+      <Stepper
+        type={type}
+        currentStep={currentStep}
+        steps={steps}
+        localization={localization}
+        onStepClick={onStepClick}
         ref={ref}
         {...rest}
-      >
-        <ol>
-          {steps.map((s, index) => (
-            <Step
-              key={index}
-              index={index}
-              title={type === 'long' ? '' : s.name}
-              currentStepNumber={boundedCurrentStep}
-              totalSteps={steps.length}
-              type={type}
-              onClick={onStepClick}
-              description={s.description}
-            />
-          ))}
-        </ol>
-        {type === 'long' && (
-          <div className='iui-wizard-steps-label'>
-            <span className='iui-steps-count'>
-              {localization.stepsCountLabel(
-                boundedCurrentStep + 1,
-                steps.length,
-              )}
-            </span>
-            {steps[boundedCurrentStep].name}
-          </div>
-        )}
-      </div>
+      />
+    ) : (
+      <WorkflowDiagram steps={steps} ref={ref} {...rest} />
     );
   },
 );

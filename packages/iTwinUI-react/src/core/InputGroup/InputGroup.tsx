@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { StatusIconMap, useTheme, CommonProps, InputContainer } from '../utils';
-import '@itwin/itwinui-css/css/inputs.css';
+import '@itwin/itwinui-css/css/utils.css';
 
 export type InputGroupProps = {
   /**

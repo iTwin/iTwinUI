@@ -30,36 +30,9 @@ addParameters({
   options: { showPanel: true },
 });
 
-// helper for updating theme according to dark mode flag
 const updateTheme = (isDark) => {
-  const classes = document.documentElement.classList;
-  const currentTheme = Array.from(classes).find((cls) =>
-    cls.startsWith('iui-theme'),
-  );
-  const isHc = currentTheme?.includes('-hc');
-  const isHcString = isHc ? '-hc' : '';
-  if (isDark) {
-    classes.remove(`iui-theme-light${isHcString}`);
-    classes.add(`iui-theme-dark${isHcString}`);
-  } else {
-    classes.remove(`iui-theme-dark${isHcString}`);
-    classes.add(`iui-theme-light${isHcString}`);
-  }
+  document.documentElement.dataset.iuiTheme = isDark ? 'dark' : 'light';
 };
-
-// update iframe theme for non-inline stories
-if (window.parent !== window) {
-  updateTheme(
-    window.parent.document.documentElement.classList.contains('iui-theme-dark'),
-  );
-
-  new MutationObserver(([mutation]) => {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-      updateTheme(mutation.target.classList.contains('iui-theme-dark'));
-    }
-  }).observe(window.parent.document.documentElement, { attributes: true });
-}
-
 export const parameters = {
   controls: { sort: 'requiredFirst' },
   backgrounds: {
@@ -79,24 +52,9 @@ export const decorators = [
     } = context;
 
     React.useEffect(() => {
-      const classes = document.documentElement.classList;
-      const currentTheme = Array.from(classes).find((cls) =>
-        cls.startsWith('iui-theme'),
-      );
-      if (!currentTheme) {
-        return;
-      }
-
-      if (highContrast && !currentTheme.includes('-hc')) {
-        classes.remove(currentTheme);
-        classes.add(`${currentTheme}-hc`);
-        return;
-      }
-
-      if (!highContrast && currentTheme.includes('-hc')) {
-        classes.remove(currentTheme);
-        classes.add(`${currentTheme.split('-hc')[0]}`);
-      }
+      document.documentElement.dataset.iuiContrast = highContrast
+        ? 'high'
+        : 'default';
     }, [highContrast]);
 
     return Story(); // builder-vite does not allow JSX here so we call Story as a function

@@ -38,14 +38,14 @@ function renderComponent(
 
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
-  expect(container.querySelector('.iui-button-split-menu')).toBeTruthy();
+  expect(container.querySelector('.iui-button-split')).toBeTruthy();
   expect(container.querySelector('.iui-button-icon')).toBeTruthy();
 });
 
 it('should fire onClick callback', async () => {
   const onClickMock = jest.fn();
   const { container } = renderComponent(onClickMock);
-  expect(container.querySelector('.iui-button-split-menu')).toBeTruthy();
+  expect(container.querySelector('.iui-button-split')).toBeTruthy();
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   await userEvent.click(button);
@@ -60,7 +60,7 @@ it('should fire onClick callback', async () => {
 
 it('should update icon when menu opens or closes', async () => {
   const { container } = renderComponent();
-  expect(container.querySelector('.iui-button-split-menu')).toBeTruthy();
+  expect(container.querySelector('.iui-button-split')).toBeTruthy();
   expect(container.querySelector('.iui-button')).toBeTruthy();
 
   const dropdownButton = container.querySelectorAll(
@@ -85,7 +85,7 @@ it('should update icon when menu opens or closes', async () => {
 
 it('should work with menu items', async () => {
   const { container } = renderComponent();
-  expect(container.querySelector('.iui-button-split-menu')).toBeTruthy();
+  expect(container.querySelector('.iui-button-split')).toBeTruthy();
 
   let menu = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(menu).toBeFalsy();
@@ -127,9 +127,7 @@ it('should support polymorphic `as` prop', async () => {
     </SplitButton>,
   );
 
-  const splitMenu = container.querySelector(
-    '.iui-button-split-menu',
-  ) as HTMLElement;
+  const splitMenu = container.querySelector('.iui-button-split') as HTMLElement;
   expect(splitMenu).toBeTruthy();
 
   const anchor = splitMenu.querySelector('a') as HTMLAnchorElement;

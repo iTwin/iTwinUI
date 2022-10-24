@@ -138,13 +138,13 @@ export const Header = (props: HeaderProps) => {
       className={cx('iui-page-header', { 'iui-slim': isSlim }, className)}
       {...rest}
     >
-      <div className='iui-left'>
+      <div className='iui-page-header-left'>
         {appLogo}
-        {breadcrumbs && <div className='iui-divider' />}
+        {breadcrumbs && <div className='iui-page-header-divider' />}
         {breadcrumbs}
       </div>
-      {children && <div className='iui-center'>{children}</div>}
-      <div className='iui-right'>
+      {children && <div className='iui-page-header-center'>{children}</div>}
+      <div className='iui-page-header-right'>
         {actions}
         {userIcon}
         {menuItems && (

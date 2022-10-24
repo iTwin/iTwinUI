@@ -62,7 +62,7 @@ export const ExpanderColumn = <T extends Record<string, unknown>>(
       } else {
         return (
           <IconButton
-            className='iui-row-expander'
+            className='iui-table-row-expander'
             styleType='borderless'
             size='small'
             onClick={(e) => {

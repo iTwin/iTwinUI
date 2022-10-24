@@ -26,7 +26,7 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
       ) : (
         <IconButton
           style={{ marginRight: 8 }}
-          className='iui-row-expander'
+          className='iui-table-row-expander'
           styleType='borderless'
           size='small'
           onClick={(e) => {

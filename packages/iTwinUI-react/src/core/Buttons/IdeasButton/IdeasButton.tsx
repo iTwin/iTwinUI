@@ -35,7 +35,7 @@ export const IdeasButton = React.forwardRef<
   return (
     <Button
       ref={ref}
-      className='iui-idea'
+      data-iui-variant='idea'
       onClick={onClick}
       startIcon={<SvgSmileyHappy aria-hidden />}
       {...rest}

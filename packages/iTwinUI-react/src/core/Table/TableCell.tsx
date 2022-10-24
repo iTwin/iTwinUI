@@ -47,8 +47,8 @@ export const TableCell = <T extends Record<string, unknown>>(
   };
 
   const cellElementProps = cell.getCellProps({
-    className: cx('iui-cell', cell.column.cellClassName, {
-      'iui-cell-sticky': !!cell.column.sticky,
+    className: cx('iui-table-cell', cell.column.cellClassName, {
+      'iui-table-cell-sticky': !!cell.column.sticky,
     }),
     style: {
       ...getCellStyle(cell.column, !!tableInstance.state.isTableResizing),
@@ -84,11 +84,11 @@ export const TableCell = <T extends Record<string, unknown>>(
         {cellContent}
         {cell.column.sticky === 'left' &&
           tableInstance.state.sticky.isScrolledToRight && (
-            <div className='iui-cell-shadow-right' />
+            <div className='iui-table-cell-shadow-right' />
           )}
         {cell.column.sticky === 'right' &&
           tableInstance.state.sticky.isScrolledToLeft && (
-            <div className='iui-cell-shadow-left' />
+            <div className='iui-table-cell-shadow-left' />
           )}
       </>
     ),

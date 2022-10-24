@@ -6,9 +6,8 @@ import cx from 'classnames';
 import React from 'react';
 import { Tooltip } from '../Tooltip';
 import { StylingProps } from '../utils';
-import { WizardType } from './Wizard';
 
-export type StepProps = {
+export type StepperStepProps = {
   /**
    * The title/label of the step.
    */
@@ -18,17 +17,17 @@ export type StepProps = {
    */
   index: number;
   /**
-   * the Wizard's current step number, 0-based.
+   * the Stepper's current step number, 0-based.
    */
   currentStepNumber: number;
   /**
-   * number of total steps in the wizard.
+   * number of total steps in the stepper.
    */
   totalSteps: number;
   /**
    * Wizard type.
    */
-  type: WizardType;
+  type: 'default' | 'long';
   /**
    *  Click handler on completed step.
    */
@@ -39,7 +38,7 @@ export type StepProps = {
   description?: string;
 } & StylingProps;
 
-export const Step = (props: StepProps) => {
+export const StepperStep = (props: StepperStepProps) => {
   const {
     title,
     index,
@@ -53,9 +52,9 @@ export const Step = (props: StepProps) => {
     ...rest
   } = props;
 
-  const isPast = type !== 'workflow' && currentStepNumber > index;
-  const isActive = type !== 'workflow' && currentStepNumber === index;
-  const isClickable = type !== 'workflow' && isPast && !!onClick;
+  const isPast = currentStepNumber > index;
+  const isActive = currentStepNumber === index;
+  const isClickable = isPast && !!onClick;
 
   const onCompletedClick = () => {
     if (isClickable) {
@@ -76,7 +75,7 @@ export const Step = (props: StepProps) => {
   const stepShape = (
     <li
       className={cx(
-        'iui-wizard-step',
+        'iui-stepper-step',
         {
           'iui-current': isActive,
           'iui-clickable': isClickable,
@@ -93,13 +92,12 @@ export const Step = (props: StepProps) => {
       tabIndex={isClickable ? 0 : undefined}
       {...rest}
     >
-      <div className='iui-wizard-track-content'>
-        <span className='iui-wizard-circle'>
-          {type === 'workflow' ? title : index + 1}
-        </span>
+      <div className='iui-stepper-track-content'>
+        <span className='iui-stepper-circle'>{index + 1}</span>
       </div>
+
       {type === 'default' && (
-        <span className='iui-wizard-step-name'>{title}</span>
+        <span className='iui-stepper-step-name'>{title}</span>
       )}
     </li>
   );

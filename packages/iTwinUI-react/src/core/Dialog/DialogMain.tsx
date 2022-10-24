@@ -78,6 +78,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
 
     const dialogRef = React.useRef<HTMLDivElement>(null);
     const refs = useMergedRefs(dialogRef, ref);
+    const hasBeenResized = React.useRef(false);
 
     // Focuses dialog when opened and brings back focus to the previously focused element when closed.
     const previousFocusedElement = React.useRef<HTMLElement | null>();
@@ -209,6 +210,12 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
           <Resizer
             elementRef={dialogRef}
             containerRef={dialogContext.dialogRootRef}
+            onResizeStart={() => {
+              if (!hasBeenResized.current) {
+                hasBeenResized.current = true;
+                setResizeStyle({ maxWidth: '100%' });
+              }
+            }}
             onResizeEnd={setResizeStyle}
           />
         )}

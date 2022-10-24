@@ -3,12 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import {
-  CommonProps,
-  getFocusableElements,
-  getWindow,
-  useTheme,
-} from '../utils';
+import { CommonProps, getFocusableElements, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/tree.css';
 import cx from 'classnames';
 import { TreeNodeExpander } from './TreeNodeExpander';
@@ -129,14 +124,6 @@ export const TreeNode = (props: TreeNodeProps) => {
   const [isFocused, setIsFocused] = React.useState(false);
   const nodeRef = React.useRef<HTMLLIElement>(null);
 
-  const styleDepth = React.useMemo(
-    () =>
-      getWindow()?.CSS?.supports?.(`--level: ${nodeDepth}`)
-        ? { '--level': nodeDepth }
-        : { marginLeft: nodeDepth ? nodeDepth * 28 : 0 },
-    [nodeDepth],
-  );
-
   const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
     const isNodeFocused =
       nodeRef.current === nodeRef.current?.ownerDocument.activeElement;
@@ -244,7 +231,7 @@ export const TreeNode = (props: TreeNodeProps) => {
             'iui-active': isSelected,
             'iui-disabled': isDisabled,
           })}
-          style={styleDepth}
+          style={{ '--level': nodeDepth } as React.CSSProperties}
           onClick={() => !isDisabled && onSelected?.(nodeId, !isSelected)}
         >
           {checkbox && React.isValidElement(checkbox)

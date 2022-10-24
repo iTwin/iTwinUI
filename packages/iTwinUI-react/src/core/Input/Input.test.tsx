@@ -49,6 +49,9 @@ it.each(['small', 'large'] as const)(
   'should render small and large sizes',
   (size) => {
     const { container } = render(<Input size={size} />);
-    expect(container.querySelector(`.iui-input.iui-${size}`)).toBeTruthy();
+    expect(container.querySelector(`.iui-input`)).toHaveAttribute(
+      'data-iui-size',
+      size,
+    );
   },
 );

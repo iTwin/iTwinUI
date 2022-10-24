@@ -56,7 +56,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           <IconButton
             styleType='borderless'
             isActive={isVisible || isColumnFiltered}
-            className={cx('iui-filter-button', className)}
+            className={cx('iui-table-filter-button', className)}
             onClick={(e) => {
               setIsVisible((v) => !v);
               // Prevents from triggering sort

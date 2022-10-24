@@ -12,3 +12,4 @@ export * from './useIntersection';
 export * from './useMediaQuery';
 export * from './useSafeContext';
 export * from './useLatestRef';
+export * from './useIsomorphicLayoutEffect';

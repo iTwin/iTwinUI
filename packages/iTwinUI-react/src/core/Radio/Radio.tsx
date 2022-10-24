@@ -6,7 +6,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import { useMergedRefs, useTheme } from '../utils';
-import '@itwin/itwinui-css/css/inputs.css';
+import '@itwin/itwinui-css/css/radio.css';
 
 export type RadioProps = {
   /**

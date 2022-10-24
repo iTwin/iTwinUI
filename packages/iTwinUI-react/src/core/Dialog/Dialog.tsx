@@ -86,9 +86,9 @@ export const Dialog = Object.assign(
         >
           <div
             className={cx('iui-dialog-wrapper', className)}
+            data-iui-relative={relativeTo === 'container'}
             ref={refs}
             style={{
-              position: relativeTo === 'container' ? 'absolute' : 'fixed',
               ...style,
             }}
             {...rest}

@@ -1415,10 +1415,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
-"@itwin/itwinui-css@^0.63.0":
-  version "0.63.0"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-0.63.0.tgz#96e921305d17c6fee45909c98b3df9023a1eff09"
-  integrity sha512-7nGl+wtQYSOAi2j6YCxHvOvuuGIQzo9kN1USfGk0XXLovsPydnXx6Hc9jXwPGdfYLUohAbybJUoci8JW9R2OUg==
+"@itwin/itwinui-css@1.0.0-dev.10":
+  version "1.0.0-dev.10"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-1.0.0-dev.10.tgz#29dd73c6eaaeca718345246d4335530cbd534a31"
+  integrity sha512-02L/56I0f62KD+g2zyxWJLHOdIaZ24ml/fWBJDbBszv8o1wvGxaQvwc9hqCSaxgNPxTOtIdlaCkoDbInM2wBMw==
 
 "@itwin/itwinui-icons-react@^1.10.1":
   version "1.10.1"
@@ -1429,6 +1429,11 @@
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-1.3.1.tgz#f534fa1da707272a4351f3b2bbc240c9ea8e3ae6"
   integrity sha512-hIZwYwd1qmyjt5yiL8Lg6E3CpgeLxGOnb4dVktoM+h3h5zSmgjhm2qFk+RqgsqV+dy0Fb2cs1jH4Jup9jWY9pA==
+
+"@itwin/itwinui-variables@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-variables/-/itwinui-variables-0.3.0.tgz#90189b43cc4624563273612772735b063d9f3ee7"
+  integrity sha512-OX/Dje/VxR/YcYtUvmawqHQ4vjpBTsKWux0T9Wa8T2GGiOW+lD51dOkAAfoXgNALUa9YUXb9/F7pbaGMlm5tbg==
 
 "@jest/console@^28.1.0":
   version "28.1.0"

@@ -177,12 +177,14 @@ export const Tile = (props: TileProps) => {
 
           {leftIcon &&
             React.cloneElement(leftIcon as React.ReactElement, {
-              className: 'iui-small iui-tile-thumbnail-type-indicator',
+              className: 'iui-tile-thumbnail-type-indicator',
+              'data-iui-size': 'small',
             })}
 
           {rightIcon &&
             React.cloneElement(rightIcon as React.ReactElement, {
-              className: 'iui-small iui-tile-thumbnail-quick-action',
+              className: 'iui-tile-thumbnail-quick-action',
+              'data-iui-size': 'small',
             })}
 
           {badge && (
@@ -194,17 +196,9 @@ export const Tile = (props: TileProps) => {
       <div className='iui-tile-content'>
         <div className='iui-tile-name'>
           {isSelected && (
-            <SvgCheckmark
-              className={cx('iui-tile-status-icon', 'iui-informational')}
-              aria-hidden
-            />
+            <SvgCheckmark className='iui-tile-status-icon' aria-hidden />
           )}
-          {isNew && (
-            <SvgNew
-              className={cx('iui-tile-status-icon', 'iui-positive')}
-              aria-hidden
-            />
-          )}
+          {isNew && <SvgNew className='iui-tile-status-icon' aria-hidden />}
           <span className='iui-tile-name-label'>{name}</span>
         </div>
 

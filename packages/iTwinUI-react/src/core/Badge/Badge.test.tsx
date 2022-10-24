@@ -8,10 +8,6 @@ import { render } from '@testing-library/react';
 import { Badge } from './Badge';
 import { SoftBackgrounds } from '../utils';
 
-beforeAll(() => {
-  window.CSS = { supports: () => true, escape: (i) => i };
-});
-
 it('should render in its most basic state', () => {
   const { container } = render(<Badge>label</Badge>);
   const badge = container.querySelector('.iui-badge') as HTMLElement;

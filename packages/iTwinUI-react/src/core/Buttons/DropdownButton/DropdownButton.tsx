@@ -65,7 +65,7 @@ export const DropdownButton = React.forwardRef<
       onHide={() => setIsMenuOpen(false)}
     >
       <Button
-        className={cx('iui-dropdown', className)}
+        className={cx('iui-button-dropdown', className)}
         size={size}
         styleType={styleType}
         endIcon={

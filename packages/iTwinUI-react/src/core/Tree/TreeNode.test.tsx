@@ -48,7 +48,7 @@ it('should render in its most basic state', () => {
 
   const treeNode = container.querySelector('.iui-tree-node');
   expect(treeNode).toBeTruthy();
-  expect(treeNode).toHaveAttribute('style', 'margin-left: 0px;');
+  expect(treeNode).toHaveAttribute('style', '--level: 0;');
   expect(treeNode?.classList.contains('iui-disabled')).toBe(false);
   expect(treeNode?.classList.contains('iui-active')).toBe(false);
 
@@ -73,8 +73,6 @@ it('should add className and style correctly', () => {
 });
 
 it('should render node with correct depth', () => {
-  window.CSS = { supports: () => true, escape: (i) => i };
-
   const { container } = renderComponent({ contextProps: { nodeDepth: 2 } });
 
   const treeNode = container.querySelector('.iui-tree-node');
@@ -150,7 +148,7 @@ it.each([true, false])(
     ).toBe(isExpanded);
 
     const expanderButton = container.querySelector(
-      '.iui-button.iui-borderless.iui-small',
+      '.iui-button[data-iui-variant="borderless"][data-iui-size="small"]',
     ) as HTMLButtonElement;
     expect(expanderButton).toBeTruthy();
 
@@ -186,7 +184,7 @@ it('should render disabled node', () => {
   expect(container.querySelector('.iui-tree-node-checkbox')).toBeDisabled();
 
   const button = container.querySelector(
-    '.iui-button.iui-borderless.iui-small',
+    '.iui-button[data-iui-variant="borderless"][data-iui-size="small"]',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.disabled).toBe(true);

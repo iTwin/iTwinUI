@@ -5,17 +5,16 @@
 
 import cx from 'classnames';
 import React from 'react';
-import {
-  Button,
-  ButtonProps,
-  DropdownButton,
-  DropdownButtonProps,
-  SplitButton,
-  SplitButtonProps,
-} from '../Buttons';
+import { ButtonProps } from '../Buttons';
 
 import { PolymorphicForwardRefComponent, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/header.css';
+import { HeaderSplitButton, HeaderSplitButtonProps } from './HeaderSplitButton';
+import {
+  HeaderDropdownButton,
+  HeaderDropdownButtonProps,
+} from './HeaderDropdownButton';
+import { HeaderBasicButton } from './HeaderBasicButton';
 
 export type HeaderButtonProps = {
   /**
@@ -31,18 +30,18 @@ export type HeaderButtonProps = {
    * @default false
    */
   isActive?: boolean;
-} & Partial<Pick<DropdownButtonProps, 'menuItems'>> &
+} & Partial<Pick<HeaderDropdownButtonProps, 'menuItems'>> &
   Pick<ButtonProps, 'startIcon' | 'endIcon'>;
 
 const isSplitButton = (
-  props: Omit<Partial<SplitButtonProps>, 'name'>,
-): props is SplitButtonProps => {
+  props: Omit<Partial<HeaderSplitButtonProps>, 'name'>,
+): props is HeaderSplitButtonProps => {
   return !!props.menuItems && !!props.onClick;
 };
 
 const isDropdownButton = (
-  props: Omit<Partial<DropdownButtonProps>, 'name'>,
-): props is DropdownButtonProps => {
+  props: Omit<Partial<HeaderDropdownButtonProps>, 'name'>,
+): props is HeaderDropdownButtonProps => {
   return !!props.menuItems;
 };
 
@@ -70,6 +69,7 @@ export const HeaderButton: HeaderButtonComponent = React.forwardRef(
       className,
       startIcon,
       menuItems,
+      disabled,
       ...rest
     } = props;
 
@@ -79,41 +79,47 @@ export const HeaderButton: HeaderButtonComponent = React.forwardRef(
       startIcon: React.isValidElement(startIcon)
         ? React.cloneElement(startIcon as JSX.Element, {
             className: cx(
-              'iui-header-button-icon',
+              'iui-header-breadcrumb-button-icon',
               (startIcon as JSX.Element).props.className,
             ),
           })
         : undefined,
-      styleType: 'borderless',
-      className: cx(
-        {
-          'iui-header-button': !isSplitButton(props),
-          'iui-header-split-button': isSplitButton(props),
-          'iui-header-dropdown-button':
-            !isSplitButton(props) && isDropdownButton(props),
-          'iui-active': isActive,
-        },
-        className,
-      ),
-      'aria-current': isActive ? 'location' : undefined,
+      className: className,
       children: (
-        <>
-          <div>{name}</div>
-          {description && <div className='iui-description'>{description}</div>}
-        </>
+        <span className='iui-header-breadcrumb-button-text'>
+          <span className='iui-header-breadcrumb-button-text-label'>
+            {name}
+          </span>
+          {description && (
+            <span className='iui-header-breadcrumb-button-text-sublabel'>
+              {description}
+            </span>
+          )}
+        </span>
       ),
       ref: ref,
+      disabled: disabled,
       ...(!!menuItems && { menuItems }),
       ...rest,
     } as const;
 
-    if (isSplitButton(buttonProps)) {
-      return <SplitButton {...buttonProps} />;
-    }
-    if (isDropdownButton(buttonProps)) {
-      return <DropdownButton {...buttonProps} />;
-    }
-    return <Button {...buttonProps} />;
+    const headerButton = isSplitButton(buttonProps) ? (
+      <HeaderSplitButton {...buttonProps} />
+    ) : isDropdownButton(buttonProps) ? (
+      <HeaderDropdownButton {...buttonProps} />
+    ) : (
+      <HeaderBasicButton {...buttonProps} />
+    );
+
+    return (
+      <li
+        className='iui-header-breadcrumb-item'
+        aria-current={isActive ? 'location' : undefined}
+        aria-disabled={disabled ? 'true' : undefined}
+      >
+        {headerButton}
+      </li>
+    );
   },
 );
 

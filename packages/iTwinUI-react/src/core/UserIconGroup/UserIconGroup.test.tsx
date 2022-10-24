@@ -46,23 +46,21 @@ it('should render in its most basic state', () => {
     <UserIconGroup>{generateUserIcons(7)}</UserIconGroup>,
   );
   const userGroup = container.querySelector(
-    '.iui-user-icon-list.iui-stacked',
+    '.iui-avatar-list.iui-stacked',
   ) as HTMLElement;
   expect(userGroup).toBeTruthy();
   expect(userGroup.classList).not.toContain(`iui-animated`);
 
   expect(
-    container.querySelectorAll(`.iui-user-icon-list > .iui-user-icon.iui-small`)
+    container.querySelectorAll(`.iui-avatar-list > .iui-avatar.iui-small`)
       .length,
   ).toBe(6);
 
   const userGroupIconCount = container.querySelectorAll(
-    '.iui-user-icon-list > .iui-user-icon',
+    '.iui-avatar-list > .iui-avatar',
   );
   expect(userGroupIconCount.length).toBe(6);
-  const countIcon = container.querySelector(
-    '.iui-user-icon-count',
-  ) as HTMLElement;
+  const countIcon = container.querySelector('.iui-avatar-count') as HTMLElement;
   expect(countIcon.textContent).toBe('2');
 
   expect(userGroup.querySelectorAll('.iui-stroke').length).toBe(6);
@@ -75,9 +73,7 @@ it('should render animated', () => {
       {generateUserIcons(7)}
     </UserIconGroup>,
   );
-  expect(
-    container.querySelector('.iui-user-icon-list.iui-animated'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-avatar-list.iui-animated')).toBeTruthy();
 });
 
 it('should render without count icon', () => {
@@ -85,17 +81,17 @@ it('should render without count icon', () => {
     <UserIconGroup iconSize='medium'>{generateUserIcons(6)}</UserIconGroup>,
   );
   const userGroup = container.querySelector(
-    '.iui-user-icon-list.iui-stacked',
+    '.iui-avatar-list.iui-stacked',
   ) as HTMLElement;
   expect(userGroup).toBeTruthy();
   expect(userGroup.classList).not.toContain(`iui-animated`);
 
   const userGroupIconCount = container.querySelectorAll(
-    '.iui-user-icon-list > .iui-user-icon',
+    '.iui-avatar-list > .iui-avatar',
   );
   expect(userGroupIconCount.length).toBe(6);
 
-  expect(container.querySelector('.iui-user-icon-count')).toBeFalsy();
+  expect(container.querySelector('.iui-avatar-count')).toBeFalsy();
 
   expect(userGroup.querySelectorAll('.iui-stroke').length).toBe(6);
   expect(userGroup.querySelectorAll('.iui-initials').length).toBe(6);
@@ -108,18 +104,16 @@ it('should render different length', () => {
     </UserIconGroup>,
   );
   const userGroup = container.querySelector(
-    '.iui-user-icon-list.iui-stacked',
+    '.iui-avatar-list.iui-stacked',
   ) as HTMLElement;
   expect(userGroup).toBeTruthy();
 
   const userGroupIconCount = container.querySelectorAll(
-    '.iui-user-icon-list > .iui-user-icon',
+    '.iui-avatar-list > .iui-avatar',
   );
   expect(userGroupIconCount.length).toBe(4);
 
-  const countIcon = container.querySelector(
-    '.iui-user-icon-count',
-  ) as HTMLElement;
+  const countIcon = container.querySelector('.iui-avatar-count') as HTMLElement;
   expect(countIcon.textContent).toBe('4');
 
   expect(userGroup.querySelectorAll('.iui-stroke').length).toBe(4);
@@ -132,24 +126,18 @@ it('should render animated', () => {
       {generateUserIcons(7)}
     </UserIconGroup>,
   );
-  expect(
-    container.querySelector('.iui-user-icon-list.iui-animated'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-avatar-list.iui-animated')).toBeTruthy();
 });
 
 it('should render many icons', () => {
   const { container } = render(
     <UserIconGroup iconSize='medium'>{generateUserIcons(105)}</UserIconGroup>,
   );
+  expect(container.querySelector('.iui-avatar-list.iui-stacked')).toBeTruthy();
   expect(
-    container.querySelector('.iui-user-icon-list.iui-stacked'),
-  ).toBeTruthy();
-  expect(
-    container.querySelectorAll('.iui-user-icon-list > .iui-user-icon').length,
+    container.querySelectorAll('.iui-avatar-list > .iui-avatar').length,
   ).toBe(6);
-  const countIcon = container.querySelector(
-    '.iui-user-icon-count',
-  ) as HTMLElement;
+  const countIcon = container.querySelector('.iui-avatar-count') as HTMLElement;
   expect(countIcon.textContent).toBe('99+');
 });
 
@@ -160,9 +148,7 @@ it('should render not stacked', () => {
     </UserIconGroup>,
   );
 
-  expect(
-    container.querySelector('.iui-user-icon-list.iui-stacked'),
-  ).toBeFalsy();
+  expect(container.querySelector('.iui-avatar-list.iui-stacked')).toBeFalsy();
 });
 
 it.each(['small', 'medium', 'large', 'x-large'] as Array<
@@ -176,7 +162,7 @@ it.each(['small', 'medium', 'large', 'x-large'] as Array<
 
   expect(
     container.querySelectorAll(
-      `.iui-user-icon-list > .iui-user-icon${
+      `.iui-avatar-list > .iui-avatar${
         size !== 'medium' ? `.iui-${size}` : ''
       }`,
     ).length,
@@ -195,7 +181,7 @@ it('should render custom classname', () => {
   );
 
   expect(
-    container.querySelector('.iui-user-icon-list.custom-classname'),
+    container.querySelector('.iui-avatar-list.custom-classname'),
   ).toBeTruthy();
 });
 
@@ -212,7 +198,7 @@ it('should render custom classname for count icon', () => {
 
   expect(
     container.querySelector(
-      '.iui-user-icon-list > .iui-user-icon-count.custom-classname',
+      '.iui-avatar-list > .iui-avatar-count.custom-classname',
     ),
   ).toBeTruthy();
 });

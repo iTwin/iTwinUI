@@ -97,7 +97,7 @@ export const Basic: Story<ColorPickerProps> = (args) => {
       >
         <IconButton onClick={() => setIsOpen((open) => !open)}>
           <ColorSwatch
-            style={{ pointerEvents: 'none' }}
+            style={{ pointerEvents: 'none', margin: 0 }}
             color={activeColor.color}
           />
         </IconButton>
@@ -166,7 +166,7 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
         >
           <IconButton onClick={() => setIsOpen((open) => !open)}>
             <ColorSwatch
-              style={{ pointerEvents: 'none' }}
+              style={{ pointerEvents: 'none', margin: 0 }}
               color={selectedColor}
             />
           </IconButton>
@@ -246,7 +246,7 @@ export const WithAlpha: Story<ColorPickerProps> = (args) => {
         >
           <IconButton onClick={() => setIsOpen((open) => !open)}>
             <ColorSwatch
-              style={{ pointerEvents: 'none' }}
+              style={{ pointerEvents: 'none', margin: 0 }}
               color={selectedColor}
             />
           </IconButton>

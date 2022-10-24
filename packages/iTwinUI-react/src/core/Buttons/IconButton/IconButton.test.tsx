@@ -32,9 +32,8 @@ it('renders active icon button correctly', () => {
     </IconButton>,
   );
 
-  const button = container.querySelector(
-    '.iui-button.iui-active',
-  ) as HTMLButtonElement;
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
+  expect(button).toHaveAttribute('data-iui-active', 'true');
   expect(button).toBeTruthy();
   button.click();
   expect(onClickMock).toHaveBeenCalled();
@@ -50,10 +49,9 @@ it('renders disabled small icon button correctly', () => {
     </IconButton>,
   );
 
-  const button = container.querySelector(
-    '.iui-button.iui-small',
-  ) as HTMLButtonElement;
+  const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
+  expect(button).toHaveAttribute('data-iui-size', 'small');
   expect(button.disabled).toBe(true);
   button.click();
   expect(onClickMock).not.toHaveBeenCalled();
@@ -68,7 +66,9 @@ it('should render borderless button correctly', () => {
     </IconButton>,
   );
 
-  expect(container.querySelector('.iui-button.iui-borderless')).toBeTruthy();
+  const button = container.querySelector('.iui-button');
+  expect(button).toBeTruthy();
+  expect(button).toHaveAttribute('data-iui-variant', 'borderless');
 });
 
 it('should support polymorphic `as` prop', () => {

@@ -6,6 +6,7 @@ import React from 'react';
 import { Backdrop, BackdropProps } from '../Backdrop';
 import { useMergedRefs } from '../utils';
 import { DialogContextProps, useDialogContext } from './DialogContext';
+import cx from 'classnames';
 
 export type DialogBackdropProps = BackdropProps &
   Pick<
@@ -31,6 +32,7 @@ export const DialogBackdrop = React.forwardRef<
     closeOnExternalClick = dialogContext.closeOnExternalClick,
     relativeTo = dialogContext.relativeTo,
     onMouseDown,
+    className,
     style,
     ...rest
   } = props;
@@ -53,11 +55,16 @@ export const DialogBackdrop = React.forwardRef<
   return (
     <Backdrop
       isVisible={isVisible}
+      className={cx(
+        {
+          'iui-backdrop-fixed': relativeTo === 'viewport',
+        },
+        className,
+      )}
       ref={refs}
       onMouseDown={handleMouseDown}
       style={{
         pointerEvents: 'auto',
-        position: relativeTo === 'container' ? 'absolute' : 'fixed',
         ...style,
       }}
       {...rest}

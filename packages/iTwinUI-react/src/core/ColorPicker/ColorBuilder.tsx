@@ -8,7 +8,6 @@ import {
   ColorValue,
   CommonProps,
   getBoundedValue,
-  getWindow,
   HsvColor,
   useEventListener,
   useMergedRefs,
@@ -68,35 +67,9 @@ export const ColorBuilder = React.forwardRef(
     ]);
     const [colorDotActive, setColorDotActive] = React.useState(false);
     const hueColorString = hueSliderColor.toHexString();
-    const colorSquareStyle = getWindow()?.CSS?.supports?.(
-      `--iui-color-field-hue: ${hueColorString}`,
-    )
-      ? {
-          '--iui-color-field-hue': hueColorString,
-          '--iui-color-picker-selected-color': dotColorString,
-        }
-      : { backgroundColor: hueColorString };
-
-    const opacitySliderStyle = getWindow()?.CSS?.supports?.(
-      `--iui-color-picker-selected-color: ${hueColorString}`,
-    )
-      ? { '--iui-color-picker-selected-color': hueColorString }
-      : { backgroundColor: hueColorString };
 
     const squareTop = 100 - hsvColor.v;
     const squareLeft = hsvColor.s;
-
-    const colorDotStyle = getWindow()?.CSS?.supports?.(
-      `--iui-color-dot-inset: 0`,
-    )
-      ? {
-          '--iui-color-dot-inset': `${squareTop.toString()}% auto auto ${squareLeft.toString()}%`,
-        }
-      : {
-          backgroundColor: dotColorString,
-          top: squareTop.toString() + '%',
-          left: squareLeft.toString() + '%',
-        };
 
     // Update slider change
     const updateHueSlider = React.useCallback(
@@ -280,7 +253,12 @@ export const ColorBuilder = React.forwardRef(
       >
         <div
           className='iui-color-field'
-          style={colorSquareStyle}
+          style={
+            {
+              '--iui-color-field-hue': hueColorString,
+              '--iui-color-picker-selected-color': dotColorString,
+            } as React.CSSProperties
+          }
           ref={squareRef}
           onPointerDown={(event: React.PointerEvent) => {
             event.preventDefault();
@@ -291,7 +269,11 @@ export const ColorBuilder = React.forwardRef(
         >
           <div
             className='iui-color-dot'
-            style={colorDotStyle}
+            style={
+              {
+                '--iui-color-dot-inset': `${squareTop.toString()}% auto auto ${squareLeft.toString()}%`,
+              } as React.CSSProperties
+            }
             onPointerDown={() => {
               setColorDotActive(true);
               colorDotRef.current?.focus();
@@ -337,7 +319,11 @@ export const ColorBuilder = React.forwardRef(
             min={0}
             max={1}
             step={0.01}
-            style={opacitySliderStyle}
+            style={
+              {
+                '--iui-color-picker-selected-color': hueColorString,
+              } as React.CSSProperties
+            }
           />
         )}
       </div>

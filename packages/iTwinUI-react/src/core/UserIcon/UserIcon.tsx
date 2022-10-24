@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import React from 'react';
 import { CommonProps, useTheme } from '../utils';
-import '@itwin/itwinui-css/css/user-icon.css';
+import '@itwin/itwinui-css/css/avatar.css';
 
 export type UserIconStatus = 'online' | 'busy' | 'away' | 'offline';
 
@@ -87,7 +87,7 @@ export const UserIcon = (props: UserIconProps) => {
   return (
     <span
       className={cx(
-        'iui-user-icon',
+        'iui-avatar',
         { [`iui-${size}`]: size !== 'medium' },
         className,
       )}

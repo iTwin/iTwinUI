@@ -46,9 +46,7 @@ it('should render in its most basic state', () => {
   mainItems.forEach((item, index) => {
     expect(item).toBeTruthy();
     expect(item.querySelector('.iui-button-icon')).toEqual(placeholderIcon);
-    expect(item.querySelector('.iui-button-label')?.textContent).toBe(
-      `mockbutton ${index}`,
-    );
+    expect(item.querySelector('span')?.textContent).toBe(`mockbutton ${index}`);
   });
 });
 
@@ -79,7 +77,7 @@ it('should render secondary items', () => {
   secondaryItems.forEach((item, index) => {
     expect(item).toBeTruthy();
     expect(item.querySelector('.iui-button-icon')).toEqual(placeholderIcon);
-    expect(item.querySelector('.iui-button-label')?.textContent).toBe(
+    expect(item.querySelector('span')?.textContent).toBe(
       `mock secondary ${index}`,
     );
   });
@@ -197,7 +195,7 @@ it('should render active and disabled sidebar buttons', () => {
   const mainItems = container.querySelectorAll('.iui-top .iui-sidenav-button');
   expect(mainItems).toHaveLength(3);
 
-  expect(mainItems[0]).toHaveClass('iui-active');
+  expect(mainItems[0]).toHaveAttribute('data-iui-active', 'true');
   expect(mainItems[1]).toBeDisabled();
   expect(mainItems[2]).toHaveClass('iui-submenu-open');
 });

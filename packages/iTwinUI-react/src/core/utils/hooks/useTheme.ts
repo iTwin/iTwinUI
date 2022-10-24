@@ -3,15 +3,20 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import { ThemeContext } from '../../ThemeProvider/ThemeProvider';
+import { getDocument, getWindow } from '../functions';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import '@itwin/itwinui-css/css/global.css';
-import { getDocument, getWindow } from '../functions/dom';
-import { useMediaQuery } from './useMediaQuery';
+import '@itwin/itwinui-variables/index.css';
 
 export type ThemeOptions = {
   /**
    * Document to which the theme will be applied.
    * Can be specified to handle popup windows.
    * @default document
+   *
+   * @deprecated This prop will continue to work in `useTheme` but
+   * we recommend rendering `ThemeProvider` in the correct document instead.
    */
   ownerDocument?: Document;
   /**
@@ -23,90 +28,102 @@ export type ThemeOptions = {
 
 export type ThemeType = 'light' | 'dark' | 'os';
 
+export type UseThemeProps = {
+  /**
+   * Theme to be applied. If not set, light theme will be used.
+   */
+  theme?: ThemeType;
+  /**
+   * Options that can be specified to override default theming behavior.
+   */
+  themeOptions?: ThemeOptions;
+};
+
 /**
- * Hook that applies styling and theme to all components.
- * Defaults to light theme if none provided or set elsewhere.
+ * Hook that conditionally applies styling and theme to all components.
+ * Defaults to light theme if none provided.
+ *
+ * If ThemeProvider is used as an ancestor, this hook will not do anything.
+ *
  * @param theme Light, dark, or based on OS setting.
  * @param themeOptions Options that override default theming behavior.
  */
 export const useTheme = (
-  theme?: ThemeType,
-  themeOptions?: ThemeOptions,
-): void => {
+  theme?: UseThemeProps['theme'],
+  themeOptions?: UseThemeProps['themeOptions'],
+) => {
+  const themeContext = React.useContext(ThemeContext);
   const ownerDocument = themeOptions?.ownerDocument ?? getDocument();
 
-  const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
-  const highContrast = React.useMemo(
-    () => !!(themeOptions?.highContrast ?? prefersHighContrast),
-    [prefersHighContrast, themeOptions?.highContrast],
-  );
-
-  React.useLayoutEffect(() => {
-    if (!ownerDocument?.body.classList.contains('iui-body')) {
-      ownerDocument?.body.classList.add('iui-body');
-    }
-  }, [ownerDocument]);
-
-  React.useLayoutEffect(() => {
-    if (!ownerDocument) {
+  useIsomorphicLayoutEffect(() => {
+    // exit early if theme was already set by provider
+    if (themeContext || !ownerDocument) {
       return;
     }
 
-    const prefersDarkMediaQuery = getWindow()?.matchMedia?.(
-      '(prefers-color-scheme: dark)',
-    );
-
-    const addOSTheme = ({
-      matches: isDark,
-    }: MediaQueryList | MediaQueryListEvent) => {
-      if (isDark) {
-        applyTheme('dark', { ownerDocument, highContrast });
-      } else {
-        applyTheme('light', { ownerDocument, highContrast });
-      }
-    };
+    ownerDocument.body.classList.toggle('iui-root', true);
 
     switch (theme) {
       case 'light':
-        prefersDarkMediaQuery?.removeEventListener?.('change', addOSTheme);
-        applyTheme('light', { ownerDocument, highContrast });
-        break;
       case 'dark':
-        prefersDarkMediaQuery?.removeEventListener?.('change', addOSTheme);
-        applyTheme('dark', { ownerDocument, highContrast });
-        break;
-      case 'os':
-        if (prefersDarkMediaQuery != undefined) {
-          addOSTheme(prefersDarkMediaQuery);
-          prefersDarkMediaQuery.addEventListener?.('change', addOSTheme);
-        } else {
-          applyTheme('light', { ownerDocument, highContrast });
+      case 'os': {
+        return handleTheme(theme, ownerDocument, themeOptions?.highContrast);
+      }
+      default: {
+        // set light theme by default
+        if (ownerDocument.documentElement.dataset.iuiTheme == null) {
+          return handleTheme(
+            'light',
+            ownerDocument,
+            themeOptions?.highContrast,
+          );
         }
-        break;
-      default:
-        if (
-          ownerDocument.documentElement.className.indexOf('iui-theme') === -1
-        ) {
-          applyTheme('light', { ownerDocument, highContrast });
-        }
+        return;
+      }
     }
-
-    return () => {
-      prefersDarkMediaQuery?.removeEventListener?.('change', addOSTheme);
-    };
-  }, [highContrast, ownerDocument, theme]);
+  }, [theme, themeContext, themeOptions?.highContrast, ownerDocument]);
 };
 
-const applyTheme = (
-  theme: 'light' | 'dark',
-  { ownerDocument, highContrast }: Required<ThemeOptions>,
+/**
+ * Helper function to apply the specified theme, or detect the OS theme.
+ * Returns a cleanup function to remove the change handlers.
+ */
+const handleTheme = (
+  theme: ThemeType,
+  ownerDocument: Document,
+  highContrast?: boolean,
 ) => {
-  const classList = ownerDocument.documentElement.classList;
-  const currentTheme = Array.from(classList).find((cls) =>
-    cls.startsWith('iui-theme'),
+  const root = ownerDocument.documentElement;
+  const _window = ownerDocument.defaultView ?? getWindow();
+
+  const applyThemeAttributes = (isDark = false, isHC = false) => {
+    root.dataset.iuiTheme = isDark ? 'dark' : 'light';
+    root.dataset.iuiContrast = isHC ? 'high' : 'default';
+  };
+
+  const prefersDarkQuery = _window?.matchMedia?.(
+    '(prefers-color-scheme: dark)',
   );
-  if (currentTheme) {
-    classList.remove(currentTheme);
-  }
-  classList.add(`iui-theme-${theme}${highContrast ? '-hc' : ''}`);
+  const prefersHCQuery = _window?.matchMedia?.('(prefers-contrast: more)');
+
+  const changeHandler = () => {
+    const isDark =
+      theme === 'dark' || (theme === 'os' && prefersDarkQuery?.matches);
+    const isHC = highContrast ?? prefersHCQuery?.matches;
+
+    applyThemeAttributes(isDark, isHC);
+  };
+
+  // call handler once to set initial theme
+  changeHandler();
+
+  // add listeners in supported browsers
+  prefersDarkQuery?.addEventListener?.('change', changeHandler);
+  prefersHCQuery?.addEventListener?.('change', changeHandler);
+
+  // return cleanup function to remove event listeners (should be returned from useEffect)
+  return () => {
+    prefersDarkQuery?.removeEventListener?.('change', changeHandler);
+    prefersHCQuery?.removeEventListener?.('change', changeHandler);
+  };
 };

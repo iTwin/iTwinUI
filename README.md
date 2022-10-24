@@ -50,9 +50,7 @@ Yes, that's really all you need as you can see in this live interactive demo:
 
 ## Theming
 
-By default, all components use the light theme but we also provide support for switching to dark theme in two different ways:
-
-- Use `ThemeProvider` in your root component where you can pass one of the following values:
+By default, all components use the light theme, but we recommend wrapping your root element with `ThemeProvider`. You can pass one of the following values to its `theme` prop:
   - `light` (default)
   - `dark`
   - `os` (which respects the color scheme of the operating system)
@@ -62,28 +60,12 @@ import { ThemeProvider } from '@itwin/itwinui-react';
 
 const App = () => (
   <>
-    <ThemeProvider theme='dark' />
-    // Your code goes here.
+    <ThemeProvider theme='dark'>
+      {/* Your components go here. */}
+    </ThemeProvider>
   </>
 );
 ```
-
-- The `useTheme` hook also provides the same functionality as `ThemeProvider`.
-
-```jsx
-import { useTheme } from '@itwin/itwinui-react';
-
-const App = () => {
-  useTheme('dark');
-  return (
-    <>
-      // Your code goes here.
-    </>
-  );
-};
-```
-
-*Note: You only need to use one of these methods, and it only needs to be done once.*
 
 ---
 
