@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.48.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.48.0...v1.48.1) (2022-10-24)
+
+### Fixes
+
+* **Modal:** Apply z-index on dialog wrapper ([#892](https://www.github.com/iTwin/iTwinUI-react/issues/892)) ([0637b54](https://www.github.com/iTwin/iTwinUI-react/commit/0637b54769f14b48075460d94cf64937f90a9ee3))
+
 ## [1.48.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.47.1...v1.48.0) (2022-10-18)
 
 ### Fixes
