@@ -86,46 +86,34 @@ it('renders negative component', () => {
   ).toBeTruthy();
 });
 
-it('takes styles for input and label', () => {
-  const { container } = render(
-    <Radio
-      label='Some label'
-      style={{ color: 'blue' }}
-      checkmarkStyle={{ backgroundColor: 'red' }}
-    />,
-  );
+it.each(['label', 'input'] as const)(
+  'should isomorphically apply style on %s',
+  (el) => {
+    const { container } = render(
+      <Radio
+        label={el === 'label' ? 'Some label' : undefined}
+        style={{ color: 'blue' }}
+      />,
+    );
 
-  assertBaseElements(container);
+    assertBaseElements(container);
+    expect(container.querySelector(el)).toHaveStyle('color: blue;');
+  },
+);
+it.each(['label', 'input'] as const)(
+  'should isomorphically apply class on %s',
+  (el) => {
+    const { container } = render(
+      <Radio
+        label={el === 'label' ? 'Some label' : undefined}
+        className='customClass'
+      />,
+    );
 
-  screen.getByText('Some label');
-  expect(
-    (container.querySelector('.iui-radio-wrapper') as HTMLElement).style.color,
-  ).toBe('blue');
-  expect(
-    (container.querySelector('.iui-radio') as HTMLElement).style
-      .backgroundColor,
-  ).toBe('red');
-});
-
-it('takes class for input and label', () => {
-  const { container } = render(
-    <Radio
-      label='Some label'
-      className='labelClass'
-      checkmarkClassName='radioClass'
-    />,
-  );
-
-  assertBaseElements(container);
-
-  screen.getByText('Some label');
-  expect(
-    (container.querySelector('.iui-radio-wrapper') as HTMLElement).classList,
-  ).toContain('labelClass');
-  expect(
-    (container.querySelector('.iui-radio') as HTMLElement).classList,
-  ).toContain('radioClass');
-});
+    assertBaseElements(container);
+    expect(container.querySelector(el)).toHaveClass('customClass');
+  },
+);
 
 it('should set focus', () => {
   let element: HTMLInputElement | null = null;

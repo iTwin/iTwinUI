@@ -8,10 +8,6 @@ import { Radio, RadioProps } from '@itwin/itwinui-react';
 export default {
   title: 'Input/Radio',
   component: Radio,
-  argTypes: {
-    checkmarkClassName: { control: { disable: true } },
-    checkmarkStyle: { control: { disable: true } },
-  },
 } as Meta<RadioProps>;
 
 export const Basic: Story<RadioProps> = (args) => {

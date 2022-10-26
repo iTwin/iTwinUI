@@ -109,47 +109,34 @@ it('renders negative component', () => {
   ).toBeTruthy();
 });
 
-it('takes styles for input and label', () => {
-  const { container } = render(
-    <Checkbox
-      label='Some checkbox'
-      style={{ color: 'blue' }}
-      checkmarkStyle={{ backgroundColor: 'red' }}
-    />,
-  );
+it.each(['label', 'input'] as const)(
+  'should isomorphically apply style on %s',
+  (el) => {
+    const { container } = render(
+      <Checkbox
+        label={el === 'label' ? 'Some label' : undefined}
+        style={{ color: 'blue' }}
+      />,
+    );
 
-  assertBaseElements(container);
+    assertBaseElements(container);
+    expect(container.querySelector(el)).toHaveStyle('color: blue;');
+  },
+);
+it.each(['label', 'input'] as const)(
+  'should isomorphically apply class on %s',
+  (el) => {
+    const { container } = render(
+      <Checkbox
+        label={el === 'label' ? 'Some label' : undefined}
+        className='customClass'
+      />,
+    );
 
-  screen.getByText('Some checkbox');
-  expect(
-    (container.querySelector('.iui-checkbox-wrapper') as HTMLElement).style
-      .color,
-  ).toBe('blue');
-  expect(
-    (container.querySelector('.iui-checkbox') as HTMLElement).style
-      .backgroundColor,
-  ).toBe('red');
-});
-
-it('takes class for input and label', () => {
-  const { container } = render(
-    <Checkbox
-      label='Some checkbox'
-      className='labelClass'
-      checkmarkClassName='checkboxClass'
-    />,
-  );
-
-  assertBaseElements(container);
-
-  screen.getByText('Some checkbox');
-  expect(
-    (container.querySelector('.iui-checkbox-wrapper') as HTMLElement).classList,
-  ).toContain('labelClass');
-  expect(
-    (container.querySelector('.iui-checkbox') as HTMLElement).classList,
-  ).toContain('checkboxClass');
-});
+    assertBaseElements(container);
+    expect(container.querySelector(el)).toHaveClass('customClass');
+  },
+);
 
 it('should set focus', () => {
   let element: HTMLInputElement | null = null;

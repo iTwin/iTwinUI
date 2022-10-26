@@ -9,10 +9,6 @@ import { Meta, Story } from '@storybook/react';
 export default {
   title: 'Input/Checkbox',
   component: Checkbox,
-  argTypes: {
-    checkmarkClassName: { control: { disable: true } },
-    checkmarkStyle: { control: { disable: true } },
-  },
 } as Meta<CheckboxProps>;
 
 export const Basic: Story<CheckboxProps> = (args) => {
