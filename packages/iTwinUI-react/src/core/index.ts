@@ -98,13 +98,8 @@ export type {
   HeaderLogoProps,
 } from './Header';
 
-export { VerticalTabs, Tab, HorizontalTabs, HorizontalTab } from './Tabs';
-export type {
-  VerticalTabsProps,
-  TabProps,
-  HorizontalTabsProps,
-  HorizontalTabProps,
-} from './Tabs';
+export { VerticalTabs, Tab, HorizontalTabs } from './Tabs';
+export type { VerticalTabsProps, TabProps, HorizontalTabsProps } from './Tabs';
 
 export {
   InformationPanel,

@@ -31,11 +31,6 @@ export type TabProps = {
 } & React.HTMLAttributes<HTMLButtonElement>;
 
 /**
- * @deprecated Use `TabProps` instead.
- */
-export type HorizontalTabProps = TabProps;
-
-/**
  * Individual tab component to be used in the `labels` prop of `Tabs`.
  * @example
  * const tabs = [
@@ -70,10 +65,5 @@ export const Tab = (props: TabProps) => {
     </button>
   );
 };
-
-/**
- * @deprecated Use `Tab` instead.
- */
-export const HorizontalTab = Tab;
 
 export default TabProps;
