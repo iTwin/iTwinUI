@@ -19,27 +19,6 @@ it('renders correctly in its default state', () => {
   expect(container.querySelector('button > .iui-alert-button-icon')).toBeNull();
 });
 
-it('renders clickable text correctly', () => {
-  const onClick = jest.fn();
-  const { container, getByText } = render(
-    <Alert clickableText='I am a clickable text' onClick={onClick}>
-      This is an alert.
-    </Alert>,
-  );
-
-  expect(container.querySelector('.iui-alert-informational')).toBeTruthy();
-  expect(container.querySelector('.iui-alert-icon')).toBeTruthy();
-  const link = container.querySelector(
-    '.iui-alert-message > .iui-alert-link',
-  ) as HTMLElement;
-  expect(link).toBeTruthy();
-  expect(link.textContent).toBe('I am a clickable text');
-  link.click();
-  expect(onClick).toHaveBeenCalled();
-  expect(container.querySelector('button > .iui-alert-button-icon')).toBeNull();
-  getByText('This is an alert.');
-});
-
 it('renders clickable text with href correctly', () => {
   const mockHref = 'https://www.example.com/';
   const { container, getByText } = render(

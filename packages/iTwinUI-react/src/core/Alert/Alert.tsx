@@ -23,11 +23,6 @@ export type AlertProps = {
    */
   clickableTextProps?: React.ComponentPropsWithRef<'a'>;
   /**
-   * Action handler for the clickable text.
-   * @deprecated `clickableTextProps` should be used instead.
-   */
-  onClick?: () => void;
-  /**
    * Action handler for close.
    */
   onClose?: () => void;
@@ -49,7 +44,13 @@ export type AlertProps = {
  * <Alert type='positive'>This is a positive alert.</Alert>
  * <Alert type='warning'>This is a warning alert.</Alert>
  * <Alert type='negative'>This is a negative alert.</Alert>
- * <Alert type='positive' clickableText="I am a clickable text" onClick={()=>alert("Pressed")}>This is a positive alert with a clickable text</Alert>
+ * <Alert
+ *  type='positive'
+ *  clickableText="I am a clickable text"
+ *  clickableTextProps={{ href: 'https://www.example.com' }}
+ * >
+ *   This is a positive alert with a clickable text
+ * </Alert>
  */
 export const Alert = (props: AlertProps) => {
   const {
@@ -58,7 +59,6 @@ export const Alert = (props: AlertProps) => {
     type = 'informational',
     clickableText,
     clickableTextProps,
-    onClick,
     onClose,
     style,
     isSticky = false,
@@ -80,7 +80,6 @@ export const Alert = (props: AlertProps) => {
         {children}
         {clickableText && (
           <a
-            onClick={onClick}
             {...clickableTextProps}
             className={cx('iui-alert-link', clickableTextProps?.className)}
           >

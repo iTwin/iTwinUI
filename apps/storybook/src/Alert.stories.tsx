@@ -14,7 +14,6 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     id: { control: { disable: true } },
-    onClick: { control: { disable: true } },
     onClose: { control: { disable: true } },
     clickableText: { type: 'string' },
   },
