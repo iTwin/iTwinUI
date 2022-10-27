@@ -118,7 +118,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       @include iui-icon-style('l');
     }
 
-    &.iui-submenu-open .iui-button-icon {
+    &.iui-submenu-open .iui-button-icon svg {
       fill: var(--iui-color-foreground-primary);
     }
 
