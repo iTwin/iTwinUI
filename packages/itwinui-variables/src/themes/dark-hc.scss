@@ -14,15 +14,16 @@ $foreground-lightness-gap: 5%;
 // #region Background colors
 // Darkest @ top, lightest @ bottom
 $background-0: hsl($background-hue $background-saturation 0%);
-$background-1: hsl($background-hue $background-saturation calc($background-lightness-gap));
-$background-2: hsl($background-hue $background-saturation calc($background-lightness-gap * 2));
-$background-3: hsl($background-hue $background-saturation calc($background-lightness-gap * 3));
-$background-4: hsl($background-hue $background-saturation calc($background-lightness-gap * 4));
-$background-5: hsl($background-hue $background-saturation calc($background-lightness-gap * 5));
-$background-6: hsl($background-hue $background-saturation calc($background-lightness-gap * 6));
-$background-7: hsl($background-hue $background-saturation calc($background-lightness-gap * 7));
-$background-8: hsl($background-hue $background-saturation calc($background-lightness-gap * 8));
-$background-9: hsl($background-hue $background-saturation calc($background-lightness-gap * 9));
+$background-1: hsl($background-hue $background-saturation ($background-lightness-gap));
+$background-2: hsl($background-hue $background-saturation ($background-lightness-gap * 2));
+$background-3: hsl($background-hue $background-saturation ($background-lightness-gap * 3));
+$background-4: hsl($background-hue $background-saturation ($background-lightness-gap * 4));
+$background-5: hsl($background-hue $background-saturation ($background-lightness-gap * 5));
+$background-6: hsl($background-hue $background-saturation ($background-lightness-gap * 6));
+$background-7: hsl($background-hue $background-saturation ($background-lightness-gap * 6.5));
+$background-8: hsl($background-hue $background-saturation ($background-lightness-gap * 7));
+$background-9: hsl($background-hue $background-saturation ($background-lightness-gap * 8));
+$background-10: hsl($background-hue $background-saturation ($background-lightness-gap * 9));
 
 $background-primary-0: hsl(204 10% 30%); // Selection
 $background-primary-1: hsl(204 100% 28%); // Button
@@ -44,15 +45,15 @@ $background-negative-2: hsl(0 91% 45%);
 // #region Foreground colors
 // Lightest @ top, darkest @ bottom
 $foreground-0: hsl(0 0% 100%);
-$foreground-1: hsl(0 0% calc(100% - $foreground-lightness-gap));
-$foreground-2: hsl(0 0% calc(100% - $foreground-lightness-gap * 2));
-$foreground-3: hsl(0 0% calc(100% - $foreground-lightness-gap * 3));
-$foreground-4: hsl(0 0% calc(100% - $foreground-lightness-gap * 4));
-$foreground-5: hsl(0 0% calc(100% - $foreground-lightness-gap * 5));
-$foreground-6: hsl(0 0% calc(100% - $foreground-lightness-gap * 6));
-$foreground-7: hsl(0 0% calc(100% - $foreground-lightness-gap * 7));
-$foreground-8: hsl(0 0% calc(100% - $foreground-lightness-gap * 8));
-$foreground-9: hsl(0 0% calc(100% - $foreground-lightness-gap * 9));
+$foreground-1: hsl(0 0% (100% - $foreground-lightness-gap));
+$foreground-2: hsl(0 0% (100% - $foreground-lightness-gap * 2));
+$foreground-3: hsl(0 0% (100% - $foreground-lightness-gap * 3));
+$foreground-4: hsl(0 0% (100% - $foreground-lightness-gap * 4));
+$foreground-5: hsl(0 0% (100% - $foreground-lightness-gap * 5));
+$foreground-6: hsl(0 0% (100% - $foreground-lightness-gap * 6));
+$foreground-7: hsl(0 0% (100% - $foreground-lightness-gap * 7));
+$foreground-8: hsl(0 0% (100% - $foreground-lightness-gap * 8));
+$foreground-9: hsl(0 0% (100% - $foreground-lightness-gap * 9));
 
 $foreground-primary-0: hsl(204, 56%, 95%); // Text hovered
 $foreground-primary-1: hsl(203, 56%, 85%); // Text
@@ -85,11 +86,10 @@ $opacities: (
     --iui-opacity-#{$level}: #{$value};
   }
 
-  // --iui-color-background-zebra: #{hex($background-1)};
-
   // #region Background variables
   --iui-color-background: #{hex($background-6)};
-  --iui-color-background-hover: #{hex($background-7)};
+  --iui-color-background-zebra: #{hex($background-7)};
+  --iui-color-background-hover: #{hex($background-8)};
   --iui-color-background-backdrop: #{hex($background-4)};
   --iui-color-background-backdrop-hover: #{hex($background-5)};
   --iui-color-background-disabled: #{hex($background-3)};
@@ -108,11 +108,11 @@ $opacities: (
   --iui-color-background-transparent-hover: rgba(255, 255, 255, 0.085);
   // #endregion
   // #region Border variables
-  --iui-color-border-subtle: #{hex($background-8)};
-  --iui-color-border: #{hex($background-9)};
+  --iui-color-border-subtle: #{hex($background-9)};
+  --iui-color-border: #{hex($background-10)};
   --iui-color-border-foreground: #{hex($foreground-8)};
   --iui-color-border-foreground-hover: #{hex($foreground-6)};
-  --iui-color-border-disabled: #{hex($background-8)};
+  --iui-color-border-disabled: #{hex($background-9)};
   --iui-color-border-primary: #{hex($foreground-primary-1)};
   --iui-color-border-positive: #{hex($foreground-positive-1)};
   --iui-color-border-warning: #{hex($foreground-warning-1)};
