@@ -20,23 +20,24 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
     </style>
 
     <style>
-      section .iui-location-marker-default,
-      section .iui-location-marker-data-rich {
-        margin-right: 4px;
+      section {
+        display: flex;
+        gap: 4px;
       }
     </style>
   </head>
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Location Marker</h1>
     <hr />
 
+    <h2 id="default">Default</h2>
     <section id="demo-default">
-      <h2 id="default">Default</h2>
 
       <div class="iui-location-marker-default">
         <svg
@@ -219,8 +220,8 @@
     <br />
     <br />
 
+    <h2 id="data-rich">Data-rich</h2>
     <section id="demo-data-rich">
-      <h2 id="data-rich">Data-rich</h2>
 
       <div class="iui-location-marker-data-rich">
         <div
@@ -265,9 +266,14 @@
         </div>
         <div class="iui-location-marker-data-rich-arrow"></div>
       </div>
-      <br /><br /><br />
-      <h3>Alarms</h3>
-      <br />
+    </section>
+
+    <br />
+    <br />
+
+    <h3>Alarms</h3>
+    <br />
+    <section>
       <div class="iui-location-marker-data-rich">
         <div class="iui-location-marker-data-rich-body">
           <!-- Use alarm-early-warning.svg from @itwin/itwinui-icons-color package. -->

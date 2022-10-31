@@ -1,0 +1,313 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../side-navigation/side-navigation';
+
+@mixin iui-header-brand {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+  background-color: transparent;
+  box-sizing: border-box;
+
+  @at-root {
+    a#{&}, // rendered as anchor element
+    button#{&}, // rendered as button element
+    &[role='button'] {
+      @include iui-focus;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color var(--iui-duration-1) ease-out;
+      @media (forced-colors: active) {
+        border: 1px solid CanvasText;
+        border-top-width: 0;
+        border-bottom-width: 0;
+      }
+
+      // #region resets for button
+      @include iui-reset;
+      font-family: inherit;
+      background-color: unset;
+      color: unset;
+      // #endregion
+
+      &:hover {
+        background-color: var(--iui-color-background-transparent-hover);
+      }
+    }
+  }
+
+  @at-root a#{&} {
+    text-decoration: none;
+  }
+}
+
+@mixin iui-header-brand-icon {
+  @include iui-icon-style('l');
+  margin: 0 $iui-side-navigation-icon-margins;
+  fill: var(--iui-color-foreground-2);
+  will-change: transform;
+  transform: var(--_iui-header-icon-scale);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform var(--iui-duration-1) ease-out;
+  }
+}
+
+@mixin iui-header-brand-label {
+  margin-right: var(--iui-size-s);
+  font-size: var(--_iui-header-brand-label-font-size);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: font-size var(--iui-duration-1) ease-out;
+  }
+  @media (max-width: 991px) {
+    display: none;
+  }
+}
+
+@mixin iui-header-breadcrumb-item {
+  max-width: 25vw;
+  transition: background-color var(--iui-duration-1) ease-out;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  color: var(--iui-color-foreground-2);
+  box-sizing: border-box;
+  @media (forced-colors: active) {
+    color: LinkText;
+    border: none;
+  }
+
+  // Hover state
+  &:hover {
+    background-color: var(--iui-color-background-transparent-hover);
+  }
+
+  // Active state
+  &[aria-current] {
+    background-color: var(--iui-color-background-subtle-primary);
+    box-shadow: 0 var(--iui-size-3xs) 0 0 currentColor;
+    color: var(--iui-color-foreground-primary);
+    @media (forced-colors: active) {
+      color: LinkText;
+      border-bottom: 3px solid LinkText;
+    }
+  }
+
+  // Disabled state
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    background-color: transparent;
+    color: var(--iui-color-foreground-5);
+
+    // Disabled active state
+    &[aria-current] {
+      box-shadow: none;
+      background-color: var(--iui-color-background-2);
+
+      @media (forced-colors: active) {
+        border-bottom: 3px solid GrayText;
+      }
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-wrapper {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+@mixin iui-header-breadcrumb-button {
+  @include iui-reset;
+  @include iui-focus;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  height: 100%;
+  border-radius: 0;
+  max-width: 25vw;
+  overflow: hidden;
+  padding-left: var(--iui-size-s);
+  padding-right: var(--iui-size-s);
+  box-sizing: border-box;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--iui-duration-1) ease-out;
+  color: inherit;
+  gap: var(--iui-size-s);
+  cursor: pointer;
+  @media (forced-colors: active) {
+    border: 1px solid;
+    border-top-width: 0;
+    border-bottom-width: 0;
+
+    &:not(:last-child) {
+      border-right-width: 0;
+    }
+  }
+
+  // Default & hover state
+  &,
+  &:hover {
+    background-color: transparent;
+  }
+
+  // Disabled state
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+}
+
+@mixin iui-header-breadcrumb-button-split {
+  padding: 0 var(--iui-size-xs);
+  margin-left: calc(0px - var(--iui-size-xs));
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: hsl(var(--iui-color-foreground-1-hsl) / var(--iui-opacity-6));
+  }
+
+  @at-root [aria-current] &:hover {
+    background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-dropdown-icon {
+  @include iui-icon-style('m');
+  fill: currentColor;
+  flex-shrink: 0;
+  margin-right: calc(0px - var(--iui-size-2xs));
+
+  @at-root .iui-header-breadcrumb-button-split & {
+    margin-right: 0;
+  }
+
+  @at-root {
+    :disabled &,
+    [aria-disabled='true'] & {
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: var(--iui-font-size-1);
+  text-align: left;
+  overflow: hidden;
+  transition: color var(--iui-duration-1) ease-out;
+
+  &-label,
+  &-sublabel {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &-sublabel {
+    font-size: var(--iui-font-size-0);
+    opacity: var(--iui-opacity-3);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: visibility 0s linear 0s, width var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out,
+        opacity var(--iui-duration-1) ease-out;
+    }
+
+    @at-root {
+      .iui-active &,
+      [aria-current] & {
+        opacity: var(--iui-opacity-1);
+      }
+    }
+
+    @at-root [data-iui-size='slim'] & {
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+  }
+}
+
+@mixin iui-header-breadcrumb-button-icon {
+  @include iui-icon-style('l');
+  background-color: var(--iui-color-background-3);
+  border-radius: var(--iui-border-radius-1);
+  display: inline-flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: var(--iui-size-2xs);
+  fill: var(--iui-color-foreground-4);
+  will-change: transform;
+  transform: var(--_iui-header-icon-scale);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform var(--iui-duration-1) ease-out;
+  }
+  @media (forced-colors: active) {
+    fill: LinkText;
+  }
+
+  @at-root {
+    img#{&},
+    div#{&} {
+      padding: 0;
+      transition: filter var(--iui-duration-1) ease-out;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: filter var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
+      }
+    }
+
+    img#{&} {
+      object-fit: cover;
+    }
+
+    div#{&} {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .iui-active &,
+    [aria-current] & {
+      background-color: var(--iui-color-background-1);
+      fill: currentColor;
+    }
+
+    :disabled &,
+    [aria-disabled='true'] & {
+      background-color: var(--iui-color-background-2);
+      fill: var(--iui-color-foreground-5);
+
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
+    }
+
+    :disabled img#{&},
+    :disabled div#{&},
+    [aria-disabled='true'] img#{&},
+    [aria-disabled='true'] div#{&} {
+      filter: grayscale(1) opacity(0.7);
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

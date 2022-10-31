@@ -27,12 +27,13 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         width: auto;
         display: flex;
         flex-direction: column;
-        gap: 11px;
+        gap: 12px;
         padding: 2px;
       }
 
@@ -55,7 +56,7 @@
     </style>
   </head>
 
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Select</h1>
     <hr />
@@ -267,7 +268,8 @@
       <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button iui-small"
+          class="iui-select-button"
+          data-iui-size="small"
         >
           <span class="iui-content">Small</span>
         </div>
@@ -292,7 +294,8 @@
       <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button iui-large"
+          class="iui-select-button"
+          data-iui-size="large"
         >
           <span class="iui-content">Large</span>
         </div>
@@ -328,8 +331,8 @@
           aria-hidden="true"
         ></svg-caret-down-small>
       </div>
-      <button class="iui-button iui-default">
-        <span class="iui-button-label">Add</span>
+      <button class="iui-button">
+        <span>Add</span>
       </button>
     </section>
 
@@ -341,7 +344,8 @@
       <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button iui-small"
+          class="iui-select-button"
+          data-iui-size="small"
         >
           <span class="iui-content">
             <div class="iui-select-tag-container">
@@ -397,7 +401,8 @@
       <div class="iui-input-with-icon">
         <div
           tabindex="0"
-          class="iui-select-button iui-large"
+          class="iui-select-button"
+          data-iui-size="large"
         >
           <span class="iui-content">
             <div class="iui-select-tag-container">
@@ -424,11 +429,12 @@
 
       <div
         class="iui-input-with-icon"
-        style="width: 470px"
+        style="width: 480px"
       >
         <div
           tabindex="0"
-          class="iui-select-button iui-large"
+          class="iui-select-button"
+          data-iui-size="large"
         >
           <span class="iui-content">
             <div class="iui-select-tag-container">

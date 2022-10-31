@@ -1,17 +1,31 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../button/index';
-@import '../icon/index';
 @import '../surface/index';
+@import '../utils/index';
 
 @mixin iui-tile {
+  --_iui-tile-title-text-color: var(--iui-color-foreground-2);
+  --_iui-tile-body-text-color: var(--iui-color-foreground-4);
+
   @include iui-reset;
-  @include iui-surface;
+  @include iui-surface($border-radius: var(--iui-border-radius-1));
   display: inline-flex;
   flex-direction: column;
-  width: $iui-3xl * 3;
+  width: calc(var(--iui-size-3xl) * 3);
   backface-visibility: hidden;
+
+  &:where(:not(.iui-folder)) {
+    > :where(:first-child) {
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+
+    > :where(:last-child) {
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
+    }
+  }
 
   &:hover,
   &:focus-within {
@@ -21,36 +35,34 @@
     }
 
     .iui-tile-metadata:not(:last-child) {
-      width: calc(100% - #{$iui-xl});
+      width: calc(100% - #{var(--iui-size-xl)});
     }
   }
 
   &.iui-new {
+    --_iui-tile-status-icon-fill: var(--iui-color-foreground-positive);
+
     .iui-tile-name,
     .iui-tile-description {
-      font-weight: $iui-font-weight-semibold;
+      font-weight: var(--iui-font-weight-semibold);
     }
   }
 
   &.iui-selected {
-    @include iui-focus($offset: 0, $thickness: $iui-xs);
-    @include themed() {
-      outline: solid 2px t(iui-color-foreground-primary);
-      background: linear-gradient(
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-      ),
-        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-    }
+    @include iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
+    --_iui-tile-status-icon-fill: var(--iui-color-foreground-primary);
+
+    outline: solid 2px var(--iui-color-foreground-primary);
+    background-color: var(--iui-color-background-subtle-primary);
   }
 
   &.iui-actionable {
-    @include iui-focus($offset: $iui-xxs, $thickness: $iui-xxs);
+    @include iui-focus($offset: var(--iui-size-3xs), $thickness: var(--iui-size-3xs));
     cursor: pointer;
-    transition: box-shadow $iui-speed-fast ease-in-out;
+    transition: box-shadow var(--iui-duration-1) ease-in-out;
 
     &:hover {
-      box-shadow: $iui-elevation-8;
+      box-shadow: var(--iui-shadow-3);
     }
 
     &:hover,
@@ -67,13 +79,21 @@
     flex-direction: row;
     flex-wrap: nowrap;
 
+    > :where(:first-child) {
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+    }
+
+    > :where(:last-child) {
+      border-top-right-radius: inherit;
+      border-bottom-right-radius: inherit;
+    }
+
     .iui-tile-thumbnail {
-      height: $iui-baseline * 10;
+      height: calc(var(--iui-size-s) * 10);
       flex: 1;
       border-bottom: none;
-      @include themed() {
-        border-right: 1px solid t(iui-color-background-border);
-      }
+      border-right: 1px solid var(--iui-color-background-border);
     }
 
     .iui-tile-content {
@@ -82,24 +102,16 @@
 
     .iui-tile-description {
       height: 100%;
-      max-height: $iui-baseline * 4;
+      max-height: calc(var(--iui-size-s) * 4);
       margin-bottom: 0;
       -webkit-line-clamp: 2;
     }
   }
 
   //#region Statuses
-  &.iui-progress {
-    cursor: progress;
-    font-style: italic;
-  }
-
+  &.iui-loading,
   &[aria-disabled='true'] {
-    cursor: not-allowed;
-
-    .iui-tile-name-label {
-      color: var(--iui-text-color-muted);
-    }
+    --_iui-tile-title-text-color: var(--iui-color-foreground-4);
 
     .iui-thumbnail-icon,
     .iui-tile-thumbnail-picture {
@@ -110,16 +122,21 @@
     &:focus-within .iui-tile-thumbnail-picture {
       transform: none;
     }
+  }
 
-    .iui-tile-more-options {
-      display: none;
-    }
+  &.iui-loading {
+    cursor: progress;
+    font-style: italic;
+  }
+
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
   }
   //#endregion Statuses
 }
 
 @mixin iui-tile-content {
-  padding: $iui-baseline $iui-sm;
+  padding: var(--iui-size-s) var(--iui-size-s);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -130,18 +147,16 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    font-size: $iui-font-size-leading;
+    font-size: var(--iui-font-size-2);
     user-select: all;
-    margin-bottom: $iui-baseline * 0.5;
-    @include themed() {
-      color: t(iui-text-color);
-    }
+    margin-bottom: calc(var(--iui-size-s) * 0.5);
+    color: var(--_iui-tile-title-text-color);
   }
 
   .iui-tile-status-icon {
-    @include iui-icons-default;
-    margin-right: $iui-s;
-    flex-shrink: 0;
+    @include iui-icon-style('m');
+    margin-right: var(--iui-size-xs);
+    fill: var(--_iui-tile-status-icon-fill);
   }
 
   .iui-tile-name-label {
@@ -151,35 +166,31 @@
   }
 
   .iui-tile-description {
-    margin-bottom: $iui-baseline;
-    font-size: $iui-font-size;
+    margin-bottom: var(--iui-size-s);
+    font-size: var(--iui-font-size-1);
     height: 100%;
-    max-height: $iui-baseline * 6;
+    max-height: calc(var(--iui-size-s) * 6);
     @include iui-line-clamp(3);
-    @include themed() {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--_iui-tile-body-text-color);
   }
 
   .iui-tile-metadata {
-    font-size: $iui-font-size-small;
+    font-size: var(--iui-font-size-0);
     flex-shrink: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: $iui-line-height;
+    height: var(--iui-size-l);
     width: 100%;
     display: flex;
     align-items: center;
     margin-top: auto;
-    @include themed() {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--_iui-tile-body-text-color);
 
     > svg,
     .iui-tile-metadata-icon {
-      @include iui-icons-default;
-      margin-right: $iui-s;
-      flex-shrink: 0;
+      @include iui-icon-style('m');
+      @include iui-icon-color;
+      margin-right: var(--iui-size-xs);
     }
 
     > * {
@@ -191,21 +202,21 @@
 }
 
 @mixin iui-tile-thumbnail {
+  box-sizing: content-box;
   width: 100%;
-  height: $iui-baseline * 14;
+  height: calc(var(--iui-size-s) * 13);
   flex-shrink: 0;
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  @include themed() {
-    background-color: t(iui-color-background-1-overlay);
-    border-bottom: 1px solid t(iui-color-background-border);
-  }
+  background-color: var(--iui-color-background-1-hover);
+  border-bottom: 1px solid var(--iui-color-background-border);
 
   .iui-thumbnail-icon {
-    @include iui-icons-3xl;
+    @include iui-icon-style(3xl);
+    @include iui-icon-color;
   }
 }
 
@@ -216,7 +227,7 @@
   top: 0;
   left: 0;
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform $iui-speed ease;
+    transition: transform var(--iui-duration-2) ease;
   }
   @at-root {
     div#{&} {
@@ -226,82 +237,64 @@
   }
 
   ~ .iui-thumbnail-icon {
-    z-index: 1;
     cursor: pointer;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: fill $iui-speed-fast ease;
-    }
-    @include themed() {
-      fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-3));
-      filter: drop-shadow(0 2px 1px rgba(0, 1, 5, t(iui-opacity-5)));
-    }
+    transition: fill var(--iui-duration-1) ease;
+    fill: rgba(255, 255, 255, var(--iui-opacity-3));
+    filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));
 
     &:hover {
-      @include themed() {
-        fill: rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-2));
-      }
+      fill: rgba(255, 255, 255, var(--iui-opacity-2));
     }
   }
+}
 
-  ~ .iui-tile-thumbnail-type-indicator,
-  ~ .iui-tile-thumbnail-quick-action {
+/// @arg $variant Can be either: type-indicator, quick-action
+@mixin iui-tile-thumbnail-button($variant) {
+  @include iui-button-borderless;
+  @include iui-button-size(small, borderless);
+  position: absolute;
+  border-radius: 50%;
+  top: calc(var(--iui-size-s) * 0.5);
+
+  @if $variant == type-indicator {
+    left: var(--iui-size-xs);
+  }
+  @if $variant == quick-action {
+    right: var(--iui-size-xs);
+  }
+
+  &[data-iui-active='true'] {
+    --_iui-button-text-color: var(--iui-color-foreground-primary);
+    --_iui-button-background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
+  }
+
+  @at-root .iui-tile-thumbnail-picture ~ & {
     @include iui-blur($opacity: 5);
+    --_iui-button-text-color: var(--iui-color-foreground-accessory);
 
     > .iui-button-icon {
-      @include themed() {
-        fill: t(iui-color-foreground-accessory);
-        filter: drop-shadow(0 2px 1px rgba(0, 0, 0, t(iui-opacity-5)));
-      }
+      filter: drop-shadow(0 2px 1px rgba(0, 0, 0, var(--iui-opacity-5)));
     }
 
     &:hover,
-    &.iui-active:enabled,
-    &.iui-active:enabled:hover,
-    &.iui-active:active {
-      @include themed() {
-        background-color: rgba(0, 0, 0, t(iui-opacity-4));
-      }
-
-      .iui-button-icon {
-        @include themed() {
-          fill: t(iui-color-foreground-accessory);
-        }
-      }
+    &[data-iui-active='true']:enabled,
+    &[data-iui-active='true']:enabled:hover,
+    &[data-iui-active='true']:active {
+      background-color: rgba(0, 0, 0, var(--iui-opacity-4));
     }
   }
-}
-
-@mixin iui-tile-thumbnail-type-indicator {
-  @include iui-button-borderless;
-  @include iui-button-size(small, borderless);
-  position: absolute;
-  border-radius: 50%;
-  top: round($iui-baseline * 0.5);
-  left: $iui-s;
-}
-
-@mixin iui-tile-thumbnail-quick-action {
-  @include iui-button-borderless;
-  @include iui-button-size(small, borderless);
-  position: absolute;
-  border-radius: 50%;
-  top: round($iui-baseline * 0.5);
-  right: $iui-s;
 }
 
 @mixin iui-tile-thumbnail-badge {
   position: absolute;
-  bottom: round($iui-baseline * 0.5);
-  width: calc(100% - 2 * #{$iui-sm});
+  bottom: calc(var(--iui-size-s) * 0.5);
+  width: calc(100% - 2 * #{var(--iui-size-s)});
   height: auto;
-  right: $iui-sm;
+  right: var(--iui-size-s);
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-
-  > .iui-badge:not(:last-child) {
-    margin-right: $iui-xs;
-  }
+  gap: var(--iui-size-2xs);
 }
 
 @mixin iui-tile-buttons {
@@ -309,12 +302,13 @@
   flex-shrink: 0;
   user-select: none;
   white-space: nowrap;
+  overflow: hidden;
 
   > .iui-button {
-    font-size: $iui-font-size;
+    font-size: var(--iui-font-size-1);
     flex: 1;
     height: auto;
-    padding: $iui-baseline $iui-sm;
+    padding: var(--iui-size-s) var(--iui-size-s);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -325,24 +319,20 @@
 
     &,
     &:hover {
-      @include themed() {
-        border-top: 1px solid t(iui-color-background-border);
-        border-color: t(iui-color-background-border);
-      }
+      border-top: 1px solid var(--iui-color-background-border);
+      border-color: var(--iui-color-background-border);
     }
   }
 
   > button:not(:last-child) {
-    @include themed() {
-      border-right: 1px solid t(iui-color-background-border);
-    }
+    border-right: 1px solid var(--iui-color-background-border);
   }
 }
 
 @mixin iui-tile-more-options {
   position: absolute;
-  bottom: $iui-baseline * 0.5;
-  right: $iui-s;
+  bottom: calc(var(--iui-size-s) * 0.5);
+  right: var(--iui-size-xs);
 
   &:not(.iui-visible) {
     @include visually-hidden;
@@ -351,20 +341,14 @@
 
 @mixin iui-tile-status($status) {
   @include iui-text-selection($status);
+  --_iui-tile-status-icon-fill: var(--iui-color-foreground-#{$status});
+  --_iui-tile-title-text-color: var(--iui-color-foreground-#{$status});
 
   .iui-tile-thumbnail {
-    box-shadow: 0 $iui-xs 0 var(--iui-color-foreground-#{$status});
+    box-shadow: 0 var(--iui-size-2xs) 0 var(--iui-color-foreground-#{$status});
   }
 
   @at-root &.iui-folder .iui-tile-thumbnail {
-    box-shadow: $iui-xs 0 0 var(--iui-color-foreground-#{$status});
-  }
-
-  .iui-tile-name-label {
-    color: var(--iui-color-foreground-#{$status});
-  }
-
-  .iui-tile-status-icon {
-    fill: var(--iui-color-foreground-#{$status});
+    box-shadow: var(--iui-size-2xs) 0 0 var(--iui-color-foreground-#{$status});
   }
 }

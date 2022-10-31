@@ -28,6 +28,7 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section {
         height: 666px;
@@ -52,7 +53,7 @@
     </style>
   </head>
 
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Side navigation</h1>
 
@@ -67,7 +68,7 @@
       >
         <!-- Expand arrow -->
         <button
-          class="iui-button iui-default iui-expand iui-sidenav-button"
+          class="iui-button iui-sidenav-button iui-expand"
           role="button"
           aria-label="Expand menu"
           onclick="togglePanelExpansion(this)"
@@ -87,7 +88,9 @@
         >
           <div class="iui-top">
             <button
-              class="iui-button iui-default iui-large iui-active iui-sidenav-button"
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
+              data-iui-active="true"
               role="tab"
               aria-selected="true"
               aria-label="Home"
@@ -98,12 +101,13 @@
                 class="iui-button-icon"
                 aria-hidden="true"
               ></svg-home>
-              <span class="iui-button-label">Home</span>
+              <span>Home</span>
             </button>
             <span class="iui-tooltip">Home</span>
 
             <button
-              class="iui-button iui-default iui-large iui-sidenav-button"
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
               role="tab"
               aria-selected="false"
               aria-label="Documents"
@@ -114,12 +118,13 @@
                 class="iui-button-icon iui-notification-negative iui-urgent"
                 aria-hidden="true"
               ></svg-document>
-              <span class="iui-button-label">Documents</span>
+              <span>Documents</span>
             </button>
             <span class="iui-tooltip">Documents</span>
 
             <button
-              class="iui-button iui-default iui-large iui-sidenav-button"
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
               role="tab"
               aria-selected="false"
               aria-label="Map"
@@ -130,12 +135,13 @@
                 class="iui-button-icon iui-notification-positive"
                 aria-hidden="true"
               ></svg-map>
-              <span class="iui-button-label">Map</span>
+              <span>Map</span>
             </button>
             <span class="iui-tooltip">Map</span>
 
             <button
-              class="iui-button iui-default iui-large iui-sidenav-button"
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
               role="tab"
               aria-selected="false"
               aria-label="Archives"
@@ -147,12 +153,13 @@
                 class="iui-button-icon"
                 aria-hidden="true"
               ></svg-archive>
-              <span class="iui-button-label">Archives</span>
+              <span>Archives</span>
             </button>
             <span class="iui-tooltip">Archives</span>
 
             <button
-              class="iui-button iui-default iui-large iui-sidenav-button"
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
               role="tab"
               aria-selected="false"
               aria-label="Calendar"
@@ -164,14 +171,15 @@
                 class="iui-button-icon"
                 aria-hidden="true"
               ></svg-calendar>
-              <span class="iui-button-label">Calendar</span>
+              <span>Calendar</span>
             </button>
             <span class="iui-tooltip">Calendar</span>
           </div>
 
           <div class="iui-bottom">
             <button
-              class="iui-button iui-default iui-large iui-sidenav-button"
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
               role="tab"
               aria-selected="false"
               aria-label="Administration"
@@ -183,7 +191,7 @@
                 class="iui-button-icon"
                 aria-hidden="true"
               ></svg-setup>
-              <span class="iui-button-label">Administration</span>
+              <span>Administration</span>
             </button>
             <span
               class="iui-tooltip"
@@ -213,7 +221,9 @@
           >
             <div class="iui-top">
               <button
-                class="iui-button iui-default iui-large iui-active iui-sidenav-button"
+                class="iui-button iui-sidenav-button"
+                data-iui-size="large"
+                data-iui-active="true"
                 role="tab"
                 aria-selected="false"
                 aria-label="Home"
@@ -223,12 +233,13 @@
                   class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-home>
-                <span class="iui-button-label">Home</span>
+                <span>Home</span>
               </button>
               <span class="iui-tooltip">Home</span>
 
               <button
-                class="iui-button iui-default iui-large iui-submenu-open iui-sidenav-button"
+                class="iui-button iui-sidenav-button iui-submenu-open"
+                data-iui-size="large"
                 role="tab"
                 aria-selected="true"
                 aria-label="Documents"
@@ -238,12 +249,13 @@
                   class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-document>
-                <span class="iui-button-label">Documents</span>
+                <span>Documents</span>
               </button>
               <span class="iui-tooltip">Documents</span>
 
               <button
-                class="iui-button iui-default iui-large iui-sidenav-button"
+                class="iui-button iui-sidenav-button"
+                data-iui-size="large"
                 role="tab"
                 aria-selected="false"
                 aria-label="Map"
@@ -253,12 +265,13 @@
                   class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-map>
-                <span class="iui-button-label">Map</span>
+                <span>Map</span>
               </button>
               <span class="iui-tooltip">Map</span>
 
               <button
-                class="iui-button iui-default iui-large iui-sidenav-button"
+                class="iui-button iui-sidenav-button"
+                data-iui-size="large"
                 role="tab"
                 aria-selected="false"
                 aria-label="Archives"
@@ -269,12 +282,13 @@
                   class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-archive>
-                <span class="iui-button-label">Archives</span>
+                <span>Archives</span>
               </button>
               <span class="iui-tooltip">Archives</span>
 
               <button
-                class="iui-button iui-default iui-large iui-sidenav-button"
+                class="iui-button iui-sidenav-button"
+                data-iui-size="large"
                 role="tab"
                 aria-selected="false"
                 aria-label="Calendar"
@@ -284,14 +298,15 @@
                   class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-calendar>
-                <span class="iui-button-label">Calendar</span>
+                <span>Calendar</span>
               </button>
               <span class="iui-tooltip">Calendar</span>
             </div>
 
             <div class="iui-bottom">
               <button
-                class="iui-button iui-default iui-large iui-sidenav-button"
+                class="iui-button iui-sidenav-button"
+                data-iui-size="large"
                 role="tab"
                 aria-selected="false"
                 aria-label="Administration"
@@ -301,7 +316,7 @@
                   class="iui-button-icon"
                   aria-hidden="true"
                 ></svg-setup>
-                <span class="iui-button-label">Administration</span>
+                <span>Administration</span>
               </button>
               <span
                 class="iui-tooltip"
@@ -312,7 +327,7 @@
 
           <!-- Expand arrow -->
           <button
-            class="iui-button iui-default iui-expand iui-sidenav-button"
+            class="iui-button iui-sidenav-button iui-expand"
             role="button"
             aria-label="Expand menu"
             onclick="togglePanelExpansion(this)"
@@ -332,7 +347,10 @@
           <div class="iui-side-navigation-submenu-content">
             <div class="iui-side-navigation-submenu-header">
               <div class="iui-side-navigation-submenu-header-label">
-                <button class="iui-button iui-borderless">
+                <button
+                  class="iui-button"
+                  data-iui-variant="borderless"
+                >
                   <svg-chevron-left
                     class="iui-button-icon"
                     aria-hidden="true"
@@ -341,7 +359,10 @@
                 <span>Documents with a long label to test for truncation</span>
               </div>
               <div class="iui-side-navigation-submenu-header-actions">
-                <button class="iui-button iui-borderless">
+                <button
+                  class="iui-button"
+                  data-iui-variant="borderless"
+                >
                   <svg-settings
                     class="iui-button-icon"
                     aria-hidden="true"
@@ -465,9 +486,9 @@
     <script>
       function toggleActiveState(el) {
         el.parentElement.parentElement.querySelectorAll('.iui-sidenav-button').forEach(button => {
-          button.classList.remove('iui-active');
+          button.removeAttribute('data-iui-active');
         });
-        el.classList.add('iui-active');
+        el.setAttribute('data-iui-active', 'true');
       }
     </script>
 

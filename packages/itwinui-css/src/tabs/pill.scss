@@ -1,32 +1,31 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
-@import '../icon/index';
 @import './tabs';
 
 @mixin iui-tabs-pill {
   justify-content: space-evenly;
+  gap: var(--iui-size-3xs);
 
   > li {
     flex: 1 1 0;
-
-    &:not(:last-child) {
-      margin-right: $iui-xxs;
-    }
   }
 
-  &.iui-green .iui-tab:hover {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-positive-rgb), t(iui-opacity-6));
+  &.iui-green .iui-tab {
+    &:hover {
+      background-color: var(--iui-color-background-transparent-hover);
+    }
+
+    &.iui-active:hover {
+      background-color: var(--iui-color-background-subtle-positive);
     }
   }
 
   .iui-tab {
-    padding: $iui-xs;
+    padding: var(--iui-size-2xs);
     background-color: transparent;
     width: 100%;
     justify-content: center;
-    border-radius: $iui-border-radius;
+    border-radius: var(--iui-border-radius-1);
 
     &::after {
       bottom: 0;
@@ -34,15 +33,15 @@
     }
 
     &:hover {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
+      background-color: var(--iui-color-background-transparent-hover);
+    }
+
+    &.iui-active:hover {
+      background-color: var(--iui-color-background-subtle-primary);
     }
 
     &[disabled]:hover {
-      @include themed {
-        background-color: transparent;
-      }
+      background-color: transparent;
     }
   }
 }

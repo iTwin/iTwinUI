@@ -23,14 +23,11 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         width: auto;
       }
-
-      /* Gives left & right labels an equal width so the slider is centered. */
-      .iui-slider-min,
-      .iui-slider-max {width: 25px;}
 
       .iui-tooltip {
         display: none;
@@ -55,7 +52,7 @@
 
   </head>
 
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Slider</h1>
     <hr />

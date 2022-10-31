@@ -1,0 +1,281 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../mixins';
+
+/// Container for grouping inputs with a label, an icon and a status message.
+/// Supported modifiers: .iui-inline-label, .iui-inline-icon and .iui-with-message
+@mixin iui-input-container {
+  @include iui-reset;
+  display: grid;
+  grid-template:
+    'label label'
+    'inputs inputs' / auto 1fr;
+
+  &.iui-inline-icon {
+    > .iui-input {
+      padding-right: var(--iui-component-height);
+
+      &:last-child {
+        padding-right: var(--iui-size-s);
+      }
+    }
+  }
+
+  &.iui-with-message {
+    grid-template:
+      'label label'
+      'inputs inputs'
+      'icon message' / auto 1fr;
+
+    // add margin to the icon if it is below input
+    &:not(.iui-inline-icon) > .iui-input-icon {
+      margin-top: var(--iui-size-2xs);
+    }
+  }
+
+  .iui-input,
+  .iui-input-with-icon,
+  .iui-input-group {
+    grid-area: inputs;
+  }
+
+  .iui-input-group .iui-toggle-switch-wrapper {
+    padding: calc(var(--iui-size-s) * 0.5) 0;
+  }
+
+  // #region Cursors
+  @include iui-input-label-cursor;
+
+  &.iui-disabled {
+    label {
+      cursor: not-allowed;
+    }
+  }
+  // #endregion
+
+  // Appropriate spacing even if no text label is given
+  .iui-checkbox-wrapper,
+  .iui-radio-wrapper {
+    min-height: var(--iui-size-l);
+  }
+
+  &.iui-inline-label {
+    grid-template: 'label inputs icon' / auto 1fr auto;
+
+    &.iui-with-message {
+      grid-template:
+        'label inputs inputs'
+        '. icon message' / auto auto 1fr;
+    }
+
+    > .iui-input-group {
+      display: flex;
+      gap: var(--iui-size-m);
+
+      &:not(:last-child) {
+        margin-right: var(--iui-size-m);
+      }
+    }
+  }
+}
+
+/// Cursor styling for the label.
+@mixin iui-input-label-cursor {
+  cursor: default;
+
+  @at-root {
+    label#{&} {
+      cursor: pointer;
+
+      &.iui-disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+/// Text label for an input.
+/// Supports .iui-required modifier to show red asterisk.
+@mixin iui-input-label-styling {
+  font-weight: var(--iui-font-weight-semibold);
+  margin-bottom: var(--iui-size-2xs);
+
+  &.iui-required {
+    &::after {
+      content: '*';
+      margin-left: var(--iui-size-2xs);
+      color: var(--iui-color-foreground-negative);
+    }
+  }
+}
+
+/// Modifier on iui-input-label-styling to place it inline.
+@mixin iui-input-label-inline {
+  margin: 0 var(--iui-size-m) 0 0;
+
+  &.iui-required {
+    margin-right: calc(var(--iui-size-2xs) * 1.5 - 1px);
+  }
+}
+
+/// Label inside the input-container grid.
+@mixin iui-input-container-label {
+  @include iui-input-label-styling;
+  grid-area: label;
+  align-self: center;
+}
+
+/// Independent label outside the grid.
+/// Supports .iui-inline modifier to place it inline.
+@mixin iui-input-label {
+  @include iui-input-label-styling;
+  @include iui-input-label-cursor;
+  display: block;
+
+  &.iui-inline {
+    @include iui-input-label-inline;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/// Message shown below input
+@mixin iui-input-message {
+  font-size: var(--iui-font-size-0);
+  grid-area: message;
+  margin-top: var(--iui-size-2xs);
+  color: var(--iui-color-foreground-4);
+
+  a {
+    user-select: none;
+  }
+}
+
+/// Icon to be shown near a message.
+@mixin iui-input-icon {
+  @include iui-icon-style('m');
+  @include iui-icon-color;
+  grid-area: icon;
+  align-self: center;
+
+  &:not(:last-child) {
+    margin-right: var(--iui-size-2xs);
+  }
+}
+
+/// Modifier on iui-input-icon to place it at the end of input.
+@mixin iui-input-icon-inline {
+  grid-area: inputs;
+  justify-self: end;
+  margin: 0 calc(var(--iui-size-xs) + 1px) 0 0;
+  position: relative;
+
+  svg {
+    @include iui-icon-style('m');
+  }
+
+  &.iui-button {
+    height: 100%;
+    width: fit-content;
+    margin-right: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+
+  &.iui-actionable {
+    align-items: center;
+    height: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
+    margin-right: 1px;
+    padding-inline: calc(var(--iui-size-xs) + 1px);
+    cursor: pointer;
+    box-sizing: content-box;
+
+    @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
+
+    svg {
+      fill: var(--iui-color-foreground-2);
+      transition: transform var(--iui-duration-1) ease-out;
+    }
+
+    &.iui-open svg {
+      transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
+    }
+  }
+
+  &.iui-disabled {
+    cursor: not-allowed;
+
+    svg {
+      fill: var(--iui-color-foreground-5);
+    }
+  }
+}
+
+/// Mixin for applying status colors to input container.
+/// @arg status - must be one of: positive, negative, warning
+/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon
+/// @arg textSelector - selector to apply text color on. Defaults to .iui-message
+@mixin iui-input-status($status, $iconSelector: '.iui-input-icon', $textSelector: '.iui-message') {
+  @include iui-text-selection($status);
+
+  #{$iconSelector} {
+    fill: var(--iui-color-foreground-#{$status});
+  }
+
+  #{$textSelector} {
+    color: var(--iui-color-foreground-#{$status});
+
+    a {
+      text-decoration: underline;
+      color: var(--iui-color-foreground-#{$status});
+
+      &:hover {
+        text-decoration: none;
+        color: var(--iui-color-foreground-#{$status}-hover);
+      }
+    }
+  }
+
+  .iui-input {
+    // #region Bottom padding to accomodate for status stripe
+    padding-bottom: calc(var(--iui-size-2xs) - 1px);
+
+    &[data-iui-size='small'] {
+      padding-bottom: 0;
+    }
+
+    &[data-iui-size='large'] {
+      padding-bottom: calc(var(--iui-size-xs) - 1px);
+    }
+    // #endregion
+
+    border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});
+
+    &:focus {
+      border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});
+      outline: 2px solid var(--iui-color-foreground-#{$status});
+      outline-offset: -2px;
+    }
+  }
+
+  .iui-input-with-icon {
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-foreground-#{$status});
+    --_focus-color: var(--iui-color-foreground-#{$status});
+  }
+
+  .iui-select-button {
+    border-bottom: transparent;
+
+    &::after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: var(--iui-size-3xs);
+      background-color: var(--iui-color-foreground-#{$status});
+    }
+  }
+}

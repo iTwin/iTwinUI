@@ -1,0 +1,88 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../utils/index';
+
+@mixin iui-input {
+  --_iui-input-background-color: var(--iui-color-background-1);
+  --_iui-input-border-color: var(--iui-color-foreground-4);
+  --_iui-input-text-color: var(--iui-color-foreground-2);
+
+  @include iui-reset;
+  @include iui-focus($offset: -2px, $thickness: 2px);
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--iui-font-size-1);
+  font-weight: var(--iui-font-weight-normal);
+  line-height: var(--iui-size-l);
+  border-radius: var(--iui-border-radius-1);
+  appearance: none;
+  min-height: var(--_iui-input-min-height);
+  padding-block: var(--_iui-input-padding-block);
+  padding-inline: var(--iui-size-s);
+  color: var(--_iui-input-text-color);
+  background-color: var(--_iui-input-background-color);
+  border: 1px solid var(--_iui-input-border-color);
+  transition: border-color var(--iui-duration-1) ease-out;
+  @include iui-input-size;
+
+  &::placeholder {
+    --_iui-input-text-color: var(--iui-color-foreground-5);
+    user-select: none;
+    color: var(--_iui-input-text-color);
+  }
+
+  &:autofill {
+    --_iui-input-background-color: var(--iui-color-background-subtle-primary);
+    --_iui-input-border-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
+    --_iui-input-text-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
+  }
+
+  &:hover {
+    --_iui-input-border-color: var(--iui-color-foreground-2);
+  }
+
+  &[disabled] {
+    --_iui-input-background-color: var(--iui-color-background-disabled);
+    --_iui-input-border-color: var(--iui-color-background-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-background-disabled);
+    cursor: not-allowed;
+  }
+
+  @at-root :where(textarea#{&}) {
+    @include textarea;
+  }
+}
+
+@mixin iui-input-autofill {
+  border-color: var(--iui-color-foreground-primary);
+  background-color: var(--iui-color-background-subtle-primary);
+}
+
+/// Mixin for applying padding and font size to various input sizes.
+/// @arg size - must be one of: small, medium, large
+@mixin iui-input-size($size: medium) {
+  @if $size == small {
+    --_iui-input-padding-block: 0;
+    --_iui-input-min-height: var(--iui-component-height-small);
+  }
+
+  @if $size == medium {
+    --_iui-input-padding-block: var(--iui-size-2xs);
+    --_iui-input-min-height: var(--iui-component-height);
+  }
+
+  @if $size == large {
+    --_iui-input-padding-block: var(--iui-size-xs);
+    --_iui-input-min-height: var(--iui-component-height-large);
+    font-size: var(--iui-font-size-2);
+  }
+}
+
+@mixin textarea {
+  resize: vertical;
+
+  &[disabled],
+  &[readonly] {
+    resize: none;
+  }
+}

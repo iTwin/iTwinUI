@@ -1,9 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
-
 @mixin iui-text-muted {
-  @include themed {
-    color: t(iui-text-color-muted);
-  }
+  color: var(--iui-color-foreground-4);
 }

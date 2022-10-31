@@ -1,0 +1,8 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@mixin duration {
+  --iui-duration-0: 0s;
+  --iui-duration-1: 0.2s;
+  --iui-duration-2: 0.4s;
+  --iui-duration-3: 0.8s;
+}

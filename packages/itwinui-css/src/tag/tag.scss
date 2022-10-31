@@ -1,8 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
-@import '../text/mixins';
+@import '../utils/index';
 @import '../button/index';
+@import '../text/mixins';
 
 @mixin iui-tag-base {
   user-select: all;
@@ -14,36 +14,28 @@
   @include iui-tag-base;
 
   &:not(a) {
-    @include themed {
-      color: t(iui-text-color-muted);
-    }
+    color: var(--iui-color-foreground-4);
   }
 }
 
 @mixin iui-tag {
   @include iui-tag-base;
-  height: $iui-baseline * 3;
-  margin-top: $iui-component-offset;
-  margin-bottom: $iui-component-offset;
-  border-radius: $iui-border-radius-round;
-  box-sizing: border-box;
-  padding: 0 $iui-xxs;
+  height: calc(var(--iui-size-s) * 3);
+  margin-block: var(--iui-size-2xs);
+  border-radius: var(--iui-border-radius-round);
+  padding: 0 var(--iui-size-3xs);
   align-items: center;
-  transition: border-color $iui-speed-fast ease-out;
-  font-size: $iui-font-size;
+  transition: border-color var(--iui-duration-1) ease-out;
+  font-size: var(--iui-font-size-1);
   text-transform: none;
   cursor: default;
   -webkit-tap-highlight-color: transparent;
-  @include themed {
-    border: 1px solid rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-4));
-    background-color: t(iui-color-background-1);
-    color: t(iui-text-color);
-  }
+  border: 1px solid var(--iui-color-foreground-4);
+  background-color: var(--iui-color-background-1);
+  color: var(--iui-color-foreground-2);
 
   &:hover {
-    @include themed {
-      border-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-1));
-    }
+    border-color: var(--iui-color-foreground-1);
   }
 }
 
@@ -52,28 +44,26 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  margin: 0 $iui-xs 0 $iui-s;
+  margin: 0 var(--iui-size-2xs) 0 var(--iui-size-xs);
 
   &:only-child {
-    margin: 0 $iui-s;
+    margin: 0 var(--iui-size-xs);
   }
 }
 
 @mixin iui-tag-button {
-  border-radius: 50%;
+  border-radius: var(--iui-border-radius-round);
 }
 
 @mixin iui-tag-container {
-  @include themed {
-    color: t(iui-text-color-muted);
-  }
+  color: var(--iui-color-foreground-4);
 
   > a.iui-tag-basic {
-    margin: $iui-xxs;
+    margin: var(--iui-size-3xs);
   }
 
   > *:not(last-child) {
-    margin-right: $iui-xs;
+    margin-right: var(--iui-size-2xs);
   }
 
   > .iui-tag-basic:not(:last-child)::after {
@@ -90,10 +80,8 @@
   }
 
   &.iui-visible {
-    border-radius: $iui-border-radius;
-    padding: $iui-component-offset $iui-sm;
-    @include themed {
-      background-color: t(iui-color-background-3);
-    }
+    border-radius: var(--iui-border-radius-1);
+    padding: var(--iui-size-2xs) var(--iui-size-s);
+    background-color: var(--iui-color-background-3);
   }
 }

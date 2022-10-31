@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:map';
 @use '../utils/hex' as *;
+@use '../utils/get-hsl' as *;
 
 $base-colors: (
   // Background colors - default
@@ -54,7 +55,15 @@ $opacities: (
     --iui-opacity-#{$level}: #{$value};
   }
 
-  --iui-color-background-transparent-hover: #{rgba(#FFF, map.get($opacities, 6))};
+  --iui-color-background-transparent-hover: #{rgba(#fff, map.get($opacities, 6))};
   --iui-color-background-disabled: #{hex(map.get($base-colors, background-3))};
   --iui-color-background-border: #{hex(map.get($base-colors, background-5))};
+
+  // Only HSL channels, for customizing transparency
+  --iui-color-background-1-hsl: #{get-hsl(map.get($base-colors, background-1))};
+  --iui-color-foreground-1-hsl: #{get-hsl(map.get($base-colors, foreground-1))};
+  --iui-color-foreground-primary-hsl: #{get-hsl(map.get($base-colors, foreground-primary))};
+  --iui-color-foreground-positive-hsl: #{get-hsl(map.get($base-colors, foreground-positive))};
+  --iui-color-foreground-warning-hsl: #{get-hsl(map.get($base-colors, foreground-warning))};
+  --iui-color-foreground-negative-hsl: #{get-hsl(map.get($base-colors, foreground-negative))};
 }

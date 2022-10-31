@@ -1,8 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 
-@mixin iui-surface($background-color: var(--iui-color-background-1), $border-radius: 0, $elevation: $iui-elevation-2) {
+@mixin iui-surface(
+  $background-color: var(--iui-color-background-1),
+  $border-radius: 0,
+  $elevation: var(--iui-shadow-1)
+) {
   --iui-surface-background-color: #{$background-color};
   --iui-surface-border-radius: #{$border-radius};
   --iui-surface-elevation: #{$elevation};
@@ -10,8 +13,7 @@
   background-color: var(--iui-surface-background-color);
   border-radius: var(--iui-surface-border-radius);
   box-shadow: var(--iui-surface-elevation);
-  box-sizing: border-box;
-  color: var(--iui-text-color);
+  color: var(--iui-color-foreground-2);
   @media (forced-colors: active) {
     border: 1px solid transparent;
   }

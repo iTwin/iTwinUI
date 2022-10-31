@@ -4,67 +4,79 @@
 
 .iui-button {
   @include iui-button;
-  @include iui-button-size;
+  @include iui-button-default;
 
-  &.iui-active {
-    @include iui-button-active;
-  }
-
-  &.iui-default {
-    @include iui-button-default;
-  }
-
-  &.iui-high-visibility {
-    @include iui-button-high-visibility;
-  }
-
-  &.iui-cta {
-    @include iui-button-cta;
-  }
-
-  &.iui-idea {
-    @include iui-button-idea;
-  }
-
-  &.iui-borderless {
-    @include iui-button-borderless;
-  }
-
-  @include iui-button-size(medium);
-
-  &.iui-small {
+  &[data-iui-size='small'] {
     @include iui-button-size(small);
+  }
 
-    &.iui-borderless {
+  &[data-iui-size='large'] {
+    @include iui-button-size(large);
+  }
+
+  &[data-iui-variant='borderless'] {
+    @include iui-button-borderless;
+
+    &[data-iui-size='small'] {
       @include iui-button-size(small, borderless);
     }
-  }
 
-  &.iui-large {
-    @include iui-button-size(large);
-
-    &.iui-borderless {
+    &[data-iui-size='large'] {
       @include iui-button-size(large, borderless);
     }
   }
-}
 
-.iui-button-group {
-  @include iui-button-group;
+  &[data-iui-active='true'] {
+    @include iui-button-default-active;
 
-  &-vertical {
-    @include iui-button-group(vertical);
+    &[data-iui-variant='borderless'] {
+      @include iui-button-borderless-active;
+    }
+
+    @include iui-button-active-disabled;
   }
 
-  &-overflow-x {
-    @include iui-button-group-overflow-x;
+  &[data-iui-variant='high-visibility'] {
+    @include iui-button-variant(high-visibility);
   }
-}
 
-.iui-button-split-menu {
-  @include iui-button-split-menu;
+  &[data-iui-variant='cta'] {
+    @include iui-button-variant(cta);
+  }
+
+  &[data-iui-variant='idea'] {
+    @include iui-button-idea;
+  }
 }
 
 .iui-button-icon {
   @include iui-button-icon;
+}
+
+.iui-button-dropdown {
+  @include iui-button-dropdown;
+
+  &[data-iui-size='small'] {
+    @include iui-button-dropdown(small);
+  }
+
+  &[data-iui-size='large'] {
+    @include iui-button-dropdown(large);
+  }
+}
+
+.iui-button-split {
+  @include iui-button-split;
+}
+
+.iui-button-group {
+  @include iui-button-group;
+}
+
+.iui-button-group-vertical {
+  @include iui-button-group(vertical);
+}
+
+.iui-button-group-overflow-x {
+  @include iui-button-group-overflow-x;
 }

@@ -1,12 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
-@import '../icon/index';
+@import '../utils/index';
 
 $iui-dialog-width: 380px;
 
 @mixin iui-dialog-wrapper {
-  position: relative;
+  position: fixed;
   overflow: hidden;
   top: 0;
   left: 0;
@@ -16,21 +15,20 @@ $iui-dialog-width: 380px;
   transform: translateX(0); // creates containing block for position: fixed
   z-index: 999;
   isolation: isolate;
+
+  &[data-iui-relative='true'] {
+    position: absolute;
+  }
 }
 
 @mixin iui-dialog {
   z-index: 999;
   isolation: isolate;
-  border-radius: $iui-border-radius;
-  box-shadow: $iui-elevation-24;
-  box-sizing: border-box;
+  border-radius: var(--iui-border-radius-1);
+  box-shadow: var(--iui-shadow-5);
   position: fixed;
-  padding: $iui-baseline $iui-m;
-  box-sizing: border-box;
-  padding: $iui-baseline $iui-m;
-  overflow: hidden;
+  padding: var(--iui-size-s) var(--iui-size-m);
   pointer-events: auto;
-  background-color: #FFF; // IE fallback
   background-color: var(--iui-color-background-1);
   @media (forced-colors: active) {
     border: 1px solid;
@@ -41,11 +39,11 @@ $iui-dialog-width: 380px;
     opacity: 0;
   }
 
-  transition: visibility $iui-speed-instant linear, opacity $iui-speed-fast ease-out;
-  transition-delay: $iui-speed-fast, $iui-speed-instant;
+  transition: visibility var(--iui-duration-0) linear, opacity var(--iui-duration-1) ease-out;
+  transition-delay: var(--iui-duration-1), var(--iui-duration-0);
 
   &.iui-dialog-visible {
-    transition-delay: $iui-speed-instant; // remove delay for entry animation
+    transition-delay: var(--iui-duration-0); // remove delay for entry animation
   }
 }
 
@@ -65,29 +63,29 @@ $iui-dialog-width: 380px;
   &[data-iui-placement='top-left'] {
     top: 0;
     left: 0;
-    margin-left: $iui-baseline;
-    margin-top: $iui-m;
+    margin-left: var(--iui-size-s);
+    margin-top: var(--iui-size-m);
   }
 
   &[data-iui-placement='top-right'] {
     top: 0;
     right: 0;
-    margin-right: $iui-baseline;
-    margin-top: $iui-m;
+    margin-right: var(--iui-size-s);
+    margin-top: var(--iui-size-m);
   }
 
   &[data-iui-placement='bottom-left'] {
     bottom: 0;
     left: 0;
-    margin-left: $iui-baseline;
-    margin-bottom: $iui-m;
+    margin-left: var(--iui-size-s);
+    margin-bottom: var(--iui-size-m);
   }
 
   &[data-iui-placement='bottom-right'] {
     bottom: 0;
     right: 0;
-    margin-right: $iui-baseline;
-    margin-bottom: $iui-m;
+    margin-right: var(--iui-size-s);
+    margin-bottom: var(--iui-size-m);
   }
 }
 
@@ -107,20 +105,16 @@ $iui-dialog-width: 380px;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed, opacity $iui-speed-instant linear $iui-speed,
-      transform $iui-speed-fast ease-in;
+    transition: visibility var(--iui-duration-0) linear var(--iui-duration-2),
+      opacity var(--iui-duration-0) linear var(--iui-duration-2), transform var(--iui-duration-1) ease-in;
 
     &.iui-dialog-visible {
-      transition: transform $iui-speed ease-out;
+      transition: transform var(--iui-duration-2) ease-out;
     }
   }
 }
 
 @mixin iui-dialog-draggable {
-  max-width: 100%;
-  max-height: 100vh;
-  min-width: $iui-dialog-width;
-  min-height: 144px;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--iui-color-background-border);
@@ -152,15 +146,14 @@ $iui-dialog-width: 380px;
 @mixin iui-dialog-title-bar {
   display: flex;
   align-items: center;
-  margin-bottom: $iui-baseline;
-  box-sizing: border-box;
-  font-size: $iui-font-size-subheading;
+  margin-bottom: var(--iui-size-s);
+  font-size: var(--iui-font-size-3);
 }
 
 @mixin iui-dialog-title-bar-filled {
-  font-size: $iui-font-size-leading;
-  padding: round($iui-baseline * 0.5) $iui-m;
-  margin: -#{$iui-baseline} -#{$iui-m} $iui-baseline -#{$iui-m}; // negative margin to counteract dialog padding
+  font-size: var(--iui-font-size-2);
+  padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
+  margin: calc(0px - var(--iui-size-s)) calc(0px - var(--iui-size-m)) var(--iui-size-s) calc(0px - var(--iui-size-m)); // negative margin to counteract dialog padding
   cursor: grab;
   background-color: var(--iui-color-background-3);
   border-bottom: 1px solid var(--iui-color-background-border);
@@ -172,16 +165,16 @@ $iui-dialog-width: 380px;
 
 @mixin iui-dialog-content {
   flex-grow: 2;
-  margin: 0 -#{$iui-m};
-  padding: 0 $iui-m;
+  margin: 0 calc(0px - var(--iui-size-m));
+  padding: 0 var(--iui-size-m);
   overflow-y: auto;
   overflow-y: overlay;
 }
 
 @mixin iui-dialog-button-bar {
-  margin-top: $iui-baseline;
+  margin-top: var(--iui-size-s);
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: $iui-s;
+  gap: var(--iui-size-xs);
 }

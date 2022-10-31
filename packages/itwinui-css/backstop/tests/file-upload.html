@@ -17,7 +17,7 @@
 
     <script type="module">
       import "./assets/theme.js";
-      import "./assets/userIcon.js";
+      import "./assets/avatar.js";
       import "@itwin/itwinui-icons-elements/filter";
       import "@itwin/itwinui-icons-elements/filter-hollow";
       import "@itwin/itwinui-icons-elements/sort-down";
@@ -27,6 +27,7 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
     </style>
     <style>
@@ -64,7 +65,7 @@
       });
     </script>
   </head>
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>File upload</h1>
     <hr />
@@ -75,7 +76,7 @@
       <div class="iui-file-upload">
         <textarea
           placeholder="Type a new message…"
-          class="iui-textarea"
+          class="iui-input"
           rows="1"
         ></textarea>
 
@@ -91,7 +92,7 @@
       <div class="iui-file-upload iui-drag">
         <textarea
           placeholder="Type a new message…"
-          class="iui-textarea"
+          class="iui-input"
           rows="1"
         ></textarea>
 
@@ -111,13 +112,15 @@
         <div class="iui-table">
           <div class="iui-table-header-wrapper">
             <div class="iui-table-header">
-              <div class="iui-row">
+              <div class="iui-table-row">
 
-                <div class="iui-cell">
+                <div class="iui-table-cell">
                   Name
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-table-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -126,19 +129,21 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-down
-                        class="iui-icon iui-sort"
+                        class="iui-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-down>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell iui-sorted">
+                <div class="iui-table-cell iui-sorted">
                   Modified
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-table-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -147,19 +152,21 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-down
-                        class="iui-icon iui-sort"
+                        class="iui-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-down>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell">
+                <div class="iui-table-cell">
                   Modified by
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button iui-active"
+                      class="iui-button iui-table-filter-button iui-active"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Modify filter"
                       type="button"
                     >
@@ -168,19 +175,21 @@
                         aria-hidden="true"
                       ></svg-filter>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-down
-                        class="iui-icon iui-sort"
+                        class="iui-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-down>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell">
+                <div class="iui-table-cell">
                   Size
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-table-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -189,17 +198,18 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-down
-                        class="iui-icon iui-sort"
+                        class="iui-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-down>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell iui-slot">
+                <div class="iui-table-cell iui-slot">
                   <button
-                    class="iui-button iui-borderless"
+                    class="iui-button"
+                    data-iui-variant="borderless"
                     aria-label="Modify columns"
                     type="button"
                   >
@@ -216,33 +226,34 @@
 
           <div class="iui-table-body">
 
-            <div class="iui-row">
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-folder aria-hidden="true"></svg-folder>
                 </div>
                 lorem.mp3
               </div>
               <div
-                class="iui-cell"
+                class="iui-table-cell"
                 title="Jul 22, 2020 2:12pm"
               >
                 Yesterday
               </div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
-                  <user-icon
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
+                  <x-avatar
                     size="small"
                     type="2"
                   >
-                  </user-icon>
+                  </x-avatar>
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">7 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">7 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-table-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -254,33 +265,34 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
                 </div>
                 ipsum.pdf
               </div>
               <div
-                class="iui-cell"
+                class="iui-table-cell"
                 title="Jul 21, 2020 2:10pm"
               >
                 Tuesday
               </div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
-                  <user-icon
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
+                  <x-avatar
                     size="small"
                     type="2"
                   >
-                  </user-icon>
+                  </x-avatar>
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">18 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">18 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-table-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -292,33 +304,34 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
                 </div>
                 dolor.dgn
               </div>
               <div
-                class="iui-cell"
+                class="iui-table-cell"
                 title="Jul 20, 2020 2:10pm"
               >
                 Monday
               </div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
-                  <user-icon
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
+                  <x-avatar
                     size="small"
                     type="1"
                   >
-                  </user-icon>
+                  </x-avatar>
                 </div>
                 Robin Mercer
               </div>
-              <div class="iui-cell demo-right-align">1 GB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">1 GB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-table-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -349,13 +362,15 @@
         <div class="iui-table">
           <div class="iui-table-header-wrapper">
             <div class="iui-table-header">
-              <div class="iui-row">
+              <div class="iui-table-row">
 
-                <div class="iui-cell">
+                <div class="iui-table-cell">
                   Name
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-table-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -364,19 +379,21 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-down
-                        class="iui-icon iui-sort"
+                        class="iui-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-down>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell iui-sorted">
+                <div class="iui-table-cell iui-sorted">
                   Modified
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-table-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -385,19 +402,21 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-down
-                        class="iui-icon iui-sort"
+                        class="iui-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-down>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell">
+                <div class="iui-table-cell">
                   Modified by
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button iui-active"
+                      class="iui-button iui-table-filter-button iui-active"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Modify filter"
                       type="button"
                     >
@@ -406,19 +425,21 @@
                         aria-hidden="true"
                       ></svg-filter>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-down
-                        class="iui-icon iui-sort"
+                        class="iui-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-down>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell">
+                <div class="iui-table-cell">
                   Size
                   <div class="iui-table-header-actions-container">
                     <button
-                      class="iui-button iui-borderless iui-small iui-filter-button"
+                      class="iui-button iui-table-filter-button"
+                      data-iui-variant="borderless"
+                      data-iui-size="small"
                       aria-label="Apply filter"
                       type="button"
                     >
@@ -427,17 +448,18 @@
                         aria-hidden="true"
                       ></svg-filter-hollow>
                     </button>
-                    <div class="iui-cell-end-icon">
+                    <div class="iui-table-cell-end-icon">
                       <svg-sort-down
-                        class="iui-icon iui-sort"
+                        class="iui-icon iui-table-sort"
                         aria-hidden="true"
                       ></svg-sort-down>
                     </div>
                   </div>
                 </div>
-                <div class="iui-cell iui-slot">
+                <div class="iui-table-cell iui-slot">
                   <button
-                    class="iui-button iui-borderless"
+                    class="iui-button"
+                    data-iui-variant="borderless"
                     aria-label="Modify columns"
                     type="button"
                   >
@@ -454,33 +476,34 @@
 
           <div class="iui-table-body">
 
-            <div class="iui-row">
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-folder aria-hidden="true"></svg-folder>
                 </div>
                 lorem.mp3
               </div>
               <div
-                class="iui-cell"
+                class="iui-table-cell"
                 title="Jul 22, 2020 2:12pm"
               >
                 Yesterday
               </div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
-                  <user-icon
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
+                  <x-avatar
                     size="small"
                     type="2"
                   >
-                  </user-icon>
+                  </x-avatar>
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">7 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">7 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-table-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -492,33 +515,34 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-pdf aria-hidden="true"></svg-filetype-pdf>
                 </div>
                 ipsum.pdf
               </div>
               <div
-                class="iui-cell"
+                class="iui-table-cell"
                 title="Jul 21, 2020 2:10pm"
               >
                 Tuesday
               </div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
-                  <user-icon
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
+                  <x-avatar
                     size="small"
                     type="2"
                   >
-                  </user-icon>
+                  </x-avatar>
                 </div>
                 Terry Rivers
               </div>
-              <div class="iui-cell demo-right-align">18 MB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">18 MB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-table-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >
@@ -530,33 +554,34 @@
               </div>
             </div>
 
-            <div class="iui-row">
-              <div class="iui-cell iui-main-column">
-                <div class="iui-cell-start-icon">
+            <div class="iui-table-row">
+              <div class="iui-table-cell iui-main-column">
+                <div class="iui-table-cell-start-icon">
                   <svg-filetype-imodel aria-hidden="true"></svg-filetype-imodel>
                 </div>
                 dolor.dgn
               </div>
               <div
-                class="iui-cell"
+                class="iui-table-cell"
                 title="Jul 20, 2020 2:10pm"
               >
                 Monday
               </div>
-              <div class="iui-cell">
-                <div class="iui-cell-start-icon">
-                  <user-icon
+              <div class="iui-table-cell">
+                <div class="iui-table-cell-start-icon">
+                  <x-avatar
                     size="small"
                     type="1"
                   >
-                  </user-icon>
+                  </x-avatar>
                 </div>
                 Robin Mercer
               </div>
-              <div class="iui-cell demo-right-align">1 GB</div>
-              <div class="iui-cell iui-slot">
+              <div class="iui-table-cell demo-right-align">1 GB</div>
+              <div class="iui-table-cell iui-slot">
                 <button
-                  class="iui-button iui-borderless iui-more-options"
+                  class="iui-button iui-table-more-options"
+                  data-iui-variant="borderless"
                   aria-label="More options"
                   type="button"
                 >

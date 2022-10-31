@@ -1,13 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
-@import '../text/index';
-@import '../icon/index';
+@import '../utils/index';
 
 @mixin iui-file-upload {
   @include iui-reset;
-  font-size: $iui-font-size;
-  font-weight: $iui-font-weight-normal;
+  font-size: var(--iui-font-size-1);
+  font-weight: var(--iui-font-weight-normal);
   position: relative;
   display: flex;
 
@@ -22,13 +20,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
     user-select: none;
-    padding: round($iui-baseline * 0.5) $iui-sm;
-    @include themed {
-      background-color: t(iui-color-background-2);
-      border: 1px solid t(iui-color-background-2);
-    }
+    padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
+    background-color: var(--iui-color-background-2);
+    border: 1px solid var(--iui-color-background-2);
+    border-radius: var(--iui-border-radius-1);
 
     .iui-browse-input {
       width: 0.1px;
@@ -36,14 +32,14 @@
       opacity: 0;
       overflow: hidden;
       position: absolute;
-      z-index: -1;
     }
 
     > svg,
     .iui-template-icon {
-      @include iui-icons-3xl;
-      margin-top: $iui-baseline;
-      margin-bottom: $iui-baseline;
+      @include iui-icon-style(3xl);
+      @include iui-icon-color;
+      margin-top: var(--iui-size-s);
+      margin-bottom: var(--iui-size-s);
     }
 
     &:only-child {
@@ -52,39 +48,29 @@
       flex-direction: row;
 
       &:focus-within {
-        @include themed {
-          outline: 2px solid t(iui-color-foreground-primary);
-          outline-offset: -2px;
-        }
+        outline: 2px solid var(--iui-color-foreground-primary);
+        outline-offset: -2px;
       }
     }
 
     .iui-template-text {
-      margin-left: $iui-l;
+      margin-left: var(--iui-size-l);
 
       > label {
-        font-weight: $iui-font-weight-bold;
+        font-weight: var(--iui-font-weight-bold);
       }
     }
   }
 
   &.iui-drag > .iui-content {
-    @include themed {
-      background: linear-gradient(
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6)),
-        rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6))
-      ),
-        linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-      border-color: t(iui-color-foreground-primary);
-      color: t(iui-color-foreground-primary);
-    }
+    background-color: var(--iui-color-background-subtle-primary);
+    border-color: var(--iui-color-foreground-primary);
+    color: var(--iui-color-foreground-primary);
     visibility: visible;
 
     > svg,
     .iui-template-icon {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-      }
+      fill: var(--iui-color-foreground-primary);
     }
   }
 }

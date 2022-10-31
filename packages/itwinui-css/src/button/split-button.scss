@@ -1,0 +1,60 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+
+@mixin iui-button-split {
+  $iui-button-split-divider-color: rgba(255, 255, 255, var(--iui-opacity-4));
+
+  display: inline-flex;
+  align-items: center;
+  isolation: isolate;
+
+  :where(.iui-button:first-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &[data-iui-variant='high-visibility'],
+    &[data-iui-variant='cta'] {
+      border-right-color: $iui-button-split-divider-color;
+    }
+
+    &:hover {
+      z-index: 1;
+    }
+
+    &[disabled],
+    &:disabled,
+    &[aria-disabled='true'] {
+      border-right-color: var(--iui-color-background-4);
+      z-index: -1;
+    }
+  }
+
+  :where(.iui-button:last-child) {
+    --_iui-button-padding-inline: var(--iui-size-2xs);
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: -1px;
+    min-width: unset;
+
+    &[data-iui-variant='high-visibility'],
+    &[data-iui-variant='cta'] {
+      border-left-color: $iui-button-split-divider-color;
+    }
+
+    &[disabled],
+    &:disabled,
+    &[aria-disabled='true'] {
+      border-left-color: var(--iui-color-background-4);
+      z-index: -1;
+    }
+
+    &[data-iui-size='small'] {
+      --_iui-button-padding-inline: var(--iui-size-3xs);
+    }
+
+    &[data-iui-size='large'] {
+      --_iui-button-padding-inline: var(--iui-size-xs);
+    }
+  }
+}

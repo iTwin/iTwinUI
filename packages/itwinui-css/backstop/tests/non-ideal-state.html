@@ -21,29 +21,30 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       html,
       body {
         scroll-snap-type: y mandatory;
       }
 
-      .iui-non-ideal-state-scrolling {
+      .demo-non-ideal-state-scrolling {
         height: 100vh;
         scroll-snap-align: start;
         position: relative;
         border-bottom: solid 2px #000;
       }
 
-      .iui-non-ideal-state-scrolling:last-child {
+      .demo-non-ideal-state-scrolling:last-of-type {
         border-bottom: none;
       }
     </style>
   </head>
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button style="position:fixed"></theme-button>
     <div
       id="nis-401"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use 401.svg from @itwin/itwinui-illustrations package. -->
@@ -318,11 +319,14 @@
           Unable to fulfill request.
         </div>
         <div class="iui-non-ideal-state-actions">
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Visit iModel HUB</span>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Visit iModel HUB</span>
           </button>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Contact Us</span>
+          <button class="iui-button">
+            <span>Contact Us</span>
           </button>
         </div>
       </div>
@@ -330,7 +334,7 @@
 
     <div
       id="nis-403"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use 403.svg from @itwin/itwinui-illustrations package. -->
@@ -605,11 +609,14 @@
           Unable to fulfill request.
         </div>
         <div class="iui-non-ideal-state-actions">
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Visit iModel HUB</span>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Visit iModel HUB</span>
           </button>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Contact Us</span>
+          <button class="iui-button">
+            <span>Contact Us</span>
           </button>
         </div>
       </div>
@@ -617,7 +624,7 @@
 
     <div
       id="nis-404"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use 404.svg from @itwin/itwinui-illustrations package. -->
@@ -961,11 +968,14 @@
           Visit the iModel HUB or contact our support team.
         </div>
         <div class="iui-non-ideal-state-actions">
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Visit iModel HUB</span>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Visit iModel HUB</span>
           </button>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Contact Us</span>
+          <button class="iui-button">
+            <span>Contact Us</span>
           </button>
         </div>
       </div>
@@ -973,7 +983,7 @@
 
     <div
       id="nis-500"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use 500.svg from @itwin/itwinui-illustrations package. -->
@@ -1219,11 +1229,14 @@
           support team or visit the iModel HUB.
         </div>
         <div class="iui-non-ideal-state-actions">
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Visit iModel HUB</span>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Visit iModel HUB</span>
           </button>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Contact Us</span>
+          <button class="iui-button">
+            <span>Contact Us</span>
           </button>
         </div>
       </div>
@@ -1231,7 +1244,7 @@
 
     <div
       id="nis-502"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use 502.svg from @itwin/itwinui-illustrations package. -->
@@ -1540,11 +1553,14 @@
           seconds or visit iModel HUB.
         </div>
         <div class="iui-non-ideal-state-actions">
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Visit iModel HUB</span>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Visit iModel HUB</span>
           </button>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Contact Us</span>
+          <button class="iui-button">
+            <span>Contact Us</span>
           </button>
         </div>
       </div>
@@ -1552,7 +1568,7 @@
 
     <div
       id="nis-503"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use 503.svg from @itwin/itwinui-illustrations package. -->
@@ -1820,11 +1836,14 @@
           visit iModel HUB.
         </div>
         <div class="iui-non-ideal-state-actions">
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Visit iModel HUB</span>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Visit iModel HUB</span>
           </button>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Contact Us</span>
+          <button class="iui-button">
+            <span>Contact Us</span>
           </button>
         </div>
       </div>
@@ -1832,7 +1851,7 @@
 
     <div
       id="nis-error"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use error.svg from @itwin/itwinui-illustrations package. -->
@@ -2176,11 +2195,14 @@
           exist. Visit the iModel HUB or contact our support team.
         </div>
         <div class="iui-non-ideal-state-actions">
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Visit iModel HUB</span>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Visit iModel HUB</span>
           </button>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">Contact Us</span>
+          <button class="iui-button">
+            <span>Contact Us</span>
           </button>
         </div>
       </div>
@@ -2188,7 +2210,7 @@
 
     <div
       id="nis-redirect"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use redirect.svg from @itwin/itwinui-illustrations package. -->
@@ -2243,10 +2265,13 @@
           Select a destination below to be redirected.
         </div>
         <div class="iui-non-ideal-state-actions">
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Web Portal</span></button>
-          <button class="iui-button iui-default">
-            <span class="iui-button-label">ProjectWise Explorer</span>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Web Portal</span></button>
+          <button class="iui-button">
+            <span>ProjectWise Explorer</span>
           </button>
         </div>
 
@@ -2263,7 +2288,7 @@
 
     <div
       id="nis-multi-redirect"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use redirect.svg from @itwin/itwinui-illustrations package. -->
@@ -2329,8 +2354,11 @@
               ></svg-caret-down-small>
             </div>
           </label>
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Open</span>
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Open</span>
           </button>
         </div>
         <label class="iui-checkbox-wrapper">
@@ -2346,7 +2374,7 @@
 
     <div
       id="nis-timed-out"
-      class="iui-non-ideal-state-scrolling"
+      class="demo-non-ideal-state-scrolling"
     >
       <div class="iui-non-ideal-state">
         <!-- Use timed-out.svg from @itwin/itwinui-illustrations package. -->
@@ -2582,11 +2610,15 @@
           Your session has been terminated due to inactivity. Sign back in to resume.
         </div>
         <div class="iui-non-ideal-state-actions">
-          <button class="iui-button iui-high-visibility">
-            <span class="iui-button-label">Sign in</span></button>
-          <button class="iui-button iui-default">
+          <button
+            class="iui-button"
+            data-iui-variant="high-visibility"
+          >
+            <span>Sign in</span>
+          </button>
+          <button class="iui-button">
             <span class="
-            iui-button-label">Contact us</span>
+            iui-button-text">Contact us</span>
           </button>
         </div>
       </div>

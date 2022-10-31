@@ -24,10 +24,11 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
         margin-bottom: 22px;
-        padding: 11px;
+        padding: 12px;
       }
 
       .demo-carousel-width {
@@ -53,7 +54,7 @@
 
     </style>
   </head>
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Carousel</h1>
     <hr />
@@ -86,7 +87,7 @@
             <a
               href="#"
               class="iui-anchor"
-              style="padding: 11px 12px; background-color: var(--iui-color-background-1);"
+              style="padding: 12px; background-color: var(--iui-color-background-1);"
             >Focus will target the navigation before slide content.</a>
           </li>
 
@@ -184,7 +185,9 @@
         <nav class="iui-carousel-navigation">
           <div class="iui-carousel-navigation-left">
             <button
-              class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+              class="iui-button iui-carousel-navigation-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
               type="button"
               aria-controls="myCarousel-items"
               aria-label="Previous slide"
@@ -196,7 +199,9 @@
               ></svg-chevron-left>
             </button>
             <button
-              class="iui-button iui-borderless iui-small iui-carousel-navigation-animation-button"
+              class="iui-button iui-carousel-navigation-animation-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
               type="button"
               aria-label="Play animation"
               data-action="play"
@@ -329,7 +334,9 @@
 
           <div class="iui-carousel-navigation-right">
             <button
-              class="iui-button iui-borderless iui-small iui-carousel-navigation-button"
+              class="iui-button iui-carousel-navigation-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
               type="button"
               aria-controls="myCarousel-items"
               aria-label="Next slide"

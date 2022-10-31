@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 
 /// Mixin for button group or input+button combo group.
 /// @arg $orientation must be one of: horizontal, vertical
@@ -9,6 +8,7 @@
   display: inline-flex;
   align-items: center;
   isolation: isolate;
+  pointer-events: none;
 
   @if $orientation != 'horizontal' {
     flex-direction: column;
@@ -16,33 +16,45 @@
   }
 
   $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
-  $childBorderSelector: '.iui-input, .iui-button:where(:not(.iui-borderless))';
+  $childBorderSelector: '.iui-input, .iui-button:where(:not([data-iui-variant="borderless"]))';
   $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
   > * {
     display: flex;
+
+    > * {
+      pointer-events: all;
+    }
 
     #{$childZindexSelector} {
       position: relative;
 
       // Adds stripe to active button
       @if $orientation == 'horizontal' {
-        --_iui-button-active-stripe-inset: #{$iui-xxs} #{$iui-xxs} calc(100% - #{$iui-xs});
+        --_iui-button-active-stripe-inset: #{var(--iui-size-3xs)}
+          #{var(--iui-size-3xs)}
+          calc(100% - #{var(--iui-size-2xs)});
       } @else {
-        --_iui-button-active-stripe-inset: #{$iui-xxs} calc(100% - #{$iui-xs}) #{$iui-xxs} #{$iui-xxs};
+        --_iui-button-active-stripe-inset: #{var(--iui-size-3xs)}
+          calc(100% - #{var(--iui-size-2xs)})
+          #{var(--iui-size-3xs)}
+          #{var(--iui-size-3xs)};
       }
 
       &:hover {
         z-index: 1;
       }
 
-      &:focus,
-      &:focus-within {
-        z-index: 2;
-      }
-
       #{$disabledSelector} {
         z-index: -1;
+      }
+
+      &:focus,
+      &:focus-within {
+        &,
+        &:where([aria-disabled='true']) {
+          z-index: 2;
+        }
       }
     }
 
@@ -54,31 +66,31 @@
 
       &:hover,
       &:focus {
-        transition-duration: $iui-speed-fast; // re-enable enter animation
+        transition-duration: var(--iui-duration-1); // re-enable enter animation
       }
     }
 
     // Add rounded corners to first and last items
     &:first-child {
       #{$childBorderSelector} {
-        border-top-left-radius: $iui-border-radius;
+        border-top-left-radius: var(--iui-border-radius-1);
 
         @if $orientation == 'horizontal' {
-          border-bottom-left-radius: $iui-border-radius;
+          border-bottom-left-radius: var(--iui-border-radius-1);
         } @else {
-          border-top-right-radius: $iui-border-radius;
+          border-top-right-radius: var(--iui-border-radius-1);
         }
       }
     }
 
     &:last-child {
       #{$childBorderSelector} {
-        border-bottom-right-radius: $iui-border-radius;
+        border-bottom-right-radius: var(--iui-border-radius-1);
 
         @if $orientation == 'horizontal' {
-          border-top-right-radius: $iui-border-radius;
+          border-top-right-radius: var(--iui-border-radius-1);
         } @else {
-          border-bottom-left-radius: $iui-border-radius;
+          border-bottom-left-radius: var(--iui-border-radius-1);
         }
       }
     }
@@ -93,7 +105,7 @@
     }
 
     // Add slight border between disabled items
-    &:not(:first-child) :where(.iui-button.iui-default) {
+    &:not(:first-child) :not([data-iui-variant='borderless']) {
       #{$disabledSelector} {
         @if $orientation == 'horizontal' {
           border-left-color: var(--iui-color-background-4);

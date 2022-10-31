@@ -22,6 +22,7 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       #demo-default-vertical,
       #demo-borderless-vertical {
@@ -29,7 +30,7 @@
       }
     </style>
   </head>
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Tabs</h1>
     <hr />
@@ -106,7 +107,10 @@
             </button>
           </li>
           <li>
-            <button class="iui-button iui-borderless">
+            <button
+              class="iui-button"
+              data-iui-variant="borderless"
+            >
               <svg-add-circular
                 class="iui-button-icon"
                 aria-hidden="true"
@@ -219,7 +223,10 @@
             </button>
           </li>
           <li>
-            <button class="iui-button iui-borderless">
+            <button
+              class="iui-button"
+              data-iui-variant="borderless"
+            >
               <svg-add-circular
                 class="iui-button-icon"
                 aria-hidden="true"
@@ -337,7 +344,11 @@
             </button>
           </li>
           <li>
-            <button class="iui-button iui-borderless iui-large">
+            <button
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="large"
+            >
               <svg-add-circular
                 class="iui-button-icon"
                 aria-hidden="true"
@@ -453,7 +464,11 @@
             </button>
           </li>
           <li>
-            <button class="iui-button iui-borderless iui-large">
+            <button
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="large"
+            >
               <svg-add-circular
                 class="iui-button-icon"
                 aria-hidden="true"
@@ -570,7 +585,10 @@
             </button>
           </li>
           <li>
-            <button class="iui-button iui-borderless">
+            <button
+              class="iui-button"
+              data-iui-variant="borderless"
+            >
               <svg-add-circular
                 class="iui-button-icon"
                 aria-hidden="true"
@@ -683,7 +701,11 @@
             </button>
           </li>
           <li>
-            <button class="iui-button iui-borderless iui-large">
+            <button
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="large"
+            >
               <svg-add-circular
                 class="iui-button-icon"
                 aria-hidden="true"

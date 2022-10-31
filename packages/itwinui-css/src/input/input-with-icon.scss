@@ -1,0 +1,36 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../utils/index';
+
+// Mixin to have inputs combined with icon (eg. select)
+@mixin iui-input-with-icon {
+  display: grid;
+  align-items: center;
+  cursor: pointer;
+
+  > :first-child {
+    grid-area: 1 / -1;
+    padding-right: var(--iui-component-height); // Width of the end-icon button
+  }
+
+  &:focus-within {
+    > :first-child {
+      // --_focus-color can be used to control this from outside
+      outline: 2px solid var(--_focus-color, var(--iui-color-foreground-primary));
+      outline-offset: -2px;
+    }
+  }
+
+  &:hover {
+    > :first-child {
+      // --_iui-input-with-icon-hover-border-color can be used to control this from outside
+      border-color: var(--_iui-input-with-icon-hover-border-color, var(--iui-color-foreground-2));
+    }
+  }
+}
+
+@mixin iui-end-icon {
+  @include iui-input-icon-inline;
+  display: flex;
+  grid-area: 1 / -1;
+}

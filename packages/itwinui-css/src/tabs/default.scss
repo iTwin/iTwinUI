@@ -1,18 +1,14 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import './tabs';
 
 @mixin iui-tabs-default {
   @include iui-tab-not-animated;
 
   .iui-tab {
-    padding: $iui-xs $iui-m;
-    box-sizing: border-box;
-    @include themed {
-      background-color: t(iui-color-background-2);
-      border: 1px solid t(iui-color-background-5);
-    }
+    padding: var(--iui-size-2xs) var(--iui-size-m);
+    background-color: var(--iui-color-background-2);
+    border: 1px solid var(--iui-color-background-5);
 
     &::after {
       top: 0;
@@ -20,21 +16,15 @@
     }
 
     &:hover {
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
+      background-color: var(--iui-color-background-1);
     }
 
     &.iui-active {
-      @include themed {
-        background-color: t(iui-color-background-1);
-      }
+      background-color: var(--iui-color-background-1);
     }
 
     &[disabled] {
-      @include themed {
-        background-color: t(iui-color-background-3);
-      }
+      background-color: var(--iui-color-background-3);
     }
 
     &:focus {
@@ -85,7 +75,7 @@
 
   &.iui-large {
     .iui-tab {
-      min-height: $iui-component-height-large;
+      min-height: calc(var(--iui-size-m) * 3.5);
     }
 
     .iui-tab-description {
@@ -94,17 +84,13 @@
   }
 
   &.iui-green .iui-tab::after {
-    @include themed {
-      background-color: t(iui-color-foreground-positive);
-    }
+    background-color: var(--iui-color-foreground-positive);
   }
 
   ~ .iui-tabs-content {
-    padding-left: $iui-m;
-    padding-right: $iui-m;
-    @include themed {
-      background-color: t(iui-color-background-1);
-      border: 1px solid t(iui-color-background-5);
-    }
+    padding-left: var(--iui-size-m);
+    padding-right: var(--iui-size-m);
+    background-color: var(--iui-color-background-1);
+    border: 1px solid var(--iui-color-background-5);
   }
 }

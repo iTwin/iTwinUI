@@ -1,14 +1,16 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../anchor/index';
 @import '../button/borderless';
-@import '../icon/index';
+@import '../utils/index';
 
-@mixin iui-breadcrumbs {
+@mixin iui-breadcrumbs($breadcrumbs-height: var(--iui-component-height)) {
+  --_iui-breadcrumbs-height: #{$breadcrumbs-height};
+
   @include iui-reset;
   display: flex;
   align-items: center;
+  height: var(--_iui-breadcrumbs-height);
 }
 
 @mixin iui-breadcrumbs-list {
@@ -17,13 +19,13 @@
   align-items: center;
   list-style-type: none;
   user-select: none;
+  height: 100%;
 }
 
 @mixin iui-breadcrumbs-item {
   display: flex;
   align-items: center;
-  line-height: $iui-component-height;
-  height: $iui-component-height;
+  height: 100%;
 
   > * {
     max-width: 26ch;
@@ -32,20 +34,20 @@
 
 @mixin iui-breadcrumbs-item-overrides {
   > * {
-    padding: 0 $iui-s;
+    padding: 0 var(--iui-size-xs);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 
     &:not(.iui-button) {
-      @include themed {
-        color: t(iui-text-color);
-      }
+      color: var(--iui-color-foreground-2);
     }
   }
 
   > :any-link {
     @include iui-anchor;
+    box-sizing: border-box;
+    line-height: var(--iui-component-height);
 
     &:focus {
       outline-offset: -1px;
@@ -55,11 +57,10 @@
   .iui-button {
     &.iui-button {
       @include iui-button-borderless;
-      @include iui-focus;
       border: none;
     }
 
-    &-label {
+    > span {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -76,10 +77,11 @@
 }
 
 @mixin iui-breadcrumbs-text {
-  padding: 0 $iui-s;
+  padding: 0 var(--iui-size-xs);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  line-height: var(--iui-component-height);
 
   @at-root a#{&} {
     @include iui-anchor;
@@ -95,28 +97,20 @@
   @include iui-button-borderless;
   padding: 0;
   border: none;
-  @include themed {
-    color: t(iui-color-foreground-primary);
-  }
+  color: var(--iui-color-foreground-primary);
 
   &[aria-current] {
-    @include themed {
-      color: t(iui-text-color);
-    }
+    color: var(--iui-color-foreground-2);
   }
 }
 
 @mixin iui-breadcrumbs-separator {
   display: flex;
-  margin: 0 $iui-xxs;
+  margin: 0 var(--iui-size-3xs);
 
   svg {
-    width: $iui-icons-small;
-    height: $iui-icons-small;
-    display: flex; // needed for vertical alignment of webcomponents
-    @include themed {
-      fill: t(iui-icons-color);
-    }
+    @include iui-icon-style('s');
+    @include iui-icon-color;
     @media (forced-colors: active) {
       fill: CanvasText;
     }

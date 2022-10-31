@@ -1,0 +1,23 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-input {
+  @include iui-input;
+
+  &[data-iui-size='small'] {
+    @include iui-input-size(small);
+  }
+
+  &[data-iui-size='large'] {
+    @include iui-input-size(large);
+  }
+}
+
+.iui-input-with-icon.iui-input-with-icon {
+  @include iui-input-with-icon;
+}
+
+.iui-end-icon {
+  @include iui-end-icon;
+}

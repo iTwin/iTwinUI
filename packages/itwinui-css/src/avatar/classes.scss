@@ -1,0 +1,27 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-avatar {
+  @include iui-avatar;
+
+  &#{&} {
+    @include iui-avatar-size;
+  }
+
+  &.iui-small {
+    @include iui-avatar-size($size: l, $font-size: var(--iui-font-size-0));
+  }
+
+  &.iui-large {
+    @include iui-avatar-size($size: 2xl, $font-size: var(--iui-font-size-3));
+  }
+
+  &.iui-x-large {
+    @include iui-avatar-size($size: 3xl, $font-size: var(--iui-font-size-4));
+  }
+}
+
+.iui-avatar-list {
+  @include iui-avatar-list;
+}

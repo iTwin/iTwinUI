@@ -1,0 +1,133 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../menu/index';
+@import '../utils/index';
+@import '../tag/index';
+@import '../button/index';
+
+@mixin iui-select-button {
+  @include iui-focus($offset: -2px, $thickness: 2px);
+  width: 100%;
+  border-radius: var(--iui-border-radius-1);
+  min-height: var(--_iui-select-min-height);
+  padding-block: var(--_iui-select-padding-block);
+  padding-inline: var(--iui-size-s);
+  transition: border-color var(--iui-duration-1) ease-out;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  color: var(--iui-color-foreground-2);
+  background-color: var(--iui-color-background-1);
+  border: 1px solid var(--iui-color-foreground-4);
+  @include iui-select-size;
+
+  &.iui-disabled {
+    background-color: var(--iui-color-background-disabled);
+    border-color: var(--iui-color-background-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-background-disabled);
+    cursor: not-allowed;
+  }
+
+  .iui-icon {
+    @include iui-menu-icon;
+    fill: currentColor;
+  }
+
+  .iui-content {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-height: var(--iui-size-l);
+  }
+
+  &.iui-placeholder {
+    color: var(--iui-color-foreground-5);
+  }
+}
+
+/// Mixin for applying padding and font size to various select sizes.
+/// @arg size - must be one of: small, medium, large
+@mixin iui-select-size($size: medium) {
+  @if $size == small {
+    --_iui-select-padding-block: 0;
+    --_iui-select-min-height: var(--iui-component-height-small);
+  }
+
+  @if $size == medium {
+    --_iui-select-padding-block: var(--iui-size-2xs);
+    --_iui-select-min-height: var(--iui-component-height);
+  }
+
+  @if $size == large {
+    --_iui-select-padding-block: var(--iui-size-xs);
+    --_iui-select-min-height: var(--iui-component-height-large);
+    font-size: var(--iui-font-size-2);
+  }
+}
+
+@mixin iui-select-tag-container {
+  position: absolute;
+  // align wth Select's padding
+  inset: 0 calc(var(--iui-size-m) + var(--iui-size-l)) 0 var(--iui-size-s);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--iui-size-2xs);
+  overflow: hidden;
+
+  > * + * {
+    margin-left: var(--iui-size-2xs);
+    @supports (gap: var(--iui-size-2xs)) {
+      margin-left: 0;
+    }
+  }
+}
+
+@mixin iui-select-tag {
+  @include iui-tag;
+  // Override hardcoded Tag margin
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 80%;
+  max-height: calc(var(--iui-size-s) * 3);
+}
+
+@mixin iui-select-tag-label {
+  @include iui-tag-label;
+  display: inline-flex;
+  align-items: center;
+
+  @at-root .iui-select-button[data-iui-size='small'] & {
+    font-size: var(--iui-font-size-0);
+    line-height: calc(var(--iui-size-s) * 1.5);
+  }
+}
+
+@mixin iui-select-tag-button {
+  @include iui-button;
+  @include iui-button-borderless;
+  @include iui-tag-button;
+  padding: 0 var(--iui-size-2xs);
+  min-height: unset;
+  min-width: unset;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+
+  @at-root .iui-select-button[data-iui-size='small'] & {
+    font-size: var(--iui-font-size-0);
+    line-height: calc(var(--iui-size-s) * 1.5);
+  }
+}
+
+@mixin iui-select-tag-button-icon {
+  @include iui-button-icon;
+  flex-shrink: 0;
+
+  @at-root .iui-select-button[data-iui-size='small'] & {
+    @include iui-icon-style('s');
+  }
+}

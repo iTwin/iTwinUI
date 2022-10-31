@@ -1,72 +1,69 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../anchor/index';
-@import '../icon/index';
-@import '../text/index';
+@import '../utils/index';
+@import '../button/index';
 
 @mixin iui-alert {
   @include iui-reset;
-  border-radius: $iui-border-radius;
-  box-sizing: border-box;
+  border-radius: var(--iui-border-radius-1);
   display: flex;
   align-items: center;
-  @include themed {
-    border: 1px solid t(iui-color-background-5);
-    color: t(iui-text-color);
-    background-color: t(iui-color-background-1);
-  }
-
-  &-icon {
-    @include iui-icons-default;
-    flex-shrink: 0;
-    margin-left: $iui-m;
-  }
-
-  &-message {
-    margin: $iui-baseline $iui-m;
-  }
-
-  &-link {
-    @include iui-anchor-underline('on-initial');
-    border-radius: $iui-border-radius;
-    cursor: pointer;
-    margin-left: $iui-s;
-    user-select: none;
-    white-space: nowrap;
-  }
-
-  > .iui-button {
-    margin-left: auto;
-    margin-right: $iui-s;
+  border: 1px solid var(--iui-color-background-5);
+  color: var(--iui-color-foreground-2);
+  background-color: var(--iui-color-background-1);
+  @media (forced-colors: active) {
+    background-color: Canvas;
   }
 
   &.iui-sticky {
     border-radius: 0;
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
-    width: 100vw;
   }
+}
+
+@mixin iui-alert-icon {
+  @include iui-icon-style('m');
+  margin-left: var(--iui-size-m);
+}
+
+@mixin iui-alert-message {
+  margin: var(--iui-size-s) var(--iui-size-m);
+}
+
+@mixin iui-alert-link {
+  @include iui-anchor-underline('on-initial');
+  border-radius: var(--iui-border-radius-1);
+  cursor: pointer;
+  margin-left: var(--iui-size-xs);
+  user-select: none;
+  white-space: nowrap;
+}
+
+@mixin iui-alert-button {
+  @include iui-button;
+  @include iui-button-borderless;
+  @include iui-button-size(small, borderless);
+  margin-left: auto;
+  margin-right: var(--iui-size-xs);
+}
+
+@mixin iui-alert-button-icon {
+  @include iui-button-icon;
 }
 
 /// Modifier mixin to categorize the alert
 /// @arg $statusColor Can be one of: positive, negative, warning, primary
 /// @arg $rootSelector Selector of the root alert element. Defaults to .iui-alert
 @mixin iui-alert-category($statusColor, $rootSelector: '.iui-alert') {
-  @include themed {
-    background: linear-gradient(
-      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6)),
-      rgba(t(iui-color-foreground-#{$statusColor}-rgb), t(iui-opacity-6))
-    ),
-      linear-gradient(t(iui-color-background-1), t(iui-color-background-1));
-    border-color: t(iui-color-foreground-#{$statusColor});
-  }
+  @include iui-alert;
+  background-color: var(--iui-color-background-subtle-#{$statusColor});
+  border-color: var(--iui-color-foreground-#{$statusColor});
 
   #{$rootSelector}-icon {
-    @include themed {
-      fill: t(iui-icons-color-#{$statusColor});
-    }
+    fill: var(--iui-color-foreground-#{$statusColor});
   }
 
   #{$rootSelector}-message {
@@ -77,7 +74,7 @@
     @include iui-anchor-status($statusColor);
   }
 
-  > .iui-button {
+  #{$rootSelector}-button {
     outline-color: var(--iui-color-foreground-#{$statusColor});
   }
 }

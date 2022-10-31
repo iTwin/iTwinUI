@@ -1,6 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import './location-marker';
 
 @mixin iui-location-marker-data-rich {
@@ -8,20 +7,16 @@
   cursor: pointer;
 
   > .iui-location-marker-data-rich-body {
-    min-width: $iui-icons-xl;
-    border-radius: $iui-border-radius;
+    min-width: var(--iui-size-xl);
+    border-radius: var(--iui-border-radius-1);
     text-align: center;
-    font-size: $iui-font-size-leading;
-    padding: round($iui-baseline * 0.25) $iui-s;
-    filter: drop-shadow($iui-elevation-2);
-    box-sizing: border-box;
+    font-size: var(--iui-font-size-2);
+    padding: calc(var(--iui-size-s) * 0.25) var(--iui-size-xs);
+    filter: drop-shadow(var(--iui-shadow-1));
     position: relative;
-
-    @include themed {
-      border: solid 1px t(iui-color-foreground-accessory);
-      background-color: t(iui-color-foreground-accessory);
-      color: t(iui-color-foreground-accessory);
-    }
+    border: solid 1px var(--iui-color-foreground-accessory);
+    background-color: var(--iui-color-foreground-accessory);
+    color: var(--iui-color-foreground-accessory);
 
     &::before {
       content: '';
@@ -33,25 +28,19 @@
       left: 0;
       right: 0;
       margin: auto;
-      border-width: $iui-xs;
+      border-width: var(--iui-size-2xs);
       border-style: solid;
-
-      @include themed {
-        border-color: t(iui-color-foreground-accessory) transparent transparent transparent;
-      }
+      border-color: var(--iui-color-foreground-accessory) transparent transparent transparent;
     }
 
     > .iui-location-marker-data-rich-icon {
+      @include iui-icon-style('m');
       display: inline-block;
-      width: $iui-icons-default;
-      height: $iui-icons-default;
       font-size: inherit;
       vertical-align: -2px;
 
       &.iui-location-marker-data-rich-icon-monochrome {
-        @include themed {
-          fill: t(iui-color-foreground-accessory);
-        }
+        fill: var(--iui-color-foreground-accessory);
       }
     }
   }

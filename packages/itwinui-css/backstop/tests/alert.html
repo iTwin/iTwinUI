@@ -24,46 +24,28 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
-      body,
-      theme-button {
-        margin-top: 44px; /* Height of sticky alert*/
+
+      #stickyContainer {
+        height: 150px;
+        overflow-y: overlay;
+        text-align: justify;
+        border: solid 0.5px;
+      }
+
+      p {
+        padding: 8px;
       }
     </style>
   </head>
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Alert</h1>
     <hr />
 
     <div
-      class="iui-alert iui-informational iui-sticky"
-      id="demo-sticky"
-    >
-      <svg-info-circular
-        class="iui-alert-icon"
-        aria-hidden="true"
-      ></svg-info-circular>
-      <span class="iui-alert-message">This is a sticky alert.
-        <a
-          class="iui-alert-link"
-          href="#"
-        >Learn more</a>
-      </span>
-      <button
-        aria-label="Close"
-        type="button"
-        class="iui-button iui-borderless iui-small"
-      >
-        <svg-close-small
-          class="iui-button-icon"
-          aria-hidden="true"
-        ></svg-close-small>
-      </button>
-    </div>
-
-    <div
-      class="iui-alert iui-informational"
+      class="iui-alert-informational"
       id="demo-informational"
     >
       <svg-info-circular
@@ -79,10 +61,10 @@
       <button
         aria-label="Close"
         type="button"
-        class="iui-button iui-borderless iui-small"
+        class="iui-alert-button"
       >
         <svg-close-small
-          class="iui-button-icon"
+          class="iui-alert-button-icon"
           aria-hidden="true"
         ></svg-close-small>
       </button>
@@ -91,7 +73,7 @@
     <br />
 
     <div
-      class="iui-alert iui-positive"
+      class="iui-alert-positive"
       id="demo-positive"
     >
       <svg-status-success
@@ -107,10 +89,10 @@
       <button
         aria-label="Close"
         type="button"
-        class="iui-button iui-borderless iui-small"
+        class="iui-alert-button"
       >
         <svg-close-small
-          class="iui-button-icon"
+          class="iui-alert-button-icon"
           aria-hidden="true"
         ></svg-close-small>
       </button>
@@ -119,7 +101,7 @@
     <br />
 
     <div
-      class="iui-alert iui-warning"
+      class="iui-alert-warning"
       id="demo-warning"
     >
       <svg-status-warning
@@ -135,10 +117,10 @@
       <button
         aria-label="Close"
         type="button"
-        class="iui-button iui-borderless iui-small"
+        class="iui-alert-button"
       >
         <svg-close-small
-          class="iui-button-icon"
+          class="iui-alert-button-icon"
           aria-hidden="true"
         ></svg-close-small>
       </button>
@@ -147,7 +129,7 @@
     <br />
 
     <div
-      class="iui-alert iui-negative"
+      class="iui-alert-negative"
       id="demo-negative"
     >
       <svg-status-error
@@ -163,10 +145,10 @@
       <button
         aria-label="Close"
         type="button"
-        class="iui-button iui-borderless iui-small"
+        class="iui-alert-button"
       >
         <svg-close-small
-          class="iui-button-icon"
+          class="iui-alert-button-icon"
           aria-hidden="true"
         ></svg-close-small>
       </button>
@@ -175,7 +157,7 @@
     <br />
 
     <div
-      class="iui-alert iui-informational"
+      class="iui-alert-informational"
       id="demo-long-text"
     >
       <svg-info-circular
@@ -196,13 +178,75 @@
       <button
         aria-label="Close"
         type="button"
-        class="iui-button iui-borderless iui-small"
+        class="iui-alert-button"
       >
         <svg-close-small
-          class="iui-button-icon"
+          class="iui-alert-button-icon"
           aria-hidden="true"
         ></svg-close-small>
       </button>
+    </div>
+
+    <br />
+
+    <div id="stickyContainer">
+      <div
+        class="iui-alert-informational iui-sticky"
+        id="demo-sticky"
+      >
+        <svg-info-circular
+          class="iui-alert-icon"
+          aria-hidden="true"
+        ></svg-info-circular>
+        <span class="iui-alert-message">This is a sticky alert.
+          <a
+            class="iui-alert-link"
+            href="#"
+          >Learn more</a>
+        </span>
+        <button
+          aria-label="Close"
+          type="button"
+          class="iui-alert-button"
+        >
+          <svg-close-small
+            class="iui-alert-button-icon"
+            aria-hidden="true"
+          ></svg-close-small>
+        </button>
+      </div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum.
+      </p>
     </div>
   </body>
 </html>

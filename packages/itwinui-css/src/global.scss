@@ -1,0 +1,36 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './utils/index';
+
+:where(.iui-root) {
+  color: var(--iui-color-foreground-2);
+  font-size: var(--iui-font-size-1);
+  line-height: var(--iui-size-l);
+  font-family: var(--iui-font-sans);
+
+  // reset margin and apply background only for <body> element
+  @at-root :where(body#{&}) {
+    margin: 0;
+    background-color: var(--iui-color-background-2);
+  }
+
+  // border-box on all iui- elements and their descendants under iui-root, excluding any nested iui-root elements
+  :where([class*='iui-']) {
+    &:where(:not(.iui-root)),
+    * {
+      &,
+      &::before,
+      &::after {
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+// text selection and scrollbar styling on [data-iui-theme], iui-root and all elements under it
+:where([data-iui-theme]),
+:where(.iui-root),
+:where(.iui-root) * {
+  @include iui-text-selection;
+  @include iui-scrollbar;
+}

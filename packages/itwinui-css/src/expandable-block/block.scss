@@ -1,56 +1,41 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
-@import '../text/mixins';
-@import '../icon/index';
+@import '../utils/index';
 
 @mixin iui-expandable-block {
   @include iui-reset;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   width: 100%;
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
+  background-color: var(--iui-color-background-1);
+  border-radius: var(--iui-border-radius-1);
 
   > .iui-header {
     @include iui-focus;
     display: flex;
     align-items: center;
-    padding: $iui-baseline $iui-sm;
+    padding: var(--iui-size-s);
     cursor: pointer;
-    box-sizing: border-box;
     user-select: none;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: background-color $iui-speed-fast ease-out;
-    }
-    @include themed {
-      border: 1px solid t(iui-color-background-3);
-      border-bottom-color: t(iui-color-background-4);
-      background-color: t(iui-color-background-3);
-    }
+    transition: background-color var(--iui-duration-1) ease-out;
+    border-radius: inherit;
+    border: 1px solid var(--iui-color-background-3);
+    background-color: var(--iui-color-background-3);
 
     > .iui-icon,
     > .iui-status-icon {
-      display: inline-flex;
-      flex-shrink: 0;
-      width: $iui-icons-default;
-      height: $iui-icons-default;
+      @include iui-icon-style('m');
     }
 
     > .iui-icon {
       @media (prefers-reduced-motion: no-preference) {
-        transition: transform $iui-speed-fast ease-out;
+        transition: transform var(--iui-duration-1) ease-out;
       }
-      @include themed {
-        fill: t(iui-icons-color-actionable);
-      }
+      fill: var(--iui-color-foreground-2);
     }
 
     > .iui-status-icon {
-      margin-left: $iui-sm;
-      @include iui-icons-color;
+      margin-left: var(--iui-size-s);
     }
 
     .iui-expandable-block-label {
@@ -58,13 +43,9 @@
       flex-direction: column;
       flex: auto;
       min-width: 0;
-      margin-left: $iui-sm;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: color $iui-speed-fast ease;
-      }
-      @include themed {
-        color: t(iui-text-color);
-      }
+      margin-left: var(--iui-size-s);
+      transition: color var(--iui-duration-1) ease;
+      color: var(--iui-color-foreground-2);
     }
 
     .iui-title,
@@ -75,14 +56,12 @@
     }
 
     .iui-title {
-      font-size: $iui-font-size-leading;
+      font-size: var(--iui-font-size-2);
     }
 
     .iui-caption {
-      font-size: $iui-font-size-small;
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+      font-size: var(--iui-font-size-0);
+      color: var(--iui-color-foreground-4);
     }
 
     @include iui-focus;
@@ -90,59 +69,45 @@
 
   .iui-expandable-content {
     overflow: hidden;
-    box-sizing: border-box;
-
-    @include themed {
-      border-bottom: 1px solid t(iui-color-background-4);
-      border-right: 1px solid t(iui-color-background-4);
-      border-left: 1px solid t(iui-color-background-4);
-    }
+    border-bottom: 1px solid var(--iui-color-background-4);
+    border-right: 1px solid var(--iui-color-background-4);
+    border-left: 1px solid var(--iui-color-background-4);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
 
     @include iui-transition-group;
 
     // padding should be in a separate div because otherwise it messes up height transition
     > div {
-      padding: $iui-baseline $iui-sm;
+      padding: var(--iui-size-s) var(--iui-size-s);
     }
   }
 
   &:hover {
     > .iui-header {
-      @include themed {
-        background-color: t(iui-color-background-4);
-      }
+      background-color: var(--iui-color-background-4);
 
       > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable-hover);
-        }
+        fill: var(--iui-color-foreground-1);
       }
 
       .iui-caption,
       .iui-title {
-        @include themed {
-          color: t(iui-color-foreground-body);
-        }
-        @media (prefers-reduced-motion: no-preference) {
-          transition: color $iui-speed-fast ease;
-        }
+        color: var(--iui-color-foreground-1);
+        transition: color var(--iui-duration-1) ease;
       }
     }
   }
 
   &.iui-expanded {
     > .iui-header {
-      @include themed {
-        background-color: t(iui-color-background-3);
-        border-left: 1px solid t(iui-color-background-4);
-        border-top: 1px solid t(iui-color-background-4);
-        border-right: 1px solid t(iui-color-background-4);
+      background-color: var(--iui-color-background-3);
+      border-color: var(--iui-color-background-4);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
 
-        &:hover {
-          @include themed {
-            background-color: t(iui-color-background-4);
-          }
-        }
+      &:hover {
+        background-color: var(--iui-color-background-4);
       }
 
       > .iui-icon {
@@ -152,19 +117,18 @@
   }
 
   &.iui-small .iui-header {
-    padding: ($iui-baseline * 0.5) $iui-s;
+    padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-xs);
 
     > .iui-icon {
-      width: $iui-icons-small;
-      height: $iui-icons-small;
+      @include iui-icon-style('s');
     }
 
     > .iui-expandable-block-label {
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
 
     > .iui-status-icon {
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
   }
 
@@ -177,12 +141,10 @@
     }
 
     .iui-header {
-      border-radius: $iui-border-radius;
+      border-radius: var(--iui-border-radius-1);
 
       &:hover {
-        @include themed {
-          background-color: rgba(t(iui-color-foreground-body-rgb), t(iui-opacity-6));
-        }
+        background-color: var(--iui-color-background-transparent-hover);
       }
     }
 

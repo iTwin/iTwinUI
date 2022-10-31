@@ -17,7 +17,7 @@
 
     <script type="module">
       import "./assets/theme.js";
-      import "./assets/userIcon.js";
+      import "./assets/avatar.js";
       import "@itwin/itwinui-icons-elements/placeholder";
       import "@itwin/itwinui-icons-elements/star";
       import "@itwin/itwinui-icons-elements/star-hollow";
@@ -36,6 +36,7 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
     </style>
     <style>
@@ -53,7 +54,7 @@
         display: flex;
         flex-wrap: wrap;
         padding: 16px;
-        gap: 11px 16px;
+        gap: 12px 16px;
       }
     </style>
     <script>
@@ -96,9 +97,19 @@
         }
       );
     </script>
+    <script>
+      customElements.define(
+        'svg-filetype-video',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m11 3v-3h-9v16h12v-13z" fill="#e64821"/><path d="m7 7.2919 3 1.7081-3 1.756zm5 1.7081a4 4 0 1 1 -4-4 4 4 0 0 1 4 4zm-1 0a3 3 0 1 0 -3 3 3 3 0 0 0 3-3z" fill="#fff"/><path d="m11 0 3 3h-3z" fill="#a13217"/></svg>`;
+          }
+        }
+      );
+    </script>
   </head>
 
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Tile</h1>
     <hr />
@@ -118,7 +129,9 @@
           <button
             aria-label="Type indicator"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
+            class="iui-button iui-tile-thumbnail-type-indicator"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg-placeholder
               class="iui-button-icon"
@@ -128,7 +141,10 @@
           <button
             aria-label="Favorited"
             type="button"
-            class="iui-button iui-borderless iui-active iui-small iui-tile-thumbnail-quick-action"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
+            data-iui-active="true"
           >
             <svg-star
               class="iui-button-icon"
@@ -161,10 +177,10 @@
           ></svg-placeholder>
         </div>
 
-        <div class="iui-tile-content ">
+        <div class="iui-tile-content">
           <div class="iui-tile-name">
             <svg-new
-              class="iui-tile-status-icon iui-positive"
+              class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-new>
             <span class="iui-tile-name-label">Super long tile name that will truncate</span>
@@ -209,7 +225,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
               id="test-button"
             >
               <svg-more
@@ -221,8 +239,12 @@
         </div>
 
         <div class="iui-tile-buttons">
-          <button class="iui-button iui-default">Button 1</button><button class="iui-button iui-default">Button
-            2</button>
+          <button class="iui-button">
+            Button 1
+          </button>
+          <button class="iui-button">
+            Button 2
+          </button>
         </div>
       </div>
 
@@ -236,7 +258,9 @@
           <button
             aria-label="Type indicator"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
+            class="iui-button iui-tile-thumbnail-type-indicator"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg-placeholder
               class="iui-button-icon"
@@ -246,7 +270,10 @@
           <button
             aria-label="Favorited"
             type="button"
-            class="iui-button iui-borderless iui-active iui-small iui-tile-thumbnail-quick-action"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
+            data-iui-active="true"
           >
             <svg-star
               class="iui-button-icon"
@@ -282,7 +309,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -293,7 +322,9 @@
         </div>
 
         <div class="iui-tile-buttons">
-          <button class="iui-button iui-default">Only button</button>
+          <button class="iui-button">
+            Only button
+          </button>
         </div>
       </div>
     </section>
@@ -312,7 +343,9 @@
           <button
             aria-label="Info"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg-info
               class="iui-button-icon"
@@ -359,7 +392,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -381,7 +416,9 @@
           <button
             aria-label="Info"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg-info
               class="iui-button-icon"
@@ -424,7 +461,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -445,7 +484,9 @@
           <button
             aria-label="Info"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg-info
               class="iui-button-icon"
@@ -465,7 +506,7 @@
         <div class="iui-tile-content">
           <div class="iui-tile-name">
             <svg-checkmark
-              class="iui-tile-status-icon iui-informational"
+              class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-checkmark>
             <span class="iui-tile-name-label">Tile name</span>
@@ -492,7 +533,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -513,13 +556,13 @@
         tabindex="0"
       >
         <div class="iui-tile-thumbnail">
-          <user-icon
+          <x-avatar
             size="x-large"
             type="2"
             status="online"
             showPlaceholder="true"
           >
-          </user-icon>
+          </x-avatar>
         </div>
 
         <div class="iui-tile-content ">
@@ -532,7 +575,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -548,19 +593,19 @@
         tabindex="0"
       >
         <div class="iui-tile-thumbnail">
-          <user-icon
+          <x-avatar
             size="x-large"
             type="2"
             status="online"
             showPlaceholder="true"
           >
-          </user-icon>
+          </x-avatar>
         </div>
 
         <div class="iui-tile-content ">
           <div class="iui-tile-name">
             <svg-checkmark
-              class="iui-tile-status-icon iui-informational"
+              class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-checkmark>
             <span class="iui-tile-name-label">Terry Rivers</span>
@@ -571,7 +616,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -594,7 +641,9 @@
           <button
             aria-label="Assetwise"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
+            class="iui-button iui-tile-thumbnail-type-indicator"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg
               class="iui-button-icon"
@@ -633,7 +682,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -644,7 +695,12 @@
         </div>
 
         <div class="iui-tile-buttons">
-          <button class="iui-button iui-default">Manage</button><button class="iui-button iui-default">Projects</button>
+          <button class="iui-button">
+            Manage
+          </button>
+          <button class="iui-button">
+            Projects
+          </button>
         </div>
       </div>
 
@@ -655,7 +711,9 @@
           <button
             aria-label="Assetwise"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-type-indicator"
+            class="iui-button iui-tile-thumbnail-type-indicator"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg
               class="iui-button-icon"
@@ -694,7 +752,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -704,7 +764,12 @@
           </div>
         </div>
         <div class="iui-tile-buttons">
-          <button class="iui-button iui-default">Manage</button><button class="iui-button iui-default">Projects</button>
+          <button class="iui-button">
+            Manage
+          </button>
+          <button class="iui-button">
+            Projects
+          </button>
         </div>
       </div>
     </section>
@@ -722,7 +787,9 @@
           <button
             aria-label="Favorite"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg-star-hollow
               class="iui-button-icon"
@@ -764,7 +831,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -785,7 +854,9 @@
           <button
             aria-label="Favorite"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg-star-hollow
               class="iui-button-icon"
@@ -827,7 +898,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -849,7 +922,9 @@
           <button
             aria-label="Favorite"
             type="button"
-            class="iui-button iui-borderless iui-small iui-tile-thumbnail-quick-action"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
           >
             <svg-star-hollow
               class="iui-button-icon"
@@ -873,7 +948,7 @@
         <div class="iui-tile-content ">
           <div class="iui-tile-name">
             <svg-checkmark
-              class="iui-tile-status-icon iui-informational"
+              class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-checkmark>
             <span class="iui-tile-name-label">Video name</span>
@@ -895,7 +970,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -926,7 +1003,7 @@
         <div class="iui-tile-content ">
           <div class="iui-tile-name">
             <svg-new
-              class="iui-tile-status-icon iui-positive"
+              class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-new>
 
@@ -939,7 +1016,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -973,7 +1052,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1004,7 +1085,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1027,7 +1110,7 @@
         <div class="iui-tile-content ">
           <div class="iui-tile-name">
             <svg-checkmark
-              class="iui-tile-status-icon iui-informational"
+              class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-checkmark>
             <span class="iui-tile-name-label">Folder name</span>
@@ -1039,7 +1122,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1100,7 +1185,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1155,7 +1242,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1184,7 +1273,7 @@
               aria-hidden="true"
             ></svg-status-error>
             <span
-              class="iui-tile-name-label">MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.dgn</span>
+              class="iui-tile-name-label">MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg</span>
           </div>
           <div class="iui-tile-description">
             Bentley Systems, Incorporated, is an American-based software
@@ -1207,7 +1296,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1218,10 +1309,7 @@
         </div>
       </div>
 
-      <div
-        class="iui-tile iui-actionable iui-progress"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-loading">
         <div class="iui-tile-thumbnail">
           <svg-filetype-imodel
             class="iui-thumbnail-icon"
@@ -1252,22 +1340,35 @@
                 ></circle>
               </svg>
             </div>
-            <span class="iui-tile-name-label">Upload in progress&mldr;</span>
+            <span class="iui-tile-name-label">alpha.dgn</span>
+          </div>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
           </div>
         </div>
       </div>
 
       <div
         class="iui-tile"
-        tabindex="0"
         aria-disabled="true"
       >
         <div class="iui-tile-thumbnail">
           <div class="iui-tile-status-icon iui-table iui-thumbnail-icon">
-            <svg-filetype-imodel
+            <svg-filetype-video
               class="iui-thumbnail-icon"
               aria-hidden="true"
-            ></svg-filetype-imodel>
+            ></svg-filetype-video>
           </div>
         </div>
 
@@ -1296,7 +1397,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1309,7 +1412,6 @@
 
       <div
         class="iui-tile"
-        tabindex="0"
         aria-disabled="true"
       >
         <div class="iui-tile-thumbnail">
@@ -1341,7 +1443,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1383,7 +1487,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1424,7 +1530,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1461,7 +1569,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1472,10 +1582,7 @@
         </div>
       </div>
 
-      <div
-        class="iui-tile iui-folder iui-actionable iui-progress"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-folder iui-loading">
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1506,14 +1613,27 @@
                 ></circle>
               </svg>
             </div>
-            <span class="iui-tile-name-label">Upload in progress&mldr;</span>
+            <span class="iui-tile-name-label">Folder name</span>
+          </div>
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
           </div>
         </div>
       </div>
 
       <div
         class="iui-tile iui-folder"
-        tabindex="0"
         aria-disabled="true"
       >
         <div class="iui-tile-thumbnail">
@@ -1536,7 +1656,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"
@@ -1549,7 +1671,6 @@
 
       <div
         class="iui-tile iui-folder"
-        tabindex="0"
         aria-disabled="true"
       >
         <div class="iui-tile-thumbnail">
@@ -1567,7 +1688,9 @@
             <button
               aria-label="More options"
               type="button"
-              class="iui-button iui-borderless iui-small"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
             >
               <svg-more
                 class="iui-button-icon"

@@ -17,7 +17,7 @@
 
     <script type="module">
       import "./assets/theme.js";
-      import "./assets/userIcon.js";
+      import "./assets/avatar.js";
       import "@itwin/itwinui-icons-elements/imodel-hollow";
       import "@itwin/itwinui-icons-elements/caret-down-small";
       import "@itwin/itwinui-icons-elements/chevron-right";
@@ -26,44 +26,31 @@
       import "@itwin/itwinui-icons-elements/help-circular-hollow";
       import "@itwin/itwinui-icons-elements/more-vertical";
       import "@itwin/itwinui-icons-elements/placeholder";
+      import "@itwin/itwinui-icons-elements/search";
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
     </style>
     <style>
       div.demo-picture {
         background-image: url('./assets/image-test.jpg');
-        background-position: center;
-        background-size: cover;
-      }
-
-      .demo-side-navigation {
-        background-color: var(--iui-color-background-1);
-        width: 72px;
-        height: 55px;
-        border-right: 1px solid var(--iui-color-background-border);
-        border-bottom: 1px solid var(--iui-color-background-border);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .demo-side-navigation-icon {
-        width: 24px;
-        height: 24px;
-        fill: var(--iui-icons-color-actionable);
       }
 
       .demo-searchbar {
-        border-radius: 22px;
+        border-radius: 9999px;
         width: 20vw;
         background-color: var(--iui-color-background-2);
-        margin: 12px;
+      }
+
+      .demo-searchbar-button {
+        border-top-right-radius: 9999px !important;
+        border-bottom-right-radius: 9999px !important;
       }
 
       @media (max-width: 1024px) {
-        .demo-searchbar { display: none; }
+        .iui-page-header-center { display: none; }
       }
 
       section {
@@ -72,7 +59,7 @@
     </style>
   </head>
 
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Header</h1>
     <hr />
@@ -83,107 +70,130 @@
       <section id="demo-default">
 
         <header class="iui-page-header">
-          <div class="iui-left">
+          <div class="iui-page-header-left">
             <!-- Application Button -->
-            <div
-              class="iui-header-logo"
-              role="button"
+            <button
+              class="iui-header-brand"
               aria-label="App name"
-              aria-expanded="false"
-              tabindex="0"
             >
               <svg-imodel-hollow
-                class="iui-header-button-icon"
+                class="iui-header-brand-icon"
                 aria-hidden="true"
               ></svg-imodel-hollow>
-              <span class="iui-label">App name</span>
-            </div>
+              <span class="iui-header-brand-label">App name</span>
+            </button>
 
-            <div class="iui-divider"></div>
+            <div class="iui-page-header-divider"></div>
 
-            <nav aria-label="breadcrumbs">
-              <!-- Project Button -->
-              <button
-                class="iui-button iui-borderless iui-header-button iui-header-dropdown-button"
-                type="button"
-                aria-label="Project picker"
-                aria-expanded="false"
-                id="test-button-1"
-              >
-                <div class="iui-button-icon iui-header-button-icon demo-picture"></div>
-                <span class="iui-button-label">
-                  <div>Project Alpha</div>
-                  <div class="iui-description">0x0123456789</div>
-                </span>
-                <svg-caret-down-small
-                  class="iui-button-icon"
+            <nav
+              class="iui-header-breadcrumbs"
+              aria-label="Breadcrumbs"
+            >
+              <ol class="iui-header-breadcrumbs-list">
+                <li class="iui-header-breadcrumb-item">
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Project picker"
+                    aria-expanded="false"
+                    id="test-button-1"
+                  >
+                    <img
+                      class="iui-header-breadcrumb-button-icon"
+                      src="../assets/image-test.jpg"
+                      draggable="false"
+                    />
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Project Alpha</span>
+                      <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                    </span>
+                    <svg-caret-down-small
+                      class="iui-header-breadcrumb-button-dropdown-icon"
+                      aria-hidden="true"
+                    ></svg-caret-down-small>
+                  </button>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
                   aria-hidden="true"
-                ></svg-caret-down-small>
-              </button>
-
-              <svg-chevron-right
-                class="iui-chevron"
-                aria-hidden="true"
-              ></svg-chevron-right>
-
-              <!-- IModel Button -->
-              <button
-                class="iui-button iui-borderless iui-header-button iui-header-dropdown-button"
-                type="button"
-                aria-label="Model picker"
-                aria-expanded="false"
-              >
-                <svg-model
-                  class="iui-button-icon iui-header-button-icon"
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li class="iui-header-breadcrumb-item">
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Model picker"
+                    aria-expanded="false"
+                  >
+                    <svg-model
+                      class="iui-header-breadcrumb-button-icon"
+                      aria-hidden="true"
+                    ></svg-model>
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Model Beta</span>
+                      <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                    </span>
+                    <svg-caret-down-small
+                      class="iui-header-breadcrumb-button-dropdown-icon"
+                      aria-hidden="true"
+                    ></svg-caret-down-small>
+                  </button>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
                   aria-hidden="true"
-                ></svg-model>
-                <span class="iui-button-label">
-                  <div>Model Beta</div>
-                  <div class="iui-description">0x0123456789</div>
-                </span>
-                <svg-caret-down-small
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-caret-down-small>
-              </button>
-
-              <svg-chevron-right
-                class="iui-chevron"
-                aria-hidden="true"
-              ></svg-chevron-right>
-
-              <!-- Version Button -->
-              <button
-                class="iui-button iui-borderless iui-active iui-header-button"
-                type="button"
-                aria-label="Version picker"
-                aria-expanded="false"
-                aria-current="location"
-              >
-                <svg-model
-                  class="iui-button-icon iui-header-button-icon"
-                  aria-hidden="true"
-                ></svg-model>
-                <span class="iui-button-label">
-                  <div>Version Gamma</div>
-                  <div class="iui-description">0x0123456789</div>
-                </span>
-              </button>
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li
+                  class="iui-header-breadcrumb-item"
+                  aria-current="location"
+                >
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Version picker"
+                    aria-expanded="false"
+                  >
+                    <svg-model
+                      class="iui-header-breadcrumb-button-icon"
+                      aria-hidden="true"
+                    ></svg-model>
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Version Gamma</span>
+                      <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                    </span>
+                  </button>
+                </li>
+              </ol>
             </nav>
           </div>
 
-          <div class="iui-center">
-            <input
-              type="search"
-              placeholder="Search within Model Beta…"
-              class="iui-input demo-searchbar"
-            >
+          <div class="iui-page-header-center">
+            <label class="iui-input-container iui-inline-label iui-inline-icon">
+              <input
+                placeholder="Search within Version Gamma…"
+                class="iui-input demo-searchbar"
+              />
+              <button
+                class="iui-button iui-input-icon demo-searchbar-button"
+                data-iui-variant="borderless"
+                aria-label="Search"
+              >
+                <svg-search
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-search>
+              </button>
+            </label>
           </div>
 
-          <div class="iui-right">
+          <div class="iui-page-header-right">
             <!-- Notifications -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Notifications"
               aria-expanded="false"
@@ -197,7 +207,8 @@
 
             <!-- Help -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Help"
               aria-expanded="false"
@@ -208,19 +219,21 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
-              class="iui-button iui-dropdown iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="My account"
               aria-expanded="false"
             >
-              <user-icon type="2"></user-icon>
+              <x-avatar type="2"></x-avatar>
             </button>
 
             <!-- More menu -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="More options"
               aria-expanded="false"
@@ -236,85 +249,94 @@
         <br />
 
         <header class="iui-page-header">
-          <div class="iui-left">
+          <div class="iui-page-header-left">
             <!-- Application Button -->
-            <div
-              class="iui-header-logo"
-              role="button"
+            <button
+              class="iui-header-brand"
               aria-label="App name"
-              aria-expanded="false"
-              tabindex="0"
             >
               <svg-imodel-hollow
-                class="iui-header-button-icon"
+                class="iui-header-brand-icon"
                 aria-hidden="true"
               ></svg-imodel-hollow>
-            </div>
+            </button>
 
-            <div class="iui-divider"></div>
+            <div class="iui-page-header-divider"></div>
 
-            <!-- Project Button -->
-            <nav aria-label="breadcrumbs">
-              <button
-                class="iui-button iui-borderless iui-header-button iui-header-dropdown-button"
-                type="button"
-                aria-label="Project picker"
-                aria-expanded="false"
-              >
-                <span class="iui-button-label">
-                  <div>Project Alpha</div>
-                </span>
-                <svg-caret-down-small
-                  class="iui-button-icon"
+            <nav
+              class="iui-header-breadcrumbs"
+              aria-label="Breadcrumbs"
+            >
+              <ol class="iui-header-breadcrumbs-list">
+                <li class="iui-header-breadcrumb-item">
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Project picker"
+                    aria-expanded="false"
+                    id="test-button-1"
+                  >
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Project Alpha</span>
+                    </span>
+                    <svg-caret-down-small
+                      class="iui-header-breadcrumb-button-dropdown-icon"
+                      aria-hidden="true"
+                    ></svg-caret-down-small>
+                  </button>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
                   aria-hidden="true"
-                ></svg-caret-down-small>
-              </button>
-
-              <svg-chevron-right
-                class="iui-chevron"
-                aria-hidden="true"
-              ></svg-chevron-right>
-
-              <!-- IModel Button -->
-              <button
-                class="iui-button iui-borderless iui-header-button iui-header-dropdown-button"
-                type="button"
-                aria-label="Model picker"
-                aria-expanded="false"
-              >
-                <span class="iui-button-label">
-                  <div>Model Beta</div>
-                </span>
-                <svg-caret-down-small
-                  class="iui-button-icon"
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li class="iui-header-breadcrumb-item">
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Model picker"
+                    aria-expanded="false"
+                  >
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Model Beta</span>
+                    </span>
+                    <svg-caret-down-small
+                      class="iui-header-breadcrumb-button-dropdown-icon"
+                      aria-hidden="true"
+                    ></svg-caret-down-small>
+                  </button>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
                   aria-hidden="true"
-                ></svg-caret-down-small>
-              </button>
-
-              <svg-chevron-right
-                class="iui-chevron"
-                aria-hidden="true"
-              ></svg-chevron-right>
-
-              <!-- Version Button -->
-              <button
-                class="iui-button iui-borderless iui-active iui-header-button"
-                type="button"
-                aria-label="Version picker"
-                aria-expanded="false"
-                aria-current="location"
-              >
-                <span class="iui-button-label">
-                  <div>Version Gamma</div>
-                </span>
-              </button>
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li
+                  class="iui-header-breadcrumb-item"
+                  aria-current="location"
+                >
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Version picker"
+                    aria-expanded="false"
+                  >
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Version Gamma</span>
+                    </span>
+                  </button>
+                </li>
+              </ol>
             </nav>
           </div>
 
-          <div class="iui-right">
+          <div class="iui-page-header-right">
             <!-- Notifications -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Notifications"
               aria-expanded="false"
@@ -327,7 +349,8 @@
 
             <!-- Help -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Help"
               aria-expanded="false"
@@ -338,20 +361,22 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
-              class="iui-button iui-dropdown iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="My account"
               aria-expanded="false"
             >
 
-              <user-icon type="2"></user-icon>
+              <x-avatar type="2"></x-avatar>
             </button>
 
             <!-- More menu -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="More options"
               aria-expanded="false"
@@ -371,78 +396,96 @@
       <h2>Slim</h2>
       <section id="demo-slim">
 
-        <header class="iui-page-header iui-slim">
-          <div class="iui-left">
+        <header
+          class="iui-page-header"
+          data-iui-size="slim"
+        >
+          <div class="iui-page-header-left">
             <!-- Application Button -->
-            <div
-              class="iui-header-logo"
-              role="button"
+            <a
+              class="iui-header-brand"
               aria-label="App name"
-              aria-expanded="false"
-              tabindex="0"
+              href="#"
             >
               <svg-imodel-hollow
-                class="iui-header-button-icon"
+                class="iui-header-brand-icon"
                 aria-hidden="true"
               ></svg-imodel-hollow>
-              <span class="iui-label">App name</span>
-            </div>
+              <span class="iui-header-brand-label">App name</span>
+            </a>
 
-            <div class="iui-divider"></div>
+            <div class="iui-page-header-divider"></div>
 
-            <!-- Project Button -->
-            <nav aria-label="breadcrumbs">
-              <button
-                class="iui-button iui-borderless iui-header-button iui-header-dropdown-button"
-                type="button"
-                aria-label="Project picker"
-                aria-expanded="false"
-                id="test-button-3"
-              >
-                <div class="iui-button-icon iui-header-button-icon demo-picture"></div>
-                <span class="iui-button-label">
-                  <div>Project Alpha</div>
-                  <div class="iui-description">0x0123456789</div>
-                </span>
-                <svg-caret-down-small
-                  class="iui-button-icon"
+            <nav
+              class="iui-header-breadcrumbs"
+              aria-label="Breadcrumbs"
+            >
+              <ol class="iui-header-breadcrumbs-list">
+                <li
+                  class="iui-header-breadcrumb-item"
+                  id="test-button-3"
+                >
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Project picker"
+                    aria-expanded="false"
+                    id="test-button-1"
+                  >
+                    <img
+                      class="iui-header-breadcrumb-button-icon"
+                      src="../assets/image-test.jpg"
+                      draggable="false"
+                    />
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Project Alpha</span>
+                      <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                    </span>
+                    <svg-caret-down-small
+                      class="iui-header-breadcrumb-button-dropdown-icon"
+                      aria-hidden="true"
+                    ></svg-caret-down-small>
+                  </button>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
                   aria-hidden="true"
-                ></svg-caret-down-small>
-              </button>
-
-              <svg-chevron-right
-                class="iui-chevron"
-                aria-hidden="true"
-              ></svg-chevron-right>
-
-              <!-- IModel Button -->
-              <button
-                class="iui-button iui-borderless iui-active iui-header-button iui-header-dropdown-button"
-                type="button"
-                aria-label="Model picker"
-                aria-expanded="false"
-                aria-current="location"
-              >
-                <svg-model
-                  class="iui-button-icon iui-header-button-icon"
-                  aria-hidden="true"
-                ></svg-model>
-                <span class="iui-button-label">
-                  <div>Model Beta</div>
-                  <div class="iui-description">0x0123456789</div>
-                </span>
-                <svg-caret-down-small
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-caret-down-small>
-              </button>
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li
+                  class="iui-header-breadcrumb-item"
+                  aria-current="location"
+                >
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Model picker"
+                    aria-expanded="false"
+                  >
+                    <svg-model
+                      class="iui-header-breadcrumb-button-icon"
+                      aria-hidden="true"
+                    ></svg-model>
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Model Beta</span>
+                      <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                    </span>
+                    <svg-caret-down-small
+                      class="iui-header-breadcrumb-button-dropdown-icon"
+                      aria-hidden="true"
+                    ></svg-caret-down-small>
+                  </button>
+                </li>
+              </ol>
             </nav>
           </div>
 
-          <div class="iui-right">
+          <div class="iui-page-header-right">
             <!-- Notifications -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Notifications"
               aria-expanded="false"
@@ -456,7 +499,8 @@
 
             <!-- Help -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Help"
               aria-expanded="false"
@@ -467,22 +511,24 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
-              class="iui-button iui-dropdown iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="My account"
               aria-expanded="false"
             >
-              <user-icon
+              <x-avatar
                 type="2"
                 size="small"
-              ></user-icon>
+              ></x-avatar>
             </button>
 
             <!-- More menu -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="More options"
               aria-expanded="false"
@@ -497,69 +543,81 @@
 
         <br />
 
-        <header class="iui-page-header iui-slim">
-          <div class="iui-left">
+        <header
+          class="iui-page-header"
+          data-iui-size="slim"
+        >
+          <div class="iui-page-header-left">
             <!-- Application Button -->
-            <div
-              class="iui-header-logo"
-              role="button"
+            <a
+              class="iui-header-brand"
               aria-label="App name"
-              aria-expanded="false"
-              tabindex="0"
+              href="#"
             >
               <svg-imodel-hollow
-                class="iui-header-button-icon"
+                class="iui-header-brand-icon"
                 aria-hidden="true"
               ></svg-imodel-hollow>
-            </div>
+            </a>
 
-            <div class="iui-divider"></div>
+            <div class="iui-page-header-divider"></div>
 
-            <!-- Project Button -->
-            <nav aria-label="breadcrumbs">
-              <button
-                class="iui-button iui-borderless iui-header-button iui-header-dropdown-button"
-                type="button"
-                aria-label="Project picker"
-                aria-expanded="false"
-              >
-                <span class="iui-button-label">
-                  <div>Project Alpha</div>
-                </span>
-                <svg-caret-down-small
-                  class="iui-button-icon"
+            <nav
+              class="iui-header-breadcrumbs"
+              aria-label="Breadcrumbs"
+            >
+              <ol class="iui-header-breadcrumbs-list">
+                <li class="iui-header-breadcrumb-item">
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Project picker"
+                    aria-expanded="false"
+                    id="test-button-1"
+                  >
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Project Alpha</span>
+                    </span>
+                    <svg-caret-down-small
+                      class="iui-header-breadcrumb-button-dropdown-icon"
+                      aria-hidden="true"
+                    ></svg-caret-down-small>
+                  </button>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
                   aria-hidden="true"
-                ></svg-caret-down-small>
-              </button>
-
-              <svg-chevron-right
-                class="iui-chevron"
-                aria-hidden="true"
-              ></svg-chevron-right>
-
-              <!-- IModel Button -->
-              <button
-                class="iui-button iui-borderless iui-active iui-header-button iui-header-dropdown-button"
-                type="button"
-                aria-label="Model picker"
-                aria-expanded="false"
-                aria-current="location"
-              >
-                <span class="iui-button-label">
-                  <div>Model Beta</div>
-                </span>
-                <svg-caret-down-small
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-caret-down-small>
-              </button>
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li
+                  class="iui-header-breadcrumb-item"
+                  aria-current="location"
+                >
+                  <button
+                    class="iui-header-breadcrumb-button"
+                    type="button"
+                    aria-label="Model picker"
+                    aria-expanded="false"
+                  >
+                    <span class="iui-header-breadcrumb-button-text">
+                      <span class="iui-header-breadcrumb-button-text-label">Model Beta</span>
+                    </span>
+                    <svg-caret-down-small
+                      class="iui-header-breadcrumb-button-dropdown-icon"
+                      aria-hidden="true"
+                    ></svg-caret-down-small>
+                  </button>
+                </li>
+              </ol>
             </nav>
           </div>
 
-          <div class="iui-right">
+          <div class="iui-page-header-right">
             <!-- Notifications -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Notifications"
               aria-expanded="false"
@@ -572,7 +630,8 @@
 
             <!-- Help -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Help"
               aria-expanded="false"
@@ -583,22 +642,24 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
-              class="iui-button iui-dropdown iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="My account"
               aria-expanded="false"
             >
-              <user-icon
+              <x-avatar
                 type="2"
                 size="small"
-              ></user-icon>
+              ></x-avatar>
             </button>
 
             <!-- More menu -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="More options"
               aria-expanded="false"
@@ -618,14 +679,14 @@
       <h2>
         Split Menu Buttons
         <label
-          id="disabled-toggle"
-          class="iui-toggle-switch-wrapper iui-label-on-right"
+          class="iui-toggle-switch-wrapper iui-label-on-right demo-disabled-toggle"
           style="display: inline-flex; vertical-align: middle; margin-left: 1em;"
         >
           <input
             class="iui-toggle-switch"
             type="checkbox"
             role="switch"
+            id="disabled-toggle"
           />
           <span class="iui-toggle-switch-label">Disabled</span>
         </label>
@@ -633,97 +694,144 @@
 
       <section id="demo-split">
 
-        <header class="iui-page-header iui-slim">
-          <div class="iui-left">
+        <header
+          class="iui-page-header"
+          data-iui-size="slim"
+        >
+          <div class="iui-page-header-left">
             <!-- Application Button -->
             <div
-              class="iui-header-logo"
+              class="iui-header-brand"
               role="button"
               aria-label="App name"
-              aria-expanded="false"
               tabindex="0"
             >
               <svg-imodel-hollow
-                class="iui-header-button-icon"
+                class="iui-header-brand-icon"
                 aria-hidden="true"
               ></svg-imodel-hollow>
-              <span class="iui-label">App name</span>
+              <span class="iui-header-brand-label">App name</span>
             </div>
 
-            <div class="iui-divider"></div>
+            <div class="iui-page-header-divider"></div>
 
-            <!-- Project Button -->
-            <nav aria-label="breadcrumbs">
-              <span class="iui-button-split-menu iui-header-split-button">
-                <div>
-                  <button
-                    class="iui-button iui-borderless"
-                    type="button"
-                    aria-label="Project picker"
-                    aria-expanded="false"
-                    id="test-button-5"
-                  >
-                    <div class="iui-button-icon iui-header-button-icon demo-picture"></div>
-                    <span class="iui-button-label">
-                      <div>Project Alpha</div>
-                      <div class="iui-description">0x0123456789</div>
-                    </span>
-                  </button>
-                </div>
-                <div>
-                  <button
-                    class="iui-button iui-borderless"
-                    id='test-button-6'
-                  >
-                    <svg-caret-down-small
-                      class="iui-button-icon"
-                      aria-hidden="true"
-                    ></svg-caret-down-small>
-                  </button>
-                </div>
-              </span>
-
-              <svg-chevron-right
-                class="iui-chevron"
-                aria-hidden="true"
-              ></svg-chevron-right>
-
-              <!-- IModel Button -->
-              <span class="iui-button-split-menu iui-header-split-button iui-active">
-                <div>
-                  <button
-                    class="iui-button iui-borderless"
-                    type="button"
-                    aria-label="Model picker"
-                    aria-expanded="false"
-                    aria-current="location"
-                  >
-                    <svg-model
-                      class="iui-button-icon iui-header-button-icon"
-                      aria-hidden="true"
-                    ></svg-model>
-                    <span class="iui-button-label">
-                      <div>Model Beta</div>
-                      <div class="iui-description">0x0123456789</div>
-                    </span>
-                  </button>
-                </div>
-                <div>
-                  <button class="iui-button iui-borderless">
-                    <svg-caret-down-small
-                      class="iui-button-icon"
-                      aria-hidden="true"
-                    ></svg-caret-down-small>
-                  </button>
-                </div>
-              </span>
+            <nav
+              class="iui-header-breadcrumbs"
+              aria-label="Breadcrumbs"
+            >
+              <ol class="iui-header-breadcrumbs-list">
+                <li class="iui-header-breadcrumb-item">
+                  <span class="iui-header-breadcrumb-button-wrapper">
+                    <button
+                      class="iui-header-breadcrumb-button"
+                      type="button"
+                      aria-label="Project Alpha"
+                      id="test-button-5"
+                    >
+                      <img
+                        class="iui-header-breadcrumb-button-icon"
+                        src="../assets/image-test.jpg"
+                        draggable="false"
+                      />
+                      <span class="iui-header-breadcrumb-button-text">
+                        <span class="iui-header-breadcrumb-button-text-label">Project Alpha</span>
+                        <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                      </span>
+                    </button>
+                    <button
+                      class="iui-header-breadcrumb-button iui-header-breadcrumb-button-split"
+                      aria-label="Project picker"
+                      aria-expanded="false"
+                      id='test-button-6'
+                    >
+                      <svg-caret-down-small
+                        class="iui-header-breadcrumb-button-dropdown-icon"
+                        aria-hidden="true"
+                      ></svg-caret-down-small>
+                    </button>
+                  </span>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
+                  aria-hidden="true"
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li class="iui-header-breadcrumb-item">
+                  <span class="iui-header-breadcrumb-button-wrapper">
+                    <button
+                      class="iui-header-breadcrumb-button"
+                      type="button"
+                      aria-label="Model Beta"
+                    >
+                      <svg-model
+                        class="iui-header-breadcrumb-button-icon"
+                        aria-hidden="true"
+                      ></svg-model>
+                      <span class="iui-header-breadcrumb-button-text">
+                        <span class="iui-header-breadcrumb-button-text-label">Model Beta</span>
+                        <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                      </span>
+                    </button>
+                    <button
+                      class="iui-header-breadcrumb-button iui-header-breadcrumb-button-split"
+                      aria-label="Model picker"
+                      aria-expanded="false"
+                    >
+                      <svg-caret-down-small
+                        class="iui-header-breadcrumb-button-dropdown-icon"
+                        aria-hidden="true"
+                      ></svg-caret-down-small>
+                    </button>
+                  </span>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
+                  aria-hidden="true"
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li
+                  class="iui-header-breadcrumb-item"
+                  aria-current="location"
+                >
+                  <span class="iui-header-breadcrumb-button-wrapper">
+                    <button
+                      class="iui-header-breadcrumb-button"
+                      type="button"
+                      aria-label="Version picker"
+                      aria-expanded="false"
+                    >
+                      <svg-model
+                        class="iui-header-breadcrumb-button-icon"
+                        aria-hidden="true"
+                      ></svg-model>
+                      <span class="iui-header-breadcrumb-button-text">
+                        <span class="iui-header-breadcrumb-button-text-label">Version Gamma</span>
+                        <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                      </span>
+                    </button>
+                    <button
+                      class="iui-header-breadcrumb-button iui-header-breadcrumb-button-split"
+                      aria-label="Model picker"
+                      aria-expanded="false"
+                    >
+                      <svg-caret-down-small
+                        class="iui-header-breadcrumb-button-dropdown-icon"
+                        aria-hidden="true"
+                      ></svg-caret-down-small>
+                    </button>
+                  </span>
+                </li>
+              </ol>
             </nav>
           </div>
 
-          <div class="iui-right">
+          <div class="iui-page-header-right">
             <!-- Notifications -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Notifications"
               aria-expanded="false"
@@ -736,7 +844,8 @@
 
             <!-- Help -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Help"
               aria-expanded="false"
@@ -747,22 +856,24 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
-              class="iui-button iui-dropdown iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="My account"
               aria-expanded="false"
             >
-              <user-icon
+              <x-avatar
                 type="2"
                 size="small"
-              ></user-icon>
+              ></x-avatar>
             </button>
 
             <!-- More menu -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="More options"
               aria-expanded="false"
@@ -778,95 +889,135 @@
         <br />
 
         <header class="iui-page-header">
-          <div class="iui-left">
+          <div class="iui-page-header-left">
             <!-- Application Button -->
             <div
-              class="iui-header-logo"
+              class="iui-header-brand"
               role="button"
               aria-label="App name"
-              aria-expanded="false"
               tabindex="0"
             >
               <svg-imodel-hollow
-                class="iui-header-button-icon"
+                class="iui-header-brand-icon"
                 aria-hidden="true"
               ></svg-imodel-hollow>
             </div>
 
-            <div class="iui-divider"></div>
+            <div class="iui-page-header-divider"></div>
 
-            <!-- Project Button -->
-            <nav aria-label="breadcrumbs">
-              <span class="iui-button-split-menu iui-header-split-button">
-                <div>
-                  <button
-                    class="iui-button iui-borderless iui-header-button"
-                    type="button"
-                    aria-label="Project picker"
-                    aria-expanded="false"
-                    id="test-button-1"
-                  >
-                    <div class="iui-button-icon iui-header-button-icon demo-picture"></div>
-                    <span class="iui-button-label">
-                      <div>Project Alpha</div>
-                      <div class="iui-description">0x0123456789</div>
-                    </span>
-                  </button>
-                </div>
-                <div>
-                  <button
-                    class="iui-button iui-borderless iui-header-button "
-                    id='test-button-6'
-                  >
-                    <svg-caret-down-small
-                      class="iui-button-icon"
-                      aria-hidden="true"
-                    ></svg-caret-down-small>
-                  </button>
-                </div>
-              </span>
-
-              <svg-chevron-right
-                class="iui-chevron"
-                aria-hidden="true"
-              ></svg-chevron-right>
-
-              <!-- IModel Button -->
-              <span class="iui-button-split-menu iui-header-split-button iui-active">
-                <div>
-                  <button
-                    class="iui-button iui-borderless iui-header-button"
-                    type="button"
-                    aria-label="Model picker"
-                    aria-expanded="false"
-                    aria-current="location"
-                  >
-                    <svg-model
-                      class="iui-button-icon iui-header-button-icon"
-                      aria-hidden="true"
-                    ></svg-model>
-                    <span class="iui-button-label">
-                      <div>Model Beta</div>
-                      <div class="iui-description">0x0123456789</div>
-                    </span>
-                  </button>
-                </div>
-                <div>
-                  <button class="iui-button iui-borderless iui-header-button">
-                    <svg-caret-down-small
-                      class="iui-button-icon"
-                      aria-hidden="true"
-                    ></svg-caret-down-small>
-                  </button>
-                </div>
-              </span>
+            <nav
+              class="iui-header-breadcrumbs"
+              aria-label="Breadcrumbs"
+            >
+              <ol class="iui-header-breadcrumbs-list">
+                <li class="iui-header-breadcrumb-item">
+                  <span class="iui-header-breadcrumb-button-wrapper">
+                    <button
+                      class="iui-header-breadcrumb-button"
+                      type="button"
+                      aria-label="Project Alpha"
+                      id="test-button-5"
+                    >
+                      <div class="iui-header-breadcrumb-button-icon demo-picture"></div>
+                      <span class="iui-header-breadcrumb-button-text">
+                        <span class="iui-header-breadcrumb-button-text-label">Project Alpha</span>
+                        <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                      </span>
+                    </button>
+                    <button
+                      class="iui-header-breadcrumb-button iui-header-breadcrumb-button-split"
+                      aria-label="Project picker"
+                      aria-expanded="false"
+                      id='test-button-6'
+                    >
+                      <svg-caret-down-small
+                        class="iui-header-breadcrumb-button-dropdown-icon"
+                        aria-hidden="true"
+                      ></svg-caret-down-small>
+                    </button>
+                  </span>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
+                  aria-hidden="true"
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li class="iui-header-breadcrumb-item">
+                  <span class="iui-header-breadcrumb-button-wrapper">
+                    <button
+                      class="iui-header-breadcrumb-button"
+                      type="button"
+                      aria-label="Model Beta"
+                    >
+                      <svg-model
+                        class="iui-header-breadcrumb-button-icon"
+                        aria-hidden="true"
+                      ></svg-model>
+                      <span class="iui-header-breadcrumb-button-text">
+                        <span class="iui-header-breadcrumb-button-text-label">Model Beta</span>
+                        <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                      </span>
+                    </button>
+                    <button
+                      class="iui-header-breadcrumb-button iui-header-breadcrumb-button-split"
+                      aria-label="Model picker"
+                      aria-expanded="false"
+                    >
+                      <svg-caret-down-small
+                        class="iui-header-breadcrumb-button-dropdown-icon"
+                        aria-hidden="true"
+                      ></svg-caret-down-small>
+                    </button>
+                  </span>
+                </li>
+                <li
+                  class="iui-breadcrumbs-separator"
+                  aria-hidden="true"
+                >
+                  <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+                </li>
+                <li
+                  class="iui-header-breadcrumb-item"
+                  aria-current="location"
+                >
+                  <span class="iui-header-breadcrumb-button-wrapper">
+                    <button
+                      class="iui-header-breadcrumb-button"
+                      type="button"
+                      aria-label="Version picker"
+                      aria-expanded="false"
+                    >
+                      <svg-model
+                        class="iui-header-breadcrumb-button-icon"
+                        aria-hidden="true"
+                      ></svg-model>
+                      <span class="iui-header-breadcrumb-button-text">
+                        <span class="iui-header-breadcrumb-button-text-label">Version Gamma</span>
+                        <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                      </span>
+                    </button>
+                    <button
+                      class="iui-header-breadcrumb-button iui-header-breadcrumb-button-split"
+                      aria-label="Model picker"
+                      aria-expanded="false"
+                    >
+                      <svg-caret-down-small
+                        class="iui-header-breadcrumb-button-dropdown-icon"
+                        aria-hidden="true"
+                      ></svg-caret-down-small>
+                    </button>
+                  </span>
+                </li>
+              </ol>
             </nav>
           </div>
 
-          <div class="iui-right">
+          <div class="iui-page-header-right">
             <!-- Notifications -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Notifications"
               aria-expanded="false"
@@ -879,7 +1030,8 @@
 
             <!-- Help -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="Help"
               aria-expanded="false"
@@ -890,19 +1042,21 @@
               ></svg-help-circular-hollow>
             </button>
 
-            <!-- Profile dropdown button -->
+            <!-- Profile -->
             <button
-              class="iui-button iui-dropdown iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="My account"
               aria-expanded="false"
             >
-              <user-icon type="2"></user-icon>
+              <x-avatar type="2"></x-avatar>
             </button>
 
             <!-- More menu -->
             <button
-              class="iui-button iui-borderless"
+              class="iui-button"
+              data-iui-variant="borderless"
               type="button"
               aria-label="More options"
               aria-expanded="false"
@@ -922,6 +1076,7 @@
     <hr />
 
     <h2>Animation (Toggle default ⇔ slim)</h2>
+
     <section id="demo-slim-toggle">
 
       <label class="iui-toggle-switch-wrapper iui-label-on-right">
@@ -935,77 +1090,90 @@
       <br />
 
       <header class="iui-page-header">
-        <div class="iui-left">
+        <div class="iui-page-header-left">
           <!-- Application Button -->
           <div
-            class="iui-header-logo"
+            class="iui-header-brand"
             role="button"
             aria-label="App name"
-            aria-expanded="false"
             tabindex="0"
           >
             <svg-imodel-hollow
-              class="iui-header-button-icon"
+              class="iui-header-brand-icon"
               aria-hidden="true"
             ></svg-imodel-hollow>
-            <span class="iui-label">App name</span>
+            <span class="iui-header-brand-label">App name</span>
           </div>
 
-          <div class="iui-divider"></div>
+          <div class="iui-page-header-divider"></div>
 
-          <!-- Project Button -->
-          <nav aria-label="breadcrumbs">
-            <button
-              class="iui-button iui-borderless iui-header-button iui-header-dropdown-button"
-              type="button"
-              aria-label="Project picker"
-              aria-expanded="false"
-            >
-
-              <div class="iui-button-icon iui-header-button-icon demo-picture"></div>
-              <span class="iui-button-label">
-                <div>Project Alpha</div>
-                <div class="iui-description">0x0123456789</div>
-              </span>
-              <svg-caret-down-small
-                class="iui-button-icon"
+          <nav
+            class="iui-header-breadcrumbs"
+            aria-label="Breadcrumbs"
+          >
+            <ol class="iui-header-breadcrumbs-list">
+              <li class="iui-header-breadcrumb-item">
+                <button
+                  class="iui-header-breadcrumb-button"
+                  type="button"
+                  aria-label="Project picker"
+                  aria-expanded="false"
+                  id="test-button-1"
+                >
+                  <img
+                    class="iui-header-breadcrumb-button-icon"
+                    src="../assets/image-test.jpg"
+                    draggable="false"
+                  />
+                  <span class="iui-header-breadcrumb-button-text">
+                    <span class="iui-header-breadcrumb-button-text-label">Project Alpha</span>
+                    <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                  </span>
+                  <svg-caret-down-small
+                    class="iui-header-breadcrumb-button-dropdown-icon"
+                    aria-hidden="true"
+                  ></svg-caret-down-small>
+                </button>
+              </li>
+              <li
+                class="iui-breadcrumbs-separator"
                 aria-hidden="true"
-              ></svg-caret-down-small>
-            </button>
-
-            <svg-chevron-right
-              class="iui-chevron"
-              aria-hidden="true"
-            ></svg-chevron-right>
-
-            <!-- IModel Button -->
-            <button
-              class="iui-button iui-borderless iui-active iui-header-button iui-header-dropdown-button"
-              type="button"
-              aria-label="Model picker"
-              aria-expanded="false"
-              aria-current="location"
-            >
-              <svg-model
-                class="iui-button-icon iui-header-button-icon"
-                aria-hidden="true"
-              ></svg-model>
-              <span class="iui-button-label">
-                <div>Model Beta</div>
-                <div class="iui-description">0x0123456789</div>
-              </span>
-              <svg-caret-down-small
-                class="iui-button-icon"
-                aria-hidden="true"
-              ></svg-caret-down-small>
-            </button>
+              >
+                <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+              </li>
+              <li
+                class="iui-header-breadcrumb-item"
+                aria-current="location"
+              >
+                <button
+                  class="iui-header-breadcrumb-button"
+                  type="button"
+                  aria-label="Model picker"
+                  aria-expanded="false"
+                >
+                  <svg-model
+                    class="iui-header-breadcrumb-button-icon"
+                    aria-hidden="true"
+                  ></svg-model>
+                  <span class="iui-header-breadcrumb-button-text">
+                    <span class="iui-header-breadcrumb-button-text-label">Model Beta</span>
+                    <span class="iui-header-breadcrumb-button-text-sublabel">0x0123456789</span>
+                  </span>
+                  <svg-caret-down-small
+                    class="iui-header-breadcrumb-button-dropdown-icon"
+                    aria-hidden="true"
+                  ></svg-caret-down-small>
+                </button>
+              </li>
+            </ol>
           </nav>
         </div>
 
-        <div class="iui-right">
+        <div class="iui-page-header-right">
           <!-- Notifications -->
           <button
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
             type="button"
             aria-label="Notifications"
             aria-expanded="false"
@@ -1018,7 +1186,8 @@
 
           <!-- Help -->
           <button
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
             type="button"
             aria-label="Help"
             aria-expanded="false"
@@ -1029,22 +1198,24 @@
             ></svg-help-circular-hollow>
           </button>
 
-          <!-- Profile dropdown button -->
+          <!-- Profile -->
           <button
-            class="iui-button iui-dropdown iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
             type="button"
             aria-label="My account"
             aria-expanded="false"
           >
-            <user-icon
+            <x-avatar
               type="2"
               showPlaceholder="true"
-            ></user-icon>
+            ></x-avatar>
           </button>
 
           <!-- More menu -->
           <button
-            class="iui-button iui-borderless"
+            class="iui-button"
+            data-iui-variant="borderless"
             type="button"
             aria-label="More options"
             aria-expanded="false"
@@ -1057,38 +1228,84 @@
         </div>
       </header>
 
-      <div class="demo-side-navigation">
-        <svg-placeholder
-          class="demo-side-navigation-icon"
-          aria-hidden="true"
-        ></svg-placeholder>
-      </div>
-      <div class="demo-side-navigation">
-        <svg-placeholder
-          class="demo-side-navigation-icon"
-          aria-hidden="true"
-        ></svg-placeholder>
-      </div>
-      <div class="demo-side-navigation">
-        <svg-placeholder
-          class="demo-side-navigation-icon"
-          aria-hidden="true"
-        ></svg-placeholder>
-      </div>
+      <div
+        class="iui-side-navigation iui-collapsed"
+        id="demo-sidenav-container"
+      >
+        <!-- Rest of the tabs -->
+        <div
+          class="iui-sidenav-content"
+          role="tablist"
+          aria-label="Applications"
+        >
+          <div class="iui-top">
+            <button
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
+              data-iui-active="true"
+              role="tab"
+              aria-selected="true"
+            >
+              <svg-placeholder
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+            </button>
 
+            <button
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
+              role="tab"
+              aria-selected="false"
+            >
+              <svg-placeholder
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+            </button>
+
+            <button
+              class="iui-button iui-sidenav-button"
+              data-iui-size="large"
+              role="tab"
+              aria-selected="false"
+            >
+              <svg-placeholder
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   </body>
 
   <script>
-    document.querySelector('#disabled-toggle input[type=checkbox]').addEventListener('change', (e) => {
-      document.querySelectorAll('#demo-split .iui-header-split-button').forEach((splitButton) => {
-        splitButton.classList.toggle('iui-disabled');
-        splitButton.querySelectorAll('button').forEach((button) => button.toggleAttribute('disabled'));
+    document.querySelectorAll('.demo-disabled-toggle input[type=checkbox]').forEach(toggle => {
+      const section = toggle.parentElement.parentElement.nextElementSibling;
+      toggle.addEventListener('change', (e) => {
+        section.querySelectorAll('.iui-header-breadcrumb-item').forEach((breadcrumb) => {
+          if (breadcrumb.getAttribute('aria-disabled')) {
+            breadcrumb.removeAttribute('aria-disabled');
+          } else {
+            breadcrumb.setAttribute('aria-disabled', 'true');
+          }
+          breadcrumb.querySelectorAll('button').forEach((button) => button.toggleAttribute('disabled'));
+        });
       });
     });
 
     document.querySelector('#demo-slim-toggle input[type=checkbox]').addEventListener('change', (e) => {
-      document.querySelector('#demo-slim-toggle .iui-page-header').classList.toggle('iui-slim');
+      document.querySelectorAll('#demo-slim-toggle .iui-page-header').forEach((headerSize) => {
+        if (headerSize.getAttribute('data-iui-size')) {
+          headerSize.removeAttribute("data-iui-size");
+        } else {
+          headerSize.setAttribute("data-iui-size", "slim");
+        }
+      });
+
+      document.querySelector('#demo-slim-toggle .iui-avatar').classList.toggle('iui-small');
     });
   </script>
 </html>

@@ -1,20 +1,19 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
-@import '../icon/index';
-@import '../text/index';
+@import '../utils/index';
+@import '../text/mixins';
+
+$iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
 @mixin iui-side-navigation {
   display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;
   height: 100%;
+  background-color: var(--iui-color-background-3);
+  border-right: 1px solid var(--iui-color-background-border);
   @media (prefers-reduced-motion: no-preference) {
-    transition: max-width $iui-speed-fast ease-out;
-  }
-  @include themed {
-    background-color: t(iui-color-background-3);
-    border-right: 1px solid t(iui-color-background-border);
+    transition: max-width var(--iui-duration-1) ease-out;
   }
 
   > .iui-sidenav-content {
@@ -50,26 +49,32 @@
 
     + .iui-sidenav-button.iui-expand {
       border: none;
-      @include themed {
-        border-top: 1px solid t(iui-color-background-border);
-      }
+      border-top: 1px solid var(--iui-color-background-border);
     }
   }
 
   &.iui-collapsed {
-    min-width: $iui-icons-large * 3;
-    max-width: $iui-icons-large * 3;
+    box-sizing: content-box;
+
+    $icon-large: map-get($iui-icon-sizes, l);
+
+    min-width: calc($icon-large + $iui-side-navigation-icon-margins * 2);
+    max-width: calc($icon-large + $iui-side-navigation-icon-margins * 2);
 
     // iPhone notch support
     @supports (min-width: unquote('max(0px)')) {
-      min-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
-      max-width: unquote('max(#{$iui-icons-large} * 3, #{$iui-icons-large} * 3 + env(safe-area-inset-left))');
+      min-width: unquote(
+        'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+      );
+      max-width: unquote(
+        'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
+      );
     }
   }
 
   &.iui-expanded,
   > .iui-sidenav-content {
-    max-width: $iui-3xl * 3;
+    max-width: calc(var(--iui-size-3xl) * 3);
 
     > .iui-sidenav-button.iui-expand > .iui-button-icon {
       transform: scaleX(-1);
@@ -77,7 +82,7 @@
   }
 
   .iui-sidenav-button {
-    gap: $iui-icons-large;
+    gap: $iui-side-navigation-icon-margins;
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -85,17 +90,19 @@
     justify-content: flex-start;
 
     // Adds stripe to the right of active button
-    --_iui-button-active-stripe-inset: 0 0 0 calc(100% - #{$iui-xxs});
+    --_iui-button-active-stripe-inset: 0 0 0 calc(100% - #{var(--iui-size-3xs)});
 
     &:not(.iui-expand) {
-      height: $iui-baseline * 5;
+      height: calc(var(--iui-size-s) * 5);
       // iPhone notch support
       @supports (padding: unquote('max(0px)')) {
-        padding-left: unquote('max(#{$iui-icons-large}, #{$iui-icons-large} + env(safe-area-inset-left))');
+        padding-left: unquote(
+          'max(#{$iui-side-navigation-icon-margins}, #{$iui-side-navigation-icon-margins} + env(safe-area-inset-left))'
+        );
       }
     }
 
-    > .iui-button-label {
+    > span {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -104,42 +111,34 @@
     &,
     &:hover,
     &[disabled] {
-      @include themed {
-        border-color: t(iui-color-background-border);
-      }
+      border-color: var(--iui-color-background-border);
     }
 
-    > .iui-button-icon:not(.iui-user-icon) {
-      width: $iui-icons-large;
-      height: $iui-icons-large;
-      flex-shrink: 0;
+    > .iui-button-icon:not(.iui-avatar) {
+      @include iui-icon-style('l');
     }
 
     &.iui-submenu-open .iui-button-icon {
-      @include themed {
-        fill: t(iui-color-foreground-primary);
-      }
+      fill: var(--iui-color-foreground-primary);
     }
 
     &[disabled],
     &:disabled {
-      @include themed {
-        background-color: t(iui-color-background-2);
-      }
+      background-color: var(--iui-color-background-2);
     }
 
     &.iui-expand {
-      height: $iui-line-height;
+      --_iui-button-padding-block: 0;
+      --_iui-button-min-height: var(--iui-size-l);
       justify-content: center;
       border: none;
-      @include themed {
-        border-bottom: 1px solid t(iui-color-background-border);
-      }
+      border-bottom: 1px solid var(--iui-color-background-border);
 
       > .iui-button-icon {
-        @include iui-icons-small;
+        @include iui-icon-style('s');
+        @include iui-icon-color;
         @media (prefers-reduced-motion: no-preference) {
-          transition: transform $iui-speed ease-out;
+          transition: transform var(--iui-duration-2) ease-out;
         }
       }
     }
@@ -147,18 +146,15 @@
 }
 
 @mixin iui-side-navigation-submenu {
-  min-width: $iui-3xl * 2;
+  min-width: calc(var(--iui-size-3xl) * 2);
   max-width: 50vw;
   height: 100%;
-  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
   overflow-y: overlay;
   resize: horizontal;
-  @include themed {
-    background-color: t(iui-color-background-1);
-    border-right: 1px solid t(iui-color-background-border);
-  }
+  background-color: var(--iui-color-background-1);
+  border-right: 1px solid var(--iui-color-background-border);
 
   @include iui-transition-group;
 
@@ -168,13 +164,12 @@
   }
 
   &-content {
-    padding: 0 $iui-sm $iui-baseline;
+    padding: 0 var(--iui-size-s) var(--iui-size-s);
     flex-shrink: 0;
-    box-sizing: border-box;
   }
 
   &-header {
-    height: $iui-baseline * 5;
+    height: calc(var(--iui-size-s) * 5);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -198,7 +193,7 @@
 
     &-actions {
       flex-shrink: 0;
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
   }
 }

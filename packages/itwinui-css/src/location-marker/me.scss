@@ -1,36 +1,32 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import './location-marker';
 
 @mixin iui-location-marker-me {
   @include iui-location-marker;
+  @include iui-icon-style('l');
   position: relative;
-  width: $iui-icons-large;
-  height: $iui-icons-large;
   border-radius: 50%;
   cursor: default;
 
-  @include themed {
-    background: radial-gradient(
-      circle at center,
-      rgba(t(iui-color-foreground-primary-rgb), 0),
-      rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-5))
-    );
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: var(--iui-opacity-5);
+    background-color: var(--iui-color-foreground-primary);
+    border-radius: inherit;
   }
 
   > .iui-location-marker-me-dot {
-    width: $iui-icons-large * 0.5;
-    height: $iui-icons-large * 0.5;
+    width: var(--iui-size-s);
+    height: var(--iui-size-s);
     position: absolute;
-    top: $iui-icons-large * 0.25;
-    left: $iui-icons-large * 0.25;
+    top: calc(var(--iui-size-2xs) * 1.5);
+    left: calc(var(--iui-size-2xs) * 1.5);
     border-radius: 50%;
-    box-sizing: border-box;
-
-    @include themed {
-      border: 1px solid t(iui-color-foreground-accessory);
-      background-color: t(iui-color-background-primary);
-    }
+    border: 1px solid var(--iui-color-foreground-accessory);
+    background-color: var(--iui-color-background-primary);
   }
 }

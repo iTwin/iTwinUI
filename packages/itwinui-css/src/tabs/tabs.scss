@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
+@import '../utils/index';
 
 @mixin iui-tabs {
   @include iui-reset;
@@ -14,43 +14,31 @@
     position: relative;
     display: flex;
     align-items: center;
-    font-size: $iui-font-size;
-    min-height: $iui-component-height;
+    font-size: var(--iui-font-size-1);
+    min-height: calc(var(--iui-size-m) * 2.5);
     height: 100%;
     cursor: pointer;
-    transition: background-color $iui-speed-fast ease-out;
-    @include themed {
-      color: t(iui-text-color);
-    }
+    color: var(--iui-color-foreground-2);
+    transition: background-color var(--iui-duration-1) ease-out;
 
     &.iui-active {
-      @include themed {
-        color: t(iui-color-foreground-primary);
-      }
+      color: var(--iui-color-foreground-primary);
 
       .iui-tab-icon {
-        @include themed {
-          fill: t(iui-icons-color-primary);
-        }
+        fill: var(--iui-color-foreground-primary);
       }
 
       .iui-tab-description {
-        @include themed {
-          opacity: t(iui-opacity-1);
-        }
+        opacity: var(--iui-opacity-1);
       }
     }
 
     &[disabled] {
       cursor: not-allowed;
-      @include themed {
-        color: t(iui-text-color-muted);
-      }
+      color: var(--iui-color-foreground-4);
 
       .iui-tab-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable-disabled);
-        }
+        fill: var(--iui-color-foreground-5);
       }
     }
 
@@ -58,49 +46,38 @@
   }
 
   .iui-tab-icon {
-    width: $iui-icons-default;
-    height: $iui-icons-default;
-    flex-shrink: 0;
-    transition: fill $iui-speed-fast ease-out;
-    @include themed {
-      fill: t(iui-icons-color-actionable);
-    }
+    @include iui-icon-style('m');
+    fill: var(--iui-color-foreground-2);
+    transition: fill var(--iui-duration-1) ease-out;
 
     + .iui-tab-label {
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
   }
 
   .iui-tab-description {
     display: none;
-    font-size: $iui-font-size-small;
-    @include themed {
-      opacity: t(iui-opacity-3);
-    }
+    font-size: var(--iui-font-size-0);
+    opacity: var(--iui-opacity-3);
   }
 
   &.iui-green .iui-tab {
     &:focus {
-      outline-color: t(iui-color-foreground-positive);
+      outline-color: var(--iui-color-foreground-positive);
     }
 
     &.iui-active {
-      @include themed {
-        color: t(iui-color-foreground-positive);
-      }
+      color: var(--iui-color-foreground-positive);
 
       .iui-tab-icon {
-        @include themed {
-          fill: t(iui-icons-color-positive);
-        }
+        fill: var(--iui-color-foreground-positive);
       }
     }
   }
 
   ~ .iui-tabs-content {
-    padding-top: $iui-baseline;
-    padding-bottom: $iui-baseline;
-    box-sizing: border-box;
+    padding-top: var(--iui-size-s);
+    padding-bottom: var(--iui-size-s);
   }
 }
 
@@ -127,7 +104,7 @@
     }
 
     &.iui-active::after {
-      height: $iui-xxs;
+      height: var(--iui-size-3xs);
     }
   }
 }
@@ -152,7 +129,7 @@
     }
 
     &.iui-active::after {
-      width: $iui-xxs;
+      width: var(--iui-size-3xs);
     }
   }
 }
@@ -161,21 +138,17 @@
   .iui-tab::after {
     content: '';
     position: absolute;
-    @include themed {
-      background-color: t(iui-color-foreground-primary);
-    }
+    background-color: var(--iui-color-foreground-primary);
   }
 
   .iui-active::after {
     @media (prefers-reduced-motion: no-preference) {
-      transition: width $iui-speed-fast ease, height $iui-speed-fast ease;
+      transition: width var(--iui-duration-1) ease, height var(--iui-duration-1) ease;
     }
   }
 
   &.iui-green .iui-tab::after {
-    @include themed {
-      background-color: t(iui-color-foreground-positive);
-    }
+    background-color: var(--iui-color-foreground-positive);
   }
 }
 
@@ -183,37 +156,33 @@
   &::after {
     position: absolute;
     content: ' ';
-    @include themed {
-      background-color: t(iui-color-foreground-primary);
-    }
+    background-color: var(--iui-color-foreground-primary);
   }
 
   &.iui-green::after {
-    @include themed {
-      background-color: t(iui-color-foreground-positive);
-    }
+    background-color: var(--iui-color-foreground-positive);
   }
 
   @at-root {
     .iui-horizontal &::after {
-      top: calc(100% - #{$iui-xxs});
-      height: $iui-xxs;
+      top: calc(100% - #{var(--iui-size-3xs)});
+      height: var(--iui-size-3xs);
       left: var(--stripe-left);
       width: var(--stripe-width);
       @media (prefers-reduced-motion: no-preference) {
-        transition: width $iui-speed-fast ease-out, left $iui-speed-fast ease-out;
+        transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
       }
     }
   }
 
   @at-root {
     .iui-vertical &::after {
-      left: calc(100% - #{$iui-xxs});
-      width: $iui-xxs;
+      left: calc(100% - #{var(--iui-size-3xs)});
+      width: var(--iui-size-3xs);
       top: var(--stripe-top);
       height: var(--stripe-height);
       @media (prefers-reduced-motion: no-preference) {
-        transition: top $iui-speed-fast ease-out;
+        transition: top var(--iui-duration-1) ease-out;
       }
     }
   }

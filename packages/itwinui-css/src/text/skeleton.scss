@@ -1,24 +1,20 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 
 @mixin iui-text-skeleton {
   display: inline-block;
   user-select: none;
   color: transparent;
-  border-radius: $iui-border-radius;
+  border-radius: var(--iui-border-radius-1);
   cursor: progress;
-
-  @include themed {
-    background: linear-gradient(
-      292deg,
-      t(iui-text-color-muted),
-      t(iui-text-color-muted),
-      t(iui-text-color-placeholder),
-      t(iui-text-color-muted),
-      t(iui-text-color-muted)
-    );
-  }
+  background: linear-gradient(
+    292deg,
+    var(--iui-color-foreground-4),
+    var(--iui-color-foreground-4),
+    var(--iui-color-foreground-5),
+    var(--iui-color-foreground-4),
+    var(--iui-color-foreground-4)
+  );
   background-size: 200% 100%;
 
   @media (forced-colors: active) {
@@ -27,7 +23,7 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    animation: skeleton-shimmer $iui-speed-slow linear infinite;
+    animation: skeleton-shimmer var(--iui-duration-3) linear infinite;
 
     @keyframes skeleton-shimmer {
       0% {

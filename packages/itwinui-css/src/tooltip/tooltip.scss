@@ -1,27 +1,25 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
+@import '../utils/index';
 
 @mixin iui-tooltip {
   @include iui-reset;
   display: block;
   text-align: center;
-  border-radius: $iui-border-radius;
-  font-size: $iui-font-size-small;
+  border-radius: var(--iui-border-radius-1);
+  font-size: var(--iui-font-size-0);
   overflow: hidden;
   max-width: 400px;
   width: max-content;
   overflow-wrap: break-word;
   box-sizing: content-box;
-  padding: round($iui-baseline * 0.33) $iui-s;
+  padding: calc(var(--iui-size-s) * 0.33) var(--iui-size-xs);
   z-index: 999;
-  box-shadow: $iui-elevation-8;
+  box-shadow: var(--iui-shadow-3);
   pointer-events: none;
-  @include themed {
-    background-color: rgba(0, 0, 0, t(iui-opacity-3));
-    color: t(iui-color-foreground-accessory);
-    border: 1px solid rgba(t(iui-color-foreground-accessory-rgb), t(iui-opacity-4));
-  }
+  background-color: rgba(0, 0, 0, var(--iui-opacity-3));
+  color: var(--iui-color-foreground-accessory);
+  border: 1px solid rgba(255, 255, 255, var(--iui-opacity-4));
 }
 
 @mixin iui-tooltip-hidden {
@@ -30,9 +28,7 @@
   user-select: none;
   opacity: 0;
   /// Following this guide for animation on exit hover: https://greywyvern.com/?post=337
-  @media (prefers-reduced-motion: no-preference) {
-    transition: visibility $iui-speed-instant linear $iui-speed-fast, opacity $iui-speed-fast ease-out;
-  }
+  transition: visibility var(--iui-duration-0) linear var(--iui-duration-1), opacity var(--iui-duration-1) ease-out;
 }
 
 @mixin iui-tooltip-visible {

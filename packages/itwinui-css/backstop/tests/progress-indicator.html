@@ -25,9 +25,10 @@
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
-        width: 33vw;
+        width: 35vw;
         min-width: 300px;
       }
 
@@ -36,14 +37,14 @@
       }
 
       #demo-overlay-content {
-        padding: 11px 12px;
+        padding: 12px;
         border: 1px solid var(--iui-color-background-5);
         position: relative;
-        margin-bottom: 11px;
+        margin-bottom: 12px;
       }
     </style>
   </head>
-  <body class="iui-body">
+  <body class="iui-root">
     <theme-button></theme-button>
     <h1>Progress indicator</h1>
     <hr />
@@ -1026,71 +1027,6 @@
             >
             </circle>
           </svg>
-          <span class="iui-inner-content">
-            <svg-important-small aria-hidden="true"></svg-important-small>
-          </span>
-        </div>
-
-        <h4>IE specific</h4>
-        <!-- Indeterminate & IE safe -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <span class="iui-progress-indicator-radial-ie"></span>
-        </div>
-
-        <!-- Indeterminate & IE safe with center content -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">&hellip;</span>
-        </div>
-
-        <!-- Indeterminate & IE safe with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <svg-pause aria-hidden="true"></svg-pause>
-          </span>
-        </div>
-
-        <!-- Indeterminate & IE safe with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-positive">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </span>
-        </div>
-
-        <!-- Indeterminate & IE safe with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-negative">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <svg-important-small aria-hidden="true"></svg-important-small>
-          </span>
-        </div>
-
-        <!-- Small indeterminate & IE safe -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
-          <span class="iui-progress-indicator-radial-ie"></span>
-        </div>
-
-        <!-- Small indeterminate & IE safe with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <svg-pause aria-hidden="true"></svg-pause>
-          </span>
-        </div>
-
-        <!-- Small indeterminate & IE safe with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-positive">
-          <span class="iui-progress-indicator-radial-ie"></span>
-          <span class="iui-inner-content">
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </span>
-        </div>
-
-        <!-- Small indeterminate & IE safe with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-negative">
-          <span class="iui-progress-indicator-radial-ie"></span>
           <span class="iui-inner-content">
             <svg-important-small aria-hidden="true"></svg-important-small>
           </span>

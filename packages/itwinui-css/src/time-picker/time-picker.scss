@@ -1,39 +1,37 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import '../menu/index';
+@import '../utils/index';
 
 @mixin iui-time-picker {
   @include iui-reset;
   user-select: none;
   text-align: center;
-  height: $iui-baseline * 26;
+  height: calc(var(--iui-size-s) * 26);
   display: inline-flex;
-  @include themed {
-    background-color: t(iui-color-background-1);
-  }
+  background-color: var(--iui-color-background-1);
+  border-top-right-radius: var(--iui-border-radius-1);
+  border-bottom-right-radius: var(--iui-border-radius-1);
 
   &:not(:first-child) {
-    @include themed {
-      border-left: 1px solid t(iui-color-background-border);
-    }
+    border-left: 1px solid var(--iui-color-background-border);
   }
 
   &:first-child {
-    box-shadow: $iui-elevation-2;
+    box-shadow: var(--iui-shadow-1);
+    border-top-left-radius: var(--iui-border-radius-1);
+    border-bottom-left-radius: var(--iui-border-radius-1);
   }
 }
 
 @mixin iui-time-picker-list {
-  padding: $iui-baseline $iui-s;
+  padding: var(--iui-size-s) var(--iui-size-xs);
   overflow-y: auto;
   overflow-y: overlay;
   scrollbar-width: none;
 
   &:not(:first-child) {
-    @include themed {
-      border-left: 1px solid t(iui-color-background-border);
-    }
+    border-left: 1px solid var(--iui-color-background-border);
   }
 
   > ol {
@@ -42,25 +40,20 @@
 
     > li {
       @include iui-focus;
-      padding: round($iui-baseline * 0.5) $iui-m;
-      border-radius: $iui-border-radius;
+      padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
+      border-radius: var(--iui-border-radius-1);
 
       &:hover {
         cursor: pointer;
-        @include themed {
-          color: t(iui-color-foreground-primary);
-          background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-        }
+        background-color: var(--iui-color-background-transparent-hover);
       }
 
       &.iui-selected {
-        font-weight: $iui-font-weight-semibold;
+        font-weight: var(--iui-font-weight-semibold);
         cursor: default;
         @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
-        @include themed {
-          background-color: t(iui-color-background-primary);
-          color: t(iui-color-foreground-accessory);
-        }
+        background-color: var(--iui-color-background-primary);
+        color: var(--iui-color-foreground-accessory);
       }
     }
   }

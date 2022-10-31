@@ -1,10 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
-@import '../icon/index';
-@import '../text/index';
+@import '../utils/index';
 
-$iui-active-outline: thin solid t(iui-color-foreground-primary);
+$iui-active-outline: thin solid var(--iui-color-foreground-primary);
 
 @mixin iui-list-menu {
   @include iui-reset;
@@ -13,33 +11,37 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   width: 100%;
   margin: 0;
   padding: 0;
+  max-height: var(--iui-menu-max-height);
+  border-radius: var(--iui-border-radius-1);
 
   .iui-header-menu-icon {
-    margin: 0 $iui-xs;
+    margin: 0 var(--iui-size-2xs);
   }
 
   div.iui-header-menu-icon {
+    @include iui-icon-style('l');
     margin: 0;
-    width: $iui-icons-large;
-    height: $iui-icons-large;
-    border-radius: $iui-border-radius;
+    border-radius: var(--iui-border-radius-1);
   }
 
   &.iui-scroll {
     overflow-y: auto;
     overflow-y: overlay;
+    --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items in .iui-scroll
   }
 }
 
 @mixin iui-menu-item {
   display: flex;
   align-items: center;
-  font-size: $iui-font-size;
-  padding: 0 ($iui-component-padding-horizontal + 1px);
-  height: $iui-component-height;
+  font-size: var(--iui-font-size-1);
+  padding-block: var(--iui-size-2xs);
+  padding-inline: calc(var(--iui-size-s) + 1px);
+  min-height: var(--iui-component-height);
   cursor: pointer;
-  box-sizing: border-box;
   line-height: normal;
+  color: var(--iui-color-foreground-2);
+  border-radius: var(--iui-border-radius-1);
 
   + #{&} {
     margin-top: -1px;
@@ -58,16 +60,14 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
     + .iui-icon {
       margin-right: 0;
-      margin-left: $iui-s;
+      margin-left: var(--iui-size-xs);
     }
   }
 
   .iui-menu-description {
     display: none;
-    font-size: $iui-font-size-small;
-    @include themed {
-      opacity: t(iui-opacity-3);
-    }
+    font-size: var(--iui-font-size-0);
+    opacity: var(--iui-opacity-3);
   }
 
   > .iui-icon {
@@ -75,17 +75,13 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   }
 
   &:hover {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-    }
+    background-color: var(--iui-color-background-transparent-hover);
   }
 
   &:focus,
   &.iui-focused {
-    @include themed {
-      outline: $iui-active-outline;
-      outline-offset: -1px;
-    }
+    outline: $iui-active-outline;
+    outline-offset: -1px;
   }
 
   &:focus:not(:focus-visible) {
@@ -93,7 +89,7 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   }
 
   &.iui-large {
-    height: $iui-component-height-large;
+    min-height: var(--iui-component-height-large);
 
     .iui-menu-description {
       display: block;
@@ -103,12 +99,10 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
   &.iui-active {
     &,
     &:hover {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-        color: t(iui-color-foreground-primary);
-        outline: $iui-active-outline;
-        outline-offset: -1px;
-      }
+      background-color: var(--iui-color-background-subtle-primary);
+      color: var(--iui-color-foreground-primary);
+      outline: $iui-active-outline;
+      outline-offset: -1px;
     }
 
     .iui-menu-description {
@@ -116,14 +110,12 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     }
 
     > .iui-icon {
-      @include themed {
-        fill: t(iui-icons-color-primary);
-      }
+      fill: var(--iui-color-foreground-primary);
     }
 
     &:focus,
     &.iui-focused {
-      outline-width: $iui-xxs;
+      outline-width: var(--iui-size-3xs);
       outline-offset: -2px;
     }
 
@@ -138,15 +130,11 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
     &:hover {
       cursor: not-allowed;
       outline: none;
-      @include themed {
-        background-color: t(iui-color-background-1);
-        color: t(iui-text-color-placeholder);
-      }
+      background-color: var(--iui-color-background-1);
+      color: var(--iui-color-foreground-5);
 
       > .iui-icon {
-        @include themed {
-          fill: t(iui-icons-color-actionable-disabled);
-        }
+        fill: var(--iui-color-foreground-5);
       }
     }
   }
@@ -161,15 +149,15 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 
     .iui-menu-label {
       width: 100%;
-      height: $iui-font-size;
+      height: var(--iui-font-size-1);
       vertical-align: middle;
     }
 
     .iui-menu-description {
       width: 70%;
-      height: $iui-font-size-small;
+      height: var(--iui-font-size-0);
       vertical-align: middle;
-      margin-top: $iui-xs;
+      margin-top: var(--iui-size-2xs);
     }
 
     &:hover {
@@ -179,27 +167,26 @@ $iui-active-outline: thin solid t(iui-color-foreground-primary);
 }
 
 @mixin iui-menu-content {
-  padding: $iui-baseline ($iui-component-padding-horizontal + 1px);
+  padding-block: var(--iui-size-xs);
+  padding-inline: calc(var(--iui-size-m) + 1px);
+  min-height: var(--iui-component-height);
+  display: grid;
+  align-items: center;
 }
 
 @mixin iui-menu-divider {
   height: 1px;
-  width: calc(100% - #{$iui-l});
+  width: calc(100% - #{var(--iui-size-l)});
   margin: 1px auto;
-  @include themed {
-    background-color: t(iui-color-background-border);
-  }
+  background-color: var(--iui-color-background-border);
 }
 
 @mixin iui-menu-icon {
-  width: $iui-icons-default;
-  height: $iui-icons-default;
+  @include iui-icon-style('m');
   flex: 0 0 auto;
-  @include themed {
-    fill: t(iui-icons-color-actionable);
-  }
+  fill: var(--iui-color-foreground-2);
 
   + .iui-content {
-    margin-left: $iui-s;
+    margin-left: var(--iui-size-xs);
   }
 }

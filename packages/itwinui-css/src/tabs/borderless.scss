@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../style/index';
 @import './tabs';
 
 @mixin iui-tabs-borderless {
   .iui-tab {
-    padding: $iui-xs ($iui-component-padding-horizontal * 2);
+    padding-block: var(--iui-size-2xs);
+    padding-inline: calc(var(--iui-size-s) * 2);
     background-color: transparent;
 
     &::after {
@@ -14,48 +14,39 @@
     }
 
     &:hover {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
+      background-color: var(--iui-color-background-transparent-hover);
     }
 
     &.iui-active {
-      @include themed {
-        background-color: rgba(t(iui-color-foreground-primary-rgb), t(iui-opacity-6));
-      }
+      background-color: var(--iui-color-background-subtle-primary);
     }
   }
 
   @at-root {
     .iui-horizontal & ~ .iui-tabs-content {
-      margin-top: -$iui-xxs;
-      @include themed {
-        border-top: $iui-xxs solid t(iui-color-background-4);
-      }
+      margin-top: calc(0px - var(--iui-size-3xs));
+      border-top: var(--iui-size-3xs) solid var(--iui-color-background-4);
     }
   }
 
   @at-root {
     .iui-vertical & ~ .iui-tabs-content {
-      margin-left: -$iui-xxs;
-      padding-left: $iui-sm;
-      padding-right: $iui-sm;
-      @include themed {
-        border-left: $iui-xxs solid t(iui-color-background-4);
-      }
+      margin-left: calc(0px - var(--iui-size-3xs));
+      padding-left: var(--iui-size-s);
+      padding-right: var(--iui-size-s);
+      border-left: var(--iui-size-3xs) solid var(--iui-color-background-4);
     }
   }
 
-  &.iui-green .iui-active,
-  &.iui-green .iui-tab:hover {
-    @include themed {
-      background-color: rgba(t(iui-color-foreground-positive-rgb), t(iui-opacity-6));
+  &.iui-green {
+    .iui-active {
+      background-color: var(--iui-color-background-subtle-positive);
     }
   }
 
   &.iui-large {
     .iui-tab {
-      min-height: $iui-component-height-large;
+      min-height: calc(var(--iui-size-m) * 3.5);
     }
 
     .iui-tab-description {
@@ -64,8 +55,6 @@
   }
 
   .iui-tab[disabled]:hover {
-    @include themed {
-      background-color: transparent;
-    }
+    background-color: transparent;
   }
 }
