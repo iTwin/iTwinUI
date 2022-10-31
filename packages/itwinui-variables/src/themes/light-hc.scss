@@ -115,7 +115,6 @@ $opacities: (
   // #region Border variables
   --iui-color-border-subtle: #{hex(map.get($base-colors, background-7))};
   --iui-color-border: #{hex(map.get($base-colors, background-9))};
-  --iui-color-border-harsh: #{rgba(#000, var(--iui-opacity-4))};
   --iui-color-border-foreground: #{hex(map.get($base-colors, foreground-8))};
   --iui-color-border-foreground-hover: #{hex(map.get($base-colors, foreground-6))};
   --iui-color-border-disabled: #{hex(map.get($base-colors, background-7))};
@@ -128,7 +127,7 @@ $opacities: (
   --iui-color-icon: #{hex(map.get($base-colors, foreground-3))};
   --iui-color-icon-hover: #{hex(map.get($base-colors, foreground-2))};
   --iui-color-icon-muted: #{hex(map.get($base-colors, foreground-6))};
-  --iui-color-icon-muted-hover: #{hex(map.get($base-colors, foreground-8))};
+  --iui-color-icon-muted-hover: #{hex(map.get($base-colors, foreground-5))};
   --iui-color-icon-disabled: #{hex(map.get($base-colors, foreground-8))};
   --iui-color-icon-primary: #{hex(map.get($base-colors, foreground-primary-2))};
   --iui-color-icon-positive: #{hex(map.get($base-colors, foreground-positive-2))};
