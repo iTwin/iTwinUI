@@ -13,18 +13,8 @@
     @include iui-anchor-underline('on-initial');
   }
 
-  @at-root {
-    .iui-theme-light &,
-    .iui-theme-dark & {
-      @include iui-anchor-underline('on-hover');
-    }
-  }
-
-  @at-root {
-    .iui-theme-light-hc &,
-    .iui-theme-dark-hc & {
-      @include iui-anchor-underline('on-initial');
-    }
+  [data-iui-contrast='high'] & {
+    @include iui-anchor-underline('on-initial');
   }
 }
 
