@@ -5,80 +5,70 @@
 @use '../utils/get-hsl' as *;
 
 // #region SASS variables
-$light-primary-hue: 203;
-$light-primary-saturation: 100%;
-$light-primary-lightness: 39%;
-$light-primary-subtle-lightness-difference: 55%;
-
-$light-positive-hue: 115;
-$light-positive-saturation: 72%;
-$light-positive-lightness: 30%;
-$light-positive-subtle-lightness-difference: 63%;
-
-$light-warning-hue: 33;
-$light-warning-saturation: 89%;
-$light-warning-lightness: 36%;
-$light-warning-subtle-lightness-difference: 59%;
-
-$light-negative-hue: 0;
-$light-negative-saturation: 91%;
-$light-negative-lightness: 43%;
-$light-negative-subtle-lightness-difference: 51%;
-
-$light-background-saturation: 10%; // More saturated than high contrast theme
-$light-background-lightness: 100%;
-
-$light-background-lightness-difference: 3%; // Alt 2%, probably not a big enough difference between bg1 & bg1 hover, etc.
-$light-foreground-lightness-difference: 4%;
-$light-subtle-saturation-difference: 27%;
-$light-hover-difference: $light-background-lightness-difference * 2;
-
-$light-foreground-darkest-lightness: 68%; // Alt 70%, needed to score 4.5 on muted text above bg3.
+$background-hue: 203;
+$background-saturation: 10%; // More saturated than high contrast theme.
+$background-lightness-gap: 3%;
+$foreground-lightness-gap: 7%;
 // #endregion
 
 $base-colors: (
-  // #region Background colors - default
-  background-1: hsl($light-primary-hue $light-background-saturation $light-background-lightness),
-  background-1-zebra: hsl($light-primary-hue $light-background-saturation calc($light-background-lightness - $light-background-lightness-difference / 2)),
-  background-1-hover: hsl($light-primary-hue $light-background-saturation calc($light-background-lightness - $light-background-lightness-difference)),
-  background-2: hsl($light-primary-hue $light-background-saturation calc($light-background-lightness - $light-background-lightness-difference * 2)),
-  background-2-hover: hsl($light-primary-hue $light-background-saturation calc($light-background-lightness - $light-background-lightness-difference * 3)),
-  background-3: hsl($light-primary-hue $light-background-saturation calc($light-background-lightness - $light-background-lightness-difference * 4)),
-  background-4: hsl($light-primary-hue $light-background-saturation calc($light-background-lightness - $light-background-lightness-difference * 6)),
-  background-5: hsl($light-primary-hue $light-background-saturation calc($light-background-lightness - $light-background-lightness-difference * 8)),
+  // #region Background colors
+  // Lightest @ top, darkest @ bottom
+  background-0: hsl($background-hue $background-saturation 100%),
+  background-1: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap)),
+  background-2: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 2)),
+  background-3: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 3)),
+  background-4: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 4)),
+  background-5: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 5)),
+  background-6: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 6)),
+  background-7: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 7)),
+  background-8: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 8)),
+  background-9: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 9)),
+
+  background-primary-0: hsl(203 79% 94%), // Selection
+  background-primary-1: hsl(203 100% 36%), // Button
+  background-primary-2: hsl(204 100% 28%), // Button hovered
+
+  background-positive-0: hsl(116 41% 93%),
+  background-positive-1: hsl(118 76% 28%),
+  background-positive-2: hsl(118 81% 21%),
+
+  background-warning-0: hsl(35 61% 94%),
+  background-warning-1: hsl(33 90% 33%),
+  background-warning-2: hsl(33 94% 25%),
+
+  background-negative-0: hsl(0 100% 96%),
+  background-negative-1: hsl(0 91% 45%),
+  background-negative-2: hsl(0 94% 34%),
   // #endregion
-  // #region Background colors - statuses subtle
-  background-subtle-primary: hsl($light-primary-hue calc($light-primary-saturation - $light-subtle-saturation-difference) calc($light-primary-lightness + $light-primary-subtle-lightness-difference)),
-  background-subtle-positive: hsl($light-positive-hue calc($light-positive-saturation - $light-subtle-saturation-difference) calc($light-positive-lightness + $light-positive-subtle-lightness-difference)),
-  background-subtle-warning: hsl($light-warning-hue calc($light-warning-saturation - $light-subtle-saturation-difference) calc($light-warning-lightness + $light-warning-subtle-lightness-difference)),
-  background-subtle-negative: hsl($light-negative-hue calc($light-negative-saturation - $light-subtle-saturation-difference) calc($light-negative-lightness + $light-negative-subtle-lightness-difference)),
-  // #endregion
-  // #region Background colors - statuses
-  background-primary: hsl($light-primary-hue $light-primary-saturation $light-primary-lightness),
-  background-primary-hover: hsl($light-primary-hue $light-primary-saturation calc($light-primary-lightness - $light-hover-difference)),
-  background-positive: hsl($light-positive-hue $light-positive-saturation $light-positive-lightness),
-  background-positive-hover: hsl($light-positive-hue $light-positive-saturation calc($light-positive-lightness - $light-hover-difference)),
-  background-warning: hsl($light-warning-hue $light-warning-saturation $light-warning-lightness),
-  background-warning-hover: hsl($light-warning-hue $light-warning-saturation calc($light-warning-lightness - $light-hover-difference)),
-  background-negative: hsl($light-negative-hue $light-negative-saturation $light-negative-lightness),
-  background-negative-hover: hsl($light-negative-hue $light-negative-saturation calc($light-negative-lightness - $light-hover-difference)),
-  // #endregion
-  // #region Foreground colors - default
-  foreground-1: hsl(0 0% 0%),
-  foreground-2: hsl(0 0% calc($light-foreground-darkest-lightness - ($light-foreground-darkest-lightness / 7 * 5))),
-  foreground-3: hsl(0 0% calc($light-foreground-darkest-lightness - ($light-foreground-darkest-lightness / 7 * 3))),
-  foreground-4: hsl(0 0% calc($light-foreground-darkest-lightness - ($light-foreground-darkest-lightness / 7))),
-  foreground-5: hsl(0 0% $light-foreground-darkest-lightness),
-  // #endregion
-  // #region Foreground colors - statuses
-  foreground-primary: hsl($light-primary-hue $light-primary-saturation calc($light-primary-lightness - $light-foreground-lightness-difference)),
-  foreground-primary-hover: hsl($light-primary-hue $light-primary-saturation calc(($light-primary-lightness - $light-foreground-lightness-difference) - $light-hover-difference)),
-  foreground-positive: hsl($light-positive-hue $light-positive-saturation calc($light-positive-lightness - $light-foreground-lightness-difference)),
-  foreground-positive-hover: hsl($light-positive-hue $light-positive-saturation calc(($light-positive-lightness - $light-foreground-lightness-difference) - $light-hover-difference)),
-  foreground-warning: hsl($light-warning-hue $light-warning-saturation calc($light-warning-lightness - $light-foreground-lightness-difference)),
-  foreground-warning-hover: hsl($light-warning-hue $light-warning-saturation calc(($light-warning-lightness - $light-foreground-lightness-difference) - $light-hover-difference)),
-  foreground-negative: hsl($light-negative-hue $light-negative-saturation calc($light-negative-lightness - $light-foreground-lightness-difference)),
-  foreground-negative-hover: hsl($light-negative-hue $light-negative-saturation calc(($light-negative-lightness - $light-foreground-lightness-difference) - $light-hover-difference))
+  // #region Foreground colors
+  // Darkest @ top, lightest @ bottom
+  foreground-0: hsl(0 0% 0%),
+  foreground-1: hsl(0 0% $foreground-lightness-gap),
+  foreground-2: hsl(0 0% calc($foreground-lightness-gap * 2)),
+  foreground-3: hsl(0 0% calc($foreground-lightness-gap * 3)),
+  foreground-4: hsl(0 0% calc($foreground-lightness-gap * 4)),
+  foreground-5: hsl(0 0% calc($foreground-lightness-gap * 5)),
+  foreground-6: hsl(0 0% calc($foreground-lightness-gap * 6)),
+  foreground-7: hsl(0 0% calc($foreground-lightness-gap * 7)),
+  foreground-8: hsl(0 0% calc($foreground-lightness-gap * 8)),
+  foreground-9: hsl(0 0% calc($foreground-lightness-gap * 9)),
+
+  foreground-primary-0: hsl(204 100% 28%), // Text hovered
+  foreground-primary-1: hsl(203 100% 36%), // Text
+  foreground-primary-2: hsl(203 100% 44%), // Icon
+
+  foreground-positive-0: hsl(118 81% 21%),
+  foreground-positive-1: hsl(118 76% 28%),
+  foreground-positive-2: hsl(118 74% 35%),
+
+  foreground-warning-0: hsl(33 94% 25%),
+  foreground-warning-1: hsl(33 90% 33%),
+  foreground-warning-2: hsl(33 89% 41%),
+
+  foreground-negative-0: hsl(0 94% 34%),
+  foreground-negative-1: hsl(0 91% 45%),
+  foreground-negative-2: hsl(0 98% 60%)
   // #endregion
 );
 
@@ -100,17 +90,71 @@ $opacities: (
     --iui-opacity-#{$level}: #{$value};
   }
 
-  --iui-color-background-transparent-hover: rgba(0, 0, 0, 0.06); // Should match `$light-hover-difference`
-  --iui-color-background-border: #{hex(map.get($base-colors, background-5))};
-  --iui-color-background-disabled: #{hex(map.get($base-colors, background-3))};
-  --iui-color-foreground-disabled: #{hex(map.get($base-colors, foreground-4))};
-  --iui-color-foreground-muted: #{hex(map.get($base-colors, foreground-3))};
+  // --iui-color-background-zebra: #{hex(map.get($base-colors, background-1))};
 
-  // Only HSL channels, for customizing transparency
-  --iui-color-background-1-hsl: #{get-hsl(map.get($base-colors, background-1))};
-  --iui-color-foreground-1-hsl: #{get-hsl(map.get($base-colors, foreground-1))};
-  --iui-color-foreground-primary-hsl: #{get-hsl(map.get($base-colors, foreground-primary))};
-  --iui-color-foreground-positive-hsl: #{get-hsl(map.get($base-colors, foreground-positive))};
-  --iui-color-foreground-warning-hsl: #{get-hsl(map.get($base-colors, foreground-warning))};
-  --iui-color-foreground-negative-hsl: #{get-hsl(map.get($base-colors, foreground-negative))};
+  // #region Background variables
+  --iui-color-background: #{hex(map.get($base-colors, background-0))};
+  --iui-color-background-hover: #{hex(map.get($base-colors, background-1))};
+  --iui-color-background-backdrop: #{hex(map.get($base-colors, background-2))};
+  --iui-color-background-backdrop-hover: #{hex(map.get($base-colors, background-3))};
+  --iui-color-background-disabled: #{hex(map.get($base-colors, background-4))};
+  --iui-color-background-primary: #{hex(map.get($base-colors, background-primary-1))};
+  --iui-color-background-primary-hover: #{hex(map.get($base-colors, background-primary-2))};
+  --iui-color-background-primary-muted: #{hex(map.get($base-colors, background-primary-0))};
+  --iui-color-background-positive: #{hex(map.get($base-colors, background-positive-1))};
+  --iui-color-background-positive-hover: #{hex(map.get($base-colors, background-positive-2))};
+  --iui-color-background-positive-muted: #{hex(map.get($base-colors, background-positive-0))};
+  --iui-color-background-warning: #{hex(map.get($base-colors, background-warning-1))};
+  --iui-color-background-warning-hover: #{hex(map.get($base-colors, background-warning-2))};
+  --iui-color-background-warning-muted: #{hex(map.get($base-colors, background-warning-0))};
+  --iui-color-background-negative: #{hex(map.get($base-colors, background-negative-1))};
+  --iui-color-background-negative-hover: #{hex(map.get($base-colors, background-negative-2))};
+  --iui-color-background-negative-muted: #{hex(map.get($base-colors, background-negative-0))};
+  --iui-color-background-transparent-hover: rgba(0, 0, 0, 0.06);
+  // #endregion
+  // #region Border variables
+  --iui-color-border-subtle: #{hex(map.get($base-colors, background-7))};
+  --iui-color-border: #{hex(map.get($base-colors, background-9))};
+  --iui-color-border-harsh: #{hex(map.get($base-colors, background-9))};
+  --iui-color-border-foreground: #{hex(map.get($base-colors, foreground-8))};
+  --iui-color-border-foreground-hover: #{hex(map.get($base-colors, foreground-6))};
+  --iui-color-border-disabled: #{hex(map.get($base-colors, background-7))};
+  --iui-color-border-primary: #{hex(map.get($base-colors, foreground-primary-1))};
+  --iui-color-border-positive: #{hex(map.get($base-colors, foreground-positive-1))};
+  --iui-color-border-warning: #{hex(map.get($base-colors, foreground-warning-1))};
+  --iui-color-border-negative: #{hex(map.get($base-colors, foreground-negative-1))};
+  // #endregion
+  // #region Icon variables
+  --iui-color-icon: #{hex(map.get($base-colors, foreground-3))};
+  --iui-color-icon-hover: #{hex(map.get($base-colors, foreground-2))};
+  --iui-color-icon-muted: #{hex(map.get($base-colors, foreground-7))};
+  --iui-color-icon-muted-hover: #{hex(map.get($base-colors, foreground-8))};
+  --iui-color-icon-disabled: #{hex(map.get($base-colors, foreground-8))};
+  --iui-color-icon-primary: #{hex(map.get($base-colors, foreground-primary-2))};
+  --iui-color-icon-positive: #{hex(map.get($base-colors, foreground-positive-2))};
+  --iui-color-icon-warning: #{hex(map.get($base-colors, foreground-warning-2))};
+  --iui-color-icon-negative: #{hex(map.get($base-colors, foreground-negative-2))};
+  // #endregion
+  // #region Text variables
+  --iui-color-text: #{hex(map.get($base-colors, foreground-2))};
+  --iui-color-text-hover: #{hex(map.get($base-colors, foreground-1))};
+  --iui-color-text-muted: #{hex(map.get($base-colors, foreground-5))};
+  --iui-color-text-disabled: #{hex(map.get($base-colors, foreground-7))};
+  --iui-color-text-primary: #{hex(map.get($base-colors, foreground-primary-1))};
+  --iui-color-text-primary-hover: #{hex(map.get($base-colors, foreground-primary-0))};
+  --iui-color-text-positive: #{hex(map.get($base-colors, foreground-positive-1))};
+  --iui-color-text-positive-hover: #{hex(map.get($base-colors, foreground-positive-0))};
+  --iui-color-text-warning: #{hex(map.get($base-colors, foreground-warning-1))};
+  --iui-color-text-warning-hover: #{hex(map.get($base-colors, foreground-warning-0))};
+  --iui-color-text-negative: #{hex(map.get($base-colors, foreground-negative-1))};
+  --iui-color-text-negative-hover: #{hex(map.get($base-colors, foreground-negative-0))};
+  // #endregion
+  // #region HSL variables for transparency
+  --iui-color-background-hsl: #{get-hsl(map.get($base-colors, background-0))};
+  --iui-color-foreground-hsl: #{get-hsl(map.get($base-colors, foreground-1))};
+  --iui-color-foreground-primary-hsl: #{get-hsl(map.get($base-colors, foreground-primary-2))};
+  --iui-color-foreground-positive-hsl: #{get-hsl(map.get($base-colors, foreground-positive-2))};
+  --iui-color-foreground-warning-hsl: #{get-hsl(map.get($base-colors, foreground-warning-2))};
+  --iui-color-foreground-negative-hsl: #{get-hsl(map.get($base-colors, foreground-negative-2))};
+  // #endregion
 }
