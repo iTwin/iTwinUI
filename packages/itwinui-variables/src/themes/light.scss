@@ -11,66 +11,65 @@ $background-lightness-gap: 3%;
 $foreground-lightness-gap: 7%;
 // #endregion
 
-$base-colors: (
-  // #region Background colors
-  // Lightest @ top, darkest @ bottom
-  background-0: hsl($background-hue $background-saturation 100%),
-  background-1: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap)),
-  background-2: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 2)),
-  background-3: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 3)),
-  background-4: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 4)),
-  background-5: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 5)),
-  background-6: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 6)),
-  background-7: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 7)),
-  background-8: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 8)),
-  background-9: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 9)),
+// #region Background colors
+// Lightest @ top, darkest @ bottom
+$background-0: hsl($background-hue $background-saturation 100%);
+$background-1: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap));
+$background-2: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 2));
+$background-3: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 3));
+$background-4: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 4));
+$background-5: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 5));
+$background-6: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 6));
+$background-7: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 7));
+$background-8: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 8));
+$background-9: hsl($background-hue $background-saturation calc(100% - $background-lightness-gap * 9));
 
-  background-primary-0: hsl(203 79% 94%), // Selection
-  background-primary-1: hsl(203 100% 36%), // Button
-  background-primary-2: hsl(204 100% 28%), // Button hovered
+$background-primary-0: hsl(203 79% 94%); // Selection
+$background-primary-1: hsl(203 100% 36%); // Button
+$background-primary-2: hsl(204 100% 28%); // Button hovered
 
-  background-positive-0: hsl(116 41% 93%),
-  background-positive-1: hsl(118 76% 28%),
-  background-positive-2: hsl(118 81% 21%),
+$background-positive-0: hsl(116 41% 93%);
+$background-positive-1: hsl(118 76% 28%);
+$background-positive-2: hsl(118 81% 21%);
 
-  background-warning-0: hsl(35 61% 94%),
-  background-warning-1: hsl(33 90% 33%),
-  background-warning-2: hsl(33 94% 25%),
+$background-warning-0: hsl(35 61% 94%);
+$background-warning-1: hsl(33 90% 33%);
+$background-warning-2: hsl(33 94% 25%);
 
-  background-negative-0: hsl(0 100% 96%),
-  background-negative-1: hsl(0 91% 45%),
-  background-negative-2: hsl(0 94% 34%),
-  // #endregion
-  // #region Foreground colors
-  // Darkest @ top, lightest @ bottom
-  foreground-0: hsl(0 0% 0%),
-  foreground-1: hsl(0 0% $foreground-lightness-gap),
-  foreground-2: hsl(0 0% calc($foreground-lightness-gap * 2)),
-  foreground-3: hsl(0 0% calc($foreground-lightness-gap * 3)),
-  foreground-4: hsl(0 0% calc($foreground-lightness-gap * 4)),
-  foreground-5: hsl(0 0% calc($foreground-lightness-gap * 5)),
-  foreground-6: hsl(0 0% calc($foreground-lightness-gap * 6)),
-  foreground-7: hsl(0 0% calc($foreground-lightness-gap * 7)),
-  foreground-8: hsl(0 0% calc($foreground-lightness-gap * 8)),
-  foreground-9: hsl(0 0% calc($foreground-lightness-gap * 9)),
+$background-negative-0: hsl(0 100% 96%);
+$background-negative-1: hsl(0 91% 45%);
+$background-negative-2: hsl(0 94% 34%);
+// #endregion
 
-  foreground-primary-0: hsl(204 100% 28%), // Text hovered
-  foreground-primary-1: hsl(203 100% 36%), // Text
-  foreground-primary-2: hsl(203 100% 44%), // Icon
+// #region Foreground colors
+// Darkest @ top, lightest @ bottom
+$foreground-0: hsl(0 0% 0%);
+$foreground-1: hsl(0 0% $foreground-lightness-gap);
+$foreground-2: hsl(0 0% calc($foreground-lightness-gap * 2));
+$foreground-3: hsl(0 0% calc($foreground-lightness-gap * 3));
+$foreground-4: hsl(0 0% calc($foreground-lightness-gap * 4));
+$foreground-5: hsl(0 0% calc($foreground-lightness-gap * 5));
+$foreground-6: hsl(0 0% calc($foreground-lightness-gap * 6));
+$foreground-7: hsl(0 0% calc($foreground-lightness-gap * 7));
+$foreground-8: hsl(0 0% calc($foreground-lightness-gap * 8));
+$foreground-9: hsl(0 0% calc($foreground-lightness-gap * 9));
 
-  foreground-positive-0: hsl(118 81% 21%),
-  foreground-positive-1: hsl(118 76% 28%),
-  foreground-positive-2: hsl(118 74% 35%),
+$foreground-primary-0: hsl(204 100% 28%); // Text hovered
+$foreground-primary-1: hsl(203 100% 36%); // Text
+$foreground-primary-2: hsl(203 100% 44%); // Icon
 
-  foreground-warning-0: hsl(33 95% 17%),
-  foreground-warning-1: hsl(33 91% 25%),
-  foreground-warning-2: hsl(33 90% 33%),
+$foreground-positive-0: hsl(118 81% 21%);
+$foreground-positive-1: hsl(118 76% 28%);
+$foreground-positive-2: hsl(118 74% 35%);
 
-  foreground-negative-0: hsl(0 94% 34%),
-  foreground-negative-1: hsl(0 91% 45%),
-  foreground-negative-2: hsl(0 98% 60%)
-  // #endregion
-);
+$foreground-warning-0: hsl(33 95% 17%);
+$foreground-warning-1: hsl(33 91% 25%);
+$foreground-warning-2: hsl(33 90% 33%);
+
+$foreground-negative-0: hsl(0 94% 34%);
+$foreground-negative-1: hsl(0 91% 45%);
+$foreground-negative-2: hsl(0 98% 60%);
+// #endregion
 
 $opacities: (
   1: 1,
@@ -82,78 +81,74 @@ $opacities: (
 );
 
 @mixin theme {
-  @each $color, $value in $base-colors {
-    --iui-color-#{$color}: #{hex($value)};
-  }
-
   @each $level, $value in $opacities {
     --iui-opacity-#{$level}: #{$value};
   }
 
-  // --iui-color-background-zebra: #{hex(map.get($base-colors, background-1))};
+  // --iui-color-background-zebra: #{hex($background-1))};
 
   // #region Background variables
-  --iui-color-background: #{hex(map.get($base-colors, background-0))};
-  --iui-color-background-hover: #{hex(map.get($base-colors, background-1))};
-  --iui-color-background-backdrop: #{hex(map.get($base-colors, background-2))};
-  --iui-color-background-backdrop-hover: #{hex(map.get($base-colors, background-3))};
-  --iui-color-background-disabled: #{hex(map.get($base-colors, background-4))};
-  --iui-color-background-primary: #{hex(map.get($base-colors, background-primary-1))};
-  --iui-color-background-primary-hover: #{hex(map.get($base-colors, background-primary-2))};
-  --iui-color-background-primary-muted: #{hex(map.get($base-colors, background-primary-0))};
-  --iui-color-background-positive: #{hex(map.get($base-colors, background-positive-1))};
-  --iui-color-background-positive-hover: #{hex(map.get($base-colors, background-positive-2))};
-  --iui-color-background-positive-muted: #{hex(map.get($base-colors, background-positive-0))};
-  --iui-color-background-warning: #{hex(map.get($base-colors, background-warning-1))};
-  --iui-color-background-warning-hover: #{hex(map.get($base-colors, background-warning-2))};
-  --iui-color-background-warning-muted: #{hex(map.get($base-colors, background-warning-0))};
-  --iui-color-background-negative: #{hex(map.get($base-colors, background-negative-1))};
-  --iui-color-background-negative-hover: #{hex(map.get($base-colors, background-negative-2))};
-  --iui-color-background-negative-muted: #{hex(map.get($base-colors, background-negative-0))};
+  --iui-color-background: #{hex($background-0)};
+  --iui-color-background-hover: #{hex($background-1)};
+  --iui-color-background-backdrop: #{hex($background-2)};
+  --iui-color-background-backdrop-hover: #{hex($background-3)};
+  --iui-color-background-disabled: #{hex($background-4)};
+  --iui-color-background-primary: #{hex($background-primary-1)};
+  --iui-color-background-primary-hover: #{hex($background-primary-2)};
+  --iui-color-background-primary-muted: #{hex($background-primary-0)};
+  --iui-color-background-positive: #{hex($background-positive-1)};
+  --iui-color-background-positive-hover: #{hex($background-positive-2)};
+  --iui-color-background-positive-muted: #{hex($background-positive-0)};
+  --iui-color-background-warning: #{hex($background-warning-1)};
+  --iui-color-background-warning-hover: #{hex($background-warning-2)};
+  --iui-color-background-warning-muted: #{hex($background-warning-0)};
+  --iui-color-background-negative: #{hex($background-negative-1)};
+  --iui-color-background-negative-hover: #{hex($background-negative-2)};
+  --iui-color-background-negative-muted: #{hex($background-negative-0)};
   --iui-color-background-transparent-hover: rgba(0, 0, 0, 0.06);
   // #endregion
   // #region Border variables
-  --iui-color-border-subtle: #{hex(map.get($base-colors, background-7))};
-  --iui-color-border: #{hex(map.get($base-colors, background-9))};
-  --iui-color-border-foreground: #{hex(map.get($base-colors, foreground-8))};
-  --iui-color-border-foreground-hover: #{hex(map.get($base-colors, foreground-6))};
-  --iui-color-border-disabled: #{hex(map.get($base-colors, background-7))};
-  --iui-color-border-primary: #{hex(map.get($base-colors, foreground-primary-1))};
-  --iui-color-border-positive: #{hex(map.get($base-colors, foreground-positive-1))};
-  --iui-color-border-warning: #{hex(map.get($base-colors, foreground-warning-1))};
-  --iui-color-border-negative: #{hex(map.get($base-colors, foreground-negative-1))};
+  --iui-color-border-subtle: #{hex($background-7)};
+  --iui-color-border: #{hex($background-9)};
+  --iui-color-border-foreground: #{hex($foreground-8)};
+  --iui-color-border-foreground-hover: #{hex($foreground-6)};
+  --iui-color-border-disabled: #{hex($background-7)};
+  --iui-color-border-primary: #{hex($foreground-primary-1)};
+  --iui-color-border-positive: #{hex($foreground-positive-1)};
+  --iui-color-border-warning: #{hex($foreground-warning-1)};
+  --iui-color-border-negative: #{hex($foreground-negative-1)};
   // #endregion
   // #region Icon variables
-  --iui-color-icon: #{hex(map.get($base-colors, foreground-3))};
-  --iui-color-icon-hover: #{hex(map.get($base-colors, foreground-2))};
-  --iui-color-icon-muted: #{hex(map.get($base-colors, foreground-7))};
-  --iui-color-icon-muted-hover: #{hex(map.get($base-colors, foreground-6))};
-  --iui-color-icon-disabled: #{hex(map.get($base-colors, foreground-8))};
-  --iui-color-icon-primary: #{hex(map.get($base-colors, foreground-primary-2))};
-  --iui-color-icon-positive: #{hex(map.get($base-colors, foreground-positive-2))};
-  --iui-color-icon-warning: #{hex(map.get($base-colors, foreground-warning-2))};
-  --iui-color-icon-negative: #{hex(map.get($base-colors, foreground-negative-2))};
+  --iui-color-icon: #{hex($foreground-3)};
+  --iui-color-icon-hover: #{hex($foreground-2)};
+  --iui-color-icon-muted: #{hex($foreground-7)};
+  --iui-color-icon-muted-hover: #{hex($foreground-6)};
+  --iui-color-icon-disabled: #{hex($foreground-8)};
+  --iui-color-icon-primary: #{hex($foreground-primary-2)};
+  --iui-color-icon-positive: #{hex($foreground-positive-2)};
+  --iui-color-icon-warning: #{hex($foreground-warning-2)};
+  --iui-color-icon-negative: #{hex($foreground-negative-2)};
   // #endregion
   // #region Text variables
-  --iui-color-text: #{hex(map.get($base-colors, foreground-2))};
-  --iui-color-text-hover: #{hex(map.get($base-colors, foreground-1))};
-  --iui-color-text-muted: #{hex(map.get($base-colors, foreground-5))};
-  --iui-color-text-disabled: #{hex(map.get($base-colors, foreground-7))};
-  --iui-color-text-primary: #{hex(map.get($base-colors, foreground-primary-1))};
-  --iui-color-text-primary-hover: #{hex(map.get($base-colors, foreground-primary-0))};
-  --iui-color-text-positive: #{hex(map.get($base-colors, foreground-positive-1))};
-  --iui-color-text-positive-hover: #{hex(map.get($base-colors, foreground-positive-0))};
-  --iui-color-text-warning: #{hex(map.get($base-colors, foreground-warning-1))};
-  --iui-color-text-warning-hover: #{hex(map.get($base-colors, foreground-warning-0))};
-  --iui-color-text-negative: #{hex(map.get($base-colors, foreground-negative-1))};
-  --iui-color-text-negative-hover: #{hex(map.get($base-colors, foreground-negative-0))};
+  --iui-color-text: #{hex($foreground-2)};
+  --iui-color-text-hover: #{hex($foreground-1)};
+  --iui-color-text-muted: #{hex($foreground-5)};
+  --iui-color-text-disabled: #{hex($foreground-7)};
+  --iui-color-text-primary: #{hex($foreground-primary-1)};
+  --iui-color-text-primary-hover: #{hex($foreground-primary-0)};
+  --iui-color-text-positive: #{hex($foreground-positive-1)};
+  --iui-color-text-positive-hover: #{hex($foreground-positive-0)};
+  --iui-color-text-warning: #{hex($foreground-warning-1)};
+  --iui-color-text-warning-hover: #{hex($foreground-warning-0)};
+  --iui-color-text-negative: #{hex($foreground-negative-1)};
+  --iui-color-text-negative-hover: #{hex($foreground-negative-0)};
   // #endregion
   // #region HSL variables for transparency
-  --iui-color-background-hsl: #{get-hsl(map.get($base-colors, background-0))};
-  --iui-color-foreground-hsl: #{get-hsl(map.get($base-colors, foreground-1))};
-  --iui-color-foreground-primary-hsl: #{get-hsl(map.get($base-colors, foreground-primary-2))};
-  --iui-color-foreground-positive-hsl: #{get-hsl(map.get($base-colors, foreground-positive-2))};
-  --iui-color-foreground-warning-hsl: #{get-hsl(map.get($base-colors, foreground-warning-2))};
-  --iui-color-foreground-negative-hsl: #{get-hsl(map.get($base-colors, foreground-negative-2))};
+  --iui-color-background-hsl: #{get-hsl($background-0)};
+  --iui-color-foreground-hsl: #{get-hsl($foreground-1)};
+  --iui-color-foreground-primary-hsl: #{get-hsl($foreground-primary-2)};
+  --iui-color-foreground-positive-hsl: #{get-hsl($foreground-positive-2)};
+  --iui-color-foreground-warning-hsl: #{get-hsl($foreground-warning-2)};
+  --iui-color-foreground-negative-hsl: #{get-hsl($foreground-negative-2)};
   // #endregion
 }
