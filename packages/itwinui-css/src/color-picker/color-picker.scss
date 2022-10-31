@@ -228,18 +228,11 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   background-size: $size $size;
   background-image: repeating-linear-gradient(
     45deg,
-    var(--iui-color-background-5) 25%, // TODO Hardcode instead of vars
+    #C7CCD1 25%,
     transparent 25%,
     transparent 75%,
-    var(--iui-color-background-5) 75%,
-    var(--iui-color-background-5)
+    #C7CCD1 75%,
+    #C7CCD1
   ),
-    repeating-linear-gradient(
-    45deg,
-    var(--iui-color-background-5) 25%,
-    var(--iui-color-border) 25%,
-    var(--iui-color-border) 75%,
-    var(--iui-color-background-5) 75%,
-    var(--iui-color-background-5)
-  );
+    repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
 }
