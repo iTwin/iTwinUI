@@ -10,8 +10,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   flex: 0 0 auto;
   flex-direction: column;
   height: 100%;
-  background-color: var(--iui-color-background-1);
-  border-right: 1px solid var(--iui-color-background-border);
+  background-color: var(--iui-color-background);
+  border-right: 1px solid var(--iui-color-border);
   @media (prefers-reduced-motion: no-preference) {
     transition: max-width var(--iui-duration-1) ease-out;
   }
@@ -49,7 +49,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     + .iui-sidenav-button.iui-expand {
       border: none;
-      border-top: 1px solid var(--iui-color-background-border);
+      border-top: 1px solid var(--iui-color-border);
     }
   }
 
@@ -111,7 +111,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     &,
     &:hover,
     &[disabled] {
-      border-color: var(--iui-color-background-border);
+      border-color: var(--iui-color-border);
     }
 
     > .iui-button-icon:not(.iui-avatar) {
@@ -119,12 +119,12 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
 
     &.iui-submenu-open .iui-button-icon {
-      fill: var(--iui-color-foreground-primary);
+      fill: var(--iui-color-icon-primary);
     }
 
     &[disabled],
     &:disabled {
-      background-color: var(--iui-color-background-2);
+      background-color: var(--iui-color-background-backdrop);
     }
 
     &.iui-expand {
@@ -132,7 +132,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       --_iui-button-min-height: var(--iui-size-l);
       justify-content: center;
       border: none;
-      border-bottom: 1px solid var(--iui-color-background-border);
+      border-bottom: 1px solid var(--iui-color-border);
 
       > .iui-button-icon {
         @include iui-icon-style('s');
@@ -153,8 +153,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   overflow-y: auto;
   overflow-y: overlay;
   resize: horizontal;
-  background-color: var(--iui-color-background-1);
-  border-right: 1px solid var(--iui-color-background-border);
+  background-color: var(--iui-color-background);
+  border-right: 1px solid var(--iui-color-border);
 
   @include iui-transition-group;
 

@@ -11,10 +11,10 @@
   align-items: center;
   padding: 0 var(--iui-size-m);
   user-select: none;
-  background-color: var(--iui-color-background-1);
+  background-color: var(--iui-color-background);
   border-bottom-left-radius: var(--iui-border-radius-1);
   border-bottom-right-radius: var(--iui-border-radius-1);
-  border-top: 1px solid var(--iui-color-background-border);
+  border-top: 1px solid var(--iui-color-border);
 
   > .iui-left,
   > .iui-center,
@@ -29,7 +29,7 @@
   > .iui-center {
     justify-content: center;
     flex: 2 1;
-    color: var(--iui-color-foreground-2);
+    color: var(--iui-color-text);
   }
 
   > .iui-right {

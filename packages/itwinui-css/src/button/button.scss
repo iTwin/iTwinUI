@@ -41,8 +41,8 @@
 
 @mixin iui-button-active {
   --_iui-button-active-stripe-inset: initial;
-  --_iui-button-active-stripe-color: var(--iui-color-foreground-primary);
-  --_iui-button-text-color: var(--iui-color-foreground-primary);
+  --_iui-button-active-stripe-color: var(--iui-color-border-primary);
+  --_iui-button-text-color: var(--iui-color-text-primary);
 
   // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
   &::after {
@@ -55,8 +55,8 @@
   &[disabled],
   &:disabled,
   &[aria-disabled='true'] {
-    --_iui-button-active-stripe-color: var(--iui-color-foreground-disabled);
-    --_iui-button-text-color: var(--iui-color-foreground-disabled);
+    --_iui-button-active-stripe-color: var(--iui-color-border-disabled);
+    --_iui-button-text-color: var(--iui-color-text-disabled);
   }
 }
 

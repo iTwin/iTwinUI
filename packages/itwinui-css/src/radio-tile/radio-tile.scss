@@ -13,16 +13,16 @@
   padding: var(--iui-size-xs);
   position: relative;
   z-index: 1;
-  outline: 1px solid var(--iui-color-foreground-4);
-  background-color: var(--iui-color-background-1);
+  outline: 1px solid var(--iui-color-border);
+  background-color: var(--iui-color-background);
   transition: outline-color var(--iui-duration-1) ease-out;
 
   &:hover {
     z-index: 2;
-    outline-color: var(--iui-color-foreground-2);
+    outline-color: var(--iui-color-border-hover);
 
     .iui-radio-tile-icon {
-      fill: var(--iui-color-foreground-2);
+      fill: var(--iui-color-icon-hover);
       @media (forced-colors: active) {
         fill: CanvasText;
       }
@@ -50,7 +50,7 @@
   &:checked + * {
     padding: var(--iui-size-xs);
     z-index: 3;
-    outline: var(--iui-size-3xs) solid var(--iui-color-foreground-primary);
+    outline: var(--iui-size-3xs) solid var(--iui-color-border-primary);
     outline-offset: -1px;
 
     @media (forced-colors: active) {
@@ -58,7 +58,7 @@
     }
 
     .iui-radio-tile-icon {
-      fill: var(--iui-color-foreground-primary);
+      fill: var(--iui-color-icon-primary);
       @media (forced-colors: active) {
         fill: Highlight;
       }
@@ -71,7 +71,7 @@
       top: var(--iui-size-xs);
       right: var(--iui-size-xs);
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" /></svg>');
-      background-color: var(--iui-color-foreground-primary);
+      background-color: var(--iui-color-icon-primary);
       @media (forced-colors: active) {
         background-color: Highlight;
       }
@@ -81,11 +81,11 @@
   &:disabled + * {
     cursor: not-allowed;
     z-index: 0;
-    outline-color: var(--iui-color-background-disabled);
+    outline-color: var(--iui-color-border-disabled);
     background-color: var(--iui-color-background-disabled);
 
     &::after {
-      background-color: var(--iui-color-foreground-disabled);
+      background-color: var(--iui-color-icon-disabled);
       @media (forced-colors: active) {
         background-color: GrayText;
       }
@@ -93,7 +93,7 @@
 
     .iui-radio-tile-icon {
       filter: $iui-icon-color-multicolor-disabled;
-      fill: var(--iui-color-foreground-disabled);
+      fill: var(--iui-color-icon-disabled);
       @media (forced-colors: active) {
         fill: GrayText;
       }
@@ -101,7 +101,7 @@
 
     .iui-radio-tile-label,
     .iui-radio-tile-sublabel {
-      color: var(--iui-color-foreground-4);
+      color: var(--iui-color-text-disabled);
       @media (forced-colors: active) {
         color: GrayText;
       }
@@ -110,7 +110,7 @@
 
   &:disabled:checked + * {
     z-index: 3;
-    outline: var(--iui-size-3xs) solid var(--iui-color-foreground-4);
+    outline: var(--iui-size-3xs) solid var(--iui-color-border);
     @media (forced-colors: active) {
       outline-color: GrayText;
     }
@@ -121,7 +121,7 @@
       // outline for checkmark
       z-index: 2;
       outline-offset: calc(0px - var(--iui-size-3xs));
-      outline: 3px solid var(--iui-color-foreground-primary);
+      outline: 3px solid var(--iui-color-border-primary);
       @media (forced-colors: active) {
         outline-color: Highlight;
       }
@@ -133,7 +133,7 @@
   @include iui-icon-style('xl');
   @include iui-icon-color;
   margin: calc(var(--iui-size-s) * 0.5) auto var(--iui-size-s);
-  fill: var(--iui-color-foreground-4);
+  fill: var(--iui-color-icon-muted);
   transition: fill var(--iui-duration-1) ease-out;
   @media (forced-colors: active) {
     fill: CanvasText;
@@ -146,7 +146,7 @@
   line-height: var(--iui-size-l);
   text-align: center;
   word-break: break-word;
-  color: var(--iui-color-foreground-2);
+  color: var(--iui-color-text);
 }
 
 @mixin iui-radio-tile-sublabel {
@@ -154,5 +154,5 @@
   line-height: calc(var(--iui-size-s) * 1.25);
   text-align: center;
   word-break: break-word;
-  color: var(--iui-color-foreground-3);
+  color: var(--iui-color-text-muted);
 }

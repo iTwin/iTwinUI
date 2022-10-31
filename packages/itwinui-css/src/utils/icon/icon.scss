@@ -31,21 +31,21 @@ $iui-icon-sizes: (
 /// @arg $color Can be one of: default, informational, positive, warning, negative
 @mixin iui-icon-color($color: 'default') {
   @if $color == 'default' {
-    fill: var(--iui-color-foreground-muted);
+    fill: var(--iui-color-icon-muted);
     @media (forced-colors: active) {
       fill: CanvasText;
     }
   }
   @if $color == 'informational' {
-    fill: var(--iui-color-foreground-primary);
+    fill: var(--iui-color-icon-primary);
   }
   @if $color == 'positive' {
-    fill: var(--iui-color-foreground-positive);
+    fill: var(--iui-color-icon-positive);
   }
   @if $color == 'warning' {
-    fill: var(--iui-color-foreground-warning);
+    fill: var(--iui-color-icon-warning);
   }
   @if $color == 'negative' {
-    fill: var(--iui-color-foreground-negative);
+    fill: var(--iui-color-icon-negative);
   }
 }

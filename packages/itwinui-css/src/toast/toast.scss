@@ -11,9 +11,10 @@
   margin: 0 var(--iui-size-m) var(--iui-size-s) var(--iui-size-m);
   min-height: calc(var(--iui-size-s) * 4);
   border-radius: var(--iui-border-radius-1);
-  background-color: var(--iui-color-background-1);
-  border: 1px solid var(--iui-color-foreground-1);
+  background-color: var(--iui-color-background);
+  border: 1px solid var(--iui-color-border);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, var(--iui-opacity-4)), var(--iui-shadow-5);
+  overflow: hidden;
 
   > .iui-status-area {
     display: flex;
@@ -22,11 +23,10 @@
     align-items: center;
     width: calc(var(--iui-size-l) * 2);
     flex-shrink: 0;
-    background-color: var(--iui-color-background-5);
 
     > .iui-icon {
       @include iui-icon-style('m');
-      fill: var(--iui-color-foreground-accessory);
+      fill: var(--iui-color-icon-muted);
     }
   }
 
@@ -40,7 +40,7 @@
     line-height: var(--iui-size-l);
     font-weight: var(--iui-font-weight-normal);
     font-style: normal;
-    color: var(--iui-color-foreground-2);
+    color: var(--iui-color-text);
   }
 
   &-anchor {

@@ -22,8 +22,8 @@
     align-items: center;
     user-select: none;
     padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
-    background-color: var(--iui-color-background-2);
-    border: 1px solid var(--iui-color-background-2);
+    background-color: var(--iui-color-background-backdrop);
+    border: 1px solid var(--iui-color-background-backdrop);
     border-radius: var(--iui-border-radius-1);
 
     .iui-browse-input {
@@ -48,7 +48,7 @@
       flex-direction: row;
 
       &:focus-within {
-        outline: 2px solid var(--iui-color-foreground-primary);
+        outline: 2px solid var(--iui-color-text-primary);
         outline-offset: -2px;
       }
     }
@@ -63,14 +63,14 @@
   }
 
   &.iui-drag > .iui-content {
-    background-color: var(--iui-color-background-subtle-primary);
-    border-color: var(--iui-color-foreground-primary);
-    color: var(--iui-color-foreground-primary);
+    background-color: var(--iui-color-background-primary-muted);
+    border-color: var(--iui-color-border-primary);
+    color: var(--iui-color-text-primary);
     visibility: visible;
 
     > svg,
     .iui-template-icon {
-      fill: var(--iui-color-foreground-primary);
+      fill: var(--iui-color-icon-primary);
     }
   }
 }

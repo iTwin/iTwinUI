@@ -3,13 +3,13 @@
 @import './button';
 
 @mixin iui-button-borderless {
-  --_iui-button-text-color: var(--iui-color-foreground-2);
+  --_iui-button-text-color: var(--iui-color-text);
   --_iui-button-background-color: transparent;
   --_iui-button-border-color: transparent;
   @include iui-button-size(medium, borderless);
 
   &:where(:hover, :active) {
-    --_iui-button-text-color: var(--iui-color-foreground-1);
+    --_iui-button-text-color: var(--iui-color-text-hover);
     --_iui-button-background-color: var(--iui-color-background-transparent-hover);
   }
 
@@ -19,7 +19,7 @@
   }
 
   &:where([disabled], :disabled, [aria-disabled='true']) {
-    --_iui-button-text-color: var(--iui-color-foreground-disabled);
+    --_iui-button-text-color: var(--iui-color-text-disabled);
     --_iui-button-background-color: transparent;
     --_iui-button-border-color: transparent;
   }

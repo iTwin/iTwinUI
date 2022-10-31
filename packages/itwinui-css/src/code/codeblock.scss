@@ -10,9 +10,10 @@
     display: flex;
     align-items: center;
     border-radius: var(--iui-border-radius-1) var(--iui-border-radius-1) 0 0;
-    background-color: var(--iui-color-background-1);
-    border: 1px solid var(--iui-color-background-border);
+    background-color: var(--iui-color-background);
+    border: 1px solid var(--iui-color-border);
     border-bottom: none;
+    color: var(--iui-color-text);
 
     > .iui-title {
       margin-left: var(--iui-size-s);
@@ -27,11 +28,12 @@
   > .iui-codeblock-content {
     margin: 0;
     display: grid;
-    overflow-x: auto;
-    overflow-y: auto;
+    overflow: auto;
+    overflow: overlay;
     border-radius: 0 0 var(--iui-border-radius-1) var(--iui-border-radius-1);
     white-space: normal;
-    border: 1px solid var(--iui-color-background-border);
+    border: 1px solid var(--iui-color-border);
+    color: var(--iui-color-text);
     @include iui-focus;
 
     > code {
@@ -41,10 +43,10 @@
       hyphens: auto;
       counter-increment: section;
       font-family: var(--iui-font-mono);
-      background-color: var(--iui-color-background-1);
+      background-color: var(--iui-color-background);
 
       &:nth-child(even) {
-        background-color: var(--iui-color-background-1-zebra);
+        background-color: var(--iui-color-background-zebra);
       }
 
       &::before {
@@ -53,8 +55,8 @@
         display: inline-block;
         padding: 0 var(--iui-size-xs);
         width: calc(var(--iui-size-l) + 2 * var(--iui-size-xs)); // 2 * iui-size-xs for the padding
-        background-color: var(--iui-color-background-2);
-        color: var(--iui-color-foreground-muted);
+        background-color: var(--iui-color-background-backdrop);
+        color: var(--iui-color-text-muted);
       }
     }
   }

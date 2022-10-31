@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
-@mixin iui-progress-indicator-linear($height: 4px) {
+@mixin iui-progress-indicator-linear($height: var(--iui-size-2xs)) {
   @include iui-reset;
   text-align: left;
   display: block;
@@ -11,13 +11,13 @@
     width: 100%;
     height: $height;
     overflow: hidden;
-    background-color: var(--iui-color-background-5);
+    background-color: var(--iui-color-border);
 
     > .iui-fill {
       display: inline-block;
       height: 100%;
       vertical-align: top;
-      background-color: var(--iui-color-foreground-primary);
+      background-color: var(--iui-color-border-primary);
     }
   }
 
@@ -29,6 +29,7 @@
     display: flex;
     font-size: var(--iui-font-size-0);
     justify-content: space-between;
+    color: var(--iui-color-text);
 
     > :only-child {
       margin: 0 auto;
@@ -46,14 +47,14 @@
   &.iui-positive {
     > .iui-track,
     > .iui-track > * {
-      background-color: var(--iui-color-foreground-positive);
+      background-color: var(--iui-color-border-positive);
     }
 
     > .iui-label {
-      color: var(--iui-color-foreground-positive);
+      color: var(--iui-color-text-positive);
 
       svg {
-        fill: var(--iui-color-foreground-positive);
+        fill: var(--iui-color-icon-positive);
       }
 
       > span {
@@ -65,14 +66,14 @@
   &.iui-negative {
     > .iui-track > * {
       width: 100%;
-      background-color: var(--iui-color-foreground-negative);
+      background-color: var(--iui-color-border-negative);
     }
 
     > .iui-label {
-      color: var(--iui-color-foreground-negative);
+      color: var(--iui-color-text-negative);
 
       svg {
-        fill: var(--iui-color-foreground-negative);
+        fill: var(--iui-color-icon-negative);
       }
 
       > span {

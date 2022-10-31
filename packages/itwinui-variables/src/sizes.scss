@@ -15,7 +15,7 @@
 }
 
 @mixin border-radii {
-  --iui-border-radius-1: 4px;
+  --iui-border-radius-1: var(--iui-size-2xs);
   --iui-border-radius-round: 9999px;
 }
 

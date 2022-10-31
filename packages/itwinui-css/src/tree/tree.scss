@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
-$iui-active-outline: thin solid var(--iui-color-foreground-primary);
+$iui-active-outline: thin solid var(--iui-color-border-primary);
 
 // padding of small borderless button + 1px transparent border
 $iui-expander-inline-padding: calc(var(--iui-size-2xs) + 1px);
@@ -14,6 +14,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   @include iui-reset;
   list-style: none;
   border-radius: var(--iui-border-radius-1);
+  background-color: var(--iui-color-background);
 }
 
 @mixin iui-sub-tree {
@@ -26,11 +27,11 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     outline: none;
 
     > .iui-tree-node {
-      outline: 1px solid var(--iui-color-foreground-primary);
+      outline: 1px solid var(--iui-color-border-primary);
       outline-offset: -1px;
 
       &.iui-active {
-        outline: 2px solid var(--iui-color-foreground-primary);
+        outline: 2px solid var(--iui-color-border-primary);
         outline-offset: -2px;
       }
     }
@@ -98,21 +99,22 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
     &-caption {
       font-size: var(--iui-font-size-0);
-      color: var(--iui-color-foreground-muted);
+      color: var(--iui-color-text-muted);
     }
   }
 
   &:hover {
-    background-color: var(--iui-color-background-transparent-hover);
+    background-color: var(--iui-color-background-hover);
+    color: var(--iui-color-text-hover);
 
     .iui-tree-node-content-caption {
-      color: var(--iui-color-foreground-1);
+      color: var(--iui-color-text-hover);
       transition: color var(--iui-duration-1) ease;
     }
   }
 
   &.iui-active {
-    background-color: var(--iui-color-background-subtle-primary);
+    background-color: var(--iui-color-background-primary-muted);
     outline: $iui-active-outline;
     outline-offset: -1px;
   }
@@ -121,10 +123,10 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     cursor: not-allowed;
     outline: none;
     background-color: transparent;
-    color: var(--iui-color-foreground-disabled);
 
+    &,
     .iui-tree-node-content-caption {
-      color: var(--iui-color-foreground-disabled);
+      color: var(--iui-color-text-disabled);
     }
   }
 }

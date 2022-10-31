@@ -3,7 +3,7 @@
 @import './utils/index';
 
 :where(.iui-root) {
-  color: var(--iui-color-foreground-2);
+  color: var(--iui-color-text);
   font-size: var(--iui-font-size-1);
   line-height: var(--iui-size-l);
   font-family: var(--iui-font-sans);
@@ -11,7 +11,7 @@
   // reset margin and apply background only for <body> element
   @at-root :where(body#{&}) {
     margin: 0;
-    background-color: var(--iui-color-background-2);
+    background-color: var(--iui-color-background-backdrop);
   }
 
   // border-box on all iui- elements and their descendants under iui-root, excluding any nested iui-root elements

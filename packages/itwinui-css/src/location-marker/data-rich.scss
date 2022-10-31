@@ -14,9 +14,9 @@
     padding: calc(var(--iui-size-s) * 0.25) var(--iui-size-xs);
     filter: drop-shadow(var(--iui-shadow-1));
     position: relative;
-    border: solid 1px var(--iui-color-foreground-accessory);
-    background-color: var(--iui-color-foreground-accessory);
-    color: var(--iui-color-foreground-accessory);
+    border: solid 1px var(--iui-color-icon-accessory);
+    background-color: var(--iui-color-icon-accessory);
+    color: var(--iui-color-text-accessory);
 
     &::before {
       content: '';
@@ -30,7 +30,7 @@
       margin: auto;
       border-width: var(--iui-size-2xs);
       border-style: solid;
-      border-color: var(--iui-color-foreground-accessory) transparent transparent transparent;
+      border-color: var(--iui-color-icon-accessory) transparent transparent transparent;
     }
 
     > .iui-location-marker-data-rich-icon {
@@ -40,7 +40,7 @@
       vertical-align: -2px;
 
       &.iui-location-marker-data-rich-icon-monochrome {
-        fill: var(--iui-color-foreground-accessory);
+        fill: var(--iui-color-icon-accessory);
       }
     }
   }

@@ -16,7 +16,7 @@
   flex-direction: column;
   max-width: 100%;
   max-height: 100%;
-  background-color: var(--iui-color-background-1);
+  background-color: var(--iui-color-background);
   @media (prefers-reduced-motion: no-preference) {
     transition: visibility var(--iui-duration-0) var(--iui-duration-1) ease-in, transform var(--iui-duration-1) ease-out,
       opacity var(--iui-duration-1) ease;
@@ -28,11 +28,11 @@
     touch-action: none;
 
     > .iui-resizer-bar {
-      background-color: var(--iui-color-background-border);
+      background-color: var(--iui-color-border);
     }
 
     &:hover > .iui-resizer-bar {
-      background-color: var(--iui-color-foreground-primary);
+      background-color: var(--iui-color-border-primary);
     }
   }
 
@@ -40,6 +40,7 @@
   .iui-information-body {
     padding-left: var(--iui-size-s);
     padding-right: var(--iui-size-s);
+    color: var(--iui-color-text);
   }
 
   .iui-information-header {
@@ -48,7 +49,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--iui-color-background-1);
+    background-color: var(--iui-color-background);
 
     .iui-information-header-label {
       display: flex;
@@ -82,10 +83,10 @@
     overflow-x: hidden;
     overflow-y: auto;
     overflow-y: overlay;
-    border-top: 1px solid var(--iui-color-background-border);
+    border-top: 1px solid var(--iui-color-border);
 
     > hr {
-      border-color: var(--iui-color-background-border);
+      border-color: var(--iui-color-border);
     }
   }
 }
@@ -188,7 +189,7 @@
 
   .iui-input-label {
     font-weight: var(--iui-font-weight-normal);
-    color: var(--iui-color-foreground-muted);
+    color: var(--iui-color-text-muted);
   }
 
   &:not(.iui-inline) {

@@ -27,7 +27,7 @@ $iui-dialog-width: 380px;
   position: fixed;
   padding: var(--iui-size-s) var(--iui-size-m);
   pointer-events: auto;
-  background-color: var(--iui-color-background-1);
+  background-color: var(--iui-color-background);
   @media (forced-colors: active) {
     border: 1px solid;
   }
@@ -115,7 +115,7 @@ $iui-dialog-width: 380px;
 @mixin iui-dialog-draggable {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--iui-color-background-border);
+  border: 1px solid var(--iui-color-border);
 }
 
 @mixin iui-dialog-animation {
@@ -146,6 +146,7 @@ $iui-dialog-width: 380px;
   align-items: center;
   margin-bottom: var(--iui-size-s);
   font-size: var(--iui-font-size-3);
+  color: var(--iui-color-text);
 }
 
 @mixin iui-dialog-title-bar-filled {
@@ -153,8 +154,8 @@ $iui-dialog-width: 380px;
   padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
   margin: calc(0px - var(--iui-size-s)) calc(0px - var(--iui-size-m)) var(--iui-size-s) calc(0px - var(--iui-size-m)); // negative margin to counteract dialog padding
   cursor: grab;
-  background-color: var(--iui-color-background-2);
-  border-bottom: 1px solid var(--iui-color-background-border);
+  background-color: var(--iui-color-background-backdrop);
+  border-bottom: 1px solid var(--iui-color-border);
 
   &:active {
     cursor: grabbing;
@@ -167,6 +168,7 @@ $iui-dialog-width: 380px;
   padding: 0 var(--iui-size-m);
   overflow-y: auto;
   overflow-y: overlay;
+  color: var(--iui-color-text);
 }
 
 @mixin iui-dialog-button-bar {

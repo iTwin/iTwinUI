@@ -21,11 +21,11 @@
     }
   }
 
-  --_iui-button-text-color: var(--iui-color-foreground-accessory);
+  --_iui-button-text-color: var(--iui-color-text-accessory);
   --_iui-button-border-color: var(--_iui-button-background-color);
 
   &:focus {
-    outline-color: var(--iui-color-foreground-accessory);
+    outline-color: var(--iui-color-text-accessory);
     outline-offset: -3px;
     outline-width: 1px;
   }
@@ -34,10 +34,11 @@
   &:disabled,
   &[aria-disabled='true'] {
     --_iui-button-background-color: var(--iui-color-background-disabled);
-    --_iui-button-text-color: var(--iui-color-foreground-disabled);
+    --_iui-button-border-color: var(--iui-color-border-disabled);
+    --_iui-button-text-color: var(--iui-color-text-disabled);
 
     outline-offset: -1px;
     outline-width: 1px;
-    outline-color: var(--iui-color-foreground-primary);
+    outline-color: var(--iui-color-text-primary);
   }
 }

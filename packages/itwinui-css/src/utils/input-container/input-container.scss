@@ -47,7 +47,7 @@
   @include iui-input-label-cursor;
 
   &.iui-disabled {
-    color: var(--iui-color-foreground-disabled);
+    color: var(--iui-color-text-disabled);
 
     label {
       cursor: not-allowed;
@@ -106,7 +106,7 @@
     &::after {
       content: '*';
       margin-left: var(--iui-size-2xs);
-      color: var(--iui-color-foreground-negative);
+      color: var(--iui-color-text-negative);
     }
   }
 }
@@ -146,7 +146,7 @@
   font-size: var(--iui-font-size-0);
   grid-area: message;
   margin-top: var(--iui-size-2xs);
-  color: var(--iui-color-foreground-muted);
+  color: var(--iui-color-text-muted);
 
   a {
     user-select: none;
@@ -194,10 +194,10 @@
     cursor: pointer;
     box-sizing: content-box;
 
-    @include iui-ripple(var(--iui-color-background-1), var(--iui-color-background-2));
+    @include iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
 
     svg {
-      fill: var(--iui-color-foreground-2);
+      fill: var(--iui-color-icon);
       transition: transform var(--iui-duration-1) ease-out;
     }
 
@@ -210,7 +210,7 @@
     cursor: not-allowed;
 
     svg {
-      fill: var(--iui-color-foreground-disabled);
+      fill: var(--iui-color-icon-disabled);
     }
   }
 }
@@ -223,19 +223,19 @@
   @include iui-text-selection($status);
 
   #{$iconSelector} {
-    fill: var(--iui-color-foreground-#{$status});
+    fill: var(--iui-color-icon-#{$status});
   }
 
   #{$textSelector} {
-    color: var(--iui-color-foreground-#{$status});
+    color: var(--iui-color-text-#{$status});
 
     a {
       text-decoration: underline;
-      color: var(--iui-color-foreground-#{$status});
+      color: var(--iui-color-text-#{$status});
 
       &:hover {
         text-decoration: none;
-        color: var(--iui-color-foreground-#{$status}-hover);
+        color: var(--iui-color-text-#{$status}-hover);
       }
     }
   }
@@ -253,18 +253,18 @@
     }
     // #endregion
 
-    border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});
+    border-bottom: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
 
     &:focus {
-      border-bottom: var(--iui-size-3xs) solid var(--iui-color-foreground-#{$status});
-      outline: 2px solid var(--iui-color-foreground-#{$status});
+      border-bottom: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+      outline: 2px solid var(--iui-color-text-#{$status});
       outline-offset: -2px;
     }
   }
 
   .iui-input-with-icon {
-    --_iui-input-with-icon-hover-border-color: var(--iui-color-foreground-#{$status});
-    --_focus-color: var(--iui-color-foreground-#{$status});
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
+    --_focus-color: var(--iui-color-text-#{$status});
   }
 
   .iui-select-button {
@@ -277,7 +277,7 @@
       bottom: 0;
       left: 0;
       height: var(--iui-size-3xs);
-      background-color: var(--iui-color-foreground-#{$status});
+      background-color: var(--iui-color-border-#{$status});
     }
   }
 }

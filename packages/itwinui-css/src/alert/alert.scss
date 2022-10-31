@@ -6,12 +6,16 @@
 
 @mixin iui-alert {
   @include iui-reset;
+
+  --_iui-alert-border-color: var(--iui-color-border);
+
   border-radius: var(--iui-border-radius-1);
   display: flex;
   align-items: center;
-  border: 1px solid var(--iui-color-background-5);
-  color: var(--iui-color-foreground-2);
-  background-color: var(--iui-color-background-1);
+  color: var(--iui-color-text);
+  background-color: var(--iui-color-background);
+  border: 1px solid var(--_iui-alert-border-color);
+  box-shadow: inset var(--iui-size-2xs) 0 0 var(--_iui-alert-border-color);
   @media (forced-colors: active) {
     background-color: Canvas;
   }
@@ -59,11 +63,10 @@
 /// @arg $rootSelector Selector of the root alert element. Defaults to .iui-alert
 @mixin iui-alert-category($statusColor, $rootSelector: '.iui-alert') {
   @include iui-alert;
-  background-color: var(--iui-color-background-subtle-#{$statusColor});
-  border-color: var(--iui-color-foreground-#{$statusColor});
+  --_iui-alert-border-color: var(--iui-color-border-#{$statusColor});
 
   #{$rootSelector}-icon {
-    fill: var(--iui-color-foreground-#{$statusColor});
+    fill: var(--iui-color-icon-#{$statusColor});
   }
 
   #{$rootSelector}-message {
@@ -75,6 +78,6 @@
   }
 
   #{$rootSelector}-button:focus-visible {
-    outline-color: var(--iui-color-foreground-#{$statusColor});
+    outline-color: var(--iui-color-text-#{$statusColor});
   }
 }

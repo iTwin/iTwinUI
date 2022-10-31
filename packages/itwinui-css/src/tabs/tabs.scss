@@ -18,14 +18,14 @@
     min-height: calc(var(--iui-size-m) * 2.5);
     height: 100%;
     cursor: pointer;
-    color: var(--iui-color-foreground-2);
+    color: var(--iui-color-text);
     transition: background-color var(--iui-duration-1) ease-out;
 
     &.iui-active {
-      color: var(--iui-color-foreground-primary);
+      color: var(--iui-color-text-primary);
 
       .iui-tab-icon {
-        fill: var(--iui-color-foreground-primary);
+        fill: var(--iui-color-icon-primary);
       }
 
       .iui-tab-description {
@@ -35,14 +35,14 @@
 
     &[disabled] {
       cursor: not-allowed;
-      color: var(--iui-color-foreground-disabled);
+      color: var(--iui-color-text-disabled);
 
       .iui-tab-description {
         color: inherit;
       }
 
       .iui-tab-icon {
-        fill: currentColor;
+        fill: var(--iui-color-icon-disabled);
       }
     }
 
@@ -51,7 +51,7 @@
 
   .iui-tab-icon {
     @include iui-icon-style('m');
-    fill: var(--iui-color-foreground-2);
+    fill: var(--iui-color-icon);
     transition: fill var(--iui-duration-1) ease-out;
 
     + .iui-tab-label {
@@ -62,19 +62,19 @@
   .iui-tab-description {
     display: none;
     font-size: var(--iui-font-size-0);
-    color: var(--iui-color-foreground-muted);
+    color: var(--iui-color-text-muted);
   }
 
   &.iui-green .iui-tab {
     &:focus {
-      outline-color: var(--iui-color-foreground-positive);
+      outline-color: var(--iui-color-text-positive);
     }
 
     &.iui-active {
-      color: var(--iui-color-foreground-positive);
+      color: var(--iui-color-text-positive);
 
       .iui-tab-icon {
-        fill: var(--iui-color-foreground-positive);
+        fill: var(--iui-color-icon-positive);
       }
     }
   }
@@ -142,7 +142,7 @@
   .iui-tab::after {
     content: '';
     position: absolute;
-    background-color: var(--iui-color-foreground-primary);
+    background-color: var(--iui-color-border-primary);
   }
 
   .iui-active::after {
@@ -152,7 +152,7 @@
   }
 
   &.iui-green .iui-tab::after {
-    background-color: var(--iui-color-foreground-positive);
+    background-color: var(--iui-color-border-positive);
   }
 }
 
@@ -160,11 +160,11 @@
   &::after {
     position: absolute;
     content: ' ';
-    background-color: var(--iui-color-foreground-primary);
+    background-color: var(--iui-color-border-primary);
   }
 
   &.iui-green::after {
-    background-color: var(--iui-color-foreground-positive);
+    background-color: var(--iui-color-border-positive);
   }
 
   @at-root {

@@ -3,9 +3,9 @@
 @import '../utils/index';
 
 @mixin iui-input {
-  --_iui-input-background-color: var(--iui-color-background-1);
-  --_iui-input-border-color: var(--iui-color-foreground-4);
-  --_iui-input-text-color: var(--iui-color-foreground-2);
+  --_iui-input-background-color: var(--iui-color-background);
+  --_iui-input-border-color: var(--iui-color-border-foreground);
+  --_iui-input-text-color: var(--iui-color-text);
 
   @include iui-reset;
   @include iui-focus($offset: -2px, $thickness: 2px);
@@ -26,25 +26,25 @@
   @include iui-input-size;
 
   &::placeholder {
-    --_iui-input-text-color: var(--iui-color-foreground-muted);
+    --_iui-input-text-color: var(--iui-color-text-disabled);
     user-select: none;
     color: var(--_iui-input-text-color);
   }
 
   &:autofill {
-    --_iui-input-background-color: var(--iui-color-background-subtle-primary);
-    --_iui-input-border-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
-    --_iui-input-text-color: rgba(var(--iui-color-foreground-primary-rgb), var(--iui-opacity-1));
+    --_iui-input-background-color: var(--iui-color-background-primary-muted);
+    --_iui-input-border-color: var(--iui-color-border-primary);
+    --_iui-input-text-color: var(--iui-color-text-primary);
   }
 
   &:hover {
-    --_iui-input-border-color: var(--iui-color-foreground-2);
+    --_iui-input-border-color: var(--iui-color-border-foreground-hover);
   }
 
   &[disabled] {
     --_iui-input-background-color: var(--iui-color-background-disabled);
-    --_iui-input-border-color: var(--iui-color-background-disabled);
-    --_iui-input-with-icon-hover-border-color: var(--iui-color-background-disabled);
+    --_iui-input-border-color: var(--iui-color-border-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
     cursor: not-allowed;
   }
 
@@ -54,8 +54,8 @@
 }
 
 @mixin iui-input-autofill {
-  border-color: var(--iui-color-foreground-primary);
-  background-color: var(--iui-color-background-subtle-primary);
+  border-color: var(--iui-color-border-primary);
+  background-color: var(--iui-color-background-primary-muted);
 }
 
 /// Mixin for applying padding and font size to various input sizes.

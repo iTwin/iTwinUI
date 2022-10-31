@@ -30,8 +30,8 @@ class ThemeButton extends HTMLElement {
         position: fixed;
         top: var(--iui-size-xs);
         right: var(--iui-size-xs);
-        z-index: 2;
-        accent-color: var(--iui-color-foreground-primary);
+        z-index: 100000;
+        accent-color: var(--iui-color-icon-primary);
         pointer-events: none;
       }
       .settings-root {
@@ -45,7 +45,7 @@ class ThemeButton extends HTMLElement {
         font: inherit;
         border: none;
         border-radius: 50%;
-        background-color: hsl(var(--iui-color-foreground-1-hsl) / 0.1);
+        background-color: hsl(var(--iui-color-foreground-hsl) / 0.1);
         backdrop-filter: blur(5px);
         display: inline-grid;
         cursor: pointer;
@@ -60,13 +60,14 @@ class ThemeButton extends HTMLElement {
       }
       button[aria-label="Page settings"]:hover,
       button[aria-label="Page settings"]:focus-within {
-        background-color: hsl(var(--iui-color-foreground-1-hsl) / 0.2);
+        background-color: hsl(var(--iui-color-foreground-hsl) / 0.2);
       }
       .popup {
         visibility: hidden; 
         pointer-events: none;
         box-shadow: var(--iui-shadow-1);
-        background-color: var(--iui-color-background-1);
+        background-color: var(--iui-color-background);
+        color: var(--iui-color-text);
         padding: var(--iui-size-xs) var(--iui-size-s);
         margin: var(--iui-size-2xs);
         display: flex;
@@ -106,7 +107,7 @@ class ThemeButton extends HTMLElement {
       fieldset {
         display: grid;
         border-radius: var(--iui-border-radius-1);
-        border: 1px solid var(--iui-color-background-border);
+        border: 1px solid var(--iui-color-border);
       }
       fieldset > * {
         display: inline-flex;
@@ -153,7 +154,7 @@ class ThemeButton extends HTMLElement {
 
   changeBackground = ({ target: { value: _background } }) => {
     if (_background === 'bg1') {
-      document.body.style.backgroundColor = 'var(--iui-color-background-1)';
+      document.body.style.backgroundColor = 'var(--iui-color-background)';
     } else {
       document.body.removeAttribute('style');
     }

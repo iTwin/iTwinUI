@@ -14,8 +14,8 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
     top: calc(var(--iui-size-s) * -0.5);
     right: calc(var(--iui-size-s) * -0.5);
     border-radius: 100%;
-    background-color: var(--iui-color-foreground-#{$status});
-    border: $iui-notification-marker-border-width solid var(--iui-color-background-1);
+    background-color: var(--iui-color-icon-#{$status});
+    border: $iui-notification-marker-border-width solid var(--iui-color-background);
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
     }
@@ -30,7 +30,7 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
   @media (prefers-reduced-motion: no-preference) {
     @keyframes pulse-#{$status} {
       0% {
-        box-shadow: 0 0 0 0 var(--iui-color-foreground-#{$status});
+        box-shadow: 0 0 0 0 var(--iui-color-icon-#{$status});
       }
 
       70% {
@@ -49,6 +49,6 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
   .iui-notification-positive::before,
   .iui-notification-warning::before,
   .iui-notification-negative::before {
-    border-color: var(--iui-color-background-1-hover);
+    border-color: var(--iui-color-background-hover);
   }
 }

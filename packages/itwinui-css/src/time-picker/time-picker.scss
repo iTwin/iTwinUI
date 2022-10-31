@@ -9,12 +9,12 @@
   text-align: center;
   height: calc(var(--iui-size-s) * 26);
   display: inline-flex;
-  background-color: var(--iui-color-background-1);
+  background-color: var(--iui-color-background);
   border-top-right-radius: var(--iui-border-radius-1);
   border-bottom-right-radius: var(--iui-border-radius-1);
 
   &:not(:first-child) {
-    border-left: 1px solid var(--iui-color-background-border);
+    border-left: 1px solid var(--iui-color-border);
   }
 
   &:first-child {
@@ -31,7 +31,7 @@
   scrollbar-width: none;
 
   &:not(:first-child) {
-    border-left: 1px solid var(--iui-color-background-border);
+    border-left: 1px solid var(--iui-color-border);
   }
 
   > ol {
@@ -45,15 +45,15 @@
 
       &:hover {
         cursor: pointer;
-        background-color: var(--iui-color-background-transparent-hover);
+        background-color: var(--iui-color-background-hover);
       }
 
       &.iui-selected {
         font-weight: var(--iui-font-weight-semibold);
         cursor: default;
-        @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
+        @include iui-focus($color: var(--iui-color-text-accessory), $offset: -3px);
         background-color: var(--iui-color-background-primary);
-        color: var(--iui-color-foreground-accessory);
+        color: var(--iui-color-text-accessory);
       }
     }
   }

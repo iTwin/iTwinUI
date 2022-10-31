@@ -16,7 +16,7 @@
     }
 
     &.iui-active:hover {
-      background-color: var(--iui-color-background-subtle-positive);
+      background-color: var(--iui-color-background-positive-muted);
     }
   }
 
@@ -37,7 +37,7 @@
     }
 
     &.iui-active:hover {
-      background-color: var(--iui-color-background-subtle-primary);
+      background-color: var(--iui-color-background-primary-muted);
     }
 
     &[disabled]:hover {
