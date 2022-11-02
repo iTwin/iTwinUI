@@ -19,25 +19,25 @@ $bg-2: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 2));
 $bg-3: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 3));
 $bg-4: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 4));
 $bg-5: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 5));
-$bg-6: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 6));
-$bg-7: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 6.5));
+$bg-6: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 5.5));
+$bg-7: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 6));
 $bg-8: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 7));
 $bg-9: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 8));
 $bg-10: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 9));
 
-$bg-primary-0: hsl(204 10% 30%); // Selection
+$bg-primary-0: hsl(203 10% 26%); // Selection
 $bg-primary-1: hsl(204 100% 28%); // Button
 $bg-primary-2: hsl(203 100% 36%); // Button hovered
 
-$bg-positive-0: hsl(167 6% 29%);
+$bg-positive-0: hsl(158 6% 25%);
 $bg-positive-1: hsl(118 81% 21%);
 $bg-positive-2: hsl(118 76% 28%);
 
-$bg-warning-0: hsl(120 1% 30%);
+$bg-warning-0: hsl(60 1% 26%);
 $bg-warning-1: hsl(33 94% 25%);
 $bg-warning-2: hsl(33 90% 33%);
 
-$bg-negative-0: hsl(312 4% 25%);
+$bg-negative-0: hsl(336 4% 27%);
 $bg-negative-1: hsl(0 94% 34%);
 $bg-negative-2: hsl(0 91% 45%);
 // #endregion
@@ -64,11 +64,11 @@ $fg-positive-1: hsl(118 30% 83%);
 $fg-positive-2: hsl(119 30% 68%);
 
 $fg-warning-0: hsl(32 45% 94%);
-$fg-warning-1: hsl(33 44% 83%);
+$fg-warning-1: hsl(33 44% 84%);
 $fg-warning-2: hsl(33 45% 70%);
 
 $fg-negative-0: hsl(0 78% 96%);
-$fg-negative-1: hsl(0 75% 89%);
+$fg-negative-1: hsl(0 75% 90%);
 $fg-negative-2: hsl(0 75% 80%);
 // #endregion
 
@@ -87,12 +87,12 @@ $opacities: (
   }
 
   // #region Background variables
-  --iui-color-background: #{hex($bg-6)};
-  --iui-color-background-zebra: #{hex($bg-7)};
-  --iui-color-background-hover: #{hex($bg-8)};
-  --iui-color-background-backdrop: #{hex($bg-4)};
-  --iui-color-background-backdrop-hover: #{hex($bg-5)};
-  --iui-color-background-disabled: #{hex($bg-3)};
+  --iui-color-background: #{hex($bg-5)};
+  --iui-color-background-zebra: #{hex($bg-6)};
+  --iui-color-background-hover: #{hex($bg-7)};
+  --iui-color-background-backdrop: #{hex($bg-3)};
+  --iui-color-background-backdrop-hover: #{hex($bg-4)};
+  --iui-color-background-disabled: #{hex($bg-2)};
   --iui-color-background-primary: #{hex($bg-primary-1)};
   --iui-color-background-primary-hover: #{hex($bg-primary-2)};
   --iui-color-background-primary-muted: #{hex($bg-primary-0)};
@@ -132,7 +132,7 @@ $opacities: (
   // #region Text variables
   --iui-color-text: #{hex($fg-2)};
   --iui-color-text-hover: #{hex($fg-1)};
-  --iui-color-text-muted: #{hex($fg-3)};
+  --iui-color-text-muted: #{hex($fg-4)};
   --iui-color-text-disabled: #{hex($fg-7)};
   --iui-color-text-primary: #{hex($fg-primary-1)};
   --iui-color-text-primary-hover: #{hex($fg-primary-0)};

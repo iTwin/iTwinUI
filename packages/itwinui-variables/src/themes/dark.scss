@@ -20,24 +20,24 @@ $bg-3: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 3));
 $bg-4: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 4));
 $bg-5: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 5));
 $bg-6: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 6));
-$bg-7: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 6.5));
-$bg-8: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 7));
+$bg-7: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 7));
+$bg-8: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 7.5));
 $bg-9: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 8));
 $bg-10: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 9));
 
-$bg-primary-0: hsl(209 20% 25%); // Selection
+$bg-primary-0: hsl(207 19% 27%); // Selection
 $bg-primary-1: hsl(203 100% 36%); // Button
 $bg-primary-2: hsl(202 100% 44%); // Button hovered
 
-$bg-positive-0: hsl(149 18% 23%);
+$bg-positive-0: hsl(162 13% 26%);
 $bg-positive-1: hsl(118 76% 28%);
 $bg-positive-2: hsl(118 71% 35%);
 
-$bg-warning-0: hsl(40 8% 23%);
+$bg-warning-0: hsl(51 5% 26%);
 $bg-warning-1: hsl(33 90% 33%);
 $bg-warning-2: hsl(33 86% 41%);
 
-$bg-negative-0: hsl(312 4% 25%);
+$bg-negative-0: hsl(285 3% 27%);
 $bg-negative-1: hsl(0 91% 45%);
 $bg-negative-2: hsl(0 88% 56%);
 // #endregion
@@ -87,12 +87,12 @@ $opacities: (
   }
 
   // #region Background variables
-  --iui-color-background: #{hex($bg-6)};
-  --iui-color-background-zebra: #{hex($bg-7)};
-  --iui-color-background-hover: #{hex($bg-8)};
-  --iui-color-background-backdrop: #{hex($bg-4)};
-  --iui-color-background-backdrop-hover: #{hex($bg-5)};
-  --iui-color-background-disabled: #{hex($bg-3)};
+  --iui-color-background: #{hex($bg-7)};
+  --iui-color-background-zebra: #{hex($bg-8)};
+  --iui-color-background-hover: #{hex($bg-9)};
+  --iui-color-background-backdrop: #{hex($bg-5)};
+  --iui-color-background-backdrop-hover: #{hex($bg-6)};
+  --iui-color-background-disabled: #{hex($bg-4)};
   --iui-color-background-primary: #{hex($bg-primary-1)};
   --iui-color-background-primary-hover: #{hex($bg-primary-2)};
   --iui-color-background-primary-muted: #{hex($bg-primary-0)};
