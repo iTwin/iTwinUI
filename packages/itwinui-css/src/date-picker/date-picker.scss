@@ -202,7 +202,7 @@ $iui-date-picker-today-circle-size: 32px;
 
     &:hover {
       font-weight: var(--iui-font-weight-semibold);
-      background-color: hsla(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-5));
+      background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-5));
     }
   }
 
@@ -210,7 +210,7 @@ $iui-date-picker-today-circle-size: 32px;
     @include iui-calendar-day-today-base;
 
     &:hover {
-      background-color: hsla(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-5));
+      background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-5));
     }
 
     &::before {

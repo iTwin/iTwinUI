@@ -21,7 +21,7 @@
     height: 100%;
     margin: 0;
     border-radius: 50%;
-    box-shadow: inset 0 0 0 var(--iui-size-3xs) hsla(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
+    box-shadow: inset 0 0 0 var(--iui-size-3xs) hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
   }
 
   > .iui-initials {
