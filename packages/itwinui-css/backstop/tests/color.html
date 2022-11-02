@@ -36,13 +36,14 @@
       }
       section[id^='demo'] > * { padding: var(--iui-size-s) var(--iui-size-l); }
 
-      .demo-background-1 { background-color: var(--iui-color-background); }
-      .demo-background-1-hover { background-color: var(--iui-color-background-hover); }
-      .demo-background-2 { background-color: var(--iui-color-background-backdrop); }
-      .demo-background-2-hover { background-color: var(--iui-color-background-backdrop-hover); }
-      .demo-background-3 { background-color: var(--iui-color-background-disabled); }
-      .demo-background-4 { background-color: var(--iui-color-border-subtle); }
-      .demo-background-5 { background-color: var(--iui-color-border); }
+      .demo-background { background-color: var(--iui-color-background); }
+      .demo-background-hover { background-color: var(--iui-color-background-hover); }
+      .demo-background-backdrop { background-color: var(--iui-color-background-backdrop); }
+      .demo-background-backdrop-hover { background-color: var(--iui-color-background-backdrop-hover); }
+      .demo-background-transparent-hover { background-color: var(--iui-color-background-transparent-hover); }
+      .demo-background-disabled { background-color: var(--iui-color-background-disabled); }
+      .demo-border-subtle { background-color: var(--iui-color-border-subtle); }
+      .demo-border { background-color: var(--iui-color-border); }
       .demo-background-primary-muted { background-color: var(--iui-color-background-primary-muted); }
       .demo-background-positive-muted { background-color: var(--iui-color-background-positive-muted); }
       .demo-background-warning-muted { background-color: var(--iui-color-background-warning-muted); }
@@ -67,8 +68,9 @@
       .demo-background-negative {
         color: var(--iui-color-text-accessory);
       }
-      .demo-background-1-hover,
-      .demo-background-2-hover,
+      .demo-background-hover,
+      .demo-background-backdrop-hover,
+      .demo-background-transparent-hover,
       .demo-background-primary-hover,
       .demo-background-positive-hover,
       .demo-background-warning-hover,
@@ -116,8 +118,8 @@
     <h1>Color</h1>
 
     <section id="demo-all">
-      <div class="demo-background-1">
-        <h2 class="iui-text-title iui-text-spacing">Background 1</h2>
+      <div class="demo-background">
+        <h2 class="iui-text-title iui-text-spacing">Background</h2>
         <ul>
           <li><strong>Text:</strong> 4.5 in base themes / 7.1 in high contrast themes</li>
           <ul>
@@ -183,12 +185,13 @@
           </ul>
         </ul>
         <ul class="demo-hover-backgrounds">
-          <li class="demo-background-1-hover">Background 1 hover</li>
-          <li class="demo-background-2-hover">Background 2 hover</li>
+          <li class="demo-background-hover">Background hover</li>
+          <li class="demo-background-backdrop-hover">Background backdrop hover</li>
+          <li class="demo-background-transparent-hover">Background transparent hover</li>
         </ul>
       </div>
-      <div class="demo-background-2">
-        <h2 class="iui-text-title iui-text-spacing">Background 2</h2>
+      <div class="demo-background-backdrop">
+        <h2 class="iui-text-title iui-text-spacing">Background backdrop</h2>
         <ul>
           <li><strong>Text:</strong> 4.5 in base themes / 7.1 in high contrast themes</li>
           <ul>
@@ -254,34 +257,37 @@
           </ul>
         </ul>
         <ul class="demo-hover-backgrounds">
-          <li class="demo-background-1-hover">Background 1 hover</li>
-          <li class="demo-background-2-hover">Background 2 hover</li>
+          <li class="demo-background-hover">Background hover</li>
+          <li class="demo-background-backdrop-hover">Background backdrop hover</li>
+          <li class="demo-background-transparent-hover">Background transparent hover</li>
         </ul>
       </div>
-      <div class="demo-background-3">
+      <div class="demo-background-disabled">
         <h2 class="iui-text-title iui-text-spacing">Background disabled</h2>
         <ul>
           <li class="iui-text-block">Text</li>
-          <li class="iui-text-block demo-text-disabled">Disabled <i>(does not need to meet contrast requirements)</i>
-          </li>
+          <li class="iui-text-block demo-text-disabled">Disabled</li>
         </ul>
         <ul class="demo-hover-backgrounds">
-          <li class="demo-background-1-hover">Background 1 hover</li>
-          <li class="demo-background-2-hover">Background 2 hover</li>
-        </ul>
-      </div>
-      <div class="demo-background-4">
-        <h2 class="iui-text-title iui-text-spacing">Border 1</h2>
-        <ul class="demo-hover-backgrounds">
-          <li class="demo-background-1-hover">Background 1 hover</li>
-          <li class="demo-background-2-hover">Background 2 hover</li>
+          <li class="demo-background-hover">Background hover</li>
+          <li class="demo-background-backdrop-hover">Background backdrop hover</li>
+          <li class="demo-background-transparent-hover">Background transparent hover</li>
         </ul>
       </div>
-      <div class="demo-background-5">
-        <h2 class="iui-text-title iui-text-spacing">Border 2</h2>
+      <div class="demo-border-subtle">
+        <h2 class="iui-text-title iui-text-spacing">Border subtle</h2>
         <ul class="demo-hover-backgrounds">
-          <li class="demo-background-1-hover">Background 1 hover</li>
-          <li class="demo-background-2-hover">Background 2 hover</li>
+          <li class="demo-background-hover">Background hover</li>
+          <li class="demo-background-backdrop-hover">Background backdrop hover</li>
+          <li class="demo-background-transparent-hover">Background transparent hover</li>
+        </ul>
+      </div>
+      <div class="demo-border">
+        <h2 class="iui-text-title iui-text-spacing">Border</h2>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-background-hover">Background hover</li>
+          <li class="demo-background-backdrop-hover">Background backdrop hover</li>
+          <li class="demo-background-transparent-hover">Background transparent hover</li>
         </ul>
       </div>
 
@@ -304,21 +310,21 @@
         </ul>
       </div>
       <div class="demo-background-warning">
-        <h2 class="iui-text-title iui-text-spacing">Background primary</h2>
+        <h2 class="iui-text-title iui-text-spacing">Background warning</h2>
         <ul>
           <li class="iui-text-block">Text</li>
         </ul>
         <ul class="demo-hover-backgrounds">
-          <li class="demo-background-warning-hover">Background primary hover</li>
+          <li class="demo-background-warning-hover">Background warning hover</li>
         </ul>
       </div>
       <div class="demo-background-negative">
-        <h2 class="iui-text-title iui-text-spacing">Background positive</h2>
+        <h2 class="iui-text-title iui-text-spacing">Background negative</h2>
         <ul>
           <li class="iui-text-block">Text</li>
         </ul>
         <ul class="demo-hover-backgrounds">
-          <li class="demo-background-negative-hover">Background positive hover</li>
+          <li class="demo-background-negative-hover">Background negative hover</li>
         </ul>
       </div>
 
