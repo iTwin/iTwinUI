@@ -1361,13 +1361,17 @@
                 onclick="switchInfoPanelOrientation(this);"
               >
                 <!-- Docked right -->
-                <svg
+                <span
                   class="iui-button-icon"
-                  viewBox="0 0 16 16"
-                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                 >
-                  <path d="m0 2v12h16v-12zm11 11h-10v-10h10z" />
-                </svg>
+                  <svg
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />
+                  </svg>
+                </span>
               </button>
               <button
                 class="iui-button"
@@ -1485,10 +1489,11 @@
         const infoPanel = document.getElementById('myOrientingInfoPanel');
         infoPanel.classList.toggle('iui-bottom');
         infoPanel.classList.toggle('iui-right');
+        const svgIcon = button.querySelector(".iui-button-icon svg");
         if (infoPanel.classList.contains('iui-bottom')) {
-          button.firstElementChild.innerHTML = `<path d="m0 2v12h16v-12zm11 11h-10v-10h10z" />`;
+          svgIcon.innerHTML = `<path d="m0 2v12h16v-12zm11 11h-10v-10h10z" />`;
         } else {
-          button.firstElementChild.innerHTML = `<path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />`;
+          svgIcon.innerHTML = `<path d="m0 2v12h16v-12zm15 7h-14v-6h14z" />`;
         }
       }
     </script>
