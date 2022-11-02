@@ -114,12 +114,12 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       border-color: var(--iui-color-background-border);
     }
 
-    .iui-button-icon:not(.iui-avatar) {
+    > .iui-button-icon:not(.iui-avatar) svg {
       @include iui-icon-style('l');
       margin-block: unset;
     }
 
-    &.iui-submenu-open .iui-button-icon {
+    &.iui-submenu-open .iui-button-icon svg {
       fill: var(--iui-color-foreground-primary);
     }
 
@@ -135,7 +135,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       border: none;
       border-bottom: 1px solid var(--iui-color-background-border);
 
-      > .iui-button-icon {
+      > .iui-button-icon svg {
         @include iui-icon-style('s');
         @include iui-icon-color;
         @media (prefers-reduced-motion: no-preference) {

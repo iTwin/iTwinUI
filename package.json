@@ -27,14 +27,16 @@
     "test": "turbo run test --",
     "lint": "turbo run lint",
     "lint:copyright": "node packages/shared/copyrightLinter.js",
-    "push-docker": "yarn workspace @itwin/itwinui-css push-docker"
+    "push-docker": "yarn workspace @itwin/itwinui-css push-docker",
+    "createComponent": "yarn workspace @itwin/itwinui-css createComponent",
+    "approve": "yarn workspace @itwin/itwinui-css approve",
+    "clean:images": "yarn workspace @itwin/itwinui-css clean:images"
   },
   "dependencies": {},
   "devDependencies": {
     "audit-ci": "^4.0.0",
     "chokidar-cli": "^2.1.0",
     "concurrently": "^6.0.0",
-    "cpx": "^1.5.0",
     "husky": "=4",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
@@ -46,6 +48,7 @@
     "hosted-git-info": ">=3.0.8",
     "jimp": ">=0.16.1",
     "trim-newlines": "^3.0.1",
+    "minimatch": "^3.0.5",
     "glob-parent": "^6.0.1",
     "jpeg-js": "^0.4.3",
     "set-value": "^4.1.0",
