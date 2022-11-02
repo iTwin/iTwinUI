@@ -11,7 +11,7 @@
   justify-content: center;
   position: relative;
   border-radius: var(--iui-border-radius-1);
-  line-height: var(--iui-size-l);
+  line-height: 1.2;
   font-size: var(--iui-font-size-1);
   font-weight: var(--iui-font-weight-normal);
   user-select: none;
@@ -33,10 +33,11 @@
 }
 
 @mixin iui-button-icon {
-  @include iui-icon-style('m');
-  transition: fill var(--iui-duration-1) ease-out;
-  fill: currentColor;
-  margin-block: var(--iui-size-2xs);
+  svg {
+    @include iui-icon-style('m');
+    transition: fill var(--iui-duration-1) ease-out;
+    fill: currentColor;
+  }
 }
 
 @mixin iui-button-active {
