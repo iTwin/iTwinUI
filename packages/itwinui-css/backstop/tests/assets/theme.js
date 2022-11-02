@@ -19,8 +19,8 @@ class ThemeButton extends HTMLElement {
 
           <fieldset>
             <legend>Background color</legend>
-            <label tabindex="-1"><input type="radio" name="background" value="bg1" /><span>Background 1</span></label>
-            <label tabindex="-1"><input type="radio" name="background" value="bg2" checked /><span>Background 2</span></label>
+            <label tabindex="-1"><input type="radio" name="background" value="bg1" /><span>Background</span></label>
+            <label tabindex="-1"><input type="radio" name="background" value="bg2" checked /><span>Background backdrop</span></label>
           </fieldset>
         </article>
       </div>
