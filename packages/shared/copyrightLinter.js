@@ -39,7 +39,21 @@ if (filePaths) {
           case '.js':
           case '.ts':
           case '.css':
-            fs.writeFileSync(filePath, `${copyrightBannerJs}\n${fileContent}`);
+            if (fileContent.startsWith('@charset')) {
+              // @charset must be the first line in the file so insert the copyright banner after it
+              fs.writeFileSync(
+                filePath,
+                fileContent.replace(
+                  '@charset "UTF-8";',
+                  `@charset "UTF-8";\n${copyrightBannerJs}`
+                )
+              );
+            } else {
+              fs.writeFileSync(
+                filePath,
+                `${copyrightBannerJs}\n${fileContent}`
+              );
+            }
             break;
           case '.html':
             fs.writeFileSync(
