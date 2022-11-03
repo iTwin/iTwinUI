@@ -53,11 +53,6 @@
   }
 }
 
-@mixin iui-input-autofill {
-  border-color: var(--iui-color-border-primary);
-  background-color: var(--iui-color-background-primary-muted);
-}
-
 /// Mixin for applying padding and font size to various input sizes.
 /// @arg size - must be one of: small, medium, large
 @mixin iui-input-size($size: medium) {
