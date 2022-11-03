@@ -4706,6 +4706,23 @@ it.each(['positive', 'warning', 'negative'] as const)(
   },
 );
 
+it('should render row with loading status', () => {
+  const { container } = renderComponent({
+    rowProps: (row) => {
+      return {
+        isLoading: row.index === 0 ? true : undefined,
+      };
+    },
+  });
+
+  const tableBody = container.querySelector(
+    '.iui-table-body',
+  ) as HTMLDivElement;
+  const rows = tableBody.querySelectorAll('.iui-table-row');
+  expect(rows[0]).toHaveClass(`iui-loading`);
+  expect(rows[1]).not.toHaveClass(`iui-loading`);
+});
+
 it('should navigate through table sorting with the keyboard', async () => {
   const onSort = jest.fn();
   renderComponent({
