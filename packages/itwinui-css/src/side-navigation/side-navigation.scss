@@ -102,7 +102,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       }
     }
 
-    > span:last-of-type {
+    > span:where(:not(.iui-notification-marker)) {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
