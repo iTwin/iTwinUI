@@ -19,12 +19,12 @@
     }
   }
 
-  .iui-table-header .iui-table-cell,
+  .iui-table-header,
   .iui-table-paginator {
     min-height: var(--_iui-table-header-size);
   }
 
-  .iui-table-cell {
+  .iui-table-body .iui-table-cell {
     min-height: var(--_iui-table-row-size);
   }
 }
