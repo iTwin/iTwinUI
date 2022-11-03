@@ -118,7 +118,7 @@
 
     &::after {
       transform: translateX(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset));
-      background-color: var(--iui-color-icon-accessory);
+      background-color: var(--iui-color-white);
       @media (forced-colors: active) {
         background-color: HighlightText;
       }
@@ -186,7 +186,7 @@
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
     pointer-events: none;
-    fill: var(--iui-color-icon-accessory);
+    fill: var(--iui-color-white);
     @media (forced-colors: active) {
       fill: HighlightText;
     }

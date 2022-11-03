@@ -42,7 +42,7 @@
     text-transform: uppercase;
     background-color: hsl(72, 51%, 56%);
     overflow: hidden;
-    color: var(--iui-color-text-accessory);
+    color: var(--iui-color-white);
   }
 
   > .iui-icon {
@@ -50,7 +50,7 @@
     width: 50%;
     height: 50%;
     position: absolute;
-    fill: var(--iui-color-icon-accessory);
+    fill: var(--iui-color-white);
   }
 
   > img {
@@ -91,7 +91,7 @@
 
       &::after {
         mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
-        background-color: var(--iui-color-icon-accessory);
+        background-color: var(--iui-color-white);
       }
     }
 
@@ -100,7 +100,7 @@
 
       &::after {
         mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
-        background-color: var(--iui-color-icon-accessory);
+        background-color: var(--iui-color-white);
       }
     }
 
@@ -109,7 +109,7 @@
 
       &::after {
         mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
-        background-color: var(--iui-color-icon-accessory);
+        background-color: var(--iui-color-white);
       }
     }
 

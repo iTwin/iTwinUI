@@ -51,9 +51,9 @@
       &.iui-selected {
         font-weight: var(--iui-font-weight-semibold);
         cursor: default;
-        @include iui-focus($color: var(--iui-color-text-accessory), $offset: -3px);
+        @include iui-focus($color: var(--iui-color-white), $offset: -3px);
         background-color: var(--iui-color-background-primary);
-        color: var(--iui-color-text-accessory);
+        color: var(--iui-color-white);
       }
     }
   }

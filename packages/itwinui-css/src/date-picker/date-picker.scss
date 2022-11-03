@@ -113,14 +113,14 @@ $iui-date-picker-today-circle-size: 32px;
 @mixin iui-calendar-day-selected-base {
   font-weight: var(--iui-font-weight-semibold);
   background-color: var(--iui-color-background-primary);
-  color: var(--iui-color-text-accessory);
-  @include iui-focus($color: var(--iui-color-text-accessory), $offset: -3px);
+  color: var(--iui-color-white);
+  @include iui-focus($color: var(--iui-color-white), $offset: -3px);
 }
 
 @mixin iui-calendar-day-selected-today-base {
   &:hover {
     background-color: var(--iui-color-background-primary);
-    color: var(--iui-color-text-accessory);
+    color: var(--iui-color-white);
 
     &::before {
       background-color: initial;

@@ -5,7 +5,7 @@
 @mixin iui-skip-to-content-link {
   @include iui-blur($opacity: 3);
   @include iui-focus($offset: 2px, $thickness: 2px);
-  color: var(--iui-color-text-accessory);
+  color: var(--iui-color-white);
   border-radius: var(--iui-border-radius-round);
   text-decoration: none;
   user-select: none;

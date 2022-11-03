@@ -21,11 +21,11 @@
     }
   }
 
-  --_iui-button-text-color: var(--iui-color-text-accessory);
+  --_iui-button-text-color: var(--iui-color-white);
   --_iui-button-border-color: var(--_iui-button-background-color);
 
   &:focus {
-    outline-color: var(--iui-color-text-accessory);
+    outline-color: var(--iui-color-white);
     outline-offset: -3px;
     outline-width: 1px;
   }

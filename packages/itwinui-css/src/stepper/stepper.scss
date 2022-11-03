@@ -50,7 +50,7 @@
   &.iui-current {
     --_iui-stepper-step-background-color: var(--iui-color-background-positive);
     --_iui-stepper-step-border-color: var(--iui-color-background-positive);
-    --_iui-stepper-step-number-color: var(--iui-color-text-accessory);
+    --_iui-stepper-step-number-color: var(--iui-color-white);
     --_iui-stepper-step-track-after-color: var(--iui-color-border);
 
     font-weight: var(--iui-font-weight-semibold);
@@ -96,7 +96,7 @@
     &:hover {
       --_iui-stepper-step-background-color: var(--iui-color-background-positive);
       --_iui-stepper-step-border-color: var(--iui-color-background-positive);
-      --_iui-stepper-step-number-color: var(--iui-color-text-accessory);
+      --_iui-stepper-step-number-color: var(--iui-color-white);
     }
   }
 

@@ -20,6 +20,5 @@
 
 /// Colors that don't change between light and dark themes
 @mixin unthemed($contrast: default) {
-  --iui-color-text-accessory: #{hex(hsl(0 0% 100%))};
-  --iui-color-icon-accessory: #{hex(hsl(0 0% 100%))};
+  --iui-color-white: #{hex(hsl(0 0% 100%))};
 }
