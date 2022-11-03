@@ -410,16 +410,13 @@
   &[contenteditable] {
     outline-offset: -1px;
 
-    &:focus {
-      outline: 1px solid var(--iui-color-text-primary);
-    }
-
     &:hover {
       outline: 1px solid var(--iui-color-border-primary);
     }
 
     &:focus {
       background-color: var(--iui-color-background);
+      outline: 1px solid var(--iui-color-text-primary);
     }
   }
 }
