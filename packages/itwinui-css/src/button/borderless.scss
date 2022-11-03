@@ -6,11 +6,13 @@
   --_iui-button-text-color: var(--iui-color-text);
   --_iui-button-background-color: transparent;
   --_iui-button-border-color: transparent;
+  --_iui-button-icon-fill: var(--iui-color-icon);
   @include iui-button-size(medium, borderless);
 
   &:where(:hover, :active) {
     --_iui-button-text-color: var(--iui-color-text-hover);
     --_iui-button-background-color: var(--iui-color-background-transparent-hover);
+    --_iui-button-icon-fill: var(--iui-color-icon-hover);
   }
 
   &:where(:focus) {
@@ -22,6 +24,7 @@
     --_iui-button-text-color: var(--iui-color-text-disabled);
     --_iui-button-background-color: transparent;
     --_iui-button-border-color: transparent;
+    --_iui-button-icon-fill: var(--iui-color-icon-disabled);
   }
 }
 

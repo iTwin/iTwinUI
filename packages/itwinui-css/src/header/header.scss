@@ -68,7 +68,7 @@
 
 @mixin iui-page-header-divider {
   height: calc(var(--iui-size-s) * 2);
-  border-left: 1px solid var(--iui-color-border);
+  border-left: 2px solid var(--iui-color-border);
   @media (forced-colors: active) {
     display: none;
   }

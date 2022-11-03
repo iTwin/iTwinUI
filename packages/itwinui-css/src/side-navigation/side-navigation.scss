@@ -11,7 +11,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   flex-direction: column;
   height: 100%;
   background-color: var(--iui-color-background);
-  border-right: 1px solid var(--iui-color-border);
+  border-right: 2px solid var(--iui-color-border);
   @media (prefers-reduced-motion: no-preference) {
     transition: max-width var(--iui-duration-1) ease-out;
   }
@@ -119,7 +119,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
 
     &.iui-submenu-open .iui-button-icon svg {
-      fill: var(--iui-color-icon-primary);
+      fill: var(--iui-color-text-primary);
     }
 
     &[disabled],

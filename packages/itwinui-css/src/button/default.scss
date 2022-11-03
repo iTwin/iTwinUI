@@ -6,12 +6,14 @@
   --_iui-button-text-color: var(--iui-color-text);
   --_iui-button-background-color: var(--iui-color-background);
   --_iui-button-border-color: var(--iui-color-border-foreground);
+  --_iui-button-icon-fill: var(--iui-color-icon);
 
   &:hover,
   &:active {
     --_iui-button-text-color: var(--iui-color-text-hover);
     --_iui-button-background-color: var(--iui-color-background-hover);
     --_iui-button-border-color: var(--iui-color-border-foreground-hover);
+    --_iui-button-icon-fill: var(--iui-color-icon-hover);
     @include iui-notification-marker-hover;
   }
 
@@ -26,6 +28,7 @@
     --_iui-button-text-color: var(--iui-color-text-disabled);
     --_iui-button-background-color: var(--iui-color-background-disabled);
     --_iui-button-border-color: var(--iui-color-border-disabled);
+    --_iui-button-icon-fill: var(--iui-color-icon-disabled);
 
     cursor: not-allowed;
     outline-offset: -1px;
