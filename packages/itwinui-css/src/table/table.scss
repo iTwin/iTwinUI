@@ -30,7 +30,6 @@
   flex-shrink: 0;
   font-weight: var(--iui-font-weight-semibold);
   border-bottom: 1px solid var(--iui-color-border);
-  color: var(--iui-color-text);
 
   .iui-table-cell {
     background-color: var(--iui-color-background);
@@ -142,7 +141,6 @@
 
   min-width: 100%;
   display: flex;
-  color: var(--iui-color-text);
 
   &:last-of-type {
     border-radius: inherit;

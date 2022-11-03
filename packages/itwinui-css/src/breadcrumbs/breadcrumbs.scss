@@ -82,7 +82,6 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   line-height: var(--iui-component-height);
-  color: var(--iui-color-text);
 
   @at-root a#{&} {
     @include iui-anchor;

@@ -148,7 +148,6 @@ $iui-dialog-width: 380px;
   align-items: center;
   margin-bottom: var(--iui-size-s);
   font-size: var(--iui-font-size-3);
-  color: var(--iui-color-text);
 }
 
 @mixin iui-dialog-title-bar-filled {
@@ -170,7 +169,6 @@ $iui-dialog-width: 380px;
   padding: 0 var(--iui-size-m);
   overflow-y: auto;
   overflow-y: overlay;
-  color: var(--iui-color-text);
 }
 
 @mixin iui-dialog-button-bar {
