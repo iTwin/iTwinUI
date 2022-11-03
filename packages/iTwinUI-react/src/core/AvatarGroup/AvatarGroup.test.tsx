@@ -5,9 +5,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { UserIcon, UserIconGroup } from '../../core';
+import { Avatar, AvatarGroup } from '../../core';
 
-function generateUserIcons(length: number) {
+function generateAvatars(length: number) {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -30,7 +30,7 @@ function generateUserIcons(length: number) {
     .fill(null)
     .map((_, index) => userNames[index % userNames.length])
     .map((name, index) => (
-      <UserIcon
+      <Avatar
         key={`${name}-${index}`}
         title={name}
         abbreviation={name
@@ -42,110 +42,114 @@ function generateUserIcons(length: number) {
 }
 
 it('should render in its most basic state', () => {
-  const { container } = render(
-    <UserIconGroup>{generateUserIcons(7)}</UserIconGroup>,
-  );
-  const userGroup = container.querySelector(
+  const { container } = render(<AvatarGroup>{generateAvatars(7)}</AvatarGroup>);
+  const avatarGroup = container.querySelector(
     '.iui-avatar-list.iui-stacked',
   ) as HTMLElement;
-  expect(userGroup).toBeTruthy();
-  expect(userGroup.classList).not.toContain(`iui-animated`);
+  expect(avatarGroup).toBeTruthy();
+  expect(avatarGroup.classList).not.toContain(`iui-animated`);
 
   expect(
     container.querySelectorAll(`.iui-avatar-list > .iui-avatar.iui-small`)
       .length,
   ).toBe(6);
 
-  const userGroupIconCount = container.querySelectorAll(
+  const avatarGroupCount = container.querySelectorAll(
     '.iui-avatar-list > .iui-avatar',
   );
-  expect(userGroupIconCount.length).toBe(6);
-  const countIcon = container.querySelector('.iui-avatar-count') as HTMLElement;
-  expect(countIcon.textContent).toBe('2');
+  expect(avatarGroupCount.length).toBe(6);
+  const countAvatar = container.querySelector(
+    '.iui-avatar-count',
+  ) as HTMLElement;
+  expect(countAvatar.textContent).toBe('2');
 
-  expect(userGroup.querySelectorAll('.iui-stroke').length).toBe(6);
-  expect(userGroup.querySelectorAll('.iui-initials').length).toBe(6);
+  expect(avatarGroup.querySelectorAll('.iui-stroke').length).toBe(6);
+  expect(avatarGroup.querySelectorAll('.iui-initials').length).toBe(6);
 });
 
 it('should render animated', () => {
   const { container } = render(
-    <UserIconGroup iconSize='medium' animated={true}>
-      {generateUserIcons(7)}
-    </UserIconGroup>,
+    <AvatarGroup iconSize='medium' animated={true}>
+      {generateAvatars(7)}
+    </AvatarGroup>,
   );
   expect(container.querySelector('.iui-avatar-list.iui-animated')).toBeTruthy();
 });
 
-it('should render without count icon', () => {
+it('should render without count avatar', () => {
   const { container } = render(
-    <UserIconGroup iconSize='medium'>{generateUserIcons(6)}</UserIconGroup>,
+    <AvatarGroup iconSize='medium'>{generateAvatars(6)}</AvatarGroup>,
   );
-  const userGroup = container.querySelector(
+  const avatarGroup = container.querySelector(
     '.iui-avatar-list.iui-stacked',
   ) as HTMLElement;
-  expect(userGroup).toBeTruthy();
-  expect(userGroup.classList).not.toContain(`iui-animated`);
+  expect(avatarGroup).toBeTruthy();
+  expect(avatarGroup.classList).not.toContain(`iui-animated`);
 
-  const userGroupIconCount = container.querySelectorAll(
+  const avatarGroupCount = container.querySelectorAll(
     '.iui-avatar-list > .iui-avatar',
   );
-  expect(userGroupIconCount.length).toBe(6);
+  expect(avatarGroupCount.length).toBe(6);
 
   expect(container.querySelector('.iui-avatar-count')).toBeFalsy();
 
-  expect(userGroup.querySelectorAll('.iui-stroke').length).toBe(6);
-  expect(userGroup.querySelectorAll('.iui-initials').length).toBe(6);
+  expect(avatarGroup.querySelectorAll('.iui-stroke').length).toBe(6);
+  expect(avatarGroup.querySelectorAll('.iui-initials').length).toBe(6);
 });
 
 it('should render different length', () => {
   const { container } = render(
-    <UserIconGroup iconSize='medium' maxIcons={3}>
-      {generateUserIcons(7)}
-    </UserIconGroup>,
+    <AvatarGroup iconSize='medium' maxIcons={3}>
+      {generateAvatars(7)}
+    </AvatarGroup>,
   );
-  const userGroup = container.querySelector(
+  const avatarGroup = container.querySelector(
     '.iui-avatar-list.iui-stacked',
   ) as HTMLElement;
-  expect(userGroup).toBeTruthy();
+  expect(avatarGroup).toBeTruthy();
 
-  const userGroupIconCount = container.querySelectorAll(
+  const avatarGroupCount = container.querySelectorAll(
     '.iui-avatar-list > .iui-avatar',
   );
-  expect(userGroupIconCount.length).toBe(4);
+  expect(avatarGroupCount.length).toBe(4);
 
-  const countIcon = container.querySelector('.iui-avatar-count') as HTMLElement;
-  expect(countIcon.textContent).toBe('4');
+  const countAvatar = container.querySelector(
+    '.iui-avatar-count',
+  ) as HTMLElement;
+  expect(countAvatar.textContent).toBe('4');
 
-  expect(userGroup.querySelectorAll('.iui-stroke').length).toBe(4);
-  expect(userGroup.querySelectorAll('.iui-initials').length).toBe(4);
+  expect(avatarGroup.querySelectorAll('.iui-stroke').length).toBe(4);
+  expect(avatarGroup.querySelectorAll('.iui-initials').length).toBe(4);
 });
 
 it('should render animated', () => {
   const { container } = render(
-    <UserIconGroup iconSize='medium' animated={true}>
-      {generateUserIcons(7)}
-    </UserIconGroup>,
+    <AvatarGroup iconSize='medium' animated={true}>
+      {generateAvatars(7)}
+    </AvatarGroup>,
   );
   expect(container.querySelector('.iui-avatar-list.iui-animated')).toBeTruthy();
 });
 
-it('should render many icons', () => {
+it('should render many avatars', () => {
   const { container } = render(
-    <UserIconGroup iconSize='medium'>{generateUserIcons(105)}</UserIconGroup>,
+    <AvatarGroup iconSize='medium'>{generateAvatars(105)}</AvatarGroup>,
   );
   expect(container.querySelector('.iui-avatar-list.iui-stacked')).toBeTruthy();
   expect(
     container.querySelectorAll('.iui-avatar-list > .iui-avatar').length,
   ).toBe(6);
-  const countIcon = container.querySelector('.iui-avatar-count') as HTMLElement;
-  expect(countIcon.textContent).toBe('99+');
+  const countAvatar = container.querySelector(
+    '.iui-avatar-count',
+  ) as HTMLElement;
+  expect(countAvatar.textContent).toBe('99+');
 });
 
 it('should render not stacked', () => {
   const { container } = render(
-    <UserIconGroup iconSize='medium' stacked={false}>
-      {generateUserIcons(7)}
-    </UserIconGroup>,
+    <AvatarGroup iconSize='medium' stacked={false}>
+      {generateAvatars(7)}
+    </AvatarGroup>,
   );
 
   expect(container.querySelector('.iui-avatar-list.iui-stacked')).toBeFalsy();
@@ -155,9 +159,9 @@ it.each(['small', 'medium', 'large', 'x-large'] as Array<
   'small' | 'medium' | 'large' | 'x-large'
 >)('should render with %s size', (size) => {
   const { container } = render(
-    <UserIconGroup iconSize={size} stacked={false}>
-      {generateUserIcons(7)}
-    </UserIconGroup>,
+    <AvatarGroup iconSize={size} stacked={false}>
+      {generateAvatars(7)}
+    </AvatarGroup>,
   );
 
   expect(
@@ -171,13 +175,9 @@ it.each(['small', 'medium', 'large', 'x-large'] as Array<
 
 it('should render custom classname', () => {
   const { container } = render(
-    <UserIconGroup
-      iconSize='medium'
-      className='custom-classname'
-      stacked={false}
-    >
-      {generateUserIcons(7)}
-    </UserIconGroup>,
+    <AvatarGroup iconSize='medium' className='custom-classname' stacked={false}>
+      {generateAvatars(7)}
+    </AvatarGroup>,
   );
 
   expect(
@@ -185,15 +185,15 @@ it('should render custom classname', () => {
   ).toBeTruthy();
 });
 
-it('should render custom classname for count icon', () => {
+it('should render custom classname for count avatar', () => {
   const { container } = render(
-    <UserIconGroup
+    <AvatarGroup
       iconSize='medium'
       countIconProps={{ className: 'custom-classname' }}
       stacked={false}
     >
-      {generateUserIcons(7)}
-    </UserIconGroup>,
+      {generateAvatars(7)}
+    </AvatarGroup>,
   );
 
   expect(

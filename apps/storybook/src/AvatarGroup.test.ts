@@ -2,12 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-describe('UserIconGroup', () => {
-  const storyPath = 'Core/UserIconGroup';
+describe('AvatarGroup', () => {
+  const storyPath = 'Core/AvatarGroup';
   const tests = [
     'Basic',
     'Animated',
-    'Many Icons',
+    'Many Avatars',
     'Non Stacked',
     'With Tooltip',
   ];

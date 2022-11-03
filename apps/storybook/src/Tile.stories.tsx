@@ -15,7 +15,7 @@ import {
   TagContainer,
   Tile,
   TileProps,
-  UserIcon,
+  Avatar,
 } from '@itwin/itwinui-react';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
 import SvgImodelHollow from '@itwin/itwinui-icons-react/cjs/icons/ImodelHollow';
@@ -214,7 +214,7 @@ Condensed.args = {
   thumbnail: <SvgImodelHollow />,
 };
 
-export const WithUserIcon: Story<TileProps> = (props) => {
+export const WithAvatar: Story<TileProps> = (props) => {
   const { name, description, badge, thumbnail, moreOptions, ...rest } = props;
   return (
     <Tile
@@ -227,17 +227,17 @@ export const WithUserIcon: Story<TileProps> = (props) => {
     />
   );
 };
-WithUserIcon.argTypes = {
+WithAvatar.argTypes = {
   ...Basic.argTypes,
   thumbnail: { control: { disable: true } },
 };
-WithUserIcon.args = {
+WithAvatar.args = {
   ...Basic.args,
   name: 'Some User',
   description: 'User description',
   metadata: undefined,
   thumbnail: (
-    <UserIcon
+    <Avatar
       size='x-large'
       status='online'
       abbreviation='TR'

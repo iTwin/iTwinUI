@@ -45,7 +45,7 @@ export type TileProps = {
    *  // ...
    *  thumbnail='/url/to/image.jpg'
    *  // or
-   *  thumbnail={<UserIcon image={<img src='icon.png' />} />}
+   *  thumbnail={<Avatar image={<img src='icon.png' />} />}
    *  // or
    *  thumbnail={<SvgImodelHollow />}
    * />

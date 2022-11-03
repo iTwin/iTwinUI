@@ -5,11 +5,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { defaultStatusTitles, UserIcon, UserIconStatus } from './UserIcon';
+import { defaultStatusTitles, Avatar, AvatarStatus } from './Avatar';
 
 function assertBaseElements(size = 'small', backgroundColor = 'white') {
-  const userIconContainer = screen.getByTitle('Terry Rivers');
-  expect(userIconContainer.className).toEqual(
+  const avatarContainer = screen.getByTitle('Terry Rivers');
+  expect(avatarContainer.className).toEqual(
     `iui-avatar${size !== 'medium' ? ` iui-${size}` : ''}`,
   );
 
@@ -19,27 +19,27 @@ function assertBaseElements(size = 'small', backgroundColor = 'white') {
 }
 
 it('should render with given abbreviation', () => {
-  render(<UserIcon abbreviation='TR' title='Terry Rivers' />);
+  render(<Avatar abbreviation='TR' title='Terry Rivers' />);
   assertBaseElements();
 });
 
 it('should render with given abbreviation (longer than 2 chars)', () => {
-  render(<UserIcon abbreviation='TRivers' title='Terry Rivers' />);
+  render(<Avatar abbreviation='TRivers' title='Terry Rivers' />);
   assertBaseElements();
 });
 
 it.each(['small', 'medium', 'large', 'x-large'] as Array<
   'small' | 'medium' | 'large' | 'x-large'
 >)('should render with %s size', (size) => {
-  render(<UserIcon abbreviation='TR' title='Terry Rivers' size={size} />);
+  render(<Avatar abbreviation='TR' title='Terry Rivers' size={size} />);
   assertBaseElements(size);
 });
 
-it.each(['', 'online', 'busy', 'away', 'offline'] as Array<UserIconStatus>)(
+it.each(['', 'online', 'busy', 'away', 'offline'] as Array<AvatarStatus>)(
   'should render with the %s status',
   (status) => {
     const { container } = render(
-      <UserIcon abbreviation='TR' title='Terry Rivers' status={status} />,
+      <Avatar abbreviation='TR' title='Terry Rivers' status={status} />,
     );
     assertBaseElements();
     const statusContainer = container.querySelector(
@@ -59,7 +59,7 @@ it.each(['', 'online', 'busy', 'away', 'offline'] as Array<UserIconStatus>)(
 
 it('should render with translated statuses', () => {
   const { container } = render(
-    <UserIcon
+    <Avatar
       abbreviation='TR'
       title='Terry Rivers'
       status='offline'
@@ -76,22 +76,16 @@ it('should render with translated statuses', () => {
 
 it('should render with custom color', () => {
   render(
-    <UserIcon
-      abbreviation='TR'
-      title='Terry Rivers'
-      backgroundColor={'pink'}
-    />,
+    <Avatar abbreviation='TR' title='Terry Rivers' backgroundColor={'pink'} />,
   );
   assertBaseElements(undefined, 'pink');
 });
 
 it('renders with image', () => {
-  const { container } = render(
-    <UserIcon image={<img />} title='Terry Rivers' />,
-  );
+  const { container } = render(<Avatar image={<img />} title='Terry Rivers' />);
 
-  const userIconContainer = screen.getByTitle('Terry Rivers');
-  expect(userIconContainer.className).toEqual('iui-avatar iui-small');
+  const avatarContainer = screen.getByTitle('Terry Rivers');
+  expect(avatarContainer.className).toEqual('iui-avatar iui-small');
   const abbreviation = container.querySelector('.iui-initials');
   expect(abbreviation).toBeFalsy();
   const img = container.querySelector('img');
@@ -100,13 +94,13 @@ it('renders with image', () => {
 
 it('should render with custom className', () => {
   const { container } = render(
-    <UserIcon
+    <Avatar
       abbreviation='TR'
       title='Terry Rivers'
       className='test-classname'
     />,
   );
 
-  const userIconContainer = container.querySelector('.test-classname');
-  expect(userIconContainer).toBeTruthy();
+  const avatarContainer = container.querySelector('.test-classname');
+  expect(avatarContainer).toBeTruthy();
 });

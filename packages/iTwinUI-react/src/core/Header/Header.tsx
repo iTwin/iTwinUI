@@ -38,8 +38,12 @@ export type HeaderProps = {
    */
   breadcrumbs?: React.ReactNode;
   /**
-   * Content displayed to the left of the user icon
+   * Content displayed to the left of the `menuItems`
    * (expects array of `IconButton`, potentially wrapped in a `DropdownMenu`)
+   *
+   * Since v2, `userIcon` is deprecated.
+   * The new recommendation is to add `Avatar` (Called `UserIcon` before v2) to the end of `actions`.
+   * `Avatar` can be wrapped in `IconButton` and `DropdownMenu` if needed.
    * @example
    * [
    *  <IconButton><SvgNotification /></IconButton>,
@@ -47,6 +51,11 @@ export type HeaderProps = {
    *   <IconButton>
    *    <SvgHelpCircularHollow />
    *   </IconButton>
+   *  </DropdownMenu>,
+   *  <DropdownMenu menuItems={...}>
+   *    <IconButton styleType='borderless'>
+   *      <Avatar ... />
+   *    </IconButton>
    *  </DropdownMenu>
    * ]
    */
@@ -56,7 +65,10 @@ export type HeaderProps = {
    */
   children?: React.ReactNode;
   /**
+   * @deprecated Since v2, add your `UserIcon` (called `Avatar` since v2) to the end of `actions` itself
+   *
    * User icon
+   *
    * It's size and transition will be handled between slim/not slim state of the
    * Header
    * (expects `UserIcon`, can be wrapped in `IconButton` and `DropdownMenu` if needed)
@@ -106,15 +118,13 @@ const defaultTranslations: HeaderTranslations = {
  *    <IconButton>
  *     <SvgHelpCircularHollow />
  *    </IconButton>
- *   </DropdownMenu>
- *  ]}
- *  userIcon={
+ *   </DropdownMenu>,
  *   <DropdownMenu menuItems={...}>
  *    <IconButton styleType='borderless'>
- *     <UserIcon ... />
+ *     <Avatar ... />
  *    </IconButton>
  *   </DropdownMenu>
- *  }
+ *  ]}
  *  isSlim
  * />
  */

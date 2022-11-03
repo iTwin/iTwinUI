@@ -40,7 +40,7 @@ const USER_COLORS = [
 
 /**
  * Generate color from user name or email.
- * Recommended to use for `backgroundColor` in `UserIcon` component.
+ * Recommended to use for `backgroundColor` in `Avatar` component.
  */
 export const getUserColor = (emailOrName: string) => {
   const normalizedString = emailOrName.trim().toLowerCase();

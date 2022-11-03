@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { getUserColor, UserIcon, UserIconProps } from '@itwin/itwinui-react';
+import { getUserColor, Avatar, AvatarProps } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/UserIcon',
-  component: UserIcon,
+  title: 'Core/Avatar',
+  component: Avatar,
   args: {
     backgroundColor: getUserColor('Terry Rivers'),
     title: 'Terry Rivers',
@@ -23,11 +23,11 @@ export default {
     id: { control: { disable: true } },
     image: { control: { disable: true } },
   },
-} as Meta<UserIconProps>;
+} as Meta<AvatarProps>;
 
-export const Basic: Story<UserIconProps> = (args) => {
+export const Basic: Story<AvatarProps> = (args) => {
   return (
-    <UserIcon
+    <Avatar
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
       title='Terry Rivers'
@@ -36,9 +36,9 @@ export const Basic: Story<UserIconProps> = (args) => {
   );
 };
 
-export const WithImage: Story<UserIconProps> = (args) => {
+export const WithImage: Story<AvatarProps> = (args) => {
   return (
-    <UserIcon
+    <Avatar
       size='large'
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
@@ -58,31 +58,31 @@ WithImage.args = {
   ),
 };
 
-export const Sizes: Story<UserIconProps> = (args) => {
+export const Sizes: Story<AvatarProps> = (args) => {
   return (
     <div style={{ display: 'flex', gap: 4, placeItems: 'center' }}>
-      <UserIcon
+      <Avatar
         size='small'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
         {...args}
       />
-      <UserIcon
+      <Avatar
         size='medium'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
         {...args}
       />
-      <UserIcon
+      <Avatar
         size='large'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
         {...args}
       />
-      <UserIcon
+      <Avatar
         size='x-large'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
@@ -97,10 +97,10 @@ Sizes.argTypes = {
   size: { control: { disable: true } },
 };
 
-export const Statuses: Story<UserIconProps> = (args) => {
+export const Statuses: Story<AvatarProps> = (args) => {
   return (
     <div style={{ display: 'flex', gap: 4, placeItems: 'center' }}>
-      <UserIcon
+      <Avatar
         size='large'
         status='online'
         abbreviation='TR'
@@ -108,7 +108,7 @@ export const Statuses: Story<UserIconProps> = (args) => {
         title='Terry Rivers'
         {...args}
       />
-      <UserIcon
+      <Avatar
         size='large'
         status='offline'
         abbreviation='TR'
@@ -116,7 +116,7 @@ export const Statuses: Story<UserIconProps> = (args) => {
         title='Terry Rivers'
         {...args}
       />
-      <UserIcon
+      <Avatar
         size='large'
         status='busy'
         abbreviation='TR'
@@ -124,7 +124,7 @@ export const Statuses: Story<UserIconProps> = (args) => {
         title='Terry Rivers'
         {...args}
       />
-      <UserIcon
+      <Avatar
         size='large'
         status='away'
         abbreviation='TR'
@@ -144,9 +144,9 @@ Statuses.argTypes = {
   status: { control: { disable: true } },
 };
 
-export const CustomStatusTranslation: Story<UserIconProps> = (args) => {
+export const CustomStatusTranslation: Story<AvatarProps> = (args) => {
   return (
-    <UserIcon
+    <Avatar
       size='large'
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
