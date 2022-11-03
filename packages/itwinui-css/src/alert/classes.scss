@@ -6,6 +6,10 @@
   @include iui-alert;
 }
 
+.iui-alert-button {
+  @include iui-alert-button;
+}
+
 @each $status in positive, negative, warning, informational {
   .iui-alert-#{$status} {
     @include iui-alert-category($statusColor: if($status == informational, 'primary', $status));
@@ -22,10 +26,6 @@
 
 .iui-alert-link {
   @include iui-alert-link;
-}
-
-.iui-alert-button {
-  @include iui-alert-button;
 }
 
 .iui-alert-button-icon {
