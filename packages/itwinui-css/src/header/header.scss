@@ -49,6 +49,10 @@
       border-top-width: 0;
       border-bottom-width: 0;
     }
+
+    &:hover {
+      background-color: var(--iui-color-background-hover);
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {
