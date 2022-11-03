@@ -128,12 +128,11 @@
 
   // Sorted column
   .iui-sorted {
-    --_iui-table-cell-icon-fill: var(--iui-color-icon);
-
     background-color: var(--iui-color-background-hover);
 
     .iui-table-sort {
       opacity: 1;
+      fill: var(--iui-color-icon);
     }
   }
 }
