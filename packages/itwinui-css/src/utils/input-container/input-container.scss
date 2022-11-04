@@ -46,12 +46,8 @@
   // #region Cursors
   @include iui-input-label-cursor;
 
-  &.iui-disabled {
-    color: var(--iui-color-text-disabled);
-
-    label {
-      cursor: not-allowed;
-    }
+  &.iui-disabled label {
+    cursor: not-allowed;
   }
   // #endregion
 
@@ -101,6 +97,7 @@
 @mixin iui-input-label-styling {
   font-weight: var(--iui-font-weight-semibold);
   margin-bottom: var(--iui-size-2xs);
+  color: var(--_iui-input-label-color);
 
   &.iui-required {
     &::after {
@@ -108,6 +105,14 @@
       margin-left: var(--iui-size-2xs);
       color: var(--iui-color-text-negative);
     }
+  }
+
+  &.iui-disabled {
+    --_iui-input-label-color: var(--iui-color-text-disabled);
+  }
+
+  @at-root .iui-input-container.iui-disabled {
+    --_iui-input-label-color: var(--iui-color-text-disabled);
   }
 }
 
