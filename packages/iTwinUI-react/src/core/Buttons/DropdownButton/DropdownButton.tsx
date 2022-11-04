@@ -36,53 +36,52 @@ export type DropdownButtonProps = {
  * ];
  * <DropdownButton menuItems={menuItems}>Default</DropdownButton>
  */
-export const DropdownButton = React.forwardRef<
-  HTMLButtonElement,
-  DropdownButtonProps
->((props, ref) => {
-  const { menuItems, className, size, styleType, children, ...rest } = props;
+export const DropdownButton = React.forwardRef(
+  (props: DropdownButtonProps, ref: React.RefObject<HTMLButtonElement>) => {
+    const { menuItems, className, size, styleType, children, ...rest } = props;
 
-  useTheme();
+    useTheme();
 
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const [menuWidth, setMenuWidth] = React.useState(0);
+    const [menuWidth, setMenuWidth] = React.useState(0);
 
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const refs = useMergedRefs(ref, buttonRef);
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const refs = useMergedRefs(ref, buttonRef);
 
-  React.useEffect(() => {
-    if (buttonRef.current) {
-      setMenuWidth(buttonRef.current.offsetWidth);
-    }
-  }, [children, size, styleType]);
+    React.useEffect(() => {
+      if (buttonRef.current) {
+        setMenuWidth(buttonRef.current.offsetWidth);
+      }
+    }, [children, size, styleType]);
 
-  return (
-    <DropdownMenu
-      menuItems={menuItems}
-      style={{ minWidth: menuWidth }}
-      onShow={() => setIsMenuOpen(true)}
-      onHide={() => setIsMenuOpen(false)}
-    >
-      <Button
-        className={cx('iui-button-dropdown', className)}
-        size={size}
-        styleType={styleType}
-        endIcon={
-          isMenuOpen ? (
-            <SvgCaretUpSmall aria-hidden />
-          ) : (
-            <SvgCaretDownSmall aria-hidden />
-          )
-        }
-        ref={refs}
-        aria-label='Dropdown'
-        {...rest}
+    return (
+      <DropdownMenu
+        menuItems={menuItems}
+        style={{ minWidth: menuWidth }}
+        onShow={() => setIsMenuOpen(true)}
+        onHide={() => setIsMenuOpen(false)}
       >
-        {children}
-      </Button>
-    </DropdownMenu>
-  );
-});
+        <Button
+          className={cx('iui-button-dropdown', className)}
+          size={size}
+          styleType={styleType}
+          endIcon={
+            isMenuOpen ? (
+              <SvgCaretUpSmall aria-hidden />
+            ) : (
+              <SvgCaretDownSmall aria-hidden />
+            )
+          }
+          ref={refs}
+          aria-label='Dropdown'
+          {...rest}
+        >
+          {children}
+        </Button>
+      </DropdownMenu>
+    );
+  },
+);
 
 export default DropdownButton;

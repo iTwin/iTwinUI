@@ -21,8 +21,8 @@ export type TitleProps = {
  * <Title>I'm a title!</Title>
  * <Title isMuted>I'm a muted title.</Title>
  */
-export const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
-  (props, ref) => {
+export const Title = React.forwardRef(
+  (props: TitleProps, ref: React.RefObject<HTMLHeadingElement>) => {
     const { className, isMuted = false, ...rest } = props;
 
     useTheme();

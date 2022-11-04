@@ -26,8 +26,8 @@ export type InputProps = {
  * <Input disabled />
  * <Input size='small' />
  */
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  (props, ref) => {
+export const Input = React.forwardRef(
+  (props: InputProps, ref: React.RefObject<HTMLInputElement>) => {
     const { setFocus = false, size, className, ...rest } = props;
     useTheme();
     const inputRef = React.useRef<HTMLInputElement>(null);

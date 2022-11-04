@@ -21,8 +21,8 @@ export type LeadingProps = {
  * <Leading>I'm a Leading!</Leading>
  * <Leading isMuted>I'm a muted Leading.</Leading>
  */
-export const Leading = React.forwardRef<HTMLHeadingElement, LeadingProps>(
-  (props, ref) => {
+export const Leading = React.forwardRef(
+  (props: LeadingProps, ref: React.RefObject<HTMLHeadingElement>) => {
     const { className, isMuted = false, ...rest } = props;
 
     useTheme();

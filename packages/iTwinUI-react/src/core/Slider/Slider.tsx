@@ -198,8 +198,8 @@ export type SliderProps = {
  * <Slider values={[10, 20, 30, 40]} min={0} max={60} setFocus
  *   thumbMode='allow-crossing' />
  */
-export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
-  (props, ref) => {
+export const Slider = React.forwardRef(
+  (props: SliderProps, ref: React.RefObject<HTMLDivElement>) => {
     const {
       min = 0,
       max = 100,

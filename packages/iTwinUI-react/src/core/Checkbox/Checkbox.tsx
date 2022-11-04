@@ -50,8 +50,8 @@ export type CheckboxProps = {
  * <Checkbox label='Negative Checkbox' status='negative' />
  * <Checkbox label='Visibility Checkbox' variant='eyeball' />
  */
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  (props, ref) => {
+export const Checkbox = React.forwardRef(
+  (props: CheckboxProps, ref: React.RefObject<HTMLInputElement>) => {
     const {
       className,
       disabled = false,

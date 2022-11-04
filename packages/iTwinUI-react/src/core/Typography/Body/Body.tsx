@@ -26,8 +26,8 @@ export type BodyProps = {
  * <Body>I'm some body text!</Body>
  * <Body isMuted>I'm some muted body text.</Body>
  */
-export const Body = React.forwardRef<HTMLParagraphElement, BodyProps>(
-  (props, ref) => {
+export const Body = React.forwardRef(
+  (props: BodyProps, ref: React.RefObject<HTMLParagraphElement>) => {
     const { className, isMuted = false, isSkeleton = false, ...rest } = props;
 
     useTheme();

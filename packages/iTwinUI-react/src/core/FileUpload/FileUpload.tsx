@@ -32,8 +32,8 @@ export type FileUploadProps = {
  * <FileUpload onFileDropped={console.log}><FileUploadTemplate /></FileUpload>
  * <FileUpload dragContent='Drop file here' onFileDropped={console.log}><Textarea /></FileUpload>
  */
-export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
-  (props, ref) => {
+export const FileUpload = React.forwardRef(
+  (props: FileUploadProps, ref: React.RefObject<HTMLDivElement>) => {
     const { dragContent, children, onFileDropped, className, ...rest } = props;
     useTheme();
 

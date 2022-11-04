@@ -21,8 +21,8 @@ export type SubheadingProps = {
  * <Subheading>I'm a subheading!</Subheading>
  * <Subheading isMuted>I'm a muted subheading.</Subheading>
  */
-export const Subheading = React.forwardRef<HTMLHeadingElement, SubheadingProps>(
-  (props, ref) => {
+export const Subheading = React.forwardRef(
+  (props: SubheadingProps, ref: React.RefObject<HTMLHeadingElement>) => {
     const { className, isMuted = false, ...rest } = props;
 
     useTheme();

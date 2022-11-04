@@ -50,86 +50,85 @@ export type InformationPanelProps = {
  *   </InformationPanel>
  * </InformationPanelWrapper>
  */
-export const InformationPanel = React.forwardRef<
-  HTMLDivElement,
-  InformationPanelProps
->((props, ref) => {
-  const {
-    className,
-    isOpen = false,
-    orientation = 'vertical',
-    resizable = true,
-    children,
-    ...rest
-  } = props;
+export const InformationPanel = React.forwardRef(
+  (props: InformationPanelProps, ref: React.RefObject<HTMLDivElement>) => {
+    const {
+      className,
+      isOpen = false,
+      orientation = 'vertical',
+      resizable = true,
+      children,
+      ...rest
+    } = props;
 
-  useTheme();
+    useTheme();
 
-  const infoPanelRef = React.useRef<HTMLDivElement>(null);
-  const refs = useMergedRefs(ref, infoPanelRef);
+    const infoPanelRef = React.useRef<HTMLDivElement>(null);
+    const refs = useMergedRefs(ref, infoPanelRef);
 
-  const startResize = (e: React.PointerEvent) => {
-    if (!infoPanelRef.current) {
-      return;
-    }
-    if (e.button != undefined && e.button !== 0) {
-      return;
-    }
-    e.preventDefault();
-    e.stopPropagation();
-    infoPanelRef.current.ownerDocument.addEventListener(
-      'pointermove',
-      onResize,
-    );
-    infoPanelRef.current.ownerDocument.addEventListener(
-      'pointerup',
-      () =>
-        infoPanelRef.current?.ownerDocument.removeEventListener(
-          'pointermove',
-          onResize,
-        ),
-      { once: true },
-    );
-  };
-
-  const onResize = React.useCallback(
-    (e: PointerEvent) => {
-      e.preventDefault();
+    const startResize = (e: React.PointerEvent) => {
       if (!infoPanelRef.current) {
         return;
       }
-      const { right, bottom } = infoPanelRef.current.getBoundingClientRect();
-      if (orientation === 'vertical') {
-        infoPanelRef.current.style.width = `${right - e.clientX}px`;
-      } else {
-        infoPanelRef.current.style.height = `${bottom - e.clientY}px`;
+      if (e.button != undefined && e.button !== 0) {
+        return;
       }
-    },
-    [orientation],
-  );
+      e.preventDefault();
+      e.stopPropagation();
+      infoPanelRef.current.ownerDocument.addEventListener(
+        'pointermove',
+        onResize,
+      );
+      infoPanelRef.current.ownerDocument.addEventListener(
+        'pointerup',
+        () =>
+          infoPanelRef.current?.ownerDocument.removeEventListener(
+            'pointermove',
+            onResize,
+          ),
+        { once: true },
+      );
+    };
 
-  return (
-    <div
-      className={cx(
-        'iui-information-panel',
-        {
-          'iui-right': orientation === 'vertical',
-          'iui-bottom': orientation === 'horizontal',
-          'iui-visible': isOpen,
-        },
-        className,
-      )}
-      ref={refs}
-      {...rest}
-    >
-      {resizable && (
-        <div className='iui-resizer' onPointerDown={startResize}>
-          <div className='iui-resizer-bar' />
-        </div>
-      )}
-      {children}
-    </div>
-  );
-});
+    const onResize = React.useCallback(
+      (e: PointerEvent) => {
+        e.preventDefault();
+        if (!infoPanelRef.current) {
+          return;
+        }
+        const { right, bottom } = infoPanelRef.current.getBoundingClientRect();
+        if (orientation === 'vertical') {
+          infoPanelRef.current.style.width = `${right - e.clientX}px`;
+        } else {
+          infoPanelRef.current.style.height = `${bottom - e.clientY}px`;
+        }
+      },
+      [orientation],
+    );
+
+    return (
+      <div
+        className={cx(
+          'iui-information-panel',
+          {
+            'iui-right': orientation === 'vertical',
+            'iui-bottom': orientation === 'horizontal',
+            'iui-visible': isOpen,
+          },
+          className,
+        )}
+        ref={refs}
+        {...rest}
+      >
+        {resizable && (
+          <div className='iui-resizer' onPointerDown={startResize}>
+            <div className='iui-resizer-bar' />
+          </div>
+        )}
+        {children}
+      </div>
+    );
+  },
+);
 
 export default InformationPanel;

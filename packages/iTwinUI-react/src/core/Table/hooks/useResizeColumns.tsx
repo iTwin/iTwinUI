@@ -47,13 +47,15 @@ import {
   useGetLatest,
 } from 'react-table';
 
-export const useResizeColumns = <T extends Record<string, unknown>>(
-  ownerDocument: React.RefObject<Document | undefined>,
-) => (hooks: Hooks<T>) => {
-  hooks.getResizerProps = [defaultGetResizerProps(ownerDocument)];
-  hooks.stateReducers.push(reducer);
-  hooks.useInstanceBeforeDimensions.push(useInstanceBeforeDimensions);
-};
+export const useResizeColumns =
+  <T extends Record<string, unknown>>(
+    ownerDocument: React.RefObject<Document | undefined>,
+  ) =>
+  (hooks: Hooks<T>) => {
+    hooks.getResizerProps = [defaultGetResizerProps(ownerDocument)];
+    hooks.stateReducers.push(reducer);
+    hooks.useInstanceBeforeDimensions.push(useInstanceBeforeDimensions);
+  };
 
 const isTouchEvent = (
   event: React.MouseEvent | React.TouchEvent,
@@ -61,159 +63,159 @@ const isTouchEvent = (
   return event.type === 'touchstart';
 };
 
-const defaultGetResizerProps = (
-  ownerDocument: React.RefObject<Document | undefined>,
-) => (
-  props: TableKeyedProps,
-  {
-    instance,
-    header,
-    nextHeader,
-  }: {
-    instance: TableInstance;
-    header: HeaderGroup;
-    nextHeader: HeaderGroup;
-  },
-) => {
-  const { dispatch } = instance;
-
-  const onResizeStart = (
-    e: React.TouchEvent | React.MouseEvent,
-    header: HeaderGroup,
+const defaultGetResizerProps =
+  (ownerDocument: React.RefObject<Document | undefined>) =>
+  (
+    props: TableKeyedProps,
+    {
+      instance,
+      header,
+      nextHeader,
+    }: {
+      instance: TableInstance;
+      header: HeaderGroup;
+      nextHeader: HeaderGroup;
+    },
   ) => {
-    // lets not respond to multiple touches (e.g. 2 or 3 fingers)
-    if (isTouchEvent(e) && e.touches && e.touches.length > 1) {
-      return;
-    }
+    const { dispatch } = instance;
 
-    const headerIdWidths = getLeafHeaders(header).map((d) => [
-      d.id,
-      getHeaderWidth(d),
-    ]);
-    const nextHeaderIdWidths = nextHeader
-      ? getLeafHeaders(nextHeader).map((d) => [d.id, getHeaderWidth(d)])
-      : [];
+    const onResizeStart = (
+      e: React.TouchEvent | React.MouseEvent,
+      header: HeaderGroup,
+    ) => {
+      // lets not respond to multiple touches (e.g. 2 or 3 fingers)
+      if (isTouchEvent(e) && e.touches && e.touches.length > 1) {
+        return;
+      }
 
-    const clientX = isTouchEvent(e)
-      ? Math.round(e.touches[0].clientX)
-      : e.clientX;
+      const headerIdWidths = getLeafHeaders(header).map((d) => [
+        d.id,
+        getHeaderWidth(d),
+      ]);
+      const nextHeaderIdWidths = nextHeader
+        ? getLeafHeaders(nextHeader).map((d) => [d.id, getHeaderWidth(d)])
+        : [];
 
-    const dispatchMove = (clientXPos: number) =>
-      dispatch({ type: actions.columnResizing, clientX: clientXPos });
-    const dispatchEnd = () =>
-      dispatch({
-        type: actions.columnDoneResizing,
-      });
+      const clientX = isTouchEvent(e)
+        ? Math.round(e.touches[0].clientX)
+        : e.clientX;
 
-    const handlersAndEvents = {
-      mouse: {
-        moveEvent: 'mousemove',
-        moveHandler: (e: MouseEvent) => dispatchMove(e.clientX),
-        upEvent: 'mouseup',
-        upHandler: () => {
-          ownerDocument.current?.removeEventListener(
-            'mousemove',
-            handlersAndEvents.mouse.moveHandler,
-          );
-          ownerDocument.current?.removeEventListener(
-            'mouseup',
-            handlersAndEvents.mouse.upHandler,
-          );
-          ownerDocument.current?.removeEventListener(
-            'mouseleave',
-            handlersAndEvents.mouse.upHandler,
-          );
-          dispatchEnd();
+      const dispatchMove = (clientXPos: number) =>
+        dispatch({ type: actions.columnResizing, clientX: clientXPos });
+      const dispatchEnd = () =>
+        dispatch({
+          type: actions.columnDoneResizing,
+        });
+
+      const handlersAndEvents = {
+        mouse: {
+          moveEvent: 'mousemove',
+          moveHandler: (e: MouseEvent) => dispatchMove(e.clientX),
+          upEvent: 'mouseup',
+          upHandler: () => {
+            ownerDocument.current?.removeEventListener(
+              'mousemove',
+              handlersAndEvents.mouse.moveHandler,
+            );
+            ownerDocument.current?.removeEventListener(
+              'mouseup',
+              handlersAndEvents.mouse.upHandler,
+            );
+            ownerDocument.current?.removeEventListener(
+              'mouseleave',
+              handlersAndEvents.mouse.upHandler,
+            );
+            dispatchEnd();
+          },
         },
-      },
-      touch: {
-        moveEvent: 'touchmove',
-        moveHandler: (e: TouchEvent) => {
-          if (e.cancelable) {
-            e.preventDefault();
-            e.stopPropagation();
-          }
-          dispatchMove(e.touches[0].clientX);
+        touch: {
+          moveEvent: 'touchmove',
+          moveHandler: (e: TouchEvent) => {
+            if (e.cancelable) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+            dispatchMove(e.touches[0].clientX);
+          },
+          upEvent: 'touchend',
+          upHandler: () => {
+            ownerDocument.current?.removeEventListener(
+              handlersAndEvents.touch.moveEvent,
+              handlersAndEvents.touch.moveHandler,
+            );
+            ownerDocument.current?.removeEventListener(
+              handlersAndEvents.touch.upEvent,
+              handlersAndEvents.touch.moveHandler,
+            );
+            dispatchEnd();
+          },
         },
-        upEvent: 'touchend',
-        upHandler: () => {
-          ownerDocument.current?.removeEventListener(
-            handlersAndEvents.touch.moveEvent,
-            handlersAndEvents.touch.moveHandler,
-          );
-          ownerDocument.current?.removeEventListener(
-            handlersAndEvents.touch.upEvent,
-            handlersAndEvents.touch.moveHandler,
-          );
-          dispatchEnd();
-        },
-      },
-    };
+      };
 
-    const events = isTouchEvent(e)
-      ? handlersAndEvents.touch
-      : handlersAndEvents.mouse;
-    const passiveIfSupported = passiveEventSupported()
-      ? { passive: false }
-      : false;
-    ownerDocument.current?.addEventListener(
-      events.moveEvent,
-      events.moveHandler,
-      passiveIfSupported,
-    );
-    ownerDocument.current?.addEventListener(
-      events.upEvent,
-      events.upHandler,
-      passiveIfSupported,
-    );
-    if (!isTouchEvent(e)) {
+      const events = isTouchEvent(e)
+        ? handlersAndEvents.touch
+        : handlersAndEvents.mouse;
+      const passiveIfSupported = passiveEventSupported()
+        ? { passive: false }
+        : false;
       ownerDocument.current?.addEventListener(
-        'mouseleave',
-        handlersAndEvents.mouse.upHandler,
+        events.moveEvent,
+        events.moveHandler,
         passiveIfSupported,
       );
-    }
+      ownerDocument.current?.addEventListener(
+        events.upEvent,
+        events.upHandler,
+        passiveIfSupported,
+      );
+      if (!isTouchEvent(e)) {
+        ownerDocument.current?.addEventListener(
+          'mouseleave',
+          handlersAndEvents.mouse.upHandler,
+          passiveIfSupported,
+        );
+      }
 
-    dispatch({
-      type: actions.columnStartResizing,
-      columnId: header.id,
-      columnWidth: getHeaderWidth(header),
-      nextColumnWidth: getHeaderWidth(nextHeader),
-      headerIdWidths,
-      nextHeaderIdWidths,
-      clientX,
-    });
+      dispatch({
+        type: actions.columnStartResizing,
+        columnId: header.id,
+        columnWidth: getHeaderWidth(header),
+        nextColumnWidth: getHeaderWidth(nextHeader),
+        headerIdWidths,
+        nextHeaderIdWidths,
+        clientX,
+      });
+    };
+
+    return [
+      props,
+      {
+        onClick: (e: React.MouseEvent) => {
+          // Prevents from triggering sort
+          e.stopPropagation();
+        },
+        onMouseDown: (e: React.MouseEvent) => {
+          e.persist();
+          // Prevents from triggering drag'n'drop
+          e.preventDefault();
+          // Prevents from triggering sort
+          e.stopPropagation();
+          onResizeStart(e, header);
+        },
+        onTouchStart: (e: React.TouchEvent) => {
+          e.persist();
+          // Prevents from triggering drag'n'drop
+          e.preventDefault();
+          onResizeStart(e, header);
+        },
+        style: {
+          cursor: 'col-resize',
+        },
+        draggable: false,
+        role: 'separator',
+      },
+    ];
   };
-
-  return [
-    props,
-    {
-      onClick: (e: React.MouseEvent) => {
-        // Prevents from triggering sort
-        e.stopPropagation();
-      },
-      onMouseDown: (e: React.MouseEvent) => {
-        e.persist();
-        // Prevents from triggering drag'n'drop
-        e.preventDefault();
-        // Prevents from triggering sort
-        e.stopPropagation();
-        onResizeStart(e, header);
-      },
-      onTouchStart: (e: React.TouchEvent) => {
-        e.persist();
-        // Prevents from triggering drag'n'drop
-        e.preventDefault();
-        onResizeStart(e, header);
-      },
-      style: {
-        cursor: 'col-resize',
-      },
-      draggable: false,
-      role: 'separator',
-    },
-  ];
-};
 
 useResizeColumns.pluginName = 'useResizeColumns';
 

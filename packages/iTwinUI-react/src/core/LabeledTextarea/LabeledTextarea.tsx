@@ -54,54 +54,53 @@ export type LabeledTextareaProps = {
  *  status='negative'
  * />
  */
-export const LabeledTextarea = React.forwardRef<
-  HTMLTextAreaElement,
-  LabeledTextareaProps
->((props, ref) => {
-  const {
-    className,
-    style,
-    disabled = false,
-    label,
-    message,
-    status,
-    textareaClassName,
-    textareaStyle,
-    displayStyle = 'default',
-    iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
-    svgIcon,
-    required = false,
-    ...textareaProps
-  } = props;
+export const LabeledTextarea = React.forwardRef(
+  (props: LabeledTextareaProps, ref: React.RefObject<HTMLTextAreaElement>) => {
+    const {
+      className,
+      style,
+      disabled = false,
+      label,
+      message,
+      status,
+      textareaClassName,
+      textareaStyle,
+      displayStyle = 'default',
+      iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
+      svgIcon,
+      required = false,
+      ...textareaProps
+    } = props;
 
-  useTheme();
+    useTheme();
 
-  const icon = svgIcon ?? (status && StatusIconMap[status]());
+    const icon = svgIcon ?? (status && StatusIconMap[status]());
 
-  return (
-    <InputContainer
-      as='label'
-      label={label}
-      disabled={disabled}
-      required={required}
-      status={status}
-      message={message}
-      icon={icon}
-      isLabelInline={displayStyle === 'inline'}
-      isIconInline={iconDisplayStyle === 'inline'}
-      className={className}
-      style={style}
-    >
-      <Textarea
+    return (
+      <InputContainer
+        as='label'
+        label={label}
         disabled={disabled}
-        className={textareaClassName}
-        style={textareaStyle}
         required={required}
-        {...textareaProps}
-        ref={ref}
-      />
-    </InputContainer>
-  );
-});
+        status={status}
+        message={message}
+        icon={icon}
+        isLabelInline={displayStyle === 'inline'}
+        isIconInline={iconDisplayStyle === 'inline'}
+        className={className}
+        style={style}
+      >
+        <Textarea
+          disabled={disabled}
+          className={textareaClassName}
+          style={textareaStyle}
+          required={required}
+          {...textareaProps}
+          ref={ref}
+        />
+      </InputContainer>
+    );
+  },
+);
 
 export default LabeledTextarea;

@@ -59,54 +59,53 @@ export type LabeledInputProps = {
  * <LabeledInput status='positive' label='Positive' />
  * <LabeledInput status='negative' label='Negative' setFocus />
  */
-export const LabeledInput = React.forwardRef<
-  HTMLInputElement,
-  LabeledInputProps
->((props, ref) => {
-  const {
-    className,
-    disabled = false,
-    label,
-    message,
-    status,
-    svgIcon,
-    style,
-    inputClassName,
-    inputStyle,
-    displayStyle = 'default',
-    iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
-    required = false,
-    ...rest
-  } = props;
+export const LabeledInput = React.forwardRef(
+  (props: LabeledInputProps, ref: React.RefObject<HTMLInputElement>) => {
+    const {
+      className,
+      disabled = false,
+      label,
+      message,
+      status,
+      svgIcon,
+      style,
+      inputClassName,
+      inputStyle,
+      displayStyle = 'default',
+      iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
+      required = false,
+      ...rest
+    } = props;
 
-  useTheme();
+    useTheme();
 
-  const icon = svgIcon ?? (status && StatusIconMap[status]());
+    const icon = svgIcon ?? (status && StatusIconMap[status]());
 
-  return (
-    <InputContainer
-      as='label'
-      label={label}
-      disabled={disabled}
-      required={required}
-      status={status}
-      message={message}
-      icon={icon}
-      isLabelInline={displayStyle === 'inline'}
-      isIconInline={iconDisplayStyle === 'inline'}
-      className={className}
-      style={style}
-    >
-      <Input
+    return (
+      <InputContainer
+        as='label'
+        label={label}
         disabled={disabled}
-        className={inputClassName}
-        style={inputStyle}
         required={required}
-        ref={ref}
-        {...rest}
-      />
-    </InputContainer>
-  );
-});
+        status={status}
+        message={message}
+        icon={icon}
+        isLabelInline={displayStyle === 'inline'}
+        isIconInline={iconDisplayStyle === 'inline'}
+        className={className}
+        style={style}
+      >
+        <Input
+          disabled={disabled}
+          className={inputClassName}
+          style={inputStyle}
+          required={required}
+          ref={ref}
+          {...rest}
+        />
+      </InputContainer>
+    );
+  },
+);
 
 export default LabeledInput;

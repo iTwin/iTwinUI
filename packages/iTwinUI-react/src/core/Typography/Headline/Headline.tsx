@@ -21,8 +21,8 @@ export type HeadlineProps = {
  * <Headline>I'm a headline!</Headline>
  * <Headline isMuted>I'm a muted headline.</Headline>
  */
-export const Headline = React.forwardRef<HTMLHeadingElement, HeadlineProps>(
-  (props, ref) => {
+export const Headline = React.forwardRef(
+  (props: HeadlineProps, ref: React.RefObject<HTMLHeadingElement>) => {
     const { className, isMuted = false, ...rest } = props;
 
     useTheme();

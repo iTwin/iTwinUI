@@ -22,8 +22,8 @@ export type BlockquoteProps = {
  *  <p>This is a quote from someone</p>
  * </Blockquote>
  */
-export const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
-  (props, ref) => {
+export const Blockquote = React.forwardRef(
+  (props: BlockquoteProps, ref: React.RefObject<HTMLQuoteElement>) => {
     const { className, children, footer, ...rest } = props;
 
     useTheme();

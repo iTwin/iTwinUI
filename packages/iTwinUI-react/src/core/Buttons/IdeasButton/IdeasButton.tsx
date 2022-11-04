@@ -24,25 +24,24 @@ export type IdeasButtonProps = {
  * @example
  * <IdeasButton />
  */
-export const IdeasButton = React.forwardRef<
-  HTMLButtonElement,
-  IdeasButtonProps
->((props: IdeasButtonProps, ref) => {
-  const { feedbackLabel = 'Feedback', onClick, ...rest } = props;
+export const IdeasButton = React.forwardRef(
+  (props: IdeasButtonProps, ref: React.RefObject<HTMLButtonElement>) => {
+    const { feedbackLabel = 'Feedback', onClick, ...rest } = props;
 
-  useTheme();
+    useTheme();
 
-  return (
-    <Button
-      ref={ref}
-      data-iui-variant='idea'
-      onClick={onClick}
-      startIcon={<SvgSmileyHappy aria-hidden />}
-      {...rest}
-    >
-      {feedbackLabel}
-    </Button>
-  );
-});
+    return (
+      <Button
+        ref={ref}
+        data-iui-variant='idea'
+        onClick={onClick}
+        startIcon={<SvgSmileyHappy aria-hidden />}
+        {...rest}
+      >
+        {feedbackLabel}
+      </Button>
+    );
+  },
+);
 
 export default IdeasButton;

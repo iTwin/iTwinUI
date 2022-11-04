@@ -2,10 +2,12 @@
   "name": "itwinui-monorepo",
   "version": "0.0.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ]
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -20,12 +22,13 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "configs": "*",
     "cpy-cli": "^3.1.1",
+    "cross-env": "^7.0.3",
     "husky": "8",
     "lint-staged": "12",
     "rimraf": "^3.0.2",
-    "turbo": "~1.2.4",
-    "configs": "*"
+    "turbo": "~1.2.4"
   },
   "resolutions": {
     "trim": "^0.0.3",
@@ -34,7 +37,6 @@
     "ansi-regex": "^5.0.1",
     "postcss": "8",
     "nanoid": "^3.1.31",
-    "prettier": "2.2.1",
     "trim-newlines": "^3.0.1"
   },
   "lint-staged": {

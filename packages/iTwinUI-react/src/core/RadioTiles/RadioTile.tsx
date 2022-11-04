@@ -32,8 +32,8 @@ export type RadioTileProps = {
  * @example
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
-export const RadioTile = React.forwardRef<HTMLInputElement, RadioTileProps>(
-  (props, ref) => {
+export const RadioTile = React.forwardRef(
+  (props: RadioTileProps, ref: React.RefObject<HTMLInputElement>) => {
     const {
       icon,
       label,

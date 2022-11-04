@@ -34,8 +34,8 @@ export type RadioProps = {
  * <Radio status='warning' label='Warning' />
  * <Radio status='negative' label='Negative' />
  */
-export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
-  (props, ref) => {
+export const Radio = React.forwardRef(
+  (props: RadioProps, ref: React.RefObject<HTMLInputElement>) => {
     const {
       className,
       disabled = false,

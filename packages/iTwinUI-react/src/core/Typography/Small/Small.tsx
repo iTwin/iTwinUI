@@ -21,8 +21,8 @@ export type SmallProps = {
  * <Small>I'm some small text!</Small>
  * <Small isMuted>I'm some muted small text.</Small>
  */
-export const Small = React.forwardRef<HTMLParagraphElement, SmallProps>(
-  (props, ref) => {
+export const Small = React.forwardRef(
+  (props: SmallProps, ref: React.RefObject<HTMLParagraphElement>) => {
     const { className, isMuted = false, ...rest } = props;
 
     useTheme();

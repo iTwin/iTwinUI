@@ -22,8 +22,8 @@ export type TextareaProps = {
  * <Textarea setFocus={true} placeholder='This is a textarea' />
  * <Textarea disabled={true} placeholder='This is a disabled textarea' />
  */
-export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  (props, ref) => {
+export const Textarea = React.forwardRef(
+  (props: TextareaProps, ref: React.RefObject<HTMLTextAreaElement>) => {
     const { className, rows = 3, setFocus = false, ...rest } = props;
 
     useTheme();
