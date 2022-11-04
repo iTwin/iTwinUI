@@ -74,7 +74,7 @@
 
       &:hover > .iui-table-resizer-bar {
         width: var(--iui-size-2xs);
-        background-color: var(--iui-color-border-primary);
+        background-color: var(--iui-color-border-accent);
       }
     }
 
@@ -115,7 +115,7 @@
   .iui-table-reorder-column-left,
   .iui-table-reorder-column-right {
     > .iui-table-reorder-bar {
-      background-color: var(--iui-color-border-primary);
+      background-color: var(--iui-color-border-accent);
     }
   }
 
@@ -211,29 +211,29 @@
 
     &[aria-selected='true'] {
       .iui-table-cell {
-        border-color: var(--iui-color-border-primary);
-        background-color: var(--iui-color-background-primary-muted);
+        border-color: var(--iui-color-border-accent);
+        background-color: var(--iui-color-background-accent-muted);
       }
 
       + [aria-selected='true'] .iui-table-cell {
         border-bottom-color: transparent;
-        border-top-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-4));
+        border-top-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-4));
       }
 
       &:last-child .iui-table-cell {
-        border-bottom-color: var(--iui-color-border-primary);
+        border-bottom-color: var(--iui-color-border-accent);
       }
 
       + :not([aria-selected='true']) .iui-table-cell,
       + .iui-table-expanded-content + .iui-table-row:not([aria-selected='true']) .iui-table-cell {
-        border-top-color: var(--iui-color-border-primary);
+        border-top-color: var(--iui-color-border-accent);
       }
 
       + .iui-table-expanded-content {
-        border-color: transparent var(--iui-color-border-primary);
+        border-color: transparent var(--iui-color-border-accent);
 
         &:last-child {
-          border-bottom-color: var(--iui-color-border-primary);
+          border-bottom-color: var(--iui-color-border-accent);
         }
       }
     }
@@ -409,12 +409,12 @@
     outline-offset: -1px;
 
     &:hover {
-      outline: 1px solid var(--iui-color-border-primary);
+      outline: 1px solid var(--iui-color-border-accent);
     }
 
     &:focus {
       background-color: var(--iui-color-background);
-      outline: 1px solid var(--iui-color-text-primary);
+      outline: 1px solid var(--iui-color-text-accent);
     }
   }
 }

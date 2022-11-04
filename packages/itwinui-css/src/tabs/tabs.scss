@@ -22,7 +22,7 @@
     transition: background-color var(--iui-duration-1) ease-out;
 
     &.iui-active {
-      color: var(--iui-color-text-primary);
+      color: var(--iui-color-text-accent);
 
       .iui-tab-icon {
         fill: currentColor;
@@ -142,7 +142,7 @@
   .iui-tab::after {
     content: '';
     position: absolute;
-    background-color: var(--iui-color-border-primary);
+    background-color: var(--iui-color-border-accent);
   }
 
   .iui-active::after {
@@ -160,7 +160,7 @@
   &::after {
     position: absolute;
     content: ' ';
-    background-color: var(--iui-color-border-primary);
+    background-color: var(--iui-color-border-accent);
   }
 
   &.iui-green::after {

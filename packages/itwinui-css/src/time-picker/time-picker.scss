@@ -52,7 +52,7 @@
         font-weight: var(--iui-font-weight-semibold);
         cursor: default;
         @include iui-focus($color: var(--iui-color-white), $offset: -3px);
-        background-color: var(--iui-color-background-primary);
+        background-color: var(--iui-color-background-accent);
         color: var(--iui-color-white);
       }
     }

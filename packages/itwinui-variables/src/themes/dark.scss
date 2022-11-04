@@ -25,9 +25,9 @@ $bg-8: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 7.5));
 $bg-9: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 8));
 $bg-10: hsl($bg-hue $bg-saturation ($bg-lightness-gap * 9));
 
-$bg-primary-0: hsl(207 19% 27%); // Selection
-$bg-primary-1: hsl(203 100% 36%); // Button
-$bg-primary-2: hsl(202 100% 44%); // Button hovered
+$bg-informational-0: hsl(207 19% 27%); // Selection
+$bg-informational-1: hsl(203 100% 36%); // Button
+$bg-informational-2: hsl(202 100% 44%); // Button hovered
 
 $bg-positive-0: hsl(162 13% 26%);
 $bg-positive-1: hsl(118 76% 28%);
@@ -55,9 +55,9 @@ $fg-7: hsl(0 0% (100% - $fg-lightness-gap * 7));
 $fg-8: hsl(0 0% (100% - $fg-lightness-gap * 8));
 $fg-9: hsl(0 0% (100% - $fg-lightness-gap * 9));
 
-$fg-primary-0: hsl(217 89% 86%); // Text hovered
-$fg-primary-1: hsl(215 91% 78%); // Text
-$fg-primary-2: hsl(212 91% 68%); // Icon
+$fg-informational-0: hsl(217 89% 86%); // Text hovered
+$fg-informational-1: hsl(215 91% 78%); // Text
+$fg-informational-2: hsl(212 91% 68%); // Icon
 
 $fg-positive-0: hsl(119 47% 88%);
 $fg-positive-1: hsl(119 41% 70%);
@@ -93,9 +93,12 @@ $opacities: (
   --iui-color-background-backdrop: #{hex($bg-5)};
   --iui-color-background-backdrop-hover: #{hex($bg-6)};
   --iui-color-background-disabled: #{hex($bg-4)};
-  --iui-color-background-primary: #{hex($bg-primary-1)};
-  --iui-color-background-primary-hover: #{hex($bg-primary-2)};
-  --iui-color-background-primary-muted: #{hex($bg-primary-0)};
+  --iui-color-background-accent: var(--iui-color-background-informational);
+  --iui-color-background-accent-hover: var(--iui-color-background-informational-hover);
+  --iui-color-background-accent-muted: var(--iui-color-background-informational-muted);
+  --iui-color-background-informational: #{hex($bg-informational-1)};
+  --iui-color-background-informational-hover: #{hex($bg-informational-2)};
+  --iui-color-background-informational-muted: #{hex($bg-informational-0)};
   --iui-color-background-positive: #{hex($bg-positive-1)};
   --iui-color-background-positive-hover: #{hex($bg-positive-2)};
   --iui-color-background-positive-muted: #{hex($bg-positive-0)};
@@ -113,7 +116,8 @@ $opacities: (
   --iui-color-border-foreground: #{hex($fg-8)};
   --iui-color-border-foreground-hover: #{hex($fg-6)};
   --iui-color-border-disabled: #{hex($bg-9)};
-  --iui-color-border-primary: #{hex($fg-primary-1)};
+  --iui-color-border-accent: var(--iui-color-border-informational);
+  --iui-color-border-informational: #{hex($fg-informational-1)};
   --iui-color-border-positive: #{hex($fg-positive-1)};
   --iui-color-border-warning: #{hex($fg-warning-1)};
   --iui-color-border-negative: #{hex($fg-negative-1)};
@@ -124,7 +128,8 @@ $opacities: (
   --iui-color-icon-muted: #{hex($fg-6)};
   --iui-color-icon-muted-hover: #{hex($fg-5)};
   --iui-color-icon-disabled: #{hex($fg-8)};
-  --iui-color-icon-primary: #{hex($fg-primary-2)};
+  --iui-color-icon-accent: var(--iui-color-icon-informational);
+  --iui-color-icon-informational: #{hex($fg-informational-2)};
   --iui-color-icon-positive: #{hex($fg-positive-2)};
   --iui-color-icon-warning: #{hex($fg-warning-2)};
   --iui-color-icon-negative: #{hex($fg-negative-2)};
@@ -134,8 +139,10 @@ $opacities: (
   --iui-color-text-hover: #{hex($fg-1)};
   --iui-color-text-muted: #{hex($fg-5)};
   --iui-color-text-disabled: #{hex($fg-7)};
-  --iui-color-text-primary: #{hex($fg-primary-1)};
-  --iui-color-text-primary-hover: #{hex($fg-primary-0)};
+  --iui-color-text-accent: var(--iui-color-text-informational);
+  --iui-color-text-accent-hover: var(--iui-color-text-informational-hover);
+  --iui-color-text-informational: #{hex($fg-informational-1)};
+  --iui-color-text-informational-hover: #{hex($fg-informational-0)};
   --iui-color-text-positive: #{hex($fg-positive-1)};
   --iui-color-text-positive-hover: #{hex($fg-positive-0)};
   --iui-color-text-warning: #{hex($fg-warning-1)};
@@ -146,7 +153,8 @@ $opacities: (
   // #region HSL variables for transparency
   --iui-color-background-hsl: #{get-hsl($bg-6)};
   --iui-color-foreground-hsl: #{get-hsl($fg-1)};
-  --iui-color-primary-hsl: #{get-hsl($fg-primary-2)};
+  --iui-color-accent-hsl: var(--iui-color-informational-hsl);
+  --iui-color-informational-hsl: #{get-hsl($fg-informational-2)};
   --iui-color-positive-hsl: #{get-hsl($fg-positive-2)};
   --iui-color-warning-hsl: #{get-hsl($fg-warning-2)};
   --iui-color-negative-hsl: #{get-hsl($fg-negative-2)};

@@ -39,7 +39,7 @@
 
     button[data-pressed='true'] {
       outline-offset: -1px;
-      outline: 1px solid var(--iui-color-border-primary);
+      outline: 1px solid var(--iui-color-border-accent);
     }
   }
 
@@ -83,8 +83,8 @@
     }
 
     &.iui-active::after {
-      background-color: var(--iui-color-icon-primary);
-      border-color: var(--iui-color-icon-primary);
+      background-color: var(--iui-color-icon-accent);
+      border-color: var(--iui-color-icon-accent);
       box-shadow: inset 0 0 0 1px var(--iui-color-background);
       @media (forced-colors: active) {
         border-width: var(--iui-size-xs);

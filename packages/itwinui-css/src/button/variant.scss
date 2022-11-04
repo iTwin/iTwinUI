@@ -13,11 +13,11 @@
   }
 
   @if $variant == high-visibility {
-    --_iui-button-background-color: var(--iui-color-background-primary);
+    --_iui-button-background-color: var(--iui-color-background-accent);
 
     &:hover,
     &:active {
-      --_iui-button-background-color: var(--iui-color-background-primary-hover);
+      --_iui-button-background-color: var(--iui-color-background-accent-hover);
     }
   }
 
@@ -41,6 +41,6 @@
 
     outline-offset: -1px;
     outline-width: 1px;
-    outline-color: var(--iui-color-text-primary);
+    outline-color: var(--iui-color-text-accent);
   }
 }

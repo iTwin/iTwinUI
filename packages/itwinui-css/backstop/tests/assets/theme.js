@@ -31,7 +31,7 @@ class ThemeButton extends HTMLElement {
         top: var(--iui-size-xs);
         right: var(--iui-size-xs);
         z-index: 100000;
-        accent-color: var(--iui-color-icon-primary);
+        accent-color: var(--iui-color-icon-accent);
         pointer-events: none;
       }
       .settings-root {

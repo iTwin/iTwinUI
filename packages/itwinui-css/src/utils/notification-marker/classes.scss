@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-@each $status in primary, positive, warning, negative, accessory {
+@each $status in informational, positive, warning, negative, white {
   .iui-notification-#{$status} {
     @include iui-notification-marker($status: $status);
   }

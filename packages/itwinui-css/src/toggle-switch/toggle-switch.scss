@@ -109,8 +109,8 @@
 
   // #region Checked toggle switch
   &:checked {
-    background-color: var(--iui-color-background-primary);
-    border-color: var(--iui-color-background-primary);
+    background-color: var(--iui-color-background-accent);
+    border-color: var(--iui-color-background-accent);
     @media (forced-colors: active) {
       background-color: Highlight;
       border-color: Highlight;

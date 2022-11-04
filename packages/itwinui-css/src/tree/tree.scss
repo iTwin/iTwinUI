@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
-$iui-active-outline: thin solid var(--iui-color-border-primary);
+$iui-active-outline: thin solid var(--iui-color-border-accent);
 
 // padding of small borderless button + 1px transparent border
 $iui-expander-inline-padding: calc(var(--iui-size-2xs) + 1px);
@@ -27,11 +27,11 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     outline: none;
 
     > .iui-tree-node {
-      outline: 1px solid var(--iui-color-border-primary);
+      outline: 1px solid var(--iui-color-border-accent);
       outline-offset: -1px;
 
       &.iui-active {
-        outline: 2px solid var(--iui-color-border-primary);
+        outline: 2px solid var(--iui-color-border-accent);
         outline-offset: -2px;
       }
     }
@@ -114,7 +114,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   }
 
   &.iui-active {
-    background-color: var(--iui-color-background-primary-muted);
+    background-color: var(--iui-color-background-accent-muted);
     outline: $iui-active-outline;
     outline-offset: -1px;
   }

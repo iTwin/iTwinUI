@@ -32,9 +32,9 @@
   }
 
   &:autofill {
-    --_iui-input-background-color: var(--iui-color-background-primary-muted);
-    --_iui-input-border-color: var(--iui-color-border-primary);
-    --_iui-input-text-color: var(--iui-color-text-primary);
+    --_iui-input-background-color: var(--iui-color-background-accent-muted);
+    --_iui-input-border-color: var(--iui-color-border-accent);
+    --_iui-input-text-color: var(--iui-color-text-accent);
   }
 
   &:hover {

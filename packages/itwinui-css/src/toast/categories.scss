@@ -3,7 +3,7 @@
 @import '../anchor/index';
 @import './toast';
 
-/// category must be one of: positive, negative, primary (informational), warning
+/// category must be one of: informational, positive, warning, negative
 @mixin iui-toast-category($category) {
   border-color: var(--iui-color-border-#{$category});
 

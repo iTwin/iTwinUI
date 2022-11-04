@@ -42,9 +42,9 @@
 
 @mixin iui-button-active {
   --_iui-button-active-stripe-inset: initial;
-  --_iui-button-active-stripe-color: var(--iui-color-border-primary);
-  --_iui-button-text-color: var(--iui-color-text-primary);
-  --_iui-button-icon-fill: var(--iui-color-text-primary);
+  --_iui-button-active-stripe-color: var(--iui-color-border-accent);
+  --_iui-button-text-color: var(--iui-color-text-accent);
+  --_iui-button-icon-fill: var(--iui-color-text-accent);
 
   // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
   &::after {

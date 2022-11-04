@@ -112,14 +112,14 @@ $iui-date-picker-today-circle-size: 32px;
 
 @mixin iui-calendar-day-selected-base {
   font-weight: var(--iui-font-weight-semibold);
-  background-color: var(--iui-color-background-primary);
+  background-color: var(--iui-color-background-accent);
   color: var(--iui-color-white);
   @include iui-focus($color: var(--iui-color-white), $offset: -3px);
 }
 
 @mixin iui-calendar-day-selected-today-base {
   &:hover {
-    background-color: var(--iui-color-background-primary);
+    background-color: var(--iui-color-background-accent);
     color: var(--iui-color-white);
 
     &::before {
@@ -198,11 +198,11 @@ $iui-date-picker-today-circle-size: 32px;
     @include iui-calendar-day-base;
 
     border-radius: 0;
-    background-color: var(--iui-color-background-primary-muted);
+    background-color: var(--iui-color-background-accent-muted);
 
     &:hover {
       font-weight: var(--iui-font-weight-semibold);
-      background-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-5));
+      background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
     }
   }
 
@@ -210,11 +210,11 @@ $iui-date-picker-today-circle-size: 32px;
     @include iui-calendar-day-today-base;
 
     &:hover {
-      background-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-5));
+      background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
     }
 
     &::before {
-      border-color: var(--iui-color-border-primary);
+      border-color: var(--iui-color-border-accent);
     }
   }
 }

@@ -3,7 +3,7 @@
 @import '../utils/index';
 @import '../surface/index';
 
-$iui-active-outline: thin solid var(--iui-color-border-primary);
+$iui-active-outline: thin solid var(--iui-color-border-accent);
 
 @mixin iui-list-menu {
   @include iui-reset;
@@ -101,8 +101,8 @@ $iui-active-outline: thin solid var(--iui-color-border-primary);
   &.iui-active {
     &,
     &:hover {
-      background-color: var(--iui-color-background-primary-muted);
-      color: var(--iui-color-text-primary);
+      background-color: var(--iui-color-background-accent-muted);
+      color: var(--iui-color-text-accent);
       outline: $iui-active-outline;
       outline-offset: -1px;
     }

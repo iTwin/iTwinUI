@@ -50,10 +50,10 @@
 
   &.iui-selected {
     @include iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
-    --_iui-tile-status-icon-fill: var(--iui-color-icon-primary);
+    --_iui-tile-status-icon-fill: var(--iui-color-icon-accent);
 
-    outline: solid 2px var(--iui-color-border-primary);
-    background-color: var(--iui-color-background-primary-muted);
+    outline: solid 2px var(--iui-color-border-accent);
+    background-color: var(--iui-color-background-accent-muted);
   }
 
   &.iui-actionable {
@@ -270,8 +270,8 @@
   }
 
   &[data-iui-active='true'] {
-    --_iui-button-text-color: var(--iui-color-text-primary);
-    --_iui-button-background-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-6));
+    --_iui-button-text-color: var(--iui-color-text-accent);
+    --_iui-button-background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
   }
 
   @at-root .iui-tile-thumbnail-picture ~ & {

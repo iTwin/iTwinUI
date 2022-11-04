@@ -118,8 +118,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       @include iui-icon-style('l');
     }
 
-    &.iui-submenu-open .iui-button-icon svg {
-      fill: var(--iui-color-text-primary);
+    &.iui-submenu-open {
+      background-color: var(--iui-color-background-hover);
     }
 
     &[disabled],

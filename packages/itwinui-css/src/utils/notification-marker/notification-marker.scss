@@ -3,7 +3,7 @@
 
 $iui-notification-marker-border-width: var(--iui-size-3xs);
 
-@mixin iui-notification-marker($status: primary) {
+@mixin iui-notification-marker($status: informational) {
   position: relative;
 
   &::before {
@@ -14,7 +14,7 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
     top: calc(var(--iui-size-s) * -0.5);
     right: calc(var(--iui-size-s) * -0.5);
     border-radius: 100%;
-    background-color: var(--iui-color-icon-#{$status});
+    background-color: var(--iui-color-icon-#{$status}); // TODO this won't work with white
     border: $iui-notification-marker-border-width solid var(--iui-color-background);
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
@@ -45,7 +45,7 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
 }
 
 @mixin iui-notification-marker-hover {
-  .iui-notification-primary::before,
+  .iui-notification-informational::before,
   .iui-notification-positive::before,
   .iui-notification-warning::before,
   .iui-notification-negative::before {

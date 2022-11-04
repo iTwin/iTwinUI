@@ -70,7 +70,7 @@
       &,
       &:hover,
       &:active {
-        --_iui-button-text-color: var(--iui-color-text-primary);
+        --_iui-button-text-color: var(--iui-color-text-accent);
       }
     }
   }
@@ -97,7 +97,7 @@
   @include iui-button-borderless;
   padding: 0;
   border: none;
-  color: var(--iui-color-text-primary);
+  color: var(--iui-color-text-accent);
 
   &[aria-current] {
     color: var(--iui-color-text);

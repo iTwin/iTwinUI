@@ -86,9 +86,9 @@
 
   // Active state
   &[aria-current] {
-    background-color: var(--iui-color-background-primary-muted);
+    background-color: var(--iui-color-background-accent-muted);
     box-shadow: 0 var(--iui-size-3xs) 0 0 currentColor;
-    color: var(--iui-color-text-primary);
+    color: var(--iui-color-text-accent);
     @media (forced-colors: active) {
       color: LinkText;
       border-bottom: 3px solid LinkText;
@@ -172,7 +172,7 @@
   }
 
   @at-root [aria-current] &:hover {
-    background-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-6));
+    background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
   }
 
   &:disabled,

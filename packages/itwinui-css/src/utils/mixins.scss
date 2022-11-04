@@ -12,7 +12,7 @@
   }
 }
 
-@mixin iui-focus($color: var(--iui-color-border-primary), $offset: -1px, $thickness: 1px) {
+@mixin iui-focus($color: var(--iui-color-border-accent), $offset: -1px, $thickness: 1px) {
   @include focus-visible {
     outline: $thickness solid $color;
     outline-offset: $offset;
@@ -26,7 +26,7 @@
   vertical-align: baseline;
 }
 
-@mixin iui-text-selection($status: primary) {
+@mixin iui-text-selection($status: accent) {
   &::selection,
   *::selection {
     background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));

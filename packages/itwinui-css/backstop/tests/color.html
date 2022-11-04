@@ -44,15 +44,15 @@
       .demo-background-disabled { background-color: var(--iui-color-background-disabled); }
       .demo-border-subtle { background-color: var(--iui-color-border-subtle); }
       .demo-border { background-color: var(--iui-color-border); }
-      .demo-background-primary-muted { background-color: var(--iui-color-background-primary-muted); }
+      .demo-background-informational-muted { background-color: var(--iui-color-background-informational-muted); }
       .demo-background-positive-muted { background-color: var(--iui-color-background-positive-muted); }
       .demo-background-warning-muted { background-color: var(--iui-color-background-warning-muted); }
       .demo-background-negative-muted { background-color: var(--iui-color-background-negative-muted); }
-      .demo-background-primary { background-color: var(--iui-color-background-primary); }
+      .demo-background-informational { background-color: var(--iui-color-background-informational); }
       .demo-background-positive { background-color: var(--iui-color-background-positive); }
       .demo-background-warning { background-color: var(--iui-color-background-warning); }
       .demo-background-negative { background-color: var(--iui-color-background-negative); }
-      .demo-background-primary-hover { background-color: var(--iui-color-background-primary-hover); }
+      .demo-background-informational-hover { background-color: var(--iui-color-background-informational-hover); }
       .demo-background-positive-hover { background-color: var(--iui-color-background-positive-hover); }
       .demo-background-warning-hover { background-color: var(--iui-color-background-warning-hover); }
       .demo-background-negative-hover { background-color: var(--iui-color-background-negative-hover); }
@@ -62,7 +62,7 @@
         display: flex;
         flex: 1;
       }
-      .demo-background-primary,
+      .demo-background-informational,
       .demo-background-positive,
       .demo-background-warning,
       .demo-background-negative {
@@ -71,7 +71,7 @@
       .demo-background-hover,
       .demo-background-backdrop-hover,
       .demo-background-transparent-hover,
-      .demo-background-primary-hover,
+      .demo-background-informational-hover,
       .demo-background-positive-hover,
       .demo-background-warning-hover,
       .demo-background-negative-hover {
@@ -79,9 +79,9 @@
         text-align: center;
       }
 
-      .demo-text-primary { color: var(--iui-color-text-primary); }
-      .demo-text-primary:hover { color: var(--iui-color-text-primary-hover); }
-      .demo-text-primary::selection { background-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-5)); }
+      .demo-text-informational { color: var(--iui-color-text-informational); }
+      .demo-text-informational:hover { color: var(--iui-color-text-informational-hover); }
+      .demo-text-informational::selection { background-color: hsl(var(--iui-color-informational-hsl) / var(--iui-opacity-5)); }
       .demo-text-positive { color: var(--iui-color-text-positive); }
       .demo-text-positive:hover { color: var(--iui-color-text-positive-hover); }
       .demo-text-positive::selection { background-color: hsl(var(--iui-color-positive-hsl) / var(--iui-opacity-5)); }
@@ -92,7 +92,7 @@
       .demo-text-negative:hover { color: var(--iui-color-text-negative-hover); }
       .demo-text-negative::selection { background-color: hsl(var(--iui-color-negative-hsl) / var(--iui-opacity-5)); }
       .demo-text-disabled { color: var(--iui-color-text-disabled); }
-      .demo-text-primary,
+      .demo-text-informational,
       .demo-text-positive,
       .demo-text-warning,
       .demo-text-negative {
@@ -101,7 +101,7 @@
 
       .demo-icon { color: var(--iui-color-icon); }
       .demo-icon-muted { color: var(--iui-color-icon-muted); }
-      .demo-icon-primary { color: var(--iui-color-icon-primary); }
+      .demo-icon-informational { color: var(--iui-color-icon-informational); }
       .demo-icon-positive { color: var(--iui-color-icon-positive); }
       .demo-icon-warning { color: var(--iui-color-icon-warning); }
       .demo-icon-negative { color: var(--iui-color-icon-negative); }
@@ -125,7 +125,7 @@
           <ul>
             <li class="iui-text-block">Normal text</li>
             <li class="iui-text-block iui-text-muted">Muted text</li>
-            <li class="demo-text-primary">Primary text</li>
+            <li class="demo-text-informational">Informational text</li>
             <li class="demo-text-positive">Positive text</li>
             <li class="demo-text-warning">Warning text</li>
             <li class="demo-text-negative">Negative text</li>
@@ -147,12 +147,12 @@
               ></svg-bentley-systems>
               <span>Muted icon</span>
             </li>
-            <li class="demo-icon-primary">
+            <li class="demo-icon-informational">
               <svg-info-circular
                 data-iui-icon-size="m"
                 aria-hidden="true"
               ></svg-info-circular>
-              <span>Primary icon</span>
+              <span>Informational icon</span>
             </li>
             <li class="demo-icon-positive">
               <svg-status-success
@@ -197,7 +197,7 @@
           <ul>
             <li class="iui-text-block">Normal text</li>
             <li class="iui-text-block iui-text-muted">Muted text</li>
-            <li class="demo-text-primary">Primary text</li>
+            <li class="demo-text-informational">Informational text</li>
             <li class="demo-text-positive">Positive text</li>
             <li class="demo-text-warning">Warning text</li>
             <li class="demo-text-negative">Negative text</li>
@@ -219,12 +219,12 @@
               ></svg-bentley-systems>
               <span>Muted icon</span>
             </li>
-            <li class="demo-icon-primary">
+            <li class="demo-icon-informational">
               <svg-info-circular
                 data-iui-icon-size="m"
                 aria-hidden="true"
               ></svg-info-circular>
-              <span>Primary icon</span>
+              <span>Informational icon</span>
             </li>
             <li class="demo-icon-positive">
               <svg-status-success
@@ -291,13 +291,13 @@
         </ul>
       </div>
 
-      <div class="demo-background-primary">
-        <h2 class="iui-text-title iui-text-spacing">Background primary</h2>
+      <div class="demo-background-informational">
+        <h2 class="iui-text-title iui-text-spacing">Background informational</h2>
         <ul>
           <li class="iui-text-block">Text</li>
         </ul>
         <ul class="demo-hover-backgrounds">
-          <li class="demo-background-primary-hover">Background primary hover</li>
+          <li class="demo-background-informational-hover">Background informational hover</li>
         </ul>
       </div>
       <div class="demo-background-positive">
@@ -328,11 +328,11 @@
         </ul>
       </div>
 
-      <div class="demo-background-primary-muted">
-        <h2 class="iui-text-title iui-text-spacing">Background primary muted</h2>
+      <div class="demo-background-informational-muted">
+        <h2 class="iui-text-title iui-text-spacing">Background informational muted</h2>
         <ul>
           <li class="iui-text-block">Text</li>
-          <li class="demo-text-primary">Primary</li>
+          <li class="demo-text-informational">Informational</li>
         </ul>
       </div>
       <div class="demo-background-positive-muted">

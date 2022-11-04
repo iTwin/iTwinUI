@@ -71,7 +71,7 @@ $tick-height: var(--iui-size-s); // 12px
   pointer-events: none;
   position: absolute;
   top: var(--iui-size-s);
-  background-color: var(--iui-color-border-primary);
+  background-color: var(--iui-color-border-accent);
   @media (forced-colors: active) {
     background-color: Highlight;
   }

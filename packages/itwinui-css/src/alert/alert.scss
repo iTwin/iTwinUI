@@ -59,7 +59,7 @@
 }
 
 /// Modifier mixin to categorize the alert
-/// @arg $statusColor Can be one of: positive, negative, warning, primary
+/// @arg $statusColor Can be one of: informational, positive, warning, negative
 /// @arg $rootSelector Selector of the root alert element. Defaults to .iui-alert
 @mixin iui-alert-category($statusColor, $rootSelector: '.iui-alert') {
   @include iui-alert;

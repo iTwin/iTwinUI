@@ -37,7 +37,7 @@ $iui-icon-sizes: (
     }
   }
   @if $color == 'informational' {
-    fill: var(--iui-color-icon-primary);
+    fill: var(--iui-color-icon-informational);
   }
   @if $color == 'positive' {
     fill: var(--iui-color-icon-positive);
