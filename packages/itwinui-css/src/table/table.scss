@@ -217,7 +217,7 @@
 
       + [aria-selected='true'] .iui-table-cell {
         border-bottom-color: transparent;
-        border-top-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-4));
+        border-top-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-4));
       }
 
       &:last-child .iui-table-cell {
@@ -439,7 +439,7 @@
 @mixin iui-table-cell-status($status) {
   @include iui-text-selection($status);
   @include pseudo-content {
-    background-color: hsl(var(--iui-color-foreground-#{$status}-hsl) / var(--iui-opacity-6));
+    background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-6));
   }
 }
 

@@ -29,7 +29,7 @@
 @mixin iui-text-selection($status: primary) {
   &::selection,
   *::selection {
-    background-color: hsl(var(--iui-color-foreground-#{$status}-hsl) / var(--iui-opacity-5));
+    background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
   }
 }
 

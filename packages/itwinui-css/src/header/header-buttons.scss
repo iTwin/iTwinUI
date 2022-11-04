@@ -172,7 +172,7 @@
   }
 
   @at-root [aria-current] &:hover {
-    background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
+    background-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-6));
   }
 
   &:disabled,

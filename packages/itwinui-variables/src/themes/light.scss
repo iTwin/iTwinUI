@@ -146,9 +146,9 @@ $opacities: (
   // #region HSL variables for transparency
   --iui-color-background-hsl: #{get-hsl($bg-0)};
   --iui-color-foreground-hsl: #{get-hsl($fg-1)};
-  --iui-color-foreground-primary-hsl: #{get-hsl($fg-primary-2)};
-  --iui-color-foreground-positive-hsl: #{get-hsl($fg-positive-2)};
-  --iui-color-foreground-warning-hsl: #{get-hsl($fg-warning-2)};
-  --iui-color-foreground-negative-hsl: #{get-hsl($fg-negative-2)};
+  --iui-color-primary-hsl: #{get-hsl($fg-primary-2)};
+  --iui-color-positive-hsl: #{get-hsl($fg-positive-2)};
+  --iui-color-warning-hsl: #{get-hsl($fg-warning-2)};
+  --iui-color-negative-hsl: #{get-hsl($fg-negative-2)};
   // #endregion
 }

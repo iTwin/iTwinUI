@@ -271,7 +271,7 @@
 
   &[data-iui-active='true'] {
     --_iui-button-text-color: var(--iui-color-text-primary);
-    --_iui-button-background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
+    --_iui-button-background-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-6));
   }
 
   @at-root .iui-tile-thumbnail-picture ~ & {

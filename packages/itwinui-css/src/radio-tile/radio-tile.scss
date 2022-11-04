@@ -4,7 +4,7 @@
 
 @mixin iui-radio-tile {
   cursor: pointer;
-  -webkit-tap-highlight-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
+  -webkit-tap-highlight-color: hsl(var(--iui-color-primary-hsl) / var(--iui-opacity-6));
 }
 
 @mixin iui-radio-tile-content {
