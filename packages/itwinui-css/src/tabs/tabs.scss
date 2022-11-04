@@ -25,7 +25,7 @@
       color: var(--iui-color-text-primary);
 
       .iui-tab-icon {
-        fill: var(--iui-color-icon-primary);
+        fill: currentColor;
       }
 
       .iui-tab-description {
@@ -74,7 +74,7 @@
       color: var(--iui-color-text-positive);
 
       .iui-tab-icon {
-        fill: var(--iui-color-icon-positive);
+        fill: currentColor;
       }
     }
   }
