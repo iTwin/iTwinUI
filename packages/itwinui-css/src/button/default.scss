@@ -14,7 +14,6 @@
     --_iui-button-background-color: var(--iui-color-background-hover);
     --_iui-button-border-color: var(--iui-color-border-foreground-hover);
     --_iui-button-icon-fill: var(--iui-color-icon-hover);
-    @include iui-notification-marker-hover;
   }
 
   &:focus {
