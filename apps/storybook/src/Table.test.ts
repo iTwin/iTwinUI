@@ -17,6 +17,7 @@ describe('Table', () => {
     'Expandable Subrows',
     'Filters',
     'Global Filter',
+    'Initial State',
     'Full',
     'Full 2',
     'Horizontal Scroll',
