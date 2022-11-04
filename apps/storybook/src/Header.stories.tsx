@@ -49,24 +49,36 @@ export default {
   },
 } as Meta<HeaderProps>;
 
-const buildClickHandler = (menu: string, close: () => void) => (
-  item: string,
-) => {
-  action(`Menu '${menu}', ${item} clicked!`)();
-  close();
-};
+const buildClickHandler =
+  (menu: string, close: () => void) => (item: string) => {
+    action(`Menu '${menu}', ${item} clicked!`)();
+    close();
+  };
 
-const buildMenu = (menu: string) => (close: () => void) => [
-  <MenuItem key={1} value={'Item #1'} onClick={buildClickHandler(menu, close)}>
-    {menu} item #1
-  </MenuItem>,
-  <MenuItem key={2} value={'Item #2'} onClick={buildClickHandler(menu, close)}>
-    {menu} item #2
-  </MenuItem>,
-  <MenuItem key={3} value={'Item #3'} onClick={buildClickHandler(menu, close)}>
-    {menu} item #3
-  </MenuItem>,
-];
+const buildMenu = (menu: string) => (close: () => void) =>
+  [
+    <MenuItem
+      key={1}
+      value={'Item #1'}
+      onClick={buildClickHandler(menu, close)}
+    >
+      {menu} item #1
+    </MenuItem>,
+    <MenuItem
+      key={2}
+      value={'Item #2'}
+      onClick={buildClickHandler(menu, close)}
+    >
+      {menu} item #2
+    </MenuItem>,
+    <MenuItem
+      key={3}
+      value={'Item #3'}
+      onClick={buildClickHandler(menu, close)}
+    >
+      {menu} item #3
+    </MenuItem>,
+  ];
 
 export const Full: Story<HeaderProps> = (args) => {
   const [userType, setUserType] = useState('User');

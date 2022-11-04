@@ -16,9 +16,7 @@ import { TableCell } from './TableCell';
  */
 export const TableRow = <T extends Record<string, unknown>>(props: {
   row: Row<T>;
-  rowProps?: (
-    row: Row<T>,
-  ) => React.ComponentPropsWithRef<'div'> & {
+  rowProps?: (row: Row<T>) => React.ComponentPropsWithRef<'div'> & {
     status?: 'positive' | 'warning' | 'negative';
     isLoading?: boolean;
   };

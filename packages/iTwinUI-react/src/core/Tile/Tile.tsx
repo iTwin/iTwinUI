@@ -7,10 +7,11 @@ import cx from 'classnames';
 import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
 import SvgMore from '@itwin/itwinui-icons-react/cjs/icons/More';
 import SvgNew from '@itwin/itwinui-icons-react/cjs/icons/New';
-import { useTheme } from '../utils';
+import { StatusIconMap, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu';
 import { IconButton } from '../Buttons';
+import { ProgressRadial } from '../ProgressIndicators';
 
 export type TileProps = {
   /**
@@ -74,6 +75,10 @@ export type TileProps = {
    */
   moreOptions?: React.ReactNode[];
   /**
+   * Status of the tile.
+   */
+  status?: 'positive' | 'warning' | 'negative';
+  /**
    * Whether the tile is selected or in "active" state.
    * Gets highlighted and shows a checkmark icon near tile name.
    */
@@ -96,6 +101,20 @@ export type TileProps = {
    * It becomes focusable and gets on hover styling.
    */
   isActionable?: boolean;
+  /**
+   * Display a loading state.
+   * @default false
+   */
+  isLoading?: boolean;
+  /**
+   * Flag whether the tile is disabled.
+   *
+   * Note: This only affects the tile. You need to manually disable
+   * the buttons and other interactive elements inside the tile.
+   *
+   * @default false
+   */
+  isDisabled?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 /**
@@ -132,6 +151,9 @@ export const Tile = (props: TileProps) => {
     variant = 'default',
     children,
     isActionable,
+    status,
+    isLoading = false,
+    isDisabled = false,
     ...rest
   } = props;
 
@@ -150,10 +172,13 @@ export const Tile = (props: TileProps) => {
           'iui-new': isNew,
           'iui-selected': isSelected,
           'iui-actionable': isActionable,
+          [`iui-${status}`]: !!status,
+          'iui-loading': isLoading,
         },
         className,
       )}
-      tabIndex={isActionable ? 0 : undefined}
+      aria-disabled={isDisabled}
+      tabIndex={isActionable && !isDisabled ? 0 : undefined}
       {...rest}
     >
       {thumbnail && (
@@ -195,10 +220,13 @@ export const Tile = (props: TileProps) => {
 
       <div className='iui-tile-content'>
         <div className='iui-tile-name'>
-          {isSelected && (
-            <SvgCheckmark className='iui-tile-status-icon' aria-hidden />
-          )}
-          {isNew && <SvgNew className='iui-tile-status-icon' aria-hidden />}
+          <TitleIcon
+            isLoading={isLoading}
+            isSelected={isSelected}
+            isNew={isNew}
+            status={status}
+          />
+
           <span className='iui-tile-name-label'>{name}</span>
         </div>
 
@@ -247,6 +275,42 @@ export const Tile = (props: TileProps) => {
       {buttons && <div className='iui-tile-buttons'>{buttons}</div>}
     </div>
   );
+};
+
+type TitleIconProps = {
+  isLoading?: boolean;
+  isSelected?: boolean;
+  isNew?: boolean;
+  status?: 'positive' | 'warning' | 'negative';
+};
+
+const TitleIcon = ({
+  isLoading = false,
+  isSelected = false,
+  isNew = false,
+  status,
+}: TitleIconProps) => {
+  const StatusIcon = !!status && StatusIconMap[status];
+
+  if (isLoading) {
+    return (
+      <ProgressRadial
+        className='iui-tile-status-icon'
+        aria-hidden
+        indeterminate
+      />
+    );
+  }
+  if (isSelected) {
+    return <SvgCheckmark className='iui-tile-status-icon' aria-hidden />;
+  }
+  if (isNew) {
+    return <SvgNew className='iui-tile-status-icon' aria-hidden />;
+  }
+  if (StatusIcon) {
+    return <StatusIcon className='iui-tile-status-icon' />;
+  }
+  return null;
 };
 
 export default Tile;

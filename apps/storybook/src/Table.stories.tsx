@@ -1032,9 +1032,11 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
         Open{' '}
         <Anchor
           onClick={() =>
-            (parent.document.querySelector(
-              '[id^="tabbutton-actions"]',
-            ) as HTMLButtonElement)?.click()
+            (
+              parent.document.querySelector(
+                '[id^="tabbutton-actions"]',
+              ) as HTMLButtonElement
+            )?.click()
           }
         >
           Actions
@@ -2138,9 +2140,8 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  const [columnResizeMode, setColumnResizeMode] = React.useState<
-    TableProps['columnResizeMode']
-  >('fit');
+  const [columnResizeMode, setColumnResizeMode] =
+    React.useState<TableProps['columnResizeMode']>('fit');
 
   return (
     <>

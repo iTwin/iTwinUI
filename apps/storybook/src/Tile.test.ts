@@ -11,6 +11,9 @@ describe('Tile', () => {
     'Condensed',
     'Folder',
     'With Avatar',
+    'Status',
+    'Loading',
+    'Disabled',
   ];
 
   tests.forEach((testName) => {
