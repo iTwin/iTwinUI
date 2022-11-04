@@ -119,6 +119,11 @@
       filter: grayscale(100%);
     }
 
+    .iui-tag-container,
+    .iui-tag-basic {
+      color: inherit;
+    }
+
     &:hover .iui-tile-thumbnail-picture,
     &:focus-within .iui-tile-thumbnail-picture {
       transform: none;
@@ -192,11 +197,6 @@
       @include iui-icon-style('m');
       fill: var(--iui-color-icon-muted);
       margin-right: var(--iui-size-xs);
-    }
-
-    .iui-tag-container,
-    .iui-tag-basic {
-      color: inherit;
     }
 
     > * {
