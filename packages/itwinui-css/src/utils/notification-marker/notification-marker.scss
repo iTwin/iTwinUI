@@ -1,36 +1,53 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
-$iui-notification-marker-border-width: var(--iui-size-3xs);
+$iui-notification-marker-size: var(--iui-size-xs);
+$iui-notification-marker-spacing: var(--iui-size-3xs);
 
-@mixin iui-notification-marker($status: primary) {
+$iui-notification-marker-cutout-size: calc($iui-notification-marker-size + 2 * $iui-notification-marker-spacing);
+$iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cutout-size);
+
+@mixin iui-notification-marker {
+  @include iui-notification-marker-status;
+
   position: relative;
 
   &::before {
     content: '';
     position: absolute;
-    width: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
-    height: calc(var(--iui-size-xs) + $iui-notification-marker-border-width * 2);
-    top: calc(var(--iui-size-s) * -0.5);
-    right: calc(var(--iui-size-s) * -0.5);
+    width: $iui-notification-marker-size;
+    height: $iui-notification-marker-size;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+
     border-radius: 100%;
-    background-color: var(--iui-color-foreground-#{$status});
-    border: $iui-notification-marker-border-width solid var(--iui-color-background-1);
+    background-color: var(--_iui-notification-marker-color);
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
     }
   }
 
-  &.iui-urgent::before {
+  > * {
+    mask: radial-gradient(
+      ellipse $iui-notification-marker-cutout-radius $iui-notification-marker-cutout-radius at 100% 0%,
+      transparent 95%,
+      #000 100%
+    );
+  }
+}
+
+@mixin iui-notification-marker-urgent {
+  &::before {
     @media (prefers-reduced-motion: no-preference) {
-      animation: pulse-#{$status} 2s infinite;
+      animation: pulse 2s infinite;
     }
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    @keyframes pulse-#{$status} {
+    @keyframes pulse {
       0% {
-        box-shadow: 0 0 0 0 var(--iui-color-foreground-#{$status});
+        box-shadow: 0 0 0 0 var(--_iui-notification-marker-color);
       }
 
       70% {
@@ -44,11 +61,6 @@ $iui-notification-marker-border-width: var(--iui-size-3xs);
   }
 }
 
-@mixin iui-notification-marker-hover {
-  .iui-notification-primary::before,
-  .iui-notification-positive::before,
-  .iui-notification-warning::before,
-  .iui-notification-negative::before {
-    border-color: var(--iui-color-background-1-hover);
-  }
+@mixin iui-notification-marker-status($status: primary) {
+  --_iui-notification-marker-color: var(--iui-color-foreground-#{$status});
 }
