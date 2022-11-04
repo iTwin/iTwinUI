@@ -199,10 +199,12 @@
               aria-expanded="false"
               id="test-button-2"
             >
-              <svg-notification
-                class="iui-button-icon iui-notification-primary"
+              <span
+                class="iui-button-icon iui-notification-marker"
                 aria-hidden="true"
-              ></svg-notification>
+              >
+                <svg-notification></svg-notification>
+              </span>
             </button>
 
             <!-- Help -->
@@ -341,10 +343,13 @@
               aria-label="Notifications"
               aria-expanded="false"
             >
-              <svg-notification
-                class="iui-button-icon iui-notification-positive"
+              <span
+                class="iui-button-icon"
                 aria-hidden="true"
-              ></svg-notification>
+                data-iui-variant="positive"
+              >
+                <svg-notification></svg-notification>
+              </span>
             </button>
 
             <!-- Help -->
@@ -491,10 +496,13 @@
               aria-expanded="false"
               id="test-button-4"
             >
-              <svg-notification
-                class="iui-button-icon iui-notification-warning iui-urgent"
-                aria-hidden="true"
-              ></svg-notification>
+              <span
+                class="iui-button-icon iui-notification-marker"
+                data-iui-variant="warning"
+                data-iui-urgent="true"
+              >
+                <svg-notification></svg-notification>
+              </span>
             </button>
 
             <!-- Help -->
@@ -622,10 +630,13 @@
               aria-label="Notifications"
               aria-expanded="false"
             >
-              <svg-notification
-                class="iui-button-icon iui-notification-negative iui-urgent"
-                aria-hidden="true"
-              ></svg-notification>
+              <span
+                class="iui-button-icon iui-notification-marker"
+                data-iui-variant="negative"
+                data-iui-urgent="true"
+              >
+                <svg-notification></svg-notification>
+              </span>
             </button>
 
             <!-- Help -->
@@ -1178,10 +1189,12 @@
             aria-label="Notifications"
             aria-expanded="false"
           >
-            <svg-notification
-              class="iui-button-icon iui-notification-primary iui-urgent"
-              aria-hidden="true"
-            ></svg-notification>
+            <span
+              class="iui-button-icon iui-notification-marker"
+              data-iui-urgent="true"
+            >
+              <svg-notification></svg-notification>
+            </span>
           </button>
 
           <!-- Help -->
