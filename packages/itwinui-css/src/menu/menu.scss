@@ -112,7 +112,7 @@ $iui-active-outline: thin solid var(--iui-color-border-primary);
     }
 
     > .iui-icon {
-      fill: var(--iui-color-icon-primary);
+      fill: currentColor;
     }
 
     &:focus,
