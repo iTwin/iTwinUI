@@ -276,7 +276,7 @@
 
   @at-root .iui-tile-thumbnail-picture ~ & {
     @include iui-blur($opacity: 5);
-    --_iui-button-text-color: var(--iui-color-white);
+    --_iui-button-icon-fill: var(--iui-color-white);
 
     > .iui-button-icon {
       filter: drop-shadow(0 2px 1px rgba(0, 0, 0, var(--iui-opacity-5)));
