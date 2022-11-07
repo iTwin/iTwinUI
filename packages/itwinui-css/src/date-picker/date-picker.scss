@@ -8,7 +8,7 @@ $iui-date-picker-cell-height: 36px;
 $iui-date-picker-today-circle-size: 32px;
 
 @mixin iui-date-picker {
-  @include iui-surface($border-radius: var(--iui-border-radius-1));
+  @include iui-surface;
   user-select: none;
   display: inline-grid;
   grid-template-columns: 1fr auto;

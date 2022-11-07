@@ -3,7 +3,7 @@
 @import '../surface/index';
 
 @mixin iui-table-column-filter {
-  @include iui-surface($border-radius: var(--iui-border-radius-1));
+  @include iui-surface;
   padding: var(--iui-size-s) var(--iui-size-s);
   display: inline-flex;
   flex-direction: column;

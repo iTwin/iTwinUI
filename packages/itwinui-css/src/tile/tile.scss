@@ -9,7 +9,7 @@
   --_iui-tile-body-text-color: var(--iui-color-text-muted);
 
   @include iui-reset;
-  @include iui-surface($border-radius: var(--iui-border-radius-1));
+  @include iui-surface;
   display: inline-flex;
   flex-direction: column;
   width: calc(var(--iui-size-3xl) * 3);

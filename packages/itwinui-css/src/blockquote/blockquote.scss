@@ -5,7 +5,7 @@
 
 @mixin iui-blockquote {
   @include iui-reset;
-  @include iui-surface($border-radius: var(--iui-border-radius-1));
+  @include iui-surface;
   display: block;
   position: relative;
   padding: var(--iui-size-s) var(--iui-size-m);

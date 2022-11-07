@@ -23,38 +23,34 @@
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       /* Demo elevations replicate /styles/elevation.scss SASS variables. */
-      :root {
-        --demo-elevation-4: 0 1px 10px rgba(0, 0, 0, 0.25);
-        --demo-elevation-8: 0 3px 14px rgba(0, 0, 0, 0.25);
-        --demo-elevation-16: 0 6px 30px rgba(0, 0, 0, 0.25);
-        --demo-elevation-24: 0 9px 46px rgba(0, 0, 0, 0.25);
-      }
-
       section[id^='demo'] {
-        margin: -24px;
-        padding: 24px;
+        margin: calc(var(--iui-size-l) * -1);
+        padding: var(--iui-size-l);
       }
       .demo-surface-title-bar {
         display: flex;
         align-items: center;
-        height: 44px;
+        height: calc(var(--iui-size-s) * 4);
         border-bottom: 1px solid var(--iui-color-border);
-        padding: 0 12px;
+        padding: 0 var(--iui-size-s);
       }
       .demo-surface-content {
-        padding: 12px;
+        padding: var(--iui-size-s);
       }
       #demo-elevations {
         display: flex;
-        gap: 60px;
+        gap: var(--iui-size-2xl);
         width: auto;
       }
       #demo-elevations > * {
-        height: 100px;
+        aspect-ratio: 1 /1;
         display: flex;
         flex: 1;
         justify-content: center;
         align-items: center;
+      }
+      @media (max-width: 600px) {
+        #demo-elevations { flex-direction: column; }
       }
     </style>
   </head>
@@ -64,7 +60,10 @@
     <hr />
 
     <section id="demo-default">
-      <div class="iui-surface">
+      <div
+        class="iui-surface"
+        style="--iui-surface-elevation: var(--iui-shadow-1);"
+      >
         <div class="demo-surface-title-bar">
           <h2 class="iui-text-subheading">Title of section</h2>
         </div>
@@ -82,23 +81,27 @@
 
     <h2>Elevations</h2>
     <section id="demo-elevations">
-      <div class="iui-surface">2</div>
+      <div class="iui-surface">0</div>
       <div
         class="iui-surface"
-        style="--iui-surface-elevation: var(--demo-elevation-4);"
+        style="--iui-surface-elevation: var(--iui-shadow-1);"
+      >1</div>
+      <div
+        class="iui-surface"
+        style="--iui-surface-elevation: var(--iui-shadow-2);"
+      >2</div>
+      <div
+        class="iui-surface"
+        style="--iui-surface-elevation: var(--iui-shadow-3);"
+      >3</div>
+      <div
+        class="iui-surface"
+        style="--iui-surface-elevation: var(--iui-shadow-4);"
       >4</div>
       <div
         class="iui-surface"
-        style="--iui-surface-elevation: var(--demo-elevation-8);"
-      >8</div>
-      <div
-        class="iui-surface"
-        style="--iui-surface-elevation: var(--demo-elevation-16);"
-      >16</div>
-      <div
-        class="iui-surface"
-        style="--iui-surface-elevation: var(--demo-elevation-24);"
-      >24</div>
+        style="--iui-surface-elevation: var(--iui-shadow-5);"
+      >5</div>
     </section>
   </body>
 </html>

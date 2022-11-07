@@ -4,7 +4,7 @@
 @mixin iui-surface(
   $background-color: var(--iui-color-background),
   $border-color: var(--iui-color-border-subtle),
-  $border-radius: 0,
+  $border-radius: var(--iui-border-radius-1),
   $elevation: var(--iui-shadow-1)
 ) {
   --iui-surface-background-color: #{$background-color};
@@ -17,4 +17,8 @@
   border-radius: var(--iui-surface-border-radius);
   box-shadow: var(--iui-surface-elevation);
   color: var(--iui-color-text);
+}
+
+@mixin iui-surface-component {
+  @include iui-surface($elevation: none);
 }
