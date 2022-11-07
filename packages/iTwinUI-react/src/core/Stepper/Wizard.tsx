@@ -6,10 +6,22 @@ import React from 'react';
 import { Stepper, StepperProps, StepperLocalization } from './Stepper';
 import { WorkflowDiagram } from './WorkflowDiagram';
 
+/**
+ * @deprecated Since v2:
+ *
+ * - For `default` | `long`, use `StepperType` with `Stepper` instead
+ * - For `workflow`, use `WorkflowDiagram` instead
+ */
 export type WizardType = 'default' | 'long' | 'workflow';
 
+/**
+ * @deprecated Since v2, use `StepperLocalization` with `Stepper`
+ */
 export type WizardLocalization = StepperLocalization;
 
+/**
+ * @deprecated Since v2, use `StepperProps` with `Stepper` or `WorkflowDiagramProps` with `WorkflowDiagram`
+ */
 export type WizardProps = {
   /**
    *  The type of Wizard to display.
@@ -19,6 +31,8 @@ export type WizardProps = {
 } & Omit<StepperProps, 'type'>;
 
 /**
+ * @deprecated Since v2, use `Stepper` (type = `default` | `long`) or WorkflowDiagram (type = `workflow`)
+ *
  * A wizard displays progress through a sequence of logical and numbered steps.
  * It may also be used for navigation.
  *

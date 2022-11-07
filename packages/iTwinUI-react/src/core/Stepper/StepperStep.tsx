@@ -25,7 +25,7 @@ export type StepperStepProps = {
    */
   totalSteps: number;
   /**
-   * Wizard type.
+   * Stepper type.
    */
   type: 'default' | 'long';
   /**

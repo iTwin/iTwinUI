@@ -6,7 +6,7 @@ import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { StepperStep } from './StepperStep';
 
-describe('Wizard step (default)', () => {
+describe('Stepper step (default)', () => {
   it('should render step correctly (past)', () => {
     const mockedClick = jest.fn();
     const step = (
@@ -162,7 +162,7 @@ describe('Wizard step (default)', () => {
   });
 });
 
-describe('Wizard step (long)', () => {
+describe('Stepper step (long)', () => {
   it('should render correctly', () => {
     const mockedClick = jest.fn();
     const step = (

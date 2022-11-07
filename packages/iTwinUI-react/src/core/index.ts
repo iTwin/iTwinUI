@@ -297,13 +297,16 @@ export type {
   TextProps,
 } from './Typography';
 
-export { Wizard } from './Wizard';
+export { Wizard, Stepper, WorkflowDiagram } from './Stepper';
 export type {
   WizardProps,
   StepProperties,
   WizardType,
   WizardLocalization,
-} from './Wizard';
+  StepperProps,
+  StepperLocalization,
+  WorkflowDiagramProps,
+} from './Stepper';
 
 export {
   getUserColor,

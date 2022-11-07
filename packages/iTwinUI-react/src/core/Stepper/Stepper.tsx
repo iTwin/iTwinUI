@@ -32,7 +32,7 @@ export type StepperProps = {
    */
   steps: StepProperties[];
   /**
-   *  The type of Wizard to display.
+   *  The type of Stepper to display.
    *  @default 'default'
    */
   type?: 'default' | 'long';
