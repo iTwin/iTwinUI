@@ -5,7 +5,6 @@
 @use '../utils/get-hsl' as *;
 
 // #region SASS variables
-$bg-hue: 203;
 $bg-saturation: 10%; // More saturated than high contrast theme.
 $bg-lightness-gap: 3%;
 $fg-lightness-gap: 7%;
@@ -13,17 +12,17 @@ $fg-lightness-gap: 7%;
 
 // #region Background colors
 // Lightest @ top, darkest @ bottom
-$bg-0: hsl($bg-hue $bg-saturation 100%);
-$bg-1: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap * 0.5));
-$bg-2: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap));
-$bg-3: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap * 2));
-$bg-4: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap * 3));
-$bg-5: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap * 4));
-$bg-6: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap * 5));
-$bg-7: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap * 6));
-$bg-8: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap * 7));
-$bg-9: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap * 8));
-$bg-10: hsl($bg-hue $bg-saturation (100% - $bg-lightness-gap * 9));
+$bg-0: hsl(203 $bg-saturation 100%);
+$bg-1: hsl(203 $bg-saturation (100% - $bg-lightness-gap * 0.5));
+$bg-2: hsl(203 $bg-saturation (100% - $bg-lightness-gap));
+$bg-3: hsl(203 $bg-saturation (100% - $bg-lightness-gap * 2));
+$bg-4: hsl(203 $bg-saturation (100% - $bg-lightness-gap * 3));
+$bg-5: hsl(203 $bg-saturation (100% - $bg-lightness-gap * 4));
+$bg-6: hsl(203 $bg-saturation (100% - $bg-lightness-gap * 5));
+$bg-7: hsl(203 $bg-saturation (100% - $bg-lightness-gap * 6));
+$bg-8: hsl(203 $bg-saturation (100% - $bg-lightness-gap * 7));
+$bg-9: hsl(203 $bg-saturation (100% - $bg-lightness-gap * 8));
+$bg-10: hsl(203 $bg-saturation (100% - $bg-lightness-gap * 9));
 
 $bg-informational-0: hsl(203 79% 94%); // Selection
 $bg-informational-1: hsl(203 100% 36%); // Button
