@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
+// Internal mixin used as base for other components.
 @mixin iui-surface(
   $background-color: var(--iui-color-background),
   $border-color: var(--iui-color-border-subtle),
@@ -19,6 +20,7 @@
   color: var(--iui-color-text);
 }
 
+// Public facing surface component.
 @mixin iui-surface-component {
-  @include iui-surface($elevation: none);
+  @include iui-surface;
 }
