@@ -14,7 +14,7 @@
   @include iui-tag-base;
 
   &:not(a) {
-    color: var(--iui-color-foreground-4);
+    color: var(--iui-color-text-muted);
   }
 }
 
@@ -30,12 +30,12 @@
   text-transform: none;
   cursor: default;
   -webkit-tap-highlight-color: transparent;
-  border: 1px solid var(--iui-color-foreground-4);
-  background-color: var(--iui-color-background-1);
-  color: var(--iui-color-foreground-2);
+  border: 1px solid var(--iui-color-border-foreground);
+  background-color: var(--iui-color-background);
+  color: var(--iui-color-text);
 
   &:hover {
-    border-color: var(--iui-color-foreground-1);
+    border-color: var(--iui-color-border-foreground-hover);
   }
 }
 
@@ -56,7 +56,7 @@
 }
 
 @mixin iui-tag-container {
-  color: var(--iui-color-foreground-4);
+  color: var(--iui-color-text-muted);
 
   > a.iui-tag-basic {
     margin: var(--iui-size-3xs);
@@ -82,6 +82,6 @@
   &.iui-visible {
     border-radius: var(--iui-border-radius-1);
     padding: var(--iui-size-2xs) var(--iui-size-s);
-    background-color: var(--iui-color-background-3);
+    background-color: var(--iui-color-background);
   }
 }

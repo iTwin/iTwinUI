@@ -13,9 +13,9 @@
   width: 100%;
   height: var(--_iui-header-height);
   user-select: none;
-  background-color: var(--iui-color-background-1);
-  border-bottom: var(--iui-size-3xs) solid var(--iui-color-background-border);
-  color: var(--iui-color-foreground-2);
+  background-color: var(--iui-color-background);
+  border-bottom: var(--iui-size-3xs) solid var(--iui-color-border);
+  color: var(--iui-color-text);
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left); // iPhone notch support
   @media (prefers-reduced-motion: no-preference) {
     transition: height var(--iui-duration-1) ease-out;
@@ -49,6 +49,10 @@
       border-top-width: 0;
       border-bottom-width: 0;
     }
+
+    &:hover {
+      background-color: var(--iui-color-background-hover);
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -64,7 +68,7 @@
 
 @mixin iui-page-header-divider {
   height: calc(var(--iui-size-s) * 2);
-  border-left: 1px solid var(--iui-color-background-border);
+  border-left: 2px solid var(--iui-color-border);
   @media (forced-colors: active) {
     display: none;
   }

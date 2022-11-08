@@ -21,7 +21,7 @@
     height: 100%;
     margin: 0;
     border-radius: 50%;
-    box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--iui-color-background-transparent-hover);
+    box-shadow: inset 0 0 0 var(--iui-size-3xs) hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
   }
 
   > .iui-initials {
@@ -42,7 +42,7 @@
     text-transform: uppercase;
     background-color: hsl(72, 51%, 56%);
     overflow: hidden;
-    color: var(--iui-color-foreground-accessory);
+    color: var(--iui-color-white);
   }
 
   > .iui-icon {
@@ -50,7 +50,7 @@
     width: 50%;
     height: 50%;
     position: absolute;
-    fill: var(--iui-color-foreground-accessory);
+    fill: var(--iui-color-white);
   }
 
   > img {
@@ -63,7 +63,7 @@
     height: 100%;
     border-width: 0;
     border-radius: 50%;
-    background-color: var(--iui-color-background-1);
+    background-color: var(--iui-color-background);
   }
 
   > .iui-status {
@@ -77,8 +77,8 @@
     width: 25%;
     height: 25%;
     border-radius: 50%;
-    border: var(--iui-size-3xs) solid var(--iui-color-background-1);
-    background-color: var(--iui-color-background-5);
+    border: var(--iui-size-3xs) solid var(--iui-color-background);
+    background-color: var(--iui-color-border);
 
     &::after {
       content: '';
@@ -91,7 +91,7 @@
 
       &::after {
         mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
-        background-color: var(--iui-color-foreground-accessory);
+        background-color: var(--iui-color-white);
       }
     }
 
@@ -100,7 +100,7 @@
 
       &::after {
         mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
-        background-color: var(--iui-color-foreground-accessory);
+        background-color: var(--iui-color-white);
       }
     }
 
@@ -109,25 +109,29 @@
 
       &::after {
         mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
-        background-color: var(--iui-color-foreground-accessory);
+        background-color: var(--iui-color-white);
       }
     }
 
     &.iui-offline {
-      background-color: var(--iui-color-background-1);
-      box-shadow: inset 0 0 0 1px var(--iui-color-foreground-3);
+      background-color: var(--iui-color-background);
+      box-shadow: inset 0 0 0 1px var(--iui-color-text-muted);
 
       &::after {
         mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
-        background-color: var(--iui-color-foreground-4);
+        background-color: var(--iui-color-icon-muted);
       }
     }
   }
 
   &.iui-avatar-count {
     > .iui-initials {
-      background-color: var(--iui-color-background-3);
-      color: var(--iui-color-foreground-4);
+      background-color: var(--iui-color-background);
+      color: var(--iui-color-text-muted);
+    }
+
+    > .iui-stroke {
+      box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
     }
 
     &:focus {
@@ -161,14 +165,14 @@
       margin-left: calc(0px - var(--iui-size-2xs));
 
       .iui-initials {
-        box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background-1);
+        box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background);
       }
 
       &.iui-small {
         margin-left: calc(0px - var(--iui-size-3xs));
 
         .iui-initials {
-          box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background-1);
+          box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background);
         }
       }
 

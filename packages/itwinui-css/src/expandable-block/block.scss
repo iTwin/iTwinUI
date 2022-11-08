@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: var(--iui-color-background-1);
+  background-color: var(--iui-color-background);
   border-radius: var(--iui-border-radius-1);
 
   > .iui-header {
@@ -19,8 +19,8 @@
     user-select: none;
     transition: background-color var(--iui-duration-1) ease-out;
     border-radius: inherit;
-    border: 1px solid var(--iui-color-background-3);
-    background-color: var(--iui-color-background-3);
+    border: 1px solid var(--iui-color-border);
+    background-color: var(--iui-color-background);
 
     > .iui-icon,
     > .iui-status-icon {
@@ -31,7 +31,7 @@
       @media (prefers-reduced-motion: no-preference) {
         transition: transform var(--iui-duration-1) ease-out;
       }
-      fill: var(--iui-color-foreground-2);
+      fill: var(--iui-color-icon);
     }
 
     > .iui-status-icon {
@@ -45,7 +45,7 @@
       min-width: 0;
       margin-left: var(--iui-size-s);
       transition: color var(--iui-duration-1) ease;
-      color: var(--iui-color-foreground-2);
+      color: var(--iui-color-text);
     }
 
     .iui-title,
@@ -61,7 +61,7 @@
 
     .iui-caption {
       font-size: var(--iui-font-size-0);
-      color: var(--iui-color-foreground-4);
+      color: var(--iui-color-text-muted);
     }
 
     @include iui-focus;
@@ -69,9 +69,9 @@
 
   .iui-expandable-content {
     overflow: hidden;
-    border-bottom: 1px solid var(--iui-color-background-4);
-    border-right: 1px solid var(--iui-color-background-4);
-    border-left: 1px solid var(--iui-color-background-4);
+    border-bottom: 1px solid var(--iui-color-border);
+    border-right: 1px solid var(--iui-color-border);
+    border-left: 1px solid var(--iui-color-border);
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
 
@@ -85,15 +85,15 @@
 
   &:hover {
     > .iui-header {
-      background-color: var(--iui-color-background-4);
+      background-color: var(--iui-color-background-hover);
 
       > .iui-icon {
-        fill: var(--iui-color-foreground-1);
+        fill: var(--iui-color-icon-hover);
       }
 
       .iui-caption,
       .iui-title {
-        color: var(--iui-color-foreground-1);
+        color: var(--iui-color-text-hover);
         transition: color var(--iui-duration-1) ease;
       }
     }
@@ -101,13 +101,13 @@
 
   &.iui-expanded {
     > .iui-header {
-      background-color: var(--iui-color-background-3);
-      border-color: var(--iui-color-background-4);
+      background-color: var(--iui-color-background);
+      border-color: var(--iui-color-border);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
 
       &:hover {
-        background-color: var(--iui-color-background-4);
+        background-color: var(--iui-color-background-hover);
       }
 
       > .iui-icon {

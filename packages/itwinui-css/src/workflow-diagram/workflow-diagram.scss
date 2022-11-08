@@ -10,10 +10,10 @@
 @mixin iui-workflow-diagram-step {
   --_iui-workflow-diagram-circle-background-color: var(--iui-color-background-positive);
   --_iui-workflow-diagram-circle-border-color: var(--iui-color-background-positive);
-  --_iui-workflow-diagram-circle-border-radius: #{var(--iui-border-radius-1)};
-  --_iui-workflow-diagram-circle-text-color: var(--iui-color-foreground-accessory);
-  --_iui-workflow-diagram-track-before-color: var(--iui-color-foreground-positive);
-  --_iui-workflow-diagram-track-after-color: var(--iui-color-foreground-positive);
+  --_iui-workflow-diagram-circle-border-radius: var(--iui-border-radius-1);
+  --_iui-workflow-diagram-circle-text-color: var(--iui-color-white);
+  --_iui-workflow-diagram-track-before-color: var(--iui-color-border-positive);
+  --_iui-workflow-diagram-track-after-color: var(--iui-color-border-positive);
 
   flex: 1;
   align-items: center;
@@ -23,10 +23,10 @@
 
   &:first-of-type,
   &:last-of-type {
-    --_iui-workflow-diagram-circle-background-color: var(--iui-color-background-1);
-    --_iui-workflow-diagram-circle-border-color: var(--iui-color-foreground-positive);
+    --_iui-workflow-diagram-circle-background-color: var(--iui-color-background);
+    --_iui-workflow-diagram-circle-border-color: var(--iui-color-border-positive);
     --_iui-workflow-diagram-circle-border-radius: #{var(--iui-size-s)};
-    --_iui-workflow-diagram-circle-text-color: var(--iui-color-foreground-positive);
+    --_iui-workflow-diagram-circle-text-color: var(--iui-color-text-positive);
   }
 
   &::before,

@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @mixin shadows {
-  --iui-shadow-color: #{hsl(200 12% 0% / 0.25)};
+  --iui-shadow-color: #{hsl(0 0% 0% / var(--iui-opacity-5))};
 
   --iui-shadow-0: 0;
   --iui-shadow-1: 0 1px 5px var(--iui-shadow-color);

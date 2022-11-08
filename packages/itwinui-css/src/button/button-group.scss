@@ -108,9 +108,9 @@
     &:not(:first-child) :not([data-iui-variant='borderless']) {
       #{$disabledSelector} {
         @if $orientation == 'horizontal' {
-          border-left-color: var(--iui-color-background-4);
+          border-left-color: var(--iui-color-border-subtle);
         } @else {
-          border-top-color: var(--iui-color-background-4);
+          border-top-color: var(--iui-color-border-subtle);
         }
       }
     }
