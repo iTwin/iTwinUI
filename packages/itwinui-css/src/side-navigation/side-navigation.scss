@@ -89,6 +89,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     border-left: none;
     border-right: none;
     justify-content: flex-start;
+    isolation: isolate;
 
     &:not(.iui-expand) {
       height: calc(var(--iui-size-s) * 5);
