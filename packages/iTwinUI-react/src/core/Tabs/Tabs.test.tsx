@@ -5,7 +5,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { Tab } from './Tab';
-import { Tabs, VerticalTabs, TabsProps } from './Tabs';
+import { Tabs, TabsProps } from './Tabs';
 
 const renderComponent = (
   initialProps?: Partial<TabsProps>,
@@ -18,7 +18,7 @@ const renderComponent = (
       <Tab key={3} label='Label 3' />,
     ],
   };
-  const props = { ...defaultProps, ...initialProps };
+  const props: TabsProps = { ...defaultProps, ...initialProps } as TabsProps;
   const children = initialChildren ?? 'Test content';
   return render(<Tabs {...props}>{children}</Tabs>);
 };
@@ -56,7 +56,8 @@ it('should render pill tabs', () => {
 
 it('should render vertical tabs', () => {
   const { container, queryByText } = render(
-    <VerticalTabs
+    <Tabs
+      orientation='vertical'
       labels={[
         <Tab key={1} label='Label 1' />,
         <Tab key={2} label='Label 2' />,
@@ -64,7 +65,7 @@ it('should render vertical tabs', () => {
       ]}
     >
       Test content
-    </VerticalTabs>,
+    </Tabs>,
   );
 
   expect(
@@ -113,7 +114,7 @@ it('should not fail with invalid active tab and set the closest one', () => {
   expect(tabs[2].className).toContain('iui-tab iui-active'); // 2 is closest to 100
 });
 
-it('should render strings in HorizontalTab child component', () => {
+it('should render strings in child component', () => {
   const { container } = renderComponent({
     labels: ['item0', 'item1', 'item2'],
   });
@@ -127,7 +128,7 @@ it('should render strings in HorizontalTab child component', () => {
   });
 });
 
-it('should add .iui-large if HorizontalTab has sublabel', () => {
+it('should add .iui-large if tabs have sublabel', () => {
   const { container } = renderComponent({
     labels: [
       <Tab key={0} label='item0' sublabel='Sublabel0' />,
