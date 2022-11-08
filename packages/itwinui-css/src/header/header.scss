@@ -14,7 +14,7 @@
   height: var(--_iui-header-height);
   user-select: none;
   background-color: var(--iui-color-background);
-  border-bottom: var(--iui-size-3xs) solid var(--iui-color-border);
+  border-bottom: 2px solid var(--iui-color-border);
   color: var(--iui-color-text);
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left); // iPhone notch support
   @media (prefers-reduced-motion: no-preference) {

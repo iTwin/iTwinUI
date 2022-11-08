@@ -86,11 +86,14 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     border-radius: 0;
     border-left: none;
     border-right: none;
-    overflow: hidden;
     justify-content: flex-start;
 
     // Adds stripe to the right of active button
-    --_iui-button-active-stripe-inset: 0 0 0 calc(100% - #{var(--iui-size-3xs)});
+    &::after {
+      right: -2px;
+      width: 2px;
+      height: 100%;
+    }
 
     &:not(.iui-expand) {
       height: calc(var(--iui-size-s) * 5);
@@ -118,8 +121,13 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       @include iui-icon-style('l');
     }
 
-    &.iui-submenu-open {
-      background-color: var(--iui-color-background-hover);
+    &.iui-submenu-open::after {
+      content: '';
+      position: absolute;
+      right: -2px;
+      width: 2px;
+      height: 100%;
+      background-color: var(--iui-color-background);
     }
 
     &[disabled],
