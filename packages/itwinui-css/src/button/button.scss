@@ -51,7 +51,7 @@
     content: '';
     position: absolute;
     inset: var(--_iui-button-active-stripe-inset);
-    background-color: var(--_iui-button-active-stripe-color);
+    background: var(--_iui-button-active-stripe-color);
   }
 
   &[disabled],

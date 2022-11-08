@@ -134,18 +134,13 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       }
 
       &[data-iui-active='true'] {
-        --_iui-button-active-stripe-color: var(--iui-color-background-accent-muted);
-
-        &::before {
-          content: '';
-          position: absolute;
-          right: -2px;
-          width: 2px;
-          height: 66%;
-          background-color: var(--iui-color-border-accent);
-          z-index: 2;
-          border-radius: var(--iui-border-radius-round);
-        }
+        --_iui-button-active-stripe-color: linear-gradient(
+          0deg,
+          var(--iui-color-background-accent-muted) 25%,
+          var(--iui-color-border-accent) 25%,
+          var(--iui-color-border-accent) 75%,
+          var(--iui-color-background-accent-muted) 75%
+        );
       }
     }
 
