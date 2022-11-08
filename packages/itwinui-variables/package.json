@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-variables",
-  "version": "0.1.0",
+  "version": "1.0.0-dev.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "index.css",
