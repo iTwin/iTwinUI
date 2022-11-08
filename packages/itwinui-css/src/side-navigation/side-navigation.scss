@@ -82,14 +82,15 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 
   .iui-sidenav-button {
-    --_iui-button-active-stripe-inset: 0 -2px 0 100%;
-
     gap: $iui-side-navigation-icon-margins;
     border-radius: 0;
     border-left: none;
     border-right: none;
-    justify-content: flex-start;
     isolation: isolate;
+    justify-content: flex-start;
+
+    // Adds stripe to the right of active button
+    --_iui-button-active-stripe-inset: 0 -2px 0 100%;
 
     &:not(.iui-expand) {
       height: calc(var(--iui-size-s) * 5);
