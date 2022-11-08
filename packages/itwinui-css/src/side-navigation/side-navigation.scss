@@ -130,7 +130,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
         position: absolute;
         inset: var(--_iui-button-active-stripe-inset);
         background-color: var(--_iui-button-active-stripe-color);
-        transition: background-color var(--iui-duration-1) ease-out;
+        transition: background var(--iui-duration-1) ease-out;
       }
 
       &[data-iui-active='true'] {
