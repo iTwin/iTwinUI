@@ -82,18 +82,13 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 
   .iui-sidenav-button {
+    --_iui-button-active-stripe-inset: 0 -2px 0 100%;
+
     gap: $iui-side-navigation-icon-margins;
     border-radius: 0;
     border-left: none;
     border-right: none;
     justify-content: flex-start;
-
-    // Adds stripe to the right of active button
-    &::after {
-      right: -2px;
-      width: 2px;
-      height: 100%;
-    }
 
     &:not(.iui-expand) {
       height: calc(var(--iui-size-s) * 5);
@@ -121,13 +116,35 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       @include iui-icon-style('l');
     }
 
-    &.iui-submenu-open::after {
-      content: '';
-      position: absolute;
-      right: -2px;
-      width: 2px;
-      height: 100%;
-      background-color: var(--iui-color-background);
+    &.iui-submenu-open {
+      --_iui-button-active-stripe-color: var(--iui-color-background);
+
+      &:hover {
+        --_iui-button-active-stripe-color: var(--iui-color-background-hover);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: var(--_iui-button-active-stripe-inset);
+        background-color: var(--_iui-button-active-stripe-color);
+        transition: background-color var(--iui-duration-1) ease-out;
+      }
+
+      &[data-iui-active='true'] {
+        --_iui-button-active-stripe-color: var(--iui-color-background-accent-muted);
+
+        &::before {
+          content: '';
+          position: absolute;
+          right: -2px;
+          width: 2px;
+          height: 66%;
+          background-color: var(--iui-color-border-accent);
+          z-index: 2;
+          border-radius: var(--iui-border-radius-round);
+        }
+      }
     }
 
     &[disabled],
