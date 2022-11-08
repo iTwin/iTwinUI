@@ -87,7 +87,7 @@
   // Active state
   &[aria-current] {
     background-color: var(--iui-color-background-accent-muted);
-    box-shadow: 0 2px 0 0 currentColor;
+    box-shadow: 0 2px 0 0 var(--iui-color-border-accent);
     color: var(--iui-color-text-accent);
     @media (forced-colors: active) {
       color: LinkText;
