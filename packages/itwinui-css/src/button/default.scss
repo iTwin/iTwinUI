@@ -3,15 +3,17 @@
 @import '../utils/index';
 
 @mixin iui-button-default {
-  --_iui-button-text-color: var(--iui-color-foreground-2);
-  --_iui-button-background-color: var(--iui-color-background-1);
-  --_iui-button-border-color: var(--iui-color-foreground-4);
+  --_iui-button-text-color: var(--iui-color-text);
+  --_iui-button-background-color: var(--iui-color-background);
+  --_iui-button-border-color: var(--iui-color-border-foreground);
+  --_iui-button-icon-fill: var(--iui-color-icon);
 
   &:hover,
   &:active {
-    --_iui-button-text-color: var(--iui-color-foreground-1);
-    --_iui-button-background-color: var(--iui-color-background-1-hover);
-    --_iui-button-border-color: var(--iui-color-foreground-1);
+    --_iui-button-text-color: var(--iui-color-text-hover);
+    --_iui-button-background-color: var(--iui-color-background-hover);
+    --_iui-button-border-color: var(--iui-color-border-foreground-hover);
+    --_iui-button-icon-fill: var(--iui-color-icon-hover);
   }
 
   &:focus {
@@ -22,20 +24,21 @@
   &[disabled],
   &:disabled,
   &[aria-disabled='true'] {
-    --_iui-button-text-color: var(--iui-color-foreground-5);
+    --_iui-button-text-color: var(--iui-color-text-disabled);
     --_iui-button-background-color: var(--iui-color-background-disabled);
-    --_iui-button-border-color: var(--iui-color-background-disabled);
+    --_iui-button-border-color: var(--iui-color-border-disabled);
+    --_iui-button-icon-fill: var(--iui-color-icon-disabled);
 
     cursor: not-allowed;
     outline-offset: -1px;
     outline-width: 1px;
-    outline-color: var(--iui-color-foreground-primary);
+    outline-color: var(--iui-color-text-accent);
   }
 }
 
 @mixin iui-button-default-active {
   @include iui-button-active;
-  --_iui-button-background-color: var(--iui-color-background-subtle-primary);
+  --_iui-button-background-color: var(--iui-color-background-accent-muted);
 }
 
 @mixin iui-button-active-disabled {

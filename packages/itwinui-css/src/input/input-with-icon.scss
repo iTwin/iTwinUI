@@ -16,7 +16,7 @@
   &:focus-within {
     > :first-child {
       // --_focus-color can be used to control this from outside
-      outline: 2px solid var(--_focus-color, var(--iui-color-foreground-primary));
+      outline: 2px solid var(--_focus-color, var(--iui-color-border-accent));
       outline-offset: -2px;
     }
   }
@@ -24,7 +24,7 @@
   &:hover {
     > :first-child {
       // --_iui-input-with-icon-hover-border-color can be used to control this from outside
-      border-color: var(--_iui-input-with-icon-hover-border-color, var(--iui-color-foreground-2));
+      border-color: var(--_iui-input-with-icon-hover-border-color, var(--iui-color-border-foreground-hover));
     }
   }
 }

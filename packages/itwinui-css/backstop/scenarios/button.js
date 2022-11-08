@@ -13,6 +13,9 @@ module.exports = [
   scenario('Type Borderless', {
     selectors: ['#demo-borderless'],
   }),
+  scenario('With notification', {
+    selectors: ['#demo-notification'],
+  }),
   scenario('Grouped Default', {
     selectors: ['#demo-grouped-default'],
   }),

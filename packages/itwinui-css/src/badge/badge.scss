@@ -2,10 +2,10 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
+$iui-badge-background-informational: hsl(203, 80%, 80%); // foreground-informational--dark
 $iui-badge-background-positive: hsl(96, 45%, 78%); // foreground-positive--dark
 $iui-badge-background-negative: hsl(0, 69%, 80%); // foreground-negative--dark
 $iui-badge-background-warning: hsl(34, 87%, 82%); // foreground-warning--dark
-$iui-badge-background-primary: hsl(203, 80%, 80%); // foreground-primary--dark
 $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
 
 @mixin iui-badge {

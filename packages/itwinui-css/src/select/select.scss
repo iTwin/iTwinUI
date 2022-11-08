@@ -18,15 +18,15 @@
   user-select: none;
   position: relative;
   overflow: hidden;
-  color: var(--iui-color-foreground-2);
-  background-color: var(--iui-color-background-1);
-  border: 1px solid var(--iui-color-foreground-4);
+  color: var(--iui-color-text);
+  background-color: var(--iui-color-background);
+  border: 1px solid var(--iui-color-border-foreground);
   @include iui-select-size;
 
   &.iui-disabled {
     background-color: var(--iui-color-background-disabled);
-    border-color: var(--iui-color-background-disabled);
-    --_iui-input-with-icon-hover-border-color: var(--iui-color-background-disabled);
+    border-color: var(--iui-color-border-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
     cursor: not-allowed;
   }
 
@@ -43,7 +43,7 @@
   }
 
   &.iui-placeholder {
-    color: var(--iui-color-foreground-5);
+    color: var(--iui-color-text-muted);
   }
 }
 

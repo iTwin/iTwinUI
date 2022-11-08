@@ -15,12 +15,12 @@
   text-transform: uppercase;
   user-select: none;
   cursor: default;
-  background-color: var(--iui-color-background-1);
-  border: 1px solid var(--iui-color-background-5);
-  box-shadow: 0 1px 1px var(--iui-color-background-5), 0 1px 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;
+  background-color: var(--iui-color-background);
+  border: 1px solid var(--iui-color-border);
+  box-shadow: 0 1px 1px var(--iui-color-border), 0 1px 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;
   transition: box-shadow var(--iui-duration-1) ease-out;
 
   &:hover {
-    box-shadow: 0 0 0 var(--iui-color-background-5), 0 0 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;
+    box-shadow: 0 0 0 var(--iui-color-border), 0 0 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;
   }
 }

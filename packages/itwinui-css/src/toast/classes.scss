@@ -81,18 +81,18 @@
   @include iui-toast;
 
   &.iui-informational {
-    @include iui-toast-category($category: primary);
+    @include iui-toast-category($category: informational);
   }
 
   &.iui-positive {
     @include iui-toast-category($category: positive);
   }
 
-  &.iui-negative {
-    @include iui-toast-category($category: negative);
-  }
-
   &.iui-warning {
     @include iui-toast-category($category: warning);
+  }
+
+  &.iui-negative {
+    @include iui-toast-category($category: negative);
   }
 }

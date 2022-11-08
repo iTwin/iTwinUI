@@ -28,14 +28,14 @@
   user-select: none;
   white-space: nowrap;
   word-break: keep-all;
-  color: var(--iui-color-foreground-4);
+  color: var(--iui-color-text-muted);
 
   > a {
     @include iui-anchor;
 
     &,
     &:hover {
-      color: var(--iui-color-foreground-4);
+      color: var(--iui-color-text-muted);
     }
   }
 }
@@ -44,9 +44,9 @@
   margin: 0 var(--iui-size-xs);
   width: 1px;
   height: var(--iui-size-s);
-  background-color: var(--iui-color-foreground-4);
+  background-color: var(--iui-color-border);
 }
 
 @mixin iui-legal-footer-developer {
-  color: var(--iui-color-foreground-4);
+  color: var(--iui-color-text-muted);
 }

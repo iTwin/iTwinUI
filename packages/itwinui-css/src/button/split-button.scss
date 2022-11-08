@@ -24,7 +24,7 @@
     &[disabled],
     &:disabled,
     &[aria-disabled='true'] {
-      border-right-color: var(--iui-color-background-4);
+      border-right-color: var(--iui-color-border-subtle);
       z-index: -1;
     }
   }
@@ -45,7 +45,7 @@
     &[disabled],
     &:disabled,
     &[aria-disabled='true'] {
-      border-left-color: var(--iui-color-background-4);
+      border-left-color: var(--iui-color-border-subtle);
       z-index: -1;
     }
 

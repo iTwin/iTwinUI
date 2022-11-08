@@ -7,9 +7,9 @@
 $iui-color-picker-content-width: calc(var(--iui-size-l) * 9 + var(--iui-size-xs) * 8); // (9 swatches per row) + (gaps)
 $iui-color-picker-max-width: calc(var(--iui-size-l) * 10 + var(--iui-size-xs) * 9); // (10 swatches per row) + (gaps)
 $iui-color-swatch-border-radius: 5px;
-$iui-inset-box-shadow: inset 0 0 0 1px var(--iui-color-foreground-5);
-$iui-active-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-foreground-primary);
-$iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-foreground-4); // 0 0 1px calc(var(--iui-size-3xs) + 1px) var(--iui-color-background-1-hover);
+$iui-inset-box-shadow: inset 0 0 0 1px var(--iui-color-border-foreground);
+$iui-active-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border-accent);
+$iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 
 @mixin iui-color-picker {
   --iui-color-picker-selected-color: initial;
@@ -56,7 +56,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-foreground-4); 
     box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow;
   }
 
-  @include iui-focus($offset: 1px, $thickness: 2px);
+  @include iui-focus($offset: 2px, $thickness: 2px);
 
   &.iui-active {
     box-shadow: $iui-active-box-shadow, $iui-inset-box-shadow;
@@ -228,18 +228,11 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-foreground-4); 
   background-size: $size $size;
   background-image: repeating-linear-gradient(
     45deg,
-    var(--iui-color-background-3) 25%,
+    #C7CCD1 25%,
     transparent 25%,
     transparent 75%,
-    var(--iui-color-background-3) 75%,
-    var(--iui-color-background-3)
+    #C7CCD1 75%,
+    #C7CCD1
   ),
-    repeating-linear-gradient(
-    45deg,
-    var(--iui-color-background-3) 25%,
-    var(--iui-color-background-5) 25%,
-    var(--iui-color-background-5) 75%,
-    var(--iui-color-background-3) 75%,
-    var(--iui-color-background-3)
-  );
+    repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
 }

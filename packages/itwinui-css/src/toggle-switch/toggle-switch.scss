@@ -13,12 +13,12 @@
   user-select: none;
   cursor: pointer;
   isolation: isolate;
-  color: var(--iui-color-foreground-2);
+  color: var(--iui-color-text);
 
   // Disabled
   &.iui-disabled {
     cursor: not-allowed;
-    color: var(--iui-color-foreground-4);
+    color: var(--iui-color-text-disabled);
     @media (forced-colors: active) {
       color: GrayText;
     }
@@ -50,8 +50,8 @@
   width: calc(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset * 2) * 2);
   border-radius: var(--iui-border-radius-round);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
-  background-color: var(--iui-color-background-1);
-  border: $iui-toggle-switch-border-thickness solid var(--iui-color-foreground-4);
+  background-color: var(--iui-color-background);
+  border: $iui-toggle-switch-border-thickness solid var(--iui-color-border-foreground);
 
   &-label {
     grid-area: label;
@@ -64,46 +64,53 @@
     margin: $iui-toggle-switch-handle-offset;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    transition: background-color var(--iui-duration-1) ease-out, opacity var(--iui-duration-1) ease-out;
+    transition: background-color var(--iui-duration-1) ease-out;
     z-index: 2;
     @media (prefers-reduced-motion: no-preference) {
-      transition: transform var(--iui-duration-1) ease-out, background-color var(--iui-duration-1) ease-out,
-        opacity var(--iui-duration-1) ease-out;
+      transition: transform var(--iui-duration-1) ease-out, background-color var(--iui-duration-1) ease-out;
     }
   }
 
   // #region Unchecked toggle switch
-  background-color: var(--iui-color-background-1);
-  border-color: var(--iui-color-foreground-4);
+  background-color: var(--iui-color-background);
+  border-color: var(--iui-color-border-foreground);
   @media (forced-colors: active) {
     border-color: CanvasText;
   }
 
   &::after {
-    background-color: var(--iui-color-foreground-1);
-    opacity: var(--iui-opacity-2);
+    background-color: var(--iui-color-icon);
     @media (forced-colors: active) {
       background-color: CanvasText;
-      opacity: 1;
     }
   }
 
   &:hover {
-    border-color: var(--iui-color-foreground-2);
+    border-color: var(--iui-color-border-foreground-hover);
     @media (forced-colors: active) {
       border-color: CanvasText;
+    }
+
+    &::after {
+      background-color: var(--iui-color-icon-hover);
+    }
+
+    @include focus-visible {
+      &::after {
+        background-color: var(--iui-color-icon-hover);
+      }
     }
   }
 
   @include focus-visible {
-    border-color: var(--iui-color-foreground-2);
+    border-color: var(--iui-color-border-foreground-hover);
   }
   // #endregion Unchecked toggle switch
 
   // #region Checked toggle switch
   &:checked {
-    background-color: var(--iui-color-background-primary);
-    border-color: var(--iui-color-background-primary);
+    background-color: var(--iui-color-background-accent);
+    border-color: var(--iui-color-background-accent);
     @media (forced-colors: active) {
       background-color: Highlight;
       border-color: Highlight;
@@ -111,11 +118,9 @@
 
     &::after {
       transform: translateX(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset));
-      background-color: var(--iui-color-foreground-accessory);
-      opacity: var(--iui-opacity-2);
+      background-color: var(--iui-color-white);
       @media (forced-colors: active) {
         background-color: HighlightText;
-        opacity: 1;
       }
     }
 
@@ -125,30 +130,17 @@
   }
   // #endregion Checked toggle switch
 
-  // #region Focused or hovered toggle switch
-  &:hover::after {
-    opacity: var(--iui-opacity-1);
-  }
-
-  @include focus-visible {
-    &::after {
-      opacity: var(--iui-opacity-1);
-    }
-  }
-  // #endregion Focused or hovered toggle switch
-
   // #region Disabled toggle switch
   &:disabled {
     cursor: not-allowed;
     background-color: var(--iui-color-background-disabled);
-    border-color: var(--iui-color-background-disabled);
+    border-color: var(--iui-color-border-disabled);
     @media (forced-colors: active) {
       border-color: GrayText;
     }
 
     &::after {
-      background-color: var(--iui-color-foreground-1);
-      opacity: var(--iui-opacity-5);
+      background-color: var(--iui-color-icon-disabled);
 
       @media (forced-colors: active) {
         background-color: GrayText;
@@ -158,7 +150,7 @@
 
     ~ .iui-toggle-switch-icon {
       opacity: 0;
-      fill: var(--iui-color-foreground-2);
+      fill: var(--iui-color-icon);
     }
 
     &:checked {
@@ -194,7 +186,7 @@
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
     pointer-events: none;
-    fill: var(--iui-color-foreground-accessory);
+    fill: var(--iui-color-white);
     @media (forced-colors: active) {
       fill: HighlightText;
     }
