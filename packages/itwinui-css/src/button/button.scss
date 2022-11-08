@@ -36,14 +36,15 @@
   svg {
     @include iui-icon-style('m');
     transition: fill var(--iui-duration-1) ease-out;
-    fill: currentColor;
+    fill: var(--_iui-button-icon-fill, currentColor);
   }
 }
 
 @mixin iui-button-active {
   --_iui-button-active-stripe-inset: initial;
-  --_iui-button-active-stripe-color: var(--iui-color-foreground-primary);
-  --_iui-button-text-color: var(--iui-color-foreground-primary);
+  --_iui-button-active-stripe-color: var(--iui-color-border-accent);
+  --_iui-button-text-color: var(--iui-color-text-accent);
+  --_iui-button-icon-fill: var(--iui-color-text-accent);
 
   // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
   &::after {
@@ -56,8 +57,9 @@
   &[disabled],
   &:disabled,
   &[aria-disabled='true'] {
-    --_iui-button-active-stripe-color: var(--iui-color-foreground-5);
-    --_iui-button-text-color: var(--iui-color-foreground-5);
+    --_iui-button-active-stripe-color: var(--iui-color-icon-disabled);
+    --_iui-button-text-color: var(--iui-color-text-disabled);
+    --_iui-button-icon-fill: var(--iui-color-icon-disabled);
   }
 }
 

@@ -16,7 +16,7 @@
   flex-direction: column;
   max-width: 100%;
   max-height: 100%;
-  background-color: var(--iui-color-background-1);
+  background-color: var(--iui-color-background);
   @media (prefers-reduced-motion: no-preference) {
     transition: visibility var(--iui-duration-0) var(--iui-duration-1) ease-in, transform var(--iui-duration-1) ease-out,
       opacity var(--iui-duration-1) ease;
@@ -28,11 +28,11 @@
     touch-action: none;
 
     > .iui-resizer-bar {
-      background-color: var(--iui-color-background-border);
+      background-color: var(--iui-color-border);
     }
 
     &:hover > .iui-resizer-bar {
-      background-color: var(--iui-color-foreground-primary);
+      background-color: var(--iui-color-border-accent);
     }
   }
 
@@ -48,7 +48,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--iui-color-background-3);
+    background-color: var(--iui-color-background);
+    border-bottom: 1px solid var(--iui-color-border);
 
     .iui-information-header-label {
       display: flex;
@@ -84,7 +85,7 @@
     overflow-y: overlay;
 
     > hr {
-      border-color: var(--iui-color-background-border);
+      border-color: var(--iui-color-border);
     }
   }
 }
@@ -187,7 +188,7 @@
 
   .iui-input-label {
     font-weight: var(--iui-font-weight-normal);
-    color: var(--iui-color-foreground-4);
+    color: var(--iui-color-text-muted);
   }
 
   &:not(.iui-inline) {

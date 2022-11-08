@@ -33,7 +33,7 @@
       // #endregion
 
       &:hover {
-        background-color: var(--iui-color-background-transparent-hover);
+        background-color: var(--iui-color-background-hover);
       }
     }
   }
@@ -46,7 +46,7 @@
 @mixin iui-header-brand-icon {
   @include iui-icon-style('l');
   margin: 0 $iui-side-navigation-icon-margins;
-  fill: var(--iui-color-foreground-2);
+  fill: var(--iui-color-icon);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -72,7 +72,7 @@
   display: flex;
   overflow: hidden;
   position: relative;
-  color: var(--iui-color-foreground-2);
+  color: var(--iui-color-text);
   box-sizing: border-box;
   @media (forced-colors: active) {
     color: LinkText;
@@ -81,14 +81,14 @@
 
   // Hover state
   &:hover {
-    background-color: var(--iui-color-background-transparent-hover);
+    background-color: var(--iui-color-background-hover);
   }
 
   // Active state
   &[aria-current] {
-    background-color: var(--iui-color-background-subtle-primary);
+    background-color: var(--iui-color-background-accent-muted);
     box-shadow: 0 var(--iui-size-3xs) 0 0 currentColor;
-    color: var(--iui-color-foreground-primary);
+    color: var(--iui-color-text-accent);
     @media (forced-colors: active) {
       color: LinkText;
       border-bottom: 3px solid LinkText;
@@ -99,12 +99,12 @@
   &[aria-disabled='true'] {
     cursor: not-allowed;
     background-color: transparent;
-    color: var(--iui-color-foreground-5);
+    color: var(--iui-color-text-disabled);
 
     // Disabled active state
     &[aria-current] {
       box-shadow: none;
-      background-color: var(--iui-color-background-2);
+      background-color: var(--iui-color-background-backdrop);
 
       @media (forced-colors: active) {
         border-bottom: 3px solid GrayText;
@@ -168,11 +168,11 @@
   flex-shrink: 0;
 
   &:hover {
-    background-color: hsl(var(--iui-color-foreground-1-hsl) / var(--iui-opacity-6));
+    background-color: hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
   }
 
   @at-root [aria-current] &:hover {
-    background-color: hsl(var(--iui-color-foreground-primary-hsl) / var(--iui-opacity-6));
+    background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
   }
 
   &:disabled,
@@ -223,7 +223,7 @@
 
   &-sublabel {
     font-size: var(--iui-font-size-0);
-    opacity: var(--iui-opacity-3);
+    color: var(--iui-color-text-muted);
     @media (prefers-reduced-motion: no-preference) {
       transition: visibility 0s linear 0s, width var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out,
         opacity var(--iui-duration-1) ease-out;
@@ -231,8 +231,9 @@
 
     @at-root {
       .iui-active &,
-      [aria-current] & {
-        opacity: var(--iui-opacity-1);
+      [aria-current] &,
+      [aria-disabled='true'] & {
+        color: inherit;
       }
     }
 
@@ -247,13 +248,13 @@
 
 @mixin iui-header-breadcrumb-button-icon {
   @include iui-icon-style('l');
-  background-color: var(--iui-color-background-3);
+  background-color: var(--iui-color-background-backdrop);
   border-radius: var(--iui-border-radius-1);
   display: inline-flex;
   flex-shrink: 0;
   box-sizing: border-box;
   padding: var(--iui-size-2xs);
-  fill: var(--iui-color-foreground-4);
+  fill: var(--iui-color-icon-muted);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -285,14 +286,14 @@
 
     .iui-active &,
     [aria-current] & {
-      background-color: var(--iui-color-background-1);
+      background-color: var(--iui-color-background);
       fill: currentColor;
     }
 
     :disabled &,
     [aria-disabled='true'] & {
-      background-color: var(--iui-color-background-2);
-      fill: var(--iui-color-foreground-5);
+      background-color: var(--iui-color-background-backdrop);
+      fill: var(--iui-color-icon-disabled);
 
       @media (forced-colors: active) {
         fill: GrayText;

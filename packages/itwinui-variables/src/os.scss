@@ -8,10 +8,6 @@
     @include themes.dark-theme;
   }
 
-  @media (prefers-contrast: more) {
-    @include colors.unthemed($contrast: 'high');
-  }
-
   @media (prefers-color-scheme: light) and (prefers-contrast: more) {
     @include themes.light-hc-theme;
   }

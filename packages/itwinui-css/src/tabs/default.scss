@@ -7,8 +7,8 @@
 
   .iui-tab {
     padding: var(--iui-size-2xs) var(--iui-size-m);
-    background-color: var(--iui-color-background-2);
-    border: 1px solid var(--iui-color-background-5);
+    background-color: var(--iui-color-background-backdrop);
+    border: 1px solid var(--iui-color-border);
 
     &::after {
       top: 0;
@@ -16,15 +16,15 @@
     }
 
     &:hover {
-      background-color: var(--iui-color-background-1);
+      background-color: var(--iui-color-background);
     }
 
     &.iui-active {
-      background-color: var(--iui-color-background-1);
+      background-color: var(--iui-color-background);
     }
 
     &[disabled] {
-      background-color: var(--iui-color-background-3);
+      background-color: var(--iui-color-background-disabled);
     }
 
     &:focus {
@@ -84,13 +84,13 @@
   }
 
   &.iui-green .iui-tab::after {
-    background-color: var(--iui-color-foreground-positive);
+    background-color: var(--iui-color-border-positive);
   }
 
   ~ .iui-tabs-content {
     padding-left: var(--iui-size-m);
     padding-right: var(--iui-size-m);
-    background-color: var(--iui-color-background-1);
-    border: 1px solid var(--iui-color-background-5);
+    background-color: var(--iui-color-background);
+    border: 1px solid var(--iui-color-border);
   }
 }

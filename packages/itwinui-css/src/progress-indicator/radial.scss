@@ -15,15 +15,15 @@
     width: 100%;
 
     > circle.iui-fill {
-      stroke: var(--iui-color-foreground-primary);
+      stroke: var(--iui-color-border-accent);
       fill: none;
-      stroke-width: 3.2;
+      stroke-width: var(--iui-size-2xs);
     }
 
     > circle.iui-track {
-      stroke: var(--iui-color-background-5);
+      stroke: var(--iui-color-border);
       fill: none;
-      stroke-width: 3.2;
+      stroke-width: var(--iui-size-2xs);
     }
   }
 
@@ -44,38 +44,38 @@
     svg,
     img {
       @include iui-icon-style('m');
-      fill: var(--iui-color-foreground-2);
+      fill: var(--iui-color-icon);
 
       &:hover {
-        fill: var(--iui-color-foreground-1);
+        fill: var(--iui-color-icon-hover);
       }
     }
   }
 
   &.iui-positive {
-    color: var(--iui-color-foreground-positive);
+    color: var(--iui-color-text-positive);
 
     svg.iui-radial {
       circle.iui-fill,
       circle.iui-track {
-        stroke: var(--iui-color-foreground-positive);
+        stroke: var(--iui-color-border-positive);
       }
     }
 
     .iui-inner-content svg {
-      fill: var(--iui-color-foreground-positive);
+      fill: var(--iui-color-icon-positive);
     }
   }
 
   &.iui-negative {
-    color: var(--iui-color-foreground-negative);
+    color: var(--iui-color-text-negative);
 
     svg.iui-radial circle.iui-fill {
-      stroke: var(--iui-color-foreground-negative);
+      stroke: var(--iui-color-border-negative);
     }
 
     .iui-inner-content svg {
-      fill: var(--iui-color-foreground-negative);
+      fill: var(--iui-color-icon-negative);
     }
   }
 

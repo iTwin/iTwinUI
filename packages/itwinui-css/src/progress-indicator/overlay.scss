@@ -15,7 +15,7 @@
   pointer-events: none;
 
   // Blur fallback
-  @include iui-blur($hsl: var(--iui-color-background-1-hsl), $opacity: 3);
+  @include iui-blur($hsl: var(--iui-color-background-hsl), $opacity: 3);
 
   // Focus trap
   &:focus {

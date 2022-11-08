@@ -8,7 +8,7 @@ $iui-date-picker-cell-height: 36px;
 $iui-date-picker-today-circle-size: 32px;
 
 @mixin iui-date-picker {
-  @include iui-surface($border-radius: var(--iui-border-radius-1));
+  @include iui-surface;
   user-select: none;
   display: inline-grid;
   grid-template-columns: 1fr auto;
@@ -52,7 +52,7 @@ $iui-date-picker-today-circle-size: 32px;
   display: flex;
   padding: 0 var(--iui-size-xs);
   font-weight: var(--iui-font-weight-bold);
-  background-color: var(--iui-color-background-2);
+  background-color: var(--iui-color-background-backdrop);
 
   > div {
     white-space: nowrap;
@@ -84,7 +84,7 @@ $iui-date-picker-today-circle-size: 32px;
 @mixin iui-calendar-day-base-hover {
   &:hover {
     font-weight: var(--iui-font-weight-semibold);
-    background-color: var(--iui-color-background-transparent-hover);
+    background-color: var(--iui-color-background-hover);
   }
 }
 
@@ -102,25 +102,25 @@ $iui-date-picker-today-circle-size: 32px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid var(--iui-color-foreground-5);
+    border: 2px solid var(--iui-color-border);
   }
 
   &:hover {
-    background-color: var(--iui-color-background-transparent-hover);
+    background-color: var(--iui-color-background-hover);
   }
 }
 
 @mixin iui-calendar-day-selected-base {
   font-weight: var(--iui-font-weight-semibold);
-  background-color: var(--iui-color-background-primary);
-  color: var(--iui-color-foreground-accessory);
-  @include iui-focus($color: var(--iui-color-foreground-accessory), $offset: -3px);
+  background-color: var(--iui-color-background-accent);
+  color: var(--iui-color-white);
+  @include iui-focus($color: var(--iui-color-white), $offset: -3px);
 }
 
 @mixin iui-calendar-day-selected-today-base {
   &:hover {
-    background-color: var(--iui-color-background-primary);
-    color: var(--iui-color-foreground-accessory);
+    background-color: var(--iui-color-background-accent);
+    color: var(--iui-color-white);
 
     &::before {
       background-color: initial;
@@ -198,12 +198,11 @@ $iui-date-picker-today-circle-size: 32px;
     @include iui-calendar-day-base;
 
     border-radius: 0;
-    background-color: var(--iui-color-background-subtle-primary);
-    color: var(--iui-color-foreground-2);
+    background-color: var(--iui-color-background-accent-muted);
 
     &:hover {
       font-weight: var(--iui-font-weight-semibold);
-      background-color: var(--iui-color-background-transparent-hover);
+      background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
     }
   }
 
@@ -211,12 +210,11 @@ $iui-date-picker-today-circle-size: 32px;
     @include iui-calendar-day-today-base;
 
     &:hover {
-      background-color: var(--iui-color-background-transparent-hover);
-      color: var(--iui-color-foreground-2);
+      background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
     }
 
     &::before {
-      border-color: var(--iui-color-foreground-primary);
+      border-color: var(--iui-color-border-accent);
     }
   }
 }
@@ -226,7 +224,7 @@ $iui-date-picker-today-circle-size: 32px;
   &-today {
     @include iui-calendar-day-base;
     @include iui-calendar-day-base-hover;
-    color: var(--iui-color-foreground-4);
+    color: var(--iui-color-text-muted);
   }
 
   &-today {
