@@ -39,7 +39,6 @@
 }
 
 @mixin iui-alert-link {
-  @include iui-anchor-status;
   @include iui-anchor-underline('on-initial');
   border-radius: var(--iui-border-radius-1);
   cursor: pointer;
