@@ -9,7 +9,7 @@
 
   --_iui-alert-border-color: var(--iui-color-border);
 
-  border-radius: var(--_iui-alert-border-radius, var(--iui-border-radius-1));
+  border-radius: var(--iui-border-radius-1);
   display: flex;
   align-items: center;
   color: var(--iui-color-text);
@@ -19,11 +19,10 @@
 }
 
 @mixin iui-alert-sticky {
-  --_iui-alert-border-radius: 0;
+  border-radius: 0;
   position: sticky;
   top: 0;
   left: 0;
-  right: 0;
 }
 
 @mixin iui-alert-icon {
