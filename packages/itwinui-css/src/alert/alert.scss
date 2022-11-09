@@ -16,21 +16,22 @@
   background-color: var(--iui-color-background);
   border: 1px solid var(--_iui-alert-border-color);
   box-shadow: inset var(--iui-size-2xs) 0 0 var(--_iui-alert-border-color);
-  @media (forced-colors: active) {
-    background-color: Canvas;
-  }
+}
 
-  &.iui-sticky {
-    border-radius: 0;
-    position: sticky;
-    top: 0;
-    left: 0;
-  }
+@mixin iui-alert-sticky {
+  border-radius: 0;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
 @mixin iui-alert-icon {
   @include iui-icon-style('m');
   margin-left: var(--iui-size-m);
+  fill: var(--_iui-alert-icon-color, var(--iui-color-icon-muted));
+  @media (forced-colors: active) {
+    fill: CanvasText;
+  }
 }
 
 @mixin iui-alert-message {
@@ -62,16 +63,10 @@
 /// @arg $statusColor Can be one of: informational, positive, warning, negative
 /// @arg $rootSelector Selector of the root alert element. Defaults to .iui-alert
 @mixin iui-alert-category($statusColor, $rootSelector: '.iui-alert') {
-  @include iui-alert;
   --_iui-alert-border-color: var(--iui-color-border-#{$statusColor});
+  --_iui-alert-icon-color: var(--iui-color-icon-#{$statusColor});
 
-  #{$rootSelector}-icon {
-    fill: var(--iui-color-icon-#{$statusColor});
-  }
-
-  #{$rootSelector}-message {
-    @include iui-text-selection($statusColor);
-  }
+  @include iui-text-selection($statusColor);
 
   #{$rootSelector}-link {
     @include iui-anchor-status($statusColor);
