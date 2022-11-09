@@ -137,8 +137,13 @@ it('should render with icon correctly', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-button-icon' />);
-  expect(container.querySelector('.iui-button-icon')).toEqual(placeholderIcon);
+  } = render(<SvgPlaceholder />);
+
+  const buttonIcon = container.querySelector('.iui-button-icon');
+  const svg = buttonIcon?.querySelector('svg');
+
+  expect(buttonIcon).toHaveAttribute('aria-hidden', 'true');
+  expect(svg).toEqual(placeholderIcon);
 
   const label = container.querySelector('.iui-button-icon + span')?.textContent;
   expect(label).toEqual('Click me!');
@@ -152,14 +157,17 @@ it('should render without label correctly', () => {
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button.textContent).toBeFalsy();
-  expect(button.querySelector('span')).toBeFalsy();
+  expect(button.querySelector('span:not(.iui-button-icon)')).toBeFalsy();
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-button-icon' />);
+  } = render(<SvgPlaceholder />);
 
-  button.querySelectorAll('.iui-button-icon').forEach((icon) => {
-    expect(icon).toEqual(placeholderIcon);
+  button.querySelectorAll('.iui-button-icon').forEach((buttonIcon) => {
+    const svg = buttonIcon?.querySelector('svg');
+
+    expect(buttonIcon).toHaveAttribute('aria-hidden', 'true');
+    expect(svg).toEqual(placeholderIcon);
   });
 });
 

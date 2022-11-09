@@ -39,14 +39,22 @@ it('should render in its most basic state', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-button-icon' />);
+  } = render(<SvgPlaceholder />);
 
   const mainItems = container.querySelectorAll('.iui-top .iui-sidenav-button');
   expect(mainItems).toHaveLength(3);
   mainItems.forEach((item, index) => {
     expect(item).toBeTruthy();
-    expect(item.querySelector('.iui-button-icon')).toEqual(placeholderIcon);
-    expect(item.querySelector('span')?.textContent).toBe(`mockbutton ${index}`);
+
+    const buttonIcon = item.querySelector('.iui-button-icon');
+    const svg = buttonIcon?.querySelector('svg');
+
+    expect(buttonIcon).toHaveAttribute('aria-hidden', 'true');
+    expect(svg).toEqual(placeholderIcon);
+
+    expect(item.querySelector('span:last-of-type')?.textContent).toBe(
+      `mockbutton ${index}`,
+    );
   });
 });
 
@@ -67,7 +75,7 @@ it('should render secondary items', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-button-icon' />);
+  } = render(<SvgPlaceholder />);
 
   const secondaryItems = container.querySelectorAll(
     '.iui-bottom .iui-sidenav-button',
@@ -76,8 +84,14 @@ it('should render secondary items', () => {
 
   secondaryItems.forEach((item, index) => {
     expect(item).toBeTruthy();
-    expect(item.querySelector('.iui-button-icon')).toEqual(placeholderIcon);
-    expect(item.querySelector('span')?.textContent).toBe(
+
+    const buttonIcon = item.querySelector('.iui-button-icon');
+    const svg = buttonIcon?.querySelector('svg');
+
+    expect(buttonIcon).toHaveAttribute('aria-hidden', 'true');
+    expect(svg).toEqual(placeholderIcon);
+
+    expect(item.querySelector('span:last-of-type')?.textContent).toBe(
       `mock secondary ${index}`,
     );
   });
@@ -116,10 +130,13 @@ it('should render expand button svg correctly', () => {
 
   const {
     container: { firstChild: expandIcon },
-  } = render(<SvgChevronRight className='iui-button-icon' aria-hidden />);
-  expect(container.querySelector('.iui-expand .iui-button-icon')).toEqual(
-    expandIcon,
-  );
+  } = render(<SvgChevronRight />);
+
+  const buttonIcon = container.querySelector('.iui-expand .iui-button-icon');
+  const svg = buttonIcon?.querySelector('svg');
+
+  expect(buttonIcon).toHaveAttribute('aria-hidden', 'true');
+  expect(svg).toEqual(expandIcon);
 });
 
 it('should handle clicking on expand button', async () => {

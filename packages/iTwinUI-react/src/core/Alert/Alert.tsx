@@ -95,7 +95,9 @@ export const Alert = (props: AlertProps) => {
           type='button'
           className='iui-alert-button'
         >
-          <SvgCloseSmall aria-hidden className='iui-alert-button-icon' />
+          <span className='iui-alert-button-icon' aria-hidden>
+            <SvgCloseSmall />
+          </span>
         </button>
       )}
     </div>

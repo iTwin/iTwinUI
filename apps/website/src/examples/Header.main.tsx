@@ -19,17 +19,18 @@ import {
 } from '@itwin/itwinui-react';
 
 export default () => {
-  const buildMenu = (menu: string) => (close: () => void) => [
-    <MenuItem key={1} value={'Item #1'} onClick={close}>
-      {menu} item #1
-    </MenuItem>,
-    <MenuItem key={2} value={'Item #2'} onClick={close}>
-      {menu} item #2
-    </MenuItem>,
-    <MenuItem key={3} value={'Item #3'} onClick={close}>
-      {menu} item #3
-    </MenuItem>,
-  ];
+  const buildMenu = (menu: string) => (close: () => void) =>
+    [
+      <MenuItem key={1} value={'Item #1'} onClick={close}>
+        {menu} item #1
+      </MenuItem>,
+      <MenuItem key={2} value={'Item #2'} onClick={close}>
+        {menu} item #2
+      </MenuItem>,
+      <MenuItem key={3} value={'Item #3'} onClick={close}>
+        {menu} item #3
+      </MenuItem>,
+    ];
   return (
     <div style={{ padding: '0 8px', width: '100%' }}>
       <Header

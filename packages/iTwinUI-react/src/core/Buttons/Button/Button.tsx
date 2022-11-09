@@ -37,9 +37,8 @@ type ButtonOwnProps = {
   children?: React.ReactNode;
 };
 
-export type ButtonProps<
-  T extends React.ElementType = 'button'
-> = PolymorphicComponentProps<T, ButtonOwnProps>;
+export type ButtonProps<T extends React.ElementType = 'button'> =
+  PolymorphicComponentProps<T, ButtonOwnProps>;
 
 type ButtonComponent = PolymorphicForwardRefComponent<'button', ButtonOwnProps>;
 
@@ -78,17 +77,19 @@ export const Button: ButtonComponent = React.forwardRef((props, ref) => {
       type={type}
       {...rest}
     >
-      {startIcon &&
-        React.cloneElement(startIcon, {
-          className: cx('iui-button-icon', startIcon.props.className),
-        })}
+      {startIcon && (
+        <span className='iui-button-icon' aria-hidden>
+          {startIcon}
+        </span>
+      )}
 
       {children && <span>{children}</span>}
 
-      {endIcon &&
-        React.cloneElement(endIcon, {
-          className: cx('iui-button-icon', endIcon.props.className),
-        })}
+      {endIcon && (
+        <span className='iui-button-icon' aria-hidden>
+          {endIcon}
+        </span>
+      )}
     </Element>
   );
 });

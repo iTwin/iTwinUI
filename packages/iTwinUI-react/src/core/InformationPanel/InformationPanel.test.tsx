@@ -94,13 +94,18 @@ it('should render close icon correctly', () => {
 
   const {
     container: { firstChild: closeSvg },
-  } = render(<SvgCloseSmall className='iui-button-icon' aria-hidden />);
+  } = render(<SvgCloseSmall aria-hidden />);
 
   const closeButton = infoPanel.querySelector(
     '.iui-information-header > .iui-information-header-actions > .iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
-  expect(closeButton.firstElementChild).toEqual(closeSvg);
+  const closeButtonIcon = closeButton.firstElementChild;
+  const closeButtonIconSvg = closeButtonIcon?.firstElementChild;
+
   expect(closeButton).toHaveAttribute('aria-label', 'Close');
+  expect(closeButtonIcon).toHaveClass('iui-button-icon');
+  expect(closeButtonIcon).toHaveAttribute('aria-hidden', 'true');
+  expect(closeButtonIconSvg).toEqual(closeSvg);
 
   expect(mockOnClose).not.toHaveBeenCalled();
   closeButton.click();

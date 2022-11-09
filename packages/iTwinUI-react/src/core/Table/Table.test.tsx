@@ -1736,13 +1736,14 @@ it('should expand correctly', async () => {
   });
   const {
     container: { firstChild: expanderIcon },
-  } = render(<SvgChevronRight className='iui-button-icon' aria-hidden />);
+  } = render(<SvgChevronRight />);
 
-  expect(
-    container.querySelectorAll(
-      '.iui-button[data-iui-variant="borderless"] > .iui-button-icon',
-    )[0],
-  ).toEqual(expanderIcon);
+  const buttonIcons = container.querySelectorAll(
+    '.iui-button[data-iui-variant="borderless"] > .iui-button-icon',
+  );
+
+  expect(buttonIcons[0]).toHaveAttribute('aria-hidden', 'true');
+  expect(buttonIcons[0].querySelector('svg')).toEqual(expanderIcon);
 
   await act(async () => {
     await userEvent.click(container.querySelectorAll('.iui-button')[0]);
