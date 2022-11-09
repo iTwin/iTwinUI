@@ -29,6 +29,9 @@
   @include iui-icon-style('m');
   margin-left: var(--iui-size-m);
   fill: var(--_iui-alert-icon-color, var(--iui-color-icon-muted));
+  @media (forced-colors: active) {
+    fill: CanvasText;
+  }
 }
 
 @mixin iui-alert-message {
