@@ -119,7 +119,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
 
     &.iui-submenu-open {
-      --_iui-button-active-stripe-color: linear-gradient(
+      --_iui-button-active-stripe-background: linear-gradient(
         0deg,
         var(--iui-color-background-accent-muted) 25%,
         var(--iui-color-border-accent) 25%,

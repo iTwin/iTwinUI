@@ -42,7 +42,7 @@
 
 @mixin iui-button-active {
   --_iui-button-active-stripe-inset: initial;
-  --_iui-button-active-stripe-color: var(--iui-color-border-accent);
+  --_iui-button-active-stripe-background: var(--iui-color-border-accent);
   --_iui-button-text-color: var(--iui-color-text-accent);
   --_iui-button-icon-fill: var(--iui-color-text-accent);
 
@@ -51,13 +51,13 @@
     content: '';
     position: absolute;
     inset: var(--_iui-button-active-stripe-inset);
-    background: var(--_iui-button-active-stripe-color);
+    background: var(--_iui-button-active-stripe-background);
   }
 
   &[disabled],
   &:disabled,
   &[aria-disabled='true'] {
-    --_iui-button-active-stripe-color: var(--iui-color-icon-disabled);
+    --_iui-button-active-stripe-background: var(--iui-color-icon-disabled);
     --_iui-button-text-color: var(--iui-color-text-disabled);
     --_iui-button-icon-fill: var(--iui-color-icon-disabled);
   }
