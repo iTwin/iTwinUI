@@ -119,28 +119,20 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
 
     &.iui-submenu-open {
-      --_iui-button-active-stripe-color: var(--iui-color-background);
+      --_iui-button-active-stripe-color: linear-gradient(
+        0deg,
+        var(--iui-color-background-accent-muted) 25%,
+        var(--iui-color-border-accent) 25%,
+        var(--iui-color-border-accent) 75%,
+        var(--iui-color-background-accent-muted) 75%
+      );
 
-      &:hover {
-        --_iui-button-active-stripe-color: var(--iui-color-background-hover);
-      }
-
-      &::after {
+      &::before {
         content: '';
         position: absolute;
-        inset: var(--_iui-button-active-stripe-inset);
-        background-color: var(--_iui-button-active-stripe-color);
-        transition: background var(--iui-duration-1) ease-out;
-      }
-
-      &[data-iui-active='true'] {
-        --_iui-button-active-stripe-color: linear-gradient(
-          0deg,
-          var(--iui-color-background-accent-muted) 25%,
-          var(--iui-color-border-accent) 25%,
-          var(--iui-color-border-accent) 75%,
-          var(--iui-color-background-accent-muted) 75%
-        );
+        inset: 0 -2px 0 0;
+        z-index: -1;
+        background-color: inherit;
       }
     }
 
