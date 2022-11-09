@@ -5,8 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons';
-import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
-import { CommonProps, useTheme } from '../utils';
+import { CommonProps, useTheme, SvgCloseSmall } from '../utils';
 import '@itwin/itwinui-css/css/information-panel.css';
 
 export type InformationPanelHeaderProps = {

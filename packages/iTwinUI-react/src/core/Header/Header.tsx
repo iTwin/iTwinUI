@@ -2,13 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgMoreVertical from '@itwin/itwinui-icons-react/cjs/icons/MoreVertical';
-
 import cx from 'classnames';
 import React from 'react';
 import { IconButton } from '../Buttons';
 
-import { useTheme, CommonProps } from '../utils';
+import { useTheme, CommonProps, SvgMoreVertical } from '../utils';
 import '@itwin/itwinui-css/css/header.css';
 import { DropdownMenu } from '../DropdownMenu';
 

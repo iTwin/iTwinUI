@@ -8,7 +8,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { SideNavigation, SideNavigationProps } from './SideNavigation';
 import { SidenavButton } from './SidenavButton';
 import { SidenavSubmenu } from './SidenavSubmenu';
-import { SvgPlaceholder, SvgChevronRight } from '@itwin/itwinui-icons-react/';
+import { SvgMore as SvgPlaceholder, SvgChevronRight } from '../utils/';
 import userEvent from '@testing-library/user-event';
 
 function renderComponent(props?: Partial<SideNavigationProps>) {

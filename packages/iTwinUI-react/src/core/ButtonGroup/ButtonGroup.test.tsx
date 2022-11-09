@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgMore, SvgPlaceholder } from '@itwin/itwinui-icons-react';
+import { SvgMore, SvgClose as SvgPlaceholder } from '../utils';
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 

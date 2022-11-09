@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import SvgPlaceholder from '@itwin/itwinui-icons-react/cjs/icons/Placeholder';
+import { SvgMore as SvgPlaceholder } from '../utils';
 
 import HeaderLogo from './HeaderLogo';
 
@@ -84,7 +84,7 @@ it('renders with no children correctly', () => {
 
 it('trashes wrong logo type (JS only)', () => {
   const { container } = render(
-    <HeaderLogo logo={('myLogo' as unknown) as JSX.Element}>
+    <HeaderLogo logo={'myLogo' as unknown as JSX.Element}>
       Application
     </HeaderLogo>,
   );

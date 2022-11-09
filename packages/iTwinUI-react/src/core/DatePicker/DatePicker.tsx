@@ -2,13 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgChevronLeft from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeft';
-import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
-import SvgChevronLeftDouble from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeftDouble';
-import SvgChevronRightDouble from '@itwin/itwinui-icons-react/cjs/icons/ChevronRightDouble';
 import cx from 'classnames';
 import React from 'react';
-import { useTheme } from '../utils';
+import {
+  useTheme,
+  SvgChevronLeft,
+  SvgChevronRight,
+  SvgChevronLeftDouble,
+  SvgChevronRightDouble,
+} from '../utils';
 import '@itwin/itwinui-css/css/date-picker.css';
 import { IconButton } from '../Buttons/IconButton';
 import { TimePicker, TimePickerProps } from '../TimePicker';

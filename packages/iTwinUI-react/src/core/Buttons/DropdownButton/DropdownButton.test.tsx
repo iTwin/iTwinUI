@@ -7,8 +7,7 @@ import { render } from '@testing-library/react';
 
 import { DropdownButton, DropdownButtonProps } from './DropdownButton';
 import { MenuItem } from '../../Menu';
-import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
-import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
+import { SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils';
 import userEvent from '@testing-library/user-event';
 
 function renderComponent(props?: Partial<DropdownButtonProps>) {

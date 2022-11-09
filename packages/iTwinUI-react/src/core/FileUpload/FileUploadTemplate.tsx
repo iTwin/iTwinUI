@@ -3,9 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { useTheme } from '../utils';
+import { useTheme, SvgUpload } from '../utils';
 import '@itwin/itwinui-css/css/file-upload.css';
-import SvgUpload from '@itwin/itwinui-icons-react/cjs/icons/Upload';
 
 export type FileUploadTemplateProps = {
   /**

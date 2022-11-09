@@ -2,11 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
-
 import React from 'react';
-
-import { useTheme } from '../utils';
+import { useTheme, SvgChevronRight } from '../utils';
 import '@itwin/itwinui-css/css/header.css';
 
 export type HeaderBreadcrumbsProps = {

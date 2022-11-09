@@ -4,8 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { useTheme, CommonProps, WithCSSTransition } from '../utils';
-import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
+import {
+  useTheme,
+  CommonProps,
+  WithCSSTransition,
+  SvgChevronRight,
+} from '../utils';
 import { IconButton } from '../Buttons';
 import { Tooltip } from '../Tooltip';
 import '@itwin/itwinui-css/css/side-navigation.css';

@@ -23,11 +23,11 @@ import { InputGroup } from '../InputGroup';
 import { Radio } from '../Radio';
 import {
   SvgChevronRight,
-  SvgDeveloper,
-  SvgPlaceholder,
+  SvgMore,
+  SvgClose,
   SvgSortUp,
   SvgSortDown,
-} from '@itwin/itwinui-icons-react';
+} from '../utils';
 import { DefaultCell, EditableCell } from './cells';
 import { TablePaginator } from './TablePaginator';
 import * as UseOverflow from '../utils/hooks/useOverflow';
@@ -4631,7 +4631,7 @@ it('should render start and end cell icons', () => {
           Header: 'Name',
           accessor: 'name',
           cellRenderer: (props) => {
-            return <DefaultCell {...props} startIcon={<SvgPlaceholder />} />;
+            return <DefaultCell {...props} startIcon={<SvgClose />} />;
           },
         },
         {
@@ -4639,7 +4639,7 @@ it('should render start and end cell icons', () => {
           Header: 'description',
           accessor: 'description',
           cellRenderer: (props) => {
-            return <DefaultCell {...props} endIcon={<SvgDeveloper />} />;
+            return <DefaultCell {...props} endIcon={<SvgMore />} />;
           },
         },
       ],
@@ -4650,11 +4650,11 @@ it('should render start and end cell icons', () => {
   });
 
   const {
-    container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder />);
+    container: { firstChild: closeIcon },
+  } = render(<SvgClose />);
   const {
-    container: { firstChild: developerIcon },
-  } = render(<SvgDeveloper />);
+    container: { firstChild: moreIcon },
+  } = render(<SvgMore />);
 
   const row = container.querySelector(
     '.iui-table-body .iui-table-row',
@@ -4665,13 +4665,13 @@ it('should render start and end cell icons', () => {
     '.iui-table-cell-start-icon',
   ) as HTMLDivElement;
   expect(startIcon).toBeTruthy();
-  expect(startIcon.querySelector('svg')).toEqual(placeholderIcon);
+  expect(startIcon.querySelector('svg')).toEqual(closeIcon);
 
   const endIcon = cells[1].querySelector(
     '.iui-table-cell-end-icon',
   ) as HTMLDivElement;
   expect(endIcon).toBeTruthy();
-  expect(endIcon.querySelector('svg')).toEqual(developerIcon);
+  expect(endIcon.querySelector('svg')).toEqual(moreIcon);
 });
 
 it.each(['positive', 'warning', 'negative'] as const)(

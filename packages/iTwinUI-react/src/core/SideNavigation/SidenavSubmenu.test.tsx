@@ -5,7 +5,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { SvgSettings } from '@itwin/itwinui-icons-react';
+import { SvgMore } from '../utils';
 import { IconButton } from '../Buttons';
 import { SidenavSubmenu } from './SidenavSubmenu';
 import { SidenavSubmenuHeader } from './SidenavSubmenuHeader';
@@ -38,7 +38,7 @@ it('should render custom header actions', () => {
     container: { firstChild: actionButton },
   } = render(
     <IconButton styleType='borderless'>
-      <SvgSettings />
+      <SvgMore />
     </IconButton>,
   );
   const { container } = render(
@@ -46,7 +46,7 @@ it('should render custom header actions', () => {
       <SidenavSubmenuHeader
         actions={
           <IconButton styleType='borderless'>
-            <SvgSettings />
+            <SvgMore />
           </IconButton>
         }
       >

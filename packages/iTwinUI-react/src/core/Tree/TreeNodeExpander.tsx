@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
+import { SvgChevronRight } from '../utils';
 import { IconButton, IconButtonProps } from '../Buttons/IconButton';
 import '@itwin/itwinui-css/css/tree.css';
 

@@ -2,10 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
 import cx from 'classnames';
 import React from 'react';
-import { CommonProps, useTheme, StatusIconMap } from '../utils';
+import { CommonProps, useTheme, StatusIconMap, SvgCloseSmall } from '../utils';
 import '@itwin/itwinui-css/css/alert.css';
 
 export type AlertProps = {

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import React from 'react';
-import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
+import { SvgMore } from '../../utils';
 
 import { IconButton } from './IconButton';
 
@@ -12,7 +12,7 @@ it('renders icon button correctly', () => {
   const onClickMock = jest.fn();
   const { container } = render(
     <IconButton onClick={onClickMock}>
-      <SvgAdd />
+      <SvgMore />
     </IconButton>,
   );
 
@@ -28,7 +28,7 @@ it('renders active icon button correctly', () => {
   const onClickMock = jest.fn();
   const { container } = render(
     <IconButton isActive onClick={onClickMock}>
-      <SvgAdd />
+      <SvgMore />
     </IconButton>,
   );
 
@@ -45,7 +45,7 @@ it('renders disabled small icon button correctly', () => {
   const onClickMock = jest.fn();
   const { container } = render(
     <IconButton disabled size='small' onClick={onClickMock}>
-      <SvgAdd />
+      <SvgMore />
     </IconButton>,
   );
 
@@ -62,7 +62,7 @@ it('renders disabled small icon button correctly', () => {
 it('should render borderless button correctly', () => {
   const { container } = render(
     <IconButton styleType='borderless'>
-      <SvgAdd />
+      <SvgMore />
     </IconButton>,
   );
 
@@ -74,7 +74,7 @@ it('should render borderless button correctly', () => {
 it('should support polymorphic `as` prop', () => {
   const { container } = render(
     <IconButton as='a' href='https://example.com/'>
-      <SvgAdd />
+      <SvgMore />
     </IconButton>,
   );
 

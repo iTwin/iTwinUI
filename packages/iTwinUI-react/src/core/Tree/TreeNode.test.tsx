@@ -8,7 +8,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { TreeNode, TreeNodeProps } from './TreeNode';
 import { TreeContextProps, TreeContext } from './TreeContext';
 import { Checkbox } from '../Checkbox';
-import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
+import { SvgMore as SvgPlaceholder } from '../utils';
 
 const renderComponent = ({
   props,

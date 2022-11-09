@@ -9,7 +9,7 @@ import { InformationPanel } from './InformationPanel';
 import { InformationPanelWrapper } from './InformationPanelWrapper';
 import { InformationPanelHeader } from './InformationPanelHeader';
 import { InformationPanelBody } from './InformationPanelBody';
-import { SvgCloseSmall, SvgEdit } from '@itwin/itwinui-icons-react';
+import { SvgCloseSmall, SvgMore } from '../utils';
 import { IconButton } from '../Buttons';
 
 const getBoundingClientRect = HTMLElement.prototype.getBoundingClientRect;
@@ -117,7 +117,7 @@ it('should render custom header actions', () => {
     container: { firstChild: editButton },
   } = render(
     <IconButton styleType='borderless'>
-      <SvgEdit />
+      <SvgMore />
     </IconButton>,
   );
   const { container } = render(
@@ -126,7 +126,7 @@ it('should render custom header actions', () => {
         onClose={jest.fn()}
         actions={
           <IconButton styleType='borderless'>
-            <SvgEdit />
+            <SvgMore />
           </IconButton>
         }
       />

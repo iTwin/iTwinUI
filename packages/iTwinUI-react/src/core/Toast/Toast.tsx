@@ -4,9 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Transition } from 'react-transition-group';
-import SvgCloseSmall from '@itwin/itwinui-icons-react/cjs/icons/CloseSmall';
 import cx from 'classnames';
-import { useTheme, getWindow, StatusIconMap, CommonProps } from '../utils';
+import {
+  useTheme,
+  getWindow,
+  StatusIconMap,
+  CommonProps,
+  SvgCloseSmall,
+} from '../utils';
 import '@itwin/itwinui-css/css/toast.css';
 import { IconButton } from '../Buttons';
 

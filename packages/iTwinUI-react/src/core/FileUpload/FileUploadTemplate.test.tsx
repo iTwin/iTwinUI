@@ -5,7 +5,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { FileUploadTemplate } from './FileUploadTemplate';
-import SvgUpload from '@itwin/itwinui-icons-react/cjs/icons/Upload';
+import { SvgUpload } from '../utils';
 
 it('should render FileUploadTemplate', () => {
   const mockedOnChange = jest.fn();

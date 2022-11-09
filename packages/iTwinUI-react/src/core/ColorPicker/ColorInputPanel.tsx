@@ -6,9 +6,14 @@ import React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons';
 import { Input } from '../Input';
-import { ColorValue, CommonProps, InputContainer, useTheme } from '../utils';
+import {
+  ColorValue,
+  CommonProps,
+  InputContainer,
+  useTheme,
+  SvgSwap,
+} from '../utils';
 import { useColorPickerContext } from './ColorPickerContext';
-import SvgSwap from '@itwin/itwinui-icons-react/cjs/icons/Swap';
 import '@itwin/itwinui-css/css/color-picker.css';
 
 export type ColorInputPanelProps = {
@@ -47,16 +52,11 @@ export const ColorInputPanel = React.forwardRef(
     useTheme();
 
     const inputsContainerRef = React.useRef<HTMLDivElement>(null);
-    const {
-      activeColor,
-      applyHsvColorChange,
-      hsvColor,
-      showAlpha,
-    } = useColorPickerContext();
+    const { activeColor, applyHsvColorChange, hsvColor, showAlpha } =
+      useColorPickerContext();
 
-    const [currentFormat, setCurrentFormat] = React.useState(
-      defaultColorFormat,
-    );
+    const [currentFormat, setCurrentFormat] =
+      React.useState(defaultColorFormat);
     React.useEffect(() => {
       setCurrentFormat(defaultColorFormat);
     }, [defaultColorFormat]);

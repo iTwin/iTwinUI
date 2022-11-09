@@ -7,3 +7,4 @@ export * from './hooks';
 export * from './components';
 export * from './props';
 export * from './color';
+export * from './icons';

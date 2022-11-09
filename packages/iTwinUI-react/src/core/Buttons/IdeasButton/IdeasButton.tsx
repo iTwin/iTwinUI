@@ -3,9 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-
-import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
-import { useTheme } from '../../utils';
+import { SvgSmileyHappy, useTheme } from '../../utils';
 import { Button } from '../Button';
 
 export type IdeasButtonProps = {

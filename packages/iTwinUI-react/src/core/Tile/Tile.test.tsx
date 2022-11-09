@@ -9,7 +9,7 @@ import { Tile } from './Tile';
 import { Badge } from '../Badge';
 import { Button, IconButton } from '../Buttons';
 import { MenuItem } from '../Menu';
-import SvgPlaceholder from '@itwin/itwinui-icons-react/cjs/icons/Placeholder';
+import { SvgClose as SvgPlaceholder } from '../utils';
 import userEvent from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {

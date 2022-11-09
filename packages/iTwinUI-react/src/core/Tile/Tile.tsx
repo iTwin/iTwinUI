@@ -4,10 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
-import SvgMore from '@itwin/itwinui-icons-react/cjs/icons/More';
-import SvgNew from '@itwin/itwinui-icons-react/cjs/icons/New';
-import { StatusIconMap, useTheme } from '../utils';
+import {
+  StatusIconMap,
+  useTheme,
+  SvgMore,
+  SvgNew,
+  SvgCheckmark,
+} from '../utils';
 import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu';
 import { IconButton } from '../Buttons';

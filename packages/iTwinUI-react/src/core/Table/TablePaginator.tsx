@@ -5,8 +5,6 @@
 import React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/table.css';
-import SvgChevronLeft from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeft';
-import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import { IconButton, Button, DropdownButton } from '../Buttons';
 import { ProgressRadial } from '../ProgressIndicators';
 import { MenuItem } from '../Menu';
@@ -16,6 +14,8 @@ import {
   useTheme,
   useOverflow,
   useContainerWidth,
+  SvgChevronLeft,
+  SvgChevronRight,
 } from '../utils';
 import { TablePaginatorRendererProps } from './Table';
 

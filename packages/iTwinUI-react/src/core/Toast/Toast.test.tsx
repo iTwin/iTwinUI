@@ -10,7 +10,7 @@ import {
   SvgStatusError,
   SvgStatusSuccess,
   SvgStatusWarning,
-} from '@itwin/itwinui-icons-react';
+} from '../utils';
 import userEvent from '@testing-library/user-event';
 
 it('renders the category classes & icons correctly', () => {

@@ -6,7 +6,6 @@ export * from './Popover';
 export * from './Resizer';
 export * from './FocusTrap';
 export * from './InputContainer';
-export * from './icons';
 export * from './WithCSSTransition';
 export * from './MiddleTextTruncation';
 export * from './VirtualScroll';

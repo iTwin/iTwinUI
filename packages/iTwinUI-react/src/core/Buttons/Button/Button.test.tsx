@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import React from 'react';
-import SvgPlaceholder from '@itwin/itwinui-icons-react/cjs/icons/Placeholder';
+import { SvgClose as SvgPlaceholder } from '../../utils';
 import { Button } from './Button';
 
 it('renders default button correctly', () => {

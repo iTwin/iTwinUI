@@ -3,8 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import SvgCalendar from '@itwin/itwinui-icons-react/cjs/icons/Calendar';
-import { Popover } from '../../../utils';
+import { Popover, SvgCalendar } from '../../../utils';
 import { LabeledInput, LabeledInputProps } from '../../../LabeledInput';
 import { DatePicker } from '../../../DatePicker';
 import { IconButton } from '../../../Buttons';

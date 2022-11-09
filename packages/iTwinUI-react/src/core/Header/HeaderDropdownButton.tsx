@@ -5,11 +5,14 @@
 import cx from 'classnames';
 import React from 'react';
 import { DropdownMenu } from '../DropdownMenu';
-import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
-import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
-import { PolymorphicForwardRefComponent, useTheme } from '../utils';
+import {
+  PolymorphicForwardRefComponent,
+  useTheme,
+  useMergedRefs,
+  SvgCaretDownSmall,
+  SvgCaretUpSmall,
+} from '../utils';
 import { DropdownButtonProps } from '../Buttons';
-import { useMergedRefs } from '../utils';
 import { HeaderBasicButton } from './HeaderBasicButton';
 
 export type HeaderDropdownButtonProps = DropdownButtonProps;
@@ -18,8 +21,8 @@ type HeaderDropdownButtonComponent = PolymorphicForwardRefComponent<
   HeaderDropdownButtonProps
 >;
 
-export const HeaderDropdownButton: HeaderDropdownButtonComponent = React.forwardRef(
-  (props, ref) => {
+export const HeaderDropdownButton: HeaderDropdownButtonComponent =
+  React.forwardRef((props, ref) => {
     const { menuItems, className, children, ...rest } = props;
 
     useTheme();
@@ -66,7 +69,6 @@ export const HeaderDropdownButton: HeaderDropdownButtonComponent = React.forward
         </HeaderBasicButton>
       </DropdownMenu>
     );
-  },
-);
+  });
 
 export default HeaderDropdownButton;

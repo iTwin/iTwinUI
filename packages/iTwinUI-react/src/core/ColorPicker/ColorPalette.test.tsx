@@ -7,8 +7,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { ColorPalette } from './ColorPalette';
 import { ColorPicker } from './ColorPicker';
 import { IconButton } from '../Buttons';
-import { ColorValue } from '../utils';
-import { SvgAdd } from '@itwin/itwinui-icons-react';
+import { ColorValue, SvgMore } from '../utils';
 
 it('should render in its most basic state', () => {
   const colors = [
@@ -201,7 +200,7 @@ it('should propagate misc props correctly', () => {
     <ColorPicker>
       <ColorPalette className='test-class' style={{ overflow: 'auto' }}>
         <IconButton className='custom-child'>
-          <SvgAdd />
+          <SvgMore />
         </IconButton>
       </ColorPalette>
     </ColorPicker>,

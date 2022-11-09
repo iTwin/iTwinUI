@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 import cx from 'classnames';
 import React from 'react';
 
@@ -11,6 +10,7 @@ import {
   useTheme,
   StatusIconMap,
   WithCSSTransition,
+  SvgChevronRight,
 } from '../utils';
 import '@itwin/itwinui-css/css/expandable-block.css';
 

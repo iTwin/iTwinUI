@@ -5,7 +5,7 @@
 import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import Select, { SelectProps, SelectMultipleTypeProps } from './Select';
-import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
+import { SvgSmileyHappy } from '../utils';
 import { MenuItem } from '../Menu';
 import userEvent from '@testing-library/user-event';
 

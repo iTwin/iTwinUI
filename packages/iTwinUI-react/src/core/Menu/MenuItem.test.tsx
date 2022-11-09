@@ -5,7 +5,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import MenuItem from './MenuItem';
-import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
+import { SvgSmileyHappy } from '../utils';
 import userEvent from '@testing-library/user-event';
 
 function assertBaseElement(

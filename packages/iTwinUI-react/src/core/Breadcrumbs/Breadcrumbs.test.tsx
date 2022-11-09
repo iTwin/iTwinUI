@@ -7,7 +7,7 @@ import { fireEvent, render } from '@testing-library/react';
 
 import { Breadcrumbs, BreadcrumbsProps } from './Breadcrumbs';
 import { Button } from '../Buttons';
-import { SvgChevronRight, SvgMoreSmall } from '@itwin/itwinui-icons-react';
+import { SvgChevronRight, SvgMore } from '../utils';
 import * as UseOverflow from '../utils/hooks/useOverflow';
 import { IconButton } from '../Buttons/IconButton';
 
@@ -106,7 +106,7 @@ it('should handle overflow when overflowButton is specified', () => {
   const { container } = renderComponent({
     overflowButton: (visibleCount) => (
       <IconButton onClick={onClick(visibleCount)}>
-        <SvgMoreSmall />
+        <SvgMore />
       </IconButton>
     ),
   });

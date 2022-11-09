@@ -7,8 +7,7 @@ import cx from 'classnames';
 import { CarouselContext } from './CarouselContext';
 import { IconButton, IconButtonProps } from '../Buttons';
 import { CarouselDotsList } from './CarouselDotsList';
-import SvgChevronLeft from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeft';
-import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
+import { SvgChevronLeft, SvgChevronRight } from '../utils';
 
 /** Button for switching to previous slide */
 const PreviousButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(

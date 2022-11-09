@@ -4,9 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { render } from '@testing-library/react';
-import SvgPlaceholder from '@itwin/itwinui-icons-react/cjs/icons/Placeholder';
-import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
-import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
+import {
+  SvgMore as SvgPlaceholder,
+  SvgCaretDownSmall,
+  SvgCaretUpSmall,
+} from '../utils';
 
 import HeaderButton from './HeaderButton';
 import { MenuItem } from '../Menu';

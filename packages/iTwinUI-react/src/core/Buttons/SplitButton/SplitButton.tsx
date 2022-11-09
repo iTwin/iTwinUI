@@ -8,10 +8,12 @@ import { Button, ButtonProps } from '../Button';
 import { IconButton } from '../IconButton';
 import { DropdownMenu } from '../../DropdownMenu';
 import { Placement } from 'tippy.js';
-import SvgCaretDownSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretDownSmall';
-import SvgCaretUpSmall from '@itwin/itwinui-icons-react/cjs/icons/CaretUpSmall';
-
-import { PolymorphicForwardRefComponent, useTheme } from '../../utils';
+import {
+  SvgCaretDownSmall,
+  SvgCaretUpSmall,
+  PolymorphicForwardRefComponent,
+  useTheme,
+} from '../../utils';
 import '@itwin/itwinui-css/css/button.css';
 
 export type SplitButtonProps = ButtonProps & {
