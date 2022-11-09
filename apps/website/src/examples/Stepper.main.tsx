@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Button, Wizard } from '@itwin/itwinui-react';
+import { Button, Stepper } from '@itwin/itwinui-react';
 
 export default () => {
   const [currentStep, setCurrentStep] = React.useState(2);
@@ -28,7 +28,7 @@ export default () => {
 
   return (
     <div style={{ width: '90%' }}>
-      <Wizard currentStep={currentStep} steps={steps} onStepClick={onStepClick} />
+      <Stepper currentStep={currentStep} steps={steps} onStepClick={onStepClick} />
       <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginTop: '24px' }}>
         <Button size='small' onClick={previousStepHandler}>
           Previous

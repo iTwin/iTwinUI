@@ -51,8 +51,8 @@ const defaultStepperLocalization: StepperLocalization = {
     `Step ${currentStep} of ${totalSteps}:`,
 };
 
-export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
-  (props, ref) => {
+export const Stepper = React.forwardRef(
+  (props: StepperProps, ref: React.Ref<HTMLDivElement>) => {
     const {
       currentStep,
       steps,

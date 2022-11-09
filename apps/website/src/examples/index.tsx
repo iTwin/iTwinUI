@@ -59,4 +59,4 @@ export { default as TileMainExample } from './Tile.main';
 export { default as TooltipMainExample } from './Tooltip.main';
 export { default as TooltipStaticExample } from './Tooltip.static';
 export { default as TreeMainExample } from './Tree.main';
-export { default as WizardMainExample } from './Wizard.main';
+export { default as StepperMainExample } from './Stepper.main';
