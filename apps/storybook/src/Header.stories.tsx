@@ -47,6 +47,9 @@ export default {
     className: { control: { disable: true } },
     id: { control: { disable: true } },
   },
+  args: {
+    isSlim: false,
+  },
 } as Meta<HeaderProps>;
 
 const buildClickHandler =
@@ -263,6 +266,11 @@ export const Basic: Story<HeaderProps> = (args) => {
       ]}
     />
   );
+};
+
+export const Slim: Story<HeaderProps> = Basic.bind({});
+Slim.args = {
+  isSlim: true,
 };
 
 export const CenterContent: Story<HeaderProps> = (args) => {

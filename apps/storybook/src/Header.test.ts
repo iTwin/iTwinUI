@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Header', () => {
   const storyPath = 'Core/Header';
-  const tests = ['Basic', 'Center Content', 'Full'];
+  const tests = ['Basic', 'Slim', 'Center Content', 'Full'];
 
   tests.forEach((testName) => {
     it(testName, function () {

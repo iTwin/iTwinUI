@@ -44,7 +44,8 @@ it('renders isSlim correctly', () => {
     <Header appLogo={<div>AppTitle</div>} isSlim={true} />,
   );
 
-  expect(container.querySelector('.iui-page-header.iui-slim')).toBeTruthy();
+  const header = container.querySelector('.iui-page-header');
+  expect(header).toHaveAttribute('data-iui-size', 'slim');
 });
 
 it('renders breadcrumbs correctly', () => {
