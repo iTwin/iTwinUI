@@ -12,6 +12,9 @@ module.exports = [
   scenario('Type submenu', {
     selectors: ['#demo-side-navigation-submenu'],
   }),
+  scenario('Type submenu & active', {
+    selectors: ['#demo-side-navigation-submenu-active'],
+  }),
 
   // Hover & focus states
   scenario('State collapsed hover and focus', {
