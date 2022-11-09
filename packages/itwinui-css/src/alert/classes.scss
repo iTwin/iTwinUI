@@ -6,12 +6,12 @@
   @include iui-alert;
 
   @each $status in informational, positive, warning, negative {
-    &:where([data-iui-variant='#{$status}']) {
+    &:where([data-iui-status='#{$status}']) {
       @include iui-alert-category($statusColor: $status);
     }
   }
 
-  &:where([data-iui-sticky='true']) {
+  &:where([data-iui-variant='sticky']) {
     @include iui-alert-sticky;
   }
 }
