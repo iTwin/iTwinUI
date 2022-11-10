@@ -24,6 +24,7 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
     @include iui-icon-style('l');
     margin: 0;
     border-radius: var(--iui-border-radius-1);
+    box-shadow: inset 0 0 0 2px hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
   }
 
   &.iui-scroll {
