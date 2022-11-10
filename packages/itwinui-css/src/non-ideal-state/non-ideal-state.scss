@@ -4,7 +4,6 @@
 @import '../text/mixins';
 
 @mixin iui-non-ideal-state {
-  @include iui-reset;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,41 +14,39 @@
   top: 40%;
   min-width: 220px;
   transform: translate(-50%, -40%);
+}
 
-  > .iui-non-ideal-state-illustration {
-    max-width: 220px;
-    max-height: 242px;
-    margin-bottom: var(--iui-size-l);
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+@mixin iui-non-ideal-state-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--iui-size-3xl) * 3);
+  height: calc(var(--iui-size-3xl) * 2);
+}
 
-  > .iui-non-ideal-state-title {
+@mixin iui-non-ideal-state-text($type) {
+  @if $type == 'title' {
     @include iui-text(headline);
-    @include iui-text-block-spacing;
   }
-
-  > .iui-non-ideal-state-description {
+  @if $type == 'description' {
     @include iui-text(body);
-    @include iui-text-block-spacing;
+  }
+  @include iui-text-block-spacing;
+}
+
+@mixin iui-non-ideal-state-actions {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--iui-size-xs);
+
+  > .iui-input-container {
+    display: inline-block;
+    width: 200px;
+    text-align: left;
+    margin: 0 var(--iui-size-2xs) 0 0;
   }
 
-  > .iui-non-ideal-state-actions {
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--iui-size-xs);
-
-    > .iui-input-container {
-      display: inline-block;
-      width: 200px;
-      text-align: left;
-      margin: 0 var(--iui-size-2xs) 0 0;
-    }
-
-    > .iui-button {
-      margin: 0 var(--iui-size-2xs);
-    }
+  > .iui-button {
+    margin: 0 var(--iui-size-2xs);
   }
 }

@@ -5,3 +5,19 @@
 .iui-non-ideal-state {
   @include iui-non-ideal-state;
 }
+
+.iui-non-ideal-state-illustration {
+  @include iui-non-ideal-state-illustration;
+}
+
+.iui-non-ideal-state-title {
+  @include iui-non-ideal-state-text('title');
+}
+
+.iui-non-ideal-state-description {
+  @include iui-non-ideal-state-text('description');
+}
+
+.iui-non-ideal-state-actions {
+  @include iui-non-ideal-state-actions;
+}
