@@ -16,10 +16,9 @@ export type HeadlineProps = {
 } & React.HTMLAttributes<HTMLHeadingElement>;
 
 /**
- * The biggest title on the page, renders a h1 element
+ * @deprecated Since v2, use `Text` with variant 'headline'.
  * @example
- * <Headline>I'm a headline!</Headline>
- * <Headline isMuted>I'm a muted headline.</Headline>
+ * <Text variant='headline' as='h1'>I'm a headline!</Text>
  */
 export const Headline = React.forwardRef(
   (props: HeadlineProps, ref: React.RefObject<HTMLHeadingElement>) => {

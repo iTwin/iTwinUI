@@ -20,6 +20,10 @@ export default {
     style: { control: { disable: true } },
     id: { control: { disable: true } },
     title: { control: { disable: true } },
+    variant: {
+      control: 'radio',
+      options: ['small', 'body', 'leading', 'subheading', 'title', 'headline'],
+    },
   },
 } as Meta<TextProps>;
 
@@ -30,6 +34,24 @@ const TextStory: Story<TextProps> = (args) => {
 
 export const Basic: Story<TextProps> = TextStory.bind({});
 Basic.args = {} as TextProps;
+
+export const Body: Story<TextProps> = TextStory.bind({});
+Body.args = { variant: 'body', as: 'p' } as TextProps<'p'>;
+
+export const Small: Story<TextProps> = TextStory.bind({});
+Small.args = { variant: 'small', as: 'small' } as TextProps<'small'>;
+
+export const Leading: Story<TextProps> = TextStory.bind({});
+Leading.args = { variant: 'leading', as: 'h4' } as TextProps<'h4'>;
+
+export const Subheading: Story<TextProps> = TextStory.bind({});
+Subheading.args = { variant: 'subheading', as: 'h3' } as TextProps<'h3'>;
+
+export const Title: Story<TextProps> = TextStory.bind({});
+Title.args = { variant: 'title', as: 'h2' } as TextProps<'h2'>;
+
+export const Headline: Story<TextProps> = TextStory.bind({});
+Headline.args = { variant: 'headline', as: 'h1' } as TextProps<'h1'>;
 
 export const Polymorphic: Story<TextProps<'h4'>> = ({ children, ...rest }) => {
   return (

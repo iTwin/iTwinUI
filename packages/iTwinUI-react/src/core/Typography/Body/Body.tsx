@@ -7,6 +7,9 @@ import React from 'react';
 import { useTheme } from '../../utils';
 import '@itwin/itwinui-css/css/text.css';
 
+/**
+ * @deprecated Since v2, use `Text` with variant 'body'.
+ */
 export type BodyProps = {
   /**
    * Set text to muted.
@@ -21,10 +24,9 @@ export type BodyProps = {
 } & React.HTMLAttributes<HTMLParagraphElement>;
 
 /**
- * Body text, renders a paragraph element
+ * @deprecated Since v2, use `Text` with variant 'body'.
  * @example
- * <Body>I'm some body text!</Body>
- * <Body isMuted>I'm some muted body text.</Body>
+ * <Text variant='body' as='p'>I'm some body text!</Text>
  */
 export const Body = React.forwardRef(
   (props: BodyProps, ref: React.RefObject<HTMLParagraphElement>) => {

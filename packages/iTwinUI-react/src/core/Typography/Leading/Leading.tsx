@@ -16,10 +16,9 @@ export type LeadingProps = {
 } & React.HTMLAttributes<HTMLHeadingElement>;
 
 /**
- * The third biggest title on the page, renders a h3 element
+ * @deprecated Since v2, use `Text` with variant 'leading'.
  * @example
- * <Leading>I'm a Leading!</Leading>
- * <Leading isMuted>I'm a muted Leading.</Leading>
+ * <Text variant='leading' as='h3'>I'm a leading!</Text>
  */
 export const Leading = React.forwardRef(
   (props: LeadingProps, ref: React.RefObject<HTMLHeadingElement>) => {

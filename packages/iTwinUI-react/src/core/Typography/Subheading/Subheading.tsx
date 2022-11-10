@@ -16,10 +16,9 @@ export type SubheadingProps = {
 } & React.HTMLAttributes<HTMLHeadingElement>;
 
 /**
- * The third biggest title on the page, renders a h3 element
+ * @deprecated Since v2, use `Text` with variant 'subheading'.
  * @example
- * <Subheading>I'm a subheading!</Subheading>
- * <Subheading isMuted>I'm a muted subheading.</Subheading>
+ * <Text variant='subheading' as='h3'>I'm a subheading!</Text>
  */
 export const Subheading = React.forwardRef(
   (props: SubheadingProps, ref: React.RefObject<HTMLHeadingElement>) => {

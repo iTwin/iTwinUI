@@ -45,6 +45,8 @@ type TextComponent = PolymorphicForwardRefComponent<'div', TextOwnProps>;
 
 /**
  * Polymorphic typography component to render any kind of text as any kind of element.
+ * Users should decide which element to render based on the context of their app. Link to heading levels docs: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#accessibility_concerns
+ *
  * @example
  * <Text>Some normal paragraph text rendered as a div</Text>
  * @example

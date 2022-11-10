@@ -4,7 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Text', () => {
   const storyPath = 'Typography/Text';
-  const tests = ['Basic', 'Polymorphic', 'Skeleton'];
+  const tests = [
+    'Basic',
+    'Body',
+    'Small',
+    'Leading',
+    'Subheading',
+    'Title',
+    'Headline',
+    'Polymorphic',
+    'Skeleton',
+  ];
 
   tests.forEach((testName) => {
     it(testName, function () {
