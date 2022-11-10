@@ -70,7 +70,9 @@ export const Alert = (props: AlertProps) => {
 
   return (
     <div
-      className={cx(`iui-alert-${type}`, { 'iui-sticky': isSticky }, className)}
+      className={cx('iui-alert', className)}
+      data-iui-status={type}
+      data-iui-variant={isSticky ? 'sticky' : undefined}
       style={style}
       {...rest}
     >

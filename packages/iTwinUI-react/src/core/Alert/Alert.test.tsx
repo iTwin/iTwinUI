@@ -10,7 +10,7 @@ import { Alert } from './Alert';
 it('renders correctly in its default state', () => {
   const { container } = render(<Alert>This is an alert.</Alert>);
 
-  expect(container.querySelector('.iui-alert-informational')).toBeTruthy();
+  expect(container.querySelector('.iui-alert')).toBeTruthy();
   expect(container.querySelector('.iui-alert-icon')).toBeTruthy();
   const message = container.querySelector('.iui-alert-message') as HTMLElement;
   expect(message).toBeTruthy();
@@ -30,7 +30,7 @@ it('renders clickable text with href correctly', () => {
     </Alert>,
   );
 
-  expect(container.querySelector('.iui-alert-informational')).toBeTruthy();
+  expect(container.querySelector('.iui-alert')).toBeTruthy();
   expect(container.querySelector('.iui-alert-icon')).toBeTruthy();
   const link = container.querySelector(
     '.iui-alert-message > .iui-alert-link',
@@ -49,9 +49,7 @@ it('takes a className and style correctly', () => {
     </Alert>,
   );
 
-  const alert = container.querySelector(
-    '.iui-alert-informational',
-  ) as HTMLElement;
+  const alert = container.querySelector('.iui-alert') as HTMLElement;
   expect(alert).toBeTruthy();
   expect(alert.className).toContain('custom-alert');
   expect(alert.style.width).toBe('100px');
@@ -63,16 +61,17 @@ it('renders sticky alert correctly', () => {
     <Alert isSticky>This is sticky alert.</Alert>,
   );
 
-  const alert = container.querySelector(
-    '.iui-alert-informational.iui-sticky',
-  ) as HTMLElement;
+  const alert = container.querySelector('.iui-alert') as HTMLElement;
   expect(alert).toBeTruthy();
+  expect(alert).toHaveAttribute('data-iui-variant', 'sticky');
   getByText('This is sticky alert.');
 });
 
-(['informational', 'positive', 'warning', 'negative'] as Array<
-  'informational' | 'positive' | 'warning' | 'negative'
->).forEach((type) => {
+(
+  ['informational', 'positive', 'warning', 'negative'] as Array<
+    'informational' | 'positive' | 'warning' | 'negative'
+  >
+).forEach((type) => {
   it(`renders ${type} correctly`, () => {
     const closeMock = jest.fn();
     const { container, getByText } = render(
@@ -80,7 +79,9 @@ it('renders sticky alert correctly', () => {
         This is an alert.
       </Alert>,
     );
-    expect(container.querySelector(`.iui-alert-${type}`)).toBeTruthy();
+    const alert = container.querySelector('.iui-alert') as HTMLElement;
+    expect(alert).toBeTruthy();
+    expect(alert).toHaveAttribute('data-iui-status', `${type}`);
     expect(container.querySelector(`.iui-alert-icon`)).toBeTruthy();
     expect(
       container.querySelector('.iui-alert-message > .iui-alert-link'),
