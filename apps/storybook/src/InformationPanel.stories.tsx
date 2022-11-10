@@ -320,7 +320,7 @@ export const CustomWidth: Story<InformationPanelProps> = (args) => {
     <InformationPanelWrapper style={{ height: '80vh', width: '90%' }}>
       <div
         style={{
-          backgroundColor: 'var(--iui-color-background-4)',
+          backgroundColor: 'var(--iui-color-background-disabled)',
           padding: 16,
           height: '100%',
           boxSizing: 'border-box',

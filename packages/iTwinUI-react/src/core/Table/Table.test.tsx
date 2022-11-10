@@ -721,10 +721,10 @@ it('should display correct sort icons for ascending first', async () => {
   });
   const {
     container: { firstChild: sortUpIcon },
-  } = render(<SvgSortUp className='iui-icon iui-table-sort' aria-hidden />);
+  } = render(<SvgSortUp className='iui-table-sort' aria-hidden />);
   const {
     container: { firstChild: sortDownIcon },
-  } = render(<SvgSortDown className='iui-icon iui-table-sort' aria-hidden />);
+  } = render(<SvgSortDown className='iui-table-sort' aria-hidden />);
   const nameHeader = container.querySelector(
     '.iui-table-header .iui-table-cell',
   ) as HTMLDivElement;
@@ -774,10 +774,10 @@ it('should display correct sort icons for descending first', async () => {
   });
   const {
     container: { firstChild: sortUpIcon },
-  } = render(<SvgSortUp className='iui-icon iui-table-sort' aria-hidden />);
+  } = render(<SvgSortUp className='iui-table-sort' aria-hidden />);
   const {
     container: { firstChild: sortDownIcon },
-  } = render(<SvgSortDown className='iui-icon iui-table-sort' aria-hidden />);
+  } = render(<SvgSortDown className='iui-table-sort' aria-hidden />);
   const nameHeader = container.querySelector(
     '.iui-table-header .iui-table-cell',
   ) as HTMLDivElement;

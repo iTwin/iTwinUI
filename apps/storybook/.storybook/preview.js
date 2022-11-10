@@ -37,10 +37,13 @@ export const parameters = {
   controls: { sort: 'requiredFirst' },
   backgrounds: {
     grid: { disable: true },
-    default: 'background-2',
+    default: 'background-backdrop',
     values: [
-      { name: 'background-1', value: 'var(--iui-color-background-1)' },
-      { name: 'background-2', value: 'var(--iui-color-background-2)' },
+      { name: 'background', value: 'var(--iui-color-background, #fff)' },
+      {
+        name: 'background-backdrop',
+        value: 'var(--iui-color-background-backdrop, #eef0f1)',
+      },
     ],
   },
 };

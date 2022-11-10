@@ -907,12 +907,12 @@ export const Table = <
                                 {column.isSortedDesc ||
                                 (!column.isSorted && column.sortDescFirst) ? (
                                   <SvgSortDown
-                                    className='iui-icon iui-table-sort'
+                                    className='iui-table-sort'
                                     aria-hidden
                                   />
                                 ) : (
                                   <SvgSortUp
-                                    className='iui-icon iui-table-sort'
+                                    className='iui-table-sort'
                                     aria-hidden
                                   />
                                 )}

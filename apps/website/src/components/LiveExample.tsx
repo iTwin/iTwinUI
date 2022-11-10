@@ -85,7 +85,7 @@ export default ({ code = '', staticComponent, ...rest }: Props) => {
         }}
         customSetup={{
           dependencies: {
-            '@itwin/itwinui-react': 'latest',
+            '@itwin/itwinui-react': 'dev',
           },
         }}
         id={id}

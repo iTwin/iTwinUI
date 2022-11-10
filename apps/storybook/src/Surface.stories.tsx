@@ -19,13 +19,13 @@ export default {
   title: 'Core/Surface',
 } as Meta<SurfaceProps>;
 
-export const Basic: Story<SurfaceProps> = ({ elevation = 0 }) => {
+export const Basic: Story<SurfaceProps> = ({ elevation }) => {
   const cardStyle = {
     height: '100px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '11px 12px',
+    padding: '12px',
   };
   return (
     <Surface elevation={elevation} style={cardStyle}>
@@ -38,4 +38,4 @@ export const Basic: Story<SurfaceProps> = ({ elevation = 0 }) => {
   );
 };
 
-Basic.args = { elevation: 0 };
+Basic.args = { elevation: 1 };

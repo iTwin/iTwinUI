@@ -167,7 +167,7 @@ export const Submenu: Story<SideNavigationProps> = (args) => {
       />
       <div
         style={{
-          background: 'var(--iui-color-background-5)',
+          background: 'var(--iui-color-background-disabled)',
           padding: 16,
           flexGrow: 1,
           display: 'grid',
