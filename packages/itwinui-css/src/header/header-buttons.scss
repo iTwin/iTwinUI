@@ -87,7 +87,7 @@
   // Active state
   &[aria-current] {
     background-color: var(--iui-color-background-accent-muted);
-    box-shadow: 0 var(--iui-size-3xs) 0 0 currentColor;
+    box-shadow: 0 2px 0 0 var(--iui-color-border-accent);
     color: var(--iui-color-text-accent);
     @media (forced-colors: active) {
       color: LinkText;
@@ -268,6 +268,8 @@
     img#{&},
     div#{&} {
       padding: 0;
+      outline: 2px solid hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
+      outline-offset: -2px;
       transition: filter var(--iui-duration-1) ease-out;
       @media (prefers-reduced-motion: no-preference) {
         transition: filter var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
