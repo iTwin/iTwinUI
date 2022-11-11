@@ -7,7 +7,8 @@
 @use './duration' as *;
 @use './colors';
 
-@mixin common {
+// global vars shared between all themes
+:root {
   @include spacing;
   @include component-heights;
   @include border-radii;
@@ -18,14 +19,7 @@
   @include colors.unthemed;
 }
 
-:root {
-  // global vars shared between all themes
-  @include common;
-
-  // default to light theme if data attribute not set anywhere
-  @include themes.light-theme;
-}
-
+:root, // default to light theme on :root if data attribute not set
 [data-iui-theme='light'] {
   @include themes.light-theme;
 

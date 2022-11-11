@@ -9,7 +9,7 @@
     @include iui-notification-marker-urgent;
   }
 
-  @each $status in positive, warning, negative, white {
+  @each $status in positive, warning, negative, 'white' {
     &[data-iui-variant='#{$status}'] {
       @include iui-notification-marker-status($status);
     }
