@@ -5,6 +5,10 @@
   "license": "MIT",
   "main": "index.css",
   "style": "index.css",
+  "exports": {
+    ".": "./index.css",
+    "./*": "./*"
+  },
   "files": [
     "index.css",
     "os.css",
