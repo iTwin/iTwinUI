@@ -2,6 +2,7 @@ import { defineConfig, type Plugin } from 'vite';
 import fs from 'fs';
 import { resolve } from 'path';
 import { minify } from 'html-minifier';
+import * as lightningCss from 'lightningcss';
 
 export default defineConfig({
   base: './',
@@ -17,10 +18,7 @@ export default defineConfig({
       },
     },
   },
-  css: {
-    postcss: { plugins: [require('autoprefixer')] }
-  },
-  plugins: [generateIndex(), addMetaTags(), minifyHtml()],
+  plugins: [lightningCssPlugin(), generateIndex(), addMetaTags(), minifyHtml()],
   server: {
     open: true,
   },
@@ -100,4 +98,33 @@ function getComponentList() {
   return fs
     .readdirSync(new URL('./backstop/tests', import.meta.url))
     .flatMap((file) => (file.endsWith('.html') ? [file.split('.')[0]] : []));
+}
+
+function lightningCssPlugin(): Plugin {
+  const queryWhitelist = ['direct'];
+  const matcherRegex = new RegExp(
+    `\\.css\\??(?:${queryWhitelist.join('|')})?$`,
+    'i'
+  );
+  return {
+    name: 'lightning-css',
+    transform(css, id) {
+      if (!matcherRegex.test(id)) {
+        return;
+      }
+
+      try {
+        const { code } = lightningCss.transform({
+          minify: true,
+          sourceMap: false,
+          code: Buffer.from(css),
+          filename: id,
+          targets: require('./scripts/lightningCssSettings').targets
+        });
+        return code.toString('utf8');
+      } catch {
+        return css;
+      }
+    },
+  };
 }
