@@ -2,30 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-[data-iui-icon-size='s'] {
-  @include iui-icon-style('s');
-}
-
-[data-iui-icon-size='m'] {
-  @include iui-icon-style('m');
-}
-
-[data-iui-icon-size='l'] {
-  @include iui-icon-style('l');
-}
-
-[data-iui-icon-size='xl'] {
-  @include iui-icon-style('xl');
-}
-
-[data-iui-icon-size='2xl'] {
-  @include iui-icon-style(2xl);
-}
-
-[data-iui-icon-size='3xl'] {
-  @include iui-icon-style(3xl);
-}
-
 [data-iui-icon-color='default'] {
   @include iui-icon-color;
 }
