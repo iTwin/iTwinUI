@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-describe('ErrorPage', () => {
-  const storyPath = 'Core/ErrorPage';
+describe('NonIdealState', () => {
+  const storyPath = 'Core/NonIdealState';
   const tests = [
     'Bad Gateway',
     'Page Not Found',
@@ -13,7 +13,6 @@ describe('ErrorPage', () => {
     'Unauthorized',
     'Custom Html Message',
     'Generic',
-    'Translated Messages',
     'Without Message Or Buttons',
   ];
 

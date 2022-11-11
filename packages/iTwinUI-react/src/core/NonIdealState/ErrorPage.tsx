@@ -2,21 +2,23 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import Svg401 from '@itwin/itwinui-illustrations-react/cjs/illustrations/401';
-import Svg403 from '@itwin/itwinui-illustrations-react/cjs/illustrations/403';
-import Svg404 from '@itwin/itwinui-illustrations-react/cjs/illustrations/404';
-import Svg500 from '@itwin/itwinui-illustrations-react/cjs/illustrations/500';
-import Svg502 from '@itwin/itwinui-illustrations-react/cjs/illustrations/502';
-import Svg503 from '@itwin/itwinui-illustrations-react/cjs/illustrations/503';
-import SvgError from '@itwin/itwinui-illustrations-react/cjs/illustrations/Error';
-import SvgRedirect from '@itwin/itwinui-illustrations-react/cjs/illustrations/Redirect';
-import SvgTimedOut from '@itwin/itwinui-illustrations-react/cjs/illustrations/TimedOut';
 import React from 'react';
 import { Button } from '../Buttons/Button';
-import { CommonProps, useTheme } from '../utils';
-import cx from 'classnames';
-import '@itwin/itwinui-css/css/non-ideal-state.css';
+import { NonIdealState } from './NonIdealState';
+import { CommonProps } from '../utils';
+import {
+  Svg401,
+  Svg403,
+  Svg404,
+  Svg500,
+  Svg502,
+  Svg503,
+  SvgError,
+  SvgRedirect,
+  SvgTimedOut,
+} from '@itwin/itwinui-illustrations-react';
 
+/** @deprecated Use `NonIdealState` instead. */
 export type ErrorPageType =
   | '300'
   | '301'
@@ -36,6 +38,7 @@ export type ErrorPageType =
   | '504'
   | 'generic';
 
+/** @deprecated Use `NonIdealState` instead. */
 export type ErrorTypeTranslations = {
   badGateway: string;
   error: string;
@@ -48,6 +51,7 @@ export type ErrorTypeTranslations = {
   unauthorized: string;
 };
 
+/** @deprecated Use `NonIdealState` instead. */
 export type ErrorPageProps = {
   /**
    * Type of error controls image and default text
@@ -93,6 +97,8 @@ export type ErrorPageProps = {
 } & Omit<CommonProps, 'title'>;
 
 /**
+ * @deprecated Use `NonIdealState` instead for a smaller client bundle.
+ *
  * A stylized display to communicate common http errors.
  * @example
  * <ErrorPage errorType='401' />
@@ -107,11 +113,8 @@ export const ErrorPage = (props: ErrorPageProps): JSX.Element => {
     secondaryButtonHandle,
     secondaryButtonLabel,
     translatedErrorMessages,
-    className,
     ...rest
   } = props;
-
-  useTheme();
 
   const defaultErrorMessages = {
     badGateway: 'Bad gateway',
@@ -136,33 +139,33 @@ export const ErrorPage = (props: ErrorPageProps): JSX.Element => {
       case '305':
       case '307':
       case '308': {
-        return <SvgRedirect className='iui-non-ideal-state-illustration' />;
+        return <SvgRedirect />;
       }
       case '401': {
-        return <Svg401 className='iui-non-ideal-state-illustration' />;
+        return <Svg401 />;
       }
       case '403': {
-        return <Svg403 className='iui-non-ideal-state-illustration' />;
+        return <Svg403 />;
       }
       case '404': {
-        return <Svg404 className='iui-non-ideal-state-illustration' />;
+        return <Svg404 />;
       }
       case '408':
       case '504': {
-        return <SvgTimedOut className='iui-non-ideal-state-illustration' />;
+        return <SvgTimedOut />;
       }
       case '500': {
-        return <Svg500 className='iui-non-ideal-state-illustration' />;
+        return <Svg500 />;
       }
       case '502': {
-        return <Svg502 className='iui-non-ideal-state-illustration' />;
+        return <Svg502 />;
       }
       case '503': {
-        return <Svg503 className='iui-non-ideal-state-illustration' />;
+        return <Svg503 />;
       }
       case 'generic':
       default: {
-        return <SvgError className='iui-non-ideal-state-illustration' />;
+        return <SvgError />;
       }
     }
   }
@@ -243,22 +246,21 @@ export const ErrorPage = (props: ErrorPageProps): JSX.Element => {
     }
 
     return (
-      <div className='iui-non-ideal-state-actions'>
+      <>
         {primaryButton}
         {secondaryButton}
-      </div>
+      </>
     );
   }
 
   return (
-    <div className={cx('iui-non-ideal-state', className)} {...rest}>
-      {getErrorIcon()}
-      <div className='iui-non-ideal-state-title'>{getHeadingMessage()}</div>
-      {errorMessage && (
-        <div className='iui-non-ideal-state-description'>{errorMessage}</div>
-      )}
-      {getActions()}
-    </div>
+    <NonIdealState
+      svg={getErrorIcon()}
+      heading={getHeadingMessage()}
+      description={errorMessage}
+      actions={getActions()}
+      {...rest}
+    />
   );
 };
 

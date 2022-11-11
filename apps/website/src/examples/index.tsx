@@ -24,7 +24,7 @@ export { default as DialogStaticExample } from './Dialog.static';
 export { default as DialogMainExample } from './Dialog.main';
 export { default as DropdownMenuMainExample } from './DropdownMenu.main';
 export { default as DropdownMenuStaticExample } from './DropdownMenu.static';
-export { default as ErrorPageMainExample } from './ErrorPage.main';
+export { default as NonIdealStateMainExample } from './NonIdealState.main';
 export { default as ExpandableBlockMainExample } from './ExpandableBlock.main';
 export { default as FieldsetMainExample } from './Fieldset.main';
 export { default as FileUploadMainExample } from './FileUpload.main';

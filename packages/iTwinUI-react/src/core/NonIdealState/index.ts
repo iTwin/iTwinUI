@@ -8,4 +8,7 @@ export type {
   ErrorPageType,
   ErrorTypeTranslations,
 } from './ErrorPage';
-export default './ErrorPage';
+
+export { NonIdealState } from './NonIdealState';
+export type { NonIdealStateProps } from './NonIdealState';
+export default './NonIdealState';

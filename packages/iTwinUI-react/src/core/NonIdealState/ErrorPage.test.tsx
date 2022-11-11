@@ -5,122 +5,104 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { ErrorPage, ErrorPageType } from './ErrorPage';
-import Svg401 from '@itwin/itwinui-illustrations-react/cjs/illustrations/401';
-import Svg403 from '@itwin/itwinui-illustrations-react/cjs/illustrations/403';
-import Svg404 from '@itwin/itwinui-illustrations-react/cjs/illustrations/404';
-import Svg500 from '@itwin/itwinui-illustrations-react/cjs/illustrations/500';
-import Svg502 from '@itwin/itwinui-illustrations-react/cjs/illustrations/502';
-import Svg503 from '@itwin/itwinui-illustrations-react/cjs/illustrations/503';
-import SvgError from '@itwin/itwinui-illustrations-react/cjs/illustrations/Error';
-import SvgRedirect from '@itwin/itwinui-illustrations-react/cjs/illustrations/Redirect';
-import SvgTimedOut from '@itwin/itwinui-illustrations-react/cjs/illustrations/TimedOut';
+import {
+  Svg401,
+  Svg403,
+  Svg404,
+  Svg500,
+  Svg502,
+  Svg503,
+  SvgError,
+  SvgRedirect,
+  SvgTimedOut,
+} from '@itwin/itwinui-illustrations-react';
 
 describe(ErrorPage, () => {
   const defaultTests = [
     {
       errorType: '300',
       errorName: 'Redirect',
-      illustration: (
-        <SvgRedirect className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgRedirect />,
     },
     {
       errorType: '301',
       errorName: 'Redirect',
-      illustration: (
-        <SvgRedirect className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgRedirect />,
     },
     {
       errorType: '302',
       errorName: 'Redirect',
-      illustration: (
-        <SvgRedirect className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgRedirect />,
     },
     {
       errorType: '303',
       errorName: 'Redirect',
-      illustration: (
-        <SvgRedirect className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgRedirect />,
     },
     {
       errorType: '304',
       errorName: 'Redirect',
-      illustration: (
-        <SvgRedirect className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgRedirect />,
     },
     {
       errorType: '305',
       errorName: 'Redirect',
-      illustration: (
-        <SvgRedirect className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgRedirect />,
     },
     {
       errorType: '307',
       errorName: 'Redirect',
-      illustration: (
-        <SvgRedirect className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgRedirect />,
     },
     {
       errorType: '308',
       errorName: 'Redirect',
-      illustration: (
-        <SvgRedirect className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgRedirect />,
     },
     {
       errorType: '401',
       errorName: 'Unauthorized',
-      illustration: <Svg401 className='iui-non-ideal-state-illustration' />,
+      illustration: <Svg401 />,
     },
     {
       errorType: '403',
       errorName: 'Forbidden',
-      illustration: <Svg403 className='iui-non-ideal-state-illustration' />,
+      illustration: <Svg403 />,
     },
     {
       errorType: '404',
       errorName: 'Page not found',
-      illustration: <Svg404 className='iui-non-ideal-state-illustration' />,
+      illustration: <Svg404 />,
     },
     {
       errorType: '408',
       errorName: 'Timed out',
-      illustration: (
-        <SvgTimedOut className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgTimedOut />,
     },
     {
       errorType: '500',
       errorName: 'Internal server error',
-      illustration: <Svg500 className='iui-non-ideal-state-illustration' />,
+      illustration: <Svg500 />,
     },
     {
       errorType: '502',
       errorName: 'Bad gateway',
-      illustration: <Svg502 className='iui-non-ideal-state-illustration' />,
+      illustration: <Svg502 />,
     },
     {
       errorType: '503',
       errorName: 'Service unavailable',
-      illustration: <Svg503 className='iui-non-ideal-state-illustration' />,
+      illustration: <Svg503 />,
     },
     {
       errorType: '504',
       errorName: 'Timed out',
-      illustration: (
-        <SvgTimedOut className='iui-non-ideal-state-illustration' />
-      ),
+      illustration: <SvgTimedOut />,
     },
     {
       errorType: 'generic',
       errorName: 'Error',
-      illustration: <SvgError className='iui-non-ideal-state-illustration' />,
+      illustration: <SvgError />,
     },
   ] as {
     errorType: ErrorPageType;
@@ -132,11 +114,14 @@ describe(ErrorPage, () => {
     it(`displays ${test.errorType} error with default message`, () => {
       const { container } = render(<ErrorPage errorType={test.errorType} />);
       screen.getByText(test.errorName);
+
       const {
         container: { firstChild: illustration },
       } = render(test.illustration);
+
       expect(
-        container.querySelector('.iui-non-ideal-state-illustration'),
+        container.querySelector('.iui-non-ideal-state-illustration')
+          ?.firstElementChild,
       ).toEqual(illustration);
     });
   });
