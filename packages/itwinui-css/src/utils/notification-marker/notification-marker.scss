@@ -62,7 +62,7 @@ $iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cuto
 }
 
 @mixin iui-notification-marker-status($status: informational) {
-  @if $status == white {
+  @if $status == 'white' {
     --_iui-notification-marker-color: var(--iui-color-#{$status});
   } @else {
     --_iui-notification-marker-color: var(--iui-color-icon-#{$status});

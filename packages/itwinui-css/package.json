@@ -9,6 +9,12 @@
     "CHANGELOG.md",
     "LICENSE.md"
   ],
+  "exports": {
+    ".": "./css/all.css",
+    "./all": "./css/all.css",
+    "./global": "./css/global.css",
+    "./*": "./*"
+  },
   "description": "CSS library for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications.",
   "homepage": "https://github.com/iTwin/iTwinUI",
   "keywords": [
