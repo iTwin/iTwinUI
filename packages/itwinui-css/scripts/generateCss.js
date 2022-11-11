@@ -5,7 +5,8 @@
 const fs = require('fs');
 const path = require('path');
 const sass = require('sass-embedded');
-const postcss = require('postcss');
+const css = require('lightningcss');
+const targets = require('./lightningCssSettings').targets;
 
 const { yellow, green, red } = require('./utils');
 
@@ -17,12 +18,16 @@ const ignorePaths = ['.DS_Store', 'style'];
 const compileScss = async (path, outFile) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const cssResult = await sass.compileAsync(path);
-      const processedCssResult = await postcss([
-        require('autoprefixer'),
-        require('postcss-discard-comments'),
-      ]).process(cssResult.css, { from: undefined }); // `from` is required
-      fs.writeFileSync(`${outDir}/${outFile}.css`, processedCssResult.css);
+      const sassOutput = await sass.compileAsync(path);
+
+      const processedOutput = css.transform({
+        filename: `${outFile}.css`,
+        code: Buffer.from(sassOutput.css),
+        minify: true,
+        targets,
+      });
+
+      fs.writeFileSync(`${outDir}/${outFile}.css`, processedOutput.code);
       console.log(` Wrote -> ${outFile}.css`);
       resolve();
     } catch (error) {
