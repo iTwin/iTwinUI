@@ -4,17 +4,18 @@
 $iui-icon-color-multicolor-disabled: grayscale(100%);
 
 $iui-icon-sizes: (
-  s: var(--iui-size-s),
   // 12px
-  m: var(--iui-size-m),
+  s: var(--iui-size-s),
   // 16px
-  l: var(--iui-size-l),
+  m: var(--iui-size-m),
   // 24px
-  xl: var(--iui-size-xl),
+  l: var(--iui-size-l),
   // 32px
-  2xl: calc(3 * var(--iui-size-m)),
+  xl: var(--iui-size-xl),
   // 48px
-  3xl: var(--iui-size-2xl) // 64px,
+  2xl: calc(3 * var(--iui-size-m)),
+  // 64px
+  3xl: var(--iui-size-2xl)
 );
 
 /// @arg $size Can be one of: s, m, l, xl, 2xl
