@@ -4,28 +4,44 @@
 $iui-icon-color-multicolor-disabled: grayscale(100%);
 
 $iui-icon-sizes: (
-  // 12px
   s: var(--iui-size-s),
-  // 16px
+  // 12px
   m: var(--iui-size-m),
+  // 16px
+  l: var(--iui-size-l),
   // 24px
-  l: calc(1.5 * var(--iui-size-m)),
-  // 32px
   xl: var(--iui-size-xl),
-  // 48px
+  // 32px
   2xl: calc(3 * var(--iui-size-m)),
-  // 64px
-  3xl: var(--iui-size-2xl)
+  // 48px
+  3xl: var(--iui-size-2xl) // 64px,
 );
 
-/// @arg $size Can be one of: s, m, l, xl, 2xl, 3xl
-@mixin iui-icon-style($size: 'm') {
+/// @arg $size Can be one of: s, m, l, xl, 2xl
+@mixin iui-icon-style($size) {
+  --iui-icon-size: var(--iui-size-#{$size});
+  @include iui-icon-size;
+}
+
+@mixin iui-icon-size {
+  width: var(--iui-icon-size);
+  height: var(--iui-icon-size);
   display: flex;
   flex-shrink: 0;
+}
 
-  $icon-size: map-get($iui-icon-sizes, $size);
-  width: $icon-size;
-  height: $icon-size;
+@mixin iui-icon-size-definition($size) {
+  --iui-icon-size: var(--iui-size-#{$size});
+}
+
+@mixin iui-icon-inline {
+  --iui-icon-size: 1.143em;
+
+  width: var(--iui-icon-size);
+  height: var(--iui-icon-size);
+  display: inline-flex;
+  flex-shrink: 0;
+  vertical-align: sub;
 }
 
 /// @arg $color Can be one of: default, informational, positive, warning, negative

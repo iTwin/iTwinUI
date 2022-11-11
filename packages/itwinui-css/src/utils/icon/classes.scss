@@ -2,28 +2,28 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
+.iui-icon-inline {
+  @include iui-icon-inline;
+}
+
+[data-iui-icon-size] {
+  @include iui-icon-size;
+}
+
 [data-iui-icon-size='s'] {
-  @include iui-icon-style('s');
+  @include iui-icon-size-definition('s');
 }
 
 [data-iui-icon-size='m'] {
-  @include iui-icon-style('m');
+  @include iui-icon-size-definition('m');
 }
 
 [data-iui-icon-size='l'] {
-  @include iui-icon-style('l');
+  @include iui-icon-size-definition('l');
 }
 
 [data-iui-icon-size='xl'] {
-  @include iui-icon-style('xl');
-}
-
-[data-iui-icon-size='2xl'] {
-  @include iui-icon-style(2xl);
-}
-
-[data-iui-icon-size='3xl'] {
-  @include iui-icon-style(3xl);
+  @include iui-icon-size-definition('xl');
 }
 
 [data-iui-icon-color='default'] {

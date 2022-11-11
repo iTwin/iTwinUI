@@ -17,6 +17,10 @@
   );
   background-size: 200% 100%;
 
+  svg {
+    fill: transparent;
+  }
+
   @media (forced-colors: active) {
     forced-color-adjust: none;
     background: linear-gradient(292deg, CanvasText, CanvasText, Canvas, CanvasText, CanvasText);

@@ -17,6 +17,7 @@
 
     <script type="module">
       import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/placeholder";
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
@@ -26,6 +27,8 @@
         display: flex;
         flex-direction: column;
       }
+
+      .iui-icon-inline { margin-right: .25ch; }
     </style>
   </head>
   <body class="iui-root">
@@ -36,7 +39,7 @@
     <label
       id="skeleton-toggle"
       class="iui-toggle-switch-wrapper iui-label-on-right"
-      style="margin-bottom: 22px;"
+      style="margin-bottom: var(--iui-size-l);"
     >
       <input
         class="iui-toggle-switch"
@@ -48,24 +51,73 @@
 
     <section id="demo-typography">
 
-      <h1 class="iui-text-headline iui-text-spacing">Headline</h1>
+      <h1 class="iui-text-headline iui-text-spacing">
+        <svg-placeholder
+          class="iui-icon-inline"
+          data-iui-icon-color="default"
+          aria-hidden="true"
+        ></svg-placeholder>
+        Headline
+      </h1>
 
-      <h2 class="iui-text-title iui-text-spacing">Title</h2>
+      <h2 class="iui-text-title iui-text-spacing">
+        <svg-placeholder
+          class="iui-icon-inline"
+          data-iui-icon-color="default"
+          aria-hidden="true"
+        ></svg-placeholder>
+        Title
+      </h2>
 
-      <h3 class="iui-text-subheading iui-text-spacing">Subheading</h3>
+      <h3 class="iui-text-subheading iui-text-spacing">
+        <svg-placeholder
+          class="iui-icon-inline"
+          data-iui-icon-color="default"
+          aria-hidden="true"
+        ></svg-placeholder>
+        Subheading
+      </h3>
 
-      <h4 class="iui-text-leading iui-text-spacing">Leading</h4>
+      <h4 class="iui-text-leading iui-text-spacing">
+        <svg-placeholder
+          class="iui-icon-inline"
+          data-iui-icon-color="default"
+          aria-hidden="true"
+        ></svg-placeholder>
+        Leading
+      </h4>
 
-      <p class="iui-text-block iui-text-spacing">Body</p>
+      <p class="iui-text-block iui-text-spacing">
+        <svg-placeholder
+          class="iui-icon-inline"
+          data-iui-icon-color="default"
+          aria-hidden="true"
+        ></svg-placeholder>
+        Body
+      </p>
 
-      <p class="iui-text-block iui-text-muted iui-text-spacing">Muted</p>
+      <p class="iui-text-block iui-text-muted iui-text-spacing">
+        <svg-placeholder
+          class="iui-icon-inline"
+          data-iui-icon-color="default"
+          aria-hidden="true"
+        ></svg-placeholder>
+        Muted
+      </p>
 
-      <p class="iui-text-small iui-text-spacing">Small</p>
+      <p class="iui-text-small iui-text-spacing">
+        <svg-placeholder
+          class="iui-icon-inline"
+          data-iui-icon-color="default"
+          aria-hidden="true"
+        ></svg-placeholder>
+        Small
+      </p>
 
       <!-- Paragraph with no content -->
       <p
         class="iui-text-spacing"
-        style="width: 127.53px; height: 22px;"
+        style="width: 127.53px; height: var(--iui-size-l);"
       ></p>
 
     </section>
