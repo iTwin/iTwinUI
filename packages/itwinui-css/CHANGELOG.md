@@ -1,5 +1,60 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/iTwin/iTwinUI/compare/v0.63.1...v1.0.0) (2022-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add export maps (#809)
+
+### Fixes
+
+* **Button:** Remove `margin-block`, change `line-height`, style `.iui-button-icon`'s child ([#788](https://www.github.com/iTwin/iTwinUI/issues/788)) ([bcc6860](https://www.github.com/iTwin/iTwinUI/commit/bcc6860be1bb2d1d83d45e393e128f9067df321f))
+* **carousel:** Dots are centered ([#779](https://www.github.com/iTwin/iTwinUI/issues/779)) ([271e513](https://www.github.com/iTwin/iTwinUI/commit/271e5138fd9a8f2d9e268090a0a7982fa551d10f))
+* **Checkbox:** Change `outline-width` for visibility checkboxes ([#774](https://www.github.com/iTwin/iTwinUI/issues/774)) ([315ec1b](https://www.github.com/iTwin/iTwinUI/commit/315ec1b9cad0b0630e757e8f40ec7c07e03ab534))
+* **Dialog:** Add `position: fixed` as an option for dialogs ([#739](https://www.github.com/iTwin/iTwinUI/issues/739)) ([b064d83](https://www.github.com/iTwin/iTwinUI/commit/b064d83e626f306cca3e0eb81d092113f5a6a6d6))
+* **Dialog:** Apply z-index on the wrapper ([#787](https://www.github.com/iTwin/iTwinUI/issues/787)) ([416351f](https://www.github.com/iTwin/iTwinUI/commit/416351fc520747058f986c06a19af93a02b58b77))
+* Make dialog positioned and remove unneeded styles ([#773](https://www.github.com/iTwin/iTwinUI/issues/773)) ([4aa8499](https://www.github.com/iTwin/iTwinUI/commit/4aa8499ecbb9a052dfe98086d2b28931b162dadd))
+* **Menu:** Define color on menu item ([#741](https://www.github.com/iTwin/iTwinUI/issues/741)) ([eeb7bff](https://www.github.com/iTwin/iTwinUI/commit/eeb7bffd77ffec1cf3d434ca9d828f894f554c44))
+* **Menu:** Show last element partially in `.iui-scroll` ([#777](https://www.github.com/iTwin/iTwinUI/issues/777)) ([87fe0bd](https://www.github.com/iTwin/iTwinUI/commit/87fe0bd9e012a30e63461d275c800f0b99b58a8c))
+* **NotificationMarker:** Clip icon with `mask` instead of border ([#768](https://www.github.com/iTwin/iTwinUI/issues/768)) ([a33a267](https://www.github.com/iTwin/iTwinUI/commit/a33a2675045d41e538d07f910eee4886beb06513))
+* **Select, ComboBox:** Fix icon to not overlap outline ([#796](https://www.github.com/iTwin/iTwinUI/issues/796)) ([5c3334b](https://www.github.com/iTwin/iTwinUI/commit/5c3334b65f9b89d461ab9d3cf41347cf89fe7ac3))
+* **Slider:** Dynamic resize of rail based on label size ([#764](https://www.github.com/iTwin/iTwinUI/issues/764)) ([e5d150a](https://www.github.com/iTwin/iTwinUI/commit/e5d150a680425db2306ccaa12f3d41b501f97e68))
+* **Slider:** Fixed vertical & horizontal slider icons misalignment ([#761](https://www.github.com/iTwin/iTwinUI/issues/761)) ([023e409](https://www.github.com/iTwin/iTwinUI/commit/023e4090647662acdbfe1df5721a56821ac6a17c))
+* **Stepper:** Use correct color variable for high contrast themes ([#724](https://www.github.com/iTwin/iTwinUI/issues/724)) ([4abae01](https://www.github.com/iTwin/iTwinUI/commit/4abae01e9b113cd3d47c574cde5e8832d983d392))
+* **style:** Updating components height ([#760](https://www.github.com/iTwin/iTwinUI/issues/760)) ([18235cc](https://www.github.com/iTwin/iTwinUI/commit/18235cced44e648f4e8c6d0efdca90cd3cd06f65))
+* **Table:** Changing start icon fill from <svg> tag ([#785](https://www.github.com/iTwin/iTwinUI/issues/785)) ([f103ff5](https://www.github.com/iTwin/iTwinUI/commit/f103ff5f214b7e86ff5b69c45614289d66154fd0))
+* **Table:** Disabled cell with monochrome icon use consistent fill color ([#772](https://www.github.com/iTwin/iTwinUI/issues/772)) ([539f048](https://www.github.com/iTwin/iTwinUI/commit/539f048551cbe6e7e71f90cfe6cb0a4cf946b175))
+* **Table:** Keyboard Navigation Support ([#752](https://www.github.com/iTwin/iTwinUI/issues/752)) ([d22e0af](https://www.github.com/iTwin/iTwinUI/commit/d22e0af7b5e9fbcbe31994dc30b98c70f4ddcbb9))
+* **variables:** Combine `:root` and light theme selector ([#812](https://www.github.com/iTwin/iTwinUI/issues/812)) ([b0be15d](https://www.github.com/iTwin/iTwinUI/commit/b0be15d540ea85749dc60ab41083b04a6671f635))
+
+
+### What's new
+
+* Add export maps ([#809](https://www.github.com/iTwin/iTwinUI/issues/809)) ([51f9a92](https://www.github.com/iTwin/iTwinUI/commit/51f9a92c5bd24f437ad33e0ba5d2459f5c9f904b))
+* **Alert:** Class name & specificity refactor ([#623](https://www.github.com/iTwin/iTwinUI/issues/623)) ([2401551](https://www.github.com/iTwin/iTwinUI/commit/24015519b5ec5d2bb12d003a4169e97db22d9549))
+* **Alert:** Use data attributes ([#803](https://www.github.com/iTwin/iTwinUI/issues/803)) ([b708e95](https://www.github.com/iTwin/iTwinUI/commit/b708e9527bbbca53ef49c3e2c979704145525b3c))
+* All themes meet WCAG contrast score ([#762](https://www.github.com/iTwin/iTwinUI/issues/762)) ([eed9bb4](https://www.github.com/iTwin/iTwinUI/commit/eed9bb4308233bbb32f08115f9268e8f9808e57a))
+* **Button:** Class name & specificity refactor ([#684](https://www.github.com/iTwin/iTwinUI/issues/684)) ([d7186fb](https://www.github.com/iTwin/iTwinUI/commit/d7186fb2e5afb5cd1c511fe54cb0a87876b11265))
+* **Button:** Refactor split button ([#719](https://www.github.com/iTwin/iTwinUI/issues/719)) ([4c18d32](https://www.github.com/iTwin/iTwinUI/commit/4c18d32c61272dc2f37c618fce6887f18198708c))
+* **Header:** Add a border to header button & header menu item thumbnails ([#805](https://www.github.com/iTwin/iTwinUI/issues/805)) ([2572bb8](https://www.github.com/iTwin/iTwinUI/commit/2572bb8a63f8de76776c09ab841b34db84fda064))
+* **Header:** Class name & specificity refactor ([#640](https://www.github.com/iTwin/iTwinUI/issues/640)) ([d6195ed](https://www.github.com/iTwin/iTwinUI/commit/d6195ed1dc9238da35ac878e1a8574286e719fb0))
+* **Icon:** Remove `data-iui-size` from icon ([#814](https://www.github.com/iTwin/iTwinUI/issues/814)) ([7fb73fe](https://www.github.com/iTwin/iTwinUI/commit/7fb73fef7c2d75afe2885cde83eef3684ded3d12))
+* **Icon:** Separate color from icon sizes & status color from default color. ([#701](https://www.github.com/iTwin/iTwinUI/issues/701)) ([7e0a929](https://www.github.com/iTwin/iTwinUI/commit/7e0a929e6f0f32b1932280fe719499aca5174631))
+* **Menu:** Add CSS variable for max-height on scrollable menu ([#740](https://www.github.com/iTwin/iTwinUI/issues/740)) ([2533890](https://www.github.com/iTwin/iTwinUI/commit/2533890e4a8115ac9ea976980affdcfd89a13683))
+* Move visually-hidden from global to utils ([#750](https://www.github.com/iTwin/iTwinUI/issues/750)) ([f1fb8c8](https://www.github.com/iTwin/iTwinUI/commit/f1fb8c89fe5c863f4eb5cf10e68cbb8be0009570))
+* Remove `iui-textarea` ([#743](https://www.github.com/iTwin/iTwinUI/issues/743)) ([310c353](https://www.github.com/iTwin/iTwinUI/commit/310c353e6f825220305e586caed1a52a021b0511))
+* Remove sass from deliverable ([#745](https://www.github.com/iTwin/iTwinUI/issues/745)) ([ce6d7a1](https://www.github.com/iTwin/iTwinUI/commit/ce6d7a15402d1f247e5b32f6efb451003f8bc312))
+* Scope all global styles under `iui-root` ([#749](https://www.github.com/iTwin/iTwinUI/issues/749)) ([c603c7f](https://www.github.com/iTwin/iTwinUI/commit/c603c7f9d768f9cdb1526c83e4729a7dc383ba59))
+* **SideNavigation:** Active stripe shows above `border-right` & `.iui-submenu-open` hides `border-right` ([#800](https://www.github.com/iTwin/iTwinUI/issues/800)) ([cd534df](https://www.github.com/iTwin/iTwinUI/commit/cd534df4480376bc192315934e5eb17d3404cfed))
+* **style:** Add `Noto` font family ([#673](https://www.github.com/iTwin/iTwinUI/issues/673)) ([a221950](https://www.github.com/iTwin/iTwinUI/commit/a221950d740049dcb0c7cc0f33d11e6effcff21b))
+* **Style:** Change baseline from 11px to 12px ([#713](https://www.github.com/iTwin/iTwinUI/issues/713)) ([22b4512](https://www.github.com/iTwin/iTwinUI/commit/22b4512292fd10612ac274f29b9d2096e00fb725))
+* **Table:** Class refactor ([#697](https://www.github.com/iTwin/iTwinUI/issues/697)) ([ebf33d8](https://www.github.com/iTwin/iTwinUI/commit/ebf33d895ecc64b693a80e70aa4afda6bc459576))
+* Unified disabled & loading states ([#765](https://www.github.com/iTwin/iTwinUI/issues/765)) ([c790a91](https://www.github.com/iTwin/iTwinUI/commit/c790a918e7d767e0ed6c71367fe09e5064742a2e))
+* Update border-radius of remaining components ([#746](https://www.github.com/iTwin/iTwinUI/issues/746)) ([3137224](https://www.github.com/iTwin/iTwinUI/commit/3137224309b010aebef6fda87022a67dda0cedc0))
+* Use itwinui-variables ([#718](https://www.github.com/iTwin/iTwinUI/issues/718)) ([1e4fbfe](https://www.github.com/iTwin/iTwinUI/commit/1e4fbfea5644291b092a0c21ebffd78d641d0882))
+* **WorkflowDiagram:** Separate workflow diagram from stepper ([#698](https://www.github.com/iTwin/iTwinUI/issues/698)) ([06075b2](https://www.github.com/iTwin/iTwinUI/commit/06075b2e82020cde4e7083962bcab4ca2daba8ae))
+
 ### [0.63.1](https://www.github.com/iTwin/iTwinUI/compare/v0.63.0...v0.63.1) (2022-08-11)
 
 ### Fixes
