@@ -2327,7 +2327,7 @@ export const ZebraStripedRows: Story<Partial<TableProps>> = (args) => {
 
   const data = useMemo(
     () =>
-      Array(20)
+      Array(10)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
