@@ -11,6 +11,15 @@ on:
         options:
           - itwinui-css
           - itwinui-variables
+      tag:
+        description: "Which npm tag to publish to?"
+        required: true
+        type: choice
+        default: latest
+        options:
+          - latest
+          - dev
+
   workflow_call:
     inputs:
       package:
@@ -38,7 +47,7 @@ jobs:
       - run: yarn install
       - run: yarn build
 
-      - run: npm publish --access public
+      - run: npm publish --access public --tag ${{ inputs.tag }}
         working-directory: './packages/${{ inputs.package }}/'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
