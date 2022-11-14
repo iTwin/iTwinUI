@@ -22,6 +22,12 @@ describe('getContainer', () => {
     expect(getContainer('test-id', mockDocument)).toBe(container);
     expect(getContainer('test-id', document)).not.toBe(container);
   });
+
+  it('should append to iui-root if it exists', () => {
+    document.body.innerHTML = `<div class="iui-root"></div>`;
+    getContainer('test-id');
+    expect(document.querySelector('.iui-root > #test-id')).toBeTruthy();
+  });
 });
 
 describe('getDocument', () => {

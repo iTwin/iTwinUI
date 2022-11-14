@@ -10,6 +10,7 @@ import type { Placement, Instance } from 'tippy.js';
 import { useMergedRefs } from '../hooks/useMergedRefs';
 export type PopoverInstance = Instance;
 import '@itwin/itwinui-css/css/utils.css';
+import { ThemeContext } from '../../ThemeProvider/ThemeProvider';
 
 export type PopoverProps = {
   /**
@@ -37,6 +38,7 @@ export type PopoverProps = {
  */
 export const Popover = React.forwardRef((props: PopoverProps, ref) => {
   const [mounted, setMounted] = React.useState(false);
+  const themeInfo = React.useContext(ThemeContext);
 
   const tippyRef = React.useRef<Element>(null);
   const refs = useMergedRefs(tippyRef, ref);
@@ -61,7 +63,7 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
   const computedProps: Partial<TippyProps> = {
     allowHTML: true,
     animation: false,
-    appendTo: (el) => el.ownerDocument.body,
+    appendTo: (el) => themeInfo?.rootRef.current || el.ownerDocument.body,
     arrow: false,
     duration: 0,
     interactive: true,

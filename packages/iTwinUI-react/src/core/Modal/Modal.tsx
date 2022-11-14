@@ -91,7 +91,11 @@ export const Modal = (props: ModalProps) => {
 
   useTheme();
 
-  const container = getContainer(modalRootId, ownerDocument);
+  const [container, setContainer] = React.useState<HTMLElement>();
+  React.useEffect(() => {
+    setContainer(getContainer(modalRootId, ownerDocument));
+    return () => setContainer(undefined);
+  }, [ownerDocument, modalRootId]);
 
   return !!container ? (
     ReactDOM.createPortal(

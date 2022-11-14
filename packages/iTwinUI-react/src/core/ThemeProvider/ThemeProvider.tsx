@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { useTheme, useMediaQuery } from '../utils';
+import { useTheme, useMediaQuery, useMergedRefs } from '../utils';
 import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
@@ -49,6 +49,9 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const rootRef = React.useRef<HTMLElement>(null);
+  const mergedRefs = useMergedRefs(rootRef, ref);
+
   const hasChildren = React.Children.count(children) > 0;
   const parentContext = React.useContext(ThemeContext);
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
@@ -59,12 +62,12 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
 
   // only provide context if wrapped around children
   return hasChildren ? (
-    <ThemeContext.Provider value={{ theme, themeOptions }}>
+    <ThemeContext.Provider value={{ theme, themeOptions, rootRef }}>
       <Element
         className={cx('iui-root', className)}
         data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
         data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-        ref={ref}
+        ref={mergedRefs}
         {...rest}
       >
         {children}
@@ -85,6 +88,7 @@ export const ThemeContext = React.createContext<
   | {
       theme?: ThemeType;
       themeOptions?: ThemeOptions;
+      rootRef: React.RefObject<HTMLElement>;
     }
   | undefined
 >(undefined);

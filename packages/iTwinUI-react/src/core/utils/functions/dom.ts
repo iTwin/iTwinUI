@@ -18,8 +18,8 @@ export const getContainer = (
   if (container == null && !!ownerDocument) {
     container = ownerDocument.createElement('div');
     container.setAttribute('id', containerId);
-    container.innerHTML = `<style>:where(.iui-dialog-wrapper) { z-index: 999; }</style>`; // TODO: move to css
-    ownerDocument.body.appendChild(container);
+    const root = ownerDocument.querySelector('.iui-root') ?? ownerDocument.body;
+    root.appendChild(container);
   }
   return container;
 };
