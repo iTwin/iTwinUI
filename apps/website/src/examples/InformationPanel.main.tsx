@@ -22,23 +22,18 @@ export default () => {
 
   const columns = React.useMemo(
     () => [
+      { id: 'name', Header: 'Name', accessor: 'name' },
       {
-        Header: 'Table',
-        columns: [
-          { id: 'name', Header: 'Name', accessor: 'name' },
-          {
-            Header: 'Details',
-            Cell: ({ row: { index } }: CellProps<{ name: string }>) => (
-              <Button
-                onClick={() => {
-                  setOpenRowIndex(index);
-                }}
-              >
-                Details
-              </Button>
-            ),
-          },
-        ],
+        Header: 'Details',
+        Cell: ({ row: { index } }: CellProps<{ name: string }>) => (
+          <Button
+            onClick={() => {
+              setOpenRowIndex(index);
+            }}
+          >
+            Details
+          </Button>
+        ),
       },
     ],
     []

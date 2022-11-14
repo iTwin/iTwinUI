@@ -47,35 +47,33 @@ const mockIntersection = (element: Element) => {
   intersectionCallbacks.get(element)?.();
 };
 
-const columns = (onViewClick: () => void = jest.fn()) => [
+const columns = (
+  onViewClick: () => void = jest.fn(),
+): Column<TestDataType>[] => [
   {
-    Header: 'Header name',
-    columns: [
-      {
-        id: 'name',
-        Header: 'Name',
-        accessor: 'name',
-        width: 90,
-      },
-      {
-        id: 'description',
-        Header: 'Description',
-        accessor: 'description',
-        maxWidth: 200,
-      },
-      {
-        id: 'view',
-        Header: 'View',
-        Cell: () => {
-          return <span onClick={onViewClick}>View</span>;
-        },
-      },
-    ],
+    id: 'name',
+    Header: 'Name',
+    accessor: 'name',
+    width: 90,
+  },
+  {
+    id: 'description',
+    Header: 'Description',
+    accessor: 'description',
+    maxWidth: 200,
+  },
+  {
+    id: 'view',
+    Header: 'View',
+    Cell: () => {
+      return <span onClick={onViewClick}>View</span>;
+    },
   },
 ];
 type TestDataType = {
   name: string;
   description: string;
+  accessor?: string;
   subRows?: TestDataType[];
   booleanValue?: boolean;
 };
@@ -123,7 +121,7 @@ const mockedSubRowsData = () => [
 ];
 
 function renderComponent(
-  initialsProps?: Partial<TableProps<TestDataType>>,
+  initialsProps?: Partial<TableProps>,
   onViewClick?: () => void,
   renderContainer?: HTMLElement,
 ) {
@@ -294,15 +292,10 @@ it('should render column with custom className', () => {
   const { container } = renderComponent({
     columns: [
       {
-        Header: 'Header name',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            columnClassName: 'test-className',
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        columnClassName: 'test-className',
       },
     ],
   });
@@ -317,15 +310,10 @@ it('should render cell with custom className', () => {
   const { container } = renderComponent({
     columns: [
       {
-        Header: 'Header name',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            cellClassName: 'test-className',
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        cellClassName: 'test-className',
       },
     ],
   });
@@ -527,16 +515,11 @@ it('should not trigger onSelect when sorting and filtering', async () => {
   const onFilter = jest.fn();
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container } = renderComponent({
@@ -681,15 +664,10 @@ it('should sort name column correctly', async () => {
 it('should not show sort icon if disabled in column level', () => {
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          disableSortBy: true,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      disableSortBy: true,
     },
   ];
   const { container } = renderComponent({
@@ -705,14 +683,9 @@ it('should not show sort icon if disabled in column level', () => {
 it('should display correct sort icons for ascending first', async () => {
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
     },
   ];
   const { container } = renderComponent({
@@ -757,15 +730,10 @@ it('should display correct sort icons for ascending first', async () => {
 it('should display correct sort icons for descending first', async () => {
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          sortDescFirst: true,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      sortDescFirst: true,
     },
   ];
   const { container } = renderComponent({
@@ -828,16 +796,11 @@ it('should trigger onBottomReached with filter applied', async () => {
   const onBottomReached = jest.fn();
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container } = renderComponent({
@@ -882,16 +845,11 @@ it('should filter table', async () => {
   const onFilter = jest.fn();
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container } = renderComponent({ columns: mockedColumns, onFilter });
@@ -913,21 +871,16 @@ it('should filter table', async () => {
 it('should filter false values', async () => {
   const columns = [
     {
-      Header: 'Header',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'booleanValue',
-          Header: 'Bool Value',
-          accessor: 'booleanValue',
-          Filter: BooleanFilter,
-          filter: 'equals',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'booleanValue',
+      Header: 'Bool Value',
+      accessor: 'booleanValue',
+      Filter: BooleanFilter,
+      filter: 'equals',
     },
   ];
 
@@ -953,21 +906,16 @@ it('should filter false values', async () => {
 it('should not filter undefined values', async () => {
   const columns = [
     {
-      Header: 'Header',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'booleanValue',
-          Header: 'Bool Value',
-          accessor: 'booleanValue',
-          Filter: BooleanFilter,
-          filter: 'equals',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'booleanValue',
+      Header: 'Bool Value',
+      accessor: 'booleanValue',
+      Filter: BooleanFilter,
+      filter: 'equals',
     },
   ];
 
@@ -996,16 +944,11 @@ it('should clear filter', async () => {
   const onFilter = jest.fn();
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container } = renderComponent({
@@ -1046,16 +989,11 @@ it('should not filter table when manualFilters flag is on', async () => {
   const onFilter = jest.fn();
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container } = renderComponent({
@@ -1081,14 +1019,9 @@ it('should not filter table when manualFilters flag is on', async () => {
 it('should not show filter icon when filter component is not set', () => {
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
     },
   ];
   const { container } = renderComponent({
@@ -1108,15 +1041,10 @@ it('should not show filter icon when filter component is not set', () => {
 it('should show active filter icon when more data is loading', async () => {
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
     },
   ];
   const { container } = renderComponent({
@@ -1135,16 +1063,11 @@ it('should show active filter icon when more data is loading', async () => {
 it('should show message and active filter icon when there is no data after filtering', async () => {
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container } = renderComponent({ columns: mockedColumns });
@@ -1167,16 +1090,11 @@ it('should show message and active filter icon when there is no data after filte
 it('should show message and active filter icon when there is no data after manual filtering', async () => {
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container, rerender } = render(
@@ -1215,21 +1133,16 @@ it('should show message and active filter icon when there is no data after manua
 });
 
 it('should not filter if global filter is not set', async () => {
-  const mockedColumns = [
+  const mockedColumns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
     },
   ];
 
@@ -1250,21 +1163,16 @@ it('should not filter if global filter is not set', async () => {
 });
 
 it('should update rows when global filter changes', async () => {
-  const mockedColumns = [
+  const mockedColumns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
     },
   ];
   const data = mockedData();
@@ -1304,21 +1212,16 @@ it('should update rows when global filter changes', async () => {
 it('should filter rows with both global and column filters', async () => {
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
     },
   ];
   const data = [
@@ -1399,21 +1302,16 @@ it('should filter rows with both global and column filters', async () => {
 });
 
 it('should show empty filtered table content with global filter', async () => {
-  const mockedColumns = [
+  const mockedColumns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
     },
   ];
   const data = mockedData();
@@ -1454,21 +1352,16 @@ it('should show empty filtered table content with global filter', async () => {
 });
 
 it('should not show empty filtered table content when global filter is empty', async () => {
-  const mockedColumns = [
+  const mockedColumns: Column<typeof data[number]>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
     },
   ];
   const data: { name: string; description: string }[] = [];
@@ -1509,22 +1402,17 @@ it('should not show empty filtered table content when global filter is empty', a
 });
 
 it('should disable global filter column with disableGlobalFilter', async () => {
-  const mockedColumns = [
+  const mockedColumns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-          disableGlobalFilter: true,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+      disableGlobalFilter: true,
     },
   ];
   const data = mockedData();
@@ -1562,22 +1450,17 @@ it('should disable global filter column with disableGlobalFilter', async () => {
 });
 
 it('should not global filter with manualGlobalFilter', async () => {
-  const mockedColumns = [
+  const mockedColumns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-          disableGlobalFilter: true,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+      disableGlobalFilter: true,
     },
   ];
   const data = mockedData();
@@ -1620,16 +1503,11 @@ it('should not trigger sorting when filter is clicked', async () => {
   const onSort = jest.fn();
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container } = renderComponent({
@@ -1652,16 +1530,11 @@ it('should render filter dropdown in the correct document', async () => {
   const onFilter = jest.fn();
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container } = renderComponent(
@@ -1689,14 +1562,9 @@ it('should rerender table when columns change', async () => {
     <Table
       columns={[
         {
-          Header: 'Header name',
-          columns: [
-            {
-              id: 'name',
-              Header: 'Name',
-              Cell: () => <>test1</>,
-            },
-          ],
+          id: 'name',
+          Header: 'Name',
+          Cell: () => <>test1</>,
         },
       ]}
       data={data}
@@ -1709,14 +1577,9 @@ it('should rerender table when columns change', async () => {
     <Table
       columns={[
         {
-          Header: 'Header name',
-          columns: [
-            {
-              id: 'name',
-              Header: 'Name',
-              Cell: () => <>test2</>,
-            },
-          ],
+          id: 'name',
+          Header: 'Name',
+          Cell: () => <>test2</>,
         },
       ]}
       data={data}
@@ -1895,16 +1758,11 @@ it('should select and filter rows', async () => {
   const onSelect = jest.fn();
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   const { container } = renderComponent({
@@ -2013,27 +1871,22 @@ it('should render filtered sub-rows', async () => {
   const data = mockedSubRowsData();
   const columns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => {
-            return <span>View</span>;
-          },
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => {
+        return <span>View</span>;
+      },
     },
   ];
   const { container } = renderComponent({ data, columns });
@@ -2174,27 +2027,22 @@ it('should show indeterminate checkbox when sub-row selected after filtering', a
   const data = mockedSubRowsData();
   const columns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => {
-            return <span>View</span>;
-          },
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => {
+        return <span>View</span>;
+      },
     },
   ];
   const { container } = renderComponent({
@@ -2237,27 +2085,22 @@ it('should show indeterminate checkbox when clicking on a row itself after filte
   const data = mockedSubRowsData();
   const columns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => {
-            return <span>View</span>;
-          },
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => {
+        return <span>View</span>;
+      },
     },
   ];
   const { container } = renderComponent({
@@ -2357,29 +2200,24 @@ it('should edit cell data', async () => {
   const onCellEdit = jest.fn();
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          cellRenderer: (props) => (
-            <EditableCell {...props} onCellEdit={onCellEdit} />
-          ),
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => {
-            return <span>View</span>;
-          },
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      cellRenderer: (props) => (
+        <EditableCell {...props} onCellEdit={onCellEdit} />
+      ),
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => {
+        return <span>View</span>;
+      },
     },
   ];
   const { container } = renderComponent({
@@ -2412,29 +2250,24 @@ it('should handle unwanted actions on editable cell', async () => {
   const onSelect = jest.fn();
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          cellRenderer: (props) => (
-            <EditableCell {...props} onCellEdit={onCellEdit} />
-          ),
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => {
-            return <span>View</span>;
-          },
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      cellRenderer: (props) => (
+        <EditableCell {...props} onCellEdit={onCellEdit} />
+      ),
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => {
+        return <span>View</span>;
+      },
     },
   ];
   const { container } = renderComponent({
@@ -2572,24 +2405,19 @@ it('should handle resize by increasing width of current column and decreasing th
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -2625,24 +2453,19 @@ it('should handle resize with touch', () => {
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -2678,24 +2501,19 @@ it('should prevent from resizing past 1px width', () => {
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -2732,26 +2550,21 @@ it('should prevent from resizing past max-width', () => {
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          maxWidth: 150,
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          maxWidth: 150,
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      maxWidth: 150,
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      maxWidth: 150,
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -2799,26 +2612,21 @@ it('should prevent from resizing past min-width', () => {
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          minWidth: 50,
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          minWidth: 50,
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      minWidth: 50,
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      minWidth: 50,
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -2866,31 +2674,26 @@ it('should not resize column with disabled resize but resize closest ones', () =
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          disableResizing: true,
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          disableResizing: true,
-        },
-        {
-          id: 'edit',
-          Header: 'edit',
-          Cell: () => <>Edit</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      disableResizing: true,
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      disableResizing: true,
+    },
+    {
+      id: 'edit',
+      Header: 'edit',
+      Cell: () => <>Edit</>,
     },
   ];
   const { container } = renderComponent({
@@ -2950,25 +2753,20 @@ it('should not show resizer when there are no next resizable columns', () => {
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          disableResizing: true,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      disableResizing: true,
     },
   ];
   const { container } = renderComponent({
@@ -2992,24 +2790,19 @@ it('should not trigger sort when resizing', () => {
   const onSort = jest.fn();
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -3052,24 +2845,19 @@ it('should handle table resize only when some columns were resized', () => {
     });
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({ columns, isResizable: true });
@@ -3119,24 +2907,19 @@ it('should resize only the current column when resize mode is expand', () => {
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -3182,24 +2965,19 @@ it('should resize current and closest column when table width would decrease whe
     });
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -3252,24 +3030,19 @@ it('should resize last and closest column on the left when table width would dec
     });
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -3310,25 +3083,20 @@ it('should not show resizer when column has disabled resizing when resize mode i
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          disableResizing: true,
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      disableResizing: true,
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -3352,24 +3120,19 @@ it('should stop resizing when mouse leaves the screen', () => {
     .mockReturnValue({ width: 100 } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
     },
   ];
   let resizeEndCount = 0;
@@ -3546,25 +3309,20 @@ it.each([
 it('should not have `draggable` attribute on columns with `disableReordering` enabled', () => {
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          disableReordering: true,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      disableReordering: true,
     },
   ];
   const { container } = render(
@@ -3594,26 +3352,21 @@ it('should not have `draggable` attribute on columns with `disableReordering` en
 it('should render empty action column', () => {
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'View',
-          Cell: () => <>View</>,
-        },
-        ActionColumn(),
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
     },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'View',
+      Cell: () => <>View</>,
+    },
+    ActionColumn(),
   ];
   const { container } = renderComponent({
     columns,
@@ -3631,26 +3384,21 @@ it('should render empty action column', () => {
 it('should render empty action column with column manager', async () => {
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'View',
-          Cell: () => <>View</>,
-        },
-        ActionColumn({ columnManager: true }),
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
     },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'View',
+      Cell: () => <>View</>,
+    },
+    ActionColumn({ columnManager: true }),
   ];
   const { container } = renderComponent({
     columns,
@@ -3677,24 +3425,19 @@ it('should render empty action column with column manager', async () => {
 it('should render action column with column manager', async () => {
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-        {
-          ...ActionColumn({ columnManager: true }),
-          id: 'view',
-          Cell: () => <>View</>,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+    },
+    {
+      ...ActionColumn({ columnManager: true }),
+      id: 'view',
+      Cell: () => <>View</>,
     },
   ];
   const { container } = renderComponent({
@@ -3731,37 +3474,32 @@ it('should render action column with column manager', async () => {
 it('should render dropdown menu with custom style and override default style', async () => {
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'View',
-          Cell: () => <>View</>,
-        },
-        ActionColumn({
-          columnManager: {
-            dropdownMenuProps: {
-              className: 'testing-classname',
-              style: {
-                maxHeight: '600px',
-                backgroundColor: 'red',
-              },
-              role: 'listbox',
-            },
-          },
-        }),
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
     },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'View',
+      Cell: () => <>View</>,
+    },
+    ActionColumn({
+      columnManager: {
+        dropdownMenuProps: {
+          className: 'testing-classname',
+          style: {
+            maxHeight: '600px',
+            backgroundColor: 'red',
+          },
+          role: 'listbox',
+        },
+      },
+    }),
   ];
   const { container } = renderComponent({
     columns,
@@ -3790,26 +3528,21 @@ it('should render dropdown menu with custom style and override default style', a
 it('should hide column when deselected in column manager', async () => {
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'View',
-          Cell: () => <>View</>,
-        },
-        ActionColumn({ columnManager: true }),
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
     },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'View',
+      Cell: () => <>View</>,
+    },
+    ActionColumn({ columnManager: true }),
   ];
   const { container } = renderComponent({
     columns,
@@ -3842,27 +3575,22 @@ it('should hide column when deselected in column manager', async () => {
 it('should be disabled in column manager if `disableToggleVisibility` is true', async () => {
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          disableToggleVisibility: true,
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-        {
-          id: 'view',
-          Header: 'View',
-          Cell: () => <>View</>,
-        },
-        ActionColumn({ columnManager: true }),
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      disableToggleVisibility: true,
     },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+    },
+    {
+      id: 'view',
+      Header: 'View',
+      Cell: () => <>View</>,
+    },
+    ActionColumn({ columnManager: true }),
   ];
   const { container } = renderComponent({
     columns,
@@ -3885,21 +3613,16 @@ it('should add selection column manually', () => {
   const onSelect = jest.fn();
   const isDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
   const columns: Column<TestDataType>[] = [
+    SelectionColumn({ isDisabled }),
     {
-      Header: 'Table',
-      columns: [
-        SelectionColumn({ isDisabled }),
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
     },
   ];
   const { container } = renderComponent({
@@ -3932,21 +3655,16 @@ it('should add expander column manually', () => {
   );
   const isRowDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
   const columns: Column<TestDataType>[] = [
+    ExpanderColumn({ subComponent, isDisabled: isRowDisabled }),
     {
-      Header: 'Table',
-      columns: [
-        ExpanderColumn({ subComponent, isDisabled: isRowDisabled }),
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
     },
   ];
   const { container } = renderComponent({
@@ -3976,22 +3694,17 @@ it('should add disabled column', () => {
   const isCellDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Table',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          cellRenderer: (props) => (
-            <DefaultCell {...props} isDisabled={isCellDisabled} />
-          ),
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      cellRenderer: (props) => (
+        <DefaultCell {...props} isDisabled={isCellDisabled} />
+      ),
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
     },
   ];
   const { container } = renderComponent({
@@ -4010,22 +3723,17 @@ it('should show column enabled when whole row is disabled', () => {
   const isRowDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Table',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          cellRenderer: (props) => (
-            <DefaultCell {...props} isDisabled={isCellDisabled} />
-          ),
-        },
-        {
-          id: 'description',
-          Header: 'Description',
-          accessor: 'description',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      cellRenderer: (props) => (
+        <DefaultCell {...props} isDisabled={isCellDisabled} />
+      ),
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
     },
   ];
   const { container } = renderComponent({
@@ -4076,29 +3784,6 @@ it('should render selectable rows without select column', async () => {
   expect(onRowClick).toHaveBeenCalledTimes(3);
 });
 
-it('should not throw on headless table', () => {
-  const columns: Column<TestDataType>[] = [
-    {
-      id: 'name',
-      Header: 'Name',
-      accessor: 'name',
-    },
-    {
-      id: 'description',
-      Header: 'Description',
-      accessor: 'description',
-    },
-  ];
-  const { container } = renderComponent({
-    columns,
-  });
-
-  expect(
-    container.querySelector('.iui-table-header .iui-table-row'),
-  ).toBeFalsy();
-  expect(container.querySelector('.iui-table-body')).toBeTruthy();
-});
-
 it('should scroll to selected item in non-virtualized table', async () => {
   let scrolledElement: HTMLElement | null = null;
   jest
@@ -4130,29 +3815,24 @@ it('should render sticky columns correctly', () => {
     .mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          width: 400,
-          sticky: 'left',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          width: 400,
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          width: 100,
-          sticky: 'right',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      width: 400,
+      sticky: 'left',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      width: 400,
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      width: 100,
+      sticky: 'right',
     },
   ];
   const { container } = renderComponent({
@@ -4225,29 +3905,24 @@ it('should have correct sticky left style property', () => {
     .mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          width: 400,
-          sticky: 'left',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          width: 400,
-          sticky: 'left',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          width: 100,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      width: 400,
+      sticky: 'left',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      width: 400,
+      sticky: 'left',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      width: 100,
     },
   ];
   const { container } = renderComponent({
@@ -4283,28 +3958,23 @@ it('should have correct sticky left style property when prior column does not ha
     .mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          width: 400,
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          width: 400,
-          sticky: 'left',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          width: 100,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      width: 400,
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      width: 400,
+      sticky: 'left',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      width: 100,
     },
   ];
   const { container } = renderComponent({
@@ -4340,29 +4010,24 @@ it('should have correct sticky right style property', () => {
     .mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          width: 400,
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          width: 400,
-          sticky: 'right',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          width: 400,
-          sticky: 'right',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      width: 400,
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      width: 400,
+      sticky: 'right',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      width: 400,
+      sticky: 'right',
     },
   ];
   const { container } = renderComponent({
@@ -4398,28 +4063,23 @@ it('should have correct sticky right style property when column after does not h
     .mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          width: 400,
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          width: 400,
-          sticky: 'right',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          width: 400,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      width: 400,
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      width: 400,
+      sticky: 'right',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      width: 400,
     },
   ];
   const { container } = renderComponent({
@@ -4455,29 +4115,24 @@ it('should have correct sticky left style property after resizing', () => {
     .mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          width: 400,
-          sticky: 'left',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          width: 400,
-          sticky: 'left',
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          width: 100,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      width: 400,
+      sticky: 'left',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      width: 400,
+      sticky: 'left',
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      width: 100,
     },
   ];
   const { container } = renderComponent({
@@ -4531,28 +4186,23 @@ it('should make column sticky and then non-sticky after dragging sticky column a
     .mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          width: 400,
-          sticky: 'left',
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          width: 400,
-        },
-        {
-          id: 'view',
-          Header: 'view',
-          Cell: () => <>View</>,
-          width: 100,
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      width: 400,
+      sticky: 'left',
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      width: 400,
+    },
+    {
+      id: 'view',
+      Header: 'view',
+      Cell: () => <>View</>,
+      width: 100,
     },
   ];
   const { container } = renderComponent({
@@ -4624,25 +4274,20 @@ it('should make column sticky and then non-sticky after dragging sticky column a
 it('should render start and end cell icons', () => {
   const testColumns: Column<TestDataType>[] = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          cellRenderer: (props) => {
-            return <DefaultCell {...props} startIcon={<SvgClose />} />;
-          },
-        },
-        {
-          id: 'description',
-          Header: 'description',
-          accessor: 'description',
-          cellRenderer: (props) => {
-            return <DefaultCell {...props} endIcon={<SvgMore />} />;
-          },
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      cellRenderer: (props) => {
+        return <DefaultCell {...props} startIcon={<SvgClose />} />;
+      },
+    },
+    {
+      id: 'description',
+      Header: 'description',
+      accessor: 'description',
+      cellRenderer: (props) => {
+        return <DefaultCell {...props} endIcon={<SvgMore />} />;
+      },
     },
   ];
   const { container } = renderComponent({
@@ -4679,22 +4324,17 @@ it.each(['positive', 'warning', 'negative'] as const)(
   (status) => {
     const columns: Column<TestDataType>[] = [
       {
-        Header: 'Header name',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            cellRenderer: (props) => {
-              return <DefaultCell {...props} status={status} />;
-            },
-          },
-          {
-            id: 'description',
-            Header: 'description',
-            accessor: 'description',
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        cellRenderer: (props) => {
+          return <DefaultCell {...props} status={status} />;
+        },
+      },
+      {
+        id: 'description',
+        Header: 'description',
+        accessor: 'description',
       },
     ];
     const { container } = renderComponent({
@@ -4764,16 +4404,11 @@ it('should navigate through table filtering with the keyboard', async () => {
   const onFilter = jest.fn();
   const mockedColumns = [
     {
-      Header: 'Header name',
-      columns: [
-        {
-          id: 'name',
-          Header: 'Name',
-          accessor: 'name',
-          Filter: tableFilters.TextFilter(),
-          fieldType: 'text',
-        },
-      ],
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
     },
   ];
   renderComponent({

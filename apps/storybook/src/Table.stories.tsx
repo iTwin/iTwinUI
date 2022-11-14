@@ -109,29 +109,24 @@ export const Basic: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<{ name: string; description: string }>) => {
-              const onClick = () => onClickHandler(props);
-              return <Anchor onClick={onClick}>Click me!</Anchor>;
-            },
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          const onClick = () => onClickHandler(props);
+          return <Anchor onClick={onClick}>Click me!</Anchor>;
+        },
       },
     ],
     [],
@@ -166,37 +161,32 @@ export const SelectableSingle: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<{ name: string; description: string }>) => {
-              return (
-                <Anchor
-                  onClick={(e) => {
-                    e.stopPropagation(); // prevent row selection when clicking on link
-                    action(props.row.original.name)();
-                  }}
-                >
-                  Click me!
-                </Anchor>
-              );
-            },
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          return (
+            <Anchor
+              onClick={(e) => {
+                e.stopPropagation(); // prevent row selection when clicking on link
+                action(props.row.original.name)();
+              }}
+            >
+              Click me!
+            </Anchor>
+          );
+        },
       },
     ],
     [],
@@ -246,37 +236,32 @@ export const SelectableMulti: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<{ name: string; description: string }>) => {
-              return (
-                <Anchor
-                  onClick={(e) => {
-                    e.stopPropagation(); // prevent row selection when clicking on link
-                    action(props.row.original.name)();
-                  }}
-                >
-                  Click me!
-                </Anchor>
-              );
-            },
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          return (
+            <Anchor
+              onClick={(e) => {
+                e.stopPropagation(); // prevent row selection when clicking on link
+                action(props.row.original.name)();
+              }}
+            >
+              Click me!
+            </Anchor>
+          );
+        },
       },
     ],
     [],
@@ -320,36 +305,31 @@ export const Sortable: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'id',
-            Header: 'ID (Sorts Desc First)',
-            accessor: 'id',
-            sortDescFirst: true,
-          },
-          {
-            id: 'name',
-            Header: 'Name (Sorts Asc First)',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description Not Sortable',
-            accessor: 'description',
-            maxWidth: 200,
-            disableSortBy: true,
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<{ name: string; description: string }>) => {
-              const onClick = () => onClickHandler(props);
-              return <Anchor onClick={onClick}>Click me!</Anchor>;
-            },
-          },
-        ],
+        id: 'id',
+        Header: 'ID (Sorts Desc First)',
+        accessor: 'id',
+        sortDescFirst: true,
+      },
+      {
+        id: 'name',
+        Header: 'Name (Sorts Asc First)',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description Not Sortable',
+        accessor: 'description',
+        maxWidth: 200,
+        disableSortBy: true,
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          const onClick = () => onClickHandler(props);
+          return <Anchor onClick={onClick}>Click me!</Anchor>;
+        },
       },
     ],
     [],
@@ -425,68 +405,63 @@ export const Filters: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     (): Column<TableStoryDataType>[] => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'index',
-            Header: '#',
-            accessor: 'index',
-            width: 80,
-            fieldType: 'number',
-            Filter: tableFilters.NumberRangeFilter(translatedLabels),
-            filter: 'between',
-          },
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            fieldType: 'text',
-            Filter: tableFilters.TextFilter(translatedLabels),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            fieldType: 'text',
-            Filter: tableFilters.TextFilter(translatedLabels),
-            maxWidth: 200,
-          },
-          {
-            id: 'ids',
-            Header: 'IDs (enter one of the IDs in the filter)',
-            accessor: 'ids',
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return <>{props.row.original.ids.join(', ')}</>;
-            },
-            Filter: tableFilters.TextFilter(translatedLabels),
-            filter: 'includes',
-          },
-          {
-            id: 'startDate',
-            Header: 'Start date',
-            accessor: 'startDate',
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return <>{formatDate(props.row.original.startDate)}</>;
-            },
-            Filter: tableFilters.DateRangeFilter({
-              translatedLabels,
-            }),
-            filter: 'betweenDate',
-          },
-          {
-            id: 'endDate',
-            Header: 'End date',
-            // Converting string to Date for filtering
-            accessor: (rowData) => new Date(rowData.endDate),
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return <>{formatDate(new Date(props.row.original.endDate))}</>;
-            },
-            Filter: tableFilters.DateRangeFilter({
-              translatedLabels,
-            }),
-            filter: 'betweenDate',
-          },
-        ],
+        id: 'index',
+        Header: '#',
+        accessor: 'index',
+        width: 80,
+        fieldType: 'number',
+        Filter: tableFilters.NumberRangeFilter(translatedLabels),
+        filter: 'between',
+      },
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        fieldType: 'text',
+        Filter: tableFilters.TextFilter(translatedLabels),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        fieldType: 'text',
+        Filter: tableFilters.TextFilter(translatedLabels),
+        maxWidth: 200,
+      },
+      {
+        id: 'ids',
+        Header: 'IDs (enter one of the IDs in the filter)',
+        accessor: 'ids',
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return <>{props.row.original.ids.join(', ')}</>;
+        },
+        Filter: tableFilters.TextFilter(translatedLabels),
+        filter: 'includes',
+      },
+      {
+        id: 'startDate',
+        Header: 'Start date',
+        accessor: 'startDate',
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return <>{formatDate(props.row.original.startDate)}</>;
+        },
+        Filter: tableFilters.DateRangeFilter({
+          translatedLabels,
+        }),
+        filter: 'betweenDate',
+      },
+      {
+        id: 'endDate',
+        Header: 'End date',
+        // Converting string to Date for filtering
+        accessor: (rowData) => new Date(rowData.endDate),
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return <>{formatDate(new Date(props.row.original.endDate))}</>;
+        },
+        Filter: tableFilters.DateRangeFilter({
+          translatedLabels,
+        }),
+        filter: 'betweenDate',
       },
     ],
     [formatDate, translatedLabels],
@@ -586,31 +561,26 @@ export const GlobalFilter: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<{ name: string; description: string }>) => {
-              const onClick = () => onClickHandler(props);
-              return <Anchor onClick={onClick}>Click me!</Anchor>;
-            },
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          const onClick = () => onClickHandler(props);
+          return <Anchor onClick={onClick}>Click me!</Anchor>;
+        },
       },
     ],
     [],
@@ -677,20 +647,15 @@ export const Expandable: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
       },
     ],
     [],
@@ -747,20 +712,15 @@ export const ExpandableSubrows: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
       },
     ],
     [],
@@ -893,30 +853,25 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<{ name: string; description: string }>) => {
-              const onClick = () => onClickHandler(props);
-              return <Anchor onClick={onClick}>Click me!</Anchor>;
-            },
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          const onClick = () => onClickHandler(props);
+          return <Anchor onClick={onClick}>Click me!</Anchor>;
+        },
       },
     ],
     [],
@@ -979,29 +934,24 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<{ name: string; description: string }>) => {
-              const onClick = () => onClickHandler(props);
-              return <Anchor onClick={onClick}>Click me!</Anchor>;
-            },
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          const onClick = () => onClickHandler(props);
+          return <Anchor onClick={onClick}>Click me!</Anchor>;
+        },
       },
     ],
     [],
@@ -1076,20 +1026,15 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
       },
       {
         id: 'click-me',
@@ -1159,20 +1104,15 @@ export const Loading: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
       },
     ],
     [],
@@ -1198,20 +1138,15 @@ export const NoData: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
       },
     ],
     [],
@@ -1236,21 +1171,16 @@ export const InitialState: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
       },
     ],
     [],
@@ -1307,19 +1237,14 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
       },
     ],
     [],
@@ -1449,36 +1374,31 @@ export const Full: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-            disableToggleVisibility: true,
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            ...ActionColumn({ columnManager: true }),
-            Cell: () => (
-              <DropdownMenu menuItems={menuItems}>
-                <IconButton
-                  styleType='borderless'
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <SvgMore />
-                </IconButton>
-              </DropdownMenu>
-            ),
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+        disableToggleVisibility: true,
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        ...ActionColumn({ columnManager: true }),
+        Cell: () => (
+          <DropdownMenu menuItems={menuItems}>
+            <IconButton
+              styleType='borderless'
+              onClick={(e) => e.stopPropagation()}
+            >
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        ),
       },
     ],
     [menuItems],
@@ -1618,88 +1538,83 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     (): Column<TableStoryDataType>[] => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'product',
-            Header: 'Product',
-            accessor: 'product',
-            Filter: tableFilters.TextFilter(),
-            disableToggleVisibility: true,
-            disableReordering: true,
-            width: 200,
-            sticky: 'left',
-          },
-          {
-            id: 'price',
-            Header: 'Price',
-            accessor: 'price',
-            width: 200,
-            Filter: tableFilters.NumberRangeFilter(),
-            filter: 'between',
-            disableReordering: true,
-            sortType: 'number',
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return <>${props.value}</>;
-            },
-            sticky: 'left',
-          },
-          {
-            id: 'quantity',
-            Header: 'Quantity',
-            accessor: 'quantity',
-            Filter: tableFilters.NumberRangeFilter(),
-            filter: 'between',
-            sortType: 'number',
-            width: 400,
-          },
-          {
-            id: 'rating',
-            Header: 'Rating',
-            accessor: 'rating',
-            Filter: tableFilters.NumberRangeFilter(),
-            filter: 'between',
-            sortType: 'number',
-            width: 400,
-            cellRenderer: (props: CellRendererProps<TableStoryDataType>) => {
-              return (
-                <DefaultCell
-                  {...props}
-                  status={props.cellProps.row.original.status}
-                >
-                  {props.cellProps.row.original.rating}/5
-                </DefaultCell>
-              );
-            },
-          },
-          {
-            id: 'deliveryTime',
-            Header: 'Delivery Time',
-            accessor: 'deliveryTime',
-            Filter: tableFilters.NumberRangeFilter(),
-            filter: 'between',
-            sortType: 'number',
-            width: 400,
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return <>{props.value} day(s)</>;
-            },
-          },
-          {
-            ...ActionColumn({ columnManager: true }),
-            Cell: (props: CellProps<TableStoryDataType>) => (
-              <DropdownMenu menuItems={menuItems}>
-                <IconButton
-                  styleType='borderless'
-                  onClick={(e) => e.stopPropagation()}
-                  disabled={isRowDisabled(props.row.original)}
-                >
-                  <SvgMore />
-                </IconButton>
-              </DropdownMenu>
-            ),
-            sticky: 'right',
-          },
-        ],
+        id: 'product',
+        Header: 'Product',
+        accessor: 'product',
+        Filter: tableFilters.TextFilter(),
+        disableToggleVisibility: true,
+        disableReordering: true,
+        width: 200,
+        sticky: 'left',
+      },
+      {
+        id: 'price',
+        Header: 'Price',
+        accessor: 'price',
+        width: 200,
+        Filter: tableFilters.NumberRangeFilter(),
+        filter: 'between',
+        disableReordering: true,
+        sortType: 'number',
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return <>${props.value}</>;
+        },
+        sticky: 'left',
+      },
+      {
+        id: 'quantity',
+        Header: 'Quantity',
+        accessor: 'quantity',
+        Filter: tableFilters.NumberRangeFilter(),
+        filter: 'between',
+        sortType: 'number',
+        width: 400,
+      },
+      {
+        id: 'rating',
+        Header: 'Rating',
+        accessor: 'rating',
+        Filter: tableFilters.NumberRangeFilter(),
+        filter: 'between',
+        sortType: 'number',
+        width: 400,
+        cellRenderer: (props: CellRendererProps<TableStoryDataType>) => {
+          return (
+            <DefaultCell
+              {...props}
+              status={props.cellProps.row.original.status}
+            >
+              {props.cellProps.row.original.rating}/5
+            </DefaultCell>
+          );
+        },
+      },
+      {
+        id: 'deliveryTime',
+        Header: 'Delivery Time',
+        accessor: 'deliveryTime',
+        Filter: tableFilters.NumberRangeFilter(),
+        filter: 'between',
+        sortType: 'number',
+        width: 400,
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return <>{props.value} day(s)</>;
+        },
+      },
+      {
+        ...ActionColumn({ columnManager: true }),
+        Cell: (props: CellProps<TableStoryDataType>) => (
+          <DropdownMenu menuItems={menuItems}>
+            <IconButton
+              styleType='borderless'
+              onClick={(e) => e.stopPropagation()}
+              disabled={isRowDisabled(props.row.original)}
+            >
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        ),
+        sticky: 'right',
       },
     ],
     [isRowDisabled, menuItems],
@@ -1762,29 +1677,24 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<{ name: string; description: string }>) => {
-              const onClick = () => onClickHandler(props);
-              return <Anchor onClick={onClick}>Click me!</Anchor>;
-            },
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          const onClick = () => onClickHandler(props);
+          return <Anchor onClick={onClick}>Click me!</Anchor>;
+        },
       },
     ],
     [],
@@ -1866,23 +1776,18 @@ export const Editable: Story<Partial<TableProps>> = (args) => {
   const columns = React.useMemo(
     (): Column<TableStoryDataType>[] => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            cellRenderer,
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            cellRenderer,
-            Filter: tableFilters.TextFilter(),
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        cellRenderer,
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        cellRenderer,
+        Filter: tableFilters.TextFilter(),
       },
     ],
     [cellRenderer],
@@ -1912,22 +1817,17 @@ export const WithPaginator: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-            Filter: tableFilters.TextFilter(),
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+        Filter: tableFilters.TextFilter(),
       },
     ],
     [],
@@ -2013,22 +1913,17 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-            Filter: tableFilters.TextFilter(),
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+        Filter: tableFilters.TextFilter(),
       },
     ],
     [],
@@ -2123,57 +2018,50 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     (): Column<TableStoryDataType>[] => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'index',
-            Header: '#',
-            accessor: 'index',
-            width: 80,
-            disableResizing: true,
-          },
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            fieldType: 'text',
-            minWidth: 100,
-          },
-          {
-            id: 'id',
-            Header: 'ID',
-            accessor: 'id',
-            width: 100,
-            disableResizing: true,
-          },
-          {
-            id: 'startDate',
-            Header: 'Start date',
-            accessor: 'startDate',
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return (
-                <>{props.row.original.startDate.toLocaleDateString('en-US')}</>
-              );
-            },
-            width: 100,
-            disableResizing: true,
-          },
-          {
-            id: 'endDate',
-            Header: 'End date',
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return (
-                <>{props.row.original.endDate.toLocaleDateString('en-US')}</>
-              );
-            },
-            maxWidth: 200,
-          },
-        ],
+        id: 'index',
+        Header: '#',
+        accessor: 'index',
+        width: 80,
+        disableResizing: true,
+      },
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        fieldType: 'text',
+        minWidth: 100,
+      },
+      {
+        id: 'id',
+        Header: 'ID',
+        accessor: 'id',
+        width: 100,
+        disableResizing: true,
+      },
+      {
+        id: 'startDate',
+        Header: 'Start date',
+        accessor: 'startDate',
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return (
+            <>{props.row.original.startDate.toLocaleDateString('en-US')}</>
+          );
+        },
+        width: 100,
+        disableResizing: true,
+      },
+      {
+        id: 'endDate',
+        Header: 'End date',
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return <>{props.row.original.endDate.toLocaleDateString('en-US')}</>;
+        },
+        maxWidth: 200,
       },
     ],
     [],
@@ -2281,22 +2169,17 @@ export const ZebraStripedRows: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-            Filter: tableFilters.TextFilter(),
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+        Filter: tableFilters.TextFilter(),
       },
     ],
     [],
@@ -2435,45 +2318,40 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     (): Column<typeof data[number]>[] => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'product',
-            Header: 'Product',
-            accessor: 'product',
-            minWidth: 400,
-          },
-          {
-            id: 'price',
-            Header: 'Price',
-            accessor: 'price',
-            width: 400,
-            Cell: (props: CellProps<typeof data[0]>) => {
-              return <>{`$${props.value}`}</>;
-            },
-          },
-          {
-            id: 'quantity',
-            Header: 'Quantity',
-            accessor: 'quantity',
-            width: 400,
-          },
-          {
-            id: 'rating',
-            Header: 'Rating',
-            accessor: 'rating',
-            width: 400,
-          },
-          {
-            id: 'deliveryTime',
-            Header: 'Delivery Time',
-            accessor: 'deliveryTime',
-            width: 400,
-            Cell: (props: CellProps<typeof data[0]>) => {
-              return <>{`${props.value} day(s)`}</>;
-            },
-          },
-        ],
+        id: 'product',
+        Header: 'Product',
+        accessor: 'product',
+        minWidth: 400,
+      },
+      {
+        id: 'price',
+        Header: 'Price',
+        accessor: 'price',
+        width: 400,
+        Cell: (props: CellProps<typeof data[0]>) => {
+          return <>{`$${props.value}`}</>;
+        },
+      },
+      {
+        id: 'quantity',
+        Header: 'Quantity',
+        accessor: 'quantity',
+        width: 400,
+      },
+      {
+        id: 'rating',
+        Header: 'Rating',
+        accessor: 'rating',
+        width: 400,
+      },
+      {
+        id: 'deliveryTime',
+        Header: 'Delivery Time',
+        accessor: 'deliveryTime',
+        width: 400,
+        Cell: (props: CellProps<typeof data[0]>) => {
+          return <>{`${props.value} day(s)`}</>;
+        },
       },
     ],
     [],
@@ -2587,28 +2465,23 @@ export const Virtualized: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<{ name: string; description: string }>) => {
-              const onClick = () => onClickHandler(props);
-              return <Anchor onClick={onClick}>Click me!</Anchor>;
-            },
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
+          const onClick = () => onClickHandler(props);
+          return <Anchor onClick={onClick}>Click me!</Anchor>;
+        },
       },
     ],
     [],
@@ -2657,30 +2530,25 @@ export const ScrollToRow: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'click-me',
-            Header: 'Click',
-            width: 100,
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              const onClick = () => onClickHandler(props);
-              return <Anchor onClick={onClick}>Click me!</Anchor>;
-            },
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          const onClick = () => onClickHandler(props);
+          return <Anchor onClick={onClick}>Click me!</Anchor>;
+        },
       },
     ],
     [onClickHandler],
@@ -2728,22 +2596,17 @@ export const VirtualizedSubRows: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            Filter: tableFilters.TextFilter(),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-            Filter: tableFilters.TextFilter(),
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter(),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+        Filter: tableFilters.TextFilter(),
       },
     ],
     [],
@@ -2877,41 +2740,36 @@ export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     (): Column[] => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'product',
-            Header: 'Product',
-            accessor: 'product',
-            disableReordering: true,
-          },
-          {
-            id: 'price',
-            Header: 'Price',
-            accessor: 'price',
-            Cell: (props: CellProps<typeof data[0]>) => {
-              return <>{`$${props.value}`}</>;
-            },
-          },
-          {
-            id: 'quantity',
-            Header: 'Quantity',
-            accessor: 'quantity',
-          },
-          {
-            id: 'rating',
-            Header: 'Rating',
-            accessor: 'rating',
-          },
-          {
-            id: 'deliveryTime',
-            Header: 'Delivery Time',
-            accessor: 'deliveryTime',
-            Cell: (props: CellProps<typeof data[0]>) => {
-              return <>{`${props.value} day(s)`}</>;
-            },
-          },
-        ],
+        id: 'product',
+        Header: 'Product',
+        accessor: 'product',
+        disableReordering: true,
+      },
+      {
+        id: 'price',
+        Header: 'Price',
+        accessor: 'price',
+        Cell: (props: CellProps<typeof data[0]>) => {
+          return <>{`$${props.value}`}</>;
+        },
+      },
+      {
+        id: 'quantity',
+        Header: 'Quantity',
+        accessor: 'quantity',
+      },
+      {
+        id: 'rating',
+        Header: 'Rating',
+        accessor: 'rating',
+      },
+      {
+        id: 'deliveryTime',
+        Header: 'Delivery Time',
+        accessor: 'deliveryTime',
+        Cell: (props: CellProps<typeof data[0]>) => {
+          return <>{`${props.value} day(s)`}</>;
+        },
       },
     ],
     [],
@@ -3054,31 +2912,26 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
 
   const columns = useMemo(
     (): Column<typeof data[number]>[] => [
+      SelectionColumn({ isDisabled: isCheckboxDisabled }),
+      ExpanderColumn({ subComponent, isDisabled: isExpanderDisabled }),
       {
-        Header: 'Table',
-        columns: [
-          SelectionColumn({ isDisabled: isCheckboxDisabled }),
-          ExpanderColumn({ subComponent, isDisabled: isExpanderDisabled }),
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            cellRenderer: (props) => (
-              <DefaultCell
-                {...props}
-                isDisabled={(rowData) =>
-                  isCellDisabled(rowData) || isRowDisabled(rowData)
-                }
-              />
-            ),
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            maxWidth: 200,
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        cellRenderer: (props) => (
+          <DefaultCell
+            {...props}
+            isDisabled={(rowData) =>
+              isCellDisabled(rowData) || isRowDisabled(rowData)
+            }
+          />
+        ),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
       },
     ],
     [
@@ -3130,80 +2983,73 @@ export const ColumnManager: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     (): Column<TableStoryDataType>[] => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'index',
-            Header: '#',
-            accessor: 'index',
-            disableToggleVisibility: true,
-          },
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-            fieldType: 'text',
-          },
-          {
-            id: 'id',
-            Header: 'ID',
-            accessor: 'id',
-          },
-          {
-            id: 'startDate',
-            Header: 'Start date',
-            accessor: 'startDate',
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return (
-                <>{props.row.original.startDate.toLocaleDateString('en-US')}</>
-              );
-            },
-          },
-          {
-            id: 'endDate',
-            Header: 'End date',
-            accessor: 'endDate',
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return (
-                <>{props.row.original.endDate.toLocaleDateString('en-US')}</>
-              );
-            },
-          },
-          {
-            id: 'Price',
-            Header: 'Price',
-            accessor: 'price',
-          },
-          {
-            id: 'Color',
-            Header: 'Color',
-            accessor: 'color',
-          },
-          {
-            id: '# in stock',
-            Header: '# in stock',
-            accessor: 'stock',
-          },
-          {
-            id: 'Rating',
-            Header: 'Rating',
-            accessor: 'rating',
-          },
-          {
-            id: 'Location',
-            Header: 'Location',
-            accessor: 'location',
-          },
-          ActionColumn({
-            columnManager: true,
-          }),
-        ],
+        id: 'index',
+        Header: '#',
+        accessor: 'index',
+        disableToggleVisibility: true,
       },
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        fieldType: 'text',
+      },
+      {
+        id: 'id',
+        Header: 'ID',
+        accessor: 'id',
+      },
+      {
+        id: 'startDate',
+        Header: 'Start date',
+        accessor: 'startDate',
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return (
+            <>{props.row.original.startDate.toLocaleDateString('en-US')}</>
+          );
+        },
+      },
+      {
+        id: 'endDate',
+        Header: 'End date',
+        accessor: 'endDate',
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return <>{props.row.original.endDate.toLocaleDateString('en-US')}</>;
+        },
+      },
+      {
+        id: 'Price',
+        Header: 'Price',
+        accessor: 'price',
+      },
+      {
+        id: 'Color',
+        Header: 'Color',
+        accessor: 'color',
+      },
+      {
+        id: '# in stock',
+        Header: '# in stock',
+        accessor: 'stock',
+      },
+      {
+        id: 'Rating',
+        Header: 'Rating',
+        accessor: 'rating',
+      },
+      {
+        id: 'Location',
+        Header: 'Location',
+        accessor: 'location',
+      },
+      ActionColumn({
+        columnManager: true,
+      }),
     ],
     [],
   );
@@ -3450,61 +3296,56 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     (): Column<typeof data[number]>[] => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'product',
-            Header: 'Product',
-            accessor: 'product',
-            minWidth: 150,
-            sticky: 'left',
-          },
-          {
-            id: 'price',
-            Header: 'Price',
-            accessor: 'price',
-            width: 150,
-            Cell: (props: CellProps<typeof data[0]>) => {
-              return <>${props.value}</>;
-            },
-            sticky: 'left',
-          },
-          {
-            id: 'quantity',
-            Header: 'Quantity',
-            accessor: 'quantity',
-            width: 400,
-          },
-          {
-            id: 'rating',
-            Header: 'Rating',
-            accessor: 'rating',
-            width: 400,
-          },
-          {
-            id: 'deliveryTime',
-            Header: 'Delivery Time',
-            accessor: 'deliveryTime',
-            width: 400,
-            Cell: (props: CellProps<typeof data[0]>) => {
-              return <>{props.value} day(s)</>;
-            },
-          },
-          {
-            ...ActionColumn({ columnManager: true }),
-            Cell: () => (
-              <DropdownMenu menuItems={menuItems}>
-                <IconButton
-                  styleType='borderless'
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <SvgMore />
-                </IconButton>
-              </DropdownMenu>
-            ),
-            sticky: 'right',
-          },
-        ],
+        id: 'product',
+        Header: 'Product',
+        accessor: 'product',
+        minWidth: 150,
+        sticky: 'left',
+      },
+      {
+        id: 'price',
+        Header: 'Price',
+        accessor: 'price',
+        width: 150,
+        Cell: (props: CellProps<typeof data[0]>) => {
+          return <>${props.value}</>;
+        },
+        sticky: 'left',
+      },
+      {
+        id: 'quantity',
+        Header: 'Quantity',
+        accessor: 'quantity',
+        width: 400,
+      },
+      {
+        id: 'rating',
+        Header: 'Rating',
+        accessor: 'rating',
+        width: 400,
+      },
+      {
+        id: 'deliveryTime',
+        Header: 'Delivery Time',
+        accessor: 'deliveryTime',
+        width: 400,
+        Cell: (props: CellProps<typeof data[0]>) => {
+          return <>{props.value} day(s)</>;
+        },
+      },
+      {
+        ...ActionColumn({ columnManager: true }),
+        Cell: () => (
+          <DropdownMenu menuItems={menuItems}>
+            <IconButton
+              styleType='borderless'
+              onClick={(e) => e.stopPropagation()}
+            >
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        ),
+        sticky: 'right',
       },
     ],
     [menuItems],
@@ -3615,56 +3456,51 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            cellRenderer: (
-              props: CellRendererProps<{
-                startIcon: JSX.Element;
-                endIcon: JSX.Element;
-              }>,
-            ) => (
-              <DefaultCell
-                {...props}
-                startIcon={props.cellProps.row.original.startIcon}
-                endIcon={
-                  props.cellProps.row.original.isLoading ? (
-                    <ProgressRadial value={40} />
-                  ) : (
-                    props.cellProps.row.original.endIcon
-                  )
-                }
-              />
-            ),
-          },
-          {
-            id: 'modified',
-            Header: 'Modified',
-            accessor: 'modified',
-            maxWidth: 200,
-            cellRenderer: (
-              props: CellRendererProps<{
-                status: 'positive' | 'warning' | 'negative' | undefined;
-              }>,
-            ) => {
-              return (
-                <DefaultCell
-                  {...props}
-                  status={props.cellProps.row.original.status}
-                />
-              );
-            },
-          },
-          {
-            id: 'size',
-            Header: 'Size',
-            maxWidth: 200,
-            accessor: 'size',
-          },
-        ],
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        cellRenderer: (
+          props: CellRendererProps<{
+            startIcon: JSX.Element;
+            endIcon: JSX.Element;
+          }>,
+        ) => (
+          <DefaultCell
+            {...props}
+            startIcon={props.cellProps.row.original.startIcon}
+            endIcon={
+              props.cellProps.row.original.isLoading ? (
+                <ProgressRadial value={40} />
+              ) : (
+                props.cellProps.row.original.endIcon
+              )
+            }
+          />
+        ),
+      },
+      {
+        id: 'modified',
+        Header: 'Modified',
+        accessor: 'modified',
+        maxWidth: 200,
+        cellRenderer: (
+          props: CellRendererProps<{
+            status: 'positive' | 'warning' | 'negative' | undefined;
+          }>,
+        ) => {
+          return (
+            <DefaultCell
+              {...props}
+              status={props.cellProps.row.original.status}
+            />
+          );
+        },
+      },
+      {
+        id: 'size',
+        Header: 'Size',
+        maxWidth: 200,
+        accessor: 'size',
       },
     ],
     [],

@@ -48,39 +48,34 @@ export default () => {
   const columns = React.useMemo(
     (): Column<TableStoryDataType>[] => [
       {
-        Header: 'Table',
-        columns: [
-          {
-            id: 'product',
-            Header: 'Product',
-            accessor: 'product',
-          },
-          {
-            id: 'price',
-            Header: 'Price',
-            accessor: 'price',
-            Cell: (props: CellProps<TableStoryDataType>) => {
-              return <>${props.value}</>;
-            },
-          },
-          {
-            id: 'quantity',
-            Header: 'Quantity',
-            accessor: 'quantity',
-          },
-          {
-            id: 'rating',
-            Header: 'Rating',
-            accessor: 'rating',
-            cellRenderer: (props: CellRendererProps<TableStoryDataType>) => {
-              return (
-                <DefaultCell {...props} status={props.cellProps.row.original.status}>
-                  {props.cellProps.row.original.rating}/5
-                </DefaultCell>
-              );
-            },
-          },
-        ],
+        id: 'product',
+        Header: 'Product',
+        accessor: 'product',
+      },
+      {
+        id: 'price',
+        Header: 'Price',
+        accessor: 'price',
+        Cell: (props: CellProps<TableStoryDataType>) => {
+          return <>${props.value}</>;
+        },
+      },
+      {
+        id: 'quantity',
+        Header: 'Quantity',
+        accessor: 'quantity',
+      },
+      {
+        id: 'rating',
+        Header: 'Rating',
+        accessor: 'rating',
+        cellRenderer: (props: CellRendererProps<TableStoryDataType>) => {
+          return (
+            <DefaultCell {...props} status={props.cellProps.row.original.status}>
+              {props.cellProps.row.original.rating}/5
+            </DefaultCell>
+          );
+        },
       },
     ],
     []

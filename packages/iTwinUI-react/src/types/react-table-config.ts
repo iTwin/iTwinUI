@@ -163,11 +163,11 @@ declare module 'react-table' {
   }
 
   export interface ColumnInterface<D extends object = {}>
-    // extends UseGlobalFiltersColumnOptions<D>,
     // UseGroupByColumnOptions<D>,
     extends UseSortByColumnOptions<D>,
       UseFiltersColumnOptions<D>,
-      UseResizeColumnsColumnOptions<D> {
+      UseResizeColumnsColumnOptions<D>,
+      UseGlobalFiltersColumnOptions<D> {
     /**
      * Custom class name applied to header column cell.
      */
