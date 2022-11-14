@@ -12,12 +12,6 @@
 
 </div>
 
-<div align="center">
-  
-  [Key features](#key-features) • [Installation](#installation) • [Usage](#usage) • [Contributing](#contributing)
-
-</div>
-
 iTwinUI is a design system for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications. It supports light and dark color schemes and also comes with high contrast versions of both.
 
 iTwinUI-css consists of the following packages:
