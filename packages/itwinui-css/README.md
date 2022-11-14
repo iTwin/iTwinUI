@@ -1,5 +1,14 @@
 <p align="center">
-  <img src="https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-logo.png" alt="iTwinUI logo" />
+  <picture>
+    <source
+      media='(prefers-color-scheme: dark)'
+      srcset='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-dark-logo.png'
+    />
+    <img
+      src='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-logo.png'
+      alt='iTwinUI logo'
+    />
+  </picture>
 </p>
 
 <p align="center">An open-source design system that helps us build a unified web experience.</p>
