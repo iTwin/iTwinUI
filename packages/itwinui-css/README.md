@@ -18,7 +18,7 @@
 
 </div>
 
-iTwinUI is a design system for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications. It supports multiple light and dark color schemes and also comes with high contrast versions of both.
+iTwinUI is a design system for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications. It supports light and dark color schemes and also comes with high contrast versions of both.
 
 This is a monorepo which contains the following packages:
 
