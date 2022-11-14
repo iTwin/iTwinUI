@@ -64,7 +64,7 @@ Import the global styles and variables (only needs to be done once per page):
 > @import '@itwin/itwinui-css/css/global.css';
 > ```
 
-Apply the `iui-root` class at the root of your app, and use `data-iui-theme` to specify theme (`light` or `dark`). See the [`@itwin/itwinui-variables/README.md`](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-variables/README.md) for more details on theming.
+Apply the `iui-root` class at the root of your app, and use `data-iui-theme` to specify theme (`light` or `dark`). See [`@itwin/itwinui-variables/README.md`](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-variables/README.md) for more details on theming.
 
 ```html
 <body class="iui-root" data-iui-theme="light">
