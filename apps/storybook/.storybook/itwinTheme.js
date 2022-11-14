@@ -15,7 +15,7 @@ export const lightTheme = create({
   colorSecondary: '#0071B8', // --iui-color-background-accent
 
   // UI
-  appBg: '#eef0f1', // --iui-color-background-backdrop
+  appBg: '#FFFFFF', // --iui-color-background
   appContentBg: '#FFFFFF', // --iui-color-background
   appBorderColor: '#b3bcc1', // --iui-color-border
   appBorderRadius: 9,
@@ -47,10 +47,10 @@ export const darkTheme = create({
   brandImage: itwinImageDark,
 
   colorPrimary: '#0071B8', // --iui-color-background-accent
-  colorSecondary: '#0071B8', // --iui-color-background-accent
+  colorSecondary: '#94befa', // --iui-color-text-accent
 
   // UI
-  appBg: '#242b2e', // --iui-color-background-backdrop
+  appBg: '#333c41', // --iui-color-background
   appContentBg: '#333c41', // --iui-color-background
   appBorderColor: '#49555d', // --iui-color-border
   appBorderRadius: 9,
@@ -66,7 +66,7 @@ export const darkTheme = create({
 
   // Toolbar default and active colors
   barTextColor: '#dbdbdb', //--iui-color-text
-  barSelectedColor: '#e4f3fc', // --iui-color-background-informational-muted
+  barSelectedColor: '#94befa', // --iui-color-text-accent
   barBg: '#333c41', // --iui-color-background
 
   // Form colors

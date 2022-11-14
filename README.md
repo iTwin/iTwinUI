@@ -2,7 +2,7 @@
   <picture>
     <source
       media='(prefers-color-scheme: dark)'
-      srcset='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-dark-logo.png'
+      srcSet='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-dark-logo.png'
     />
     <img
       src='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-logo.png'

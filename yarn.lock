@@ -1954,9 +1954,9 @@
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
 "@itwin/itwinui-css@dev":
-  version "1.0.0-dev.15"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-1.0.0-dev.15.tgz#56adae9c32bb927ad906a0f806dd79ee72f5f8d0"
-  integrity sha512-G3ldMPEQhiWxr1Xtetkofb6mK1wSjhxv/JiJml63TRcYzHK0RErxqFdDK3aZI6GPqM1bMwu9xMFCZqXlxzm9vQ==
+  version "1.0.0-dev.16"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-1.0.0-dev.16.tgz#aa9ef5630f1b781404257f7add34ac401f509204"
+  integrity sha512-uZegLageI6IP/9Civ2rcziLUBYTqkjksSKvva7oGSAvZP4rYzWOcv5nyYboMYQ5QZeAO4Sfmz/r+/VF1FHmYsQ==
 
 "@itwin/itwinui-icons-react@^1.10.1":
   version "1.10.1"
@@ -1969,9 +1969,9 @@
   integrity sha512-wWfHBByUfK3lEBEeSqnSYNX7yilG1rw3Euw9EBM1e9qlzU0uIibatagWTREk8/XfMGIQz/KGNGO4BJabY2wRxw==
 
 "@itwin/itwinui-variables@dev":
-  version "1.0.0-dev.0"
-  resolved "https://registry.yarnpkg.com/@itwin/itwinui-variables/-/itwinui-variables-1.0.0-dev.0.tgz#5feb762cd8c1d2b8e1a9b18a720c5e3b3ed964a2"
-  integrity sha512-YoR+cUzJI2qHmOeUjPs65ZhYLfLZRB3kq7o3pdPY6YMr0iFenQ1UODTkU1hiqgLfsH3RzHWYzEimu0x72p4AKw==
+  version "1.0.0-dev.1"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-variables/-/itwinui-variables-1.0.0-dev.1.tgz#1376324bb606636a1d20d9b4010f169ef540d11c"
+  integrity sha512-p/pWtyxWOJtncUWlRpWdtUwbDhN22vtGmUrLkhnM1G6d29BYvSh7nBFnNftWRzW3rG1pr0yakQZXGFjq67Bqbw==
 
 "@jest/console@^28.1.0":
   version "28.1.0"
