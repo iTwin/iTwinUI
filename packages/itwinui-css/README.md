@@ -20,10 +20,12 @@
 
 iTwinUI is a design system for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications. It supports light and dark color schemes and also comes with high contrast versions of both.
 
-This is a monorepo which contains the following packages:
+iTwinUI-css consists of the following packages:
 
 - `@itwin/itwinui-css` - the CSS for every component as well as some global styles
 - `@itwin/itwinui-variables` - CSS variables for iTwinUI's design tokens
+
+If you're looking for React components, check out [`@itwin/itwinui-react`](https://github.com/iTwin/iTwinUI-react) which is built on top of iTwinUI-css.
 
 ---
 
