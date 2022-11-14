@@ -21,7 +21,7 @@ Some of the highlights from this release include:
   - Baseline height has increased by 1px, resulting in height changes in many components.
   - Switched all sizes from `px` to `rem` to respect base font-size set in user preferences.
 - Changes to class names and data attributes (see migration guide).
-- Renaming and reorganizing a few component files.
+- Renamed and reorganized a few component files.
   - `inputs.css` has been split into `input.css`, `checkbox.css`, `radio.css`, `select.css`, etc.
   - `user-icon.css` is now `avatar.css`.
   - `wizard.css` has been split into `stepper.css` and `workflow-diagram.css`.
@@ -38,4 +38,4 @@ If you're interested in more details,
 
 ## 0.X
 
-See [`CHANGELOG-v0.md`](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-css/CHANGELOG-v0.md) for any changes prior to 1.0.0.
+For any changes prior to 1.0.0, check out the [0.X changelog](https://github.com/iTwin/iTwinUI/blob/v0/packages/itwinui-css/CHANGELOG.md).
