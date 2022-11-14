@@ -1,5 +1,14 @@
 <p align="center">
-  <img src="https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-logo.png" alt="iTwinUI logo" />
+  <picture>
+    <source
+      media='(prefers-color-scheme: dark)'
+      srcset='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-dark-logo.png'
+    />
+    <img
+      src='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-logo.png'
+      alt='iTwinUI logo'
+    />
+  </picture>
 </p>
 
 <p align="center">An open-source design system that helps us build a unified web experience.</p>
@@ -12,58 +21,70 @@
 
 </div>
 
-<div align="center">
-  
-  [Key features](#key-features) • [Install](#install) • [Use](#use) • [Contributing](#contributing)
+iTwinUI is a design system for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications. It supports light and dark color schemes and also comes with high contrast versions of both.
 
-</div>
+iTwinUI-css consists of the following packages:
 
-<p align="center">
-  <img src="https://itwinplatformcdn.azureedge.net/iTwinUI/interface-mockup.png" alt="A mockup of an iTwinUI interface." />
-</p>
+- `@itwin/itwinui-css` - the CSS for every component as well as some global styles
+- `@itwin/itwinui-variables` - CSS variables for iTwinUI's design tokens
 
-## Key features
-
-The iTwinUI package is a CSS (Sass/SCSS) library for building beautiful and well working web UI components with support for multiple color themes within Bentley Systems & iTwin.js applications.
-
-The goal of this project is to transform UX design specifications into flexible and usable style for Bentley web applications. This is accomplished by developing the style using Sass (.scss) and providing end users with that Sass, as well as CSS. This provides great flexibility to the end user and more readily enables adoption of the iTwinUI standards.
+If you're looking for React components, check out [`@itwin/itwinui-react`](https://github.com/iTwin/iTwinUI-react) which is built on top of iTwinUI-css.
 
 ---
 
-## Install
+## Installation
+
+Install both packages:
 
 ```
-npm install @itwin/itwinui-css
+npm install @itwin/itwinui-css @itwin/itwinui-variables
 ```
 
+or if using yarn:
+
 ```
-yarn add @itwin/itwinui-css
+yarn add @itwin/itwinui-css @itwin/itwinui-variables
 ```
 
 ---
 
-## Use
+## Usage
 
-You need to add `iui-body` class to your `<body>` element in order to get recommended stylings.
-
-### Using Sass:
-
-```scss
-@import '@itwin/itwinui-css/scss/variables';
-
-.my-class {
-  padding: $iui-m;
-  color: var(--iui-text-color);
-}
-```
-
-> Note: We highly recommend using post-processing tools for CSS (like [postcss](https://www.npmjs.com/package/postcss) and [autoprefixer](https://www.npmjs.com/package/autoprefixer)) to add vendors' prefixes as we are not doing that manually in SCSS.
-
-### Using CSS (applying global styles):
+Import the global styles and variables (only needs to be done once per page):
 
 ```css
-@import '@itwin/itwinui-css/css/global';
+@import '@itwin/itwinui-variables';
+@import '@itwin/itwinui-css/global';
 ```
+
+> **Note**: If your project doesn't support export maps, then you might need to import the css from the real paths:
+>
+> ```css
+> @import '@itwin/itwinui-variables/index.css';
+> @import '@itwin/itwinui-css/css/global.css';
+> ```
+
+Apply the `iui-root` class at the root of your app, and use `data-iui-theme` to specify theme (`light` or `dark`). See [`@itwin/itwinui-variables/README.md`](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-variables/README.md) for more details on theming.
+
+```html
+<body class="iui-root" data-iui-theme="light">
+  <!-- your application code -->
+</body>
+```
+
+Now you can start using our components:
+
+```css
+@import '@itwin/itwinui-css/css/button.css';
+```
+
+```html
+<button class="iui-button" data-iui-variant="default">
+  <span>Hello world</span>
+</button>
+```
+
+Check out our [demo website](https://itwin.github.io/iTwinUI) for a preview of all our components.
 
 ---
 
