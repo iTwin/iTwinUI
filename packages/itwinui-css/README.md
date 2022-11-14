@@ -14,7 +14,7 @@
 
 <div align="center">
   
-  [Key features](#key-features) • [Install](#install) • [Use](#use) • [Contributing](#contributing)
+  [Key features](#key-features) • [Installation](#installation) • [Usage](#usage) • [Contributing](#contributing)
 
 </div>
 
@@ -27,7 +27,7 @@ This is a monorepo which contains the following packages:
 
 ---
 
-## Install
+## Installation
 
 Install both packages:
 
