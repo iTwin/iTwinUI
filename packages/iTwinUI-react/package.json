@@ -61,9 +61,9 @@
     "createComponent": "node ../../scripts/createComponent.js"
   },
   "dependencies": {
-    "@itwin/itwinui-css": "dev",
-    "@itwin/itwinui-illustrations-react": "dev",
-    "@itwin/itwinui-variables": "dev",
+    "@itwin/itwinui-css": "^1.0.0",
+    "@itwin/itwinui-illustrations-react": "^2.0.0",
+    "@itwin/itwinui-variables": "^1.0.0",
     "@tippyjs/react": "^4.2.6",
     "@types/react-table": "^7.0.18",
     "classnames": "^2.2.6",
