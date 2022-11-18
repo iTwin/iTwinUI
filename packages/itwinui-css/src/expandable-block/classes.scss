@@ -4,4 +4,40 @@
 
 .iui-expandable-block {
   @include iui-expandable-block;
+
+  > .iui-header {
+    @include iui-expandable-block-header;
+
+    > .iui-icon {
+      @include iui-expandable-block-header-icons('expander');
+    }
+
+    > .iui-status-icon {
+      @include iui-expandable-block-header-icons('status');
+    }
+  }
+
+  .iui-expandable-content {
+    @include iui-expandable-block-content;
+  }
+
+  &:where(.iui-small) {
+    @include iui-expandable-block-size('small');
+  }
+
+  &:where(.iui-borderless) {
+    @include iui-expandable-block-variant('borderless');
+  }
+}
+
+.iui-expandable-block-label {
+  @include iui-expandable-block-header-label;
+
+  .iui-title {
+    @include iui-expandable-block-header-label-text('label');
+  }
+
+  .iui-caption {
+    @include iui-expandable-block-header-label-text('sublabel');
+  }
 }

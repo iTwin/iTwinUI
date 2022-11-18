@@ -1,0 +1,161 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../utils/index';
+
+@mixin iui-expandable-block {
+  --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon);
+  @include iui-expandable-block-variant;
+  @include iui-expandable-block-size;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: var(--iui-border-radius-1);
+
+  &:where(.iui-expanded) {
+    --_iui-expandable-block-expander-icon-transform: rotate(90deg);
+  }
+}
+
+/// @arg $variant Can be one of: default, borderless
+@mixin iui-expandable-block-variant($variant: 'default') {
+  @if $variant == 'default' {
+    --_iui-expandable-block-border: 1px solid var(--iui-color-border);
+    --_iui-expandable-block-background-color: var(--iui-color-background);
+    --_iui-expandable-block-content-padding: var(--iui-size-s);
+    --_iui-expandable-block-header-background-color-hover: var(--iui-color-background-hover);
+    --_iui-expandable-block-header-focus-offset: -2px;
+    --_iui-expandable-block-header-focus-thickness: 2px;
+
+    &:where(.iui-expanded) {
+      --_iui-expandable-block-header-bottom-border-radii: 0;
+    }
+  }
+  @if $variant == 'borderless' {
+    --_iui-expandable-block-border: none;
+    --_iui-expandable-block-background-color: transparent;
+    --_iui-expandable-block-content-padding: none;
+    --_iui-expandable-block-header-background-color-hover: var(--iui-color-background-transparent-hover);
+    --_iui-expandable-block-header-focus-offset: -1px;
+    --_iui-expandable-block-header-focus-thickness: 1px;
+
+    &:where(.iui-expanded) {
+      --_iui-expandable-block-header-bottom-border-radii: inherit;
+    }
+  }
+}
+
+/// @arg $size Can be one of: default, small
+@mixin iui-expandable-block-size($size: 'default') {
+  @if $size == 'default' {
+    --_iui-expandable-block-expander-icon-size: var(--iui-size-m);
+    --_iui-expandable-block-header-gap: var(--iui-size-s);
+    --_iui-expandable-block-header-padding: var(--iui-size-s);
+  }
+  @if $size == 'small' {
+    --_iui-expandable-block-expander-icon-size: var(--iui-size-s);
+    --_iui-expandable-block-header-gap: var(--iui-size-xs);
+    --_iui-expandable-block-header-padding: 6px var(--iui-size-xs);
+  }
+}
+
+@mixin iui-expandable-block-header {
+  @include iui-focus(
+    $offset: var(--_iui-expandable-block-header-focus-offset),
+    $thickness: var(--_iui-expandable-block-header-focus-thickness)
+  );
+  display: flex;
+  gap: var(--_iui-expandable-block-header-gap);
+  align-items: center;
+  padding: var(--_iui-expandable-block-header-padding);
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--_iui-expandable-block-background-color);
+  border: var(--_iui-expandable-block-border);
+  border-radius: inherit;
+  border-bottom-left-radius: var(--_iui-expandable-block-header-bottom-border-radii, inherit);
+  border-bottom-right-radius: var(--_iui-expandable-block-header-bottom-border-radii, inherit);
+  transition: background-color var(--iui-duration-1) ease-out;
+  @media (forced-colors: active) {
+    --_iui-expandable-block-expander-icon-fill: CanvasText;
+  }
+
+  &:hover {
+    --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon-hover);
+    --_iui-expandable-block-header-caption-color: var(--iui-color-text-hover);
+    --_iui-expandable-block-header-label-color: var(--iui-color-text-hover);
+
+    background-color: var(--_iui-expandable-block-header-background-color-hover);
+
+    @media (forced-colors: active) {
+      --_iui-expandable-block-header-caption-color: Highlight;
+      --_iui-expandable-block-header-label-color: Highlight;
+      --_iui-expandable-block-expander-icon-fill: Highlight;
+      border-color: Highlight;
+    }
+  }
+}
+
+/// @arg $type Can be one of: expander, status
+@mixin iui-expandable-block-header-icons($type) {
+  @include iui-icon-style('m');
+
+  @if $type == 'expander' {
+    width: var(--_iui-expandable-block-expander-icon-size);
+    height: var(--_iui-expandable-block-expander-icon-size);
+    fill: var(--_iui-expandable-block-expander-icon-fill);
+    transform: var(--_iui-expandable-block-expander-icon-transform, none);
+    transition: fill var(--iui-duration-1) ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: fill var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
+    }
+  }
+
+  @if $type == 'status' {
+    @media (forced-colors: active) {
+      fill: CanvasText;
+    }
+  }
+}
+
+@mixin iui-expandable-block-header-label {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  min-width: 0;
+  font-size: var(--iui-font-size-2);
+  color: var(--_iui-expandable-block-header-label-color, inherit);
+}
+
+/// @arg $type Can be one of: label, sublabel
+@mixin iui-expandable-block-header-label-text($type) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--iui-duration-1) ease;
+  @media (forced-colors: active) {
+    transition: none;
+  }
+
+  @if $type == 'sublabel' {
+    font-size: var(--iui-font-size-0);
+    color: var(--_iui-expandable-block-header-caption-color, var(--iui-color-text-muted));
+  }
+}
+
+@mixin iui-expandable-block-content {
+  overflow: hidden;
+  background-color: var(--_iui-expandable-block-background-color);
+  border-bottom: var(--_iui-expandable-block-border);
+  border-right: var(--_iui-expandable-block-border);
+  border-left: var(--_iui-expandable-block-border);
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+
+  @include iui-transition-group;
+
+  // padding should be in a separate div because otherwise it messes up height transition
+  > div {
+    padding: var(--_iui-expandable-block-content-padding);
+  }
+}
