@@ -50,14 +50,6 @@ const componentIndexFactory = (directory) => {
   };
 };
 
-/** Appends component index to global index.scss */
-const globalIndexFactory = (directory) => {
-  return {
-    path: `${directory}/index.scss`,
-    template: `@import './${componentName}/index';\n`,
-  };
-};
-
 /** Creates classes.scss under component directory */
 const componentClassesFactory = (directory) => {
   const template = `${copyrightBannerScss}
@@ -74,10 +66,10 @@ const componentClassesFactory = (directory) => {
   };
 };
 
-/** Appends component classes to global classes.scss */
-const globalClassesFactory = (directory) => {
+/** Appends component classes to global all.scss */
+const globalAllFactory = (directory) => {
   return {
-    path: `${directory}/classes.scss`,
+    path: `${directory}/all.scss`,
     template: `@import './${componentName}/classes';\n`,
   };
 };
@@ -148,9 +140,8 @@ if (componentName) {
   writeFile(componentIndexFactory(`src/${componentName}`));
   writeFile(componentClassesFactory(`src/${componentName}`));
   writeFile(componentFactory(`src/${componentName}`));
-  writeFile(demoHtmlFactory(`backstop/tests/`));
-  writeFile(scenarioJsFactory(`backstop/scenarios/`));
+  writeFile(demoHtmlFactory(`backstop/tests`));
+  writeFile(scenarioJsFactory(`backstop/scenarios`));
 
-  appendFile(globalIndexFactory('src'));
-  appendFile(globalClassesFactory('src'));
+  appendFile(globalAllFactory('src'));
 }
