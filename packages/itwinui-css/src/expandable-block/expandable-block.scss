@@ -23,6 +23,7 @@
     --_iui-expandable-block-border: 1px solid var(--iui-color-border);
     --_iui-expandable-block-background-color: var(--iui-color-background);
     --_iui-expandable-block-content-padding: var(--iui-size-s);
+    --_iui-expandable-block-header-background-color-disabled: var(--iui-color-background-disabled);
     --_iui-expandable-block-header-background-color-hover: var(--iui-color-background-hover);
     --_iui-expandable-block-header-focus-offset: -2px;
     --_iui-expandable-block-header-focus-thickness: 2px;
@@ -35,6 +36,7 @@
     --_iui-expandable-block-border: none;
     --_iui-expandable-block-background-color: transparent;
     --_iui-expandable-block-content-padding: none;
+    --_iui-expandable-block-header-background-color-disabled: transparent;
     --_iui-expandable-block-header-background-color-hover: var(--iui-color-background-transparent-hover);
     --_iui-expandable-block-header-focus-offset: -1px;
     --_iui-expandable-block-header-focus-thickness: 1px;
@@ -60,6 +62,7 @@
 }
 
 @mixin iui-expandable-block-header {
+  @include iui-reset;
   @include iui-focus(
     $offset: var(--_iui-expandable-block-header-focus-offset),
     $thickness: var(--_iui-expandable-block-header-focus-thickness)
@@ -70,6 +73,10 @@
   padding: var(--_iui-expandable-block-header-padding);
   cursor: pointer;
   user-select: none;
+  color: var(--iui-color-text);
+  line-height: inherit;
+  font-family: inherit;
+  text-align: left;
   background-color: var(--_iui-expandable-block-background-color);
   border: var(--_iui-expandable-block-border);
   border-radius: inherit;
@@ -80,7 +87,7 @@
     --_iui-expandable-block-expander-icon-fill: CanvasText;
   }
 
-  &:hover {
+  &:where(:hover) {
     --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon-hover);
     --_iui-expandable-block-header-caption-color: var(--iui-color-text-hover);
     --_iui-expandable-block-header-label-color: var(--iui-color-text-hover);
@@ -92,6 +99,25 @@
       --_iui-expandable-block-header-label-color: Highlight;
       --_iui-expandable-block-expander-icon-fill: Highlight;
       border-color: Highlight;
+    }
+  }
+
+  &[disabled],
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon-disabled);
+    --_iui-expandable-block-header-caption-color: var(--iui-color-text-disabled);
+    --_iui-expandable-block-header-label-color: var(--iui-color-text-disabled);
+
+    cursor: not-allowed;
+    background-color: var(--_iui-expandable-block-header-background-color-disabled);
+    border-color: var(--iui-color-border-disabled);
+
+    @media (forced-colors: active) {
+      --_iui-expandable-block-expander-icon-fill: GrayText;
+      --_iui-expandable-block-header-caption-color: GrayText;
+      --_iui-expandable-block-header-label-color: GrayText;
+      border-color: GrayText;
     }
   }
 }
