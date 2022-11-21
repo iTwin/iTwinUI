@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
-@import './avatar-sizes';
 
 @mixin iui-avatar {
   @include iui-reset;
@@ -11,6 +10,8 @@
   position: relative;
   margin: 0;
   user-select: none;
+  width: var(--_iui-avatar-size);
+  height: var(--_iui-avatar-size);
 
   > .iui-stroke {
     display: block;
@@ -43,6 +44,8 @@
     background-color: hsl(72, 51%, 56%);
     overflow: hidden;
     color: var(--iui-color-white);
+    line-height: var(--_iui-avatar-size);
+    font-size: var(--_iui-avatar-font-size);
   }
 
   > .iui-icon {
@@ -214,5 +217,23 @@
     &.iui-x-large {
       margin-left: var(--iui-size-s);
     }
+  }
+}
+
+/// @arg $size Must be one of: xl, l, 2xl, 3xl
+@mixin iui-avatar-size($size: xl, $font-size: var(--iui-font-size-2)) {
+  $icon-size: map-get($iui-icon-sizes, $size);
+
+  --_iui-avatar-size: #{$icon-size};
+  --_iui-avatar-font-size: #{$font-size};
+
+  @if ($size == xl) {
+    --_iui-avatar-status-size: calc(var(--iui-size-2xs) * 1.5);
+  } @else if ($size == l) {
+    --_iui-avatar-status-size: var(--iui-size-2xs);
+  } @else if ($size == 2xl) {
+    --_iui-avatar-status-size: var(--iui-size-xs);
+  } @else {
+    --_iui-avatar-status-size: var(--iui-size-s);
   }
 }
