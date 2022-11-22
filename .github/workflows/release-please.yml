@@ -27,6 +27,7 @@ jobs:
     uses: ./.github/workflows/publish-npm.yml
     with:
       package: itwinui-css
+      tag: latest
     secrets:
       NPMJS_PUBLISH_ITWIN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
 
