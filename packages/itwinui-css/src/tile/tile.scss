@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../avatar/index';
 @import '../button/index';
 @import '../surface/index';
 @import '../utils/index';
@@ -219,6 +220,10 @@
   justify-content: center;
   background-color: var(--iui-color-background-zebra);
   border-bottom: 1px solid var(--iui-color-border);
+
+  .iui-avatar {
+    @include iui-avatar-size($size: 3xl, $font-size: var(--iui-font-size-4));
+  }
 
   .iui-thumbnail-icon {
     @include iui-icon-style(3xl);
