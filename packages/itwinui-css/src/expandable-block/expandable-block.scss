@@ -29,7 +29,7 @@
     --_iui-expandable-block-header-focus-thickness: 2px;
 
     &:where(.iui-expanded) {
-      --_iui-expandable-block-header-bottom-border-radii: 0;
+      --_iui-expandable-block-header-bottom-border-radius: 0;
     }
   }
   @if $variant == 'borderless' {
@@ -42,7 +42,7 @@
     --_iui-expandable-block-header-focus-thickness: 1px;
 
     &:where(.iui-expanded) {
-      --_iui-expandable-block-header-bottom-border-radii: inherit;
+      --_iui-expandable-block-header-bottom-border-radius: inherit;
     }
   }
 }
@@ -80,8 +80,8 @@
   background-color: var(--_iui-expandable-block-background-color);
   border: var(--_iui-expandable-block-border);
   border-radius: inherit;
-  border-bottom-left-radius: var(--_iui-expandable-block-header-bottom-border-radii, inherit);
-  border-bottom-right-radius: var(--_iui-expandable-block-header-bottom-border-radii, inherit);
+  border-bottom-left-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
+  border-bottom-right-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
   transition: background-color var(--iui-duration-1) ease-out;
   @media (forced-colors: active) {
     --_iui-expandable-block-expander-icon-fill: CanvasText;
