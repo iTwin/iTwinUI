@@ -20,7 +20,8 @@
 /// @arg $variant Can be one of: default, borderless
 @mixin iui-expandable-block-variant($variant: 'default') {
   @if $variant == 'default' {
-    --_iui-expandable-block-border: 1px solid var(--iui-color-border);
+    --_iui-expandable-block-border: 1px solid var(--_iui-expandable-block-border-color);
+    --_iui-expandable-block-border-color: var(--iui-color-border);
     --_iui-expandable-block-background-color: var(--iui-color-background);
     --_iui-expandable-block-content-padding: var(--iui-size-s);
     --_iui-expandable-block-header-background-color-disabled: var(--iui-color-background-disabled);
@@ -57,7 +58,7 @@
   @if $size == 'small' {
     --_iui-expandable-block-expander-icon-size: var(--iui-size-s);
     --_iui-expandable-block-header-gap: var(--iui-size-xs);
-    --_iui-expandable-block-header-padding: 6px var(--iui-size-xs);
+    --_iui-expandable-block-header-padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-xs);
   }
 }
 
