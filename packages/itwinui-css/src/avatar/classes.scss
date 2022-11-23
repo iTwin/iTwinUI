@@ -4,20 +4,17 @@
 
 .iui-avatar {
   @include iui-avatar;
+  @include iui-avatar-size;
 
-  &#{&} {
-    @include iui-avatar-size;
-  }
-
-  &.iui-small {
+  &:where(.iui-small) {
     @include iui-avatar-size($size: l, $font-size: var(--iui-font-size-0));
   }
 
-  &.iui-large {
+  &:where(.iui-large) {
     @include iui-avatar-size($size: 2xl, $font-size: var(--iui-font-size-3));
   }
 
-  &.iui-x-large {
+  &:where(.iui-x-large) {
     @include iui-avatar-size($size: 3xl, $font-size: var(--iui-font-size-4));
   }
 }
