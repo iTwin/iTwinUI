@@ -48,10 +48,11 @@ jobs:
           node-version: 16.x
           registry-url: https://registry.npmjs.org/
 
-      - run: yarn install
-      - run: yarn build
+      # - run: yarn install
+      # - run: yarn build
 
-      - run: npm publish --access public --tag ${{ inputs.tag }}
+      # - run: npm publish --access public --tag ${{ inputs.tag }}
+      - run: echo '--tag ${{ inputs.tag }}'
         working-directory: './packages/${{ inputs.package }}/'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
