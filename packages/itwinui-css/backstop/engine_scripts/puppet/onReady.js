@@ -7,7 +7,7 @@ module.exports = async (page, scenario, vp) => {
   } else if (scenario.label.endsWith('_dark')) {
     await page.evaluate(() => (document.documentElement.dataset.iuiTheme = 'dark'));
   }
-  if (scenario.label.includes('_hc_light') || scenario.label.includes('_hc_dark')) {
+  if (scenario.label.endsWith('_hc_light') || scenario.label.endsWith('_hc_dark')) {
     await page.evaluate(() => (document.documentElement.dataset.iuiContrast = 'high'));
   }
   await require('./browserActionsHelper')(page, scenario);
