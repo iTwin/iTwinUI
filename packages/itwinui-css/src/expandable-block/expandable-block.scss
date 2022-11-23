@@ -95,9 +95,9 @@
     background-color: var(--_iui-expandable-block-header-background-color-hover);
 
     @media (forced-colors: active) {
+      --_iui-expandable-block-expander-icon-fill: Highlight;
       --_iui-expandable-block-header-caption-color: Highlight;
       --_iui-expandable-block-header-label-color: Highlight;
-      --_iui-expandable-block-expander-icon-fill: Highlight;
       border-color: Highlight;
     }
   }
