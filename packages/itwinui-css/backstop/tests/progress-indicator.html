@@ -1107,10 +1107,7 @@
 
     <script type="module">
       (async () => {
-        // when not supported (firefox 107), this property will be undefined rather than false
-        const isInertSupported = document.documentElement.inert === false;
-
-        if (!isInertSupported) {
+        if (!HTMLElement.prototype.hasOwnProperty('inert')) {
           await import('https://unpkg.com/wicg-inert@3.1.2/dist/inert.min.js');
         }
       })();
