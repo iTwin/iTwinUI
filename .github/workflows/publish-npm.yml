@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: 'Which package to publish?'
+        description: "Which package to publish?"
         required: true
         type: choice
         default: itwinui-css
@@ -12,7 +12,7 @@ on:
           - itwinui-css
           - itwinui-variables
       tag:
-        description: 'Which npm tag to publish to?'
+        description: "Which npm tag to publish to?"
         required: true
         type: choice
         default: latest
