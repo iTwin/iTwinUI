@@ -1669,6 +1669,100 @@ Full2.decorators = [
   ),
 ];
 
+export const Localized: Story<Partial<TableProps>> = (args) => {
+  const columns = useMemo(
+    () => [
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        Filter: tableFilters.TextFilter({
+          filter: 'Localized filter',
+          clear: 'Localized clear',
+        }),
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+      },
+    ],
+    [],
+  );
+
+  const generateData = (start: number, end: number) => {
+    return Array(end - start)
+      .fill(null)
+      .map((_, index) => ({
+        name: `Name${start + index}`,
+        description: `Description${start + index}`,
+      }));
+  };
+
+  const pageSizeList = useMemo(() => [10, 25, 50], []);
+  const paginator = useCallback(
+    (props: TablePaginatorRendererProps) => (
+      <TablePaginator
+        {...props}
+        pageSizeList={pageSizeList}
+        localization={{
+          pageSizeLabel: (size: number) => `${size} per localized page`,
+          rangeLabel: (
+            startIndex: number,
+            endIndex: number,
+            totalRows: number,
+            isLoading: boolean,
+          ) =>
+            isLoading
+              ? `${startIndex}-${endIndex} localized`
+              : `${startIndex}-${endIndex} of localized ${totalRows}`,
+          previousPage: 'Previous localized page',
+          nextPage: 'Next localized page',
+          goToPageLabel: (page: number) => `Go to localized page ${page}`,
+          rowsPerPageLabel: 'Rows per localized page',
+          rowsSelectedLabel: (totalSelectedRowsCount: number) =>
+            `${totalSelectedRowsCount} localized ${
+              totalSelectedRowsCount === 1 ? 'row' : 'rows'
+            } selected`,
+        }}
+      />
+    ),
+    [pageSizeList],
+  );
+
+  return (
+    <>
+      <Table
+        emptyTableContent='No localized data.'
+        isSelectable
+        isSortable
+        {...args}
+        columns={columns}
+        data={generateData(0, 100)}
+        pageSize={25}
+        paginatorRenderer={paginator}
+        style={{ height: '100%' }}
+      />
+    </>
+  );
+};
+
+Localized.decorators = [
+  (Story) => (
+    <div style={{ height: '90vh' }}>
+      <Story />
+    </div>
+  ),
+];
+
+Localized.argTypes = {
+  data: { control: { disable: true } },
+};
+Localized.parameters = {
+  docs: { source: { excludeDecorators: true } },
+};
+
 export const Condensed: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,

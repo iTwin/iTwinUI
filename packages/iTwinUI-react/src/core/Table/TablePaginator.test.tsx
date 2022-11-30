@@ -307,6 +307,7 @@ it('should render with custom localization', async () => {
   const { container } = renderComponent({
     pageSizeList,
     onPageSizeChange: jest.fn(),
+    totalSelectedRowsCount: 5,
     localization: {
       pageSizeLabel: (size: number) => `${size} per test page`,
       rowsPerPageLabel: 'Items per test page',
@@ -314,6 +315,8 @@ it('should render with custom localization', async () => {
         isLoading
           ? `${startIndex}-${endIndex} test`
           : `${startIndex}-${endIndex} of test ${totalRows}`,
+      rowsSelectedLabel: (totalSelectedRowsCount) =>
+        `${totalSelectedRowsCount} test(s)`,
     },
   });
 
@@ -326,6 +329,7 @@ it('should render with custom localization', async () => {
   expect(
     container.querySelector('.iui-table-paginator-page-size-label'),
   ).toHaveTextContent('Items per test page');
+  expect(container.querySelector('.iui-left')).toHaveTextContent('5 test(s)');
 
   await userEvent.click(pageSizeSelector);
   const pageSizeSelections = document.querySelectorAll('.iui-menu-item');

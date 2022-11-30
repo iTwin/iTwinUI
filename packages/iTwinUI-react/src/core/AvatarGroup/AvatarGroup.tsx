@@ -52,7 +52,7 @@ export type UserIconGroupProps = AvatarGroupProps;
  * You can add custom Count Avatar behavior by using `countAvatarProps`.
  *
  * @example
- * <AvatarGroup avatarSize='medium'>
+ * <AvatarGroup iconSize='medium'>
  *  <Avatar
  *    abbreviation="TR"
  *    backgroundColor={getUserColor("Terry Rivers")}

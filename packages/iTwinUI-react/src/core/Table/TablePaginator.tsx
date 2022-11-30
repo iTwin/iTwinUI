@@ -34,6 +34,10 @@ const defaultLocalization = {
   nextPage: 'Next page',
   goToPageLabel: (page: number) => `Go to page ${page}`,
   rowsPerPageLabel: 'Rows per page',
+  rowsSelectedLabel: (totalSelectedRowsCount: number) =>
+    `${totalSelectedRowsCount} ${
+      totalSelectedRowsCount === 1 ? 'row' : 'rows'
+    } selected`,
 } as const;
 
 export type TablePaginatorProps = {
@@ -95,6 +99,12 @@ export type TablePaginatorProps = {
      * @default 'Rows per page'
      */
     rowsPerPageLabel?: string | null;
+    /**
+     * Function that returns a label shown in the bottom left to notify how many rows are selected.
+     * Only used if multi-selection mode is enabled.
+     * @default (totalSelectedRowsCount: number) => `${totalSelectedRowsCount} ${totalSelectedRowsCount === 1 ? 'row' : 'rows'} selected`;
+     */
+    rowsSelectedLabel?: (totalSelectedRowsCount: number) => string;
   };
 } & TablePaginatorRendererProps &
   Omit<CommonProps, 'title'>;
@@ -285,11 +295,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     >
       <div className='iui-left'>
         {totalSelectedRowsCount > 0 && (
-          <span>
-            {`${totalSelectedRowsCount} ${
-              totalSelectedRowsCount === 1 ? 'row' : 'rows'
-            } selected`}
-          </span>
+          <span>{localization.rowsSelectedLabel(totalSelectedRowsCount)}</span>
         )}
       </div>
       {showPagesList && (

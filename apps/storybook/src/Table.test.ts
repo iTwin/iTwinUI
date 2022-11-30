@@ -22,6 +22,7 @@ describe('Table', () => {
     'Full 2',
     'Horizontal Scroll',
     'Loading',
+    'Localized',
     'No Data',
     'Resizable Columns',
     'Selectable Multi',
@@ -63,6 +64,11 @@ describe('Table', () => {
         }
         case 'Global Filter': {
           cy.get('.iui-input').first().click().type('Description8');
+          break;
+        }
+        case 'Localized': {
+          cy.get('.iui-checkbox').first().click();
+          cy.get('.iui-table-filter-button').first().click({ force: true }); // force because the button is hidden
           break;
         }
       }
