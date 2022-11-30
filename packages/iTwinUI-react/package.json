@@ -46,8 +46,8 @@
     "ux"
   ],
   "scripts": {
-    "build": "yarn clean:build && yarn copy-files && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
-    "build:watch": "yarn clean:build && yarn copy-files && concurrently \"tsc -p tsconfig.cjs.json --watch\" \"tsc -p tsconfig.esm.json --watch\"",
+    "build": "yarn clean:build && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
+    "build:watch": "yarn clean:build && concurrently \"tsc -p tsconfig.cjs.json --watch\" \"tsc -p tsconfig.esm.json --watch\"",
     "clean:build": "yarn clean:coverage && rimraf esm && rimraf cjs",
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && yarn clean:coverage && yarn clean:build && rimraf node_modules",
@@ -56,7 +56,6 @@
     "format": "prettier --config .prettierrc **/*.{tsx,ts,js} --ignore-path .gitignore --write",
     "lint": "eslint \"**/*.{js,ts,tsx}\" --max-warnings=0",
     "lint:fix": "yarn lint --fix && node ../configs/copyrightLinter.js --fix \"*/**/*.{js,ts,tsx}\"",
-    "copy-files": "cpy \"../../{README,LICENSE}.md\" .",
     "dev": "yarn build:watch",
     "createComponent": "node ../../scripts/createComponent.js"
   },
