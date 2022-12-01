@@ -29,3 +29,7 @@
 .iui-progress-indicator-overlay {
   @include iui-progress-indicator-overlay;
 }
+
+.iui-progress-indicator-overlay .iui-overlay-exiting {
+  @include iui-progress-overlay-exiting;
+}
