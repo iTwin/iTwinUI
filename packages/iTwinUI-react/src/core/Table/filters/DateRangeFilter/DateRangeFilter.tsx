@@ -40,14 +40,13 @@ const defaultParseInput = (text: string) => {
   return new Date('');
 };
 
-export type DateRangeFilterProps<
-  T extends Record<string, unknown>
-> = TableFilterProps<T> & {
-  formatDate?: (date: Date) => string;
-  parseInput?: (text: string) => Date;
-  placeholder?: string;
-  translatedLabels?: DateRangeTranslation & FilterButtonBarTranslation;
-};
+export type DateRangeFilterProps<T extends Record<string, unknown>> =
+  TableFilterProps<T> & {
+    formatDate?: (date: Date) => string;
+    parseInput?: (text: string) => Date;
+    placeholder?: string;
+    translatedLabels?: DateRangeTranslation & FilterButtonBarTranslation;
+  };
 
 export const DateRangeFilter = <T extends Record<string, unknown>>(
   props: DateRangeFilterProps<T>,

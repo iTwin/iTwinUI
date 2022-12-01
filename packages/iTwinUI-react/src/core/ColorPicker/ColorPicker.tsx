@@ -94,9 +94,10 @@ export const ColorPicker = (props: ColorPickerProps) => {
     }
   }, [setFocus]);
 
-  const inColor = React.useMemo(() => getColorValue(selectedColor), [
-    selectedColor,
-  ]);
+  const inColor = React.useMemo(
+    () => getColorValue(selectedColor),
+    [selectedColor],
+  );
   const activeColorTbgr = React.useRef(inColor.toTbgr());
 
   const [activeColor, setActiveColor] = React.useState<ColorValue>(inColor); // Color of colorDot or active ColorSwatch

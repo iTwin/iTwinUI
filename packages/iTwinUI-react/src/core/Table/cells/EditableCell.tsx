@@ -6,28 +6,27 @@ import React from 'react';
 import { CellRendererProps } from 'react-table';
 import { getRandomValue } from '../../utils';
 
-export type EditableCellProps<
-  T extends Record<string, unknown>
-> = CellRendererProps<T> & {
-  /**
-   * Callback function when cell is edited. It is called only when `onBlur` event is fired.
-   * @example
-   * const onCellEdit = React.useCallback(
-   *  (columnId: string, value: string, rowData: T) => {
-   *    setData((oldData) => {
-   *      const newData = [...oldData];
-   *      const index = oldData.indexOf(rowData);
-   *      const newObject = { ...newData[index] };
-   *      newObject[columnId] = value;
-   *      newData[index] = newObject;
-   *      return newData;
-   *    });
-   *  },
-   *  [],
-   * );
-   */
-  onCellEdit: (columnId: string, value: string, rowData: T) => void;
-} & React.ComponentPropsWithoutRef<'div'>;
+export type EditableCellProps<T extends Record<string, unknown>> =
+  CellRendererProps<T> & {
+    /**
+     * Callback function when cell is edited. It is called only when `onBlur` event is fired.
+     * @example
+     * const onCellEdit = React.useCallback(
+     *  (columnId: string, value: string, rowData: T) => {
+     *    setData((oldData) => {
+     *      const newData = [...oldData];
+     *      const index = oldData.indexOf(rowData);
+     *      const newObject = { ...newData[index] };
+     *      newObject[columnId] = value;
+     *      newData[index] = newObject;
+     *      return newData;
+     *    });
+     *  },
+     *  [],
+     * );
+     */
+    onCellEdit: (columnId: string, value: string, rowData: T) => void;
+  } & React.ComponentPropsWithoutRef<'div'>;
 
 /**
  * Editable cell.

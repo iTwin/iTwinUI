@@ -39,7 +39,7 @@ it('should update value when resized', () => {
       triggerResize = onResize;
       return [
         jest.fn(),
-        ({ disconnect: jest.fn() } as unknown) as ResizeObserver,
+        { disconnect: jest.fn() } as unknown as ResizeObserver,
       ];
     });
   const { result } = renderHookComponent();
@@ -62,7 +62,7 @@ it('should not update value when resized if disabled', () => {
     .spyOn(UseResizeObserver, 'useResizeObserver')
     .mockImplementation((onResize) => {
       triggerResize = onResize;
-      return [jest.fn(), ({ disconnect } as unknown) as ResizeObserver];
+      return [jest.fn(), { disconnect } as unknown as ResizeObserver];
     });
   const { result } = renderHookComponent(false);
 

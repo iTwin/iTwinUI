@@ -42,11 +42,10 @@ export const tableFilters = {
    * Basic filter with a single input field.
    * @param translatedLabels Translated filter labels.
    */
-  TextFilter: (translatedLabels?: FilterButtonBarTranslation) => <
-    T extends Record<string, unknown>
-  >(
-    props: TableFilterProps<T>,
-  ) => <TextFilter {...props} translatedLabels={translatedLabels} />,
+  TextFilter:
+    (translatedLabels?: FilterButtonBarTranslation) =>
+    <T extends Record<string, unknown>>(props: TableFilterProps<T>) =>
+      <TextFilter {...props} translatedLabels={translatedLabels} />,
   /**
    * Date range filter.
    *
@@ -57,11 +56,10 @@ export const tableFilters = {
    * If your data is different type e.g. `string`, you can use `accessor` property in column description:
    * `accessor: (rowData) => new Date(rowData.date)`.
    */
-  DateRangeFilter: (options?: DateRangeFilterOptions) => <
-    T extends Record<string, unknown>
-  >(
-    props: TableFilterProps<T>,
-  ) => <DateRangeFilter {...props} {...options} />,
+  DateRangeFilter:
+    (options?: DateRangeFilterOptions) =>
+    <T extends Record<string, unknown>>(props: TableFilterProps<T>) =>
+      <DateRangeFilter {...props} {...options} />,
   /**
    * Number range filter.
    *
@@ -70,9 +68,8 @@ export const tableFilters = {
    * `accessor: (rowData) => Number(rowData.numberProp)`.
    * @param translatedLabels Translated filter labels.
    */
-  NumberRangeFilter: (
-    translatedLabels?: NumberRangeTranslation & FilterButtonBarTranslation,
-  ) => <T extends Record<string, unknown>>(
-    props: NumberRangeFilterProps<T>,
-  ) => <NumberRangeFilter {...props} translatedLabels={translatedLabels} />,
+  NumberRangeFilter:
+    (translatedLabels?: NumberRangeTranslation & FilterButtonBarTranslation) =>
+    <T extends Record<string, unknown>>(props: NumberRangeFilterProps<T>) =>
+      <NumberRangeFilter {...props} translatedLabels={translatedLabels} />,
 };

@@ -15,9 +15,8 @@ import type {
 import '@itwin/itwinui-css/css/global.css';
 import '@itwin/itwinui-variables/index.css';
 
-export type ThemeProviderProps<
-  T extends React.ElementType = 'div'
-> = PolymorphicComponentProps<T, UseThemeProps>;
+export type ThemeProviderProps<T extends React.ElementType = 'div'> =
+  PolymorphicComponentProps<T, UseThemeProps>;
 
 /**
  * This component provides global styles and applies theme to the entire tree

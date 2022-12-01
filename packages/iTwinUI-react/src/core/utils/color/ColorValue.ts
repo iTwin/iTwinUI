@@ -338,9 +338,10 @@ export class ColorValue {
       switch (name) {
         case 'rgb':
         case 'rgba':
-          color = /^(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec(
-            components,
-          );
+          color =
+            /^(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec(
+              components,
+            );
           if (color) {
             // rgb(255,0,0) rgba(255,0,0,0.5)
             return [
@@ -359,9 +360,10 @@ export class ColorValue {
           break;
         case 'hsl':
         case 'hsla':
-          color = /^(\d*\.?\d+)\s*,\s*(\d+)\%\s*,\s*(\d+)\%\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec(
-            components,
-          );
+          color =
+            /^(\d*\.?\d+)\s*,\s*(\d+)\%\s*,\s*(\d+)\%\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec(
+              components,
+            );
           if (color) {
             // hsl(120,50%,50%) hsla(120,50%,50%,0.5)
             const h = parseFloat(color[1]);

@@ -13,11 +13,10 @@ import {
 import { BaseFilter } from '../BaseFilter';
 import { TableFilterProps } from '../types';
 
-export type TextFilterProps<
-  T extends Record<string, unknown>
-> = TableFilterProps<T> & {
-  translatedLabels?: FilterButtonBarTranslation;
-};
+export type TextFilterProps<T extends Record<string, unknown>> =
+  TableFilterProps<T> & {
+    translatedLabels?: FilterButtonBarTranslation;
+  };
 
 export const TextFilter = <T extends Record<string, unknown>>(
   props: TextFilterProps<T>,

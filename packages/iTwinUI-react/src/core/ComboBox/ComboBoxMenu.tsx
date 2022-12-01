@@ -23,13 +23,8 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     { children, className, style, ...rest }: ComboBoxMenuProps,
     forwardedRef: React.Ref<HTMLUListElement>,
   ) => {
-    const {
-      minWidth,
-      id,
-      filteredOptions,
-      getMenuItem,
-      focusedIndex,
-    } = useSafeContext(ComboBoxStateContext);
+    const { minWidth, id, filteredOptions, getMenuItem, focusedIndex } =
+      useSafeContext(ComboBoxStateContext);
     const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
     const virtualItemRenderer = React.useCallback(
@@ -99,9 +94,8 @@ const VirtualizedComboBoxMenu = React.forwardRef(
 export const ComboBoxMenu = React.forwardRef(
   (props: ComboBoxMenuProps, forwardedRef: React.Ref<HTMLUListElement>) => {
     const { className, style, ...rest } = props;
-    const { minWidth, id, enableVirtualization } = useSafeContext(
-      ComboBoxStateContext,
-    );
+    const { minWidth, id, enableVirtualization } =
+      useSafeContext(ComboBoxStateContext);
     const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
     const refs = useMergedRefs(menuRef, forwardedRef);

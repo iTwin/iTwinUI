@@ -23,11 +23,10 @@ const defaultStrings: NumberRangeTranslation = {
   to: 'To',
 };
 
-export type NumberRangeFilterProps<
-  T extends Record<string, unknown>
-> = TableFilterProps<T> & {
-  translatedLabels?: NumberRangeTranslation & FilterButtonBarTranslation;
-};
+export type NumberRangeFilterProps<T extends Record<string, unknown>> =
+  TableFilterProps<T> & {
+    translatedLabels?: NumberRangeTranslation & FilterButtonBarTranslation;
+  };
 
 export const NumberRangeFilter = <T extends Record<string, unknown>>(
   props: NumberRangeFilterProps<T>,

@@ -13,9 +13,9 @@ const observers = new Map<
 const originalIntersectionObserver = window.IntersectionObserver;
 
 const mockIntersection = (element: Element, isIntersecting = true) => {
-  observers.get(element)?.([{ isIntersecting } as IntersectionObserverEntry], ({
+  observers.get(element)?.([{ isIntersecting } as IntersectionObserverEntry], {
     disconnect: () => observers.delete(element),
-  } as unknown) as IntersectionObserver);
+  } as unknown as IntersectionObserver);
 };
 
 const mockedDisconnect = jest.fn();
@@ -25,10 +25,10 @@ beforeEach(() => {
   observers.clear();
   window.IntersectionObserver = jest.fn(
     (callback: IntersectionObserverCallback) => {
-      return ({
+      return {
         observe: (el: Element) => observers.set(el, callback),
         disconnect: mockedDisconnect,
-      } as unknown) as IntersectionObserver;
+      } as unknown as IntersectionObserver;
     },
   );
 });

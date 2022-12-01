@@ -7,9 +7,9 @@ import { Row } from 'react-table';
 import { customFilterFunctions } from './customFilterFunctions';
 
 const mockRows = (values: any[]) => {
-  return (values.map((v) => ({
+  return values.map((v) => ({
     values: { value: v },
-  })) as unknown) as Row<any>[];
+  })) as unknown as Row<any>[];
 };
 
 it('should filter date values when filter has min and max set', () => {

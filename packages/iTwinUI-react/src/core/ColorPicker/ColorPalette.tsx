@@ -49,11 +49,8 @@ export const ColorPalette = React.forwardRef(
 
     useTheme();
 
-    const {
-      activeColor,
-      setActiveColor,
-      onChangeComplete,
-    } = useColorPickerContext();
+    const { activeColor, setActiveColor, onChangeComplete } =
+      useColorPickerContext();
 
     const [focusedIndex, setFocusedIndex] = React.useState<number>();
 

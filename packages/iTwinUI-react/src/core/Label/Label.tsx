@@ -27,10 +27,9 @@ type LabelOwnProps<T extends React.ElementType = 'label'> = {
   required?: boolean;
 };
 
-export type LabelProps<
-  T extends React.ElementType = 'label'
-> = LabelOwnProps<T> &
-  Omit<React.ComponentPropsWithoutRef<T>, keyof LabelOwnProps<T>>;
+export type LabelProps<T extends React.ElementType = 'label'> =
+  LabelOwnProps<T> &
+    Omit<React.ComponentPropsWithoutRef<T>, keyof LabelOwnProps<T>>;
 
 /**
  * A standalone label to be used with input components (using `htmlFor`).

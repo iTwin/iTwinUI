@@ -29,9 +29,8 @@ export const ComboBoxMenuItem = React.memo(
         ...rest
       } = props;
 
-      const { focusedIndex, enableVirtualization } = useSafeContext(
-        ComboBoxStateContext,
-      );
+      const { focusedIndex, enableVirtualization } =
+        useSafeContext(ComboBoxStateContext);
 
       const focusRef = (el: HTMLLIElement | null) => {
         if (!enableVirtualization && focusedIndex === index) {

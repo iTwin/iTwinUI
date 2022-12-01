@@ -113,7 +113,7 @@ it('should restore hidden items when space is available again', async () => {
       onResizeFn = onResize;
       return [
         jest.fn(),
-        ({ disconnect: jest.fn() } as unknown) as ResizeObserver,
+        { disconnect: jest.fn() } as unknown as ResizeObserver,
       ];
     });
   const scrollWidthSpy = jest

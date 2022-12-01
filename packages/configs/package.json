@@ -19,7 +19,7 @@
     "eslint-plugin-react": "^7.29.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "fast-glob": "^3.2.5",
-    "prettier": "2.2.1"
+    "prettier": "^2.8.0"
   },
   "peerDependencies": {
     "eslint": "^8.12.0",

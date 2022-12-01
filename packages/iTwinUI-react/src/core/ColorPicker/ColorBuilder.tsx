@@ -56,15 +56,16 @@ export const ColorBuilder = React.forwardRef(
       [hsvColor.h],
     );
     const sliderValue = React.useMemo(() => hsvColor.h, [hsvColor]);
-    const alphaValue = React.useMemo(() => (showAlpha ? hsvColor.a ?? 1 : 1), [
-      hsvColor.a,
-      showAlpha,
-    ]);
+    const alphaValue = React.useMemo(
+      () => (showAlpha ? hsvColor.a ?? 1 : 1),
+      [hsvColor.a, showAlpha],
+    );
 
     // Set values for color square and color dot
-    const dotColorString = React.useMemo(() => activeColor.toHexString(), [
-      activeColor,
-    ]);
+    const dotColorString = React.useMemo(
+      () => activeColor.toHexString(),
+      [activeColor],
+    );
     const [colorDotActive, setColorDotActive] = React.useState(false);
     const hueColorString = hueSliderColor.toHexString();
 

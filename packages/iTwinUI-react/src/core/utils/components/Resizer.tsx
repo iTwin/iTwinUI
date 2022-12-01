@@ -55,10 +55,8 @@ export const Resizer = (props: ResizerProps) => {
     const [initialTranslateX, initialTranslateY] = getTranslateValues(
       elementRef.current,
     );
-    const {
-      width: initialWidth,
-      height: initialHeight,
-    } = elementRef.current.getBoundingClientRect();
+    const { width: initialWidth, height: initialHeight } =
+      elementRef.current.getBoundingClientRect();
 
     let width = `${initialWidth}px`;
     let height = `${initialHeight}px`;
@@ -193,7 +191,8 @@ export const Resizer = (props: ResizerProps) => {
       () => {
         document.removeEventListener('pointermove', onResizePointerMove);
         if (elementRef.current) {
-          elementRef.current.ownerDocument.body.style.userSelect = originalUserSelect;
+          elementRef.current.ownerDocument.body.style.userSelect =
+            originalUserSelect;
           isResizing.current = false;
           onResizeEnd?.({
             width,

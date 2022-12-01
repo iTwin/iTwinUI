@@ -70,8 +70,7 @@ export const defaultFooterElements: FooterElement[] = [
   {
     key: 'termsOfService',
     title: footerTranslations.termsOfService,
-    url:
-      'https://connect-agreementportal.bentley.com/AgreementApp/Home/Eula/view/readonly/BentleyConnect',
+    url: 'https://connect-agreementportal.bentley.com/AgreementApp/Home/Eula/view/readonly/BentleyConnect',
   },
   {
     key: 'privacy',
@@ -110,13 +109,8 @@ export const defaultFooterElements: FooterElement[] = [
  */
 export const Footer = Object.assign(
   (props: FooterProps) => {
-    const {
-      children,
-      customElements,
-      translatedTitles,
-      className,
-      ...rest
-    } = props;
+    const { children, customElements, translatedTitles, className, ...rest } =
+      props;
 
     useTheme();
 

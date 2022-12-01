@@ -44,12 +44,8 @@ export const useDragAndDrop = (
       return;
     }
 
-    const {
-      top,
-      right,
-      bottom,
-      left,
-    } = elementRef.current?.getBoundingClientRect();
+    const { top, right, bottom, left } =
+      elementRef.current?.getBoundingClientRect();
 
     let [newTranslateX, newTranslateY] = getTranslateValues(elementRef.current);
 

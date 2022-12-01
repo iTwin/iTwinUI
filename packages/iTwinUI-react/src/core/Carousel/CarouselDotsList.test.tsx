@@ -88,7 +88,7 @@ it('should truncate dots correctly', () => {
       triggerResize = onResize;
       return [
         jest.fn(),
-        ({ disconnect: jest.fn() } as unknown) as ResizeObserver,
+        { disconnect: jest.fn() } as unknown as ResizeObserver,
       ];
     });
 

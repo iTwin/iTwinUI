@@ -17,13 +17,11 @@ export const ComboBoxInput = React.forwardRef(
   (props: ComboBoxInputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
     const { onKeyDown: onKeyDownProp, onFocus: onFocusProp, ...rest } = props;
 
-    const { isOpen, id, focusedIndex, enableVirtualization } = useSafeContext(
-      ComboBoxStateContext,
-    );
+    const { isOpen, id, focusedIndex, enableVirtualization } =
+      useSafeContext(ComboBoxStateContext);
     const dispatch = useSafeContext(ComboBoxActionContext);
-    const { inputRef, menuRef, optionsExtraInfoRef } = useSafeContext(
-      ComboBoxRefsContext,
-    );
+    const { inputRef, menuRef, optionsExtraInfoRef } =
+      useSafeContext(ComboBoxRefsContext);
     const refs = useMergedRefs(inputRef, forwardedRef);
 
     const focusedIndexRef = React.useRef(focusedIndex ?? -1);
@@ -54,9 +52,8 @@ export const ComboBoxInput = React.forwardRef(
             }
 
             if (focusedIndexRef.current === -1) {
-              const currentElement = menuRef.current?.querySelector(
-                '[data-iui-index]',
-              );
+              const currentElement =
+                menuRef.current?.querySelector('[data-iui-index]');
               return dispatch([
                 'focus',
                 Number(currentElement?.getAttribute('data-iui-index') ?? 0),

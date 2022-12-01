@@ -21,12 +21,8 @@ export const CarouselSlider = React.forwardRef<
     throw new Error('CarouselSlider must be used within Carousel');
   }
 
-  const {
-    setSlideCount,
-    idPrefix,
-    scrollToSlide,
-    isManuallyUpdating,
-  } = context;
+  const { setSlideCount, idPrefix, scrollToSlide, isManuallyUpdating } =
+    context;
 
   const items = React.useMemo(
     () =>

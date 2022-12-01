@@ -32,16 +32,8 @@ export type TooltipProps = {
  * <Tooltip content='tooltip text' reference={buttonRef} />
  */
 export const Tooltip = (props: TooltipProps) => {
-  const {
-    content,
-    children,
-    className,
-    style,
-    visible,
-    ref,
-    id,
-    ...rest
-  } = props;
+  const { content, children, className, style, visible, ref, id, ...rest } =
+    props;
 
   useTheme();
 

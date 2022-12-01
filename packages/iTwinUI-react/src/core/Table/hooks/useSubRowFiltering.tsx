@@ -6,11 +6,11 @@ import React from 'react';
 import { Hooks, IdType, Row, TableInstance } from 'react-table';
 import { defaultFilterFunctions } from '../filters/defaultFilterFunctions';
 
-export const useSubRowFiltering = <T extends Record<string, unknown>>(
-  hasAnySubRows: boolean,
-) => (hooks: Hooks<T>) => {
-  hooks.useInstance.push(useInstance.bind({}, hasAnySubRows));
-};
+export const useSubRowFiltering =
+  <T extends Record<string, unknown>>(hasAnySubRows: boolean) =>
+  (hooks: Hooks<T>) => {
+    hooks.useInstance.push(useInstance.bind({}, hasAnySubRows));
+  };
 
 const useInstance = <T extends Record<string, unknown>>(
   hasAnySubRows: boolean,

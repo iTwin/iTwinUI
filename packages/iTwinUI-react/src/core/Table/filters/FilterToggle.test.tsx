@@ -10,7 +10,7 @@ import { FilterToggle, FilterToggleProps } from './FilterToggle';
 import { tableFilters } from './tableFilters';
 
 function renderComponent<
-  T extends Record<string, unknown> = Record<string, unknown>
+  T extends Record<string, unknown> = Record<string, unknown>,
 >(props?: Partial<FilterToggleProps<T>>): RenderResult {
   const defaultProps = {
     column: {} as HeaderGroup<T>,
@@ -21,13 +21,13 @@ function renderComponent<
 }
 
 it('should display active filter', () => {
-  const column = ({
+  const column = {
     canFilter: true,
     filterValue: 'value',
     render: jest.fn(),
     setFilter: jest.fn(),
     Filter: tableFilters.TextFilter(),
-  } as object) as HeaderGroup;
+  } as object as HeaderGroup;
 
   renderComponent({ column });
 
@@ -36,13 +36,13 @@ it('should display active filter', () => {
 });
 
 it('should display active filter for false filter value', () => {
-  const column = ({
+  const column = {
     canFilter: true,
     filterValue: false,
     render: jest.fn(),
     setFilter: jest.fn(),
     Filter: tableFilters.TextFilter(),
-  } as object) as HeaderGroup;
+  } as object as HeaderGroup;
 
   renderComponent({ column });
 
@@ -51,12 +51,12 @@ it('should display active filter for false filter value', () => {
 });
 
 it('should hide active filter when not defined', () => {
-  const column = ({
+  const column = {
     canFilter: true,
     render: jest.fn(),
     setFilter: jest.fn(),
     Filter: tableFilters.TextFilter(),
-  } as object) as HeaderGroup;
+  } as object as HeaderGroup;
 
   renderComponent({ column });
 
@@ -65,13 +65,13 @@ it('should hide active filter when not defined', () => {
 });
 
 it('should hide active filter for empty filter value', () => {
-  const column = ({
+  const column = {
     canFilter: true,
     filterValue: '',
     render: jest.fn(),
     setFilter: jest.fn(),
     Filter: tableFilters.TextFilter(),
-  } as object) as HeaderGroup;
+  } as object as HeaderGroup;
 
   renderComponent({ column });
 

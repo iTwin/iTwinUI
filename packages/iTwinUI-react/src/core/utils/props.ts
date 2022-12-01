@@ -36,7 +36,7 @@ export type CommonProps = {
  */
 export type PolymorphicComponentProps<
   T extends React.ElementType,
-  Props = Record<string, unknown>
+  Props = Record<string, unknown>,
 > = Merge<React.ComponentPropsWithoutRef<T>, Props>;
 
 /**
@@ -52,7 +52,7 @@ export type PolymorphicComponentProps<
  */
 export interface PolymorphicForwardRefComponent<
   T,
-  OwnProps = Record<string, unknown>
+  OwnProps = Record<string, unknown>,
 > extends React.ForwardRefExoticComponent<
     Merge<
       T extends React.ElementType ? React.ComponentPropsWithRef<T> : never,
