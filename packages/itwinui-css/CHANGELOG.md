@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/iTwin/iTwinUI/compare/v1.0.0...v1.1.0) (2022-12-01)
+
+
+### What's new
+
+* **Avatar:** Sizes have lower specificity, use CSS vars. ([#818](https://www.github.com/iTwin/iTwinUI/issues/818)) ([92ccc03](https://www.github.com/iTwin/iTwinUI/commit/92ccc0337777e97ab3b55d52b8ce1548e3026485))
+* **ComboBox:** Add multi-select tags ([#817](https://www.github.com/iTwin/iTwinUI/issues/817)) ([244dfab](https://www.github.com/iTwin/iTwinUI/commit/244dfab8338035000d95260caf534a04d698ffdb))
+
+
+### Fixes
+
+* Progress overlay should intercept clicks ([#827](https://www.github.com/iTwin/iTwinUI/issues/827)) ([89f4502](https://www.github.com/iTwin/iTwinUI/commit/89f4502460fd7a4fe5244b57997cc7d9800e8fdd))
+* **Slider:** Change align `start` to `flex-start` ([#825](https://www.github.com/iTwin/iTwinUI/issues/825)) ([fad4a1f](https://www.github.com/iTwin/iTwinUI/commit/fad4a1f3068354ea18b4d0d8f08d1725d4887211))
+
 ## [1.0.0](https://www.github.com/iTwin/iTwinUI/compare/v0.63.1...v1.0.0) (2022-11-14)
 
 Welcome to the v1 release of iTwinUI-css. 🎉
