@@ -137,12 +137,6 @@
       transition: fill var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
     }
   }
-
-  @if $type == 'status' {
-    @media (forced-colors: active) {
-      fill: CanvasText;
-    }
-  }
 }
 
 @mixin iui-expandable-block-header-label {
