@@ -26,6 +26,10 @@ on:
         required: true
         type: string
         default: itwinui-css
+      tag:
+        required: true
+        type: string
+        default: latest
     secrets:
       NPMJS_PUBLISH_ITWIN:
         required: true

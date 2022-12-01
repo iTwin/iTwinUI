@@ -36,11 +36,13 @@
         margin-right: 16px;
       }
 
-      #demo-overlay-content {
-        padding: 12px;
+      .demo-overlay-wrapper {
         border: 1px solid var(--iui-color-border);
         position: relative;
         margin-bottom: 12px;
+      }
+      .demo-overlay-content {
+        padding: 12px;
       }
     </style>
   </head>
@@ -1039,17 +1041,18 @@
     <h2>Overlay</h2>
     <section id="demo-overlay">
 
-      <div id="demo-overlay-content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
-
+      <div class="demo-overlay-wrapper">
         <div
-          class="iui-progress-indicator-overlay"
-          tabindex="0"
+          class="demo-overlay-content"
+          inert
         >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div class="iui-progress-indicator-overlay">
           <!-- Linear indeterminate with label -->
           <div class="iui-progress-indicator-linear">
             <div class="iui-track">
@@ -1062,17 +1065,19 @@
         </div>
       </div>
 
-      <div id="demo-overlay-content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
-
+      <div class="demo-overlay-wrapper">
         <div
-          class="iui-progress-indicator-overlay"
-          tabindex="0"
+          class="demo-overlay-content"
+          inert
         >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+
+        <div class="iui-progress-indicator-overlay">
           <!-- Radial indeterminate -->
           <div class="iui-progress-indicator-radial iui-indeterminate">
             <svg
@@ -1099,5 +1104,13 @@
         </div>
       </div>
     </section>
+
+    <script type="module">
+      (async () => {
+        if (!HTMLElement.prototype.hasOwnProperty('inert')) {
+          await import('https://unpkg.com/wicg-inert@3.1.2/dist/inert.min.js');
+        }
+      })();
+    </script>
   </body>
 </html>
