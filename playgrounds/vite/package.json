@@ -1,10 +1,10 @@
 {
-  "name": "itwinui-playground",
+  "name": "vite-playground",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
@@ -22,6 +22,11 @@
     "configs": "*",
     "typescript": "^4.5.4",
     "vite": "^3.1.0"
+  },
+  "lint-staged": {
+    "*.{tsx,ts,jsx,js}": [
+      "prettier --write"
+    ]
   },
   "prettier": "configs/prettier-config"
 }

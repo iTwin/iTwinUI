@@ -20,6 +20,7 @@ export default defineConfig({
     syntaxHighlight: 'prism',
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeToc],
   },
+  server: { port: 1700 },
   vite: {
     server: { open: true },
     ssr: {

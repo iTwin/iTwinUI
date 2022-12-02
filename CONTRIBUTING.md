@@ -44,10 +44,14 @@ To start the development server for all workspaces, run the following command fr
 yarn dev
 ```
 
-This will automatically build anything that's not already built, and run 3 tasks in parallel watching for changes:
-- `build:watch` in the `@itwin/itwinui-react` package.
-- `vite` dev server in the `itwinui-playground` with HMR.
-- `start-storybook` dev server in the `storybook` workspace with HMR. 
+This will automatically build anything that's not already built, and run the `dev` script for every workspace in parallel, watching for file changes.
+
+By default, it will open the storybook and docs website in your browser. Any examples and playgrounds will need to be manually opened. The urls/ports are as follows (assuming they are available):
+  - docs website:  `http://localhost:1700`
+  - vite playground: `http://localhost:1701`
+  - next playground: `http://localhost:1702`
+  - astro playground: `http://localhost:1703`
+  - storybook: `http://localhost:6006` (storybook default)
 
 If you only need to run this task for a specific workspace, you can specify turborepo's `--filter` argument. For example, if you only want to start storybook, you could run `yarn dev --filter=storybook`.
 

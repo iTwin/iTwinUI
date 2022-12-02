@@ -23,6 +23,7 @@ const filePaths = fg.sync(pattern, {
     '**/cjs/**/*',
     '**/dist/**/*',
     '**/storybook-static/**/*',
+    '**/playgrounds/**/*',
   ],
 });
 
