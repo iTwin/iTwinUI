@@ -16,6 +16,8 @@ export type ModalButtonBarProps = {
 /**
  * Container for Buttons in modal.
  */
-export const ModalButtonBar = DialogButtonBar;
+export const ModalButtonBar = (props: ModalButtonBarProps) => (
+  <DialogButtonBar {...props} />
+);
 
 export default ModalButtonBar;

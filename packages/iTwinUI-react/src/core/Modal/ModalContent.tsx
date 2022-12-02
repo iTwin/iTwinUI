@@ -16,6 +16,8 @@ export type ModalContentProps = {
 /**
  * Container for content in `Modal`.
  */
-export const ModalContent = DialogContent;
+export const ModalContent = (props: ModalContentProps) => (
+  <DialogContent {...props} />
+);
 
 export default ModalContent;
