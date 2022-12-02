@@ -3,8 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { mergeRefs } from '../hooks';
-import { useResizeObserver } from '../hooks/useResizeObserver';
+import {
+  mergeRefs,
+  useResizeObserver,
+  useIsomorphicLayoutEffect,
+} from '../hooks';
 
 const getScrollableParent = (
   element: HTMLElement | null,
@@ -231,7 +234,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
 
   // Find scrollable parent
   // Needed only on init
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const scrollableParent = getScrollableParent(
       parentRef.current,
       parentRef.current?.ownerDocument,
@@ -242,12 +245,12 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   }, [resizeRef]);
 
   // Stop watching resize, when virtual scroll is unmounted
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     return () => resizeObserver?.disconnect();
   }, [resizeObserver]);
 
   // Get child height when children available
-  React.useLayoutEffect(() => updateChildHeight(), [updateChildHeight]);
+  useIsomorphicLayoutEffect(() => updateChildHeight(), [updateChildHeight]);
 
   const updateVirtualScroll = React.useCallback(() => {
     const scrollableContainer = getScrollableContainer();
@@ -306,7 +309,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   }, []);
 
   // Add event listener to the scrollable container.
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     removeScrollListener();
     onScrollRef.current = onScroll;
     if (
@@ -320,7 +323,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     return removeScrollListener;
   }, [onScroll, removeScrollListener]);
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!isMounted) {
       return;
     }
@@ -385,7 +388,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     }
   }, [scrollToIndex, isMounted]);
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!scrollContainerHeight) {
       return;
     }

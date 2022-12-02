@@ -190,3 +190,15 @@ window.clearTimeout(1);
 // Bad
 document.createElement('div');
 ```
+
+### Use `useIsomorphicLayoutEffect` instead of `useLayoutEffect`
+
+```jsx
+// Good
+useIsomorphicLayoutEffect(() => {});
+```
+
+```jsx
+// Bad
+React.useLayoutEffect(() => {});
+```

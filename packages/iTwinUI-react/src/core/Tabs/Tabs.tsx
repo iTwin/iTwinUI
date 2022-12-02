@@ -9,6 +9,7 @@ import {
   useMergedRefs,
   getBoundedValue,
   useContainerWidth,
+  useIsomorphicLayoutEffect,
 } from '../utils';
 import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab';
@@ -142,7 +143,7 @@ export const Tabs = (props: TabsProps) => {
       ? getBoundedValue(activeIndex, 0, labels.length - 1)
       : 0,
   );
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (activeIndex != null && currentActiveIndex !== activeIndex) {
       setCurrentActiveIndex(getBoundedValue(activeIndex, 0, labels.length - 1));
     }
@@ -150,7 +151,7 @@ export const Tabs = (props: TabsProps) => {
 
   // CSS custom properties to place the active stripe
   const [stripeProperties, setStripeProperties] = React.useState({});
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (type !== 'default' && tablistRef.current != undefined) {
       const activeTab = tablistRef.current.children[
         currentActiveIndex
@@ -179,7 +180,7 @@ export const Tabs = (props: TabsProps) => {
   }, [focusedIndex]);
 
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setHasSublabel(
       type !== 'pill' && // pill tabs should never have sublabels
         !!tablistRef.current?.querySelector('.iui-tab-description'), // check directly for the sublabel class

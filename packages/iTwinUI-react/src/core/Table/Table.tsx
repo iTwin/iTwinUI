@@ -31,6 +31,7 @@ import {
   useResizeObserver,
   SvgSortDown,
   SvgSortUp,
+  useIsomorphicLayoutEffect,
 } from '../utils';
 import '@itwin/itwinui-css/css/table.css';
 import { getCellStyle, getStickyStyle } from './utils';
@@ -709,7 +710,7 @@ export const Table = <
   const [resizeRef] = useResizeObserver(onTableResize);
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (state.isTableResizing) {
       const newColumnWidths: Record<string, number> = {};
       flatHeaders.forEach((column) => {
