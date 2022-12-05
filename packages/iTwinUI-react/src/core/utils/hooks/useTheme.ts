@@ -56,8 +56,8 @@ export const useTheme = (
   const ownerDocument = themeOptions?.ownerDocument ?? getDocument();
 
   useIsomorphicLayoutEffect(() => {
-    // exit early if theme was already set by provider
-    if (themeContext || !ownerDocument) {
+    // exit early if theme was already set by provider or is present on <body>
+    if (themeContext || !ownerDocument || ownerDocument.body.dataset.iuiTheme) {
       return;
     }
 

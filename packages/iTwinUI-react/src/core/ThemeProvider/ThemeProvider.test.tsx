@@ -293,4 +293,16 @@ describe('Fallback (without children)', () => {
     expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
     expect(document.body.classList).not.toContain('iui-root');
   });
+
+  it('should not modify root if <body> has theme', () => {
+    render(
+      <body data-iui-theme='dark'>
+        <ThemeProvider theme='light' />
+      </body>,
+      { container: document.documentElement },
+    );
+    expect(document.documentElement.dataset.iuiTheme).toBeUndefined();
+    expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
+    expect(document.body.dataset.iuiTheme).toEqual('dark');
+  });
 });
