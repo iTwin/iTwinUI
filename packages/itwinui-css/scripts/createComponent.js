@@ -91,6 +91,10 @@ const demoHtmlFactory = (directory) => {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${componentName} | iTwinUI</title>
+    
+    <script type="module">
+      import "./assets/theme.js";
+    </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
