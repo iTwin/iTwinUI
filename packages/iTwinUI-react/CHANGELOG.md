@@ -1,5 +1,15 @@
 # Changelog
 
+### [2.0.1](https://www.github.com/iTwin/iTwinUI-react/compare/v2.0.0...v2.0.1) (2022-12-05)
+
+### Fixes
+
+* **useTheme:** Exit early if theme is already set on body ([#963](https://www.github.com/iTwin/iTwinUI-react/issues/963)) ([29033d4](https://www.github.com/iTwin/iTwinUI-react/commit/29033d488bc6cefb3ea064305898ade85475e2ff))
+* **ModalButtonBar, ModalContent:** Wrap `DialogButtonBar` and `DialogContent` instead of directly assigning ([#961](https://www.github.com/iTwin/iTwinUI-react/issues/961)) ([0881e92](https://www.github.com/iTwin/iTwinUI-react/commit/0881e92f037b7ce717f05742014ac2d6dd8c580d))
+* **Table:** Added localization for selected rows count ([#945](https://www.github.com/iTwin/iTwinUI-react/issues/945)) ([71f2326](https://www.github.com/iTwin/iTwinUI-react/commit/71f232605237e0095ebe0bff4cf01d241c143c49))
+* Replaced all instances of `useLayoutEffect` with `useIsomorphicLayoutEffect` to fix SSR warnings ([#964](https://www.github.com/iTwin/iTwinUI-react/issues/964)) ([15b0389](https://www.github.com/iTwin/iTwinUI-react/commit/15b038934e55d3f61631113d91f2952127426c1d))
+* Fixed css warnings about `start` vs `flex-start` through base itwinui-css update ([#962](https://www.github.com/iTwin/iTwinUI-react/issues/962))
+
 ## [2.0.0](https://www.github.com/iTwin/iTwinUI-react/compare/v1.48.1...v2.0.0) (2022-11-15)
 
 Welcome to the v2 release of iTwinUI-react. 🎉
@@ -10,11 +20,19 @@ These release notes offer a brief summary of the main changes. Check out the [iT
 
 ### ⚠ BREAKING CHANGES
 
-There is only one new breaking change in this release.
+iTwinUI no longer supports Internet Explorer. The build output now targets `es2018` rather than `es5`, and CSS variables and grid are used without fallbacks.
+
+As for breaking API changes, there is only one:
 
 * **Table:** `columns` prop must now be an array. First level `Header` is no longer required ([#935](https://www.github.com/iTwin/iTwinUI-react/issues/935)) ([83d5cfe](https://www.github.com/iTwin/iTwinUI-react/commit/83d5cfe93980b628c79ec3951d05663a054699fc))
+```diff
+- const columns = { Header: 'Table', columns: [{ accessor: 'name', Header: 'Name' }, … ] };
++ const columns = [{ accessor: 'name', Header: 'Name' }, … ];
 
-Other than that, we have removed props and components that were already deprecated in v1.
+ <Table columns={columns} data={data} />
+```
+
+Other than that, props and components that were already deprecated in v1 have been removed:
 
 * **Tabs:** Remove deprecated `HorizontalTab` and `HorizontalTabProps` ([#852](https://www.github.com/iTwin/iTwinUI-react/issues/852)) ([31ddeae](https://www.github.com/iTwin/iTwinUI-react/commit/31ddeaed3dc5919f69edb1bd9580d766fabc35c2))
 * **Checkbox, Radio:** Remove deprecated `checkmarkClassName` and `checkmarkStyle` ([#855](https://www.github.com/iTwin/iTwinUI-react/issues/855)) ([5c339be](https://www.github.com/iTwin/iTwinUI-react/commit/5c339beddd117bdf5a834b96dff65d4fd67d5255))
@@ -22,7 +40,7 @@ Other than that, we have removed props and components that were already deprecat
 
 ### Deprecations
 
-We have taken this opportunity to deprecate a few more things while not removing them just yet, to minimize the number of breaking changes.
+We have also taken this opportunity to deprecate a few more things while not removing them just yet, to minimize the number of breaking changes.
 
 * **Avatar, AvatarGroup:** Deprecate `UserIcon`/`UserIconGroup`, replace with `Avatar`/`AvatarGroup` ([#902](https://www.github.com/iTwin/iTwinUI-react/issues/902)) ([4001bd1](https://www.github.com/iTwin/iTwinUI-react/commit/4001bd12aa9021fdcbb3e49c271eec10ec853a83))
   - Also deprecated `userIcon` prop in `Header`.
@@ -40,7 +58,7 @@ We have taken this opportunity to deprecate a few more things while not removing
 * **Table:** Row selection count for paginator ([#837](https://www.github.com/iTwin/iTwinUI-react/issues/837)) ([e43148a](https://www.github.com/iTwin/iTwinUI-react/commit/e43148af9fc6250cf2470d258831a3ef8d33e582))
 * **Tile:** Add status and loading state ([#872](https://www.github.com/iTwin/iTwinUI-react/issues/872)) ([2fcb41f](https://www.github.com/iTwin/iTwinUI-react/commit/2fcb41f5c41a8a32d32a3312edecf8e2b646033e))
 
-If you're interested in more details about every signle change, check out a full diff in [`v1.48.1..v2.0.0`](https://www.github.com/iTwin/iTwinUI/compare/v1.48.1...v2.0.0).
+If you're interested in more details about every signle change, check out a full diff in [`v1.48.1..v2.0.0`](https://www.github.com/iTwin/iTwinUI-react/compare/v1.48.1...v2.0.0).
 
 ## 1.X
 
