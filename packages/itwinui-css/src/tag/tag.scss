@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
-@import '../button/index';
 @import '../text/mixins';
 
 @mixin iui-tag-base {
@@ -36,6 +35,11 @@
 
   &:hover {
     border-color: var(--iui-color-border-foreground-hover);
+  }
+
+  &:focus {
+    outline: 2px solid var(--iui-color-border-accent);
+    outline-offset: -2px;
   }
 }
 
