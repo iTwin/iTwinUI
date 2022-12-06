@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/iTwin/iTwinUI/compare/v1.1.0...v1.2.0) (2022-12-06)
+
+### What's new
+
+* **ExpandableBlock:** Add disabled state support through `disabled`/`aria-disabled` attribute on the toggle ([#821](https://www.github.com/iTwin/iTwinUI/issues/821)) ([5bb81cd](https://www.github.com/iTwin/iTwinUI/commit/5bb81cd016a4e9aecdbd5a9b3bfaa0c79976d81e))
+* **`iui-root`**: Add `.iui-root-background` modifier to opt into setting the recommended background-color ([#833](https://www.github.com/iTwin/iTwinUI/issues/833)) ([ef6a969](https://www.github.com/iTwin/iTwinUI/commit/ef6a96977ce2e0d60a7e5ca2bb1f5b30bc6c35fc))
+
 ## [1.1.0](https://www.github.com/iTwin/iTwinUI/compare/v1.0.0...v1.1.0) (2022-12-01)
 
 ### What's new
