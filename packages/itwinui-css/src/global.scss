@@ -27,8 +27,8 @@
 }
 
 // auto apply background only if <body> is used as root.
-// for other elements, user will have to opt in by adding .iui-root-bg
-:where(body.iui-root, .iui-root.iui-root-bg) {
+// for other elements, user will have to opt in by adding .iui-root-background
+:where(body.iui-root, .iui-root.iui-root-background) {
   background-color: var(--iui-color-background-backdrop);
 }
 
