@@ -108,8 +108,10 @@
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
       "prettier --write",
-      "eslint --max-warnings=0 --fix",
       "node ../configs/copyrightLinter.js --fix"
+    ],
+    "*.{tsx,ts}": [
+      "eslint --max-warnings=0 --fix"
     ]
   },
   "prettier": "configs/prettier-config",
