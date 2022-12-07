@@ -1,5 +1,11 @@
 # Changelog
 
+### [2.0.2](https://www.github.com/iTwin/iTwinUI-react/compare/v2.0.1...v2.0.2) (2022-12-07)
+
+### Fixes
+
+* **ThemeProvider:** Improved types to exclude `ownerDocument` from `themeOptions` if children passed ([#973](https://www.github.com/iTwin/iTwinUI-react/issues/973)) ([36997de](https://www.github.com/iTwin/iTwinUI-react/commit/36997de383c4783c192318f2fb617289a7dce2dd))
+
 ### [2.0.1](https://www.github.com/iTwin/iTwinUI-react/compare/v2.0.0...v2.0.1) (2022-12-05)
 
 ### Fixes
