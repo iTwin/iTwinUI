@@ -10,13 +10,11 @@ class SelectTag extends HTMLElement {
   connectedCallback() {
     const value = this.getAttribute('value');
     const dismissible = this.hasAttribute('dismissible');
-    const nonfocusable = this.hasAttribute('nonfocusable');
 
     const innerHtml = `
     <span
       class="iui-select-tag"
-      role="option"
-      ${nonfocusable ? `` : 'tabindex="0"'}
+      ${dismissible ? `role="option"` : ''}
     >
       <span
         class="iui-select-tag-label"
@@ -26,9 +24,9 @@ class SelectTag extends HTMLElement {
       </span>
       ${
         dismissible
-          ? `<span class="iui-select-tag-button" aria-label="Delete tag" role="button">
+          ? `<button class="iui-select-tag-button" aria-label="Delete ${value} tag" type="button">
             <svg-close-small class="iui-select-tag-button-icon" aria-hidden="true"></svg-close-small>
-          </span>`
+          </button>`
           : ''
       }
     </span>

@@ -38,8 +38,6 @@
     <section id="demo-default">
       <span
         class="iui-tag"
-        role="option"
-        tabindex="0"
         id="test-tag-1"
       >
         <span
@@ -48,26 +46,24 @@
         >
           Tag
         </span>
-        <span
+        <button
           class="iui-button iui-tag-button"
           data-iui-variant="borderless"
           data-iui-size="small"
           aria-label="Delete tag"
-          role="button"
+          type="button"
         >
           <svg-close-small
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-close-small>
-        </span>
+        </button>
       </span>
 
       <br />
 
       <span
         class="iui-tag"
-        role="option"
-        tabindex="0"
         id="test-tag-2"
         style="max-width: 125px;"
       >
@@ -77,27 +73,23 @@
         >
           Overflowing tag
         </span>
-        <span
+        <button
           class="iui-button iui-tag-button"
           data-iui-variant="borderless"
           data-iui-size="small"
-          aria-label="Delete tag"
-          role="button"
+          aria-label="Delete overflowing tag"
+          type="button"
         >
           <svg-close-small
             class="iui-button-icon"
             aria-hidden="true"
           ></svg-close-small>
-        </span>
+        </button>
       </span>
 
       <br />
 
-      <span
-        class="iui-tag"
-        role="option"
-        tabindex="0"
-      >
+      <span class="iui-tag">
         <span
           class="iui-tag-label"
           title="No button"
@@ -112,11 +104,15 @@
     <h2>Default tag containers</h2>
     <section id="demo-default-container">
 
-      <div class="iui-tag-container iui-visible">
+      <div
+        class="iui-tag-container iui-visible"
+        aria-label="My tags"
+        role="listbox"
+        aria-multiselectable="false"
+      >
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -124,24 +120,23 @@
           >
             Tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
             aria-label="Delete tag"
-            role="button"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -149,24 +144,23 @@
           >
             Long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -174,24 +168,23 @@
           >
             Very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -199,24 +192,23 @@
           >
             Very very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -224,24 +216,23 @@
           >
             Tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
             aria-label="Delete tag"
-            role="button"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -249,24 +240,23 @@
           >
             Long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -274,24 +264,23 @@
           >
             Very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -299,24 +288,23 @@
           >
             Very very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -324,24 +312,23 @@
           >
             Tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
             aria-label="Delete tag"
-            role="button"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -349,24 +336,23 @@
           >
             Long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -374,24 +360,23 @@
           >
             Very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -399,29 +384,34 @@
           >
             Very very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
       </div>
 
       <br />
 
 
-      <div class="iui-tag-container iui-visible iui-truncate">
+      <div
+        class="iui-tag-container iui-visible iui-truncate"
+        aria-label="My tags"
+        role="listbox"
+        aria-multiselectable="false"
+        aria-orientation="horizontal"
+      >
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -429,24 +419,23 @@
           >
             Tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
             aria-label="Delete tag"
-            role="button"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -454,24 +443,23 @@
           >
             Long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -479,24 +467,23 @@
           >
             Very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -504,28 +491,33 @@
           >
             Very very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
       </div>
 
       <br />
 
-      <div class="iui-tag-container iui-visible iui-scroll">
+      <div
+        class="iui-tag-container iui-visible iui-scroll"
+        aria-label="My tags"
+        role="listbox"
+        aria-multiselectable="false"
+        aria-orientation="horizontal"
+      >
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -533,24 +525,23 @@
           >
             Tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
             aria-label="Delete tag"
-            role="button"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -558,24 +549,23 @@
           >
             Long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -583,24 +573,23 @@
           >
             Very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -608,24 +597,23 @@
           >
             Very very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -633,24 +621,23 @@
           >
             Tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
             aria-label="Delete tag"
-            role="button"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -658,24 +645,23 @@
           >
             Long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -683,24 +669,23 @@
           >
             Very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -708,24 +693,23 @@
           >
             Very very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -733,49 +717,47 @@
           >
             Tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
             aria-label="Delete tag"
-            role="button"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
             title="Long tag"
           >
-            Long tag
+            Very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -783,24 +765,23 @@
           >
             Very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
 
         <span
           class="iui-tag"
           role="option"
-          tabindex="0"
         >
           <span
             class="iui-tag-label"
@@ -808,18 +789,18 @@
           >
             Very very long tag
           </span>
-          <span
+          <button
             class="iui-button iui-tag-button"
             data-iui-variant="borderless"
             data-iui-size="small"
-            aria-label="Delete tag"
-            role="button"
+            aria-label="Delete very very long tag"
+            type="button"
           >
             <svg-close-small
               class="iui-button-icon"
               aria-hidden="true"
             ></svg-close-small>
-          </span>
+          </button>
         </span>
       </div>
 
