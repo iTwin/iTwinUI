@@ -15,6 +15,7 @@ class SelectTag extends HTMLElement {
     const innerHtml = `
     <span
       class="iui-select-tag"
+      role="option"
       ${nonfocusable ? `` : 'tabindex="0"'}
     >
       <span
