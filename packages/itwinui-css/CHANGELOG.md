@@ -2,7 +2,6 @@
 
 ### [1.2.1](https://www.github.com/iTwin/iTwinUI/compare/v1.2.0...v1.2.1) (2022-12-08)
 
-
 ### Fixes
 
 * **Code:** Remove `user-select: all` and extra declarations ([#836](https://www.github.com/iTwin/iTwinUI/issues/836)) ([8db6443](https://www.github.com/iTwin/iTwinUI/commit/8db64436470527571eae321272ac1cf1555e13c9))
