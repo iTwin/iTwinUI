@@ -349,72 +349,101 @@ it('should handle checkbox clicks', async () => {
 it('should handle row clicks', async () => {
   const onSelect = jest.fn();
   const onRowClick = jest.fn();
+  const user = userEvent.setup();
+  const data = mockedData(5);
+
   const { container, getByText } = renderComponent({
     isSelectable: true,
     onSelect,
     onRowClick,
+    data,
   });
 
   expect(screen.queryByText('Header name')).toBeFalsy();
   const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
-  expect(rows.length).toBe(3);
+  expect(rows.length).toBe(5);
 
-  const user = userEvent.setup();
-
-  // Shift click test #1
+  // Shift click special case test #1
   // By default, when no row is selected before shift click, start selecting from first row to clicked row
-  await user.keyboard('[ShiftLeft>]'); // Press Shift (without releasing it)
-  await user.click(getByText(mockedData()[1].name)); // [shiftKey: true]
+  await user.keyboard('{Shift>}'); // Hold Shift
+  await user.click(getByText(data[2].name));
 
   expect(rows[0]).toHaveAttribute('aria-selected', 'true');
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[2]).not.toHaveAttribute('aria-selected', 'true');
-
+  expect(rows[2]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[3]).not.toHaveAttribute('aria-selected');
   expect(onSelect).toHaveBeenCalledTimes(1);
   expect(onRowClick).toHaveBeenCalledTimes(1);
 
-  await userEvent.click(getByText(mockedData()[0].name)); // Deselect
-  expect(rows[0]).not.toHaveAttribute('aria-selected', 'true');
-  expect(rows[1]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[2]).not.toHaveAttribute('aria-selected', 'true');
+  await user.keyboard('{/Shift}'); // Release Shift
+  await userEvent.click(getByText(data[1].name)); // Deselect; lastSelectedRowId = undefined -> 1
 
+  expect(rows[0]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[1]).not.toHaveAttribute('aria-selected');
+  expect(rows[2]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[3]).not.toHaveAttribute('aria-selected');
   expect(onSelect).toHaveBeenCalledTimes(2);
   expect(onRowClick).toHaveBeenCalledTimes(2);
 
-  await userEvent.click(getByText(mockedData()[0].name)); // Reselect; lastSelectedRowId = undefined -> 0
-  expect(rows[0]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[1]).not.toHaveAttribute('aria-selected', 'true');
-  expect(rows[2]).not.toHaveAttribute('aria-selected', 'true');
+  // Shift click special case test #2
+  // When a row is clicked before shift click (lastSelectedRowId), selection starts from that row and ends at the currently clicked row
+  // But if the startIndex > endIndex, then startIndex and endIndex are swapped
+  // (Here startIndex = 1, endIndex = 0)
+  await user.keyboard('{Shift>}'); // Hold Shift
+  await user.click(getByText(data[0].name));
 
+  expect(rows[0]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[1]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[2]).not.toHaveAttribute('aria-selected');
+  expect(rows[3]).not.toHaveAttribute('aria-selected');
   expect(onSelect).toHaveBeenCalledTimes(3);
   expect(onRowClick).toHaveBeenCalledTimes(3);
 
-  await userEvent.click(getByText(mockedData()[1].name)); // lastSelectedRowId = 0 -> 1
-  expect(rows[0]).not.toHaveAttribute('aria-selected', 'true');
+  await user.keyboard('{/Shift}{Control>}'); // Release Shift & Hold Control
+  await user.click(getByText(data[3].name)); // lastSelectedRowId = 1 -> 3 (Ctrl click updates lastSelectedRowId)
+  expect(rows[0]).toHaveAttribute('aria-selected', 'true');
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[2]).not.toHaveAttribute('aria-selected', 'true');
-
+  expect(rows[2]).not.toHaveAttribute('aria-selected');
+  expect(rows[3]).toHaveAttribute('aria-selected', 'true');
   expect(onSelect).toHaveBeenCalledTimes(4);
   expect(onRowClick).toHaveBeenCalledTimes(4);
 
-  await user.keyboard('[ControlLeft>]'); // Press Control (without releasing it)
-  await user.click(getByText(mockedData()[2].name)); // Perform a click with `ctrlKey: true`
-  expect(rows[0]).not.toHaveAttribute('aria-selected', 'true');
-  expect(rows[1]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[2]).toHaveAttribute('aria-selected', 'true');
+  await user.keyboard('{/Control}{Shift>}'); // Release Control & Hold Shift
+  await user.click(getByText(data[4].name));
+
+  expect(rows[0]).not.toHaveAttribute('aria-selected');
+  expect(rows[1]).not.toHaveAttribute('aria-selected');
+  expect(rows[2]).not.toHaveAttribute('aria-selected');
+  expect(rows[3]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[4]).toHaveAttribute('aria-selected', 'true');
   expect(onSelect).toHaveBeenCalledTimes(5);
   expect(onRowClick).toHaveBeenCalledTimes(5);
 
-  // Shift click test #2
-  // When a row is clicked before shift click (lastSelectedRowId), selection starts from that row and ends at the currently clicked row
-  // But if the startIndex > endIndex, then startIndex and endIndex are swapped
-  await user.keyboard('[/ControlLeft][ShiftLeft>]'); // Release Ctrl and Press Shift (without releasing it)
-  await user.click(getByText(mockedData()[0].name)); // Perform a click with `shiftKey: true`
+  const checkboxes = container.querySelectorAll<HTMLInputElement>(
+    '.iui-table-body .iui-checkbox',
+  );
+  expect(checkboxes.length).toBe(5);
 
-  expect(rows[0]).toHaveAttribute('aria-selected', 'true');
+  await user.keyboard('{/Shift}'); // Release Shift
+  await user.click(checkboxes[1]); // lastSelectedRowId = 3 -> 1 (Checkbox click updates lastSelectedRowId)
+
+  expect(rows[0]).not.toHaveAttribute('aria-selected');
   expect(rows[1]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[2]).not.toHaveAttribute('aria-selected', 'true');
+  expect(rows[2]).not.toHaveAttribute('aria-selected');
+  expect(rows[3]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[4]).toHaveAttribute('aria-selected', 'true');
   expect(onSelect).toHaveBeenCalledTimes(6);
+  expect(onRowClick).toHaveBeenCalledTimes(5);
+
+  await user.keyboard('{Shift>}'); // Hold Shift
+  await user.click(getByText(data[3].name));
+
+  expect(rows[0]).not.toHaveAttribute('aria-selected');
+  expect(rows[1]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[2]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[3]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[4]).not.toHaveAttribute('aria-selected');
+  expect(onSelect).toHaveBeenCalledTimes(7);
   expect(onRowClick).toHaveBeenCalledTimes(6);
 });
 

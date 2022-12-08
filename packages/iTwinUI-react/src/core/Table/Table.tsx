@@ -51,7 +51,7 @@ import {
 import {
   onExpandHandler,
   onFilterHandler,
-  onSelectHandler,
+  onToggleHandler,
   onShiftSelectHandler,
   onSingleSelectHandler,
   onTableResizeEnd,
@@ -490,8 +490,9 @@ export const Table = <
         case TableActions.toggleRowSelected:
         case TableActions.toggleAllRowsSelected:
         case TableActions.toggleAllPageRowsSelected: {
-          onSelectHandler(
+          onToggleHandler(
             newState,
+            action,
             instance,
             onSelect,
             // If it has manual selection column, then we can't check whether row is disabled

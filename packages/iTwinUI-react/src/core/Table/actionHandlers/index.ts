@@ -5,7 +5,7 @@
 export { onExpandHandler } from './expandHandler';
 export { onFilterHandler } from './filterHandler';
 export {
-  onSelectHandler,
+  onToggleHandler,
   onSingleSelectHandler,
   onShiftSelectHandler,
 } from './selectHandler';
