@@ -5,3 +5,11 @@
 .iui-surface {
   @include iui-surface-component;
 }
+
+.iui-surface-divider {
+  @include iui-surface-divider;
+}
+
+.iui-surface-title-bar {
+  @include iui-surface-title-bar;
+}

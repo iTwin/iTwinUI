@@ -24,3 +24,15 @@
 @mixin iui-surface-component {
   @include iui-surface;
 }
+
+@mixin iui-surface-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(var(--iui-size-s) * 4);
+  padding: 0 var(--iui-size-s);
+}
+
+@mixin iui-surface-divider {
+  border-bottom: 1px solid var(--iui-color-border);
+}
