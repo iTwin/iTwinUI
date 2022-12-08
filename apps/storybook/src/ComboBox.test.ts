@@ -12,6 +12,7 @@ describe('ComboBox', () => {
     'With Label',
     'With Message',
     'With Status',
+    'Multiple Select',
   ];
 
   tests.forEach((testName) => {
@@ -20,6 +21,12 @@ describe('ComboBox', () => {
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(`${testName} (Closed)`);
       cy.get('input').focus();
+      if (testName === 'Multiple Select') {
+        cy.get('.iui-menu-item').then((els) => {
+          const items = Array.from(els, (el) => el);
+          items[3].click();
+        });
+      }
       cy.compareSnapshot(`${testName} (Open)`);
     });
   });

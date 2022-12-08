@@ -4,15 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { fireEvent, render, screen, act } from '@testing-library/react';
-import { ComboBox, ComboBoxProps } from './ComboBox';
+import { ComboBox, ComboboxMultipleTypeProps, ComboBoxProps } from './ComboBox';
 import { SvgCaretDownSmall } from '../utils';
 import { MenuItem } from '../Menu';
 import { StatusMessage } from '../StatusMessage';
 import userEvent from '@testing-library/user-event';
 
-const renderComponent = (props?: Partial<ComboBoxProps<number>>) => {
+const renderComponent = (
+  props?: Partial<ComboBoxProps<number>> & ComboboxMultipleTypeProps<number>,
+) => {
   return render(
-    <ComboBox
+    <ComboBox<number>
       options={[
         { label: 'Item 0', value: 0 },
         { label: 'Item 1', value: 1 },
@@ -735,4 +737,179 @@ it('should update options (does not have selected option in new options list)', 
 
   rerender(<ComboBox options={options2} onChange={mockOnChange} value={2} />);
   expect(input).toHaveValue('');
+});
+
+it('should select multiple options', async () => {
+  const mockOnChange = jest.fn();
+  const options = [0, 1, 2, 3].map((value) => ({
+    value,
+    label: `Item ${value}`,
+  }));
+
+  const { container } = render(
+    <ComboBox options={options} onChange={mockOnChange} multiple />,
+  );
+
+  const inputContainer = container.querySelector(
+    '.iui-input-container',
+  ) as HTMLDivElement;
+  await userEvent.tab();
+  await userEvent.click(screen.getByText('Item 1'));
+  await userEvent.click(screen.getByText('Item 2'));
+  await userEvent.click(screen.getByText('Item 3'));
+
+  const tags = inputContainer.querySelectorAll('.iui-select-tag');
+  expect(tags.length).toBe(3);
+  expect(tags[0].querySelector('.iui-select-tag-label')).toHaveTextContent(
+    'Item 1',
+  );
+  expect(tags[1].querySelector('.iui-select-tag-label')).toHaveTextContent(
+    'Item 2',
+  );
+  expect(tags[2].querySelector('.iui-select-tag-label')).toHaveTextContent(
+    'Item 3',
+  );
+});
+
+it('should override multiple selected options', async () => {
+  const mockOnChange = jest.fn();
+  const options = [0, 1, 2, 3].map((value) => ({
+    value,
+    label: `Item ${value}`,
+  }));
+  const values = [0, 1];
+
+  const { container, rerender } = render(
+    <ComboBox
+      options={options}
+      onChange={mockOnChange}
+      value={values}
+      multiple
+    />,
+  );
+
+  const inputContainer = container.querySelector(
+    '.iui-input-container',
+  ) as HTMLDivElement;
+
+  const tags = inputContainer.querySelectorAll('.iui-select-tag');
+  expect(tags.length).toBe(2);
+  expect(tags[0].querySelector('.iui-select-tag-label')).toHaveTextContent(
+    'Item 0',
+  );
+  expect(tags[1].querySelector('.iui-select-tag-label')).toHaveTextContent(
+    'Item 1',
+  );
+
+  const values2 = [1, 2, 3];
+
+  rerender(
+    <ComboBox
+      options={options}
+      onChange={mockOnChange}
+      value={values2}
+      multiple
+    />,
+  );
+  const tags2 = inputContainer.querySelectorAll('.iui-select-tag');
+  expect(tags2.length).toBe(3);
+  expect(tags2[0].querySelector('.iui-select-tag-label')).toHaveTextContent(
+    'Item 1',
+  );
+  expect(tags2[1].querySelector('.iui-select-tag-label')).toHaveTextContent(
+    'Item 2',
+  );
+  expect(tags2[2].querySelector('.iui-select-tag-label')).toHaveTextContent(
+    'Item 3',
+  );
+});
+
+it('should handle keyboard navigation when multiple is enabled', async () => {
+  const id = 'test-component';
+  const mockOnChange = jest.fn();
+  const { container } = renderComponent({
+    id,
+    multiple: true,
+    onChange: mockOnChange,
+  });
+
+  await userEvent.tab();
+
+  const input = assertBaseElement(container);
+  expect(input).toHaveAttribute('aria-controls', `${id}-list`);
+
+  let items = document.querySelectorAll('.iui-menu-item');
+
+  // focus index 0
+  await userEvent.keyboard('{ArrowDown}');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(items[0]).toHaveClass('iui-focused');
+
+  // 0 -> 2
+  await userEvent.keyboard('{ArrowUp}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
+  expect(items[2]).toHaveClass('iui-focused');
+
+  // 2 -> 1
+  await userEvent.keyboard('{ArrowUp}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-1`);
+  expect(items[1]).toHaveClass('iui-focused');
+  expect(items[2]).not.toHaveClass('iui-focused');
+
+  // 1 -> 0
+  await userEvent.keyboard('{ArrowUp}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-0`);
+  expect(items[0]).toHaveClass('iui-focused');
+
+  // select 0
+  await userEvent.keyboard('{Enter}');
+  items = document.querySelectorAll('.iui-menu-item');
+  expect(mockOnChange).toHaveBeenCalledWith([0], { type: 'added', value: 0 });
+  expect(document.querySelector('.iui-menu')).toBeVisible();
+
+  // filter and focus item 2
+  await act(async () => {
+    input.select();
+    await userEvent.keyboard('2');
+  });
+
+  await act(async () => void (await userEvent.keyboard('{ArrowDown}')));
+  expect(screen.getByText('Item 2').closest('.iui-menu-item')).toHaveClass(
+    'iui-focused',
+  );
+  expect(input).toHaveAttribute('aria-activedescendant', `${id}-option-Item-2`);
+
+  // select 2
+  await userEvent.keyboard('{Enter}');
+  expect(mockOnChange).toHaveBeenCalledWith([0, 2], {
+    type: 'added',
+    value: 2,
+  });
+  expect(document.querySelector('.iui-menu')).toBeVisible();
+
+  // close
+  await act(async () => void (await userEvent.keyboard('{Esc}')));
+  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+
+  // reopen
+  await act(async () => void (await userEvent.keyboard('X')));
+  expect(document.querySelector('.iui-menu')).toBeVisible();
+
+  // deselect 2
+  await act(async () => {
+    input.select();
+    await userEvent.keyboard('2');
+  });
+
+  await act(async () => void (await userEvent.keyboard('{ArrowDown}')));
+  await userEvent.keyboard('{Enter}');
+  expect(mockOnChange).toHaveBeenCalledWith([0], { type: 'removed', value: 2 });
+
+  // close
+  await userEvent.tab();
+  expect(document.querySelector('.iui-menu')).not.toBeVisible();
 });

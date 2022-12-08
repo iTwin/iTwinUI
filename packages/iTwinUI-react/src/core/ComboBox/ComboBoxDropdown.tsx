@@ -23,7 +23,7 @@ export const ComboBoxDropdown = React.forwardRef(
     // sync internal isOpen state with user's visible prop
     React.useEffect(() => {
       if (props.visible != undefined) {
-        dispatch([props.visible ? 'open' : 'close']);
+        dispatch({ type: props.visible ? 'open' : 'close' });
       }
     }, [dispatch, props.visible]);
 
@@ -34,7 +34,7 @@ export const ComboBoxDropdown = React.forwardRef(
         onClickOutside={React.useCallback(
           (_: Instance<Props>, { target }: Event) => {
             if (!toggleButtonRef.current?.contains(target as Element)) {
-              dispatch(['close']);
+              dispatch({ type: 'close' });
             }
           },
           [dispatch, toggleButtonRef],

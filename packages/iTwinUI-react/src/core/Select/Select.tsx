@@ -11,11 +11,11 @@ import {
   PopoverInstance,
   CommonProps,
   useTheme,
-  useOverflow,
   SvgCaretDownSmall,
 } from '../utils';
 import '@itwin/itwinui-css/css/select.css';
 import SelectTag from './SelectTag';
+import SelectTagContainer from './SelectTagContainer';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),
@@ -467,8 +467,6 @@ const MultipleSelectButton = <T,>({
     return selectedItems.map((item) => tagRenderer(item));
   }, [selectedItems, tagRenderer]);
 
-  const [containerRef, visibleCount] = useOverflow(selectedItemsElements);
-
   return (
     <>
       {selectedItems &&
@@ -476,20 +474,7 @@ const MultipleSelectButton = <T,>({
         selectedItemsRenderer(selectedItems)}
       {selectedItems && !selectedItemsRenderer && (
         <span className='iui-content'>
-          <div className='iui-select-tag-container' ref={containerRef}>
-            <>
-              {visibleCount < selectedItemsElements.length
-                ? selectedItemsElements.slice(0, visibleCount - 1)
-                : selectedItemsElements}
-              {visibleCount < selectedItemsElements.length && (
-                <SelectTag
-                  label={`+${
-                    selectedItemsElements.length - visibleCount + 1
-                  } item(s)`}
-                />
-              )}
-            </>
-          </div>
+          <SelectTagContainer tags={selectedItemsElements} />
         </span>
       )}
     </>

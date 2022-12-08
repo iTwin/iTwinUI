@@ -5,13 +5,22 @@
 import React from 'react';
 import { SelectOption } from '../Select/Select';
 
-type ComboBoxAction = 'open' | 'close' | 'select' | 'focus';
+type ComboBoxAction =
+  | { type: 'multiselect'; value: number[] }
+  | { type: 'open' }
+  | { type: 'close' }
+  | { type: 'select'; value: number }
+  | { type: 'focus'; value: number | undefined };
 
 export const comboBoxReducer = (
-  state: { isOpen: boolean; selectedIndex: number; focusedIndex: number },
-  [type, value]: [ComboBoxAction] | [ComboBoxAction, number | undefined],
+  state: {
+    isOpen: boolean;
+    selected: number | number[];
+    focusedIndex: number;
+  },
+  action: ComboBoxAction,
 ) => {
-  switch (type) {
+  switch (action.type) {
     case 'open': {
       return { ...state, isOpen: true };
     }
@@ -19,14 +28,32 @@ export const comboBoxReducer = (
       return { ...state, isOpen: false };
     }
     case 'select': {
+      if (Array.isArray(state.selected)) {
+        return { ...state };
+      }
       return {
         ...state,
-        selectedIndex: value ?? state.selectedIndex,
-        focusedIndex: value ?? state.focusedIndex,
+        selected: action.value ?? state.selected,
+        focusedIndex: action.value ?? state.focusedIndex,
       };
     }
+    case 'multiselect': {
+      if (!Array.isArray(state.selected)) {
+        return { ...state };
+      }
+      return { ...state, selected: action.value };
+    }
     case 'focus': {
-      return { ...state, focusedIndex: value ?? state.selectedIndex ?? -1 };
+      if (Array.isArray(state.selected)) {
+        return {
+          ...state,
+          focusedIndex: action.value ?? -1,
+        };
+      }
+      return {
+        ...state,
+        focusedIndex: action.value ?? state.selected ?? -1,
+      };
     }
     default: {
       return state;
@@ -53,8 +80,10 @@ type ComboBoxStateContextProps<T = unknown> = {
   minWidth: number;
   enableVirtualization: boolean;
   filteredOptions: SelectOption<T>[];
+  onClickHandler?: (prop: number) => void;
   getMenuItem: (option: SelectOption<T>, filteredIndex?: number) => JSX.Element;
   focusedIndex?: number;
+  multiple?: boolean;
 };
 
 export const ComboBoxStateContext = React.createContext<
@@ -63,6 +92,6 @@ export const ComboBoxStateContext = React.createContext<
 ComboBoxStateContext.displayName = 'ComboBoxStateContext';
 
 export const ComboBoxActionContext = React.createContext<
-  ((x: [ComboBoxAction] | [ComboBoxAction, number]) => void) | undefined
+  ((x: ComboBoxAction) => void) | undefined
 >(undefined);
 ComboBoxActionContext.displayName = 'ComboBoxActionContext';

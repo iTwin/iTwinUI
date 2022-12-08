@@ -24,7 +24,7 @@ export const ComboBoxMenuItem = React.memo(
         icon,
         badge,
         className,
-        role = 'menuitem',
+        role = 'option',
         index,
         ...rest
       } = props;

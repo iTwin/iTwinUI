@@ -4,21 +4,33 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Input, InputProps } from '../Input';
-import { useSafeContext, useMergedRefs } from '../utils';
+import { useSafeContext, useMergedRefs, useContainerWidth } from '../utils';
+import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer';
 import {
   ComboBoxStateContext,
   ComboBoxActionContext,
   ComboBoxRefsContext,
 } from './helpers';
 
-type ComboBoxInputProps = InputProps;
+type ComboBoxInputProps = { selectTags?: JSX.Element[] } & InputProps;
 
 export const ComboBoxInput = React.forwardRef(
   (props: ComboBoxInputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
-    const { onKeyDown: onKeyDownProp, onFocus: onFocusProp, ...rest } = props;
+    const {
+      onKeyDown: onKeyDownProp,
+      onFocus: onFocusProp,
+      selectTags,
+      ...rest
+    } = props;
 
-    const { isOpen, id, focusedIndex, enableVirtualization } =
-      useSafeContext(ComboBoxStateContext);
+    const {
+      isOpen,
+      id,
+      focusedIndex,
+      enableVirtualization,
+      multiple,
+      onClickHandler,
+    } = useSafeContext(ComboBoxStateContext);
     const dispatch = useSafeContext(ComboBoxActionContext);
     const { inputRef, menuRef, optionsExtraInfoRef } =
       useSafeContext(ComboBoxRefsContext);
@@ -44,7 +56,7 @@ export const ComboBoxInput = React.forwardRef(
           case 'ArrowDown': {
             event.preventDefault();
             if (!isOpen) {
-              return dispatch(['open']);
+              return dispatch({ type: 'open' });
             }
 
             if (length === 0) {
@@ -54,10 +66,12 @@ export const ComboBoxInput = React.forwardRef(
             if (focusedIndexRef.current === -1) {
               const currentElement =
                 menuRef.current?.querySelector('[data-iui-index]');
-              return dispatch([
-                'focus',
-                Number(currentElement?.getAttribute('data-iui-index') ?? 0),
-              ]);
+              return dispatch({
+                type: 'focus',
+                value: Number(
+                  currentElement?.getAttribute('data-iui-index') ?? 0,
+                ),
+              });
             }
 
             // If virtualization is enabled, dont let round scrolling
@@ -81,7 +95,7 @@ export const ComboBoxInput = React.forwardRef(
               nextIndex = Number(nextElement?.getAttribute('data-iui-index'));
 
               if (nextElement?.ariaDisabled !== 'true') {
-                return dispatch(['focus', nextIndex]);
+                return dispatch({ type: 'focus', value: nextIndex });
               }
             } while (nextIndex !== focusedIndexRef.current);
             break;
@@ -89,7 +103,7 @@ export const ComboBoxInput = React.forwardRef(
           case 'ArrowUp': {
             event.preventDefault();
             if (!isOpen) {
-              return dispatch(['open']);
+              return dispatch({ type: 'open' });
             }
 
             if (length === 0) {
@@ -107,11 +121,12 @@ export const ComboBoxInput = React.forwardRef(
             }
 
             if (focusedIndexRef.current === -1) {
-              return dispatch([
-                'focus',
-                Object.values(optionsExtraInfoRef.current)?.[length - 1]
-                  .__originalIndex ?? -1,
-              ]);
+              return dispatch({
+                type: 'focus',
+                value:
+                  Object.values(optionsExtraInfoRef.current)?.[length - 1]
+                    .__originalIndex ?? -1,
+              });
             }
 
             let prevIndex = focusedIndexRef.current;
@@ -125,7 +140,7 @@ export const ComboBoxInput = React.forwardRef(
               prevIndex = Number(prevElement?.getAttribute('data-iui-index'));
 
               if (prevElement?.ariaDisabled !== 'true') {
-                return dispatch(['focus', prevIndex]);
+                return dispatch({ type: 'focus', value: prevIndex });
               }
             } while (prevIndex !== focusedIndexRef.current);
             break;
@@ -133,20 +148,29 @@ export const ComboBoxInput = React.forwardRef(
           case 'Enter': {
             event.preventDefault();
             if (isOpen) {
-              dispatch(['select', focusedIndexRef.current]);
-              dispatch(['close']);
+              if (multiple) {
+                // Keep menu open when multiselect is enabled and user selects an item
+                if (focusedIndexRef.current > -1) {
+                  onClickHandler?.(focusedIndexRef.current);
+                } else {
+                  dispatch({ type: 'close' });
+                }
+              } else {
+                onClickHandler?.(focusedIndexRef.current);
+                dispatch({ type: 'close' });
+              }
             } else {
-              dispatch(['open']);
+              dispatch({ type: 'open' });
             }
             break;
           }
           case 'Escape': {
             event.preventDefault();
-            dispatch(['close']);
+            dispatch({ type: 'close' });
             break;
           }
           case 'Tab':
-            dispatch(['close']);
+            dispatch({ type: 'close' });
             break;
         }
       },
@@ -155,6 +179,8 @@ export const ComboBoxInput = React.forwardRef(
         enableVirtualization,
         isOpen,
         menuRef,
+        multiple,
+        onClickHandler,
         onKeyDownProp,
         optionsExtraInfoRef,
       ],
@@ -162,30 +188,41 @@ export const ComboBoxInput = React.forwardRef(
 
     const handleFocus = React.useCallback(
       (event: React.FocusEvent<HTMLInputElement>) => {
-        dispatch(['open']);
+        dispatch({ type: 'open' });
         onFocusProp?.(event);
       },
       [dispatch, onFocusProp],
     );
 
+    const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
+
     return (
-      <Input
-        ref={refs}
-        onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
-        aria-activedescendant={
-          isOpen && focusedIndex != undefined && focusedIndex > -1
-            ? getIdFromIndex(focusedIndex)
-            : undefined
-        }
-        role='combobox'
-        aria-controls={isOpen ? `${id}-list` : undefined}
-        aria-autocomplete='list'
-        spellCheck={false}
-        autoCapitalize='none'
-        autoCorrect='off'
-        {...rest}
-      />
+      <>
+        <Input
+          ref={refs}
+          onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          aria-activedescendant={
+            isOpen && focusedIndex != undefined && focusedIndex > -1
+              ? getIdFromIndex(focusedIndex)
+              : undefined
+          }
+          role='combobox'
+          aria-controls={isOpen ? `${id}-list` : undefined}
+          aria-autocomplete='list'
+          spellCheck={false}
+          autoCapitalize='none'
+          autoCorrect='off'
+          style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
+          {...rest}
+        />
+        {multiple && selectTags && (
+          <ComboBoxMultipleContainer
+            ref={tagContainerWidthRef}
+            selectedItems={selectTags}
+          />
+        )}
+      </>
     );
   },
 );
