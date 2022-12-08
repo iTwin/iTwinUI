@@ -14,7 +14,6 @@ class SelectTag extends HTMLElement {
     const innerHtml = `
     <span
       class="iui-select-tag"
-      ${dismissible ? `role="option"` : ''}
     >
       <span
         class="iui-select-tag-label"
