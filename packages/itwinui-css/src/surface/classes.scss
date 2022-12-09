@@ -10,6 +10,18 @@
   @include iui-surface-divider;
 }
 
-.iui-surface-title-bar {
-  @include iui-surface-title-bar;
+.iui-surface-header {
+  @include iui-surface-header;
+}
+
+.iui-surface-content {
+  @include iui-surface-content;
+}
+
+.iui-surface-content-scroll {
+  @include iui-surface-content-scroll;
+}
+
+.iui-surface-footer {
+  @include iui-surface-footer;
 }

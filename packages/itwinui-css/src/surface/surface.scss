@@ -25,14 +25,29 @@
   @include iui-surface;
 }
 
-@mixin iui-surface-title-bar {
+@mixin iui-surface-header($padding: 0 var(--iui-size-s)) {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: calc(var(--iui-size-s) * 4);
-  padding: 0 var(--iui-size-s);
+  padding: #{$padding};
 }
 
 @mixin iui-surface-divider {
   border-bottom: 1px solid var(--iui-color-border);
+}
+
+@mixin iui-surface-content {
+  padding: var(--iui-size-s);
+}
+
+@mixin iui-surface-content-scroll($content-area-height: 300px) {
+  @include iui-surface-content;
+  // @include hide-scrollbar; not sure if we want to default to hiding scrollbar
+  height: #{$content-area-height};
+  overflow-y: scroll;
+}
+
+@mixin iui-surface-footer {
+  @include iui-surface-header;
 }
