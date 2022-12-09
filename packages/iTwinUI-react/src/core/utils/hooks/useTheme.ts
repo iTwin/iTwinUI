@@ -2,10 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { ThemeContext } from '../../ThemeProvider/ThemeProvider';
 import { getDocument, getWindow } from '../functions';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
+import { useIsThemeAlreadySet } from './useIsThemeAlreadySet';
 import '@itwin/itwinui-css/css/global.css';
 import '@itwin/itwinui-variables/index.css';
 
@@ -52,12 +51,11 @@ export const useTheme = (
   theme?: UseThemeProps['theme'],
   themeOptions?: UseThemeProps['themeOptions'],
 ) => {
-  const themeContext = React.useContext(ThemeContext);
   const ownerDocument = themeOptions?.ownerDocument ?? getDocument();
+  const isThemeAlreadySet = useIsThemeAlreadySet(ownerDocument);
 
   useIsomorphicLayoutEffect(() => {
-    // exit early if theme was already set by provider or is present on <body>
-    if (themeContext || !ownerDocument || ownerDocument.body.dataset.iuiTheme) {
+    if (!ownerDocument || isThemeAlreadySet.current) {
       return;
     }
 
@@ -81,7 +79,7 @@ export const useTheme = (
         return;
       }
     }
-  }, [theme, themeContext, themeOptions?.highContrast, ownerDocument]);
+  }, [theme, themeOptions?.highContrast, ownerDocument]);
 };
 
 /**

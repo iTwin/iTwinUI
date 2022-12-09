@@ -13,3 +13,4 @@ export * from './useMediaQuery';
 export * from './useSafeContext';
 export * from './useLatestRef';
 export * from './useIsomorphicLayoutEffect';
+export * from './useIsThemeAlreadySet';

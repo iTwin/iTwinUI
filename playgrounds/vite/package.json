@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@itwin/itwinui-react": "*",
+    "@itwin/itwinui-icons-react": "latest",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
