@@ -35,7 +35,7 @@ const docgenResults = componentPath.endsWith('.tsx')
     }) as DocumentationObject[])
   : docgenTsParse(componentPath);
 
-const { props } = [...docgenResults].find((docs) => docs['displayName'] === componentName);
+const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === componentName);
 ---
 
 <div class='wrapper'>
@@ -49,19 +49,20 @@ const { props } = [...docgenResults].find((docs) => docs['displayName'] === comp
     </thead>
     <tbody>
       {
-        Object.entries(props).map(([key, value]) => (
-          <tr>
-            <td class='mono'>{value.name || key}</td>
-            <td>
-              <div
-                class='md'
-                set:html={snarkdown(value.description.split('@example')[0] ?? value.description)}
-              />
-              <div class='types'>{value.type?.name || value.flowType.raw}</div>
-            </td>
-            <td class='mono'>{value.defaultValue?.value ?? value.defaultValue ?? ''}</td>
-          </tr>
-        ))
+        componentDoc &&
+          Object.entries(componentDoc.props).map(([key, value]) => (
+            <tr>
+              <td class='mono'>{value.name || key}</td>
+              <td>
+                <div
+                  class='md'
+                  set:html={snarkdown(value.description.split('@example')[0] ?? value.description)}
+                />
+                <div class='types'>{value.type?.name || value.flowType.raw}</div>
+              </td>
+              <td class='mono'>{value.defaultValue?.value ?? value.defaultValue ?? ''}</td>
+            </tr>
+          ))
       }
     </tbody>
   </table>
