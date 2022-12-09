@@ -3,13 +3,11 @@
 @import '../utils/index';
 
 @mixin iui-code {
-  @include iui-reset;
   display: inline-block;
   font-family: var(--iui-font-mono);
   font-size: var(--iui-font-size-0);
   padding: 0 var(--iui-size-2xs);
   border-radius: var(--iui-border-radius-1);
-  user-select: all;
   background-color: var(--iui-color-background);
   border: 1px solid var(--iui-color-border);
   color: var(--iui-color-text);
