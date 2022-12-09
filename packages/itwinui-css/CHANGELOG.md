@@ -2,7 +2,6 @@
 
 ### [1.2.2](https://www.github.com/iTwin/iTwinUI/compare/v1.2.1...v1.2.2) (2022-12-09)
 
-
 ### Fixes
 
 * **Select:** Use correct placeholder text color ([#846](https://www.github.com/iTwin/iTwinUI/issues/846)) ([0504714](https://www.github.com/iTwin/iTwinUI/commit/0504714599b97dc7a1c8458f6de48dad5037cb7c))
