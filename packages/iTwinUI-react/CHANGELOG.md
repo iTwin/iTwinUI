@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/iTwin/iTwinUI-react/compare/v2.0.2...v2.1.0) (2022-12-12)
+
+### What's new
+
+* **Combobox:** Add support for multi-selection through `multiple` prop ([#830](https://www.github.com/iTwin/iTwinUI-react/issues/830)) ([ced7588](https://www.github.com/iTwin/iTwinUI-react/commit/ced7588acee5273e83c0b0d05a732f260997b9bb))
+* **ThemeProvider:** Add `applyBackground` to `themeOptions` prop. ([#974](https://www.github.com/iTwin/iTwinUI-react/issues/974)) ([13cff7f](https://www.github.com/iTwin/iTwinUI-react/commit/13cff7fab356e1015e2e7c361f15c6a7c8fe4d6b))
+  * Defaults to true for the topmost ThemeProvider in the tree.
+* **Table:** Ctrl + Shift click now keeps previous selection & also shift clicks ([#888](https://www.github.com/iTwin/iTwinUI-react/issues/888)) ([13edfb5](https://www.github.com/iTwin/iTwinUI-react/commit/13edfb5ecc62de284ac03cc2fc27b8a41b4f7b61))
+
+### Fixes
+
+* **Table:** Ctrl and checkbox clicks update start row of shift selection ([#889](https://www.github.com/iTwin/iTwinUI-react/issues/889)) ([21900d4](https://www.github.com/iTwin/iTwinUI-react/commit/21900d42900f7a03305bf2040cc64ddb29361b2d))
+
+### 2.0.3 (2022-12-12)
+
+### Fixes
+
+* **ComboBox:** Move max-height to outer element to fix virtual scroll ([#986](https://www.github.com/iTwin/iTwinUI-react/issues/986)) ([596559e](https://www.github.com/iTwin/iTwinUI-react/commit/596559e7158877e09c98c5c672e8a58a9507a33d))
+
 ### [2.0.2](https://www.github.com/iTwin/iTwinUI-react/compare/v2.0.1...v2.0.2) (2022-12-07)
 
 ### Fixes
