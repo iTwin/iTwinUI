@@ -12,6 +12,7 @@ describe('ComboBox', () => {
     'With Label',
     'With Message',
     'With Status',
+    'Virtualized',
     'Multiple Select',
   ];
 

@@ -18,6 +18,9 @@ import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers';
 type ComboBoxMenuProps = Omit<MenuProps, 'onClick'> &
   React.ComponentPropsWithoutRef<'ul'>;
 
+const isOverflowOverlaySupported = () =>
+  getWindow()?.CSS?.supports?.('overflow: overlay');
+
 const VirtualizedComboBoxMenu = React.forwardRef(
   (
     { children, className, style, ...rest }: ComboBoxMenuProps,
@@ -56,31 +59,24 @@ const VirtualizedComboBoxMenu = React.forwardRef(
       scrollToIndex: focusedVisibleIndex,
     });
 
-    const overflowY = getWindow()?.CSS?.supports?.('overflow-x: overlay')
-      ? { overflowY: 'overlay' }
-      : { overflowY: 'auto' };
-
-    const styles = React.useMemo(
-      () => ({
-        minWidth,
-        maxWidth: `min(${minWidth * 2}px, 90vw)`,
-      }),
-      [minWidth],
-    );
+    const surfaceStyles = {
+      minWidth,
+      maxWidth: `min(${minWidth * 2}px, 90vw)`,
+      // max-height must be on the outermost element for virtual scroll
+      maxHeight: 'calc((var(--iui-component-height) - 1px) * 8.5)',
+      overflowY: isOverflowOverlaySupported() ? 'overlay' : 'auto',
+      ...style,
+    } as React.CSSProperties;
 
     return (
-      <Surface
-        elevation={1}
-        style={{ ...styles, ...(overflowY as React.CSSProperties), ...style }}
-        {...rest}
-      >
+      <Surface style={surfaceStyles} {...rest}>
         <div {...outerProps}>
           <Menu
             id={`${id}-list`}
             setFocus={false}
             role='listbox'
             ref={mergeRefs(menuRef, innerProps.ref, forwardedRef)}
-            className={cx('iui-scroll', className)}
+            className={className}
             style={innerProps.style}
           >
             {visibleChildren}
