@@ -179,6 +179,7 @@ const setFilter = async (container: HTMLElement, value: string) => {
   ) as HTMLInputElement;
   expect(filterInput).toBeVisible();
 
+  await userEvent.clear(filterInput);
   await userEvent.type(filterInput, value);
   await userEvent.click(screen.getByText('Filter'));
 
@@ -948,6 +949,11 @@ it('should filter table', async () => {
   expect(onFilter).toHaveBeenCalledWith(
     [{ fieldType: 'text', filterType: 'text', id: 'name', value: '2' }],
     expect.objectContaining({ filters: [{ id: 'name', value: '2' }] }),
+    expect.arrayContaining([
+      expect.objectContaining({
+        values: expect.objectContaining({ name: 'Name2' }),
+      }),
+    ]),
   );
 });
 
@@ -1065,7 +1071,40 @@ it('should clear filter', async () => {
   expect(onFilter).toHaveBeenCalledWith(
     [],
     expect.objectContaining({ filters: [] }),
+    expect.arrayContaining([
+      expect.objectContaining({
+        values: expect.objectContaining({ name: 'Name1' }),
+      }),
+      expect.objectContaining({
+        values: expect.objectContaining({ name: 'Name2' }),
+      }),
+      expect.objectContaining({
+        values: expect.objectContaining({ name: 'Name3' }),
+      }),
+    ]),
   );
+});
+
+it('should not trigger onFilter when the same filter is applied', async () => {
+  const onFilter = jest.fn();
+  const mockedColumns = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+      fieldType: 'text',
+    },
+  ];
+  const { container } = renderComponent({ columns: mockedColumns, onFilter });
+
+  expect(screen.queryByText('Header name')).toBeFalsy();
+  const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(rows.length).toBe(3);
+
+  await setFilter(container, '2');
+  await setFilter(container, '2');
+  expect(onFilter).toHaveBeenCalledTimes(1);
 });
 
 it('should not filter table when manualFilters flag is on', async () => {
@@ -1096,6 +1135,17 @@ it('should not filter table when manualFilters flag is on', async () => {
   expect(onFilter).toHaveBeenCalledWith(
     [{ fieldType: 'text', filterType: 'text', id: 'name', value: '2' }],
     expect.objectContaining({ filters: [{ id: 'name', value: '2' }] }),
+    expect.arrayContaining([
+      expect.objectContaining({
+        values: expect.objectContaining({ name: 'Name1' }),
+      }),
+      expect.objectContaining({
+        values: expect.objectContaining({ name: 'Name2' }),
+      }),
+      expect.objectContaining({
+        values: expect.objectContaining({ name: 'Name3' }),
+      }),
+    ]),
   );
 });
 
@@ -4507,5 +4557,10 @@ it('should navigate through table filtering with the keyboard', async () => {
   expect(onFilter).toHaveBeenCalledWith(
     [{ fieldType: 'text', filterType: 'text', id: 'name', value: '2' }],
     expect.objectContaining({ filters: [{ id: 'name', value: '2' }] }),
+    expect.arrayContaining([
+      expect.objectContaining({
+        values: expect.objectContaining({ name: 'Name2' }),
+      }),
+    ]),
   );
 });

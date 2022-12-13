@@ -9,12 +9,13 @@ export const onFilterHandler = <T extends Record<string, unknown>>(
   newState: TableState<T>,
   action: ActionType,
   previousState: TableState<T>,
+  currentFilter: TableFilterValue<T>[],
   instance?: TableInstance<T>,
-  onFilter?: (filters: TableFilterValue<T>[], state: TableState<T>) => void,
 ) => {
   const previousFilter = previousState.filters.find(
     (f) => f.id === action.columnId,
   );
+
   if (previousFilter?.value != action.filterValue) {
     const filters = newState.filters.map((f) => {
       const column = instance?.allColumns.find((c) => c.id === f.id);
@@ -25,6 +26,7 @@ export const onFilterHandler = <T extends Record<string, unknown>>(
         filterType: column?.filter ?? 'text',
       };
     }) as TableFilterValue<T>[];
-    onFilter?.(filters, newState);
+    return filters;
   }
+  return currentFilter;
 };
