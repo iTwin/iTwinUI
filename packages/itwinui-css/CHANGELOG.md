@@ -1,5 +1,24 @@
 # Changelog
 
+### [1.2.2](https://www.github.com/iTwin/iTwinUI/compare/v1.2.1...v1.2.2) (2022-12-09)
+
+### Fixes
+
+* **Select:** Use correct placeholder text color ([#846](https://www.github.com/iTwin/iTwinUI/issues/846)) ([0504714](https://www.github.com/iTwin/iTwinUI/commit/0504714599b97dc7a1c8458f6de48dad5037cb7c))
+
+### [1.2.1](https://www.github.com/iTwin/iTwinUI/compare/v1.2.0...v1.2.1) (2022-12-08)
+
+### Fixes
+
+* **Code:** Remove `user-select: all` and extra declarations ([#836](https://www.github.com/iTwin/iTwinUI/issues/836)) ([8db6443](https://www.github.com/iTwin/iTwinUI/commit/8db64436470527571eae321272ac1cf1555e13c9))
+
+## [1.2.0](https://www.github.com/iTwin/iTwinUI/compare/v1.1.0...v1.2.0) (2022-12-06)
+
+### What's new
+
+* **ExpandableBlock:** Add disabled state support through `disabled`/`aria-disabled` attribute on the toggle ([#821](https://www.github.com/iTwin/iTwinUI/issues/821)) ([5bb81cd](https://www.github.com/iTwin/iTwinUI/commit/5bb81cd016a4e9aecdbd5a9b3bfaa0c79976d81e))
+* **`iui-root`**: Add `.iui-root-background` modifier to opt into setting the recommended background-color ([#833](https://www.github.com/iTwin/iTwinUI/issues/833)) ([ef6a969](https://www.github.com/iTwin/iTwinUI/commit/ef6a96977ce2e0d60a7e5ca2bb1f5b30bc6c35fc))
+
 ## [1.1.0](https://www.github.com/iTwin/iTwinUI/compare/v1.0.0...v1.1.0) (2022-12-01)
 
 ### What's new

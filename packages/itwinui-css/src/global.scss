@@ -8,12 +8,6 @@
   line-height: var(--iui-size-l);
   font-family: var(--iui-font-sans);
 
-  // reset margin and apply background only for <body> element
-  @at-root :where(body#{&}) {
-    margin: 0;
-    background-color: var(--iui-color-background-backdrop);
-  }
-
   // border-box on all iui- elements and their descendants under iui-root, excluding any nested iui-root elements
   :where([class*='iui-']) {
     &:where(:not(.iui-root)),
@@ -25,6 +19,17 @@
       }
     }
   }
+}
+
+// reset margin only for <body> element.
+:where(body.iui-root) {
+  margin: 0;
+}
+
+// auto apply background only if <body> is used as root.
+// for other elements, user will have to opt in by adding .iui-root-background
+:where(body.iui-root, .iui-root.iui-root-background) {
+  background-color: var(--iui-color-background-backdrop);
 }
 
 // text selection and scrollbar styling on [data-iui-theme], iui-root and all elements under it
