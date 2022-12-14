@@ -146,29 +146,6 @@ export const Alert = ({
   ...
 ```
 
-### Import individual icons directly from the cjs module
-
-```jsx
-// Good
-import SvgClose from '@itwin/itwinui-icons-react/cjs/icons/Close';
-import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
-```
-
-```jsx
-// Bad (using barrel)
-import { SvgClose } from '@itwin/itwinui-icons-react';
-```
-
-```jsx
-// Bad (using esm)
-import SvgClose from '@itwin/itwinui-icons-react/esm/icons/Close';
-```
-
-```jsx
-// Bad (combining imports)
-import { SvgClose, SvgInfo } from '@itwin/itwinui-icons-react/cjs/icons';
-```
-
 ### Use `getDocument`, `getWindow` instead of direct access
 
 ```jsx

@@ -156,6 +156,27 @@ apps/storybook/src/**Alert.test.tsx**
 
 - Contains the Cypress test for the component.
 
+### Importing icons
+
+#### In `packages/iTwinUI-react`:
+
+* Manually add the `<svg>` component to `utils/icons` and `utils/icons/index.ts`
+* Import it from `utils`
+
+e.g.
+```tsx
+import { SvgClose, SvgInfoCircular } from '../utils';
+```
+
+#### In other modules:
+
+* Import it from `@itwin/itwinui-icons-react`
+
+e.g.
+```tsx
+import { SvgChevronRightDouble, SvgFolder } from '@itwin/itwinui-icons-react';
+```
+
 ### Documentation
 
 We use [JSDoc](https://jsdoc.app/) (not TSDoc) to write documentation for our code.
