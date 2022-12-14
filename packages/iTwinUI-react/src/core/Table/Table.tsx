@@ -676,6 +676,18 @@ export const Table = <
     }
   }, [state, instance.filteredRows, onFilter]);
 
+  const lastPassedColumns = React.useRef([] as Column<T>[]);
+
+  // Reset the column order whenever new columns are passed
+  // This is to avoid the old columnOrder from affecting the new columns' columnOrder
+  React.useEffect(() => {
+    // Check if columns have changed (by value)
+    if (JSON.stringify(lastPassedColumns.current) !== JSON.stringify(columns)) {
+      instance.setColumnOrder([]);
+    }
+    lastPassedColumns.current = columns;
+  }, [columns, instance]);
+
   const paginatorRendererProps: TablePaginatorRendererProps = React.useMemo(
     () => ({
       currentPage: state.pageIndex,

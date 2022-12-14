@@ -3380,9 +3380,12 @@ it.each([
     jest
       .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
       .mockReturnValue(100);
+
+    const mockColumns = columns();
+
     const { container, rerender } = render(
       <Table
-        columns={columns()}
+        columns={mockColumns}
         data={mockedData()}
         emptyTableContent='Empty table'
         emptyFilteredTableContent='No results. Clear filter.'
@@ -3419,9 +3422,20 @@ it.each([
     // Should not trigger sort
     expect(onSort).not.toHaveBeenCalled();
 
+    // Column order should be equal to resultingColumns
+    container
+      .querySelectorAll<HTMLDivElement>('.iui-table-header .iui-table-cell')
+      .forEach((cell, index) =>
+        expect(cell.textContent).toBe(resultingColumns[index]),
+      );
+
+    // New columns array contents to trigger below test
+    const mockColumnsReverse = [...mockColumns].reverse();
+
     rerender(
       <Table
-        columns={columns()}
+        // Passing any new columns array contents (e.g. reverse of columns) should reset columnOrder
+        columns={mockColumnsReverse}
         data={mockedData()}
         emptyTableContent='Empty table'
         emptyFilteredTableContent='No results. Clear filter.'
@@ -3431,10 +3445,12 @@ it.each([
       />,
     );
 
+    // Column order should be equal to same order as the latest passed columns contents (mockColumnsReverse)
+    // Since columnOrder should reset whenever columns contents change
     container
       .querySelectorAll<HTMLDivElement>('.iui-table-header .iui-table-cell')
       .forEach((cell, index) =>
-        expect(cell.textContent).toBe(resultingColumns[index]),
+        expect(cell.textContent).toBe(mockColumnsReverse[index].Header),
       );
   },
 );
