@@ -1,23 +1,25 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './index';
+@use './icon-component.scss' as iui;
 
+.iui-svg-icon,
+[data-iui-icon-color] {
+  @include iui.svg-icon;
+}
+
+@each $size in 's', 'm', 'l', 'xl', '2xl', '3xl' {
+  [data-iui-icon-size='#{$size}'] {
+    @include iui.svg-icon-size($size);
+  }
+}
+
+@each $fill in 'informational', 'positive', 'warning', 'negative' {
+  [data-iui-icon-color='#{$fill}'] {
+    @include iui.svg-icon-color($fill);
+  }
+}
+
+.iui-svg-icon,
 [data-iui-icon-color='default'] {
-  @include iui-icon-color;
-}
-
-[data-iui-icon-color='informational'] {
-  @include iui-icon-color(informational);
-}
-
-[data-iui-icon-color='positive'] {
-  @include iui-icon-color(positive);
-}
-
-[data-iui-icon-color='warning'] {
-  @include iui-icon-color(warning);
-}
-
-[data-iui-icon-color='negative'] {
-  @include iui-icon-color(negative);
+  @include iui.svg-icon-forced-colors;
 }

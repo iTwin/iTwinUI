@@ -226,7 +226,7 @@
   }
 
   .iui-thumbnail-icon {
-    @include iui-icon-style(3xl);
+    @include iui-icon-style('3xl');
     @include iui-icon-color;
   }
 }
