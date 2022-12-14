@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use './icon' as *;
 
-@mixin svg-icon {
+@mixin iui-svg-icon {
   --_iui-svg-size: #{map-get($iui-icon-sizes, m)};
   --_iui-svg-fill: var(--iui-color-icon-muted);
 
@@ -22,7 +22,7 @@
 }
 
 /// @arg $fill - must be one of: 'informational', 'positive', 'warning', 'negative'
-@mixin svg-icon-color($fill) {
+@mixin svg-icon-status-color($fill) {
   --_iui-svg-fill: var(--iui-color-icon-#{$fill});
 }
 
