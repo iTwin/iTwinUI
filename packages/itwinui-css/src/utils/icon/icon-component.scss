@@ -3,18 +3,10 @@
 @use 'sass:map';
 
 $icon-sizes: (
-  // 12px
-  's': var(--iui-size-s),
-  // 16px
-  'm': var(--iui-size-m),
-  // 24px
-  'l': calc(1.5 * var(--iui-size-m)),
-  // 32px
-  'xl': var(--iui-size-xl),
-  // 48px
-  '2xl': calc(3 * var(--iui-size-m)),
-  // 64px
-  '3xl': var(--iui-size-2xl)
+  's': calc(12/16 * 1rem),
+  'm': calc(16/16 * 1rem),
+  'l': calc(24/16 * 1rem),
+  'auto': 1em,
 );
 
 @mixin iui-svg-icon {
@@ -31,7 +23,7 @@ $icon-sizes: (
   }
 }
 
-/// @arg $size - must be one of: 's', 'm', 'l', '2xl', '3xl'
+/// @arg $size - must be one of: 's', 'm', 'l', 'auto'
 @mixin svg-icon-size($size) {
   --_iui-svg-size: #{map.get($icon-sizes, $size)};
 }

@@ -33,6 +33,14 @@
         gap: 4px;
         margin-bottom: 22px;
       }
+      #demo-typography {
+        display: grid;
+      }
+      #demo-typography > div {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
     </style>
   </head>
   <body class="iui-root">
@@ -55,16 +63,6 @@
       <svg-imodel-hollow
         class="iui-svg-icon"
         data-iui-icon-size="l"
-        aria-hidden="true"
-      ></svg-imodel-hollow>
-      <svg-imodel-hollow
-        class="iui-svg-icon"
-        data-iui-icon-size="xl"
-        aria-hidden="true"
-      ></svg-imodel-hollow>
-      <svg-imodel-hollow
-        class="iui-svg-icon"
-        data-iui-icon-size="2xl"
         aria-hidden="true"
       ></svg-imodel-hollow>
     </section>
@@ -106,6 +104,65 @@
         data-iui-icon-color="negative"
         aria-hidden="true"
       ></svg-status-error>
+    </section>
+
+    <h2>Auto scale with text</h2>
+    <section id="demo-typography">
+
+      <div class="iui-text-headline iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Headline
+      </div>
+
+      <div class="iui-text-title iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Title
+      </div>
+
+      <div class="iui-text-subheading iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Subheading
+      </div>
+
+      <div class="iui-text-leading iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Leading
+      </div>
+
+      <div class="iui-text-block iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Body
+      </div>
+
+      <div class="iui-text-small iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Small
+      </div>
+
     </section>
   </body>
 </html>

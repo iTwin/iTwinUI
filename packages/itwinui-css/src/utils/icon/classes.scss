@@ -7,7 +7,7 @@
   @include iui-svg-icon;
 }
 
-@each $size in 's', 'm', 'l', 'xl', '2xl', '3xl' {
+@each $size in 's', 'm', 'l', 'auto' {
   [data-iui-icon-size='#{$size}'] {
     @include svg-icon-size($size);
   }
