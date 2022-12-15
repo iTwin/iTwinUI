@@ -59,7 +59,7 @@ const currentPage = new URL(Astro.request.url).pathname;
   }
 
   :where(.content-wrapper) {
-    --_content-width: min(100%, 70ch);
+    --_content-width: var(--content-width, min(100%, 70ch));
     grid-area: content;
     isolation: isolate;
     overflow: auto;

@@ -46,7 +46,6 @@ export { default as InputGroupMainExample } from './InputGroup.main';
 export { default as SideNavigationMainExample } from './SideNavigation.main';
 export { default as SliderMainExample } from './Slider.main';
 export { default as SurfaceMainExample } from './Surface.main';
-export { default as SubheadingMainExample } from './Typography.main';
 export { default as ToastStaticExample } from './Toast.static';
 export { default as ToastMainExample } from './Toast.main';
 export { default as ToggleSwitchMainExample } from './ToggleSwitch.main';

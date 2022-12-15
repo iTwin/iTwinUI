@@ -8,6 +8,7 @@ import AccessibleIcon from '~/icons/AccessibleIcon.astro';
 import NoFussIcon from '~/icons/NoFussIcon.astro';
 import EvolvingIcon from '~/icons/EvolvingIcon.astro';
 import ConsistentIcon from '~/icons/ConsistentIcon.astro';
+import RightArrowIcon from '~/icons/RightArrowIcon.astro';
 import NorthernLights from '~/components/NorthernLights.astro';
 import CopyCommandButton from '~/components/CopyCommandButton.astro';
 import AlertDemo from '~/demos/Alert.demo';
@@ -45,13 +46,13 @@ const currentPage = new URL(Astro.request.url).pathname;
         <div class='demo-wrapper'>
           <div class='demo-box'><AlertDemo client:only='react' /></div>
           <h3>Alert</h3>
-          <p>A small box to quickly grab user attention and communicate a brief message</p>
+          <p>A small box to quickly grab user attention and communicate a brief message.</p>
         </div>
 
         <div class='demo-wrapper'>
           <div class='demo-box'><DialogDemo client:only='react' /></div>
           <h3>Dialog</h3>
-          <p>Provides the foundation for building modals and modeless dialogs</p>
+          <p>Provides the foundation for building modals and modeless dialogs.</p>
         </div>
 
         <div class='demo-wrapper'>
@@ -70,6 +71,13 @@ const currentPage = new URL(Astro.request.url).pathname;
           <div class='demo-box'><ComboBoxDemo client:only='react' /></div>
           <h3>ComboBox</h3>
           <p>Allows typing a value to filter and choose from the options in dropdown list.</p>
+        </div>
+        <div class='demo-wrapper'>
+          <div class='demo-box demo-box-muted'>
+            <li class='discover-more'>
+              <h3><a href={'/docs/components'}>Discover more components <RightArrowIcon /></a></h3>
+            </li>
+          </div>
         </div>
       </div>
     </div>
@@ -122,32 +130,32 @@ const currentPage = new URL(Astro.request.url).pathname;
     </div>
     <div class='centered-content'>
       <h2 class='highlight-text'>Our library</h2>
-      <div class='library-list'>
-        <a class='library-item' href='/docs'>
-          <div>
-            <h3>Components</h3>
-            <p>
-              See our extensive library of pre-coded components. You can view live demos of how they
-              behave in their environment to determine if they are the right fit.
-            </p>
-          </div>
-        </a>
-        <a class='library-item' href='https://itwin.github.io/iTwinUI-layouts/' target='_blank'>
-          <div>
-            <h3>Layouts</h3>
-            <p>Full-page layouts built for maximizing your efficiency when you need it the most.</p>
-          </div>
-        </a>
-        <a class='library-item' href='https://itwin.github.io/iTwinUI-icons/' target='_blank'>
-          <div>
-            <h3>Icons</h3>
-            <p>
-              Hundreds of flexible, flat-styled icons in SVG format, allowing for infinite
-              scalability with zero quality loss.
-            </p>
-          </div>
-        </a>
-      </div>
+      <ul class='library-list'>
+        <li class='library-item'>
+          <h3>
+            <a href='/docs'>Components</a>
+          </h3>
+          <p>
+            See our extensive library of pre-coded components. You can view live demos of how they
+            behave in their environment to determine if they are the right fit.
+          </p>
+        </li>
+        <li class='library-item'>
+          <h3>
+            <a href='https://itwin.github.io/iTwinUI-layouts/'>Layouts</a>
+          </h3>
+          <p>Full-page layouts built for maximizing your efficiency when you need it the most.</p>
+        </li>
+        <li class='library-item'>
+          <h3>
+            <a href='/https://itwin.github.io/iTwinUI-icons/'>Icons</a>
+          </h3>
+          <p>
+            Hundreds of flexible, flat-styled icons in SVG format, allowing for infinite scalability
+            with zero quality loss.
+          </p>
+        </li>
+      </ul>
     </div>
   </main>
 
@@ -157,6 +165,9 @@ const currentPage = new URL(Astro.request.url).pathname;
     body {
       display: grid;
       grid-template: 'header' auto 'main' 1fr / 100%;
+    }
+    main > * {
+      max-width: 1200px;
     }
     .hero-box {
       display: grid;
@@ -236,11 +247,16 @@ const currentPage = new URL(Astro.request.url).pathname;
     .demo-box {
       color-scheme: dark !important;
       width: 350px;
-      min-height: 350px;
+      height: 350px;
       display: flex;
       justify-content: center;
       align-items: center;
       background: var(--color-sandbox-gradient);
+      position: relative;
+    }
+    .demo-box-muted {
+      background: transparent;
+      border: 1px solid var(--color-subtext);
     }
     .colored-text {
       color: var(--color-highlight-1);
@@ -271,7 +287,6 @@ const currentPage = new URL(Astro.request.url).pathname;
     }
 
     .main-button:hover,
-    .library-item:hover,
     .join-us:hover {
       box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
     }
@@ -310,11 +325,37 @@ const currentPage = new URL(Astro.request.url).pathname;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     }
     .library-item {
+      position: relative;
+      display: flex;
+      flex: 1 0 20%;
+      flex-direction: column;
       padding: var(--space-5);
-      text-align: start;
-      border: 1px solid var(--color-text);
       border-radius: var(--border-radius-1);
+      outline: 1px solid var(--color-subtext);
+      gap: var(--space-3);
+      align-items: start;
+      color: var(--color-text);
       transition: box-shadow var(--transition-speed) ease;
+
+      &:where(:hover, :focus-within) {
+        box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration: none;
+
+        &:where(:focus) {
+          outline: none;
+          text-decoration: none;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+        }
+      }
     }
     h1 {
       font-size: calc(var(--type-3) * 1.5);
@@ -353,13 +394,44 @@ const currentPage = new URL(Astro.request.url).pathname;
         padding: var(--space-5);
       }
     }
-    main > * {
-      max-width: 1200px;
-    }
+
     .icon {
       align-self: center;
       fill: var(--color-highlight-1);
       height: 96px;
+    }
+
+    .discover-more {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      transition: box-shadow var(--transition-speed) ease;
+
+      &:hover {
+        box-shadow: 0 0 5px var(--color-highlight-1), 0 0 10px var(--color-highlight-2);
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--type-1);
+        color: var(--color-text);
+        text-decoration: none;
+
+        &:where(:focus) {
+          outline: none;
+          text-decoration: none;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+        }
+      }
     }
 
     footer {

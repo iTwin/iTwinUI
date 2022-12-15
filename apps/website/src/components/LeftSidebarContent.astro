@@ -13,7 +13,7 @@ const introPages = docsPages.filter((page) => !page.group);
 
 const sections = new Map<string, typeof docsPages>();
 sections.set(
-  'components',
+  'core',
   docsPages.filter((item) => item.group === 'core')
 );
 sections.set(
@@ -41,11 +41,13 @@ sections.set(
         </li>
       ))
     }
-    {
-      [...sections.entries()].map(([heading, list]) => (
-        <li>
+
+    <li>
+      <h2 class='nav-group-title'><a href={'/docs/components'}>Components</a></h2>
+      {
+        [...sections.entries()].map(([heading, list]) => (
           <div class='nav-group'>
-            <h2 class='nav-group-title'>{heading}</h2>
+            <h2 class='nav-group-subtitle'>{heading}</h2>
             <ul>
               {list.map(({ url, title }) => (
                 <li class='nav-link'>
@@ -56,9 +58,9 @@ sections.set(
               ))}
             </ul>
           </div>
-        </li>
-      ))
-    }
+        ))
+      }
+    </li>
   </ul>
 </nav>
 
@@ -88,17 +90,41 @@ sections.set(
     }
   }
 
-  .nav-group-title {
+  .nav-group-title a {
     color: var(--color-subtext);
     font-size: var(--type-0);
     font-weight: 600;
-    padding-inline: var(--space-4);
+    padding: 0.3rem var(--space-4);
+    margin-bottom: var(--space-2);
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+
+    &:where(:hover, :focus) {
+      background-color: var(--color-active);
+      color: var(--color-text);
+    }
+
+    @media (max-width: 50em) {
+      color: var(--color-subtext);
+      font-size: var(--type-2);
+      padding-inline: var(--space-6);
+      margin-bottom: var(--space-3);
+    }
+  }
+
+  .nav-group-subtitle {
+    margin-top: var(--space-3);
+    color: var(--color-mutedtext);
+    font-size: var(--type--1);
+    font-weight: 600;
+    padding-inline: var(--space-5);
     margin-bottom: var(--space-2);
     text-transform: uppercase;
 
     @media (max-width: 50em) {
-      color: var(--color-text);
-      font-size: var(--type-3);
+      color: var(--color-mutedtext);
+      font-size: var(--type-1);
       padding-inline: var(--space-6);
       margin-bottom: var(--space-3);
     }
@@ -106,7 +132,7 @@ sections.set(
 
   .nav-link a {
     margin: 1px;
-    padding: 0.3rem var(--space-4);
+    padding: 0.3rem var(--space-5);
     font: inherit;
     font-size: var(--type-0);
     color: var(--color-subtext);
@@ -121,7 +147,7 @@ sections.set(
     }
 
     @media (max-width: 50em) {
-      font-size: var(--type-1);
+      font-size: var(--type-2);
       padding: var(--space-1) var(--space-6);
       min-height: 44px;
       display: flex;

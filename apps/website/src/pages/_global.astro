@@ -12,7 +12,7 @@ import '@fontsource/noto-sans/800.css';
 const { content = {} } = Astro.props;
 ---
 
-<html class='iui-theme-dark' dir={content.dir ?? 'ltr'} lang={content.lang ?? 'en-us'}>
+<html dir={content.dir ?? 'ltr'} lang={content.lang ?? 'en-us'}>
   <head>
     <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width' />
@@ -114,7 +114,8 @@ const { content = {} } = Astro.props;
         --color-background-2--dark: hsl(221deg 47% 11%);
         --color-background-3--dark: white;
         --color-text--dark: hsl(210deg 6% 85%);
-        --color-subtext--dark: hsl(221deg 16% 62%);
+        --color-subtext--dark: hsl(221deg 16% 68%);
+        --color-mutedtext--dark: hsl(221deg, 6%, 52%);
         --color-demo-gradient--dark: linear-gradient(
           135deg,
           hsl(232deg 12% 40%),
@@ -134,6 +135,7 @@ const { content = {} } = Astro.props;
         --color-highlight-1: hsl(314deg 57% 88%);
         --color-highlight-2: hsl(232deg 78% 82%);
         --color-highlight-3: hsl(186deg 78% 79%);
+        --color-highlight-4: hsl(232deg 70% 70%);
         --color-highlight-gradient-1: linear-gradient(
           135deg,
           var(--color-highlight-1),
@@ -154,6 +156,7 @@ const { content = {} } = Astro.props;
         --color-background-3: var(--color-background-3--dark);
         --color-text: var(--color-text--dark);
         --color-subtext: var(--color-subtext--dark);
+        --color-mutedtext: var(--color-mutedtext--dark);
         --color-demo-gradient: var(--color-demo-gradient--dark);
         --color-sandbox-gradient: var(--color-sandbox-gradient--dark);
         --color-highlight-gradient: var(--color-highlight-gradient-1);
@@ -214,7 +217,7 @@ const { content = {} } = Astro.props;
     </style>
   </head>
 
-  <body>
+  <body data-iui-theme='dark'>
     <slot />
 
     <!--
