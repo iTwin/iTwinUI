@@ -10,17 +10,21 @@ module.exports = [
   scenario('State hover in default', {
     actions: [hover('#test-default-singular')],
     selectors: ['#demo-default-singular'],
+    viewports: [{ width: 800, height: 600 }],
   }),
   scenario('State focus in default', {
     actions: [focus('#test-default-singular')],
     selectors: ['#demo-default-singular'],
+    viewports: [{ width: 800, height: 600 }],
   }),
   scenario('State hover with status', {
     actions: [hover('#test-status-singular')],
     selectors: ['#demo-status-singular'],
+    viewports: [{ width: 800, height: 800 }],
   }),
   scenario('State focus with status', {
     actions: [focus('#test-status-singular')],
     selectors: ['#demo-status-singular'],
+    viewports: [{ width: 800, height: 800 }],
   }),
 ];
