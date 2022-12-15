@@ -1,9 +1,24 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use './icon' as *;
+@use 'sass:map';
+
+$icon-sizes: (
+  // 12px
+  's': var(--iui-size-s),
+  // 16px
+  'm': var(--iui-size-m),
+  // 24px
+  'l': calc(1.5 * var(--iui-size-m)),
+  // 32px
+  'xl': var(--iui-size-xl),
+  // 48px
+  '2xl': calc(3 * var(--iui-size-m)),
+  // 64px
+  '3xl': var(--iui-size-2xl)
+);
 
 @mixin iui-svg-icon {
-  --_iui-svg-size: #{map-get($iui-icon-sizes, m)};
+  --_iui-svg-size: #{map.get($icon-sizes, m)};
   --_iui-svg-fill: var(--iui-color-icon-muted);
 
   display: inline-flex;
@@ -18,7 +33,7 @@
 
 /// @arg $size - must be one of: 's', 'm', 'l', '2xl', '3xl'
 @mixin svg-icon-size($size) {
-  --_iui-svg-size: #{map-get($iui-icon-sizes, $size)};
+  --_iui-svg-size: #{map-get($icon-sizes, $size)};
 }
 
 /// @arg $fill - must be one of: 'informational', 'positive', 'warning', 'negative'
