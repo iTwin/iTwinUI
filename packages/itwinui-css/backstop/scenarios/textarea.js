@@ -20,11 +20,11 @@ module.exports = [
   scenario('State hover with status', {
     actions: [hover('#test-status-singular')],
     selectors: ['#demo-status-singular'],
-    viewports: [{ width: 800, height: 800 }],
+    viewports: [{ width: 800, height: 1200 }],
   }),
   scenario('State focus with status', {
     actions: [focus('#test-status-singular')],
     selectors: ['#demo-status-singular'],
-    viewports: [{ width: 800, height: 800 }],
+    viewports: [{ width: 800, height: 1200 }],
   }),
 ];
