@@ -33,7 +33,7 @@ $icon-sizes: (
 
 /// @arg $size - must be one of: 's', 'm', 'l', '2xl', '3xl'
 @mixin svg-icon-size($size) {
-  --_iui-svg-size: #{map-get($icon-sizes, $size)};
+  --_iui-svg-size: #{map.get($icon-sizes, $size)};
 }
 
 /// @arg $fill - must be one of: 'informational', 'positive', 'warning', 'negative'
