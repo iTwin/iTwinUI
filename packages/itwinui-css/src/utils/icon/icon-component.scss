@@ -1,12 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@use 'sass:math';
 @use 'sass:map';
 
 $icon-sizes: (
-  's': calc(12/16 * 1rem),
-  'm': calc(16/16 * 1rem),
-  'l': calc(24/16 * 1rem),
-  'auto': 1em,
+  's': #{math.div(12, 16)}rem,
+  'm': #{math.div(16, 16)}rem,
+  'l': #{math.div(24, 16)}rem,
+  'auto': #{math.div(16, 14)}em,
 );
 
 @mixin iui-svg-icon {
