@@ -60,7 +60,6 @@
     "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --",
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
-    "audit:ci": "audit-ci --moderate --report-type=full",
     "push-docker": "node scripts/pushDocker.js"
   }
 }

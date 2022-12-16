@@ -5,11 +5,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{scss}": [
       "prettier --write"
@@ -26,6 +21,7 @@
     "dev": "turbo run dev",
     "test": "turbo run test --",
     "lint": "turbo run lint",
+    "prepare": "husky install",
     "lint:copyright": "node packages/shared/copyrightLinter.js",
     "push-docker": "yarn workspace @itwin/itwinui-css push-docker",
     "createComponent": "yarn workspace @itwin/itwinui-css createComponent",
@@ -34,24 +30,23 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "audit-ci": "^4.0.0",
-    "chokidar-cli": "^2.1.0",
-    "concurrently": "^6.0.0",
-    "husky": "=4",
-    "lint-staged": "^11.2.6",
-    "prettier": "^2.4.1",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^7.6.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^12.5.0",
+    "prettier": "2.8.0",
     "rimraf": "^3.0.2",
-    "turbo": "~1.3.2"
+    "turbo": "~1.6.3"
   },
   "resolutions": {
-    "hosted-git-info": ">=3.0.8",
-    "jimp": ">=0.16.1",
-    "trim-newlines": "^3.0.1",
-    "minimatch": "^3.0.5",
-    "glob-parent": "^6.0.1",
-    "jpeg-js": "^0.4.3",
-    "ansi-regex": "^5.0.1",
-    "node-fetch": "^2.6.7",
-    "async": "^3.2.2"
+    "hosted-git-info": "6.1.1",
+    "jimp": "0.16.2",
+    "trim-newlines": "3.0.1",
+    "minimatch": "3.1.2",
+    "glob-parent": "6.0.2",
+    "jpeg-js": "0.4.4",
+    "ansi-regex": "5.0.1",
+    "node-fetch": "2.6.7",
+    "async": "3.2.4"
   }
 }
