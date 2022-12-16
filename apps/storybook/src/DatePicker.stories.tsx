@@ -120,6 +120,59 @@ WithTime.args = {
   showTime: true,
 };
 
+export const WithCombinedTime: Story<DatePickerProps> = (args) => {
+  const {
+    date = new Date(2021, 4, 11, 14, 55, 22),
+    setFocus = true,
+    showTime = true,
+    useCombinedRenderer = true,
+    use12Hours = true,
+    localizedNames,
+    ...rest
+  } = args;
+  const [opened, setOpened] = React.useState(false);
+  const [currentDate, setCurrentDate] = React.useState(date);
+  const onChange = (date: Date) => {
+    setCurrentDate(date);
+    action(`New date value: ${date}`, { clearOnStoryChange: false })();
+  };
+
+  React.useEffect(() => {
+    setCurrentDate(new Date(date));
+    return () => action('', { clearOnStoryChange: true })();
+  }, [date]);
+  return (
+    <>
+      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <SvgCalendar />
+      </IconButton>
+      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
+      {opened && (
+        <div style={{ marginTop: 4 }}>
+          <DatePicker
+            {...rest}
+            date={currentDate}
+            onChange={onChange}
+            localizedNames={localizedNames}
+            setFocus={setFocus}
+            showTime={showTime}
+            useCombinedRenderer={useCombinedRenderer}
+            use12Hours={use12Hours}
+          />
+        </div>
+      )}
+    </>
+  );
+};
+
+WithCombinedTime.args = {
+  date: new Date(2021, 4, 11, 14, 55, 22),
+  setFocus: true,
+  showTime: true,
+  useCombinedRenderer: true,
+  use12Hours: true,
+};
+
 export const Localized: Story<DatePickerProps> = (args) => {
   const {
     date = new Date(2021, 4, 11, 14, 55, 22),

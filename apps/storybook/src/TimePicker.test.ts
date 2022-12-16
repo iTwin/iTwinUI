@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('TimePicker', () => {
   const storyPath = 'Core/TimePicker';
-  const tests = ['Basic'];
+  const tests = ['Basic', 'Custom Renderers', 'Combined'];
 
   tests.forEach((testName) => {
     it(testName, function () {

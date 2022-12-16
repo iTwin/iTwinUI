@@ -224,6 +224,12 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     hourStep,
     minuteStep,
     secondStep,
+    useCombinedRenderer,
+    combinedRenderer,
+    hourRenderer,
+    minuteRenderer,
+    secondRenderer,
+    meridiemRenderer,
     showYearSelection = false,
     enableRangeSelect = false,
     startDate,
@@ -619,6 +625,12 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
           hourStep={hourStep}
           minuteStep={minuteStep}
           secondStep={secondStep}
+          useCombinedRenderer={useCombinedRenderer}
+          combinedRenderer={combinedRenderer}
+          hourRenderer={hourRenderer}
+          minuteRenderer={minuteRenderer}
+          secondRenderer={secondRenderer}
+          meridiemRenderer={meridiemRenderer}
           onChange={(date) =>
             isSingleOnChange(onChange, enableRangeSelect)
               ? onChange?.(date)
