@@ -10,11 +10,11 @@
     @include iui-tabs-horizontal;
 
     display: grid;
-    grid-template-areas: 'tabs tabs-right' 'tabs-content tabs-content';
+    grid-template-areas: 'tabs tabs-actions' 'tabs-content tabs-content';
     grid-template-columns: auto fit-content(1px);
 
     .iui-tabs-actions {
-      grid-area: tabs-right;
+      grid-area: tabs-actions;
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -27,6 +27,22 @@
 
   &.iui-vertical {
     @include iui-tabs-vertical;
+
+    display: grid;
+    grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
+    grid-template-rows: fit-content(1px) auto;
+
+    .iui-tabs-actions {
+      grid-area: tabs-actions;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .iui-tabs-content {
+      grid-area: tabs-content;
+    }
   }
 }
 
