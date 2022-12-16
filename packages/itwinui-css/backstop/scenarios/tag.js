@@ -12,13 +12,13 @@ module.exports = [
     selectors: ['#demo-default-container'],
   }),
 
-  // Hover states
-  scenario('State hover', {
-    actions: [hover('#test-tag-1')],
+  // Hover & focus states
+  scenario('State hover & focus', {
+    actions: [hover('#test-tag-1'), focus('#test-tag-2')],
     selectors: ['#demo-default'],
   }),
   scenario('State hover basic', {
-    actions: [hover('#test-tag')],
+    actions: [hover('#test-tag-3')],
     selectors: ['#demo-basic'],
   }),
 ];
