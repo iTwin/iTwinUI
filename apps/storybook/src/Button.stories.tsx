@@ -5,8 +5,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
-import { Button, ButtonProps } from '@itwin/itwinui-react';
+import { Button, ButtonProps, NotificationMarker } from '@itwin/itwinui-react';
 import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
+import { SvgEmail } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Buttons/Button',
@@ -85,6 +86,69 @@ WithIcon.args = {
   children: 'New',
   styleType: 'high-visibility',
   startIcon: <SvgAdd />,
+};
+
+export const WithNotification: Story<ButtonProps> = (args) => {
+  return (
+    <div style={{ display: 'flex', gap: '10px' }}>
+      <Button
+        onClick={action('clicked')}
+        startIcon={
+          <NotificationMarker status='white'>
+            <SvgEmail />
+          </NotificationMarker>
+        }
+        styleType='high-visibility'
+        {...args}
+      >
+        {args.children}
+      </Button>
+      <Button
+        onClick={action('clicked')}
+        startIcon={
+          <NotificationMarker status='white'>
+            <SvgEmail />
+          </NotificationMarker>
+        }
+        styleType='cta'
+        {...args}
+      >
+        {args.children}
+      </Button>
+      <Button
+        onClick={action('clicked')}
+        startIcon={
+          <NotificationMarker>
+            <SvgEmail />
+          </NotificationMarker>
+        }
+        styleType='default'
+        {...args}
+      >
+        {args.children}
+      </Button>
+      <Button
+        onClick={action('clicked')}
+        startIcon={
+          <NotificationMarker>
+            <SvgEmail />
+          </NotificationMarker>
+        }
+        styleType='borderless'
+        {...args}
+      >
+        {args.children}
+      </Button>
+    </div>
+  );
+};
+
+WithNotification.args = {
+  children: 'Inbox',
+};
+
+WithNotification.argTypes = {
+  styleType: { control: false },
 };
 
 export const AsLink: Story<ButtonProps<'a'>> = (args) => {
