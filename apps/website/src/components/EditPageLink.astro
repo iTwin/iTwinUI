@@ -4,15 +4,19 @@ import EditIcon from '~/icons/EditIcon.astro';
 type Props = { page: string } & astroHTML.JSX.AnchorHTMLAttributes;
 let { page, ...rest } = Astro.props;
 
-// remove /docs and / prefixes. We will add it back in the github url
-if (page.startsWith('/docs')) page = page.slice(5);
-if (page.startsWith('/')) page = page.slice(1);
+if (page.startsWith('/docs')) page = page.slice(5); // remove /docs prefix
+page = page.replaceAll('/', ''); // remove trailing and leading slashes
 
-// handle index page manually because it is not part of the url
-const mdxFilename = page ? `${page}.mdx` : 'index.mdx';
+let fileName = 'index.mdx'; // fallback value if nothing in the url
+
+if (page === 'components') {
+  fileName = `${page}.astro`; // handle components.astro separately from .mdx
+} else if (page) {
+  fileName = `${page}.mdx`;
+}
 
 const repoUrl = 'https://github.com/iTwin/iTwinUI-react';
-const githubEditUrl = `${repoUrl}/edit/main/apps/website/src/pages/docs/${mdxFilename}`;
+const githubEditUrl = `${repoUrl}/edit/main/apps/website/src/pages/docs/${fileName}`;
 ---
 
 <a href={githubEditUrl} {...rest}>
