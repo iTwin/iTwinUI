@@ -7,7 +7,7 @@ import { SvgInfoCircular } from './SvgInfoCircular';
 import { SvgStatusError } from './SvgStatusError';
 import { SvgStatusSuccess } from './SvgStatusSuccess';
 import { SvgStatusWarning } from './SvgStatusWarning';
-import { type CommonProps } from '../props';
+import type { CommonProps } from '../props';
 
 export const StatusIconMap = {
   negative: (args?: CommonProps) => <SvgStatusError aria-hidden {...args} />,
