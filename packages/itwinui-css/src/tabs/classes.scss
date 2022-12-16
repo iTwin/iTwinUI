@@ -3,8 +3,21 @@
 @import './index';
 
 .iui-tabs-wrapper {
-  display: flex;
+  // display: flex;
   position: relative;
+  display: grid;
+  grid-template-areas: 'tabs tabs-right' 'tabs-content tabs-content';
+  grid-template-columns: auto fit-content(1px);
+
+  .iui-tabs-right {
+    grid-area: tabs-right;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .iui-tabs-content {
+    grid-area: tabs-content;
+  }
 
   &.iui-horizontal {
     @include iui-tabs-horizontal;
