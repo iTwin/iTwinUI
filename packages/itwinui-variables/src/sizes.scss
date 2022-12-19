@@ -12,6 +12,8 @@
   --iui-size-xl: #{math.div(32, 16)}rem;
   --iui-size-2xl: #{math.div(64, 16)}rem;
   --iui-size-3xl: #{math.div(96, 16)}rem;
+
+  --iui-gap-between-inputs: var(--iui-size-s);
 }
 
 @mixin border-radii {
