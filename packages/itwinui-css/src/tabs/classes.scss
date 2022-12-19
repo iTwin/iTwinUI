@@ -18,7 +18,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: var(--iui-size-xs);
+      column-gap: var(--iui-size-xs);
     }
 
     .iui-tabs-content {
@@ -39,6 +39,7 @@
       flex-direction: column;
       justify-content: flex-end;
       align-items: center;
+      row-gap: var(--iui-size-xs);
     }
 
     .iui-tabs-content {
