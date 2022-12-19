@@ -12,6 +12,10 @@
   &[data-iui-size='large'] {
     @include iui-input-size(large);
   }
+
+  &[type='search'] {
+    @include iui-search-box;
+  }
 }
 
 .iui-input-with-icon.iui-input-with-icon {

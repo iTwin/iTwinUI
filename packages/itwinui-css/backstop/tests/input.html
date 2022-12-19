@@ -20,6 +20,7 @@
       import "@itwin/itwinui-icons-elements/status-error";
       import "@itwin/itwinui-icons-elements/close-small";
       import "@itwin/itwinui-icons-elements/info-circular";
+      import "@itwin/itwinui-icons-elements/search";
     </script>
     <title>Input | iTwinUI</title>
     <style>
@@ -493,6 +494,30 @@
         </div>
       </div>
 
+    </section>
+
+    <br />
+
+    <h2>Search box</h2>
+    <section id="search-box">
+
+      <div>
+        <div class="iui-input-with-icon">
+          <input
+            placeholder="Placeholder…"
+            type="search"
+            class="iui-input"
+            id="test-1"
+          />
+          <button
+            class="iui-button iui-end-icon"
+            data-iui-variant="borderless"
+          ><svg-search
+              class='iui-button-icon'
+              aria-hidden="true"
+            /></button>
+        </div>
+      </div>
     </section>
   </body>
 </html>
