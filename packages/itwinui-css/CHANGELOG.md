@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/iTwin/iTwinUI/compare/v1.2.2...v1.3.0) (2022-12-19)
+
+
+### What's new
+
+* **Tag:** Tag body receives focus instead of close button within it ([#835](https://www.github.com/iTwin/iTwinUI/issues/835)) ([3df67b1](https://www.github.com/iTwin/iTwinUI/commit/3df67b19028c7dd63baff0d7cbef581d48c8e90c))
+
+
+### Fixes
+
+* **Inputs:** border color changes to status color on hover ([#847](https://www.github.com/iTwin/iTwinUI/issues/847)) ([7a2ed84](https://www.github.com/iTwin/iTwinUI/commit/7a2ed848ace212687f43c41546865bc9bb7cc55a))
+* **ToggleSwitch:** Define height of toggle switch to display correctly in iOS ([#852](https://www.github.com/iTwin/iTwinUI/issues/852)) ([a50a7fc](https://www.github.com/iTwin/iTwinUI/commit/a50a7fced38fa568665ec42e873bd1d998595c18))
+
 ### [1.2.2](https://www.github.com/iTwin/iTwinUI/compare/v1.2.1...v1.2.2) (2022-12-09)
 
 ### Fixes
