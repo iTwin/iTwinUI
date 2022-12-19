@@ -48,6 +48,9 @@
   cursor: pointer;
   appearance: none;
   width: calc(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset * 2) * 2);
+  height: calc(
+    $iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2) + ($iui-toggle-switch-border-thickness * 2)
+  );
   border-radius: var(--iui-border-radius-round);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
   background-color: var(--iui-color-background);
