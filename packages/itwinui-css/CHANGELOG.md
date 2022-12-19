@@ -2,11 +2,9 @@
 
 ## [1.3.0](https://www.github.com/iTwin/iTwinUI/compare/v1.2.2...v1.3.0) (2022-12-19)
 
-
 ### What's new
 
 * **Tag:** Tag body receives focus instead of close button within it ([#835](https://www.github.com/iTwin/iTwinUI/issues/835)) ([3df67b1](https://www.github.com/iTwin/iTwinUI/commit/3df67b19028c7dd63baff0d7cbef581d48c8e90c))
-
 
 ### Fixes
 
