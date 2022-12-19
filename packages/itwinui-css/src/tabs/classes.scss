@@ -12,7 +12,7 @@
     display: grid;
     grid-template-areas: 'tabs tabs-actions' 'tabs-content tabs-content';
     grid-template-columns: auto fit-content(1px);
-    column-gap: var(--iui-gap-between-inputs);
+    margin-left: var(--iui-gap-between-inputs);
 
     .iui-tabs-actions {
       grid-area: tabs-actions;
@@ -33,7 +33,7 @@
     display: grid;
     grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
     grid-template-rows: fit-content(1px) auto;
-    row-gap: var(--iui-gap-between-inputs);
+    margin-top: var(--iui-gap-between-inputs);
 
     .iui-tabs-actions {
       grid-area: tabs-actions;
