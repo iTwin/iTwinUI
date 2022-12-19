@@ -14,7 +14,7 @@ export default defineConfig({
       output: {
         dir: './backstop/minified',
         compact: true,
-        assetFileNames: `assets/[name].[ext]`
+        assetFileNames: `assets/[name].[ext]`,
       },
     },
   },
@@ -102,10 +102,7 @@ function getComponentList() {
 
 function lightningCssPlugin(): Plugin {
   const queryWhitelist = ['direct'];
-  const matcherRegex = new RegExp(
-    `\\.css\\??(?:${queryWhitelist.join('|')})?$`,
-    'i'
-  );
+  const matcherRegex = new RegExp(`\\.css\\??(?:${queryWhitelist.join('|')})?$`, 'i');
   return {
     name: 'lightning-css',
     transform(css, id) {
@@ -119,7 +116,7 @@ function lightningCssPlugin(): Plugin {
           sourceMap: false,
           code: Buffer.from(css),
           filename: id,
-          targets: require('./scripts/lightningCssSettings').targets
+          targets: require('./scripts/lightningCssSettings').targets,
         });
         return code.toString('utf8');
       } catch {
