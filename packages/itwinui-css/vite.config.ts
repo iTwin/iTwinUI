@@ -97,7 +97,7 @@ function addMetaTags(): Plugin {
 function getComponentList() {
   return fs
     .readdirSync(new URL('./backstop/tests', import.meta.url))
-    .flatMap((file) => (file.endsWith('.html') && file !== 'index.html' ? [file.split('.')[0]] : []));
+    .flatMap((file) => (file.endsWith('.html') ? [file.split('.')[0]] : []));
 }
 
 function lightningCssPlugin(): Plugin {
