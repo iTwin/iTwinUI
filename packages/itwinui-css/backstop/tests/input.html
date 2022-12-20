@@ -28,7 +28,7 @@
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
-        width: auto;
+        //width: auto;
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -507,25 +507,32 @@
     <br />
 
     <h2>Search box</h2>
-    <section id="search-box">
+    <section id="demo-search-box">
 
-      <div>
-        <div class="iui-input-with-icon">
-          <input
-            placeholder="Placeholder…"
-            type="search"
-            class="iui-input"
-            id="test-1"
+      <div class="iui-input-with-icons">
+        <div class="iui-input-left">
+          <svg-search
+            class="iui-input-icon"
+            aria-hidden="true"
           />
+        </div>
+        <input
+          placeholder="Placeholder…"
+          type="search"
+          class="iui-invisible-borders"
+          id="test-1"
+        />
+        <div class="iui-input-right">
           <button
             class="iui-button iui-end-icon"
             data-iui-variant="borderless"
-          ><svg-search
+          ><svg-close-small
               class='iui-button-icon'
               aria-hidden="true"
             /></button>
         </div>
       </div>
+
     </section>
   </body>
 </html>

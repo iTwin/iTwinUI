@@ -22,6 +22,26 @@
   @include iui-input-with-icon;
 }
 
+.iui-invisible-borders {
+  @include iui-invisible-borders;
+}
+
+.iui-input-right {
+  @include iui-input-right;
+}
+
+.iui-input-left {
+  @include iui-input-left;
+}
+
 .iui-end-icon {
   @include iui-end-icon;
+}
+
+.iui-input-with-icons {
+  @include iui-input-with-icons;
+
+  > input[type='search'] {
+    @include iui-search-box;
+  }
 }
