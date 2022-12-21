@@ -64,22 +64,3 @@
     @include iui-icon-color;
   }
 }
-
-@mixin iui-invisible-borders {
-  border: none;
-  background: none;
-
-  &:focus,
-  &:focus-within,
-  &:hover {
-    outline: none;
-    border: none;
-  }
-}
-
-@mixin iui-vertical-divider {
-  width: 1px;
-  height: calc(100% - #{var(--iui-size-s)});
-  margin: 1px auto;
-  background-color: var(--iui-color-border);
-}
