@@ -25,3 +25,27 @@
 .iui-end-icon {
   @include iui-end-icon;
 }
+
+.iui-input-flex-container {
+  @include iui-input-flex-container;
+
+  > input[type='search'] {
+    @include iui-search-box;
+  }
+}
+
+.iui-invisible-borders {
+  @include iui-invisible-borders;
+}
+
+.iui-input-right {
+  @include iui-input-right;
+}
+
+.iui-input-left {
+  @include iui-input-left;
+}
+
+.iui-vertical-divider {
+  @include iui-vertical-divider;
+}
