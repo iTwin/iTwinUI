@@ -20,6 +20,8 @@
       import "@itwin/itwinui-icons-elements/status-error";
       import "@itwin/itwinui-icons-elements/close-small";
       import "@itwin/itwinui-icons-elements/info-circular";
+      import "@itwin/itwinui-icons-elements/chevron-up";
+      import "@itwin/itwinui-icons-elements/chevron-down";
       import "@itwin/itwinui-icons-elements/search";
     </script>
     <title>Input | iTwinUI</title>
@@ -28,7 +30,6 @@
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
-        //width: auto;
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -509,7 +510,21 @@
     <h2>Search box</h2>
     <section id="demo-search-box">
 
-      <div class="iui-input-with-icons">
+      <div class="iui-input-container iui-inline-icon">
+        <input
+          placeholder="Placeholder…"
+          type="search"
+          class="iui-input"
+          id="test-1"
+        />
+        <svg-search
+          class="iui-input-icon"
+          aria-hidden="true"
+        />
+      </div>
+
+      <h3>Flex box</h3>
+      <div class="iui-input-flex-container">
         <div class="iui-input-left">
           <svg-search
             class="iui-input-icon"
@@ -530,6 +545,69 @@
               class='iui-button-icon'
               aria-hidden="true"
             /></button>
+        </div>
+      </div>
+      <div class="iui-input-flex-container">
+        <input
+          placeholder="Placeholder…"
+          type="search"
+          class="iui-invisible-borders"
+          id="test-1"
+        />
+        <div class="iui-input-right">
+          <button
+            class="iui-button iui-end-icon"
+            data-iui-variant="borderless"
+          >
+            <svg-search
+              class="iui-button-icon"
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+      </div>
+      <div class="iui-input-flex-container">
+        <input
+          placeholder="Placeholder…"
+          type="search"
+          class="iui-invisible-borders"
+          id="test-1"
+        />
+        <div class="iui-input-right">
+          <p
+            class="iui-text-block iui-text-muted"
+            style="padding-right: var(--iui-size-s);"
+          >
+            0/3
+          </p>
+          <div class="iui-vertical-divider"></div>
+          <button
+            class="iui-button iui-end-icon"
+            data-iui-variant="borderless"
+          >
+            <svg-chevron-down
+              class="iui-button-icon"
+              aria-hidden="true"
+            />
+          </button>
+          <button
+            class="iui-button iui-end-icon"
+            data-iui-variant="borderless"
+          >
+            <svg-chevron-up
+              class="iui-button-icon"
+              aria-hidden="true"
+            />
+          </button>
+          <button
+            class="iui-button iui-end-icon"
+            data-iui-variant="borderless"
+          >
+            <svg-close-small
+              class="iui-button-icon"
+              aria-hidden="true"
+            />
+          </button>
         </div>
       </div>
 

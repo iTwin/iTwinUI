@@ -35,68 +35,6 @@
   }
 }
 
-@mixin iui-input-with-icons {
-  @include iui-input;
-  right: unset;
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-
-  > input {
-    padding-left: var(--iui-size-xs); // Width of the end-icon button
-  }
-
-  &:focus-within {
-    // --_focus-color can be used to control this from outside
-    outline: 2px solid var(--_focus-color, var(--iui-color-border-accent));
-    outline-offset: -2px;
-  }
-
-  &:hover {
-    // --_iui-input-with-icon-hover-border-color can be used to control this from outside
-    border-color: var(--_iui-input-with-icon-hover-border-color, var(--iui-color-border-foreground-hover));
-  }
-}
-
-@mixin iui-input-right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: end;
-  position: relative;
-
-  svg {
-    @include iui-icon-style('m');
-  }
-}
-
-@mixin iui-input-left {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: end;
-  position: relative;
-
-  svg {
-    margin: 0 0 0 calc(var(--iui-size-xs) + 1px);
-    @include iui-icon-style('m');
-  }
-}
-
-@mixin iui-invisible-borders {
-  border: none;
-
-  &:focus,
-  &:focus-within,
-  &:hover {
-    outline: none;
-    border: none;
-  }
-}
-
 @mixin iui-end-icon {
   @include iui-input-icon-inline;
   display: flex;
