@@ -1,0 +1,137 @@
+---
+import __dirname from '__dirname';
+import fs from 'fs';
+import path from 'path';
+import { parse as docgenTsParse } from 'react-docgen-typescript';
+import {
+  parse as docgenParse,
+  handlers as docgenHandlers,
+  resolver as docgenResolver,
+  importers as docgenImporters,
+} from 'react-docgen';
+import type { DocumentationObject } from 'react-docgen/dist/Documentation';
+import snarkdown from 'snarkdown';
+
+export interface Props {
+  path: string;
+}
+
+const defaultHandlers = Object.values(docgenHandlers).map((handler) => handler);
+const defaultResolver = docgenResolver.findAllExportedComponentDefinitions;
+const defaultImporter = docgenImporters.makeFsImporter();
+
+const relativePath = Astro.props.path.replace(
+  '@itwin/itwinui-react',
+  '../../packages/iTwinUI-react' // relative from root of `website` workspace
+);
+
+const componentPath = path.join(__dirname, relativePath);
+const componentName = [...componentPath.split('/')].pop().split('.')[0];
+const src = fs.readFileSync(componentPath, 'utf8');
+
+const docgenResults = componentPath.endsWith('.tsx')
+  ? (docgenParse(src, defaultResolver, defaultHandlers, {
+      importer: defaultImporter,
+    }) as DocumentationObject[])
+  : docgenTsParse(componentPath);
+
+const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === componentName);
+---
+
+<div class='wrapper'>
+  <table>
+    <thead>
+      <tr>
+        <th>Prop</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        componentDoc &&
+          Object.entries(componentDoc.props).map(([key, value]) => (
+            <tr>
+              <td class='mono'>{value.name || key}</td>
+              <td>
+                <div
+                  class='md'
+                  set:html={snarkdown(value.description.split('@example')[0] ?? value.description)}
+                />
+                <div class='types'>{value.type?.name || value.flowType.raw}</div>
+              </td>
+              <td class='mono'>{value.defaultValue?.value ?? value.defaultValue ?? ''}</td>
+            </tr>
+          ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style lang='scss'>
+  .wrapper {
+    display: flex;
+    overflow: auto;
+  }
+
+  table {
+    color: var(--color-subtext);
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+
+    &,
+    * {
+      font-size: var(--type--1);
+    }
+  }
+
+  tr {
+    background: transparent;
+
+    & + & {
+      border-top: 0.5px solid hsl(0 0% 0% / 0.2);
+    }
+  }
+
+  th,
+  td {
+    padding: var(--space-3) var(--space-2);
+    max-width: 35ch;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  th {
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.05ch;
+  }
+
+  tr + tr {
+    border-top: 1px solid var(--color-line-2);
+  }
+
+  .md {
+    font-family: var(--font-body);
+    margin-bottom: var(--space-2);
+
+    & code {
+      font-family: var(--font-mono);
+    }
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+  }
+
+  .types {
+    font-family: var(--font-mono);
+  }
+</style>

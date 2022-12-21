@@ -1,0 +1,22 @@
+---
+title: Side navigation
+description: A left side expandable / collapsable navigation menu.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/SideNavigation/SideNavigation.d.ts'
+exampleCodeFile1: SideNavigation.main.tsx
+thumbnail: SideNavigation
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+The side navigation is a way for the user to quickly switch between different workflows within a product. The menu items listed may change from user to user depending on their job function. The side navigation can be viewed in a minimal way using just icons or can be expanded to show labels. Menu items can open a single page or can expand into a submenu.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

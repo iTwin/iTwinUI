@@ -1,0 +1,25 @@
+---
+title: Toggle Switch
+description: The toggle switch is a high contrast component used for toggling settings that only have two states.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/ToggleSwitch/ToggleSwitch.tsx'
+exampleCodeFile1: ToggleSwitch.main.tsx
+thumbnail: ToggleSwitch
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Toggle switches are instant action components used to toggle an option instantly with a single click
+or tap. They are more common in mobile layouts, but are also present in desktop environments. For example,
+on mobile, you can go to the settings menu and enable or disable wi-fi, airplane mode and sound with
+a single tap using the associated toggle switch.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
