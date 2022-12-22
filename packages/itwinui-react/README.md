@@ -16,14 +16,14 @@
 <div align="center">
   
   [![itwinui-react on npm](https://img.shields.io/npm/v/@itwin/itwinui-react)](https://www.npmjs.com/package/@itwin/itwinui-react)
-  [![Build status](https://github.com/iTwin/iTwinUI-react/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/iTwin/iTwinUI-react/actions/workflows/build.yml?query=branch%3Amain)
+  [![Build status](https://github.com/iTwin/iTwinUI/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/iTwin/iTwinUI/actions/workflows/build.yml?query=branch%3Amain)
 
 </div>
 
 ## What is iTwinUI-react?
 
-iTwinUI-react is a library built on top of the [iTwinUI](https://github.com/iTwin/iTwinUI) library.
-The goal of this project is to provide React components for using the styles and components from the core `iTwinUI` project. Check out the [demo website](https://itwin.github.io/iTwinUI-react) to see the components in action.
+iTwinUI-react is a React component library for [iTwinUI](https://github.com/iTwin/iTwinUI).
+The goal of this package is to provide React components that make it easier to use the styles from [`@itwin/itwinui-css`](https://github.com/iTwin/iTwinUI/tree/main/packages/itwinui-css). Check out the [demo website](https://itwin.github.io/iTwinUI-react) to see the components in action.
 
 ---
 
@@ -80,17 +80,17 @@ const App = () => (
 
 ## FAQ
 
-For a list of frequently asked questions, visit the [wiki](https://github.com/iTwin/iTwinUI-react/wiki/FAQ).
+For a list of frequently asked questions, visit the [wiki](https://github.com/iTwin/iTwinUI/wiki/FAQ).
 
 ---
 
 ## Contributing
 
-We welcome you to contribute and make this UI design system better. You can submit feature requests or bugs by creating an [issue](https://github.com/iTwin/iTwinUI-react/issues).
-Please read our [CONTRIBUTING.md](https://github.com/iTwin/iTwinUI-react/blob/main/CONTRIBUTING.md) for more information.
+We welcome you to contribute and make this UI design system better. You can submit feature requests or bugs by creating an [issue](https://github.com/iTwin/iTwinUI/issues).
+Please read our [CONTRIBUTING.md](https://github.com/iTwin/iTwinUI/blob/main/CONTRIBUTING.md) for more information.
 
 ---
 
 ## Changelog
 
-Read our [CHANGELOG.md](https://github.com/iTwin/iTwinUI-react/blob/main/packages/iTwinUI-react/CHANGELOG.md) to find recent changes.
+Read our [CHANGELOG.md](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-react/CHANGELOG.md) to find recent changes.
