@@ -26,7 +26,7 @@ const relativePath = Astro.props.path.replace(
 );
 
 const componentPath = path.join(__dirname, relativePath);
-const componentName = path.parse(componentPath).name;
+const componentName = path.parse(componentPath).name.split('.')[0]; // Spliting on `.` since some files are .d.ts files
 const src = fs.readFileSync(componentPath, 'utf8');
 
 const docgenResults = componentPath.endsWith('.tsx')
