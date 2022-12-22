@@ -1,0 +1,22 @@
+---
+title: Button group
+description: Buttons allow users to take actions and make choices with a single tap or click.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Buttons/Button/Button.d.ts'
+exampleCodeFile1: ButtonGroup.main.tsx
+thumbnail: Button
+group: buttons
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+A button group consists of similar tools. The button group can only consist of default buttons or borderless buttons, a button group can not be a mix of the two. If there is not enough space to display all of the buttons, the buttons can truncate into an overflow menu.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

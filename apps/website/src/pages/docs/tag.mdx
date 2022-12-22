@@ -1,0 +1,22 @@
+---
+title: Tag
+description: A tag is a user-generated keyword associated with certain items to categorize them and make them easily discoverable.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Tag/Tag.d.ts'
+exampleCodeFile1: Tag.main.tsx
+thumbnail: Tag
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Tags are user-generated keywords used to label, categorize, or organize items and files. A group of multiple tags is a standard way of labeling an item to make it easily discoverable by peers who may not know the exact title of said item. A single tag may be mapped to more than one project at once if these projects fit in similar categories. Tags may also be used as a way to filter out content; in that context, the tags are pre-existing, and users select tags that fit their search to narrow down the results.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

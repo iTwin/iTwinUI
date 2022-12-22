@@ -1,0 +1,20 @@
+---
+title: Progress linear
+description: Progress indicators express an unspecified wait time or display the length of a process.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/ProgressIndicators/ProgressLinear/ProgressLinear.d.ts'
+exampleCodeFile1: ProgressLinear.main.tsx
+thumbnail: ProgressIndicator
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

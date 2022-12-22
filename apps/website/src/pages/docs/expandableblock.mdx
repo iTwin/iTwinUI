@@ -1,0 +1,77 @@
+---
+title: Expandable block
+description: A pattern for progressive disclosure of information.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlock.d.ts'
+exampleCodeFile1: ExpandableBlock.main.tsx
+thumbnail: ExpandableBlock
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Expandable blocks, called expandable rows when inside a table, are used to progressively disclose information. Read this article to learn more about progressive disclosure. Expandable blocks and rows should not be used with flattened hierarchy or information panels. This type of navigation allows the user to see content inside a parent row or block.
+
+## Appearance
+
+### Expandable rows
+
+Expandable rows resemble normal table rows that can be expanded to reveal nested data. An expandable row could optionally be selectable. Because expandable rows are part of a table, the rows must sort based on the table column sort applied. This means expandable rows can not re-arranged, the user must interact with the table header to re-arrange.
+
+Expandable rows should not be confused with a tree hierarchy. Unlike trees, they follow a single branch pattern. If you have trouble telling the two apart, the Expandable block VS Hierarchy tree section explains what makes them different.
+
+There can be several child elements nested in an expandable row. These indented elements all coexist on the same level without further indentation. If you require more levels, a tree hierarchy is a better pattern for this interaction.
+
+The child elements don’t reflect the column titles. They are expected to retain the same properties as the parent row (in the example below, the owner). It’s unnecessary to repeat the properties for the child items because of this, so do not include them in the expanded row area.
+
+Child items are not interchangeable between rows, e.g. you cannot drag a child item from row A and drag it in row B like you would move files to a folder.
+
+### Expandable blocks
+
+The main block has a label reflecting its content. On click, it expands to reveal more content.
+
+An expandable block could display status, a total count, or other helpful information at a glance right aligned within the block header. You may also optionally display descriptor text underneath the title.
+
+Expandable blocks don’t always need to be sorted alphabetically, unlike an expandable row which would be sorted based on the table column sort. You may optionally allow expandable blocks to be re-ordered by the user.
+
+The visual appearance of an expandable block is different from an expandable row. An expandable block can not be selected / checked like an expandable row can, therefore it is visually styled differently.
+
+## Usage
+
+### Expandable rows
+
+Expandable rows are used in tables. The layout inside expanded rows varies according to requirements. Child rows can be selectable and be an entry point to more content (ex.: downloadable files), or only contain metadata about the parent file. If at least one row within a table is expandable, all rows should follow the same pattern. Avoid mixing regular table rows with expandable rows.
+
+### Expandable blocks
+
+Expandable blocks are used in pages to divide up content in sections, in forms for example. If each section has many fields, using expandable blocks will help alleviate the UI and prevent the user from scrolling endlessly to get to the section they are looking for.
+
+Expanded block containing form elements within an interface.
+
+### Expandable blocks VS hierarchy tree
+
+While these two patterns may appear similar, they both fulfill a different role and are not interchangeable. Here are some tips to determine if an expandable block or row is what you need.
+
+Use an expandable rows/blocks when:
+
+- You need a row in a table to display additional metadata that doesn’t align with the column content;
+- You have a page with different sections all containing user-generated content that would benefit from being split up;
+- There is only one level of indentation possible at all times;
+- The content you want to be expandable varies from simple list items to more complex form components (such as text fields, buttons, etc.).
+
+Use a hierarchy tree when:
+
+- You require a pattern that works with several levels of data (folder drilling);
+- There are only list items in the pattern;
+- The hierarchy is not necessarily linear and may branch out.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
+
+## Related resources

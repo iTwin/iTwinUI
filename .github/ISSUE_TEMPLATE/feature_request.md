@@ -1,10 +1,9 @@
 ---
-name: "Feature request 💄"
-about: Suggest an idea for this project
+name: Feature request 💄
+about: Request a feature from this project
 title: ''
 labels: enhancement
 assignees: ''
-
 ---
 
 #### Feature

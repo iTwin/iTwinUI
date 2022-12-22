@@ -1,9 +1,14 @@
-# Node
 node_modules
-yarn-error.log
-
-# MacOS
-**/.DS_Store
-
-# turbo
+.DS_Store
 .turbo
+dist
+
+# debug
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

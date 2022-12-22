@@ -1,0 +1,32 @@
+---
+title: Footer
+description: Legally required links that stick to the bottom of entry pages.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Footer/Footer.d.ts'
+exampleCodeFile1: Footer.main.tsx
+thumbnail: Footer
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+The footer is fixed to the bottom of a web page, and contains your typical legally required links. The legal footer is only required to be displayed on pages that are considered a “main entry point into your application”. This means that the sign in and home page of any hub / app are good places to display the footer. You do not need to display the footer within an App UI widget, or deeper pages within an app. You can not include the footer on a page with infinite scrolling because you can not reach the bottom of the page.
+
+## Appearance
+
+The footer text is centered within the frame it is being displayed within, not centered within the viewport. This takes into consideration things that indent the body frame such as the side navigation.
+
+The hyperlinks within the footer are styled visibly different and use the $iui-text-color-muted color rather than the typical $iui-color-foreground-primary color. This is done purposefully to help the footer content not be confused with the actual content of the app.
+
+Optionally, you may include a 2nd line of text to display version numbers and/or server location for debugging reasons. You may choose to display this line to specific users such as beta users or Bentley Systems employees only.
+
+If you feel the need to add additional links, you may append links to the end of the footer’s first line.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

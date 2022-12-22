@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "parser": { "syntax": "typescript" },
+    "transform": { "react": { "useBuiltins": true } },
+    "target": "es2022"
+  },
+  "module": {
+    "type": "es6"
+  }
+}

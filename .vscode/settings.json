@@ -2,9 +2,6 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.stylelint": true
-  },
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "html.format.contentUnformatted": "pre,code,textarea,style",
@@ -15,6 +12,10 @@
   "html.format.preserveNewLines": true,
   "html.format.wrapAttributes": "force-expand-multiline",
   "html.format.wrapLineLength": 120,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
@@ -24,11 +25,25 @@
   "[scss]": {
     "editor.formatOnSave": false
   },
-  "javascript.format.semicolons": "insert",
-  "javascript.preferences.quoteStyle": "single",
+  "[markdown]": {
+    "editor.defaultFormatter": "vscode.markdown-language-features"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.useEditorConfig": true,
-  "stylelint.validate": ["scss"]
+  "javascript.format.semicolons": "insert",
+  "javascript.preferences.quoteStyle": "single",
+  "stylelint.validate": ["scss"],
+  "prettier.documentSelectors": ["**/*.astro"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.astro": "${capture}.tsx, ${capture).css",
+    "*.tsx": "${capture}.ts, ${capture}.css",
+    "*.stories.tsx": "${capture}.test.ts"
+  }
 }

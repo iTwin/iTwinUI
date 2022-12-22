@@ -1,0 +1,285 @@
+---
+import Global from '~/pages/_global.astro';
+import Header from '~/components/Header.astro';
+import LeftSidebar from '~/components/LeftSidebar.astro';
+import EditPageLink from '~/components/EditPageLink.astro';
+
+const { content = {} } = Astro.props;
+const currentPage = new URL(Astro.request.url).pathname;
+---
+
+<Global content={content} currentPage={currentPage}>
+  <Header class='header' />
+  <LeftSidebar class='sidebar' />
+  <div class='content-wrapper' id='article'>
+    <h1 id='overview'>{content.title}</h1>
+    <slot />
+    <div class='bottom-links'>
+      <hr />
+      <EditPageLink page={currentPage} />
+    </div>
+  </div>
+</Global>
+
+<style lang='scss'>
+  body {
+    display: grid;
+    grid-template: 'header header' auto 'sidebar content' 1fr / auto 1fr;
+
+    @media (max-width: 50em) {
+      grid-template: 'header' auto 'content' 1fr / auto;
+    }
+  }
+
+  .header {
+    grid-area: header;
+    z-index: 2;
+    background: inherit;
+  }
+
+  .sidebar {
+    z-index: 1;
+    grid-area: sidebar;
+
+    @media (max-width: 50em) {
+      grid-area: content;
+    }
+  }
+
+  .bottom-links {
+    grid-area: aftermain;
+    display: grid;
+
+    hr {
+      all: unset;
+      border-top: 1px solid var(--color-line-1);
+      inline-size: 100%;
+      margin-block: var(--space-3) var(--space-5);
+    }
+  }
+
+  :where(.content-wrapper) {
+    --_content-width: var(--content-width, min(100%, 70ch));
+    grid-area: content;
+    isolation: isolate;
+    overflow: auto;
+    overflow: overlay;
+    scrollbar-gutter: stable;
+    display: grid;
+    gap: var(--space-2);
+    width: 100%;
+    align-items: start;
+    justify-content: center;
+    padding: var(--space-7);
+    padding-block-end: calc(2 * var(--space-7));
+    grid-template:
+      'h1' auto
+      'toc' auto
+      'main' 1fr
+      'aftermain' auto / var(--_content-width);
+
+    @media (min-width: 1300px) {
+      grid-template:
+        '. h1 . toc' auto
+        '. main . toc' 1fr
+        '. aftermain . toc' / 1fr var(--_content-width) 1fr auto;
+      position: relative;
+
+      > :global(.toc-wrapper) {
+        position: sticky;
+        top: 0;
+      }
+    }
+
+    h1 {
+      grid-area: h1;
+    }
+
+    > :global(.toc-wrapper) {
+      grid-area: toc;
+      padding-inline: var(--space-3);
+    }
+
+    > :global(main) {
+      grid-area: main;
+      padding: 0.5rem 0;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+
+    /* this is the table-of-contents */
+    & :global(aside) {
+      font-size: var(--type--1);
+      isolation: isolate;
+      position: relative;
+      border-left: 1px solid var(--color-line-2);
+
+      & :global(ol) {
+        list-style-type: none;
+        padding-left: var(--space-2);
+      }
+
+      & :global(nav) {
+        /* counteract extra padding from root ol */
+        margin-left: calc(0px - var(--space-2));
+      }
+
+      & :global(a) {
+        text-decoration: none;
+        color: var(--color-subtext);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      & :global(li > a) {
+        display: flex;
+        align-items: center;
+        padding: var(--space-1) 0;
+      }
+
+      & :global(li[data-active='true'] > a) {
+        color: var(--color-text);
+
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          height: calc(var(--type--1) + 2 * var(--space-2)); // font-size + padding
+          left: -1px; // needs to overlap the border
+        }
+
+        &:before {
+          border-left: 2px solid currentColor;
+        }
+
+        &:after {
+          width: 100%;
+          background: var(--color-active);
+          z-index: -1;
+        }
+      }
+    }
+
+    /* this is the main page content */
+    & :global(:where(main)) {
+      width: 100%;
+      display: grid;
+      align-content: start;
+      gap: var(--space-4);
+
+      & > :global(:is(h1, h2, h3, h4, strong)) {
+        text-decoration: none;
+
+        & > :global(a) {
+          color: inherit;
+          text-decoration: none;
+          position: relative;
+
+          &:is(:hover, :focus) {
+            text-decoration: underline;
+
+            &::before {
+              content: '';
+              --octothorp: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><text fill="currentColor" x="50%" y="100%" font-family="system-ui" text-anchor="middle">%23</text></svg>');
+              -webkit-mask-image: var(--octothorp);
+              mask: var(--octothorp) no-repeat center;
+              background-color: currentColor;
+              position: absolute;
+              right: 100%;
+              margin-left: 0.25rem;
+              margin-right: 0.25rem;
+              font-size: inherit;
+              width: 1em;
+              height: 1em;
+            }
+          }
+        }
+
+        &:global(:not(:first-child)) {
+          margin-top: 1rem;
+        }
+      }
+
+      :global(
+          :where(
+              :not(
+                  a,
+                  h1,
+                  h2,
+                  h3,
+                  h4,
+                  .live-example,
+                  .live-example *,
+                  .sp-wrapper,
+                  .sp-wrapper *,
+                  table,
+                  table *,
+                  [data-iui-theme] *
+                )
+            )
+        ) {
+        color: var(--color-subtext);
+        font-size: var(--type-1);
+      }
+
+      :global(:where(code:not(pre code))) {
+        background-color: hsl(0deg 0% 50% / 0.2);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: var(--type-0);
+        vertical-align: baseline;
+        line-height: 1.5;
+      }
+
+      :global(:where(table code:not(pre code))) {
+        font-size: var(--type--1);
+        line-height: 1;
+        padding: 0.25rem;
+      }
+
+      :global(:where(ul)) {
+        display: grid;
+        gap: var(--space-1);
+      }
+    }
+  }
+</style>
+
+<script>
+  const allHeadings = [...document.querySelectorAll('.content-wrapper :is(h1,h2,h3,h4)')];
+  const currentlyInteresecting = new Set<string>();
+
+  // adds data-active to the first heading that is currently in viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const id = entry.target.getAttribute('id');
+      if (entry.isIntersecting) {
+        currentlyInteresecting.add(id);
+        updateActiveLink();
+      } else {
+        currentlyInteresecting.delete(id);
+        updateActiveLink();
+      }
+    });
+  });
+
+  const updateActiveLink = () => {
+    let alreadySet = false;
+    for (const heading of allHeadings) {
+      const id = heading.id;
+      const listItem = document.querySelector(`nav li a[href='#${id}']`)?.parentElement;
+      if (currentlyInteresecting.has(id) && !alreadySet) {
+        listItem?.setAttribute('data-active', 'true');
+        alreadySet = true;
+      } else if (currentlyInteresecting.size > 0) {
+        listItem?.removeAttribute('data-active');
+      }
+    }
+  };
+
+  allHeadings.forEach((heading) => void observer.observe(heading));
+</script>

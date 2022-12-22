@@ -1,0 +1,60 @@
+---
+title: Getting started
+description: Get started with iTwinUI
+layout: ./_layout.astro
+toc: false
+---
+
+## Installation
+
+```shell
+npm install @itwin/itwinui-react
+```
+
+```shell
+yarn add @itwin/itwinui-react
+```
+
+## Usage
+
+Import the component you want and start using it!
+
+```jsx
+import { Button } from '@itwin/itwinui-react';
+
+const App = () => <Button>Hello!</Button>;
+```
+
+## Theming
+
+By default, all components use the light theme but we also provide support for switching to dark theme in two different ways:
+
+- Use ThemeProvider in your root component where you can pass one of the following values:
+
+  - light (default)
+  - dark
+  - os (which respects the color scheme of the operating system)
+
+```jsx
+import { ThemeProvider } from '@itwin/itwinui-react';
+
+const App = () => (
+  <>
+    <ThemeProvider theme='dark' />
+    // Your code goes here.
+  </>
+);
+```
+
+- The useTheme hook also provides the same functionality as ThemeProvider.
+
+```jsx
+import { useTheme } from '@itwin/itwinui-react';
+
+const App = () => {
+  useTheme('dark');
+  return <>/* Your code goes here.*/</>;
+};
+```
+
+_Note: You only need to use one of these methods, and it only needs to be done once._
