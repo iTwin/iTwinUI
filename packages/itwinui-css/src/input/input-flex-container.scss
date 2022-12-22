@@ -6,6 +6,8 @@
   right: unset;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   padding: 0;
   margin: 0;
 
@@ -44,11 +46,10 @@
   justify-content: center;
   position: relative;
 
-  .iui-input-icon {
-    margin: 0 calc(var(--iui-size-xs) + 1px) 0 0;
-    @include iui-icon-style('m');
-    @include iui-icon-color;
-  }
+  // .iui-input-icon {
+  //   margin: 0 calc(var(--iui-size-xs) + 1px) 0 0;
+
+  // }
 }
 
 @mixin iui-input-left {
@@ -58,9 +59,14 @@
   justify-self: flex-end;
   position: relative;
 
-  .iui-input-icon {
-    margin: 0 0 0 calc(var(--iui-size-xs) + 1px);
-    @include iui-icon-style('m');
-    @include iui-icon-color;
-  }
+  // .iui-input-icon {
+  //   margin: 0 0 0 calc(var(--iui-size-xs) + 1px);
+
+  // }
+}
+
+@mixin iui-input-icon {
+  margin: 0 0 0 var(--iui-size-xs);
+  @include iui-icon-style('m');
+  @include iui-icon-color;
 }

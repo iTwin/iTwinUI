@@ -526,12 +526,11 @@
 
       <h3>Flex box</h3>
       <div class="iui-input-flex-container">
-        <div class="iui-input-left">
+        <span>
           <svg-search
             class="iui-input-icon"
             aria-hidden="true"
-          />
-        </div>
+          /></span>
         <input
           placeholder="Placeholder…"
           type="search"
@@ -539,15 +538,13 @@
           id="test-1"
           value="test search input"
         />
-        <div class="iui-input-right">
-          <button
-            class="iui-button iui-end-icon"
-            data-iui-variant="borderless"
-          ><svg-close-small
-              class='iui-button-icon'
-              aria-hidden="true"
-            /></button>
-        </div>
+        <button
+          class="iui-button iui-end-icon"
+          data-iui-variant="borderless"
+        ><svg-close-small
+            class='iui-button-icon'
+            aria-hidden="true"
+          /></button>
       </div>
       <div
         class="iui-input-flex-container"
@@ -560,18 +557,16 @@
           id="test-1"
           disabled
         />
-        <div class="iui-input-right">
-          <button
-            disabled
-            class="iui-button iui-end-icon"
-            data-iui-variant="borderless"
-          >
-            <svg-search
-              class="iui-button-icon"
-              aria-hidden="true"
-            />
-          </button>
-        </div>
+        <button
+          disabled
+          class="iui-button iui-end-icon"
+          data-iui-variant="borderless"
+        >
+          <svg-search
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
       </div>
       <div class="iui-input-flex-container">
         <input
@@ -580,42 +575,41 @@
           class="iui-invisible-borders"
           id="test-1"
         />
-        <div class="iui-input-right">
-          <p
-            class="iui-text-block iui-text-muted"
-            style="padding-right: var(--iui-size-s);"
-          >
-            0/3
-          </p>
-          <div class="iui-vertical-divider"></div>
-          <button
-            class="iui-button iui-end-icon"
-            data-iui-variant="borderless"
-          >
-            <svg-chevron-down
-              class="iui-button-icon"
-              aria-hidden="true"
-            />
-          </button>
-          <button
-            class="iui-button iui-end-icon"
-            data-iui-variant="borderless"
-          >
-            <svg-chevron-up
-              class="iui-button-icon"
-              aria-hidden="true"
-            />
-          </button>
-          <button
-            class="iui-button iui-end-icon"
-            data-iui-variant="borderless"
-          >
-            <svg-close-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            />
-          </button>
-        </div>
+        <p
+          class="iui-text-block iui-text-muted"
+          style="padding-right: var(--iui-size-s);"
+        >
+          0/3
+        </p>
+        <span class="iui-vertical-divider"></span>
+
+        <button
+          class="iui-button iui-end-icon"
+          data-iui-variant="borderless"
+        >
+          <svg-chevron-down
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+        <button
+          class="iui-button iui-end-icon"
+          data-iui-variant="borderless"
+        >
+          <svg-chevron-up
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+        <button
+          class="iui-button iui-end-icon"
+          data-iui-variant="borderless"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
       </div>
 
     </section>
