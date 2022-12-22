@@ -105,14 +105,7 @@
     uvu "^0.5.0"
     vfile-message "^3.0.0"
 
-"@astrojs/prism@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@astrojs/prism/-/prism-1.0.1.tgz#a7a778f9e3814885f587d8074a15452947ab4252"
-  integrity sha512-HxEFslvbv+cfOs51q/C7aMVFuW3EAGg0d1xXU/0e/QeScDzfrp5Ra4SOb8mV082SgENVjtVvet4zR84t3at4VQ==
-  dependencies:
-    prismjs "^1.28.0"
-
-"@astrojs/prism@^1.0.2":
+"@astrojs/prism@^1.0.0", "@astrojs/prism@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@astrojs/prism/-/prism-1.0.2.tgz#f01cad9007a46dc006d129d99653bd1652657ecf"
   integrity sha512-o3cUVoAuALDqdN5puNlsN2eO4Yi1kDh68YO8V7o6U4Ts+J/mMayzlJ7JsgYAmob0xrf/XnADVgu8khfMv/w3uA==
@@ -18474,15 +18467,10 @@ write-file-atomic@^4.0.1:
     imurmurhash "^0.1.4"
     signal-exit "^3.0.7"
 
-ws@8.7.0:
+ws@^8.2.3, ws@8.7.0:
   version "8.7.0"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.7.0.tgz#eaf9d874b433aa00c0e0d8752532444875db3957"
   integrity sha512-c2gsP0PRwcLFzUiA8Mkr37/MI7ilIlHQxaEAtd0uNMbVMoy8puJyafRlm0bV9MbGSabUPeLrRRaqIBcFcA2Pqg==
-
-ws@^8.2.3:
-  version "8.6.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.6.0.tgz#e5e9f1d9e7ff88083d0c0dd8281ea662a42c9c23"
-  integrity sha512-AzmM3aH3gk0aX7/rZLYvjdvZooofDu3fFOzGqcSnQ1tOcTWwhM/o+q++E8mAyVVIyUdajrkzWUGftaVSDLn1bw==
 
 x-default-browser@^0.4.0:
   version "0.4.0"
