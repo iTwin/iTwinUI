@@ -43,6 +43,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
