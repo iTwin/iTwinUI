@@ -1,0 +1,41 @@
+---
+import Wrapper from './_wrapper.astro';
+
+const sizes = ['3xs', '2xs', 'xs', 's', 'm', 'l', 'xl', '2xl', '3xl'];
+---
+
+<Wrapper class='wrapper'>
+  {
+    sizes.map((size) => (
+      <div>
+        <span>{`--iui-size-${size}`}</span>
+        <span class='box' style={{ '--size': `var(--iui-size-${size})` }} />
+      </div>
+    ))
+  }
+</Wrapper>
+
+<style>
+  .wrapper {
+    display: grid;
+    justify-content: unset;
+  }
+
+  div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  span {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--type-0);
+  }
+
+  .box {
+    width: var(--size);
+    height: 100%;
+    background-color: var(--iui-color-foreground-primary);
+    border-radius: var(--iui-border-radius);
+  }
+</style>

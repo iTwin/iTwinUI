@@ -1,0 +1,22 @@
+---
+title: Tile
+description: Tiles, also known as cards, contain content and actions about a single subject.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Tile/Tile.d.ts'
+exampleCodeFile1: Tile.main.tsx
+thumbnail: Tile
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Tiles are containers that display content and actions pertaining to a single item or project. They should be easy to scan for relevant and actionable information. All text should be concise and placed in a way that clearly indicates informational hierarchy.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

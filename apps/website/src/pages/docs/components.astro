@@ -1,0 +1,54 @@
+---
+import Layout from './_layout.astro';
+import Card from '~/components/Card.astro';
+
+const componentPages = (await Astro.glob('./*.mdx'))
+  .map(({ url, frontmatter }) => ({
+    url,
+    title: frontmatter.title,
+    description: frontmatter.description,
+    thumbnail: frontmatter.thumbnail,
+    group: frontmatter.group,
+  }))
+  .filter((page) => page.group);
+---
+
+<Layout content={{ title: 'Components' }}
+  ><main>
+    <ul class='card-list'>
+      {
+        componentPages.map((page) => (
+          <Card
+            title={page.title}
+            description={page.description}
+            url={page.url}
+            image={page.thumbnail}
+            class='card-background'
+          />
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+
+<style lang='scss'>
+  :root {
+    --content-width: min(100%, 1100px);
+  }
+
+  .card-list {
+    --_iui-grid-item-min-width: 256px;
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(min(100%, var(--_iui-grid-item-min-width)), 1fr)
+    );
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+    padding: 0;
+  }
+
+  .card-background {
+    background: var(--color-background-1);
+  }
+</style>

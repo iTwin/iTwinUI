@@ -1,0 +1,22 @@
+---
+title: Stepper
+description: Keep the user informed on their progress by dividing content into logical steps.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/Stepper/Stepper.tsx'
+exampleCodeFile1: Stepper.main.tsx
+thumbnail: Stepper
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+In defined, multi-step user interactions, it is useful to inform the user of the number of steps involved in the process, and the current step within that sequence. A UI 'Stepper' guides the user through the steps and provides some interaction to return to previous steps. A standard example of a Stepper would be an e-Commerce checkout process, but there are many others where the user must perform sequential steps.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
