@@ -1,0 +1,44 @@
+---
+import Wrapper from './_wrapper.astro';
+type Props = { sizes?: boolean; weights?: boolean };
+
+const { sizes, weights } = Astro.props;
+const howMany = sizes ? 6 : 4;
+---
+
+<Wrapper class:list={[{ sizes: sizes, weights: !sizes && weights }]}>
+  {
+    Array.from({ length: howMany }).map((_, i) => (
+      <p>The quick brown fox jumped over the lazy dog</p>
+    ))
+  }
+</Wrapper>
+
+<style lang='scss'>
+  :is(.sizes, .weights) {
+    display: grid;
+    justify-content: start;
+  }
+
+  .sizes {
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @for $i from 0 through 5 {
+      p:nth-child(#{$i + 1}) {
+        font-size: var(--iui-font-size-#{$i});
+      }
+    }
+  }
+
+  .weights {
+    @each $i, $weight in (1: light, 2: normal, 3: semibold, 4: bold) {
+      p:nth-child(#{$i}) {
+        font-weight: var(--iui-font-weight-#{$weight});
+      }
+    }
+  }
+</style>

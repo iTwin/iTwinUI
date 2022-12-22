@@ -1,0 +1,22 @@
+---
+title: Tooltip
+description: Tooltips display informative text when users hover over, focus on, or tap an element.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Tooltip/Tooltip.d.ts'
+exampleCodeFile1: Tooltip.main.tsx
+thumbnail: Tooltip
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+A tooltip is a small container that typically appears above the element you are hovering with your cursor. The tooltip displays a short, helpful text message. Tooltips should never be used to display critical information, or as a means to navigate an interface. Because mobile devices do not have a hover state, use caution when using tooltips in desktop apps that have a mobile counterpart. There is no determined way of replacing tooltips in mobile devices. In some cases, a single short tap can display a tooltip on a touch display.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

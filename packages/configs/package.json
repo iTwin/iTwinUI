@@ -1,0 +1,30 @@
+{
+  "name": "configs",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "copyrightLinter.js",
+    "eslint-preset.js",
+    "prettier-config.js",
+    "prettier-astro-config.js"
+  ],
+  "scripts": {
+    "clean": "rimraf .turbo && rimraf node_modules"
+  },
+  "dependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.29.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "fast-glob": "^3.2.5",
+    "prettier": "^2.8.0",
+    "prettier-plugin-astro": "^0.7.0"
+  },
+  "peerDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.3.0"
+  },
+  "prettier": "./prettier-config"
+}

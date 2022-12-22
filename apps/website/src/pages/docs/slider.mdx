@@ -1,0 +1,22 @@
+---
+title: Slider
+description: Sliders let users make selections from a range of values.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Slider/Slider.d.ts'
+exampleCodeFile1: Slider.main.tsx
+thumbnail: Slider
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Sliders allow the user to graphically select a specific input value, or a range, within defined limits. Optionally, a tooltip appears above the slider to indicate the current value and changes as the slider is repositioned. The double sliders should be used when the desired input is a range (for example, 33 through 55). In this case, the tooltip indicates the current range and the area between the two sliders is highlighted.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

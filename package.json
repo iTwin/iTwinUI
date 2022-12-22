@@ -2,9 +2,13 @@
   "name": "itwinui-monorepo",
   "version": "0.0.0",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*",
+      "playgrounds/*"
+    ]
+  },
   "lint-staged": {
     "*.{scss}": [
       "prettier --write"
@@ -14,19 +18,27 @@
     ],
     "*.{scss,html,js}": [
       "yarn lint:copyright --fix"
+    ],
+    "*.{tsx,ts,jsx,js}": [
+      "prettier --write",
+      "node packages/configs/copyrightLinter.js --fix"
     ]
   },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "test": "turbo run test --",
+    "test": "turbo run test",
     "lint": "turbo run lint",
+    "format": "turbo run format",
     "prepare": "husky install",
     "lint:copyright": "node packages/shared/copyrightLinter.js",
     "push-docker": "yarn workspace @itwin/itwinui-css push-docker",
     "createComponent": "yarn workspace @itwin/itwinui-css createComponent",
     "approve": "yarn workspace @itwin/itwinui-css approve",
-    "clean:images": "yarn workspace @itwin/itwinui-css clean:images"
+    "clean:images": "yarn workspace @itwin/itwinui-css clean:images",
+    "createComponent:react": "node scripts/createComponent.js",
+    "push-docker:react": "yarn workspace storybook push-docker",
+    "clean": "turbo run clean && rimraf node_modules"
   },
   "dependencies": {},
   "devDependencies": {
@@ -36,7 +48,8 @@
     "lint-staged": "^12.5.0",
     "prettier": "2.8.0",
     "rimraf": "^3.0.2",
-    "turbo": "~1.6.3"
+    "turbo": "~1.6.3",
+    "cross-env": "^7.0.3"
   },
   "resolutions": {
     "hosted-git-info": "6.1.1",
@@ -47,6 +60,18 @@
     "jpeg-js": "0.4.4",
     "ansi-regex": "5.0.1",
     "node-fetch": "2.6.7",
-    "async": "3.2.4"
-  }
+    "async": "3.2.4",
+    "trim": "0.0.3",
+    "set-value": "4.1.0",
+    "postcss": "8.4.20",
+    "prettier": "2.8.0",
+    "nanoid": "3.3.4",
+    "loader-utils": "2.0.4"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.0.0"
+  },
+  "packageManager": "yarn@1.22.18",
+  "prettier": "configs/prettier-config"
 }

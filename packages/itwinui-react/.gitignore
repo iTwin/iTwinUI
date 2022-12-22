@@ -1,0 +1,19 @@
+# testing
+coverage
+
+# production
+build
+
+# Compiled Components
+cjs
+esm
+
+# Compiled Styles
+src/**/*.css
+
+# Storybook
+storybook-static/*
+
+# Yalc
+.yalc/*
+yalc.lock
