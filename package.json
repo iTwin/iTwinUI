@@ -39,7 +39,7 @@
     "createComponent:react": "node scripts/createComponent.js",
     "push-docker:react": "yarn workspace storybook push-docker",
     "clean": "turbo run clean && rimraf node_modules",
-    "release": "yarn build && changeset publish"
+    "release": "yarn build --filter={./packages/*}... && changeset publish"
   },
   "dependencies": {},
   "devDependencies": {
