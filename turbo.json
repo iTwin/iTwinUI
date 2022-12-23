@@ -19,8 +19,13 @@
       "outputs": ["storybook-static/**"]
     },
     "test": {
-      "dependsOn": ["build"],
       "outputs": []
+    },
+    "storybook#test": {
+      "dependsOn": ["build"]
+    },
+    "@itwin/itwinui-css#test": {
+      "dependsOn": ["build"]
     },
     "lint": {
       "outputs": []
