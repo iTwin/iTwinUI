@@ -8,28 +8,63 @@ on:
   pull_request:
     branches:
       - 'main'
-      - 'v1.0'
 
 jobs:
-  build:
-    name: Build and run tests
+  install:
+    name: Install node modules
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node 16.X
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: yarn
 
-      - run: yarn install --frozen-lockfile
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn
+
       - run: yarn audit
 
+  build:
+    name: Build and lint packages
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
       - run: yarn lint
-      - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
-      - run: yarn build
+      - run: yarn lint:copyright
+      - run: yarn build --filter={./packages/*}...
 
       - name: Host build output on gh pages
         uses: JamesIves/github-pages-deploy-action@4.1.3
@@ -57,7 +92,66 @@ jobs:
               target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}',
             })
 
-      - run: yarn test
+  unit-test:
+    name: Run unit tests
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn workspace @itwin/itwinui-react test --coverage
+
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v1.16
+        if: always()
+        with:
+          files: 'packages/itwinui-react/coverage/junit.xml'
+          comment_mode: off
+          check_name: 'Test results'
+          fail_on: 'nothing'
+
+  visual-test-css:
+    name: Run visual tests (css)
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn test --filter=@itwin/itwinui-css
 
       - name: Publish test results artifact
         if: failure()
@@ -92,3 +186,36 @@ jobs:
               ...(context.job.status !== 'success' && { description: 'Backstop html report' }),
               ...(context.job.status !== 'success' && { target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/results/html_report/' }),
             })
+
+  visual-test-react:
+    name: Run visual tests (react)
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn test --filter=storybook
+
+      - name: Publish test results artifact
+        if: failure()
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: 'cypress-visual-screenshots'
+          path: '${{ github.workspace }}/apps/storybook/cypress-visual-screenshots'

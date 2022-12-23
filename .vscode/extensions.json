@@ -3,6 +3,8 @@
     "stylelint.vscode-stylelint",
     "streetsidesoftware.code-spell-checker",
     "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "astro-build.astro-vscode"
   ],
   "unwantedRecommendations": []
 }

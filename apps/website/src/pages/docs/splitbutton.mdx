@@ -1,0 +1,22 @@
+---
+title: Split button
+description: Buttons allow users to take actions and make choices with a single tap or click.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Buttons/SplitButton/SplitButton.d.ts'
+exampleCodeFile1: SplitButton.main.tsx
+thumbnail: Button
+group: buttons
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Pressing this left side of the button will commit the action. Pressing the right side of the button will open a menu. Upon selecting an option from the menu, the action immediately takes place, and the left side of the button’s label will change to match the recent selection.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

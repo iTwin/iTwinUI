@@ -1,0 +1,24 @@
+---
+title: Text Area
+description: A multiline text box.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/Textarea/Textarea.tsx'
+exampleCodeFile1: Textarea.main.tsx
+thumbnail: TextArea
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Text areas (or multi-line fields) are larger text fields that can accommodate more text. It is vertically resizable and wraps text to the next line when maximum line length is reached. It automatically scrolls down to allow more text to be input when the bottom is reached. This type of text field implies that a larger input of text is possible and encouraged.
+
+It used to be possible to freely resize the text area horizontally in addition to vertically; this pattern is now deprecated, and text areas only allow vertical resizing for better predictability. The resize handle is optional; it may be omitted if resizing of the text area is not desired.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

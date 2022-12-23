@@ -1,0 +1,22 @@
+---
+title: Button
+description: Buttons allow users to take actions and make choices with a single tap or click.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Buttons/Button/Button.d.ts'
+exampleCodeFile1: Button.main.tsx
+thumbnail: Button
+group: buttons
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Buttons are the recipients of a user onClick action (a mouse click for browsers and a finger press on touch-sensitive devices). Buttons have states and events and should be used when a form is submitted (post) or where the button represents a clear call to action on a page. In some cases, buttons can also be used in place of href links to draw special attention to that action.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

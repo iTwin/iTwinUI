@@ -1,0 +1,110 @@
+---
+import CopyIcon from '~/icons/CopyIcon.astro';
+import StatusSuccessIcon from '~/icons/StatusSuccessIcon.astro';
+
+export type Props = { command: string };
+
+const { command } = Astro.props;
+---
+
+<copy-command-button>
+  <code>{command}</code>
+
+  <button aria-label='Copy to clipboard'>
+    <CopyIcon aria-hidden='true' data-icon-name='copy' />
+    <StatusSuccessIcon aria-hidden='true' data-icon-name='success' />
+  </button>
+
+  <output class='visually-hidden'></output>
+</copy-command-button>
+
+<script is:inline define:vars={{ command }}>
+  customElements.define(
+    'copy-command-button',
+    class extends HTMLElement {
+      constructor() {
+        super();
+        const button = this.querySelector('button');
+        const output = this.querySelector('output');
+
+        button.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(command);
+
+            this.dataset.copied = 'true';
+            output.textContent = 'Copied!';
+
+            setTimeout(() => {
+              this.dataset.copied = 'false';
+              output.textContent = '';
+            }, 5000);
+          } catch {
+            console.error('Failed to copy to clipboard');
+          }
+        });
+      }
+    }
+  );
+</script>
+
+<style lang='scss'>
+  copy-command-button {
+    position: relative;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--border-radius-1);
+    box-shadow: 0 0 1px var(--color-highlight-1), 0 0 10px var(--color-highlight-2);
+    outline: 1px solid transparent;
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    color: var(--color-text);
+    transition: box-shadow var(--transition-speed) ease;
+
+    &:hover {
+      box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+    }
+  }
+
+  [data-icon-name='success'] {
+    display: none;
+
+    [data-copied='true'] & {
+      display: block;
+    }
+  }
+
+  [data-copied='true'] [data-icon-name='copy'] {
+    display: none;
+  }
+
+  code {
+    letter-spacing: -0.01em;
+    transform: translateY(-0.1ex); // visual adjustment
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      fill: var(--color-subtext);
+      transition: fill var(--transition-speed) ease;
+    }
+
+    &:hover svg {
+      fill: var(--color-text);
+    }
+  }
+</style>

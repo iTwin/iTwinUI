@@ -1,0 +1,27 @@
+{
+  "name": "astro-playground",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
+  },
+  "dependencies": {
+    "@astrojs/react": "^1.2.2",
+    "@itwin/itwinui-react": "*",
+    "astro": "~1.6.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "lint-staged": {
+    "*.{tsx,ts,jsx,js}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": "configs/prettier-astro-config.js"
+}

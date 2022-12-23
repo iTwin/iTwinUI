@@ -1,0 +1,17 @@
+<div {...Astro.props}>
+  <slot />
+</div>
+
+<style>
+  div {
+    border-radius: var(--space-1);
+    padding: var(--space-3);
+    min-width: calc(var(--space-8) * 1.25);
+    height: calc(var(--space-8) * 1.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--iui-color-background);
+    color: var(--iui-color-foreground-2);
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+import ColorList from './ColorList';
+import '@itwin/itwinui-variables';
+
+type Props = { colors: string[] | string[][] } & astroHTML.JSX.HTMLAttributes;
+
+const { colors, ...rest } = Astro.props;
+---
+
+<article class:list={[{ 'color-list-wrapper': Array.isArray(colors[0]) }]} {...rest}>
+  {
+    Array.isArray(colors[0]) ? (
+      <>
+        {colors.map((_colors) => (
+          <ColorList client:visible colors={_colors} />
+        ))}
+      </>
+    ) : (
+      <ColorList client:visible colors={colors as string[]} />
+    )
+  }
+</article>
+
+<style>
+  article {
+    border-radius: var(--space-2);
+    border: 1px solid var(--color-line-2);
+    padding: var(--space-3);
+    display: grid;
+    grid-auto-flow: column;
+    gap: var(--space-5);
+    justify-content: center;
+  }
+</style>
+
+<style lang='scss' is:global>
+  .color-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-inline: auto;
+  }
+
+  .color-tooltip {
+    color: hsl(0 0% 100% / 0.9);
+    background-color: hsl(0 0% 0% / 0.9);
+    border-radius: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--type-0);
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: 0px 1px 10px 3px hsl(0 0% 0% / 20%);
+    max-width: min(450px, 100%);
+
+    [data-state='hidden'] & {
+      opacity: 0;
+    }
+
+    [data-state='visible'] & {
+      opacity: 1;
+      transition-duration: 0.1ms;
+    }
+  }
+
+  .color-list-item {
+    border: none;
+    width: var(--space-8);
+    height: var(--space-8);
+    border-radius: var(--space-1);
+    box-shadow: 0 0 4px hsl(0 0% 0% / 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--_color);
+  }
+</style>

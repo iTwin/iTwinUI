@@ -1,0 +1,20 @@
+---
+title: Labeled Select
+description: A select, also known as a dropdown menu, displays a list of selectable choices and options.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/LabeledSelect/LabeledSelect.tsx'
+exampleCodeFile1: LabeledSelect.main.tsx
+thumbnail: Select
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

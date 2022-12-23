@@ -1,0 +1,17 @@
+<style>
+  .light {
+    --active-bg: #e4f3fc;
+    --active-fg: #0071b8;
+  }
+  .dark {
+    --active-bg: #384652;
+    --active-fg: #94befa;
+  }
+  .sidebar-item[data-selected='true'] {
+    background-color: var(--active-bg) !important;
+    color: var(--active-fg) !important;
+  }
+  .sidebar-item[data-selected='true'] svg {
+    color: var(--active-fg) !important;
+  }
+</style>
