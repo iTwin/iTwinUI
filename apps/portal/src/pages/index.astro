@@ -1,0 +1,55 @@
+---
+const isDev = import.meta.env.DEV;
+
+const title = isDev ? 'iTwinUI (local)' : 'iTwinUI';
+
+const links = [
+  { name: 'html pages', href: isDev ? 'http://localhost:5173' : '/css' },
+  { name: 'storybook', href: isDev ? 'http://localhost:6006' : '/react' },
+  ...(isDev
+    ? [
+        { name: 'docs website', href: 'http://localhost:1700' },
+        { name: 'vite playground', href: 'http://localhost:1701' },
+        { name: 'next playground', href: 'http://localhost:1702' },
+        { name: 'astro playground', href: 'http://localhost:1703' },
+      ]
+    : []),
+];
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='viewport' content='width=device-width' />
+    <title>{title}</title>
+
+    <style is:global>
+      @import '@itwin/itwinui-variables';
+      @import '@itwin/itwinui-variables/os.css';
+      @import '@itwin/itwinui-css';
+    </style>
+  </head>
+
+  <body class='iui-root'>
+    <h1 class='iui-text-headline'>{title}</h1>
+
+    <ul>
+      {
+        links.map((link) => (
+          <li>
+            <a class='iui-anchor' href={link.href}>
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <style>
+      body {
+        padding: 1.5rem;
+      }
+    </style>
+  </body>
+</html>
