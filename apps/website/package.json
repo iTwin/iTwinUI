@@ -10,7 +10,7 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.11.5",
+    "@astrojs/mdx": "^0.13.0",
     "@astrojs/react": "^1.2.2",
     "@astrojs/sitemap": "^1.0.0",
     "@codesandbox/sandpack-react": "^1.17.0",
@@ -21,7 +21,7 @@
     "@jsdevtools/rehype-toc": "3.0.2",
     "@tippyjs/react": "4.2.6",
     "@types/react": "^18.0.0",
-    "astro": "~1.6.3",
+    "astro": "~1.7.2",
     "nanostores": "^0.7.0",
     "postcss-preset-env": "^7.8.2",
     "react": "^18.0.0",
