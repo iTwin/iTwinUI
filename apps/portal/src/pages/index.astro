@@ -2,11 +2,11 @@
 const isDev = import.meta.env.DEV;
 
 const title = isDev ? 'iTwinUI (local)' : 'iTwinUI';
-const faviconHref = isDev ? '/favicon-dev.svg' : '/favicon.svg';
+const faviconHref = isDev ? 'favicon-dev.svg' : 'favicon.svg';
 
 const links = [
-  { name: 'html pages', href: isDev ? 'http://localhost:5173' : '/css' },
-  { name: 'storybook', href: isDev ? 'http://localhost:6006' : '/react' },
+  { name: 'html pages', href: isDev ? 'http://localhost:5173' : 'css' },
+  { name: 'storybook', href: isDev ? 'http://localhost:6006' : 'react' },
   ...(isDev
     ? [
         { name: 'docs website', href: 'http://localhost:1700' },
@@ -37,10 +37,10 @@ const links = [
 
     <ul>
       {
-        links.map((link) => (
+        links.map(({ name, href }) => (
           <li>
-            <a class='iui-anchor' href={link.href}>
-              {link.name}
+            <a class='iui-anchor' href={href}>
+              {name}
             </a>
           </li>
         ))
