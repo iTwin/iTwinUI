@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import { defineConfig, type Plugin } from 'vite';
 import fs from 'fs';
 import { resolve } from 'path';
@@ -9,7 +13,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: Object.fromEntries(
-        getComponentList().map((name) => [name, resolve(__dirname, `./backstop/tests/${name}.html`)])
+        getComponentList().map((name) => [
+          name,
+          resolve(__dirname, `./backstop/tests/${name}.html`),
+        ]),
       ),
       output: {
         dir: './backstop/minified',
@@ -18,7 +25,7 @@ export default defineConfig({
       },
     },
   },
-  plugins: [lightningCssPlugin(), generateIndex(), addMetaTags(), minifyHtml()],
+  plugins: [generateIndex(), addMetaTags(), minifyHtml()],
   server: {
     open: true,
   },
@@ -32,7 +39,7 @@ function generateIndex(): Plugin {
         .map((component) => {
           return `<li><a class="iui-anchor" href="${component}.html">${component}</a></li>\n`;
         })
-        .join('')}</ul>`
+        .join('')}</ul>`,
     );
 
   return {
@@ -70,7 +77,9 @@ function addMetaTags(): Plugin {
   const metaContent = (componentName) => `
     <meta name="description" content="An open-source design system that helps us build a unified web experience.">
     <meta property="og:site_name" content="iTwinUI">
-    <meta property="og:title" content="${componentName[0].toUpperCase() + componentName.replace(/-/g, ' ').slice(1)}">
+    <meta property="og:title" content="${
+      componentName[0].toUpperCase() + componentName.replace(/-/g, ' ').slice(1)
+    }">
     <meta property="og:description" content="An open-source design system that helps us build a unified web experience.">
     <meta property="og:image" content="https://itwin.github.io/iTwinUI/backstop/assets/logo.png">
     <meta property="og:image:alt" content="iTwinUI logo">
@@ -88,7 +97,9 @@ function addMetaTags(): Plugin {
     transform(code, id) {
       if (!id.endsWith('index.html')) {
         const componentName = id.split('/').pop()?.split('.')[0];
-        return { code: code.replace('</head>', `${metaContent(componentName)}</head>`) };
+        return {
+          code: code.replace('</head>', `${metaContent(componentName)}</head>`),
+        };
       }
     },
   };
@@ -102,7 +113,10 @@ function getComponentList() {
 
 function lightningCssPlugin(): Plugin {
   const queryWhitelist = ['direct'];
-  const matcherRegex = new RegExp(`\\.css\\??(?:${queryWhitelist.join('|')})?$`, 'i');
+  const matcherRegex = new RegExp(
+    `\\.css\\??(?:${queryWhitelist.join('|')})?$`,
+    'i',
+  );
   return {
     name: 'lightning-css',
     transform(css, id) {
