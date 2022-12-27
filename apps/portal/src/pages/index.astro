@@ -2,6 +2,7 @@
 const isDev = import.meta.env.DEV;
 
 const title = isDev ? 'iTwinUI (local)' : 'iTwinUI';
+const faviconHref = isDev ? '/favicon-dev.svg' : '/favicon.svg';
 
 const links = [
   { name: 'html pages', href: isDev ? 'http://localhost:5173' : '/css' },
@@ -20,7 +21,7 @@ const links = [
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='icon' type='image/svg+xml' href={faviconHref} />
     <meta name='viewport' content='width=device-width' />
     <title>{title}</title>
 
