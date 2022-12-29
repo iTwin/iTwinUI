@@ -1,0 +1,20 @@
+---
+import Wrapper from './_wrapper.astro';
+import Item from './_item.astro';
+---
+
+<Wrapper>
+  {
+    [...Array(6)].map((_, i) => (
+      <Item class='item' style={`--_opacity: var(--iui-opacity-${i + 1})`}>
+        {i + 1}
+      </Item>
+    ))
+  }
+</Wrapper>
+
+<style>
+  .item {
+    opacity: var(--_opacity);
+  }
+</style>

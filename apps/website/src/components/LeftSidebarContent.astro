@@ -1,0 +1,179 @@
+---
+const currentPage = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname.slice(0, -1)
+  : Astro.url.pathname;
+
+const docsPages = (await Astro.glob('../pages/docs/*.mdx')).map(({ url, frontmatter }) => ({
+  url,
+  title: frontmatter.title,
+  group: frontmatter.group,
+}));
+
+const introPages = docsPages.filter((page) => !page.group);
+
+const sections = new Map<string, typeof docsPages>();
+sections.set(
+  'core',
+  docsPages.filter((item) => item.group === 'core')
+);
+sections.set(
+  'buttons',
+  docsPages.filter((item) => item.group === 'buttons')
+);
+sections.set(
+  'inputs',
+  docsPages.filter((item) => item.group === 'inputs')
+);
+sections.set(
+  'typography',
+  docsPages.filter((item) => item.group === 'typography')
+);
+---
+
+<nav aria-labelledby='grid-left'>
+  <ul class='nav-groups' id='main-navigation-list'>
+    {
+      introPages.map(({ url, title }) => (
+        <li class='nav-link'>
+          <a href={url} aria-current={`${currentPage === url ? 'page' : 'false'}`}>
+            {title}
+          </a>
+        </li>
+      ))
+    }
+
+    <li>
+      <h2 class='nav-group-title'><a href={'/docs/components'}>Components</a></h2>
+      {
+        [...sections.entries()].map(([heading, list]) => (
+          <div class='nav-group'>
+            <h2 class='nav-group-subtitle'>{heading}</h2>
+            <ul>
+              {list.map(({ url, title }) => (
+                <li class='nav-link'>
+                  <a href={url} aria-current={`${currentPage === url ? 'page' : 'false'}`}>
+                    {title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </li>
+  </ul>
+</nav>
+
+<style lang='scss'>
+  nav {
+    width: 100%;
+    font-size: var(--type--1);
+
+    & ul {
+      list-style: none;
+      padding: 0;
+    }
+  }
+
+  .nav-groups {
+    height: 100%;
+    padding-top: var(--space-7);
+    max-height: 100vh;
+    min-width: 250px;
+  }
+
+  .nav-groups > li + li:not(.nav-link) {
+    margin-top: var(--space-5);
+
+    @media (max-width: 50em) {
+      margin-top: var(--space-7);
+    }
+  }
+
+  .nav-group-title a {
+    color: var(--color-subtext);
+    font-size: var(--type-0);
+    font-weight: 600;
+    padding: 0.3rem var(--space-4);
+    margin-bottom: var(--space-2);
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+
+    &:where(:hover, :focus) {
+      background-color: var(--color-active);
+      color: var(--color-text);
+    }
+
+    @media (max-width: 50em) {
+      color: var(--color-subtext);
+      font-size: var(--type-2);
+      padding-inline: var(--space-6);
+      margin-bottom: var(--space-3);
+    }
+  }
+
+  .nav-group-subtitle {
+    margin-top: var(--space-3);
+    color: var(--color-mutedtext);
+    font-size: var(--type--1);
+    font-weight: 600;
+    padding-inline: var(--space-5);
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+
+    @media (max-width: 50em) {
+      color: var(--color-mutedtext);
+      font-size: var(--type-1);
+      padding-inline: var(--space-6);
+      margin-bottom: var(--space-3);
+    }
+  }
+
+  .nav-link a {
+    margin: 1px;
+    padding: 0.3rem var(--space-5);
+    font: inherit;
+    font-size: var(--type-0);
+    color: var(--color-subtext);
+    text-decoration: none;
+    display: block;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+
+    &:where(:hover, :focus) {
+      background-color: var(--color-active);
+      color: var(--color-text);
+    }
+
+    @media (max-width: 50em) {
+      font-size: var(--type-2);
+      padding: var(--space-1) var(--space-6);
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .nav-link a[aria-current='page'] {
+    background-color: var(--color-active);
+    color: var(--color-text);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      border-left: 2px solid var(--color-text);
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+
+      @media (max-width: 50em) {
+        border-width: 4px;
+        border-radius: 0;
+      }
+    }
+  }
+</style>

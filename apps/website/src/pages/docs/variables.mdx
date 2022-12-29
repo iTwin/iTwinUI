@@ -1,0 +1,180 @@
+---
+title: Variables
+description: Use iTwinUI-variables to integrate design tokens into your application.
+layout: ./_layout.astro
+toc: false
+---
+
+import ColorList from '~/components/variables/ColorList.astro';
+import FontsDemo from '~/components/variables/FontsDemo.astro';
+import SizesDemo from '~/components/variables/SizesDemo.astro';
+import OpacityDemo from '~/components/variables/OpacityDemo.astro';
+import BorderRadiusDemo from '~/components/variables/BorderRadiusDemo.astro';
+import ShadowsDemo from '~/components/variables/ShadowsDemo.astro';
+
+## Installation
+
+If you're using iTwinUI-react, the variables will be automatically included and imported into your application.
+If you want to use it standalone, you can install and import it manually:
+
+```shell
+npm install @itwin/itwinui-variables
+```
+
+```js
+import '@itwin/itwinui-variables';
+```
+
+## Variables
+
+### Background colors
+
+The main background colors increase in darkness from 1 to 5.
+
+- `background-2` should be used as the main body background.
+- `background-1` is for surface elements placed over the body.
+- The rest of them are used for inactive elements and borders.
+
+<ColorList
+  colors={[
+    'var(--iui-color-background-1)',
+    'var(--iui-color-background-2)',
+    'var(--iui-color-background-3)',
+    'var(--iui-color-background-4)',
+    'var(--iui-color-background-5)',
+  ]}
+/>
+
+There are also a few special named colors for some borders, disabled and hover states. These offer
+better contrast in high-contrast themes.
+
+<ColorList
+  colors={[
+    'var(--iui-color-background-border)',
+    'var(--iui-color-background-disabled)',
+    'var(--iui-color-background-transparent-hover)',
+  ]}
+/>
+
+### Foreground colors
+
+The foreground colors also increase in darkness from 1 to 5.
+
+- `foreground-2` is the main text color.
+- `foreground-1` is pure white/black, useful for increased contrast over colored backgrounds.
+- The rest are used for borders and disabled foreground elements.
+
+<ColorList
+  colors={[
+    'var(--iui-color-foreground-1)',
+    'var(--iui-color-foreground-2)',
+    'var(--iui-color-foreground-3)',
+    'var(--iui-color-foreground-4)',
+    'var(--iui-color-foreground-5)',
+  ]}
+/>
+
+### Status backgrounds
+
+The status colors are used for indicating the status of an element: success, warning, error, or informational.
+
+<ColorList
+  colors={[
+    [
+      'var(--iui-color-background-primary)',
+      'var(--iui-color-background-positive)',
+      'var(--iui-color-background-negative)',
+      'var(--iui-color-background-warning)',
+    ],
+    ['var(--iui-color-background-primary-hover)', 'var(--iui-color-background-positive-hover)'],
+  ]}
+/>
+
+Because the default status backgrounds feel so heavy and saturated, iTwinUI also offers a set of subtle background colors.
+These should be used when there is text on top of them.
+
+<ColorList
+  colors={[
+    'var(--iui-color-background-subtle-primary)',
+    'var(--iui-color-background-subtle-positive)',
+    'var(--iui-color-background-subtle-negative)',
+    'var(--iui-color-background-subtle-warning)',
+  ]}
+/>
+
+### Status foregrounds
+
+Similarly, there are foreground status colors and their hover states.
+
+<ColorList
+  colors={[
+    [
+      'var(--iui-color-foreground-primary)',
+      'var(--iui-color-foreground-positive)',
+      'var(--iui-color-foreground-negative)',
+      'var(--iui-color-foreground-warning)',
+    ],
+    [
+      'var(--iui-color-foreground-primary-hover)',
+      'var(--iui-color-foreground-positive-hover)',
+      'var(--iui-color-foreground-negative-hover)',
+      'var(--iui-color-foreground-warning-hover)',
+    ],
+  ]}
+/>
+
+### Soft backgrounds
+
+These soft backgrounds can be used for badges and avatars.
+
+<ColorList
+  colors={[
+    'var(--iui-color-background-skyblue)',
+    'var(--iui-color-background-celery)',
+    'var(--iui-color-background-froly)',
+    'var(--iui-color-background-steelblue)',
+    'var(--iui-color-background-sunglow)',
+    'var(--iui-color-background-seabuckthorn)',
+    'var(--iui-color-background-montecarlo)',
+    'var(--iui-color-background-poloblue)',
+    'var(--iui-color-background-bouquet)',
+    'var(--iui-color-background-ash)',
+    'var(--iui-color-background-oak)',
+  ]}
+/>
+
+### Sizes
+
+iTwinUI's spacing scale follows t-shirt sizes as a naming convention, where `m` corresponds to `1rem`, with `3xs` being the smallest and `3xl` being the largest.
+
+<SizesDemo />
+
+### Border radius
+
+Most iTwinUI components use `var(--iui-border-radius-1)`. For pill-shaped components, iTwinUI also offers `var(--iui-border-radius-round)`.
+
+<BorderRadiusDemo />
+
+### Typography
+
+iTwinUI uses _Noto Sans_ for body text (`--iui-font-sans`) and _Noto Sans Mono_ for monospace text (`--iui-font-mono`).
+
+The font scale increases in size from 0 to 5, with `--iui-font-size-1` being the base font size for body text.
+
+<FontsDemo sizes />
+
+There are four font weights available: light, normal, semibold, and bold.
+
+<FontsDemo weights />
+
+### Opacity
+
+The opacity scale decreases from 1 to 6, with `--iui-opacity-1` being fully opaque.
+
+<OpacityDemo />
+
+### Shadows
+
+iTwinUI offers a few shadows that increase in elevation from 0 to 5. These should typically be used in combination with the `Surface` component.
+
+<ShadowsDemo />

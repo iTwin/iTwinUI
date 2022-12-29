@@ -1,0 +1,82 @@
+---
+title: Breadcrumbs
+description: Navigate a folder hierarchy quickly with a table and breadcrumbs.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/Breadcrumbs/Breadcrumbs.tsx'
+exampleCodeFile1: Breadcrumbs.main.tsx
+thumbnail: Breadcrumbs
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Breadcrumbs are a way of navigation. They cannot be used (in the same table) with a tree or expandable rows. This type of navigation lets you drill in folders. Once you start drilling in levels, the breadcrumbs are updated to navigate quickly between opened levels.
+
+!! Selection and drilling in are 2 different action that don't impact each other. !!
+
+## Appearance
+
+There are three styles of breadcrumbs supported.
+
+### With links
+
+The breadcrumbs locations appear as clickable links that the user can use to navigate back and forth, at their leisure. If clicking a location in the breadcrumbs changes the entire page’s path, then using the link style is preferred.
+
+### With borderless buttons
+
+The breadcrumbs locations take the shape of buttons on mouse hover. If clicking a location in the breadcrumbs keeps the user on the same page, but loads a different content inside of it, then using the borderless button style is preferred.
+
+### With path
+
+The breadcrumbs locations can be double-clicked to reveal an editable field with the full path that leads to the user’s current location. The user can freely edit the path to be navigate elsewhere. It also facilitate sharing of file/folder locations by allowing users to copy and paste a direct path.
+
+## Usage
+
+### Folder navigation
+
+When located at the root of a folder, the table breadcrumbs should display like the example below. To drill into a folder, the user must click on a folder name.
+
+After drilling into the folder, the breadcrumb above the table updates. The user can continue to drill deeper into the folders by clicking on the folder names, or they can return to a parent folder by selecting it within the breadcrumb or using the folder select menu.
+
+### Web navigation
+
+When used for the web, breadcrumbs work similarly, however the folder button at its front is omitted. It is unnecessary outside of the folder navigation pattern.
+
+## Breadcrumb anatomy
+
+1. Select menu entry point. Clicking on the folder and caret icon will expand the select menu containing the list of all accessed folders.
+2. Previous folders. Show as many previously accessed folders as possible so that users can quickly go back to an upper level. When space is starting to lack, start truncating items.
+3. Current folder location. This shows user’s current location in the folder hierarchy. It appears black to differentiate it from the previous folder links. Although the text isn’t blue it is still clickable and doing so will cause the folder path to appear in a selectable field.
+4. Frameless select menu appears as a flyout card above all other elements. When the breadcrumb path is truncated the select menu will show the full list of accessed folders. When the breadcrumb isn’t truncated, the same list will be duplicated in the select menu. The root folder always appears as the first element in the list and the current folder is last.
+5. Folder path will appear in a selectable field when clicking on the current folder label in the breadcrumb.
+
+## Breadcrumb truncation
+
+### No need to truncate
+
+Show as many previously accessed folders as possible so that users can quickly go back to an upper level. If all can be shown, show them all.
+
+### First truncated element
+
+Try to keep the first level - the root folder - always accessible. Therefore when you start truncating element start with the secondly accessed folder and work your way from there.
+
+### Breadcrumb minimal state
+
+Keep the root folder accessible to allow users to quickly return all the way up to the first folder they accessed. The previous folder should also be kept accessible. That way, users can work their way back up a level until they reach the folder they want even if that folder has been truncated.
+
+### Edge case (for very small screens)
+
+Like stated above, you should try to keep the root folder accessible for as long as possible. However, there’s some case when the available space won’t be able to allow for root folder, previous folder, and current folder to be visible at the same time. When that happens you may truncate the root folder to allow at least the previous folder to be accessible.
+
+If the available space does not allow to display both the previous folder and current folder, start truncating text.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
+
+## Related resources

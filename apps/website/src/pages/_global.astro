@@ -1,0 +1,233 @@
+---
+// This file should contain all the global styles and markup shared between layouts.
+
+import HeadSEO from '~/components/HeadSEO.astro';
+import '@fontsource/noto-sans';
+import '@fontsource/noto-sans-mono';
+import '@fontsource/noto-sans/400-italic.css';
+import '@fontsource/noto-sans/600.css';
+import '@fontsource/noto-sans/300.css';
+import '@fontsource/noto-sans/800.css';
+
+const { content = {} } = Astro.props;
+---
+
+<html dir={content.dir ?? 'ltr'} lang={content.lang ?? 'en-us'}>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='color-scheme' content='dark' />
+
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='alternate icon' href='/favicon.ico' sizes='any' />
+    <link rel='sitemap' href='/sitemap.xml' />
+    <link rel='stylesheet' href='/prism-night-owl.css' />
+
+    <!--
+      This is intentionally inlined to avoid FOUC
+      TODO: investigate if this is possible to remove.
+    -->
+    <script is:inline>
+      const theme = localStorage.getItem('theme');
+      if (
+        theme === 'dark' ||
+        (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.dataset.theme = 'dark';
+      } else {
+        document.documentElement.dataset.theme = 'light';
+      }
+    </script>
+
+    <HeadSEO content={content} />
+
+    <!-- Resets -->
+    <style is:global lang='scss'>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      :where(a) {
+        color: var(--color-highlight-2);
+      }
+
+      :where(p, h1, h2, h3, h4, h5, h6) {
+        font-weight: normal;
+        padding: 0;
+        max-width: 75ch;
+      }
+
+      :where(h1, h2) {
+        line-height: 1.2;
+      }
+
+      :where(code, pre) {
+        font-family: var(--font-mono);
+      }
+
+      @media (pointer: fine) {
+        :root {
+          --scrollbar-left-padding: 7px;
+          --scrollbar-right-offset: 7px;
+          --scrollbar-thumb-size: 10px;
+        }
+
+        ::-webkit-scrollbar {
+          // total = 24px = 7px (left padding) + 10px (thumb) + 7px (right offset)
+          --_scrollbar-size: calc(
+            var(--scrollbar-left-padding) + var(--scrollbar-thumb-size) +
+              var(--scrollbar-right-offset)
+          );
+          width: var(--_scrollbar-size);
+          height: var(--_scrollbar-size);
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background-color: var(--scrollbar-color, hsl(0 0% 65% / 0.7));
+          border-radius: 9e9px;
+          border: 4px solid transparent;
+          border-width: var(--scrollbar-left-padding) var(--scrollbar-right-offset)
+            var(--scrollbar-right-offset) var(--scrollbar-left-padding);
+          background-clip: content-box;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background-color: var(--scrollbar-hover-color, hsl(0 0% 65% / 0.85));
+        }
+      }
+    </style>
+
+    <!-- Variables -->
+    <style is:global lang='scss'>
+      :root {
+        // #region Light
+        --color-background-1--light: white;
+        --color-background-2--light: white;
+        --color-background-3--light: white;
+        // #endregion
+
+        // #region Dark
+        --color-background-1--dark: hsl(221deg 33% 17%);
+        --color-background-2--dark: hsl(221deg 47% 11%);
+        --color-background-3--dark: white;
+        --color-text--dark: hsl(210deg 6% 85%);
+        --color-subtext--dark: hsl(221deg 16% 68%);
+        --color-mutedtext--dark: hsl(221deg, 6%, 52%);
+        --color-demo-gradient--dark: linear-gradient(
+          135deg,
+          hsl(232deg 12% 40%),
+          hsl(232deg 22% 25%)
+        );
+        --color-sandbox-gradient--dark: linear-gradient(
+          135deg,
+          hsl(221deg 12% 40%),
+          hsl(221deg 22% 25%)
+        );
+        --color-active--dark: hsl(221deg 12% 27% / 40%);
+        --color-line-1--dark: hsl(205deg 13% 54%);
+        --color-line-2--dark: hsl(205deg 13% 35%);
+        // #endregion
+
+        // #region Current
+        --color-highlight-1: hsl(314deg 57% 88%);
+        --color-highlight-2: hsl(232deg 78% 82%);
+        --color-highlight-3: hsl(186deg 78% 79%);
+        --color-highlight-4: hsl(232deg 70% 70%);
+        --color-highlight-gradient-1: linear-gradient(
+          135deg,
+          var(--color-highlight-1),
+          var(--color-highlight-2)
+        );
+        --color-highlight-gradient-2: linear-gradient(
+          135deg,
+          var(--color-highlight-2),
+          var(--color-highlight-3)
+        );
+        --color-highlight-gradient-3: linear-gradient(
+          135deg,
+          var(--color-highlight-3),
+          var(--color-highlight-1)
+        );
+        --color-background-1: var(--color-background-1--dark);
+        --color-background-2: var(--color-background-2--dark);
+        --color-background-3: var(--color-background-3--dark);
+        --color-text: var(--color-text--dark);
+        --color-subtext: var(--color-subtext--dark);
+        --color-mutedtext: var(--color-mutedtext--dark);
+        --color-demo-gradient: var(--color-demo-gradient--dark);
+        --color-sandbox-gradient: var(--color-sandbox-gradient--dark);
+        --color-highlight-gradient: var(--color-highlight-gradient-1);
+        --color-active: var(--color-active--dark);
+        --color-line-1: var(--color-line-1--dark);
+        --color-line-2: var(--color-line-2--dark);
+        // #endregion
+
+        --font-body: 'Noto Sans', system-ui, sans-serif;
+        --font-mono: 'Noto Sans Mono', ui-monospace, monospace;
+
+        /* TODO: rename these? ⬇️  */
+
+        // #region Typography: https://utopia.fyi/type/calculator/?c=300,14,1.125,2100,17,1.2,4,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l
+        --type--3: clamp(0.61rem, 0.61rem + 0vw, 0.62rem);
+        --type--2: clamp(0.69rem, 0.68rem + 0.04vw, 0.74rem);
+        --type--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.89rem);
+        --type-0: clamp(0.88rem, 0.84rem + 0.17vw, 1.06rem);
+        --type-1: clamp(0.98rem, 0.94rem + 0.26vw, 1.28rem);
+        --type-2: clamp(1.11rem, 1.04rem + 0.38vw, 1.53rem);
+        --type-3: clamp(1.25rem, 1.15rem + 0.53vw, 1.84rem);
+        --type-4: clamp(1.4rem, 1.27rem + 0.71vw, 2.2rem);
+        // #endregion
+
+        // #region Spacing: https://utopia.fyi/space/calculator/?c=300,14,1.2,2100,18,1.25,5,2,&s=0.75|0.5|0.25|0.125,1.25|1.5|2|2.25,s-l
+        --space-0: clamp(0.13rem, 0.13rem + 0vw, 0.13rem);
+        --space-1: clamp(0.25rem, 0.24rem + 0.06vw, 0.31rem);
+        --space-2: clamp(0.44rem, 0.42rem + 0.11vw, 0.56rem);
+        --space-3: clamp(0.69rem, 0.66rem + 0.17vw, 0.88rem);
+        --space-4: clamp(0.88rem, 0.83rem + 0.22vw, 1.13rem);
+        --space-5: clamp(1.13rem, 1.07rem + 0.28vw, 1.44rem);
+        --space-6: clamp(1.31rem, 1.25rem + 0.33vw, 1.69rem);
+        --space-7: clamp(1.75rem, 1.67rem + 0.44vw, 2.25rem);
+        --space-8: clamp(2rem, 1.91rem + 0.5vw, 2.56rem);
+        // #endregion
+
+        --border-radius-1: var(--space-1);
+        --transition-speed: 0.2s;
+      }
+    </style>
+
+    <!-- Page layout, etc -->
+    <style lang='scss'>
+      html {
+        height: 100%;
+        overflow: auto;
+      }
+
+      body {
+        height: 100%;
+        overflow: auto;
+        line-height: 1.5;
+        font-family: var(--font-body);
+        background-color: var(--color-background-2);
+        color: var(--color-text);
+        font-size: var(--type-0);
+      }
+    </style>
+  </head>
+
+  <body data-iui-theme='dark'>
+    <slot />
+
+    <!--
+      Scrollable a11y code helper.
+      TODO: remove the need for this script by creating a CodeBlock component.
+    -->
+    <script is:inline>
+      Array.from(document.getElementsByTagName('pre')).forEach((element) => {
+        element.setAttribute('tabindex', '0');
+      });
+    </script>
+  </body>
+</html>

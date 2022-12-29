@@ -1,0 +1,22 @@
+---
+title: Tree
+description: A tree provides a list of data.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Tree/Tree.d.ts'
+exampleCodeFile1: Tree.main.tsx
+thumbnail: Tree
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+A tree can be used to organize data in an application specific way, or it can be used to sort, filter, group, or search data as the user deems appropriate. Each line of data level may begin with an eye icon for toggling its visibility. In this context, this icon is called specialty checkbox.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
