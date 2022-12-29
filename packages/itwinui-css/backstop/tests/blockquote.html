@@ -21,6 +21,10 @@
       @import url("./assets/demo.css") layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+
+      section[id^='demo'] {
+        padding: var(--iui-size-xs);
+      }
     </style>
   </head>
   <body class="iui-root">
@@ -28,22 +32,22 @@
     <h1>Blockquote</h1>
     <hr />
 
-    <h2>Default</h2>
-
-    <blockquote
-      class="iui-blockquote"
-      cite="https://www.bentley.com/en"
-    >
-      <p>
-        For 36 years we have served engineers with our software, passionately
-        believing that better performing and more resilient infrastructure is
-        essential to improve the quality of life for people everywhere, sustain
-        our environment, and grow our economies.
-      </p>
-      <footer>
-        —Greg Bentley,&nbsp;
-        <cite>NasdaqListed</cite>
-      </footer>
-    </blockquote>
+    <section id="demo-default">
+      <blockquote
+        class="iui-blockquote"
+        cite="https://www.bentley.com/en"
+      >
+        <p>
+          For 36 years we have served engineers with our software, passionately
+          believing that better performing and more resilient infrastructure is
+          essential to improve the quality of life for people everywhere, sustain
+          our environment, and grow our economies.
+        </p>
+        <footer>
+          —Greg Bentley,&nbsp;
+          <cite>NasdaqListed</cite>
+        </footer>
+      </blockquote>
+    </section>
   </body>
 </html>
