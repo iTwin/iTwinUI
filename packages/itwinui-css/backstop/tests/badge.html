@@ -22,7 +22,12 @@
       @import url("./assets/demo.css") layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
-      .iui-badge { margin-right: 4px; }
+
+      section[id^='demo'] {
+        padding: 0 var(--iui-size-xs);
+        display: flex;
+        gap: var(--iui-size-2xs);
+      }
     </style>
   </head>
   <body class="iui-root">
@@ -30,9 +35,8 @@
     <h1>Badge</h1>
     <hr />
 
-    <section id="demo">
-
-      <h2>Soft backgrounds</h2>
+    <h2>Soft backgrounds</h2>
+    <section id="demo-soft-backgrounds">
 
       <span
         class="iui-badge"
@@ -100,9 +104,6 @@
       >
         Oak
       </span>
-
-      <br />
-
       <span
         class="iui-badge"
         style="--iui-badge-background-color: hsl(197, 71%, 83%);"
@@ -111,35 +112,32 @@
         A long label that becomes truncated
       </span>
 
-      <br />
+    </section>
 
-      <h2>Statuses</h2>
+    <h2>Statuses</h2>
+    <section id="demo-statuses">
 
       <span class="iui-badge">
         Default
       </span>
-
       <span
         class="iui-badge"
         style="--iui-badge-background-color: #A5D7F5;"
       >
         Informational
       </span>
-
       <span
         class="iui-badge"
         style="--iui-badge-background-color: #C3E1AF;"
       >
         Positive
       </span>
-
       <span
         class="iui-badge"
         style="--iui-badge-background-color: #EFA9A9;"
       >
         Negative
       </span>
-
       <span
         class="iui-badge"
         style="--iui-badge-background-color: #F9D7AB;"
