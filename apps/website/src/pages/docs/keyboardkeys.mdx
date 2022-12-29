@@ -1,0 +1,20 @@
+---
+title: Keyboard keys
+description:
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Typography/Kbd/Kbd.d.ts'
+exampleCodeFile1: Keyboard.main.tsx
+thumbnail: Keyboard
+group: typography
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

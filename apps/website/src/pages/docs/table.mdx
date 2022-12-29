@@ -1,0 +1,24 @@
+---
+title: Table
+description: Data tables display sets of data.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Table/Table.d.ts'
+exampleCodeFile1: Table.main.tsx
+thumbnail: Table
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Tables are an important element in most web-based applications. We’ve presented a set of flexible standards to allow for a variety of table styles. As always, the specifics of how you style your table should be determined by the desired user experience and the goals of the application.
+
+Bentley makes extensive use of tables and data grids throughout its web applications. Use the following flexible grid format below in most circumstances as it provides functionality “built in” to the design, and because users learning how to consistently sort, filter, and search tables is an important skill to leverage.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

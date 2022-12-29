@@ -1,0 +1,25 @@
+---
+import { ThemeProvider } from '@itwin/itwinui-react';
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width' />
+    <title>Astro</title>
+  </head>
+  <ThemeProvider as='body' theme='dark'>
+    <slot />
+  </ThemeProvider>
+
+  <style is:global>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      padding: 2rem 1rem;
+    }
+  </style>
+</html>

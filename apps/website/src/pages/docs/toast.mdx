@@ -1,0 +1,22 @@
+---
+title: Toast
+description: A Toast is a non modal, unobtrusive window element used to display small amount of information to a user.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Toast/Toast.d.ts'
+exampleCodeFile1: Toast.main.tsx
+thumbnail: Toast
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+A toast notification provides a brief message about app processes at the top of the screen. Because these messages are so prominent, we need to be careful not to overuse or misuse them.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

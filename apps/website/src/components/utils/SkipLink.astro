@@ -1,0 +1,32 @@
+---
+import VisuallyHidden from './VisuallyHidden.astro';
+
+export type Props = {
+  href?: string;
+};
+---
+
+<a class='visually-hidden' href='#article'>
+  <slot>
+    <span>Skip to Content</span>
+  </slot>
+</a>
+
+<style lang='scss'>
+  a {
+    color: var(--color-text);
+    position: absolute;
+    padding: 0.5rem 1rem;
+    display: inline-grid;
+    place-content: center;
+    background-color: var(--color-background-2);
+    font-size: var(--type-2);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    border-radius: var(--border-radius-1);
+    outline: solid 1px;
+    outline-offset: -1px;
+  }
+</style>

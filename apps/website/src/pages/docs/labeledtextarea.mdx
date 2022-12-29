@@ -1,0 +1,20 @@
+---
+title: Labeled TextArea
+description: A multiline text box.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/LabeledTextarea/LabeledTextarea.tsx'
+exampleCodeFile1: LabeledTextarea.main.tsx
+thumbnail: TextArea
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

@@ -1,0 +1,60 @@
+{
+  "name": "storybook",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@itwin/itwinui-icons-react": "^1.10.1",
+    "@itwin/itwinui-react": "*",
+    "@storybook/addon-a11y": "~6.5.10",
+    "@storybook/addon-actions": "~6.5.10",
+    "@storybook/addon-essentials": "~6.5.10",
+    "@storybook/addon-storysource": "~6.5.10",
+    "@storybook/builder-vite": "^0.2.2",
+    "@storybook/node-logger": "~6.5.10",
+    "@storybook/react": "~6.5.10",
+    "@types/node": "^16.11.31",
+    "@types/react": "^18.0.2",
+    "@types/react-dom": "^18.0.2",
+    "configs": "*",
+    "cypress": "9.6.0",
+    "cypress-image-diff-js": "1.18.1",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-storybook": "^0.6.4",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-table": "^7.1.0",
+    "serve": "^14.0.1",
+    "storybook-dark-mode": "^1.1.0",
+    "typescript": "^4.6.3",
+    "vite": "^3.1.0"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build": "build-storybook",
+    "dev": "yarn storybook --quiet",
+    "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
+    "test": "node scripts/run-tests.js",
+    "test:approve": "cypress-image-diff -u",
+    "push-docker": "node scripts/push-docker.js",
+    "cy": "cypress open",
+    "cy:run": "cypress run",
+    "clean": "rimraf .turbo && rimraf node_modules && rimraf storybook-static"
+  },
+  "lint-staged": {
+    "*.{tsx,ts,jsx,js}": [
+      "prettier --write",
+      "node ../../packages/configs/copyrightLinter.js --fix"
+    ],
+    "*.{tsx,ts}": [
+      "eslint --max-warnings=0 --fix"
+    ]
+  },
+  "prettier": "configs/prettier-config",
+  "browserslist": [
+    ">0.5%",
+    "not dead",
+    "not op_mini all"
+  ]
+}

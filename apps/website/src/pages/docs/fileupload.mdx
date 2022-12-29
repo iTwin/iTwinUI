@@ -1,0 +1,40 @@
+---
+title: File upload
+description: Keep the user informed of their file upload progress.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/FileUpload/FileUpload.d.ts'
+exampleCodeFile1: FileUpload.main.tsx
+thumbnail: FileUpload
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+File uploading is a common interaction most users do multiple times per day. File uploading may happen in various different ways depending on the context. While the overall design may differ from UI to UI, the basics always stay the same: let the user know they can upload content, display upload status progress, and confirm that the upload’s status upon completion.
+
+## Chat
+
+The user can either click on an attach icon or drag & drop a file over the text area. The text area will visibly change when a file is dragged above it. Once the user drops the file above the text area a progress indicator appears. Depending on the applications needs, one of two things can happen.
+
+The file could immediately be uploaded and added to the chat stream without any additional input from the user. Because there is no way to stop / cancel the upload it is a good idea to allow users to retract / delete messages after they have been sent.
+
+The second option is the file could be queued within the message itself. This gives the user a chance to remove the file if they have changed their mind or accidentally uploaded the wrong file. This method does require an additional step from the user but is typically safer than the previous method.
+
+## Table
+
+The user can either click on an upload button or drag & drop a file over the table. The table will visibly change when a file is dragged above it. Once the user drops the file above the table two things happen simultaneously.
+
+First, the file appears at the top of the table. The files that are being uploaded are visually different from the rest of the files so the user knows they are an upload in progress. As the files upload, they visually change to match the rest of the files. Once the file is finished uploading, it remains at the top of the table despite sort filters applied. Upon any sort of table refresh (page refresh, a new column sort, etc) the most recently uploaded files that were at the top are then sorted amongst the rest of the files.
+
+The second thing that happens when a file is uploaded is the upload tracker appears in the bottom right. This allows the user to track their upload progress if they navigate further down the page when infinite scrolling is enabled / navigate to a deeper page when pagination is enabled.
+
+In some cases, there may be a table with no files uploaded yet. In a situation like this, we display an empty state explaining how to populate the table.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

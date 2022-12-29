@@ -1,0 +1,20 @@
+---
+title: Input
+description: Input let users enter and edit data.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/Input/Input.tsx'
+exampleCodeFile1: Input.main.tsx
+thumbnail: Input
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
