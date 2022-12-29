@@ -29,8 +29,8 @@
     "CHANGELOG.md",
     "LICENSE.md"
   ],
-  "description": "A react implementation of our iTwinUI UX standards",
-  "homepage": "https://github.com/iTwin/iTwinUI-react",
+  "description": "A react component library for iTwinUI",
+  "homepage": "https://github.com/iTwin/iTwinUI",
   "keywords": [
     "component",
     "components",
