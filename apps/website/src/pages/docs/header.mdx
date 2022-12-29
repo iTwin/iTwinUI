@@ -1,0 +1,77 @@
+---
+title: Header
+description: An overview of the CONNECT Portal headers
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Header/Header.d.ts'
+exampleCodeFile1: Header.main.tsx
+thumbnail: Header
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+The headers seen when in our CONNECT Portal environment. A header sits at the top of a page and is part of a consistent user experience.
+
+## Main CONNECT Portal header
+
+The CONNECT portal header contains the services menu, home, enterprise, assets and projects links beginning from left to right. From right to left there is the user profile, help, and notification links.
+
+Header with circular callouts, numbered from 1 to 8.
+
+- Services menu
+- Home page
+- Enterprise portal
+- Assets menu
+- Projects menu
+- Notifications
+- Help
+- User icon
+
+### Actions
+
+- Services menu pops up a list of services available to the user.
+- Home page takes you to CONNECT Center.
+- Enterprise Portal takes you to the Subscription Services Portal.
+- Assets menu takes you to the assets page.
+- Projects menu takes you to the ProjectWise Projects page.
+- Notifications pops up your list of notifications.
+- Help takes you to Bentley Communities for Bentley Cloud and Web Services.
+- User profile is a drop down with options for your user profile.
+
+## Secondary header
+
+The secondary header contains the product icon, product name, iModel name and the name of the initially opened view. On the right side of the bar is the settings menu.
+
+Secondary header with circular callouts, numbered from 1 to 5.
+
+- Product icon
+- Product name
+- iModel name
+- View name
+- Settings
+
+### Actions
+
+- Click the product name to get to the iModel Manager and display a list of iModels in the current project.
+- Click the iModel name to take you to the iModel manager > iModel details page.
+- Clicking on the view name will take you to the iModel index page.
+- Clicking on the settings icon will open the settings menu.
+
+## Consolidated header
+
+One of the top complaints we received was that our headers visibly takes up too much space on the screen. When the user is focusing on their work, we use the consolidated header. Additional data can be displayed based on hover and/or where you are located within the app. For example, when in a 3D working environment you’ll see the consolidated header, but when you switch to the backstage you see the normal header.
+
+## Accessibility
+
+For accessibility reasons, certain users strictly use their keyboard for navigating digital interfaces. We need to ensure the header doesn’t get in the way of these users every time they want to access a page’s main content. To make their experience more efficient, include a Skip to main content link to allow keyboard users to bypass the navigation header and skip directly to the page’s content.
+
+Without such a link, keyboard users will need to tab through the entire header every time they land on a new page. This makes their experience tedious and time-consuming. For more information, read the Skip to main content link article, and check out the Skip to main content component demo.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

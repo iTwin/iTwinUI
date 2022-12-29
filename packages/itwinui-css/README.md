@@ -28,7 +28,7 @@ iTwinUI-css consists of the following packages:
 - `@itwin/itwinui-css` - the CSS for every component as well as some global styles
 - `@itwin/itwinui-variables` - CSS variables for iTwinUI's design tokens
 
-If you're looking for React components, check out [`@itwin/itwinui-react`](https://github.com/iTwin/iTwinUI-react) which is built on top of iTwinUI-css.
+If you're looking for React components, check out [`@itwin/itwinui-react`](https://github.com/iTwin/iTwinUI/packages/itwinui-react) which is built on top of iTwinUI-css.
 
 ---
 

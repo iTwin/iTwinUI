@@ -1,0 +1,22 @@
+---
+title: Blockquote
+description: Indicates the quotation of a large selection of text from another source.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/Typography/Blockquote/Blockquote.tsx'
+exampleCodeFile1: Blockquote.main.tsx
+thumbnail: Blockquote
+group: typography
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Blockquotes are used to isolate and highlight a large quotation made by a source that is external from the content it is quoted in. Sourcing its provenance and original author is strongly suggested. The source is displayed in the bottom right of the blockquote.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

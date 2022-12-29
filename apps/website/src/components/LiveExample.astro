@@ -1,0 +1,108 @@
+---
+import * as AllExamples from '~/examples';
+import LiveExample from './LiveExample';
+import fs from 'node:fs';
+import { getSandpackCssText } from '@codesandbox/sandpack-react';
+
+export type Props = {
+  /** name of the file to read code example from, should be located in ~/examples folder */
+  src: string;
+};
+
+const { src } = Astro.props;
+
+// baseUrl refers to project root
+const baseUrl = import.meta.env.PROD
+  ? new URL('..', import.meta.url).href
+  : new URL('../../', import.meta.url);
+
+const codePath = new URL(`./src/examples/${src}`, baseUrl);
+let code = await fs.promises.readFile(codePath, 'utf8');
+
+// strip copyright header (first 4 lines)
+if (code.includes('Copyright (c) Bentley Systems')) {
+  code = code.split('\n').slice(4).join('\n');
+}
+
+const componentName = src.split('.')[0];
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+// TODO: temporarily removing these until we can figure out how to SSR correctly
+const StaticComponent = AllExamples[`${capitalize(componentName)}StaticExample`];
+const MainComponent = AllExamples[`${capitalize(componentName)}MainExample`];
+---
+
+<LiveExample code={code} client:visible />
+
+<style set:html={getSandpackCssText()}></style>
+
+<style lang='scss' is:global>
+  .live-example {
+    position: relative;
+  }
+  .live-example.iui-body {
+    background-color: transparent;
+  }
+
+  .sp-wrapper {
+    color-scheme: dark !important;
+    display: grid !important;
+    gap: 0.5rem !important;
+  }
+
+  .sp-stack {
+    height: 350px;
+    overflow: auto;
+    border-radius: 0.5rem;
+  }
+
+  .sp-preview-container {
+    background: transparent !important;
+
+    &-collapsed {
+      height: 350px;
+      border-radius: 0.5rem;
+      display: grid;
+      place-items: center;
+      background: var(--color-sandbox-gradient) !important;
+    }
+  }
+
+  .sp-preview-actions {
+    left: var(--sp-space-2);
+  }
+
+  .sp-cube-wrapper {
+    left: calc(var(--sp-space-2) + var(--sp-space-1));
+  }
+
+  .sp-code-editor {
+    font-size: 0.8rem;
+  }
+
+  .cm-scroller {
+    scrollbar-gutter: stable;
+  }
+
+  .show-code-button {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    z-index: 1;
+    background: transparent;
+    border-radius: var(--border-radius-1);
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    color: var(--color-text);
+
+    &:hover {
+      background: hsl(0 0% 0% / 0.2);
+    }
+
+    .sp-preview-actions & {
+      bottom: 0;
+      right: 0;
+    }
+  }
+</style>

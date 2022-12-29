@@ -266,6 +266,10 @@
       outline: 2px solid var(--iui-color-text-#{$status});
       outline-offset: -2px;
     }
+
+    &:hover {
+      --_iui-input-border-color: var(--iui-color-border-#{$status});
+    }
   }
 
   .iui-input-with-icon {

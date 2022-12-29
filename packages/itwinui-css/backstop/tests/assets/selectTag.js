@@ -14,7 +14,6 @@ class SelectTag extends HTMLElement {
     const innerHtml = `
     <span
       class="iui-select-tag"
-      tabindex="0"
     >
       <span
         class="iui-select-tag-label"
@@ -24,7 +23,7 @@ class SelectTag extends HTMLElement {
       </span>
       ${
         dismissible
-          ? `<button class="iui-select-tag-button" aria-label="Delete tag" type="button" tabindex="-1">
+          ? `<button class="iui-select-tag-button" aria-label="Delete ${value} tag" type="button">
             <svg-close-small class="iui-select-tag-button-icon" aria-hidden="true"></svg-close-small>
           </button>`
           : ''

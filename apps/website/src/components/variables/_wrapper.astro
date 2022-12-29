@@ -1,0 +1,15 @@
+<article data-iui-theme='dark' {...Astro.props}>
+  <slot />
+</article>
+
+<style>
+  article {
+    border-radius: var(--space-2);
+    border: 1px solid var(--color-line-2);
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    font-size: var(--type-0);
+  }
+</style>
