@@ -319,3 +319,6 @@ export {
   MiddleTextTruncation,
 } from './utils';
 export type { ThemeType, MiddleTextTruncationProps } from './utils';
+
+export { SearchBox } from './SearchBox';
+export type { SearchBoxProps } from './SearchBox';
