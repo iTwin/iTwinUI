@@ -1,18 +1,44 @@
 {
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/main",
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["css/**", "scss/**"]
+      "outputs": ["dist/**"]
+    },
+    "@itwin/itwinui-css#build": {
+      "dependsOn": ["@itwin/itwinui-variables#build"],
+      "outputs": ["css/**"]
+    },
+    "@itwin/itwinui-react#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["esm/**", "cjs/**"]
+    },
+    "storybook#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["storybook-static/**"]
     },
     "test": {
-      "dependsOn": ["build"],
       "outputs": []
+    },
+    "storybook#test": {
+      "dependsOn": ["build"]
+    },
+    "@itwin/itwinui-css#test": {
+      "dependsOn": ["build"]
     },
     "lint": {
       "outputs": []
     },
     "dev": {
-      "dependsOn": ["^build"],
+      "dependsOn": [],
+      "cache": false
+    },
+    "format": {
+      "outputs": []
+    },
+    "clean": {
+      "outputs": [],
       "cache": false
     }
   }

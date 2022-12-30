@@ -1,0 +1,88 @@
+---
+export type Props = {
+  /** name of the file to read code example from, should be located in ~/examples folder */
+  icon: string;
+};
+
+const { icon } = Astro.props;
+
+const allThumbnails = await Astro.glob('../icons/thumbnails/*.astro');
+const thumbnail = allThumbnails.find(({ file }) => file.endsWith(`${icon}Thumbnail.astro`));
+---
+
+<thumbnail.default class='component-thumbnail' />
+
+<style lang='scss'>
+  .component-thumbnail {
+    height: calc(var(--space-6) * 6);
+    width: 100%;
+
+    :global(.main-color) {
+      fill: #fff;
+    }
+
+    :global(.highlight-color) {
+      fill: var(--color-highlight-4);
+    }
+
+    :global(.extra-color) {
+      fill: #e1e1e1;
+    }
+
+    :global(.opacity-background) {
+      opacity: 0.1;
+    }
+
+    :global(.opacity-light) {
+      opacity: 0.2;
+    }
+
+    :global(.opacity-light-medium) {
+      opacity: 0.3;
+    }
+
+    :global(.opacity-medium) {
+      opacity: 0.4;
+    }
+
+    :global(.opacity-heavy) {
+      opacity: 0.5;
+    }
+
+    :global(.opacity-heavier) {
+      opacity: 0.6;
+    }
+
+    :global(.stroke-line) {
+      fill: none;
+      opacity: 0.4;
+      stroke: #fff;
+      stroke-linecap: round;
+      stroke-miterlimit: 10;
+      stroke-width: 3px;
+
+      &.light {
+        opacity: 0.1;
+      }
+
+      &.title-line {
+        stroke-width: 4px;
+      }
+
+      &.highlight {
+        opacity: 1;
+        stroke: var(--color-highlight-4);
+      }
+
+      &.square-cap {
+        stroke-width: 2px;
+        stroke-linecap: square;
+      }
+
+      &.symbol {
+        stroke-width: 2px;
+        stroke-linejoin: round;
+      }
+    }
+  }
+</style>

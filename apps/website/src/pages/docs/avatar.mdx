@@ -1,0 +1,73 @@
+---
+title: Avatar
+description: A circular identifier that displays the user’s custom set photo or the user’s first and last name initials.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Avatar/Avatar.d.ts'
+exampleCodeFile1: Avatar.main.tsx
+group: core
+thumbnail: Avatar
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+The user icon is an essential UI component, making it much easier to identify a person by their photo rather than reading their name. A user’s photo helps put a face to the name and makes it more personal. Any time an app requires a user profile, a user icon must be included.
+
+## Appearance
+
+### Sizes
+
+There are four sizes of user icons: Small (24x24px), medium (32x32px), large (48x48px), and extra large (64x64px).
+
+Which one to use is at your discretion. Determine which size is best for your context based on available space.
+
+### Styles
+
+There are three styles for a user icon.
+
+#### Initials
+
+If a user does not upload a photo, a random data visualization color is assigned and the user’s first & last initials are displayed. You can display a maximum of 2 letters and a minimum of 1 letter. You should not be able to create a user account without providing a name. In the off chance there are user accounts without any name associated, you can display the first letter of the user’s email address.
+
+#### Icon
+
+A placeholder icon may display instead of initials, to developer’s discretion. The user icon supports SVG icons, and may use any icon that is deemed fit for the context. If desired, user can be provided with a library of icons to choose from, like an avatar.
+
+#### Picture
+
+If a user uploads a photo or has an associated Gravatar account, we display their photo. When the user uploads their photo, they can use the image cropper to properly align the photo within the frame.
+
+## Status indicators
+
+Due to its size, the small user icon does not support status indicators.
+You may want to indicate the online status of a user. Status indicators display in the bottom right of the user icon and have a white border around them so that they stand out above any user photo color. You must use another visual affordance in addition to color. A color blind user may struggle to understand the status indicated if only a color is used.
+
+We display symbols inside of all but 1 status indicator; Busy. If a user has been invited to install the app but has not setup their account yet, you can display their user icon without any symbol.
+
+## Team layout
+
+!!! When using this layout for user icons, do not use status indicators. !!!
+
+User icons can be horizontally stacked to represent a team of users. This visual treatment reinforces the fact that these people work together and/or share similar permissions to access/view/edit a file or a project.
+
+In the example above, we offer a quick way to add a new team member by including an extra icon with a +, that takes the user to the appropriate page. It is optional, and should be visible only to team managers, or users who have the required permissions to add new members to a project.
+
+There are two ways to display a team of users; they may be stacked to save space, or evenly spaced out if preferred.
+
+A maximum of five (5) individual user icons can be shown at once. If a team contains more than five members, the fifth icon becomes a placeholder displaying the quantity of extra users. See example below.
+
+The highest number the placeholder icon can display is 99, followed by ‘+’ if quantity of members exceeds this limit. This is simply because the limited space within the circle does not allow for larger numbers.
+
+The user can hover the last user icon with the count to display a tooltip listing all the users that are not shown in the stack. Obviously, when the team member count is high, it may not be ideal to use this method to display names. For teams containing over ten (10) people, consider other options, such as a modal. For any method other than the tooltip, make the placeholder icon clickable to access full member list.
+
+Optionally, you may use on-hover animation to create an hybrid of the spaced out and stacked layouts. On-hover of the cursor, the user icon stack switches to the spaced out layout for better view of the team members. When doing this, be sure to pay close attention to unintentionally shifting other content on the page.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
+
+## Related resources

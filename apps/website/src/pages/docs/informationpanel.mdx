@@ -1,0 +1,24 @@
+---
+title: Information panel
+description: A way to view additional attributes without leaving the list of items.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/InformationPanel/InformationPanel.tsx'
+exampleCodeFile1: InformationPanel.main.tsx
+thumbnail: InformationPanel
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+The information panel is a pattern used primarily in tables. It allows viewing or editing additional details about selected item(s) without leaving the table.
+
+The info panel is reserved for complex tables, because it allows the user to gradually explore the content without overwhelming them with too many details. It also helps avoiding the unpleasant horizontal scrolling when the table gets too wide. Not every table requires an information panel.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
