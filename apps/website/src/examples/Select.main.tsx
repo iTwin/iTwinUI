@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Select, LabeledSelect } from '@itwin/itwinui-react';
+import { LabeledSelect } from '@itwin/itwinui-react';
 
 export default () => {
   return (

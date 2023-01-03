@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Input, LabeledInput } from '@itwin/itwinui-react';
+import { LabeledInput } from '@itwin/itwinui-react';
 
 export default () => {
   return (
