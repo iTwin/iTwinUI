@@ -22,11 +22,11 @@ const defaultImporter = docgenImporters.makeFsImporter();
 
 const relativePath = Astro.props.path.replace(
   '@itwin/itwinui-react',
-  '../../packages/iTwinUI-react' // relative from root of `website` workspace
+  '../../packages/itwinui-react' // relative from root of `website` workspace
 );
 
 const componentPath = path.join(__dirname, relativePath);
-const componentName = [...componentPath.split('/')].pop().split('.')[0];
+const componentName = path.parse(componentPath).name.split('.')[0]; // Spliting on `.` since some files are .d.ts files
 const src = fs.readFileSync(componentPath, 'utf8');
 
 const docgenResults = componentPath.endsWith('.tsx')

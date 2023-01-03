@@ -69,7 +69,7 @@ yarn dev
 
 This will automatically build anything that's not already built, and run the `dev` script for every workspace in parallel, watching for file changes.
 
-By default, it will open the storybook and docs website in your browser. Any examples and playgrounds will need to be manually opened. The urls/ports are as follows (assuming they are available):
+By default, a portal will be opened containing links to all the different dev servers:
   - docs website:  `http://localhost:1700`
   - vite playground: `http://localhost:1701`
   - next playground: `http://localhost:1702`

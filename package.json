@@ -38,18 +38,20 @@
     "clean:images": "yarn workspace @itwin/itwinui-css clean:images",
     "createComponent:react": "node scripts/createComponent.js",
     "push-docker:react": "yarn workspace storybook push-docker",
-    "clean": "turbo run clean && rimraf node_modules"
+    "clean": "turbo run clean && rimraf node_modules",
+    "release": "yarn build --filter={./packages/*}... && changeset publish"
   },
   "dependencies": {},
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
     "husky": "^8.0.2",
     "lint-staged": "^12.5.0",
     "prettier": "2.8.0",
     "rimraf": "^3.0.2",
-    "turbo": "~1.6.3",
-    "cross-env": "^7.0.3"
+    "turbo": "~1.6.3"
   },
   "resolutions": {
     "hosted-git-info": "6.1.1",
@@ -59,7 +61,6 @@
     "glob-parent": "6.0.2",
     "jpeg-js": "0.4.4",
     "ansi-regex": "5.0.1",
-    "node-fetch": "2.6.7",
     "async": "3.2.4",
     "trim": "0.0.3",
     "set-value": "4.1.0",

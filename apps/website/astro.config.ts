@@ -22,7 +22,6 @@ export default defineConfig({
   },
   server: { port: 1700 },
   vite: {
-    server: { open: true },
     ssr: {
       noExternal: [
         '@fontsource/noto-sans',
