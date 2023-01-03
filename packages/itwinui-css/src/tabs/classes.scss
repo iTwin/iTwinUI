@@ -12,7 +12,6 @@
     display: grid;
     grid-template-areas: 'tabs tabs-actions' 'tabs-content tabs-content';
     grid-template-columns: auto fit-content(1px);
-    margin-left: var(--iui-gap-between-inputs);
 
     .iui-tabs-actions {
       grid-area: tabs-actions;
@@ -20,6 +19,7 @@
       justify-content: flex-end;
       align-items: center;
       column-gap: var(--iui-size-xs);
+      margin-left: var(--iui-gap-between-inputs);
     }
 
     .iui-tabs-content {
@@ -33,7 +33,6 @@
     display: grid;
     grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
     grid-template-rows: fit-content(1px) auto;
-    margin-top: var(--iui-gap-between-inputs);
 
     .iui-tabs-actions {
       grid-area: tabs-actions;
@@ -42,6 +41,7 @@
       justify-content: flex-end;
       align-items: center;
       row-gap: var(--iui-size-xs);
+      margin-top: var(--iui-gap-between-inputs);
     }
 
     .iui-tabs-content {
