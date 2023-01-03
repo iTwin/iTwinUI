@@ -3,6 +3,8 @@
 @import '../utils/index';
 
 @mixin iui-tabs-wrapper {
+  --_iui-actions-gap: var(--iui-size-s);
+
   display: grid;
   position: relative;
 
@@ -131,7 +133,7 @@
 
   .iui-tabs-actions {
     column-gap: var(--iui-size-xs);
-    margin-left: var(--iui-gap-between-inputs);
+    margin-left: var(--_iui-actions-gap);
   }
 }
 
@@ -165,7 +167,7 @@
   .iui-tabs-actions {
     flex-direction: column;
     row-gap: var(--iui-size-xs);
-    margin-top: var(--iui-gap-between-inputs);
+    margin-top: var(--_iui-actions-gap);
   }
 }
 
