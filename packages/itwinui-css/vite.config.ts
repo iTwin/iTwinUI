@@ -26,9 +26,6 @@ export default defineConfig({
     },
   },
   plugins: [generateIndex(), addMetaTags(), minifyHtml()],
-  server: {
-    open: true,
-  },
 });
 
 function generateIndex(): Plugin {
