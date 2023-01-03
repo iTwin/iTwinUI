@@ -7,17 +7,6 @@
 
   display: grid;
   position: relative;
-
-  .iui-tabs-actions {
-    grid-area: tabs-actions;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .iui-tabs-content {
-    grid-area: tabs-content;
-  }
 }
 
 @mixin iui-tabs {
@@ -225,4 +214,15 @@
       }
     }
   }
+}
+
+@mixin iui-tabs-actions {
+  grid-area: tabs-actions;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin iui-tabs-content {
+  grid-area: tabs-content;
 }
