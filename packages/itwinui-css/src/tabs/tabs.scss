@@ -2,6 +2,22 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
+@mixin iui-tabs-wrapper {
+  display: grid;
+  position: relative;
+
+  .iui-tabs-actions {
+    grid-area: tabs-actions;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .iui-tabs-content {
+    grid-area: tabs-content;
+  }
+}
+
 @mixin iui-tabs {
   @include iui-reset;
   position: relative;
@@ -95,7 +111,8 @@
 }
 
 @mixin iui-tabs-horizontal {
-  flex-direction: column;
+  grid-template-areas: 'tabs tabs-actions' 'tabs-content tabs-content';
+  grid-template-columns: auto fit-content(1px);
 
   .iui-tabs {
     display: flex;
@@ -111,9 +128,17 @@
       height: var(--iui-size-3xs);
     }
   }
+
+  .iui-tabs-actions {
+    column-gap: var(--iui-size-xs);
+    margin-left: var(--iui-gap-between-inputs);
+  }
 }
 
 @mixin iui-tabs-vertical {
+  grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
+  grid-template-columns: fit-content(1px) auto;
+
   .iui-tabs {
     li,
     .iui-tab {
@@ -136,6 +161,12 @@
       width: var(--iui-size-3xs);
     }
   }
+
+  .iui-tabs-actions {
+    flex-direction: column;
+    row-gap: var(--iui-size-xs);
+    margin-top: var(--iui-gap-between-inputs);
+  }
 }
 
 @mixin iui-tab-not-animated {
@@ -147,7 +178,8 @@
 
   .iui-active::after {
     @media (prefers-reduced-motion: no-preference) {
-      transition: width var(--iui-duration-1) ease, height var(--iui-duration-1) ease;
+      transition: width var(--iui-duration-1) ease,
+        height var(--iui-duration-1) ease;
     }
   }
 
@@ -174,7 +206,8 @@
       left: var(--stripe-left);
       width: var(--stripe-width);
       @media (prefers-reduced-motion: no-preference) {
-        transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
+        transition: width var(--iui-duration-1) ease-out,
+          left var(--iui-duration-1) ease-out;
       }
     }
   }
