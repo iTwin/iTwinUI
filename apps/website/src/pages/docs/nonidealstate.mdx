@@ -1,0 +1,77 @@
+---
+title: Non ideal state
+description: A full page error layout.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/NonIdealState/NonIdealState.d.ts'
+exampleCodeFile1: NonIdealState.main.tsx
+thumbnail: NonIdealState
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Error pages are part of an everyday online experience. There are many types of error pages, but for most, their goal is to communicate to the user that their query was unsuccessful and there are no results to display. A well-designed error pages can potentially soothe some of the frustration that may result from the error. A well-known error page is the 404, that is triggered when the path the user followed led to a dead-end, with a page holding no content. However, if the user is ending up with a page that is displaying nothing, they might be confused and ignore what comes next. It’s why it’s important to put thoughts and time into designing good error pages.
+
+## Appearance
+
+Each type of error page should be designed based on what you wish to tell the user about that error. First off, the error code, along with a short description, should be displayed so the user can identify the source of the problem. Then, informative text, accompanied with images that can be informative as well and/or decorative to aid the user moving onto the next step. The error illustration should take up no more than ⅓ of the screen width.
+
+## Usage
+
+Error pages come with their own error and should not be mixed and matched to avoid confusion from one error to another. Here are a few of the error pages you can use.
+
+### Error 404
+
+404, HTTP 404, and 404 Not Found are errors that inform the user that despite the communication with the server was successful, it could not find what was requested. Broken or dead links, as well as erroneous search queries may result in a 404.
+
+### Error 401 & 403
+
+Both 401 and 403 errors inform of similar yet slightly different situations. They inform the user that they have reached a page they do not have the permission to view, either because the credentials they entered are erroneous (401), or because they simply do not have the rights to access it (403).
+
+A 401 error means the request sent by the client could not be authenticated. It may be because the provided user ID and password are invalid and the server denied access to the client.
+
+Potential causes other than invalid credentials;
+
+- Mistyped URL leading to a restricted area of the site;
+- Invalid information stored in browser cache and interfering;
+- Page loaded incorrectly;
+- Mistake on the site owner’s side.
+
+A 403 error means the client encountering it is completely forbidden from accessing the page. In this case, the user cannot do much to resolve it, as the resource is accessible only by the authorized parties.
+
+### Error 500
+
+Also called Internal Server Error, a 500 error code means something went wrong with the website’s server, but it is unable to identify what caused the issue. More often than not, the error is on the user’s side.
+
+### Error 502
+
+Error code 502 is a Bad Gateway error. This means the communication between two servers resulted in an error, leading to a deadend. The user has no control over this error as it happens when there is a miscommunication between online servers.
+
+### Error 503
+
+Service Unavailable is the issue you get from a 503 error. It means the online server has encountered a problem because the network is unavailable (internet connection was interrupted), and thus cannot fulfill the request. The user cannot do anything about this issue.
+
+### Timed out
+
+For security reasons, certain web sessions will automatically sign a user out when they remain inactive for a few minutes. The user must then renew the session. This process may or may not require that they re-enter their credentials to resume; this is at developer’s discretion.
+
+### Generic error
+
+Used in any error that isn’t discussed above. This error can also be used if you disagree that an illustration doesn’t properly convey your specific error.
+
+### Redirection notice
+
+This one isn’t technically an error, but more of an information page that requires an action from the user. If a clickable link has more than one potential destination, take the user to this page so they can decide where they want to land. A Remember my choice checkbox can be shown below so if the link is used more than once, the user won’t need to select a button every time.
+
+If the two destinations offered have the exact same relevance, use hollow buttons for both. If one destination is more likely to be selected than the other based on the user’s goal upon clicking the original link, use a high-visibility button for the most relevant destination, and a hollow button for the other. Always put the high-visibility button on the left.
+
+If the amount of redirection locations exceed 2, you may use an alternative design where the redirection selection is made via a select menu.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

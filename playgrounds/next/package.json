@@ -1,0 +1,29 @@
+{
+  "name": "next-playground",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 1702",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "clean": "rimraf .turbo && rimraf node_modules && rimraf .next"
+  },
+  "dependencies": {
+    "@itwin/itwinui-react": "*",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "next": "^13.0.5",
+    "next-transpile-modules": "^10.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.5.4"
+  },
+  "lint-staged": {
+    "*.{tsx,ts,jsx,js}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": "configs/prettier-config.js"
+}

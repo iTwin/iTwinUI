@@ -1,0 +1,35 @@
+---
+export type Props = { content?: any };
+
+const { content = {} } = Astro.props;
+
+const contentTitle = content.title ? `${content.title} | iTwinUI` : 'iTwinUI';
+const contentDescription =
+  content.description ||
+  `An open-source design system for building consistent, accessible experiences.`;
+
+const canonicalUrl = 'https://www.itwinui.com';
+const deployUrl = import.meta.env.DEPLOY_PRIME_URL || Astro.request.url;
+---
+
+<title>{contentTitle}</title>
+
+<!-- Page Metadata -->
+<link rel='canonical' href={canonicalUrl} />
+<meta name='description' content={contentDescription} />
+
+<!-- OpenGraph Tags -->
+<meta property='og:title' content={contentTitle} />
+<meta property='og:description' content={contentDescription} />
+<meta property='og:type' content='article' />
+<meta property='og:url' content={canonicalUrl} />
+<meta property='og:locale' content={content.ogLocale ?? 'en-us'} />
+<meta property='og:image' content={new URL('og-image.png', deployUrl)} />
+<meta property='og:image:alt' content='iTwinUI logo' />
+<meta property='og:site_name' content={contentTitle} />
+
+<!-- Twitter Tags -->
+<meta name='twitter:card' content='summary_large_image' />
+<meta name='twitter:title' content={contentTitle} />
+<meta name='twitter:description' content={contentDescription} />
+<meta name='twitter:image' content={new URL('twitter-image.png', deployUrl)} />

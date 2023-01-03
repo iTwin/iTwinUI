@@ -8,37 +8,138 @@ on:
   pull_request:
     branches:
       - 'main'
-      - 'v1.0'
 
 jobs:
-  build:
-    name: Build and run tests
+  install:
+    name: Install node modules
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node 16.X
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: yarn
 
-      - run: yarn install --frozen-lockfile
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn
+
       - run: yarn audit
 
-      - run: yarn lint
-      - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
-      - run: yarn build
+  build:
+    name: Build and lint packages
+    needs: install
+    runs-on: ubuntu-latest
 
-      - name: Host build output on gh pages
-        uses: JamesIves/github-pages-deploy-action@4.1.3
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn lint
+      - run: yarn lint:copyright
+      - run: yarn build --filter={./packages/*}...
+
+  deploy-gh-pages:
+    name: Push static files to github pages
+    needs: install
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - name: Build html test pages
+        run: yarn build --filter=itwinui-css
+
+      - name: Build portal
+        run: yarn workspace portal build --base "/iTwinUI/${{ github.event.number || '' }}"
+
+      - name: Build storybook
+        run: yarn build --filter=storybook
+
+      - name: List open pull requests
+        id: open_prs
+        uses: actions/github-script@v4
+        with:
+          result-encoding: string
+          script: |
+            return ((await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            })).data.map(pr => pr.number).join('\n'))
+
+      - name: Host portal under /
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           single-commit: true
-          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/minified
+          folder: ${{ github.workspace }}/apps/portal/dist
           target-folder: ${{ github.event.number || '/' }}
-          clean-exclude: results
+          clean-exclude: ${{ steps.open_prs.outputs.result }}
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+      - name: Host html pages under /css
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/minified
+          target-folder: ${{ github.event.number || '' }}/css
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
+
+      - name: Host storybook under /react
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/apps/storybook/storybook-static
+          target-folder: ${{ github.event.number || '' }}/react
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
@@ -57,7 +158,66 @@ jobs:
               target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}',
             })
 
-      - run: yarn test
+  unit-test:
+    name: Run unit tests
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn workspace @itwin/itwinui-react test --coverage
+
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v1.16
+        if: always()
+        with:
+          files: 'packages/itwinui-react/coverage/junit.xml'
+          comment_mode: off
+          check_name: 'Test results'
+          fail_on: 'nothing'
+
+  visual-test-css:
+    name: Run visual tests (css)
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn test --filter=@itwin/itwinui-css
 
       - name: Publish test results artifact
         if: failure()
@@ -92,3 +252,36 @@ jobs:
               ...(context.job.status !== 'success' && { description: 'Backstop html report' }),
               ...(context.job.status !== 'success' && { target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/results/html_report/' }),
             })
+
+  visual-test-react:
+    name: Run visual tests (react)
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn test --filter=storybook
+
+      - name: Publish test results artifact
+        if: failure()
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: 'cypress-visual-screenshots'
+          path: '${{ github.workspace }}/apps/storybook/cypress-visual-screenshots'

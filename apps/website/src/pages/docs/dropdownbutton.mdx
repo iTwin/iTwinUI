@@ -1,0 +1,22 @@
+---
+title: Dropdown button
+description: Buttons allow users to take actions and make choices with a single tap or click.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/Buttons/DropdownButton/DropdownButton.tsx'
+exampleCodeFile1: DropdownButton.main.tsx
+thumbnail: Button
+group: buttons
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+Pressing this button will always open a menu. Upon selecting an option from the menu, the action immediately takes place. The label of the button is not effected from your selection within the menu. The menu button can only be applied to default buttons and borderless buttons.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

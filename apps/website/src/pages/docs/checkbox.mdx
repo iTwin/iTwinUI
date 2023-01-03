@@ -1,0 +1,26 @@
+---
+title: Checkbox
+description: Allows the user to make one or more choices within a list of options.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/Checkbox/Checkbox.tsx'
+exampleCodeFile1: Checkbox.main.tsx
+thumbnail: Checkbox
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src={frontmatter.exampleCodeFile1} />
+
+A checkbox (or tickbox) is a form component allowing multiple options selection. It serves a similar purpose than the radio button, the main difference being that radio buttons only permits binary option selection.
+
+Checkboxes are usually accompanied by a label. They can be used either for selecting one or more options in a list, or to enable, disable, show, or hide a feature in the UI. It should however not be confused with a toggle switch, which has a similar role but is not appropriate in all settings. To learn more about when to use a toggle switch or a checkbox, please read [Checkbox vs Toggle Switch by Saadia Minhas](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8).
+
+A checkbox is not interchangeable with a radio button. A radio button must have at minimum 2 choice options, almost always has one option pre-selected, and cannot have several options selected at once. A checkbox, however, can be checked and unchecked at will, and can be displayed as standalone or in a group of two or more.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

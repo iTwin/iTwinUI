@@ -1,0 +1,29 @@
+name: Publish storybook (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-storybook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - run: yarn
+      - run: yarn build --filter=storybook
+
+      - name: Host storybook under /react
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ${{ github.workspace }}/apps/storybook/storybook-static
+          target-folder: ${{ github.event.number || '' }}/react
+          clean: true
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com

@@ -1,0 +1,106 @@
+---
+import LeftSidebarContent from './LeftSidebarContent.astro';
+---
+
+<left-sidebar {...Astro.props}>
+  <aside aria-label='Main navigation'>
+    <LeftSidebarContent />
+  </aside>
+  <div class='sidebar-backdrop' aria-hidden='true'></div>
+</left-sidebar>
+
+<script>
+  import { isSidebarOpen } from '~/stores/sidebar.store';
+
+  customElements.define(
+    'left-sidebar',
+    class extends HTMLElement {
+      connectedCallback() {
+        const sidebar = this.querySelector('aside');
+
+        window.matchMedia('(max-width: 50em)').addEventListener('change', ({ matches: isSmol }) => {
+          if (!isSmol) {
+            // reset the state to allow re-opening next time
+            isSidebarOpen.set(false);
+
+            // remove the attribute completely when on desktop, to prevent undesired transition when resizing the window
+            sidebar.removeAttribute('data-visible');
+          }
+        });
+
+        const backdrop = this.querySelector('.sidebar-backdrop');
+        backdrop.addEventListener('click', () => {
+          isSidebarOpen.set(false);
+        });
+      }
+
+      static get observedAttributes() {
+        return ['visible'];
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'visible') {
+          this.querySelector('aside')?.setAttribute('data-visible', newValue);
+        }
+      }
+    }
+  );
+</script>
+
+<style lang='scss'>
+  :global(left-sidebar) {
+    isolation: isolate;
+    overflow: hidden;
+
+    @media (max-width: 50em) {
+      visibility: hidden;
+    }
+
+    &[visible='true'] {
+      visibility: visible;
+    }
+  }
+
+  aside {
+    max-width: 80%;
+    background-color: var(--color-background-2);
+    border-right: 1px solid var(--color-line-2);
+    overflow-y: auto;
+    overflow: hidden overlay; // need "hidden" on x for safari
+    --scrollbar-right-offset: 5px;
+
+    &:not(:hover, :focus-within) {
+      --scrollbar-color: transparent;
+      --scrollbar-color-hover: transparent;
+    }
+
+    @media (max-width: 50em) {
+      border-right: none;
+
+      // collapsed by default
+      transform: translateX(-100%);
+
+      &[data-visible='true'] {
+        transform: translateX(0);
+
+        + .sidebar-backdrop {
+          content: '';
+          z-index: -1;
+          position: absolute;
+          inset: 0;
+          background-color: hsl(0deg 0% 0% / 0.2);
+          backdrop-filter: blur(5px);
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          transition-property: background-color, backdrop-filter;
+        }
+      }
+
+      // transition only when the this attribute is present (see SidebarToggle.astro)
+      &[data-visible] {
+        @media (prefers-reduced-motion: no-preference) {
+          transition: calc(var(--transition-speed) * 2) cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      }
+    }
+  }
+</style>
