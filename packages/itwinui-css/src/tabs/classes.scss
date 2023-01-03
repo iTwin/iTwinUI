@@ -32,7 +32,7 @@
 
     display: grid;
     grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
-    grid-template-rows: fit-content(1px) auto;
+    grid-template-columns: fit-content(1px) auto;
 
     .iui-tabs-actions {
       grid-area: tabs-actions;
