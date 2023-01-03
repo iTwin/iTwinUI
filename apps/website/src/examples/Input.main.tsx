@@ -3,12 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Input } from '@itwin/itwinui-react';
+import { Input, LabeledInput } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div>
+    <div style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
       <Input placeholder='Basic input' />
+      <LabeledInput label='Labeled input' message='Input message' />
+      <LabeledInput label='Input with status' message='Warning message' status='warning' />
     </div>
   );
 };

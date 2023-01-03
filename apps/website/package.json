@@ -18,6 +18,7 @@
     "@fontsource/noto-sans": "^4.5.11",
     "@fontsource/noto-sans-mono": "^4.5.11",
     "@itwin/itwinui-react": "*",
+    "@itwin/itwinui-icons-react": "*",
     "@jsdevtools/rehype-toc": "3.0.2",
     "@tippyjs/react": "4.2.6",
     "@types/react": "^18.0.0",
