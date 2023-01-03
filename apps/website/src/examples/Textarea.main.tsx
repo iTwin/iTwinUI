@@ -7,8 +7,7 @@ import { Textarea, LabeledTextarea } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div style={{ display: 'flex', gap: '16px', flexDirection: 'column' }}>
-      <Textarea placeholder={'This is a textarea'} />
+    <div>
       <LabeledTextarea
         label='Textarea label'
         message='Help message'
