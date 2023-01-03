@@ -17,6 +17,7 @@ $icon-sizes: (
   display: inline-flex;
   flex-shrink: 0;
 
+  &,
   svg {
     width: var(--_iui-svg-size);
     height: var(--_iui-svg-size);
