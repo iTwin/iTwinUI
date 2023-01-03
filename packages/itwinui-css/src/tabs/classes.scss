@@ -3,7 +3,7 @@
 @import './index';
 
 .iui-tabs-wrapper {
-  // @include iui-tabs-wrapper;
+  @include iui-tabs-wrapper;
 
   &.iui-horizontal {
     @include iui-tabs-horizontal;
@@ -13,13 +13,13 @@
     @include iui-tabs-vertical;
   }
 
-  // .iui-tabs-actions {
-  //   @include iui-tabs-actions;
-  // }
+  .iui-tabs-actions {
+    @include iui-tabs-actions;
+  }
 
-  // .iui-tabs-content {
-  //   @include iui-tabs-content;
-  // }
+  .iui-tabs-content {
+    @include iui-tabs-content;
+  }
 }
 
 .iui-tabs {
