@@ -50,22 +50,22 @@ spawn(`yarn sass --watch ${spaceSeparatedInputsAndOutputs}`, {
 // run lightningcss every time sass produces a .css file.
 // this overwrites the .css files which could cause an infinite loop,
 // so we tell chokidar to only watch *.css.map files (not *.css)
-chokidar.watch(`css/*.css.map`).on('all', (event, changedFilePath) => {
+chokidar.watch(`css/*.css.map`).on('all', (event, originalChangedFilename) => {
   if (event === 'add' || event === 'change') {
-    const { name } = path.parse(changedFilePath); // css/alert.css.map -> alert.css
-    const cssFilePath = path.join(outDir, name);
+    const changedFilename = path.parse(originalChangedFilename).name; // css/alert.css.map -> alert.css
+    const cssFilePath = path.join(outDir, changedFilename);
     const css = fs.readFileSync(cssFilePath, { encoding: 'utf8' });
 
     const { code } = lightningCss.transform({
       minify: false,
       sourceMap: false,
       code: Buffer.from(css),
-      filename: `${path.parse(changedFilePath).name}.css`,
+      filename: changedFilename,
       targets,
     });
 
     fs.writeFileSync(cssFilePath, code, { encoding: 'utf8' });
 
-    console.log(`Postprocessed ${changedFilePath} using lightningcss`);
+    console.log(`Postprocessed ${changedFilename} using lightningcss`);
   }
 });
