@@ -19,9 +19,6 @@ export default defineConfig({
     },
   },
   plugins: [lightningCssPlugin(), generateIndex(), addMetaTags(), minifyHtml()],
-  server: {
-    open: true,
-  },
 });
 
 function generateIndex(): Plugin {
