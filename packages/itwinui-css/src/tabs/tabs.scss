@@ -103,7 +103,7 @@
 
 @mixin iui-tabs-horizontal {
   grid-template-areas: 'tabs tabs-actions' 'tabs-content tabs-content';
-  grid-template-columns: auto fit-content(1px);
+  grid-template-columns: 1fr min-content;
 
   .iui-tabs {
     display: flex;
@@ -128,7 +128,7 @@
 
 @mixin iui-tabs-vertical {
   grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
-  grid-template-columns: fit-content(1px) auto;
+  grid-template-columns: min-content 1fr;
 
   .iui-tabs {
     li,
