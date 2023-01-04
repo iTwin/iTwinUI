@@ -36,6 +36,30 @@ jobs:
       - if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn
 
+  audit:
+    name: Audit node modules
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
       - run: yarn audit
 
   build:
