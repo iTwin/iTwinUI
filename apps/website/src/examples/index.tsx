@@ -8,6 +8,7 @@ export { default as AnchorMainExample } from './Anchor.main';
 export { default as BadgeMainExample } from './Badge.main';
 export { default as BlockquoteMainExample } from './Blockquote.main';
 export { default as ButtonMainExample } from './Button.main';
+export { default as ButtonDefaultExample } from './Button.default';
 export { default as IconButtonMainExample } from './IconButton.main';
 export { default as DropdownButtonMainExample } from './DropdownButton.main';
 export { default as ButtonGroupMainExample } from './ButtonGroup.main';

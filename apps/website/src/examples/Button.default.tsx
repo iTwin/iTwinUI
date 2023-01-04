@@ -8,11 +8,10 @@ import { Button } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div>
-      <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', margin: '12px' }}>
+      <div style={{ display: 'grid', gap: '24px', justifyItems: 'center' }}>
+        <Button size='small'>Small</Button>
         <Button>Default</Button>
-        <Button styleType='cta'>Call-to-action</Button>
-        <Button styleType='high-visibility'>High Visibility</Button>
-        <Button styleType='borderless'>Borderless</Button>
+        <Button size='large'>Large</Button>
       </div>
     </div>
   );

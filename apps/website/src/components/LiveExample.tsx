@@ -86,6 +86,7 @@ export default ({ code = '', staticComponent, ...rest }: Props) => {
         customSetup={{
           dependencies: {
             '@itwin/itwinui-react': 'dev',
+            '@itwin/itwinui-icons-react': '*',
           },
         }}
         id={id}
