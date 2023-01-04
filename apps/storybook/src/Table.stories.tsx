@@ -1332,10 +1332,6 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
     previousState: TableState,
     instance?: TableInstance,
   ): TableState => {
-    // console.log(action, action.type, actions, actions.toggleRowExpanded);
-    // console.log(newState);
-    console.log('action received', action);
-
     switch (action.type) {
       case actions.toggleRowSelected: {
         const newSelectedRows = {
@@ -1376,27 +1372,10 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
         const newExpandedRows = {
           ...expandedRows,
         };
-
-        // console.log('toggleRowExpanded1', newExpandedRows);
-
         if (newState.expanded[action.id]) {
           newExpandedRows[action.id] = true;
         } else {
           delete newExpandedRows[action.id];
-        }
-        setExpandedRows(newExpandedRows);
-        newState.expanded = newExpandedRows;
-        break;
-      }
-      case actions.toggleAllRowsExpanded: {
-        if (!instance?.rowsById) {
-          break;
-        }
-        const newExpandedRows = {} as Record<string, boolean>;
-        if (action.value) {
-          Object.keys(instance.rowsById).forEach(
-            (id) => (newExpandedRows[id] = true),
-          );
         }
         setExpandedRows(newExpandedRows);
         newState.expanded = newExpandedRows;
