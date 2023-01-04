@@ -31,7 +31,7 @@
     "vite": "^3.1.0"
   },
   "scripts": {
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 --no-open",
     "build": "build-storybook",
     "dev": "yarn storybook --quiet",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
