@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 const fs = require('fs');
-const { copyrightBannerScss, copyrightBannerHtml, copyrightBannerJs } = require('shared/copyrightLinter');
+const { copyrightBannerScss, copyrightBannerHtml, copyrightBannerJs } = require('./copyrightLinter');
 
 const componentName = process.argv.slice(2).join('-');
 
