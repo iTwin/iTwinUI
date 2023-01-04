@@ -27,7 +27,8 @@
     "selector-max-compound-selectors": 4,
     "selector-max-id": 1,
     "selector-no-qualifying-type": null,
-    "scss/dollar-variable-pattern": null
+    "scss/dollar-variable-pattern": null,
+    "max-line-length": 120
   },
   "ignoreFiles": ["lib/**/*", "**/*.html"],
   "customSyntax": "postcss-scss"
