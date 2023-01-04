@@ -121,6 +121,8 @@
   }
 
   .iui-tabs-actions {
+    align-items: center;
+    padding: var(--iui-size-3xs) 0; // So iui-tabs-actions doesn't touch iui-tabs-content
     column-gap: var(--iui-size-xs);
     margin-left: var(--_iui-actions-gap);
   }
@@ -155,6 +157,8 @@
 
   .iui-tabs-actions {
     flex-direction: column;
+    align-items: stretch;
+    padding: 0 var(--iui-size-xs); // So iui-tabs-actions doesn't touch iui-tabs-content
     row-gap: var(--iui-size-xs);
     margin-top: var(--_iui-actions-gap);
   }
@@ -219,8 +223,6 @@
 @mixin iui-tabs-actions {
   grid-area: tabs-actions;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
 }
 
 @mixin iui-tabs-content {
