@@ -6,11 +6,13 @@ propsPathDefault: '@itwin/itwinui-react/esm/core/Buttons/Button/Button.d.ts'
 propsPathSplitButton: '@itwin/itwinui-react/esm/core/Buttons/SplitButton/SplitButton.d.ts'
 propsPathIconButton: '@itwin/itwinui-react/esm/core/Buttons/IconButton/IconButton.d.ts'
 propsPathIdeasButton: '@itwin/itwinui-react/src/core/Buttons/IdeasButton/IdeasButton.tsx'
+propsPathDropdownButton: '@itwin/itwinui-react/src/core/Buttons/DropdownButton/DropdownButton.tsx'
 exampleCodeFile1: Button.main.tsx
 exampleCodeFileDefault: Button.default.tsx
 exampleCodeFileSplitButton: SplitButton.main.tsx
 exampleCodeFileIconButton: IconButton.main.tsx
 exampleCodeFileIdeasButton: IdeasButton.main.tsx
+exampleCodeFileDropdownButton: DropdownButton.main.tsx
 thumbnail: Button
 group: buttons
 ---
@@ -41,6 +43,16 @@ Pressing this left side of the button will commit the action. Pressing the right
 ### Props
 
 <PropsTable path={frontmatter.propsPathSplitButton} />
+
+## Dropdown button
+
+<LiveExample src={frontmatter.exampleCodeFileDropdownButton} />
+
+Pressing this button will always open a menu. Upon selecting an option from the menu, the action immediately takes place. The label of the button is not effected from your selection within the menu. The menu button can only be applied to default buttons and borderless buttons.
+
+### Props
+
+<PropsTable path={frontmatter.propsPathDropdownButton} />
 
 ## Icon button
 
