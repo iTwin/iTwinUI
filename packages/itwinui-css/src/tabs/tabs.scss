@@ -2,9 +2,9 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
-@mixin iui-tabs-wrapper {
-  --_iui-actions-gap: var(--iui-size-s);
+$iui-actions-gap: var(--iui-size-s);
 
+@mixin iui-tabs-wrapper {
   display: grid;
   position: relative;
 }
@@ -124,7 +124,7 @@
     align-items: center;
     padding: var(--iui-size-3xs) 0; // So iui-tabs-actions doesn't touch iui-tabs-content
     column-gap: var(--iui-size-xs);
-    margin-left: var(--_iui-actions-gap);
+    margin-left: $iui-actions-gap;
   }
 }
 
@@ -160,7 +160,7 @@
     align-items: stretch;
     padding: 0 var(--iui-size-xs); // So iui-tabs-actions doesn't touch iui-tabs-content
     row-gap: var(--iui-size-xs);
-    margin-top: var(--_iui-actions-gap);
+    margin-top: $iui-actions-gap;
   }
 }
 
