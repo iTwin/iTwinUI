@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 /**
  * Web component for avatar. Use in other components examples to simplify html. Choose between 2 predefined types/people.
  * <x-avatar size="small" type="2"></x-avatar>
