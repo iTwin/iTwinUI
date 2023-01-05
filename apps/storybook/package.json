@@ -45,7 +45,7 @@
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
       "prettier --write",
-      "node ../../packages/configs/copyrightLinter.js --fix"
+      "node ../../scripts/copyrightLinter.js --fix"
     ],
     "*.{tsx,ts}": [
       "eslint --max-warnings=0 --fix"

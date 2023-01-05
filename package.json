@@ -21,7 +21,7 @@
     ],
     "*.{tsx,ts,jsx,js}": [
       "prettier --write",
-      "node packages/configs/copyrightLinter.js --fix"
+      "node scripts/copyrightLinter.js --fix"
     ]
   },
   "scripts": {
@@ -31,7 +31,7 @@
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install",
-    "lint:copyright": "node packages/shared/copyrightLinter.js",
+    "lint:copyright": "node scripts/copyrightLinter.js",
     "push-docker": "yarn workspace @itwin/itwinui-css push-docker",
     "createComponent": "yarn workspace @itwin/itwinui-css createComponent",
     "approve": "yarn workspace @itwin/itwinui-css approve",
