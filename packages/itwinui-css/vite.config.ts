@@ -30,6 +30,7 @@ function generateIndex(): Plugin {
     code.replace(
       '%PUT_CONTENT_HERE%',
       `<ul>${getComponentList()
+        .filter((component) => component !== 'index')
         .map((component) => {
           return `<li><a class="iui-anchor" href="${component}.html">${component}</a></li>\n`;
         })
@@ -101,30 +102,4 @@ function getComponentList() {
   return fs
     .readdirSync(new URL('./backstop/tests', import.meta.url))
     .flatMap((file) => (file.endsWith('.html') ? [file.split('.')[0]] : []));
-}
-
-function lightningCssPlugin(): Plugin {
-  const queryWhitelist = ['direct'];
-  const matcherRegex = new RegExp(`\\.css\\??(?:${queryWhitelist.join('|')})?$`, 'i');
-  return {
-    name: 'lightning-css',
-    transform(css, id) {
-      if (!matcherRegex.test(id)) {
-        return;
-      }
-
-      try {
-        const { code } = lightningCss.transform({
-          minify: true,
-          sourceMap: false,
-          code: Buffer.from(css),
-          filename: id,
-          targets: require('./scripts/lightningCssSettings').targets,
-        });
-        return code.toString('utf8');
-      } catch {
-        return css;
-      }
-    },
-  };
 }
