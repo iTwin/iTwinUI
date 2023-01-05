@@ -2,8 +2,17 @@
 title: Button
 description: Buttons allow users to take actions and make choices with a single tap or click.
 layout: ./_layout.astro
-propsPath: '@itwin/itwinui-react/esm/core/Buttons/Button/Button.d.ts'
+propsPathDefault: '@itwin/itwinui-react/esm/core/Buttons/Button/Button.d.ts'
+propsPathSplitButton: '@itwin/itwinui-react/esm/core/Buttons/SplitButton/SplitButton.d.ts'
+propsPathIconButton: '@itwin/itwinui-react/esm/core/Buttons/IconButton/IconButton.d.ts'
+propsPathIdeasButton: '@itwin/itwinui-react/src/core/Buttons/IdeasButton/IdeasButton.tsx'
+propsPathDropdownButton: '@itwin/itwinui-react/src/core/Buttons/DropdownButton/DropdownButton.tsx'
 exampleCodeFile1: Button.main.tsx
+exampleCodeFileDefault: Button.default.tsx
+exampleCodeFileSplitButton: SplitButton.main.tsx
+exampleCodeFileIconButton: IconButton.main.tsx
+exampleCodeFileIdeasButton: IdeasButton.main.tsx
+exampleCodeFileDropdownButton: DropdownButton.main.tsx
 thumbnail: Button
 group: buttons
 ---
@@ -17,6 +26,46 @@ import LiveExample from '~/components/LiveExample.astro';
 
 Buttons are the recipients of a user onClick action (a mouse click for browsers and a finger press on touch-sensitive devices). Buttons have states and events and should be used when a form is submitted (post) or where the button represents a clear call to action on a page. In some cases, buttons can also be used in place of href links to draw special attention to that action.
 
-## Props
+## Button
 
-<PropsTable path={frontmatter.propsPath} />
+<LiveExample src={frontmatter.exampleCodeFileDefault} />
+
+### Props
+
+<PropsTable path={frontmatter.propsPathDefault} />
+
+## Split button
+
+<LiveExample src={frontmatter.exampleCodeFileSplitButton} />
+
+Pressing this left side of the button will commit the action. Pressing the right side of the button will open a menu. Upon selecting an option from the menu, the action immediately takes place, and the left side of the button’s label will change to match the recent selection.
+
+### Props
+
+<PropsTable path={frontmatter.propsPathSplitButton} />
+
+## Dropdown button
+
+<LiveExample src={frontmatter.exampleCodeFileDropdownButton} />
+
+Pressing this button will always open a menu. Upon selecting an option from the menu, the action immediately takes place. The label of the button is not effected from your selection within the menu. The menu button can only be applied to default buttons and borderless buttons.
+
+### Props
+
+<PropsTable path={frontmatter.propsPathDropdownButton} />
+
+## Icon button
+
+<LiveExample src={frontmatter.exampleCodeFileIconButton} />
+
+### Props
+
+<PropsTable path={frontmatter.propsPathIconButton} />
+
+## Ideas button
+
+<LiveExample src={frontmatter.exampleCodeFileIdeasButton} />
+
+### Props
+
+<PropsTable path={frontmatter.propsPathIdeasButton} />
