@@ -15,7 +15,11 @@ import { createRoot } from 'react-dom/client';
 import { ThemeProvider } from '@itwin/itwinui-react';
 import App from './App';
 import './styles.css';
-createRoot(document.getElementById('root')).render(<ThemeProvider theme='dark' themeOptions={{applyBackground: false}}><App /></ThemeProvider>);
+createRoot(document.getElementById('root')!).render(
+  <ThemeProvider theme='dark' themeOptions={{ applyBackground: false }}>
+    <App />
+  </ThemeProvider>,
+);
 `;
 
 const indexCss = `
