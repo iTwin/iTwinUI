@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { HorizontalTabs, Tab } from '@itwin/itwinui-react';
+import { Tabs, Tab } from '@itwin/itwinui-react';
 
 export default () => {
   const [index, setIndex] = React.useState(0);
@@ -19,7 +19,8 @@ export default () => {
   };
   return (
     <div style={{ width: '70%' }}>
-      <HorizontalTabs
+      <Tabs
+        orientation='horizontal'
         labels={[
           <Tab key={1} label='Item1' />,
           <Tab key={2} label='Item2' />,
@@ -28,7 +29,7 @@ export default () => {
         onTabSelected={setIndex}
       >
         {getContent()}
-      </HorizontalTabs>
+      </Tabs>
     </div>
   );
 };

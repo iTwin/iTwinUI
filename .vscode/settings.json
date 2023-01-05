@@ -14,7 +14,8 @@
   "html.format.wrapLineLength": 120,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"

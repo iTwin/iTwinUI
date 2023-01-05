@@ -28,9 +28,7 @@ const inputsAndOutputsList = [
 
 // sass cli expects this format (https://sass-lang.com/documentation/cli/dart-sass)
 // src/all.scss:css/all.css src/alert/classes.scss:css/alert.css
-const spaceSeparatedInputsAndOutputs = inputsAndOutputsList
-  .map(([scss, css]) => `${scss}:${css}`)
-  .join(' ');
+const spaceSeparatedInputsAndOutputs = inputsAndOutputsList.map(([scss, css]) => `${scss}:${css}`).join(' ');
 
 spawn(`yarn sass --watch ${spaceSeparatedInputsAndOutputs}`, {
   stdio: 'inherit',
