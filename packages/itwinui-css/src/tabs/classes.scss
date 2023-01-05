@@ -12,14 +12,14 @@
   &.iui-vertical {
     @include iui-tabs-vertical;
   }
+}
 
-  .iui-tabs-actions {
-    @include iui-tabs-actions;
-  }
+.iui-tabs-actions {
+  @include iui-tabs-actions;
+}
 
-  .iui-tabs-content {
-    @include iui-tabs-content;
-  }
+.iui-tabs-content {
+  @include iui-tabs-content;
 }
 
 .iui-tabs {
