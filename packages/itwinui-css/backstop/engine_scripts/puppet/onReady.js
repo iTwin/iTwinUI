@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 module.exports = async (page, scenario, vp) => {
   console.log('SCENARIO > ' + scenario.label);
   await require('./overrideCss')(page, scenario);
