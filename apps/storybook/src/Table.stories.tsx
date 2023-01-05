@@ -1361,14 +1361,6 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
         break;
       }
       case actions.toggleRowExpanded: {
-        console.log(
-          'toggleRowExpanded',
-          expandedRows,
-          newState.expanded,
-          action,
-          action.value,
-        );
-
         const newExpandedRows = {
           ...expandedRows,
         };
@@ -1432,66 +1424,19 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
       </InputGroup>
       <Table
         columns={columns}
-        data={data}
         emptyTableContent='No data.'
         useControlledState={controlledState}
         stateReducer={tableStateReducer}
         isSelectable
         {...args}
+        data={data}
       />
     </>
   );
 };
 
-ControlledState.args = {
-  isSelectable: true,
-  data: [
-    {
-      name: 'Row 1',
-      description: 'Description 1',
-      subRows: [
-        { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
-        {
-          name: 'Row 1.2',
-          description: 'Description 1.2',
-          subRows: [
-            {
-              name: 'Row 1.2.1',
-              description: 'Description 1.2.1',
-              subRows: [],
-            },
-            {
-              name: 'Row 1.2.2',
-              description: 'Description 1.2.2',
-              subRows: [],
-            },
-            {
-              name: 'Row 1.2.3',
-              description: 'Description 1.2.3',
-              subRows: [],
-            },
-            {
-              name: 'Row 1.2.4',
-              description: 'Description 1.2.4',
-              subRows: [],
-            },
-          ],
-        },
-        { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
-        { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
-      ],
-    },
-    {
-      name: 'Row 2',
-      description: 'Description 2',
-      subRows: [
-        { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
-        { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
-        { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
-      ],
-    },
-    { name: 'Row 3', description: 'Description 3', subRows: [] },
-  ],
+ControlledState.argTypes = {
+  data: { control: { disable: true } },
 };
 
 export const Full: Story<Partial<TableProps>> = (args) => {
