@@ -103,7 +103,7 @@ $iui-actions-gap: var(--iui-size-s);
 
 @mixin iui-tabs-horizontal {
   grid-template-areas: 'tabs tabs-actions' 'tabs-content tabs-content';
-  grid-template-columns: 1fr min-content;
+  grid-template-columns: 1fr auto;
 
   .iui-tabs {
     display: flex;
@@ -130,7 +130,7 @@ $iui-actions-gap: var(--iui-size-s);
 
 @mixin iui-tabs-vertical {
   grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: auto 1fr;
 
   .iui-tabs {
     li,
