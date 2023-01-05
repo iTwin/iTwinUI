@@ -119,13 +119,6 @@ $iui-actions-gap: var(--iui-size-s);
       height: var(--iui-size-3xs);
     }
   }
-
-  .iui-tabs-actions {
-    align-items: center;
-    padding: var(--iui-size-3xs) 0; // So iui-tabs-actions doesn't touch iui-tabs-content
-    column-gap: var(--iui-size-xs);
-    margin-left: $iui-actions-gap;
-  }
 }
 
 @mixin iui-tabs-vertical {
@@ -154,14 +147,6 @@ $iui-actions-gap: var(--iui-size-s);
       width: var(--iui-size-3xs);
     }
   }
-
-  .iui-tabs-actions {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0 var(--iui-size-xs); // So iui-tabs-actions doesn't touch iui-tabs-content
-    row-gap: var(--iui-size-xs);
-    margin-top: $iui-actions-gap;
-  }
 }
 
 @mixin iui-tab-not-animated {
@@ -173,8 +158,7 @@ $iui-actions-gap: var(--iui-size-s);
 
   .iui-active::after {
     @media (prefers-reduced-motion: no-preference) {
-      transition: width var(--iui-duration-1) ease,
-        height var(--iui-duration-1) ease;
+      transition: width var(--iui-duration-1) ease, height var(--iui-duration-1) ease;
     }
   }
 
@@ -201,8 +185,7 @@ $iui-actions-gap: var(--iui-size-s);
       left: var(--stripe-left);
       width: var(--stripe-width);
       @media (prefers-reduced-motion: no-preference) {
-        transition: width var(--iui-duration-1) ease-out,
-          left var(--iui-duration-1) ease-out;
+        transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
       }
     }
   }
@@ -223,6 +206,21 @@ $iui-actions-gap: var(--iui-size-s);
 @mixin iui-tabs-actions {
   grid-area: tabs-actions;
   display: flex;
+
+  @at-root .iui-horizontal & {
+    align-items: center;
+    padding: var(--iui-size-3xs) 0; // So iui-tabs-actions doesn't touch iui-tabs-content
+    column-gap: var(--iui-size-xs);
+    margin-left: $iui-actions-gap;
+  }
+
+  @at-root .iui-vertical & {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 var(--iui-size-xs); // So iui-tabs-actions doesn't touch iui-tabs-content
+    row-gap: var(--iui-size-xs);
+    margin-top: $iui-actions-gap;
+  }
 }
 
 @mixin iui-tabs-content {
