@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 function scenario(testCase, options = {}) {
   return Object.assign(
     {
@@ -18,7 +22,7 @@ function scenario(testCase, options = {}) {
       misMatchThreshold: 0.001,
       requireSameDimensions: true,
     },
-    options
+    options,
   );
 }
 

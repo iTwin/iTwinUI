@@ -62,5 +62,6 @@
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
     "push-docker": "node scripts/pushDocker.js"
-  }
+  },
+  "prettier": "configs/prettier-scss-config.js"
 }
