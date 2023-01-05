@@ -6,7 +6,6 @@ import { defineConfig, type Plugin } from 'vite';
 import fs from 'fs';
 import { resolve } from 'path';
 import { minify } from 'html-minifier';
-import * as lightningCss from 'lightningcss';
 
 export default defineConfig({
   base: './',
