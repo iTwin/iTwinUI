@@ -110,6 +110,8 @@ $iui-actions-gap: var(--iui-size-s);
   }
 
   .iui-tab {
+    min-height: calc(var(--iui-size-l) * 2);
+
     &::after {
       width: 100%;
       height: 0;
