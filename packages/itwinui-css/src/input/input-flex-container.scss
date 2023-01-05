@@ -1,7 +1,27 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @mixin iui-input-flex-container {
-  @include iui-input;
+  --_iui-input-background-color: var(--iui-color-background);
+  --_iui-input-border-color: var(--iui-color-border-foreground);
+  --_iui-input-text-color: var(--iui-color-text);
+
+  @include iui-reset;
+  @include iui-focus($offset: -2px, $thickness: 2px);
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--iui-font-size-1);
+  font-weight: var(--iui-font-weight-normal);
+  line-height: var(--iui-size-l);
+  border-radius: var(--iui-border-radius-1);
+  appearance: none;
+  height: var(--_iui-input-min-height);
+  padding-block: var(--_iui-input-padding-block);
+  padding-inline: var(--iui-size-s);
+  color: var(--_iui-input-text-color);
+  background-color: var(--_iui-input-background-color);
+  border: 1px solid var(--_iui-input-border-color);
+  transition: border-color var(--iui-duration-1) ease-out;
+  @include iui-input-size;
 
   right: unset;
   display: flex;
@@ -34,7 +54,9 @@
     &[disabled] {
       --_iui-input-background-color: var(--iui-color-background-disabled);
       --_iui-input-border-color: var(--iui-color-border-disabled);
-      --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
+      --_iui-input-with-icon-hover-border-color: var(
+        --iui-color-border-disabled
+      );
       cursor: not-allowed;
     }
   }

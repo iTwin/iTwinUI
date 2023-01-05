@@ -32,6 +32,24 @@
   > input[type='search'] {
     @include iui-search-box;
   }
+
+  &[data-iui-size='small'] {
+    @include iui-input-size(small);
+  }
+
+  &[data-iui-size='large'] {
+    @include iui-input-size(large);
+  }
+
+  @each $status in positive, warning, negative {
+    &.iui-#{$status} {
+      @include iui-input-status(
+        $status: $status,
+        $iconSelector: 'svg',
+        $textSelector: 'input'
+      );
+    }
+  }
 }
 
 .iui-invisible-borders {
