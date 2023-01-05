@@ -11,7 +11,7 @@ spawn(
   {
     stdio: 'inherit',
     shell: true,
-  }
+  },
 )
   .on('error', (error) => {
     process.exitCode = 1;

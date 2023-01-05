@@ -13,10 +13,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: Object.fromEntries(
-        getComponentList().map((name) => [
-          name,
-          resolve(__dirname, `./backstop/tests/${name}.html`),
-        ]),
+        getComponentList().map((name) => [name, resolve(__dirname, `./backstop/tests/${name}.html`)]),
       ),
       output: {
         dir: './backstop/minified',
@@ -74,9 +71,7 @@ function addMetaTags(): Plugin {
   const metaContent = (componentName) => `
     <meta name="description" content="An open-source design system that helps us build a unified web experience.">
     <meta property="og:site_name" content="iTwinUI">
-    <meta property="og:title" content="${
-      componentName[0].toUpperCase() + componentName.replace(/-/g, ' ').slice(1)
-    }">
+    <meta property="og:title" content="${componentName[0].toUpperCase() + componentName.replace(/-/g, ' ').slice(1)}">
     <meta property="og:description" content="An open-source design system that helps us build a unified web experience.">
     <meta property="og:image" content="https://itwin.github.io/iTwinUI/backstop/assets/logo.png">
     <meta property="og:image:alt" content="iTwinUI logo">
@@ -110,10 +105,7 @@ function getComponentList() {
 
 function lightningCssPlugin(): Plugin {
   const queryWhitelist = ['direct'];
-  const matcherRegex = new RegExp(
-    `\\.css\\??(?:${queryWhitelist.join('|')})?$`,
-    'i',
-  );
+  const matcherRegex = new RegExp(`\\.css\\??(?:${queryWhitelist.join('|')})?$`, 'i');
   return {
     name: 'lightning-css',
     transform(css, id) {
