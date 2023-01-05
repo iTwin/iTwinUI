@@ -209,14 +209,14 @@ $iui-actions-gap: var(--iui-size-s);
   grid-area: tabs-actions;
   display: flex;
 
-  :where(.iui-tabs-wrapper.iui-horizontal &) {
+  :where(.iui-tabs-wrapper.iui-horizontal) & {
     align-items: center;
     padding: var(--iui-size-3xs) 0; // So iui-tabs-actions doesn't touch iui-tabs-content
     column-gap: var(--iui-size-xs);
     margin-left: $iui-actions-gap;
   }
 
-  :where(.iui-tabs-wrapper.iui-vertical &) {
+  :where(.iui-tabs-wrapper.iui-vertical) & {
     flex-direction: column;
     align-items: stretch;
     padding: 0 var(--iui-size-xs); // So iui-tabs-actions doesn't touch iui-tabs-content
