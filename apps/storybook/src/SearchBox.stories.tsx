@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { SearchBox, SearchBoxProps } from '@itwin/itwinui-react';
+import { IconButton, SearchBox, SearchBoxProps } from '@itwin/itwinui-react';
+import { SvgAirplane, SvgSearch } from '@itwin/itwinui-icons-react';
 
 export default {
   component: SearchBox,
@@ -16,5 +17,22 @@ export default {
 } as Meta<SearchBoxProps>;
 
 export const Basic: Story<SearchBoxProps> = (args) => {
-  return <SearchBox {...args} placeholder='search...' size='small' />;
+  return (
+    <SearchBox
+      {...args}
+      placeholder='search...'
+      size='small'
+      startAdornment={<SvgAirplane className='iui-input-icon' />}
+      endAdornment={
+        <>
+          <IconButton styleType='borderless'>
+            <SvgSearch />
+          </IconButton>
+          <IconButton styleType='borderless'>
+            <SvgSearch />
+          </IconButton>
+        </>
+      }
+    />
+  );
 };

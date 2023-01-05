@@ -3,11 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { IconButton } from '../Buttons';
 import { InputProps } from '../Input';
-import { SvgCaretDownSmall, useTheme } from '../utils';
+import { useTheme } from '../utils';
 
-export type SearchBoxProps = InputProps;
+export type SearchBoxProps = {
+  startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
+} & InputProps;
 
 /**
  * Describe me here!
@@ -15,17 +17,13 @@ export type SearchBoxProps = InputProps;
  * Example usages go here!
  */
 export const SearchBox = (props: SearchBoxProps) => {
-  const { size, ...rest } = props;
+  const { size, startAdornment, endAdornment, ...rest } = props;
   useTheme();
   return (
     <div className='iui-input-flex-container' data-iui-size={size}>
-      <IconButton>
-        <SvgCaretDownSmall />
-      </IconButton>
+      {startAdornment}
       <input className='iui-invisible-borders' type='search' {...rest} />
-      <IconButton styleType='borderless' className='iui-end-icon'>
-        <SvgCaretDownSmall />
-      </IconButton>
+      {endAdornment}
     </div>
   );
 };
