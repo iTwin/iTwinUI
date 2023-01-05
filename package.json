@@ -6,7 +6,8 @@
     "packages": [
       "apps/*",
       "packages/*",
-      "playgrounds/*"
+      "playgrounds/*",
+      "internal/*"
     ]
   },
   "lint-staged": {

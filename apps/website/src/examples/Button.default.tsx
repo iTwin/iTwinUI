@@ -3,16 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { LabeledTextarea } from '@itwin/itwinui-react';
+import { Button } from '@itwin/itwinui-react';
 
 export default () => {
   return (
     <div>
-      <LabeledTextarea
-        label='Textarea label'
-        message='Help message'
-        placeholder='Labeled textarea'
-      />
+      <div style={{ display: 'grid', gap: '24px', justifyItems: 'center' }}>
+        <Button size='small'>Small</Button>
+        <Button>Default</Button>
+        <Button size='large'>Large</Button>
+      </div>
     </div>
   );
 };
