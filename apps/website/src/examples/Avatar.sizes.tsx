@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Avatar, getUserColor } from '@itwin/itwinui-react';
-import { SvgUser } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
@@ -18,27 +17,26 @@ export default () => {
       <Avatar
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
+        size='small'
         title='Terry Rivers'
-        size='x-large'
-        status='online'
       />
       <Avatar
-        abbreviation='US'
-        backgroundColor={getUserColor('Unknown user')}
-        image={<SvgUser className='iui-icon' aria-hidden='true' />}
-        title='Unknown user'
-        size='x-large'
-        status='away'
+        abbreviation='RM'
+        backgroundColor={getUserColor('Robin Mercer')}
+        size='medium'
+        title='Robin Mercer'
       />
       <Avatar
-        abbreviation='GB'
-        backgroundColor={getUserColor('Greg Bentley')}
-        image={
-          <img src='https://www.bentley.com/wp-content/uploads/greg-bentley-hr-profile.jpeg' />
-        }
-        title='Greg Bentley'
+        abbreviation='MV'
+        backgroundColor={getUserColor('Morgan Vera')}
+        size='large'
+        title='Morgan Vera'
+      />
+      <Avatar
+        abbreviation='JM'
+        backgroundColor={getUserColor('Jean Mullins')}
         size='x-large'
-        status='busy'
+        title='Jean Mullins'
       />
     </div>
   );
