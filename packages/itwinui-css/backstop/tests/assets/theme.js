@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 class ThemeButton extends HTMLElement {
   constructor() {
     super();
@@ -133,7 +137,7 @@ class ThemeButton extends HTMLElement {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const prefersHC = window.matchMedia('(prefers-contrast: more)').matches;
     this.shadowRoot.querySelector(
-      `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`
+      `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`,
     ).checked = true;
     document.documentElement.dataset.iuiTheme = prefersDark ? 'dark' : 'light';
     document.documentElement.dataset.iuiContrast = prefersHC ? 'high' : undefined;
