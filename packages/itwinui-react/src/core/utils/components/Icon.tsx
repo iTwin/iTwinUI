@@ -9,12 +9,12 @@ import '@itwin/itwinui-css/css/utils.css';
 export type IconProps = {
   /**
    * Size of the svg.
-   *  - 'auto': scales with text
    *  - 'medium': works well with most text
    *  - 'small': smaller than medium
    *  - 'large': larger than medium
+   *  - 'auto': scales with text
    *
-   * @default 'auto'
+   * @default 'medium'
    */
   size?: 'auto' | 'small' | 'medium' | 'large';
   /**
@@ -39,7 +39,7 @@ const sizeMap = {
  * Works well with svgs from `@itwin/itwinui-icons-react`.
  *
  * @example
- * <Icon size='default'>
+ * <Icon>
  *   <SvgPlaceholder />
  * </Icon>
  *
@@ -49,7 +49,7 @@ const sizeMap = {
  * </Icon>
  */
 export const Icon = (props: IconProps) => {
-  const { size = 'auto', fill = 'default', className, ...rest } = props;
+  const { size = 'medium', fill = 'default', className, ...rest } = props;
 
   return (
     <span
