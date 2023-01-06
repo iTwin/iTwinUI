@@ -35,7 +35,7 @@ const sizeMap = {
 } as const;
 
 /**
- * A utility to component to provide size and fill to svgs.
+ * A utility component to provide size and fill to svgs.
  * Works well with svgs from `@itwin/itwinui-icons-react`.
  *
  * @example
