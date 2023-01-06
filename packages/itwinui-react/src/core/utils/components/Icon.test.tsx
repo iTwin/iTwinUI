@@ -11,7 +11,7 @@ it('should render in its most basic state', () => {
   render(<Icon>icon</Icon>);
   const icon = screen.getByText('icon');
   expect(icon).toHaveClass('iui-svg-icon');
-  expect(icon).toHaveAttribute('data-iui-icon-size', 'medium');
+  expect(icon).toHaveAttribute('data-iui-icon-size', 'm');
   expect(icon).toHaveAttribute('data-iui-icon-color', 'default');
 });
 
