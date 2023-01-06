@@ -73,6 +73,19 @@
         transform: translateZ(0) scale(1.1);
       }
     }
+
+    position: relative;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
   }
 
   &.iui-folder {

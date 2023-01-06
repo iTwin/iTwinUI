@@ -176,7 +176,7 @@ export const Actionable: Story<TileProps> = (props) => {
 
   return (
     <Tile
-      name={name}
+      name={<a href='#'>{name}</a>}
       description={description}
       metadata={metadata}
       badge={badge}
