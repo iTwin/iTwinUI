@@ -211,93 +211,47 @@ $iui-actions-gap: var(--iui-size-s);
   flex-direction: column;
   justify-content: center;
 
-  &::before {
-    content: '';
-    flex: 999 999 0;
+  --_iui-borderless-horizontal-tabs-actions-content-gap: var(--iui-size-3xs);
+  --_iui-borderless-vertical-tabs-actions-content-gap: var(--iui-size-xs);
+
+  // Add larger min actions-content spacing for borderless horizontal tabs
+  :where(.iui-tabs-wrapper.iui-horizontal) .iui-borderless + & {
+    --_iui-borderless-horizontal-tabs-actions-content-gap: 8px;
   }
 
-  > * {
-    flex: 0 0 auto;
+  :where(.iui-tabs-wrapper.iui-horizontal) & {
+    margin-left: $iui-actions-gap;
+
+    &::before {
+      content: '';
+      flex: 1;
+    }
+
+    &::after {
+      content: '';
+      flex: 1;
+      min-height: var(--_iui-borderless-horizontal-tabs-actions-content-gap);
+    }
   }
 
-  &::after {
-    content: '';
-    flex: 999 0 0;
-    min-height: 8px;
+  :where(.iui-tabs-wrapper.iui-vertical) & {
+    margin-top: $iui-actions-gap;
+    padding: 0 var(--_iui-borderless-vertical-tabs-actions-content-gap);
   }
 }
 
 @mixin iui-tabs-actions {
-  grid-area: tabs-actions;
   display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-
-  // Default spacing to prevent actions sticking to content
-  --_iui-borderless-horizontal-tabs-actions-contents-gap: var(--iui-size-3xs);
-
-  // :where(.iui-tabs-wrapper.iui-horizontal) .iui-borderless + &:first-child {
-  //   // flex-direction: column;
-  //   flex: 1 0 auto;
-  // }
-
-  // :where(.iui-tabs-wrapper.iui-horizontal) .iui-borderless + &:first-child::before {
-  //   content: '';
-  //   flex: 999 0 0;
-  // }
-
-  // :where(.iui-tabs-wrapper.iui-horizontal) .iui-borderless + &:last-child::after {
-  //   content: '';
-  //   flex: 999 0 8px;
-  // }
-
-  // :where(.iui-tabs-wrapper.iui-horizontal) .iui-borderless + & {
-  //   background-color: red;
-
-  //   &::before {
-  //     content: '';
-  //     flex: 999 999 0;
-  //   }
-
-  //   * {
-  //     flex: 0 0 auto;
-  //   }
-
-  //   &::after {
-  //     content: '';
-  //     flex: 999 0 0;
-  //     min-height: 8px;
-  //   }
-
-  //   // > *:first-child::before {
-  //   //   content: 'qqq';
-  //   //   // background-color: green;
-  //   // }
-  //   // &:first-child::before {
-  //   //   content: 'before';
-  //   // }
-
-  //   // &:last-child::after {
-  //   //   content: 'after';
-  //   // }
-  //   // --_iui-borderless-horizontal-tabs-actions-contents-gap: 8px;
-  // }
 
   :where(.iui-tabs-wrapper.iui-horizontal) & {
     align-items: center;
-    padding-bottom: var(
-      --_iui-borderless-horizontal-tabs-actions-contents-gap
-    ); // So iui-tabs-actions doesn't touch iui-tabs-content
     column-gap: var(--iui-size-xs);
-    margin-left: $iui-actions-gap;
   }
 
   :where(.iui-tabs-wrapper.iui-vertical) & {
     flex-direction: column;
     align-items: stretch;
-    padding: 0 var(--iui-size-xs); // So iui-tabs-actions doesn't touch iui-tabs-content
     row-gap: var(--iui-size-xs);
-    margin-top: $iui-actions-gap;
   }
 }
 
