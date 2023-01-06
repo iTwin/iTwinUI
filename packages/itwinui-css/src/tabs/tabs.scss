@@ -210,19 +210,20 @@ $iui-actions-gap: var(--iui-size-s);
   display: flex;
   justify-content: center;
 
+  // Default spacing to prevent actions sticking to content
+  --_iui-borderless-horizontal-tabs-actions-contents-gap: var(--iui-size-3xs);
+
   :where(.iui-tabs-wrapper.iui-horizontal) .iui-borderless + & {
-    padding-bottom: 8px;
+    --_iui-borderless-horizontal-tabs-actions-contents-gap: 8px;
   }
 
   :where(.iui-tabs-wrapper.iui-horizontal) & {
     align-items: center;
-    padding: var(--iui-size-3xs) 0; // So iui-tabs-actions doesn't touch iui-tabs-content
+    padding-bottom: var(
+      --_iui-borderless-horizontal-tabs-actions-contents-gap
+    ); // So iui-tabs-actions doesn't touch iui-tabs-content
     column-gap: var(--iui-size-xs);
     margin-left: $iui-actions-gap;
-
-    // @at-root .iui-borderless + .iui-tabs-actions {
-    //   padding-bottom: 8px;
-    // }
   }
 
   :where(.iui-tabs-wrapper.iui-vertical) & {
