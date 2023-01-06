@@ -208,12 +208,21 @@ $iui-actions-gap: var(--iui-size-s);
 @mixin iui-tabs-actions {
   grid-area: tabs-actions;
   display: flex;
+  justify-content: center;
+
+  :where(.iui-tabs-wrapper.iui-horizontal) .iui-borderless + & {
+    padding-bottom: 8px;
+  }
 
   :where(.iui-tabs-wrapper.iui-horizontal) & {
     align-items: center;
     padding: var(--iui-size-3xs) 0; // So iui-tabs-actions doesn't touch iui-tabs-content
     column-gap: var(--iui-size-xs);
     margin-left: $iui-actions-gap;
+
+    // @at-root .iui-borderless + .iui-tabs-actions {
+    //   padding-bottom: 8px;
+    // }
   }
 
   :where(.iui-tabs-wrapper.iui-vertical) & {
