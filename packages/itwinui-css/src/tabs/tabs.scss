@@ -216,7 +216,7 @@ $iui-actions-gap: var(--iui-size-s);
 
   // Add larger min actions-content spacing for borderless horizontal tabs
   :where(.iui-tabs-wrapper.iui-horizontal) .iui-borderless + & {
-    --_iui-borderless-horizontal-tabs-actions-content-gap: 8px;
+    --_iui-borderless-horizontal-tabs-actions-content-gap: var(--iui-size-xs);
   }
 
   :where(.iui-tabs-wrapper.iui-horizontal) & {
