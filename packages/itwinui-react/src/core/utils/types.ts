@@ -2,10 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export * from './functions';
-export * from './hooks';
-export * from './components';
-export * from './props';
-export * from './color';
-export * from './icons';
-export * from './types';
+/**
+ * This allows custom strings and keeps intellisense for string unions.
+ * See https://github.com/Microsoft/TypeScript/issues/29729
+ */
+export type AnyString = string & {}; // eslint-disable-line @typescript-eslint/ban-types

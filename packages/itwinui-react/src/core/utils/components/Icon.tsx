@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
+import type { AnyString } from '../types';
 import '@itwin/itwinui-css/css/utils.css';
 
 export type IconProps = {
@@ -16,7 +17,7 @@ export type IconProps = {
    *
    * @default 'medium'
    */
-  size?: 'auto' | 'small' | 'medium' | 'large';
+  size?: 'auto' | 'small' | 'medium' | 'large' | AnyString;
   /**
    * Fill (color) of the svg.
    * Defaults to `--iui-color-icon-muted`. Can be specified to
@@ -24,15 +25,29 @@ export type IconProps = {
    *
    * @default 'default'
    */
-  fill?: 'default' | 'positive' | 'informational' | 'negative' | 'warning';
+  fill?:
+    | 'default'
+    | 'positive'
+    | 'informational'
+    | 'negative'
+    | 'warning'
+    | AnyString;
 } & React.ComponentProps<'span'>;
 
-const sizeMap = {
-  auto: 'auto',
-  small: 's',
-  medium: 'm',
-  large: 'l',
-} as const;
+const getSizeValue = (size: string) => {
+  switch (size) {
+    case 'auto':
+      return 'auto';
+    case 'small':
+      return 's';
+    case 'medium':
+      return 'm';
+    case 'large':
+      return 'l';
+    default:
+      return size;
+  }
+};
 
 /**
  * A utility component to provide size and fill to svgs.
@@ -54,7 +69,7 @@ export const Icon = (props: IconProps) => {
   return (
     <span
       className={cx('iui-svg-icon', className)}
-      data-iui-icon-size={sizeMap[size] || size}
+      data-iui-icon-size={getSizeValue(size)}
       data-iui-icon-color={fill}
       {...rest}
     />

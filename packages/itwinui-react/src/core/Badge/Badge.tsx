@@ -10,6 +10,7 @@ import {
   isSoftBackground,
   SoftBackgrounds,
 } from '../utils';
+import type { AnyString } from '../utils';
 import '@itwin/itwinui-css/css/badge.css';
 
 /**
@@ -48,8 +49,7 @@ export type BadgeProps = {
     | 'negative'
     | 'warning'
     | keyof typeof SoftBackgrounds
-    // eslint-disable-next-line @typescript-eslint/ban-types -- This allows custom strings and keeps intellisense. See https://github.com/Microsoft/TypeScript/issues/29729
-    | (string & {});
+    | AnyString;
   /**
    * Badge label.
    * Always gets converted to uppercase, and truncated if too long.

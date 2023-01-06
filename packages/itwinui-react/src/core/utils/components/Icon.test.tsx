@@ -58,3 +58,15 @@ it('should forward rest props', () => {
   expect(icon).toHaveStyle('color: hotpink;');
   expect(icon).toHaveAttribute('aria-hidden', 'true');
 });
+
+it('should allow arbitrary sizes and fills', () => {
+  render(
+    <Icon size='26.2px' fill='hotpink'>
+      icon
+    </Icon>,
+  );
+  const icon = screen.getByText('icon');
+  expect(icon).toHaveClass('iui-svg-icon');
+  expect(icon).toHaveAttribute('data-iui-icon-size', '26.2px');
+  expect(icon).toHaveAttribute('data-iui-icon-color', 'hotpink');
+});
