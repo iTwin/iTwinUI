@@ -5,7 +5,7 @@
 describe('Icon', () => {
   const storyPath = 'Utilities/Icon';
 
-  const tests = ['Default', 'Statuses'];
+  const tests = ['Default', 'Statuses', 'Sizes'];
 
   tests.forEach((testName) => {
     it(testName, function () {

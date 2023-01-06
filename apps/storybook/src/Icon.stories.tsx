@@ -67,6 +67,24 @@ Statuses.decorators = [
   ),
 ];
 
+export const Sizes: Story<IconProps> = (args) => {
+  return (
+    <>
+      <Icon size='small' {...args}>
+        <SvgPlaceholder />
+      </Icon>
+      <Icon size='medium' {...args}>
+        <SvgPlaceholder />
+      </Icon>
+      <Icon size='large' {...args}>
+        <SvgPlaceholder />
+      </Icon>
+    </>
+  );
+};
+Sizes.args = {};
+Sizes.decorators = Statuses.decorators;
+
 export const Autoscale: Story<IconProps> = (args) => {
   return (
     <Icon {...args}>
