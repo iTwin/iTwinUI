@@ -211,6 +211,7 @@ $iui-actions-gap: var(--iui-size-s);
   flex-direction: column;
   justify-content: center;
 
+  // To always prevent actions from sticking to content
   --_iui-borderless-horizontal-tabs-actions-content-gap: var(--iui-size-3xs);
   --_iui-borderless-vertical-tabs-actions-content-gap: var(--iui-size-xs);
 
