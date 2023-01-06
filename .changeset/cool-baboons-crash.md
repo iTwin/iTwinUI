@@ -7,22 +7,7 @@
 ```html
 <div class="iui-tabs-wrapper iui-horizontal">
   <ul class="iui-tabs iui-default">...</ul>
-
-  <div class="iui-tabs-actions">
-    <button
-      class="iui-button iui-button-dropdown"
-      data-iui-size="small"
-    >
-      <span>Actions</span>
-      <svg-caret-down-small
-        class="iui-button-icon"
-        aria-hidden="true"
-      ></svg-caret-down-small>
-    </button>
-  </div>
-
-  <div class="iui-tabs-content">...</div>
-  <div class="iui-tabs-content">...</div>
+  <div class="iui-tabs-actions">...</div>
   <div class="iui-tabs-content">...</div>
 </div>
 ```
