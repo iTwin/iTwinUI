@@ -215,13 +215,9 @@ $iui-actions-gap: var(--iui-size-s);
   justify-content: center;
 
   // To always prevent actions from sticking to content
-  --_iui-borderless-horizontal-tabs-actions-content-gap: var(--iui-size-3xs);
-  --_iui-borderless-vertical-tabs-actions-content-gap: var(--iui-size-xs);
-
-  // Add larger min actions-content spacing for borderless horizontal tabs
-  :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-borderless) + & {
-    --_iui-borderless-horizontal-tabs-actions-content-gap: var(--iui-size-xs);
-  }
+  $standard-horizontal-tabs-actions-content-gap: var(--iui-size-3xs);
+  $borderless-horizontal-tabs-actions-content-gap: var(--iui-size-xs);
+  $standard-vertical-tabs-actions-content-gap: var(--iui-size-xs);
 
   :where(.iui-tabs-wrapper.iui-horizontal) & {
     margin-left: $iui-actions-gap;
@@ -234,7 +230,14 @@ $iui-actions-gap: var(--iui-size-s);
     &::after {
       content: '';
       flex: 1;
-      min-height: var(--_iui-borderless-horizontal-tabs-actions-content-gap);
+      min-height: $standard-horizontal-tabs-actions-content-gap;
+    }
+  }
+
+  // Add larger min actions-content spacing for borderless horizontal tabs
+  :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-borderless) + & {
+    &::after {
+      min-height: $borderless-horizontal-tabs-actions-content-gap;
     }
   }
 
