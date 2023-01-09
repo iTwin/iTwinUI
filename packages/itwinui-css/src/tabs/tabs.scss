@@ -243,7 +243,7 @@ $iui-actions-gap: var(--iui-size-s);
 
   :where(.iui-tabs-wrapper.iui-vertical) & {
     margin-top: $iui-actions-gap;
-    padding: 0 var(--_iui-borderless-vertical-tabs-actions-content-gap);
+    padding: 0 $standard-vertical-tabs-actions-content-gap;
   }
 }
 
