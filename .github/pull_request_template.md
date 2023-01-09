@@ -5,8 +5,6 @@ If you are only making changes to the docs site using the "Edit page on GitHub" 
 then you can ignore most of this template.
 -->
 
-Closes #<!-- Add issue number -->
-
 ## Changes
 
 <!--
