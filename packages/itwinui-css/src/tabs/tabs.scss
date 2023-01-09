@@ -229,11 +229,7 @@ $borderless-horizontal-tab-min-height: calc(
   :where(.iui-tabs-wrapper.iui-horizontal) & {
     margin-left: $tabs-actions-gap;
 
-    &::before {
-      content: '';
-      flex: 1;
-    }
-
+    &::before,
     &::after {
       content: '';
       flex: 1;
