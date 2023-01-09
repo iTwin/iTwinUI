@@ -2,7 +2,20 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
-$iui-actions-gap: var(--iui-size-s);
+// (12px) Between .iui-tabs and .iui-tabs-actions-wrapper
+$tabs-actions-gap: var(--iui-size-s);
+
+// (2px) Min spacing between .iui-tabs-content and .iui-tabs-actions
+$content-actions-min-gap-default-horizontal-tabs: var(--iui-size-3xs);
+// (8px) Larger than default min spacing for borderless tabs
+$content-actions-min-gap-borderless-horizontal-tabs: var(--iui-size-xs);
+// (8px) Padding for iui-tabs (vertical tabs)
+$content-actions-gap-vertical-tabs: var(--iui-size-xs);
+
+// (44px) Min tab height for borderless tabs
+$borderless-horizontal-tab-min-height: calc(
+  var(--iui-size-s) * 3 + #{$content-actions-min-gap-borderless-horizontal-tabs}
+);
 
 @mixin iui-tabs-wrapper {
   display: grid;
@@ -105,16 +118,15 @@ $iui-actions-gap: var(--iui-size-s);
   grid-template-areas: 'tabs tabs-actions' 'tabs-content tabs-content';
   grid-template-columns: 1fr auto;
 
-  $tabs-actions-gap: var(--iui-size-xs); // 8px
-  $tabs-borderless-min-height: calc(var(--iui-size-s) * 3 + #{$tabs-actions-gap}); // 44px
-
   .iui-tabs {
     display: flex;
+
+    &.iui-borderless {
+      min-height: $borderless-horizontal-tab-min-height;
+    }
   }
 
   .iui-tab {
-    min-height: $tabs-borderless-min-height;
-
     &::after {
       width: 100%;
       height: 0;
@@ -214,13 +226,8 @@ $iui-actions-gap: var(--iui-size-s);
   flex-direction: column;
   justify-content: center;
 
-  // To always prevent actions from sticking to content
-  $standard-horizontal-tabs-actions-content-gap: var(--iui-size-3xs);
-  $borderless-horizontal-tabs-actions-content-gap: var(--iui-size-xs);
-  $vertical-tabs-actions-content-gap: var(--iui-size-xs);
-
   :where(.iui-tabs-wrapper.iui-horizontal) & {
-    margin-left: $iui-actions-gap;
+    margin-left: $tabs-actions-gap;
 
     &::before {
       content: '';
@@ -230,20 +237,20 @@ $iui-actions-gap: var(--iui-size-s);
     &::after {
       content: '';
       flex: 1;
-      min-height: $standard-horizontal-tabs-actions-content-gap;
+      min-height: $content-actions-min-gap-default-horizontal-tabs;
     }
   }
 
   // Add larger min actions-content spacing for borderless horizontal tabs
   :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-borderless) + & {
     &::after {
-      min-height: $borderless-horizontal-tabs-actions-content-gap;
+      min-height: $content-actions-min-gap-borderless-horizontal-tabs;
     }
   }
 
   :where(.iui-tabs-wrapper.iui-vertical) & {
-    margin-top: $iui-actions-gap;
-    padding: 0 $vertical-tabs-actions-content-gap;
+    margin-top: $tabs-actions-gap;
+    padding: 0 $content-actions-gap-vertical-tabs;
   }
 }
 
