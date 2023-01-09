@@ -132,7 +132,7 @@ For a component named `Alert`, the `createComponent` script will add/modify the 
 - packages/itwinui-react/src/core/**index.ts**: barrel file containing all public exports
 - apps/storybook/src/**Alert.stories.tsx**: common demo states and examples ("stories")
 - apps/storybook/src/**Alert.test.tsx**: cypress visual tests for stories
-- apps/websites/src/pages/docs/**alert.mdx**: documentation page for the component
+- apps/website/src/pages/docs/**alert.mdx**: documentation page for the component
 
 <details>
 <summary>Directory structure</summary>
