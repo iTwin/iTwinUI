@@ -369,10 +369,8 @@ To enable us to quickly review and accept your pull requests, always create one 
 - Tests added for all new code.
   - All existing and new tests should pass.
 - Stories added to demonstrate new features.
-- If your changes are user-facing, then add a [changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `yarn changeset`.
+- [Changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) using `yarn changeset`, if changes are user-facing.
 
-Verify that your changes are ready, then [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
-
-If your pull request changes an existing component, we ask that the description distinctly lists all visual changes that have occurred. These notes are used by the Visual Design team to update specifications and images within documentation.
+Verify that your changes are ready, then [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure your pull request has a proper description and a [linked issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
 
 Your pull request will be reviewed by one or more maintainers who might leave some comments/suggestions to help improve the quality and consistency of your code. Once approved, your changes will be accepted into the repository.
