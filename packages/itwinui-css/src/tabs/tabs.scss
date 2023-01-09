@@ -217,7 +217,7 @@ $iui-actions-gap: var(--iui-size-s);
   // To always prevent actions from sticking to content
   $standard-horizontal-tabs-actions-content-gap: var(--iui-size-3xs);
   $borderless-horizontal-tabs-actions-content-gap: var(--iui-size-xs);
-  $standard-vertical-tabs-actions-content-gap: var(--iui-size-xs);
+  $vertical-tabs-actions-content-gap: var(--iui-size-xs);
 
   :where(.iui-tabs-wrapper.iui-horizontal) & {
     margin-left: $iui-actions-gap;
@@ -243,7 +243,7 @@ $iui-actions-gap: var(--iui-size-s);
 
   :where(.iui-tabs-wrapper.iui-vertical) & {
     margin-top: $iui-actions-gap;
-    padding: 0 $standard-vertical-tabs-actions-content-gap;
+    padding: 0 $vertical-tabs-actions-content-gap;
   }
 }
 
