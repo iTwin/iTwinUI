@@ -369,7 +369,7 @@ To enable us to quickly review and accept your pull requests, always create one 
 - Tests added for all new code.
   - All existing and new tests should pass.
 - Stories added to demonstrate new features.
-- [Changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) using `yarn changeset`, if changes are user-facing.
+- Added [changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) using `yarn changeset`, if changes are user-facing.
 
 Verify that your changes are ready, then [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure your pull request has a proper description and a [linked issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
 
