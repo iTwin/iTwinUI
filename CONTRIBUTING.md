@@ -369,6 +369,7 @@ To enable us to quickly review and accept your pull requests, always create one 
 - Tests added for all new code.
   - All existing and new tests should pass.
 - Stories added to demonstrate new features.
+- If your changes are user-facing, then add a [changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `yarn changeset`.
 
 Verify that your changes are ready, then [create a pull request from your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork). Make sure that the name of your pull request follows the [Conventional Commits spec](https://www.conventionalcommits.org/), and that you have a proper description with screenshots and a [closing keyword](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests).
 
