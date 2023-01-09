@@ -105,12 +105,15 @@ $iui-actions-gap: var(--iui-size-s);
   grid-template-areas: 'tabs tabs-actions' 'tabs-content tabs-content';
   grid-template-columns: 1fr auto;
 
+  $tabs-actions-gap: var(--iui-size-xs); // 8px
+  $tabs-borderless-min-height: calc(var(--iui-size-s) * 3 + #{$tabs-actions-gap}); // 44px
+
   .iui-tabs {
     display: flex;
   }
 
   .iui-tab {
-    min-height: calc(var(--iui-size-l) * 2);
+    min-height: $tabs-borderless-min-height;
 
     &::after {
       width: 100%;
