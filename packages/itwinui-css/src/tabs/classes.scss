@@ -16,10 +16,10 @@
 
 .iui-tabs-actions-wrapper {
   @include iui-tabs-actions-wrapper;
+}
 
-  .iui-tabs-actions {
-    @include iui-tabs-actions;
-  }
+.iui-tabs-actions {
+  @include iui-tabs-actions;
 }
 
 .iui-tabs-content {
