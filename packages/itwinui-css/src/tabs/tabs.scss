@@ -5,9 +5,9 @@
 // (12px) Between .iui-tabs and .iui-tabs-actions-wrapper
 $tabs-actions-gap: var(--iui-size-s);
 
-// (2px) Min spacing between .iui-tabs-content and .iui-tabs-actions
-$content-actions-min-gap-default-horizontal-tabs: var(--iui-size-3xs);
-// (8px) Larger than default min spacing for borderless tabs
+// (4px) Smaller min content-actions spacing for default tabs
+$content-actions-min-gap-default-horizontal-tabs: var(--iui-size-2xs);
+// (8px) Larger min content-actions spacing for borderless tabs
 $content-actions-min-gap-borderless-horizontal-tabs: var(--iui-size-xs);
 // (8px) Padding for iui-tabs (vertical tabs)
 $content-actions-gap-vertical-tabs: var(--iui-size-xs);
@@ -237,11 +237,17 @@ $borderless-horizontal-tab-min-height: calc(
     &::after {
       content: '';
       flex: 1;
+    }
+  }
+
+  // Smaller min content-actions spacing for default horizontal tabs
+  :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-default) + & {
+    &::after {
       min-height: $content-actions-min-gap-default-horizontal-tabs;
     }
   }
 
-  // Add larger min actions-content spacing for borderless horizontal tabs
+  // Larger min content-actions spacing for borderless horizontal tabs
   :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-borderless) + & {
     &::after {
       min-height: $content-actions-min-gap-borderless-horizontal-tabs;
