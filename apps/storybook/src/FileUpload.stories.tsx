@@ -39,6 +39,7 @@ export const Default: Story<FileUploadProps> = (args) => {
     >
       <FileUploadTemplate
         onChange={(e) => setFiles(Array.from(e.target.files || []))}
+        files={files}
       >
         {files.map((f) => f.name).join(', ')}
       </FileUploadTemplate>

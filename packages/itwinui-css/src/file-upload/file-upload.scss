@@ -19,32 +19,54 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     user-select: none;
     padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
     background-color: var(--iui-color-background-backdrop);
     border: 1px solid var(--iui-color-background-backdrop);
     border-radius: var(--iui-border-radius-1);
 
-    &:not([data-iui-file-selected]) {
-      justify-content: center;
+    .iui-template-text {
+      margin-left: var(--iui-size-l);
 
-      .iui-template-text {
-        margin-left: var(--iui-size-l);
+      > label {
+        font-weight: var(--iui-font-weight-bold);
       }
     }
 
-    &[data-iui-file-selected] {
-      > svg,
-      .iui-template-icon {
+    > svg {
+      @include iui-icon-style(3xl);
+      @include iui-icon-color;
+      margin-top: var(--iui-size-s);
+      margin-bottom: var(--iui-size-s);
+
+      &[data-iui-file-uploaded] {
         @include iui-icon-style(xl);
         margin-left: var(--iui-size-xs);
       }
+    }
 
-      .iui-anchor {
+    .iui-template-file-uploaded-text {
+      margin-left: var(--iui-size-s);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      + label {
         margin-left: auto;
         margin-right: var(--iui-size-xs);
         font-weight: var(--iui-font-weight-bold);
       }
+    }
+
+    .iui-template-file-uploaded-icon {
+      @include iui-icon-style(xl);
+      @include iui-icon-color;
+      margin-top: var(--iui-size-s);
+      margin-bottom: var(--iui-size-s);
+      margin-left: var(--iui-size-xs);
     }
 
     .iui-browse-input {
@@ -55,7 +77,6 @@
       position: absolute;
     }
 
-    > svg,
     .iui-template-icon {
       @include iui-icon-style(3xl);
       @include iui-icon-color;
@@ -74,17 +95,14 @@
       }
     }
 
-    .iui-template-text {
-      margin-left: var(--iui-size-s);
-      display: flex;
-      flex-direction: column;
-
-      > label {
-        font-weight: var(--iui-font-weight-bold);
-      }
+    .iui-template-file-uploaded-label,
+    .iui-template-file-uploaded-description {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
-    .iui-file-upload-description {
+    .iui-template-file-uploaded-description {
       font-size: var(--iui-font-size-0);
       color: var(--iui-color-text-muted);
     }
