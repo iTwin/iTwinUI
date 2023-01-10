@@ -35,7 +35,7 @@ export type AvatarProps = {
    */
   abbreviation?: string;
   /**
-   * User image to be displayed. MUST be an <img> element!
+   * User image to be displayed. MUST be an `<img>` element!
    */
   image?: JSX.Element;
   /**

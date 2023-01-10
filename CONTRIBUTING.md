@@ -104,7 +104,7 @@ This is why it's recommended to use the turbo `--filter` syntax whenever possibl
 yarn build --filter=storybook
 ```
 
-### Adding a new component
+### Adding a new component (CSS)
 
 If you'd like to get your component added to iTwinUI, follow these guidelines.
 
@@ -120,7 +120,7 @@ We provide a script that can automatically create all the necessary files for yo
 - Write tests for your new component in `backstop/tests/[component-name].html` and `backstop/scenarios/[component-name].js`. See [Testing](#Testing) section below.
 - After running `yarn build` you can open minified html in browser to check up, how your component looks like from `backstop/minified`.
 
-### Testing
+### Visual testing (CSS)
 
 #### How to run tests:
 
@@ -132,7 +132,7 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 
   `yarn test --filter=[component_name]` (e.g. `yarn test --filter=side-navigation`)
 
-- To approve test images, run `yarn approve`.
+- To approve test images, run `yarn approve:css`.
 
 - To delete old/unused tests images, run `yarn clean:images`.
 
@@ -165,7 +165,7 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 
 ---
 
-### Creating components
+### Creating components (React)
 
 Before developing, please read our [style guide](./STYLEGUIDE.md).
 
@@ -337,7 +337,7 @@ export type AlertProps = {
 
 More examples can be found in the [style guide](./STYLEGUIDE.md).
 
-### Unit Testing
+### Unit testing (React)
 
 Each component has a corresponding jest test inside of its directory. Be sure to cover your added code with tests.
 
@@ -357,7 +357,7 @@ it('should be visible', () => {
 });
 ```
 
-### Visual Testing
+### Visual testing (React)
 
 We reuse our stories for visual tests by taking screenshots of the story iframes in [Cypress](https://cypress.io/).
 
@@ -366,7 +366,7 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
 2. From the monorepo root, run `yarn test --filter=storybook`. This will build storybook and run all cypress tests in docker.
    -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `yarn workspace storybook test --spec="**/Alert.*"`. Don't forget to build storybook first (yarn build --filter=storybook).
-3. Once the tests finish running, you can approve any failing test images using `yarn workspace storybook test:approve`.
+3. Once the tests finish running, you can approve any failing test images using `yarn approve:react`.
 
 #### Writing visual tests
 
