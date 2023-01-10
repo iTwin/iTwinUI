@@ -5,7 +5,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { FileUploadTemplate } from './FileUploadTemplate';
-import { SvgUpload } from '../utils';
+import { SvgDocument, SvgUpload } from '../utils';
 
 it('should render FileUploadTemplate', () => {
   const mockedOnChange = jest.fn();
@@ -55,4 +55,37 @@ it('should accept input props', () => {
   expect(input).toBeTruthy();
   expect(input.multiple).toBeFalsy();
   expect(input.accept).toEqual('.txt, .png');
+});
+
+it('should render FileUploadTemplate after a file is uploaded', () => {
+  const mockedOnChange = jest.fn();
+  const file = new Array<File>(
+    new File(['mock-file'], 'test.txt', { type: 'text/plain' }),
+  );
+
+  const { container } = render(
+    <FileUploadTemplate onChange={mockedOnChange} files={file} />,
+  );
+
+  const label = container.querySelector(
+    '.iui-template-file-uploaded-label',
+  ) as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.textContent).toEqual('test.txt');
+
+  const secondary = container.querySelector(
+    '.iui-template-file-uploaded-description',
+  ) as HTMLElement;
+  expect(secondary).toBeTruthy();
+
+  const { container: documentIcon } = render(
+    <SvgDocument
+      aria-hidden
+      className='iui-icon'
+      data-iui-file-uploaded={true}
+    />,
+  );
+  const svg = container.querySelector('.iui-icon') as SVGSVGElement;
+  expect(svg).toBeTruthy();
+  expect(svg).toEqual(documentIcon.firstChild);
 });
