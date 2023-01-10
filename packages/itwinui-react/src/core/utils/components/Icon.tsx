@@ -36,8 +36,6 @@ export type IconProps = {
 
 const getSizeValue = (size: string) => {
   switch (size) {
-    case 'auto':
-      return 'auto';
     case 'small':
       return 's';
     case 'medium':
