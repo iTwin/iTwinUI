@@ -15,6 +15,8 @@ export type IconProps = {
    *  - 'large': larger than medium
    *  - 'auto': scales with text
    *
+   * Also accepts a custom string value that will be used unchanged.
+   *
    * @default 'medium'
    */
   size?: 'auto' | 'small' | 'medium' | 'large' | AnyString;
@@ -22,6 +24,8 @@ export type IconProps = {
    * Fill (color) of the svg.
    * Defaults to `--iui-color-icon-muted`. Can be specified to
    * use one of the status colors.
+   *
+   * Also accepts a custom string value that will be used unchanged.
    *
    * @default 'default'
    */
