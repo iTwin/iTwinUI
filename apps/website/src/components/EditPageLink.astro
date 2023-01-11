@@ -1,4 +1,6 @@
 ---
+import ChatIcon from '~/icons/ChatIcon.astro';
+import ChatsIcon from '~/icons/ChatsIcon.astro';
 import EditIcon from '~/icons/EditIcon.astro';
 
 type Props = { page: string } & astroHTML.JSX.AnchorHTMLAttributes;
@@ -18,14 +20,31 @@ if (page === 'components') {
 const repoUrl = 'https://github.com/iTwin/iTwinUI';
 const githubEditUrl = `${repoUrl}/edit/main/apps/website/src/pages/docs/${fileName}`;
 ---
+<div>
 
-<a href={githubEditUrl} {...rest}>
-  <EditIcon aria-hidden='true' />Edit this page on GitHub
-</a>
+  <a href={githubEditUrl} {...rest}>
+    <EditIcon aria-hidden='true' />Edit
+  </a>
+
+  <a href='https://github.com/iTwin/iTwinUI/discussions/new?category=documentation' {...rest}>
+    <ChatIcon aria-hidden='true' />Provide feedback
+  </a>
+
+  <a href='https://github.com/iTwin/iTwinUI/discussions/categories/documentation' {...rest}>
+    <ChatsIcon aria-hidden='true' />View pending feedback
+  </a>
+
+</div>
 
 <style lang='scss'>
+
+  div {
+    display: flex;
+    gap: .25em 1em;
+    flex-wrap: wrap;
+    margin-top: .5em;
+  }
   a {
-    margin-inline-start: auto;
     text-underline-offset: 0.5ex;
     text-decoration-thickness: 0.5px;
     transition: opacity 0.2s;

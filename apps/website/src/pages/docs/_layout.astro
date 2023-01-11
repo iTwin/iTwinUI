@@ -16,6 +16,8 @@ const currentPage = new URL(Astro.request.url).pathname;
     <slot />
     <div class='bottom-links'>
       <hr />
+      <h3>Help us to improve our documentation</h3>
+      <p>Suggest an edit to this page, or provide / view feedback for this page.</p>
       <EditPageLink page={currentPage} />
     </div>
   </div>
