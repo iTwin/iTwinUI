@@ -18,13 +18,28 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     user-select: none;
     padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
     background-color: var(--iui-color-background-backdrop);
     border: 1px solid var(--iui-color-background-backdrop);
     border-radius: var(--iui-border-radius-1);
+
+    .iui-browse-input {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+    }
+
+    .iui-template-icon {
+      @include iui-icon-style(3xl);
+      @include iui-icon-color;
+      margin-top: var(--iui-size-s);
+      margin-bottom: var(--iui-size-s);
+    }
 
     .iui-template-text {
       margin-left: var(--iui-size-l);
@@ -67,21 +82,6 @@
       margin-top: var(--iui-size-s);
       margin-bottom: var(--iui-size-s);
       margin-left: var(--iui-size-xs);
-    }
-
-    .iui-browse-input {
-      width: 0.1px;
-      height: 0.1px;
-      opacity: 0;
-      overflow: hidden;
-      position: absolute;
-    }
-
-    .iui-template-icon {
-      @include iui-icon-style(3xl);
-      @include iui-icon-color;
-      margin-top: var(--iui-size-s);
-      margin-bottom: var(--iui-size-s);
     }
 
     &:only-child {
