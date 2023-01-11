@@ -47,7 +47,7 @@
     "vite": "^3.0.0"
   },
   "scripts": {
-    "build": "yarn clean && yarn build:css && node ../shared/copyrightLinter.js --fix css/* && yarn build:html",
+    "build": "yarn clean && yarn build:css && node ../../scripts/copyrightLinter.js --fix css/* && yarn build:html",
     "build:css": "node ./scripts/generateCss.js src css",
     "build:html": "vite build backstop/tests --config vite.config.ts",
     "build:watch:scss": "node ./scripts/watchScss.mjs",
@@ -62,5 +62,6 @@
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
     "push-docker": "node scripts/pushDocker.js"
-  }
+  },
+  "prettier": "configs/prettier-scss-config.js"
 }

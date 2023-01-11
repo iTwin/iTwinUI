@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 const { ScenarioActions } = require('../../scenarioHelper');
 
 async function performAction(page, action) {
@@ -31,7 +35,7 @@ async function performAction(page, action) {
         },
         action.value.selector,
         action.value.distanceX,
-        action.value.distanceY
+        action.value.distanceY,
       );
       break;
     }

@@ -1,0 +1,32 @@
+---
+title: Typography
+description:
+layout: ./_layout.astro
+propsPathText: '@itwin/itwinui-react/esm/core/Typography/Text/Text.d.ts'
+exampleCodeFileText: Text.main.tsx
+propsPathLabel: '@itwin/itwinui-react/esm/core/Label/Label.d.ts'
+exampleCodeFileLabel: Label.main.tsx
+thumbnail: Typography
+group: typography
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+
+<p>{frontmatter.description}</p>
+
+## Text
+
+<LiveExample src={frontmatter.exampleCodeFileText} />
+
+### Props
+
+<PropsTable path={frontmatter.propsPathText} />
+
+## Label
+
+<LiveExample src={frontmatter.exampleCodeFileLabel} />
+
+### Props
+
+<PropsTable path={frontmatter.propsPathLabel} />

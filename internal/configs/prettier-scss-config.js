@@ -2,17 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
-import { LabeledTextarea } from '@itwin/itwinui-react';
+const baseConfig = require('./prettier-config.js');
 
-export default () => {
-  return (
-    <div>
-      <LabeledTextarea
-        label='Textarea label'
-        message='Help message'
-        placeholder='Labeled textarea'
-      />
-    </div>
-  );
+module.exports = {
+  ...baseConfig,
+  printWidth: 120,
 };
