@@ -33,7 +33,8 @@
 }
 
 @mixin iui-button-icon {
-  &,
+  display: inline-flex;
+
   svg {
     @include iui-icon-style('m');
     transition: fill var(--iui-duration-1) ease-out;
