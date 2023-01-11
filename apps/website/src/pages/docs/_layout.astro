@@ -3,6 +3,7 @@ import Global from '~/pages/_global.astro';
 import Header from '~/components/Header.astro';
 import LeftSidebar from '~/components/LeftSidebar.astro';
 import EditPageLink from '~/components/EditPageLink.astro';
+import FeedbackLink from '~/components/FeedbackLink.astro';
 
 const { content = {} } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
@@ -16,9 +17,8 @@ const currentPage = new URL(Astro.request.url).pathname;
     <slot />
     <div class='bottom-links'>
       <hr />
-      <h3>Help us to improve our documentation</h3>
-      <p>Suggest an edit to this page, or provide / view feedback for this page.</p>
       <EditPageLink page={currentPage} />
+      <FeedbackLink page={currentPage} />
     </div>
   </div>
 </Global>

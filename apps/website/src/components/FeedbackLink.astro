@@ -1,25 +1,20 @@
 ---
-import EditIcon from '~/icons/EditIcon.astro';
+import ChatIcon from '~/icons/ChatIcon.astro';
 
 type Props = { page: string } & astroHTML.JSX.AnchorHTMLAttributes;
 let { page, ...rest } = Astro.props;
 
-if (page.startsWith('/docs')) page = page.slice(5); // remove /docs prefix
-page = page.replaceAll('/', ''); // remove trailing and leading slashes
-
 let fileName = 'index.mdx'; // fallback value if nothing in the url
 
-if (page === 'components') {
-  fileName = `${page}.astro`; // handle components.astro separately from .mdx
-} else if (page) {
-  fileName = `${page}.mdx`;
+if (page) {
+  fileName = `${page}`;
 }
 
 const repoUrl = 'https://github.com/iTwin/iTwinUI';
-const githubEditUrl = `${repoUrl}/edit/main/apps/website/src/pages/docs/${fileName}`;
+const githubFeedbackUrl = `${repoUrl}/discussions/new?category=documentation&title=Feedback%20on%20%60${fileName}%60&body=Replace%20this%20text%20with%20your%20feedback%20on%20the%20%60${fileName}%60%20page.`;
 ---
-<a href={githubEditUrl} {...rest}>
-  <EditIcon aria-hidden='true' />Edit on GitHub
+<a href={githubFeedbackUrl} {...rest}>
+  <ChatIcon aria-hidden='true' />Provide feedback on GitHub
 </a>
 
 <style lang='scss'>
