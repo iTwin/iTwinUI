@@ -4,14 +4,8 @@ import ChatIcon from '~/icons/ChatIcon.astro';
 type Props = { page: string } & astroHTML.JSX.AnchorHTMLAttributes;
 let { page, ...rest } = Astro.props;
 
-let fileName = 'index.mdx'; // fallback value if nothing in the url
-
-if (page) {
-  fileName = `${page}`;
-}
-
 const repoUrl = 'https://github.com/iTwin/iTwinUI';
-const githubFeedbackUrl = `${repoUrl}/discussions/new?category=documentation&title=Feedback%20on%20%60${fileName}%60&body=Replace%20this%20text%20with%20your%20feedback%20on%20the%20%60${fileName}%60%20page.`;
+const githubFeedbackUrl = `${repoUrl}/discussions/new?category=documentation&title=Feedback%20on%20%60${page}%60&body=Replace%20this%20text%20with%20your%20feedback%20on%20the%20%60${page}%60%20page.`;
 ---
 <a href={githubFeedbackUrl} {...rest}>
   <ChatIcon aria-hidden='true' />Provide feedback on GitHub
