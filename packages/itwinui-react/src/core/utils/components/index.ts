@@ -10,3 +10,4 @@ export * from './WithCSSTransition';
 export * from './MiddleTextTruncation';
 export * from './VirtualScroll';
 export * from './VisuallyHidden';
+export * from './Icon';

@@ -1,0 +1,43 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use 'sass:math';
+@use 'sass:map';
+
+$icon-sizes: (
+  's': #{math.div(12, 16)}rem,
+  'm': #{math.div(16, 16)}rem,
+  'l': #{math.div(24, 16)}rem,
+  'auto': #{math.div(16, 14)}em,
+);
+
+@mixin iui-svg-icon {
+  --_iui-svg-size: #{map.get($icon-sizes, m)};
+  --_iui-svg-fill: var(--iui-color-icon-muted);
+
+  display: inline-flex;
+  flex-shrink: 0;
+
+  &,
+  svg {
+    width: var(--_iui-svg-size);
+    height: var(--_iui-svg-size);
+    fill: var(--_iui-svg-fill);
+  }
+}
+
+/// @arg $size - must be one of: 's', 'm', 'l', 'auto'
+@mixin svg-icon-size($size) {
+  --_iui-svg-size: #{map.get($icon-sizes, $size)};
+}
+
+/// @arg $fill - must be one of: 'informational', 'positive', 'warning', 'negative'
+@mixin svg-icon-status-color($fill) {
+  --_iui-svg-fill: var(--iui-color-icon-#{$fill});
+}
+
+/// uses CanvasText in forced-colors mode, for better contrast than --iui-color-icon-muted
+@mixin svg-icon-forced-colors {
+  @media (forced-colors: active) {
+    --_iui-svg-fill: CanvasText;
+  }
+}
