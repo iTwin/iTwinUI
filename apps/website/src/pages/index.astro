@@ -160,7 +160,7 @@ const currentPage = new URL(Astro.request.url).pathname;
     </div>
   </main>
 
-  <Footer className='footer-position' />
+  <Footer />
 
   <style lang='scss'>
     body {
@@ -433,12 +433,6 @@ const currentPage = new URL(Astro.request.url).pathname;
           inset: 0;
         }
       }
-    }
-
-    .footer-position {
-      color: var(--color-subtext);
-      margin-inline: auto;
-      padding: var(--space-4);
     }
   </style>
 </Global>
