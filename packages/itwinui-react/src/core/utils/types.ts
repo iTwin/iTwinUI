@@ -2,16 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const { scenario } = require('../scenarioHelper');
-
-module.exports = [
-  scenario('Basic', {
-    selectors: ['#demo-icons'],
-  }),
-  scenario('Status colors', {
-    selectors: ['#demo-status'],
-  }),
-  scenario('Autoscale with text', {
-    selectors: ['#demo-typography'],
-  }),
-];
+/**
+ * This allows custom strings and keeps intellisense for string unions.
+ * See https://github.com/Microsoft/TypeScript/issues/29729
+ */
+export type AnyString = string & {}; // eslint-disable-line @typescript-eslint/ban-types

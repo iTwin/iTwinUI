@@ -317,5 +317,6 @@ export {
   useTheme,
   ColorValue,
   MiddleTextTruncation,
+  Icon,
 } from './utils';
-export type { ThemeType, MiddleTextTruncationProps } from './utils';
+export type { ThemeType, MiddleTextTruncationProps, IconProps } from './utils';
