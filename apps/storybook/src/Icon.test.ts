@@ -5,7 +5,12 @@
 describe('Icon', () => {
   const storyPath = 'Utilities/Icon';
 
-  const tests = ['Default', 'Statuses', 'Sizes'];
+  const tests = [
+    'Default',
+    'Statuses',
+    'Sizes',
+    // 'Autoscale', // exclude Autoscale because it is only an interactive demo for the user
+  ];
 
   tests.forEach((testName) => {
     it(testName, function () {
