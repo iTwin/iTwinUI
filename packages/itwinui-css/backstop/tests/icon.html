@@ -32,8 +32,17 @@
         align-items: flex-end;
         gap: 4px;
         margin-bottom: 22px;
+        padding: 12px;
+        margin-inline: -12px;
       }
-      svg { width: 1rem; height: 1rem; }
+      #demo-typography {
+        display: grid;
+      }
+      #demo-typography > div {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
     </style>
   </head>
   <body class="iui-root">
@@ -44,7 +53,18 @@
     <h2>Non-actionable icons</h2>
     <section id="demo-icons">
       <svg-imodel-hollow
-        data-iui-icon-color="default"
+        class="iui-svg-icon"
+        data-iui-icon-size="s"
+        aria-hidden="true"
+      ></svg-imodel-hollow>
+      <svg-imodel-hollow
+        class="iui-svg-icon"
+        data-iui-icon-size="m"
+        aria-hidden="true"
+      ></svg-imodel-hollow>
+      <svg-imodel-hollow
+        class="iui-svg-icon"
+        data-iui-icon-size="l"
         aria-hidden="true"
       ></svg-imodel-hollow>
     </section>
@@ -64,24 +84,87 @@
     <h2>Icons with status</h2>
     <section id="demo-status">
       <svg-info-circular
+        class="iui-svg-icon"
         data-iui-icon-color="informational"
         aria-hidden="true"
       ></svg-info-circular>
 
       <svg-status-success
+        class="iui-svg-icon"
         data-iui-icon-color="positive"
         aria-hidden="true"
       ></svg-status-success>
 
       <svg-status-warning
+        class="iui-svg-icon"
         data-iui-icon-color="warning"
         aria-hidden="true"
       ></svg-status-warning>
 
       <svg-status-error
+        class="iui-svg-icon"
         data-iui-icon-color="negative"
         aria-hidden="true"
       ></svg-status-error>
+    </section>
+
+    <h2>Auto scale with text</h2>
+    <section id="demo-typography">
+
+      <div class="iui-text-headline iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Headline
+      </div>
+
+      <div class="iui-text-title iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Title
+      </div>
+
+      <div class="iui-text-subheading iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Subheading
+      </div>
+
+      <div class="iui-text-leading iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Leading
+      </div>
+
+      <div class="iui-text-block iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Body
+      </div>
+
+      <div class="iui-text-small iui-text-spacing">
+        <svg-imodel-hollow
+          class="iui-svg-icon"
+          data-iui-icon-size="auto"
+          aria-hidden="true"
+        ></svg-imodel-hollow>
+        Small
+      </div>
+
     </section>
   </body>
 </html>
