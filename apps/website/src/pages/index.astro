@@ -16,6 +16,7 @@ import DialogDemo from '~/demos/Dialog.demo';
 import ComboBoxDemo from '~/demos/ComboBox.demo';
 import SliderDemo from '~/demos/Slider.demo';
 import FieldsetDemo from '~/demos/Fieldset.demo';
+import Footer from '~/components/utils/Footer';
 
 const currentPage = new URL(Astro.request.url).pathname;
 ---
@@ -159,7 +160,7 @@ const currentPage = new URL(Astro.request.url).pathname;
     </div>
   </main>
 
-  <footer>© 2022 Bentley Systems, Inc</footer>
+  <Footer className='footer-position' />
 
   <style lang='scss'>
     body {
@@ -434,9 +435,9 @@ const currentPage = new URL(Astro.request.url).pathname;
       }
     }
 
-    footer {
-      color: var(--color-subtext);
+    .footer-position {
       margin-inline: auto;
+      color: var(--color-subtext);
       padding: var(--space-4);
     }
   </style>
