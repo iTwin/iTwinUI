@@ -3,28 +3,34 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Modal, Button, ModalContent, ModalButtonBar } from '@itwin/itwinui-react';
+import {
+  Modal,
+  Button,
+  ModalContent,
+  ModalButtonBar,
+  LabeledInput,
+  LabeledTextarea,
+} from '@itwin/itwinui-react';
 
 export default () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(true);
   const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
       <Button styleType='high-visibility' onClick={() => setIsModalOpen(true)}>
-        Open dialog
+        Open dismissible dialog
       </Button>
-      <Modal isOpen={isModalOpen} title={'Dialog'} onClose={() => closeModal()}>
+      <Modal isOpen={isModalOpen} title={'New message'} onClose={() => closeModal()}>
         <ModalContent>
-          A dialog informs users about a task and can contain critical information, require
-          decisions, or involve multiple tasks. Dialogs appear in front of app content to provide
-          critical information or ask for a decision.
+          <LabeledInput label='Subject' />
+          <LabeledTextarea label='Message' />
         </ModalContent>
         <ModalButtonBar>
           <Button styleType='high-visibility' onClick={() => closeModal()}>
-            Primary
+            Submit
           </Button>
-          <Button onClick={() => closeModal()}>Secondary</Button>
+          <Button onClick={() => closeModal()}>Save draft</Button>
         </ModalButtonBar>
       </Modal>
     </>

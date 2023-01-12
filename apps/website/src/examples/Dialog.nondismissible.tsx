@@ -6,25 +6,29 @@ import * as React from 'react';
 import { Modal, Button, ModalContent, ModalButtonBar } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(true);
   const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
       <Button styleType='high-visibility' onClick={() => setIsModalOpen(true)}>
-        Open dialog
+        Open non-dismissible dialog
       </Button>
-      <Modal isOpen={isModalOpen} title={'Dialog'} onClose={() => closeModal()}>
+      <Modal
+        isOpen={isModalOpen}
+        title={'Empty trash'}
+        isDismissible={false}
+        onClose={() => closeModal()}
+      >
         <ModalContent>
-          A dialog informs users about a task and can contain critical information, require
-          decisions, or involve multiple tasks. Dialogs appear in front of app content to provide
-          critical information or ask for a decision.
+          Are you sure you want to permanently erase the items in the trash? You can't undo this
+          action.
         </ModalContent>
         <ModalButtonBar>
           <Button styleType='high-visibility' onClick={() => closeModal()}>
-            Primary
+            Empty trash
           </Button>
-          <Button onClick={() => closeModal()}>Secondary</Button>
+          <Button onClick={() => closeModal()}>Cancel</Button>
         </ModalButtonBar>
       </Modal>
     </>
