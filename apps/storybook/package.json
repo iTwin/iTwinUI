@@ -36,7 +36,7 @@
     "dev": "yarn storybook --quiet",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",
-    "test:approve": "cypress-image-diff -u",
+    "approve": "cypress-image-diff -u",
     "push-docker": "node scripts/push-docker.js",
     "cy": "cypress open",
     "cy:run": "cypress run",
