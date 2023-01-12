@@ -1,0 +1,14 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+
+@mixin iui-flex {
+  display: var(--iui-flex-display, flex);
+  direction: var(--iui-flex-direction);
+  gap: var(--iui-flex-gap, var(--iui-size-2xs));
+  justify-content: var(--iui-flex-justify);
+  align-items: var(--iui-flex-align, center);
+}
+
+@mixin iui-flex-spacer {
+  flex: var(--iui-flex-spacer-flex, 1);
+}

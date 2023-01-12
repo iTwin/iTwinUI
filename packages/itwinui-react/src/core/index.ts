@@ -318,5 +318,11 @@ export {
   ColorValue,
   MiddleTextTruncation,
   Icon,
+  Flex,
 } from './utils';
-export type { ThemeType, MiddleTextTruncationProps, IconProps } from './utils';
+export type {
+  ThemeType,
+  MiddleTextTruncationProps,
+  IconProps,
+  FlexProps,
+} from './utils';
