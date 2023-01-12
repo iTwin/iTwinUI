@@ -1244,6 +1244,7 @@ InitialState.argTypes = {
 
 export const ControlledState: Story<Partial<TableProps>> = (args) => {
   const [selectedRows, setSelectedRows] = useState<Record<string, boolean>>({});
+  const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
 
   const columns = useMemo(
     () => [
@@ -1263,9 +1264,51 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
 
   const data = useMemo(
     () => [
-      { name: 'Name1', description: 'Description1' },
-      { name: 'Name2', description: 'Description2' },
-      { name: 'Name3', description: 'Description3' },
+      {
+        name: 'Row 1',
+        description: 'Description 1',
+        subRows: [
+          { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
+          {
+            name: 'Row 1.2',
+            description: 'Description 1.2',
+            subRows: [
+              {
+                name: 'Row 1.2.1',
+                description: 'Description 1.2.1',
+                subRows: [],
+              },
+              {
+                name: 'Row 1.2.2',
+                description: 'Description 1.2.2',
+                subRows: [],
+              },
+              {
+                name: 'Row 1.2.3',
+                description: 'Description 1.2.3',
+                subRows: [],
+              },
+              {
+                name: 'Row 1.2.4',
+                description: 'Description 1.2.4',
+                subRows: [],
+              },
+            ],
+          },
+          { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
+          { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
+        ],
+      },
+      {
+        name: 'Row 2',
+        description: 'Description 2',
+        subRows: [
+          { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
+          { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
+          { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
+        ],
+      },
+      { name: 'Row 3', description: 'Description 3', subRows: [] },
     ],
     [],
   );
@@ -1275,9 +1318,10 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
       return {
         ...state,
         selectedRowIds: { ...selectedRows },
+        expanded: { ...expandedRows },
       };
     },
-    [selectedRows],
+    [selectedRows, expandedRows],
   );
 
   // When using `useControlledState` we are fully responsible for the state part we are modifying.
@@ -1316,6 +1360,20 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
         newState.selectedRowIds = newSelectedRows;
         break;
       }
+      case actions.toggleRowExpanded: {
+        const newExpandedRows = {
+          ...expandedRows,
+        };
+        if (newState.expanded[action.id]) {
+          newExpandedRows[action.id] = true;
+        } else {
+          delete newExpandedRows[action.id];
+        }
+        setExpandedRows(newExpandedRows);
+        newState.expanded = newExpandedRows;
+        break;
+      }
+
       default:
         break;
     }
@@ -1344,20 +1402,42 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
           />
         ))}
       </InputGroup>
+      <InputGroup label='Control expanded rows' style={{ marginBottom: 11 }}>
+        {data.map((data, index) => (
+          <Checkbox
+            key={index}
+            label={data.name}
+            checked={expandedRows[index]}
+            onChange={(e) => {
+              setExpandedRows((rowIds) => {
+                const expandedRowIds = { ...rowIds };
+                if (e.target.checked) {
+                  expandedRowIds[index] = true;
+                } else {
+                  delete expandedRowIds[index];
+                }
+                return expandedRowIds;
+              });
+            }}
+          />
+        ))}
+      </InputGroup>
       <Table
         columns={columns}
-        data={data}
         emptyTableContent='No data.'
         useControlledState={controlledState}
         stateReducer={tableStateReducer}
         isSelectable
         {...args}
+        data={data}
       />
     </>
   );
 };
 
-ControlledState.args = { isSelectable: true };
+ControlledState.argTypes = {
+  data: { control: { disable: true } },
+};
 
 export const Full: Story<Partial<TableProps>> = (args) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(0);

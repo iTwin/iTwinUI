@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.1
+
+### Patch Changes
+
+- 8e92e7e2: ComboBox dropdown width will now stay fixed when `enableVirtualization` is true.
+
 ## [2.2.0](https://www.github.com/iTwin/iTwinUI-react/compare/v2.1.0...v2.2.0) (2022-12-19)
 
 ### Minor changes
