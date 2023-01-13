@@ -176,7 +176,7 @@ export const Actionable: Story<TileProps> = (props) => {
 
   return (
     <Tile
-      name={<a href='#'>{name}</a>}
+      name={name}
       description={description}
       metadata={metadata}
       badge={badge}
@@ -197,6 +197,41 @@ Actionable.args = {
   moreOptions: undefined,
 };
 
+export const AnchorLink: Story<TileProps> = (props) => {
+  const {
+    name,
+    description = 'If you click on this stadium, it is going to be selected.',
+    metadata,
+    badge,
+    thumbnail,
+    isNew,
+    isActionable = true,
+    ...rest
+  } = props;
+
+  return (
+    <Tile
+      name={
+        <Tile.Action onClick={() => console.log('clicked')}>{name}</Tile.Action>
+      }
+      description={description}
+      metadata={metadata}
+      badge={badge}
+      thumbnail={thumbnail}
+      isNew={isNew}
+      isActionable={isActionable}
+      {...rest}
+    />
+  );
+};
+AnchorLink.argTypes = { ...Basic.argTypes };
+AnchorLink.args = {
+  ...Basic.args,
+  description:
+    'If you click on this stadium, it is going to open another page.',
+  isActionable: true,
+  moreOptions: undefined,
+};
 export const Condensed: Story<TileProps> = (props) => {
   const { name, thumbnail, moreOptions, ...rest } = props;
   return (

@@ -15,6 +15,7 @@ import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu';
 import { IconButton } from '../Buttons';
 import { ProgressRadial } from '../ProgressIndicators';
+import TileAction from './TileAction';
 
 export type TileProps = {
   /**
@@ -287,33 +288,36 @@ type TitleIconProps = {
   status?: 'positive' | 'warning' | 'negative';
 };
 
-const TitleIcon = ({
-  isLoading = false,
-  isSelected = false,
-  isNew = false,
-  status,
-}: TitleIconProps) => {
-  const StatusIcon = !!status && StatusIconMap[status];
+const TitleIcon = Object.assign(
+  ({
+    isLoading = false,
+    isSelected = false,
+    isNew = false,
+    status,
+  }: TitleIconProps) => {
+    const StatusIcon = !!status && StatusIconMap[status];
 
-  if (isLoading) {
-    return (
-      <ProgressRadial
-        className='iui-tile-status-icon'
-        aria-hidden
-        indeterminate
-      />
-    );
-  }
-  if (isSelected) {
-    return <SvgCheckmark className='iui-tile-status-icon' aria-hidden />;
-  }
-  if (isNew) {
-    return <SvgNew className='iui-tile-status-icon' aria-hidden />;
-  }
-  if (StatusIcon) {
-    return <StatusIcon className='iui-tile-status-icon' />;
-  }
-  return null;
-};
+    if (isLoading) {
+      return (
+        <ProgressRadial
+          className='iui-tile-status-icon'
+          aria-hidden
+          indeterminate
+        />
+      );
+    }
+    if (isSelected) {
+      return <SvgCheckmark className='iui-tile-status-icon' aria-hidden />;
+    }
+    if (isNew) {
+      return <SvgNew className='iui-tile-status-icon' aria-hidden />;
+    }
+    if (StatusIcon) {
+      return <StatusIcon className='iui-tile-status-icon' />;
+    }
+    return null;
+  },
+  { Action: TileAction },
+);
 
 export default Tile;

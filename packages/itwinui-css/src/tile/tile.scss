@@ -157,7 +157,6 @@
 
 @mixin iui-tile-content {
   padding: var(--iui-size-s) var(--iui-size-s);
-  position: relative;
   display: flex;
   flex-direction: column;
   flex-grow: 2;
