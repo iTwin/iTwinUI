@@ -89,8 +89,14 @@ export const Flex = (props: FlexProps) => {
   );
 };
 
-Flex.Spacer = () => {
-  return <div className='iui-flex-spacer' />;
+Flex.Spacer = (props: FlexSpacerProps) => {
+  return <div className='iui-flex-spacer' {...props} />;
 };
+type FlexSpacerProps = React.ComponentProps<'div'>;
+
+Flex.Item = (props: FlexItemProps) => {
+  return <div className='iui-flex-item' {...props} />;
+};
+type FlexItemProps = React.ComponentProps<'div'>;
 
 export default Flex;
