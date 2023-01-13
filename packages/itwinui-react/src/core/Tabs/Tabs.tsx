@@ -14,27 +14,51 @@ import {
 import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab';
 
-type TabsOrientationProps =
+type TabsTypeProps =
   | {
-      /**
-       * Orientation of the tabs.
-       * @default 'horizontal'
-       */
-      orientation?: 'horizontal';
       /**
        * Type of the tabs.
        *
        * If `orientation = 'vertical'`, `pill` is not applicable.
        * @default 'default'
        */
-      type?: 'default' | 'borderless' | 'pill';
+      type?: 'default' | 'borderless';
+      /**
+       * Orientation of the tabs.
+       * @default 'horizontal'
+       */
+      orientation?: 'horizontal' | 'vertical';
+      actions?: React.ReactNode[];
     }
   | {
-      orientation: 'vertical';
-      type?: 'default' | 'borderless';
+      type: 'pill';
+      orientation: 'horizontal';
+      actions?: undefined;
     };
 
+// | {
+//     /**
+//      * Orientation of the tabs.
+//      * @default 'horizontal'
+//      */
+//     orientation?: 'horizontal';
+//     /**
+//      * Type of the tabs.
+//      *
+//      * If `orientation = 'vertical'`, `pill` is not applicable.
+//      * @default 'default'
+//      */
+//     type?: 'default' | 'borderless' | 'pill';
+//     actions: string[];
+//   }
+// | {
+//     orientation: 'vertical';
+//     type?: 'default' | 'borderless' | 'pill';
+//     actions: number[];
+//   };
+
 export type TabsProps = {
+  orientation: 'horizontal' | 'vertical';
   /**
    * Elements shown for each tab.
    * Recommended to pass an array of `Tab` components.
@@ -75,12 +99,13 @@ export type TabsProps = {
    * Content inside the tab panel.
    */
   children?: React.ReactNode;
-} & TabsOrientationProps;
+} & TabsTypeProps;
 
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
  */
-export type HorizontalTabsProps = Omit<TabsProps, 'orientation'>;
+export type HorizontalTabsProps = Omit<TabsProps, 'orientation'> &
+  TabsTypeProps;
 
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
@@ -314,6 +339,13 @@ export const Tabs = (props: TabsProps) => {
           );
         })}
       </ul>
+
+      {props.type !== 'pill' && props.actions && (
+        <div className='iui-tabs-actions-wrapper'>
+          <div className='iui-tabs-actions'>{props.actions}</div>
+        </div>
+      )}
+
       {children && (
         <div
           className={cx('iui-tabs-content', contentClassName)}
