@@ -42,34 +42,6 @@
       margin-bottom: var(--iui-size-s);
     }
 
-    > svg[data-iui-file-uploaded] {
-      @include iui-icon-style(xl);
-      margin-left: var(--iui-size-xs);
-    }
-
-    .iui-template-file-uploaded-text {
-      margin: 0 var(--iui-size-s);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-
-      + label {
-        margin-left: auto;
-        margin-right: var(--iui-size-xs);
-        font-weight: var(--iui-font-weight-bold);
-      }
-    }
-
-    .iui-template-file-uploaded-icon {
-      @include iui-icon-style(xl);
-      @include iui-icon-color;
-      margin-top: var(--iui-size-s);
-      margin-bottom: var(--iui-size-s);
-      margin-left: var(--iui-size-xs);
-    }
-
     &:only-child {
       visibility: visible;
       position: relative;
@@ -88,18 +60,6 @@
         font-weight: var(--iui-font-weight-bold);
       }
     }
-
-    .iui-template-file-uploaded-label,
-    .iui-template-file-uploaded-description {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .iui-template-file-uploaded-description {
-      font-size: var(--iui-font-size-0);
-      color: var(--iui-color-text-muted);
-    }
   }
 
   &.iui-drag > .iui-content {
@@ -112,5 +72,50 @@
     .iui-template-icon {
       fill: var(--iui-color-icon-accent);
     }
+  }
+}
+
+@mixin iui-file-uploaded-template {
+  width: 100%;
+  height: 100%;
+  line-height: normal;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > svg,
+  .iui-file-uploaded-template-icon {
+    @include iui-icon-style(xl);
+    @include iui-icon-color;
+    margin-top: var(--iui-size-s);
+    margin-bottom: var(--iui-size-s);
+    margin-left: var(--iui-size-xs);
+  }
+}
+
+@mixin iui-file-uploaded-template-text {
+  margin: 0 var(--iui-size-s);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  + label {
+    margin-left: auto;
+    margin-right: var(--iui-size-xs);
+    font-weight: var(--iui-font-weight-bold);
+  }
+
+  .iui-file-uploaded-template-label,
+  .iui-file-uploaded-template-description {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .iui-file-uploaded-template-description {
+    font-size: var(--iui-font-size-0);
+    color: var(--iui-color-text-muted);
   }
 }

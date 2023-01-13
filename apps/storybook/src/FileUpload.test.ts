@@ -4,12 +4,22 @@
  *--------------------------------------------------------------------------------------------*/
 describe('FileUpload', () => {
   const storyPath = 'Core/FileUpload';
-  const tests = ['Default', 'Wrapping Input'];
+  const tests = ['Default', 'Wrapping Input', 'Single File Upload'];
 
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
+
+      if (testName === 'Single File Upload') {
+        cy.get('.iui-browse-input').selectFile({
+          contents: Cypress.Buffer.from('file contents'),
+          fileName: 'file.txt',
+          mimeType: 'text/plain',
+          lastModified: new Date(2023).valueOf(),
+        });
+        cy.compareSnapshot(`${testName} (Uploaded)`);
+      }
       cy.compareSnapshot(testName);
     });
   });

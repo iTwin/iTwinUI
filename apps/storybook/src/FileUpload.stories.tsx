@@ -39,7 +39,6 @@ export const Default: Story<FileUploadProps> = (args) => {
     >
       <FileUploadTemplate
         onChange={(e) => setFiles(Array.from(e.target.files || []))}
-        files={files}
       >
         {files.map((f) => f.name).join(', ')}
       </FileUploadTemplate>
@@ -74,4 +73,26 @@ export const WrappingInput: Story<FileUploadProps> = (args) => {
 
 WrappingInput.args = {
   dragContent: 'Drop file to upload',
+};
+
+export const SingleFileUpload: Story<FileUploadProps> = (args) => {
+  const [files, setFiles] = useState<Array<File>>([]);
+
+  return (
+    <FileUpload
+      {...args}
+      onFileDropped={(files) => {
+        setFiles(Array.from(files));
+        action(`${files.length} files uploaded`)();
+      }}
+    >
+      <FileUploadTemplate
+        onChange={(e) => setFiles(Array.from(e.target.files || []))}
+        acceptMultiple={false}
+        data={files.length === 1 ? files[0] : undefined}
+      >
+        {files.map((f) => f.name).join(', ')}
+      </FileUploadTemplate>
+    </FileUpload>
+  );
 };

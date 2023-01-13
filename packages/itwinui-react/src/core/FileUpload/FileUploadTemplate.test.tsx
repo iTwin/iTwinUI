@@ -59,31 +59,29 @@ it('should accept input props', () => {
 
 it('should render FileUploadTemplate after a file is uploaded', () => {
   const mockedOnChange = jest.fn();
-  const file = new Array<File>(
-    new File(['mock-file'], 'test.txt', { type: 'text/plain' }),
-  );
+  const file = new File(['mock-file'], 'test.txt', { type: 'text/plain' });
 
   const { container } = render(
-    <FileUploadTemplate onChange={mockedOnChange} files={file} />,
+    <FileUploadTemplate
+      onChange={mockedOnChange}
+      acceptMultiple={false}
+      data={file}
+    />,
   );
 
   const label = container.querySelector(
-    '.iui-template-file-uploaded-label',
+    '.iui-file-uploaded-template-label',
   ) as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toEqual('test.txt');
 
   const secondary = container.querySelector(
-    '.iui-template-file-uploaded-description',
+    '.iui-file-uploaded-template-description',
   ) as HTMLElement;
   expect(secondary).toBeTruthy();
 
   const { container: documentIcon } = render(
-    <SvgDocument
-      aria-hidden
-      className='iui-icon'
-      data-iui-file-uploaded={true}
-    />,
+    <SvgDocument aria-hidden className='iui-icon' />,
   );
   const svg = container.querySelector('.iui-icon') as SVGSVGElement;
   expect(svg).toBeTruthy();

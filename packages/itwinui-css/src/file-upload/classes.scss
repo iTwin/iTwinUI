@@ -5,3 +5,11 @@
 .iui-file-upload {
   @include iui-file-upload;
 }
+
+.iui-file-uploaded-template {
+  @include iui-file-uploaded-template;
+}
+
+.iui-file-uploaded-template-text {
+  @include iui-file-uploaded-template-text;
+}
