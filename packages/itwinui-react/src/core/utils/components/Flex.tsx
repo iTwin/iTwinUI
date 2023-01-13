@@ -54,49 +54,61 @@ export type FlexProps = {
   direction?: React.CSSProperties['flexDirection'];
 } & React.ComponentProps<'div'>;
 
+const FlexComponent = React.forwardRef(
+  (props: FlexProps, ref: React.RefObject<HTMLDivElement>) => {
+    const {
+      display,
+      direction,
+      justifyContent,
+      alignItems,
+      gap,
+      className,
+      style,
+      ...rest
+    } = props;
+
+    const gapValue = gap ? gap.split(' ').map(getValueForToken) : undefined;
+
+    return (
+      <div
+        className={cx('iui-flex', className)}
+        style={
+          {
+            '--iui-flex-display': display,
+            '--iui-flex-direction': direction,
+            '--iui-flex-justify': justifyContent,
+            '--iui-flex-align': alignItems,
+            '--iui-flex-gap': gapValue,
+            ...style,
+          } as React.CSSProperties
+        }
+        ref={ref}
+        {...rest}
+      />
+    );
+  },
+);
+
+const FlexSpacer = React.forwardRef(
+  (props: FlexSpacerProps, ref: React.RefObject<HTMLDivElement>) => {
+    return <div className='iui-flex-spacer' ref={ref} {...props} />;
+  },
+);
+type FlexSpacerProps = React.ComponentProps<'div'>;
+
+const FlexItem = React.forwardRef(
+  (props: FlexItemProps, ref: React.RefObject<HTMLDivElement>) => {
+    return <div className='iui-flex-item' ref={ref} {...props} />;
+  },
+);
+type FlexItemProps = React.ComponentProps<'div'>;
+
 /**
  * A utility component for working with flexbox and .
  */
-export const Flex = (props: FlexProps) => {
-  const {
-    display,
-    direction,
-    justifyContent,
-    alignItems,
-    gap,
-    className,
-    style,
-    ...rest
-  } = props;
-
-  const gapValue = gap ? gap.split(' ').map(getValueForToken) : undefined;
-
-  return (
-    <div
-      className={cx('iui-flex', className)}
-      style={
-        {
-          '--iui-flex-display': display,
-          '--iui-flex-direction': direction,
-          '--iui-flex-justify': justifyContent,
-          '--iui-flex-align': alignItems,
-          '--iui-flex-gap': gapValue,
-          ...style,
-        } as React.CSSProperties
-      }
-      {...rest}
-    />
-  );
-};
-
-Flex.Spacer = (props: FlexSpacerProps) => {
-  return <div className='iui-flex-spacer' {...props} />;
-};
-type FlexSpacerProps = React.ComponentProps<'div'>;
-
-Flex.Item = (props: FlexItemProps) => {
-  return <div className='iui-flex-item' {...props} />;
-};
-type FlexItemProps = React.ComponentProps<'div'>;
+export const Flex = Object.assign(FlexComponent, {
+  Spacer: FlexSpacer,
+  Item: FlexItem,
+});
 
 export default Flex;
