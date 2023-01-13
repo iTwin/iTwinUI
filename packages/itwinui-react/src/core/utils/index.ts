@@ -8,3 +8,4 @@ export * from './components';
 export * from './props';
 export * from './color';
 export * from './icons';
+export * from './types';
