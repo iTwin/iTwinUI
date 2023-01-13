@@ -5,7 +5,7 @@
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import { Meta, Story } from '@storybook/react/';
 import React from 'react';
-import { Tab } from '@itwin/itwinui-react';
+import { Button, Tab } from '@itwin/itwinui-react';
 import { Tabs, TabsProps } from '@itwin/itwinui-react/esm/core/Tabs/Tabs';
 
 export default {
@@ -16,6 +16,12 @@ export default {
     focusActivationMode: 'auto',
     color: 'blue',
     orientation: 'horizontal',
+    actions: [
+      <Button key={'Small'} size={'small'}>
+        Small size button
+      </Button>,
+      <Button key={'Normal'}>Normal size button</Button>,
+    ],
   },
   argTypes: {
     children: { control: { disable: true } },
@@ -127,9 +133,11 @@ PillTabs.args = {
     .fill(null)
     .map((_, index) => <Tab key={index} startIcon={<SvgStar />} />),
   type: 'pill',
+  actions: undefined,
 };
 PillTabs.argTypes = {
   orientation: { control: { disable: true } },
+  actions: { control: { disable: true } },
 };
 
 export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {

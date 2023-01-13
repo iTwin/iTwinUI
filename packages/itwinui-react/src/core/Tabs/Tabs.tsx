@@ -58,7 +58,6 @@ type TabsTypeProps =
 //   };
 
 export type TabsProps = {
-  orientation: 'horizontal' | 'vertical';
   /**
    * Elements shown for each tab.
    * Recommended to pass an array of `Tab` components.
