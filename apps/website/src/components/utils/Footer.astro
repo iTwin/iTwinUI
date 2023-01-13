@@ -1,0 +1,14 @@
+---
+const props = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer {...props}>© {currentYear} Bentley Systems, Inc</footer>
+
+<style lang='scss'>
+  footer {
+    color: var(--color-subtext);
+    margin-inline: auto;
+    padding: var(--space-4);
+  }
+</style>
