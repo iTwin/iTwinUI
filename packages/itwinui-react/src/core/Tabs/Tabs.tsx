@@ -28,6 +28,11 @@ type TabsTypeProps =
        * @default 'horizontal'
        */
       orientation?: 'horizontal' | 'vertical';
+      /**
+       * Content displayed to the right/bottom of the horizontal/vertical tabs
+       *
+       * If `type = 'pill'`, `actions` is not applicable.
+       */
       actions?: React.ReactNode[];
     }
   | {
@@ -35,27 +40,6 @@ type TabsTypeProps =
       orientation: 'horizontal';
       actions?: undefined;
     };
-
-// | {
-//     /**
-//      * Orientation of the tabs.
-//      * @default 'horizontal'
-//      */
-//     orientation?: 'horizontal';
-//     /**
-//      * Type of the tabs.
-//      *
-//      * If `orientation = 'vertical'`, `pill` is not applicable.
-//      * @default 'default'
-//      */
-//     type?: 'default' | 'borderless' | 'pill';
-//     actions: string[];
-//   }
-// | {
-//     orientation: 'vertical';
-//     type?: 'default' | 'borderless' | 'pill';
-//     actions: number[];
-//   };
 
 export type TabsProps = {
   /**
@@ -153,6 +137,7 @@ export const Tabs = (props: TabsProps) => {
     contentClassName,
     wrapperClassName,
     children,
+    actions,
     ...rest
   } = props;
 
@@ -339,9 +324,9 @@ export const Tabs = (props: TabsProps) => {
         })}
       </ul>
 
-      {props.type !== 'pill' && props.actions && (
+      {actions && (
         <div className='iui-tabs-actions-wrapper'>
-          <div className='iui-tabs-actions'>{props.actions}</div>
+          <div className='iui-tabs-actions'>{actions}</div>
         </div>
       )}
 
