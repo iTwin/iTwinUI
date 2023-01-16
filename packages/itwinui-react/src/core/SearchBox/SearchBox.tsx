@@ -12,7 +12,9 @@ export type SearchBoxProps = {
 } & InputProps;
 
 /**
- * Describe me here!
+ * // TODO:
+ * Searchbox component.
+ * Used for searches :)
  * @example
  * Example usages go here!
  */

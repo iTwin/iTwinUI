@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('SearchBox', () => {
-  const storyPath = 'Core/SearchBox';
-  const tests = ['Basic'];
+  const storyPath = 'Input/SearchBox';
+  const tests = ['Basic', 'Small'];
 
   tests.forEach((testName) => {
     it(testName, function () {

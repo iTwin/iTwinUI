@@ -54,41 +54,12 @@
     &[disabled] {
       --_iui-input-background-color: var(--iui-color-background-disabled);
       --_iui-input-border-color: var(--iui-color-border-disabled);
-      --_iui-input-with-icon-hover-border-color: var(
-        --iui-color-border-disabled
-      );
+      --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
       cursor: not-allowed;
     }
   }
-}
 
-@mixin iui-input-right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-
-  // .iui-input-icon {
-  //   margin: 0 calc(var(--iui-size-xs) + 1px) 0 0;
-
-  // }
-}
-
-@mixin iui-input-left {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: flex-end;
-  position: relative;
-
-  // .iui-input-icon {
-  //   margin: 0 0 0 calc(var(--iui-size-xs) + 1px);
-
-  // }
-}
-
-@mixin iui-input-icon {
-  margin: 0 0 0 var(--iui-size-xs);
-  @include iui-icon-style('m');
-  @include iui-icon-color;
+  > .iui-svg-icon {
+    margin-left: var(--iui-size-xs);
+  }
 }

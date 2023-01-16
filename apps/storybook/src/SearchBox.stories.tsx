@@ -4,8 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { IconButton, SearchBox, SearchBoxProps } from '@itwin/itwinui-react';
-import { SvgAirplane, SvgSearch } from '@itwin/itwinui-icons-react';
+import {
+  IconButton,
+  SearchBox,
+  SearchBoxProps,
+  Icon,
+} from '@itwin/itwinui-react';
+import {
+  SvgCaretDownSmall,
+  SvgCaretUpSmall,
+  SvgClose,
+  SvgSearch,
+} from '@itwin/itwinui-icons-react';
 
 export default {
   component: SearchBox,
@@ -20,16 +30,39 @@ export const Basic: Story<SearchBoxProps> = (args) => {
   return (
     <SearchBox
       {...args}
-      placeholder='search...'
+      placeholder='Search...'
+      startAdornment={
+        <Icon>
+          <SvgSearch />
+        </Icon>
+      }
+      endAdornment={
+        <IconButton styleType='borderless'>
+          <SvgClose />
+        </IconButton>
+      }
+    />
+  );
+};
+
+export const Small: Story<SearchBoxProps> = (args) => {
+  return (
+    <SearchBox
+      {...args}
+      placeholder='Search...'
       size='small'
-      startAdornment={<SvgAirplane className='iui-input-icon' />}
+      startAdornment={
+        <Icon size='small'>
+          <SvgSearch />
+        </Icon>
+      }
       endAdornment={
         <>
-          <IconButton styleType='borderless'>
-            <SvgSearch />
+          <IconButton size='small' styleType='borderless'>
+            <SvgCaretUpSmall />
           </IconButton>
-          <IconButton styleType='borderless'>
-            <SvgSearch />
+          <IconButton size='small' styleType='borderless'>
+            <SvgCaretDownSmall />
           </IconButton>
         </>
       }
