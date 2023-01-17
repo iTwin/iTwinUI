@@ -18,6 +18,20 @@ export type AnchorProps<T extends React.ElementType = 'a'> =
 
 type AnchorComponent = PolymorphicForwardRefComponent<'a', AnchorOwnProps>;
 
+/**
+ * A consistently styled anchor component.
+ *
+ * Supports polymorphic `as` prop for use with `Link` components from routers,
+ * or to render as a button.
+ *
+ * @example
+ * <Anchor href='/'>Home</Anchor>
+ * <Anchor href='/projects'>Projects</Anchor>
+ *
+ * @example
+ * <Anchor as={Link} to='/'>Home</Anchor>
+ * <Anchor as='button' onClick={() => {}}>click me</Anchor>
+ */
 export const Anchor = React.forwardRef((props, ref) => {
   const { as: Element = 'a', className, ...rest } = props;
 
