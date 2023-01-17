@@ -7,8 +7,14 @@ import { InputProps } from '../Input';
 import { useTheme } from '../utils';
 
 export type SearchBoxProps = {
-  startAdornment?: React.ReactNode;
-  endAdornment?: React.ReactNode;
+  /**
+   *
+   */
+  startAdornment?: React.ReactNode | React.ReactNode[];
+  /**
+   *
+   */
+  endAdornment?: React.ReactNode | React.ReactNode[];
 } & InputProps;
 
 /**

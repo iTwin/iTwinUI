@@ -6,15 +6,26 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { SearchBox } from './SearchBox';
+import { Icon, SvgClose } from '../utils';
 
 it('should render in its most basic state', () => {
-  // TODO: Make sure all required props are passed in here
-  const { container } = render(<SearchBox />);
-  expect(container.querySelector('div')).toBeTruthy();
-});
+  const { container } = render(
+    <SearchBox
+      endAdornment={
+        <Icon>
+          <SvgClose />
+        </Icon>
+      }
+    />,
+  );
 
-// TODO: Write tests here!
+  // Base flex container
+  const searchbox = container.querySelector('.iui-input-flex-container');
+  expect(searchbox).toBeTruthy();
 
-it('should be improved', () => {
-  expect(false).toBe(true);
+  // Input element
+  const input = searchbox?.querySelector('input');
+  expect(input).toBeTruthy();
+  expect(input).toHaveClass('iui-invisible-borders');
+  expect(input).toHaveAttribute('type', 'search');
 });
