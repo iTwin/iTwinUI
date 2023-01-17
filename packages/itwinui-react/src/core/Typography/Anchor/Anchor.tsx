@@ -16,8 +16,6 @@ type AnchorOwnProps = Record<never, never>;
 export type AnchorProps<T extends React.ElementType = 'a'> =
   PolymorphicComponentProps<T, AnchorOwnProps>;
 
-type AnchorComponent = PolymorphicForwardRefComponent<'a', AnchorOwnProps>;
-
 /**
  * A consistently styled anchor component.
  *
@@ -40,6 +38,6 @@ export const Anchor = React.forwardRef((props, ref) => {
   return (
     <Element className={cx('iui-anchor', className)} ref={ref} {...rest} />
   );
-}) as AnchorComponent;
+}) as PolymorphicForwardRefComponent<'a', AnchorOwnProps>;
 
 export default Anchor;
