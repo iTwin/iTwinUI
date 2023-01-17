@@ -1265,7 +1265,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  const data = useMemo(
+  const data: DemoData[] = useMemo(
     () => [
       {
         name: 'Row 1',
@@ -1359,17 +1359,9 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
           <Checkbox
             key={index}
             label={data.name}
-            checked={expandedRows[index]}
+            checked={expandedRows.some((row) => row.name === data.name)}
             onChange={(e) => {
-              setExpandedRows((rowIds) => {
-                const expandedRowIds = { ...rowIds };
-                if (e.target.checked) {
-                  expandedRowIds[index] = true;
-                } else {
-                  delete expandedRowIds[index];
-                }
-                return expandedRowIds;
-              });
+              tableInstance.current?.toggleRowExpanded(index, e.target.checked);
             }}
           />
         ))}
