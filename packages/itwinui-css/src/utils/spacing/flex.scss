@@ -14,7 +14,20 @@
 }
 
 @mixin iui-flex-item {
-  flex: var(--iui-flex-item-flex, 1);
-  margin-inline-start: var(--iui-flex-item-ml);
-  margin-inline-end: var(--iui-flex-item-mr);
+  flex: var(--iui-flex-item-flex, auto);
+
+  // calculate individual margins to counteract gap set on parent
+  $margin-start: calc(var(--iui-flex-item-gap-before) - var(--iui-flex-gap));
+  $margin-end: calc(var(--iui-flex-item-gap-after) - var(--iui-flex-gap));
+
+  @include space-toggle-states;
+  margin-inline-start: var(--iui-flex-item-gap-before-toggle, $margin-start);
+  margin-inline-end: var(--iui-flex-item-gap-before-toggle, $margin-end);
+}
+
+// setup for toggling values at runtime using the css var space toggle technique
+// https://lea.verou.me/2020/10/the-var-space-hack-to-toggle-multiple-values-with-one-custom-property
+@mixin space-toggle-states {
+  --iui-off: /* whitespace = off */ ; /* stylelint-disable-line */
+  --iui-on: initial;
 }
