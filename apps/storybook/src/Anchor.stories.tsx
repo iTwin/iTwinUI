@@ -38,6 +38,5 @@ export const AsButton: Story<AnchorProps<'button'>> = (args) => {
 };
 AsButton.args = {
   as: 'button',
-  href: 'https://www.example.com/',
-  children: 'www.example.com',
+  children: 'perform action',
 } as AnchorProps<'button'>;
