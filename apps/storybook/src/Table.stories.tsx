@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import type {
   ActionType,
   CellProps,
@@ -12,7 +12,7 @@ import type {
   TableInstance,
   TableState,
 } from 'react-table';
-import { actions } from 'react-table';
+// import { actions } from 'react-table';
 import {
   Checkbox,
   Code,
@@ -1243,8 +1243,11 @@ InitialState.argTypes = {
 };
 
 export const ControlledState: Story<Partial<TableProps>> = (args) => {
-  const [selectedRows, setSelectedRows] = useState<Record<string, boolean>>({});
-  const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
+  type DemoData = { name: string; description: string; subRows: DemoData[] };
+
+  const tableInstance = useRef<TableInstance>();
+  const [selectedRows, setSelectedRows] = useState<DemoData[]>([]);
+  const [expandedRows, setExpandedRows] = useState<DemoData[]>([]);
 
   const columns = useMemo(
     () => [
@@ -1313,16 +1316,16 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  const controlledState = useCallback(
-    (state) => {
-      return {
-        ...state,
-        selectedRowIds: { ...selectedRows },
-        expanded: { ...expandedRows },
-      };
-    },
-    [selectedRows, expandedRows],
-  );
+  // const controlledState = useCallback(
+  //   (state) => {
+  //     return {
+  //       ...state,
+  //       selectedRowIds: { ...selectedRows },
+  //       expanded: { ...expandedRows },
+  //     };
+  //   },
+  //   [selectedRows, expandedRows],
+  // );
 
   // When using `useControlledState` we are fully responsible for the state part we are modifying.
   // Therefore we want to keep our outside state (`selectedRows`) in sync with inside table state (`state.selectedRowIds`).
@@ -1332,51 +1335,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
     previousState: TableState,
     instance?: TableInstance,
   ): TableState => {
-    switch (action.type) {
-      case actions.toggleRowSelected: {
-        const newSelectedRows = {
-          ...selectedRows,
-        };
-        if (action.value) {
-          newSelectedRows[action.id] = true;
-        } else {
-          delete newSelectedRows[action.id];
-        }
-        setSelectedRows(newSelectedRows);
-        newState.selectedRowIds = newSelectedRows;
-        break;
-      }
-      case actions.toggleAllRowsSelected: {
-        if (!instance?.rowsById) {
-          break;
-        }
-        const newSelectedRows = {} as Record<string, boolean>;
-        if (action.value) {
-          Object.keys(instance.rowsById).forEach(
-            (id) => (newSelectedRows[id] = true),
-          );
-        }
-        setSelectedRows(newSelectedRows);
-        newState.selectedRowIds = newSelectedRows;
-        break;
-      }
-      case actions.toggleRowExpanded: {
-        const newExpandedRows = {
-          ...expandedRows,
-        };
-        if (newState.expanded[action.id]) {
-          newExpandedRows[action.id] = true;
-        } else {
-          delete newExpandedRows[action.id];
-        }
-        setExpandedRows(newExpandedRows);
-        newState.expanded = newExpandedRows;
-        break;
-      }
-
-      default:
-        break;
-    }
+    tableInstance.current = instance;
     return newState;
   };
 
@@ -1387,17 +1346,10 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
           <Checkbox
             key={index}
             label={data.name}
-            checked={selectedRows[index]}
+            checked={selectedRows.some((row) => row.name === data.name)}
             onChange={(e) => {
-              setSelectedRows((rowIds) => {
-                const selectedRowIds = { ...rowIds };
-                if (e.target.checked) {
-                  selectedRowIds[index] = true;
-                } else {
-                  delete selectedRowIds[index];
-                }
-                return selectedRowIds;
-              });
+              console.log('onChange', tableInstance.current.toggleRowSelected);
+              tableInstance.current?.toggleRowSelected(index, e.target.checked);
             }}
           />
         ))}
@@ -1425,9 +1377,15 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
       <Table
         columns={columns}
         emptyTableContent='No data.'
-        useControlledState={controlledState}
         stateReducer={tableStateReducer}
         isSelectable
+        onSelect={useCallback((selected) => {
+          console.log('selected', selected);
+          setSelectedRows(selected ?? []);
+        }, [])}
+        onExpand={useCallback((expanded) => {
+          setExpandedRows(expanded);
+        }, [])}
         {...args}
         data={data}
       />
