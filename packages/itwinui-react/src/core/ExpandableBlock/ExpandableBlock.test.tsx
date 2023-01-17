@@ -129,11 +129,14 @@ it.each(['positive', 'negative', 'warning', 'informational'] as const)(
     expect(container.querySelector('.iui-expandable-block')).toBeTruthy();
     expect(queryByText('test title')).toHaveClass('iui-title');
 
+    const statusIconWrapper = container.querySelector('.iui-svg-icon');
+    expect(statusIconWrapper).toHaveAttribute('data-iui-icon-color', status);
+
     const {
-      container: { firstChild: statusIcon },
-    } = render(StatusIconMap[status]({ className: `iui-status-icon` }));
-    (statusIcon as HTMLElement).setAttribute('data-iui-icon-color', status);
-    expect(container.querySelector('.iui-status-icon')).toEqual(statusIcon);
+      container: { firstChild: statusSvg },
+    } = render(StatusIconMap[status]());
+
+    expect(container.querySelector('.iui-svg-icon > svg')).toEqual(statusSvg);
   },
 );
 
@@ -148,8 +151,10 @@ it('should render with custom endIcon', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-status-icon' />);
-  expect(container.querySelector('.iui-status-icon')).toEqual(placeholderIcon);
+  } = render(<SvgPlaceholder />);
+  expect(container.querySelector('.iui-svg-icon > svg')).toEqual(
+    placeholderIcon,
+  );
 });
 
 it('should render small size', () => {

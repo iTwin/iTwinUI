@@ -51,7 +51,6 @@
     "build:css": "node ./scripts/generateCss.js src css",
     "build:html": "vite build backstop/tests --config vite.config.ts",
     "build:watch:scss": "node ./scripts/watchScss.mjs",
-    "createComponent": "node ./scripts/createComponent.js",
     "clean": "rimraf ./css ./scss ./backstop/results/bitmaps_test",
     "dev": "concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn vite backstop/tests --config vite.config.ts\"",
     "preview": "serve backstop/minified -p 3050",
