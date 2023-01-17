@@ -502,6 +502,8 @@ export const Table = <
         case TableActions.toggleRowSelected:
         case TableActions.toggleAllRowsSelected:
         case TableActions.toggleAllPageRowsSelected: {
+          // console.log('toggleRowSelected', action, state);
+
           onToggleHandler(
             newState,
             action,
@@ -836,6 +838,8 @@ export const Table = <
   }, []);
 
   const isHeaderDirectClick = React.useRef(false);
+
+  // console.log('HERE');
 
   return (
     <>
