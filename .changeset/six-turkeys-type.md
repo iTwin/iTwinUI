@@ -4,3 +4,7 @@
 ---
 
 `Anchor` can now be rendered as a button using `as` prop.
+
+```jsx
+<Anchor as='button' onClick={() => {}}>...</Anchor>
+```
