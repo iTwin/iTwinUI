@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback, useRef } from 'react';
 import type {
-  ActionType,
   CellProps,
   CellRendererProps,
   Column,
@@ -12,7 +11,6 @@ import type {
   TableInstance,
   TableState,
 } from 'react-table';
-// import { actions } from 'react-table';
 import {
   Checkbox,
   Code,
@@ -1316,29 +1314,6 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  // const controlledState = useCallback(
-  //   (state) => {
-  //     return {
-  //       ...state,
-  //       selectedRowIds: { ...selectedRows },
-  //       expanded: { ...expandedRows },
-  //     };
-  //   },
-  //   [selectedRows, expandedRows],
-  // );
-
-  // When using `useControlledState` we are fully responsible for the state part we are modifying.
-  // Therefore we want to keep our outside state (`selectedRows`) in sync with inside table state (`state.selectedRowIds`).
-  const tableStateReducer = (
-    newState: TableState,
-    action: ActionType,
-    previousState: TableState,
-    instance?: TableInstance,
-  ): TableState => {
-    tableInstance.current = instance;
-    return newState;
-  };
-
   return (
     <>
       <InputGroup label='Control selected rows' style={{ marginBottom: 11 }}>
@@ -1348,7 +1323,6 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
             label={data.name}
             checked={selectedRows.some((row) => row.name === data.name)}
             onChange={(e) => {
-              console.log('onChange', tableInstance.current.toggleRowSelected);
               tableInstance.current?.toggleRowSelected(index, e.target.checked);
             }}
           />
@@ -1369,10 +1343,12 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
       <Table
         columns={columns}
         emptyTableContent='No data.'
-        stateReducer={tableStateReducer}
+        stateReducer={useCallback((newState, action, prevState, instance) => {
+          tableInstance.current = instance;
+          return newState;
+        }, [])}
         isSelectable
         onSelect={useCallback((selected) => {
-          console.log('selected', selected);
           setSelectedRows(selected ?? []);
         }, [])}
         onExpand={useCallback((expanded) => {
