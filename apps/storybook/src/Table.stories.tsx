@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 import type {
   CellProps,
   CellRendererProps,
@@ -1243,7 +1243,7 @@ InitialState.argTypes = {
 export const ControlledState: Story<Partial<TableProps>> = (args) => {
   type DemoData = { name: string; description: string; subRows: DemoData[] };
 
-  const tableInstance = useRef<TableInstance>();
+  const tableInstance = React.useRef<TableInstance>();
   const [selectedRows, setSelectedRows] = useState<DemoData[]>([]);
   const [expandedRows, setExpandedRows] = useState<DemoData[]>([]);
 
@@ -1323,7 +1323,10 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
             label={data.name}
             checked={selectedRows.some((row) => row.name === data.name)}
             onChange={(e) => {
-              tableInstance.current?.toggleRowSelected(index, e.target.checked);
+              tableInstance.current?.toggleRowSelected(
+                data.name,
+                e.target.checked,
+              );
             }}
           />
         ))}
@@ -1335,7 +1338,10 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
             label={data.name}
             checked={expandedRows.some((row) => row.name === data.name)}
             onChange={(e) => {
-              tableInstance.current?.toggleRowExpanded(index, e.target.checked);
+              tableInstance.current?.toggleRowExpanded(
+                [data.name],
+                e.target.checked,
+              );
             }}
           />
         ))}
@@ -1354,6 +1360,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
         onExpand={useCallback((expanded) => {
           setExpandedRows(expanded);
         }, [])}
+        getRowId={useCallback((rowData) => rowData.name, [])} // In real world use instance id
         {...args}
         data={data}
       />
