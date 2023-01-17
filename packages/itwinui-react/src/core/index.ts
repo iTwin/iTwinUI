@@ -289,6 +289,7 @@ export {
   Text,
 } from './Typography';
 export type {
+  AnchorProps,
   BodyProps,
   HeadlineProps,
   LeadingProps,

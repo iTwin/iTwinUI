@@ -4,15 +4,28 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../../utils';
+import {
+  PolymorphicComponentProps,
+  PolymorphicForwardRefComponent,
+  useTheme,
+} from '../../utils';
 import '@itwin/itwinui-css/css/anchor.css';
 
-export const Anchor = React.forwardRef<
-  HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<'a'>
->(({ className, ...rest }, ref) => {
+type AnchorOwnProps = Record<never, never>;
+
+export type AnchorProps<T extends React.ElementType = 'a'> =
+  PolymorphicComponentProps<T, AnchorOwnProps>;
+
+type AnchorComponent = PolymorphicForwardRefComponent<'a', AnchorOwnProps>;
+
+export const Anchor = React.forwardRef((props, ref) => {
+  const { as: Element = 'a', className, ...rest } = props;
+
   useTheme();
-  return <a className={cx('iui-anchor', className)} ref={ref} {...rest} />;
-});
+
+  return (
+    <Element className={cx('iui-anchor', className)} ref={ref} {...rest} />
+  );
+}) as AnchorComponent;
 
 export default Anchor;
