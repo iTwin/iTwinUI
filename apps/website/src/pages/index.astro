@@ -83,6 +83,42 @@ const currentPage = new URL(Astro.request.url).pathname;
       </div>
     </div>
 
+    <script>
+      document.querySelector('body').addEventListener('scroll', () => {
+        let visibilityInfoString = '';
+
+        const demoWrappers = document.querySelectorAll('.demo-wrapper');
+        demoWrappers.forEach((demoWrapper) => {
+          visibilityInfoString += ', ' + isVisible(demoWrapper);
+        });
+
+        console.log(visibilityInfoString);
+      });
+
+      const demoWrappers = document.querySelectorAll('.demo-wrapper');
+      const visibleBottomLine = window.scrollY + window.innerHeight;
+
+      const isVisible = (demoWrapper) => {
+        const top = demoWrapper.getBoundingClientRect().top;
+        return top < visibleBottomLine;
+      };
+
+      demoWrappers.forEach((demoWrapper, index) => {
+        const top = demoWrapper.getBoundingClientRect().top;
+        const isVisible = top < visibleBottomLine;
+
+        console.log(`#${index}: ${isVisible}`);
+      });
+
+      console.log(
+        'HERE',
+        demoWrappers[0].getBoundingClientRect().height,
+        window.scrollY,
+        window.innerHeight,
+        window.outerHeight
+      );
+    </script>
+
     <div class='centered-content'>
       <h2 class='highlight-text'>Why iTwinUI?</h2>
       <div class='column-content'>
@@ -220,7 +256,9 @@ const currentPage = new URL(Astro.request.url).pathname;
       grid-area: header;
     }
     .demo-carousel-list {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
       justify-self: center;
       gap: var(--space-6);
       margin-block: calc(var(--space-7) * 4) calc(var(--space-7) * 3);
@@ -249,6 +287,7 @@ const currentPage = new URL(Astro.request.url).pathname;
       color-scheme: dark !important;
       width: 350px;
       height: 350px;
+      border-radius: var(--border-radius-1);
       display: flex;
       justify-content: center;
       align-items: center;
