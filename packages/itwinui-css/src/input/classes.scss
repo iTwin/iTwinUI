@@ -29,6 +29,10 @@
 .iui-input-flex-container {
   @include iui-input-flex-container;
 
+  > input {
+    @include iui-invisible-borders;
+  }
+
   > input[type='search'] {
     @include iui-search-box;
   }
@@ -48,9 +52,9 @@
   }
 }
 
-.iui-invisible-borders {
-  @include iui-invisible-borders;
-}
+// .iui-invisible-borders {
+//   @include iui-invisible-borders;
+// }
 
 .iui-vertical-divider {
   @include iui-vertical-divider;

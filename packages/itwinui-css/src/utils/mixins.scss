@@ -149,7 +149,6 @@
   background: none;
 
   &:focus,
-  &:focus-within,
   &:hover {
     outline: none;
     border: none;
@@ -162,4 +161,8 @@
   height: calc(100% - #{var(--iui-size-s)});
   margin: 1px auto;
   background-color: var(--iui-color-border);
+
+  @media (forced-colors: active) {
+    background-color: CanvasText;
+  }
 }

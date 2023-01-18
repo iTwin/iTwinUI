@@ -45,19 +45,21 @@
       user-select: none;
       color: var(--_iui-input-text-color);
     }
+  }
 
-    &:autofill {
-      --_iui-input-background-color: var(--iui-color-background-accent-muted);
-      --_iui-input-border-color: var(--iui-color-border-accent);
-      --_iui-input-text-color: var(--iui-color-text-accent);
-    }
+  &:autofill,
+  > input:autofill {
+    --_iui-input-background-color: var(--iui-color-background-accent-muted);
+    --_iui-input-border-color: var(--iui-color-border-accent);
+    --_iui-input-text-color: var(--iui-color-text-accent);
+  }
 
-    &[disabled] {
-      --_iui-input-background-color: var(--iui-color-background-disabled);
-      --_iui-input-border-color: var(--iui-color-border-disabled);
-      --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
-      cursor: not-allowed;
-    }
+  &[disabled],
+  > input[disabled] {
+    --_iui-input-background-color: var(--iui-color-background-disabled);
+    --_iui-input-border-color: var(--iui-color-border-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
+    cursor: not-allowed;
   }
 
   > .iui-svg-icon {
