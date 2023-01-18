@@ -10,7 +10,7 @@ describe('FileUpload', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
-
+      cy.compareSnapshot(testName);
       if (testName === 'Single File Upload') {
         cy.get('.iui-browse-input').selectFile({
           contents: Cypress.Buffer.from('file contents'),
@@ -20,7 +20,6 @@ describe('FileUpload', () => {
         });
         cy.compareSnapshot(`${testName} (Uploaded)`);
       }
-      cy.compareSnapshot(testName);
     });
   });
 });
