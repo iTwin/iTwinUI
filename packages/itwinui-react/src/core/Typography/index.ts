@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Anchor } from './Anchor';
+export type { AnchorProps } from './Anchor';
 
 export { Headline } from './Headline';
 export type { HeadlineProps } from './Headline';
