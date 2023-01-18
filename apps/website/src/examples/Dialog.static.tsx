@@ -21,6 +21,7 @@ export default () => {
           minWidth: 0,
         }}
         trapFocus={false}
+        setFocus={false}
       >
         <Dialog.TitleBar isDismissible>Dialog</Dialog.TitleBar>
         <ModalContent>

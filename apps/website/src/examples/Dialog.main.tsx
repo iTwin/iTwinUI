@@ -14,7 +14,7 @@ export default () => {
       <Button styleType='high-visibility' onClick={() => setIsModalOpen(true)}>
         Open dialog
       </Button>
-      <Modal isOpen={isModalOpen} title={'Dialog'} onClose={() => closeModal()}>
+      <Modal isOpen={isModalOpen} title={'Dialog'} onClose={() => closeModal()} setFocus={false}>
         <ModalContent>
           A dialog informs users about a task and can contain critical information, require
           decisions, or involve multiple tasks. Dialogs appear in front of app content to provide
