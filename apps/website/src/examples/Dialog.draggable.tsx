@@ -25,6 +25,7 @@ export default () => {
       <Dialog
         isOpen={isModalOpen}
         onClose={() => closeModal()}
+        setFocus={false}
         closeOnEsc
         isDismissible
         isDraggable

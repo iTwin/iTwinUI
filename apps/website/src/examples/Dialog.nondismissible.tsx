@@ -19,6 +19,7 @@ export default () => {
         title={'Empty trash'}
         isDismissible={false}
         onClose={() => closeModal()}
+        setFocus={false}
       >
         <ModalContent>
           Are you sure you want to permanently erase the items in the trash? You can't undo this

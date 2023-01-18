@@ -21,7 +21,12 @@ export default () => {
       <Button styleType='high-visibility' onClick={() => setIsModalOpen(true)}>
         Open dismissible dialog
       </Button>
-      <Modal isOpen={isModalOpen} title={'New message'} onClose={() => closeModal()}>
+      <Modal
+        isOpen={isModalOpen}
+        title={'New message'}
+        onClose={() => closeModal()}
+        setFocus={false}
+      >
         <ModalContent>
           <LabeledInput label='Subject' />
           <LabeledTextarea label='Message' />

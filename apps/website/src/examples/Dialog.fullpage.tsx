@@ -26,6 +26,7 @@ export default () => {
         title={'New message'}
         styleType='fullPage'
         onClose={() => closeModal()}
+        setFocus={false}
       >
         <ModalContent>
           <LabeledInput label='Subject' />
