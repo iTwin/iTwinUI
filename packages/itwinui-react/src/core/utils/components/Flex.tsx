@@ -41,6 +41,7 @@ type FlexOwnProps = {
   display?: 'flex' | 'inline-flex';
   /**
    * Value of the `justify-content` property.
+   * @default 'flex-start'
    */
   justifyContent?: React.CSSProperties['justifyContent'];
   /**
@@ -56,23 +57,31 @@ type FlexOwnProps = {
    * 3xs, 2xs, xs, s, m, l, xl, 2xl, 3xl
    *
    * Also accepts any valid css value (e.g. "1rem" or "2px")
+   *
+   * @default '2xs''
    */
   gap?: SizeToken | AnyString;
   /**
    * Value of the `direction` property.
    * @default 'row'
    */
-  direction?: React.CSSProperties['flexDirection'];
+  flexDirection?: React.CSSProperties['flexDirection'];
+  /**
+   * Value of the `flex-wrap` property.
+   * @default 'nowrap'
+   */
+  flexWrap?: React.CSSProperties['flexWrap'];
 };
 
 const FlexComponent = React.forwardRef((props, ref) => {
   const {
     as: Element = 'div',
     display,
-    direction,
+    flexDirection,
     justifyContent,
     alignItems,
     gap,
+    flexWrap,
     className,
     style,
     ...rest
@@ -84,10 +93,11 @@ const FlexComponent = React.forwardRef((props, ref) => {
       style={
         {
           '--iui-flex-display': display,
-          '--iui-flex-direction': direction,
+          '--iui-flex-direction': flexDirection,
           '--iui-flex-justify': justifyContent,
           '--iui-flex-align': alignItems,
           '--iui-flex-gap': getValueForToken(gap),
+          '--iui-flex-wrap': flexWrap,
           ...style,
         } as React.CSSProperties
       }
@@ -103,10 +113,7 @@ const FlexSpacer = React.forwardRef((props, ref) => {
     <Element
       className={cx('iui-flex-spacer', className)}
       style={
-        {
-          '--iui-flex-spacer-flex': flex,
-          ...style,
-        } as React.CSSProperties
+        { '--iui-flex-spacer-flex': flex, ...style } as React.CSSProperties
       }
       ref={ref}
       {...rest}
@@ -131,6 +138,7 @@ const FlexItem = React.forwardRef((props, ref) => {
     gapBefore,
     gapAfter,
     flex,
+    alignSelf,
     className,
     style,
     ...rest
@@ -138,12 +146,15 @@ const FlexItem = React.forwardRef((props, ref) => {
 
   const _style = {
     '--iui-flex-item-flex': flex,
+    '--iui-flex-item-align': alignSelf,
     '--iui-flex-item-gap-before': getValueForToken(gapBefore),
     '--iui-flex-item-gap-after': getValueForToken(gapAfter),
-    '--iui-flex-item-gap-before-toggle':
-      gapBefore !== undefined ? 'var(--iui-on)' : undefined,
-    '--iui-flex-item-gap-after-toggle':
-      gapAfter !== undefined ? 'var(--iui-on)' : undefined,
+    ...(gapBefore !== undefined && {
+      '--iui-flex-item-gap-before-toggle': 'var(--iui-on)',
+    }),
+    ...(gapAfter !== undefined && {
+      '--iui-flex-item-gap-after-toggle': 'var(--iui-on)',
+    }),
     ...style,
   } as React.CSSProperties;
 
@@ -167,19 +178,74 @@ type FlexItemOwnProps = {
   gapAfter?: SizeToken & AnyString;
   /**
    * Value of the `flex` css property.
-   *
-   * @default auto
+   * @default 'auto'
    */
   flex?: React.CSSProperties['flex'];
+  /**
+   * Value of the `align-self` css property.
+   * @default 'auto'
+   */
+  alignSelf?: React.CSSProperties['alignSelf'];
 };
 
 /**
- * A utility component that makes it easier to work with
- * css flexbox and iTwinUI design tokens.
+ * A utility component that makes it easier to work with CSS flexbox
+ * and iTwinUI design tokens. Supports all flex properties.
+ * Can be used with or without `Flex.Item` and `Flex.Spacer` subcomponents.
+ *
+ * @example
+ * <Flex>
+ *   <Icon>...</Icon>
+ *   <Text>...</Text>
+ *   <Flex.Spacer />
+ *   <IconButton>...</IconButton>
+ * </Flex>
+ *
+ * @example
+ * <Flex gap='m' flexWrap='wrap'>
+ *   <Flex.Item>...</Flex.Item>
+ *   <Flex.Item>...</Flex.Item>
+ *   ...
+ * </Flex>
+ *
+ * @example
+ * <Flex gap='l'>
+ *   <Flex.Item>...</Flex.Item>
+ *   <Flex.Item>...</Flex.Item>
+ *   <Flex.Item gapBefore='s'>...</Flex.Item>
+ *   <Flex.Item>...</Flex.Item>
+ * </Flex>
  */
 export const Flex = Object.assign(FlexComponent, {
-  Spacer: FlexSpacer,
+  /**
+   * Subcomponent that allows customizing flex items through the
+   * `flex`, `alignSelf` and `gapBefore`/`gapAfter` props.
+   *
+   * The `gapBefore`/`gapAfter` props can used to override the gap at an
+   * individual level, for when you need a different gap than the one
+   * set in the parent `Flex`.
+   *
+   * @example
+   * <Flex gap='l'>
+   *   <Flex.Item>...</Flex.Item>
+   *   <Flex.Item>...</Flex.Item>
+   *   <Flex.Item gapBefore='s'>...</Flex.Item>
+   *   <Flex.Item>...</Flex.Item>
+   * </Flex>
+   */
   Item: FlexItem,
+  /**
+   * Subcomponent that fills up the available space using a really large `flex` value.
+   * Useful when you want to push certain items to one edge.
+   *
+   * @example
+   * <Flex>
+   *   <div>this stays on the left</div>
+   *   <Flex.Spacer /> // this fills up the available empty space
+   *   <div>this gets pushed all the way to the end</div>
+   * </Flex>
+   */
+  Spacer: FlexSpacer,
 });
 
 export default Flex;
