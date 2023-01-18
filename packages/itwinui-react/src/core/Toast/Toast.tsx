@@ -169,6 +169,10 @@ export const Toast = (props: ToastProps) => {
     return { translateX, translateY };
   };
 
+  const motionOk = getWindow()?.matchMedia(
+    '(prefers-reduced-motion: no-preference)',
+  )?.matches;
+
   return (
     <Transition
       timeout={{ enter: 240, exit: animateOutTo ? 400 : 120 }}
@@ -176,20 +180,26 @@ export const Toast = (props: ToastProps) => {
       appear={true}
       unmountOnExit={true}
       onEnter={(node: HTMLElement) => {
-        node.style.transform = 'translateY(15%)';
-        node.style.transitionTimingFunction = 'ease';
+        if (motionOk) {
+          node.style.transform = 'translateY(15%)';
+          node.style.transitionTimingFunction = 'ease';
+        }
       }}
       onEntered={(node: HTMLElement) => {
-        node.style.transform = 'translateY(0)';
+        if (motionOk) {
+          node.style.transform = 'translateY(0)';
+        }
       }}
       onExiting={(node) => {
-        const { translateX, translateY } = calculateOutAnimation(node);
-        node.style.transform = animateOutTo
-          ? `scale(0.9) translate(${translateX}px,${translateY}px)`
-          : `scale(0.9)`;
-        node.style.opacity = '0';
-        node.style.transitionDuration = animateOutTo ? '400ms' : '120ms';
-        node.style.transitionTimingFunction = 'cubic-bezier(0.4, 0, 1, 1)';
+        if (motionOk) {
+          const { translateX, translateY } = calculateOutAnimation(node);
+          node.style.transform = animateOutTo
+            ? `scale(0.9) translate(${translateX}px,${translateY}px)`
+            : `scale(0.9)`;
+          node.style.opacity = '0';
+          node.style.transitionDuration = animateOutTo ? '400ms' : '120ms';
+          node.style.transitionTimingFunction = 'cubic-bezier(0.4, 0, 1, 1)';
+        }
       }}
       onExited={onRemove}
     >
