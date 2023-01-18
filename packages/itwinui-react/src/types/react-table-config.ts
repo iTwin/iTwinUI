@@ -82,7 +82,7 @@ declare module 'react-table' {
 
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration
   export interface TableOptions<D extends object = {}>
-    extends Omit<UseTableOptions<D>, 'data' | 'columns'>,
+    extends Omit<UseTableOptions<D>, 'data' | 'column'>,
       UseRowSelectOptions<D>,
       UseExpandedOptions<D>,
       UseFiltersOptions<D>,
@@ -96,7 +96,17 @@ declare module 'react-table' {
     /**
      * List of columns.
      */
-    columns: Array<Column<any>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    // columns: Array<Column<Record<string, string>>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    // columns: Array<Column<D>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    // columns: Array<Column<any>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    // columns: Column<D>[];
+    columnsL: Array<
+      Column<D> &
+        UseFiltersColumnOptions<D> &
+        UseSortByColumnOptions<D> &
+        UseResizeColumnsColumnOptions<D>
+    >;
+    columns: Array<Omit<Column<D>, 'columns'>>;
     /**
      * Table data list.
      * Must be memoized.

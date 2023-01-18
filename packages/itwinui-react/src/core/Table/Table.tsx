@@ -676,7 +676,7 @@ export const Table = <
     }
   }, [state, instance.filteredRows, onFilter]);
 
-  const lastPassedColumns = React.useRef([] as Column<T>[]);
+  const lastPassedColumns = React.useRef([] as Omit<Column<T>, 'columns'>[]);
 
   // Reset the column order whenever new columns are passed
   // This is to avoid the old columnOrder from affecting the new columns' columnOrder
@@ -837,6 +837,8 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
+  console.log('headerGroup', headerGroups);
+
   return (
     <>
       <div
@@ -870,6 +872,7 @@ export const Table = <
           return (
             <div
               className='iui-table-header-wrapper'
+              data-level='0'
               ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {
