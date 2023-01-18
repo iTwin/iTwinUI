@@ -141,6 +141,7 @@ $borderless-horizontal-tab-min-height: calc(
 @mixin iui-tabs-vertical {
   grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
   grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
 
   .iui-tabs {
     li,
