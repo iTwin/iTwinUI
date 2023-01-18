@@ -42,3 +42,18 @@ it('should propagate misc props', () => {
   expect(anchor).toHaveTextContent('🏠');
   expect(anchor).toHaveAttribute('aria-label', 'Home');
 });
+
+it('should support polymorphic `as` prop', () => {
+  const { container } = render(
+    <Anchor as='button' onClick={() => jest.fn()}>
+      is it a link or button?
+    </Anchor>,
+  );
+
+  expect(container.querySelector('button')).toHaveClass('iui-anchor');
+
+  // @ts-expect-error -- href should not be allowed when using as='button'
+  <Anchor as='button' href='#'>
+    test
+  </Anchor>;
+});

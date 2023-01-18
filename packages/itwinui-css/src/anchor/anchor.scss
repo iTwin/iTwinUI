@@ -3,6 +3,12 @@
 @import '../utils/index';
 
 @mixin iui-anchor {
+  &:where(button) {
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+
   @include iui-anchor-status('accent');
   border-radius: var(--iui-border-radius-1);
   cursor: pointer;

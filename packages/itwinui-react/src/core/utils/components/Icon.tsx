@@ -65,17 +65,20 @@ const getSizeValue = (size: string) => {
  *   <SvgStatusError />
  * </Icon>
  */
-export const Icon = (props: IconProps) => {
-  const { size = 'medium', fill = 'default', className, ...rest } = props;
+export const Icon = React.forwardRef(
+  (props: IconProps, ref: React.RefObject<HTMLSpanElement>) => {
+    const { size = 'medium', fill = 'default', className, ...rest } = props;
 
-  return (
-    <span
-      className={cx('iui-svg-icon', className)}
-      data-iui-icon-size={getSizeValue(size)}
-      data-iui-icon-color={fill}
-      {...rest}
-    />
-  );
-};
+    return (
+      <span
+        className={cx('iui-svg-icon', className)}
+        data-iui-icon-size={getSizeValue(size)}
+        data-iui-icon-color={fill}
+        ref={ref}
+        {...rest}
+      />
+    );
+  },
+);
 
 export default Icon;
