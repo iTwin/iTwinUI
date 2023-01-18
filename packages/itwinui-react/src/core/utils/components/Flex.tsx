@@ -5,10 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import type { AnyString } from '../types';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../props';
+import type { PolymorphicForwardRefComponent } from '../props';
 import '@itwin/itwinui-css/css/utils.css';
 
 const sizeTokens = [
@@ -22,6 +19,10 @@ const sizeTokens = [
   '2xl',
   '3xl',
 ] as const;
+
+/**
+ * String literal shorthands that correspond to the size tokens in [itwinui-variables](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-variables/src/sizes.scss).
+ */
 type SizeToken = typeof sizeTokens[number];
 
 const getValueForToken = (token?: string) => {
@@ -31,8 +32,42 @@ const getValueForToken = (token?: string) => {
   return token;
 };
 
-export type FlexProps = PolymorphicComponentProps<'div', FlexOwnProps>;
+// ----------------------------------------------------------------------------
+// Main Flex component
 
+const FlexComponent = React.forwardRef((props, ref) => {
+  const {
+    as: Element = 'div',
+    display,
+    flexDirection,
+    justifyContent,
+    alignItems,
+    gap,
+    flexWrap,
+    className,
+    style,
+    ...rest
+  } = props;
+
+  return (
+    <Element
+      className={cx('iui-flex', className)}
+      style={
+        {
+          '--iui-flex-display': display,
+          '--iui-flex-direction': flexDirection,
+          '--iui-flex-justify': justifyContent,
+          '--iui-flex-align': alignItems,
+          '--iui-flex-gap': getValueForToken(gap),
+          '--iui-flex-wrap': flexWrap,
+          ...style,
+        } as React.CSSProperties
+      }
+      ref={ref}
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', FlexOwnProps>;
 type FlexOwnProps = {
   /**
    * Value of the `display` property.
@@ -73,39 +108,8 @@ type FlexOwnProps = {
   flexWrap?: React.CSSProperties['flexWrap'];
 };
 
-const FlexComponent = React.forwardRef((props, ref) => {
-  const {
-    as: Element = 'div',
-    display,
-    flexDirection,
-    justifyContent,
-    alignItems,
-    gap,
-    flexWrap,
-    className,
-    style,
-    ...rest
-  } = props;
-
-  return (
-    <Element
-      className={cx('iui-flex', className)}
-      style={
-        {
-          '--iui-flex-display': display,
-          '--iui-flex-direction': flexDirection,
-          '--iui-flex-justify': justifyContent,
-          '--iui-flex-align': alignItems,
-          '--iui-flex-gap': getValueForToken(gap),
-          '--iui-flex-wrap': flexWrap,
-          ...style,
-        } as React.CSSProperties
-      }
-      ref={ref}
-      {...rest}
-    />
-  );
-}) as PolymorphicForwardRefComponent<'div', FlexOwnProps>;
+// ----------------------------------------------------------------------------
+// Flex.Spacer component
 
 const FlexSpacer = React.forwardRef((props, ref) => {
   const { as: Element = 'div', flex, className, style, ...rest } = props;
@@ -131,6 +135,9 @@ type FlexSpacerOwnProps = {
    */
   flex?: React.CSSProperties['flex'];
 };
+
+// ----------------------------------------------------------------------------
+// Flex.Item subcomponent
 
 const FlexItem = React.forwardRef((props, ref) => {
   const {
@@ -187,6 +194,9 @@ type FlexItemOwnProps = {
    */
   alignSelf?: React.CSSProperties['alignSelf'];
 };
+
+// ----------------------------------------------------------------------------
+// Exported compound component
 
 /**
  * A utility component that makes it easier to work with CSS flexbox
