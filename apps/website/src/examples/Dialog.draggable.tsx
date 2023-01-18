@@ -32,7 +32,7 @@ export default () => {
         isResizable
       >
         <Dialog.Main>
-          <Dialog.TitleBar titleText='Best dialog ever' />
+          <Dialog.TitleBar titleText='New message' />
           <Dialog.Content>
             <LabeledInput label='Subject' />
             <LabeledTextarea label='Message' />
