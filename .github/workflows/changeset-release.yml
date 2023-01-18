@@ -34,3 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ITWINUI_CHANGESETS }}
           NPM_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
