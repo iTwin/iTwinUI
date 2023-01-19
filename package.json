@@ -6,7 +6,8 @@
     "packages": [
       "apps/*",
       "packages/*",
-      "playgrounds/*"
+      "playgrounds/*",
+      "internal/*"
     ]
   },
   "lint-staged": {
@@ -21,7 +22,7 @@
     ],
     "*.{tsx,ts,jsx,js}": [
       "prettier --write",
-      "node packages/configs/copyrightLinter.js --fix"
+      "node scripts/copyrightLinter.js --fix"
     ]
   },
   "scripts": {
@@ -31,13 +32,13 @@
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install",
-    "lint:copyright": "node packages/shared/copyrightLinter.js",
-    "push-docker": "yarn workspace @itwin/itwinui-css push-docker",
-    "createComponent": "yarn workspace @itwin/itwinui-css createComponent",
-    "approve": "yarn workspace @itwin/itwinui-css approve",
-    "clean:images": "yarn workspace @itwin/itwinui-css clean:images",
-    "createComponent:react": "node scripts/createComponent.js",
+    "lint:copyright": "node scripts/copyrightLinter.js",
+    "push-docker:css": "yarn workspace @itwin/itwinui-css push-docker",
     "push-docker:react": "yarn workspace storybook push-docker",
+    "createComponent": "node scripts/createComponent.js",
+    "approve:css": "yarn workspace @itwin/itwinui-css approve",
+    "approve:react": "yarn workspace storybook approve",
+    "clean:images": "yarn workspace @itwin/itwinui-css clean:images",
     "clean": "turbo run clean && rimraf node_modules",
     "release": "yarn build --filter={./packages/*}... && changeset publish"
   },

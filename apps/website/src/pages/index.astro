@@ -11,6 +11,7 @@ import ConsistentIcon from '~/icons/ConsistentIcon.astro';
 import RightArrowIcon from '~/icons/RightArrowIcon.astro';
 import NorthernLights from '~/components/NorthernLights.astro';
 import CopyCommandButton from '~/components/CopyCommandButton.astro';
+import Footer from '~/components/utils/Footer.astro';
 import AlertDemo from '~/demos/Alert.demo';
 import DialogDemo from '~/demos/Dialog.demo';
 import ComboBoxDemo from '~/demos/ComboBox.demo';
@@ -148,7 +149,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         </li>
         <li class='library-item'>
           <h3>
-            <a href='/https://itwin.github.io/iTwinUI-icons/'>Icons</a>
+            <a href='https://itwin.github.io/iTwinUI-icons/'>Icons</a>
           </h3>
           <p>
             Hundreds of flexible, flat-styled icons in SVG format, allowing for infinite scalability
@@ -159,7 +160,7 @@ const currentPage = new URL(Astro.request.url).pathname;
     </div>
   </main>
 
-  <footer>© 2022 Bentley Systems, Inc</footer>
+  <Footer />
 
   <style lang='scss'>
     body {
@@ -432,12 +433,6 @@ const currentPage = new URL(Astro.request.url).pathname;
           inset: 0;
         }
       }
-    }
-
-    footer {
-      color: var(--color-subtext);
-      margin-inline: auto;
-      padding: var(--space-4);
     }
   </style>
 </Global>

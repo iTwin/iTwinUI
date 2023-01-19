@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "cjs/index.js",
@@ -55,12 +55,11 @@
     "test:watch": "jest --watch",
     "format": "prettier --config .prettierrc **/*.{tsx,ts,js} --ignore-path .gitignore --write",
     "lint": "eslint \"**/*.{js,ts,tsx}\" --max-warnings=0",
-    "lint:fix": "yarn lint --fix && node ../configs/copyrightLinter.js --fix \"*/**/*.{js,ts,tsx}\"",
+    "lint:fix": "yarn lint --fix && node ../../scripts/copyrightLinter.js --fix \"*/**/*.{js,ts,tsx}\"",
     "dev": "yarn clean:build && concurrently \"yarn dev:esm\" \"yarn dev:cjs\" \"yarn dev:types\"",
     "dev:esm": "swc src -d esm --watch",
     "dev:cjs": "swc src -d cjs --watch -C module.type=commonjs",
-    "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\"",
-    "createComponent": "node ../../scripts/createComponent.js"
+    "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\""
   },
   "dependencies": {
     "@itwin/itwinui-css": "^1.2.0",
@@ -112,7 +111,7 @@
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
       "prettier --write",
-      "node ../configs/copyrightLinter.js --fix"
+      "node ../../scripts/copyrightLinter.js --fix"
     ],
     "*.{tsx,ts}": [
       "eslint --max-warnings=0 --fix"

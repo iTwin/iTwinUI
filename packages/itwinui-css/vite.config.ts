@@ -6,17 +6,13 @@ import { defineConfig, type Plugin } from 'vite';
 import fs from 'fs';
 import { resolve } from 'path';
 import { minify } from 'html-minifier';
-import * as lightningCss from 'lightningcss';
 
 export default defineConfig({
   base: './',
   build: {
     rollupOptions: {
       input: Object.fromEntries(
-        getComponentList().map((name) => [
-          name,
-          resolve(__dirname, `./backstop/tests/${name}.html`),
-        ]),
+        getComponentList().map((name) => [name, resolve(__dirname, `./backstop/tests/${name}.html`)]),
       ),
       output: {
         dir: './backstop/minified',
@@ -33,6 +29,7 @@ function generateIndex(): Plugin {
     code.replace(
       '%PUT_CONTENT_HERE%',
       `<ul>${getComponentList()
+        .filter((component) => component !== 'index')
         .map((component) => {
           return `<li><a class="iui-anchor" href="${component}.html">${component}</a></li>\n`;
         })
@@ -74,9 +71,7 @@ function addMetaTags(): Plugin {
   const metaContent = (componentName) => `
     <meta name="description" content="An open-source design system that helps us build a unified web experience.">
     <meta property="og:site_name" content="iTwinUI">
-    <meta property="og:title" content="${
-      componentName[0].toUpperCase() + componentName.replace(/-/g, ' ').slice(1)
-    }">
+    <meta property="og:title" content="${componentName[0].toUpperCase() + componentName.replace(/-/g, ' ').slice(1)}">
     <meta property="og:description" content="An open-source design system that helps us build a unified web experience.">
     <meta property="og:image" content="https://itwin.github.io/iTwinUI/backstop/assets/logo.png">
     <meta property="og:image:alt" content="iTwinUI logo">
@@ -106,33 +101,4 @@ function getComponentList() {
   return fs
     .readdirSync(new URL('./backstop/tests', import.meta.url))
     .flatMap((file) => (file.endsWith('.html') ? [file.split('.')[0]] : []));
-}
-
-function lightningCssPlugin(): Plugin {
-  const queryWhitelist = ['direct'];
-  const matcherRegex = new RegExp(
-    `\\.css\\??(?:${queryWhitelist.join('|')})?$`,
-    'i',
-  );
-  return {
-    name: 'lightning-css',
-    transform(css, id) {
-      if (!matcherRegex.test(id)) {
-        return;
-      }
-
-      try {
-        const { code } = lightningCss.transform({
-          minify: true,
-          sourceMap: false,
-          code: Buffer.from(css),
-          filename: id,
-          targets: require('./scripts/lightningCssSettings').targets,
-        });
-        return code.toString('utf8');
-      } catch {
-        return css;
-      }
-    },
-  };
 }
