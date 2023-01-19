@@ -3,22 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Surface } from '@itwin/itwinui-react';
+import { Badge } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Surface
-      elevation={4}
-      style={{
-        height: '50%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <span style={{ padding: '12px' }}>
-        Change the elevation property of the component to adjust the shadow level.
-      </span>
-    </Surface>
+    <div style={{ display: 'flex', columnGap: 4, placeItems: 'center', flexWrap: 'wrap' }}>
+      <Badge>Default</Badge>
+      <Badge backgroundColor='primary'>Informational</Badge>
+      <Badge backgroundColor='positive'>Positive</Badge>
+      <Badge backgroundColor='warning'>Warning</Badge>
+      <Badge backgroundColor='negative'>Negative</Badge>
+    </div>
   );
 };
