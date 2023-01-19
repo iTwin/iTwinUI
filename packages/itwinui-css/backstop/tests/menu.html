@@ -19,6 +19,7 @@
       import "./assets/theme.js";
       import "@itwin/itwinui-icons-elements/checkmark";
       import "@itwin/itwinui-icons-elements/placeholder";
+      import "@itwin/itwinui-icons-elements/caret-left-small";
       import "@itwin/itwinui-icons-elements/caret-right-small";
       import "@itwin/itwinui-icons-elements/imodel-hollow";
       import "@itwin/itwinui-icons-elements/caret-down-small";
@@ -469,6 +470,258 @@
           role="presentation"
         >
           <div class="iui-text-muted">No results, try refining your search&mldr;</div>
+        </li>
+      </ul>
+
+    </section>
+
+    <hr />
+
+    <h2>Multilevel</h2>
+    <section id="demo-multilevel">
+      <h3 style="padding-bottom: 12px">Top-level menu</h3>
+
+      <ul
+        class="iui-menu iui-multilevel"
+        role="menu"
+      >
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+          id="test-multilevel"
+        >
+          <span class="iui-content">Option 1</span>
+          <span class="iui-content iui-multilevel-selected">Option 1B</span>
+          <svg-caret-right-small
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-caret-right-small>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+          id="test-multilevel"
+        >
+          <span class="iui-content">Option 2</span>
+          <span class="iui-content iui-multilevel-selected">Option 2F</span>
+          <svg-caret-right-small
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-caret-right-small>
+        </li>
+        <li
+          class="iui-menu-item iui-disabled"
+          role="menuitem"
+          tabindex="0"
+          id="test-multilevel"
+        >
+          <span class="iui-content">Option 3</span>
+          <svg-caret-right-small
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-caret-right-small>
+        </li>
+      </ul>
+
+      <br />
+      <h3 style="padding-bottom: 12px">Submenu</h3>
+
+      <ul
+        class="iui-menu iui-multilevel"
+        role="menu"
+      >
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+          id="test-multilevel"
+        >
+          <svg-caret-left-small
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-caret-left-small>
+          <span class="iui-content">Option 1</span>
+        </li>
+        <li
+          class="iui-menu-divider"
+          role="separator"
+        ></li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 1A</span>
+        </li>
+        <li
+          class="iui-menu-item iui-active"
+          role="menuitem"
+          aria-checked="true"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 1B</span>
+          <svg-checkmark
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-checkmark>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 1C</span>
+        </li>
+      </ul>
+
+      <br />
+
+      <ul
+        class="iui-menu iui-scroll iui-multilevel"
+        role="menu"
+      >
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+          id="test-multilevel"
+        >
+          <svg-caret-left-small
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-caret-left-small>
+          <span class="iui-content">Option 2</span>
+        </li>
+        <li
+          class="iui-menu-divider"
+          role="separator"
+        ></li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+          id="test-multilevel"
+        >
+          <span class="iui-content">Option 2A</span>
+          <svg-caret-right-small
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-caret-right-small>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+          id="test-multilevel"
+        >
+          <span class="iui-content">Option 2B</span>
+          <svg-caret-right-small
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-caret-right-small>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+          id="test-multilevel"
+        >
+          <span class="iui-content">Option 2C</span>
+          <svg-caret-right-small
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-caret-right-small>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2D</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2E</span>
+        </li>
+        <li
+          class="iui-menu-item iui-active"
+          role="menuitem"
+          aria-checked="true"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2F</span>
+          <svg-checkmark
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-checkmark>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2G</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2H</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2I</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2J</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2K</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2L</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2M</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2N</span>
+        </li>
+        <li
+          class="iui-menu-item"
+          role="menuitem"
+          tabindex="0"
+        >
+          <span class="iui-content">Option 2O</span>
         </li>
       </ul>
 
@@ -1908,19 +2161,21 @@
         // Clicking on menu-item should toggle selection
         document.querySelectorAll('.iui-menu-item:not(.iui-menu-item-skeleton)').forEach((item) => {
           item.addEventListener('click', () => {
-            if (item.classList.contains('iui-active')) {
-              item.lastElementChild.remove();
-            } else {
-              const checkmarkSvg = document.createElement('svg-checkmark');
-              checkmarkSvg.classList.add('iui-icon');
-              checkmarkSvg.toggleAttribute('aria-hidden', true);
-              if (item.lastElementChild.classList.contains('iui-icon')) {
-                item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
+            if (!item.classList.contains('iui-disabled') && !(item.id === 'test-multilevel')) {
+              if (item.classList.contains('iui-active')) {
+                item.lastElementChild.remove();
               } else {
-                item.appendChild(checkmarkSvg);
+                const checkmarkSvg = document.createElement('svg-checkmark');
+                checkmarkSvg.classList.add('iui-icon');
+                checkmarkSvg.toggleAttribute('aria-hidden', true);
+                if (item.lastElementChild.classList.contains('iui-icon')) {
+                  item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
+                } else {
+                  item.appendChild(checkmarkSvg);
+                }
               }
+              item.classList.toggle('iui-active');
             }
-            item.classList.toggle('iui-active');
           });
         });
       }
