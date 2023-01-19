@@ -67,6 +67,7 @@ export default () => {
 
   return (
     <Tree<StoryData>
+      style={{ width: '260px' }}
       data={data}
       getNode={getNode}
       nodeRenderer={React.useCallback(
