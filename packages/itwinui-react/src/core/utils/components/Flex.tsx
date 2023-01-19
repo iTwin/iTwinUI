@@ -96,7 +96,7 @@ type FlexOwnProps = {
    *
    * Also accepts any valid css value (e.g. "1rem" or "2px")
    *
-   * @default '2xs''
+   * @default '2xs'
    */
   gap?: SizeToken | AnyString;
   /**
@@ -181,11 +181,11 @@ type FlexItemOwnProps = {
   /**
    * Gap before the flex item, if different from the `gap` set on `Flex` component.
    */
-  gapBefore?: SizeToken & AnyString;
+  gapBefore?: SizeToken | AnyString;
   /**
    * Gap after the flex item, if different from the `gap` set on `Flex` component.
    */
-  gapAfter?: SizeToken & AnyString;
+  gapAfter?: SizeToken | AnyString;
   /**
    * Value of the `flex` css property.
    * @default 'auto'
