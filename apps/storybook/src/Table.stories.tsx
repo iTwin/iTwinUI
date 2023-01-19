@@ -125,7 +125,11 @@ export const Basic: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -178,6 +182,7 @@ export const SelectableSingle: Story<Partial<TableProps>> = (args) => {
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           return (
             <Anchor
+              as='button'
               onClick={(e) => {
                 e.stopPropagation(); // prevent row selection when clicking on link
                 action(props.row.original.name)();
@@ -253,6 +258,7 @@ export const SelectableMulti: Story<Partial<TableProps>> = (args) => {
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           return (
             <Anchor
+              as='button'
               onClick={(e) => {
                 e.stopPropagation(); // prevent row selection when clicking on link
                 action(props.row.original.name)();
@@ -328,7 +334,11 @@ export const Sortable: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -590,7 +600,11 @@ export const GlobalFilter: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -881,7 +895,11 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -961,7 +979,11 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -992,6 +1014,7 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
       <div>
         Open{' '}
         <Anchor
+          as='button'
           onClick={() =>
             (
               parent.document.querySelector(
@@ -1057,7 +1080,7 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
             {isRowDisabled(props.row.original) ? (
               <>Click me!</>
             ) : (
-              <Anchor onClick={action(props.row.original.name)}>
+              <Anchor as='button' onClick={action(props.row.original.name)}>
                 Click me!
               </Anchor>
             )}
@@ -1878,7 +1901,11 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -2665,7 +2692,11 @@ export const Virtualized: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -2732,7 +2763,11 @@ export const ScrollToRow: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<TableStoryDataType>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
