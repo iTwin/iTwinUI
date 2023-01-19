@@ -65,7 +65,7 @@ it('should render FileUploadTemplate after a file is uploaded', () => {
     <FileUploadTemplate
       onChange={mockedOnChange}
       acceptMultiple={false}
-      data={file}
+      data={{ file: file }}
     />,
   );
 

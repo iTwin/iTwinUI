@@ -89,7 +89,7 @@ export const SingleFileUpload: Story<FileUploadProps> = (args) => {
       <FileUploadTemplate
         onChange={(e) => setFiles(Array.from(e.target.files || []))}
         acceptMultiple={false}
-        data={files.length === 1 ? files[0] : undefined}
+        data={files.length === 1 ? { file: files[0] } : undefined}
       >
         {files.map((f) => f.name).join(', ')}
       </FileUploadTemplate>

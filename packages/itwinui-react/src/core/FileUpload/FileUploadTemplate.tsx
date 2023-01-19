@@ -23,6 +23,25 @@ const toDate = (dateNumber: number) => {
   return date.toDateString() + ' ' + date.toLocaleTimeString();
 };
 
+type DataProps = {
+  /**
+   * File selected
+   */
+  file: File;
+  /**
+   * Localized version of label used for default uploaded file output. Defaults to file name.
+   */
+  dataLabel?: string;
+  /**
+   * Localized version of description used for default uploaded file output. Defaults to file size and modified date.
+   */
+  dataDescription?: string;
+  /**
+   * Custom svg icon for uploaded file output.
+   */
+  dataSvg?: JSX.Element;
+};
+
 export type FileUploadedTemplateProps =
   | {
       /**
@@ -32,28 +51,13 @@ export type FileUploadedTemplateProps =
        */
       acceptMultiple?: true;
       /**
-       * Files selected. Used for default uploaded file output only when one file is selected.
+       * File selected. Used for default uploaded file output only when one file is selected.
        */
       data?: undefined;
-      /**
-       * Localized version of label used for default uploaded file output. Defaults to file name.
-       */
-      dataLabel?: undefined;
-      /**
-       * Localized version of description used for default uploaded file output. Defaults to file size and modified date.
-       */
-      dataDescription?: undefined;
-      /**
-       * Custom svg icon for uploaded file output.
-       */
-      dataSvg?: undefined;
     }
   | {
       acceptMultiple: false;
-      data?: File;
-      dataLabel?: string;
-      dataDescription?: string;
-      dataSvg?: JSX.Element;
+      data?: DataProps;
     };
 
 export type FileUploadTemplateProps = {
@@ -96,16 +100,13 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
     label = 'Choose a file',
     subtitle = 'or drag & drop it here.',
     data,
-    dataLabel,
-    dataDescription,
-    dataSvg,
     children,
   } = props;
   useTheme();
 
-  const icon = dataSvg ? (
-    React.cloneElement(dataSvg, {
-      className: cx('iui-icon', dataSvg.props.className),
+  const icon = data?.dataSvg ? (
+    React.cloneElement(data.dataSvg, {
+      className: cx('iui-icon', data.dataSvg.props.className),
       'aria-hidden': true,
     })
   ) : (
@@ -117,11 +118,11 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
       {icon}
       <span className='iui-file-uploaded-template-text'>
         <span className='iui-file-uploaded-template-label'>
-          {dataLabel ?? data.name}
+          {data.dataLabel ?? data.file.name}
         </span>
         <span className='iui-file-uploaded-template-description'>
-          {dataDescription ??
-            toBytes(data.size) + ' ' + toDate(data.lastModified)}
+          {data.dataDescription ??
+            toBytes(data.file.size) + ' ' + toDate(data.file.lastModified)}
         </span>
       </span>
       <label className='iui-anchor'>
