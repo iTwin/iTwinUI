@@ -80,6 +80,8 @@ declare module 'react-table' {
     isDisabled?: (rowData: D) => boolean;
   };
 
+  type TableColumn<D extends object = {}> = Omit<Column<D>, 'accessor'>;
+
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration
   export interface TableOptions<D extends object = {}>
     extends Omit<UseTableOptions<D>, 'data'>,
@@ -102,6 +104,7 @@ declare module 'react-table' {
     // columns: Column<D>[];
     columnsQ1: Array<Column<D>>;
     columnsQ2: Array<Omit<Column<D>, 'accessor'>>;
+    columnsQ3: Array<TableColumn>;
     columnsL: Array<
       Column<D> &
         UseFiltersColumnOptions<D> &
