@@ -3,7 +3,10 @@ title: Slider
 description: Sliders let users make selections from a range of values.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Slider/Slider.d.ts'
-exampleCodeFile1: Slider.main.tsx
+exampleCodeMain: Slider.main.tsx
+exampleCodeSlider: Slider.slider.tsx
+exampleCodeRange: Slider.range.tsx
+exampleCodeRangeMultiple: Slider.rangemultiple.tsx
 thumbnail: Slider
 group: inputs
 ---
@@ -13,9 +16,25 @@ import LiveExample from '~/components/LiveExample.astro';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src={frontmatter.exampleCodeMain} />
 
-Sliders allow the user to graphically select a specific input value, or a range, within defined limits. Optionally, a tooltip appears above the slider to indicate the current value and changes as the slider is repositioned. The double sliders should be used when the desired input is a range (for example, 33 through 55). In this case, the tooltip indicates the current range and the area between the two sliders is highlighted.
+Sliders allow the user to graphically select a specific input value, or a range, within defined limits. Optionally, a [tooltip](tooltip) appears above the slider handle to indicate the current value and changes as the slider handle is repositioned. The sliders min, max, and step values can be changed as needed. To help visually enforce incremental steps, you may optionally choose to display ticks underneath the slider. The slider can be oriented horizontally or vertically.
+
+## Variants
+
+### Default
+
+<LiveExample src={frontmatter.exampleCodeSlider} />
+
+### Range
+
+The range sliders should be used when the desired input is a range such as 25 through 75.
+
+<LiveExample src={frontmatter.exampleCodeRange} />
+
+You can have multiple ranges and can also have the range wrap.
+
+<LiveExample src={frontmatter.exampleCodeRangeMultiple} />
 
 ## Props
 
