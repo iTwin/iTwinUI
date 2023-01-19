@@ -5,7 +5,13 @@
 import React from 'react';
 import { Transition } from 'react-transition-group';
 import cx from 'classnames';
-import { getWindow, StatusIconMap, CommonProps, SvgCloseSmall } from '../utils';
+import {
+  getWindow,
+  StatusIconMap,
+  CommonProps,
+  SvgCloseSmall,
+  useMediaQuery,
+} from '../utils';
 import '@itwin/itwinui-css/css/toast.css';
 import { IconButton } from '../Buttons';
 
@@ -169,9 +175,7 @@ export const Toast = (props: ToastProps) => {
     return { translateX, translateY };
   };
 
-  const motionOk = getWindow()?.matchMedia(
-    '(prefers-reduced-motion: no-preference)',
-  )?.matches;
+  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
 
   return (
     <Transition
