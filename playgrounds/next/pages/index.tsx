@@ -25,7 +25,36 @@ export default function Home() {
     [],
   );
 
-  const data = React.useMemo(() => makeData(100), []);
+  const generateItem = React.useCallback(
+    (index: number, parentRow = '', depth = 0): TableStoryDataType => {
+      const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
+      const rating = Math.round(Math.random() * 5);
+      return {
+        product: `Product ${keyValue}`,
+        price: ((index % 10) + 1) * 15,
+        quantity: ((index % 10) + 1) * 150,
+        rating: rating,
+        status:
+          rating >= 4 ? 'positive' : rating === 3 ? 'warning' : 'negative',
+        subRows:
+          depth < 1
+            ? Array(Math.round(index % 2))
+                .fill(null)
+                .map((_, index) => generateItem(index, keyValue, depth + 1))
+            : [],
+      };
+    },
+    [],
+  );
+
+  // const data: TableStoryDataType[] = React.useMemo(() => makeData(100), []);
+  const data = React.useMemo(
+    () =>
+      Array(3)
+        .fill(null)
+        .map((_, index) => generateItem(index)),
+    [generateItem],
+  );
 
   // const data = useMemo(
   //   () => [
@@ -83,27 +112,39 @@ export default function Home() {
   //   [],
   // );
 
+  type TableStoryDataType = {
+    product: string;
+    price: number;
+    quantity: number;
+    rating: number;
+    status: 'positive' | 'negative' | 'warning' | undefined;
+    subRows: TableStoryDataType[];
+  };
+
   return (
     <>
       <Table
-        columns={[
-          // {
-          //   Header: 'Header',
-          //   columns: [
-          {
-            id: 'name',
-            Header: 'Name',
-            accessor: 'name',
-            // columns: [],
-          },
-          {
-            id: 'description',
-            Header: 'Description',
-            accessor: 'description',
-          },
-          // ],
-          // },
-        ]}
+        columns={}
+        // columns={[
+        //   // {
+        //   //   Header: 'Header',
+        //   //   columns: [
+        //   {
+        //     id: 'name',
+        //     Header: 'Name',
+        //     accessor: 'name',
+        //     columns: [],
+        //     q: '',
+        //     // columns: [],
+        //   },
+        //   {
+        //     id: 'description',
+        //     Header: 'Description',
+        //     accessor: 'description',
+        //   },
+        //   // ],
+        //   // },
+        // ]}
         // columns={useMemo(
         //   () => [
         //     // {
@@ -224,6 +265,7 @@ export default function Home() {
         //   //   ],
         //   // },
         // ]}
+
         emptyTableContent='No data.'
         isSelectable
         data={data}

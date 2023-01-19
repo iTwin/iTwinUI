@@ -90,7 +90,20 @@ export default () => {
   return (
     <div style={{ width: '90%' }}>
       <Table
-        columns={columns}
+        columnsQ1={[{}]}
+        columnsQ2={[{}]}
+        columns={[
+          {
+            colu,
+          },
+        ]}
+        columnsQQ={[
+          {
+            col,
+          },
+        ]}
+        columnsL={[{}]}
+        columnsQ={[]}
         emptyTableContent='No data.'
         data={data}
         style={{ height: '100%' }}
