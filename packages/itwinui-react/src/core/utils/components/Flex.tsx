@@ -5,7 +5,10 @@
 import React from 'react';
 import cx from 'classnames';
 import type { AnyString } from '../types';
-import type { PolymorphicForwardRefComponent } from '../props';
+import type {
+  PolymorphicComponentProps,
+  PolymorphicForwardRefComponent,
+} from '../props';
 import '@itwin/itwinui-css/css/utils.css';
 
 const sizeTokens = [
@@ -257,5 +260,12 @@ export const Flex = Object.assign(FlexComponent, {
    */
   Spacer: FlexSpacer,
 });
+
+export type FlexProps = PolymorphicComponentProps<'div', FlexOwnProps>;
+export type FlexItemProps = PolymorphicComponentProps<'div', FlexItemOwnProps>;
+export type FlexSpacerProps = PolymorphicComponentProps<
+  'div',
+  FlexSpacerOwnProps
+>;
 
 export default Flex;
