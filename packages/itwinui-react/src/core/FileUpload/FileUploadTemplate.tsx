@@ -23,7 +23,7 @@ const toDate = (dateNumber: number) => {
   return date.toDateString() + ' ' + date.toLocaleTimeString();
 };
 
-type DataProps = {
+type FileDataProps = {
   /**
    * File selected
    */
@@ -31,15 +31,15 @@ type DataProps = {
   /**
    * Localized version of label used for default uploaded file output. Defaults to file name.
    */
-  dataLabel?: string;
+  label?: string;
   /**
    * Localized version of description used for default uploaded file output. Defaults to file size and modified date.
    */
-  dataDescription?: string;
+  description?: string;
   /**
    * Custom svg icon for uploaded file output.
    */
-  dataSvg?: JSX.Element;
+  svg?: JSX.Element;
 };
 
 export type FileUploadedTemplateProps =
@@ -57,7 +57,7 @@ export type FileUploadedTemplateProps =
     }
   | {
       acceptMultiple: false;
-      data?: DataProps;
+      data?: FileDataProps;
     };
 
 export type FileUploadTemplateProps = {
@@ -104,9 +104,9 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
   } = props;
   useTheme();
 
-  const icon = data?.dataSvg ? (
-    React.cloneElement(data.dataSvg, {
-      className: cx('iui-icon', data.dataSvg.props.className),
+  const icon = data?.svg ? (
+    React.cloneElement(data.svg, {
+      className: cx('iui-icon', data.svg.props.className),
       'aria-hidden': true,
     })
   ) : (
@@ -118,10 +118,10 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
       {icon}
       <span className='iui-file-uploaded-template-text'>
         <span className='iui-file-uploaded-template-label'>
-          {data.dataLabel ?? data.file.name}
+          {data.label ?? data.file.name}
         </span>
         <span className='iui-file-uploaded-template-description'>
-          {data.dataDescription ??
+          {data.description ??
             toBytes(data.file.size) + ' ' + toDate(data.file.lastModified)}
         </span>
       </span>
