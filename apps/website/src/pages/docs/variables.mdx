@@ -31,17 +31,17 @@ import '@itwin/itwinui-variables';
 
 The main background colors increase in darkness from 1 to 5.
 
-- `background-2` should be used as the main body background.
-- `background-1` is for surface elements placed over the body.
+- `background-backdrop` should be used as the main body background.
+- `background` is for surface elements placed over the body.
 - The rest of them are used for inactive elements and borders.
 
 <ColorList
   colors={[
-    'var(--iui-color-background-1)',
-    'var(--iui-color-background-2)',
-    'var(--iui-color-background-3)',
-    'var(--iui-color-background-4)',
-    'var(--iui-color-background-5)',
+    'var(--iui-color-background)',
+    'var(--iui-color-background-backdrop)',
+    'var(--iui-color-background-backdrop-hover)',
+    'var(--iui-color-background-backdrop-zebra)',
+    'var(--iui-color-background-transparent-hover)',
   ]}
 />
 
@@ -50,9 +50,12 @@ better contrast in high-contrast themes.
 
 <ColorList
   colors={[
-    'var(--iui-color-background-border)',
-    'var(--iui-color-background-disabled)',
-    'var(--iui-color-background-transparent-hover)',
+    'var(--iui-color-border)',
+    'var(--iui-color-border-subtle)',
+    'var(--iui-color-border-accent)',
+    'var(--iui-color-border-positive)',
+    'var(--iui-color-border-warning)',
+    'var(--iui-color-border-negative)',
   ]}
 />
 
@@ -60,17 +63,14 @@ better contrast in high-contrast themes.
 
 The foreground colors also increase in darkness from 1 to 5.
 
-- `foreground-2` is the main text color.
-- `foreground-1` is pure white/black, useful for increased contrast over colored backgrounds.
-- The rest are used for borders and disabled foreground elements.
+- `color-text` is the main text color.
 
 <ColorList
   colors={[
-    'var(--iui-color-foreground-1)',
-    'var(--iui-color-foreground-2)',
-    'var(--iui-color-foreground-3)',
-    'var(--iui-color-foreground-4)',
-    'var(--iui-color-foreground-5)',
+    'var(--iui-color-text)',
+    'var(--iui-color-text-muted)',
+    'var(--iui-color-text-disabled)',
+    'var(--iui-color-text-hover)',
   ]}
 />
 
@@ -81,13 +81,21 @@ The status colors are used for indicating the status of an element: success, war
 <ColorList
   colors={[
     [
-      'var(--iui-color-background-primary)',
+      'var(--iui-color-background-accent)',
+      'var(--iui-color-background-informational)',
       'var(--iui-color-background-positive)',
-      'var(--iui-color-background-negative)',
       'var(--iui-color-background-warning)',
+      'var(--iui-color-background-negative)',
     ],
-    ['var(--iui-color-background-primary-hover)', 'var(--iui-color-background-positive-hover)'],
-  ]}
+    [
+      'var(--iui-color-background-accent-hover)',
+      'var(--iui-color-background-informational-hover)',
+      'var(--iui-color-background-positive-hover)',
+      'var(--iui-color-background-warning-hover)',
+      'var(--iui-color-background-negative-hover)',
+    ],
+
+]}
 />
 
 Because the default status backgrounds feel so heavy and saturated, iTwinUI also offers a set of subtle background colors.
@@ -95,10 +103,11 @@ These should be used when there is text on top of them.
 
 <ColorList
   colors={[
-    'var(--iui-color-background-subtle-primary)',
-    'var(--iui-color-background-subtle-positive)',
-    'var(--iui-color-background-subtle-negative)',
-    'var(--iui-color-background-subtle-warning)',
+    'var(--iui-color-background-accent-muted)',
+    'var(--iui-color-background-informational-muted)',
+    'var(--iui-color-background-positive-muted)',
+    'var(--iui-color-background-warning-muted)',
+    'var(--iui-color-background-negative-muted)',
   ]}
 />
 
@@ -109,17 +118,35 @@ Similarly, there are foreground status colors and their hover states.
 <ColorList
   colors={[
     [
-      'var(--iui-color-foreground-primary)',
-      'var(--iui-color-foreground-positive)',
-      'var(--iui-color-foreground-negative)',
-      'var(--iui-color-foreground-warning)',
+      'var(--iui-color-text-accent)',
+      'var(--iui-color-text-informational)',
+      'var(--iui-color-text-positive)',
+      'var(--iui-color-text-warning)',
+      'var(--iui-color-text-negative)',
     ],
     [
-      'var(--iui-color-foreground-primary-hover)',
-      'var(--iui-color-foreground-positive-hover)',
-      'var(--iui-color-foreground-negative-hover)',
-      'var(--iui-color-foreground-warning-hover)',
+      'var(--iui-color-text-accent-hover)',
+      'var(--iui-color-text-informational-hover)',
+      'var(--iui-color-text-positive-hover)',
+      'var(--iui-color-text-warning-hover)',
+      'var(--iui-color-text-negative-hover)',
     ],
+  ]}
+/>
+
+### Icon colors
+
+<ColorList
+  colors={[
+    'var(--iui-color-icon-muted)',
+    'var(--iui-color-icon)',
+    'var(--iui-color-icon-hover)',
+    'var(--iui-color-icon-disabled)',
+    'var(--iui-color-icon-muted-hover)',
+    'var(--iui-color-icon-accent)',
+    'var(--iui-color-icon-positive)',
+    'var(--iui-color-icon-warning)',
+    'var(--iui-color-icon-negative)',
   ]}
 />
 
