@@ -1241,7 +1241,12 @@ InitialState.argTypes = {
 };
 
 export const ControlledState: Story<Partial<TableProps>> = (args) => {
-  type DemoData = { name: string; description: string; subRows: DemoData[] };
+  type DemoData = {
+    id: string;
+    name: string;
+    description: string;
+    subRows: DemoData[];
+  };
 
   const tableInstance = React.useRef<TableInstance>();
   const [selectedRows, setSelectedRows] = useState<DemoData[]>([]);
@@ -1266,41 +1271,63 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
   const data: DemoData[] = useMemo(
     () => [
       {
+        id: '1',
         name: 'Row 1',
         description: 'Description 1',
         subRows: [
-          { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
           {
+            id: '1.1',
+            name: 'Row 1.1',
+            description: 'Description 1.1',
+            subRows: [],
+          },
+          {
+            id: '1.2',
             name: 'Row 1.2',
             description: 'Description 1.2',
             subRows: [
               {
+                id: '1.2.1',
                 name: 'Row 1.2.1',
                 description: 'Description 1.2.1',
                 subRows: [],
               },
               {
+                id: '1.2.2',
                 name: 'Row 1.2.2',
                 description: 'Description 1.2.2',
                 subRows: [],
               },
               {
+                id: '1.2.3',
                 name: 'Row 1.2.3',
                 description: 'Description 1.2.3',
                 subRows: [],
               },
               {
+                id: '1.2.4',
                 name: 'Row 1.2.4',
                 description: 'Description 1.2.4',
                 subRows: [],
               },
             ],
           },
-          { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
-          { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
+          {
+            id: '1.3',
+            name: 'Row 1.3',
+            description: 'Description 1.3',
+            subRows: [],
+          },
+          {
+            id: '1.4',
+            name: 'Row 1.4',
+            description: 'Description 1.4',
+            subRows: [],
+          },
         ],
       },
       {
+        id: '2',
         name: 'Row 2',
         description: 'Description 2',
         subRows: [
@@ -1309,7 +1336,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
           { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
         ],
       },
-      { name: 'Row 3', description: 'Description 3', subRows: [] },
+      { id: '3', name: 'Row 3', description: 'Description 3', subRows: [] },
     ],
     [],
   );
@@ -1324,7 +1351,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
             checked={selectedRows.some((row) => row.name === data.name)}
             onChange={(e) => {
               tableInstance.current?.toggleRowSelected(
-                data.name,
+                data.id,
                 e.target.checked,
               );
             }}
@@ -1339,7 +1366,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
             checked={expandedRows.some((row) => row.name === data.name)}
             onChange={(e) => {
               tableInstance.current?.toggleRowExpanded(
-                [data.name],
+                [data.id],
                 e.target.checked,
               );
             }}
@@ -1360,7 +1387,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
         onExpand={useCallback((expanded) => {
           setExpandedRows(expanded);
         }, [])}
-        getRowId={useCallback((rowData) => rowData.name, [])} // In real world use instance id
+        getRowId={useCallback((rowData) => rowData.id, [])} // In real world use instance id
         {...args}
         data={data}
       />
