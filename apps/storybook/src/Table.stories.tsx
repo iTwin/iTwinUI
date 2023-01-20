@@ -1387,7 +1387,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
         onExpand={useCallback((expanded) => {
           setExpandedRows(expanded);
         }, [])}
-        getRowId={useCallback((rowData) => rowData.id, [])} // In real world use instance id
+        getRowId={useCallback((rowData) => rowData.id, [])}
         {...args}
         data={data}
       />
