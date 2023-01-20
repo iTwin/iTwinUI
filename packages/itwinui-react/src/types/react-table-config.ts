@@ -80,7 +80,11 @@ declare module 'react-table' {
     isDisabled?: (rowData: D) => boolean;
   };
 
-  type TableColumn<D extends object = {}> = Omit<Column<D>, 'accessor'>;
+  export type TableColumn<D extends object = {}> = Omit<Column<D>, 'columns'>;
+  // type TableColumn<D extends object = {}> = Pick<Column<D>, 'columns'>;
+  // type TableColumn<D extends object = {}> = Column<D> & {
+  //   columns?: ;
+  // };
 
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration
   export interface TableOptions<D extends object = {}>
@@ -102,17 +106,20 @@ declare module 'react-table' {
     // columns: Array<Column<D>>; // eslint-disable-line @typescript-eslint/no-explicit-any
     // columns: Array<Column<any>>; // eslint-disable-line @typescript-eslint/no-explicit-any
     // columns: Column<D>[];
-    columnsQ1: Array<Column<D>>;
-    columnsQ2: Array<Omit<Column<D>, 'accessor'>>;
-    columnsQ3: Array<TableColumn>;
-    columnsL: Array<
-      Column<D> &
-        UseFiltersColumnOptions<D> &
-        UseSortByColumnOptions<D> &
-        UseResizeColumnsColumnOptions<D>
-    >;
-    columnsQQ: Array<Omit<Column<D>, 'Header'>>;
-    columnsQ: Array<number>;
+    // columns: Array<TableColumn<D>>;
+    // defaultColumn?: Partial<TableColumn<D>> | undefined;
+
+    // columnsQ1: Array<Column<D>>;
+    // columnsQ2: Array<Omit<Column<D>, 'accessor'>>;
+    // columnsQ3: Array<TableColumn>;
+    // columnsL: Array<
+    //   Column<D> &
+    //     UseFiltersColumnOptions<D> &
+    //     UseSortByColumnOptions<D> &
+    //     UseResizeColumnsColumnOptions<D>
+    // >;
+    // columnsQQ: Array<Omit<Column<D>, 'Header'>>;
+    // columnsQ: Array<number>;
     /**
      * Table data list.
      * Must be memoized.
@@ -130,8 +137,12 @@ declare module 'react-table' {
      * @default 'fit'
      */
     columnResizeMode?: 'fit' | 'expand';
-    columnResizeModeq?: 'fit' | 'expand';
+    // columnResizeModeq?: 'fit' | 'expand';
   }
+
+  // export interface HeaderGroup<D extends object = {}>
+  //   extends ColumnInstance<D>,
+  //     UseTableHeaderGroupProps<D> {}
 
   export interface Hooks<D extends object = {}>
     extends UseExpandedHooks<D>,
@@ -153,6 +164,11 @@ declare module 'react-table' {
     columnResizeMode: TableOptions['columnResizeMode'];
     tableWidth: number;
   }
+
+  // interface ColumnGroupInterface<D extends object> {
+  //   // columnsQ123: never;
+  //   // columns: never;
+  // }
 
   export interface TableState<D extends object = {}>
     extends UseColumnOrderState<D>,
@@ -236,6 +252,7 @@ declare module 'react-table' {
      * Side on which column should be sticked to.
      */
     sticky?: 'left' | 'right';
+    // columnqqq: TableColumn<D>;
   }
 
   export interface ColumnInstance<D extends object = {}>
@@ -248,11 +265,14 @@ declare module 'react-table' {
     isResizerVisible?: boolean;
     getDragAndDropProps: () => TableKeyedProps;
     originalSticky?: 'left' | 'right' | 'none';
+    // column: TableColumn<D>;
   }
 
   export interface Cell<D extends object = {}>
     extends UseGroupByCellProps<D>,
-      UseRowStateCellProps<D> {}
+      UseRowStateCellProps<D> {
+    // column: ColumnInstance<D>;
+  }
 
   export interface Row<D extends object = {}>
     extends UseExpandedRowProps<D>,
@@ -260,5 +280,6 @@ declare module 'react-table' {
       UseRowSelectRowProps<D>,
       UseRowStateRowProps<D> {
     initialSubRows: Row<D>[];
+    // column: ColumnInstance<D>;
   }
 }

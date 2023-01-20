@@ -23,6 +23,8 @@ import {
   useColumnOrder,
   Column,
   useGlobalFilter,
+  // TableColumn,
+  // FilterTypes,
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators';
 import {
@@ -307,6 +309,13 @@ const flattenColumns = (columns: ColumnType[]): ColumnType[] => {
   return flatColumns;
 };
 
+// type ColumnType<T extends Record<string, unknown> = Record<string, unknown>> =
+//   TableColumn<T>;
+
+// const flattenColumns = (columns: ColumnType[]): ColumnType[] => {
+//   return columns;
+// };
+
 /**
  * Table based on [react-table](https://react-table.tanstack.com/docs/api/overview).
  * @example
@@ -465,12 +474,13 @@ export const Table = <
           onSort?.(newState);
           break;
         case TableActions.setFilter:
+          // currentFilter.current = [];
           currentFilter.current = onFilterHandler(
             newState,
             action,
             previousState,
-            currentFilter.current,
-            instance,
+            currentFilter.current as TableFilterValue<T>[],
+            instance as TableInstance<T>,
           );
           break;
         case TableActions.toggleRowExpanded:
@@ -539,6 +549,7 @@ export const Table = <
 
   const filterTypes = React.useMemo(
     () => ({ ...customFilterFunctions, ...filterFunctions }),
+    // () => ({}),
     [filterFunctions],
   );
 
@@ -554,6 +565,7 @@ export const Table = <
       paginateExpandedRows: false, // When false, it shows sub-rows in the current page instead of splitting them
       ...props,
       columns,
+      // defaultColumn: defaultColumn as Partial<TableColumn<T>>,
       defaultColumn,
       disableSortBy: !isSortable,
       stateReducer: tableStateReducer,
@@ -676,7 +688,8 @@ export const Table = <
     }
   }, [state, instance.filteredRows, onFilter]);
 
-  const lastPassedColumns = React.useRef([] as Omit<Column<T>, 'columns'>[]);
+  // const lastPassedColumns = React.useRef([] as any[]);
+  const lastPassedColumns = React.useRef([] as readonly Column<T>[]);
 
   // Reset the column order whenever new columns are passed
   // This is to avoid the old columnOrder from affecting the new columns' columnOrder
@@ -837,7 +850,7 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
-  console.log('headerGroup', headerGroups);
+  // console.log('headerGroup', headerGroups, 1);
 
   return (
     <>
@@ -872,7 +885,7 @@ export const Table = <
           return (
             <div
               className='iui-table-header-wrapper'
-              data-level='0'
+              // data-level='0'
               ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {

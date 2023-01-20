@@ -124,7 +124,14 @@ export default function Home() {
   return (
     <>
       <Table
-        columns={}
+        columns={[
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            // Filter: tableFilters.TextFilter(),
+          },
+        ]}
         // columns={[
         //   // {
         //   //   Header: 'Header',
@@ -166,7 +173,7 @@ export default function Home() {
         //   [],
         // )}
         // columns={columns}
-        columnsL={[]}
+        // columnsL={[]}
         // columnsL={[]}
         // columns={[
         //   {

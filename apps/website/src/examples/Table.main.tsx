@@ -90,13 +90,20 @@ export default () => {
   return (
     <div style={{ width: '90%' }}>
       <Table
+        columnsQ3={[{}]}
         columnsQ1={[{}]}
         columnsQ2={[{}]}
-        columns={[
-          {
-            colu,
-          },
-        ]}
+        columns={[{}]}
+        // columns={[
+        //   {
+        //     co
+        //   }
+        // ]}
+        // columns={[
+        //   {
+
+        //   },
+        // ]}
         columnsQQ={[
           {
             col,
