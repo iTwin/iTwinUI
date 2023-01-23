@@ -52,7 +52,6 @@ type TabsTypeProps =
     }
   | {
       type: 'pill';
-      // actions?: undefined;
     };
 
 export type TabsProps = {
@@ -102,12 +101,6 @@ export type TabsProps = {
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
  */
-// export type HorizontalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
-//   type?: 'default' | 'borderless' | 'pill';
-//   orientation?: 'horizontal';
-//   actions: undefined;
-// };
-
 export type HorizontalTabsProps = Omit<TabsProps, 'orientation'>;
 
 /**
@@ -157,7 +150,6 @@ export const Tabs = (props: TabsProps) => {
     contentClassName,
     wrapperClassName,
     children,
-    // actions,
     ...rest
   } = props;
 
