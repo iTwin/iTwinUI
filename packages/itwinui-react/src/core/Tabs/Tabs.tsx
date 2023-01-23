@@ -138,6 +138,12 @@ export type VerticalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
  * <Tabs labels={tabsWithIcons} type='pill' />
  */
 export const Tabs = (props: TabsProps) => {
+  let actions: Array<React.ReactNode> | undefined = [];
+  if (props.type !== 'pill' && props.actions) {
+    actions = props.actions;
+    delete props.actions;
+  }
+
   const {
     labels,
     activeIndex,
@@ -152,9 +158,6 @@ export const Tabs = (props: TabsProps) => {
     children,
     ...rest
   } = props;
-
-  // To not add actions to the DOM (Using {...rest})
-  delete (rest as any).actions; // eslint-disable-line @typescript-eslint/no-explicit-any
 
   useTheme();
 
@@ -339,9 +342,9 @@ export const Tabs = (props: TabsProps) => {
         })}
       </ul>
 
-      {props.type !== 'pill' && props.actions && (
+      {actions && (
         <div className='iui-tabs-actions-wrapper'>
-          <div className='iui-tabs-actions'>{props.actions}</div>
+          <div className='iui-tabs-actions'>{actions}</div>
         </div>
       )}
 
