@@ -62,13 +62,17 @@ export default {
       <div className='demo-flex-wrapper'>
         <style
           dangerouslySetInnerHTML={{
-            __html:
-              `:where(.demo-flex-wrapper :not([class*='iui'])) {` +
-              ` font-family: var(--iui-font-sans);` +
-              ` color: var(--iui-color-text);` +
-              ` padding: 1rem;` +
-              ` border: 1px solid;` +
-              `}`,
+            __html: /* css */ `
+            :where(.demo-flex-wrapper .iui-flex) {
+              outline: 1px solid var(--iui-color-border);
+              min-height: 100px;
+            }
+            :where(.demo-flex-wrapper :not([class*='iui'])) {
+              font-family: var(--iui-font-sans);
+              color: var(--iui-color-text);
+              padding: 1rem;
+              border: 1px solid;
+            }`,
           }}
         />
         <Story />
