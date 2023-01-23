@@ -141,6 +141,7 @@ export const Tabs = (props: TabsProps) => {
   let actions: Array<React.ReactNode> | undefined = [];
   if (props.type !== 'pill' && props.actions) {
     actions = props.actions;
+    props = { ...props };
     delete props.actions;
   }
 
