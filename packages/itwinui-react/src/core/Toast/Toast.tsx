@@ -5,15 +5,12 @@
 import React from 'react';
 import { Transition } from 'react-transition-group';
 import cx from 'classnames';
-import {
-  getWindow,
-  StatusIconMap,
-  CommonProps,
-  SvgCloseSmall,
-  useMediaQuery,
-} from '../utils';
+import { getWindow, StatusIconMap, CommonProps, SvgCloseSmall } from '../utils';
 import '@itwin/itwinui-css/css/toast.css';
 import { IconButton } from '../Buttons';
+
+const isMotionOk = () =>
+  getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
 
 export type ToastCategory =
   | 'informational'
@@ -175,8 +172,6 @@ export const Toast = (props: ToastProps) => {
     return { translateX, translateY };
   };
 
-  const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
-
   return (
     <Transition
       timeout={{ enter: 240, exit: animateOutTo ? 400 : 120 }}
@@ -184,18 +179,18 @@ export const Toast = (props: ToastProps) => {
       appear={true}
       unmountOnExit={true}
       onEnter={(node: HTMLElement) => {
-        if (motionOk) {
+        if (isMotionOk()) {
           node.style.transform = 'translateY(15%)';
           node.style.transitionTimingFunction = 'ease';
         }
       }}
       onEntered={(node: HTMLElement) => {
-        if (motionOk) {
+        if (isMotionOk()) {
           node.style.transform = 'translateY(0)';
         }
       }}
       onExiting={(node) => {
-        if (motionOk) {
+        if (isMotionOk()) {
           const { translateX, translateY } = calculateOutAnimation(node);
           node.style.transform = animateOutTo
             ? `scale(0.9) translate(${translateX}px,${translateY}px)`
