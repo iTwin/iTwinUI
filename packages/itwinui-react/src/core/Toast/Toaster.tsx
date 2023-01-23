@@ -139,7 +139,10 @@ export default class Toaster {
       },
       ...(this.settings.order === 'descending' ? this.toasts : []),
     ];
+
+    // cannot `await` this, for backwards compat with the return value
     this.updateView();
+
     return { close: () => this.closeToast(currentId) };
   }
 
