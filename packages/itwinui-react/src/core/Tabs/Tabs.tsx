@@ -34,6 +34,26 @@ type TabsOrientationProps =
       type?: 'default' | 'borderless';
     };
 
+type TabsTypeProps =
+  | {
+      /**
+       * Type of the tabs.
+       *
+       * If `orientation = 'vertical'`, `pill` is not applicable.
+       * @default 'default'
+       */
+      type?: 'default' | 'borderless';
+      /**
+       * Content displayed to the right/bottom of the horizontal/vertical tabs
+       *
+       * If `type = 'pill'`, `actions` is not applicable.
+       */
+      actions?: React.ReactNode[];
+    }
+  | {
+      type: 'pill';
+    };
+
 export type TabsProps = {
   /**
    * Elements shown for each tab.
@@ -75,7 +95,8 @@ export type TabsProps = {
    * Content inside the tab panel.
    */
   children?: React.ReactNode;
-} & TabsOrientationProps;
+} & TabsOrientationProps &
+  TabsTypeProps;
 
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
@@ -117,6 +138,14 @@ export type VerticalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
  * <Tabs labels={tabsWithIcons} type='pill' />
  */
 export const Tabs = (props: TabsProps) => {
+  // Separate actions from props to avoid adding it to the DOM (using {...rest})
+  let actions: Array<React.ReactNode> | undefined;
+  if (props.type !== 'pill' && props.actions) {
+    actions = props.actions;
+    props = { ...props };
+    delete props.actions;
+  }
+
   const {
     labels,
     activeIndex,
@@ -314,6 +343,13 @@ export const Tabs = (props: TabsProps) => {
           );
         })}
       </ul>
+
+      {actions && (
+        <div className='iui-tabs-actions-wrapper'>
+          <div className='iui-tabs-actions'>{actions}</div>
+        </div>
+      )}
+
       {children && (
         <div
           className={cx('iui-tabs-content', contentClassName)}
