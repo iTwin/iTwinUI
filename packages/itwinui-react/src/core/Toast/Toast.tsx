@@ -176,6 +176,7 @@ export const Toast = (props: ToastProps) => {
   };
 
   const motionOk = useMediaQuery('(prefers-reduced-motion: no-preference)');
+
   return (
     <Transition
       timeout={{ enter: 240, exit: animateOutTo ? 400 : 120 }}
