@@ -26,10 +26,13 @@ const sizeTokens = [
 /**
  * String literal shorthands that correspond to the size tokens in [itwinui-variables](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-variables/src/sizes.scss).
  */
-type SizeToken = typeof sizeTokens[number];
+type SizeToken = typeof sizeTokens[number] | 'form-vertical';
 
 const getValueForToken = (token?: string) => {
-  if (sizeTokens.includes(token as SizeToken)) {
+  if (token === 'form-vertical') {
+    return `var(--iui-spacing-form-vertical)`;
+  }
+  if (sizeTokens.includes(token as typeof sizeTokens[number])) {
     return `var(--iui-size-${token})`;
   }
   return token;

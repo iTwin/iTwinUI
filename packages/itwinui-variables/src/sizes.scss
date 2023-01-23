@@ -25,3 +25,8 @@
   --iui-component-height: calc(var(--iui-size-s) * 3);
   --iui-component-height-large: calc(var(--iui-size-s) * 4);
 }
+
+// These are contextual aliases for standardized spacing values.
+@mixin component-spacing {
+  --iui-spacing-form-vertical: var(--iui-size-s);
+}

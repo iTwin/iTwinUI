@@ -22,6 +22,25 @@ it('should render Flex.Spacer', () => {
   expect(container.querySelector('div')).toHaveClass('iui-flex-spacer');
 });
 
+it('should accept present token (form-vertical) as gap value', () => {
+  const { container } = render(
+    <Flex gap={'form-vertical'}>
+      <Flex.Item gapBefore={'form-vertical'} gapAfter={'form-vertical'}>
+        hello
+      </Flex.Item>
+    </Flex>,
+  );
+  expect(container.querySelector('.iui-flex')).toHaveStyle(
+    `--iui-flex-gap: var(--iui-spacing-form-vertical);`,
+  );
+  expect(container.querySelector('.iui-flex-item')).toHaveStyle(
+    `--iui-flex-item-gap-before: var(--iui-spacing-form-vertical);` +
+      `--iui-flex-item-gap-after: var(--iui-spacing-form-vertical);` +
+      `--iui-flex-item-gap-before-toggle: var(--iui-on);` +
+      `--iui-flex-item-gap-after-toggle: var(--iui-on);`,
+  );
+});
+
 it.each(['3xs', '2xs', 'xs', 's', 'm', 'l', 'xl', '2xl', '3xl'] as const)(
   'should accept preset token (%s) as gap value',
   (value) => {

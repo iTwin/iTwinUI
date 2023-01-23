@@ -8,14 +8,10 @@
   display: inline-flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: var(--iui-spacing-form-vertical);
 
   > .iui-input-container:not(.iui-inline-label) {
     width: 100%;
-  }
-
-  > .iui-input-container,
-  > .iui-input {
-    margin-bottom: var(--iui-size-s);
   }
 
   > .iui-button-bar {
