@@ -80,7 +80,7 @@ declare module 'react-table' {
     isDisabled?: (rowData: D) => boolean;
   };
 
-  export type TableColumn<D extends object = {}> = Omit<Column<D>, 'columns'>;
+  // export type TableColumn<D extends object = {}> = Omit<Column<D>, 'columns'>;
   // type TableColumn<D extends object = {}> = Pick<Column<D>, 'columns'>;
   // type TableColumn<D extends object = {}> = Column<D> & {
   //   columns?: ;
@@ -165,10 +165,28 @@ declare module 'react-table' {
     tableWidth: number;
   }
 
-  // interface ColumnGroupInterface<D extends object> {
-  //   // columnsQ123: never;
-  //   // columns: never;
+  export interface ColumnGroupInterface<D extends object> {
+    columnsQQQ: Array<Column<D>>;
+    // columns: Array<Column<D>> | undefined;
+  }
+
+  // export interface ColumnGroupInterface<D extends object> {
+  //   columnsQ123: string;
+  //   columnsQ124: string;
+  //   // columns: Array<Column<D>>;
   // }
+
+  // export type ColumnGroup<D extends object = {}> =
+  //   & ColumnInterface<D>
+  //   & ColumnGroupInterface<D>
+  //   & (
+  //       | { Header: string; }
+  //       | ({ id: IdType<D>; } & {
+  //           Header: Renderer<HeaderProps<D>>;
+  //       })
+  //   )
+  //   // Not used, but needed for backwards compatibility
+  //   & { accessor?: Accessor<D> | undefined; };
 
   export interface TableState<D extends object = {}>
     extends UseColumnOrderState<D>,
