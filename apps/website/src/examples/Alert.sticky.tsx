@@ -7,7 +7,7 @@ import { Alert } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <>
+    <div>
       <Alert
         isSticky
         onClose={() => console.log('CLOSED')}
@@ -17,6 +17,6 @@ export default () => {
         This is a sticky alert
       </Alert>
       <p>Page content.</p>
-    </>
+    </div>
   );
 };
