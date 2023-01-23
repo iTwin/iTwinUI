@@ -153,6 +153,9 @@ export const Tabs = (props: TabsProps) => {
     ...rest
   } = props;
 
+  // To not add actions to the DOM (Using {...rest})
+  delete (rest as any).actions; // eslint-disable-line @typescript-eslint/no-explicit-any
+
   useTheme();
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
