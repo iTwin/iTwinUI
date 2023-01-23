@@ -51,6 +51,7 @@ export default () => {
         id: 'product',
         Header: 'Product',
         accessor: 'product',
+        width: '40%',
       },
       {
         id: 'price',
@@ -59,11 +60,6 @@ export default () => {
         Cell: (props: CellProps<TableStoryDataType>) => {
           return <>${props.value}</>;
         },
-      },
-      {
-        id: 'quantity',
-        Header: 'Quantity',
-        accessor: 'quantity',
       },
       {
         id: 'rating',
@@ -88,7 +84,7 @@ export default () => {
   }, []);
 
   return (
-    <div style={{ width: '90%' }}>
+    <div style={{ width: '300px' }}>
       <Table
         columnsQ3={[{}]}
         columnsQ1={[{}]}
