@@ -90,34 +90,34 @@ export default class Toaster {
    * Set global Toaster settings for toasts order and placement.
    * Settings will be applied to new toasts on the page.
    */
-  public setSettings(newSettings: ToasterSettings) {
+  public async setSettings(newSettings: ToasterSettings) {
     newSettings.placement ??= this.settings.placement;
     newSettings.order ??= newSettings.placement?.startsWith('bottom')
       ? 'ascending'
       : 'descending';
     this.settings = newSettings;
-    this.asyncInit().then(() => {
+    await this.asyncInit().then(() => {
       this.toastsRef.current?.setPlacement(this.settings.placement ?? 'top');
     });
   }
 
-  public positive(content: React.ReactNode, options?: ToastOptions) {
+  public async positive(content: React.ReactNode, options?: ToastOptions) {
     return this.createToast(content, 'positive', options);
   }
 
-  public informational(content: React.ReactNode, options?: ToastOptions) {
+  public async informational(content: React.ReactNode, options?: ToastOptions) {
     return this.createToast(content, 'informational', options);
   }
 
-  public negative(content: React.ReactNode, options?: ToastOptions) {
+  public async negative(content: React.ReactNode, options?: ToastOptions) {
     return this.createToast(content, 'negative', options);
   }
 
-  public warning(content: React.ReactNode, options?: ToastOptions) {
+  public async warning(content: React.ReactNode, options?: ToastOptions) {
     return this.createToast(content, 'warning', options);
   }
 
-  private createToast(
+  private async createToast(
     content: React.ReactNode,
     category: ToastCategory,
     options?: ToastOptions,
@@ -139,38 +139,38 @@ export default class Toaster {
       },
       ...(this.settings.order === 'descending' ? this.toasts : []),
     ];
-    this.updateView();
+    await this.updateView();
     return { close: () => this.closeToast(currentId) };
   }
 
-  private removeToast(id: number) {
+  private async removeToast(id: number) {
     this.toasts = this.toasts.filter((toast) => toast.id !== id);
     this.updateView();
   }
 
-  private updateView() {
-    this.asyncInit().then(() => {
+  private async updateView() {
+    await this.asyncInit().then(() => {
       this.toastsRef.current?.setToasts(this.toasts);
     });
   }
 
-  private closeToast(toastId: number): void {
+  private async closeToast(toastId: number) {
     this.toasts = this.toasts.map((toast) => {
       return {
         ...toast,
         isVisible: toast.id !== toastId,
       };
     });
-    this.updateView();
+    await this.updateView();
   }
 
-  public closeAll(): void {
+  public async closeAll() {
     this.toasts = this.toasts.map((toast) => {
       return {
         ...toast,
         isVisible: false,
       };
     });
-    this.updateView();
+    await this.updateView();
   }
 }
