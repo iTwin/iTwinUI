@@ -56,9 +56,33 @@ import {
   UseSortByOptions,
   UseSortByState,
   UseTableOptions,
-} from 'react-table';
+  TableCellProps,
+  CellProps,
+  Column,
+  Renderer,
+  FilterProps,
+  FilterType,
+  DefaultFilterTypes,
+  TableKeyedProps,
+} from '../types/base-react-table';
 
 declare module 'react-table' {
+  // export type Abc = {
+  //   q11: number;
+  //   q21: number;
+  // }
+
+  // export interface AbcInterface {
+  //   q12: number;
+  //   q22: number;
+  // }
+
+  // export type AbcInterfaceExtended = Omit<AbcInterface, 'q12'>;
+  // export interface AbcInterfaceExtended1 {} & Omit<AbcInterface, 'q12'>;
+
+  // export type AbcExtended = Omit<Abc, 'q11'>;
+  // export type AbcExtended = Omit<Abc, 'q11'>;
+
   export type FieldType = 'text' | 'number' | 'date' | string;
 
   export type CellRendererProps<D extends object = {}> = {

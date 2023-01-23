@@ -68,7 +68,7 @@ export interface ColumnInterfaceBasedOnValue<D extends object = {}, V = any> {
 }
 
 export interface ColumnGroupInterface<D extends object> {
-  columns: Array<Column<D>>;
+  // columns: Array<Column<D>>;
 }
 
 export type ColumnGroup<D extends object = {}> = ColumnInterface<D> &
@@ -78,8 +78,7 @@ export type ColumnGroup<D extends object = {}> = ColumnInterface<D> &
     | ({ id: IdType<D> } & {
         Header: Renderer<HeaderProps<D>>;
       })
-  ) & // Not used, but needed for backwards compatibility
-  { accessor?: Accessor<D> | undefined };
+  ) & { accessor?: Accessor<D> | undefined }; // Not used, but needed for backwards compatibility
 
 type ValueOf<T> = T[keyof T];
 
