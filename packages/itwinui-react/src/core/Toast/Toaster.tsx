@@ -101,23 +101,23 @@ export default class Toaster {
     });
   }
 
-  public async positive(content: React.ReactNode, options?: ToastOptions) {
+  public positive(content: React.ReactNode, options?: ToastOptions) {
     return this.createToast(content, 'positive', options);
   }
 
-  public async informational(content: React.ReactNode, options?: ToastOptions) {
+  public informational(content: React.ReactNode, options?: ToastOptions) {
     return this.createToast(content, 'informational', options);
   }
 
-  public async negative(content: React.ReactNode, options?: ToastOptions) {
+  public negative(content: React.ReactNode, options?: ToastOptions) {
     return this.createToast(content, 'negative', options);
   }
 
-  public async warning(content: React.ReactNode, options?: ToastOptions) {
+  public warning(content: React.ReactNode, options?: ToastOptions) {
     return this.createToast(content, 'warning', options);
   }
 
-  private async createToast(
+  private createToast(
     content: React.ReactNode,
     category: ToastCategory,
     options?: ToastOptions,
@@ -139,7 +139,7 @@ export default class Toaster {
       },
       ...(this.settings.order === 'descending' ? this.toasts : []),
     ];
-    await this.updateView();
+    this.updateView();
     return { close: () => this.closeToast(currentId) };
   }
 
