@@ -96,7 +96,7 @@ type FlexOwnProps = {
    *
    * Also accepts any valid css value (e.g. "1rem" or "2px")
    *
-   * @default '2xs'
+   * @default 'xs'
    */
   gap?: SizeToken | AnyString;
   /**

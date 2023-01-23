@@ -16,7 +16,7 @@ export default {
     },
     gap: {
       control: 'radio',
-      defaultValue: '2xs',
+      defaultValue: 'xs',
       options: ['3xs', '2xs', 'xs', 's', 'm', 'l', 'xl', '2xl', '3xl'],
     },
     flexDirection: {
@@ -133,8 +133,8 @@ export const IndividualGaps: Story<FlexProps> = (args) => {
           <div>2</div>
         </Flex.Item>
 
-        {/* ⬇️ will always have 'xs' gap between it and the previous item */}
-        <Flex.Item gapAfter='xs'>
+        {/* ⬇️ will always have 's' gap between 3 and 4  */}
+        <Flex.Item gapAfter='s'>
           <div>3</div>
         </Flex.Item>
 
@@ -142,7 +142,7 @@ export const IndividualGaps: Story<FlexProps> = (args) => {
           <div>4</div>
         </Flex.Item>
 
-        {/* ⬇️ will always have '2xs' gap between it and the next item */}
+        {/* ⬇️ will always have '3xs' gap between 4 and 5 */}
         <Flex.Item gapBefore='3xs'>
           <div>5</div>
         </Flex.Item>

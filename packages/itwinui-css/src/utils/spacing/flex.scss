@@ -4,7 +4,7 @@
 @mixin iui-flex {
   --iui-flex-display: flex;
   --iui-flex-direction: row;
-  --iui-flex-gap: var(--iui-size-2xs);
+  --iui-flex-gap: var(--iui-size-xs);
   --iui-flex-justify: flex-start;
   --iui-flex-align: center;
   --iui-flex-wrap: nowrap;
