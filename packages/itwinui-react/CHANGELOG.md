@@ -42,9 +42,7 @@
 
 - 8e319bea: Removes transitions for `Toast` component when `prefer-reduced-motion` is active
 - 24a0cf94: Fixed an issue where Table's `onBottomReached` callback was not being invoked when using strict mode with react 18.
-- Updated dependencies [f7caf384]
-- Updated dependencies [dd13257f]
-- Updated dependencies [ec26b72d]
+- Updated dependencies
   - @itwin/itwinui-css@1.4.0
 
 ## 2.2.1
