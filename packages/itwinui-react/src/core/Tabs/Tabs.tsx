@@ -14,6 +14,26 @@ import {
 import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab';
 
+type TabsOrientationProps =
+  | {
+      /**
+       * Orientation of the tabs.
+       * @default 'horizontal'
+       */
+      orientation?: 'horizontal';
+      /**
+       * Type of the tabs.
+       *
+       * If `orientation = 'vertical'`, `pill` is not applicable.
+       * @default 'default'
+       */
+      type?: 'default' | 'borderless' | 'pill';
+    }
+  | {
+      orientation: 'vertical';
+      type?: 'default' | 'borderless';
+    };
+
 type TabsTypeProps =
   | {
       /**
@@ -24,11 +44,6 @@ type TabsTypeProps =
        */
       type?: 'default' | 'borderless';
       /**
-       * Orientation of the tabs.
-       * @default 'horizontal'
-       */
-      orientation?: 'horizontal' | 'vertical';
-      /**
        * Content displayed to the right/bottom of the horizontal/vertical tabs
        *
        * If `type = 'pill'`, `actions` is not applicable.
@@ -37,8 +52,7 @@ type TabsTypeProps =
     }
   | {
       type: 'pill';
-      orientation: 'horizontal';
-      actions?: undefined;
+      // actions?: undefined;
     };
 
 export type TabsProps = {
@@ -82,13 +96,19 @@ export type TabsProps = {
    * Content inside the tab panel.
    */
   children?: React.ReactNode;
-} & TabsTypeProps;
+} & TabsOrientationProps &
+  TabsTypeProps;
 
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
  */
-export type HorizontalTabsProps = Omit<TabsProps, 'orientation'> &
-  TabsTypeProps;
+// export type HorizontalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
+//   type?: 'default' | 'borderless' | 'pill';
+//   orientation?: 'horizontal';
+//   actions: undefined;
+// };
+
+export type HorizontalTabsProps = Omit<TabsProps, 'orientation'>;
 
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
@@ -137,7 +157,7 @@ export const Tabs = (props: TabsProps) => {
     contentClassName,
     wrapperClassName,
     children,
-    actions,
+    // actions,
     ...rest
   } = props;
 
@@ -324,9 +344,9 @@ export const Tabs = (props: TabsProps) => {
         })}
       </ul>
 
-      {actions && (
+      {props.type !== 'pill' && props.actions && (
         <div className='iui-tabs-actions-wrapper'>
-          <div className='iui-tabs-actions'>{actions}</div>
+          <div className='iui-tabs-actions'>{props.actions}</div>
         </div>
       )}
 
