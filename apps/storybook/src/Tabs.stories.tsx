@@ -133,7 +133,6 @@ PillTabs.args = {
     .fill(null)
     .map((_, index) => <Tab key={index} startIcon={<SvgStar />} />),
   type: 'pill',
-  actions: undefined,
 };
 PillTabs.argTypes = {
   orientation: { control: { disable: true } },
