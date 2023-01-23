@@ -138,7 +138,7 @@ export type VerticalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
  * <Tabs labels={tabsWithIcons} type='pill' />
  */
 export const Tabs = (props: TabsProps) => {
-  let actions: Array<React.ReactNode> | undefined = [];
+  let actions: Array<React.ReactNode> | undefined = undefined;
   if (props.type !== 'pill' && props.actions) {
     actions = props.actions;
     props = { ...props };
