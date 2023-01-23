@@ -7,7 +7,7 @@ import { Blockquote } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div style={{ width: '80%' }}>
+    <div style={{ padding: '0 48px' }}>
       <Blockquote
         cite={'https://www.bentley.com/en'}
         footer={

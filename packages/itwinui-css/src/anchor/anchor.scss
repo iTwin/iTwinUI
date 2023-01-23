@@ -4,6 +4,7 @@
 
 @mixin iui-anchor {
   &:where(button) {
+    font: inherit;
     border: none;
     background: transparent;
     padding: 0;
