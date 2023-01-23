@@ -29,24 +29,25 @@ import '@itwin/itwinui-variables';
 
 ### Background colors
 
-The main background colors increase in darkness from 1 to 5.
+There are several main background colors.
 
 - `background-backdrop` should be used as the main body background.
 - `background` is for surface elements placed over the body.
-- The rest of them are used for inactive elements and borders.
+- `background-backdrop-hover` is for hove state of 'background-backdrop'.
+- `background-zebra` is a zebra striping for table rows, color is halfway between 'background-backdrop' and 'background'.
+- `background-transparent-hover` should be used by borderless elements hover state.
 
 <ColorList
   colors={[
     'var(--iui-color-background)',
     'var(--iui-color-background-backdrop)',
     'var(--iui-color-background-backdrop-hover)',
-    'var(--iui-color-background-backdrop-zebra)',
+    'var(--iui-color-background-zebra)',
     'var(--iui-color-background-transparent-hover)',
   ]}
 />
 
-There are also a few special named colors for some borders, disabled and hover states. These offer
-better contrast in high-contrast themes.
+There are also a few special named colors for some borders.
 
 <ColorList
   colors={[
@@ -61,9 +62,7 @@ better contrast in high-contrast themes.
 
 ### Foreground colors
 
-The foreground colors also increase in darkness from 1 to 5.
-
-- `color-text` is the main text color.
+`color-text` is the main text color.
 
 <ColorList
   colors={[
@@ -76,7 +75,7 @@ The foreground colors also increase in darkness from 1 to 5.
 
 ### Status backgrounds
 
-The status colors are used for indicating the status of an element: success, warning, error, or informational.
+The status colors are used for indicating the status of an element: success, warning, error, or accent/informational.
 
 <ColorList
   colors={[
