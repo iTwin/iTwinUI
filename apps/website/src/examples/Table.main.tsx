@@ -86,10 +86,18 @@ export default () => {
   return (
     <div style={{ width: '300px' }}>
       <Table
-        columnsQ3={[{}]}
-        columnsQ1={[{}]}
-        columnsQ2={[{}]}
-        columns={[{}]}
+        // columnsQ3={[{}]}
+        // columnsQ1={[{}]}
+        // columnsQ2={[{}]}
+        columns={[
+          {
+            id: 'product',
+            // col
+            // qqq: '',
+            // qqq1: '',
+            // col
+          },
+        ]}
         // columns={[
         //   {
         //     co
@@ -100,13 +108,13 @@ export default () => {
 
         //   },
         // ]}
-        columnsQQ={[
-          {
-            col,
-          },
-        ]}
-        columnsL={[{}]}
-        columnsQ={[]}
+        // columnsQQ={[
+        //   {
+        //     col,
+        //   },
+        // ]}
+        // columnsL={[{}]}
+        // columnsQ={[]}
         emptyTableContent='No data.'
         data={data}
         style={{ height: '100%' }}
