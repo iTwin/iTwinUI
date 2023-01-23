@@ -89,16 +89,18 @@ export default () => {
         // columnsQ3={[{}]}
         // columnsQ1={[{}]}
         // columnsQ2={[{}]}
-        columns={[
-          {
-            id: 'product',
-            // columns
-            // col
-            // qqq: '',
-            // qqq1: '',
-            // col
-          },
-        ]}
+
+        // col
+        // columns={[
+        //   {
+        //     id: 'product',
+        //     // columns
+        //     // col
+        //     // qqq: '',
+        //     // qqq1: '',
+        //     // col
+        //   },
+        // ]}
         // columns={[
         //   {
         //     co

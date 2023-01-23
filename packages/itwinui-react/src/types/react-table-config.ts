@@ -64,7 +64,7 @@ import {
   FilterType,
   DefaultFilterTypes,
   TableKeyedProps,
-} from '../types/base-react-table';
+} from 'react-table';
 
 declare module 'react-table' {
   // export type Abc = {
