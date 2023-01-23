@@ -3,8 +3,7 @@
 @import './index';
 
 .iui-tabs-wrapper {
-  display: flex;
-  position: relative;
+  @include iui-tabs-wrapper;
 
   &.iui-horizontal {
     @include iui-tabs-horizontal;
@@ -13,6 +12,18 @@
   &.iui-vertical {
     @include iui-tabs-vertical;
   }
+}
+
+.iui-tabs-actions-wrapper {
+  @include iui-tabs-actions-wrapper;
+}
+
+.iui-tabs-actions {
+  @include iui-tabs-actions;
+}
+
+.iui-tabs-content {
+  @include iui-tabs-content;
 }
 
 .iui-tabs {
