@@ -84,38 +84,51 @@ const currentPage = new URL(Astro.request.url).pathname;
     </div>
 
     <script>
-      const updateVisibility = () => {
-        const visibleBottomLine = window.scrollY + window.innerHeight;
-        const demoWrappers = document.querySelectorAll('.demo-wrapper');
-        demoWrappers.forEach((demoWrapper) => {
-          const top = demoWrapper.getBoundingClientRect().top;
-          if (top < visibleBottomLine) {
-            demoWrapper.dataset.visible = true;
+      const allDemoWrappers = [...document.querySelectorAll('.demo-wrapper')];
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute('data-visible', 'true');
           } else {
-            delete demoWrapper.dataset.visible;
+            entry.target.removeAttribute('data-visible');
           }
         });
-      };
-
-      // console.log('HERE');
-      updateVisibility();
-
-      // TODO: Maybe use intersection observer instead
-      document.querySelector('body').addEventListener('scroll', () => {
-        // console.log('HERE also');
-        // let visibilityInfoString = '';
-        updateVisibility();
-
-        // const demoWrappers = document.querySelectorAll('.demo-wrapper');
-        // demoWrappers.forEach((demoWrapper) => {
-        //   updateVisibility(demoWrapper);
-        // });
-        // demoWrappers.forEach((demoWrapper) => {
-        //   visibilityInfoString += ', ' + isVisible(demoWrapper);
-        // });
-
-        // console.log(visibilityInfoString);
       });
+
+      allDemoWrappers.forEach((heading) => void observer.observe(heading));
+
+      // const updateVisibility = () => {
+      //   const visibleBottomLine = window.scrollY + window.innerHeight;
+      //   const demoWrappers = document.querySelectorAll('.demo-wrapper');
+      //   demoWrappers.forEach((demoWrapper) => {
+      //     const top = demoWrapper.getBoundingClientRect().top;
+      //     if (top < visibleBottomLine) {
+      //       demoWrapper.dataset.visible = true;
+      //     } else {
+      //       delete demoWrapper.dataset.visible;
+      //     }
+      //   });
+      // };
+
+      // // console.log('HERE');
+      // updateVisibility();
+
+      // // TODO: Maybe use intersection observer instead
+      // document.querySelector('body').addEventListener('scroll', () => {
+      //   // console.log('HERE also');
+      //   // let visibilityInfoString = '';
+      //   updateVisibility();
+
+      //   // const demoWrappers = document.querySelectorAll('.demo-wrapper');
+      //   // demoWrappers.forEach((demoWrapper) => {
+      //   //   updateVisibility(demoWrapper);
+      //   // });
+      //   // demoWrappers.forEach((demoWrapper) => {
+      //   //   visibilityInfoString += ', ' + isVisible(demoWrapper);
+      //   // });
+
+      //   // console.log(visibilityInfoString);
+      // });
     </script>
 
     <div class='centered-content'>
