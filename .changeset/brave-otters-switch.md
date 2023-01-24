@@ -1,0 +1,5 @@
+---
+'@itwin/itwinui-react': patch
+---
+
+
