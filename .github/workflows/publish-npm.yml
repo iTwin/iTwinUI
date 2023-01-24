@@ -11,6 +11,7 @@ on:
         options:
           - itwinui-css
           - itwinui-variables
+          - itwinui-react
       tag:
         description: "Which npm tag to publish to?"
         required: true
