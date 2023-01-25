@@ -27,7 +27,7 @@ const currentPage = new URL(Astro.request.url).pathname;
   <main>
     <div class='title-box'>
       <div class='hero-box'>
-        <div class='hero-text'>
+        <div class='hero-text move-on-visible' data-move-on-visible-direction='right'>
           <h1>For a <span class='highlight-text'>unified</span> experience</h1>
           <h2 class='subheading'>
             iTwinUI delivers common UI components and UI layouts bundled with accessibility best
@@ -38,12 +38,12 @@ const currentPage = new URL(Astro.request.url).pathname;
             <CopyCommandButton command='npm i @itwin/itwinui-react' />
           </div>
         </div>
-        <div class='animated-logo-wrapper'>
+        <div class='animated-logo-wrapper move-on-visible' data-move-on-visible-direction='left'>
           <ITwinUILogo client:idle />
         </div>
       </div>
 
-      <div class='demo-carousel-list'>
+      <div class='demo-carousel-list move-on-visible' data-move-on-visible-direction='up'>
         <div class='demo-wrapper'>
           <div class='demo-box'><AlertDemo client:only='react' /></div>
           <h3>Alert</h3>
@@ -295,9 +295,11 @@ const currentPage = new URL(Astro.request.url).pathname;
 
     .move-on-visible {
       &[data-move-on-visible-direction] {
-        transition-duration: 1000ms;
-        transition-timing-function: ease;
+        // transition-duration: var(--transition-speed-slow);
+        // transition-timing-function: ease;
       }
+      transition: transform var(--transition-speed-slow) ease,
+        filter var(--transition-speed-slow) ease, opacity var(--transition-speed-slow) ease;
 
       &[data-visible] {
         transform: translate(0, 0);
@@ -305,11 +307,12 @@ const currentPage = new URL(Astro.request.url).pathname;
 
         // Un-blur this tag
         filter: blur(0);
+        opacity: 1;
       }
 
       &:not([data-visible]) {
-        $max-move-value-x: 100px;
-        $max-move-value-y: 100px;
+        $max-move-value-x: 60px;
+        $max-move-value-y: 60px;
 
         $move-value-x: 0;
         $move-value-y: 0;
@@ -331,7 +334,8 @@ const currentPage = new URL(Astro.request.url).pathname;
         }
 
         // Blur this tag
-        filter: blur(3px);
+        filter: blur(30px);
+        opacity: 0.5;
       }
 
       // &[data-move-on-visible-direction='down'] {
@@ -449,7 +453,7 @@ const currentPage = new URL(Astro.request.url).pathname;
       gap: var(--space-3);
       align-items: start;
       color: var(--color-text);
-      // transition: box-shadow var(--transition-speed) ease;
+      transition: box-shadow var(--transition-speed) ease;
 
       &:where(:hover, :focus-within) {
         box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
