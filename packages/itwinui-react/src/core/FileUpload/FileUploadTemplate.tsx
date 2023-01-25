@@ -114,28 +114,26 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
   );
 
   return !acceptMultiple && data ? (
-    <div className='iui-file-uploaded-template'>
-      {icon}
-      <span className='iui-file-uploaded-template-text'>
-        <span className='iui-file-uploaded-template-label'>
-          {data.label ?? data.file.name}
-        </span>
-        <span className='iui-file-uploaded-template-description'>
-          {data.description ??
-            toBytes(data.file.size) + ' ' + toDate(data.file.lastModified)}
-        </span>
-      </span>
-      <label className='iui-anchor'>
-        <input
-          className='iui-browse-input'
-          type='file'
-          onChange={onChange}
-          multiple={acceptMultiple}
-          accept={acceptType}
-        />
-        {label}
-      </label>
-    </div>
+    <FileUploaded
+      icon={icon}
+      label={data.label ?? data.file.name}
+      description={
+        data.description ??
+        toBytes(data.file.size) + ' ' + toDate(data.file.lastModified)
+      }
+      action={
+        <label className='iui-anchor'>
+          <input
+            className='iui-browse-input'
+            type='file'
+            onChange={onChange}
+            multiple={acceptMultiple}
+            accept={acceptType}
+          />
+          {label}
+        </label>
+      }
+    />
   ) : (
     <>
       <SvgUpload className='iui-icon' aria-hidden />
@@ -154,6 +152,38 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
         {children}
       </div>
     </>
+  );
+};
+
+export const FileUploaded = (props: {
+  /**
+   * Svg icon for uploaded file output.
+   */
+  icon: JSX.Element;
+  /**
+   * File label for uploaded file output.
+   */
+  label: string;
+  /**
+   * File description for uploaded file output.
+   */
+  description: string;
+  /**
+   * Action element for uploaded file.
+   */
+  action: JSX.Element;
+}) => {
+  return (
+    <div className='iui-file-uploaded-template'>
+      {props.icon}
+      <span className='iui-file-uploaded-template-text'>
+        <span className='iui-file-uploaded-template-label'>{props.label}</span>
+        <span className='iui-file-uploaded-template-description'>
+          {props.description}
+        </span>
+      </span>
+      <div className='iui-file-uploaded-template-action'>{props.action}</div>
+    </div>
   );
 };
 

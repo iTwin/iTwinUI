@@ -6,5 +6,5 @@ export { FileUpload } from './FileUpload';
 export type { FileUploadProps } from './FileUpload';
 export default './FileUpload';
 
-export { FileUploadTemplate } from './FileUploadTemplate';
+export { FileUploadTemplate, FileUploaded } from './FileUploadTemplate';
 export type { FileUploadTemplateProps } from './FileUploadTemplate';

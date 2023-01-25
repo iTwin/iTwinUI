@@ -91,6 +91,20 @@
     margin-bottom: var(--iui-size-s);
     margin-left: var(--iui-size-xs);
   }
+
+  .iui-browse-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+  }
+
+  .iui-file-uploaded-template-action {
+    margin-left: auto;
+    margin-right: var(--iui-size-xs);
+    font-weight: var(--iui-font-weight-bold);
+  }
 }
 
 @mixin iui-file-uploaded-template-text {
@@ -100,12 +114,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
-  + label {
-    margin-left: auto;
-    margin-right: var(--iui-size-xs);
-    font-weight: var(--iui-font-weight-bold);
-  }
 
   .iui-file-uploaded-template-label,
   .iui-file-uploaded-template-description {
