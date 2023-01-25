@@ -84,7 +84,7 @@ const currentPage = new URL(Astro.request.url).pathname;
     </div>
 
     <script>
-      const allDemoWrappers = [...document.querySelectorAll('.demo-wrapper')];
+      const allMoveOnVisible = [...document.querySelectorAll('.move-on-visible')];
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -95,7 +95,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         });
       });
 
-      allDemoWrappers.forEach((heading) => void observer.observe(heading));
+      allMoveOnVisible.forEach((heading) => void observer.observe(heading));
 
       // const updateVisibility = () => {
       //   const visibleBottomLine = window.scrollY + window.innerHeight;
@@ -131,10 +131,10 @@ const currentPage = new URL(Astro.request.url).pathname;
       // });
     </script>
 
-    <div class='centered-content'>
+    <div class='centered-content move-on-visible' data-move-on-visible-direction='up'>
       <h2 class='highlight-text'>Why iTwinUI?</h2>
       <div class='column-content'>
-        <div class='text-with-icon'>
+        <div class='text-with-icon move-on-visible' data-move-on-visible-direction='right'>
           <ConsistentIcon class='icon' />
           <div>
             <h3 class='colored-text'>Consistent</h3>
@@ -145,7 +145,7 @@ const currentPage = new URL(Astro.request.url).pathname;
             </p>
           </div>
         </div>
-        <div class='text-with-icon'>
+        <div class='text-with-icon move-on-visible' data-move-on-visible-direction='left'>
           <AccessibleIcon class='icon' />
           <div>
             <h3 class='colored-text'>Accessible</h3>
@@ -155,7 +155,7 @@ const currentPage = new URL(Astro.request.url).pathname;
             </p>
           </div>
         </div>
-        <div class='text-with-icon'>
+        <div class='text-with-icon move-on-visible' data-move-on-visible-direction='right'>
           <NoFussIcon class='icon' />
           <div>
             <h3 class='colored-text'>No fuss</h3>
@@ -165,7 +165,7 @@ const currentPage = new URL(Astro.request.url).pathname;
             </p>
           </div>
         </div>
-        <div class='text-with-icon'>
+        <div class='text-with-icon move-on-visible' data-move-on-visible-direction='left'>
           <EvolvingIcon class='icon' />
           <div>
             <h3 class='colored-text'>Evolving</h3>
@@ -177,10 +177,10 @@ const currentPage = new URL(Astro.request.url).pathname;
         </div>
       </div>
     </div>
-    <div class='centered-content'>
+    <div class='centered-content move-on-visible' data-move-on-visible-direction='up'>
       <h2 class='highlight-text'>Our library</h2>
       <ul class='library-list'>
-        <li class='library-item'>
+        <li class='library-item move-on-visible' data-move-on-visible-direction='left'>
           <h3>
             <a href='/docs/components'>Components</a>
           </h3>
@@ -189,13 +189,13 @@ const currentPage = new URL(Astro.request.url).pathname;
             behave in their environment to determine if they are the right fit.
           </p>
         </li>
-        <li class='library-item'>
+        <li class='library-item move-on-visible' data-move-on-visible-direction='up'>
           <h3>
             <a href='https://itwin.github.io/iTwinUI-layouts/'>Layouts</a>
           </h3>
           <p>Full-page layouts built for maximizing your efficiency when you need it the most.</p>
         </li>
-        <li class='library-item'>
+        <li class='library-item move-on-visible' data-move-on-visible-direction='right'>
           <h3>
             <a href='https://itwin.github.io/iTwinUI-icons/'>Icons</a>
           </h3>
@@ -294,17 +294,67 @@ const currentPage = new URL(Astro.request.url).pathname;
     }
 
     .move-on-visible {
-      transition-duration: 1000ms;
+      &[data-move-on-visible-direction] {
+        transition-duration: 1000ms;
+        transition-timing-function: ease;
+      }
 
       &[data-visible] {
-        transform: translateY(0);
+        transform: translate(0, 0);
         // transform: scale(1);
+
+        // Un-blur this tag
+        filter: blur(0);
       }
 
       &:not([data-visible]) {
-        transform: translateY(100px);
-        // transform: scale(0.98);
+        $max-move-value-x: 100px;
+        $max-move-value-y: 100px;
+
+        $move-value-x: 0;
+        $move-value-y: 0;
+
+        &[data-move-on-visible-direction='up'] {
+          transform: translate(0, $max-move-value-y);
+        }
+
+        &[data-move-on-visible-direction='down'] {
+          transform: translate(0, -$max-move-value-y);
+        }
+
+        &[data-move-on-visible-direction='left'] {
+          transform: translate($max-move-value-x, 0);
+        }
+
+        &[data-move-on-visible-direction='right'] {
+          transform: translate(-$max-move-value-x, 0);
+        }
+
+        // Blur this tag
+        filter: blur(3px);
       }
+
+      // &[data-move-on-visible-direction='down'] {
+      //   &[data-visible] {
+      //     transform: translateY(0);
+      //     // transform: scale(1);
+      //   }
+
+      //   &:not([data-visible]) {
+      //     transform: translateY(100px);
+      //     // transform: scale(0.98);
+      //   }
+      // }
+
+      // &[data-visible] {
+      //   transform: translateY(0);
+      //   // transform: scale(1);
+      // }
+
+      // &:not([data-visible]) {
+      //   transform: translateY(100px);
+      //   // transform: scale(0.98);
+      // }
     }
 
     .demo-box {
@@ -399,7 +449,7 @@ const currentPage = new URL(Astro.request.url).pathname;
       gap: var(--space-3);
       align-items: start;
       color: var(--color-text);
-      transition: box-shadow var(--transition-speed) ease;
+      // transition: box-shadow var(--transition-speed) ease;
 
       &:where(:hover, :focus-within) {
         box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
