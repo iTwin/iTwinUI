@@ -211,10 +211,6 @@ const currentPage = new URL(Astro.request.url).pathname;
   <Footer />
 
   <style lang='scss'>
-    :global(*) {
-      overflow: visible;
-    }
-
     body {
       display: grid;
       grid-template: 'header' auto 'main' 1fr / 100%;
@@ -272,12 +268,9 @@ const currentPage = new URL(Astro.request.url).pathname;
       grid-area: header;
     }
     .demo-carousel-list {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      overflow: hidden;
-
+      display: flex;
       justify-self: center;
-      // gap: var(--space-6);
+      gap: var(--space-6);
       margin-block: calc(var(--space-7) * 4) calc(var(--space-7) * 3);
       padding-block: var(--space-7);
       padding-inline: var(--space-2);
@@ -296,14 +289,11 @@ const currentPage = new URL(Astro.request.url).pathname;
     .demo-wrapper {
       min-width: 350px;
       color: var(--color-text);
-      // display: grid;
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: var(--space-4);
-      padding: var(--iui-size-s);
-      // transform: translateY(100%);
-      // position: relative;
+    }
 
+    .move-on-visible {
       transition-duration: 1000ms;
 
       &[data-visible] {
