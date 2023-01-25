@@ -2,6 +2,26 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
+// (12px) Between .iui-tabs and .iui-tabs-actions-wrapper
+$tabs-actions-gap: var(--iui-size-s);
+
+// (4px) Smaller min content-actions spacing for default tabs
+$content-actions-min-gap-default-horizontal-tabs: var(--iui-size-2xs);
+// (8px) Larger min content-actions spacing for borderless tabs
+$content-actions-min-gap-borderless-horizontal-tabs: var(--iui-size-xs);
+// (8px) Padding for iui-tabs (vertical tabs)
+$content-actions-gap-vertical-tabs: var(--iui-size-xs);
+
+// (44px) Min tab height for borderless tabs
+$borderless-horizontal-tab-min-height: calc(
+  var(--iui-size-s) * 3 + #{$content-actions-min-gap-borderless-horizontal-tabs}
+);
+
+@mixin iui-tabs-wrapper {
+  display: grid;
+  position: relative;
+}
+
 @mixin iui-tabs {
   @include iui-reset;
   position: relative;
@@ -95,10 +115,15 @@
 }
 
 @mixin iui-tabs-horizontal {
-  flex-direction: column;
+  grid-template-areas: 'tabs tabs-actions' 'tabs-content tabs-content';
+  grid-template-columns: 1fr auto;
 
   .iui-tabs {
     display: flex;
+
+    &.iui-borderless {
+      min-height: $borderless-horizontal-tab-min-height;
+    }
   }
 
   .iui-tab {
@@ -114,6 +139,10 @@
 }
 
 @mixin iui-tabs-vertical {
+  grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+
   .iui-tabs {
     li,
     .iui-tab {
@@ -190,4 +219,59 @@
       }
     }
   }
+}
+
+@mixin iui-tabs-actions-wrapper {
+  grid-area: tabs-actions;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  :where(.iui-tabs-wrapper.iui-horizontal) & {
+    margin-left: $tabs-actions-gap;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+    }
+  }
+
+  // Smaller min content-actions spacing for default horizontal tabs
+  :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-default) + & {
+    &::after {
+      min-height: $content-actions-min-gap-default-horizontal-tabs;
+    }
+  }
+
+  // Larger min content-actions spacing for borderless horizontal tabs
+  :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-borderless) + & {
+    &::after {
+      min-height: $content-actions-min-gap-borderless-horizontal-tabs;
+    }
+  }
+
+  :where(.iui-tabs-wrapper.iui-vertical) & {
+    margin-top: $tabs-actions-gap;
+    padding: 0 $content-actions-gap-vertical-tabs;
+  }
+}
+
+@mixin iui-tabs-actions {
+  display: flex;
+
+  :where(.iui-tabs-wrapper.iui-horizontal) & {
+    align-items: center;
+    column-gap: var(--iui-size-xs);
+  }
+
+  :where(.iui-tabs-wrapper.iui-vertical) & {
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: var(--iui-size-xs);
+  }
+}
+
+@mixin iui-tabs-content {
+  grid-area: tabs-content;
 }
