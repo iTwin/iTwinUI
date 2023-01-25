@@ -9,6 +9,9 @@ import { getWindow, StatusIconMap, CommonProps, SvgCloseSmall } from '../utils';
 import '@itwin/itwinui-css/css/toast.css';
 import { IconButton } from '../Buttons';
 
+const isMotionOk = () =>
+  getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
+
 export type ToastCategory =
   | 'informational'
   | 'negative'
@@ -176,20 +179,26 @@ export const Toast = (props: ToastProps) => {
       appear={true}
       unmountOnExit={true}
       onEnter={(node: HTMLElement) => {
-        node.style.transform = 'translateY(15%)';
-        node.style.transitionTimingFunction = 'ease';
+        if (isMotionOk()) {
+          node.style.transform = 'translateY(15%)';
+          node.style.transitionTimingFunction = 'ease';
+        }
       }}
       onEntered={(node: HTMLElement) => {
-        node.style.transform = 'translateY(0)';
+        if (isMotionOk()) {
+          node.style.transform = 'translateY(0)';
+        }
       }}
       onExiting={(node) => {
-        const { translateX, translateY } = calculateOutAnimation(node);
-        node.style.transform = animateOutTo
-          ? `scale(0.9) translate(${translateX}px,${translateY}px)`
-          : `scale(0.9)`;
-        node.style.opacity = '0';
-        node.style.transitionDuration = animateOutTo ? '400ms' : '120ms';
-        node.style.transitionTimingFunction = 'cubic-bezier(0.4, 0, 1, 1)';
+        if (isMotionOk()) {
+          const { translateX, translateY } = calculateOutAnimation(node);
+          node.style.transform = animateOutTo
+            ? `scale(0.9) translate(${translateX}px,${translateY}px)`
+            : `scale(0.9)`;
+          node.style.opacity = '0';
+          node.style.transitionDuration = animateOutTo ? '400ms' : '120ms';
+          node.style.transitionTimingFunction = 'cubic-bezier(0.4, 0, 1, 1)';
+        }
       }}
       onExited={onRemove}
     >
