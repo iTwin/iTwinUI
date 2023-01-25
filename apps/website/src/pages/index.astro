@@ -156,29 +156,35 @@ const currentPage = new URL(Astro.request.url).pathname;
     <div class='centered-content move-on-visible' data-move-on-visible-direction='up'>
       <h2 class='highlight-text'>Our library</h2>
       <ul class='library-list'>
-        <li class='library-item move-on-visible' data-move-on-visible-direction='left'>
-          <h3>
-            <a href='/docs/components'>Components</a>
-          </h3>
-          <p>
-            See our extensive library of pre-coded components. You can view live demos of how they
-            behave in their environment to determine if they are the right fit.
-          </p>
+        <li class='library-item-wrapper move-on-visible' data-move-on-visible-direction='right'>
+          <span class='library-item'>
+            <h3>
+              <a href='/docs/components'>Components</a>
+            </h3>
+            <p>
+              See our extensive library of pre-coded components. You can view live demos of how they
+              behave in their environment to determine if they are the right fit.
+            </p>
+          </span>
         </li>
-        <li class='library-item move-on-visible' data-move-on-visible-direction='up'>
-          <h3>
-            <a href='https://itwin.github.io/iTwinUI-layouts/'>Layouts</a>
-          </h3>
-          <p>Full-page layouts built for maximizing your efficiency when you need it the most.</p>
+        <li class='library-item-wrapper move-on-visible' data-move-on-visible-direction='up'>
+          <span class='library-item'>
+            <h3>
+              <a href='https://itwin.github.io/iTwinUI-layouts/'>Layouts</a>
+            </h3>
+            <p>Full-page layouts built for maximizing your efficiency when you need it the most.</p>
+          </span>
         </li>
-        <li class='library-item move-on-visible' data-move-on-visible-direction='right'>
-          <h3>
-            <a href='https://itwin.github.io/iTwinUI-icons/'>Icons</a>
-          </h3>
-          <p>
-            Hundreds of flexible, flat-styled icons in SVG format, allowing for infinite scalability
-            with zero quality loss.
-          </p>
+        <li class='library-item-wrapper move-on-visible' data-move-on-visible-direction='left'>
+          <span class='library-item'>
+            <h3>
+              <a href='https://itwin.github.io/iTwinUI-icons/'>Icons</a>
+            </h3>
+            <p>
+              Hundreds of flexible, flat-styled icons in SVG format, allowing for infinite
+              scalability with zero quality loss.
+            </p>
+          </span>
         </li>
       </ul>
     </div>
@@ -416,6 +422,9 @@ const currentPage = new URL(Astro.request.url).pathname;
       display: grid;
       gap: var(--space-6);
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    }
+    .library-item-wrapper {
+      display: flex;
     }
     .library-item {
       position: relative;
