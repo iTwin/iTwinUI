@@ -3,7 +3,9 @@ const props = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class='move-on-visible' {...props}>© {currentYear} Bentley Systems, Inc</footer>
+<footer class='move-on-visible' data-move-on-visible-direction='down' {...props}>
+  © {currentYear} Bentley Systems, Inc
+</footer>
 
 <style lang='scss'>
   footer {

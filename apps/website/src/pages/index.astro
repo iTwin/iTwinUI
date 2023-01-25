@@ -83,30 +83,6 @@ const currentPage = new URL(Astro.request.url).pathname;
       </div>
     </div>
 
-    <script>
-      const updateVisibility = () => {
-        const visibleBottomLine = window.scrollY + window.innerHeight;
-        const demoWrappers = document.querySelectorAll('.move-on-visible');
-        demoWrappers.forEach((demoWrapper) => {
-          if (!(demoWrapper instanceof HTMLElement)) {
-            return;
-          }
-
-          const top = demoWrapper.getBoundingClientRect().top;
-          if (top < visibleBottomLine) {
-            demoWrapper.dataset.visible = 'true';
-          } else {
-            delete demoWrapper.dataset.visible;
-          }
-        });
-      };
-
-      updateVisibility();
-      document.querySelector('body').addEventListener('scroll', () => {
-        updateVisibility();
-      });
-    </script>
-
     <div class='centered-content move-on-visible' data-move-on-visible-direction='up'>
       <h2 class='highlight-text'>Why iTwinUI?</h2>
       <div class='column-content'>
@@ -469,4 +445,28 @@ const currentPage = new URL(Astro.request.url).pathname;
       }
     }
   </style>
+
+  <script>
+    const updateVisibility = () => {
+      const visibleBottomLine = window.scrollY + window.innerHeight;
+      const demoWrappers = document.querySelectorAll('.move-on-visible');
+      demoWrappers.forEach((demoWrapper) => {
+        if (!(demoWrapper instanceof HTMLElement)) {
+          return;
+        }
+
+        const top = demoWrapper.getBoundingClientRect().top;
+        if (top < visibleBottomLine) {
+          demoWrapper.dataset.visible = 'true';
+        } else {
+          delete demoWrapper.dataset.visible;
+        }
+      });
+    };
+
+    updateVisibility();
+    document.querySelector('body').addEventListener('scroll', () => {
+      updateVisibility();
+    });
+  </script>
 </Global>
