@@ -30,7 +30,7 @@ export type DropdownButtonProps = {
   /**
    * Props for the `DropdownMenu` which extends `PopoverProps`.
    */
-  dropdownMenuProps?: Omit<DropdownMenuProps, 'menuItems'>;
+  dropdownMenuProps?: Omit<DropdownMenuProps, 'menuItems' | 'children'>;
 } & Omit<ButtonProps, 'onClick' | 'styleType' | 'endIcon'>;
 
 /**
