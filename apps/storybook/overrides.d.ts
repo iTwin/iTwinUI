@@ -31,7 +31,6 @@ declare global {
        * Helper function to get the story id from its base path and name.
        */
       storyId(storyPath: string, storyName: string): string;
-      version: number;
     }
   }
 }

@@ -549,7 +549,6 @@ export const Table = <
 
   const filterTypes = React.useMemo(
     () => ({ ...customFilterFunctions, ...filterFunctions }),
-    // () => ({}),
     [filterFunctions],
   );
 
@@ -850,8 +849,6 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
-  // console.log('headerGroup', headerGroups, 1);
-
   return (
     <>
       <div
@@ -885,7 +882,6 @@ export const Table = <
           return (
             <div
               className='iui-table-header-wrapper'
-              // data-level='0'
               ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {

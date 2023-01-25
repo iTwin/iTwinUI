@@ -16,21 +16,11 @@
 
 // // declare global {
 // //   module 'react-table' {
-// //     export * from 'react-table'; // 👈🏼 export the same module
+// //     export * from 'react-table';
 
 // //     export interface ColumnGroupInterface<D extends object> {
 // //       columns: number;
 // //       columnsQQQ: string;
 // //       columnsQNew: boolean;
 // //     }
-
-// //     // // Function override
-// //     // export function createType(def:{
-// //     //   union: [
-// //     //     'string',
-// //     //     'int',
-// //     //     '[float]', //
-// //     //   ],
-// //     // }): "WHATEVER2";
-// //   }
 // // }

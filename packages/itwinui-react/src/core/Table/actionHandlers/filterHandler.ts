@@ -11,7 +11,7 @@ export const onFilterHandler = <T extends Record<string, unknown>>(
   previousState: TableState<T>,
   currentFilter: TableFilterValue<T>[],
   instance?: TableInstance<T>,
-): TableFilterValue<T>[] => {
+) => {
   const previousFilter = previousState.filters.find(
     (f) => f.id === action.columnId,
   );
