@@ -28,7 +28,7 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-} & PopoverProps &
+} & Omit<PopoverProps, 'content'> &
   Omit<CommonProps, 'title'>;
 
 /**
