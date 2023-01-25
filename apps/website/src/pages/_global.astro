@@ -216,6 +216,48 @@ const { content = {} } = Astro.props;
         font-size: var(--type-0);
       }
     </style>
+
+    <!-- Util classes -->
+    <style is:global lang='scss'>
+      .move-on-visible {
+        transition: transform var(--transition-speed-slow) ease,
+          filter var(--transition-speed-slow) ease, opacity var(--transition-speed-slow) ease;
+
+        &[data-visible] {
+          transform: translate(0, 0);
+
+          filter: blur(0);
+          opacity: 1;
+        }
+
+        &:not([data-visible]) {
+          $max-move-value-x: 60px;
+          $max-move-value-y: 60px;
+
+          $move-value-x: 0;
+          $move-value-y: 0;
+
+          &[data-move-on-visible-direction='up'] {
+            transform: translate(0, $max-move-value-y);
+          }
+
+          &[data-move-on-visible-direction='down'] {
+            transform: translate(0, -$max-move-value-y);
+          }
+
+          &[data-move-on-visible-direction='left'] {
+            transform: translate($max-move-value-x, 0);
+          }
+
+          &[data-move-on-visible-direction='right'] {
+            transform: translate(-$max-move-value-x, 0);
+          }
+
+          filter: blur(30px);
+          opacity: 0.5;
+        }
+      }
+    </style>
   </head>
 
   <body data-iui-theme='dark'>
