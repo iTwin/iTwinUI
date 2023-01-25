@@ -298,6 +298,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         // transition-duration: var(--transition-speed-slow);
         // transition-timing-function: ease;
       }
+
       transition: transform var(--transition-speed-slow) ease,
         filter var(--transition-speed-slow) ease, opacity var(--transition-speed-slow) ease;
 
@@ -305,7 +306,6 @@ const currentPage = new URL(Astro.request.url).pathname;
         transform: translate(0, 0);
         // transform: scale(1);
 
-        // Un-blur this tag
         filter: blur(0);
         opacity: 1;
       }
@@ -333,7 +333,6 @@ const currentPage = new URL(Astro.request.url).pathname;
           transform: translate(-$max-move-value-x, 0);
         }
 
-        // Blur this tag
         filter: blur(30px);
         opacity: 0.5;
       }
