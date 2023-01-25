@@ -225,8 +225,9 @@
         border-bottom-color: var(--iui-color-border-accent);
       }
 
+      /* stylelint-disable-next-line selector-max-compound-selectors */
       + :not([aria-selected='true']) .iui-table-cell,
-      + :is(.iui-table-expanded-content + .iui-table-row:not([aria-selected='true'])) .iui-table-cell {
+      + .iui-table-expanded-content + .iui-table-row:not([aria-selected='true']) .iui-table-cell {
         border-top-color: var(--iui-color-border-accent);
       }
 
