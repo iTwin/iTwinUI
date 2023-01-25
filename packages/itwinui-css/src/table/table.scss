@@ -146,10 +146,11 @@
     border-radius: inherit;
   }
 
-  @at-root .iui-table-header & {
+  .iui-table-header & {
     flex-grow: 1;
   }
-  @at-root .iui-table-body & {
+
+  .iui-table-body & {
     .iui-table-cell {
       border-top: solid 1px transparent;
       border-bottom: solid 1px transparent;
@@ -224,8 +225,10 @@
         border-bottom-color: var(--iui-color-border-accent);
       }
 
-      + :not([aria-selected='true']) .iui-table-cell,
-      + .iui-table-expanded-content + .iui-table-row:not([aria-selected='true']) .iui-table-cell {
+      + :is(
+      :not([aria-selected='true']) .iui-table-cell,
+      .iui-table-expanded-content + .iui-table-row:not([aria-selected='true']) .iui-table-cell
+    ) {
         border-top-color: var(--iui-color-border-accent);
       }
 
@@ -478,7 +481,7 @@
 
   // Prevents scrollbar from appearing because `top: -1px` and `bottom: -1px`
   // makes content to overflow
-  @at-root .iui-table-header & {
+  .iui-table-header & {
     top: 0;
     bottom: 0;
   }
