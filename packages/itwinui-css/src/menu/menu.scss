@@ -32,6 +32,12 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
     overflow-y: overlay;
     --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items in .iui-scroll
   }
+
+  &.iui-flat {
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+  }
 }
 
 @mixin iui-menu-item {
@@ -69,6 +75,8 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
     &.iui-multilevel-selected {
       display: flex;
       justify-content: flex-end;
+      flex-shrink: 0;
+      margin-left: var(--iui-size-xs);
     }
   }
 
