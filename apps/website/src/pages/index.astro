@@ -84,19 +84,6 @@ const currentPage = new URL(Astro.request.url).pathname;
     </div>
 
     <script>
-      // const allMoveOnVisible = [...document.querySelectorAll('.move-on-visible')];
-      // const observer = new IntersectionObserver((entries) => {
-      //   entries.forEach((entry) => {
-      //     if (entry.isIntersecting) {
-      //       entry.target.setAttribute('data-visible', 'true');
-      //     } else {
-      //       entry.target.removeAttribute('data-visible');
-      //     }
-      //   });
-      // });
-
-      // allMoveOnVisible.forEach((heading) => void observer.observe(heading));
-
       const updateVisibility = () => {
         const visibleBottomLine = window.scrollY + window.innerHeight;
         const demoWrappers = document.querySelectorAll('.move-on-visible');
@@ -114,24 +101,9 @@ const currentPage = new URL(Astro.request.url).pathname;
         });
       };
 
-      // console.log('HERE');
       updateVisibility();
-
-      // TODO: Maybe use intersection observer instead
       document.querySelector('body').addEventListener('scroll', () => {
-        // console.log('HERE also');
-        // let visibilityInfoString = '';
         updateVisibility();
-
-        // const demoWrappers = document.querySelectorAll('.demo-wrapper');
-        // demoWrappers.forEach((demoWrapper) => {
-        //   updateVisibility(demoWrapper);
-        // });
-        // demoWrappers.forEach((demoWrapper) => {
-        //   visibilityInfoString += ', ' + isVisible(demoWrapper);
-        // });
-
-        // console.log(visibilityInfoString);
       });
     </script>
 
