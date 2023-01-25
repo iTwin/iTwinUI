@@ -24,21 +24,13 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
     @include iui-icon-style('l');
     margin: 0;
     border-radius: var(--iui-border-radius-1);
-    box-shadow: inset 0 0 0 2px
-      hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
+    box-shadow: inset 0 0 0 2px hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
   }
 
   &.iui-scroll {
     overflow-y: auto;
     overflow-y: overlay;
-    --iui-menu-max-height: calc(
-      (var(--iui-component-height) - 1px) * 8.5
-    ); // Max 8.5 items in .iui-scroll
-  }
-
-  &.iui-multilevel {
-    box-shadow: none;
-    border: none;
+    --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items in .iui-scroll
   }
 }
 
@@ -204,5 +196,20 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
 
   + .iui-content {
     margin-left: var(--iui-size-xs);
+  }
+}
+
+@mixin iui-multilevel {
+  @include iui-list-menu;
+
+  .iui-menu {
+    border: none;
+    box-shadow: none;
+  }
+
+  .iui-multilevel-header {
+    @include iui-menu-item;
+    border-bottom: 1px solid var(--iui-surface-border-color);
+    border-radius: 0;
   }
 }
