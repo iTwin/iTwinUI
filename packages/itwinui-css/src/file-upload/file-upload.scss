@@ -82,6 +82,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  background-color: var(--iui-color-background-backdrop);
+  border-radius: var(--iui-border-radius-1);
 
   > svg,
   .iui-file-uploaded-template-icon {
