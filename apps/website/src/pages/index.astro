@@ -132,7 +132,11 @@ const currentPage = new URL(Astro.request.url).pathname;
     <div class='centered-content move-on-visible' data-move-on-visible-direction='up'>
       <h2 class='highlight-text'>Our library</h2>
       <ul class='library-list'>
-        <li class='library-item-wrapper move-on-visible' data-move-on-visible-direction='right'>
+        <li
+          class='library-item-wrapper move-on-visible'
+          data-move-on-visible-direction='up'
+          style='transition-delay: 100ms'
+        >
           <span class='library-item'>
             <h3>
               <a href='/docs/components'>Components</a>
@@ -143,7 +147,11 @@ const currentPage = new URL(Astro.request.url).pathname;
             </p>
           </span>
         </li>
-        <li class='library-item-wrapper move-on-visible' data-move-on-visible-direction='up'>
+        <li
+          class='library-item-wrapper move-on-visible'
+          data-move-on-visible-direction='up'
+          style='transition-delay: 200ms'
+        >
           <span class='library-item'>
             <h3>
               <a href='https://itwin.github.io/iTwinUI-layouts/'>Layouts</a>
@@ -151,7 +159,11 @@ const currentPage = new URL(Astro.request.url).pathname;
             <p>Full-page layouts built for maximizing your efficiency when you need it the most.</p>
           </span>
         </li>
-        <li class='library-item-wrapper move-on-visible' data-move-on-visible-direction='left'>
+        <li
+          class='library-item-wrapper move-on-visible'
+          data-move-on-visible-direction='up'
+          style='transition-delay: 300ms'
+        >
           <span class='library-item'>
             <h3>
               <a href='https://itwin.github.io/iTwinUI-icons/'>Icons</a>
