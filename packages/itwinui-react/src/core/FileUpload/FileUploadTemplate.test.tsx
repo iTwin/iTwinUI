@@ -86,4 +86,10 @@ it('should render FileUploadTemplate after a file is uploaded', () => {
   const svg = container.querySelector('.iui-icon') as SVGSVGElement;
   expect(svg).toBeTruthy();
   expect(svg).toEqual(documentIcon.firstChild);
+
+  const action = container.querySelector(
+    '.iui-file-uploaded-template-action',
+  ) as HTMLElement;
+  expect(action).toBeTruthy();
+  expect(action.textContent).toEqual('Choose a file');
 });
