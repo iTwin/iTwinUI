@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: "Which package to publish?"
+        description: 'Which package to publish?'
         required: true
         type: choice
         default: itwinui-css
@@ -13,7 +13,7 @@ on:
           - itwinui-variables
           - itwinui-react
       tag:
-        description: "Which npm tag to publish to?"
+        description: 'Which npm tag to publish to?'
         required: true
         type: choice
         default: latest
@@ -50,7 +50,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - run: yarn install
-      - run: yarn build
+      - run: yarn build --filter=${{ inputs.package }}
 
       - run: npm publish --access public --tag ${{ inputs.tag }}
         working-directory: './packages/${{ inputs.package }}/'
