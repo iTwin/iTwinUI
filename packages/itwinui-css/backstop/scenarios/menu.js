@@ -19,6 +19,10 @@ module.exports = [
     selectors: ['#demo-skeleton'],
     viewports: [{ width: 800, height: 600 }],
   }),
+  scenario('Type Multilevel', {
+    selectors: ['#demo-multilevel'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
 
   // Hover & focus states
   scenario('State hover & focus', {
