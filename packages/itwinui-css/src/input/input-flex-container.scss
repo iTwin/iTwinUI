@@ -66,3 +66,20 @@
     margin-left: var(--iui-size-xs);
   }
 }
+
+@mixin iui-searchbox {
+  width: fit-content;
+
+  > input {
+    transition-duration: 0.4s;
+    width: 0;
+    padding: 0;
+  }
+
+  &[data-iui-expanded='true'] {
+    > input {
+      width: 100%;
+      padding-left: var(--iui-size-s);
+    }
+  }
+}

@@ -3,8 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import { IconButton } from '../Buttons/IconButton';
 import { InputProps } from '../Input';
-import { useTheme } from '../utils';
+import { SvgSortDown, useTheme } from '../utils';
 
 export type SearchBoxProps = {
   /**
@@ -26,12 +27,23 @@ export type SearchBoxProps = {
  */
 export const SearchBox = (props: SearchBoxProps) => {
   const { size, startAdornment, endAdornment, ...rest } = props;
+  const [isExpanded, setIsExpanded] = React.useState(false);
   useTheme();
   return (
-    <div className='iui-input-flex-container' data-iui-size={size}>
+    <div
+      className='iui-input-flex-container iui-searchbox'
+      data-iui-expanded={isExpanded}
+      data-iui-size={size}
+    >
       {startAdornment}
       <input className='iui-invisible-borders' type='search' {...rest} />
       {endAdornment}
+      <IconButton
+        styleType='borderless'
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <SvgSortDown />
+      </IconButton>
     </div>
   );
 };
