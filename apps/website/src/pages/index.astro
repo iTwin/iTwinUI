@@ -469,9 +469,9 @@ const currentPage = new URL(Astro.request.url).pathname;
 
         const top = demoWrapper.getBoundingClientRect().top;
         if (top < visibleBottomLine) {
-          demoWrapper.dataset.visible = 'true';
+          demoWrapper.dataset.moveVisible = 'true';
         } else {
-          delete demoWrapper.dataset.visible;
+          delete demoWrapper.dataset.moveVisible;
         }
       });
     };

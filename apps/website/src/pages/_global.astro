@@ -224,14 +224,14 @@ const { content = {} } = Astro.props;
         transition-duration: var(--transition-speed-slow);
         transition-timing-function: ease;
 
-        &[data-visible] {
+        &[data-move-visible] {
           transform: translate(0, 0);
 
           filter: blur(0);
           opacity: 1;
         }
 
-        &:not([data-visible]) {
+        &:not([data-move-visible]) {
           $max-move-value-x: 60px;
           $max-move-value-y: 60px;
 
