@@ -6,6 +6,8 @@ const fs = require('fs');
 const path = require('path');
 const sass = require('sass-embedded');
 const css = require('lightningcss');
+const postcss = require('postcss');
+const postcssScoper = require('postcss-scoper');
 const targets = require('./lightningCssSettings').targets;
 
 const { yellow, green, red } = require('./utils');
@@ -19,16 +21,27 @@ const compileScss = async (path, outFile) => {
   return new Promise(async (resolve, reject) => {
     try {
       const sassOutput = await sass.compileAsync(path);
+      const outFilename = `${outFile}.css`;
 
       const processedOutput = css.transform({
-        filename: `${outFile}.css`,
+        filename: outFilename,
         code: Buffer.from(sassOutput.css),
         minify: true,
         targets,
-      });
+      }).code;
 
-      fs.writeFileSync(`${outDir}/${outFile}.css`, processedOutput.code);
-      console.log(` Wrote -> ${outFile}.css`);
+      let finalOutput = processedOutput;
+
+      if (!['all.css', 'global.css'].includes(outFilename)) {
+        finalOutput = postcss([
+          postcssScoper({
+            scope: ':where(.iui-root, [data-iui-theme])',
+          }),
+        ]).process(processedOutput).css;
+      }
+
+      fs.writeFileSync(`${outDir}/${outFilename}`, finalOutput);
+      console.log(` Wrote -> ${outFilename}`);
       resolve();
     } catch (error) {
       reject(`${error}\n in ${path}`);
