@@ -245,10 +245,16 @@ const { content = {} } = Astro.props;
 
           &[data-move-on-visible-direction='left'] {
             transform: translate($max-move-value-x, 0);
+            @media (max-width: 50em) {
+              transform: translate(0, $max-move-value-y);
+            }
           }
 
           &[data-move-on-visible-direction='right'] {
             transform: translate(-$max-move-value-x, 0);
+            @media (max-width: 50em) {
+              transform: translate(0, $max-move-value-y);
+            }
           }
 
           filter: blur(30px);
