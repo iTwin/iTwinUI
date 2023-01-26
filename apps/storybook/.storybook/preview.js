@@ -55,6 +55,7 @@ export const decorators = [
     } = context;
 
     React.useEffect(() => {
+      document.body.classList.toggle('iui-root', true);
       document.documentElement.dataset.iuiContrast = highContrast
         ? 'high'
         : 'default';
