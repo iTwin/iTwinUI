@@ -2,6 +2,13 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './utils/index';
 
+// reset anything that may have been set by v1
+:where(.iui-body, .iui-theme-light) :where(.iui-root, [data-iui-theme]) {
+  :where([class*='iui-']:not(.iui-root)) {
+    all: unset;
+  }
+}
+
 :where(.iui-root) {
   color: var(--iui-color-text);
   font-size: var(--iui-font-size-1);
