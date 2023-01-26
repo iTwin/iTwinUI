@@ -221,17 +221,18 @@ const { content = {} } = Astro.props;
     <style is:global lang='scss'>
       .move-on-visible {
         transition-property: transform, filter, opacity;
-        transition-duration: var(--transition-speed-slow);
         transition-timing-function: ease;
 
         &[data-move-visible] {
           transform: translate(0, 0);
+          transition-duration: var(--transition-speed-slow);
 
           filter: blur(0);
           opacity: 1;
         }
 
         &:not([data-move-visible]) {
+          transition-duration: 0;
           $max-move-value-x: 60px;
           $max-move-value-y: 60px;
 
