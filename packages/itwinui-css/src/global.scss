@@ -5,7 +5,7 @@
 // reset anything that may have been set by v1
 :where(.iui-body, [class*='iui-theme-']) :where(.iui-root, [data-iui-theme]) {
   :where([class*='iui-']:not(.iui-root)) {
-    all: unset;
+    all: revert;
   }
 }
 
