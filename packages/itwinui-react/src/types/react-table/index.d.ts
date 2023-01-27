@@ -70,7 +70,7 @@ declare module 'react-table' {
   }
 
   export interface ColumnGroupInterface<D extends object> {
-    columns: Array<Column<D>>;
+    // columns: Array<Column<D>>; // Since we don't support grouped headers
   }
 
   export type ColumnGroup<D extends object = {}> = ColumnInterface<D> &
