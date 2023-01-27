@@ -489,7 +489,7 @@ const currentPage = new URL(Astro.request.url).pathname;
 
         const top =
           entry.target.getBoundingClientRect().top + visibleBottomLine - window.innerHeight;
-        const bottom = entry.target.getBoundingClientRect().bottom + visibleBottomLine;
+        const bottom = top + entry.target.getBoundingClientRect().height;
 
         console.log('NOW', entry.isIntersecting, visibleBottomLine, top);
 
@@ -499,7 +499,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         if (entry.isIntersecting) {
           entry.target.dataset.moveVisible = 'true';
         } else {
-          if (top > visibleBottomLine) {
+          if (bottom > visibleBottomLine) {
             delete entry.target.dataset.moveVisible;
           }
           // delete entry.target.dataset.moveVisible;
@@ -539,43 +539,43 @@ const currentPage = new URL(Astro.request.url).pathname;
     // };
 
     // updateVisibility();
-    document.querySelector('body').addEventListener('scroll', (e) => {
-      // updateVisibility();
-      // if (!(e.target instanceof HTMLElement)) {
-      //   return;
-      // }
-      // // const bottomLine = e.target.scrollTop + e.target.clientHeight,
-      // console.log(
-      //   e.target.scrollTop + e.target.clientHeight,
-      //   'onScroll',
-      //   window.scrollY,
-      //   window.innerHeight,
-      //   window.scrollY + window.innerHeight,
-      //   // print the document scroll position in y axis
-      //   document.documentElement.scrollTop
-      // );
-      //
-      //
-      //
-      //
-      //
-      const body = document.querySelector('body');
-      const visibleBottomLine = body.scrollTop + body.clientHeight;
-      const top =
-        document.querySelector('.move-on-visible').getBoundingClientRect().top +
-        visibleBottomLine -
-        window.innerHeight;
-      console.log(
-        'onScroll',
-        visibleBottomLine,
-        // window.innerHeight,
-        top
-        // body.scrollTop,
-        // body.scrollHeight,
-        // window.scrollY,
-        // document.querySelector('.move-on-visible'),
-        // document.querySelector('.move-on-visible').getBoundingClientRect().top + visibleBottomLine
-      );
-    });
+    // document.querySelector('body').addEventListener('scroll', (e) => {
+    //   // updateVisibility();
+    //   // if (!(e.target instanceof HTMLElement)) {
+    //   //   return;
+    //   // }
+    //   // // const bottomLine = e.target.scrollTop + e.target.clientHeight,
+    //   // console.log(
+    //   //   e.target.scrollTop + e.target.clientHeight,
+    //   //   'onScroll',
+    //   //   window.scrollY,
+    //   //   window.innerHeight,
+    //   //   window.scrollY + window.innerHeight,
+    //   //   // print the document scroll position in y axis
+    //   //   document.documentElement.scrollTop
+    //   // );
+    //   //
+    //   //
+    //   //
+    //   //
+    //   //
+    //   const body = document.querySelector('body');
+    //   const visibleBottomLine = body.scrollTop + body.clientHeight;
+    //   const top =
+    //     document.querySelector('.move-on-visible').getBoundingClientRect().top +
+    //     visibleBottomLine -
+    //     window.innerHeight;
+    //   console.log(
+    //     'onScroll',
+    //     visibleBottomLine,
+    //     // window.innerHeight,
+    //     top
+    //     // body.scrollTop,
+    //     // body.scrollHeight,
+    //     // window.scrollY,
+    //     // document.querySelector('.move-on-visible'),
+    //     // document.querySelector('.move-on-visible').getBoundingClientRect().top + visibleBottomLine
+    //   );
+    // });
   </script>
 </Global>
