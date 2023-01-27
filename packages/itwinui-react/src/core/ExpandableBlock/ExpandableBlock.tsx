@@ -11,6 +11,7 @@ import {
   StatusIconMap,
   WithCSSTransition,
   SvgChevronRight,
+  Icon,
 } from '../utils';
 import '@itwin/itwinui-css/css/expandable-block.css';
 
@@ -135,11 +136,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
           <div className='iui-title'>{title}</div>
           {caption && <div className='iui-caption'>{caption}</div>}
         </span>
-        {icon &&
-          React.cloneElement(icon, {
-            className: cx('iui-status-icon', icon.props.className),
-            'data-iui-icon-color': status,
-          })}
+        {icon && <Icon fill={status}>{icon}</Icon>}
       </div>
       <WithCSSTransition in={expanded}>
         <div className='iui-expandable-content'>

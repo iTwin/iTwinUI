@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 const { scenario, click } = require('../scenarioHelper');
 
 module.exports = [
@@ -24,6 +28,6 @@ module.exports = [
       actions: [click(`input[value=${placement}`), click('#open-dialog')],
       selectors: ['document'],
       hideSelectors: ['body > :not(:is(#default-dialog, #full-page-dialog, #draggable-dialog))'],
-    })
+    }),
   ),
 ];

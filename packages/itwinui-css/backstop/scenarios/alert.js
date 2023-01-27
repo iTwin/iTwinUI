@@ -1,44 +1,29 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
   // Alert types
-  scenario('Type All', {
-    hideSelectors: ['theme-button'],
+  scenario('Type default', {
+    selectors: ['#demo-default'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
+  scenario('Type sticky', {
+    selectors: ['#demo-sticky'],
+    viewports: [{ width: 800, height: 600 }],
   }),
 
-  // Hover states
-  scenario('State hover link in informational', {
-    actions: [hover('#demo-informational a')],
-    selectors: ['#demo-informational'],
+  // Hover & focus states
+  scenario('State hover link & focus close button', {
+    selectors: ['#test-single-alert'],
+    actions: [hover('#test-single-alert a'), focus('#test-single-alert button')],
+    viewports: [{ width: 400, height: 600 }],
   }),
-  scenario('State hover link in positive', {
-    actions: [hover('#demo-positive a')],
-    selectors: ['#demo-positive'],
-  }),
-  scenario('State hover link in warning', {
-    actions: [hover('#demo-warning a')],
-    selectors: ['#demo-warning'],
-  }),
-  scenario('State hover link in negative', {
-    actions: [hover('#demo-negative a')],
-    selectors: ['#demo-negative'],
-  }),
-
-  // Focus states
-  scenario('State focus link in informational', {
-    actions: [focus('#demo-informational a')],
-    selectors: ['#demo-informational'],
-  }),
-  scenario('State focus link in positive', {
-    actions: [focus('#demo-positive a')],
-    selectors: ['#demo-positive'],
-  }),
-  scenario('State focus link in warning', {
-    actions: [focus('#demo-warning a')],
-    selectors: ['#demo-warning'],
-  }),
-  scenario('State focus link in negative', {
-    actions: [focus('#demo-negative a')],
-    selectors: ['#demo-negative'],
+  scenario('State hover close button & focus link', {
+    selectors: ['#test-single-alert'],
+    actions: [hover('#test-single-alert button'), focus('#test-single-alert a')],
+    viewports: [{ width: 400, height: 600 }],
   }),
 ];

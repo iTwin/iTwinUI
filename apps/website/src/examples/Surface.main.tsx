@@ -10,7 +10,6 @@ export default () => {
     <Surface
       elevation={4}
       style={{
-        width: '50%',
         height: '50%',
         display: 'flex',
         justifyContent: 'center',

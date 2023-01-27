@@ -6,5 +6,11 @@ import * as React from 'react';
 import { Kbd, KbdKeys } from '@itwin/itwinui-react';
 
 export default () => {
-  return <Kbd>{KbdKeys.Enter}</Kbd>;
+  return (
+    <div style={{ display: 'flex', gap: '12px' }}>
+      <Kbd>{KbdKeys.Enter}</Kbd>
+      <Kbd>{KbdKeys.Command}</Kbd>
+      <Kbd>{KbdKeys.Down}</Kbd>
+    </div>
+  );
 };

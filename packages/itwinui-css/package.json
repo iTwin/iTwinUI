@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",
@@ -35,6 +35,7 @@
     "@itwin/itwinui-icons-elements": "0.2.0",
     "autoprefixer": "^10.4.1",
     "backstopjs": "~6.0.5",
+    "chokidar": "^3.5.3",
     "html-minifier": "^4.0.0",
     "lightningcss": "^1.16.1",
     "npm-run-all": "^4.1.5",
@@ -46,11 +47,10 @@
     "vite": "^3.0.0"
   },
   "scripts": {
-    "build": "yarn clean && yarn build:css && node ../shared/copyrightLinter.js --fix css/* && yarn build:html",
+    "build": "yarn clean && yarn build:css && node ../../scripts/copyrightLinter.js --fix css/* && yarn build:html",
     "build:css": "node ./scripts/generateCss.js src css",
     "build:html": "vite build backstop/tests --config vite.config.ts",
-    "build:watch:scss": "sass --watch src/all.scss css/all.css",
-    "createComponent": "node ./scripts/createComponent.js",
+    "build:watch:scss": "node ./scripts/watchScss.mjs",
     "clean": "rimraf ./css ./scss ./backstop/results/bitmaps_test",
     "dev": "concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn vite backstop/tests --config vite.config.ts\"",
     "preview": "serve backstop/minified -p 3050",
@@ -61,5 +61,6 @@
     "clean:images": "node scripts/removeOldTestImages.js",
     "print": "node scripts/print.js",
     "push-docker": "node scripts/pushDocker.js"
-  }
+  },
+  "prettier": "configs/prettier-scss-config.js"
 }
