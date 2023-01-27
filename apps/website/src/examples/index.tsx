@@ -23,7 +23,6 @@ export { default as CodeMainExample } from './Code.main';
 export { default as DatePickerMainExample } from './DatePicker.main';
 export { default as DialogStaticExample } from './Dialog.static';
 export { default as DialogMainExample } from './Dialog.main';
-export { default as DialogModalExample } from './Dialog.modal';
 export { default as DropdownMenuMainExample } from './DropdownMenu.main';
 export { default as NonIdealStateMainExample } from './NonIdealState.main';
 export { default as ExpandableBlockMainExample } from './ExpandableBlock.main';
