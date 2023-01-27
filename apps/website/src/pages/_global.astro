@@ -2,6 +2,7 @@
 // This file should contain all the global styles and markup shared between layouts.
 
 import HeadSEO from '~/components/HeadSEO.astro';
+import MoveOnVisible from '~/components/utils/MoveOnVisible.astro';
 import '@fontsource/noto-sans';
 import '@fontsource/noto-sans-mono';
 import '@fontsource/noto-sans/400-italic.css';
@@ -216,57 +217,13 @@ const { content = {} } = Astro.props;
         font-size: var(--type-0);
       }
     </style>
-
-    <!-- Util classes -->
-    <style is:global lang='scss'>
-      .move-on-visible {
-        transition-property: transform, opacity;
-        transition-timing-function: ease;
-
-        @media not (prefers-reduced-motion: reduce) {
-          &[data-move-visible] {
-            transform: translate(0, 0);
-            transition-duration: var(--transition-speed-slow);
-
-            opacity: 1;
-          }
-
-          &:not([data-move-visible]) {
-            transition-duration: 0s;
-            $max-move-value-x: 30px;
-            $max-move-value-y: 30px;
-
-            &[data-move-on-visible-direction='up'] {
-              transform: translate(0, $max-move-value-y);
-            }
-
-            &[data-move-on-visible-direction='down'] {
-              transform: translate(0, -$max-move-value-y);
-            }
-
-            &[data-move-on-visible-direction='left'] {
-              transform: translate($max-move-value-x, 0);
-              @media (max-width: 50em) {
-                transform: translate(0, $max-move-value-y); // up on small screens
-              }
-            }
-
-            &[data-move-on-visible-direction='right'] {
-              transform: translate(-$max-move-value-x, 0);
-              @media (max-width: 50em) {
-                transform: translate(0, $max-move-value-y); // up on small screens
-              }
-            }
-
-            opacity: 0;
-          }
-        }
-      }
-    </style>
   </head>
 
   <body data-iui-theme='dark'>
     <slot />
+
+    <!-- Util classes/styles and scripts -->
+    <MoveOnVisible />
 
     <!--
       Scrollable a11y code helper.
