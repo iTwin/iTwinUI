@@ -460,22 +460,13 @@ const currentPage = new URL(Astro.request.url).pathname;
 
   <script>
     const observer = new IntersectionObserver((entries) => {
-      const body = document.querySelector('body');
-      const visibleBottomLine = body.scrollTop + body.clientHeight;
-
       entries.forEach((entry) => {
         if (!(entry.target instanceof HTMLElement)) {
           return;
         }
 
-        const bottom =
-          entry.target.getBoundingClientRect().bottom + visibleBottomLine - window.innerHeight;
         if (entry.isIntersecting) {
           entry.target.dataset.moveVisible = 'true';
-        } else {
-          if (bottom > visibleBottomLine) {
-            delete entry.target.dataset.moveVisible;
-          }
         }
       });
     });
