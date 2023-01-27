@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "files": [
     "src/index.ts",
-    // "src/types/override.d.ts",
+    "src/types/react-table/index.d.ts",
     "src/types/react-table-config.ts"
   ]
 }
