@@ -478,7 +478,7 @@ const currentPage = new URL(Astro.request.url).pathname;
           return;
         }
 
-        moveOnVisible.dataset.moveVisible = 'false'; // reset
+        delete moveOnVisible.dataset.moveVisible; // reset
         observer.unobserve(moveOnVisible);
       });
     }
