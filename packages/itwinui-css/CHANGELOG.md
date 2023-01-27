@@ -1,5 +1,50 @@
 # Changelog
 
+## 1.4.0
+
+### Minor Changes
+
+- f7caf384: \* Added new `iui-tabs-actions-wrapper` and `iui-tabs-actions` to `.iui-tabs-wrapper` to add right/bottom content to the horizontal/vertical tabs.
+
+  ```html
+  <div class="iui-tabs-wrapper iui-horizontal">
+    <ul class="iui-tabs iui-default">
+      ...
+    </ul>
+
+    <div class="iui-tabs-actions-wrapper">
+      <div class="iui-tabs-actions">...</div>
+    </div>
+
+    <div class="iui-tabs-content">...</div>
+  </div>
+  ```
+
+- dd13257f: Added new `iui-svg-icon` class for displaying svgs
+
+  - Supports `data-iui-icon-size` attribute for size. Can be one of: 's', 'm', 'l', 'auto'
+  - Supports `data-iui-icon-color` attribute for fill. Can be one of: 'informational', 'positive', 'warning', 'negative'
+
+  ```html
+  <span
+    class="iui-svg-icon"
+    data-iui-icon-size="m"
+    data-iui-icon-color="positive"
+  >
+    <svg>...</svg>
+  </span>
+  ```
+
+### Patch Changes
+
+- ec26b72d: `Anchor` can now be rendered as a button using `as` prop.
+
+  ```jsx
+  <Anchor as='button' onClick={() => {}}>
+    ...
+  </Anchor>
+  ```
+
 ## [1.3.0](https://www.github.com/iTwin/iTwinUI/compare/v1.2.2...v1.3.0) (2022-12-19)
 
 ### Minor changes
