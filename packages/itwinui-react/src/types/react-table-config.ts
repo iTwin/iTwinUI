@@ -56,35 +56,9 @@ import {
   UseSortByOptions,
   UseSortByState,
   UseTableOptions,
-  TableCellProps,
-  CellProps,
-  // Column,
-  Renderer,
-  FilterProps,
-  FilterType,
-  DefaultFilterTypes,
-  TableKeyedProps,
 } from 'react-table';
 
-import {
-  ChangeEvent,
-  ComponentType,
-  CSSProperties,
-  DependencyList,
-  EffectCallback,
-  MouseEvent,
-  ReactElement,
-  ReactFragment,
-  ReactNode,
-} from 'react';
-
-// import typesPackage from 'react-table';
-
 declare module 'react-table' {
-  //     // ************ COPIED FROM @types/react-table/index.d.ts ************
-  //     // REMOVED FOR BREVITY
-  //     // ************ COPIED FROM @types/react-table/index.d.ts ************
-
   export type FieldType = 'text' | 'number' | 'date' | string;
 
   export type CellRendererProps<D extends object = {}> = {
@@ -106,15 +80,9 @@ declare module 'react-table' {
     isDisabled?: (rowData: D) => boolean;
   };
 
-  // export type TableColumn<D extends object = {}> = Omit<Column<D>, 'columns'>;
-  // type TableColumn<D extends object = {}> = Pick<Column<D>, 'columns'>;
-  // type TableColumn<D extends object = {}> = Column<D> & {
-  //   columns?: ;
-  // };
-
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration
   export interface TableOptions<D extends object = {}>
-    extends Omit<UseTableOptions<D>, 'data'>,
+    extends Omit<UseTableOptions<D>, 'data' | 'columns'>,
       UseRowSelectOptions<D>,
       UseExpandedOptions<D>,
       UseFiltersOptions<D>,
@@ -128,24 +96,7 @@ declare module 'react-table' {
     /**
      * List of columns.
      */
-    // columns: Array<Column<Record<string, string>>>; // eslint-disable-line @typescript-eslint/no-explicit-any
-    // columns: Array<Column<D>>; // eslint-disable-line @typescript-eslint/no-explicit-any
-    // columns: Array<Column<any>>; // eslint-disable-line @typescript-eslint/no-explicit-any
-    // columns: Column<D>[];
-    // columns: Array<TableColumn<D>>;
-    // defaultColumn?: Partial<TableColumn<D>> | undefined;
-
-    // columnsQ1: Array<Column<D>>;
-    // columnsQ2: Array<Omit<Column<D>, 'accessor'>>;
-    // columnsQ3: Array<TableColumn>;
-    // columnsL: Array<
-    //   Column<D> &
-    //     UseFiltersColumnOptions<D> &
-    //     UseSortByColumnOptions<D> &
-    //     UseResizeColumnsColumnOptions<D>
-    // >;
-    // columnsQQ: Array<Omit<Column<D>, 'Header'>>;
-    // columnsQ: Array<number>;
+    columns: Array<Column<any>>; // eslint-disable-line @typescript-eslint/no-explicit-any
     /**
      * Table data list.
      * Must be memoized.
@@ -164,10 +115,6 @@ declare module 'react-table' {
      */
     columnResizeMode?: 'fit' | 'expand';
   }
-
-  // export interface HeaderGroup<D extends object = {}>
-  //   extends ColumnInstance<D>,
-  //     UseTableHeaderGroupProps<D> {}
 
   export interface Hooks<D extends object = {}>
     extends UseExpandedHooks<D>,
@@ -189,35 +136,6 @@ declare module 'react-table' {
     columnResizeMode: TableOptions['columnResizeMode'];
     tableWidth: number;
   }
-
-  export interface ColumnGroupInterface<D extends object> {
-    // columns: Array<Column<D>>;
-    // extends Omit<ColumnGroupInterface<D>, 'columns'> {
-    // columnsQQQQQQ: number;
-  }
-
-  // export interface ColumnGroupInterface<D extends object> {
-  //   columnsQQQ: Array<Column<D>>;
-  //   // columns: Array<Column<D>> | undefined;
-  // }
-
-  // export interface ColumnGroupInterface<D extends object> {
-  //   columnsQ123: string;
-  //   columnsQ124: string;
-  //   // columns: Array<Column<D>>;
-  // }
-
-  // export type ColumnGroup<D extends object = {}> =
-  //   & ColumnInterface<D>
-  //   & ColumnGroupInterface<D>
-  //   & (
-  //       | { Header: string; }
-  //       | ({ id: IdType<D>; } & {
-  //           Header: Renderer<HeaderProps<D>>;
-  //       })
-  //   )
-  //   // Not used, but needed for backwards compatibility
-  //   & { accessor?: Accessor<D> | undefined; };
 
   export interface TableState<D extends object = {}>
     extends UseColumnOrderState<D>,
@@ -301,7 +219,6 @@ declare module 'react-table' {
      * Side on which column should be sticked to.
      */
     sticky?: 'left' | 'right';
-    // columnqqq: TableColumn<D>;
   }
 
   export interface ColumnInstance<D extends object = {}>
@@ -314,14 +231,11 @@ declare module 'react-table' {
     isResizerVisible?: boolean;
     getDragAndDropProps: () => TableKeyedProps;
     originalSticky?: 'left' | 'right' | 'none';
-    // column: TableColumn<D>;
   }
 
   export interface Cell<D extends object = {}>
     extends UseGroupByCellProps<D>,
-      UseRowStateCellProps<D> {
-    // column: ColumnInstance<D>;
-  }
+      UseRowStateCellProps<D> {}
 
   export interface Row<D extends object = {}>
     extends UseExpandedRowProps<D>,
@@ -329,6 +243,5 @@ declare module 'react-table' {
       UseRowSelectRowProps<D>,
       UseRowStateRowProps<D> {
     initialSubRows: Row<D>[];
-    // column: ColumnInstance<D>;
   }
 }
