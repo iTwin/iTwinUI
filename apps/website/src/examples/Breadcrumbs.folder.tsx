@@ -15,46 +15,64 @@ import {
 import { SvgFolder } from '@itwin/itwinui-icons-react';
 
 export default () => {
+  const items = React.useMemo(() => ['Root', 'Level 1', 'Level 2', 'Level 3'], []);
+
+  const [lastIndex, setLastIndex] = React.useState(items.length - 1);
+  const [isEditing, setIsEditing] = React.useState(false);
+
+  const breadcrumbItems = React.useMemo(
+    () =>
+      items.slice(0, lastIndex + 1).map((item, index) => (
+        <Button
+          key={`Breadcrumb${index}`}
+          onClick={() => {
+            if (lastIndex !== index) {
+              setLastIndex(index);
+            } else {
+              setIsEditing(true);
+            }
+          }}
+        >
+          {item}
+        </Button>
+      )),
+    [items, lastIndex]
+  );
+
   return (
-    <div style={{ display: 'inline-flex', marginBottom: 128 }}>
+    <div style={{ display: 'inline-flex', width: 336, justifyContent: 'center' }}>
       <DropdownButton
         startIcon={<SvgFolder aria-hidden />}
         styleType='borderless'
-        menuItems={(close) => [
-          <MenuItem key={1} onClick={close}>
-            Root
-          </MenuItem>,
-          <MenuItem key={2} onClick={close}>
-            My files
-          </MenuItem>,
-          <MenuItem key={3} onClick={close}>
-            Documents
-          </MenuItem>,
-          <MenuItem key={4} onClick={close}>
-            Status reports
-          </MenuItem>,
-          <MenuItem key={5} onClick={close}>
-            December
-          </MenuItem>,
-        ]}
+        menuItems={(close) =>
+          items.map((item, index) => (
+            <MenuItem
+              key={`Item${index}`}
+              onClick={() => {
+                setLastIndex(index);
+                setIsEditing(false);
+                close();
+              }}
+            >
+              {item}
+            </MenuItem>
+          ))
+        }
       />
-      <Breadcrumbs>
-        <Button key={0} onClick={() => {}}>
-          Root
-        </Button>
-        <Button key={1} onClick={() => {}}>
-          My files
-        </Button>
-        <Button key={2} onClick={() => {}}>
-          Documents
-        </Button>
-        <Button key={3} onClick={() => {}}>
-          Status reports
-        </Button>
-        <Button key={4} onClick={() => {}}>
-          December
-        </Button>
-      </Breadcrumbs>
+      {isEditing ? (
+        <Input
+          setFocus
+          defaultValue={items.slice(0, lastIndex + 1).join('/')}
+          onChange={({ target: { value } }) => {
+            const lastItem = value.substring(value.lastIndexOf('/', value.length - 2) + 1);
+            setLastIndex(items.findIndex((item) => lastItem.includes(item)));
+          }}
+          onKeyDown={({ key }) => key === 'Enter' && setIsEditing(false)}
+          onBlur={() => setIsEditing(false)}
+        />
+      ) : (
+        <Breadcrumbs>{breadcrumbItems}</Breadcrumbs>
+      )}
     </div>
   );
 };
