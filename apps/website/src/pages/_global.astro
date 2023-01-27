@@ -223,43 +223,45 @@ const { content = {} } = Astro.props;
         transition-property: transform, filter, opacity;
         transition-timing-function: ease;
 
-        &[data-move-visible] {
-          transform: translate(0, 0);
-          transition-duration: var(--transition-speed-slow);
+        @media not (prefers-reduced-motion: reduce) {
+          &[data-move-visible] {
+            transform: translate(0, 0);
+            transition-duration: var(--transition-speed-slow);
 
-          filter: blur(0);
-          opacity: 1;
-        }
-
-        &:not([data-move-visible]) {
-          transition-duration: 0s;
-          $max-move-value-x: 60px;
-          $max-move-value-y: 60px;
-
-          &[data-move-on-visible-direction='up'] {
-            transform: translate(0, $max-move-value-y);
+            filter: blur(0);
+            opacity: 1;
           }
 
-          &[data-move-on-visible-direction='down'] {
-            transform: translate(0, -$max-move-value-y);
-          }
+          &:not([data-move-visible]) {
+            transition-duration: 0s;
+            $max-move-value-x: 60px;
+            $max-move-value-y: 60px;
 
-          &[data-move-on-visible-direction='left'] {
-            transform: translate($max-move-value-x, 0);
-            @media (max-width: 50em) {
-              transform: translate(0, $max-move-value-y); // up on small screens
+            &[data-move-on-visible-direction='up'] {
+              transform: translate(0, $max-move-value-y);
             }
-          }
 
-          &[data-move-on-visible-direction='right'] {
-            transform: translate(-$max-move-value-x, 0);
-            @media (max-width: 50em) {
-              transform: translate(0, $max-move-value-y); // up on small screens
+            &[data-move-on-visible-direction='down'] {
+              transform: translate(0, -$max-move-value-y);
             }
-          }
 
-          filter: blur(30px);
-          opacity: 0.5;
+            &[data-move-on-visible-direction='left'] {
+              transform: translate($max-move-value-x, 0);
+              @media (max-width: 50em) {
+                transform: translate(0, $max-move-value-y); // up on small screens
+              }
+            }
+
+            &[data-move-on-visible-direction='right'] {
+              transform: translate(-$max-move-value-x, 0);
+              @media (max-width: 50em) {
+                transform: translate(0, $max-move-value-y); // up on small screens
+              }
+            }
+
+            filter: blur(30px);
+            opacity: 0.5;
+          }
         }
       }
     </style>

@@ -86,7 +86,7 @@ const currentPage = new URL(Astro.request.url).pathname;
     <div class='centered-content move-on-visible' data-move-on-visible-direction='up'>
       <h2 class='highlight-text'>Why iTwinUI?</h2>
       <div class='column-content'>
-        <div class='text-with-icon move-on-visible' data-move-on-visible-direction='right'>
+        <div class='text-with-icon'>
           <ConsistentIcon class='icon' />
           <div>
             <h3 class='colored-text'>Consistent</h3>
@@ -97,7 +97,7 @@ const currentPage = new URL(Astro.request.url).pathname;
             </p>
           </div>
         </div>
-        <div class='text-with-icon move-on-visible' data-move-on-visible-direction='left'>
+        <div class='text-with-icon'>
           <AccessibleIcon class='icon' />
           <div>
             <h3 class='colored-text'>Accessible</h3>
@@ -107,7 +107,7 @@ const currentPage = new URL(Astro.request.url).pathname;
             </p>
           </div>
         </div>
-        <div class='text-with-icon move-on-visible' data-move-on-visible-direction='right'>
+        <div class='text-with-icon'>
           <NoFussIcon class='icon' />
           <div>
             <h3 class='colored-text'>No fuss</h3>
@@ -117,7 +117,7 @@ const currentPage = new URL(Astro.request.url).pathname;
             </p>
           </div>
         </div>
-        <div class='text-with-icon move-on-visible' data-move-on-visible-direction='left'>
+        <div class='text-with-icon'>
           <EvolvingIcon class='icon' />
           <div>
             <h3 class='colored-text'>Evolving</h3>
@@ -479,9 +479,39 @@ const currentPage = new URL(Astro.request.url).pathname;
         }
       });
     });
-    const allMoveOnVisibles = document.querySelectorAll('.move-on-visible');
-    allMoveOnVisibles.forEach((moveOnVisible) => {
-      observer.observe(moveOnVisible);
+
+    function removeIntersectionObserver() {
+      const allMoveOnVisibles = document.querySelectorAll('.move-on-visible');
+      allMoveOnVisibles.forEach((moveOnVisible) => {
+        if (!(moveOnVisible instanceof HTMLElement)) {
+          return;
+        }
+
+        moveOnVisible.dataset.moveVisible = 'false'; // reset
+        observer.unobserve(moveOnVisible);
+      });
+    }
+
+    function addIntersectionObserver() {
+      removeIntersectionObserver();
+
+      const allMoveOnVisibles = document.querySelectorAll('.move-on-visible');
+      allMoveOnVisibles.forEach((moveOnVisible) => {
+        observer.observe(moveOnVisible);
+      });
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!prefersReducedMotion.matches) {
+      addIntersectionObserver();
+    }
+
+    prefersReducedMotion.addEventListener('change', (event) => {
+      if (event.matches) {
+        removeIntersectionObserver();
+      } else {
+        addIntersectionObserver();
+      }
     });
   </script>
 </Global>
