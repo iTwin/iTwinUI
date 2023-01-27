@@ -460,50 +460,22 @@ const currentPage = new URL(Astro.request.url).pathname;
 
   <script>
     const observer = new IntersectionObserver((entries) => {
-      // console.log(window.scrollY, window.innerHeight, window.scrollY + window.innerHeight);
-      // console.log(
-      //   'entries',
-      //   entries.map((entry) => entry.target.getBoundingClientRect().top)
-      // );
-
-      // const visibleBottomLine = window.scrollY + window.innerHeight;
-      // const body = document.querySelector('body');
-      // const visibleBottomLine = body.scrollTop + body.clientHeight;
-
       const body = document.querySelector('body');
       const visibleBottomLine = body.scrollTop + body.clientHeight;
-
-      // console.log('visibleBottomLine', visibleBottomLine, body.scrollTop, body.scrollHeight);
-      // console.log('visibleBottomLine', visibleBottomLine);
 
       entries.forEach((entry) => {
         if (!(entry.target instanceof HTMLElement)) {
           return;
         }
 
-        // if (entry.target.getBoundingClientRect().top < visibleBottomLine) {
-        //   entry.target.dataset.moveVisible = 'true';
-        // } else {
-        //   delete entry.target.dataset.moveVisible;
-        // }
-
-        // const top =
-        //   entry.target.getBoundingClientRect().top + visibleBottomLine - window.innerHeight;
         const bottom =
           entry.target.getBoundingClientRect().bottom + visibleBottomLine - window.innerHeight;
-
-        console.log('NOW', entry.isIntersecting, visibleBottomLine, top);
-
-        // if (entry.isIntersecting && entry.target.getBoundingClientRect().top > visibleBottomLine) {
-        // if (!entry.isIntersecting || bottom < visibleBottomLine) {
-        // if (top <= visibleBottomLine) {
         if (entry.isIntersecting) {
           entry.target.dataset.moveVisible = 'true';
         } else {
           if (bottom > visibleBottomLine) {
             delete entry.target.dataset.moveVisible;
           }
-          // delete entry.target.dataset.moveVisible;
         }
       });
     });
@@ -511,77 +483,5 @@ const currentPage = new URL(Astro.request.url).pathname;
     allMoveOnVisibles.forEach((moveOnVisible) => {
       observer.observe(moveOnVisible);
     });
-
-    // const updateVisibility = () => {
-    //   // const observer = new IntersectionObserver((entries) => {
-    //   //   entries.forEach((entry) => {
-    //   //     if (entry.isIntersecting) {
-    //   //       entry.target.dataset.moveVisible = 'true';
-    //   //     } else {
-    //   //       delete entry.target.dataset.moveVisible;
-    //   //     }
-    //   //   });
-    //   // });
-    //   // const allMoveOnVisibles = document.querySelectorAll('.move-on-visible');
-    //   // allMove observer.observe(demoWrappers);
-    //   // const visibleBottomLine = window.scrollY + window.innerHeight;
-    //   // const demoWrappers = document.querySelectorAll('.move-on-visible');
-    //   // demoWrappers.forEach((demoWrapper) => {
-    //   //   if (!(demoWrapper instanceof HTMLElement)) {
-    //   //     return;
-    //   //   }
-    //   //   const top = demoWrapper.getBoundingClientRect().top;
-    //   //   if (top < visibleBottomLine) {
-    //   //     demoWrapper.dataset.moveVisible = 'true';
-    //   //   } else {
-    //   //     delete demoWrapper.dataset.moveVisible;
-    //   //   }
-    //   // });
-    // };
-
-    // updateVisibility();
-    // document.querySelector('body').addEventListener('scroll', (e) => {
-    //   // updateVisibility();
-    //   // if (!(e.target instanceof HTMLElement)) {
-    //   //   return;
-    //   // }
-    //   // // const bottomLine = e.target.scrollTop + e.target.clientHeight,
-    //   // console.log(
-    //   //   e.target.scrollTop + e.target.clientHeight,
-    //   //   'onScroll',
-    //   //   window.scrollY,
-    //   //   window.innerHeight,
-    //   //   window.scrollY + window.innerHeight,
-    //   //   // print the document scroll position in y axis
-    //   //   document.documentElement.scrollTop
-    //   // );
-    //   //
-    //   //
-    //   //
-    //   //
-    //   //
-    //   const body = document.querySelector('body');
-    //   const visibleBottomLine = body.scrollTop + body.clientHeight;
-    //   const top =
-    //     document.querySelector('.move-on-visible').getBoundingClientRect().top +
-    //     visibleBottomLine -
-    //     window.innerHeight;
-    //   const bottom =
-    //     document.querySelector('.move-on-visible').getBoundingClientRect().bottom +
-    //     visibleBottomLine -
-    //     window.innerHeight;
-    //   console.log(
-    //     'onScroll',
-    //     visibleBottomLine,
-    //     // window.innerHeight,
-    //     // top
-    //     bottom
-    //     // body.scrollTop,
-    //     // body.scrollHeight,
-    //     // window.scrollY,
-    //     // document.querySelector('.move-on-visible'),
-    //     // document.querySelector('.move-on-visible').getBoundingClientRect().top + visibleBottomLine
-    //   );
-    // });
   </script>
 </Global>
