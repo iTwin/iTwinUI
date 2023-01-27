@@ -27,7 +27,7 @@ export default () => {
   return (
     <>
       <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
-        Open Dialog
+        Open dialog
       </Button>
       <Dialog
         isOpen={isOpen}
@@ -41,14 +41,11 @@ export default () => {
       >
         <Dialog.Backdrop />
         <Dialog.Main>
-          <Dialog.TitleBar titleText='Best dialog ever' />
+          <Dialog.TitleBar titleText='Dialog' />
           <Dialog.Content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
+            A dialog informs users about a task and can contain critical information, require
+            decisions, or involve multiple tasks. Dialogs appear in front of app content to provide
+            critical information or ask for a decision.
           </Dialog.Content>
           <Dialog.ButtonBar>
             <Button styleType='high-visibility' onClick={primaryButtonHandle}>
