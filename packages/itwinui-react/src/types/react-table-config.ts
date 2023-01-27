@@ -57,6 +57,7 @@ import {
   UseSortByState,
   UseTableOptions,
 } from 'react-table';
+// } from './base-react-table';
 
 declare module 'react-table' {
   export type FieldType = 'text' | 'number' | 'date' | string;

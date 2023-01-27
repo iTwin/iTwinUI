@@ -3,6 +3,7 @@
   "files": [
     "src/index.ts",
     "src/types/react-table/index.d.ts",
+    "src/types/base-react-table.ts",
     "src/types/react-table-config.ts"
   ]
 }
