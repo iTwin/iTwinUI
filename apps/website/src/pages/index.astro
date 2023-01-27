@@ -438,17 +438,20 @@ const currentPage = new URL(Astro.request.url).pathname;
   </style>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!(entry.target instanceof HTMLElement)) {
-          return;
-        }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!(entry.target instanceof HTMLElement)) {
+            return;
+          }
 
-        if (entry.isIntersecting) {
-          entry.target.dataset.moveVisible = 'true';
-        }
-      });
-    });
+          if (entry.isIntersecting) {
+            entry.target.dataset.moveVisible = 'true';
+          }
+        });
+      },
+      { threshold: [0.3] }
+    );
 
     function removeIntersectionObserver() {
       const allMoveOnVisibles = document.querySelectorAll('.move-on-visible');
