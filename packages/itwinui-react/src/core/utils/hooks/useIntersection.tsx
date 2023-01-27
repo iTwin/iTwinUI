@@ -23,23 +23,18 @@ export const useIntersection = (
   once = true,
 ) => {
   const { root, rootMargin, threshold } = options;
-  const observer = React.useRef<IntersectionObserver>();
+  const cleanupRef = React.useRef(() => {});
 
   const setRef = React.useCallback(
     (node: HTMLElement | null) => {
-      if (!getWindow()?.IntersectionObserver) {
+      cleanupRef.current?.();
+      cleanupRef.current = () => {}; // ensure it doesn't try to clean up again
+
+      if (!node || !getWindow()?.IntersectionObserver) {
         return;
       }
 
-      if (observer.current) {
-        observer.current.disconnect();
-      }
-
-      if (!node) {
-        return;
-      }
-
-      observer.current = new IntersectionObserver(
+      const observer = new IntersectionObserver(
         ([entry], obs) => {
           if (entry.isIntersecting) {
             if (once) {
@@ -50,12 +45,12 @@ export const useIntersection = (
         },
         { root, rootMargin, threshold },
       );
-      observer.current.observe(node);
+      observer.observe(node);
+
+      cleanupRef.current = () => observer.disconnect();
     },
     [onIntersect, once, root, rootMargin, threshold],
   );
-
-  React.useEffect(() => () => observer.current?.disconnect(), []);
 
   return setRef;
 };
