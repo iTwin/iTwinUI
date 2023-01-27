@@ -220,7 +220,7 @@ const { content = {} } = Astro.props;
     <!-- Util classes -->
     <style is:global lang='scss'>
       .move-on-visible {
-        transition-property: transform, filter, opacity;
+        transition-property: transform, opacity;
         transition-timing-function: ease;
 
         @media not (prefers-reduced-motion: reduce) {
@@ -228,14 +228,13 @@ const { content = {} } = Astro.props;
             transform: translate(0, 0);
             transition-duration: var(--transition-speed-slow);
 
-            filter: blur(0);
             opacity: 1;
           }
 
           &:not([data-move-visible]) {
             transition-duration: 0s;
-            $max-move-value-x: 60px;
-            $max-move-value-y: 60px;
+            $max-move-value-x: 30px;
+            $max-move-value-y: 30px;
 
             &[data-move-on-visible-direction='up'] {
               transform: translate(0, $max-move-value-y);
@@ -259,8 +258,7 @@ const { content = {} } = Astro.props;
               }
             }
 
-            filter: blur(30px);
-            opacity: 0.5;
+            opacity: 0;
           }
         }
       }
