@@ -194,12 +194,12 @@
   &:not(.iui-inline) {
     // add bottom margin between pairs of label+input
     > *:nth-child(even):not(:last-child) {
-      margin-bottom: var(--iui-spacing-form-vertical);
+      margin-bottom: var(--iui-size-s);
     }
   }
 
   &.iui-inline {
-    row-gap: var(--iui-spacing-form-vertical);
+    row-gap: var(--iui-size-s);
     grid-template-columns: auto 1fr;
     align-items: center;
 

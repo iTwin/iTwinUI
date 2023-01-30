@@ -11,7 +11,6 @@
 :root {
   @include spacing;
   @include component-heights;
-  @include component-spacing;
   @include border-radii;
   @include typography;
   @include shadows;
