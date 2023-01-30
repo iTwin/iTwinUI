@@ -83,7 +83,7 @@
   text-overflow: ellipsis;
   line-height: var(--iui-component-height);
 
-  @at-root a#{&} {
+  &:is(a) {
     @include iui-anchor;
 
     &:focus {
