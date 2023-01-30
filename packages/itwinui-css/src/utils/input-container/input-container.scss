@@ -46,8 +46,12 @@
   // #region Cursors
   @include iui-input-label-cursor;
 
-  &.iui-disabled label {
-    cursor: not-allowed;
+  &.iui-disabled {
+    --_iui-input-label-color: var(--iui-color-text-disabled);
+
+    label {
+      cursor: not-allowed;
+    }
   }
   // #endregion
 
@@ -81,13 +85,11 @@
 @mixin iui-input-label-cursor {
   cursor: default;
 
-  @at-root {
-    label#{&} {
-      cursor: pointer;
+  &:is(label) {
+    cursor: pointer;
 
-      &.iui-disabled {
-        cursor: not-allowed;
-      }
+    &.iui-disabled {
+      cursor: not-allowed;
     }
   }
 }
@@ -108,10 +110,6 @@
   }
 
   &.iui-disabled {
-    --_iui-input-label-color: var(--iui-color-text-disabled);
-  }
-
-  @at-root .iui-input-container.iui-disabled {
     --_iui-input-label-color: var(--iui-color-text-disabled);
   }
 }
