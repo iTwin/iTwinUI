@@ -141,6 +141,7 @@ class ThemeButton extends HTMLElement {
     ).checked = true;
     document.documentElement.dataset.iuiTheme = prefersDark ? 'dark' : 'light';
     document.documentElement.dataset.iuiContrast = prefersHC ? 'high' : undefined;
+    document.body.classList.toggle('iui-root', true);
   }
 
   changeTheme = ({ target: { value: _theme } }) => {
