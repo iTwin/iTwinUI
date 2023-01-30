@@ -88,7 +88,7 @@
   background-color: var(--_iui-stepper-step-background-color);
   color: var(--_iui-stepper-step-number-color);
 
-  @at-root .iui-clickable & {
+  .iui-clickable & {
     cursor: pointer;
     transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out,
       color var(--iui-duration-1) ease-out;
@@ -100,12 +100,12 @@
     }
   }
 
-  @at-root .iui-clickable:focus & {
+  .iui-clickable:focus & {
     outline: 2px solid var(--iui-color-border-positive);
     outline-offset: -1px;
   }
 
-  @at-root .iui-clickable:focus:not(:focus-visible) & {
+  .iui-clickable:focus:not(:focus-visible) & {
     outline: none;
   }
 }
