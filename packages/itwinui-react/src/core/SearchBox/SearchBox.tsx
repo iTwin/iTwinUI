@@ -3,19 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import cx from 'classnames';
 import { IconButton } from '../Buttons/IconButton';
 import { InputProps } from '../Input';
-import { SvgSortDown, useTheme } from '../utils';
+import { InputFlexContainer, SvgSortDown, useTheme } from '../utils';
 
 export type SearchBoxProps = {
   /**
    *
    */
-  startAdornment?: React.ReactNode | React.ReactNode[];
-  /**
-   *
-   */
-  endAdornment?: React.ReactNode | React.ReactNode[];
+  expandable?: boolean;
 } & InputProps;
 
 /**
@@ -26,25 +23,27 @@ export type SearchBoxProps = {
  * Example usages go here!
  */
 export const SearchBox = (props: SearchBoxProps) => {
-  const { size, startAdornment, endAdornment, ...rest } = props;
+  const { size, expandable = true, ...rest } = props;
   const [isExpanded, setIsExpanded] = React.useState(false);
   useTheme();
+
   return (
-    <div
-      className='iui-input-flex-container iui-searchbox'
-      data-iui-expanded={isExpanded}
+    <InputFlexContainer
+      className={cx({
+        'iui-searchbox': expandable,
+      })}
+      aria-expanded={isExpanded}
       data-iui-size={size}
+      {...rest}
     >
-      {startAdornment}
-      <input className='iui-invisible-borders' type='search' {...rest} />
-      {endAdornment}
       <IconButton
         styleType='borderless'
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <SvgSortDown />
       </IconButton>
-    </div>
+      <input type='search' {...rest} />
+    </InputFlexContainer>
   );
 };
 

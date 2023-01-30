@@ -26,6 +26,5 @@ it('should render in its most basic state', () => {
   // Input element
   const input = searchbox?.querySelector('input');
   expect(input).toBeTruthy();
-  expect(input).toHaveClass('iui-invisible-borders');
   expect(input).toHaveAttribute('type', 'search');
 });

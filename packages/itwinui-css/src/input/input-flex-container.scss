@@ -71,12 +71,13 @@
   width: fit-content;
 
   > input {
-    transition-duration: 0.4s;
     width: 0;
     padding: 0;
   }
 
-  &[data-iui-expanded='true'] {
+  &[aria-expanded='true'] {
+    width: 100%;
+
     > input {
       width: 100%;
       padding-left: var(--iui-size-s);
