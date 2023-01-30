@@ -3,78 +3,56 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches:
+      - 'v1-react'
   pull_request:
-    branches: [main]
+    branches:
+      - 'v1-react'
 
 jobs:
   build:
-    name: Build
+    name: Build and lint packages
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node 16.X
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: yarn
 
       - run: yarn install --frozen-lockfile
-
-      - run: yarn audit
-
       - run: yarn lint
       - run: yarn lint:copyright
-      - run: yarn build
+      - run: yarn build --filter=itwinui-react
 
   unit-test:
     name: Run unit tests
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node 16.X
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: yarn
 
       - run: yarn install --frozen-lockfile
+      - run: yarn workspace @itwin/itwinui-react test
 
-      - run: yarn workspace @itwin/itwinui-react test --coverage
-
-      - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v1.16
-        if: always()
-        with:
-          files: 'packages/iTwinUI-react/coverage/junit.xml'
-          comment_mode: off
-          check_name: 'Test results'
-          fail_on: 'nothing'
-
-  visual-test:
-    name: Run visual tests
+  visual-test-react:
+    name: Run visual tests (react)
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node 16.X
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: yarn
 
       - run: yarn install --frozen-lockfile
-
       - run: yarn test --filter=storybook
-
-      - name: Publish test results artifact
-        if: failure()
-        uses: actions/upload-artifact@v3.0.0
-        with:
-          name: 'cypress-visual-screenshots'
-          path: '${{ github.workspace }}/apps/storybook/cypress-visual-screenshots'
