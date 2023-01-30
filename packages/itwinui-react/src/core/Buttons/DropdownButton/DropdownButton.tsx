@@ -5,7 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { Button, ButtonProps } from '../Button';
-import { DropdownMenu } from '../../DropdownMenu';
+import { DropdownMenu, DropdownMenuProps } from '../../DropdownMenu';
 import {
   SvgCaretDownSmall,
   SvgCaretUpSmall,
@@ -27,6 +27,10 @@ export type DropdownButtonProps = {
    * @default 'default'
    */
   styleType?: 'default' | 'borderless';
+  /**
+   * Props for the `DropdownMenu` which extends `PopoverProps`.
+   */
+  dropdownMenuProps?: Omit<DropdownMenuProps, 'menuItems' | 'children'>;
 } & Omit<ButtonProps, 'onClick' | 'styleType' | 'endIcon'>;
 
 /**
@@ -40,7 +44,15 @@ export type DropdownButtonProps = {
  */
 export const DropdownButton = React.forwardRef(
   (props: DropdownButtonProps, ref: React.RefObject<HTMLButtonElement>) => {
-    const { menuItems, className, size, styleType, children, ...rest } = props;
+    const {
+      menuItems,
+      className,
+      size,
+      styleType,
+      children,
+      dropdownMenuProps,
+      ...rest
+    } = props;
 
     useTheme();
 
@@ -60,9 +72,16 @@ export const DropdownButton = React.forwardRef(
     return (
       <DropdownMenu
         menuItems={menuItems}
-        style={{ minWidth: menuWidth }}
-        onShow={() => setIsMenuOpen(true)}
-        onHide={() => setIsMenuOpen(false)}
+        {...dropdownMenuProps}
+        onShow={(i) => {
+          setIsMenuOpen(true);
+          dropdownMenuProps?.onShow?.(i);
+        }}
+        onHide={(i) => {
+          setIsMenuOpen(false);
+          dropdownMenuProps?.onHide?.(i);
+        }}
+        style={{ minWidth: menuWidth, ...dropdownMenuProps?.style }}
       >
         <Button
           className={cx('iui-button-dropdown', className)}
