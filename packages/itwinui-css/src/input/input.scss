@@ -48,7 +48,7 @@
     cursor: not-allowed;
   }
 
-  @at-root :where(textarea#{&}) {
+  &:where(textarea) {
     @include textarea;
   }
 }
