@@ -106,3 +106,14 @@ it('should render borderless button correctly', () => {
   expect(button).toBeTruthy();
   expect(button).toHaveAttribute('data-iui-variant', 'borderless');
 });
+
+it('should allow changing placement', async () => {
+  const { container } = renderComponent({
+    dropdownMenuProps: { placement: 'bottom-end' },
+  });
+  const button = container.querySelector('.iui-button') as HTMLElement;
+  await userEvent.click(button);
+
+  const popover = document.querySelector('.iui-popover');
+  expect(popover).toHaveAttribute('data-placement', 'bottom-end');
+});
