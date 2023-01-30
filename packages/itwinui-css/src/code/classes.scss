@@ -2,10 +2,12 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-code {
-  @include iui-code;
-}
+@layer itwinui-v1 {
+  .iui-code {
+    @include iui-code;
+  }
 
-.iui-codeblock {
-  @include iui-codeblock;
+  .iui-codeblock {
+    @include iui-codeblock;
+  }
 }

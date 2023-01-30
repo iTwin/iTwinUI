@@ -2,10 +2,12 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-anchor {
-  @include iui-anchor;
+@layer itwinui-v1 {
+  .iui-anchor {
+    @include iui-anchor;
 
-  &-external {
-    @include iui-anchor-external;
+    &-external {
+      @include iui-anchor-external;
+    }
   }
 }

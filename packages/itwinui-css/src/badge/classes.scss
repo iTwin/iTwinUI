@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-badge {
-  @include iui-badge;
+@layer itwinui-v1 {
+  .iui-badge {
+    @include iui-badge;
+  }
 }

@@ -2,10 +2,12 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-page-header {
-  @include iui-page-header;
-}
+@layer itwinui-v1 {
+  .iui-page-header {
+    @include iui-page-header;
+  }
 
-.iui-header-logo {
-  @include iui-header-logo;
+  .iui-header-logo {
+    @include iui-header-logo;
+  }
 }

@@ -2,14 +2,16 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-carousel {
-  @include iui-carousel;
-}
+@layer itwinui-v1 {
+  .iui-carousel {
+    @include iui-carousel;
+  }
 
-.iui-carousel-slider {
-  @include iui-carousel-slider;
-}
+  .iui-carousel-slider {
+    @include iui-carousel-slider;
+  }
 
-.iui-carousel-navigation {
-  @include iui-carousel-navigation;
+  .iui-carousel-navigation {
+    @include iui-carousel-navigation;
+  }
 }

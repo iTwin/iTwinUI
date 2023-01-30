@@ -3,38 +3,40 @@
 @import './index';
 @import './mixins';
 
-.iui-text-headline {
-  @include iui-text(headline);
-}
+@layer itwinui-v1 {
+  .iui-text-headline {
+    @include iui-text(headline);
+  }
 
-.iui-text-title {
-  @include iui-text(title);
-}
+  .iui-text-title {
+    @include iui-text(title);
+  }
 
-.iui-text-subheading {
-  @include iui-text(subheading);
-}
+  .iui-text-subheading {
+    @include iui-text(subheading);
+  }
 
-.iui-text-leading {
-  @include iui-text(leading);
-}
+  .iui-text-leading {
+    @include iui-text(leading);
+  }
 
-.iui-text-block {
-  @include iui-text(body);
-}
+  .iui-text-block {
+    @include iui-text(body);
+  }
 
-.iui-text-small {
-  @include iui-text(small);
-}
+  .iui-text-small {
+    @include iui-text(small);
+  }
 
-.iui-text-muted {
-  @include iui-text-muted;
-}
+  .iui-text-muted {
+    @include iui-text-muted;
+  }
 
-.iui-skeleton {
-  @include iui-text-skeleton;
-}
+  .iui-skeleton {
+    @include iui-text-skeleton;
+  }
 
-.iui-text-spacing {
-  @include iui-text-block-spacing;
+  .iui-text-spacing {
+    @include iui-text-block-spacing;
+  }
 }

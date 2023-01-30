@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-surface {
-  @include iui-surface;
+@layer itwinui-v1 {
+  .iui-surface {
+    @include iui-surface;
+  }
 }

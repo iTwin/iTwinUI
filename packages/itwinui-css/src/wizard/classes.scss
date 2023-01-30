@@ -2,26 +2,28 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-wizard {
-  @include iui-wizard;
+@layer itwinui-v1 {
+  .iui-wizard {
+    @include iui-wizard;
 
-  &.iui-long {
-    @include iui-wizard-long;
+    &.iui-long {
+      @include iui-wizard-long;
+    }
+
+    &.iui-workflow {
+      @include iui-wizard-workflow;
+    }
   }
 
-  &.iui-workflow {
-    @include iui-wizard-workflow;
+  .iui-wizard-step {
+    @include iui-wizard-step;
   }
-}
 
-.iui-wizard-step {
-  @include iui-wizard-step;
-}
+  .iui-wizard-track-content {
+    @include iui-wizard-track-content;
+  }
 
-.iui-wizard-track-content {
-  @include iui-wizard-track-content;
-}
-
-.iui-wizard-step-name {
-  @include iui-wizard-step-name;
+  .iui-wizard-step-name {
+    @include iui-wizard-step-name;
+  }
 }

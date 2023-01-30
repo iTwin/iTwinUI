@@ -2,14 +2,16 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-location-marker-default {
-  @include iui-location-marker-default;
-}
+@layer itwinui-v1 {
+  .iui-location-marker-default {
+    @include iui-location-marker-default;
+  }
 
-.iui-location-marker-data-rich {
-  @include iui-location-marker-data-rich;
-}
+  .iui-location-marker-data-rich {
+    @include iui-location-marker-data-rich;
+  }
 
-.iui-location-marker-me {
-  @include iui-location-marker-me;
+  .iui-location-marker-me {
+    @include iui-location-marker-me;
+  }
 }

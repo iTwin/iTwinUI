@@ -2,46 +2,48 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-date-picker {
-  @include iui-date-picker;
-}
+@layer itwinui-v1 {
+  .iui-date-picker {
+    @include iui-date-picker;
+  }
 
-.iui-calendar-month-year {
-  @include iui-calendar-month-year;
-}
+  .iui-calendar-month-year {
+    @include iui-calendar-month-year;
+  }
 
-.iui-calendar-month {
-  @include iui-calendar-month;
-}
+  .iui-calendar-month {
+    @include iui-calendar-month;
+  }
 
-.iui-calendar-weekdays {
-  @include iui-calendar-weekdays;
-}
+  .iui-calendar-weekdays {
+    @include iui-calendar-weekdays;
+  }
 
-.iui-calendar-week {
-  @include iui-calendar-week;
-}
+  .iui-calendar-week {
+    @include iui-calendar-week;
+  }
 
-.iui-calendar-day {
-  @include iui-calendar-day;
-}
+  .iui-calendar-day {
+    @include iui-calendar-day;
+  }
 
-.iui-calendar-day-selected {
-  @include iui-calendar-day-selected;
-}
+  .iui-calendar-day-selected {
+    @include iui-calendar-day-selected;
+  }
 
-.iui-calendar-day-outside-month {
-  @include iui-calendar-day-outside-month;
-}
+  .iui-calendar-day-outside-month {
+    @include iui-calendar-day-outside-month;
+  }
 
-.iui-calendar-day-range-start {
-  @include iui-calendar-day-range-start;
-}
+  .iui-calendar-day-range-start {
+    @include iui-calendar-day-range-start;
+  }
 
-.iui-calendar-day-range-end {
-  @include iui-calendar-day-range-end;
-}
+  .iui-calendar-day-range-end {
+    @include iui-calendar-day-range-end;
+  }
 
-.iui-calendar-day-range {
-  @include iui-calendar-day-range;
+  .iui-calendar-day-range {
+    @include iui-calendar-day-range;
+  }
 }

@@ -3,19 +3,21 @@
 @import './index';
 @import '../surface/index';
 
-.iui-menu {
-  @include iui-surface;
-  @include iui-list-menu;
-}
+@layer itwinui-v1 {
+  .iui-menu {
+    @include iui-surface;
+    @include iui-list-menu;
+  }
 
-.iui-menu-item {
-  @include iui-menu-item;
-}
+  .iui-menu-item {
+    @include iui-menu-item;
+  }
 
-.iui-menu-content {
-  @include iui-menu-content;
-}
+  .iui-menu-content {
+    @include iui-menu-content;
+  }
 
-.iui-menu-divider {
-  @include iui-menu-divider;
+  .iui-menu-divider {
+    @include iui-menu-divider;
+  }
 }

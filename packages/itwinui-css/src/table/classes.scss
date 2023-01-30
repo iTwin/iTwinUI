@@ -2,62 +2,64 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-table {
-  @include iui-table;
+@layer itwinui-v1 {
+  .iui-table {
+    @include iui-table;
 
-  &.iui-condensed {
-    @include iui-table-condensed;
+    &.iui-condensed {
+      @include iui-table-condensed;
+    }
+
+    &.iui-extra-condensed {
+      @include iui-table-extra-condensed;
+    }
   }
 
-  &.iui-extra-condensed {
-    @include iui-table-extra-condensed;
+  .iui-table-header-wrapper {
+    @include iui-table-header-wrapper;
   }
-}
 
-.iui-table-header-wrapper {
-  @include iui-table-header-wrapper;
-}
+  .iui-table-header {
+    @include iui-table-header;
+  }
 
-.iui-table-header {
-  @include iui-table-header;
-}
+  .iui-table-header-actions-container {
+    @include iui-table-header-actions-container;
+  }
 
-.iui-table-header-actions-container {
-  @include iui-table-header-actions-container;
-}
+  .iui-table-body {
+    @include iui-table-body;
+  }
 
-.iui-table-body {
-  @include iui-table-body;
-}
+  .iui-cell {
+    @include iui-table-cell;
+  }
 
-.iui-cell {
-  @include iui-table-cell;
-}
+  .iui-cell-shadow-left {
+    @include iui-table-cell-shadow-left;
+  }
 
-.iui-cell-shadow-left {
-  @include iui-table-cell-shadow-left;
-}
+  .iui-cell-shadow-right {
+    @include iui-table-cell-shadow-right;
+  }
 
-.iui-cell-shadow-right {
-  @include iui-table-cell-shadow-right;
-}
+  .iui-paginator {
+    @include iui-paginator;
+  }
 
-.iui-paginator {
-  @include iui-paginator;
-}
+  .iui-paginator-ellipsis {
+    @include iui-paginator-ellipsis;
+  }
 
-.iui-paginator-ellipsis {
-  @include iui-paginator-ellipsis;
-}
+  .iui-paginator-pages-group {
+    @include iui-paginator-pages-group;
+  }
 
-.iui-paginator-pages-group {
-  @include iui-paginator-pages-group;
-}
+  .iui-paginator-page-button {
+    @include iui-paginator-page-button;
+  }
 
-.iui-paginator-page-button {
-  @include iui-paginator-page-button;
-}
-
-.iui-column-filter {
-  @include iui-column-filter;
+  .iui-column-filter {
+    @include iui-column-filter;
+  }
 }

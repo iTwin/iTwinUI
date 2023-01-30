@@ -2,14 +2,16 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-side-navigation {
-  @include iui-side-navigation;
-}
+@layer itwinui-v1 {
+  .iui-side-navigation {
+    @include iui-side-navigation;
+  }
 
-.iui-side-navigation-submenu {
-  @include iui-side-navigation-submenu;
-}
+  .iui-side-navigation-submenu {
+    @include iui-side-navigation-submenu;
+  }
 
-.iui-side-navigation-wrapper {
-  @include iui-side-navigation-wrapper;
+  .iui-side-navigation-wrapper {
+    @include iui-side-navigation-wrapper;
+  }
 }

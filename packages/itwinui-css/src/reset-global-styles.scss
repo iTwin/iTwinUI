@@ -3,31 +3,33 @@
 @import './style/index';
 @import './text/mixins';
 
-html,
-body {
-  @include iui-font-family;
-  @include iui-text(body);
-}
+@layer itwinui-v1 {
+  html,
+  body {
+    @include iui-font-family;
+    @include iui-text(body);
+  }
 
-b,
-strong {
-  font-weight: $iui-font-weight-bold;
-}
+  b,
+  strong {
+    font-weight: $iui-font-weight-bold;
+  }
 
-caption,
-small {
-  @include iui-text(small);
-}
+  caption,
+  small {
+    @include iui-text(small);
+  }
 
-p {
-  margin-bottom: $iui-line-height;
-}
+  p {
+    margin-bottom: $iui-line-height;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @include iui-text(body);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include iui-text(body);
+  }
 }

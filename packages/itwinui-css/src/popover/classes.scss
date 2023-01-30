@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-popover {
-  @include iui-popover;
+@layer itwinui-v1 {
+  .iui-popover {
+    @include iui-popover;
+  }
 }

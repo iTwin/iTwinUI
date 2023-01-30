@@ -2,22 +2,24 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-legal-footer {
-  @include iui-legal-footer;
-}
+@layer itwinui-v1 {
+  .iui-legal-footer {
+    @include iui-legal-footer;
+  }
 
-.iui-legal-footer-list {
-  @include iui-legal-footer-list;
-}
+  .iui-legal-footer-list {
+    @include iui-legal-footer-list;
+  }
 
-.iui-legal-footer-item {
-  @include iui-legal-footer-item;
-}
+  .iui-legal-footer-item {
+    @include iui-legal-footer-item;
+  }
 
-.iui-legal-footer-separator {
-  @include iui-legal-footer-separator;
-}
+  .iui-legal-footer-separator {
+    @include iui-legal-footer-separator;
+  }
 
-.iui-legal-footer-developer {
-  @include iui-legal-footer-developer;
+  .iui-legal-footer-developer {
+    @include iui-legal-footer-developer;
+  }
 }

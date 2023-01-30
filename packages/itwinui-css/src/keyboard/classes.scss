@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-keyboard {
-  @include iui-keyboard;
+@layer itwinui-v1 {
+  .iui-keyboard {
+    @include iui-keyboard;
+  }
 }

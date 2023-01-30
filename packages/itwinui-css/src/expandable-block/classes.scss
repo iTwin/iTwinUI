@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-expandable-block {
-  @include iui-expandable-block;
+@layer itwinui-v1 {
+  .iui-expandable-block {
+    @include iui-expandable-block;
+  }
 }

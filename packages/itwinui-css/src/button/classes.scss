@@ -2,69 +2,71 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-button {
-  @include iui-button;
-  @include iui-button-size;
+@layer itwinui-v1 {
+  .iui-button {
+    @include iui-button;
+    @include iui-button-size;
 
-  &.iui-active {
-    @include iui-button-active;
-  }
+    &.iui-active {
+      @include iui-button-active;
+    }
 
-  &.iui-default {
-    @include iui-button-default;
-  }
+    &.iui-default {
+      @include iui-button-default;
+    }
 
-  &.iui-high-visibility {
-    @include iui-button-high-visibility;
-  }
+    &.iui-high-visibility {
+      @include iui-button-high-visibility;
+    }
 
-  &.iui-cta {
-    @include iui-button-cta;
-  }
+    &.iui-cta {
+      @include iui-button-cta;
+    }
 
-  &.iui-idea {
-    @include iui-button-idea;
-  }
-
-  &.iui-borderless {
-    @include iui-button-borderless;
-  }
-
-  @include iui-button-size(medium);
-
-  &.iui-small {
-    @include iui-button-size(small);
+    &.iui-idea {
+      @include iui-button-idea;
+    }
 
     &.iui-borderless {
-      @include iui-button-size(small, borderless);
+      @include iui-button-borderless;
+    }
+
+    @include iui-button-size(medium);
+
+    &.iui-small {
+      @include iui-button-size(small);
+
+      &.iui-borderless {
+        @include iui-button-size(small, borderless);
+      }
+    }
+
+    &.iui-large {
+      @include iui-button-size(large);
+
+      &.iui-borderless {
+        @include iui-button-size(large, borderless);
+      }
     }
   }
 
-  &.iui-large {
-    @include iui-button-size(large);
+  .iui-button-group {
+    @include iui-button-group;
 
-    &.iui-borderless {
-      @include iui-button-size(large, borderless);
+    &-vertical {
+      @include iui-button-group(vertical);
+    }
+
+    &-overflow-x {
+      @include iui-button-group-overflow-x;
     }
   }
-}
 
-.iui-button-group {
-  @include iui-button-group;
-
-  &-vertical {
-    @include iui-button-group(vertical);
+  .iui-button-split-menu {
+    @include iui-button-split-menu;
   }
 
-  &-overflow-x {
-    @include iui-button-group-overflow-x;
+  .iui-button-icon {
+    @include iui-button-icon;
   }
-}
-
-.iui-button-split-menu {
-  @include iui-button-split-menu;
-}
-
-.iui-button-icon {
-  @include iui-button-icon;
 }

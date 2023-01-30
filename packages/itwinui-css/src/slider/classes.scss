@@ -2,39 +2,41 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-slider-horizontal {
-  @include iui-slider-horizontal;
-}
+@layer itwinui-v1 {
+  .iui-slider-horizontal {
+    @include iui-slider-horizontal;
+  }
 
-.iui-slider-vertical {
-  @include iui-slider-vertical;
-}
+  .iui-slider-vertical {
+    @include iui-slider-vertical;
+  }
 
-.iui-slider-component-container {
-  @include iui-slider-component-container;
-}
+  .iui-slider-component-container {
+    @include iui-slider-component-container;
+  }
 
-.iui-slider-container {
-  @include iui-slider-container;
-}
+  .iui-slider-container {
+    @include iui-slider-container;
+  }
 
-.iui-slider-ticks {
-  @include iui-slider-ticks;
-}
+  .iui-slider-ticks {
+    @include iui-slider-ticks;
+  }
 
-.iui-slider-rail {
-  @include iui-slider-rail;
-}
+  .iui-slider-rail {
+    @include iui-slider-rail;
+  }
 
-.iui-slider-thumb {
-  @include iui-slider-thumb;
-}
+  .iui-slider-thumb {
+    @include iui-slider-thumb;
+  }
 
-.iui-slider-track {
-  @include iui-slider-track;
-}
+  .iui-slider-track {
+    @include iui-slider-track;
+  }
 
-.iui-slider-min,
-.iui-slider-max {
-  @include iui-slider-endpoints;
+  .iui-slider-min,
+  .iui-slider-max {
+    @include iui-slider-endpoints;
+  }
 }

@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-fieldset {
-  @include iui-fieldset;
+@layer itwinui-v1 {
+  .iui-fieldset {
+    @include iui-fieldset;
+  }
 }
