@@ -90,11 +90,11 @@ export default () => {
         // columnsQ1={[{}]}
         // columnsQ2={[{}]}
 
-        columns={[
-          {
-            qq,
-          },
-        ]}
+        // columns={[
+        //   {
+        //     qq,
+        //   },
+        // ]}
         // columns={[{}]}
         // columns={[
         //   {
