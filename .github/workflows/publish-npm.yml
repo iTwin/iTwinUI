@@ -4,22 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: "Which package to publish?"
+        description: 'Which package to publish?'
         required: true
         type: choice
         default: itwinui-css
         options:
           - itwinui-css
           - itwinui-variables
-  workflow_call:
-    inputs:
-      package:
+      tag:
+        description: 'Which npm tag to publish to?'
         required: true
-        type: string
-        default: itwinui-css
-    secrets:
-      NPMJS_PUBLISH_ITWIN:
-        required: true
+        type: choice
+        default: latest
+        options:
+          - latest
+          - dev
 
 jobs:
   publish:
@@ -27,18 +26,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node 16.X
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
           registry-url: https://registry.npmjs.org/
 
       - run: yarn install
-      - run: yarn build
+      - run: yarn build --filter=${{ inputs.package }}
 
-      - run: npm publish --access public
+      - run: npm publish --access public --tag ${{ inputs.tag }}
         working-directory: './packages/${{ inputs.package }}/'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}

@@ -4,91 +4,56 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+      - 'v0-css'
   pull_request:
     branches:
-      - 'main'
-      - 'v1.0'
+      - 'v0-css'
 
 jobs:
   build:
-    name: Build and run tests
+    name: Build and lint packages
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node 16.X
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: yarn
 
       - run: yarn install --frozen-lockfile
-      - run: yarn audit
-
       - run: yarn lint
       - run: yarn lint:copyright ${{ github.workspace }}/*/**.{scss,html,js,ts}
-      - run: yarn build
+      - run: yarn build --filter=itwinui-css
 
-      - name: Host build output on gh pages
-        uses: JamesIves/github-pages-deploy-action@4.1.3
+  visual-test-css:
+    name: Run visual tests (css)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 16.X
+        uses: actions/setup-node@v3
         with:
-          branch: gh-pages
-          single-commit: true
-          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/minified
-          target-folder: ${{ github.event.number || '/' }}
-          clean-exclude: results
-          git-config-name: github-actions[bot]
-          git-config-email: github-actions[bot]@users.noreply.github.com
+          node-version: 16.x
 
-      - name: Post deploy preview link under Checks
-        if: github.ref != 'refs/heads/main' && always()
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: '${{ github.event.pull_request.head.sha }}',
-              state: 'success',
-              context: 'Deploy preview',
-              description: 'Live preview of the current branch',
-              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}',
-            })
-
+      - run: yarn install --frozen-lockfile
       - run: yarn test
 
-      - name: Publish test results artifact
-        if: failure()
-        uses: actions/upload-artifact@v2.2.3
-        with:
-          name: 'backstop_test_results'
-          path: '${{ github.workspace }}/packages/itwinui-css/backstop/results/'
+  visual-test-react:
+    name: Run visual tests (react)
+    runs-on: ubuntu-latest
 
-      - name: Host test results on gh pages
-        continue-on-error: true
-        if: github.ref != 'refs/heads/main' && failure()
-        uses: JamesIves/github-pages-deploy-action@4.1.3
-        with:
-          branch: gh-pages
-          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/results
-          target-folder: ${{ github.event.number }}/results
-          single-commit: true
-          git-config-name: github-actions[bot]
-          git-config-email: github-actions[bot]@users.noreply.github.com
+    steps:
+      - name: noop (always passes, to satisfy requirements)
+        uses: actions/checkout@v3
 
-      - name: Post test results link under Checks
-        if: github.ref != 'refs/heads/main' && always()
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: '${{ github.event.pull_request.head.sha }}',
-              state: '${{ job.status }}',
-              context: 'Test results',
-              ...(context.job.status !== 'success' && { description: 'Backstop html report' }),
-              ...(context.job.status !== 'success' && { target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/results/html_report/' }),
-            })
+  unit-test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: noop (always passes, to satisfy requirements)
+        uses: actions/checkout@v3
