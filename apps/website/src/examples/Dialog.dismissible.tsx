@@ -3,41 +3,41 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  Modal,
-  Button,
-  ModalContent,
-  ModalButtonBar,
-  LabeledInput,
-  LabeledTextarea,
-} from '@itwin/itwinui-react';
+import { Dialog, Button, LabeledInput, LabeledTextarea } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(true);
+  const closeDialog = () => setIsDialogOpen(false);
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsModalOpen(true)}>
+      <Button styleType='high-visibility' onClick={() => setIsDialogOpen(true)}>
         Open dismissible dialog
       </Button>
-      <Modal
-        isOpen={isModalOpen}
-        title={'New message'}
-        onClose={() => closeModal()}
+
+      <Dialog
+        isOpen={isDialogOpen}
+        onClose={() => closeDialog()}
         setFocus={false}
+        closeOnEsc
+        closeOnExternalClick
+        isDismissible
       >
-        <ModalContent>
-          <LabeledInput label='Subject' />
-          <LabeledTextarea label='Message' />
-        </ModalContent>
-        <ModalButtonBar>
-          <Button styleType='high-visibility' onClick={() => closeModal()}>
-            Submit
-          </Button>
-          <Button onClick={() => closeModal()}>Save draft</Button>
-        </ModalButtonBar>
-      </Modal>
+        <Dialog.Backdrop />
+        <Dialog.Main>
+          <Dialog.TitleBar titleText='New message' />
+          <Dialog.Content>
+            <LabeledInput label='Subject' />
+            <LabeledTextarea label='Message' />
+          </Dialog.Content>
+          <Dialog.ButtonBar>
+            <Button styleType='high-visibility' onClick={() => closeDialog()}>
+              Submit
+            </Button>
+            <Button onClick={() => closeDialog()}>Save draft</Button>
+          </Dialog.ButtonBar>
+        </Dialog.Main>
+      </Dialog>
     </>
   );
 };

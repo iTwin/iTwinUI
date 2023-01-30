@@ -7,19 +7,15 @@ import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {
   const [isOpen, setIsOpen] = React.useState(false);
-
   const closeDialog = () => {
     setIsOpen(false);
   };
-
   const onClose = (event: React.SyntheticEvent<Element, Event>) => {
     closeDialog();
   };
-
   const primaryButtonHandle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     closeDialog();
   };
-
   const secondaryButtonHandle = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     closeDialog();
   };

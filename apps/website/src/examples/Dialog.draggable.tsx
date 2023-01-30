@@ -3,28 +3,21 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  Dialog,
-  Button,
-  ModalContent,
-  ModalButtonBar,
-  LabeledInput,
-  LabeledTextarea,
-} from '@itwin/itwinui-react';
+import { Dialog, Button, LabeledInput, LabeledTextarea } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(true);
+  const closeDialog = () => setIsDialogOpen(false);
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsModalOpen(true)}>
+      <Button styleType='high-visibility' onClick={() => setIsDialogOpen(true)}>
         Open draggable dialog
       </Button>
 
       <Dialog
-        isOpen={isModalOpen}
-        onClose={() => closeModal()}
+        isOpen={isDialogOpen}
+        onClose={() => closeDialog()}
         setFocus={false}
         closeOnEsc
         isDismissible
@@ -38,10 +31,10 @@ export default () => {
             <LabeledTextarea label='Message' />
           </Dialog.Content>
           <Dialog.ButtonBar>
-            <Button styleType='high-visibility' onClick={() => closeModal()}>
+            <Button styleType='high-visibility' onClick={() => closeDialog()}>
               Submit
             </Button>
-            <Button onClick={() => closeModal()}>Save draft</Button>
+            <Button onClick={() => closeDialog()}>Save draft</Button>
           </Dialog.ButtonBar>
         </Dialog.Main>
       </Dialog>

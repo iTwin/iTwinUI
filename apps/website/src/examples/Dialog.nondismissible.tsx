@@ -3,35 +3,39 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Modal, Button, ModalContent, ModalButtonBar } from '@itwin/itwinui-react';
+import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(true);
+  const closeDialog = () => setIsDialogOpen(false);
 
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsModalOpen(true)}>
+      <Button styleType='high-visibility' onClick={() => setIsDialogOpen(true)}>
         Open non-dismissible dialog
       </Button>
-      <Modal
-        isOpen={isModalOpen}
-        title={'Empty trash'}
-        isDismissible={false}
-        onClose={() => closeModal()}
+
+      <Dialog
+        isOpen={isDialogOpen}
+        onClose={() => closeDialog()}
         setFocus={false}
+        isDismissible={false}
       >
-        <ModalContent>
-          Are you sure you want to permanently erase the items in the trash? You can't undo this
-          action.
-        </ModalContent>
-        <ModalButtonBar>
-          <Button styleType='high-visibility' onClick={() => closeModal()}>
-            Empty trash
-          </Button>
-          <Button onClick={() => closeModal()}>Cancel</Button>
-        </ModalButtonBar>
-      </Modal>
+        <Dialog.Backdrop />
+        <Dialog.Main>
+          <Dialog.TitleBar titleText='Empty trash' />
+          <Dialog.Content>
+            Are you sure you want to permanently erase the items in the trash? You can't undo this
+            action.
+          </Dialog.Content>
+          <Dialog.ButtonBar>
+            <Button styleType='high-visibility' onClick={() => closeDialog()}>
+              Empty trash
+            </Button>
+            <Button onClick={() => closeDialog()}>Cancel</Button>
+          </Dialog.ButtonBar>
+        </Dialog.Main>
+      </Dialog>
     </>
   );
 };
