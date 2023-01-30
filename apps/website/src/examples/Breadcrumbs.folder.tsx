@@ -3,19 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  Button,
-  IconButton,
-  Breadcrumbs,
-  DropdownButton,
-  DropdownMenu,
-  MenuItem,
-  Input,
-} from '@itwin/itwinui-react';
+import { Button, Breadcrumbs, DropdownButton, MenuItem, Input } from '@itwin/itwinui-react';
 import { SvgFolder } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const items = React.useMemo(() => ['Root', 'Level 1', 'Level 2', 'Level 3'], []);
+  const items = React.useMemo(() => ['Root', 'My files', 'Documents', 'Status reports'], []);
 
   const [lastIndex, setLastIndex] = React.useState(items.length - 1);
   const [isEditing, setIsEditing] = React.useState(false);
@@ -40,7 +32,7 @@ export default () => {
   );
 
   return (
-    <div style={{ display: 'inline-flex', width: 336, justifyContent: 'center' }}>
+    <div style={{ display: 'inline-flex', width: 418, justifyContent: 'center' }}>
       <DropdownButton
         startIcon={<SvgFolder aria-hidden />}
         styleType='borderless'
