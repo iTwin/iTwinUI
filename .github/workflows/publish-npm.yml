@@ -37,6 +37,6 @@ jobs:
       - run: yarn build --filter=${{ inputs.package }}
 
       - run: npm publish --access public --tag ${{ inputs.tag }}
-        working-directory: './packages/${{ inputs.package }}/'
+        working-directory: './packages/iTwinUI-react/'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
