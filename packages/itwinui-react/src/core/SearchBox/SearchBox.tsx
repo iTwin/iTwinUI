@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { IconButton } from '../Buttons/IconButton';
 import { InputProps } from '../Input';
-import { InputFlexContainer, SvgSortDown, useTheme } from '../utils';
+import { InputFlexContainer, useTheme } from '../utils';
 
 export type SearchBoxProps = {
   /**
    *
    */
+  isExpanded?: boolean;
   expandable?: boolean;
 } & InputProps;
 
@@ -23,8 +23,14 @@ export type SearchBoxProps = {
  * Example usages go here!
  */
 export const SearchBox = (props: SearchBoxProps) => {
-  const { size, expandable = true, ...rest } = props;
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const {
+    size,
+    isExpanded = false,
+    expandable = false,
+    children,
+    ...rest
+  } = props;
+
   useTheme();
 
   return (
@@ -36,13 +42,7 @@ export const SearchBox = (props: SearchBoxProps) => {
       data-iui-size={size}
       {...rest}
     >
-      <IconButton
-        styleType='borderless'
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        <SvgSortDown />
-      </IconButton>
-      <input type='search' {...rest} />
+      {children}
     </InputFlexContainer>
   );
 };

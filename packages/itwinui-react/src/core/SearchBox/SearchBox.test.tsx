@@ -10,13 +10,11 @@ import { Icon, SvgClose } from '../utils';
 
 it('should render in its most basic state', () => {
   const { container } = render(
-    <SearchBox
-      endAdornment={
-        <Icon>
-          <SvgClose />
-        </Icon>
-      }
-    />,
+    <SearchBox>
+      <Icon>
+        <SvgClose />
+      </Icon>
+    </SearchBox>,
   );
 
   // Base flex container
