@@ -15,11 +15,11 @@ export default () => {
       }}
     >
       <Breadcrumbs>
-        <Button onClick={() => {}}>Root</Button>
-        <Button onClick={() => {}}>My files</Button>
-        <Button onClick={() => {}}>Documents</Button>
-        <Button onClick={() => {}}>Status reports</Button>
-        <Button onClick={() => {}}>December</Button>
+        <Button>Root</Button>
+        <Button>My files</Button>
+        <Button>Documents</Button>
+        <Button>Status reports</Button>
+        <Button>December</Button>
       </Breadcrumbs>
     </div>
   );

@@ -8,9 +8,9 @@ import { Breadcrumbs, Button } from '@itwin/itwinui-react';
 export default () => {
   return (
     <Breadcrumbs>
-      <Button onClick={() => {}}>Root</Button>
-      <Button onClick={() => {}}>Item 1</Button>
-      <Button onClick={() => {}}>Item 2</Button>
+      <Button>Root</Button>
+      <Button>Item 1</Button>
+      <Button>Item 2</Button>
     </Breadcrumbs>
   );
 };

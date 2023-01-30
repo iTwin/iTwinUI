@@ -15,19 +15,19 @@ export default () => {
       }}
     >
       <Breadcrumbs>
-        <Button style={{ maxWidth: 90 }} onClick={() => {}}>
+        <Button style={{ maxWidth: 90 }}>
           <MiddleTextTruncation text='Root' endCharsCount={7} />
         </Button>
-        <Button style={{ maxWidth: 90 }} onClick={() => {}}>
+        <Button style={{ maxWidth: 90 }}>
           <MiddleTextTruncation text='My files' endCharsCount={7} />
         </Button>
-        <Button style={{ maxWidth: 90 }} onClick={() => {}}>
+        <Button style={{ maxWidth: 90 }}>
           <MiddleTextTruncation text='Documents' endCharsCount={7} />
         </Button>
-        <Button style={{ maxWidth: 90 }} onClick={() => {}}>
+        <Button style={{ maxWidth: 90 }}>
           <MiddleTextTruncation text='Status reports' endCharsCount={7} />
         </Button>
-        <Button style={{ maxWidth: 90 }} onClick={() => {}}>
+        <Button style={{ maxWidth: 90 }}>
           <MiddleTextTruncation text='December' endCharsCount={7} />
         </Button>
       </Breadcrumbs>
