@@ -41,19 +41,3 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - run: yarn test
-
-  visual-test-react:
-    name: Run visual tests (react)
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: noop (always passes, to satisfy requirements)
-        uses: actions/checkout@v3
-
-  unit-test:
-    name: Run unit tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: noop (always passes, to satisfy requirements)
-        uses: actions/checkout@v3
