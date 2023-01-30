@@ -8,21 +8,11 @@ import { Breadcrumbs, Button } from '@itwin/itwinui-react';
 export default () => {
   return (
     <Breadcrumbs>
-      <Button key={0} onClick={() => {}}>
-        Root
-      </Button>
-      <Button key={1} onClick={() => {}}>
-        My files
-      </Button>
-      <Button key={2} onClick={() => {}}>
-        Documents
-      </Button>
-      <Button key={3} onClick={() => {}}>
-        Status reports
-      </Button>
-      <Button key={4} onClick={() => {}}>
-        December
-      </Button>
+      <Button onClick={() => {}}>Root</Button>
+      <Button onClick={() => {}}>My files</Button>
+      <Button onClick={() => {}}>Documents</Button>
+      <Button onClick={() => {}}>Status reports</Button>
+      <Button onClick={() => {}}>December</Button>
     </Breadcrumbs>
   );
 };
