@@ -22,5 +22,63 @@
 
 // Public facing surface component.
 @mixin iui-surface-component {
+  --iui-surface-padding-inline: var(--iui-size-s);
+  --iui-surface-content-padding: var(--iui-surface-padding-inline);
+
   @include iui-surface;
+  display: flex;
+  flex-direction: column;
+  height: var(--iui-surface-content-height);
+  width: 100%; // Copying line 16 of `fluid-grid.scss` in iTwinUI-layouts, unsure if needed
+}
+
+@mixin iui-surface-header-footer($type) {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  overflow: hidden;
+
+  @if ($type == 'header') {
+    border-bottom: 1px solid var(--iui-surface-border-color);
+    padding-block: calc(var(--iui-surface-padding-inline) * 0.5);
+    padding-inline: var(--iui-surface-padding-inline);
+  }
+
+  @if ($type == 'footer') {
+    display: flex;
+    flex-shrink: 0;
+    border-top: 1px solid var(--iui-surface-border-color);
+  }
+}
+
+@mixin iui-surface-footer-modifiers {
+  .iui-button {
+    flex-grow: 1;
+    border-radius: 0;
+
+    + .iui-button {
+      border-left: 1px solid var(--iui-color-border);
+    }
+
+    &:first-of-type {
+      border-bottom-left-radius: var(--iui-border-radius-1);
+    }
+
+    &:last-of-type {
+      border-bottom-right-radius: var(--iui-border-radius-1);
+    }
+  }
+}
+
+@mixin iui-surface-content {
+  display: flex;
+  flex-grow: 1;
+  padding: var(--iui-surface-content-padding);
+  overflow-y: auto;
+  overflow-y: overlay;
+}
+
+@mixin iui-surface-content-empty {
+  align-items: center;
+  justify-content: center;
 }

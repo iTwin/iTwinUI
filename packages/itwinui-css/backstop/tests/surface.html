@@ -17,6 +17,8 @@
 
     <script type="module">
       import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/activity";
+      import "@itwin/itwinui-icons-elements/settings";
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
@@ -27,16 +29,17 @@
         margin: calc(var(--iui-size-l) * -1);
         padding: var(--iui-size-l);
       }
-      .demo-surface-title-bar {
-        display: flex;
-        align-items: center;
-        height: calc(var(--iui-size-s) * 4);
-        border-bottom: 1px solid var(--iui-color-border);
-        padding: 0 var(--iui-size-s);
+      #demo-default {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(Min(100%, 512px), 1fr)
+        );
+        gap: var(--iui-size-l);
+
+        --iui-surface-content-height: 246px;
       }
-      .demo-surface-content {
-        padding: var(--iui-size-s);
-      }
+
       #demo-elevations {
         display: flex;
         gap: var(--iui-size-2xl);
@@ -52,6 +55,35 @@
       @media (max-width: 600px) {
         #demo-elevations { flex-direction: column; }
       }
+      .demo-surface-list {
+        all: unset;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .demo-surface-list li {
+        padding-block: var(--iui-size-s);
+        padding-inline: var(--iui-surface-padding-inline);
+        position: relative;
+      }
+      .demo-surface-list li:not(:first-of-type) {
+        border-top: 1px solid var(--iui-color-border-subtle);
+      }
+      .demo-surface-list li a::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+      }
+      .demo-mayanks-flex-component {
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-between;
+      }
+      .demo-mayanks-flex-component-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     </style>
   </head>
   <body class="iui-root">
@@ -60,11 +92,23 @@
     <hr />
 
     <section id="demo-default">
+
       <div class="iui-surface">
-        <div class="demo-surface-title-bar">
-          <h2 class="iui-text-subheading">Title of section</h2>
+        <div class="iui-surface-header">
+          <div class="demo-mayanks-flex-component">
+            <h2 class="iui-text-subheading">Default surface</h2>
+            <button
+              class="iui-button"
+              data-iui-variant="borderless"
+            >
+              <svg-settings
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-settings>
+            </button>
+          </div>
         </div>
-        <div class="demo-surface-content">
+        <div class="iui-surface-content">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
@@ -72,6 +116,100 @@
             anim id est laborum.</p>
         </div>
       </div>
+
+      <div class="iui-surface">
+        <div class="iui-surface-header">
+          <h2 class="iui-text-subheading">Surface with overflow & button footer</h2>
+        </div>
+        <div class="iui-surface-content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+            qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="iui-surface-footer">
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+          >
+            <span>View all</span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="iui-surface"
+        style="--iui-surface-content-padding: 0;"
+      >
+        <div class="iui-surface-header">
+          <h2 class="iui-text-subheading">Surface with overflow & no body padding</h2>
+        </div>
+        <div class="iui-surface-content">
+          <ul class="demo-surface-list">
+            <li>
+              <a
+                class="iui-anchor"
+                href="#"
+              >Daily log</a>
+            </li>
+            <li>
+              <a
+                class="iui-anchor"
+                href="#"
+              >Inspections</a>
+            </li>
+            <li>
+              <a
+                class="iui-anchor"
+                href="#"
+              >Issues</a>
+            </li>
+            <li>
+              <a
+                class="iui-anchor"
+                href="#"
+              >Observations</a>
+            </li>
+            <li>
+              <a
+                class="iui-anchor"
+                href="#"
+              >RFIs</a>
+            </li>
+            <li>
+              <a
+                class="iui-anchor"
+                href="#"
+              >Weather delay notices</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="iui-surface">
+        <div class="iui-surface-header">
+          <h2 class="iui-text-subheading">Surface with empty state</h2>
+        </div>
+        <div
+          class="iui-surface-content"
+          data-iui-empty="true"
+        >
+          <div class="demo-mayanks-flex-component-2">
+            <svg-activity
+              class="iui-svg-icon"
+              data-iui-icon-size="l"
+              aria-hidden="true"
+            ></svg-activity>
+            <p class="iui-text-block iui-text-muted iui-text-spacing">No new activity.</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <br />
