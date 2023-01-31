@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.48.2
+
+- Fixed an issue where Table's `onBottomReached` callback was not being invoked when using strict mode with react 18.
+
 ### [1.48.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.48.0...v1.48.1) (2022-10-24)
 
 ### Fixes
