@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import cx from 'classnames';
-import { useTheme, SvgUpload, SvgDocument } from '../utils';
+// import cx from 'classnames';
+import { useTheme, SvgUpload, SvgDocument, Icon } from '../utils';
 import '@itwin/itwinui-css/css/file-upload.css';
 
 const toBytes = (bytes: number) => {
@@ -104,11 +104,17 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
   } = props;
   useTheme();
 
+  // const icon = data?.svg ? (
+  //   React.cloneElement(data.svg, {
+  //     className: cx('iui-icon', data.svg.props.className),
+  //     'aria-hidden': true,
+  //   })
+  // ) : (
+  //   <SvgDocument className='iui-icon' aria-hidden />
+  // );
+
   const icon = data?.svg ? (
-    React.cloneElement(data.svg, {
-      className: cx('iui-icon', data.svg.props.className),
-      'aria-hidden': true,
-    })
+    <Icon>{data.svg}</Icon>
   ) : (
     <SvgDocument className='iui-icon' aria-hidden />
   );
@@ -171,7 +177,7 @@ export const FileUploaded = (props: {
   /**
    * Action element for uploaded file.
    */
-  action: JSX.Element;
+  action?: JSX.Element;
 }) => {
   return (
     <div className='iui-file-uploaded-template'>
