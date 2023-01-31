@@ -4,8 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { SvgAdd } from '@itwin/itwinui-icons-react';
 
-import { defaultStatusTitles, Avatar, AvatarStatus } from './Avatar';
+import {
+  defaultStatusTitles,
+  Avatar,
+  AvatarStatus,
+  AvatarProps,
+} from './Avatar';
 
 function assertBaseElements(size = 'small', backgroundColor = 'white') {
   const avatarContainer = screen.getByTitle('Terry Rivers');
@@ -81,15 +87,29 @@ it('should render with custom color', () => {
   assertBaseElements(undefined, 'pink');
 });
 
-it('renders with image', () => {
-  const { container } = render(<Avatar image={<img />} title='Terry Rivers' />);
+// Still using image to prevent a breaking change
+it.each([{ image: <img /> }, { child: <img /> }] as Array<
+  Partial<AvatarProps>
+>)(`renders custom %j`, (props) => {
+  const { container } = render(<Avatar title='Terry Rivers' {...props} />);
 
   const avatarContainer = screen.getByTitle('Terry Rivers');
   expect(avatarContainer.className).toEqual('iui-avatar iui-small');
   const abbreviation = container.querySelector('.iui-initials');
-  expect(abbreviation).toBeFalsy();
+  expect(abbreviation).toHaveTextContent(''); // Abbreviation is empty when image or child is passed
   const img = container.querySelector('img');
   expect(img).toBeTruthy();
+});
+
+it('renders image when both image and custom child are passed', () => {
+  const { container } = render(
+    <Avatar image={<img />} child={<SvgAdd />} title='Terry Rivers' />,
+  );
+
+  const img = container.querySelector('img');
+  const svg = container.querySelector('svg');
+  expect(img).toBeTruthy();
+  expect(svg).toBeFalsy();
 });
 
 it('should render with custom className', () => {
