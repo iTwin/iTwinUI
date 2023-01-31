@@ -113,7 +113,7 @@ export const Avatar = (props: AvatarProps) => {
       {...rest}
     >
       <abbr className='iui-initials' style={{ backgroundColor }}>
-        {child ? '' : abbreviation?.substring(0, 2)}
+        {image || child ? '' : abbreviation?.substring(0, 2)}
       </abbr>
       {image ?? child}
       <span className='iui-stroke' />
