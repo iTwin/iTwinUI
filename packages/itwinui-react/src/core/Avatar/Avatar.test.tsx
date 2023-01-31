@@ -4,14 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { SvgAdd } from '@itwin/itwinui-icons-react';
+import { SvgUser } from '@itwin/itwinui-icons-react';
 
-import {
-  defaultStatusTitles,
-  Avatar,
-  AvatarStatus,
-  AvatarProps,
-} from './Avatar';
+import { defaultStatusTitles, Avatar, AvatarStatus } from './Avatar';
 
 function assertBaseElements(size = 'small', backgroundColor = 'white') {
   const avatarContainer = screen.getByTitle('Terry Rivers');
@@ -87,11 +82,8 @@ it('should render with custom color', () => {
   assertBaseElements(undefined, 'pink');
 });
 
-// Still using image to prevent a breaking change
-it.each([{ image: <img /> }, { child: <img /> }] as Array<
-  Partial<AvatarProps>
->)(`renders custom %j`, (props) => {
-  const { container } = render(<Avatar title='Terry Rivers' {...props} />);
+it('renders with image', () => {
+  const { container } = render(<Avatar image={<img />} title='Terry Rivers' />);
 
   const avatarContainer = screen.getByTitle('Terry Rivers');
   expect(avatarContainer.className).toEqual('iui-avatar iui-small');
@@ -101,15 +93,15 @@ it.each([{ image: <img /> }, { child: <img /> }] as Array<
   expect(img).toBeTruthy();
 });
 
-it('renders image when both image and custom child are passed', () => {
-  const { container } = render(
-    <Avatar image={<img />} child={<SvgAdd />} title='Terry Rivers' />,
-  );
+it('image prop also supports passing <svg>', () => {
+  const {
+    container: { firstChild: userIcon },
+  } = render(<SvgUser />);
 
-  const img = container.querySelector('img');
-  const svg = container.querySelector('svg');
-  expect(img).toBeTruthy();
-  expect(svg).toBeFalsy();
+  const { container } = render(
+    <Avatar image={<SvgUser />} title='Terry Rivers' />,
+  );
+  expect(container.querySelector('.iui-avatar > svg')).toEqual(userIcon);
 });
 
 it('should render with custom className', () => {

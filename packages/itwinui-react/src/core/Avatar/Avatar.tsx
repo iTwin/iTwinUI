@@ -35,15 +35,9 @@ export type AvatarProps = {
    */
   abbreviation?: string;
   /**
-   * @deprecated Renamed to child to be more generic and not only for `<img>` tags.
-   *
-   * User image to be displayed. MUST be an `<img>` element!
+   * User image to be displayed. Can be `<img>` or `<svg>` or anything else.
    */
   image?: JSX.Element;
-  /**
-   * Custom child instead of the default abbreviation.
-   */
-  child?: JSX.Element;
   /**
    * Color of the icon. You can use `getUserColor` function to generate color from user name or email.
    * @default 'white'
@@ -88,7 +82,6 @@ export const Avatar = (props: AvatarProps) => {
     status,
     abbreviation,
     image,
-    child,
     backgroundColor = 'white',
     title,
     translatedStatusTitles,
@@ -113,9 +106,9 @@ export const Avatar = (props: AvatarProps) => {
       {...rest}
     >
       <abbr className='iui-initials' style={{ backgroundColor }}>
-        {image || child ? '' : abbreviation?.substring(0, 2)}
+        {image ? '' : abbreviation?.substring(0, 2)}
       </abbr>
-      {image ?? child}
+      {image}
       <span className='iui-stroke' />
       {status && (
         <span
