@@ -48,7 +48,8 @@
     font-size: var(--_iui-avatar-font-size);
   }
 
-  svg {
+  > .iui-icon,
+  > svg {
     display: inline-flex;
     width: 50%;
     height: 50%;
