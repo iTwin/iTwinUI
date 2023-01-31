@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { getUserColor, Avatar, AvatarProps } from '@itwin/itwinui-react';
+import { getUserColor, Avatar, AvatarProps, Icon } from '@itwin/itwinui-react';
+import { SvgAdd } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Avatar',
@@ -42,8 +43,16 @@ export const WithImage: Story<AvatarProps> = (args) => {
       size='large'
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
+      child={
+        <Icon>
+          <SvgAdd />
+        </Icon>
+      }
       image={
-        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
+        // <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
+        <Icon>
+          <SvgAdd />
+        </Icon>
       }
       title='Terry Rivers'
       {...args}
@@ -53,9 +62,9 @@ export const WithImage: Story<AvatarProps> = (args) => {
 
 WithImage.args = {
   size: 'large',
-  image: (
-    <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
-  ),
+  // image: (
+  //   <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
+  // ),
 };
 
 export const Sizes: Story<AvatarProps> = (args) => {

@@ -12,6 +12,8 @@
   user-select: none;
   width: var(--_iui-avatar-size);
   height: var(--_iui-avatar-size);
+  // border-radius: 50%;
+  // overflow: hidden;
 
   > .iui-stroke {
     display: block;
@@ -23,6 +25,7 @@
     margin: 0;
     border-radius: 50%;
     box-shadow: inset 0 0 0 var(--iui-size-3xs) hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
+    // z-index: 0;
   }
 
   > .iui-initials {
@@ -30,6 +33,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    // z-index: -1;
     left: 0;
     top: 0;
     width: 100%;
