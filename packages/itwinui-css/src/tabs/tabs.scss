@@ -196,27 +196,23 @@ $borderless-horizontal-tab-min-height: calc(
     background-color: var(--iui-color-border-positive);
   }
 
-  @at-root {
-    .iui-horizontal &::after {
-      top: calc(100% - #{var(--iui-size-3xs)});
-      height: var(--iui-size-3xs);
-      left: var(--stripe-left);
-      width: var(--stripe-width);
-      @media (prefers-reduced-motion: no-preference) {
-        transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
-      }
+  .iui-horizontal &::after {
+    top: calc(100% - #{var(--iui-size-3xs)});
+    height: var(--iui-size-3xs);
+    left: var(--stripe-left);
+    width: var(--stripe-width);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
     }
   }
 
-  @at-root {
-    .iui-vertical &::after {
-      left: calc(100% - #{var(--iui-size-3xs)});
-      width: var(--iui-size-3xs);
-      top: var(--stripe-top);
-      height: var(--stripe-height);
-      @media (prefers-reduced-motion: no-preference) {
-        transition: top var(--iui-duration-1) ease-out;
-      }
+  .iui-vertical &::after {
+    left: calc(100% - #{var(--iui-size-3xs)});
+    width: var(--iui-size-3xs);
+    top: var(--stripe-top);
+    height: var(--stripe-height);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: top var(--iui-duration-1) ease-out;
     }
   }
 }
