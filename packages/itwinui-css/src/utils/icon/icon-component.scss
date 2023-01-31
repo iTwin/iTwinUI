@@ -17,11 +17,13 @@ $icon-sizes: (
   display: inline-flex;
   flex-shrink: 0;
 
-  &,
+  width: var(--_iui-svg-size);
+  height: var(--_iui-svg-size);
+  fill: var(--_iui-svg-fill);
+
   svg {
-    width: var(--_iui-svg-size);
-    height: var(--_iui-svg-size);
-    fill: var(--_iui-svg-fill);
+    width: 100%;
+    height: 100%;
   }
 }
 

@@ -44,12 +44,28 @@ export const WithImage: Story<AvatarProps> = (args) => {
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
       child={
-        <Icon>
-          <SvgAdd />
-        </Icon>
+        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
-      image={
-        // <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
+      title='Terry Rivers'
+      {...args}
+    />
+  );
+};
+
+WithImage.args = {
+  size: 'large',
+  child: (
+    <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
+  ),
+};
+
+export const WithIcon: Story<AvatarProps> = (args) => {
+  return (
+    <Avatar
+      size='large'
+      abbreviation='TR'
+      backgroundColor={getUserColor('Terry Rivers')}
+      child={
         <Icon>
           <SvgAdd />
         </Icon>
@@ -60,11 +76,13 @@ export const WithImage: Story<AvatarProps> = (args) => {
   );
 };
 
-WithImage.args = {
+WithIcon.args = {
   size: 'large',
-  // image: (
-  //   <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
-  // ),
+  child: (
+    <Icon>
+      <SvgAdd />
+    </Icon>
+  ),
 };
 
 export const Sizes: Story<AvatarProps> = (args) => {

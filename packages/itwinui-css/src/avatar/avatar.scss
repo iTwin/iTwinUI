@@ -52,8 +52,9 @@
     font-size: var(--_iui-avatar-font-size);
   }
 
-  > .iui-icon {
-    display: inline-flex;
+  > .iui-icon,
+  > svg,
+  > .iui-svg-icon {
     width: 50%;
     height: 50%;
     position: absolute;

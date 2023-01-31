@@ -87,7 +87,7 @@ export const Avatar = (props: AvatarProps) => {
     size = 'small',
     status,
     abbreviation,
-    // image,
+    image,
     child,
     backgroundColor = 'white',
     title,
@@ -114,8 +114,8 @@ export const Avatar = (props: AvatarProps) => {
     >
       <abbr className='iui-initials' style={{ backgroundColor }}>
         {child ? '' : abbreviation?.substring(0, 2)}
-        {child}
       </abbr>
+      {image ?? child}
       <span className='iui-stroke' />
       {status && (
         <span
