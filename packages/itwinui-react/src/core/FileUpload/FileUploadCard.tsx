@@ -33,17 +33,27 @@ export type FileUploadCardProps = {
    * @default: SvgDocument
    */
   icon?: JSX.Element;
+  /**
+   * Callback fired when a file is selected from the device.
+   */
+  onFileChange?: React.ChangeEventHandler<HTMLInputElement>;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 export const FileUploadCard = Object.assign(
   React.forwardRef<HTMLDivElement, FileUploadCardProps>(
     (props, ref: React.RefObject<HTMLDivElement>) => {
-      const { className, children, ...rest } = props;
+      const { onFileChange, className, children, ...rest } = props;
+
+      const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (onFileChange) {
+          onFileChange(e);
+        }
+        setFiles(Array.from(e.target.files || []));
+      };
 
       const [files, setFiles] = React.useState<Array<File>>([]);
 
-      // only putting children as a condition here temporarily to see what cards look like when children are passed by the user
-      return files.length || children ? (
+      return files.length ? (
         <div
           className={cx('iui-file-uploaded-template', className)}
           ref={ref}
@@ -59,7 +69,7 @@ export const FileUploadCard = Object.assign(
                 </FileUploadCard.Description>
               </FileUploadCard.Text>
               <FileUploadCard.Action>
-                <FileUploadCard.Input />
+                <FileUploadCard.Input onChange={onChange} />
                 {'Replace'}
               </FileUploadCard.Action>
             </>
@@ -70,11 +80,7 @@ export const FileUploadCard = Object.assign(
           <SvgUpload className='iui-icon' aria-hidden />
           <div className='iui-template-text'>
             <label className='iui-anchor'>
-              <input
-                className='iui-browse-input'
-                type='file'
-                onChange={(e) => setFiles(Array.from(e.target.files || []))}
-              />
+              <FileUploadCard.Input onChange={onChange} />
               {'Choose a file'}
             </label>
             <div>{'or drag & drop it here.'}</div>
