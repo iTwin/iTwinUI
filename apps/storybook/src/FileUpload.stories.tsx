@@ -8,10 +8,12 @@ import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   FileUpload,
+  FileUploadCard,
   FileUploadProps,
   FileUploadTemplate,
   LabeledInput,
 } from '@itwin/itwinui-react';
+import { SvgAirplane } from '@itwin/itwinui-icons-react';
 
 export default {
   component: FileUpload,
@@ -76,23 +78,27 @@ WrappingInput.args = {
 };
 
 export const SingleFileUpload: Story<FileUploadProps> = (args) => {
-  const [files, setFiles] = useState<Array<File>>([]);
-
   return (
     <FileUpload
       {...args}
       onFileDropped={(files) => {
-        setFiles(Array.from(files));
         action(`${files.length} files uploaded`)();
       }}
     >
-      <FileUploadTemplate
-        onChange={(e) => setFiles(Array.from(e.target.files || []))}
-        acceptMultiple={false}
-        data={files.length === 1 ? { file: files[0] } : undefined}
-      >
-        {files.map((f) => f.name).join(', ')}
-      </FileUploadTemplate>
+      {' '}
+      <FileUploadCard>
+        <SvgAirplane />
+        <FileUploadCard.Text>
+          <FileUploadCard.Label>{'Test Label'}</FileUploadCard.Label>
+          <FileUploadCard.Description>
+            {'Test Description'}
+          </FileUploadCard.Description>
+        </FileUploadCard.Text>
+        <FileUploadCard.Action>
+          <FileUploadCard.Input />
+          {'Replace'}
+        </FileUploadCard.Action>
+      </FileUploadCard>
     </FileUpload>
   );
 };

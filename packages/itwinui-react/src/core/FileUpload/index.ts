@@ -23,3 +23,6 @@ export type { FileUploadCardDescriptionProps } from './FileUploadCardDescription
 
 export { FileUploadCardAction } from './FileUploadCardAction';
 export type { FileUploadCardActionProps } from './FileUploadCardAction';
+
+export { FileUploadCardInput } from './FileUploadCardInput';
+export type { FileUploadCardInputProps } from './FileUploadCardInput';

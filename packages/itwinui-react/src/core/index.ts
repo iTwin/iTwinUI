@@ -106,6 +106,7 @@ export type {
   FileUploadCardLabelProps,
   FileUploadCardDescriptionProps,
   FileUploadCardActionProps,
+  FileUploadCardInputProps,
 } from './FileUpload';
 
 export { Footer, defaultFooterElements } from './Footer';

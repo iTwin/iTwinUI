@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { SvgDocument, SvgUpload } from '../utils';
-import { useMergedRefs } from '../utils';
 import { FileUploadCardAction } from './FileUploadCardAction';
 import cx from 'classnames';
 import { FileUploadCardText } from './FileUploadCardText';
 import { FileUploadCardLabel } from './FileUploadCardLabel';
 import { FileUploadCardDescription } from './FileUploadCardDescription';
+import { FileUploadCardInput } from './FileUploadCardInput';
 
 const toBytes = (bytes: number) => {
   const units = ['bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -29,78 +29,66 @@ const toDate = (dateNumber: number) => {
 
 export type FileUploadCardProps = {
   /**
-   * File upload input ref.
-   */
-  inputRef: React.RefObject<HTMLInputElement>;
-  /**
-   * File label for uploaded file output.
-   */
-  label?: string;
-  /**
-   * File description for uploaded file output.
-   */
-  description?: string;
-  /**
    * Svg icon for uploaded file output.
    * @default: SvgDocument
    */
   icon?: JSX.Element;
-  /**
-   * Action element for uploaded file.
-   */
-  action?: JSX.Element;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 export const FileUploadCard = Object.assign(
-  React.forwardRef<HTMLElement, FileUploadCardProps>((props, ref) => {
-    const { className, children, ...rest } = props;
-    const [files, setFiles] = React.useState<Array<File>>([]);
+  React.forwardRef<HTMLDivElement, FileUploadCardProps>(
+    (props, ref: React.RefObject<HTMLDivElement>) => {
+      const { className, children, ...rest } = props;
 
-    const fileUploadCardRef = React.useRef<HTMLDivElement>(null);
-    const refs = useMergedRefs(fileUploadCardRef, ref);
+      const [files, setFiles] = React.useState<Array<File>>([]);
 
-    return files.length ? (
-      <div
-        className={cx('iui-file-uploaded-template', className)}
-        ref={refs}
-        {...rest}
-      >
-        {children ?? (
-          <>
-            {<SvgDocument />}
-            <FileUploadCard.Text>
-              <FileUploadCard.Label>{files[0].name}</FileUploadCard.Label>
-              <FileUploadCard.Description>
-                {toBytes(files[0].size) + ' ' + toDate(files[0].lastModified)}
-              </FileUploadCard.Description>
-            </FileUploadCard.Text>
-            <FileUploadCardAction />
-          </>
-        )}
-      </div>
-    ) : (
-      <>
-        <SvgUpload className='iui-icon' aria-hidden />
-        <div className='iui-template-text'>
-          <label className='iui-anchor'>
-            <input
-              className='iui-browse-input'
-              type='file'
-              onChange={(e) => setFiles(Array.from(e.target.files || []))}
-            />
-            {'Choose a file'}
-          </label>
-          <div>{'or upload one yourself'}</div>
-          {children}
+      // only putting children as a condition here temporarily to see what cards look like when children are passed by the user
+      return files.length || children ? (
+        <div
+          className={cx('iui-file-uploaded-template', className)}
+          ref={ref}
+          {...rest}
+        >
+          {children ?? (
+            <>
+              {<SvgDocument />}
+              <FileUploadCard.Text>
+                <FileUploadCard.Label>{files[0].name}</FileUploadCard.Label>
+                <FileUploadCard.Description>
+                  {toBytes(files[0].size) + ' ' + toDate(files[0].lastModified)}
+                </FileUploadCard.Description>
+              </FileUploadCard.Text>
+              <FileUploadCard.Action>
+                <FileUploadCard.Input />
+                {'Replace'}
+              </FileUploadCard.Action>
+            </>
+          )}
         </div>
-      </>
-    );
-  }),
+      ) : (
+        <>
+          <SvgUpload className='iui-icon' aria-hidden />
+          <div className='iui-template-text'>
+            <label className='iui-anchor'>
+              <input
+                className='iui-browse-input'
+                type='file'
+                onChange={(e) => setFiles(Array.from(e.target.files || []))}
+              />
+              {'Choose a file'}
+            </label>
+            <div>{'or drag & drop it here.'}</div>
+          </div>
+        </>
+      );
+    },
+  ),
   {
-    Action: FileUploadCardAction,
     Text: FileUploadCardText,
     Label: FileUploadCardLabel,
     Description: FileUploadCardDescription,
+    Action: FileUploadCardAction,
+    Input: FileUploadCardInput,
   },
 );
 export default FileUploadCard;

@@ -1,17 +1,12 @@
 import React from 'react';
-import { FileUploadTemplateProps } from './FileUploadTemplate';
 import cx from 'classnames';
 
 export type FileUploadCardActionProps = {
   /**
    * Buttons in the dialog bar.
    */
-  children?: React.ReactNode;
-} & React.ComponentPropsWithRef<'div'> &
-  Pick<
-    FileUploadTemplateProps,
-    'acceptType' | 'acceptMultiple' | 'label' | 'onChange'
-  >;
+  children: React.ReactNode;
+} & React.ComponentPropsWithRef<'div'>;
 
 export const FileUploadCardAction = React.forwardRef<
   HTMLDivElement,
@@ -24,16 +19,7 @@ export const FileUploadCardAction = React.forwardRef<
       ref={ref}
       {...rest}
     >
-      <label className='iui-anchor'>
-        <input
-          className='iui-browse-input'
-          type='file'
-          onChange={props.onChange}
-          multiple={props.acceptMultiple}
-          accept={props.acceptType}
-        />
-        {children ?? 'Test Action'}
-      </label>
+      <label className='iui-anchor'>{children}</label>
     </div>
   );
 });
