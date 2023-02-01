@@ -5,5 +5,5 @@
 `<Avatar>`'s `image` now supports passing `<svg>` too
 
 ```tsx
-<Avatar child={<SvgUser />} />
+<Avatar image={<SvgUser />} />
 ```
