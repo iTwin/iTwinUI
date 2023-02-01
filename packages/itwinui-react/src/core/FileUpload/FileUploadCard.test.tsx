@@ -94,7 +94,7 @@ it('should render FileUploadCard after a file is uploaded', () => {
   expect(action.textContent).toEqual('Replace');
 });
 
-it.only('should render FileUploadCard with custom props', () => {
+it('should render FileUploadCard with custom props', () => {
   const { container } = render(<CustomFileUploadCard />);
 
   const { container: checkmarkIcon } = render(
