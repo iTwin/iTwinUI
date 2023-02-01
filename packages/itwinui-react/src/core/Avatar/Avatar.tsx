@@ -94,6 +94,8 @@ export const Avatar = (props: AvatarProps) => {
 
   const statusTitles = { ...defaultStatusTitles, ...translatedStatusTitles };
 
+  const Background = image ? 'div' : 'abbr';
+
   return (
     <span
       className={cx(
@@ -105,9 +107,9 @@ export const Avatar = (props: AvatarProps) => {
       style={style}
       {...rest}
     >
-      <abbr className='iui-initials' style={{ backgroundColor }}>
+      <Background className='iui-initials' style={{ backgroundColor }}>
         {image ? '' : abbreviation?.substring(0, 2)}
-      </abbr>
+      </Background>
       {image}
       <span className='iui-stroke' />
       {status && (
